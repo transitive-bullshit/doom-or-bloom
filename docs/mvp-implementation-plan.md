@@ -574,3 +574,11 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - [x] Add targeted primary workforce methods/version research for Stanford indicators, the August Canaries revision and a related Jagged Frontier journal version. Preserve descriptive versus causal estimands, percentage versus percentage-point distinctions, private sampling and the exact working-paper access blocker. Link each intake record to its precise research heading and scope.
 - Formatting and complete content validation pass, including every new snapshot’s required sections, dependencies and source mapping. Runtime tests/build are unchanged by this corpus checkpoint; the preceding interface checkpoint also passed two intercepted dummy analytics checks. No paid inference or real telemetry was used.
 - Previous checkpoint: `c4dabe3`. Next: continue remaining required-source authoring/access reconciliation alongside demo feedback. Individual editorial review/freeze and held-out semantic evaluation remain open.
+
+### 2026-09-17 — Required workforce snapshot checkpoint / Codex
+
+- [x] Author six separate workforce/measurement snapshots from targeted primary methods research, pinning accessible author/journal versions and original required links. Distinguish observational exposure from randomized treatment, assignment ITT from instrumented-use effects, hiring from earnings/hours, percentages from percentage points and recent publication from older model/evidence vintages.
+- [x] Map six more required URLs: 66 of 114 now have active or separate draft mappings; separate drafts total 82. Four new mappings preserve partial access for the exact HBS/NBER originals. Runtime remains at 42 references, with no new individual review, activation or freeze.
+- [x] Record a bounded follow-up for the SAGE chapter and Noah Smith essay. Neither access blocker changed; no unread argument was reconstructed or later source substituted.
+- Formatting and complete content validation pass for all six snapshots, related IDs, original mappings, research headings and current release dependencies. Runtime is unchanged, and no inference or telemetry was used.
+- Previous checkpoint: `d5088a6`. Continue remaining required-source drafts and keep access/review/held-out gates open.

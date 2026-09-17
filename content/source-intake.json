@@ -623,6 +623,11 @@
           "path": "docs/research/required-essays-and-scenarios.md",
           "heading": "13. Offense–Defense Dominance",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-limited-access-followup.md",
+          "heading": "1. source.required-028 — Offense–Defense Dominance",
+          "scope": "Bounded follow-up found no substantive chapter text or verified open author version. Exact/trailing-slash retrievals and an official MIT search did not change the blocker; author/title match is metadata only."
         }
       ]
     },
@@ -930,6 +935,11 @@
           "path": "docs/research/required-essays-and-scenarios.md",
           "heading": "17. My thoughts on AI safety",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-limited-access-followup.md",
+          "heading": "2. source.required-042 — My thoughts on AI safety",
+          "scope": "Bounded follow-up still obtained only the dated public introduction, with paid/courtesy continuation unread. A distinct February 2026 updated essay is a relationship lead, not a replacement or evidence of the missing original arguments."
         }
       ]
     },
@@ -1664,13 +1674,13 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
+      "status": "draft",
+      "genre": "Mutable measurement hub",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["hub.stanford-ai-economic-indicators-2026-09"],
+      "notes": "Project launch 2026-06-10; Canaries dashboard labels 2026-07-22; June note updated 2026-08-10. Hub revision unknown. No September data vintage inspected. ADP collaboration and Coefficient Giving, Schmidt Sciences and Siegel support disclosed. Targeted methods/disclosures read; accessed 2026-09-17. Research: docs/research/required-workforce-evidence.md §1. Human review pending. Separate snapshot draft, outside the demo. Required original remains preserved; mapping does not resolve exact-version access or confer approval.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1692,13 +1702,13 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
+      "status": "draft",
+      "genre": "Descriptive working paper",
       "publishedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-08-12",
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["publication.stanford-canaries-2026-08"],
+      "notes": "Original August 2025; revised 2026-08-12. Targeted full-text methods, headline, hiring, pay limits and disclosures inspected. Stanford affiliations, DEL funding and ADP data/confidentiality review disclosed. Accessed 2026-09-17. Research: docs/research/required-workforce-evidence.md §2. Human review pending. Separate snapshot draft, outside the demo. Required original remains preserved; mapping does not resolve exact-version access or confer approval.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1743,12 +1753,12 @@
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
       "status": "partial",
-      "genre": null,
+      "genre": "Randomized workplace experiment; related journal version",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["publication.jagged-frontier-journal-2026"],
+      "notes": "Journal published 2026-03-11, revised 2026-01-23; initial paper release reported 2023-09-18 versus indexed required copy 2023-09-22. Targeted journal methods/limits/disclosures read. BCG-affiliated coauthors and HBS funding disclosed. Exact required-copy methods remain blocked. Accessed 2026-09-17. Research: docs/research/required-workforce-evidence.md §3. Human review pending. Separate snapshot draft, outside the demo. Required original remains preserved; mapping does not resolve exact-version access or confer approval.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1769,12 +1779,12 @@
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
       "status": "partial",
-      "genre": "Randomized field experiment",
+      "genre": "Randomized field study; accessible author revision",
       "publishedAt": "2025-05",
       "updatedAt": "2025-11",
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "Related author v4 targeted full-text methods/outcomes/limitations/disclosures inspected. Exact original NBER copy remains blocked and byte identity unverified. Human editorial review remains pending.",
+      "referenceIds": ["publication.shifting-work-patterns-author-v4-2025"],
+      "notes": "NBER original May 2025, revision November 2025; author v4 deposited 2025-11-13, title dated 2025-11-17. Targeted methods/appendices/affiliations read; byte equivalence unverified. Microsoft marketing oversaw the trial; three authors are Microsoft researchers. Accessed 2026-09-17. Research: docs/research/required-economic-methods.md §1 and access reconciliation. Human review pending. Separate snapshot draft, outside the demo. Required original remains preserved; mapping does not resolve exact-version access or confer approval.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1800,12 +1810,12 @@
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
       "status": "partial",
-      "genre": "Randomized field experiment",
+      "genre": "Randomized field experiment; related journal version",
       "publishedAt": "2025-04",
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "Related June 2026 journal methods/outcomes/limitations/disclosures inspected. 791 workshop completers include 776 complete surveys; do not infer sample expansion. Exact NBER copy remains blocked. Human editorial review remains pending.",
+      "referenceIds": ["publication.cybernetic-teammate-journal-2026"],
+      "notes": "NBER original April 2025; journal online 2026-06-12, revisions 2025-11-17/2026-03-26. Targeted publisher methods/limits/disclosures read; byte identity unverified. HBS funding, P&G gifts/coauthors and Lakhani’s 2021–22 consultancy disclosed; authors assert intellectual independence. Accessed 2026-09-17. Research: docs/research/required-economic-methods.md §2. Human review pending. Separate snapshot draft, outside the demo. Required original remains preserved; mapping does not resolve exact-version access or confer approval.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1831,12 +1841,12 @@
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
       "status": "partial",
-      "genre": "Administrative-data quasi-experiment",
+      "genre": "Administrative-data quasi-experiment; accessible author revision",
       "publishedAt": "2025-05",
       "updatedAt": "2026-03",
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "Related March 2026 author PDF targeted methods/outcomes/limitations/disclosures inspected. Quasi-experimental averages differ from descriptive occupation-switcher comparisons. Exact NBER copy remains blocked. Human editorial review remains pending.",
+      "referenceIds": ["publication.still-waters-rapid-currents-2026-03"],
+      "notes": "NBER original May 2025, revised March 2026; author PDF dated 2026-03-13. Targeted data/identification/limits/disclosures read; byte equivalence unverified. University-center funding and Claude Code research assistance disclosed. Accessed 2026-09-17. Research: docs/research/required-economic-methods.md §3. Human review pending. Separate snapshot draft, outside the demo. Required original remains preserved; mapping does not resolve exact-version access or confer approval.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
