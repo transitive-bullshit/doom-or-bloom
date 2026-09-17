@@ -9,7 +9,7 @@
       'IEA Energy and AI 2025',
       'AI electricity demand IEA report'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['energy', 'economics', 'infrastructure'],
   'date': '2025-04-10',
   'entities': [],
   'related':

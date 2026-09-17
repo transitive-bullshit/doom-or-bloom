@@ -5,7 +5,7 @@
   'title': 'Anthropic Responsible Scaling Policy v3.4: targeted provisions',
   'aliases':
     ['Anthropic Responsible Scaling Policy', 'Anthropic RSP', 'RSP v3.4'],
-  'topics': ['governance', 'risk', 'evaluation', 'control'],
+  'topics': ['governance', 'risk', 'control'],
   'date': '2026-07-08 effective date',
   'entities': ['entity.anthropic'],
   'related':

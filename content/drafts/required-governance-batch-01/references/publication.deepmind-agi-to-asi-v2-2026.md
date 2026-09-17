@@ -4,7 +4,7 @@
   'kind': 'publication',
   'title': 'From AGI to ASI: prospectus abstract and v2 context',
   'aliases': ['From AGI to ASI', 'Genewein AGI to ASI', 'arXiv 2606.12683'],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['capability', 'forecast', 'research'],
   'date': '2026-08-30 arXiv v2 revision',
   'entities': [],
   'related':

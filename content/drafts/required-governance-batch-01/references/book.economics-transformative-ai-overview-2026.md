@@ -8,7 +8,7 @@
       'The Economics of Transformative AI',
       'Agrawal Brynjolfsson Korinek transformative AI volume'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['economics', 'adoption', 'benefit', 'risk'],
   'date': 'page publication September 2026; generated citation 2025 unresolved',
   'entities': [],
   'related':

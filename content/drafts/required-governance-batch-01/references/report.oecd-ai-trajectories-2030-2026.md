@@ -9,7 +9,7 @@
       'OECD AI Papers 55',
       'OECD four AI trajectories'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['forecast', 'capability', 'governance', 'economics'],
   'date': '2026-02; exact day unverified',
   'entities': [],
   'related':

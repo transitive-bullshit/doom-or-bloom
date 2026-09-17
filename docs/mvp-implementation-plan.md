@@ -598,3 +598,12 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - [x] Required mappings now total 99 of 114 URLs, with 115 separate draft snapshots. Runtime remains at 42 references; no individual approval, activation or freeze occurred.
 - Formatting and complete content validation pass for all 20 snapshots, required sections, related IDs, mapped originals, exact research headings and release dependencies. Runtime is unchanged; no paid inference or real telemetry was used.
 - Previous checkpoint: `9eeff87`. Continue remaining perspective/discovery sources and preserve access, editorial and held-out gates.
+
+### 2026-09-17 — Required perspectives and discovery checkpoint / Codex
+
+- [x] Author 12 separate scoped perspective/discovery snapshots, preserving adoption versus capability, historical conditional theory, publisher/interviewee attribution, named examples, century-scale horizons and four partial-access statuses. Reuse the existing Learned Optimization and Concrete Problems identities.
+- [x] Refine subject tags on this batch and the governance/social drafts so energy, science, human agency, cyber, forecasts and conceptual mechanisms reflect actual subject matter. These tags do not assign ideological scoring priors.
+- [x] Reconcile already mapped researched sources to intake `draft` status while retaining every partial/blocked status. Required mappings now total 111 of 114 URLs, with 127 separate draft snapshots and the unchanged 42-reference demo. No asset was individually approved, activated or frozen.
+- [x] Record the three unmapped requirements explicitly: Reuters article, unread SAGE chapter and preview-only Noah Smith essay. Fifteen other partial-access records have scoped mappings, rather than cleared access gates.
+- Formatting and complete content validation pass for the 12 new drafts and refined metadata, including source mappings, related IDs, seven sections and release compatibility. Runtime is unchanged. No paid inference or real telemetry was used.
+- Previous checkpoint: `556f646`. Next: audit corpus coverage/remaining access and prepare review/evaluation deliverables while retaining all required-source and human-review gates.

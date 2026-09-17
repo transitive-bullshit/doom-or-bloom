@@ -9,7 +9,7 @@
       'AI control research',
       'Trusted oversight of untrusted models'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['control', 'evaluation', 'risk'],
   'date': 'original/update unknown; inspected 2026-09-17',
   'entities': [],
   'related':

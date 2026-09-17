@@ -9,7 +9,7 @@
       'AI Whistleblower Tells Tucker How AI Could Kill All Humans by 2040',
       'Soares September 2026 interview'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['control', 'risk', 'goals'],
   'date': '2026-09-12 publication',
   'entities': [],
   'related': ['book.if-anyone-builds-it-2025'],

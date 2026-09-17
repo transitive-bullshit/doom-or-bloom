@@ -9,7 +9,7 @@
       'Tony_Diver Iranian hackers power plant',
       'Telegraph small electricity producer incident'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['cyber', 'energy', 'risk'],
   'date': '2026-08-22 post; incident date not established',
   'entities': [],
   'related': ['social.a16z-critical-vulnerabilities-2026'],

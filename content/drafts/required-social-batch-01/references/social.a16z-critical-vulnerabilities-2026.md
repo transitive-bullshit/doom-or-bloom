@@ -9,7 +9,7 @@
       '21 software companies vulnerabilities',
       'a16z CVE commentary'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['cyber', 'evaluation', 'risk'],
   'date': '2026-09-05',
   'entities': [],
   'related': ['social.power-binary-editability-2026'],

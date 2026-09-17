@@ -9,7 +9,7 @@
       'National Academies foundation models DOE',
       'doi:10.17226/29212'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['science', 'benefit', 'evaluation'],
   'date': '2025; exact day/revision unverified',
   'entities': [],
   'related': ['report.iea-energy-ai-2025'],

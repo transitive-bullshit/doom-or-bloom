@@ -9,7 +9,7 @@
       'hilbertspaess Anthropic resignation',
       'Coxon safety criticism'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['risk', 'governance', 'capability'],
   'date': '2026-09-09',
   'entities': [],
   'related': ['publication.benton-safety-departure-2026'],

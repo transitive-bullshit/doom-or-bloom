@@ -9,7 +9,7 @@
       'CG offensive cyber model post',
       'abliterated-model-large-v2 announcement'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['cyber', 'capability', 'misuse'],
   'date': '2026-09-01',
   'entities': [],
   'related': ['social.power-binary-editability-2026'],

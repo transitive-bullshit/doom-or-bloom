@@ -9,7 +9,7 @@
       'BorisMPower SRE benchmark reaction',
       'ChrisGPT Vals AI reverse engineering'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['cyber', 'capability', 'evaluation'],
   'date': '2026-09-06',
   'entities': [],
   'related': ['social.a16z-critical-vulnerabilities-2026'],

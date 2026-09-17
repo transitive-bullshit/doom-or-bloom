@@ -10,7 +10,7 @@
       'Morris AGI levels',
       'arXiv 2311.02462'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['capability', 'evaluation', 'agency'],
   'date': '2025-09-24 arXiv v5 revision',
   'entities': [],
   'related': ['publication.deepmind-agi-to-asi-v2-2026'],

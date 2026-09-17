@@ -5,7 +5,7 @@
   'title': 'We Need A Science of Scheming',
   'aliases':
     ['We Need A Science of Scheming', 'Apollo Science of Scheming agenda'],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['control', 'risk', 'research'],
   'date': '2026-01-19',
   'entities': [],
   'related':

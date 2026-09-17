@@ -9,7 +9,7 @@
       'ilyasut neocloud cybersecurity',
       'Rogue agents neocloud defense'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['cyber', 'control', 'risk'],
   'date': '2026-09-01 supplied edited root',
   'entities': [],
   'related': ['social.achiam-rogue-ai-ecology-2026'],

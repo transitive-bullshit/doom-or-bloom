@@ -9,7 +9,7 @@
       'jachiam0 rogue AI',
       'Rogue AI ecology argument'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['control', 'risk', 'multiagent'],
   'date': '2026-09-01',
   'entities': [],
   'related':

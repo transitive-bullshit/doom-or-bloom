@@ -8,7 +8,7 @@
       'OWASP Top 10 for Agentic Applications for 2026',
       'OWASP Agentic Top 10 2026'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['cyber', 'governance', 'control'],
   'date': '2025-12-09; 2026 edition',
   'entities': [],
   'related': ['publication.nist-rmf', 'hub.redwood-ai-control-2026-09'],

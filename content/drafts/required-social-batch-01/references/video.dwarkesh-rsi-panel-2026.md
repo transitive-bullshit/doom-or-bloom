@@ -9,7 +9,7 @@
       'Dwarkesh RSI panel',
       'Schulman O’Neill Millidge panel'
     ],
-  'topics': ['risk', 'control', 'cyber', 'capability'],
+  'topics': ['capability', 'research', 'forecast', 'goals'],
   'date': '2026-09-11 publication',
   'entities': [],
   'related': ['publication.deepmind-agi-to-asi-v2-2026'],

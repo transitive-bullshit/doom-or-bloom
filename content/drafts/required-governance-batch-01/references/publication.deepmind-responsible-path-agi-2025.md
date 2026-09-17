@@ -8,7 +8,7 @@
       'Taking a responsible path to AGI',
       'DeepMind technical AGI safety approach'
     ],
-  'topics': ['risk', 'evaluation', 'governance', 'capability'],
+  'topics': ['governance', 'risk', 'control', 'misuse'],
   'date': '2025-04-02',
   'entities': [],
   'related':
