@@ -4,7 +4,12 @@ import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 import { z } from 'zod'
-import { rootPrompt, vectorIds, versions } from '@/lib/assessment/schema'
+import {
+  rootPrompt,
+  supportedContentVersions,
+  vectorIds,
+  versions
+} from '@/lib/assessment/schema'
 import {
   findingSchema,
   manifestSchema,
@@ -36,14 +41,32 @@ export function loadDraftReferences(): Reference[] {
       loadReferences(path.join(directory, entry.name, 'references'))
     )
 }
-export function loadBundle() {
-  const manifest = manifestSchema.parse(
+export function loadBundle(contentVersion: string = versions.content) {
+  if (!supportedContentVersions.some((version) => version === contentVersion))
+    throw new Error('This content version is unavailable. Export or restart.')
+  const currentManifest = manifestSchema.parse(
     JSON.parse(
       readFileSync(path.join(process.cwd(), 'content/manifest.json'), 'utf8')
     )
   )
+  const manifest =
+    currentManifest.contentVersion === contentVersion
+      ? currentManifest
+      : manifestSchema.parse(
+          JSON.parse(
+            readFileSync(
+              path.join(
+                process.cwd(),
+                'content/releases',
+                contentVersion,
+                'manifest.json'
+              ),
+              'utf8'
+            )
+          )
+        )
   if (
-    manifest.contentVersion !== versions.content ||
+    manifest.contentVersion !== contentVersion ||
     manifest.rubricVersion !== versions.rubric ||
     manifest.assessmentVersion !== versions.assessment
   )
@@ -108,7 +131,12 @@ export function bundleFiles(bundle: Pick<Bundle, 'manifest'>) {
     readdirSync(path.join(base, directory), { withFileTypes: true }).flatMap(
       (entry) => {
         const file = `${directory}/${entry.name}`
-        return entry.isDirectory() ? collect(file) : [file]
+        // The manifest contains these hashes and cannot hash itself.
+        return entry.isDirectory()
+          ? collect(file)
+          : file === `releases/${bundle.manifest.contentVersion}/manifest.json`
+            ? []
+            : [file]
       }
     )
   return directories.flatMap(collect).sort()

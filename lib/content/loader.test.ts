@@ -8,7 +8,7 @@ import {
 test('representative bundle is validated but remains draft', () => {
   const bundle = loadBundle()
   expect(bundle.manifest.status).toBe('draft')
-  expect(bundle.references).toHaveLength(42)
+  expect(bundle.references).toHaveLength(135)
   expect(() =>
     validateBundle({
       ...bundle,
@@ -21,6 +21,31 @@ test('representative bundle is validated but remains draft', () => {
       manifest: { ...bundle.manifest, status: 'reviewed', reviewer: 'someone' }
     })
   ).toThrow('review')
+})
+test('content releases are pinned and unsupported paths are rejected', () => {
+  const previous = loadBundle('0.2.0-draft')
+  const current = loadBundle()
+  expect(previous.references).toHaveLength(42)
+  expect(previous.manifest.contentVersion).toBe('0.2.0-draft')
+  expect(current.manifest.contentVersion).toBe('0.3.0-draft')
+  expect(
+    previous.references.some(
+      (r) => r.id === 'publication.ai-as-normal-technology-2025'
+    )
+  ).toBe(false)
+  expect(
+    current.references.some(
+      (r) => r.id === 'publication.ai-as-normal-technology-2025'
+    )
+  ).toBe(true)
+  expect(() => loadBundle('../manifest')).toThrow('unavailable')
+  expect(() => loadBundle('0.1.0-draft')).toThrow('unavailable')
+  expect(Object.keys(bundleHashes(current))).toContain(
+    'releases/0.3.0-draft/provenance.json'
+  )
+  expect(Object.keys(bundleHashes(current))).not.toContain(
+    'releases/0.3.0-draft/manifest.json'
+  )
 })
 test('freeze requires complete hashes and graph rejects disconnected cycles and impossible conditions', () => {
   const bundle = loadBundle()

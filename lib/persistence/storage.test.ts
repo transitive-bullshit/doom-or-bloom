@@ -49,6 +49,18 @@ test('corrupt and unavailable storage are recoverable', () => {
     }).kind
   ).toBe('unavailable')
 })
+
+test('resuming an earlier content version preserves its draft and version', () => {
+  const storage = memory()
+  const state = createAssessment('earlier-content')
+  state.versions.content = '0.2.0-draft'
+  state.draft = 'This is my original unsent answer.'
+  saveAssessment(storage, state, null, 'earlier-token')
+  const loaded = loadAssessment(storage)
+  if (loaded.kind !== 'valid')
+    throw new Error('Expected earlier saved assessment')
+  expect(loaded.assessment).toEqual(state)
+})
 test('over-limit drafts resume intact while submitted answers have a 20,000-character bound', () => {
   const storage = memory()
   const state = createAssessment('long-draft')

@@ -6,7 +6,12 @@ import type {
   DebugTrace,
   Operation
 } from '@/lib/assessment/schema'
-import { assessmentSchema, limits } from '@/lib/assessment/schema'
+import {
+  assessmentSchema,
+  limits,
+  supportedContentVersions,
+  versions
+} from '@/lib/assessment/schema'
 import {
   canSubmit,
   createAssessment,
@@ -293,6 +298,18 @@ export function Interview({
               <AlertDescription>{notice}</AlertDescription>
             </Alert>
           )}
+          {state.versions.content !== versions.content &&
+            supportedContentVersions.some(
+              (version) => version === state.versions.content
+            ) && (
+              <Alert>
+                <AlertTitle>Updated draft available</AlertTitle>
+                <AlertDescription>
+                  Your saved assessment will keep its earlier version. Restart
+                  to try the updated draft.
+                </AlertDescription>
+              </Alert>
+            )}
           {rawBackup && (
             <Button
               variant='outline'

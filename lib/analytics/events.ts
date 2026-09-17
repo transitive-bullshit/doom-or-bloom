@@ -2,6 +2,7 @@ import { z } from 'zod'
 import {
   dispositionSchema,
   limits,
+  supportedContentVersions,
   vectorSchema,
   versions
 } from '@/lib/assessment/schema'
@@ -32,7 +33,11 @@ const eventSchema = z.object({
   assessmentId: z.uuid(),
   properties: z.object({
     assessment_version: z.string().refine((v) => v === versions.assessment),
-    content_version: z.string().refine((v) => v === versions.content),
+    content_version: z
+      .string()
+      .refine((value) =>
+        supportedContentVersions.some((version) => version === value)
+      ),
     rubric_version: z.string().refine((v) => v === versions.rubric),
     model_version: z.string().refine((v) => v === versions.model),
     question_count: z.number().int().min(1).max(limits.prompts),

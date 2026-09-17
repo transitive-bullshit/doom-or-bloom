@@ -1,0 +1,827 @@
+{
+  "kind": "local-draft-assembly",
+  "sourceContentVersion": "0.2.0-draft",
+  "contentVersion": "0.3.0-draft",
+  "intakeSha256": "f09b39f308cce4e768639fbf150c0473e61a4e3d758a2341cd57dba824208643",
+  "unmappedRequiredSourceIds": [
+    "source.required-005",
+    "source.required-028",
+    "source.required-042"
+  ],
+  "changes": [
+    "Release metadata",
+    "Local draft inclusion wording; original drafts retained"
+  ],
+  "references": [
+    {
+      "id": "book.economics-transformative-ai-overview-2026",
+      "source": "content/drafts/required-governance-batch-01/references/book.economics-transformative-ai-overview-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "6d0aba7238f99edc66f42692d63b0c593fa3e1869d6d902e98d1ba43dfface6c"
+    },
+    {
+      "id": "book.human-compatible-2019",
+      "source": "content/drafts/required-foundations-batch-01/references/book.human-compatible-2019.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "740fbb32f4148998677a7d875bf2087ad00635c06ec24ad3cd63b50703711f25"
+    },
+    {
+      "id": "book.if-anyone-builds-it-2025",
+      "source": "content/drafts/required-foundations-batch-01/references/book.if-anyone-builds-it-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "560ad65692ac30e2aed7d7dd43b4a872c719f8b73dac7628c49a1afac2595851"
+    },
+    {
+      "id": "book.superintelligence-paperback-2016",
+      "source": "content/drafts/required-foundations-batch-01/references/book.superintelligence-paperback-2016.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "3c7ada79fd28fd6874760e794ac7e720bc57ed9a4a80b884112682c1d9c9943d"
+    },
+    {
+      "id": "chapter.ai-positive-negative-global-risk-2008",
+      "source": "content/drafts/required-foundations-batch-01/references/chapter.ai-positive-negative-global-risk-2008.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "21b4b45b2b403b7bdda60c0b949d70f6c6546f6f95560f6d3e5ff866206425c0"
+    },
+    {
+      "id": "dataset.epoch-ai-trends-2026-02",
+      "source": "content/drafts/required-measurement-batch-01/references/dataset.epoch-ai-trends-2026-02.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "bc344cc735d7ac36aee604e4475c781df2d9a398543b74c0665bbd2411711fd9"
+    },
+    {
+      "id": "dataset.epoch-cyber-vulnerabilities-2026",
+      "source": "content/releases/0.2.0-draft/references/dataset.epoch-cyber-vulnerabilities-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "1c95b80b7dc1f35c7756c20d84f3891d8f8e9934aa106bd3d914a1649514b414"
+    },
+    {
+      "id": "dataset.metr-time-horizons-1-1",
+      "source": "content/drafts/required-measurement-batch-01/references/dataset.metr-time-horizons-1-1.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "75cfb0285a2026297795e97de2d2f4b901e153d04e85c948af2bcaa4feea9fc7"
+    },
+    {
+      "id": "entity-disclosure.epoch-ai-transparency-2026-09",
+      "source": "content/drafts/required-measurement-batch-01/references/entity-disclosure.epoch-ai-transparency-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "8a329b0a4ced16d054a4b23736ce14b8da63ec1c9c63bd6226e6ad45e257daf8"
+    },
+    {
+      "id": "entity.anthropic",
+      "source": "content/releases/0.2.0-draft/references/entity.anthropic.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "05bfc493a31cc5c046a1443001b58710a200efcb1afb5d81abf423121afd2508"
+    },
+    {
+      "id": "entity.cais",
+      "source": "content/releases/0.2.0-draft/references/entity.cais.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "5f06845e4b75d35c73b541f9f97cfbf17ba60717dbb0dc1c3cbddeed0b3b6ac1"
+    },
+    {
+      "id": "entity.deepmind",
+      "source": "content/releases/0.2.0-draft/references/entity.deepmind.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "3d35c52634ce30da743e7a2794624ac5564c9750b1998ecd695249be0e063e57"
+    },
+    {
+      "id": "entity.eu-commission",
+      "source": "content/releases/0.2.0-draft/references/entity.eu-commission.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "1048308e6c8bc72a560be9788e9a77d25ae27d0395ccfe180221a819ffceef15"
+    },
+    {
+      "id": "entity.metr",
+      "source": "content/releases/0.2.0-draft/references/entity.metr.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "b73b0d2f2c5249adedbda6c7e4ea29c45e865f82de57fdda48a7ff07c81a0218"
+    },
+    {
+      "id": "entity.nist",
+      "source": "content/releases/0.2.0-draft/references/entity.nist.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "9426a0647308a7293ac1849b069db5ceb0f933d21404089bc6e564c45d3d627e"
+    },
+    {
+      "id": "entity.oecd",
+      "source": "content/releases/0.2.0-draft/references/entity.oecd.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "0c4503871513ad8af1a41f3d664a6e4d673599b3d762e4751aa2e440dd18c238"
+    },
+    {
+      "id": "entity.openai",
+      "source": "content/releases/0.2.0-draft/references/entity.openai.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "f77c2913e68af1da782a7b49e6a47d52d8306d0c139d3102922e27c8930e4f18"
+    },
+    {
+      "id": "event.alphafold-casp14",
+      "source": "content/releases/0.2.0-draft/references/event.alphafold-casp14.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "e8e90e96ce1401ea3e5e510ec782e28a6e4b9d086edc9bd4984b639c17a854bb"
+    },
+    {
+      "id": "event.alphago-sedol",
+      "source": "content/releases/0.2.0-draft/references/event.alphago-sedol.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "811d98142989fe01d87a0e6f12ece4689b46d8c738325247d6befa5c521e7d4d"
+    },
+    {
+      "id": "event.alphastar-demo",
+      "source": "content/releases/0.2.0-draft/references/event.alphastar-demo.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "5f0c112912c4a9d07eba072713884ac6e22348464576552bcb340fb37359b28f"
+    },
+    {
+      "id": "event.chatgpt-preview",
+      "source": "content/releases/0.2.0-draft/references/event.chatgpt-preview.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "b276d8603d1ebbe8038dcb6f13eb7813024e9d10cc8d339e033dc534c6a001de"
+    },
+    {
+      "id": "event.deep-blue",
+      "source": "content/releases/0.2.0-draft/references/event.deep-blue.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "d049647014a8a5132e816a795de55d55ee7370f6af09c0af7cbc2a967a834f08"
+    },
+    {
+      "id": "event.eu-ai-act-force",
+      "source": "content/releases/0.2.0-draft/references/event.eu-ai-act-force.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "59ebfbef59efce162e126c8c71479ea279d9c5cc8e1305e1d85331af741858e5"
+    },
+    {
+      "id": "event.gpt4-release",
+      "source": "content/releases/0.2.0-draft/references/event.gpt4-release.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "23f3877f942c2f63f3fccbbbd14f559b3c5e0d698564858bdb83af874359141d"
+    },
+    {
+      "id": "event.watson-jeopardy",
+      "source": "content/releases/0.2.0-draft/references/event.watson-jeopardy.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "d76bc3cd133d754c0146b60ae730df4bb61d2bf7a01cc98db5cb0e3ab3f21941"
+    },
+    {
+      "id": "guide.owasp-agentic-top10-2026",
+      "source": "content/drafts/required-governance-batch-01/references/guide.owasp-agentic-top10-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "64d034c989a5d43d8ed969490405e432ab5aa83d0250eb0e37deb81afbdaa289"
+    },
+    {
+      "id": "hub.anthropic-system-cards-2026-09",
+      "source": "content/drafts/required-measurement-batch-01/references/hub.anthropic-system-cards-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "0ae56ae4b87ec1636db0acba541099111b5ac624d0b16b1b864ea9ad902554f1"
+    },
+    {
+      "id": "hub.deepmind-model-cards-2026-09",
+      "source": "content/drafts/required-measurement-batch-01/references/hub.deepmind-model-cards-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "a07a071a75cfa936b73b60ce6743b6be8e6c0fe0f2800d1f7d655ab2199ea8e4"
+    },
+    {
+      "id": "hub.dwarkesh-podcast-2026-09",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/hub.dwarkesh-podcast-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "2b0602ebd192bf6619c023d371f90e3b06856ad709629c01e70182961587ac00"
+    },
+    {
+      "id": "hub.epoch-ai-scaling-2026-09",
+      "source": "content/drafts/required-measurement-batch-01/references/hub.epoch-ai-scaling-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ccfeba3c68e7926e644aa66aeefe21d825efc002896e3b554555843a3ebd707f"
+    },
+    {
+      "id": "hub.import-ai-2026-09",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/hub.import-ai-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "bf2d443e2afa8f3a3feaa032a3301995703af364bb6e3d79aa93fada9c60be1f"
+    },
+    {
+      "id": "hub.most-important-century",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/hub.most-important-century.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "07d86f93d0f03b3f13afe85d14cdba57b54e9cfd6afeb14cfb08790e07045f2b"
+    },
+    {
+      "id": "hub.one-useful-thing-2026-09",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/hub.one-useful-thing-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "51817cb98d0a17b2a24868d1f4bbf74dbdbc1a4b3deb97f5de27df6f977388b3"
+    },
+    {
+      "id": "hub.openai-deployment-safety-2026-09",
+      "source": "content/drafts/required-measurement-batch-01/references/hub.openai-deployment-safety-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "92373fba45ebf2ab476cf80edfd88c1f04dc551458eb51e8d179122ce33a43de"
+    },
+    {
+      "id": "hub.redwood-ai-control-2026-09",
+      "source": "content/drafts/required-governance-batch-01/references/hub.redwood-ai-control-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "a6fdaf1d833280be357ad8901e14bd3c873d2405b6d4549168e9602129943093"
+    },
+    {
+      "id": "hub.simon-willison-2026-09",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/hub.simon-willison-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "8a249a5ec1e98f4cf8d1bd51b09b0f493b37196d758c3b652d8a000e01152d4d"
+    },
+    {
+      "id": "hub.situational-awareness-2024",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/hub.situational-awareness-2024.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "268dbe66cb171a9ea2ce8176eeacc96fbd98abd51288c956aae0ab0064c4b4f2"
+    },
+    {
+      "id": "hub.stanford-ai-economic-indicators-2026-09",
+      "source": "content/drafts/required-workforce-batch-01/references/hub.stanford-ai-economic-indicators-2026-09.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "65860a6d69277fdb3847be6f0c2517ee39dd7acd2d4d9d22d18aa063fdc1bfc5"
+    },
+    {
+      "id": "policy.anthropic-rsp-3-4",
+      "source": "content/drafts/required-governance-batch-01/references/policy.anthropic-rsp-3-4.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "9e7b2bc9ef1aefcd6ff04dd89b1942a923c30dbae2b97415c7f568f92abe4956"
+    },
+    {
+      "id": "publication.adaptive-ai-worms-2026",
+      "source": "content/releases/0.2.0-draft/references/publication.adaptive-ai-worms-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "7e8af4969d7f95db5ef167ab64eb0c1653d56f58e9b77f6950da071a57526557"
+    },
+    {
+      "id": "publication.adolescence-technology-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.adolescence-technology-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "4448a8073313f276ef2d2e3dfbf51e014f48dfbdeca1d1ed5ba4f953169260c0"
+    },
+    {
+      "id": "publication.age-wonders-terrors-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.age-wonders-terrors-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "c90f3026474ffd8f91f7b1c123ddbc5aca249777e4c8b4cc860d369288581798"
+    },
+    {
+      "id": "publication.agi-ruin-2022",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/publication.agi-ruin-2022.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "0abedf1281f295860df4d6d93c5a78cbf6208a3c7f0991a83b5b8d415cde15c3"
+    },
+    {
+      "id": "publication.ai-2027",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.ai-2027.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "f7f5fac9d30f235efaa0da0846d069b15c73255e3cb64a4dcada2569551d71bd"
+    },
+    {
+      "id": "publication.ai-2040",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.ai-2040.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "1e6b8d7ea848660f1483f0102f5f37496166e0056d33f181a3f6e9f83109541e"
+    },
+    {
+      "id": "publication.ai-as-normal-technology-2025",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/publication.ai-as-normal-technology-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "30318fc074e4badc7a2ef274fe7bf94f8eaad795ad132b498cde51330eb72dcf"
+    },
+    {
+      "id": "publication.ai-boxing-wiki",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.ai-boxing-wiki.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "e98d980e7d039c54bfb77e3863373c0f03c891907f103ba4bff3885fc1fa3d37"
+    },
+    {
+      "id": "publication.ai-save-world-2023",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.ai-save-world-2023.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "5eeccc1c1180e84fde4f21957a55dcb5b8caeb88f88710204214f7be1682dd30"
+    },
+    {
+      "id": "publication.alignment-deep-learning-v8-2025",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.alignment-deep-learning-v8-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "33c67955c950c68b6cf91505d273d62d76a85ba968c9fca8f02e465bdfc20932"
+    },
+    {
+      "id": "publication.apollo-science-scheming-2026",
+      "source": "content/drafts/required-governance-batch-01/references/publication.apollo-science-scheming-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "8191b758f1224e7a767302be6034f46df39159055ff9f0589f0e1cbcaa3bd4f4"
+    },
+    {
+      "id": "publication.attention",
+      "source": "content/releases/0.2.0-draft/references/publication.attention.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "62a1aec2f74d6b62ddc920c73a9fbb43b1a5d52026e9980dfd6ea8231b836b13"
+    },
+    {
+      "id": "publication.basic-ai-drives-2008",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/publication.basic-ai-drives-2008.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "7c2858040594700c0cbd673e950c75d3601e720c3386a28bbe5063ff8113d37e"
+    },
+    {
+      "id": "publication.benton-safety-departure-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.benton-safety-departure-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "80260732eaced635c4f1df550c82bbc8acf485b65edee388e2511cb830f2ec1e"
+    },
+    {
+      "id": "publication.carlsmith-power-seeking-risk-v2-2024",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.carlsmith-power-seeking-risk-v2-2024.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "83bc7c5e111624f5f681153a00407d14bef5ade7b8f4161b1fd53c1441693560"
+    },
+    {
+      "id": "publication.chinchilla",
+      "source": "content/releases/0.2.0-draft/references/publication.chinchilla.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "992c5bb83faac9d45c906e99b58faa27fa3b1e9d6e872a27fb683d7dad3d4f5a"
+    },
+    {
+      "id": "publication.christiano-board-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.christiano-board-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "8e9ef04d982c0ab6c4cb84c745bcc166d6f05d86cbf9c35687eae03f89ac17f3"
+    },
+    {
+      "id": "publication.cirl",
+      "source": "content/releases/0.2.0-draft/references/publication.cirl.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "2dba68c88031b065064d79961cd86044c3c6cc24a8246ba102bf84ed3016b761"
+    },
+    {
+      "id": "publication.concrete-problems",
+      "source": "content/releases/0.2.0-draft/references/publication.concrete-problems.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "07b60d593bafc3b017988070f7017db0bf88a10691c520bf9ca47c949c9860ce"
+    },
+    {
+      "id": "publication.cybernetic-teammate-journal-2026",
+      "source": "content/drafts/required-workforce-batch-01/references/publication.cybernetic-teammate-journal-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "69f41c85cbf74e3300d802cbe3045cf28c55fbea02c5507a3094bdc898875687"
+    },
+    {
+      "id": "publication.deepmind-agi-to-asi-v2-2026",
+      "source": "content/drafts/required-governance-batch-01/references/publication.deepmind-agi-to-asi-v2-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "7e013b208a2fa4ee0f4d0bac2c9ebadb3e09eaba5da00b16745e3f46e5ced413"
+    },
+    {
+      "id": "publication.deepmind-responsible-path-agi-2025",
+      "source": "content/drafts/required-governance-batch-01/references/publication.deepmind-responsible-path-agi-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "4d3d8db571e88b123b216bace78136dcc135ce223e00a1e618aea2990bb501c2"
+    },
+    {
+      "id": "publication.defenders-window-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.defenders-window-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "f7c9aaf6352db69a2158844cf8cf4cbac70fb2861bbcfb022473b55823a7b150"
+    },
+    {
+      "id": "publication.everything-hackable-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.everything-hackable-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "4c22b2bd3975128c354f242ca5edf13ee697617a37320f3a01f64e9301d34204"
+    },
+    {
+      "id": "publication.generative-ai-at-work",
+      "source": "content/drafts/publications-batch-02/references/publication.generative-ai-at-work.md",
+      "sourceContentVersion": "0.1.0-draft",
+      "sourceSha256": "343fa8f0b77ea11367a2d3c8f21b9bc2e129ee992e51756e25222e2211956b8c"
+    },
+    {
+      "id": "publication.gentleness-artificial-other-2024",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.gentleness-artificial-other-2024.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "24731d19b234ff8a0d50b78b2eba6aca4357b15581dd3062fd9ef4746d225718"
+    },
+    {
+      "id": "publication.gpt3-few-shot",
+      "source": "content/releases/0.2.0-draft/references/publication.gpt3-few-shot.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "df8604a1df67ce25cb142b857b5f1e3d300b45e8dc7a2016acd27090b925bab2"
+    },
+    {
+      "id": "publication.industrial-explosion-2025",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.industrial-explosion-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "273218579f88ef00943a2f0c586721aef1b5ce255a77e74c2edb17d0f3f523c3"
+    },
+    {
+      "id": "publication.infinite-midwit-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.infinite-midwit-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ad5eb7f3b92ee83e37c37b8c28b6dd140899b3cb024d345da50c043ec8ad3c1c"
+    },
+    {
+      "id": "publication.jagged-frontier-journal-2026",
+      "source": "content/drafts/required-workforce-batch-01/references/publication.jagged-frontier-journal-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "d67eaee4caaab18087eda2c890dec3519b2b86bdb8b7afeaa4d64f48002d3619"
+    },
+    {
+      "id": "publication.king-midas-problem-2016",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.king-midas-problem-2016.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "76c4b17c8f44696b186c60ac6eeb6128643297caf2b7551aa4c2f84ba432c8ed"
+    },
+    {
+      "id": "publication.learned-optimization",
+      "source": "content/drafts/publications-batch-01/references/publication.learned-optimization.md",
+      "sourceContentVersion": "0.1.0-draft",
+      "sourceSha256": "c2f7651992afe4afbed0b4c84485d2fef1a309255df315f582dbfbbf3613700e"
+    },
+    {
+      "id": "publication.levels-of-agi-v5-2025",
+      "source": "content/drafts/required-governance-batch-01/references/publication.levels-of-agi-v5-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "1d068f048d3800391a12372a075408318dafc1b36f81913dbc4f4faee0913f9f"
+    },
+    {
+      "id": "publication.machines-loving-grace-2024",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.machines-loving-grace-2024.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "78d8062ee8613ed214757f4464b4753ab23378d4c1225dc35774614bf6a580ca"
+    },
+    {
+      "id": "publication.meditations-on-moloch-2014",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.meditations-on-moloch-2014.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "5d473a408c075780ba9b51e791061bced6c074995e8a47205e8064525a1fd6ca"
+    },
+    {
+      "id": "publication.most-questions-ai-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.most-questions-ai-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "bc6bd143e00f8b398445033515cca644869a2d31d6618782a87cd04789370275"
+    },
+    {
+      "id": "publication.nist-rmf",
+      "source": "content/releases/0.2.0-draft/references/publication.nist-rmf.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "9921aa4b64bbc7f138db541ca5b78e2a3fe5b9b5a8cada07dafcc8e73cb4043d"
+    },
+    {
+      "id": "publication.no-fire-alarm-2017",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/publication.no-fire-alarm-2017.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "9a4b6ddd81168eb3a47ca181334b7b385ed1e28465b65ce7f4f5388adf053bb8"
+    },
+    {
+      "id": "publication.noah-biological-misuse-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.noah-biological-misuse-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "b5c04fd015e67bab9b082ac516576794d85148de08e5768844290c6e118d79d3"
+    },
+    {
+      "id": "publication.off-switch",
+      "source": "content/releases/0.2.0-draft/references/publication.off-switch.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ec7b7d8217b3abcffaa13c2021e2e03449f303309eb6f67f11287d8acd2c4cc8"
+    },
+    {
+      "id": "publication.on-the-loose-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.on-the-loose-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "58597b0f67f4280b167ef3a0c79ed621aafe2e6f39791848dbf393b3710e89de"
+    },
+    {
+      "id": "publication.pace-frontier-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.pace-frontier-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "5a5b4997c50822fd931db9e72a4012714d155a738da42fd6ac0dc2034cfa51d3"
+    },
+    {
+      "id": "publication.pacing-frontier-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.pacing-frontier-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "8886001437852d255eb48b7c35697d3294de7f47e67f5b4a240ec85c6722d45d"
+    },
+    {
+      "id": "publication.policy-ai-exponential-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.policy-ai-exponential-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "6d344a0277cb32d93c052ac973128f73e9b361e35f985f74f900445ef1d14a50"
+    },
+    {
+      "id": "publication.precipice-revisited-2024",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/publication.precipice-revisited-2024.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "999a0f469bf1d2b2272f011ca5f69efe9795688802e82be98cd6f9a4512096b4"
+    },
+    {
+      "id": "publication.predictable-updating-2023",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.predictable-updating-2023.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "27c07adb6a464b68bb00e18707a538dc0c386c4bcea11dc69fb4c320aa657e6b"
+    },
+    {
+      "id": "publication.preparing-intelligence-explosion-2025",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.preparing-intelligence-explosion-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "8553df39ec95dadf80a090e2334f0e438152dddbf4fb1198bcbbc7303e1100f9"
+    },
+    {
+      "id": "publication.scaling-laws",
+      "source": "content/releases/0.2.0-draft/references/publication.scaling-laws.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ebc5485441623c55841a9066cf07a31fd077fbb729ea2e06ca7673378c890511"
+    },
+    {
+      "id": "publication.sharp-left-turn-wiki",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.sharp-left-turn-wiki.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "5ee2f1f210ac61e02f87c2c9ed21f615133bb38e19a0efa7343814e977be34ce"
+    },
+    {
+      "id": "publication.shifting-work-patterns-author-v4-2025",
+      "source": "content/drafts/required-workforce-batch-01/references/publication.shifting-work-patterns-author-v4-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "75060112e5faafc90ee227d100555e0c9b38d989108f4772935f6c50ee3c4979"
+    },
+    {
+      "id": "publication.smart-tv-proxy-sdks-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.smart-tv-proxy-sdks-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "0181942cf79736d64d6920e7f99a9af5296768777f274e1097edfe59ea7fcf49"
+    },
+    {
+      "id": "publication.spreading-ai-recklessly-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.spreading-ai-recklessly-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ca654afd1b99793ef7abb845451f7f8d935d3e6de180a3370da25a91e9244288"
+    },
+    {
+      "id": "publication.squiggle-maximizer-wiki",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.squiggle-maximizer-wiki.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "2f2939dad344a4487317d108af8050fbc93ed491a0d8ab1fde2decf35bf5e730"
+    },
+    {
+      "id": "publication.stanford-canaries-2026-08",
+      "source": "content/drafts/required-workforce-batch-01/references/publication.stanford-canaries-2026-08.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "a95b5cbb19126451ca38e6fca17b270e8481e027f952dba6a911caa6bf36c6ee"
+    },
+    {
+      "id": "publication.still-waters-rapid-currents-2026-03",
+      "source": "content/drafts/required-workforce-batch-01/references/publication.still-waters-rapid-currents-2026-03.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "9c5ed18b23e21414c85d64d2444ee3296c05244f9ba84042d50741cfd2d29fef"
+    },
+    {
+      "id": "publication.three-ai-pills-2026",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.three-ai-pills-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "b27f50b54d0790cda6913a8810067d3b996796ea88fac5bf6d4b630fcf474248"
+    },
+    {
+      "id": "publication.treacherous-turn-wiki",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.treacherous-turn-wiki.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "fad7be3302e0ef3f0b00595518f955c574d1b82b4c2bb31f460aa91d06505fcb"
+    },
+    {
+      "id": "publication.unilateralists-curse-2016",
+      "source": "content/drafts/required-foundations-batch-01/references/publication.unilateralists-curse-2016.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "9eee1f9e36a8d9db7e0fcafce4531ee1208877d68e7ea422ddc3748065932067"
+    },
+    {
+      "id": "publication.urgency-interpretability-2025",
+      "source": "content/drafts/required-perspectives-batch-01/references/publication.urgency-interpretability-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ef75e12dfad45fb939695ac3c3c65d908e9af954e3b8f3ffb96250727b0cb75a"
+    },
+    {
+      "id": "publication.what-failure-looks-like-2019",
+      "source": "content/drafts/required-perspective-hubs-batch-01/references/publication.what-failure-looks-like-2019.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "2855daf713ad39906c8ab3014fcc92bdf4cffc9960a285f23dd2a07dae571286"
+    },
+    {
+      "id": "report.aef-minimum-operating-conditions-v1",
+      "source": "content/releases/0.2.0-draft/references/report.aef-minimum-operating-conditions-v1.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "67269df84ca648af789276a8120943231dae3c63b14f377901631f86f470ebad"
+    },
+    {
+      "id": "report.anthropic-economic-scenarios-2026",
+      "source": "content/releases/0.2.0-draft/references/report.anthropic-economic-scenarios-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "288b68fb8997c719acba9978990b9f04f6ad748956157391a74968e3f1b7b905"
+    },
+    {
+      "id": "report.anthropic-fable-mythos-5-1-system-card-2026",
+      "source": "content/drafts/required-measurement-batch-01/references/report.anthropic-fable-mythos-5-1-system-card-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "d1193474e035173be6d6ac5d584e5501abb576ef34fed6acef5b88df99711e86"
+    },
+    {
+      "id": "report.anthropic-glasswing-2026",
+      "source": "content/releases/0.2.0-draft/references/report.anthropic-glasswing-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "db0cac8a789bc13f47314e0dad816e08d5477fcb2f1adb35805392147c2fdb09"
+    },
+    {
+      "id": "report.anthropic-multiagent-systems-2026",
+      "source": "content/releases/0.2.0-draft/references/report.anthropic-multiagent-systems-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "887b579c143114ff75895993b224c2e6287974bac8059d043e49f8b0398acc64"
+    },
+    {
+      "id": "report.anthropic-threat-intelligence-september-2026",
+      "source": "content/releases/0.2.0-draft/references/report.anthropic-threat-intelligence-september-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ee2a70abeff564e32cc45ea62b31652f193611dc863f432eff0900d8cc438f57"
+    },
+    {
+      "id": "report.bengio-agent-misbehavior-2026",
+      "source": "content/releases/0.2.0-draft/references/report.bengio-agent-misbehavior-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "e4f247f9837734f786200d23c8ee6a4cfbe0f90b20f148e300207a5cd7d7d2da"
+    },
+    {
+      "id": "report.collusion-wiki-investigation-2026",
+      "source": "content/releases/0.2.0-draft/references/report.collusion-wiki-investigation-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "983bb9d2f46f07234d2118a854195ed149342d5b28cb46b30347197e7275f06b"
+    },
+    {
+      "id": "report.deepmind-gemini-3-8-flash-card-2026",
+      "source": "content/drafts/required-measurement-batch-01/references/report.deepmind-gemini-3-8-flash-card-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "cc09b0e37f56ae2e8982fd4177fa7d69d8761073687ee99fb2af25def0fb23ad"
+    },
+    {
+      "id": "report.deepmind-institute-introduction-2026",
+      "source": "content/releases/0.2.0-draft/references/report.deepmind-institute-introduction-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "7569918796dc7f260fac90620d0ff6c5513ef048204183025251070236179b4d"
+    },
+    {
+      "id": "report.epoch-ai-2030-2025",
+      "source": "content/drafts/required-measurement-batch-01/references/report.epoch-ai-2030-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "4f5e836d3a0bec3c5331ae9f1203ffa692f85899d0151d46915c83341bf0a120"
+    },
+    {
+      "id": "report.iea-energy-ai-2025",
+      "source": "content/drafts/required-governance-batch-01/references/report.iea-energy-ai-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "d347361505039b32169abe6a0f4d80914624159bfcafaa68afc627ec5ed2ed84"
+    },
+    {
+      "id": "report.international-ai-safety-2026",
+      "source": "content/drafts/required-measurement-batch-01/references/report.international-ai-safety-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "253b0763f8e22f651c10a655b130672ea07018c363713296aa9fba2e800e2084"
+    },
+    {
+      "id": "report.metr-frontier-risk-feb-mar-2026",
+      "source": "content/drafts/required-measurement-batch-01/references/report.metr-frontier-risk-feb-mar-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "24a68b513d5282915bc4b5217e971ab450d7587fcdbd1e0625ecf0a884aad802"
+    },
+    {
+      "id": "report.metr-hugging-face-investigation-2026",
+      "source": "content/releases/0.2.0-draft/references/report.metr-hugging-face-investigation-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "4bc4939b4661d1bc27f42fd3f2f151f7670abccf59e5e8e4fc0260eaf0debf07"
+    },
+    {
+      "id": "report.nasem-foundation-models-science-2025",
+      "source": "content/drafts/required-governance-batch-01/references/report.nasem-foundation-models-science-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "c8e1534a9c7f337379d0cd26a2a31df96c7312411fe8056bb2ceadb5c5144192"
+    },
+    {
+      "id": "report.oecd-ai-trajectories-2030-2026",
+      "source": "content/drafts/required-governance-batch-01/references/report.oecd-ai-trajectories-2030-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "ec0bfe56635d78d55dca562cf89dfc4e5c9a53a02c5093b9e07c513dc92957b1"
+    },
+    {
+      "id": "report.openai-alien-mind-2026",
+      "source": "content/releases/0.2.0-draft/references/report.openai-alien-mind-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "289be07e2f5c5baa4887ebb6aeeb5f726cc1a80ebe082f16320feb4de04b01b6"
+    },
+    {
+      "id": "report.openai-astra-system-card-2026",
+      "source": "content/drafts/required-measurement-batch-01/references/report.openai-astra-system-card-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "279e0487d3a83bf7f6d0b4bce4ee49fe92e302210e1c5a4ba9b55954216447c0"
+    },
+    {
+      "id": "report.openai-collective-cyberdefense-2026",
+      "source": "content/releases/0.2.0-draft/references/report.openai-collective-cyberdefense-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "a8dd98658f88b807b8ed9797fb84e9b135487f2fd7dfa46b559075af96382757"
+    },
+    {
+      "id": "report.openai-cyber-critical-pacing-2026",
+      "source": "content/releases/0.2.0-draft/references/report.openai-cyber-critical-pacing-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "5dea79aaad91a11c7d7019edd13e7733d14215f6335164acfba72d9db0004373"
+    },
+    {
+      "id": "report.openai-daybreak-snapshot-2026",
+      "source": "content/releases/0.2.0-draft/references/report.openai-daybreak-snapshot-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "11863d187a0acd61519f8add1993dbe448ffc2b58d4ff965071a1dabc5e29117"
+    },
+    {
+      "id": "report.openai-defense-factory-2026",
+      "source": "content/releases/0.2.0-draft/references/report.openai-defense-factory-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "3b35a359fa73826ee24ee9b828426185e5f149c1a3dd1d52c35e2e029910697e"
+    },
+    {
+      "id": "report.openai-hugging-face-road-ahead-2026",
+      "source": "content/releases/0.2.0-draft/references/report.openai-hugging-face-road-ahead-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "c69cbf4a1e329d70b4969079d3fc6db50f6565b016249e0c11aa857d8715a753"
+    },
+    {
+      "id": "report.openai-misalignment-reporting-framework-2026",
+      "source": "content/releases/0.2.0-draft/references/report.openai-misalignment-reporting-framework-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "b3199929c21c9ea788bb21cbf68a857456e94999dc84b741ee18428f4e3a05e3"
+    },
+    {
+      "id": "report.stanford-ai-index-2026",
+      "source": "content/drafts/required-measurement-batch-01/references/report.stanford-ai-index-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "f37b20393631947c437f251bc8c0ea13b33291236eecbb4ed410fd16f5a12eac"
+    },
+    {
+      "id": "report.uk-aisi-frontier-trends-2025",
+      "source": "content/drafts/required-measurement-batch-01/references/report.uk-aisi-frontier-trends-2025.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "c69a6acb8e1856ff5ad8a88d3cb02d532a6d0ab95a9d8162f90f00fde7150b33"
+    },
+    {
+      "id": "social.a16z-critical-vulnerabilities-2026",
+      "source": "content/drafts/required-social-batch-01/references/social.a16z-critical-vulnerabilities-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "e516be93c506086297825589bd7f16077d35b70fc23d8577a62764755c48dec5"
+    },
+    {
+      "id": "social.achiam-rogue-ai-ecology-2026",
+      "source": "content/drafts/required-social-batch-01/references/social.achiam-rogue-ai-ecology-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "fe17314f3e85ea0e89328a1d701bd05bdae9dfb092ee7241cb841c4243c7f559"
+    },
+    {
+      "id": "social.cg-abliterated-cyber-model-2026",
+      "source": "content/drafts/required-social-batch-01/references/social.cg-abliterated-cyber-model-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "e351b320fa5a0e682cf91725d6cdcbc96459b06e984b7c868cb0b850fa220466"
+    },
+    {
+      "id": "social.coxon-resignation-2026",
+      "source": "content/drafts/required-social-batch-01/references/social.coxon-resignation-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "c33495d8a134fc94b583711959f095a098fc150b6138fdf2890a4578aff6fda2"
+    },
+    {
+      "id": "social.diver-uk-power-plant-2026",
+      "source": "content/drafts/required-social-batch-01/references/social.diver-uk-power-plant-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "7ee3f343451aa7d8d746fe9d731af1b58470f0ce7b92826f74a02e4e2b729207"
+    },
+    {
+      "id": "social.power-binary-editability-2026",
+      "source": "content/drafts/required-social-batch-01/references/social.power-binary-editability-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "e6c848f37d0f4d5586fce2bd3739ba1ca0ab4f7776bfbaa7be5c1821804bd206"
+    },
+    {
+      "id": "social.sutskever-neocloud-defense-2026",
+      "source": "content/drafts/required-social-batch-01/references/social.sutskever-neocloud-defense-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "adb019525f059f10f1c06ffa543a597282caf3595794b6d3ee53a9e92787d5f3"
+    },
+    {
+      "id": "video.carlson-soares-ai-risk-2026",
+      "source": "content/drafts/required-social-batch-01/references/video.carlson-soares-ai-risk-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "17a85c8b395cd28ae946d0d083d16c790a02e2394b0364547bf2a470939f60fd"
+    },
+    {
+      "id": "video.dwarkesh-rsi-panel-2026",
+      "source": "content/drafts/required-social-batch-01/references/video.dwarkesh-rsi-panel-2026.md",
+      "sourceContentVersion": "0.2.0-draft",
+      "sourceSha256": "d23cc914fc769d18ce908032ce7b7a0f6f0ef80ccf73dbb497a5f68f1ff43738"
+    }
+  ]
+}

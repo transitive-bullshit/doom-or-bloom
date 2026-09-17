@@ -36,7 +36,7 @@ export async function POST(request: Request) {
         const response = await runAssessment(
           input,
           provider,
-          loadBundle(),
+          loadBundle(input.assessment.versions.content),
           env.debug,
           request.signal
         )

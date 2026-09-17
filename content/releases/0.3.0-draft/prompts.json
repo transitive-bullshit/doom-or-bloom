@@ -1,0 +1,682 @@
+[
+  {
+    "id": "root",
+    "text": "What do you think AI means for our future—and why?",
+    "family": "root",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape"],
+    "effort": 0.4,
+    "noveltyGroup": "outlook",
+    "maxUses": 1,
+    "permittedAfter": [],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "concrete.general",
+    "text": "What is one concrete change you expect AI to bring?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape"],
+    "effort": 0.2,
+    "noveltyGroup": "concrete",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "timeline.general",
+    "text": "When do you expect AI to make changes on that scale, if ever?",
+    "family": "timeline",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["capability_trajectory", "scope_discipline"],
+    "effort": 0.2,
+    "noveltyGroup": "horizon",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "conviction.general",
+    "text": "How sure are you about that timing?",
+    "family": "calibration",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["appropriate_uncertainty", "capability_trajectory"],
+    "effort": 0.4,
+    "noveltyGroup": "conviction",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "mechanism.general",
+    "text": "What would have to happen for that outcome to occur?",
+    "family": "mechanism",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["causal_clarity", "risk_landscape", "beneficial_potential"],
+    "effort": 0.4,
+    "noveltyGroup": "mechanism",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "grounding.general",
+    "text": "What observation or experience most shaped that expectation?",
+    "family": "grounding",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["grounded_understanding"],
+    "effort": 0.4,
+    "noveltyGroup": "grounding",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "control.general",
+    "text": "What would make very powerful AI stay under meaningful human control?",
+    "family": "control",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["technical_controllability", "causal_clarity"],
+    "effort": 0.4,
+    "noveltyGroup": "control",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "governance.general",
+    "text": "How do you expect the people and institutions developing AI to respond to its risks?",
+    "family": "governance",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["institutional_competence", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "governance",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "upside.general",
+    "text": "Which possible benefit would matter most for the future you described?",
+    "family": "upside",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential"],
+    "effort": 0.4,
+    "noveltyGroup": "upside",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "risk.general",
+    "text": "Which possible harm would matter most for the future you described?",
+    "family": "risk",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["risk_landscape"],
+    "effort": 0.4,
+    "noveltyGroup": "risk",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "crux.general",
+    "text": "What development would most change your view?",
+    "family": "crux",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["updateability"],
+    "effort": 0.4,
+    "noveltyGroup": "crux",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "countercase.general",
+    "text": "What is the strongest reason your expectation might turn out wrong?",
+    "family": "countercase",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["counterargument_engagement", "appropriate_uncertainty"],
+    "effort": 0.4,
+    "noveltyGroup": "countercase",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "agency.general",
+    "text": "What would a good future need to preserve about being human?",
+    "family": "agency",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["human_agency", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "agency",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "transition.speed",
+    "text": "What could make AI progress speed up or slow down?",
+    "family": "transition",
+    "readingLevel": "general",
+    "prerequisites": ["capability_trajectory"],
+    "exclusions": [],
+    "targets": ["transition_dynamics", "causal_clarity"],
+    "effort": 0.4,
+    "noveltyGroup": "transition-speed",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "transition.warning",
+    "text": "What warning signs would people have before changes became hard to reverse?",
+    "family": "transition",
+    "readingLevel": "general",
+    "prerequisites": ["transition_dynamics"],
+    "exclusions": [],
+    "targets": ["transition_dynamics", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "transition-warning",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "transition.feedback",
+    "text": "Which bottleneck would most constrain AI-assisted AI research?",
+    "family": "transition",
+    "readingLevel": "expert",
+    "prerequisites": ["transition_dynamics"],
+    "exclusions": [],
+    "targets": ["transition_dynamics", "causal_clarity"],
+    "effort": 0.55,
+    "noveltyGroup": "transition-feedback",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "upside.distribution",
+    "text": "Who do you expect to benefit most from the changes you described?",
+    "family": "upside",
+    "readingLevel": "general",
+    "prerequisites": ["beneficial_potential"],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "upside-distribution",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "upside.bottleneck",
+    "text": "What would need to happen for that benefit to reach people?",
+    "family": "upside",
+    "readingLevel": "general",
+    "prerequisites": ["beneficial_potential"],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "causal_clarity"],
+    "effort": 0.4,
+    "noveltyGroup": "upside-bottleneck",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "risk.catastrophe",
+    "text": "Do you expect AI could cause harm on a scale humanity could not recover from?",
+    "family": "risk",
+    "readingLevel": "general",
+    "prerequisites": ["risk_landscape"],
+    "exclusions": [],
+    "targets": ["risk_landscape", "appropriate_uncertainty"],
+    "effort": 0.4,
+    "noveltyGroup": "risk-catastrophe",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "risk.misuse",
+    "text": "Which harmful use of AI concerns you most, if any?",
+    "family": "risk",
+    "readingLevel": "general",
+    "prerequisites": ["risk_landscape"],
+    "exclusions": [],
+    "targets": ["risk_landscape", "causal_clarity"],
+    "effort": 0.4,
+    "noveltyGroup": "risk-misuse",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "risk.ordinary",
+    "text": "Which failures do you expect people could recover from?",
+    "family": "risk",
+    "readingLevel": "general",
+    "prerequisites": ["risk_landscape"],
+    "exclusions": [],
+    "targets": ["risk_landscape", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "risk-ordinary",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "control.test",
+    "text": "What would convince you that people can keep a powerful AI system under control?",
+    "family": "control",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["technical_controllability", "updateability"],
+    "effort": 0.4,
+    "noveltyGroup": "control-test",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "control.failuremode",
+    "text": "Which failure mode would your proposed oversight method leave unresolved?",
+    "family": "control",
+    "readingLevel": "expert",
+    "prerequisites": ["technical_controllability"],
+    "exclusions": [],
+    "targets": ["technical_controllability", "counterargument_engagement"],
+    "effort": 0.55,
+    "noveltyGroup": "control-failuremode",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "governance.incentives",
+    "text": "What incentives would make labs act in the way you expect?",
+    "family": "governance",
+    "readingLevel": "general",
+    "prerequisites": ["institutional_competence"],
+    "exclusions": [],
+    "targets": ["institutional_competence", "causal_clarity"],
+    "effort": 0.4,
+    "noveltyGroup": "governance-incentives",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "governance.coordination",
+    "text": "What could make cooperation between competing institutions work?",
+    "family": "governance",
+    "readingLevel": "general",
+    "prerequisites": ["institutional_competence"],
+    "exclusions": [],
+    "targets": ["institutional_competence", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "governance-coordination",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "agency.consent",
+    "text": "What kinds of changes should people be able to refuse in a good AI future?",
+    "family": "agency",
+    "readingLevel": "general",
+    "prerequisites": ["human_agency"],
+    "exclusions": [],
+    "targets": ["human_agency", "action_posture"],
+    "effort": 0.4,
+    "noveltyGroup": "agency-consent",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "action.tradeoff",
+    "text": "What trade-off would you accept to shape how AI is developed?",
+    "family": "action",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["action_posture", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "action-tradeoff",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "grounding.claim",
+    "text": "What does the example you mentioned actually establish about your expectation?",
+    "family": "grounding",
+    "readingLevel": "general",
+    "prerequisites": ["grounded_understanding"],
+    "exclusions": [],
+    "targets": ["grounded_understanding", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "grounding-claim",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "grounding.source",
+    "text": "Where could someone check the evidence that matters most to your view?",
+    "family": "grounding",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["grounded_understanding", "updateability"],
+    "effort": 0.4,
+    "noveltyGroup": "grounding-source",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "crux.test",
+    "text": "How could someone check whether your most important assumption holds?",
+    "family": "crux",
+    "readingLevel": "general",
+    "prerequisites": ["causal_clarity"],
+    "exclusions": [],
+    "targets": ["updateability", "grounded_understanding"],
+    "effort": 0.4,
+    "noveltyGroup": "crux-test",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "tension.general",
+    "text": "Are there conditions that make your expectations fit together?",
+    "family": "tension",
+    "readingLevel": "general",
+    "prerequisites": ["causal_clarity"],
+    "exclusions": [],
+    "targets": ["internal_coherence", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "tension-general",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "scope.assumption",
+    "text": "Which assumption matters most to the outcome you expect?",
+    "family": "scope",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["scope_discipline", "internal_coherence"],
+    "effort": 0.4,
+    "noveltyGroup": "scope-assumption",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "timeline.milestone",
+    "text": "What change would tell you that the future you described is getting closer?",
+    "family": "timeline",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["capability_trajectory", "updateability"],
+    "effort": 0.4,
+    "noveltyGroup": "timeline-milestone",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  },
+  {
+    "id": "mechanism.chain",
+    "text": "Which causal link in your account is least established by the available evidence?",
+    "family": "mechanism",
+    "readingLevel": "expert",
+    "prerequisites": ["causal_clarity"],
+    "exclusions": [],
+    "targets": ["causal_clarity", "appropriate_uncertainty"],
+    "effort": 0.55,
+    "noveltyGroup": "mechanism-chain",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.3.0-draft",
+    "status": "draft"
+  }
+]

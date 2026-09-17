@@ -30,12 +30,20 @@ const separate = readdirSync('content/drafts', { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .sort((a, b) => a.name.localeCompare(b.name))
   .flatMap((entry) => entries(`content/drafts/${entry.name}/references`, false))
-const snapshots = [...active, ...separate]
+for (const population of [active, separate])
+  if (
+    new Set(population.map(({ reference }) => reference.id)).size !==
+    population.length
+  )
+    throw new Error('Duplicate snapshot IDs within a coverage population')
+// A current-release copy and its original authoring draft share one identity.
 const byId = new Map(
-  snapshots.map((snapshot) => [snapshot.reference.id, snapshot])
+  [...separate, ...active].map((snapshot) => [snapshot.reference.id, snapshot])
 )
-if (byId.size !== snapshots.length)
-  throw new Error('Duplicate snapshot IDs in coverage populations')
+const snapshots = [...byId.values()]
+const sharedCopies = separate.filter(({ reference }) =>
+  active.some((entry) => entry.reference.id === reference.id)
+).length
 for (const source of intake.sources)
   for (const id of source.referenceIds)
     if (!byId.has(id)) throw new Error(`Unknown mapped snapshot: ${id}`)
@@ -99,6 +107,8 @@ const lines = [
   `Intake as of ${inventoryDate}; current demo content release ${bundle.manifest.contentVersion}.`,
   '',
   `The registry contains ${required.length} required and ${optional.length} optional candidate URLs. Mappings exist for ${mapped(required)} required URLs and ${mapped(optional)} of the optional candidates. ${requiredSnapshots.length} distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.`,
+  '',
+  `There are ${snapshots.length} distinct snapshot identities across current and authoring populations. ${sharedCopies} original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.`,
   '',
   'Reviewed counts reflect stored asset metadata, including earlier representative approvals. They do not establish current required-URL review or a frozen release; the current manifest remains draft.',
   '',
