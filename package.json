@@ -1,0 +1,66 @@
+{
+  "name": "doom-or-bloom",
+  "version": "0.0.0",
+  "private": true,
+  "description": "TODO",
+  "license": "MIT",
+  "author": "Travis Fischer <travis@transitivebullsh.it>",
+  "repository": "https://github.com/transitive-bullshit/doom-or-bloom",
+  "type": "module",
+  "scripts": {
+    "dev": "portless run next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "test": "run-s test:*",
+    "test:format": "oxfmt --check",
+    "test:lint": "oxlint",
+    "test:types": "next typegen && tsc --noEmit",
+    "test:unit": "vitest run",
+    "lint": "oxlint",
+    "typecheck": "pnpm test:types",
+    "fix": "run-s fix:*",
+    "fix:format": "oxfmt",
+    "fix:lint": "oxlint --fix"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "cn": "^0.3.0",
+    "next": "^16.3.5",
+    "p-map": "^7.0.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "takumi-js": "^2.14.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@fisch0920/config": "^2.1.4",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "lint-staged": "^17.5.1",
+    "npm-run-all2": "^9.0.3",
+    "oxfmt": "^0.68.0",
+    "oxlint": "^1.83.0",
+    "oxlint-tsgolint": "^7.0.2001",
+    "portless": "^0.15.6",
+    "simple-git-hooks": "^2.14.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "oxfmt --no-error-on-unmatched-pattern",
+      "oxlint --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@11.24.0"
+}

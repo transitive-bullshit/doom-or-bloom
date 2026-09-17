@@ -1,0 +1,30 @@
+## Conventions
+
+- use `pnpm`
+- use modern typescript
+- no semicolons
+- oxfmt for formatting (`pnpm fix:format`)
+- oxlint for linting (`pnpm fix:lint`)
+
+## Project context
+
+- Start with [docs/README.md](docs/README.md) for the handoff index and locked product language.
+- Implementing the MVP: follow [docs/mvp-implementation-plan.md](docs/mvp-implementation-plan.md); mark completed tasks `[x]` and commit at its checkpoints.
+- Product scope or UI: [docs/PRODUCT.md](docs/PRODUCT.md). Use shadcn/ui for recurring primitives.
+- Profiles, routing, answer recovery, readiness, or projections: [docs/ASSESSMENT.md](docs/ASSESSMENT.md).
+- Jev integration or inference boundaries: [docs/TYPESAFE.md](docs/TYPESAFE.md).
+- Prompts, rubrics, reference snapshots, findings, or resources: [docs/AUTHORING.md](docs/AUTHORING.md).
+- Analytics, privacy, or evaluation: [docs/MEASUREMENT.md](docs/MEASUREMENT.md).
+- Domain terminology or state modeling: [docs/CONTEXT.md](docs/CONTEXT.md).
+
+Current scope is local development; deployment is a separate task. The handoff defines product semantics; the implementation plan records repository decisions and execution status.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
