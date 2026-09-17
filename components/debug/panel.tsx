@@ -26,7 +26,7 @@ export function DebugPanel({
             Observed inputs, typed judgments, and code decisions. These details
             may include your answers.
           </p>
-          <pre className='max-h-96 overflow-auto rounded-lg bg-muted p-4 text-xs whitespace-pre-wrap break-all'>
+          <pre className='rounded-lg bg-muted p-4 text-xs whitespace-pre-wrap break-all'>
             {JSON.stringify(
               {
                 trace: trace ?? 'No transient operation trace available',

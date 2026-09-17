@@ -142,6 +142,36 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
       storageKey
     )
   ).toBe(longAnswer)
+  const answer = page.getByLabel('Your answer', { exact: true })
+  const beforeDraft = await page.evaluate(
+    () => document.documentElement.scrollHeight
+  )
+  await answer.fill(longAnswer)
+  await expect(answer).toHaveValue(longAnswer)
+  const draftSize = await answer.evaluate((element) => ({
+    height: element.clientHeight,
+    scrollHeight: element.scrollHeight
+  }))
+  expect(draftSize.height).toBeGreaterThan(384)
+  expect(draftSize.scrollHeight).toBeLessThanOrEqual(draftSize.height + 1)
+  expect(
+    await page.evaluate(() => document.documentElement.scrollHeight)
+  ).toBeGreaterThan(beforeDraft)
+  await page
+    .getByRole('button', { name: 'Jev / assessment debugging details' })
+    .click()
+  await expect(page.locator('pre')).toHaveCSS('overflow-y', 'visible')
+  expect(
+    await page
+      .locator('main')
+      .evaluate((main) =>
+        [...main.querySelectorAll('*')].some(
+          (element) =>
+            ['auto', 'scroll'].includes(getComputedStyle(element).overflowY) &&
+            element.scrollHeight > element.clientHeight + 1
+        )
+      )
+  ).toBe(false)
   expect(apiCalls).toBe(0)
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
   await page.getByRole('button', { name: 'Restart & clear' }).click()

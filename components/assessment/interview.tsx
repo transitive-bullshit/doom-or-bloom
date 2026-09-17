@@ -412,7 +412,7 @@ export function Interview({
                           ? 'answer-help answer-length answer-limit'
                           : 'answer-help'
                       }
-                      className='min-h-36 max-h-96'
+                      className='min-h-36 resize-none'
                       onChange={(event) => {
                         try {
                           persist({ ...state, draft: event.target.value })

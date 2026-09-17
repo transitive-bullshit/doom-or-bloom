@@ -548,7 +548,7 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 ### 2026-09-17 — Preserve long dictated answers / Codex
 
 - [x] Increased the shared submitted-answer limit from 2,000 to 20,000 characters. Removed the textarea's hard `maxlength`; dictated, pasted and typed input remains intact and editable above the submission limit.
-- [x] Show a visible count and an accessible over-limit message with the amount to shorten. Disable Continue and guard form submission while over the limit, without consuming an inference request or recovery attempt. Keep the long field scrollable so controls remain reachable.
+- [x] Show a visible count and an accessible over-limit message with the amount to shorten. Disable Continue and guard form submission while over the limit, without consuming an inference request or recovery attempt. Let the long field grow in the page so the page scrollbar reaches the controls.
 - [x] Removed the character bound from unsubmitted local drafts so they survive reload without truncation or an invalid-storage warning. Submitted answer, excerpt and interaction-history schemas retain the shared 20,000-character bound; unsubmitted drafts remain outside server/inference context.
 - [x] Added browser coverage for native insertion beyond the limit, complete draft resume, blocked submission and an intact 20,000-character submission through the real fixture endpoint. Added storage/schema coverage for larger drafts and exact submitted-answer boundaries. Updated product, assessment, TypeSafe and setup guidance.
 - Verification is shared with the named-URL checkpoint above. The demo uses live assessment mode with debug enabled and analytics off; checks used fixtures or a missing-key guard, with no paid Jev requests or real telemetry. Larger cumulative transcripts may still reach provider context limits; the existing bounded failure path preserves the draft without silently discarding evidence.
@@ -566,6 +566,12 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - [x] Retain local earlier recovery/navigation replies without arbitrary history eviction. Keep these replies and unsubmitted drafts outside server transport, evidence, scoring and report text. Reload preserves the complete conversation/draft while resetting disclosures closed; restart clears the thread.
 - Formatting, lint and type checks, 61 unit tests, content validation, an isolated production build and all 13 credential-free fixture browser regressions pass. The new browser regression verifies document-height growth, absence of internal transcript scrollbars, full answer preservation, mobile width, reload and restart with all API calls blocked. The running Portless demo remained available throughout verification.
 - Previous checkpoint: `477f2a4`. Full required-source incorporation, individual review/freeze and held-out semantic evaluation remain open. No paid inference or real telemetry was used.
+
+### 2026-09-17 — Remove remaining nested content scrolling / Codex
+
+- [x] Remove the active answer box's height cap and manual resize affordance so the existing content sizing grows it within the page. Expanded debugging details also grow in the page without a capped internal viewport.
+- [x] Extend the conversation browser regression to verify long draft preservation, document-height growth, absence of answer-box overflow and absence of nested scroll areas with debugging details expanded on mobile.
+- Formatting, lint, types and the isolated credential-free conversation browser regression pass. The current demo also reports a scrollable document with no nested content scroll areas. All assessment API calls were blocked during the regression; no Jev requests were made. Previous checkpoint: `428aada`.
 
 ### 2026-09-17 — Required measurement and disclosure drafts / Codex
 
