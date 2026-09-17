@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-17T11:22:09.190Z",
+  "purpose": "Synthetic context stress test: 50 maximum-length usable answers, 750 ledger entries, 200 reference claims. Not an authored interview path or accuracy evaluation.",
+  "model": "jev-1.13.0",
+  "sdk": "0.6.0",
+  "succeeded": false,
+  "snapshotBytes": 663094,
+  "answerCharacters": 2000,
+  "stages": [
+    {
+      "questions": 57,
+      "inputBytes": 588034,
+      "largestChoice": 51,
+      "elapsedMs": 2368,
+      "succeeded": false,
+      "status": 400,
+      "constraint": "input_size",
+      "declaredLimits": [],
+      "numericLimit": null
+    }
+  ],
+  "pricing": {
+    "checked": "2026-09-17",
+    "source": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+    "inputUsdPerMillionTokens": 0.042,
+    "outputUsdPerMillionTokens": 0,
+    "measuredRequestListEstimateUsd": 0,
+    "failedRequestCostUnknown": true
+  }
+}

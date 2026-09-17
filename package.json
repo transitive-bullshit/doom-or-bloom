@@ -22,7 +22,11 @@
     "fix:format": "oxfmt",
     "fix:lint": "oxlint --fix",
     "test:content": "node --conditions=react-server --import tsx scripts/validate-content.ts",
-    "eval:smoke": "node --env-file=.env.local --conditions=react-server --import tsx scripts/smoke-jev.ts"
+    "eval:smoke": "node --env-file=.env.local --conditions=react-server --import tsx scripts/smoke-jev.ts",
+    "check:browser": "playwright test",
+    "eval:engine": "node --env-file=.env.local --conditions=react-server --import tsx scripts/evaluate-engine.ts",
+    "content:freeze": "node --conditions=react-server --import tsx scripts/freeze-content.ts",
+    "eval:budget": "node --env-file=.env.local --conditions=react-server --import tsx scripts/benchmark-budget.ts"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",
@@ -44,6 +48,7 @@
   },
   "devDependencies": {
     "@fisch0920/config": "^2.1.4",
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.6.1",
     "@types/react": "^19.3.0",

@@ -159,3 +159,48 @@ test('cap takes precedence and insufficient evidence has no invented coordinates
   expect(state.result?.horizontal.value).toBeNull()
   expect(state.result?.insufficient).toBe(true)
 })
+test('unknown worldview positions and ordinary harm cannot fabricate catastrophic risk', async () => {
+  const fixture = createFixtureProvider()
+  const provider: Provider = {
+    kind: 'fixture',
+    evaluate: async (input, questions, signal) => {
+      const result = await fixture.evaluate(input, questions, signal)
+      for (const id of [
+        'capability_trajectory:position',
+        'risk_landscape:position',
+        'catastrophic_risk:position'
+      ])
+        if (questions[id])
+          result.answers[id] = fixtureAnswer(
+            questions[id]!,
+            'explicitly_unknown'
+          )
+      return result
+    }
+  }
+  let state = createAssessment('unknown-worldview')
+  for (let i = 0; i < 3; i++)
+    state = (
+      await run(
+        state,
+        {
+          type: 'answer',
+          text: 'AI may help with paperwork; I cannot forecast catastrophic harm or a date.'
+        },
+        provider
+      )
+    ).assessment
+  state = (await run(state, { type: 'project' }, provider)).assessment
+  expect(
+    state.result?.components.find((c) => c.vector === 'risk_landscape')?.value
+  ).toBeNull()
+  expect(
+    state.result?.fingerprint.find((c) => c.vector === 'catastrophic_risk')
+      ?.claim
+  ).toBeNull()
+  expect(
+    state.result?.fingerprint.find((c) => c.vector === 'timeline')?.claim
+  ).toBeNull()
+  expect(state.result?.vertical.value).toBeGreaterThan(0)
+  expect(state.coverage.risk_landscape).toBe('unassessed')
+})

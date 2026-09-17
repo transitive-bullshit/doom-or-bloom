@@ -16,6 +16,8 @@ export function serializeReport(state: Assessment) {
     unresolved: state.unresolved,
     answers: state.answers,
     evidence,
+    referenceClaims: state.referenceClaims,
+    familiarity: state.familiarity,
     judgments: state.judgments.filter((j) => j.stage !== 'route')
   }
   const position = (value: number | null) =>
@@ -46,9 +48,53 @@ export function serializeReport(state: Assessment) {
       '',
       c.claim ?? 'Unassessed',
       '',
-      `Position: ${position(c.value)}. Evidence: ${c.evidenceIds.join(', ') || 'None'}.`,
+      `Position: ${position(c.value)}. Interpretation range: ${c.range.map((v) => Math.round(v * 100)).join('–')}. Coverage: ${state.coverage[c.vector as keyof typeof state.coverage] ?? 'Separate fingerprint component'}.`,
+      '',
+      ...c.evidenceIds.flatMap((id) => {
+        const entry = evidence.find((e) => e.id === id)
+        return entry
+          ? [
+              `> ${entry.excerpt.replaceAll('\n', '\n> ')}`,
+              '',
+              `Evidence: ${id}; ${entry.status}.`,
+              ''
+            ]
+          : []
+      }),
       ''
     ]),
+    '## Fingerprint and expressed forecast context',
+    '',
+    ...result.fingerprint.flatMap((c) => [
+      `### ${c.label}`,
+      '',
+      c.claim ?? 'Unassessed; no supported position is invented.',
+      ''
+    ]),
+    ...state.answers.flatMap((a) =>
+      ['horizonSpanId', 'convictionSpanId', 'assumptionSpanId'].flatMap(
+        (key) => {
+          const span = a.spans.find(
+            (s) =>
+              s.id === a.context?.[key as keyof NonNullable<typeof a.context>]
+          )
+          const label =
+            key === 'horizonSpanId'
+              ? 'Expressed horizon'
+              : key === 'convictionSpanId'
+                ? 'Participant conviction'
+                : 'Expressed assumption'
+          return span
+            ? [
+                `${label} (${a.id}):`,
+                '',
+                `> ${span.text.replaceAll('\n', '\n> ')}`,
+                ''
+              ]
+            : []
+        }
+      )
+    ),
     '## Findings',
     '',
     ...result.findings.flatMap((f) => [
@@ -61,6 +107,16 @@ export function serializeReport(state: Assessment) {
     '',
     ...result.resources.flatMap((r) => [
       `[${r.title}](${r.url}) — ${r.purpose}`,
+      ''
+    ]),
+    '## Reference sources',
+    '',
+    ...result.sources.flatMap((s) => [
+      `### ${s.title}`,
+      '',
+      `${s.id} · ${s.status} · accessed ${s.accessed} · content ${result.versions.content}`,
+      '',
+      ...s.urls.map((url, i) => `[Primary source ${i + 1}](${url})`),
       ''
     ]),
     '## Evidence and typed judgments',

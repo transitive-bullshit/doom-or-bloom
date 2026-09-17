@@ -130,7 +130,14 @@ export const answerSchema = z.strictObject({
   text: z.string().min(1).max(limits.answerChars),
   spans: z.array(spanSchema).max(80),
   substantive: z.boolean(),
-  correctionTarget: vectorSchema.optional()
+  correctionTarget: vectorSchema.optional(),
+  context: z
+    .strictObject({
+      horizonSpanId: z.string().nullable(),
+      convictionSpanId: z.string().nullable(),
+      assumptionSpanId: z.string().nullable()
+    })
+    .optional()
 })
 export type Answer = z.infer<typeof answerSchema>
 export const evidenceSchema = z.strictObject({
@@ -153,6 +160,17 @@ export const evidenceSchema = z.strictObject({
   assumptionSpanId: z.string().nullable()
 })
 export type EvidenceEntry = z.infer<typeof evidenceSchema>
+export const referenceClaimSchema = z.strictObject({
+  id: z.string().max(160),
+  answerId: z.string(),
+  spanId: z.string(),
+  referenceId: z.string(),
+  attribution: z.enum(['yes', 'no', 'unclear']),
+  fit: z.enum(['yes', 'no', 'unclear']),
+  uncertainty: z.enum(['yes', 'no', 'unclear']),
+  materiality: z.enum(['yes', 'no', 'unclear']),
+  judgmentIds: z.array(z.string()).max(8)
+})
 export const attemptSchema = z.strictObject({
   id: z.string(),
   promptInstanceId: z.string(),
@@ -198,6 +216,19 @@ export const resultSchema = z.strictObject({
       })
     )
     .max(5),
+  fingerprint: z.array(componentSchema).max(5).default([]),
+  sources: z
+    .array(
+      z.strictObject({
+        id: z.string(),
+        title: z.string(),
+        urls: z.array(z.url()).max(8),
+        status: z.enum(['draft', 'reviewed']),
+        accessed: z.string()
+      })
+    )
+    .max(200)
+    .default([]),
   provisional: z.boolean(),
   capped: z.boolean(),
   insufficient: z.boolean(),
@@ -221,8 +252,27 @@ export const assessmentSchema = z.strictObject({
   prompts: z.array(promptInstanceSchema).min(1).max(50),
   answers: z.array(answerSchema).max(50),
   attempts: z.array(attemptSchema).max(150),
+  interactionHistory: z
+    .array(
+      z.strictObject({
+        requestId: z.string().max(120),
+        promptInstanceId: z.string().max(120),
+        text: z.string().max(limits.answerChars),
+        disposition: dispositionSchema
+      })
+    )
+    .max(20)
+    .default([]),
   judgments: z.array(judgmentSchema).max(5000),
   evidence: z.array(evidenceSchema).max(1200),
+  referenceClaims: z.array(referenceClaimSchema).max(200).default([]),
+  familiarity: z
+    .strictObject({
+      level: z.enum(['unknown', 'general', 'expert']),
+      answerId: z.string().nullable(),
+      judgmentId: z.string().nullable()
+    })
+    .default({ level: 'unknown', answerId: null, judgmentId: null }),
   coverage: z.record(
     vectorSchema,
     z.enum(['unassessed', 'assessed', 'ambiguous'])
@@ -274,7 +324,12 @@ export const operationSchema = z.discriminatedUnion('type', [
 export type Operation = z.infer<typeof operationSchema>
 export const requestSchema = z.strictObject({
   requestId: z.string().min(1).max(120),
-  assessment: assessmentSchema,
+  assessment: assessmentSchema
+    .omit({ interactionHistory: true })
+    .transform((snapshot) => ({
+      ...snapshot,
+      interactionHistory: [] as Assessment['interactionHistory']
+    })),
   operation: operationSchema,
   debug: z.boolean().default(false)
 })

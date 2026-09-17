@@ -13,7 +13,7 @@
       }
     ],
     "exclusions": [],
-    "status": "draft",
+    "status": "reviewed",
     "sourceAccessed": "2026-09-17"
   },
   {
@@ -26,6 +26,210 @@
     "conditions": [
       {
         "vector": "beneficial_potential",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "reviewed",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.oecd",
+    "title": "OECD AI Principles",
+    "url": "https://oecd.ai/en/ai-principles",
+    "purpose": "Compare an international set of governance principles with the institutional expectations in your account.",
+    "effort": "Short overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "institutional_competence",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.metr",
+    "title": "METR evaluation research",
+    "url": "https://metr.org/about",
+    "purpose": "Inspect what capability evaluations attempt to measure and the limits of their coverage.",
+    "effort": "Short overview; linked studies take longer",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "technical_controllability",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.chatgpt",
+    "title": "Introducing ChatGPT",
+    "url": "https://openai.com/index/chatgpt/",
+    "purpose": "Examine a deployed capability demonstration alongside the limitations stated at its release.",
+    "effort": "Release overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "capability_trajectory",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.alphago",
+    "title": "AlphaGo research",
+    "url": "https://deepmind.google/research/alphago/",
+    "purpose": "Compare a strong result in a bounded task with a broader claim about general capability.",
+    "effort": "Project overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "capability_trajectory",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.deepblue",
+    "title": "Deep Blue history",
+    "url": "https://www.ibm.com/history/deep-blue",
+    "purpose": "Use an earlier capability milestone to distinguish a task success from general intelligence.",
+    "effort": "Historical overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "capability_trajectory",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.cais",
+    "title": "Center for AI Safety research remit",
+    "url": "https://safe.ai/about",
+    "purpose": "Inspect one research agenda concerning societal-scale AI risk without treating its mission as proof of a forecast.",
+    "effort": "Short overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "risk_landscape",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.scaling",
+    "title": "Scaling Laws for Neural Language Models",
+    "url": "https://arxiv.org/abs/2001.08361",
+    "purpose": "Inspect empirical relationships among language-model loss, model size, data and compute.",
+    "effort": "Abstract first; full technical paper",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "capability_trajectory",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.chinchilla",
+    "title": "Training Compute-Optimal Large Language Models",
+    "url": "https://arxiv.org/abs/2203.15556",
+    "purpose": "Examine why training-data allocation matters when interpreting model scaling.",
+    "effort": "Abstract first; full technical paper",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "transition_dynamics",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.concrete",
+    "title": "Concrete Problems in AI Safety",
+    "url": "https://arxiv.org/abs/1606.06565",
+    "purpose": "Distinguish several practical accident mechanisms rather than treating safety as one undifferentiated problem.",
+    "effort": "Abstract first; full technical paper",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "technical_controllability",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.offswitch",
+    "title": "The Off-Switch Game",
+    "url": "https://arxiv.org/abs/1611.08219",
+    "purpose": "Inspect a formal argument about shutdown incentives and the assumptions that give it force.",
+    "effort": "Abstract first; full technical paper",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "technical_controllability",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.fewshot",
+    "title": "Language Models are Few-Shot Learners",
+    "url": "https://arxiv.org/abs/2005.14165",
+    "purpose": "Examine few-shot task performance and its limits as evidence for broader capability.",
+    "effort": "Abstract first; full technical paper",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "capability_trajectory",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.cirl",
+    "title": "Cooperative Inverse Reinforcement Learning",
+    "url": "https://arxiv.org/abs/1606.03137",
+    "purpose": "Explore one formal model of uncertainty about human objectives and cooperative learning.",
+    "effort": "Abstract first; full technical paper",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "human_agency",
         "assessed": true
       }
     ],

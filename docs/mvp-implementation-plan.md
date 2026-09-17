@@ -285,7 +285,7 @@ Depends on: milestone 1 contracts. Commit: `feat: define reviewed assessment con
 
 - [x] Draft the representative review packet from section 3 and label all assets as drafts. Include the horizontal formula, vertical weighting, missingness/range rule, substantive-answer rule, readiness rule, and deterministic routing tie-break.
 - [x] Review paired examples of usable humor/uncertainty versus non-answers, authored recovery copy, and the paperclip interlude. Set and version the clear-non-answer confidence threshold from those examples, with ambiguous cases routed to neutral clarification.
-- [ ] Create content validation and a frozen manifest format. Validate ID uniqueness, references, graph reachability, root uniqueness, coverage targets, rule types, evidence slots, source metadata, and release review status.
+- [x] Create content validation and a frozen manifest format. Validate ID uniqueness, references, graph reachability, root uniqueness, coverage targets, rule types, evidence slots, source metadata, and release review status.
 - [x] Implement the live TypeSafe adapter behind the provider interface, with validated typed responses, version/usage capture, cancellation, bounded retries, and sanitized errors/logs.
 - [x] With a locally configured key, run opt-in smoke cases for Choice, Score, Noul, source-span selection, unsupported evidence, and independent batching. Record requested/returned model IDs and installed SDK version.
 - [ ] Test staged reference handling and the worst-case supported transcript/context budget. Record calls, tokens, latency, failures, and a dated cost estimate if current pricing is available; do not invent benchmark results.
@@ -300,7 +300,7 @@ Depends on: milestone 2 content contracts. Commit: `feat: add seed assessment as
 - [ ] Expand the seed to 20–30 sourced references across all three kinds, including direct/indirect/ambiguous aliases, differing interpretations, primary-source links, access dates, and documented review.
 - [ ] Author the initial prompt graph, approximately 30–40 variants as needed, covering all vectors/families and novice/expert wording where diagnostically useful. Include neutral tension, non-answer, and disputed-inference fallback prompts.
 - [ ] Add compatible same-goal recovery variants, exhausted-attempt copy, and deterministic alternate-question fallbacks; validate IDs and preserve the fixed root wording. Include recovery assets in the reviewed content release.
-- [ ] Author versioned rubric questions for each stage, projection components, and routing benefits, with explicit unsupported outcomes and narrow, complete criteria. Keep weights/thresholds in reviewed configuration.
+- [x] Author versioned rubric questions for each stage, projection components, and routing benefits, with explicit unsupported outcomes and narrow, complete criteria. Keep weights/thresholds in reviewed configuration.
 - [ ] Author a small complete findings/resource library (planning target: 12–20 of each) with required evidence, exclusions, reading effort, learning purpose, and compatible conditions. No invented links or automatic opposing-view assignments.
 - [x] Implement deterministic alias/topic indexing, candidate caps, collision handling, selected-entry loading, and a client-safe content view. Add fixture tests for indirect references, unknown references, and multiple references.
 - [ ] Add development and held-out evaluation fixtures with expected vectors, source evidence, acceptable follow-ups, and false-error/tension cases. Holdout labels must receive human review and remain separate from tuning.
@@ -311,7 +311,7 @@ Done when: the validated seed bundle covers an end-to-end assessment without run
 
 Depends on: milestones 1–3. Commit: `feat: implement adaptive assessment and evidence ledger`.
 
-- [ ] Implement stages A–C, immutable answer/span storage, judgment provenance, reference materiality checks, coverage updates, and unresolved items. Track participant conviction and horizon separately from inference confidence.
+- [x] Implement stages A–C, immutable answer/span storage, judgment provenance, reference materiality checks, coverage updates, and unresolved items. Track participant conviction and horizon separately from inference confidence.
 - [x] Gate ordinary processing on response disposition. Short-circuit B–D for rejected/ambiguous attempts, discard speculative scores, preserve usable evidence, and render bounded re-asks/pause actions. Navigation and failed provider requests must not be mistaken for non-answer strikes.
 - [x] Implement candidate eligibility, benefit composition, effort/repetition penalties, deterministic tie-breaking, and fallback behavior. Test that changing action posture alone does not force a Doom/Bloom branch or coordinate.
 - [x] Implement the operation Route Handler with request validation, authored-content resolution, revision checks, transient deduplication, request/cost limits, and safe error responses. Set private assessment responses to `no-store` and keep evidence out of URLs/logs.
@@ -329,7 +329,7 @@ Depends on: milestone 4 and reviewed projection rules. Commit: `feat: add eviden
 
 - [x] Implement stage D and pure projection functions with normalization, missingness, ranges, assessed masks, and readiness/provisional metadata. Reuse an unchanged result instead of paying for another projection.
 - [x] Extend debug details to projection contributions, range propagation, selected finding/resource conditions, and correction invalidation. Verify the trace explains the displayed result without inventing model reasoning.
-- [ ] Render the Doom–Bloom × Epistemic Quality map with accessible textual equivalents and compact interpretation ranges; show the five-part fingerprint and unassessed components. Avoid false precision and ideological labels.
+- [x] Render the Doom–Bloom × Epistemic Quality map with accessible textual equivalents and compact interpretation ranges; show the five-part fingerprint and unassessed components. Avoid false precision and ideological labels.
 - [ ] Select a few findings and resources using authored conditions, disqualifiers, relevance, and diversity of learning purpose. Every displayed claim links to exact evidence and a versioned interpretation.
 - [x] Add “That’s not quite my view” on central inferred claims. Select a claim, show an authored clarification, accept natural-language correction, supersede affected interpretations, and recompute. Disable new clarification at the lifetime cap.
 - [x] Implement voluntary completion and continued exploration on the same assessment, with a new result revision when evidence changes. Cap finalization can still yield an insufficient-evidence result.
@@ -341,7 +341,7 @@ Done when: results can be traced to evidence and corrected without direct score 
 
 Depends on: milestone 5 result view model. Commit: `feat: add report exports and share cards`.
 
-- [ ] Build a readable Markdown full-report download, with optional structured JSON export from the same serializer. Include expanded profile, coverage/ranges, evidence, relevant typed judgments, versions, sources, and methodology. Exclude credentials, hidden reasoning, and raw transport dumps.
+- [x] Build a readable Markdown full-report download, with optional structured JSON export from the same serializer. Include expanded profile, coverage/ranges, evidence, relevant typed judgments, versions, sources, and methodology. Exclude credentials, hidden reasoning, and raw transport dumps.
 - [x] Inspect installed `takumi-js` docs/types and implement on-demand PNG rendering in the Node Route Handler. Use a minimal validated display payload, local assets/fonts, deterministic layout, and no persistent image storage.
 - [x] Add separate “Download card” and “Post on X” actions. The latter only opens a web intent with safe authored summary/link; explain manual image attachment. No raw answers, assessment ID, or evidence payload enters the URL/card by default.
 - [x] Add a generic social preview and About/methodology/privacy pages, including model/content versions, experimental status, framing bias, uncertainty semantics, local persistence, and actual TypeSafe data transmission. Do not claim answers never leave the device or assert unverified provider retention policies.
@@ -467,3 +467,14 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - Real Jev: `eval/live-engine.json` records a synthetic three-answer result, eight-prompt continuation, reference stages, correction, two-clear-miss paperclip pause, and accepted relevant humor. 35 physical requests total, 245,099 input/66,508 output tokens. This is development evidence, not held-out validation; pricing is not assumed.
 - Browser: manually verified submitted answers, draft reload on the same prompt, three-answer result unlock, result focus, and dark theme. Generated 1200×630 PNG visually inspected. Full browser regressions and mobile acceptance remain outstanding.
 - Previous checkpoint: `fbec59b`. Next: expand the sourced seed, richer fingerprint/source display, complete-context benchmarks, and browser regression coverage.
+
+### 2026-09-17 — Seed candidate and resilience checkpoint / Codex
+
+- Expanded the researched seed to 24 snapshots (8 each kind), the prompt pool to 34 variants, and findings/resources to 14 each. The original representative approval is recorded on its assets; additions remain drafts, listed in `seed-review-packet.md` for the requested human review. The expanded seed milestone remains unchecked until that review.
+- Added first-class exact reference claims, expressed horizon/conviction/assumption context, familiarity gates independent of quality, explicit unknown-position guards, a separate catastrophic-risk fingerprint, source links, and a readable evidence/source report. Narrow Jev question templates now live in the rubric release.
+- Content validation checks graph reachability, contradictory rules, coverage, template slots/types, provenance and every frozen asset hash. The freeze command refuses unreviewed assets; it has not been run to publish a draft.
+- Browser regressions cover recovery, correction, report/PNG download, reload, tab conflicts, corrupt/unavailable storage, restart during requests, forced cap and lost-response request-ID reuse. Found and fixed Takumi’s native loader failing under Turbopack by keeping the package external.
+- Client-only rejected interaction history is bounded to 20 entries and removed from transport; only the active submitted answer reaches interpretation. Uncertain network retries reuse identical payload/ID; definitive failures can be retried normally.
+- Checks: final format/lint/types/content checks and 32 unit tests pass; production build passes; 7 isolated fixture browser regressions pass, including PNG download after the native-loader fix.
+- Blocker: the synthetic 50 × 2,000-character projection plus 750 evidence entries and 200 reference claims gets HTTP 400 with a token-limit error. Lossless short IDs reduce request size from 702,808 to 327,496 bytes, but the case still fails. No transcript truncation or generated summary substitutes have been introduced. Context feasibility remains unchecked and must be resolved.
+- Previous checkpoint: `fd86f4a`. Next: finish context-budget feasibility, human seed review, held-out fixtures and full-corpus expansion. PostHog values are supplied; collection stays off until its explicit privacy prerequisites are confirmed.

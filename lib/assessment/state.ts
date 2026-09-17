@@ -25,8 +25,11 @@ export function createAssessment(
     ],
     answers: [],
     attempts: [],
+    interactionHistory: [],
     judgments: [],
     evidence: [],
+    referenceClaims: [],
+    familiarity: { level: 'unknown', answerId: null, judgmentId: null },
     coverage: Object.fromEntries(
       vectorIds.map((v) => [v, 'unassessed'])
     ) as Assessment['coverage'],

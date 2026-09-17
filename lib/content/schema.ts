@@ -1,5 +1,31 @@
 import { z } from 'zod'
-import { vectorSchema } from '@/lib/assessment/schema'
+import { questionSchema, vectorSchema } from '@/lib/assessment/schema'
+export const templateIds = [
+  'presence',
+  'span',
+  'disposition',
+  'dimension',
+  'position',
+  'familiarity',
+  'topic',
+  'tension',
+  'identity',
+  'ground_attribution',
+  'ground_fit',
+  'ground_uncertainty',
+  'ground_materiality',
+  'route_coverage',
+  'route_ambiguity',
+  'route_tension',
+  'route_projection',
+  'catastrophic_score'
+] as const
+export const questionTemplatesSchema = z.strictObject({
+  version: z.string(),
+  status: z.enum(['draft', 'reviewed']),
+  questions: z.record(z.enum(templateIds), questionSchema)
+})
+export type QuestionTemplates = z.infer<typeof questionTemplatesSchema>
 const id = z
   .string()
   .regex(/^[a-z0-9][a-z0-9._-]+$/)
@@ -38,7 +64,8 @@ export const rubricSchema = z.strictObject({
     tension: z.number(),
     projection: z.number(),
     effort: z.number(),
-    repetition: z.number()
+    repetition: z.number(),
+    calibration: z.number().nonnegative().default(1)
   }),
   horizontalWeights: z.strictObject({
     beneficial_potential: z.number().positive(),
@@ -55,7 +82,12 @@ export const rubricSchema = z.strictObject({
       })
     )
     .min(15)
-    .max(15)
+    .max(15),
+  catastrophicRisk: z.strictObject({
+    label: z.string(),
+    meaning: z.string(),
+    levels: z.array(z.string()).min(2).max(6)
+  })
 })
 export type Rubric = z.infer<typeof rubricSchema>
 export const referenceSchema = z.strictObject({
@@ -104,7 +136,7 @@ export const resourceSchema = z.strictObject({
   conditions: z.array(conditionSchema).min(1),
   exclusions: z.array(conditionSchema),
   status: z.enum(['draft', 'reviewed']),
-  sourceAccessed: z.string()
+  sourceAccessed: z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
 })
 export const manifestSchema = z.strictObject({
   contentVersion: z.string(),

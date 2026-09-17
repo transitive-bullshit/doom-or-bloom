@@ -100,6 +100,8 @@ export function baseResult(
     components,
     findings: [],
     resources: [],
+    fingerprint: [],
+    sources: [],
     provisional:
       covered < rubric.readinessCoverage ||
       state.unresolved.length > 0 ||

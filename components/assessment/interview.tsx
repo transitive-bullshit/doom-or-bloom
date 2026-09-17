@@ -47,6 +47,10 @@ import { downloadBlob } from '@/lib/sharing/report'
 import { configureAnalytics, emitEvent } from '@/lib/analytics/client'
 import { makeEvent, transitionEvents } from '@/lib/analytics/events'
 import type { Catalog } from '@/lib/analytics/events'
+import {
+  restoreLocalInteraction,
+  serverSnapshot
+} from '@/lib/assessment/transport'
 
 export function Interview({
   model,
@@ -81,6 +85,9 @@ export function Interview({
   const token = useRef<string | null>(null)
   const writable = useRef(true)
   const pending = useRef<{ id: string; controller: AbortController } | null>(
+    null
+  )
+  const uncertain = useRef<{ id: string; key: string; body: string } | null>(
     null
   )
   const setCurrent = (value: Assessment) => {
@@ -168,7 +175,21 @@ export function Interview({
   async function act(operation: Operation) {
     if (!current.current || pending.current || conflict || rawBackup) return
     const snapshot = current.current
-    const id = crypto.randomUUID()
+    const payload = {
+      assessment: serverSnapshot(snapshot),
+      operation,
+      debug: debugMode
+    }
+    const key = JSON.stringify(payload)
+    const id =
+      uncertain.current?.key === key
+        ? uncertain.current.id
+        : crypto.randomUUID()
+    const requestBody =
+      uncertain.current?.key === key
+        ? uncertain.current.body
+        : JSON.stringify({ requestId: id, ...payload })
+    uncertain.current = { id, key, body: requestBody }
     const controller = new AbortController()
     pending.current = { id, controller }
     setBusy(true)
@@ -179,13 +200,9 @@ export function Interview({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
-        body: JSON.stringify({
-          requestId: id,
-          assessment: snapshot,
-          operation,
-          debug: debugMode
-        })
+        body: requestBody
       })
+      if (!response.ok) uncertain.current = null
       const body = (await response.json()) as AssessmentResponse & {
         error?: string
       }
@@ -198,7 +215,13 @@ export function Interview({
         !matchesResponse(current.current, body, pending.current?.id ?? '')
       )
         return
-      const next = assessmentSchema.parse(body.assessment)
+      const next = restoreLocalInteraction(
+        snapshot,
+        assessmentSchema.parse(body.assessment),
+        operation,
+        id
+      )
+      uncertain.current = null
       const events = transitionEvents(snapshot, next, operation, id)
       persist(next)
       events.forEach(emitEvent)
@@ -223,6 +246,7 @@ export function Interview({
       emitEvent(makeEvent(current.current, 'assessment_restarted'))
     pending.current?.controller.abort()
     pending.current = null
+    uncertain.current = null
     setBusy(false)
     setTrace(undefined)
     setError('')

@@ -9,6 +9,7 @@ import {
   findingSchema,
   manifestSchema,
   promptSchema,
+  questionTemplatesSchema,
   referenceSchema,
   resourceSchema,
   rubricSchema
@@ -63,11 +64,57 @@ export function loadBundle() {
         summary: parsed.content.trim()
       }
     })
-  const bundle = { manifest, prompts, findings, resources, rubric, references }
+  const questionTemplates = questionTemplatesSchema.parse(
+    JSON.parse(
+      readFileSync(
+        path.join(
+          process.cwd(),
+          'content/rubrics',
+          manifest.rubricVersion,
+          'questions.json'
+        ),
+        'utf8'
+      )
+    )
+  )
+  const bundle = {
+    manifest,
+    prompts,
+    findings,
+    resources,
+    rubric,
+    references,
+    questionTemplates
+  }
   validateBundle(bundle)
   return bundle
 }
 export type Bundle = ReturnType<typeof loadBundle>
+export function bundleFiles(bundle: Pick<Bundle, 'manifest'>) {
+  const base = path.join(process.cwd(), 'content')
+  const directories = [
+    `releases/${bundle.manifest.contentVersion}`,
+    `rubrics/${bundle.manifest.rubricVersion}`
+  ]
+  const collect = (directory: string): string[] =>
+    readdirSync(path.join(base, directory), { withFileTypes: true }).flatMap(
+      (entry) => {
+        const file = `${directory}/${entry.name}`
+        return entry.isDirectory() ? collect(file) : [file]
+      }
+    )
+  return directories.flatMap(collect).sort()
+}
+export function bundleHashes(bundle: Pick<Bundle, 'manifest'>) {
+  return Object.fromEntries(
+    bundleFiles(bundle).map((file) => [
+      file,
+      createHash('sha256')
+        .update(readFileSync(path.join(process.cwd(), 'content', file)))
+        .digest('hex')
+    ])
+  )
+}
 export function validateBundle(bundle: Bundle) {
   const all = [
     ...bundle.prompts,
@@ -85,6 +132,32 @@ export function validateBundle(bundle: Bundle) {
   )
     throw new Error('Exactly one canonical root is required')
   const families = new Set(bundle.prompts.map((p) => p.family))
+  const reachable = new Set(['root'])
+  let added = true
+  while (added) {
+    added = false
+    const covered = new Set(
+      bundle.prompts
+        .filter((p) => reachable.has(p.id))
+        .flatMap((p) => p.targets)
+    )
+    const priorFamilies = new Set(
+      bundle.prompts.filter((p) => reachable.has(p.id)).map((p) => p.family)
+    )
+    for (const p of bundle.prompts) {
+      if (
+        !reachable.has(p.id) &&
+        p.prerequisites.every((v) => covered.has(v)) &&
+        (p.permittedAfter.includes('*') ||
+          p.permittedAfter.some((family) => priorFamilies.has(family)))
+      ) {
+        reachable.add(p.id)
+        added = true
+      }
+    }
+  }
+  if (reachable.size !== bundle.prompts.length)
+    throw new Error('Unreachable prompt graph')
   for (const prompt of bundle.prompts) {
     if (prompt.contentVersion !== bundle.manifest.contentVersion)
       throw new Error('Prompt version mismatch')
@@ -93,10 +166,52 @@ export function validateBundle(bundle: Bundle) {
         throw new Error('Unknown graph transition')
     if (prompt.family !== 'root' && prompt.permittedAfter.length === 0)
       throw new Error('Unreachable prompt')
+    if (prompt.prerequisites.some((v) => prompt.exclusions.includes(v)))
+      throw new Error('Contradictory prompt rules')
+    if (new Set(prompt.targets).size !== prompt.targets.length)
+      throw new Error('Duplicate prompt target')
+    if (Object.values(prompt.recoveryVariants).some((text) => !text.trim()))
+      throw new Error('Missing recovery copy')
   }
   for (const vector of vectorIds)
-    if (!bundle.rubric.dimensions.some((d) => d.id === vector))
+    if (
+      !bundle.rubric.dimensions.some((d) => d.id === vector) ||
+      !bundle.prompts.some((p) => p.targets.includes(vector))
+    )
       throw new Error('Missing rubric dimension')
+  if (bundle.rubric.version !== bundle.manifest.rubricVersion)
+    throw new Error('Rubric version mismatch')
+  if (bundle.questionTemplates.version !== bundle.manifest.rubricVersion)
+    throw new Error('Question template version mismatch')
+  for (const [id, question] of Object.entries(
+    bundle.questionTemplates.questions
+  )) {
+    const expected =
+      id === 'dimension' ||
+      id === 'catastrophic_score' ||
+      id.startsWith('route_')
+        ? 'score'
+        : 'choice'
+    if (question.type !== expected)
+      throw new Error('Incorrect authored primitive type')
+    for (const match of question.instructions.matchAll(/\{\{(\w+)\}\}/g))
+      if (
+        !['source', 'meaning', 'title', 'referenceId', 'promptId'].includes(
+          match[1]!
+        )
+      )
+        throw new Error('Unknown authored evidence slot')
+  }
+  for (const item of [...bundle.findings, ...bundle.resources])
+    for (const condition of [...item.conditions, ...item.exclusions])
+      if (
+        (condition.min !== undefined &&
+          condition.max !== undefined &&
+          condition.min > condition.max) ||
+        (!condition.assessed &&
+          (condition.min !== undefined || condition.max !== undefined))
+      )
+        throw new Error('Impossible authored condition')
   if (
     new Set(bundle.rubric.dimensions.map((d) => d.id)).size !== vectorIds.length
   )
@@ -123,12 +238,16 @@ export function validateBundle(bundle: Bundle) {
     if (
       !bundle.manifest.reviewer ||
       bundle.rubric.status !== 'reviewed' ||
+      bundle.questionTemplates.status !== 'reviewed' ||
       all.some((a) => a.status !== 'reviewed') ||
       bundle.references.some((r) => !r.reviewer)
     )
       throw new Error('Human review is incomplete')
-    if (Object.keys(bundle.manifest.hashes).length === 0)
-      throw new Error('Reviewed bundle must have hashes')
+    if (
+      Object.keys(bundle.manifest.hashes).sort().join() !==
+      bundleFiles(bundle).join()
+    )
+      throw new Error('Reviewed bundle must hash every asset')
   }
   for (const [file, hash] of Object.entries(bundle.manifest.hashes)) {
     if (

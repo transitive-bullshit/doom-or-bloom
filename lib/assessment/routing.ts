@@ -11,17 +11,35 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
         ? 'root already issued'
         : uses >= prompt.maxUses
           ? 'maximum uses reached'
-          : !prompt.permittedAfter.includes('*') &&
-              !prompt.permittedAfter.includes(previous.family)
-            ? 'transition excluded'
-            : prompt.prerequisites.some((v) => state.coverage[v] !== 'assessed')
-              ? 'prerequisite missing'
-              : prompt.exclusions.some((v) => state.coverage[v] === 'assessed')
-                ? 'coverage exclusion'
-                : null
+          : prompt.readingLevel === 'expert' &&
+              state.familiarity.level !== 'expert'
+            ? 'expert familiarity not established'
+            : !prompt.permittedAfter.includes('*') &&
+                !prompt.permittedAfter.includes(previous.family)
+              ? 'transition excluded'
+              : prompt.prerequisites.some(
+                    (v) => state.coverage[v] !== 'assessed'
+                  )
+                ? 'prerequisite missing'
+                : prompt.exclusions.some(
+                      (v) => state.coverage[v] === 'assessed'
+                    )
+                  ? 'coverage exclusion'
+                  : null
+    const horizonMissing =
+      !state.answers.some((a) => a.context?.horizonSpanId) &&
+      !state.evidence.some((e) => e.status !== 'superseded' && e.horizonSpanId)
+    const convictionMissing =
+      !state.answers.some((a) => a.context?.convictionSpanId) &&
+      !state.evidence.some(
+        (e) => e.status !== 'superseded' && e.convictionSpanId
+      )
     const missing =
-      prompt.targets.filter((v) => state.coverage[v] !== 'assessed').length /
-      prompt.targets.length
+      (prompt.family === 'timeline' && horizonMissing) ||
+      (prompt.family === 'conviction' && convictionMissing)
+        ? 1
+        : prompt.targets.filter((v) => state.coverage[v] !== 'assessed')
+            .length / prompt.targets.length
     const repetition = state.prompts.some(
       (p) =>
         prompts.find((item) => item.id === p.promptId)?.noveltyGroup ===
@@ -29,7 +47,11 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
     )
       ? 1
       : 0
-    return { prompt, reason, missing, repetition }
+    const calibration =
+      horizonMissing && prompt.family === 'timeline' && state.answers.length < 3
+        ? 1
+        : 0
+    return { prompt, reason, missing, repetition, calibration }
   })
 }
 export function rankCandidates(
@@ -49,6 +71,7 @@ export function rankCandidates(
       const tension = normalized(`${item.prompt.id}:tension`)
       const projection = normalized(`${item.prompt.id}:projection`)
       const priority =
+        weights.calibration * item.calibration +
         weights.coverage * coverage +
         weights.ambiguity * ambiguity +
         weights.tension * tension +

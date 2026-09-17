@@ -9,8 +9,8 @@
   'entities': ['entity.nist'],
   'related': [],
   'content_version': '0.1.0-draft',
-  'status': 'draft',
-  'reviewer': null,
+  'status': 'reviewed',
+  'reviewer': "Travis Fischer \u2014 representative packet, 2026-09-17",
   'sources':
     [
       {

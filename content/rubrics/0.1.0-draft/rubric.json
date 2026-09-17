@@ -11,7 +11,8 @@
     "tension": 3,
     "projection": 2,
     "effort": 1,
-    "repetition": 2
+    "repetition": 2,
+    "calibration": 1
   },
   "horizontalWeights": {
     "beneficial_potential": 0.45,
@@ -22,7 +23,7 @@
     {
       "id": "capability_trajectory",
       "label": "Timeline & capability",
-      "meaning": "Anticipated transformative capability and the participant’s own forecast horizon; not evaluator conviction.",
+      "meaning": "Anticipated transformative capability and the participant\u2019s own forecast horizon; not evaluator conviction.",
       "levels": [
         "Transformative capability is not expected, or a low ceiling is explicitly anticipated.",
         "Transformative capability is expected only on a long or indefinite horizon.",
@@ -44,7 +45,7 @@
     {
       "id": "beneficial_potential",
       "label": "Expected upside",
-      "meaning": "Participant’s expected positive impact, integrating magnitude, likelihood, distribution, horizon, and what they value; keep adverse impact separate.",
+      "meaning": "Participant\u2019s expected positive impact, integrating magnitude, likelihood, distribution, horizon, and what they value; keep adverse impact separate.",
       "levels": [
         "Little positive impact is expected even if advanced AI arrives.",
         "Limited or narrowly distributed gains are expected.",
@@ -55,7 +56,7 @@
     {
       "id": "risk_landscape",
       "label": "Expected harm",
-      "meaning": "Participant’s expected adverse impact, integrating severity, likelihood, pathways, horizon, and uncertainty; not a P(doom) estimate.",
+      "meaning": "Participant\u2019s expected adverse impact, integrating severity, likelihood, pathways, horizon, and uncertainty; not a P(doom) estimate.",
       "levels": [
         "Little material adverse impact is expected.",
         "Manageable or localized harms are expected.",
@@ -88,7 +89,7 @@
     {
       "id": "human_agency",
       "label": "Human continuity",
-      "meaning": "Expected outcome for human agency and continuity, evaluated against the participant’s expressed values; integration/successor futures are not automatically bad.",
+      "meaning": "Expected outcome for human agency and continuity, evaluated against the participant\u2019s expressed values; integration/successor futures are not automatically bad.",
       "levels": [
         "The expected future undermines or eliminates the forms of agency/continuity the participant explicitly values.",
         "Significant valued agency or continuity is expected to be lost.",
@@ -184,5 +185,15 @@
         "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
       ]
     }
-  ]
+  ],
+  "catastrophicRisk": {
+    "label": "Catastrophic risk",
+    "meaning": "The participant\u2019s qualitative expectation of humanity-scale catastrophe from AI, such as irreversible loss of control, existential harm or comparably severe systemic collapse. Keep likelihood and severity distinct, preserve the participant\u2019s horizon and assumptions, and do not convert general everyday harm into catastrophe. Explicit unknowns are unplaced.",
+    "levels": [
+      "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant\u2019s stated assumptions.",
+      "Catastrophe is possible but expected to be a limited part of the outlook under stated conditions.",
+      "Catastrophic outcomes are a material possibility in the participant\u2019s outlook, with consequential uncertainty or conditions.",
+      "Catastrophic outcomes dominate the participant\u2019s expectation under stated assumptions."
+    ]
+  }
 }

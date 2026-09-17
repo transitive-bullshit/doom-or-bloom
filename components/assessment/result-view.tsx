@@ -108,13 +108,12 @@ export function ResultView({
   onError: (message: string) => void
 }) {
   const result = state.result!
-  const fingerprint = [
-    'capability_trajectory',
-    'beneficial_potential',
-    'risk_landscape',
-    'technical_controllability',
-    'institutional_competence'
-  ]
+  const excerpt = (id: string) => {
+    const e = state.evidence.find((entry) => entry.id === id)
+    return state.answers
+      .find((a) => a.id === e?.answerId)
+      ?.spans.find((s) => s.id === e?.spanId)?.text
+  }
   const report = () => {
     const { markdown } = serializeReport(state)
     downloadBlob(
@@ -170,24 +169,43 @@ export function ResultView({
       </div>
       <Map horizontal={result.horizontal} vertical={result.vertical} />
       <div className='grid gap-3 sm:grid-cols-2'>
-        {result.components
-          .filter((c) => fingerprint.includes(c.vector))
-          .map((c) => (
-            <div key={c.vector} className='rounded-lg border p-4'>
-              <p className='text-sm font-medium'>{c.label}</p>
-              <p className='mt-2 text-sm text-muted-foreground'>
-                {c.claim ?? 'Still unexplored'}
-              </p>
-            </div>
-          ))}
+        {result.fingerprint.map((c) => (
+          <div key={c.vector} className='rounded-lg border p-4'>
+            <p className='text-sm font-medium'>{c.label}</p>
+            <p className='mt-2 text-sm text-muted-foreground'>
+              {c.claim ?? 'Still unexplored'}
+            </p>
+          </div>
+        ))}
       </div>
       {result.findings.length > 0 && (
         <section className='flex flex-col gap-3'>
           <h2 className='font-medium'>A few things that stood out</h2>
           {result.findings.map((f) => (
-            <p key={f.id} className='text-sm text-muted-foreground'>
-              {f.text}
-            </p>
+            <Collapsible key={f.id} className='rounded-lg border p-4'>
+              <p className='text-sm'>{f.text}</p>
+              <CollapsibleTrigger asChild>
+                <Button variant='link' className='px-0 text-xs'>
+                  See supporting answer
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                {Array.from(new Set(f.evidenceIds)).map((id) =>
+                  excerpt(id) ? (
+                    <blockquote
+                      key={id}
+                      className='mt-2 border-l-2 pl-3 text-sm text-muted-foreground'
+                    >
+                      {excerpt(id)}
+                    </blockquote>
+                  ) : null
+                )}
+                <p className='mt-3 text-xs text-muted-foreground'>
+                  Interpretation: {result.versions.rubric} ·{' '}
+                  {result.versions.model}
+                </p>
+              </CollapsibleContent>
+            </Collapsible>
           ))}
         </section>
       )}
@@ -216,13 +234,20 @@ export function ResultView({
               })}
               {c.value !== null &&
                 state.prompts.length < 50 &&
-                vectorIds.includes(c.vector as VectorId) && (
+                (vectorIds.includes(c.vector as VectorId) ||
+                  c.vector === 'catastrophic_risk') && (
                   <Button
                     variant='ghost'
                     className='mt-3'
                     disabled={busy}
                     onClick={() =>
-                      act({ type: 'clarify', vector: c.vector as VectorId })
+                      act({
+                        type: 'clarify',
+                        vector:
+                          c.vector === 'catastrophic_risk'
+                            ? 'risk_landscape'
+                            : (c.vector as VectorId)
+                      })
                     }
                   >
                     That’s not quite my view
@@ -230,6 +255,33 @@ export function ResultView({
                 )}
             </section>
           ))}
+          {result.sources.length > 0 && (
+            <section className='rounded-lg border p-4'>
+              <h3 className='text-sm font-medium'>Reference snapshots used</h3>
+              <p className='mt-2 text-xs text-muted-foreground'>
+                These authored sources inform interpretation; recognition alone
+                does not establish understanding.
+              </p>
+              {result.sources.map((source) => (
+                <div key={source.id} className='mt-3'>
+                  <p className='text-sm'>
+                    {source.title} · {source.status}
+                  </p>
+                  {source.urls.map((url, i) => (
+                    <a
+                      key={url}
+                      href={url}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='mr-3 text-xs underline'
+                    >
+                      Primary source {i + 1} ↗
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </section>
+          )}
         </CollapsibleContent>
       </Collapsible>
       {result.resources.length > 0 && (
