@@ -14,6 +14,10 @@ Original NBER: **April 2025**; no NBER revision date indexed. Original page/PDF 
 
 Original NBER: **May 2025**; revision **March 2026**; originals 403. [Author research page](https://www.andershumlum.com/research) links NBER alongside [current PDF](https://www.andershumlum.com/s/chatbots_260313.pdf), **2026-03-13**, explicitly retaining “Large Language Models, Small Labor Market Effects” as previous title. Abstract/introduction read; full methods unreviewed, byte equality unverified. [BFI copy](https://bfi.uchicago.edu/wp-content/uploads/2025/04/BFI_WP_2025-56-4.pdf), **2025-09-22**, is older. Correction: **2%** bound concerns two years after **ChatGPT’s launch**, not each individual's adoption; difference-in-differences is not random assignment.
 
+## Later methods inspection
+
+[The incremental methods review](required-economic-methods.md) subsequently inspected relevant full-text methods, outcomes, limitations and disclosures in all three accessible related versions. The journal's 791 workshop completers include 776 complete surveys; those counts alone do not demonstrate sample expansion. The earlier reading scope above is retained as history. Exact NBER copies remain blocked; no byte-identity claim or human review is implied.
+
 ## Registry handling
 
 No source-intake, content assets or existing factual summaries were edited. Registry reconciliation should retain the blocked exact originals, link accessible related versions, pin their dates and preserve limited read scope.

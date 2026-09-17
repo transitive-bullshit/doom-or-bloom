@@ -5,6 +5,7 @@ import {
   validateBundle
 } from '../lib/content/loader'
 import { loadAuthoringContext } from '../lib/content/authoring-context'
+import { journeyTurns } from '../lib/content/authoring-context'
 import {
   findingSchema,
   promptSchema,
@@ -16,6 +17,8 @@ import { z } from 'zod'
 const bundle = loadBundle()
 const drafts = loadDraftReferences()
 const context = loadAuthoringContext(bundle)
+for (const journey of context.development.journeys)
+  for (const variant of journey.variants) journeyTurns(journey, variant.id)
 // Separate background drafts retain their source release version.
 for (const version of new Set(
   drafts.map((reference) => reference.content_version)
@@ -63,6 +66,9 @@ for (const source of context.intake.sources) {
 }
 console.log(
   `Validated ${bundle.prompts.length} prompts, ${bundle.references.length} active references, ${drafts.length} separate draft references, ${bundle.findings.length} findings, ${bundle.resources.length} resources. Status: ${bundle.manifest.status}.`
+)
+console.log(
+  `Development examples: ${context.development.journeys.filter((journey) => journey.turns.length >= 6).length} longer paths, ${context.development.journeys.reduce((sum, journey) => sum + journey.variants.length, 0)} matched variants and ${context.development.journeys.filter((journey) => journey.correction).length} scoped corrections. Expected interpretations remain drafts.`
 )
 console.log(
   `Validated ${context.taxonomy.riskFamilies.length} risk families, ${context.taxonomy.safetyConcepts.length} concepts, ${context.development.journeys.length} draft development journeys and ${context.intake.sources.length} source intake records. Authoring context is outside runtime scoring.`

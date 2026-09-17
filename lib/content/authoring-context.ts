@@ -2,7 +2,7 @@ import 'server-only'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
-import { limits } from '@/lib/assessment/schema'
+import { limits, vectorSchema } from '@/lib/assessment/schema'
 import type { Bundle } from './loader'
 
 const rowSchema = z
@@ -46,8 +46,40 @@ const journeySchema = z.strictObject({
     .min(3)
     .max(limits.prompts),
   expected: z.array(z.string()).min(1),
+  variants: z
+    .array(
+      z.strictObject({
+        id: z.string().min(1),
+        relationship: z.enum([
+          'same_meaning',
+          'different_conclusion',
+          'different_support'
+        ]),
+        overrides: z
+          .array(
+            z.strictObject({
+              turnIndex: z.number().int().nonnegative(),
+              text: z.string().min(1).max(limits.answerChars)
+            })
+          )
+          .min(1),
+        expected: z.array(z.string()).min(1),
+        reviewStatus: z.enum(['draft', 'reviewed'])
+      })
+    )
+    .default([]),
+  correction: z
+    .strictObject({
+      vector: vectorSchema,
+      claim: z.literal('catastrophic_risk').optional(),
+      text: z.string().min(1).max(limits.answerChars),
+      expected: z.array(z.string()).min(1),
+      reviewStatus: z.enum(['draft', 'reviewed'])
+    })
+    .optional(),
   reviewStatus: z.enum(['draft', 'reviewed'])
 })
+export type DevelopmentJourney = z.infer<typeof journeySchema>
 const journeysSchema = z.strictObject({
   status: z.enum(['draft', 'reviewed']),
   reviewer: z.string().nullable(),
@@ -128,6 +160,44 @@ export function loadAuthoringContext(bundle: Bundle) {
       journey.concepts.some((c) => !concepts.includes(c))
     )
       throw new Error(`Unknown journey context: ${journey.id}`)
+    unique(
+      journey.variants.map((variant) => variant.id),
+      `variant ID in ${journey.id}`
+    )
+    for (const variant of journey.variants) {
+      unique(
+        variant.overrides.map((override) => String(override.turnIndex)),
+        `variant turn in ${journey.id}/${variant.id}`
+      )
+      if (
+        variant.overrides.some(
+          (override) => override.turnIndex >= journey.turns.length
+        )
+      )
+        throw new Error(`Unknown variant turn: ${journey.id}/${variant.id}`)
+    }
+    if (
+      journey.correction &&
+      (journey.turns.length + 1 > limits.prompts ||
+        (journey.correction.claim &&
+          journey.correction.vector !== 'risk_landscape'))
+    )
+      throw new Error(`Invalid journey correction: ${journey.id}`)
+    if (
+      (journey.reviewStatus === 'reviewed' &&
+        (journey.variants.some(
+          (variant) => variant.reviewStatus !== 'reviewed'
+        ) ||
+          (journey.correction &&
+            journey.correction.reviewStatus !== 'reviewed'))) ||
+      (!development.reviewer &&
+        (journey.reviewStatus === 'reviewed' ||
+          journey.variants.some(
+            (variant) => variant.reviewStatus === 'reviewed'
+          ) ||
+          journey.correction?.reviewStatus === 'reviewed'))
+    )
+      throw new Error(`Journey variant review is incomplete: ${journey.id}`)
   }
   if (
     development.status === 'reviewed' &&
@@ -136,4 +206,17 @@ export function loadAuthoringContext(bundle: Bundle) {
   )
     throw new Error('Journey review is incomplete')
   return { taxonomy, development, intake }
+}
+
+export function journeyTurns(journey: DevelopmentJourney, variantId?: string) {
+  const variant = variantId
+    ? journey.variants.find((item) => item.id === variantId)
+    : undefined
+  if (variantId && !variant) throw new Error('Unknown journey variant')
+  return journey.turns.map((turn, index) => ({
+    ...turn,
+    text:
+      variant?.overrides.find((override) => override.turnIndex === index)
+        ?.text ?? turn.text
+  }))
 }

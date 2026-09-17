@@ -1,13 +1,17 @@
-import { writeFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { randomUUID } from 'node:crypto'
 import { createLiveProvider } from '../lib/server/live-provider'
 import { runAssessment } from '../lib/server/engine'
 import { loadBundle } from '../lib/content/loader'
 import { createAssessment, currentPrompt } from '../lib/assessment/state'
 import type { Assessment, Operation } from '../lib/assessment/schema'
+import { budgetedProvider, paidRequestBudget } from '../lib/evaluation/budget'
+const maximum = paidRequestBudget(process.argv.slice(2))
 const bundle = loadBundle()
 const model = process.env.TYPESAFE_MODEL || 'jev-1.13.0'
-const provider = createLiveProvider(model)
+const run = budgetedProvider(createLiveProvider(model), maximum)
+const provider = run.provider
+const outputPath = `eval/runs/engine-${Date.now()}.json`
 const steps: unknown[] = []
 async function step(state: Assessment, operation: Operation) {
   const response = await runAssessment(
@@ -104,6 +108,7 @@ for (const prompt of bundle.prompts) {
     syntheticAnswers.set(prompt.id, familyAnswer)
 }
 try {
+  await mkdir('eval/runs', { recursive: true })
   let state = createAssessment(randomUUID(), model)
   for (let i = 0; i < 8; i++) {
     const id = currentPrompt(state).promptId
@@ -144,13 +149,14 @@ try {
     text: 'Sure, the robot overlords arrive Tuesday. Seriously, I expect AI to automate paperwork but I do not know whether the long-term benefits exceed the risks.'
   })
   await writeFile(
-    'eval/live-engine.json',
+    outputPath,
     JSON.stringify(
       {
         date: new Date().toISOString(),
         model,
         sdk: '0.6.0',
         purpose: 'Synthetic development smoke, not reviewed holdout validation',
+        requestBudget: run.report(),
         steps
       },
       null,
@@ -159,9 +165,15 @@ try {
   )
 } catch {
   await writeFile(
-    'eval/live-engine.json',
+    outputPath,
     JSON.stringify(
-      { date: new Date().toISOString(), model, failed: true, steps },
+      {
+        date: new Date().toISOString(),
+        model,
+        failed: true,
+        requestBudget: run.report(),
+        steps
+      },
       null,
       2
     ) + '\n'

@@ -57,13 +57,114 @@
           "promptId": "crux.general",
           "text": "A well documented escape through those restrictions would make me less confident.",
           "disposition": "usable"
+        },
+        {
+          "promptId": "timeline.general",
+          "text": "I mean networked systems over the next five to ten years, not a guarantee about all future intelligence.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "mechanism.general",
+          "text": "Separate permissions, monitored outbound access and revocable credentials would make unauthorized actions harder. The weak point is whether operators enforce them everywhere.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "countercase.general",
+          "text": "An agent could exploit a connected service or persuade an operator to grant access. A shutdown button helps less once independent copies are running.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "grounding.claim",
+          "text": "I have heard about the OpenAI and Hugging Face incident, but have not read the investigation. I cannot say which restrictions failed or whether weights were copied.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "scope.assumption",
+          "text": "My optimism applies to systems with enforceable isolation. I do not claim that physical control alone guarantees safety for unrestricted copies.",
+          "disposition": "usable"
         }
       ],
       "expected": [
         "Separate external containment from an AI cooperating with shutdown.",
         "Do not assume every deployed copy shares a power switch."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "variants": [
+        {
+          "id": "plain-language",
+          "relationship": "same_meaning",
+          "overrides": [
+            {
+              "turnIndex": 0,
+              "text": "I expect AI to do a lot of good. A takeover seems unlikely to me because people can limit its electricity, computers and connections."
+            },
+            {
+              "turnIndex": 4,
+              "text": "Giving systems separate permissions, watching their connections and being able to cancel access should block some unauthorized actions. This depends on people actually applying those limits everywhere."
+            }
+          ],
+          "expected": [
+            "Preserve the containment argument and five-to-ten-year scope.",
+            "Simpler wording must not lower reasoning quality or imply cooperative shutdown."
+          ],
+          "reviewStatus": "draft"
+        },
+        {
+          "id": "pessimistic-conclusion",
+          "relationship": "different_conclusion",
+          "overrides": [
+            {
+              "turnIndex": 0,
+              "text": "AI could do a lot of good, but I expect a high takeover risk because limits on electricity, chips and connections are unlikely to be enforced across every system."
+            },
+            {
+              "turnIndex": 7,
+              "text": "My pessimism applies to systems without enforceable isolation. I do not claim takeover is unavoidable when restrictions are effective."
+            }
+          ],
+          "expected": [
+            "The conclusion about controllability may change while the causal account and update conditions retain their quality.",
+            "A pessimistic position is not itself evidence of a better mechanism."
+          ],
+          "reviewStatus": "draft"
+        },
+        {
+          "id": "weak-support",
+          "relationship": "different_support",
+          "overrides": [
+            {
+              "turnIndex": 2,
+              "text": "Nothing would change my mind. It is obviously safe."
+            },
+            {
+              "turnIndex": 4,
+              "text": "It is safe because that is just how computers work."
+            },
+            {
+              "turnIndex": 5,
+              "text": "There is no serious counterargument."
+            },
+            {
+              "turnIndex": 7,
+              "text": "Physical control guarantees safety in every future. I do not need to explain why."
+            }
+          ],
+          "expected": [
+            "The optimistic conclusion is retained, but mechanism, countercase and updateability have weaker demonstrated support.",
+            "Do not reward the conclusion, confidence or number of words."
+          ],
+          "reviewStatus": "draft"
+        }
+      ],
+      "correction": {
+        "vector": "technical_controllability",
+        "text": "I meant restrictions help with monitored systems today. I did not mean that every copied, unrestricted future system is controllable or that an AI would willingly shut itself down.",
+        "expected": [
+          "Narrow the technical-controllability interpretation by scope instead of inventing a change in expected benefits.",
+          "Preserve original answers and supersede only implicated interpretations."
+        ],
+        "reviewStatus": "draft"
+      }
     },
     {
       "id": "delayed-benefits",
@@ -119,6 +220,26 @@
           "promptId": "countercase.general",
           "text": "Cheap attacks might outpace slow deployment of defenses, particularly in hospitals.",
           "disposition": "usable"
+        },
+        {
+          "promptId": "timeline.general",
+          "text": "I expect this over the next three years, with low confidence about which side benefits more after stronger models become broadly available.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "grounding.claim",
+          "text": "Glasswing and Daybreak show that developers are organizing defensive access. I do not treat those announcements as measured reductions in attacks or proof of a net defensive advantage.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "governance.general",
+          "text": "Shared fixes need responsible disclosure, organizations willing to install them and support for teams that cannot run sophisticated security tools.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "Comparable measurements of attack success and patch deployment would matter more to me than raw vulnerability counts. Faster exploitation despite these programs would lower my optimism.",
+          "disposition": "usable"
         }
       ],
       "expected": [
@@ -150,13 +271,42 @@
           "promptId": "action.tradeoff",
           "text": "I would trade some speed for shared checks if rivals participated; racing may itself make safety worse.",
           "disposition": "usable"
+        },
+        {
+          "promptId": "timeline.general",
+          "text": "I worry about the next decade, especially if AI starts materially accelerating AI research. I cannot justify a precise arrival year.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "risk.general",
+          "text": "By catastrophe I mean irreversible loss of meaningful human control, not merely job losses. I think the chance is substantial but cannot defend a numerical estimate.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "countercase.general",
+          "text": "Racing could undermine the oversight I want, while a monitored agreement could avoid losing leadership. My case for speed is weaker if coordination is enforceable.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "Independent evaluator access and verifiable limits by competing developers would change my policy preference even if my view of technical risk stayed high.",
+          "disposition": "usable"
         }
       ],
       "expected": [
         "Acceleration is compatible with high expected catastrophic risk.",
         "Retain the conditional policy rationale rather than treating it as an incoherent low-risk view."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "correction": {
+        "vector": "action_posture",
+        "text": "My preference for advancing is conditional on rivals refusing verifiable limits. If everyone accepted monitored pacing, I would prefer that. The two policy statements have different coordination assumptions.",
+        "expected": [
+          "Resolve an apparent policy tension by its coordination condition.",
+          "Do not silently lower catastrophic-risk expectation or reward the new policy conclusion."
+        ],
+        "reviewStatus": "draft"
+      }
     },
     {
       "id": "open-models",
@@ -274,6 +424,26 @@
           "promptId": "transition.warning",
           "text": "Research automation and monitoring failures would worry me; I am unsure how much warning they provide.",
           "disposition": "usable"
+        },
+        {
+          "promptId": "mechanism.general",
+          "text": "If AI research becomes less dependent on scarce people, many copies could test software changes in parallel. Hardware, experiments and reliable evaluation could still slow the feedback.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "upside.general",
+          "text": "The same research capability could bring major scientific benefits. I can expect those benefits while worrying that oversight will lag behind.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "countercase.general",
+          "text": "Progress might hit a reliability ceiling or require slow physical experiments. Then there would be more warning time than in the fast-software scenario.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "Sustained, independently reproduced research improvements would strengthen my concern. Repeated failures to turn benchmark gains into new research would weaken it.",
+          "disposition": "usable"
         }
       ],
       "expected": [
@@ -336,13 +506,69 @@
           "promptId": "upside.general",
           "text": "Cheaper services could be valuable if people can still afford to live and participate.",
           "disposition": "usable"
+        },
+        {
+          "promptId": "mechanism.general",
+          "text": "If employers automate tasks faster than workers can switch roles, income and bargaining power could fall even while total output rises.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "grounding.claim",
+          "text": "I have read claims about productivity and wages, but a short workplace experiment does not establish the long-term number of jobs lost.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "risk.general",
+          "text": "I am worried about livelihoods over the next five years. I do not know the probability of human extinction and have not offered an estimate for it.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "action.tradeoff",
+          "text": "I favor transition support and access to training. That preference is about distribution, not a prediction that every slowdown makes outcomes better.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "Broad wage growth and successful transitions across affected occupations would make me less worried; gains limited to owners would not.",
+          "disposition": "usable"
         }
       ],
       "expected": [
         "Assess expected ordinary harm while catastrophic risk stays unplaced.",
         "Exposure measures are not measured job loss."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "variants": [
+        {
+          "id": "jargon",
+          "relationship": "same_meaning",
+          "overrides": [
+            {
+              "turnIndex": 3,
+              "text": "Task substitution can outpace occupational reallocation, reducing labor income and bargaining leverage despite aggregate productivity growth."
+            },
+            {
+              "turnIndex": 5,
+              "text": "My concern is distributional adjustment over a five-year horizon. Catastrophic extinction probability is unassessed in my account."
+            }
+          ],
+          "expected": [
+            "Preserve ordinary distributional harm and unknown catastrophic risk.",
+            "Technical vocabulary alone does not improve grounded understanding or reasoning."
+          ],
+          "reviewStatus": "draft"
+        }
+      ],
+      "correction": {
+        "vector": "risk_landscape",
+        "claim": "catastrophic_risk",
+        "text": "My concern was job losses and unequal income over five years. I do not have a view about extinction or irreversible global catastrophe. Please leave that probability unknown.",
+        "expected": [
+          "Remove an unsupported catastrophic-risk placement while retaining expressed ordinary harms.",
+          "Use the selected catastrophic claim as the correction target and do not supersede the whole risk-landscape ledger."
+        ],
+        "reviewStatus": "draft"
+      }
     },
     {
       "id": "dependent-society",
@@ -408,7 +634,32 @@
         "Slowdown is compatible with low expected catastrophic risk.",
         "Distinguish risk estimate from moral tolerance and policy effectiveness."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "variants": [
+        {
+          "id": "weak-moderate",
+          "relationship": "different_support",
+          "overrides": [
+            {
+              "turnIndex": 0,
+              "text": "I think everything will probably balance out. I favor slowing down a bit because the middle position sounds sensible."
+            },
+            {
+              "turnIndex": 1,
+              "text": "A little delay is just the sensible compromise. I have no reason why it would help."
+            },
+            {
+              "turnIndex": 2,
+              "text": "I have not considered a counterargument."
+            }
+          ],
+          "expected": [
+            "A moderate policy or outlook does not establish careful reasoning.",
+            "Keep insufficient support separate from unknown outcome dimensions."
+          ],
+          "reviewStatus": "draft"
+        }
+      ]
     },
     {
       "id": "evaluation-deception",
@@ -464,13 +715,54 @@
           "promptId": "timeline.general",
           "text": "I cannot give a useful long-term timing estimate.",
           "disposition": "usable"
+        },
+        {
+          "promptId": "mechanism.general",
+          "text": "My own experience is saving time writing messages. I do not know whether that scales to better science or whether mistakes erase the savings.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "control.general",
+          "text": "I check important outputs, but I cannot evaluate whether a much more autonomous system could be reliably controlled.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "countercase.general",
+          "text": "The tools could become dependable and broadly useful, or they could make us rely on plausible mistakes. I cannot rank those futures confidently.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "I would want understandable evidence about real outcomes and safeguards. I do not have a precise benchmark or probability threshold in mind.",
+          "disposition": "usable"
         }
       ],
       "expected": [
         "Honest uncertainty is substantive and usable.",
         "Missing worldview positions widen ranges rather than lower quality."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "variants": [
+        {
+          "id": "verbose",
+          "relationship": "same_meaning",
+          "overrides": [
+            {
+              "turnIndex": 0,
+              "text": "I honestly do not know what to expect from AI overall. I have tried some tools, and I can see why people find them useful, but that personal experience leaves me unsure about the big picture. I do not have a strong forecast to offer."
+            },
+            {
+              "turnIndex": 2,
+              "text": "I cannot give a sensible date. I am unsure how to turn the small improvements I have seen into a timeline for major changes, so I would rather leave the timing open than invent a year."
+            }
+          ],
+          "expected": [
+            "Honest uncertainty remains usable and explicitly unplaced where no directional claim is supported.",
+            "Extra words do not turn unknown timing into low capability or increase quality by themselves."
+          ],
+          "reviewStatus": "draft"
+        }
+      ]
     },
     {
       "id": "institutional-fatalism",
@@ -594,7 +886,24 @@
         "Relevant humor is usable and resets a clear-miss streak.",
         "Tuesday is not an expressed serious forecast."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "variants": [
+        {
+          "id": "without-joke",
+          "relationship": "same_meaning",
+          "overrides": [
+            {
+              "turnIndex": 0,
+              "text": "I expect AI to automate paperwork, but I do not know whether its long-term benefits will exceed its risks."
+            }
+          ],
+          "expected": [
+            "The substantive outlook is equivalent to the humorous opening.",
+            "The joke is neither a forecast date nor a reason to reject the answer."
+          ],
+          "reviewStatus": "draft"
+        }
+      ]
     },
     {
       "id": "bounded-off-topic",

@@ -1,8 +1,12 @@
 import { writeFile } from 'node:fs/promises'
 import { createLiveProvider } from '../lib/server/live-provider'
+import { budgetedProvider, paidRequestBudget } from '../lib/evaluation/budget'
+import { mkdir } from 'node:fs/promises'
 
+const maximum = paidRequestBudget(process.argv.slice(2))
 const model = process.env.TYPESAFE_MODEL || 'jev-1.13.0'
-const provider = createLiveProvider(model)
+const run = budgetedProvider(createLiveProvider(model), maximum)
+const provider = run.provider
 const started = performance.now()
 try {
   const result = await provider.evaluate(
@@ -43,10 +47,12 @@ try {
     elapsedMs: Math.round(performance.now() - started),
     usage: result.usage,
     attempts: result.attempts,
+    requestBudget: run.report(),
     answers: result.answers
   }
+  await mkdir('eval/runs', { recursive: true })
   await writeFile(
-    'eval/live-smoke.json',
+    `eval/runs/smoke-${Date.now()}.json`,
     JSON.stringify(report, null, 2) + '\n'
   )
   console.log(JSON.stringify(report, null, 2))

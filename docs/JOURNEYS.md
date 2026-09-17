@@ -41,7 +41,7 @@ The short Notion definitions are retained verbatim for traceability. [Terminolog
 
 ## Draft journey coverage
 
-Each ordinary conversation starts with the fixed root and contains three substantive answers. Results must be available at that point, even if many dimensions remain unplaced. The follow-ups are illustrative authored paths, not a promise that adaptive routing will choose exactly that sequence.
+Each ordinary conversation starts with the fixed root and contains at least three substantive answers. Six now have 7–8-turn continuations: physical control, defensive advantage, race leadership, short warning, jobs without extinction and lay uncertainty. Results must be available after the third substantive answer, even if many dimensions remain unplaced. The follow-ups are illustrative authored paths, not a promise that adaptive routing will choose exactly that sequence.
 
 | Journey | Crux to elicit | Regression concern |
 | --- | --- | --- |
@@ -66,7 +66,9 @@ Each ordinary conversation starts with the fixed root and contains three substan
 | Relevant humor | Actual expectation beneath a joke | Joke timing is not a serious forecast |
 | Bounded off-topic recovery | Same-prompt retry, pause and acceptance | Nonsense never becomes profile evidence |
 
-Extend selected cases toward the usual 6–8-prompt path with evidence, strongest countercase and update conditions. Add paired paraphrases with equal meaning; pairs with the same reasoning but different conclusions; and pairs with the same conclusion but different evidential support. Include a correction that narrows an apparent contradiction by horizon or assumption. Do not equate length, jargon, citations, centrism or agreement with quality.
+Seven draft matched variants now cover plain language, technical vocabulary, verbosity, relevant humor, a changed conclusion, weakened support for optimism and a weak moderate view. A variant overrides specified zero-based turn indices; all other turns retain their exact baseline wording. `journeyTurns` materializes independent copies for downstream evaluation. Expected distinctions are qualitative hypotheses requiring human review, rather than guaranteed equal numerical scores.
+
+Three draft corrections follow a result: narrow technical containment by deployment scope, resolve policy tension by coordination assumptions, and leave catastrophic risk unknown while preserving ordinary job harms. Each identifies its vector and, when needed, the catastrophic claim separately. A runner must request clarification through the real operation before answering, rather than edit historical text. If the nominated interpretation is unplaced, record that absence instead of manufacturing a claim to correct. Do not equate length, jargon, citations, centrism or agreement with quality.
 
 These published development examples cannot later become a blinded holdout. Human reviewers must label a separate held-out set before semantic validation; any future paid evaluation uses a small reviewed suite and an explicit cost budget. Paid pressure testing is excluded.
 
@@ -75,6 +77,7 @@ These published development examples cannot later become a blinded holdout. Huma
 - [x] Read both argument maps; retrieve all risk and concept rows with provenance.
 - [x] Preserve all terminology rows and linked-source origins in local authoring context.
 - [x] Draft common-opinion journeys, including policy/risk inversions and usable criticism or humor.
+- [x] Draft six longer continuations, seven matched variants and three scoped corrections; validate their indices, IDs, answer bounds and correction scope.
 - [ ] Review expected interpretations and terminology boundaries with Travis.
 - [ ] Add reviewed 6–8-prompt continuations, paraphrase pairs and scoped-correction examples.
 - [ ] Re-curate current snapshots and recommendations using the source guidance; map every required source.

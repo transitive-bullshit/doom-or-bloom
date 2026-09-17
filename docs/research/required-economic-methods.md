@@ -1,0 +1,23 @@
+# Required economics papers: incremental methods review
+
+**Research draft; accessed 2026-09-17; human review pending.** Supplements [the access reconciliation](required-economic-access-reconciliation.md), rather than replacing its version history or abstract summaries. Each methods paragraph adds fewer than 100 source-derived words. Original NBER URLs remain required; their recorded 403 blockers are carried forward, not newly resolved. Accessible related versions are not asserted to be byte-identical to NBER versions.
+
+The requested snapshot scope—population, intervention/design, causal versus subgroup interpretation, outcome/horizon, generalization, and disclosures—is now covered for each accessible version below. This means targeted reading of relevant full-text sections, not a complete reading of every appendix or replication of the analyses. Exact blocked NBER full text remains unread in all three cases. No inference services or paid calls were used.
+
+## 1. Shifting Work Patterns with Generative AI
+
+Required original: [NBER w33795](https://www.nber.org/papers/w33795), blocked. Related version read: [author arXiv v4 PDF](https://arxiv.org/pdf/2504.11436v4), title date 2025-11-17; deposit date 2025-11-13.
+
+Randomization allocated Copilot access within firm-recruited knowledge-worker lists; firms and participants are not population-representative. Main outcomes cover months 4–6 of maximum 24-week rollouts; five firms ended earlier. ITT estimates assignment effects; IV/LATE instruments use with assignment, not a voluntary-user comparison. Telemetry measures app activity, not overall hours, output quality or productivity; app-specific sample exclusions apply. Existing AI tools and limited coworker licensing constrain treatment contrast and team-spillover inference. Microsoft marketing oversaw the trial; three authors are Microsoft researchers. See [methods](https://arxiv.org/pdf/2504.11436v4#page=7), [appendices A–B](https://arxiv.org/pdf/2504.11436v4#page=18), and [affiliations](https://arxiv.org/pdf/2504.11436v4#page=1).
+
+## 2. The Cybernetic Teammate
+
+Required original: [NBER w33641](https://www.nber.org/papers/w33641), blocked. Related version read: [Organization Science publisher PDF](https://pubsonline.informs.org/doi/pdf/10.1287/orsc.2025.20702), published online 2026-06-12. Published title ends “Generative AI and Teamwork.”
+
+The 791 randomized completers include 776 with complete post-task surveys; counts alone do not establish sample expansion. Four arms crossed individual/pair work with AI/no AI; AI included one-hour prompt training. Failed pairs could be reassigned individually. Outcomes are blind-expert proposal ratings and self-reported emotional changes after one day. Task-familiarity subgroups are not randomized expertise. Mostly unfamiliar pairs in one consumer-goods firm limit longer-run/general teamwork inference. Disclosures include HBS funding, P&G gifts/coauthors, and Lakhani’s 2021–22 consultancy; authors claim intellectual independence. See [methods/outcomes](https://pubsonline.informs.org/doi/pdf/10.1287/orsc.2025.20702#page=7), [scope/disclosures](https://pubsonline.informs.org/doi/pdf/10.1287/orsc.2025.20702#page=20), and [endnotes](https://pubsonline.informs.org/doi/pdf/10.1287/orsc.2025.20702#page=22).
+
+## 3. Still Waters, Rapid Currents
+
+Required original: [NBER w33777](https://www.nber.org/papers/w33777), blocked. Related version read: [author-hosted current PDF](https://www.andershumlum.com/s/chatbots_260313.pdf), dated 2026-03-13. Previous title: “Large Language Models, Small Labor Market Effects.”
+
+Adoption and employer encouragement are observed, not randomized; DiD requires counterfactual trend assumptions. Registry outcomes extend through December 2024, indexed to ChatGPT’s launch rather than individual first use. Self-reported task/time savings differ from administrative earnings/hours. Adopter-relative estimates difference out common effects; spillover conclusions require additional assumptions. The 12-percentage-point occupation-switcher earnings comparison is descriptive subgroup growth, not an average causal effect. Sampling covers Danish workers in 11 exposed occupations, not all countries or future agents. Disclosures name university-center funding and Claude Code research assistance. See [data](https://www.andershumlum.com/s/chatbots_260313.pdf#page=8), [identification](https://www.andershumlum.com/s/chatbots_260313.pdf#page=19), [switcher comparison](https://www.andershumlum.com/s/chatbots_260313.pdf#page=30), and [disclosures](https://www.andershumlum.com/s/chatbots_260313.pdf#page=1).

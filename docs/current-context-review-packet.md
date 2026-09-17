@@ -12,7 +12,7 @@ Prepared 2026-09-17. **Direction approved by Travis on 2026-09-17; individual as
 
 ## Concrete material to inspect
 
-[JOURNEYS.md](JOURNEYS.md) summarizes the common-opinion paths. [argument-journeys.json](../eval/development/argument-journeys.json) contains 20 synthetic three-answer conversations and their expected distinctions, including usable criticism/humor and bounded off-topic recovery. These expectations are qualitative drafts, not claims of Jev accuracy or participant prevalence. Results remain available after three substantive answers; additional questions should resolve a material ambiguity rather than challenge a conclusion.
+[JOURNEYS.md](JOURNEYS.md) summarizes the common-opinion paths. [argument-journeys.json](../eval/development/argument-journeys.json) contains 20 synthetic conversations, including six 7–8-turn paths, seven matched variants and three scoped corrections, plus usable criticism/humor and bounded off-topic recovery. These expectations are qualitative drafts, not claims of Jev accuracy or participant prevalence. Results remain available after three substantive answers; additional questions should resolve a material ambiguity rather than challenge a conclusion.
 
 [Terminology boundaries](research/terminology-boundaries.md) checks the distinctions most likely to change interpretation: misuse versus misalignment, possible goals versus instrumental incentives, awareness versus scheming, different alignment/control assurances, and ordinary dependence versus permanent disempowerment or extinction. Multiple versions of the AI Control paper share one evidence base. The RSI paper is not a corrigibility paper; preserve its actual identity.
 

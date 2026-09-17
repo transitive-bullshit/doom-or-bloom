@@ -49,11 +49,12 @@ Ordinary checks need no external credentials and make no inference calls. Browse
 Opt-in live commands use only their synthetic inputs and read `.env.local` without printing credentials:
 
 ```sh
-pnpm eval:smoke
-pnpm eval:engine
+pnpm eval:smoke --allow-paid --max-requests=1
+# Only after agreeing a small development run; stops when its budget is spent:
+pnpm eval:engine --allow-paid --max-requests=12
 ```
 
-Live runs consume TypeSafe usage and require a small reviewed suite with an explicit cost budget. Use fixtures for bounds and workflow checks; no paid pressure-testing command is provided. Existing measurements are historical development evidence, not held-out accuracy validation; see [measurement notes](docs/benchmark-notes.md).
+Live runs consume TypeSafe usage and require a small reviewed suite with an explicit cost budget. Both commands refuse to run without the explicit paid flag and a whole-run physical request ceiling (1–24), including retries and batches. Failures retain a conservative budget reservation. New reports go under ignored `eval/runs/`; historical measurements are preserved. Use fixtures for bounds and workflow checks; no paid pressure-testing command is provided. Existing measurements are historical development evidence, not held-out accuracy validation; see [measurement notes](docs/benchmark-notes.md).
 
 ## Authored content
 

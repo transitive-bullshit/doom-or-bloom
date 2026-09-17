@@ -122,6 +122,8 @@ Local bounds are 12 lifetime participant prompts, 2,000 characters per answer, a
 
 Use credential-free fixtures for boundary and workflow checks. Paid pressure testing is excluded. Any future semantic evaluation must use a small reviewed suite with an explicit cost budget; the earlier maximum-context measurements do not create a requirement to repeat them.
 
+The optional local evaluation commands refuse to run without `--allow-paid --max-requests=N`, where N is 1–24 physical requests shared across the whole run, including batches and retries. A stage reserves its allowance before starting; failed calls retain that reservation when actual cost is unknown. Exhausting the budget stops the run and records partial evidence, rather than expanding the ceiling. These flags are operational safeguards, not substitutes for agreeing the examples and budget with the user.
+
 - Validate all responses against expected schemas.
 - Retry transient 429/529 failures with bounded backoff.
 - Reject stale responses after restart or superseding answers.
