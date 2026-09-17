@@ -4,7 +4,7 @@ Status: implementation in progress; see checkboxes and checkpoint log for eviden
 
 ## 1. Outcome and source of truth
 
-Build a locally runnable assessment at `/`: a restrained, centered, Google-like page with one authored prompt and one answer field at a time. After three substantive answers, offer a useful, potentially provisional result. Most paths should take 6–8 prompts. Results expose the map, a richer fingerprint, evidence-supported findings, curated resources, correction, report download, and share-card download. Resume from local storage without an account.
+Build a locally runnable assessment at `/`: a restrained, centered page with a chronological question-and-answer thread and one active authored prompt/answer field. Use the browser's page scrollbar. Preserve previous submitted replies and make longer answers compact by default with exact-text disclosure. After three substantive answers, offer a useful, potentially provisional result. Most paths should take 6–8 prompts. Results expose the map, a richer fingerprint, evidence-supported findings, curated resources, correction, report download, and share-card download. Resume from local storage without an account.
 
 The [handoff index](README.md) links the authoritative product, assessment, TypeSafe, authoring, measurement, and vocabulary contracts. This plan adds implementation choices; it does not silently replace their semantics. New user decisions take precedence and must be recorded here and in any affected canonical document.
 
@@ -30,6 +30,7 @@ If multiple agents are assigned later, use the ownership boundaries in section 1
 - Use Next.js App Router, modern TypeScript, pnpm, oxfmt, oxlint, and the existing CI skeleton.
 - Local development URLs use Portless. Start the app with `pnpm dev`, resolve its URL with `pnpm exec portless get doom-or-bloom`, and reuse the user's existing proxy configuration. Browser checks also use named routes; linked worktrees retain Portless's branch prefix.
 - Use shadcn/ui for recurring controls and next-themes for light/dark mode. Preserve the existing neutral `new-york` configuration unless deliberately changed.
+- Keep all issued questions and submitted replies in one page-scroll thread, including earlier recovery/navigation replies stored locally. Use bounded answer disclosures, one active composer and read-only previous turns. Do not add an internal transcript scrollbar or inference on disclosure actions.
 - Include an explicit debug-mode boolean that reveals clearly labeled Jev and control-flow details in the local UI, without changing assessment behavior.
 - Handle off-topic/nonsense replies as an expected recovery path, with bounded re-asks and a one-time paperclip interlude. Canonical dispositions and limits live in [ASSESSMENT.md](ASSESSMENT.md#answer-relevance-and-bounded-recovery); participant-facing behavior lives in [PRODUCT.md](PRODUCT.md#answer-recovery-and-paperclip-interlude).
 - TypeSafe is the sole runtime inference API. Jev selects or evaluates authored options; code owns the workflow. Runtime participant-facing prose is authored text plus exact copied evidence.
@@ -113,7 +114,7 @@ Define these contracts before splitting implementation work:
 | Assessment | ID, revision, versions, status, issued prompts, answers, current draft, ledger, coverage, unresolved items, result revision, event markers |
 | Prompt instance | Stable instance ID, authored prompt/variant ID, exact rendered text, source evidence IDs, lifetime ordinal, clarification target if any |
 | Answer | Stable ID, prompt instance ID, original text, exact source spans, processing status, substantive judgment; explicit uncertainty may be substantive |
-| Submission attempt | Stable ID, prompt instance/variant, disposition/distribution, successful-evaluation status, recovery ordinal; rejected text stays in bounded local interaction history outside evidence |
+| Submission attempt | Stable ID, prompt instance/variant, disposition/distribution, successful-evaluation status, recovery ordinal; rejected text stays in local conversation history outside evidence and server transport |
 | Recovery state | Per-prompt evaluated-attempt count, consecutive clear-miss count, active recovery/pause reason, remaining actions, persisted paperclip-shown marker |
 | Evidence entry | Answer/span IDs, vector/claim ID, stated/implied/inferred/disputed status, horizon, assumptions, participant conviction, reference provenance, judgment IDs |
 | Judgment | Rubric/question ID and version, primitive, options/levels, returned distribution/value, interpretation confidence when supplied, source evidence, model and usage metadata |
@@ -557,3 +558,11 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - [x] Enabled buttons, including dialog close controls, use a pointer cursor through the shared base styles.
 - [x] Hide the answer counter at or below 20,000 characters; show the count and shortening guidance only above the cap. Keep accessible descriptions aligned with visible help and preserve the existing full draft/submission behavior. Updated canonical guidance and the browser regression.
 - Formatting/lint/types, 59 unit tests and content validation pass. A separate browser verified the live UI’s ordinary, over-limit and exact-boundary states plus enabled-button/dialog-close cursors with all API requests blocked. The running named demo stayed available. Previous checkpoint: `94c08ae`.
+
+### 2026-09-17 — Conversation review and native page scrolling / Codex
+
+- [x] Keep every issued question and submitted reply in a chronological thread with one active composer. Previous turns remain available above results and during corrections. Use shadcn Message/Bubble primitives with semantic question articles.
+- [x] Show short replies fully and collapse longer replies to compact exact-text previews. Accessible disclosures reveal the complete answer in the page; opening or closing them performs no inference request. The conversation and expanded answers use native page scrolling without a separate transcript or answer viewport.
+- [x] Retain local earlier recovery/navigation replies without arbitrary history eviction. Keep these replies and unsubmitted drafts outside server transport, evidence, scoring and report text. Reload preserves the complete conversation/draft while resetting disclosures closed; restart clears the thread.
+- Formatting, lint and type checks, 61 unit tests, content validation, an isolated production build and all 13 credential-free fixture browser regressions pass. The new browser regression verifies document-height growth, absence of internal transcript scrollbars, full answer preservation, mobile width, reload and restart with all API calls blocked. The running Portless demo remained available throughout verification.
+- Previous checkpoint: `477f2a4`. Full required-source incorporation, individual review/freeze and held-out semantic evaluation remain open. No paid inference or real telemetry was used.

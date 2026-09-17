@@ -1,6 +1,6 @@
 # Doom or Bloom
 
-A local, adaptive assessment of AI worldviews and demonstrated reasoning. One authored question at a time; results become available after three substantive answers. Jev supplies narrow typed judgments, and application code owns routing, recovery and projections.
+A local, adaptive assessment of AI worldviews and demonstrated reasoning. A scrollable question-and-answer thread with one active authored question; results become available after three substantive answers. Jev supplies narrow typed judgments, and application code owns routing, recovery and projections.
 
 Implementation is in progress. The end-to-end demo uses 42 references (18 contemporary snapshots plus named background) and 14 current reading suggestions, with clearly labeled draft assets; the full reviewed corpus and held-out evaluation are still required. See [execution status](docs/mvp-implementation-plan.md) and the [project handoff](docs/README.md).
 
@@ -35,7 +35,7 @@ Answers may contain up to 20,000 characters when submitted. The text box has no 
 
 An unusable or unclear reply gets bounded authored recovery. Two confident consecutive non-answers trigger a one-time, dismissible paperclip pause; relevant humor and honest uncertainty remain usable. A prompt permits the original semantic submission plus two recovery submissions. Failed requests and navigation do not consume that allowance. Uncertain network retries reuse their request ID; process restarts do not guarantee exactly-once billing.
 
-Rejected text stays in a bounded local interaction history, outside scoring, later requests and report text. Twelve issued prompts, including clarification, force finalization from usable evidence. Insufficient evidence produces an honest unplaced result.
+Previous questions and submitted replies remain visible in the same page, using the browser's page scrollbar. Longer answers show a compact exact-text preview and a disclosure to read the full answer; opening it adds no inference request. Reload retains the conversation and resets disclosures to their compact state. Earlier recovery/navigation replies stay in local interaction history, outside scoring, later requests and report text. Local history is retained subject to browser storage availability and quota. Twelve issued prompts, including clarification, force finalization from usable evidence. Insufficient evidence produces an honest unplaced result.
 
 ## Checks and evaluation
 

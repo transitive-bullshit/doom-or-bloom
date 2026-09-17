@@ -25,7 +25,7 @@ export function restoreLocalInteraction(
             text: operation.text,
             disposition: attempt.disposition
           }
-        ].slice(-20)
+        ]
       : before.interactionHistory
   return {
     ...next,

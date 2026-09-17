@@ -94,6 +94,9 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   await expect(
     page.getByRole('heading', { name: 'A map of your AI worldview' })
   ).toBeFocused()
+  await expect(
+    page.getByRole('article', { name: 'Question 1 and replies', exact: true })
+  ).toContainText('Relevant synthetic answer 0.')
   await expect(page.getByRole('img', { name: /^Doom–Bloom:/ })).toHaveAttribute(
     'aria-label',
     /interpretation coordinates/

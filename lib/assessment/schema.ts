@@ -264,7 +264,6 @@ export const assessmentSchema = z.strictObject({
         disposition: dispositionSchema
       })
     )
-    .max(20)
     .default([]),
   judgments: z.array(judgmentSchema).max(5000),
   evidence: z.array(evidenceSchema).max(limits.prompts * vectorIds.length),

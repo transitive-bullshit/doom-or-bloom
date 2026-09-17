@@ -44,6 +44,8 @@ import {
 import { DebugPanel } from '@/components/debug/panel'
 import { ResultView } from './result-view'
 import { Paperclips } from './paperclips'
+import { ConversationHistory, ConversationReplies } from './conversation'
+import { conversationTurns } from '@/lib/assessment/conversation'
 import { downloadBlob } from '@/lib/sharing/report'
 import { configureAnalytics, emitEvent } from '@/lib/analytics/client'
 import { makeEvent, transitionEvents } from '@/lib/analytics/events'
@@ -276,272 +278,283 @@ export function Interview({
   const allowed = canSubmit(state) && !busy && !conflict && !rawBackup
   const excessCharacters = Math.max(0, state.draft.length - limits.answerChars)
   const answerTooLong = excessCharacters > 0
+  const turns = conversationTurns(state)
+  const currentTurn = turns[turns.length - 1]!
   return (
-    <section className='relative mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-6 px-6 py-12'>
+    <section className='relative mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center px-6 py-10'>
       {state.recovery.paperclipActive && (
         <Paperclips dismiss={() => void act({ type: 'dismiss' })} />
       )}
-      <div className='relative flex flex-col gap-6'>
-        {notice && (
-          <Alert>
-            <AlertTitle>Local progress</AlertTitle>
-            <AlertDescription>{notice}</AlertDescription>
-          </Alert>
-        )}
-        {rawBackup && (
-          <Button
-            variant='outline'
-            onClick={() =>
-              downloadBlob(
-                new Blob([rawBackup], { type: 'application/json' }),
-                'doom-or-bloom-backup.json'
-              )
-            }
-          >
-            Download saved backup
-          </Button>
-        )}
-        {conflict && (
-          <Alert>
-            <AlertTitle>This assessment changed in another tab</AlertTitle>
-            <AlertDescription>
-              Reload the latest version before continuing.
-              <Button
-                variant='outline'
-                onClick={() => window.location.reload()}
-              >
-                Reload latest version
-              </Button>
-            </AlertDescription>
-          </Alert>
-        )}
-        {fixture && (
-          <Badge variant='outline'>Fixture mode · synthetic judgments</Badge>
-        )}
-        <Badge variant='outline' className='self-start'>
-          Local authoring draft · review pending
-        </Badge>
-        {showResult ? (
-          <ResultView
-            state={state}
-            act={(op) => void act(op)}
-            busy={busy || conflict}
-            onError={setError}
-          />
-        ) : (
-          <>
-            <div>
-              <p className='mb-5 text-xs text-muted-foreground'>
-                {state.answers.length === 0
-                  ? 'Map your AI worldview in three questions.'
-                  : `${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
-              </p>
-              <h1
-                tabIndex={-1}
-                data-focus-target
-                className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'
-              >
-                {p.text}
-              </h1>
-            </div>
-            {p.ordinal >= limits.warning && (
-              <Alert>
-                <AlertTitle>Approaching the limit</AlertTitle>
-                <AlertDescription>
-                  This assessment ends at {limits.prompts} prompts. You can
-                  restart afterward.
-                </AlertDescription>
-              </Alert>
-            )}
-            {(state.status === 'recovery' || paused) && (
-              <Alert>
-                <AlertTitle>
-                  {state.recovery.paperclipActive
-                    ? 'We’ve made some paperclips.'
-                    : paused
-                      ? 'Let’s pause here'
-                      : 'Another try?'}
-                </AlertTitle>
-                <AlertDescription>
-                  {state.recovery.paperclipActive
-                    ? 'Want to give the question another go?'
-                    : state.recovery.reason === 'exhausted'
-                      ? guidance.exhausted
-                      : state.recovery.reason === 'needs_clarification'
-                        ? guidance.clarification
-                        : state.recovery.reason === 'stopped'
-                          ? 'Your progress is here whenever you want to return.'
-                          : state.recovery.reason === 'navigation'
-                            ? 'Use the actions below to choose what happens next.'
-                            : guidance.reask}
-                </AlertDescription>
-              </Alert>
-            )}
-            <form
-              onSubmit={(event) => {
-                event.preventDefault()
-                if (allowed && !answerTooLong && state.draft.trim())
-                  void act({ type: 'answer', text: state.draft.trim() })
-              }}
+      <div className='relative flex flex-col gap-8'>
+        <div className='flex flex-col gap-6'>
+          {notice && (
+            <Alert>
+              <AlertTitle>Local progress</AlertTitle>
+              <AlertDescription>{notice}</AlertDescription>
+            </Alert>
+          )}
+          {rawBackup && (
+            <Button
+              variant='outline'
+              onClick={() =>
+                downloadBlob(
+                  new Blob([rawBackup], { type: 'application/json' }),
+                  'doom-or-bloom-backup.json'
+                )
+              }
             >
-              <FieldGroup>
-                <Field
-                  data-invalid={Boolean(error) || answerTooLong}
-                  data-disabled={!allowed}
+              Download saved backup
+            </Button>
+          )}
+          {conflict && (
+            <Alert>
+              <AlertTitle>This assessment changed in another tab</AlertTitle>
+              <AlertDescription>
+                Reload the latest version before continuing.
+                <Button
+                  variant='outline'
+                  onClick={() => window.location.reload()}
                 >
-                  <FieldLabel htmlFor='answer' className='sr-only'>
-                    Your answer
-                  </FieldLabel>
-                  <Textarea
-                    id='answer'
-                    value={state.draft}
-                    placeholder='A few sentences is plenty. Uncertainty is welcome.'
-                    disabled={!allowed}
-                    aria-invalid={Boolean(error) || answerTooLong}
-                    aria-describedby={
-                      answerTooLong
-                        ? 'answer-help answer-length answer-limit'
-                        : 'answer-help'
-                    }
-                    className='min-h-36 max-h-96'
-                    onChange={(event) => {
-                      try {
-                        persist({ ...state, draft: event.target.value })
-                      } catch {
-                        /* Conflict UI preserves the saved record. */
+                  Reload latest version
+                </Button>
+              </AlertDescription>
+            </Alert>
+          )}
+          {fixture && (
+            <Badge variant='outline'>Fixture mode · synthetic judgments</Badge>
+          )}
+          <Badge variant='outline' className='self-start'>
+            Local authoring draft · review pending
+          </Badge>
+        </div>
+        <ConversationHistory turns={showResult ? turns : turns.slice(0, -1)} />
+        <div className='flex flex-col gap-6'>
+          {showResult ? (
+            <ResultView
+              state={state}
+              act={(op) => void act(op)}
+              busy={busy || conflict}
+              onError={setError}
+            />
+          ) : (
+            <>
+              <div>
+                <p className='mb-5 text-xs text-muted-foreground'>
+                  {state.answers.length === 0
+                    ? 'Map your AI worldview in three questions.'
+                    : `${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
+                </p>
+                <h1
+                  tabIndex={-1}
+                  data-focus-target
+                  className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'
+                >
+                  {p.text}
+                </h1>
+              </div>
+              <ConversationReplies turn={currentTurn} />
+              {p.ordinal >= limits.warning && (
+                <Alert>
+                  <AlertTitle>Approaching the limit</AlertTitle>
+                  <AlertDescription>
+                    This assessment ends at {limits.prompts} prompts. You can
+                    restart afterward.
+                  </AlertDescription>
+                </Alert>
+              )}
+              {(state.status === 'recovery' || paused) && (
+                <Alert>
+                  <AlertTitle>
+                    {state.recovery.paperclipActive
+                      ? 'We’ve made some paperclips.'
+                      : paused
+                        ? 'Let’s pause here'
+                        : 'Another try?'}
+                  </AlertTitle>
+                  <AlertDescription>
+                    {state.recovery.paperclipActive
+                      ? 'Want to give the question another go?'
+                      : state.recovery.reason === 'exhausted'
+                        ? guidance.exhausted
+                        : state.recovery.reason === 'needs_clarification'
+                          ? guidance.clarification
+                          : state.recovery.reason === 'stopped'
+                            ? 'Your progress is here whenever you want to return.'
+                            : state.recovery.reason === 'navigation'
+                              ? 'Use the actions below to choose what happens next.'
+                              : guidance.reask}
+                  </AlertDescription>
+                </Alert>
+              )}
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault()
+                  if (allowed && !answerTooLong && state.draft.trim())
+                    void act({ type: 'answer', text: state.draft.trim() })
+                }}
+              >
+                <FieldGroup>
+                  <Field
+                    data-invalid={Boolean(error) || answerTooLong}
+                    data-disabled={!allowed}
+                  >
+                    <FieldLabel htmlFor='answer' className='sr-only'>
+                      Your answer
+                    </FieldLabel>
+                    <Textarea
+                      id='answer'
+                      value={state.draft}
+                      placeholder='A few sentences is plenty. Uncertainty is welcome.'
+                      disabled={!allowed}
+                      aria-invalid={Boolean(error) || answerTooLong}
+                      aria-describedby={
+                        answerTooLong
+                          ? 'answer-help answer-length answer-limit'
+                          : 'answer-help'
                       }
-                    }}
-                  />
-                  <FieldDescription id='answer-help'>
-                    No specialist knowledge needed. Tell us what you think.
-                  </FieldDescription>
-                  {answerTooLong && (
-                    <>
-                      <FieldDescription id='answer-length'>
-                        {state.draft.length.toLocaleString('en-US')} /{' '}
-                        {limits.answerChars.toLocaleString('en-US')} characters
-                      </FieldDescription>
-                      <FieldError id='answer-limit'>
-                        Your full answer is still here. Shorten it by{' '}
-                        {excessCharacters.toLocaleString('en-US')}{' '}
-                        {excessCharacters === 1 ? 'character' : 'characters'} to
-                        continue.
-                      </FieldError>
-                    </>
-                  )}
-                </Field>
-                <Field>
-                  <div className='flex flex-wrap gap-3'>
-                    {paused && state.recovery.evaluated < limits.recovery && (
-                      <Button
-                        type='button'
-                        disabled={busy || conflict}
-                        onClick={() => void act({ type: 'retry' })}
-                      >
-                        Try again
-                      </Button>
-                    )}
-                    {!paused && (
-                      <Button
-                        type='submit'
-                        disabled={
-                          !allowed || answerTooLong || !state.draft.trim()
+                      className='min-h-36 max-h-96'
+                      onChange={(event) => {
+                        try {
+                          persist({ ...state, draft: event.target.value })
+                        } catch {
+                          /* Conflict UI preserves the saved record. */
                         }
-                      >
-                        {busy ? 'Reading your answer…' : 'Continue'}{' '}
-                        <span aria-hidden='true'>→</span>
-                      </Button>
+                      }}
+                    />
+                    <FieldDescription id='answer-help'>
+                      No specialist knowledge needed. Tell us what you think.
+                    </FieldDescription>
+                    {answerTooLong && (
+                      <>
+                        <FieldDescription id='answer-length'>
+                          {state.draft.length.toLocaleString('en-US')} /{' '}
+                          {limits.answerChars.toLocaleString('en-US')}{' '}
+                          characters
+                        </FieldDescription>
+                        <FieldError id='answer-limit'>
+                          Your full answer is still here. Shorten it by{' '}
+                          {excessCharacters.toLocaleString('en-US')}{' '}
+                          {excessCharacters === 1 ? 'character' : 'characters'}{' '}
+                          to continue.
+                        </FieldError>
+                      </>
                     )}
-                    {eligible(state) && (
-                      <Button
-                        type='button'
-                        disabled={busy || conflict}
-                        variant='outline'
-                        onClick={() => void act({ type: 'project' })}
-                      >
-                        View my result
-                      </Button>
-                    )}
-                    {state.prompts.length < limits.prompts &&
-                      (paused || state.status === 'recovery') && (
+                  </Field>
+                  <Field>
+                    <div className='flex flex-wrap gap-3'>
+                      {paused && state.recovery.evaluated < limits.recovery && (
+                        <Button
+                          type='button'
+                          disabled={busy || conflict}
+                          onClick={() => void act({ type: 'retry' })}
+                        >
+                          Try again
+                        </Button>
+                      )}
+                      {!paused && (
+                        <Button
+                          type='submit'
+                          disabled={
+                            !allowed || answerTooLong || !state.draft.trim()
+                          }
+                        >
+                          {busy ? 'Reading your answer…' : 'Continue'}{' '}
+                          <span aria-hidden='true'>→</span>
+                        </Button>
+                      )}
+                      {eligible(state) && (
                         <Button
                           type='button'
                           disabled={busy || conflict}
                           variant='outline'
-                          onClick={() => void act({ type: 'skip' })}
+                          onClick={() => void act({ type: 'project' })}
                         >
-                          Try a different question
+                          View my result
                         </Button>
                       )}
-                    {(!paused || state.recovery.reason !== 'stopped') && (
-                      <Button
-                        type='button'
-                        disabled={busy || conflict}
-                        variant='ghost'
-                        onClick={() => void act({ type: 'stop' })}
-                      >
-                        Stop for now
-                      </Button>
-                    )}
-                  </div>
-                </Field>
-              </FieldGroup>
-            </form>
-            {busy && (
-              <p className='text-sm text-muted-foreground' role='status'>
-                Reading the evidence and choosing a useful next step…
-              </p>
-            )}
-            {state.answers.length >= 6 && (
-              <p className='text-sm text-muted-foreground'>
-                You can see your result now, or keep exploring.
-              </p>
-            )}
-          </>
-        )}
-        {error && (
-          <Alert variant='destructive'>
-            <AlertTitle>Could not complete that step</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-        <div className='flex items-center justify-between gap-4'>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant='ghost' size='sm'>
-                Restart
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Start a new assessment?</DialogTitle>
-                <DialogDescription>
-                  This clears the current local assessment. Download your report
-                  first if you want to keep it.
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant='outline'>Keep this assessment</Button>
-                </DialogClose>
-                <DialogClose asChild>
-                  <Button onClick={restart}>Restart & clear</Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-          {debugAvailable && (
-            <Button
-              variant='ghost'
-              size='sm'
-              aria-pressed={debugMode}
-              onClick={() => setDebugMode((value) => !value)}
-            >
-              Debug {debugMode ? 'on' : 'off'}
-            </Button>
+                      {state.prompts.length < limits.prompts &&
+                        (paused || state.status === 'recovery') && (
+                          <Button
+                            type='button'
+                            disabled={busy || conflict}
+                            variant='outline'
+                            onClick={() => void act({ type: 'skip' })}
+                          >
+                            Try a different question
+                          </Button>
+                        )}
+                      {(!paused || state.recovery.reason !== 'stopped') && (
+                        <Button
+                          type='button'
+                          disabled={busy || conflict}
+                          variant='ghost'
+                          onClick={() => void act({ type: 'stop' })}
+                        >
+                          Stop for now
+                        </Button>
+                      )}
+                    </div>
+                  </Field>
+                </FieldGroup>
+              </form>
+              {busy && (
+                <p className='text-sm text-muted-foreground' role='status'>
+                  Reading the evidence and choosing a useful next step…
+                </p>
+              )}
+              {state.answers.length >= 6 && (
+                <p className='text-sm text-muted-foreground'>
+                  You can see your result now, or keep exploring.
+                </p>
+              )}
+            </>
           )}
         </div>
-        {debugMode && <DebugPanel trace={trace} assessment={state} />}
+        <div className='flex flex-col gap-6'>
+          {error && (
+            <Alert variant='destructive'>
+              <AlertTitle>Could not complete that step</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+          <div className='flex items-center justify-between gap-4'>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant='ghost' size='sm'>
+                  Restart
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Start a new assessment?</DialogTitle>
+                  <DialogDescription>
+                    This clears the current local assessment. Download your
+                    report first if you want to keep it.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant='outline'>Keep this assessment</Button>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <Button onClick={restart}>Restart & clear</Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            {debugAvailable && (
+              <Button
+                variant='ghost'
+                size='sm'
+                aria-pressed={debugMode}
+                onClick={() => setDebugMode((value) => !value)}
+              >
+                Debug {debugMode ? 'on' : 'off'}
+              </Button>
+            )}
+          </div>
+          {debugMode && <DebugPanel trace={trace} assessment={state} />}
+        </div>
       </div>
     </section>
   )
