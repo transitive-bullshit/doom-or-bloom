@@ -57,11 +57,13 @@ The former 100/100/100 target is a coverage guide, not a reason to pad the corpu
 
 ## Research and draft checkpoint — 2026-09-17
 
-All 114 required records now link to scoped research notes in the intake registry. That records what was accessible and actually inspected; it does not claim full-text access or corpus completion. Of these, 96 have research drafts, 17 have partial access and one is blocked. Twenty-three required URLs map to existing or separate draft snapshots; none of these mappings records new editorial approval.
+All 114 required records now link to scoped research notes in the intake registry. That records what was accessible and actually inspected; it does not claim full-text access or corpus completion. Of these, 25 have separate perspective drafts, 71 have research drafts, 17 have partial access and one is blocked. Forty-eight required URLs map to active or separate draft snapshots; none of these mappings records new editorial approval.
 
 Follow-up notes inspect selected current developer cards behind the three required [system-card hubs](research/required-current-system-cards.md), preserving checkpoint, induced-behavior and inherited-assessment limitations. [Economic methods notes](research/required-economic-methods.md) cover accessible current related primary versions, causal scope and disclosures; the exact NBER originals remain blocked. Research depth does not change review status or silently replace required URLs.
 
 The [recent-source inventory](research/required-recent-reports.md) links 18 contemporary draft snapshots in the current demo bundle. The two earlier publication batches remain optional historical background. Travis approved the [revised direction](current-context-review-packet.md) and prioritized an end-to-end demo before further reassessment. Individual review remains open. The demo contains 42 references and 14 current reading suggestions; older entries support explicitly named history or mechanisms.
+
+The [required perspective batch](research/required-perspectives-batch-01.md) adds 25 separate essay/scenario/testimony drafts: 16 dated 2026, eight older influential or conceptual sources and one undated scenario with a current changelog. Their findings remain attributed rather than promoted into measurements. The unread SAGE chapter and limited Noah Smith preview remain unresolved. These drafts do not change the current demo or count as individually reviewed assets.
 
 Partial access includes publisher abstracts/previews, selected hub sections and the requested Epoch graph configuration. The Reuters article remains blocked. Read each record's scope before extending its claims. Preserve these requirements and resolve access or obtain verifiable publisher material before counting the full required library complete.
 
