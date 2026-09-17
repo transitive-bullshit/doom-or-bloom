@@ -81,6 +81,8 @@ Offer lightweight optional feedback on central inferred claims, such as whether 
 
 Maintain a blinded, human-reviewed holdout set.
 
+Follow [evaluation-protocol.md](evaluation-protocol.md) when preparing labels, locking a held-out run, adjudicating disagreements or assessing release quality. It records provisional numerical tolerances before a new run; paid evaluation remains unapproved.
+
 Use [argument journeys](JOURNEYS.md) to create development examples and separate held-out cases. Published synthetic journeys are drafts, not a blinded holdout or estimates of participant prevalence. Use local fixtures for bounds. Future paid semantic evaluation requires a small reviewed suite and explicit cost budget; paid pressure testing is out of scope. Evaluate at least:
 
 - Reference identification and attribution.
