@@ -57,6 +57,8 @@ The former 100/100/100 target is a coverage guide, not a reason to pad the corpu
 
 ## Research and draft checkpoint — 2026-09-17
 
+Use the [source coverage and review index](research/source-coverage-2026-09-17.md) to find every required original, mapped asset, research heading, access gate, overlapping identity and current subject counts. `pnpm content:coverage` regenerates the index from repository metadata; its counts do not confer review or prove topical balance.
+
 All 114 required records now link to scoped research notes in the intake registry. That records what was accessible and actually inspected; it does not claim full-text access or corpus completion. Intake statuses are 96 scoped drafts, 17 partial-access records and one blocked record. One hundred eleven required URLs map to active or separate draft snapshots; none of these mappings records new editorial approval.
 
 Follow-up notes inspect selected current developer cards behind the three required [system-card hubs](research/required-current-system-cards.md), preserving checkpoint, induced-behavior and inherited-assessment limitations. [Economic methods notes](research/required-economic-methods.md) cover accessible current related primary versions, causal scope and disclosures; the exact NBER originals remain blocked. Research depth does not change review status or silently replace required URLs.

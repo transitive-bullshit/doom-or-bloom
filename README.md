@@ -58,9 +58,13 @@ pnpm eval:engine --allow-paid --max-requests=12
 
 Live runs consume TypeSafe usage and require a small reviewed suite with an explicit cost budget. Both commands refuse to run without the explicit paid flag and a whole-run physical request ceiling (1–24), including retries and batches. Failures retain a conservative budget reservation. New reports go under ignored `eval/runs/`; historical measurements are preserved. Use fixtures for bounds and workflow checks; no paid pressure-testing command is provided. Existing measurements are historical development evidence, not held-out accuracy validation; see [measurement notes](docs/benchmark-notes.md).
 
+No new paid evaluation run is currently approved. Follow the [evaluation protocol](docs/evaluation-protocol.md) for reviewed labels, blinding, prospective tolerances and an explicitly approved monetary/request budget before a future run. Supplying a key or paid command flag does not authorize evaluation spending.
+
 ## Authored content
 
 Prompts, references, findings and resources live under `content/releases/`; rubric categories, weights and Jev question templates live under `content/rubrics/`. IDs, rules, graph reachability, provenance, review status and hashes are validated by `pnpm test:content`. The expanded historical seed was returned for revision. Follow [current source guidance](docs/SOURCES.md) and [argument journeys](docs/JOURNEYS.md) before the next editorial review.
+
+Use `pnpm content:coverage` for a metadata-only Markdown index of required originals, snapshot/research mappings, access gaps and overlapping subject tags. The [dated source index](docs/research/source-coverage-2026-09-17.md) is generated from those records; it does not approve or activate content.
 
 Format and validate before freezing a fully human-reviewed bundle:
 

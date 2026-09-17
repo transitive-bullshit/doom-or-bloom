@@ -579,6 +579,13 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - [x] Record prospective numerical agreement/stability tolerances, evidence and scope gates, case blinding, human adjudication, subgroup reporting and retuning rules in [evaluation-protocol.md](evaluation-protocol.md). Current paid-evaluation authorization remains zero; a future small reviewed run needs an exact approved monetary/request budget.
 - Formatting, lint, types, all 63 unit tests and complete content validation pass. Existing three-answer, correction and insufficient-cap regressions remain green. No live inference, real analytics collection, new asset approval or release activation occurred. Human-reviewed source incorporation, freeze and held-out semantic execution remain open. Previous checkpoint: `952d56e`.
 
+### 2026-09-17 — Reproducible source coverage and review index / Codex
+
+- [x] Add `pnpm content:coverage`, a metadata-only report of required originals, scoped assets/research headings, access/mapping gaps, source-identity overlaps, optional selections and overlapping subject tags. Publish the [dated index](research/source-coverage-2026-09-17.md) and link it from source guidance/setup.
+- [x] Distinguish stored asset review metadata from required-source review and release freeze. Separate publication-year metadata from inspection dates, qualified dates and underlying evidence windows. Preserve all 247 optional candidates without inventing exclusion decisions.
+- The index records 111/114 mapped required URLs, 114 distinct required-mapped snapshot identities, 42 demo references and 127 separate drafts. Eighteen required records retain partial/blocked access; three still have no snapshot. No new asset review or activation occurred.
+- Formatting, lint, types and complete content validation pass. Report inspection verifies exactly 114 required rows and all 287 local links against current files. Runtime remains unchanged from the prior checkpoint, whose 63 unit tests passed; the live demo stayed available. No paid inference or real telemetry was used. Previous checkpoint: `681f90d`.
+
 ### 2026-09-17 — Required measurement and disclosure drafts / Codex
 
 - [x] Author 15 separate scoped drafts for required evaluation reports, quantitative dashboards, organizational disclosures and three developer hubs with pinned September cards. Preserve original hub URLs, publication/evidence windows, success-rate meanings, induced conditions, inherited assessments and unverified dates. These assets remain outside the current demo with no reviewer.
