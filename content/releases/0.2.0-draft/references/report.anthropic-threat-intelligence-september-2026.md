@@ -7,13 +7,14 @@
     [
       'Detecting and countering misuse of AI: September 2026',
       'Anthropic September 2026 threat intelligence report',
-      'Anthropic countering misuse September 2026'
+      'Anthropic countering misuse September 2026',
+      'Anthropic September 2026 threat report'
     ],
   'topics': ['risk', 'evaluation'],
   'date': '2026-09',
   'entities': ['entity.anthropic'],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -53,4 +54,4 @@ Related actor context: entity.anthropic. Source relationships and shared evidenc
 
 ## Review notes
 
-Original/displayed: September 2026; exact day not identified. Revision not identified. Access: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original/displayed: September 2026; exact day not identified. Revision not identified. Access: 2026-09-17. Agent draft; human review pending.

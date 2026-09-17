@@ -1,9 +1,9 @@
 {
-  "contentVersion": "0.1.0-draft",
+  "contentVersion": "0.2.0-draft",
   "rubricVersion": "0.1.0-draft",
   "assessmentVersion": "0.2.1",
   "status": "draft",
   "reviewer": null,
-  "changelog": "Representative authoring draft; not a reviewed release.",
+  "changelog": "Current end-to-end demo: 18 contemporary snapshots plus 24 named background references; revised recommendations. Direction approved; individual review incomplete.",
   "hashes": {}
 }

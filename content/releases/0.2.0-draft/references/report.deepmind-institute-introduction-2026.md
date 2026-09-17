@@ -13,7 +13,7 @@
   'date': 'unknown',
   'entities': ['entity.deepmind'],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -53,4 +53,4 @@ Related actor context: entity.deepmind. Source relationships and shared evidence
 
 ## Review notes
 
-Original / revised dates: Not identified on checked page. Access / snapshot: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original / revised dates: Not identified on checked page. Access / snapshot: 2026-09-17. Agent draft; human review pending.

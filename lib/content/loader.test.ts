@@ -8,7 +8,7 @@ import {
 test('representative bundle is validated but remains draft', () => {
   const bundle = loadBundle()
   expect(bundle.manifest.status).toBe('draft')
-  expect(bundle.references).toHaveLength(24)
+  expect(bundle.references).toHaveLength(42)
   expect(() =>
     validateBundle({
       ...bundle,
@@ -80,4 +80,19 @@ test('alias boundaries avoid accidental matches and topic retrieval is not a men
       ?.matched
   ).toBe(false)
   expect(retrieveReferences(bundle, 'unknown incident')).toHaveLength(0)
+  expect(
+    retrieveReferences(bundle, 'Hugging Face incident')
+      .filter((entry) => entry.matched)
+      .map((entry) => entry.reference.id)
+      .sort()
+  ).toEqual([
+    'report.metr-hugging-face-investigation-2026',
+    'report.openai-hugging-face-road-ahead-2026'
+  ])
+  expect(
+    retrieveReferences(bundle, 'an unnamed risk', ['risk'])[0]?.reference.id
+  ).toMatch(/2026$/)
+  expect(
+    retrieveReferences(bundle, 'The Off-Switch Game', ['risk'])[0]?.matched
+  ).toBe(true)
 })

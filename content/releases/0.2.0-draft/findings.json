@@ -1,0 +1,195 @@
+[
+  {
+    "id": "finding.causal",
+    "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+    "conditions": [
+      {
+        "vector": "causal_clarity",
+        "min": 0.6,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "reviewed"
+  },
+  {
+    "id": "finding.crux",
+    "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+    "conditions": [
+      {
+        "vector": "updateability",
+        "min": 0.6,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "reviewed"
+  },
+  {
+    "id": "finding.scope",
+    "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
+    "conditions": [
+      {
+        "vector": "scope_discipline",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.uncertainty",
+    "text": "You expressed uncertainty in a way that leaves room for more evidence. That does not itself make the expected outcome better or worse.",
+    "conditions": [
+      {
+        "vector": "appropriate_uncertainty",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.countercase",
+    "text": "You engaged with a serious reason your expectation might be wrong. The alternative is useful to inspect alongside your main account.",
+    "conditions": [
+      {
+        "vector": "counterargument_engagement",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.coherence",
+    "text": "Your stated positions fit together under the conditions you described. That remains an interpretation of these answers.",
+    "conditions": [
+      {
+        "vector": "internal_coherence",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.grounded",
+    "text": "You connected your account to evidence that could be checked. A reference still has limits on what it establishes.",
+    "conditions": [
+      {
+        "vector": "grounded_understanding",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.benefit-conditions",
+    "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+    "conditions": [
+      {
+        "vector": "beneficial_potential",
+        "min": 0.33,
+        "assessed": true
+      },
+      {
+        "vector": "scope_discipline",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.risk-concern",
+    "text": "Harm is a consequential part of your expectation. This assessment keeps that expectation separate from your preferred response.",
+    "conditions": [
+      {
+        "vector": "risk_landscape",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.control-conditions",
+    "text": "You expect technical control to be feasible under demanding conditions. Those conditions matter to the rest of the outlook.",
+    "conditions": [
+      {
+        "vector": "technical_controllability",
+        "min": 0.66,
+        "assessed": true,
+        "max": 0.9
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.institutions",
+    "text": "You expect institutions to matter to what happens. The incentives and coordination in your account are worth examining.",
+    "conditions": [
+      {
+        "vector": "institutional_competence",
+        "min": 0.33,
+        "assessed": true
+      },
+      {
+        "vector": "causal_clarity",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.continuity",
+    "text": "Preserving human agency or continuity matters to your account of a good future. This is a value as well as an expectation.",
+    "conditions": [
+      {
+        "vector": "human_agency",
+        "min": 0.66,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.transition",
+    "text": "Your account includes how progress could unfold. Its timing and warning assumptions can affect both upside and risk.",
+    "conditions": [
+      {
+        "vector": "transition_dynamics",
+        "min": 0.33,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.policy-separate",
+    "text": "You expressed a preferred response to AI. We keep that preference separate from the map\u2019s expected-impact placement.",
+    "conditions": [
+      {
+        "vector": "action_posture",
+        "min": 0,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  }
+]

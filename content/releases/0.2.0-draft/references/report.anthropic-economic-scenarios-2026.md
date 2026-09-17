@@ -13,7 +13,7 @@
   'date': '2026-09',
   'entities': ['entity.anthropic'],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -53,4 +53,4 @@ Related actor context: entity.anthropic. Source relationships and shared evidenc
 
 ## Review notes
 
-Original/displayed: v1.0, September 2026; exact day not identified. Revision not identified. Access: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original/displayed: v1.0, September 2026; exact day not identified. Revision not identified. Access: 2026-09-17. Agent draft; human review pending.

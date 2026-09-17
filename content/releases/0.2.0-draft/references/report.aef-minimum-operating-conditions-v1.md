@@ -13,7 +13,7 @@
   'date': 'unknown',
   'entities': [],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -53,4 +53,4 @@ Related actor context: No entity edge assigned. Source relationships and shared 
 
 ## Review notes
 
-Original: Not identified. Version 1 displayed update: 2025-12-04. Access: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original: Not identified. Version 1 displayed update: 2025-12-04. Access: 2026-09-17. Agent draft; human review pending.

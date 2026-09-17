@@ -253,7 +253,7 @@ Incentives / boundaries: Indexed author note discloses BCG-affiliated authors an
 - Suggested ID / aliases: `publication.nber-shifting-work-patterns-2025`; `Dillon Jaffe Immorlica Stanton work patterns`.
 - Required: [NBER paper 33795](https://www.nber.org/papers/w33795).
 - Genre / access: Randomized field study; **partial**, direct page/PDF 403; official indexed abstract and disclosure inspected. Full reading blocked.
-- Dates: **May 2025**, revised **May 2025**; a revision copy is dated **2025-05-06**.
+- Dates: **May 2025**, now revised **November 2025**; the May 6 mirror is an older version. See [access/version reconciliation](required-economic-access-reconciliation.md#1-w33795--shifting-work-patterns-with-generative-ai).
 
 Remit: Six-month experiment with 7,137 workers receiving integrated Microsoft 365 Copilot access. Authors report less email time and faster documents, without significant meeting-time change; the intent-to-treat email estimate differs from the frequent-user estimate. [Official abstract](https://www.nber.org/system/files/working_papers/w33795/w33795.pdf).
 
@@ -264,7 +264,7 @@ Incentives / boundaries: Three authors disclose Microsoft employment during the 
 - Suggested ID / aliases: `publication.nber-cybernetic-teammate-2025`; `Dell'Acqua P&G AI teamwork experiment`.
 - Required: [NBER paper 33641](https://www.nber.org/papers/w33641).
 - Genre / access: Preregistered randomized field experiment; **partial**, direct page/PDF 403; official indexed abstract/disclosure inspected. Full reading blocked.
-- Dates: **April 2025**; later revision not verified.
+- Dates: **April 2025** NBER working paper; a related journal version was published **2026-06-12**. See [version reconciliation](required-economic-access-reconciliation.md#2-w33641--the-cybernetic-teammate) before combining sample counts.
 
 Remit: In product-innovation tasks with 776 P&G professionals, authors report AI-assisted individuals matching unassisted team performance, more balanced technical/commercial proposals and positive self-reported emotional responses. [Official abstract](https://www.nber.org/system/files/working_papers/w33641/w33641.pdf).
 
@@ -275,9 +275,9 @@ Incentives / boundaries: Authors disclose HBS funding, P&G gifts to its D³ inst
 - Suggested ID / aliases: `publication.nber-small-labor-effects-2025-10`; `Humlum Vestergaard Denmark chatbot effects`.
 - Required: [NBER paper 33777](https://www.nber.org/papers/w33777).
 - Genre / access: Administrative-data quasi-experiment; **partial**, direct page/PDF 403; official indexed current abstract/disclosure inspected. Full reading blocked.
-- Dates: **May 2025**, revised **October 2025**. Use revised copy, not the earlier 1% bound.
+- Dates: **May 2025**, now revised **March 2026** under the title **Still Waters, Rapid Currents: Early Labor Market Transformation under Generative AI**. See [version reconciliation](required-economic-access-reconciliation.md#3-w33777--still-waters-rapid-currents).
 
-Remit: Links Danish chatbot-adoption surveys to labor records. Revised abstract reports null earnings/recorded-hours effects, ruling out effects above 2% two years after adoption, while observing task restructuring and occupation changes. [Revised abstract](https://www.nber.org/system/files/working_papers/w33777/w33777.pdf).
+Remit: Links Danish chatbot-adoption surveys to labor records. Revised abstract reports null earnings/recorded-hours effects, ruling out effects above 2% two years after ChatGPT’s launch, while observing task restructuring and occupation changes. [Revised abstract](https://www.nber.org/system/files/working_papers/w33777/w33777.pdf).
 
 Incentives / boundaries: Disclosed support includes the Center for Applied Artificial Intelligence and Polsky Center. Danish earnings/hours differ from U.S. young-worker hiring measures; this need not contradict Canaries. Null estimates within a window do not prove no productivity benefit, no distributional effects, or no future displacement.
 

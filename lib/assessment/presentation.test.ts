@@ -38,7 +38,7 @@ test('resource ordering favors references actually discussed and diversifies aut
     id: 'claim',
     answerId: 'a',
     spanId: 's',
-    referenceId: 'entity.oecd',
+    referenceId: 'report.openai-misalignment-reporting-framework-2026',
     attribution: 'yes',
     fit: 'yes',
     uncertainty: 'yes',
@@ -57,8 +57,10 @@ test('resource ordering favors references actually discussed and diversifies aut
     evidenceIds: ['e']
   }))
   const resources = selectPresentation(state, components, bundle).resources
-  expect(resources[0]?.id).toBe('resource.oecd')
-  expect(resources.map((r) => r.id)).not.toContain('resource.nist-rmf')
+  expect(resources[0]?.id).toBe('resource.misalignment-reporting')
+  expect(resources.map((r) => r.id)).not.toContain(
+    'resource.operating-conditions'
+  )
   expect(resources).toHaveLength(3)
   expect(
     resources.every(

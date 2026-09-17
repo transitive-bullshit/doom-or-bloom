@@ -1730,17 +1730,22 @@
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
       "status": "partial",
-      "genre": null,
-      "publishedAt": null,
-      "updatedAt": null,
+      "genre": "Randomized field experiment",
+      "publishedAt": "2025-05",
+      "updatedAt": "2025-11",
       "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": "",
+      "notes": "Current NBER revision November 2025; accessible related author preprint arXiv 2504.11436v4. Selected abstract/introduction read; full methods unreviewed. Keep original NBER access failure and older May mirror separate.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
           "heading": "23. Shifting Work Patterns with Generative AI",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-economic-access-reconciliation.md",
+          "heading": "1. [w33795 — Shifting Work Patterns with Generative AI](https://www.nber.org/papers/w33795)",
+          "scope": "Exact NBER original remains inaccessible; verified related primary versions and selected reading scope are distinguished."
         }
       ]
     },
@@ -1751,17 +1756,22 @@
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
       "status": "partial",
-      "genre": null,
-      "publishedAt": null,
+      "genre": "Randomized field experiment",
+      "publishedAt": "2025-04",
       "updatedAt": null,
       "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": "",
+      "notes": "NBER identifies a related June 12, 2026 Organization Science publication. Journal sample 791 differs from the 776 working-paper sample; do not mix versions. Public publisher PDF front matter/abstract read; methods unreviewed.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
           "heading": "24. The Cybernetic Teammate: A Field Experiment on Generative AI Reshaping Teamwork and Expertise",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-economic-access-reconciliation.md",
+          "heading": "2. [w33641 — The Cybernetic Teammate](https://www.nber.org/papers/w33641)",
+          "scope": "Exact NBER original remains inaccessible; verified related primary versions and selected reading scope are distinguished."
         }
       ]
     },
@@ -1772,17 +1782,22 @@
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
       "status": "partial",
-      "genre": null,
-      "publishedAt": null,
-      "updatedAt": null,
+      "genre": "Administrative-data quasi-experiment",
+      "publishedAt": "2025-05",
+      "updatedAt": "2026-03",
       "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": "",
+      "notes": "Current title Still Waters, Rapid Currents; former title retained as alias. Author-linked March 13, 2026 PDF abstract/introduction read; methods unreviewed. Two-year bound is after ChatGPT launch, not each individual adoption.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
           "heading": "25. Large Language Models, Small Labor Market Effects",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-economic-access-reconciliation.md",
+          "heading": "3. [w33777 — Still Waters, Rapid Currents](https://www.nber.org/papers/w33777)",
+          "scope": "Exact NBER original remains inaccessible; verified related primary versions and selected reading scope are distinguished."
         }
       ]
     },

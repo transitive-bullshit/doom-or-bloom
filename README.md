@@ -2,7 +2,7 @@
 
 A local, adaptive assessment of AI worldviews and demonstrated reasoning. One authored question at a time; results become available after three substantive answers. Jev supplies narrow typed judgments, and application code owns routing, recovery and projections.
 
-Implementation is in progress. The app works with a sourced seed and labeled draft assets; the full reviewed corpus and held-out evaluation are still required. See [execution status](docs/mvp-implementation-plan.md) and the [project handoff](docs/README.md).
+Implementation is in progress. The end-to-end demo uses 42 references (18 contemporary snapshots plus named background) and 14 current reading suggestions, with clearly labeled draft assets; the full reviewed corpus and held-out evaluation are still required. See [execution status](docs/mvp-implementation-plan.md) and the [project handoff](docs/README.md).
 
 ## Local setup
 

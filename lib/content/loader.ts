@@ -281,6 +281,11 @@ export function retrieveReferences(
   text: string,
   topics: string[] = []
 ) {
+  const publishedDate = (reference: Reference) =>
+    reference.kind !== 'entity' &&
+    /^\d{4}-\d{2}(?:-\d{2})?$/.test(reference.date)
+      ? reference.date
+      : ''
   const normalized = text
     .toLowerCase()
     .replace(/[^\p{L}\p{N}]+/gu, ' ')
@@ -306,7 +311,9 @@ export function retrieveReferences(
     .filter((r) => r.score > 0)
     .sort(
       (a, b) =>
-        b.score - a.score || a.reference.id.localeCompare(b.reference.id)
+        b.score - a.score ||
+        publishedDate(b.reference).localeCompare(publishedDate(a.reference)) ||
+        a.reference.id.localeCompare(b.reference.id)
     )
     .slice(0, 12)
 }

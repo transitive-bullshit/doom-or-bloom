@@ -7,13 +7,15 @@
     [
       'Brief independent investigation of agents’ behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident',
       'METR August 2026 Hugging Face investigation',
-      'Greenblatt Cotra Wijk Hugging Face investigation'
+      'Greenblatt Cotra Wijk Hugging Face investigation',
+      'Hugging Face incident',
+      'METR Hugging Face investigation'
     ],
   'topics': ['risk', 'evaluation'],
   'date': '2026-08-26',
   'entities': ['entity.metr'],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -53,4 +55,4 @@ Related actor context: entity.metr. Source relationships and shared evidence are
 
 ## Review notes
 
-Original/displayed: 2026-08-26. Revision not identified. Access: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original/displayed: 2026-08-26. Revision not identified. Access: 2026-09-17. Agent draft; human review pending.

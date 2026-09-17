@@ -18,7 +18,7 @@ Prepared 2026-09-17. **Direction approved by Travis on 2026-09-17; individual as
 
 [Recent snapshot inventory](research/required-recent-reports.md) links 18 seven-section contemporary draft references: developer reports, independent investigations, multiagent experiments, defensive programs, economic scenarios, operating conditions and an institute announcement. The required Reuters article remains blocked. Epoch’s canonical documentation is readable; exact requested graph settings remain unverified. Statements of funding, safety processes or future benefits stay attributed commitments or forecasts.
 
-For a revised 20–30-entry seed, prioritize these recent snapshots together with scoped actor entries and a small number of actual contemporary event entries. Re-curate the existing reading suggestions toward current independent evaluation, upside/distribution evidence, mechanism understanding and governance/control, retaining familiarity and purpose diversity. The full required library can expand beyond the seed after its editorial direction is reviewed.
+The current demo bundle activates these 18 snapshots alongside 24 existing actor/concept/historical references, for 42 total. This exceeds the seed planning count to preserve named background while adding current grounding; it is not a reviewed corpus completion claim. Contemporary event entries remain an authoring task. The 14 demo reading suggestions are re-curated toward current independent evaluation, upside/distribution evidence, mechanism understanding and governance/control, retaining familiarity and purpose diversity. Recommendations remain drafts. The full required library can expand beyond the seed after its editorial direction is reviewed.
 
 ## Review scope and demo priority
 

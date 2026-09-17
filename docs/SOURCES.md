@@ -59,7 +59,7 @@ The former 100/100/100 target is a coverage guide, not a reason to pad the corpu
 
 All 114 required records now link to scoped research notes in the intake registry. That records what was accessible and actually inspected; it does not claim full-text access or corpus completion. Of these, 96 have research drafts, 17 have partial access and one is blocked. Twenty-three required URLs map to existing or separate draft snapshots; none of these mappings records new editorial approval.
 
-The [recent-source inventory](research/required-recent-reports.md) links 18 contemporary draft snapshots outside the runtime bundle. The two earlier publication batches remain optional historical background. The [revised editorial packet](current-context-review-packet.md) proposes the current seed direction and common-opinion journey coverage; its review is pending.
+The [recent-source inventory](research/required-recent-reports.md) links 18 contemporary draft snapshots in the current demo bundle. The two earlier publication batches remain optional historical background. Travis approved the [revised direction](current-context-review-packet.md) and prioritized an end-to-end demo before further reassessment. Individual review remains open. The demo contains 42 references and 14 current reading suggestions; older entries support explicitly named history or mechanisms.
 
 Partial access includes publisher abstracts/previews, selected hub sections and the requested Epoch graph configuration. The Reuters article remains blocked. Read each record's scope before extending its claims. Preserve these requirements and resolve access or obtain verifiable publisher material before counting the full required library complete.
 
@@ -71,6 +71,7 @@ Partial access includes publisher abstracts/previews, selected hub sections and 
 - [ ] Resolve partial/blocked access and complete the required-source reading within each source’s stated scope.
 - [x] Draft the first 18 contemporary reference snapshots outside the runtime bundle.
 - [ ] Complete snapshots and source mappings for every required URL.
-- [ ] Re-curate prompts, findings and reading suggestions where the new evidence changes coverage needs.
+- [x] Re-curate the demo’s 14 reading suggestions using current sources, familiarity and purpose diversity.
+- [ ] Complete review of prompts/findings and coverage changes across the full required library.
 - [ ] Human-review the revised seed and subsequent batches; validate and freeze only approved assets.
 - [ ] Verify all required sources are mapped and balanced coverage is documented before calling the MVP complete.

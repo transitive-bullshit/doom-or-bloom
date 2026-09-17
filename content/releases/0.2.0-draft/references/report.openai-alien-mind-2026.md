@@ -9,7 +9,7 @@
   'date': '2026-09-06',
   'entities': ['entity.openai'],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -49,4 +49,4 @@ Related actor context: entity.openai. Source relationships and shared evidence a
 
 ## Review notes
 
-Original/displayed: 2026-09-06. Revision not identified. Access: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original/displayed: 2026-09-06. Revision not identified. Access: 2026-09-17. Agent draft; human review pending.

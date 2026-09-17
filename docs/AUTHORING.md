@@ -155,3 +155,5 @@ Track independently:
 - `model_version`: resolved Jev model identifier when available.
 
 Never silently reinterpret historical aggregate results across incompatible versions. Maintain migrations only where semantic equivalence is defensible.
+
+Demo recommendations can carry an authored priority from 0 to 1 for curation among equally relevant eligible resources. This affects resource ordering only; actual discussed references receive greater relevance, familiarity gates still apply, and selected resources diversify their learning purpose. Priority never changes assessment scores.

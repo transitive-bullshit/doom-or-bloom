@@ -7,13 +7,15 @@
     [
       'The Hugging Face incident and the road ahead',
       'OpenAI August 2026 Hugging Face incident report',
-      'OpenAI Hugging Face road ahead'
+      'OpenAI Hugging Face road ahead',
+      'Hugging Face incident',
+      'OpenAI Hugging Face incident'
     ],
   'topics': ['risk', 'evaluation'],
   'date': '2026-08-26',
   'entities': ['entity.openai'],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -53,4 +55,4 @@ Related actor context: entity.openai. Source relationships and shared evidence a
 
 ## Review notes
 
-Original/displayed: 2026-08-26. Revision not identified. Access: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original/displayed: 2026-08-26. Revision not identified. Access: 2026-09-17. Agent draft; human review pending.

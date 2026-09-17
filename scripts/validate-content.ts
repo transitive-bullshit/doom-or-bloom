@@ -1,19 +1,48 @@
 import {
   loadBundle,
   loadDraftReferences,
+  loadReferences,
   validateBundle
 } from '../lib/content/loader'
 import { loadAuthoringContext } from '../lib/content/authoring-context'
+import {
+  findingSchema,
+  promptSchema,
+  resourceSchema
+} from '../lib/content/schema'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
+import { z } from 'zod'
 const bundle = loadBundle()
 const drafts = loadDraftReferences()
 const context = loadAuthoringContext(bundle)
-validateBundle({
-  ...bundle,
-  references: [...bundle.references, ...drafts],
-  manifest: { ...bundle.manifest, status: 'draft', reviewer: null, hashes: {} }
-})
+// Separate background drafts retain their source release version.
+for (const version of new Set(
+  drafts.map((reference) => reference.content_version)
+)) {
+  if (!/^[a-zA-Z0-9._-]+$/.test(version))
+    throw new Error('Invalid draft version')
+  const directory = path.join(process.cwd(), 'content/releases', version)
+  const json = (file: string): unknown =>
+    JSON.parse(readFileSync(path.join(directory, file), 'utf8'))
+  validateBundle({
+    ...bundle,
+    prompts: z.array(promptSchema).parse(json('prompts.json')),
+    findings: z.array(findingSchema).parse(json('findings.json')),
+    resources: z.array(resourceSchema).parse(json('resources.json')),
+    references: [
+      ...loadReferences(path.join(directory, 'references')),
+      ...drafts.filter((reference) => reference.content_version === version)
+    ],
+    manifest: {
+      ...bundle.manifest,
+      contentVersion: version,
+      status: 'draft',
+      reviewer: null,
+      hashes: {}
+    }
+  })
+}
 const references = [...bundle.references, ...drafts]
 for (const source of context.intake.sources) {
   if (source.referenceIds.some((id) => !references.some((r) => r.id === id)))

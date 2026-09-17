@@ -141,6 +141,7 @@ export const resourceSchema = z.strictObject({
     'agency'
   ]),
   referenceIds: z.array(id).default([]),
+  priority: z.number().min(0).max(1).default(0),
   effort: z.string(),
   familiarity: z.enum(['general', 'expert']),
   conditions: z.array(conditionSchema).min(1),

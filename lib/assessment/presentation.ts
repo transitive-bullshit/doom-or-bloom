@@ -59,7 +59,8 @@ export function selectPresentation(
     resource.conditions.filter(
       (c) => c.min !== undefined || c.max !== undefined
     ).length /
-      4
+      4 +
+    resource.priority
   const groups = new Set<string>()
   const resources = bundle.resources
     .filter(

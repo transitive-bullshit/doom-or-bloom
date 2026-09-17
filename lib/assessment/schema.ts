@@ -41,7 +41,7 @@ export const versionsSchema = z.strictObject({
 })
 export const versions = {
   assessment: '0.2.1',
-  content: '0.1.0-draft',
+  content: '0.2.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
 }

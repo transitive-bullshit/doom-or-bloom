@@ -7,13 +7,15 @@
     [
       'Project Glasswing: Securing critical software for the AI era',
       'Anthropic Project Glasswing announcement',
-      'Mythos Preview Glasswing initiative'
+      'Mythos Preview Glasswing initiative',
+      'Glasswing',
+      'Project Glasswing'
     ],
   'topics': ['control', 'risk', 'governance'],
   'date': '2026-04-07',
   'entities': ['entity.anthropic'],
   'related': [],
-  'content_version': '0.1.0-draft',
+  'content_version': '0.2.0-draft',
   'status': 'draft',
   'reviewer': null,
   'sources':
@@ -53,4 +55,4 @@ Related actor context: entity.anthropic. Source relationships and shared evidenc
 
 ## Review notes
 
-Original/displayed announcement: 2026-04-07. Revision not identified. Access: 2026-09-17. Agent draft; human review pending. Access: 2026-09-17.
+Original/displayed announcement: 2026-04-07. Revision not identified. Access: 2026-09-17. Agent draft; human review pending.
