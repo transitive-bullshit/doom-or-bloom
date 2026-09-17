@@ -3,6 +3,7 @@ import { createAssessment } from '@/lib/assessment/state'
 import { loadBundle } from '@/lib/content/loader'
 import { projectionInput } from './projection-input'
 import { fixtureAnswer } from './provider'
+import { referencePolicy } from './reference-input'
 
 test('lossless aliases retain complete raw observations and restore original provenance', () => {
   const state = createAssessment('long-original-id')
@@ -59,4 +60,51 @@ test('lossless aliases retain complete raw observations and restore original pro
   expect(
     result.type === 'choice' && result.probabilities['original-answer-11:e']
   ).toBe(1)
+})
+
+test('projection retains source identity, qualified dates and relationships without widening to the whole corpus', () => {
+  const bundle = loadBundle()
+  const state = createAssessment('reference-metadata')
+  const selected = [
+    'event.openai-hugging-face-2026',
+    'report.metr-hugging-face-investigation-2026',
+    'event.anthropic-migration-conflict-demonstration-2026'
+  ]
+  state.evidence.push({
+    id: 'source-evidence',
+    answerId: 'source-answer',
+    spanId: 'source-span',
+    vector: 'grounded_understanding',
+    status: 'stated',
+    judgmentIds: [],
+    referenceIds: selected.slice(0, 2),
+    contextReferenceIds: selected.slice(2),
+    horizonSpanId: null,
+    convictionSpanId: null,
+    assumptionSpanId: null
+  })
+  const { input } = projectionInput(state, bundle, {})
+  expect(input.referenceContext).toHaveLength(3)
+  expect(input.referencePolicy).toBe(referencePolicy)
+  const event = input.referenceContext.find(
+    (r) => r.canonicalId === selected[0]
+  )!
+  const publication = input.referenceContext.find(
+    (r) => r.canonicalId === selected[1]
+  )!
+  const experiment = input.referenceContext.find(
+    (r) => r.canonicalId === selected[2]
+  )!
+  expect(event.kind).toBe('event')
+  expect(publication.kind).toBe('publication')
+  expect(event.date).toBe('2026-07')
+  expect(publication.date).toBe('2026-08-26')
+  expect(event.related).toContain(publication.canonicalId)
+  expect(experiment.date).toBe(
+    'Experiment date unknown; report published 2026-08-13'
+  )
+  for (const reference of input.referenceContext)
+    expect(reference.summary).toBe(
+      bundle.references.find((r) => r.id === reference.canonicalId)!.summary
+    )
 })

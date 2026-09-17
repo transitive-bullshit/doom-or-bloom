@@ -58,6 +58,29 @@ test('eight answered prompts preserve the full transcript and bound reference gr
     const answer = state.answers.at(-1)!
     expect(answer.text).toBe(text)
     expect(answer.promptText).toBe(prompt.text)
+    const identity = result.debug!.stages.find(
+      (stage) => stage.name === 'B1: identify references'
+    )!
+    const identityCandidates = (
+      identity.state as {
+        candidates: {
+          id: string
+          kind: string
+          date: string
+          related: string[]
+        }[]
+      }
+    ).candidates
+    expect(identityCandidates.length).toBeLessThanOrEqual(
+      limits.referenceCandidates
+    )
+    for (const candidate of identityCandidates) {
+      const reference = bundle.references.find((r) => r.id === candidate.id)!
+      expect(candidate.kind).toBe(reference.kind)
+      expect(candidate.date).toBe(reference.date)
+      expect(candidate.related).toEqual(reference.related)
+      expect(candidate).not.toHaveProperty('summary')
+    }
     const grounding = result.debug!.stages.find(
       (stage) => stage.name === 'B2: grounded claims'
     )!
@@ -76,10 +99,17 @@ test('eight answered prompts preserve the full transcript and bound reference gr
     )
     for (const summary of summaries) {
       expect(mentioned.has(summary.id)).toBe(true)
-      expect(summary.summary).toBe(
-        bundle.references.find((reference) => reference.id === summary.id)!
-          .summary
-      )
+      const reference = bundle.references.find(
+        (reference) => reference.id === summary.id
+      )!
+      expect(summary).toEqual({
+        id: reference.id,
+        title: reference.title,
+        kind: reference.kind,
+        date: reference.date,
+        related: reference.related,
+        summary: reference.summary
+      })
       groundedIds.add(summary.id)
     }
     expect(state.unresolved).toContainEqual(
@@ -127,7 +157,11 @@ test('eight answered prompts preserve the full transcript and bound reference gr
         .filter((reference) => groundedIds.has(reference.id))
         .map((reference, i) => ({
           id: `r${i}`,
+          canonicalId: reference.id,
           title: reference.title,
+          kind: reference.kind,
+          date: reference.date,
+          related: reference.related,
           summary: reference.summary
         }))
     })

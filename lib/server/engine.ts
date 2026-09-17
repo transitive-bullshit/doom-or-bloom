@@ -35,6 +35,7 @@ import { retrieveReferences } from '@/lib/content/loader'
 import type { Prompt } from '@/lib/content/schema'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
+import { referenceMetadata, referencePolicy } from './reference-input'
 import { selectPresentation } from '@/lib/assessment/presentation'
 import { createQuestions } from './questions'
 
@@ -830,9 +831,11 @@ export async function runAssessment(
           'B1: identify references',
           {
             currentAnswer: op.text,
+            referencePolicy,
             candidates: references.map(({ reference }) => ({
               id: reference.id,
               title: reference.title,
+              ...referenceMetadata(reference),
               aliases: reference.aliases
             }))
           },
@@ -885,8 +888,11 @@ export async function runAssessment(
             {
               currentAnswer: op.text,
               spans,
+              referencePolicy,
               canonicalSummaries: selected.map(({ reference }) => ({
                 id: reference.id,
+                title: reference.title,
+                ...referenceMetadata(reference),
                 summary: reference.summary
               }))
             },

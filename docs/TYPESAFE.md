@@ -48,6 +48,8 @@ The majority of inference context should remain participant evidence. Never send
 
 Alias matching is only an initial shortlist. Jev may also choose relevant topic families to widen local candidate retrieval when an answer refers to an incident indirectly. Distinguish a reference actually mentioned from context retrieved because it is relevant; never attribute the latter to the participant.
 
+Carry authored reference kinds, date qualifiers and related-entry IDs through identification, selected-summary grounding and final projection. A report's publication date does not replace the underlying event date; unknown experiment dates stay unknown. Related entries do not imply independent corroboration or supply facts from an omitted summary. When final inputs shorten reference IDs, retain canonical source IDs so relationships remain interpretable. This metadata does not widen the shortlist or load additional summaries.
+
 ### 3. Update the evidence ledger
 
 Code stores the answer, excerpt candidates, reference identifiers, and Jev outputs. If exact supporting text is needed, pre-segment or pre-extract candidate spans; ask Jev to choose candidate IDs, then copy the original text in code.

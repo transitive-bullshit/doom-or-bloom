@@ -1,5 +1,6 @@
 import type { Assessment, ModelAnswer, Question } from '@/lib/assessment/schema'
 import type { Bundle } from '@/lib/content/loader'
+import { referenceMetadata, referencePolicy } from './reference-input'
 
 // Short IDs remove transport bookkeeping; original text and source facts remain exact.
 export function projectionInput(
@@ -30,9 +31,12 @@ export function projectionInput(
     })),
     referenceContext: references.map((r) => ({
       id: referenceIds.get(r.id),
+      canonicalId: r.id,
       title: r.title,
+      ...referenceMetadata(r),
       summary: r.summary
     })),
+    referencePolicy,
     evidencePolicy:
       'Every usable raw answer and referenced canonical source summary is supplied. Prior scores and judgments are not independent evidence. Later explicit corrections supersede earlier interpretations under the corrected scope. Evidence-choice candidates are exact active excerpts, never generated summaries.',
     coverage: state.coverage,
