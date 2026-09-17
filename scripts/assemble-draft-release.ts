@@ -96,6 +96,7 @@ for (const entry of ordered) {
   const body = entry.body
     .replaceAll('outside the demo', 'in the local draft corpus')
     .replaceAll('outside the runtime bundle', 'in the local draft corpus')
+    .replaceAll('Separate draft, not runtime content;', 'Local demo draft;')
   writeFileSync(
     `${targetDirectory}/references/${entry.reference.id}.md`,
     `---\n${JSON.stringify(metadata, null, 2)}\n---\n${body}`

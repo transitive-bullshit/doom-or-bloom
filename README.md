@@ -2,7 +2,7 @@
 
 A local, adaptive assessment of AI worldviews and demonstrated reasoning. A scrollable question-and-answer thread with one active authored question; results become available after three substantive answers. Jev supplies narrow typed judgments, and application code owns routing, recovery and projections.
 
-Implementation is in progress. New assessments use 135 references and 14 reading suggestions in a clearly labeled local draft release. All 111 currently mapped required URLs are represented; three required originals remain unavailable for a substantive snapshot. Human review, the full required corpus and held-out evaluation are still required. Saved assessments on the earlier 42-reference release retain that version until restart. See [execution status](docs/mvp-implementation-plan.md) and the [project handoff](docs/README.md).
+Implementation is in progress. New assessments use 138 references and 14 reading suggestions in a clearly labeled local draft release. All 111 currently mapped required URLs and their 117 mapped snapshot identities are represented; three required originals remain unavailable for a substantive snapshot. Human review, the full required corpus and held-out evaluation are still required. Saved assessments on either earlier release retain their 42- or 135-reference corpus until restart. See [execution status](docs/mvp-implementation-plan.md) and the [project handoff](docs/README.md).
 
 ## Local setup
 
@@ -66,7 +66,7 @@ Prompts, references, findings and resources live under `content/releases/`; rubr
 
 Use `pnpm content:coverage` for a metadata-only Markdown index of required originals, snapshot/research mappings, access gaps and overlapping subject tags. The [dated source index](docs/research/source-coverage-2026-09-17.md) is generated from those records; it does not approve or activate content.
 
-The current `0.3.0-draft` release assembles mapped required-source drafts with the existing graph, rubric and result assets. Its [provenance](content/releases/0.3.0-draft/provenance.json) records original file paths, content versions and hashes. Original drafts and the pinned `0.2.0-draft` release remain available. API operations use the saved assessment's content version; reload never relabels an earlier result. Restart adopts the current draft without an automatic inference call.
+The current `0.4.0-draft` release adds three contemporary incident/demonstration entries with the existing graph, rubric and result assets. Its [provenance](content/releases/0.4.0-draft/provenance.json) records original file paths, content versions and hashes. Original drafts and the pinned `0.2.0-draft` and `0.3.0-draft` releases remain available. API operations use the saved assessment's content version; reload never relabels an earlier result. Restart adopts the current draft without an automatic inference call.
 
 `pnpm content:assemble SOURCE_DRAFT_VERSION TARGET_DRAFT_VERSION` creates a new supported draft directory and updates the current manifest after validation. It refuses overwrites and does not confer human review. Register a future supported version deliberately and update the default version only after assembly; use a new version for semantic changes. Freeze additionally requires every required intake original to have compatible reviewed snapshots, so access/review gaps cannot be hidden by complete asset hashes.
 

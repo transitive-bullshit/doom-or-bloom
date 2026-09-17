@@ -41,11 +41,15 @@ export const versionsSchema = z.strictObject({
 })
 export const versions = {
   assessment: '0.2.1',
-  content: '0.3.0-draft',
+  content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
 }
-export const supportedContentVersions = ['0.2.0-draft', '0.3.0-draft'] as const
+export const supportedContentVersions = [
+  '0.2.0-draft',
+  '0.3.0-draft',
+  '0.4.0-draft'
+] as const
 export const rootPrompt = 'What do you think AI means for our future—and why?'
 export const dispositionSchema = z.enum([
   'usable',

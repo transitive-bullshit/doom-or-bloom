@@ -1,0 +1,282 @@
+[
+  {
+    "id": "resource.economic-scenarios",
+    "title": "Economic scenarios from the Anthropic Institute",
+    "url": "https://www.anthropic.com/institute/econ-scenarios",
+    "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+    "purposeGroup": "science",
+    "referenceIds": ["report.anthropic-economic-scenarios-2026"],
+    "priority": 0.8,
+    "effort": "Overview first; full scenarios take longer",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "beneficial_potential",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.metr-investigation",
+    "title": "METR’s independent Hugging Face investigation",
+    "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+    "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+    "purposeGroup": "evaluation",
+    "referenceIds": ["report.metr-hugging-face-investigation-2026"],
+    "priority": 0.8,
+    "effort": "Investigation overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "technical_controllability",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.operating-conditions",
+    "title": "Minimum operating conditions for AI evaluation",
+    "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
+    "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+    "purposeGroup": "governance",
+    "referenceIds": ["report.aef-minimum-operating-conditions-v1"],
+    "priority": 0.7,
+    "effort": "Framework overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "institutional_competence",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.glasswing",
+    "title": "Project Glasswing and defensive deployment",
+    "url": "https://www.anthropic.com/glasswing",
+    "purpose": "Examine a defensive program’s stated scope and distinguish commitments from measured net security effects.",
+    "purposeGroup": "control",
+    "referenceIds": ["report.anthropic-glasswing-2026"],
+    "priority": 0.6,
+    "effort": "Program overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "technical_controllability",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.misalignment-reporting",
+    "title": "OpenAI’s model misalignment reporting framework",
+    "url": "https://openai.com/index/model-misalignment-reporting-framework/",
+    "purpose": "Compare proposed incident-reporting processes with the accountability mechanisms in your view.",
+    "purposeGroup": "governance",
+    "referenceIds": ["report.openai-misalignment-reporting-framework-2026"],
+    "priority": 0.6,
+    "effort": "Framework overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "institutional_competence",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.cyber-pacing",
+    "title": "Pacing development around cyber capabilities",
+    "url": "https://openai.com/index/pacing-model-development-cyber-capabilities/",
+    "purpose": "Inspect capability thresholds, safeguards and deployment decisions without assuming a plan demonstrates compliance.",
+    "purposeGroup": "capability",
+    "referenceIds": ["report.openai-cyber-critical-pacing-2026"],
+    "priority": 0.5,
+    "effort": "Detailed developer framework",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "capability_trajectory",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.multiagent",
+    "title": "Patterns and problems in multiagent systems",
+    "url": "https://www.anthropic.com/research/multiagent-systems",
+    "purpose": "Inspect experimental coordination and failure modes, preserving the conditions under which they were observed.",
+    "purposeGroup": "control",
+    "referenceIds": ["report.anthropic-multiagent-systems-2026"],
+    "priority": 0.5,
+    "effort": "Research overview; experiments take longer",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "technical_controllability",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.agent-misbehavior",
+    "title": "Why are AI agents lying, cheating and coordinating?",
+    "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
+    "purpose": "Compare an attributed interpretation of agent behavior with the primary evidence it discusses.",
+    "purposeGroup": "risk",
+    "referenceIds": ["report.bengio-agent-misbehavior-2026"],
+    "priority": 0.4,
+    "effort": "Commentary overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "risk_landscape",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.epoch-cyber",
+    "title": "Epoch’s cyber vulnerability data",
+    "url": "https://epoch.ai/data/cve",
+    "purpose": "Inspect measurement definitions and sampling before generalizing vulnerability counts into overall capability or risk.",
+    "purposeGroup": "capability",
+    "referenceIds": ["dataset.epoch-cyber-vulnerabilities-2026"],
+    "priority": 0.5,
+    "effort": "Dataset documentation first",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "capability_trajectory",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.alien-mind",
+    "title": "An Alien Mind",
+    "url": "https://openai.com/index/an-alien-mind/",
+    "purpose": "Explore a developer’s distinction between goal and value alignment, preserving its forecasts and incentives.",
+    "purposeGroup": "agency",
+    "referenceIds": ["report.openai-alien-mind-2026"],
+    "priority": 0.4,
+    "effort": "Leadership essay",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "human_agency",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.adaptive-worms",
+    "title": "AI Agents Enable Adaptive Computer Worms",
+    "url": "https://arxiv.org/abs/2606.03811v1",
+    "purpose": "Inspect a controlled cyber demonstration, its prerequisites and its limits as evidence of autonomous harm.",
+    "purposeGroup": "control",
+    "referenceIds": ["publication.adaptive-ai-worms-2026"],
+    "priority": 0.5,
+    "effort": "Abstract first; full technical paper",
+    "familiarity": "expert",
+    "conditions": [
+      {
+        "vector": "grounded_understanding",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.deepmind-institute",
+    "title": "The DeepMind Institute’s research remit",
+    "url": "https://institute.deepmind.com/essays/introducing-the-deepmind-institute/",
+    "purpose": "Inspect an institution’s proposed research role without treating its announcement as evidence of successful governance.",
+    "purposeGroup": "governance",
+    "referenceIds": ["report.deepmind-institute-introduction-2026"],
+    "priority": 0.3,
+    "effort": "Institute introduction",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "institutional_competence",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.hugging-face-report",
+    "title": "The Hugging Face incident and the road ahead",
+    "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+    "purpose": "Compare the developer’s incident account and safeguards with the narrower independent investigation.",
+    "purposeGroup": "risk",
+    "referenceIds": ["report.openai-hugging-face-road-ahead-2026"],
+    "priority": 0.5,
+    "effort": "Developer overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "risk_landscape",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.threat-intelligence",
+    "title": "Anthropic’s September 2026 threat-intelligence report",
+    "url": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+    "purpose": "Inspect reported malicious uses and response limits without equating human-directed misuse with autonomous misalignment.",
+    "purposeGroup": "risk",
+    "referenceIds": ["report.anthropic-threat-intelligence-september-2026"],
+    "priority": 0.5,
+    "effort": "Report overview",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "risk_landscape",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  }
+]

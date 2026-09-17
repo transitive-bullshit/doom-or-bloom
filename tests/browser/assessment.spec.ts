@@ -6,7 +6,7 @@ import {
   recordDisposition
 } from '../../lib/assessment/state'
 import { storageKey } from '../../lib/persistence/storage'
-import { limits } from '../../lib/assessment/schema'
+import { limits, versions } from '../../lib/assessment/schema'
 const root = 'What do you think AI means for our future—and why?'
 async function submit(page: import('@playwright/test').Page, text: string) {
   await page.getByLabel('Your answer', { exact: true }).fill(text)
@@ -15,59 +15,61 @@ async function submit(page: import('@playwright/test').Page, text: string) {
     page.getByRole('button', { name: /^Reading your answer/ })
   ).toHaveCount(0)
 }
-test('earlier assessments keep their content version through results and restart adopts the current draft', async ({
-  page
-}) => {
-  const earlier = createAssessment('earlier-browser', 'fixture-v1')
-  earlier.versions.content = '0.2.0-draft'
-  earlier.draft = 'My earlier unsent answer is intact.'
-  await page.addInitScript(
-    ({ key, assessment }) => {
-      if (!localStorage.getItem(key))
-        localStorage.setItem(
-          key,
-          JSON.stringify({ token: 'earlier-browser-token', assessment })
-        )
-    },
-    { key: storageKey, assessment: earlier }
-  )
-  await page.goto('/')
-  await expect(
-    page.getByText('Updated draft available', { exact: true })
-  ).toBeVisible()
-  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
-    earlier.draft
-  )
-  for (let i = 0; i < 3; i++)
-    await submit(page, `Earlier-version synthetic answer ${i}.`)
-  await page.getByRole('button', { name: 'View my result' }).click()
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
-  const saved = await page.evaluate(
-    (key) => JSON.parse(localStorage.getItem(key)!).assessment,
-    storageKey
-  )
-  expect(saved.versions.content).toBe('0.2.0-draft')
-  expect(saved.result.versions.content).toBe('0.2.0-draft')
-  expect(saved.answers[0].text).toBe('Earlier-version synthetic answer 0.')
-  await page.reload()
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page.getByRole('button', { name: 'Restart & clear' }).click()
-  await expect(
-    page.getByText('Updated draft available', { exact: true })
-  ).toHaveCount(0)
-  expect(
-    await page.evaluate(
-      (key) =>
-        JSON.parse(localStorage.getItem(key)!).assessment.versions.content,
+for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
+  test(`saved ${contentVersion} assessments preserve their content through results and restart adopts the current draft`, async ({
+    page
+  }) => {
+    const earlier = createAssessment('earlier-browser', 'fixture-v1')
+    earlier.versions.content = contentVersion
+    earlier.draft = 'My earlier unsent answer is intact.'
+    await page.addInitScript(
+      ({ key, assessment }) => {
+        if (!localStorage.getItem(key))
+          localStorage.setItem(
+            key,
+            JSON.stringify({ token: 'earlier-browser-token', assessment })
+          )
+      },
+      { key: storageKey, assessment: earlier }
+    )
+    await page.goto('/')
+    await expect(
+      page.getByText('Updated draft available', { exact: true })
+    ).toBeVisible()
+    await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+      earlier.draft
+    )
+    for (let i = 0; i < 3; i++)
+      await submit(page, `Earlier-version synthetic answer ${i}.`)
+    await page.getByRole('button', { name: 'View my result' }).click()
+    await expect(
+      page.getByRole('heading', { name: 'A map of your AI worldview' })
+    ).toBeVisible()
+    const saved = await page.evaluate(
+      (key) => JSON.parse(localStorage.getItem(key)!).assessment,
       storageKey
     )
-  ).toBe('0.3.0-draft')
-})
+    expect(saved.versions.content).toBe(contentVersion)
+    expect(saved.result.versions.content).toBe(contentVersion)
+    expect(saved.answers[0].text).toBe('Earlier-version synthetic answer 0.')
+    await page.reload()
+    await expect(
+      page.getByRole('heading', { name: 'A map of your AI worldview' })
+    ).toBeVisible()
+    await page.getByRole('button', { name: 'Restart', exact: true }).click()
+    await page.getByRole('button', { name: 'Restart & clear' }).click()
+    await expect(
+      page.getByText('Updated draft available', { exact: true })
+    ).toHaveCount(0)
+    expect(
+      await page.evaluate(
+        (key) =>
+          JSON.parse(localStorage.getItem(key)!).assessment.versions.content,
+        storageKey
+      )
+    ).toBe(versions.content)
+  })
+}
 test('long inserted answers remain intact across reload and use a soft submission limit', async ({
   page
 }) => {

@@ -8,7 +8,7 @@ import {
 test('representative bundle is validated but remains draft', () => {
   const bundle = loadBundle()
   expect(bundle.manifest.status).toBe('draft')
-  expect(bundle.references).toHaveLength(135)
+  expect(bundle.references).toHaveLength(138)
   expect(() =>
     validateBundle({
       ...bundle,
@@ -24,10 +24,20 @@ test('representative bundle is validated but remains draft', () => {
 })
 test('content releases are pinned and unsupported paths are rejected', () => {
   const previous = loadBundle('0.2.0-draft')
+  const expanded = loadBundle('0.3.0-draft')
   const current = loadBundle()
   expect(previous.references).toHaveLength(42)
+  expect(expanded.references).toHaveLength(135)
   expect(previous.manifest.contentVersion).toBe('0.2.0-draft')
-  expect(current.manifest.contentVersion).toBe('0.3.0-draft')
+  expect(current.manifest.contentVersion).toBe('0.4.0-draft')
+  expect(
+    expanded.references.some((r) => r.id === 'event.openai-hugging-face-2026')
+  ).toBe(false)
+  expect(
+    current.references.find((r) => r.id === 'event.openai-hugging-face-2026')
+  ).toEqual(
+    expect.objectContaining({ kind: 'event', date: '2026-07', status: 'draft' })
+  )
   expect(
     previous.references.some(
       (r) => r.id === 'publication.ai-as-normal-technology-2025'
@@ -41,10 +51,10 @@ test('content releases are pinned and unsupported paths are rejected', () => {
   expect(() => loadBundle('../manifest')).toThrow('unavailable')
   expect(() => loadBundle('0.1.0-draft')).toThrow('unavailable')
   expect(Object.keys(bundleHashes(current))).toContain(
-    'releases/0.3.0-draft/provenance.json'
+    'releases/0.4.0-draft/provenance.json'
   )
   expect(Object.keys(bundleHashes(current))).not.toContain(
-    'releases/0.3.0-draft/manifest.json'
+    'releases/0.4.0-draft/manifest.json'
   )
 })
 test('freeze requires complete hashes and graph rejects disconnected cycles and impossible conditions', () => {
@@ -107,6 +117,16 @@ test('alias boundaries avoid accidental matches and topic retrieval is not a men
   expect(retrieveReferences(bundle, 'unknown incident')).toHaveLength(0)
   expect(
     retrieveReferences(bundle, 'Hugging Face incident')
+      .filter((entry) => entry.matched)
+      .map((entry) => entry.reference.id)
+      .sort()
+  ).toEqual([
+    'event.openai-hugging-face-2026',
+    'report.metr-hugging-face-investigation-2026',
+    'report.openai-hugging-face-road-ahead-2026'
+  ])
+  expect(
+    retrieveReferences(loadBundle('0.3.0-draft'), 'Hugging Face incident')
       .filter((entry) => entry.matched)
       .map((entry) => entry.reference.id)
       .sort()

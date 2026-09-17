@@ -190,41 +190,43 @@ test('twelve sequential usable answers force a final result and stop further inf
   expect(assessmentSchema.safeParse(state).success).toBe(true)
 })
 
-test('an earlier saved assessment resumes with its own corpus and result version', async () => {
-  const bundle = loadBundle('0.2.0-draft')
-  const provider = createFixtureProvider()
-  let state = createAssessment('pinned-corpus')
-  state.versions.content = '0.2.0-draft'
-  for (let i = 0; i < 3; i++)
+for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
+  test(`saved ${contentVersion} assessment resumes with its own corpus and result version`, async () => {
+    const bundle = loadBundle(contentVersion)
+    const provider = createFixtureProvider()
+    let state = createAssessment('pinned-corpus')
+    state.versions.content = contentVersion
+    for (let i = 0; i < 3; i++)
+      state = (
+        await runAssessment(
+          {
+            requestId: `pinned-corpus-${i}`,
+            assessment: state,
+            operation: {
+              type: 'answer',
+              text: `Preserved earlier-version answer ${i}.`
+            },
+            debug: false
+          },
+          provider,
+          loadBundle(state.versions.content)
+        )
+      ).assessment
     state = (
       await runAssessment(
         {
-          requestId: `pinned-corpus-${i}`,
+          requestId: 'pinned-corpus-result',
           assessment: state,
-          operation: {
-            type: 'answer',
-            text: `Preserved earlier-version answer ${i}.`
-          },
+          operation: { type: 'project' },
           debug: false
         },
         provider,
-        loadBundle(state.versions.content)
+        bundle
       )
     ).assessment
-  state = (
-    await runAssessment(
-      {
-        requestId: 'pinned-corpus-result',
-        assessment: state,
-        operation: { type: 'project' },
-        debug: false
-      },
-      provider,
-      bundle
-    )
-  ).assessment
-  expect(state.versions.content).toBe('0.2.0-draft')
-  expect(state.result?.versions.content).toBe('0.2.0-draft')
-  expect(state.answers[0]?.text).toBe('Preserved earlier-version answer 0.')
-  expect(state.result?.insufficient).toBe(false)
-})
+    expect(state.versions.content).toBe(contentVersion)
+    expect(state.result?.versions.content).toBe(contentVersion)
+    expect(state.answers[0]?.text).toBe('Preserved earlier-version answer 0.')
+    expect(state.result?.insufficient).toBe(false)
+  })
+}
