@@ -6,6 +6,7 @@ import {
   recordDisposition
 } from '../../lib/assessment/state'
 import { storageKey } from '../../lib/persistence/storage'
+import { limits } from '../../lib/assessment/schema'
 const root = 'What do you think AI means for our future—and why?'
 async function submit(page: import('@playwright/test').Page, text: string) {
   await page.getByLabel('Your answer', { exact: true }).fill(text)
@@ -14,6 +15,60 @@ async function submit(page: import('@playwright/test').Page, text: string) {
     page.getByRole('button', { name: /^Reading your answer/ })
   ).toHaveCount(0)
 }
+test('long inserted answers remain intact across reload and use a soft submission limit', async ({
+  page
+}) => {
+  const submitted: string[] = []
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname !== '/api/assessment') return
+    const operation = request.postDataJSON().operation
+    if (operation.type === 'answer') submitted.push(operation.text)
+  })
+  await page.goto('/')
+  const answer = page.getByLabel('Your answer', { exact: true })
+  const continueButton = page.getByRole('button', { name: /^Continue/ })
+  const fullAnswer = 'AI could benefit people with safeguards. '.repeat(501)
+  expect(fullAnswer.length).toBeGreaterThan(limits.answerChars)
+  await answer.focus()
+  // Native insertion models dictation/paste and catches browser maxlength truncation.
+  await page.keyboard.insertText(fullAnswer)
+  await expect(answer).toHaveValue(fullAnswer)
+  expect(await answer.getAttribute('maxlength')).toBeNull()
+  await expect(answer).toBeEnabled()
+  await expect(answer).toHaveAttribute('aria-invalid', 'true')
+  await expect(continueButton).toBeDisabled()
+  await expect(page.locator('#answer-limit')).toHaveText(
+    `Your full answer is still here. Shorten it by ${(fullAnswer.length - limits.answerChars).toLocaleString('en-US')} characters to continue.`
+  )
+  await page.reload()
+  await expect(answer).toHaveValue(fullAnswer)
+  await expect(continueButton).toBeDisabled()
+  // Direct form submission must respect the same guard as the disabled button.
+  await page.locator('form').evaluate((form) => {
+    const element = form as HTMLFormElement
+    element.requestSubmit()
+  })
+  expect(submitted).toEqual([])
+  const accepted = 'a'.repeat(limits.answerChars)
+  await answer.fill(accepted)
+  await expect(page.locator('#answer-length')).toHaveText(
+    '20,000 / 20,000 characters'
+  )
+  await expect(answer).toHaveAttribute('aria-invalid', 'false')
+  await expect(page.locator('#answer-limit')).toHaveCount(0)
+  await expect(continueButton).toBeEnabled()
+  const response = page.waitForResponse('**/api/assessment')
+  await continueButton.click()
+  expect((await response).status()).toBe(200)
+  await expect(answer).toHaveValue('')
+  expect(submitted).toEqual([accepted])
+  expect(
+    await page.evaluate((key) => {
+      const saved = JSON.parse(localStorage.getItem(key)!)
+      return saved.assessment.answers[0].text
+    }, storageKey)
+  ).toBe(accepted)
+})
 test('three answers, draft resume, map, correction, downloads and restart', async ({
   page
 }) => {
@@ -197,7 +252,8 @@ test('restart discards in-flight work; provider failure preserves draft', async 
   ).toBe(0)
 })
 test('corrupt storage offers backup; unavailable storage permits ephemeral use', async ({
-  page
+  page,
+  baseURL
 }) => {
   await page.addInitScript(
     (key) => localStorage.setItem(key, '{bad'),
@@ -208,7 +264,10 @@ test('corrupt storage offers backup; unavailable storage permits ephemeral use',
     page.getByRole('button', { name: 'Download saved backup' })
   ).toBeVisible()
   await expect(page.getByLabel('Your answer', { exact: true })).toBeDisabled()
-  const ephemeral = await page.context().browser()!.newContext()
+  const ephemeral = await page
+    .context()
+    .browser()!
+    .newContext({ ignoreHTTPSErrors: true })
   const other = await ephemeral.newPage()
   await other.addInitScript(() => {
     Object.defineProperty(window, 'localStorage', {
@@ -217,7 +276,7 @@ test('corrupt storage offers backup; unavailable storage permits ephemeral use',
       }
     })
   })
-  await other.goto('http://localhost:3011/')
+  await other.goto(new URL('/', baseURL!).toString())
   await expect(
     other.getByText(
       'Browser storage is unavailable. Keep this tab open to preserve progress.'

@@ -1,6 +1,7 @@
 ## Conventions
 
 - use `pnpm`
+- Local development: use `pnpm dev` and the Portless URL it prints; `pnpm exec portless get doom-or-bloom` resolves it.
 - use modern typescript
 - no semicolons
 - oxfmt for formatting (`pnpm fix:format`)

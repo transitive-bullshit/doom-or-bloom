@@ -6,6 +6,7 @@ import { runAssessment } from '@/lib/server/engine'
 import { serverEnv } from '@/lib/server/env'
 import { createLiveProvider } from '@/lib/server/live-provider'
 import { createFixtureProvider } from '@/lib/server/provider'
+import { isSameOriginRequest } from '@/lib/server/request-origin'
 import {
   limitAssessment,
   LimitError,
@@ -16,8 +17,7 @@ export const runtime = 'nodejs'
 export async function POST(request: Request) {
   const headers = { 'Cache-Control': 'no-store' }
   try {
-    const origin = request.headers.get('origin')
-    if (origin && origin !== new URL(request.url).origin)
+    if (!isSameOriginRequest(request))
       return Response.json(
         { error: 'Use the local assessment page to submit answers.' },
         { status: 403, headers }

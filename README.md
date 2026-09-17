@@ -13,10 +13,10 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open the local URL printed by the development server. To use a direct port instead of the included local proxy:
+Use [Portless](https://portless.sh) for local development URLs. `pnpm dev` runs Next through Portless at `doom-or-bloom.localhost`; open the URL Portless prints. It reuses your proxy's protocol and port, assigns the upstream port automatically, and prefixes the hostname in linked Git worktrees. To resolve the current URL:
 
 ```sh
-pnpm exec next dev -p 3000
+pnpm exec portless get doom-or-bloom
 ```
 
 Create `.env.local` using [.env.example](.env.example), preserving any existing credentials. Real assessments require `TYPESAFE_API_KEY`; it stays on the server. `TYPESAFE_MODEL` defaults to the pinned `jev-1.13.0`. The app sends usable answer context to TypeSafe; it has no assessment database or account system.
@@ -29,7 +29,9 @@ Create `.env.local` using [.env.example](.env.example), preserving any existing 
 
 ## Persistence and recovery
 
-Progress and drafts live in one browser-local record. Reload resumes the same prompt. A conflicting tab pauses until it loads the newer record; corrupt or incompatible data can be exported before restarting. If storage is unavailable, progress lasts only while the tab remains open.
+Progress and drafts live in one browser-local record per origin. Reload resumes the same prompt. Use the same Portless URL across server restarts; progress saved at an earlier direct-port URL remains on that origin. A conflicting tab pauses until it loads the newer record; corrupt or incompatible data can be exported before restarting. If storage is unavailable, progress lasts only while the tab remains open.
+
+Answers may contain up to 20,000 characters when submitted. The text box has no hard input cap: longer typing, dictation and pasted drafts stay intact, including after reload when browser storage is available. A visible counter and over-limit message explain how much to shorten; Continue stays disabled until the draft fits. Neither the browser nor the server silently truncates an answer.
 
 An unusable or unclear reply gets bounded authored recovery. Two confident consecutive non-answers trigger a one-time, dismissible paperclip pause; relevant humor and honest uncertainty remain usable. A prompt permits the original semantic submission plus two recovery submissions. Failed requests and navigation do not consume that allowance. Uncertain network retries reuse their request ID; process restarts do not guarantee exactly-once billing.
 
@@ -44,7 +46,7 @@ pnpm exec playwright install chromium
 pnpm check:browser
 ```
 
-Ordinary checks need no external credentials and make no inference calls. Browser regressions launch a separate fixture server on port 3011; stop another Next development server in this checkout first because Next holds a development lock. Takumi is kept external to the server bundle so its native PNG backend loads correctly.
+Ordinary checks need no external credentials and make no inference calls. Browser regressions launch through Portless as `browser.doom-or-bloom.localhost`; intercepted analytics checks use `analytics.doom-or-bloom.localhost`. Both resolve the existing proxy configuration automatically. Start your Portless proxy once using its normal local setup. Stop another Next development server in this checkout first because two dev servers share a development lock. Takumi is kept external to the server bundle so its native PNG backend loads correctly.
 
 Opt-in live commands use only their synthetic inputs and read `.env.local` without printing credentials:
 

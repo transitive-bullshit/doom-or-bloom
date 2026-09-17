@@ -26,7 +26,7 @@ export const limits = {
   prompts: 12,
   warning: 10,
   recovery: 3,
-  answerChars: 2000,
+  answerChars: 20_000,
   requestBytes: 8_000_000,
   questions: 96,
   referenceCandidates: 12,
@@ -308,7 +308,8 @@ export const assessmentSchema = z.strictObject({
       ])
       .nullable()
   }),
-  draft: z.string().max(limits.answerChars),
+  // Unsubmitted drafts must survive dictation, paste and reload without truncation.
+  draft: z.string(),
   result: resultSchema.nullable(),
   eventMarkers: z.array(z.string().max(200)).max(1000)
 })

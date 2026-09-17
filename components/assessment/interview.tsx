@@ -26,7 +26,8 @@ import {
   Field,
   FieldGroup,
   FieldLabel,
-  FieldDescription
+  FieldDescription,
+  FieldError
 } from '@/components/ui/field'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
@@ -273,6 +274,8 @@ export function Interview({
   const guidance = recoveryCopy[p.promptId] ?? recoveryCopy.root!
   const paused = state.status === 'paused'
   const allowed = canSubmit(state) && !busy && !conflict && !rawBackup
+  const excessCharacters = Math.max(0, state.draft.length - limits.answerChars)
+  const answerTooLong = excessCharacters > 0
   return (
     <section className='relative mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-6 px-6 py-12'>
       {state.recovery.paperclipActive && (
@@ -377,12 +380,15 @@ export function Interview({
             <form
               onSubmit={(event) => {
                 event.preventDefault()
-                if (allowed && state.draft.trim())
+                if (allowed && !answerTooLong && state.draft.trim())
                   void act({ type: 'answer', text: state.draft.trim() })
               }}
             >
               <FieldGroup>
-                <Field data-invalid={Boolean(error)} data-disabled={!allowed}>
+                <Field
+                  data-invalid={Boolean(error) || answerTooLong}
+                  data-disabled={!allowed}
+                >
                   <FieldLabel htmlFor='answer' className='sr-only'>
                     Your answer
                   </FieldLabel>
@@ -390,11 +396,14 @@ export function Interview({
                     id='answer'
                     value={state.draft}
                     placeholder='A few sentences is plenty. Uncertainty is welcome.'
-                    maxLength={limits.answerChars}
                     disabled={!allowed}
-                    aria-invalid={Boolean(error)}
-                    aria-describedby='answer-help'
-                    className='min-h-36'
+                    aria-invalid={Boolean(error) || answerTooLong}
+                    aria-describedby={
+                      answerTooLong
+                        ? 'answer-help answer-length answer-limit'
+                        : 'answer-help answer-length'
+                    }
+                    className='min-h-36 max-h-96'
                     onChange={(event) => {
                       try {
                         persist({ ...state, draft: event.target.value })
@@ -404,10 +413,20 @@ export function Interview({
                     }}
                   />
                   <FieldDescription id='answer-help'>
-                    {state.draft.length > 1700
-                      ? `${limits.answerChars - state.draft.length} characters remaining`
-                      : 'No specialist knowledge needed. Tell us what you think.'}
+                    No specialist knowledge needed. Tell us what you think.
                   </FieldDescription>
+                  <FieldDescription id='answer-length'>
+                    {state.draft.length.toLocaleString('en-US')} /{' '}
+                    {limits.answerChars.toLocaleString('en-US')} characters
+                  </FieldDescription>
+                  {answerTooLong && (
+                    <FieldError id='answer-limit'>
+                      Your full answer is still here. Shorten it by{' '}
+                      {excessCharacters.toLocaleString('en-US')}{' '}
+                      {excessCharacters === 1 ? 'character' : 'characters'} to
+                      continue.
+                    </FieldError>
+                  )}
                 </Field>
                 <Field>
                   <div className='flex flex-wrap gap-3'>
@@ -423,7 +442,9 @@ export function Interview({
                     {!paused && (
                       <Button
                         type='submit'
-                        disabled={!allowed || !state.draft.trim()}
+                        disabled={
+                          !allowed || answerTooLong || !state.draft.trim()
+                        }
                       >
                         {busy ? 'Reading your answer…' : 'Continue'}{' '}
                         <span aria-hidden='true'>→</span>

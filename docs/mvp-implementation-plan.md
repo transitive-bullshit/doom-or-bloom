@@ -28,6 +28,7 @@ If multiple agents are assigned later, use the ownership boundaries in section 1
 ### Confirmed
 
 - Use Next.js App Router, modern TypeScript, pnpm, oxfmt, oxlint, and the existing CI skeleton.
+- Local development URLs use Portless. Start the app with `pnpm dev`, resolve its URL with `pnpm exec portless get doom-or-bloom`, and reuse the user's existing proxy configuration. Browser checks also use named routes; linked worktrees retain Portless's branch prefix.
 - Use shadcn/ui for recurring controls and next-themes for light/dark mode. Preserve the existing neutral `new-york` configuration unless deliberately changed.
 - Include an explicit debug-mode boolean that reveals clearly labeled Jev and control-flow details in the local UI, without changing assessment behavior.
 - Handle off-topic/nonsense replies as an expected recovery path, with bounded re-asks and a one-time paperclip interlude. Canonical dispositions and limits live in [ASSESSMENT.md](ASSESSMENT.md#answer-relevance-and-bounded-recovery); participant-facing behavior lives in [PRODUCT.md](PRODUCT.md#answer-recovery-and-paperclip-interlude).
@@ -254,7 +255,7 @@ Instantiate/validate the live provider when used, so builds, static pages, and f
 
 ### Bounded local operation
 
-Set explicit server-side limits for answer length, total transcript size, request bytes, reference candidates, Jev questions per stage, concurrent operations, and inference attempts. Determine safe values in the first live feasibility check and keep them in one tested config. A reasonable initial product draft is 2,000 characters per answer; use conservative 12-prompt/24-reference bounds and verify them locally without paid stress requests. Return actionable size errors and preserve drafts.
+Set explicit server-side limits for submitted answer length, total transcript size, request bytes, reference candidates, Jev questions per stage, concurrent operations, and inference attempts. Keep values in one tested config and verify them locally with fixtures, without paid pressure tests. The current answer submission cap is 20,000 characters, with conservative 12-prompt/24-reference bounds. Never apply an input `maxlength` or truncate dictation/paste: retain longer editable drafts and persist them intact, display the count and excess, and disable Continue while over the soft cap. Do not infer on an over-limit draft or consume a recovery attempt. Return actionable size errors and preserve drafts when provider context is exceeded.
 
 Include recovery attempts in storage, request-size, and inference-cost limits: rejected submissions still cost a stage-A evaluation, even though they add no scoring evidence. Keep prior rejected text client-local; send bounded counter/disposition metadata when validating subsequent operations. Rate limits apply across explicit resume/skip actions as well as normal submissions; neither a recovery button nor the Easter egg resets them.
 
@@ -534,3 +535,19 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - Required-source mappings now cover 48 of 114 URLs across active or separate draft snapshots. The current demo remains 42 references; separate drafts total 61. No new asset is marked reviewed or activated, and no release was frozen.
 - Formatting and content validation pass: all 25 new snapshots have seven required sections, valid source-release dependencies and existing related IDs; the complete intake and development context also validate. Runtime code and the previously passing isolated build are unchanged.
 - Previous checkpoint: `274113f`. Full required-source incorporation, editorial review and held-out semantics remain open. No paid inference or real telemetry was used.
+
+### 2026-09-17 — Named local development URLs / Codex
+
+- [x] Applied Travis's Portless requirement to the running demo, `pnpm dev`, setup guidance and agent instructions. The main route is `doom-or-bloom.localhost`; its currently configured proxy URL is `http://doom-or-bloom.localhost:1355`. Reused the existing proxy and its other project routes.
+- Stopped only the previously owned direct-port demo process and restarted with `pnpm dev`, debug enabled and analytics off. Portless assigns the upstream port automatically. The home page returns HTTP 200 with `X-Portless: 1`; opening it makes no Jev request. Saved browser progress remains tied to its original origin.
+- [x] Browser and intercepted analytics configurations resolve `browser.doom-or-bloom` and `analytics.doom-or-bloom` through the installed `portless get` command, including protocol, proxy port and worktree prefix. Removed fixed test ports and origin assumptions; local test contexts support either configured HTTP or HTTPS. Graceful shutdown stops the detached Next child and releases the development lock.
+- [x] Both assessment and share-card endpoints accept the exact browser-facing `PORTLESS_URL` supplied by the development process, preserving the origin guard through the proxy. Forwarded headers cannot choose an allowed origin; production ignores development proxy configuration. Five local regression tests cover these boundaries, and the full browser flow verifies both endpoints through Portless.
+- `pnpm test` passes formatting/lint/types, 59 unit tests and content validation; 12 fixture browser regressions and two intercepted analytics checks pass. The isolated production build passes without `.env.local`. The main named demo was restarted and verified HTTP 200 after checks. Previous checkpoint: `778f6fd`. Required corpus review, freeze and held-out semantics remain open.
+
+### 2026-09-17 — Preserve long dictated answers / Codex
+
+- [x] Increased the shared submitted-answer limit from 2,000 to 20,000 characters. Removed the textarea's hard `maxlength`; dictated, pasted and typed input remains intact and editable above the submission limit.
+- [x] Show a visible count and an accessible over-limit message with the amount to shorten. Disable Continue and guard form submission while over the limit, without consuming an inference request or recovery attempt. Keep the long field scrollable so controls remain reachable.
+- [x] Removed the character bound from unsubmitted local drafts so they survive reload without truncation or an invalid-storage warning. Submitted answer, excerpt and interaction-history schemas retain the shared 20,000-character bound; unsubmitted drafts remain outside server/inference context.
+- [x] Added browser coverage for native insertion beyond the limit, complete draft resume, blocked submission and an intact 20,000-character submission through the real fixture endpoint. Added storage/schema coverage for larger drafts and exact submitted-answer boundaries. Updated product, assessment, TypeSafe and setup guidance.
+- Verification is shared with the named-URL checkpoint above. The demo uses live assessment mode with debug enabled and analytics off; checks used fixtures or a missing-key guard, with no paid Jev requests or real telemetry. Larger cumulative transcripts may still reach provider context limits; the existing bounded failure path preserves the draft without silently discarding evidence.

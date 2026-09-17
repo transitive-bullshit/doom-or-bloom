@@ -11,7 +11,8 @@ import {
 import { storageKey } from '../../lib/persistence/storage'
 
 test('actual PostHog SDK payloads exclude answers and URL canaries; resume does not duplicate start', async ({
-  page
+  page,
+  baseURL
 }) => {
   const captured: string[] = []
   const external: string[] = []
@@ -31,7 +32,7 @@ test('actual PostHog SDK payloads exclude answers and URL canaries; resume does 
   await page.route('**/*', async (route) => {
     const request = route.request()
     const url = new URL(request.url())
-    if (url.origin === 'http://localhost:3041') return route.continue()
+    if (url.origin === new URL(baseURL!).origin) return route.continue()
     external.push(url.hostname)
     const body = request.postDataBuffer()
     if (url.hostname === 'posthog.invalid' && body) {
@@ -110,9 +111,14 @@ test('actual PostHog SDK payloads exclude answers and URL canaries; resume does 
   ).toBe(true)
 })
 test('missing live key preserves the draft and does not consume a semantic attempt', async ({
-  page
+  page,
+  baseURL
 }) => {
-  await page.route('https://**', (route) => route.abort())
+  await page.route('**/*', (route) =>
+    new URL(route.request().url()).origin === new URL(baseURL!).origin
+      ? route.continue()
+      : route.abort()
+  )
   await page.goto('/')
   await page
     .getByLabel('Your answer', { exact: true })

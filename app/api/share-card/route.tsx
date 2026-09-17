@@ -1,12 +1,12 @@
 import { render } from 'takumi-js'
 import { cardSchema, ShareCard } from '@/lib/sharing/card'
 import { readBoundedJson, limitAssessment } from '@/lib/server/limits'
+import { isSameOriginRequest } from '@/lib/server/request-origin'
 export const runtime = 'nodejs'
 export async function POST(request: Request) {
   const headers = { 'Cache-Control': 'no-store' }
   try {
-    const origin = request.headers.get('origin')
-    if (origin && origin !== new URL(request.url).origin)
+    if (!isSameOriginRequest(request))
       return Response.json(
         { error: 'Use the assessment page to download a card.' },
         { status: 403, headers }

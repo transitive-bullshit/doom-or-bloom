@@ -1,12 +1,22 @@
 import { defineConfig, devices } from '@playwright/test'
+import { portlessUrl } from './tests/portless'
+
+const baseURL = portlessUrl('analytics.doom-or-bloom')
 export default defineConfig({
   testDir: './tests/analytics',
   workers: 1,
-  use: { baseURL: 'http://localhost:3041', ...devices['Desktop Chrome'] },
+  use: {
+    baseURL,
+    ignoreHTTPSErrors: true,
+    ...devices['Desktop Chrome']
+  },
   webServer: {
-    command: 'pnpm exec next dev -p 3041',
-    url: 'http://localhost:3041',
+    command:
+      'pnpm exec portless run --name analytics.doom-or-bloom next dev --hostname 127.0.0.1',
+    url: baseURL,
+    ignoreHTTPSErrors: true,
     reuseExistingServer: false,
+    gracefulShutdown: { signal: 'SIGTERM', timeout: 5000 },
     env: {
       ASSESSMENT_PROVIDER: 'live',
       TYPESAFE_API_KEY: '',
