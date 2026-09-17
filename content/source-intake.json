@@ -1308,13 +1308,13 @@
         "notion-context: Information Pollution"
       ],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
-      "publishedAt": null,
+      "status": "draft",
+      "genre": "International research synthesis",
+      "publishedAt": "2026-02-03",
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["report.international-ai-safety-2026"],
+      "notes": "Published 2026-02-03; DSIT 2026/001. Read scope: executive summary, remit and contributor/disclaimer sections. No later revision identified. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1332,13 +1332,13 @@
         "notion-context: Biological Risks"
       ],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
-      "publishedAt": null,
+      "status": "draft",
+      "genre": "Government evaluation synthesis",
+      "publishedAt": "2025-12-18",
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["report.uk-aisi-frontier-trends-2025"],
+      "notes": "Released 2025-12-18, with evidence through October 2025. Read scope: summary and limitations; release date verified separately. Explicitly dated contextual evidence, outside the recent 90-day window. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1353,13 +1353,13 @@
       "originalUrls": ["https://metr.org/time-horizons/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
-      "publishedAt": null,
-      "updatedAt": null,
+      "status": "draft",
+      "genre": "Mutable evaluation dashboard and methodology",
+      "publishedAt": "2026-02-06",
+      "updatedAt": "2026-05-08",
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["dataset.metr-time-horizons-1-1"],
+      "notes": "Page live 2026-02-06; inspected update 2026-05-08, TH 1.1. Read scope: methodology/changelog. Access date is not a fresh evaluation date; recheck before using current capability figures. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1376,13 +1376,13 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
-      "publishedAt": null,
+      "status": "draft",
+      "genre": "Entity-based frontier risk assessment",
+      "publishedAt": "2026-05-19",
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["report.metr-frontier-risk-feb-mar-2026"],
+      "notes": "Published 2026-05-19; assessment window 2026-02-16–2026-03-16. Read scope: summary, access/redaction notes and assessment passages. Later incidents have separate entries. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1399,13 +1399,13 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
+      "status": "draft",
+      "genre": "Annual statistical synthesis",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["report.stanford-ai-index-2026"],
+      "notes": "2026 edition; exact publication day or later revision unverified. Read scope: report landing/highlights. Check the underlying chapter and data vintage before using numerical claims. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1420,13 +1420,13 @@
       "originalUrls": ["https://epoch.ai/trends"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
+      "status": "draft",
+      "genre": "Mutable quantitative dashboard",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["dataset.epoch-ai-trends-2026-02"],
+      "notes": "Original publication date unverified; displayed update 2026-02-05. Read scope: dashboard estimates/remit and organizational disclosures. Any copied number needs its original definition and interval. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1441,13 +1441,13 @@
       "originalUrls": ["https://epoch.ai/topics/scaling"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
+      "status": "draft",
+      "genre": "Mutable discovery index",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["hub.epoch-ai-scaling-2026-09"],
+      "notes": "Hub original/update date not established; child dates are version anchors, not a common publication date. Read scope: index descriptions. Epoch’s separate disclosure entry records relevant organizational context. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1464,13 +1464,13 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
-      "publishedAt": null,
+      "status": "draft",
+      "genre": "Conditional scaling forecast",
+      "publishedAt": "2025-09-16",
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["report.epoch-ai-2030-2025"],
+      "notes": "Published 2025-09-16; revision not identified. Read scope: summary and scenario assumptions. Older required forecasting context; the commissioning relationship neither verifies nor disproves the conclusions. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1485,13 +1485,13 @@
       "originalUrls": ["https://epoch.ai/about/transparency"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": null,
+      "status": "draft",
+      "genre": "Mutable organizational self-disclosure",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["entity-disclosure.epoch-ai-transparency-2026-09"],
+      "notes": "Inspected 2026-09-17, including dated 2026 entries. Read scope: disclosure page. This publication documents actor metadata, not capability measurements; access date must not become its publication date. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1506,13 +1506,16 @@
       "originalUrls": ["https://www.anthropic.com/system-cards"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": "Model-card hub with pinned developer disclosure",
+      "status": "draft",
+      "genre": "Developer disclosure index",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "Pinned September 1 Fable/Mythos 5.1 card selected sections inspected; induced behavior, unpublished metrics and inconsistent version attribution preserved. Human editorial review remains pending.",
+      "referenceIds": [
+        "hub.anthropic-system-cards-2026-09",
+        "report.anthropic-fable-mythos-5-1-system-card-2026"
+      ],
+      "notes": "Hub publication/update date unknown. Read scope: index plus selected child research in required-current-system-cards.md §1. Index availability is not independent assurance. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1557,13 +1560,16 @@
       "originalUrls": ["https://deploymentsafety.openai.com/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": "Model-card hub with pinned developer disclosure",
+      "status": "draft",
+      "genre": "Developer evaluation/disclosure index",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "Pinned Astra card published September 3 and revised September 9; simulated attacks, near-final checkpoint and short-window external evaluation limitations preserved. Human editorial review remains pending.",
+      "referenceIds": [
+        "hub.openai-deployment-safety-2026-09",
+        "report.openai-astra-system-card-2026"
+      ],
+      "notes": "Hub publication/update date unknown. Read scope: index plus selected child research in required-current-system-cards.md §2. Do not claim all listed evaluations were inspected. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1583,13 +1589,16 @@
       "originalUrls": ["https://deepmind.google/models/model-cards/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "research_draft",
-      "genre": "Model-card hub with pinned developer disclosure",
+      "status": "draft",
+      "genre": "Developer documentation index",
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "Pinned September 2026 Gemini 3.8 Flash card plus methodology and inherited 3.7 card; inherited frontier determination is not a new full 3.8 assessment. Human editorial review remains pending.",
+      "referenceIds": [
+        "hub.deepmind-model-cards-2026-09",
+        "report.deepmind-gemini-3-8-flash-card-2026"
+      ],
+      "notes": "Hub publication/update date unknown. Read scope: index plus selected child research in required-current-system-cards.md §3. Preserve each child’s modality and update date. Scoped snapshot draft; no human review. Required URL remains distinct from any pinned child.",
       "researchRecords": [
         {
           "path": "docs/research/required-notion-current-canon.md",
@@ -1667,6 +1676,11 @@
           "path": "docs/research/required-notion-current-canon.md",
           "heading": "19. Stanford AI Economic Indicators",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-workforce-evidence.md",
+          "heading": "1. source.required-074 — AI Economic Indicators",
+          "scope": "Targeted primary review of the rolling balanced-ADP employment sample, GDP-B estimand and indicator/report vintages. See this research record for exact methods, disclosures and limits; the hub is distinct from its underlying papers."
         }
       ]
     },
@@ -1690,6 +1704,11 @@
           "path": "docs/research/required-notion-current-canon.md",
           "heading": "20. Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-workforce-evidence.md",
+          "heading": "2. source.required-075 — Canaries in the Coal Mine?",
+          "scope": "Targeted primary methods review of the August 2026 Canaries revision. Preserves descriptive hiring/employment estimands, exposure proxies, private payroll sampling, pretrends and disclosures; the 19% shortfall is not a national unemployment estimate."
         }
       ]
     },
@@ -1735,6 +1754,11 @@
           "path": "docs/research/required-notion-current-canon.md",
           "heading": "22. Navigating the Jagged Technological Frontier",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/required-workforce-evidence.md",
+          "heading": "3. source.required-077 — Navigating the Jagged Technological Frontier",
+          "scope": "Targeted review of accessible related Organization Science methods and publication history. Preserves the April 2023 model vintage, consultant sample and randomized task conditions; exact HBS 24-013 working-paper methods remain blocked rather than silently replaced."
         }
       ]
     },
