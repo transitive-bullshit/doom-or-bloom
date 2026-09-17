@@ -8,17 +8,17 @@ Required URL mappings, obtained reading scope, human review and compatible-relea
 
 Intake as of 2026-09-17; current demo content release 0.3.0-draft.
 
-The registry contains 114 required and 247 optional candidate URLs. Mappings exist for 111 required URLs and 1 of the optional candidates. 114 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
+The registry contains 114 required and 247 optional candidate URLs. Mappings exist for 111 required URLs and 1 of the optional candidates. 117 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
 
-There are 169 distinct snapshot identities across current and authoring populations. 93 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
+There are 172 distinct snapshot identities across current and authoring populations. 93 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
 
 Reviewed counts reflect stored asset metadata, including earlier representative approvals. They do not establish current required-URL review or a frozen release; the current manifest remains draft.
 
 | Population | Total | Entity | Event | Publication | Asset metadata reviewed |
 | --- | --- | --- | --- | --- | --- |
 | Current demo | 135 | 8 | 8 | 119 | 6 |
-| Separate drafts | 127 | 0 | 0 | 127 | 0 |
-| Distinct required-mapped snapshots | 114 | 1 | 0 | 113 | 1 |
+| Separate drafts | 130 | 0 | 3 | 127 | 0 |
+| Distinct required-mapped snapshots | 117 | 1 | 3 | 113 | 1 |
 
 | Intake population | Pending | Research draft | Partial | Blocked | Draft | Reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -69,12 +69,12 @@ Every required original URL remains linked below. Research links identify the ex
 | --- | --- | --- | --- |
 | [source.required-001](https://x.com/hilbertspaess/status/2097476196791709843) | draft | [Jacob Coxon’s resignation announcement and safety criticism](../../content/releases/0.3.0-draft/references/social.coxon-resignation-2026.md) (demo) | [1. Jacob Coxon's resignation and safety criticism](../../docs/research/required-social-and-video.md) |
 | [source.required-002](https://openai.com/index/an-alien-mind) | draft | [An Alien Mind](../../content/releases/0.3.0-draft/references/report.openai-alien-mind-2026.md) (demo) | [1. report.openai-alien-mind-2026](../../docs/research/required-recent-reports.md) |
-| [source.required-003](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation) | draft | [Brief independent investigation of agents’ behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident](../../content/releases/0.3.0-draft/references/report.metr-hugging-face-investigation-2026.md) (demo) | [2. report.metr-hugging-face-investigation-2026](../../docs/research/required-recent-reports.md) |
+| [source.required-003](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation) | draft | [Brief independent investigation of agents’ behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident](../../content/releases/0.3.0-draft/references/report.metr-hugging-face-investigation-2026.md) (demo)<br>[OpenAI–Hugging Face intrusion during internal evaluations](../../content/drafts/0.3.0-draft/references/event.openai-hugging-face-2026.md) | [2. report.metr-hugging-face-investigation-2026](../../docs/research/required-recent-reports.md)<br>[1. event.openai-hugging-face-2026](../../docs/research/contemporary-event-authoring.md) |
 | [source.required-004](https://collusion.wiki/) | draft | [Discovery of a new OpenAI agent message board](../../content/releases/0.3.0-draft/references/report.collusion-wiki-investigation-2026.md) (demo) | [3. report.collusion-wiki-investigation-2026](../../docs/research/required-recent-reports.md) |
 | [source.required-005](https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04) | blocked | No snapshot | [4. Required Reuters German-website incident article — verification blocked](../../docs/research/required-recent-reports.md) |
 | [source.required-006](https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating) | draft | [Why are AI agents lying, cheating and coordinating?](../../content/releases/0.3.0-draft/references/report.bengio-agent-misbehavior-2026.md) (demo) | [5. report.bengio-agent-misbehavior-2026](../../docs/research/required-recent-reports.md) |
 | [source.required-007](https://x.com/ilyasut/status/2094881278621253755) | draft | [Ilya Sutskever’s edited neocloud defense warning](../../content/releases/0.3.0-draft/references/social.sutskever-neocloud-defense-2026.md) (demo) | [2. Ilya Sutskever's neocloud cybersecurity warning](../../docs/research/required-social-and-video.md) |
-| [source.required-008](https://www.anthropic.com/threat-intelligence-report-september-2026) | draft | [Detecting and countering misuse of AI: September 2026](../../content/releases/0.3.0-draft/references/report.anthropic-threat-intelligence-september-2026.md) (demo) | [6. report.anthropic-threat-intelligence-september-2026](../../docs/research/required-recent-reports.md) |
+| [source.required-008](https://www.anthropic.com/threat-intelligence-report-september-2026) | draft | [Detecting and countering misuse of AI: September 2026](../../content/releases/0.3.0-draft/references/report.anthropic-threat-intelligence-september-2026.md) (demo)<br>[GTG-15001 deceptive dating-app operation](../../content/drafts/0.3.0-draft/references/event.anthropic-gtg-15001-dating-app-misuse-2026.md) | [6. report.anthropic-threat-intelligence-september-2026](../../docs/research/required-recent-reports.md)<br>[3. event.anthropic-gtg-15001-dating-app-misuse-2026](../../docs/research/contemporary-event-authoring.md) |
 | [source.required-009](https://www.noahpinion.blog/p/heres-how-were-all-going-to-die) | draft | [Here’s how we’re all going to die](../../content/releases/0.3.0-draft/references/publication.noah-biological-misuse-2026.md) (demo) | [1. Here’s how we’re all going to die](../../docs/research/required-essays-and-scenarios.md) |
 | [source.required-010](https://x.com/jachiam0/status/2094660737155358865) | draft | [Joshua Achiam’s qualified rogue-agent ecology argument](../../content/releases/0.3.0-draft/references/social.achiam-rogue-ai-ecology-2026.md) (demo) | [3. Joshua Achiam's rogue-agent ecology argument](../../docs/research/required-social-and-video.md) |
 | [source.required-011](https://blog.gregbrockman.com/the-defenders-window) | draft | [The Defender’s Window](../../content/releases/0.3.0-draft/references/publication.defenders-window-2026.md) (demo) | [2. The Defender’s Window](../../docs/research/required-essays-and-scenarios.md) |
@@ -99,7 +99,7 @@ Every required original URL remains linked below. Research links identify the ex
 | [source.required-030](https://x.com/cgtwts/status/2094674387987468502) | draft | [CG’s amplification of an abliteration-model advertisement](../../content/releases/0.3.0-draft/references/social.cg-abliterated-cyber-model-2026.md) (demo) | [7. CG's amplification of an abliteration-model advertisement](../../docs/research/required-social-and-video.md) |
 | [source.required-031](https://www.youtube.com/watch?v=PrSf7IOYu-I) | draft | [Dwarkesh Patel’s recursive self-improvement panel: selected segments](../../content/releases/0.3.0-draft/references/video.dwarkesh-rsi-panel-2026.md) (demo) | [8. Dwarkesh Patel's recursive self-improvement panel](../../docs/research/required-social-and-video.md) |
 | [source.required-032](https://www.youtube.com/watch?v=98syxABbUPk) | draft | [Tucker Carlson’s Nate Soares interview: selected claim segments](../../content/releases/0.3.0-draft/references/video.carlson-soares-ai-risk-2026.md) (demo) | [9. Tucker Carlson's Nate Soares interview](../../docs/research/required-social-and-video.md) |
-| [source.required-033](https://www.anthropic.com/research/multiagent-systems) | draft | [Patterns and problems in emerging multiagent systems](../../content/releases/0.3.0-draft/references/report.anthropic-multiagent-systems-2026.md) (demo) | [11. report.anthropic-multiagent-systems-2026](../../docs/research/required-recent-reports.md) |
+| [source.required-033](https://www.anthropic.com/research/multiagent-systems) | draft | [Patterns and problems in emerging multiagent systems](../../content/releases/0.3.0-draft/references/report.anthropic-multiagent-systems-2026.md) (demo)<br>[Conflicting migration agents in a controlled experiment](../../content/drafts/0.3.0-draft/references/event.anthropic-migration-conflict-demonstration-2026.md) | [11. report.anthropic-multiagent-systems-2026](../../docs/research/required-recent-reports.md)<br>[2. event.anthropic-migration-conflict-demonstration-2026](../../docs/research/contemporary-event-authoring.md) |
 | [source.required-034](https://a16z.com/ai-will-save-the-world) | draft | [Why AI Will Save the World](../../content/releases/0.3.0-draft/references/publication.ai-save-world-2023.md) (demo) | [15. Why AI Will Save the World](../../docs/research/required-essays-and-scenarios.md) |
 | [source.required-035](https://openai.com/daybreak) | draft | [Daybreak](../../content/releases/0.3.0-draft/references/report.openai-daybreak-snapshot-2026.md) (demo) | [9. report.openai-daybreak-snapshot-2026](../../docs/research/required-recent-reports.md) |
 | [source.required-036](https://www.anthropic.com/glasswing) | draft | [Project Glasswing: Securing critical software for the AI era](../../content/releases/0.3.0-draft/references/report.anthropic-glasswing-2026.md) (demo) | [10. report.anthropic-glasswing-2026](../../docs/research/required-recent-reports.md) |
@@ -116,7 +116,7 @@ Every required original URL remains linked below. Research links identify the ex
 | [source.required-047](https://www.pacingthefrontier.com/) | draft | [Pacing the Frontier](../../content/releases/0.3.0-draft/references/publication.pacing-frontier-2026.md) (demo) | [22. Pacing the Frontier](../../docs/research/required-essays-and-scenarios.md) |
 | [source.required-048](https://www.conspicuouscognition.com/p/most-questions-about-ai-arent-about) | draft | [Most Questions About AI Aren’t About AI](../../content/releases/0.3.0-draft/references/publication.most-questions-ai-2026.md) (demo) | [23. Most Questions About AI Aren’t About AI](../../docs/research/required-essays-and-scenarios.md) |
 | [source.required-049](https://epoch.ai/data/cve?ref=labnotes.org&view=graph) | partial | [Cyber Vulnerabilities](../../content/releases/0.3.0-draft/references/dataset.epoch-cyber-vulnerabilities-2026.md) (demo) | [16. dataset.epoch-cyber-vulnerabilities-2026](../../docs/research/required-recent-reports.md) |
-| [source.required-050](https://openai.com/index/hugging-face-incident-and-the-road-ahead) | draft | [The Hugging Face incident and the road ahead](../../content/releases/0.3.0-draft/references/report.openai-hugging-face-road-ahead-2026.md) (demo) | [14. report.openai-hugging-face-road-ahead-2026](../../docs/research/required-recent-reports.md) |
+| [source.required-050](https://openai.com/index/hugging-face-incident-and-the-road-ahead) | draft | [The Hugging Face incident and the road ahead](../../content/releases/0.3.0-draft/references/report.openai-hugging-face-road-ahead-2026.md) (demo)<br>[OpenAI–Hugging Face intrusion during internal evaluations](../../content/drafts/0.3.0-draft/references/event.openai-hugging-face-2026.md) | [14. report.openai-hugging-face-road-ahead-2026](../../docs/research/required-recent-reports.md)<br>[1. event.openai-hugging-face-2026](../../docs/research/contemporary-event-authoring.md) |
 | [source.required-051](https://thezvi.substack.com/p/the-three-ai-pills) | draft | [The Three AI Pills](../../content/releases/0.3.0-draft/references/publication.three-ai-pills-2026.md) (demo) | [24. The Three AI Pills](../../docs/research/required-essays-and-scenarios.md) |
 | [source.required-052](https://joecarlsmith.com/2024/01/02/gentleness-and-the-artificial-other) | draft | [Gentleness and the artificial Other](../../content/releases/0.3.0-draft/references/publication.gentleness-artificial-other-2024.md) (demo) | [25. Gentleness and the artificial Other](../../docs/research/required-essays-and-scenarios.md) |
 | [source.required-053](https://www.experimental-history.com/p/infinite-midwit) | draft | [Infinite midwit](../../content/releases/0.3.0-draft/references/publication.infinite-midwit-2026.md) (demo) | [26. Infinite midwit](../../docs/research/required-essays-and-scenarios.md) |
@@ -186,9 +186,9 @@ Every required original URL remains linked below. Research links identify the ex
 
 Shared identities are retained rather than duplicated to fill counts. A hub may also map to several separately pinned publications; that relationship does not establish that the full archive was read.
 
-| Snapshot      | Intake originals sharing it |
-| ------------- | --------------------------- |
-| None recorded | —                           |
+| Snapshot | Intake originals sharing it |
+| --- | --- |
+| [OpenAI–Hugging Face intrusion during internal evaluations](../../content/drafts/0.3.0-draft/references/event.openai-hugging-face-2026.md) | [source.required-003](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation) (required)<br>[source.required-050](https://openai.com/index/hugging-face-incident-and-the-road-ahead) (required) |
 
 ## Optional selection and exclusions
 
@@ -209,22 +209,25 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | architecture   | 3                         |
 | benefit        | 11                        |
 | capability     | 31                        |
-| control        | 45                        |
-| cyber          | 7                         |
+| control        | 47                        |
+| coordination   | 2                         |
+| cyber          | 8                         |
+| deception      | 1                         |
 | discovery      | 1                         |
 | economics      | 15                        |
 | economy        | 1                         |
 | energy         | 2                         |
-| evaluation     | 39                        |
+| evaluation     | 41                        |
 | forecast       | 4                         |
 | goals          | 5                         |
 | governance     | 29                        |
 | grounding      | 1                         |
+| human-agency   | 1                         |
 | infrastructure | 2                         |
-| misuse         | 2                         |
+| misuse         | 3                         |
 | multiagent     | 1                         |
 | research       | 5                         |
-| risk           | 68                        |
+| risk           | 71                        |
 | science        | 4                         |
 | transition     | 10                        |
 | upside         | 1                         |

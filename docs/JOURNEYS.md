@@ -66,7 +66,7 @@ Each ordinary conversation starts with the fixed root and contains at least thre
 | Relevant humor | Actual expectation beneath a joke | Joke timing is not a serious forecast |
 | Bounded off-topic recovery | Same-prompt retry, pause and acceptance | Nonsense never becomes profile evidence |
 
-Seven draft matched variants now cover plain language, technical vocabulary, verbosity, relevant humor, a changed conclusion, weakened support for optimism and a weak moderate view. A variant overrides specified zero-based turn indices; all other turns retain their exact baseline wording. `journeyTurns` materializes independent copies for downstream evaluation. Expected distinctions are qualitative hypotheses requiring human review, rather than guaranteed equal numerical scores.
+Eleven draft development variants cover plain language, technical vocabulary, verbosity, relevant humor, a changed conclusion, weakened support for optimism, a weak moderate view and four contemporary source-informed support changes. The latter pair scoped incident reporting with an unsupported universal transfer and add controlled-conflict and human-directed-misuse examples. Their [event research](research/contemporary-event-authoring.md) records the inspected source scope; adding a source changes demonstrated support and is not a same-meaning paraphrase. A variant overrides specified zero-based turn indices; all other turns retain their exact baseline wording. `journeyTurns` materializes independent copies for downstream evaluation. Expected distinctions are qualitative hypotheses requiring human review, rather than guaranteed equal numerical scores.
 
 Three draft corrections follow a result: narrow technical containment by deployment scope, resolve policy tension by coordination assumptions, and leave catastrophic risk unknown while preserving ordinary job harms. Each identifies its vector and, when needed, the catastrophic claim separately. A runner must request clarification through the real operation before answering, rather than edit historical text. If the nominated interpretation is unplaced, record that absence instead of manufacturing a claim to correct. Do not equate length, jargon, citations, centrism or agreement with quality.
 
@@ -78,6 +78,7 @@ These published development examples cannot later become a blinded holdout. Huma
 - [x] Preserve all terminology rows and linked-source origins in local authoring context.
 - [x] Draft common-opinion journeys, including policy/risk inversions and usable criticism or humor.
 - [x] Draft six longer continuations, seven matched variants and three scoped corrections; validate their indices, IDs, answer bounds and correction scope.
+- [x] Add four contemporary source-informed different-support variants with primary links and scoped qualitative expectations; preserve baseline answers and draft review labels.
 - [ ] Review expected interpretations and terminology boundaries with Travis.
 - [ ] Add reviewed 6–8-prompt continuations, paraphrase pairs and scoped-correction examples.
 - [ ] Re-curate current snapshots and recommendations using the source guidance; map every required source.

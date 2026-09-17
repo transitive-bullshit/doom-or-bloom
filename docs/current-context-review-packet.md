@@ -18,7 +18,21 @@ Prepared 2026-09-17. **Direction approved by Travis on 2026-09-17; individual as
 
 [Recent snapshot inventory](research/required-recent-reports.md) links 18 seven-section contemporary draft references: developer reports, independent investigations, multiagent experiments, defensive programs, economic scenarios, operating conditions and an institute announcement. The required Reuters article remains blocked. Epoch’s canonical documentation is readable; exact requested graph settings remain unverified. Statements of funding, safety processes or future benefits stay attributed commitments or forecasts.
 
-The current demo bundle activates these 18 snapshots alongside 24 existing actor/concept/historical references, for 42 total. This exceeds the seed planning count to preserve named background while adding current grounding; it is not a reviewed corpus completion claim. Contemporary event entries remain an authoring task. The 14 demo reading suggestions are re-curated toward current independent evaluation, upside/distribution evidence, mechanism understanding and governance/control, retaining familiarity and purpose diversity. Recommendations remain drafts. The full required library can expand beyond the seed after its editorial direction is reviewed.
+At this direction checkpoint, the `0.2.0-draft` demo activated these 18 snapshots alongside 24 actor/concept/historical references, for 42 total. This exceeded the seed planning count to preserve named background while adding current grounding; it was not a reviewed corpus completion claim. The 14 reading suggestions were re-curated toward current independent evaluation, upside/distribution evidence, mechanism understanding and governance/control, retaining familiarity and purpose diversity. Recommendations remain drafts.
+
+The subsequent `0.3.0-draft` demo contains 135 references and preserves the earlier bundle for saved assessments. All 111 currently mapped required URLs have runtime copies; the [coverage index](research/source-coverage-2026-09-17.md) records the three unmapped originals and partial-access scopes. This integration preserves the approved direction without marking new assets reviewed. A [contemporary event pass](research/contemporary-event-authoring.md) adds three separate incident/demonstration drafts and four source-informed development variants. Publications about an incident and the underlying incident have distinct identities while retaining their shared evidence. The new event drafts are not yet in the live corpus.
+
+## Individual review after the demo
+
+Use the running demo to assess the flow before revisiting detailed authoring. For asset review, inspect a bounded batch at a time against its primary material. Record decisions by stable asset ID, actual reviewer/date and approval scope; a general direction comment does not approve the whole corpus.
+
+- **References:** verify obtained source scope, neutral attribution, event versus publication dates, revisions, experimental conditions, aliases and claim-transfer limits. Several reports of one incident remain one evidence base. Approve relevance separately from factual wording on historical entries.
+- **Prompts and recovery:** check one cognitive task, neutral premises, same-goal rephrasing and useful alternate routes. Relevant humor, criticism and uncertainty remain usable when they express evidence. Inspect root, timeline, control, policy and tension paths with the common-opinion journeys.
+- **Rubrics and projections:** review supported versus unknown categories, exact evidence requirements and the separation of benefits, ordinary harm, catastrophic risk, policy and values. Review the interpretation ranges rather than treating the map as a calibrated probability.
+- **Findings and resources:** inspect conditions, exclusions, copied evidence, tone, source dates and familiarity. A finding must follow from the answer; recommendations must address a learning purpose without assuming the participant needs persuasion.
+- **Journeys and terminology:** review the published examples as development material. Human reviewers curate and label a separate blinded holdout under [evaluation-protocol.md](evaluation-protocol.md); existing examples cannot become that holdout.
+
+Keep requested revisions visible until implemented and checked. Freeze only after compatible asset and required-source review is complete. No paid semantic run is authorized by this packet or a direction approval.
 
 ## Review scope and demo priority
 

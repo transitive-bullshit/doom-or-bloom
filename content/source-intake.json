@@ -61,13 +61,21 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": ["report.metr-hugging-face-investigation-2026"],
+      "referenceIds": [
+        "report.metr-hugging-face-investigation-2026",
+        "event.openai-hugging-face-2026"
+      ],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
           "heading": "2. report.metr-hugging-face-investigation-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/contemporary-event-authoring.md",
+          "heading": "1. event.openai-hugging-face-2026",
+          "scope": "Selected public HTML event/experiment sections only. Exact occurrence and publication dates, shared evidence, experimental conditions and uninspected artifacts are recorded here; separate event draft, no human approval or runtime activation."
         }
       ]
     },
@@ -172,13 +180,21 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": ["report.anthropic-threat-intelligence-september-2026"],
+      "referenceIds": [
+        "report.anthropic-threat-intelligence-september-2026",
+        "event.anthropic-gtg-15001-dating-app-misuse-2026"
+      ],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
           "heading": "6. report.anthropic-threat-intelligence-september-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/contemporary-event-authoring.md",
+          "heading": "3. event.anthropic-gtg-15001-dating-app-misuse-2026",
+          "scope": "Selected public HTML event/experiment sections only. Exact occurrence and publication dates, shared evidence, experimental conditions and uninspected artifacts are recorded here; separate event draft, no human approval or runtime activation."
         }
       ]
     },
@@ -728,13 +744,21 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": ["report.anthropic-multiagent-systems-2026"],
+      "referenceIds": [
+        "report.anthropic-multiagent-systems-2026",
+        "event.anthropic-migration-conflict-demonstration-2026"
+      ],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
           "heading": "11. report.anthropic-multiagent-systems-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/contemporary-event-authoring.md",
+          "heading": "2. event.anthropic-migration-conflict-demonstration-2026",
+          "scope": "Selected public HTML event/experiment sections only. Exact occurrence and publication dates, shared evidence, experimental conditions and uninspected artifacts are recorded here; separate event draft, no human approval or runtime activation."
         }
       ]
     },
@@ -1113,13 +1137,21 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": ["report.openai-hugging-face-road-ahead-2026"],
+      "referenceIds": [
+        "report.openai-hugging-face-road-ahead-2026",
+        "event.openai-hugging-face-2026"
+      ],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
           "heading": "14. report.openai-hugging-face-road-ahead-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
+        },
+        {
+          "path": "docs/research/contemporary-event-authoring.md",
+          "heading": "1. event.openai-hugging-face-2026",
+          "scope": "Selected public HTML event/experiment sections only. Exact occurrence and publication dates, shared evidence, experimental conditions and uninspected artifacts are recorded here; separate event draft, no human approval or runtime activation."
         }
       ]
     },

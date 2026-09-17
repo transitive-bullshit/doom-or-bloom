@@ -38,7 +38,9 @@
       "id": "physical-control",
       "title": "We can restrict physical access",
       "sourcePages": [
-        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94",
+        "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+        "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"
       ],
       "riskFamilies": ["Misalignment", "Security"],
       "concepts": ["AI Control", "Corrigibility"],
@@ -152,6 +154,36 @@
           "expected": [
             "The optimistic conclusion is retained, but mechanism, countercase and updateability have weaker demonstrated support.",
             "Do not reward the conclusion, confidence or number of words."
+          ],
+          "reviewStatus": "draft"
+        },
+        {
+          "id": "current-incident-scope",
+          "relationship": "different_support",
+          "overrides": [
+            {
+              "turnIndex": 6,
+              "text": "METR’s Hugging Face investigation concerns an internal evaluation with reduced safeguards. An intrusion happened, but that does not establish how often production systems escape. I need to check which restrictions failed."
+            }
+          ],
+          "expected": [
+            "Keep the incident and its investigation distinct while retaining their shared evidence.",
+            "New scoped evidence can refine the control interpretation without forcing a catastrophe forecast or treating a citation as demonstrated expertise."
+          ],
+          "reviewStatus": "draft"
+        },
+        {
+          "id": "current-incident-overreach",
+          "relationship": "different_support",
+          "overrides": [
+            {
+              "turnIndex": 6,
+              "text": "The Hugging Face incident proves every future system will escape any restriction."
+            }
+          ],
+          "expected": [
+            "One incident does not support the universal transfer. Prefer scope clarification to an invented factual-error label.",
+            "Ask about the apparent difference from the earlier optimism before declaring a settled contradiction; do not infer a numerical catastrophe probability."
           ],
           "reviewStatus": "draft"
         }
@@ -374,7 +406,8 @@
       "id": "learning-through-deployment",
       "title": "Reversible learning",
       "sourcePages": [
-        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94",
+        "https://www.anthropic.com/research/multiagent-systems"
       ],
       "riskFamilies": ["Accidents", "Security"],
       "concepts": ["Iterative Deployment", "Reversibility"],
@@ -399,7 +432,24 @@
         "Distinguish bounded staged use from unrestricted acceleration.",
         "Do not infer that all future failures are recoverable."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "variants": [
+        {
+          "id": "current-conflict-test",
+          "relationship": "different_support",
+          "overrides": [
+            {
+              "turnIndex": 2,
+              "text": "Anthropic’s migration experiment deliberately gave agents conflicting tasks. Some sabotage occurred, but that does not tell us how common deployment failures are. I want rollback tests for shared resources."
+            }
+          ],
+          "expected": [
+            "Recognize a controlled demonstration and preserve the induced conflicting-task condition.",
+            "Support for testing shared resources does not establish that all failures are reversible or unrestricted deployment is safe."
+          ],
+          "reviewStatus": "draft"
+        }
+      ]
     },
     {
       "id": "short-warning",
@@ -456,7 +506,8 @@
       "id": "misuse-not-rebellion",
       "title": "An obedient AI can aid attackers",
       "sourcePages": [
-        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf",
+        "https://www.anthropic.com/threat-intelligence-report-september-2026"
       ],
       "riskFamilies": ["Malicious use", "Security"],
       "concepts": ["Biological Risks", "Cyberattacks"],
@@ -481,7 +532,24 @@
         "Misuse does not establish a misaligned autonomous objective.",
         "Acknowledge physical barriers and unknown catastrophe likelihood."
       ],
-      "reviewStatus": "draft"
+      "reviewStatus": "draft",
+      "variants": [
+        {
+          "id": "current-human-directed-misuse",
+          "relationship": "different_support",
+          "overrides": [
+            {
+              "turnIndex": 2,
+              "text": "Anthropic’s GTG-15001 dating-app case describes operators instructing bots to hide automation. That is human-directed deception; it does not tell me total losses. Abuse detection might help, but I need evidence."
+            }
+          ],
+          "expected": [
+            "Keep operator-designed misuse separate from autonomous loss of control and preserve developer attribution.",
+            "No total-loss estimate or extinction forecast follows from the reported observation; do not label the qualified statement a material factual error."
+          ],
+          "reviewStatus": "draft"
+        }
+      ]
     },
     {
       "id": "jobs-not-extinction",
