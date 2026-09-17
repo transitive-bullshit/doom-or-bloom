@@ -12,13 +12,20 @@
       ],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "1. Jacob Coxon's resignation and safety criticism",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-002",
@@ -31,12 +38,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.openai-alien-mind-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "1. An Alien Mind",
+          "heading": "1. report.openai-alien-mind-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -54,12 +61,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.metr-hugging-face-investigation-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "2. Brief independent investigation of agents’ behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+          "heading": "2. report.metr-hugging-face-investigation-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -75,12 +82,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.collusion-wiki-investigation-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "3. Discovery of a new OpenAI agent message board",
+          "heading": "3. report.collusion-wiki-investigation-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -121,12 +128,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.bengio-agent-misbehavior-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "5. Why are AI agents lying, cheating and coordinating?",
+          "heading": "5. report.bengio-agent-misbehavior-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -137,13 +144,20 @@
       "originalUrls": ["https://x.com/ilyasut/status/2094881278621253755"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "2. Ilya Sutskever's neocloud cybersecurity warning",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-008",
@@ -158,12 +172,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.anthropic-threat-intelligence-september-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "6. Detecting and countering misuse of AI: September 2026",
+          "heading": "6. report.anthropic-threat-intelligence-september-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -197,13 +211,20 @@
       "originalUrls": ["https://x.com/jachiam0/status/2094660737155358865"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "3. Joshua Achiam's rogue-agent ecology argument",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-011",
@@ -260,12 +281,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.openai-defense-factory-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "7. Defense Factory",
+          "heading": "7. report.openai-defense-factory-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -465,12 +486,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["publication.adaptive-ai-worms-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "15. AI Agents Enable Adaptive Computer Worms",
+          "heading": "15. publication.adaptive-ai-worms-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -481,13 +502,20 @@
       "originalUrls": ["https://x.com/BorisMPower/status/2096415822248055131"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "4. Boris Power's binary-editability reaction",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-024",
@@ -495,13 +523,20 @@
       "originalUrls": ["https://x.com/a16z/status/2096353938174050314"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "5. a16z's critical-vulnerability chart commentary",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-025",
@@ -537,12 +572,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.openai-collective-cyberdefense-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "8. A call for collective action on cyber defense",
+          "heading": "8. report.openai-collective-cyberdefense-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -553,13 +588,20 @@
       "originalUrls": ["https://x.com/Tony_Diver/status/2091268101698670654"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "6. Tony Diver's UK power-plant incident reporting",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-028",
@@ -613,13 +655,20 @@
       "originalUrls": ["https://x.com/cgtwts/status/2094674387987468502"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "7. CG's amplification of an abliteration-model advertisement",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-031",
@@ -627,13 +676,20 @@
       "originalUrls": ["https://www.youtube.com/watch?v=PrSf7IOYu-I"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "8. Dwarkesh Patel's recursive self-improvement panel",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-032",
@@ -641,13 +697,20 @@
       "originalUrls": ["https://www.youtube.com/watch?v=98syxABbUPk"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-social-and-video.md",
+          "heading": "9. Tucker Carlson's Nate Soares interview",
+          "scope": "Verified original root post or stated official-caption segments, with author/date and attribution. Whole threads, linked articles and full video contents are not presumed reviewed."
+        }
+      ]
     },
     {
       "id": "source.required-033",
@@ -660,12 +723,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.anthropic-multiagent-systems-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "11. Patterns and problems in emerging multiagent systems",
+          "heading": "11. report.anthropic-multiagent-systems-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -705,12 +768,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.openai-daybreak-snapshot-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "9. Daybreak",
+          "heading": "9. report.openai-daybreak-snapshot-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -721,17 +784,17 @@
       "originalUrls": ["https://www.anthropic.com/glasswing"],
       "origins": ["user-2026-09-17"],
       "requiredForInitialCorpus": true,
-      "status": "partial",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.anthropic-glasswing-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "10. Project Glasswing: Securing critical software for the AI era",
+          "heading": "10. report.anthropic-glasswing-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -749,12 +812,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.openai-cyber-critical-pacing-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "12. Pacing model development in an era of cyber-critical capabilities",
+          "heading": "12. report.openai-cyber-critical-pacing-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -772,12 +835,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.openai-misalignment-reporting-framework-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "13. Our framework for reporting model misalignment",
+          "heading": "13. report.openai-misalignment-reporting-framework-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -814,12 +877,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.anthropic-economic-scenarios-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "17. What will our economic future look like?",
+          "heading": "17. report.anthropic-economic-scenarios-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -837,12 +900,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.aef-minimum-operating-conditions-v1"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "18. AEF-1: Minimum Operating Conditions for Independent Third Party AI Evaluations",
+          "heading": "18. report.aef-minimum-operating-conditions-v1",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -1017,12 +1080,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
-      "notes": "",
+      "referenceIds": ["dataset.epoch-cyber-vulnerabilities-2026"],
+      "notes": "Mapped to the accessible canonical documentation. Exact supplied query/graph settings remain unverified; do not invent chart readings.",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "16. Cyber Vulnerabilities",
+          "heading": "16. dataset.epoch-cyber-vulnerabilities-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -1040,12 +1103,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.openai-hugging-face-road-ahead-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "14. The Hugging Face incident and the road ahead",
+          "heading": "14. report.openai-hugging-face-road-ahead-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -1153,12 +1216,12 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["report.deepmind-institute-introduction-2026"],
       "notes": "",
       "researchRecords": [
         {
           "path": "docs/research/required-recent-reports.md",
-          "heading": "19. Introducing the DeepMind Institute",
+          "heading": "19. report.deepmind-institute-introduction-2026",
           "scope": "See this research record for exact access limits, genre, dates and attribution. Research notes are not a frozen snapshot or human review."
         }
       ]
@@ -1629,7 +1692,7 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["publication.generative-ai-at-work"],
       "notes": "",
       "researchRecords": [
         {
@@ -1831,7 +1894,7 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": "2026-09-17",
-      "referenceIds": [],
+      "referenceIds": ["entity.nist"],
       "notes": "",
       "researchRecords": [
         {
@@ -1870,13 +1933,20 @@
       "originalUrls": ["https://situational-awareness.ai/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "partial",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "1. [Situational Awareness: The Decade Ahead](https://situational-awareness.ai/)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-088",
@@ -1884,13 +1954,20 @@
       "originalUrls": ["https://www.normaltech.ai/p/ai-as-normal-technology"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "2. [AI as Normal Technology](https://www.normaltech.ai/p/ai-as-normal-technology)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-089",
@@ -1898,13 +1975,20 @@
       "originalUrls": ["https://jack-clark.net/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "3. [Import AI](https://jack-clark.net/)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-090",
@@ -1912,13 +1996,20 @@
       "originalUrls": ["https://www.oneusefulthing.org/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "partial",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "4. [One Useful Thing](https://www.oneusefulthing.org/)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-091",
@@ -1926,13 +2017,20 @@
       "originalUrls": ["https://simonwillison.net/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "5. [Simon Willison’s Weblog](https://simonwillison.net/)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-092",
@@ -1940,13 +2038,20 @@
       "originalUrls": ["https://www.dwarkesh.com/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "partial",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "6. [Dwarkesh Podcast](https://www.dwarkesh.com/)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-093",
@@ -1956,13 +2061,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "1. Squiggle Maximizer (formerly “Paperclip maximizer”)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-094",
@@ -1972,13 +2084,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "2. Artificial Intelligence and the King Midas Problem",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-095",
@@ -1990,13 +2109,20 @@
         "notion-context: Shutdown Resistance"
       ],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
-      "referenceIds": [],
-      "notes": ""
+      "accessedAt": "2026-09-17",
+      "referenceIds": ["publication.off-switch"],
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "3. The Off-Switch Game",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-096",
@@ -2004,13 +2130,20 @@
       "originalUrls": ["https://www.lesswrong.com/w/treacherous-turn"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "4. Treacherous Turn",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-097",
@@ -2018,13 +2151,20 @@
       "originalUrls": ["https://www.lesswrong.com/w/ai-boxing-containment"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "5. AI Boxing (Containment)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-098",
@@ -2032,13 +2172,20 @@
       "originalUrls": ["https://www.lesswrong.com/w/sharp-left-turn"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "6. Sharp Left Turn",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-099",
@@ -2048,13 +2195,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "7. Meditations On Moloch",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-100",
@@ -2062,13 +2216,20 @@
       "originalUrls": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC4959137/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "partial",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "8. The Unilateralist’s Curse and the Case for a Principle of Conformity",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-101",
@@ -2078,13 +2239,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "9. If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-102",
@@ -2094,13 +2262,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "10. Is Power-Seeking AI an Existential Risk?",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-103",
@@ -2111,13 +2286,20 @@
       ],
       "origins": ["notion-canonical-resources", "notion-context: Misalignment"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "11. The Alignment Problem from a Deep Learning Perspective",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-104",
@@ -2127,13 +2309,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "partial",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "12. Superintelligence: Paths, Dangers, Strategies",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-105",
@@ -2143,13 +2332,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "13. Human Compatible",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-106",
@@ -2159,13 +2355,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "partial",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-foundations.md",
+          "heading": "14. Artificial Intelligence as a positive and negative factor in global risk",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-107",
@@ -2175,13 +2378,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "7. [The Basic AI Drives](https://selfawaresystems.com/wp-content/uploads/2008/01/ai_drives_final.pdf)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-108",
@@ -2191,13 +2401,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "8. [What failure looks like](https://www.alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-109",
@@ -2211,13 +2428,20 @@
         "notion-context: Inner Alignment"
       ],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
-      "referenceIds": [],
-      "notes": ""
+      "accessedAt": "2026-09-17",
+      "referenceIds": ["publication.learned-optimization"],
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "9. [Risks from Learned Optimization in Advanced Machine Learning Systems](https://arxiv.org/abs/1906.01820)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-110",
@@ -2237,13 +2461,20 @@
         "notion-context: Unintended Side Effects"
       ],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
-      "referenceIds": [],
-      "notes": ""
+      "accessedAt": "2026-09-17",
+      "referenceIds": ["publication.concrete-problems"],
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "10. [Concrete Problems in AI Safety](https://arxiv.org/abs/1606.06565)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-111",
@@ -2253,13 +2484,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "11. [AGI Ruin: A List of Lethalities](https://www.alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-112",
@@ -2267,13 +2505,20 @@
       "originalUrls": ["https://www.cold-takes.com/most-important-century/"],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "partial",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "12. [The “most important century” blog post series](https://www.cold-takes.com/most-important-century)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-113",
@@ -2283,13 +2528,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "13. [There’s No Fire Alarm for Artificial General Intelligence](https://intelligence.org/2017/10/13/fire-alarm)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.required-114",
@@ -2299,13 +2551,20 @@
       ],
       "origins": ["notion-canonical-resources"],
       "requiredForInitialCorpus": true,
-      "status": "pending",
+      "status": "research_draft",
       "genre": null,
       "publishedAt": null,
       "updatedAt": null,
-      "accessedAt": null,
+      "accessedAt": "2026-09-17",
       "referenceIds": [],
-      "notes": ""
+      "notes": "",
+      "researchRecords": [
+        {
+          "path": "docs/research/required-perspectives-and-hubs.md",
+          "heading": "14. [The Precipice Revisited](https://www.tobyord.com/writing/the-precipice-revisited)",
+          "scope": "See record for exact primary read scope, date provenance and access limits. Full books, archives and linked underlying papers are not presumed read."
+        }
+      ]
     },
     {
       "id": "source.context-001",
@@ -3034,7 +3293,7 @@
       "publishedAt": null,
       "updatedAt": null,
       "accessedAt": null,
-      "referenceIds": [],
+      "referenceIds": ["publication.harnessing-adversarial"],
       "notes": "Linked by the user’s argument maps or terminology tables; candidate for targeted authoring, not independently read or endorsed."
     },
     {

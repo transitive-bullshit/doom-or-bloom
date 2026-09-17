@@ -28,4 +28,6 @@ The product-level decision frontier is closed for MVP planning. Exact scoring we
 
 The local app is implemented with labeled draft assets; it is not yet a validated assessment. Required-source coverage, balanced reviewed content and reviewed semantic evaluation remain incomplete. The earlier 300-entry count is now a coverage guide; source quality and the required library take precedence. The local bound is 12 lifetime prompts with a warning at 10, superseding the original 50-prompt proposal. Paid pressure testing is out of scope; existing measurements are historical development evidence.
 
+The [revised editorial packet](current-context-review-packet.md) links the contemporary snapshots and common-opinion journeys awaiting review. Source intake records scoped research for all required URLs; access and corpus review gates remain open.
+
 The working name deliberately emphasizes the provocative Doom/Bloom contrast. This framing trade-off belongs in methodology documentation and evaluation; it must not become a forced binary classification.

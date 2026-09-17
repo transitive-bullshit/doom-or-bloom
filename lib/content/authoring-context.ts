@@ -72,7 +72,16 @@ const intakeSchema = z
             'draft',
             'reviewed'
           ]),
-          referenceIds: z.array(z.string())
+          referenceIds: z.array(z.string()),
+          researchRecords: z
+            .array(
+              z.strictObject({
+                path: z.string().regex(/^docs\/research\/[a-z0-9-]+\.md$/),
+                heading: z.string().min(1),
+                scope: z.string().min(1)
+              })
+            )
+            .default([])
         })
         .passthrough()
     )

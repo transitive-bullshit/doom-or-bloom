@@ -55,12 +55,22 @@ Before a local release, recheck contemporary model/evaluation entries older than
 
 The former 100/100/100 target is a coverage guide, not a reason to pad the corpus with dated or weak entries. Incorporating every required source and achieving balanced, reviewed topical coverage takes precedence over symmetrical counts. Document actual counts, overlaps, exclusions of optional candidates and any required-source blockers.
 
+## Research and draft checkpoint — 2026-09-17
+
+All 114 required records now link to scoped research notes in the intake registry. That records what was accessible and actually inspected; it does not claim full-text access or corpus completion. Of these, 96 have research drafts, 17 have partial access and one is blocked. Twenty-three required URLs map to existing or separate draft snapshots; none of these mappings records new editorial approval.
+
+The [recent-source inventory](research/required-recent-reports.md) links 18 contemporary draft snapshots outside the runtime bundle. The two earlier publication batches remain optional historical background. The [revised editorial packet](current-context-review-packet.md) proposes the current seed direction and common-opinion journey coverage; its review is pending.
+
+Partial access includes publisher abstracts/previews, selected hub sections and the requested Epoch graph configuration. The Reuters article remains blocked. Read each record's scope before extending its claims. Preserve these requirements and resolve access or obtain verifiable publisher material before counting the full required library complete.
+
 ## Execution checklist
 
 - [x] Fetch the Notion canon, resolve its unknown bookmark, and inventory all supplied external URLs.
 - [x] Reassess the historical seed and pending expansion against the revised guidance.
-- [ ] Read every required source; record dates, genre, access limits and evidence relationships.
-- [ ] Draft contemporary reference snapshots and map every required source to them.
+- [x] Attempt every required source and attach scoped research notes, including access limits and source relationships.
+- [ ] Resolve partial/blocked access and complete the required-source reading within each source’s stated scope.
+- [x] Draft the first 18 contemporary reference snapshots outside the runtime bundle.
+- [ ] Complete snapshots and source mappings for every required URL.
 - [ ] Re-curate prompts, findings and reading suggestions where the new evidence changes coverage needs.
 - [ ] Human-review the revised seed and subsequent batches; validate and freeze only approved assets.
 - [ ] Verify all required sources are mapped and balanced coverage is documented before calling the MVP complete.
