@@ -1,0 +1,188 @@
+{
+  "version": "0.1.0-draft",
+  "status": "draft",
+  "nonAnswerThreshold": 0.85,
+  "presenceThreshold": 0.6,
+  "readinessCoverage": 8,
+  "quantiles": [0.1, 0.9],
+  "routingWeights": {
+    "coverage": 3,
+    "ambiguity": 4,
+    "tension": 3,
+    "projection": 2,
+    "effort": 1,
+    "repetition": 2
+  },
+  "horizontalWeights": {
+    "beneficial_potential": 0.45,
+    "risk_landscape": 0.45,
+    "human_agency": 0.1
+  },
+  "dimensions": [
+    {
+      "id": "capability_trajectory",
+      "label": "Timeline & capability",
+      "meaning": "Anticipated transformative capability and the participant’s own forecast horizon; not evaluator conviction.",
+      "levels": [
+        "Transformative capability is not expected, or a low ceiling is explicitly anticipated.",
+        "Transformative capability is expected only on a long or indefinite horizon.",
+        "Transformative capability is expected within decades, with timing conditional or uncertain.",
+        "Transformative capability is expected within years, with named milestones or timing."
+      ]
+    },
+    {
+      "id": "transition_dynamics",
+      "label": "Transition dynamics",
+      "meaning": "Expected speed, diffusion, warning time, and AI-assisted improvement.",
+      "levels": [
+        "A gradual transition with substantial warning and broad diffusion is expected.",
+        "Noticeable acceleration is expected but meaningful adaptation time remains.",
+        "A fast transition with limited warning is expected.",
+        "An abrupt self-reinforcing transition with very little warning is expected."
+      ]
+    },
+    {
+      "id": "beneficial_potential",
+      "label": "Expected upside",
+      "meaning": "Participant’s expected positive impact, integrating magnitude, likelihood, distribution, horizon, and what they value; keep adverse impact separate.",
+      "levels": [
+        "Little positive impact is expected even if advanced AI arrives.",
+        "Limited or narrowly distributed gains are expected.",
+        "Substantial benefits are expected, with important conditions or distribution limits.",
+        "Transformative, broadly valuable gains are expected."
+      ]
+    },
+    {
+      "id": "risk_landscape",
+      "label": "Expected harm",
+      "meaning": "Participant’s expected adverse impact, integrating severity, likelihood, pathways, horizon, and uncertainty; not a P(doom) estimate.",
+      "levels": [
+        "Little material adverse impact is expected.",
+        "Manageable or localized harms are expected.",
+        "Severe or widespread harm is a material expected part of the future.",
+        "Catastrophic or irreversible loss is central to the expected future."
+      ]
+    },
+    {
+      "id": "technical_controllability",
+      "label": "Controllability",
+      "meaning": "Expected feasibility of keeping powerful AI systems within meaningful safeguards.",
+      "levels": [
+        "Reliable technical control is expected to be infeasible.",
+        "Control is expected to be very difficult and unreliable.",
+        "Control is expected to be feasible under demanding conditions.",
+        "Reliable technical control is expected to be broadly feasible."
+      ]
+    },
+    {
+      "id": "institutional_competence",
+      "label": "Institutional competence",
+      "meaning": "Expected institutional ability to manage incentives and adapt; separate from preferred policy.",
+      "levels": [
+        "Institutions are expected to fail to respond effectively.",
+        "Institutions are expected to respond too weakly or too late in many cases.",
+        "Effective responses are expected under specific coordination conditions.",
+        "Institutions are expected to adapt effectively and in time."
+      ]
+    },
+    {
+      "id": "human_agency",
+      "label": "Human continuity",
+      "meaning": "Expected outcome for human agency and continuity, evaluated against the participant’s expressed values; integration/successor futures are not automatically bad.",
+      "levels": [
+        "The expected future undermines or eliminates the forms of agency/continuity the participant explicitly values.",
+        "Significant valued agency or continuity is expected to be lost.",
+        "Valued agency/continuity is expected to be substantially preserved, with changes or conditions.",
+        "Valued agency/continuity is expected to expand or flourish."
+      ]
+    },
+    {
+      "id": "action_posture",
+      "label": "Action posture",
+      "meaning": "Preferred development pace with safeguards; this dimension contributes no map weight.",
+      "levels": [
+        "A broad pause or substantial slowing is preferred.",
+        "Restrained development and strong prior safeguards are preferred.",
+        "Continued development with targeted safeguards is preferred.",
+        "Rapid development or broad access is preferred."
+      ]
+    },
+    {
+      "id": "causal_clarity",
+      "label": "Causal clarity",
+      "meaning": "Visible mechanisms linking causes to outcomes.",
+      "levels": [
+        "An outcome is asserted without a supporting mechanism.",
+        "A causal factor is named but its connection to the outcome is not explained.",
+        "A coherent mechanism connects a cause to an outcome with a relevant condition.",
+        "A mechanism is developed with dependencies, limitations, or potential failure points."
+      ]
+    },
+    {
+      "id": "scope_discipline",
+      "label": "Scope discipline",
+      "meaning": "Distinguishing horizons, actors, assumptions, and meanings.",
+      "levels": [
+        "Materially different scopes are conflated without qualification.",
+        "Some scope is specified but material boundaries remain blurred.",
+        "Relevant actors, conditions, or horizons are distinguished.",
+        "Scope is consistently explicit and changes in scope are accounted for."
+      ]
+    },
+    {
+      "id": "appropriate_uncertainty",
+      "label": "Appropriate uncertainty",
+      "meaning": "Confidence proportionate to the evidence offered; uncertainty alone is not a quality bonus.",
+      "levels": [
+        "Certainty is asserted despite explicitly limited or conflicting evidence.",
+        "Uncertainty is acknowledged but the strength of the claim is poorly matched to its support.",
+        "Confidence is proportionate to the supplied evidence and important unknowns are preserved.",
+        "Uncertainty is differentiated across claims and linked to concrete evidence limitations."
+      ]
+    },
+    {
+      "id": "internal_coherence",
+      "label": "Internal coherence",
+      "meaning": "Whether related positions fit after accounting for scopes, assumptions, and revisions.",
+      "levels": [
+        "Related statements remain incompatible under the same stated assumptions after clarification.",
+        "A material incompatibility remains possible but partially explained.",
+        "Related positions fit under the stated assumptions.",
+        "The participant explicitly reconciles potential tensions through scope or assumption distinctions."
+      ]
+    },
+    {
+      "id": "counterargument_engagement",
+      "label": "Counterargument engagement",
+      "meaning": "Representing alternatives without requiring ideological moderation.",
+      "levels": [
+        "An alternative is dismissed without engaging its actual claim.",
+        "An alternative is acknowledged but its strongest relevant basis is omitted.",
+        "A serious alternative is represented fairly and addressed on its merits.",
+        "The participant identifies when a serious alternative could outperform their account."
+      ]
+    },
+    {
+      "id": "updateability",
+      "label": "Updateability",
+      "meaning": "Conditions that could change a consequential belief.",
+      "levels": [
+        "The participant explicitly rules out revising the belief regardless of evidence.",
+        "A vague update condition is given without specifying relevant evidence.",
+        "Identifiable evidence or a development could change the stated belief.",
+        "A specific discriminating observation is tied to a particular belief change."
+      ]
+    },
+    {
+      "id": "grounded_understanding",
+      "label": "Grounded understanding",
+      "meaning": "Connection of material claims to identifiable evidence, accurate attribution, and uncertainty; plain-language observations can qualify.",
+      "levels": [
+        "The claim relies on a material factual misunderstanding established by the supplied evidence.",
+        "Identifiable evidence is offered but its fit or attribution is materially weak.",
+        "Evidence is accurately connected to a claim with reasonable limits.",
+        "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+      ]
+    }
+  ]
+}

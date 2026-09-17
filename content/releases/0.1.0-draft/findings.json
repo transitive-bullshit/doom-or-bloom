@@ -1,0 +1,28 @@
+[
+  {
+    "id": "finding.causal",
+    "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+    "conditions": [
+      {
+        "vector": "causal_clarity",
+        "min": 0.6,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
+    "id": "finding.crux",
+    "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+    "conditions": [
+      {
+        "vector": "updateability",
+        "min": 0.6,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  }
+]

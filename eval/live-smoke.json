@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-17T10:37:08.628Z",
+  "requestedModel": "jev-1.13.0",
+  "returnedModel": "jev-1.13.0",
+  "elapsedMs": 1006,
+  "usage": {
+    "input_tokens": 437,
+    "output_tokens": 81
+  },
+  "attempts": 1,
+  "answers": {
+    "outlook": {
+      "type": "choice",
+      "choice": "mixed",
+      "probabilities": {
+        "mixed": 1,
+        "positive": 0,
+        "negative": 0,
+        "unclear": 0
+      },
+      "confidence": 1
+    },
+    "mechanism": {
+      "type": "score",
+      "score": 1.2,
+      "legend": {
+        "0": "No mechanism offered",
+        "1": "A mechanism named but not developed",
+        "2": "A mechanism explained with a condition or dependency"
+      },
+      "probabilities": {
+        "0": 0.12,
+        "1": 0.5599999999999999,
+        "2": 0.32
+      },
+      "confidence": 0.35
+    },
+    "uncertainty": {
+      "type": "noul",
+      "noul": 0.98
+    }
+  }
+}

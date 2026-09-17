@@ -1,6 +1,6 @@
 # Doom or Bloom — Design Handoff
 
-*Map your AI worldview in three questions.*
+_Map your AI worldview in three questions._
 
 This package defines the product and assessment contract for a bounded, adaptive AI-worldview self-assessment. It is intentionally upstream of a repository-specific implementation plan.
 

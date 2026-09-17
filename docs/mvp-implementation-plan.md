@@ -1,6 +1,6 @@
 # Local MVP implementation plan
 
-Status: ready for implementation planning handoff; no implementation tasks completed. Prepared 2026-09-17 after reading all seven handoff documents and inspecting the repository and installed Next.js guides.
+Status: implementation in progress; see checkboxes and checkpoint log for evidence. Prepared 2026-09-17 after reading all seven handoff documents and inspecting the repository and installed Next.js guides.
 
 ## 1. Outcome and source of truth
 
@@ -267,14 +267,14 @@ Long transcripts are an early feasibility gate. Preserve all raw evidence locall
 
 Depends on: repository inspection. Commit: `chore: establish local assessment scaffold`.
 
-- [ ] Recheck repository status and establish the baseline commit described in section 2. Read installed Next.js installation, Server/Client Components, Route Handler, environment, and testing guides as relevant.
-- [ ] Add minimal App Router layout/page/styles, theme provider, and required shadcn primitives while preserving current aliases and `cn`. Verify installed component dependencies and generated source.
-- [ ] Define Zod/TypeScript schemas for the records in section 4, operation requests/responses, and content assets. Keep deterministic domain modules independent of Next.js and provider SDK types.
-- [ ] Implement the pure reducer and prompt/substantive/attempt counters with tests for refresh/retry, result eligibility, restart, clarification, and 45/50 boundaries.
-- [ ] Model bounded answer recovery and paused states using the canonical policy: same-prompt retries, explicit alternate prompts, accepted/ambiguous-answer streak resets, navigation, persisted one-time paperclip state, and cap precedence.
-- [ ] Add `.env.example`, lazy server-only env validation, and a provider interface with an explicit fixture implementation. A shell page and fixture tests run without credentials.
-- [ ] Define the debug boolean and typed trace contract, with a clearly marked collapsible UI shell. Debug state is separate from assessment evidence and analytics.
-- [ ] Establish passing `pnpm test` and `pnpm build`; verify generated Next types are included by the actual tsconfig. Record any necessary scaffold adjustments.
+- [x] Recheck repository status and establish the baseline commit described in section 2. Read installed Next.js installation, Server/Client Components, Route Handler, environment, and testing guides as relevant.
+- [x] Add minimal App Router layout/page/styles, theme provider, and required shadcn primitives while preserving current aliases and `cn`. Verify installed component dependencies and generated source.
+- [x] Define Zod/TypeScript schemas for the records in section 4, operation requests/responses, and content assets. Keep deterministic domain modules independent of Next.js and provider SDK types.
+- [x] Implement the pure reducer and prompt/substantive/attempt counters with tests for refresh/retry, result eligibility, restart, clarification, and 45/50 boundaries.
+- [x] Model bounded answer recovery and paused states using the canonical policy: same-prompt retries, explicit alternate prompts, accepted/ambiguous-answer streak resets, navigation, persisted one-time paperclip state, and cap precedence.
+- [x] Add `.env.example`, lazy server-only env validation, and a provider interface with an explicit fixture implementation. A shell page and fixture tests run without credentials.
+- [x] Define the debug boolean and typed trace contract, with a clearly marked collapsible UI shell. Debug state is separate from assessment evidence and analytics.
+- [x] Establish passing `pnpm test` and `pnpm build`; verify generated Next types are included by the actual tsconfig. Record any necessary scaffold adjustments.
 
 Done when: the local app boots, contracts and budget behavior are testable, and CI checks have a real passing baseline. Update checkboxes and commit.
 
@@ -440,3 +440,12 @@ Commit reference (record in the following checkpoint if needed):
 Planning baseline: all seven handoff docs read; root agent pointers added; installed Next.js guides and current TypeSafe API/SDK references checked. The user confirmed seed-first/full-corpus MVP scope and representative editorial review before expansion, and requested an explicit debug mode for inspecting Jev/control flow. No app code, content assets, provider measurements, or implementation checks have been completed by this planning task.
 
 Planning addition: expected off-topic/nonsense behavior now has a canonical bounded recovery policy, authored re-asks, and a one-time paperclip interlude with accessible exit actions. Product, assessment, TypeSafe, authoring, and measurement docs are aligned; implementation tasks remain unchecked.
+
+### 2026-09-17 — Milestone 1 / Codex
+
+- Baseline: `2986124` records supplied files, excluding ignored secrets/artifacts. The supplied app had no routes/tests, so baseline build/test checks were deferred to this scaffold.
+- Added App Router/theme/shadcn scaffold, strict assessment/content/operation schemas, pure budget/recovery state transitions, explicit fixture provider, environment contract, and debug panel shell.
+- Checks: formatting/lint/type/unit checks and production build pass. State tests cover unique substantive answers, recovery limits, one-time interlude marker, ambiguous replies, cap and stale responses.
+- Dependencies: TypeSafe SDK 0.6.0 installed; core-js postinstall deliberately disabled (optional informational script), and missing shadcn cva/lucide imports explicitly installed.
+- Live evidence: `eval/live-smoke.json` records a successful synthetic three-primitive request, pinned/returned `jev-1.13.0`, 437 input tokens, 1,006 ms, one attempt. This is API feasibility evidence, not assessment validation.
+- Next: validate representative draft assets and bring the editorial packet for review; build the engine/UI independently while review is pending.

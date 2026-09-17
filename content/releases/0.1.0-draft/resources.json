@@ -1,0 +1,36 @@
+[
+  {
+    "id": "resource.nist-rmf",
+    "title": "NIST AI Risk Management Framework",
+    "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+    "purpose": "Explore what practical institutional risk management can involve.",
+    "effort": "Overview: about 10 minutes; framework: longer",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "institutional_competence",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  },
+  {
+    "id": "resource.alphafold",
+    "title": "AlphaFold and protein structure prediction",
+    "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+    "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+    "effort": "About 10 minutes",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "beneficial_potential",
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-17"
+  }
+]
