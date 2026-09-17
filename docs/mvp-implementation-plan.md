@@ -244,6 +244,7 @@ Commit a documented `.env.example`; keep real values in ignored `.env.local`. Ex
 | `NEXT_PUBLIC_ANALYTICS_ENABLED` | Default `false`; gate both analytics integrations |
 | `NEXT_PUBLIC_POSTHOG_KEY` | Optional public project token when analytics is explicitly enabled |
 | `NEXT_PUBLIC_POSTHOG_HOST` | Optional matching project ingestion host; no guessed region |
+| `POSTHOG_IP_DISPOSAL_CONFIRMED` | Defaults false; set true only after configuring project-level discard of IP data before real PostHog collection |
 
 No database URL, OpenAI key, embedding key, image-storage key, Vercel token, or authoring-model key is required to run the app. Header social links and optional tip URL can be ordinary site configuration; leave unknown links out until supplied. Use the local request origin for local links and a generic share URL from site configuration; do not put assessment data into URLs.
 
@@ -286,7 +287,7 @@ Depends on: milestone 1 contracts. Commit: `feat: define reviewed assessment con
 - [x] Review paired examples of usable humor/uncertainty versus non-answers, authored recovery copy, and the paperclip interlude. Set and version the clear-non-answer confidence threshold from those examples, with ambiguous cases routed to neutral clarification.
 - [ ] Create content validation and a frozen manifest format. Validate ID uniqueness, references, graph reachability, root uniqueness, coverage targets, rule types, evidence slots, source metadata, and release review status.
 - [x] Implement the live TypeSafe adapter behind the provider interface, with validated typed responses, version/usage capture, cancellation, bounded retries, and sanitized errors/logs.
-- [ ] With a locally configured key, run opt-in smoke cases for Choice, Score, Noul, source-span selection, unsupported evidence, and independent batching. Record requested/returned model IDs and installed SDK version.
+- [x] With a locally configured key, run opt-in smoke cases for Choice, Score, Noul, source-span selection, unsupported evidence, and independent batching. Record requested/returned model IDs and installed SDK version.
 - [ ] Test staged reference handling and the worst-case supported transcript/context budget. Record calls, tokens, latency, failures, and a dated cost estimate if current pricing is available; do not invent benchmark results.
 - [x] Review the packet with the user according to their chosen timing. Record accepted semantics and requested changes; implement them in the assets and tests before treating the bundle as reviewed. If review is pending, continue scaffold/UI/provider work using labeled fixtures.
 
@@ -318,7 +319,7 @@ Depends on: milestones 1–3. Commit: `feat: implement adaptive assessment and e
 - [x] Implement browser persistence, draft survival, hydration, incompatible-version recovery, storage-unavailable behavior, and cross-tab conflict detection. Keep an old saved result viewable when recomputation is unavailable.
 - [x] Wire the single-prompt interface with loading, retry, substantive-answer feedback, result unlock, continue, restart, and cap states. Use honest progress counts, not a percentage of understanding.
 - [x] Implement the brief, dismissible paperclip background and recovery controls from `PRODUCT.md`, with static reduced-motion treatment, unobscured keyboard controls, no inference on dismiss, and no replay after reload. This participant-facing recovery works with debug off.
-- [ ] Verify one complete three-answer path and one adaptive 6–8-prompt path with fixtures, then smoke-test real Jev with synthetic inputs. Capture routing decisions without storing private participant text in general logs.
+- [x] Verify one complete three-answer path and one adaptive 6–8-prompt path with fixtures, then smoke-test real Jev with synthetic inputs. Capture routing decisions without storing private participant text in general logs.
 
 Done when: a participant can start, resume, continue, recover from failure, and reach a valid result request; repeat/stale requests cannot corrupt their assessment. Update checkboxes and commit.
 
@@ -341,10 +342,10 @@ Done when: results can be traced to evidence and corrected without direct score 
 Depends on: milestone 5 result view model. Commit: `feat: add report exports and share cards`.
 
 - [ ] Build a readable Markdown full-report download, with optional structured JSON export from the same serializer. Include expanded profile, coverage/ranges, evidence, relevant typed judgments, versions, sources, and methodology. Exclude credentials, hidden reasoning, and raw transport dumps.
-- [ ] Inspect installed `takumi-js` docs/types and implement on-demand PNG rendering in the Node Route Handler. Use a minimal validated display payload, local assets/fonts, deterministic layout, and no persistent image storage.
-- [ ] Add separate “Download card” and “Post on X” actions. The latter only opens a web intent with safe authored summary/link; explain manual image attachment. No raw answers, assessment ID, or evidence payload enters the URL/card by default.
-- [ ] Add a generic social preview and About/methodology/privacy pages, including model/content versions, experimental status, framing bias, uncertainty semantics, local persistence, and actual TypeSafe data transmission. Do not claim answers never leave the device or assert unverified provider retention policies.
-- [ ] Add header GitHub/X/theme actions and footer links using verified project/user URLs. Keep the main page centered and concise; long methodology lives on About and in the report.
+- [x] Inspect installed `takumi-js` docs/types and implement on-demand PNG rendering in the Node Route Handler. Use a minimal validated display payload, local assets/fonts, deterministic layout, and no persistent image storage.
+- [x] Add separate “Download card” and “Post on X” actions. The latter only opens a web intent with safe authored summary/link; explain manual image attachment. No raw answers, assessment ID, or evidence payload enters the URL/card by default.
+- [x] Add a generic social preview and About/methodology/privacy pages, including model/content versions, experimental status, framing bias, uncertainty semantics, local persistence, and actual TypeSafe data transmission. Do not claim answers never leave the device or assert unverified provider retention policies.
+- [x] Add header GitHub/X/theme actions and footer links using verified project/user URLs. Keep the main page centered and concise; long methodology lives on About and in the report.
 - [ ] Visually verify mobile/desktop, both themes, keyboard flow, focus after prompt/result transitions, form labels, live loading/error announcements, reduced motion, map text alternatives, and downloaded image/report content.
 
 Done when: the full local journey and downloads work without a hosted store, and public sharing exposes only the intended summary. Update checkboxes and commit.
@@ -353,13 +354,13 @@ Done when: the full local journey and downloads work without a hosted store, and
 
 Depends on: stable engine/result events. Commit: `feat: add explicit assessment event instrumentation`.
 
-- [ ] Implement every event in `MEASUREMENT.md` using a typed allowlisted payload and a disabled/local test sink by default. Derive emission from committed state transitions; avoid duplicate events on rerender, resume, retry, or repeated result display.
-- [ ] Verify recovery/pause/interlude events before the first substantive answer do not emit `assessment_started` or `assessment_completed`; same-prompt re-asks do not count as new routed questions. Keep rejection/recovery properties enumerated and exclude rejected text.
-- [ ] Emit `assessment_started` once, when the first substantive answer is confirmed; count unlock, cap, completion, correction, and restart at their defined transitions. Use the assessment ID for pseudonymous event linkage and rotate it on restart.
-- [ ] Implement optional PostHog and Vercel Analytics adapters behind the environment flag. Before enabling an adapter, check current official configuration docs. Disable replay, autocapture, heatmaps, person profiles, and automatic exception collection; strip URL queries/hashes and free-form properties.
-- [ ] Test captured outbound payloads with canary answer text, excerpts, clarification text, and query strings. None may escape into analytics, SDK error payloads, or share links. Verify the disabled default makes no analytics requests.
-- [ ] Verify debug on/off produces identical decisions and provider-call counts; trace fields never leak into analytics, reports, cards, logs, or unrelated assessments.
-- [ ] Record PostHog project-level IP-data disposal as a prerequisite for enabling real telemetry. No project/account provisioning or production enablement is required for this local milestone.
+- [x] Implement every event in `MEASUREMENT.md` using a typed allowlisted payload and a disabled/local test sink by default. Derive emission from committed state transitions; avoid duplicate events on rerender, resume, retry, or repeated result display.
+- [x] Verify recovery/pause/interlude events before the first substantive answer do not emit `assessment_started` or `assessment_completed`; same-prompt re-asks do not count as new routed questions. Keep rejection/recovery properties enumerated and exclude rejected text.
+- [x] Emit `assessment_started` once, when the first substantive answer is confirmed; count unlock, cap, completion, correction, and restart at their defined transitions. Use the assessment ID for pseudonymous event linkage and rotate it on restart.
+- [x] Implement optional PostHog and Vercel Analytics adapters behind the environment flag. Before enabling an adapter, check current official configuration docs. Disable replay, autocapture, heatmaps, person profiles, and automatic exception collection; strip URL queries/hashes and free-form properties.
+- [x] Test captured outbound payloads with canary answer text, excerpts, clarification text, and query strings. None may escape into analytics, SDK error payloads, or share links. Verify the disabled default makes no analytics requests.
+- [x] Verify debug on/off produces identical decisions and provider-call counts; trace fields never leak into analytics, reports, cards, logs, or unrelated assessments.
+- [x] Record PostHog project-level IP-data disposal as a prerequisite for enabling real telemetry. No project/account provisioning or production enablement is required for this local milestone.
 
 Done when: event behavior and payload privacy are verified locally, while live collection remains optional and disabled. Update checkboxes and commit.
 
@@ -458,3 +459,11 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - Checks: 22 deterministic tests pass, content validation passes for the labeled six-entry draft, and production build passes. Browser and complete live-path verification remain outstanding.
 - Editorial decision: Travis approved `editorial-review-packet.md` with “this looks good.” Expansion may proceed; future assets/holdout labels are not implicitly reviewed. PostHog environment values are supplied locally; instrumentation is next, with collection disabled by default.
 - Previous checkpoint: `99ee468`. Next: live engine paths, supporting pages/downloads, explicit analytics, and researched seed expansion.
+
+### 2026-09-17 — Supporting experience and analytics / Codex
+
+- Added About/privacy, theme and verified social links, on-demand Takumi PNG cards, generic social preview, and explicit analytics derived from committed transitions. PostHog is dynamically loaded only when enabled and its IP-disposal prerequisite is confirmed; automatic collection, replay, profiles, and SDK enrichment are disabled/stripped.
+- Checks: 27 tests, format/lint/types/content validation, and production build pass. Canary tests exclude text, excerpts, clarification, URL queries/hashes and SDK properties. Correction regression preserves unrelated ledger entries and supersedes the disputed vector before recomputation.
+- Real Jev: `eval/live-engine.json` records a synthetic three-answer result, eight-prompt continuation, reference stages, correction, two-clear-miss paperclip pause, and accepted relevant humor. 35 physical requests total, 245,099 input/66,508 output tokens. This is development evidence, not held-out validation; pricing is not assumed.
+- Browser: manually verified submitted answers, draft reload on the same prompt, three-answer result unlock, result focus, and dark theme. Generated 1200×630 PNG visually inspected. Full browser regressions and mobile acceptance remain outstanding.
+- Previous checkpoint: `fbec59b`. Next: expand the sourced seed, richer fingerprint/source display, complete-context benchmarks, and browser regression coverage.

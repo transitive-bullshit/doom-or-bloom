@@ -13,9 +13,12 @@ let active = 0
 export class LimitError extends Error {
   status = 429
 }
-export async function readBoundedJson(request: Request) {
+export async function readBoundedJson(
+  request: Request,
+  maximum = limits.requestBytes as number
+) {
   const declared = Number(request.headers.get('content-length') || 0)
-  if (declared > limits.requestBytes)
+  if (declared > maximum)
     throw new LimitError('This assessment record is too large')
   const reader = request.body?.getReader()
   if (!reader) throw new Error('A request body is required')
@@ -25,7 +28,7 @@ export async function readBoundedJson(request: Request) {
     const { done, value } = await reader.read()
     if (done) break
     size += value.byteLength
-    if (size > limits.requestBytes) {
+    if (size > maximum) {
       await reader.cancel()
       throw new LimitError('This assessment record is too large')
     }

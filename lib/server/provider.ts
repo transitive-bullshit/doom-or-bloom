@@ -64,7 +64,13 @@ export function createFixtureProvider(): Provider {
       answers: Object.fromEntries(
         Object.entries(questions).map(([id, question]) => [
           id,
-          fixtureAnswer(question)
+          fixtureAnswer(
+            question,
+            question.type === 'choice' &&
+              (id.endsWith(':span') || id.endsWith(':evidence'))
+              ? Object.keys(question.criteria).find((key) => key !== 'none')
+              : undefined
+          )
         ])
       )
     })

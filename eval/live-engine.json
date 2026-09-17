@@ -1,0 +1,3862 @@
+{
+  "date": "2026-09-17T10:59:40.496Z",
+  "model": "jev-1.13.0",
+  "sdk": "0.6.0",
+  "purpose": "Synthetic development smoke, not reviewed holdout validation",
+  "steps": [
+    {
+      "operation": "answer",
+      "prompt": "root",
+      "elapsedMs": 3083,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 1311,
+          "inputBytes": 38079,
+          "outputBytes": 9897,
+          "usage": {
+            "input_tokens": 11300,
+            "output_tokens": 5472
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "needs_clarification": 0,
+              "non_answer": 0,
+              "navigation": 0,
+              "usable": 1
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 1,
+          "elapsedMs": 834,
+          "inputBytes": 1065,
+          "outputBytes": 151,
+          "usage": {
+            "input_tokens": 535,
+            "output_tokens": 56
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "B2: grounded claims",
+          "questions": 5,
+          "elapsedMs": 332,
+          "inputBytes": 4922,
+          "outputBytes": 896,
+          "usage": {
+            "input_tokens": 1692,
+            "output_tokens": 432
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 48,
+          "elapsedMs": 593,
+          "inputBytes": 24642,
+          "outputBytes": 13588,
+          "usage": {
+            "input_tokens": 5668,
+            "output_tokens": 916
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "control.general",
+        "substantive": 1,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": null,
+      "snapshotBytes": 114846
+    },
+    {
+      "operation": "answer",
+      "prompt": "control.general",
+      "elapsedMs": 1152,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 358,
+          "inputBytes": 32161,
+          "outputBytes": 7943,
+          "usage": {
+            "input_tokens": 8824,
+            "output_tokens": 3778
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "navigation": 0,
+              "needs_clarification": 0,
+              "non_answer": 0,
+              "usable": 1
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 2,
+          "elapsedMs": 457,
+          "inputBytes": 1419,
+          "outputBytes": 290,
+          "usage": {
+            "input_tokens": 650,
+            "output_tokens": 99
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 44,
+          "elapsedMs": 336,
+          "inputBytes": 23040,
+          "outputBytes": 12442,
+          "usage": {
+            "input_tokens": 5364,
+            "output_tokens": 845
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "governance.general",
+        "substantive": 2,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": null,
+      "snapshotBytes": 164536
+    },
+    {
+      "operation": "answer",
+      "prompt": "governance.general",
+      "elapsedMs": 1028,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 369,
+          "inputBytes": 32504,
+          "outputBytes": 7979,
+          "usage": {
+            "input_tokens": 8823,
+            "output_tokens": 3789
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "needs_clarification": 0,
+              "navigation": 0,
+              "usable": 1,
+              "non_answer": 0
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 2,
+          "elapsedMs": 337,
+          "inputBytes": 1417,
+          "outputBytes": 290,
+          "usage": {
+            "input_tokens": 644,
+            "output_tokens": 99
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 40,
+          "elapsedMs": 322,
+          "inputBytes": 21540,
+          "outputBytes": 11340,
+          "usage": {
+            "input_tokens": 5134,
+            "output_tokens": 766
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "risk.general",
+        "substantive": 3,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": null,
+      "snapshotBytes": 212020
+    },
+    {
+      "operation": "project",
+      "prompt": "risk.general",
+      "elapsedMs": 442,
+      "stages": [
+        {
+          "name": "D: projection",
+          "questions": 45,
+          "elapsedMs": 441,
+          "inputBytes": 51908,
+          "outputBytes": 13393,
+          "usage": {
+            "input_tokens": 18231,
+            "output_tokens": 3197
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "results",
+        "prompt": "risk.general",
+        "substantive": 3,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 3,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.6183333333333333,
+          "range": [0.3, 0.85],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.8111111111111112,
+          "range": [0.5238095238095238, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.41333333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.19,
+              "1": 0.38,
+              "2": 0.43,
+              "3": 0
+            },
+            "confidence": 0.24,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6633333333333333,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.99,
+              "3": 0
+            },
+            "confidence": 0.99,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.4266666666666667,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.6799999999999999,
+              "2": 0.3,
+              "3": 0
+            },
+            "confidence": 0.69,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3466666666666667,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.92,
+              "2": 0.06,
+              "3": 0
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9133333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.22,
+              "3": 0.76
+            },
+            "confidence": 0.74,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8033333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.55,
+              "3": 0.43
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Relevant actors, conditions, or horizons are distinguished."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8266666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.5,
+              "3": 0.49
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "Related positions fit under the stated assumptions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.6966666666666667,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.14,
+              "2": 0.61,
+              "3": 0.24
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "A serious alternative is represented fairly and addressed on its merits."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.6466666666666666,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.22,
+              "2": 0.62,
+              "3": 0.16
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ],
+            "claim": "Identifiable evidence or a development could change the stated belief."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.98,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.94
+            },
+            "confidence": 0.94,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 275294
+    },
+    {
+      "operation": "continue",
+      "prompt": "risk.general",
+      "elapsedMs": 0,
+      "stages": [],
+      "next": {
+        "status": "answering",
+        "prompt": "risk.general",
+        "substantive": 3,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 3,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.6183333333333333,
+          "range": [0.3, 0.85],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.8111111111111112,
+          "range": [0.5238095238095238, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.41333333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.19,
+              "1": 0.38,
+              "2": 0.43,
+              "3": 0
+            },
+            "confidence": 0.24,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6633333333333333,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.99,
+              "3": 0
+            },
+            "confidence": 0.99,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.4266666666666667,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.6799999999999999,
+              "2": 0.3,
+              "3": 0
+            },
+            "confidence": 0.69,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3466666666666667,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.92,
+              "2": 0.06,
+              "3": 0
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9133333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.22,
+              "3": 0.76
+            },
+            "confidence": 0.74,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8033333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.55,
+              "3": 0.43
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Relevant actors, conditions, or horizons are distinguished."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8266666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.5,
+              "3": 0.49
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "Related positions fit under the stated assumptions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.6966666666666667,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.14,
+              "2": 0.61,
+              "3": 0.24
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "A serious alternative is represented fairly and addressed on its merits."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.6466666666666666,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.22,
+              "2": 0.62,
+              "3": 0.16
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ],
+            "claim": "Identifiable evidence or a development could change the stated belief."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.98,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.94
+            },
+            "confidence": 0.94,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 275296
+    },
+    {
+      "operation": "answer",
+      "prompt": "risk.general",
+      "elapsedMs": 1037,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 345,
+          "inputBytes": 33914,
+          "outputBytes": 8919,
+          "usage": {
+            "input_tokens": 9967,
+            "output_tokens": 4622
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "navigation": 0,
+              "needs_clarification": 0,
+              "usable": 1,
+              "non_answer": 0
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 3,
+          "elapsedMs": 340,
+          "inputBytes": 1965,
+          "outputBytes": 437,
+          "usage": {
+            "input_tokens": 812,
+            "output_tokens": 148
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 36,
+          "elapsedMs": 351,
+          "inputBytes": 19997,
+          "outputBytes": 10183,
+          "usage": {
+            "input_tokens": 4838,
+            "output_tokens": 695
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "mechanism.general",
+        "substantive": 4,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 3,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.6183333333333333,
+          "range": [0.3, 0.85],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.8111111111111112,
+          "range": [0.5238095238095238, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.41333333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.19,
+              "1": 0.38,
+              "2": 0.43,
+              "3": 0
+            },
+            "confidence": 0.24,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6633333333333333,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.99,
+              "3": 0
+            },
+            "confidence": 0.99,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.4266666666666667,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.6799999999999999,
+              "2": 0.3,
+              "3": 0
+            },
+            "confidence": 0.69,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3466666666666667,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.92,
+              "2": 0.06,
+              "3": 0
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9133333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.22,
+              "3": 0.76
+            },
+            "confidence": 0.74,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8033333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.55,
+              "3": 0.43
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Relevant actors, conditions, or horizons are distinguished."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8266666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.5,
+              "3": 0.49
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "Related positions fit under the stated assumptions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.6966666666666667,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.14,
+              "2": 0.61,
+              "3": 0.24
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "A serious alternative is represented fairly and addressed on its merits."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.6466666666666666,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.22,
+              "2": 0.62,
+              "3": 0.16
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ],
+            "claim": "Identifiable evidence or a development could change the stated belief."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.98,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.94
+            },
+            "confidence": 0.94,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 328307
+    },
+    {
+      "operation": "answer",
+      "prompt": "mechanism.general",
+      "elapsedMs": 1047,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 364,
+          "inputBytes": 33502,
+          "outputBytes": 7875,
+          "usage": {
+            "input_tokens": 9208,
+            "output_tokens": 3674
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "navigation": 0,
+              "usable": 1,
+              "needs_clarification": 0,
+              "non_answer": 0
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 1,
+          "elapsedMs": 314,
+          "inputBytes": 850,
+          "outputBytes": 152,
+          "usage": {
+            "input_tokens": 497,
+            "output_tokens": 56
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 32,
+          "elapsedMs": 368,
+          "inputBytes": 18524,
+          "outputBytes": 9067,
+          "usage": {
+            "input_tokens": 4613,
+            "output_tokens": 616
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "upside.general",
+        "substantive": 5,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 3,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.6183333333333333,
+          "range": [0.3, 0.85],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.8111111111111112,
+          "range": [0.5238095238095238, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.41333333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.19,
+              "1": 0.38,
+              "2": 0.43,
+              "3": 0
+            },
+            "confidence": 0.24,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6633333333333333,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.99,
+              "3": 0
+            },
+            "confidence": 0.99,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.4266666666666667,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.6799999999999999,
+              "2": 0.3,
+              "3": 0
+            },
+            "confidence": 0.69,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3466666666666667,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.92,
+              "2": 0.06,
+              "3": 0
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9133333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.22,
+              "3": 0.76
+            },
+            "confidence": 0.74,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8033333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.55,
+              "3": 0.43
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Relevant actors, conditions, or horizons are distinguished."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8266666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.5,
+              "3": 0.49
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "Related positions fit under the stated assumptions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.6966666666666667,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.14,
+              "2": 0.61,
+              "3": 0.24
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "A serious alternative is represented fairly and addressed on its merits."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.6466666666666666,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.22,
+              "2": 0.62,
+              "3": 0.16
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ],
+            "claim": "Identifiable evidence or a development could change the stated belief."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.98,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.94
+            },
+            "confidence": 0.94,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 374490
+    },
+    {
+      "operation": "answer",
+      "prompt": "upside.general",
+      "elapsedMs": 1027,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 343,
+          "inputBytes": 33321,
+          "outputBytes": 8016,
+          "usage": {
+            "input_tokens": 9123,
+            "output_tokens": 3819
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "needs_clarification": 0,
+              "usable": 1,
+              "non_answer": 0,
+              "navigation": 0
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 1,
+          "elapsedMs": 292,
+          "inputBytes": 822,
+          "outputBytes": 152,
+          "usage": {
+            "input_tokens": 487,
+            "output_tokens": 56
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 28,
+          "elapsedMs": 392,
+          "inputBytes": 17089,
+          "outputBytes": 7935,
+          "usage": {
+            "input_tokens": 4394,
+            "output_tokens": 541
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "crux.general",
+        "substantive": 6,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 3,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.6183333333333333,
+          "range": [0.3, 0.85],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.8111111111111112,
+          "range": [0.5238095238095238, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.41333333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.19,
+              "1": 0.38,
+              "2": 0.43,
+              "3": 0
+            },
+            "confidence": 0.24,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6633333333333333,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.99,
+              "3": 0
+            },
+            "confidence": 0.99,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.4266666666666667,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.6799999999999999,
+              "2": 0.3,
+              "3": 0
+            },
+            "confidence": 0.69,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3466666666666667,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.92,
+              "2": 0.06,
+              "3": 0
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9133333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.22,
+              "3": 0.76
+            },
+            "confidence": 0.74,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8033333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.55,
+              "3": 0.43
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Relevant actors, conditions, or horizons are distinguished."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8266666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.5,
+              "3": 0.49
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "Related positions fit under the stated assumptions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.6966666666666667,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.14,
+              "2": 0.61,
+              "3": 0.24
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "A serious alternative is represented fairly and addressed on its merits."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.6466666666666666,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.22,
+              "2": 0.62,
+              "3": 0.16
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ],
+            "claim": "Identifiable evidence or a development could change the stated belief."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.98,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.94
+            },
+            "confidence": 0.94,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 423245
+    },
+    {
+      "operation": "answer",
+      "prompt": "crux.general",
+      "elapsedMs": 1267,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 571,
+          "inputBytes": 33793,
+          "outputBytes": 7902,
+          "usage": {
+            "input_tokens": 9233,
+            "output_tokens": 3743
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "navigation": 0,
+              "needs_clarification": 0,
+              "usable": 1,
+              "non_answer": 0
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 2,
+          "elapsedMs": 322,
+          "inputBytes": 1439,
+          "outputBytes": 290,
+          "usage": {
+            "input_tokens": 650,
+            "output_tokens": 99
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 24,
+          "elapsedMs": 374,
+          "inputBytes": 15567,
+          "outputBytes": 6843,
+          "usage": {
+            "input_tokens": 4095,
+            "output_tokens": 466
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "concrete.general",
+        "substantive": 7,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 3,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.6183333333333333,
+          "range": [0.3, 0.85],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.8111111111111112,
+          "range": [0.5238095238095238, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.41333333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.19,
+              "1": 0.38,
+              "2": 0.43,
+              "3": 0
+            },
+            "confidence": 0.24,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6633333333333333,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.99,
+              "3": 0
+            },
+            "confidence": 0.99,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.4266666666666667,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.6799999999999999,
+              "2": 0.3,
+              "3": 0
+            },
+            "confidence": 0.69,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3466666666666667,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.92,
+              "2": 0.06,
+              "3": 0
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9133333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.22,
+              "3": 0.76
+            },
+            "confidence": 0.74,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8033333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.55,
+              "3": 0.43
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Relevant actors, conditions, or horizons are distinguished."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8266666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.5,
+              "3": 0.49
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "Related positions fit under the stated assumptions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.6966666666666667,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.14,
+              "2": 0.61,
+              "3": 0.24
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "A serious alternative is represented fairly and addressed on its merits."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.6466666666666666,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.22,
+              "2": 0.62,
+              "3": 0.16
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ],
+            "claim": "Identifiable evidence or a development could change the stated belief."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.98,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.94
+            },
+            "confidence": 0.94,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 472488
+    },
+    {
+      "operation": "answer",
+      "prompt": "concrete.general",
+      "elapsedMs": 1140,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 440,
+          "inputBytes": 34601,
+          "outputBytes": 8933,
+          "usage": {
+            "input_tokens": 10127,
+            "output_tokens": 4590
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "non_answer": 0,
+              "usable": 1,
+              "needs_clarification": 0,
+              "navigation": 0
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 1,
+          "elapsedMs": 339,
+          "inputBytes": 849,
+          "outputBytes": 158,
+          "usage": {
+            "input_tokens": 494,
+            "output_tokens": 56
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 20,
+          "elapsedMs": 360,
+          "inputBytes": 13974,
+          "outputBytes": 5709,
+          "usage": {
+            "input_tokens": 3788,
+            "output_tokens": 391
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "countercase.general",
+        "substantive": 8,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 3,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.6183333333333333,
+          "range": [0.3, 0.85],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.8111111111111112,
+          "range": [0.5238095238095238, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.41333333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.19,
+              "1": 0.38,
+              "2": 0.43,
+              "3": 0
+            },
+            "confidence": 0.24,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6633333333333333,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.99,
+              "3": 0
+            },
+            "confidence": 0.99,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.4266666666666667,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.6799999999999999,
+              "2": 0.3,
+              "3": 0
+            },
+            "confidence": 0.69,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3466666666666667,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.02,
+              "1": 0.92,
+              "2": 0.06,
+              "3": 0
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9133333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.22,
+              "3": 0.76
+            },
+            "confidence": 0.74,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8033333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.55,
+              "3": 0.43
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Relevant actors, conditions, or horizons are distinguished."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8266666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.5,
+              "3": 0.49
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "Related positions fit under the stated assumptions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.6966666666666667,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.14,
+              "2": 0.61,
+              "3": 0.24
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "A serious alternative is represented fairly and addressed on its merits."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.6466666666666666,
+            "range": [0.3333333333333333, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.22,
+              "2": 0.62,
+              "3": 0.16
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ],
+            "claim": "Identifiable evidence or a development could change the stated belief."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.98,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.94
+            },
+            "confidence": 0.94,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 522961
+    },
+    {
+      "operation": "project",
+      "prompt": "countercase.general",
+      "elapsedMs": 759,
+      "stages": [
+        {
+          "name": "D: projection",
+          "questions": 45,
+          "elapsedMs": 758,
+          "inputBytes": 75621,
+          "outputBytes": 15289,
+          "usage": {
+            "input_tokens": 32099,
+            "output_tokens": 4590
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "results",
+        "prompt": "countercase.general",
+        "substantive": 8,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 8,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.5566666666666666,
+          "range": [0, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p6:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p4:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.9138888888888891,
+          "range": [0.7142857142857143, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.4666666666666666,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.14,
+              "1": 0.32,
+              "2": 0.54,
+              "3": 0
+            },
+            "confidence": 0.4,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6666666666666666,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 1,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p6:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.5533333333333333,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.32,
+              "2": 0.67,
+              "3": 0
+            },
+            "confidence": 0.65,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p4:a:e:risk_landscape"
+            ],
+            "claim": "Severe or widespread harm is a material expected part of the future."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.38666666666666666,
+            "range": [0.3333333333333333, 0.6666666666666666],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.83,
+              "2": 0.16,
+              "3": 0
+            },
+            "confidence": 0.83,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9900000000000001,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.02,
+              "3": 0.98
+            },
+            "confidence": 0.97,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.84,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.44,
+              "3": 0.54
+            },
+            "confidence": 0.52,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Scope is consistently explicit and changes in scope are accounted for."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8733333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.34,
+              "3": 0.64
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "The participant explicitly reconciles potential tensions through scope or assumption distinctions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.8333333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.03,
+              "2": 0.44,
+              "3": 0.53
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "The participant identifies when a serious alternative could outperform their account."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.9733333333333333,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.08,
+              "3": 0.92
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability"
+            ],
+            "claim": "A specific discriminating observation is tied to a particular belief change."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.9733333333333333,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.07,
+              "3": 0.93
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 529634
+    },
+    {
+      "operation": "clarify",
+      "prompt": "countercase.general",
+      "elapsedMs": 0,
+      "stages": [],
+      "next": {
+        "status": "answering",
+        "prompt": "concrete.general",
+        "substantive": 8,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 8,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.5566666666666666,
+          "range": [0, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p6:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p4:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.9138888888888891,
+          "range": [0.7142857142857143, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.4666666666666666,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.14,
+              "1": 0.32,
+              "2": 0.54,
+              "3": 0
+            },
+            "confidence": 0.4,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6666666666666666,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 1,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p6:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.5533333333333333,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.32,
+              "2": 0.67,
+              "3": 0
+            },
+            "confidence": 0.65,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p4:a:e:risk_landscape"
+            ],
+            "claim": "Severe or widespread harm is a material expected part of the future."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.38666666666666666,
+            "range": [0.3333333333333333, 0.6666666666666666],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.83,
+              "2": 0.16,
+              "3": 0
+            },
+            "confidence": 0.83,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p2:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9900000000000001,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.02,
+              "3": 0.98
+            },
+            "confidence": 0.97,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.84,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.44,
+              "3": 0.54
+            },
+            "confidence": 0.52,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:scope_discipline"
+            ],
+            "claim": "Scope is consistently explicit and changes in scope are accounted for."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.8733333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.34,
+              "3": 0.64
+            },
+            "confidence": 0.62,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:internal_coherence"
+            ],
+            "claim": "The participant explicitly reconciles potential tensions through scope or assumption distinctions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.8333333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.03,
+              "2": 0.44,
+              "3": 0.53
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "The participant identifies when a serious alternative could outperform their account."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.9733333333333333,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.08,
+              "3": 0.92
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability"
+            ],
+            "claim": "A specific discriminating observation is tied to a particular belief change."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.9733333333333333,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.07,
+              "3": 0.93
+            },
+            "confidence": 0.92,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 530060
+    },
+    {
+      "operation": "answer",
+      "prompt": "concrete.general",
+      "elapsedMs": 1854,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 395,
+          "inputBytes": 33447,
+          "outputBytes": 7947,
+          "usage": {
+            "input_tokens": 9291,
+            "output_tokens": 3827
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "needs_clarification": 0,
+              "usable": 1,
+              "navigation": 0,
+              "non_answer": 0
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 1,
+          "elapsedMs": 409,
+          "inputBytes": 834,
+          "outputBytes": 152,
+          "usage": {
+            "input_tokens": 495,
+            "output_tokens": 56
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "D: projection",
+          "questions": 45,
+          "elapsedMs": 1049,
+          "inputBytes": 79519,
+          "outputBytes": 15613,
+          "usage": {
+            "input_tokens": 34470,
+            "output_tokens": 4794
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "results",
+        "prompt": "concrete.general",
+        "substantive": 9,
+        "recovery": {
+          "evaluated": 1,
+          "clearMisses": 0,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": {
+        "evidenceRevision": 9,
+        "versions": {
+          "assessment": "0.1.0",
+          "content": "0.1.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.5549999999999999,
+          "range": [0, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p6:a:e:beneficial_potential",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p4:a:e:risk_landscape"
+          ],
+          "claim": null
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.9422222222222222,
+          "range": [0.7619047619047619, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p10:a:e:scope_discipline",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p10:a:e:internal_coherence",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability",
+            "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": 0.4633333333333333,
+            "range": [0, 0.6666666666666666],
+            "distribution": {
+              "0": 0.14,
+              "1": 0.33,
+              "2": 0.53,
+              "3": 0
+            },
+            "confidence": 0.39,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Transformative capability is expected only on a long or indefinite horizon."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.6666666666666666,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 1,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p6:a:e:beneficial_potential"
+            ],
+            "claim": "Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.5566666666666666,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.32,
+              "2": 0.67,
+              "3": 0
+            },
+            "confidence": 0.66,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p4:a:e:risk_landscape"
+            ],
+            "claim": "Severe or widespread harm is a material expected part of the future."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": 0.3933333333333333,
+            "range": [0.3333333333333333, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0.81,
+              "2": 0.19,
+              "3": 0
+            },
+            "confidence": 0.81,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p10:a:e:technical_controllability"
+            ],
+            "claim": "Control is expected to be very difficult and unreliable."
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9900000000000001,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.02,
+              "3": 0.98
+            },
+            "confidence": 0.97,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.8833333333333333,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.33,
+              "3": 0.66
+            },
+            "confidence": 0.65,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p10:a:e:scope_discipline"
+            ],
+            "claim": "Scope is consistently explicit and changes in scope are accounted for."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.9833333333333334,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.03,
+              "3": 0.97
+            },
+            "confidence": 0.95,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p10:a:e:internal_coherence"
+            ],
+            "claim": "The participant explicitly reconciles potential tensions through scope or assumption distinctions."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.8333333333333334,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.44,
+              "3": 0.54
+            },
+            "confidence": 0.5,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p3:a:e:counterargument_engagement"
+            ],
+            "claim": "The participant identifies when a serious alternative could outperform their account."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.9866666666666667,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.04,
+              "3": 0.96
+            },
+            "confidence": 0.96,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability"
+            ],
+            "claim": "A specific discriminating observation is tied to a particular belief change."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.9766666666666667,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.06,
+              "3": 0.9400000000000001
+            },
+            "confidence": 0.93,
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p5:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "dc4b5d9c-8db3-4389-9c30-d7e9955d98eb:p7:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.alphafold",
+            "title": "AlphaFold and protein structure prediction",
+            "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+            "purpose": "Inspect a concrete scientific benefit and the limits of generalizing from it.",
+            "effort": "About 10 minutes"
+          }
+        ],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "Some interpretations still need clarification."
+      },
+      "snapshotBytes": 584028
+    },
+    {
+      "operation": "answer",
+      "prompt": "root",
+      "elapsedMs": 351,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 351,
+          "inputBytes": 27562,
+          "outputBytes": 6451,
+          "usage": {
+            "input_tokens": 7296,
+            "output_tokens": 2619
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "non_answer",
+            "probabilities": {
+              "navigation": 0,
+              "needs_clarification": 0,
+              "usable": 0,
+              "non_answer": 1
+            },
+            "confidence": 1
+          }
+        }
+      ],
+      "next": {
+        "status": "recovery",
+        "prompt": "root",
+        "substantive": 0,
+        "recovery": {
+          "evaluated": 1,
+          "clearMisses": 1,
+          "paperclipShown": false,
+          "paperclipActive": false,
+          "reason": "non_answer"
+        }
+      },
+      "result": null,
+      "snapshotBytes": 1379
+    },
+    {
+      "operation": "answer",
+      "prompt": "root",
+      "elapsedMs": 348,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 348,
+          "inputBytes": 27342,
+          "outputBytes": 6406,
+          "usage": {
+            "input_tokens": 7236,
+            "output_tokens": 2619
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "non_answer",
+            "probabilities": {
+              "navigation": 0,
+              "needs_clarification": 0,
+              "non_answer": 1,
+              "usable": 0
+            },
+            "confidence": 1
+          }
+        }
+      ],
+      "next": {
+        "status": "paused",
+        "prompt": "root",
+        "substantive": 0,
+        "recovery": {
+          "evaluated": 2,
+          "clearMisses": 2,
+          "paperclipShown": true,
+          "paperclipActive": true,
+          "reason": "non_answer"
+        }
+      },
+      "result": null,
+      "snapshotBytes": 1562
+    },
+    {
+      "operation": "retry",
+      "prompt": "root",
+      "elapsedMs": 0,
+      "stages": [],
+      "next": {
+        "status": "recovery",
+        "prompt": "root",
+        "substantive": 0,
+        "recovery": {
+          "evaluated": 2,
+          "clearMisses": 2,
+          "paperclipShown": true,
+          "paperclipActive": false,
+          "reason": "non_answer"
+        }
+      },
+      "result": null,
+      "snapshotBytes": 1565
+    },
+    {
+      "operation": "answer",
+      "prompt": "root",
+      "elapsedMs": 1088,
+      "stages": [
+        {
+          "name": "A: interpret",
+          "questions": 36,
+          "elapsedMs": 347,
+          "inputBytes": 30627,
+          "outputBytes": 8060,
+          "usage": {
+            "input_tokens": 8590,
+            "output_tokens": 3918
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": {
+            "type": "choice",
+            "choice": "usable",
+            "probabilities": {
+              "non_answer": 0,
+              "needs_clarification": 0,
+              "navigation": 0,
+              "usable": 1
+            },
+            "confidence": 1
+          }
+        },
+        {
+          "name": "B1: identify references",
+          "questions": 3,
+          "elapsedMs": 369,
+          "inputBytes": 1917,
+          "outputBytes": 431,
+          "usage": {
+            "input_tokens": 808,
+            "output_tokens": 148
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        },
+        {
+          "name": "C: route",
+          "questions": 48,
+          "elapsedMs": 371,
+          "inputBytes": 24366,
+          "outputBytes": 13626,
+          "usage": {
+            "input_tokens": 5623,
+            "output_tokens": 916
+          },
+          "attempts": 1,
+          "model": "jev-1.13.0",
+          "disposition": null
+        }
+      ],
+      "next": {
+        "status": "answering",
+        "prompt": "control.general",
+        "substantive": 1,
+        "recovery": {
+          "evaluated": 0,
+          "clearMisses": 0,
+          "paperclipShown": true,
+          "paperclipActive": false,
+          "reason": null
+        }
+      },
+      "result": null,
+      "snapshotBytes": 102230
+    }
+  ]
+}

@@ -2,11 +2,16 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
+import { SiteActions } from '@/components/site-actions'
+import { SiteAnalytics } from '@/components/analytics'
+import { serverEnv } from '@/lib/server/env'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://doom-or-bloom.com'),
   title: 'Doom or Bloom',
-  description: 'Map your AI worldview in three questions.'
+  description: 'Map your AI worldview in three questions.',
+  twitter: { card: 'summary_large_image' }
 }
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -18,12 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href='/' className='text-sm font-semibold tracking-tight'>
                 Doom or Bloom
               </Link>
-              <a
-                href='https://github.com/transitive-bullshit/doom-or-bloom'
-                className='text-sm text-muted-foreground'
-              >
-                GitHub
-              </a>
+              <SiteActions />
             </header>
             <main className='flex flex-1 flex-col'>{children}</main>
             <footer className='flex flex-wrap justify-center gap-5 px-6 py-6 text-xs text-muted-foreground'>
@@ -32,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <span>Experimental · 0.1.0</span>
             </footer>
           </div>
+          <SiteAnalytics enabled={serverEnv().analytics} />
         </ThemeProvider>
       </body>
     </html>

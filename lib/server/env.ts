@@ -13,6 +13,17 @@ export function serverEnv() {
     throw new Error('Fixture mode is only available in development and tests')
   return {
     provider,
+    analytics:
+      parseBoolean(
+        process.env.NEXT_PUBLIC_ANALYTICS_ENABLED,
+        'NEXT_PUBLIC_ANALYTICS_ENABLED'
+      ) &&
+      provider !== 'fixture' &&
+      (!process.env.NEXT_PUBLIC_POSTHOG_KEY ||
+        parseBoolean(
+          process.env.POSTHOG_IP_DISPOSAL_CONFIRMED,
+          'POSTHOG_IP_DISPOSAL_CONFIRMED'
+        )),
     model: process.env.TYPESAFE_MODEL || 'jev-1.13.0',
     debug: parseBoolean(
       process.env.NEXT_PUBLIC_ASSESSMENT_DEBUG,

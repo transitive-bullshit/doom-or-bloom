@@ -44,16 +44,25 @@ import { DebugPanel } from '@/components/debug/panel'
 import { ResultView } from './result-view'
 import { Paperclips } from './paperclips'
 import { downloadBlob } from '@/lib/sharing/report'
+import { configureAnalytics, emitEvent } from '@/lib/analytics/client'
+import { makeEvent, transitionEvents } from '@/lib/analytics/events'
+import type { Catalog } from '@/lib/analytics/events'
 
 export function Interview({
   model,
   debugDefault,
   debugAvailable,
-  recoveryCopy
+  recoveryCopy,
+  analyticsEnabled,
+  analyticsCatalog,
+  fixtureMode
 }: {
   model: string
   debugDefault: boolean
   debugAvailable: boolean
+  analyticsEnabled: boolean
+  analyticsCatalog: Catalog
+  fixtureMode: boolean
   recoveryCopy: Record<
     string,
     { reask: string; clarification: string; exhausted: string }
@@ -67,7 +76,7 @@ export function Interview({
   const [debugMode, setDebugMode] = useState(debugDefault)
   const [trace, setTrace] = useState<DebugTrace>()
   const [rawBackup, setRawBackup] = useState<string>()
-  const [fixture, setFixture] = useState(false)
+  const [fixture, setFixture] = useState(fixtureMode)
   const current = useRef<Assessment | null>(null)
   const token = useRef<string | null>(null)
   const writable = useRef(true)
@@ -102,6 +111,9 @@ export function Interview({
     setCurrent(value)
   }
   useEffect(() => {
+    configureAnalytics(analyticsCatalog, analyticsEnabled)
+  }, [analyticsCatalog, analyticsEnabled])
+  useEffect(() => {
     let disposed = false
     queueMicrotask(() => {
       if (disposed) return
@@ -130,8 +142,7 @@ export function Interview({
           )
         }
         const initial = createAssessment(crypto.randomUUID(), model)
-        current.current = initial
-        setState(initial)
+        persist(initial)
       }
     })
     const changed = (event: StorageEvent) => {
@@ -188,7 +199,9 @@ export function Interview({
       )
         return
       const next = assessmentSchema.parse(body.assessment)
+      const events = transitionEvents(snapshot, next, operation, id)
       persist(next)
+      events.forEach(emitEvent)
       setTrace(body.debug)
       setFixture(body.provider === 'fixture')
     } catch (err) {
@@ -206,6 +219,8 @@ export function Interview({
     }
   }
   function restart() {
+    if (current.current)
+      emitEvent(makeEvent(current.current, 'assessment_restarted'))
     pending.current?.controller.abort()
     pending.current = null
     setBusy(false)
@@ -410,7 +425,7 @@ export function Interview({
                           Try a different question
                         </Button>
                       )}
-                    {!paused && (
+                    {(!paused || state.recovery.reason !== 'stopped') && (
                       <Button
                         type='button'
                         disabled={busy || conflict}

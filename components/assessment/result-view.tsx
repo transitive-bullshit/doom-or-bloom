@@ -14,6 +14,8 @@ import {
   CollapsibleTrigger
 } from '@/components/ui/collapsible'
 import { serializeReport, downloadBlob } from '@/lib/sharing/report'
+import { emitEvent } from '@/lib/analytics/client'
+import { makeEvent } from '@/lib/analytics/events'
 
 export function Map({
   horizontal: x,
@@ -119,6 +121,7 @@ export function ResultView({
       new Blob([markdown], { type: 'text/markdown' }),
       'doom-or-bloom-report.md'
     )
+    emitEvent(makeEvent(state, 'full_report_downloaded'))
   }
   const card = async () => {
     try {
@@ -136,6 +139,7 @@ export function ResultView({
       if (!response.ok)
         throw new Error('Card generation failed. Please try again.')
       downloadBlob(await response.blob(), 'doom-or-bloom.png')
+      emitEvent(makeEvent(state, 'share_card_downloaded'))
     } catch (err) {
       onError(err instanceof Error ? err.message : 'Card download failed')
     }
@@ -238,6 +242,11 @@ export function ResultView({
                 href={r.url}
                 target='_blank'
                 rel='noreferrer'
+                onClick={() =>
+                  emitEvent(
+                    makeEvent(state, 'resource_opened', { resource_id: r.id })
+                  )
+                }
               >
                 {r.title} ↗
               </a>
@@ -264,6 +273,7 @@ export function ResultView({
             target='_blank'
             rel='noreferrer'
             href={`https://x.com/intent/post?text=${encodeURIComponent('I mapped my AI worldview with Doom or Bloom. https://doom-or-bloom.com')}`}
+            onClick={() => emitEvent(makeEvent(state, 'share_intent_opened'))}
           >
             Post on X
           </a>
