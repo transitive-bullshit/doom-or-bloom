@@ -23,14 +23,15 @@ export const vectorIds = [...worldviewIds, ...epistemicIds] as const
 export const vectorSchema = z.enum(vectorIds)
 export type VectorId = z.infer<typeof vectorSchema>
 export const limits = {
-  prompts: 50,
-  warning: 45,
+  prompts: 12,
+  warning: 10,
   recovery: 3,
   answerChars: 2000,
   requestBytes: 8_000_000,
   questions: 96,
   referenceCandidates: 12,
-  resolvedReferences: 4
+  resolvedReferences: 2,
+  providerAttempts: 16
 } as const
 export const versionsSchema = z.strictObject({
   assessment: z.string().max(50),
@@ -39,7 +40,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.1.0',
+  assessment: '0.2.0',
   content: '0.1.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -117,7 +118,7 @@ export const promptInstanceSchema = z.strictObject({
   promptId: z.string().max(120),
   text: z.string().max(2000),
   family: z.string().max(80),
-  ordinal: z.number().int().min(1).max(50),
+  ordinal: z.number().int().min(1).max(limits.prompts),
   variant: z.string().max(80),
   target: vectorSchema.optional(),
   sourceEvidenceIds: z.array(z.string()).max(100)
@@ -249,9 +250,9 @@ export const assessmentSchema = z.strictObject({
     'completed',
     'capped'
   ]),
-  prompts: z.array(promptInstanceSchema).min(1).max(50),
-  answers: z.array(answerSchema).max(50),
-  attempts: z.array(attemptSchema).max(150),
+  prompts: z.array(promptInstanceSchema).min(1).max(limits.prompts),
+  answers: z.array(answerSchema).max(limits.prompts),
+  attempts: z.array(attemptSchema).max(limits.prompts * limits.recovery),
   interactionHistory: z
     .array(
       z.strictObject({
@@ -264,8 +265,11 @@ export const assessmentSchema = z.strictObject({
     .max(20)
     .default([]),
   judgments: z.array(judgmentSchema).max(5000),
-  evidence: z.array(evidenceSchema).max(1200),
-  referenceClaims: z.array(referenceClaimSchema).max(200).default([]),
+  evidence: z.array(evidenceSchema).max(limits.prompts * vectorIds.length),
+  referenceClaims: z
+    .array(referenceClaimSchema)
+    .max(limits.prompts * limits.resolvedReferences)
+    .default([]),
   familiarity: z
     .strictObject({
       level: z.enum(['unknown', 'general', 'expert']),

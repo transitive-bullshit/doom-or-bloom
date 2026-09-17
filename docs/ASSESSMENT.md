@@ -91,7 +91,7 @@ MVP weights are authored configuration and must be evaluated, not presented as i
 - The participant may request results once eligible.
 - Results can be provisional; weak evidence widens interpretation ranges and marks components as unassessed.
 - Clarification after results reopens the assessment.
-- Warn at 45 lifetime prompts; hard stop at 50.
+- Warn at 10 lifetime prompts; hard stop at 12.
 - A response that is empty, purely navigational, or not an answer does not consume a substantive-answer minimum but still needs abuse/cost controls in implementation.
 
 Readiness depends on relevant coverage and resolved interpretation, never on agreement, sophistication, moderation, or a high epistemic score.
@@ -119,7 +119,7 @@ Recovery policy for MVP:
 4. Re-showing/rephrasing the same elicitation goal is the same prompt instance; preserve the displayed variant with each attempt. The fixed root wording stays intact, with recovery guidance beneath it. Choosing a different question issues a new prompt and consumes the lifetime budget; its selection uses prior usable evidence or a deterministic authored fallback, never the nonsense reply.
 5. A usable answer ends recovery and clears the consecutive-miss streak. Rejected attempts never add coverage, lower Epistemic Quality, or become factual evidence in later judgments. Preserve them separately as bounded local interaction history for recovery/debugging, explicitly excluded from scoring context.
 
-Provider retries are distinct from recovery submissions and must be idempotent with respect to counters. Navigation and validation failures remain subject to request/rate limits but do not consume semantic recovery attempts. The lifetime cap takes precedence over recovery: after processing prompt 50, finalize from usable evidence, with an insufficient-evidence state if necessary. Before result eligibility, stopping preserves a paused assessment and creates no invented placement. The paperclip interlude is never a substitute assessment result.
+Provider retries are distinct from recovery submissions and must be idempotent with respect to counters. Navigation and validation failures remain subject to request/rate limits but do not consume semantic recovery attempts. The lifetime cap takes precedence over recovery: after processing prompt 12, finalize from usable evidence, with an insufficient-evidence state if necessary. Before result eligibility, stopping preserves a paused assessment and creates no invented placement. The paperclip interlude is never a substitute assessment result.
 
 ## Reference handling
 
@@ -164,6 +164,8 @@ Results expose a small set of central inferred claims. “That’s not quite my 
 Participants may correct the assessment's interpretation; they may not directly edit a score or coordinate. Corrections provide valuable quality telemetry without being treated as ground truth automatically.
 
 ## Procedural neutrality
+
+Use [JOURNEYS.md](JOURNEYS.md) and the user's argument maps for development cases, including acceleration with substantial catastrophic risk and restraint with low catastrophic risk. Risk families and safety concepts are overlapping authoring/retrieval tags, not additional scored vectors, severity labels or mandatory branches. Ordinary harms, permanent disempowerment and extinction need their own expressed scope and horizon; policy alone establishes none of them.
 
 - Apply identical rubrics across worldview positions.
 - Reward coherent extreme views over poorly supported moderation.

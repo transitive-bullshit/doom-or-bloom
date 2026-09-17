@@ -33,7 +33,7 @@ Progress and drafts live in one browser-local record. Reload resumes the same pr
 
 An unusable or unclear reply gets bounded authored recovery. Two confident consecutive non-answers trigger a one-time, dismissible paperclip pause; relevant humor and honest uncertainty remain usable. A prompt permits the original semantic submission plus two recovery submissions. Failed requests and navigation do not consume that allowance. Uncertain network retries reuse their request ID; process restarts do not guarantee exactly-once billing.
 
-Rejected text stays in a bounded local interaction history, outside scoring, later requests and report text. Fifty issued prompts, including clarification, force finalization from usable evidence. Insufficient evidence produces an honest unplaced result.
+Rejected text stays in a bounded local interaction history, outside scoring, later requests and report text. Twelve issued prompts, including clarification, force finalization from usable evidence. Insufficient evidence produces an honest unplaced result.
 
 ## Checks and evaluation
 
@@ -51,14 +51,13 @@ Opt-in live commands use only their synthetic inputs and read `.env.local` witho
 ```sh
 pnpm eval:smoke
 pnpm eval:engine
-pnpm eval:budget
 ```
 
-Live runs consume TypeSafe usage and record measurements under `eval/`. They are development evidence, not held-out accuracy validation. The maximum-transcript stress case currently fails a provider token limit and remains a release blocker; see [benchmark notes](docs/benchmark-notes.md).
+Live runs consume TypeSafe usage and require a small reviewed suite with an explicit cost budget. Use fixtures for bounds and workflow checks; no paid pressure-testing command is provided. Existing measurements are historical development evidence, not held-out accuracy validation; see [measurement notes](docs/benchmark-notes.md).
 
 ## Authored content
 
-Prompts, references, findings and resources live under `content/releases/`; rubric categories, weights and Jev question templates live under `content/rubrics/`. IDs, rules, graph reachability, provenance, review status and hashes are validated by `pnpm test:content`. Review the [expanded seed packet](docs/seed-review-packet.md) before marking its new assets reviewed.
+Prompts, references, findings and resources live under `content/releases/`; rubric categories, weights and Jev question templates live under `content/rubrics/`. IDs, rules, graph reachability, provenance, review status and hashes are validated by `pnpm test:content`. The expanded historical seed was returned for revision. Follow [current source guidance](docs/SOURCES.md) and [argument journeys](docs/JOURNEYS.md) before the next editorial review.
 
 Format and validate before freezing a fully human-reviewed bundle:
 

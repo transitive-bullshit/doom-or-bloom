@@ -331,7 +331,7 @@ export function Interview({
               <p className='mb-5 text-xs text-muted-foreground'>
                 {state.answers.length === 0
                   ? 'Map your AI worldview in three questions.'
-                  : `${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= 45 ? ' of 50' : ''}`}
+                  : `${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
               </p>
               <h1
                 tabIndex={-1}
@@ -341,11 +341,12 @@ export function Interview({
                 {p.text}
               </h1>
             </div>
-            {p.ordinal >= 45 && (
+            {p.ordinal >= limits.warning && (
               <Alert>
                 <AlertTitle>Approaching the limit</AlertTitle>
                 <AlertDescription>
-                  This assessment ends at 50 prompts. You can restart afterward.
+                  This assessment ends at {limits.prompts} prompts. You can
+                  restart afterward.
                 </AlertDescription>
               </Alert>
             )}
@@ -438,7 +439,7 @@ export function Interview({
                         View my result
                       </Button>
                     )}
-                    {state.prompts.length < 50 &&
+                    {state.prompts.length < limits.prompts &&
                       (paused || state.status === 'recovery') && (
                         <Button
                           type='button'

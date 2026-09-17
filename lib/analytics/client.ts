@@ -28,6 +28,8 @@ export function sanitizePostHog<
     ...event,
     properties: {
       ...result.properties,
+      // The SDK requires its public project identifier after before_send.
+      token: process.env.NEXT_PUBLIC_POSTHOG_KEY,
       distinct_id: result.assessmentId,
       $process_person_profile: false
     }
@@ -37,6 +39,8 @@ export const posthogPrivacyConfig = {
   autocapture: false,
   capture_pageview: false,
   capture_pageleave: false,
+  save_campaign_params: false,
+  save_referrer: false,
   capture_dead_clicks: false,
   rageclick: false,
   capture_exceptions: false,

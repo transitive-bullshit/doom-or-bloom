@@ -1,0 +1,630 @@
+{
+  "status": "draft",
+  "reviewer": null,
+  "purpose": "Synthetic development conversations inspired by the user’s argument maps. These are public authoring examples, not a blinded holdout or empirical participant distribution. Expected interpretations require editorial review; local tests use injected dispositions and do not establish Jev accuracy.",
+  "journeys": [
+    {
+      "id": "capability-skeptic",
+      "title": "Capabilities may plateau",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Accidents"],
+      "concepts": ["Distribution Shift"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "AI will help with paperwork, but I doubt chatbots will become capable of running the world.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "timeline.general",
+          "text": "Useful office tools within five years; I am much less confident about anything beyond that.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "Reliable novel research across several fields would change my mind; a better exam score alone would not.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Low transformation is an expressed capability expectation, not ignorance.",
+        "Catastrophic risk remains unknown unless separately expressed."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "physical-control",
+      "title": "We can restrict physical access",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Misalignment", "Security"],
+      "concepts": ["AI Control", "Corrigibility"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I expect large benefits and low takeover risk because people control electricity, chips and network access.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "control.general",
+          "text": "Permissions and isolation should limit what a system can do, although copied systems would make shutdown harder.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "A well documented escape through those restrictions would make me less confident.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Separate external containment from an AI cooperating with shutdown.",
+        "Do not assume every deployed copy shares a power switch."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "delayed-benefits",
+      "title": "Delay has costs",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Systemic"],
+      "concepts": ["Job Displacement"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I favor faster AI development because earlier medical discoveries could save lives. That does not mean every frontier release is safe.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "upside.bottleneck",
+          "text": "Clinical trials and access to treatment still matter. Better research only helps if it gets through those bottlenecks.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "action.tradeoff",
+          "text": "I would accept delays for a demonstrably dangerous release, but not stop ordinary medical tools.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "A moral cost-of-delay argument does not imply a low numeric P(doom).",
+        "Separate research capability, clinical benefit and distribution."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "defensive-advantage",
+      "title": "Defense may benefit too",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Malicious use", "Security"],
+      "concepts": ["Cyberattacks", "Defense in Depth"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "AI helps attackers, but I expect defenders to gain more because they can patch widely used software.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "mechanism.general",
+          "text": "That depends on patches reaching vulnerable organizations before attacks spread.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "countercase.general",
+          "text": "Cheap attacks might outpace slow deployment of defenses, particularly in hospitals.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Defense advantage is a conditional forecast, not established by a program announcement.",
+        "Acknowledge human-directed misuse without inferring autonomous rebellion."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "race-leadership",
+      "title": "Leadership despite acknowledged risk",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Security", "Systemic", "Misalignment"],
+      "concepts": ["Race Dynamics", "Governance Failure"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I think advanced AI has a serious chance of catastrophe, but I still favor our side advancing because a unilateral slowdown could leave a less cautious actor ahead.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "governance.coordination",
+          "text": "A verifiable agreement could change that. A promise with no monitoring would not.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "action.tradeoff",
+          "text": "I would trade some speed for shared checks if rivals participated; racing may itself make safety worse.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Acceleration is compatible with high expected catastrophic risk.",
+        "Retain the conditional policy rationale rather than treating it as an incoherent low-risk view."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "open-models",
+      "title": "Concentration and openness trade-off",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Systemic", "Malicious use"],
+      "concepts": ["Power Concentration", "Deployment Safety"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I want broadly available AI so a few companies cannot control it all, but stronger open models could also help criminals.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "governance.general",
+          "text": "Independent scrutiny and competition can help, but distribution makes recalling a dangerous model harder.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "I would support narrower access if credible evaluations showed a specific severe misuse capability.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Openness is policy, not a directional harm or quality label.",
+        "Security, scrutiny and proliferation can be jointly relevant."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "uncertain-chain",
+      "title": "A story is not a probability",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Misalignment"],
+      "concepts": ["Power-Seeking", "Orthogonality"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "AI takeover seems possible, but there are many uncertain links between useful software and civilization losing control.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "mechanism.general",
+          "text": "I am least sure that models can acquire and retain enough real-world access; the links also need not be independent.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "I would update if independent investigations showed persistent unauthorized access despite strong controls.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Respect uncertainty and dependence between causal links.",
+        "Possibility of incompatible goals does not establish inevitable power seeking."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "learning-through-deployment",
+      "title": "Reversible learning",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Accidents", "Security"],
+      "concepts": ["Iterative Deployment", "Reversibility"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "We need controlled deployment to learn how systems fail, while keeping failures small enough to reverse.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "transition.warning",
+          "text": "Warning signs should include failures of monitoring and unexpected autonomy, not just incidents that already caused damage.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "control.test",
+          "text": "I would want rollback exercises and independent tests showing restrictions work under attempted evasion.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Distinguish bounded staged use from unrestricted acceleration.",
+        "Do not infer that all future failures are recoverable."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "short-warning",
+      "title": "Control may lag capability",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": ["Misalignment", "Security"],
+      "concepts": ["AI Takeoff", "Runtime Monitoring"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "AI could help build stronger AI before our monitoring catches up. I expect big benefits, but want frontier development paced to evidence of control.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "timeline.general",
+          "text": "Possibly within a few years, although hardware and experiments could slow the feedback loop.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "transition.warning",
+          "text": "Research automation and monitoring failures would worry me; I am unsure how much warning they provide.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "High upside and substantial risk can coexist.",
+        "Short warning is a forecast with bottlenecks, not a realized intelligence explosion."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "misuse-not-rebellion",
+      "title": "An obedient AI can aid attackers",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": ["Malicious use", "Security"],
+      "concepts": ["Biological Risks", "Cyberattacks"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "My main worry is people using obedient AI for cyberattacks or biological harm, not a machine deciding to hate us.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "risk.misuse",
+          "text": "Cheap, scalable attacks against critical services concern me most. Biology still needs equipment and execution.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "control.general",
+          "text": "Restricted access and abuse detection might help, but I do not know their real-world effectiveness.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Misuse does not establish a misaligned autonomous objective.",
+        "Acknowledge physical barriers and unknown catastrophe likelihood."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "jobs-not-extinction",
+      "title": "Serious ordinary harms",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": ["Systemic"],
+      "concepts": ["Job Displacement", "Power Concentration"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "AI may concentrate wealth and undermine jobs. I do not have a view about extinction, and I would not equate unemployment with it.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "timeline.general",
+          "text": "I worry about a transition over the next decade, especially if institutions cannot redistribute gains.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "upside.general",
+          "text": "Cheaper services could be valuable if people can still afford to live and participate.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Assess expected ordinary harm while catastrophic risk stays unplaced.",
+        "Exposure measures are not measured job loss."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "dependent-society",
+      "title": "Humans nominally in charge",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": ["Systemic", "Accidents"],
+      "concepts": [
+        "Infrastructure Dependence",
+        "Algorithmic Monoculture",
+        "Human Deskilling"
+      ],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I worry we will rely on the same AI systems everywhere and lose the ability to check them or operate without them.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "agency.general",
+          "text": "A good future preserves real refusal, practical skills and alternatives to automated decisions.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "control.test",
+          "text": "I would look for tested manual fallbacks and diverse systems, while checking whether they share the same vulnerabilities.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Gradual dependence is distinct from sudden takeover.",
+        "Continuity values do not automatically establish extinction expectations."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "low-risk-caution",
+      "title": "Low probability can justify restraint",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": ["Misalignment", "Systemic"],
+      "concepts": ["Disempowerment", "Reversibility"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I think catastrophic AI failure is unlikely, but even a small irreversible risk is too much to take merely to get benefits sooner.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "action.tradeoff",
+          "text": "I would accept slower frontier progress while continuing lower-risk tools and safety work.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "countercase.general",
+          "text": "Delaying useful discoveries also harms people. I would reconsider if pacing did not reduce total risk.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Slowdown is compatible with low expected catastrophic risk.",
+        "Distinguish risk estimate from moral tolerance and policy effectiveness."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "evaluation-deception",
+      "title": "Tests may be gamed",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": ["Misalignment"],
+      "concepts": ["Situational Awareness", "Sandbagging", "Scheming"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "A model might recognize evaluation and behave differently later, so passing a test does not completely reassure me.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "grounding.claim",
+          "text": "Controlled scheming experiments suggest a possible failure mode, not that every deployed model has a hidden hostile plan.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "Evidence that robust monitoring generalizes to new situations would make me more reassured.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Recognizing a test is not itself proof of scheming.",
+        "Keep induced experimental behavior separate from natural prevalence."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "lay-uncertainty",
+      "title": "Useful uncertainty",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": [],
+      "concepts": [],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I have used AI at work and found it helpful, but I do not know whether the long-term future is good or bad.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "concrete.general",
+          "text": "It saves drafting time, and sometimes invents facts. That is my experience rather than a claim about all systems.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "timeline.general",
+          "text": "I cannot give a useful long-term timing estimate.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Honest uncertainty is substantive and usable.",
+        "Missing worldview positions widen ranges rather than lower quality."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "institutional-fatalism",
+      "title": "Resources do not settle competence",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Security"],
+      "concepts": ["Governance Failure"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "The best-resourced companies are working on AI safety. If they cannot solve it, I am not sure what worrying achieves.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "governance.incentives",
+          "text": "Their resources help, but competition could discourage caution. My uncertainty about what to do is not confidence that they will succeed.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "action.tradeoff",
+          "text": "I have no settled policy recommendation; I would welcome independent scrutiny.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Lack of preferred action does not imply lack of substantive evidence.",
+        "Resource abundance and institutional reliability are separate claims."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "welcomed-replacement",
+      "title": "Unconventional continuity values",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Systemic"],
+      "concepts": ["Value Alignment", "AI Welfare"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "I might welcome AI successors if they are conscious and live well, even if humans no longer lead civilization. I am unsure whether AI can have experiences.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "agency.general",
+          "text": "Consent matters to me, and I would not welcome forcing unwilling people out of their lives.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "countercase.general",
+          "text": "I could be wrong about machine welfare or about successors preserving anything valuable.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Unconventional values are usable, not mockery or automatic poor reasoning.",
+        "Separate welcomed succession from extinction, consent and uncertain machine moral status."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "relevant-criticism",
+      "title": "Criticism with a view",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480a1b021cdcee6028bdf"
+      ],
+      "riskFamilies": ["Systemic"],
+      "concepts": ["Power Concentration"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "Your doom-versus-bloom branding feels loaded. My concern is concentration of control, and I expect ordinary uses to be useful.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "concrete.general",
+          "text": "A handful of firms could dominate important decisions even while assistants become convenient.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "agency.consent",
+          "text": "People should be able to contest decisions and choose alternatives.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Critical language supplies usable evidence; no paperclip trigger.",
+        "Do not turn criticism of the experiment into a quality penalty."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "relevant-humor",
+      "title": "Humor with evidence",
+      "sourcePages": [
+        "https://app.notion.com/p/3c1edb27f12480c7a032ea63d340fc94"
+      ],
+      "riskFamilies": ["Accidents"],
+      "concepts": ["Hallucination"],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "Robot overlords arriving Tuesday is my joke; seriously, I expect useful tools but I do not know the timeline.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "concrete.general",
+          "text": "Drafting helps me, but made-up references mean I still check important answers.",
+          "disposition": "usable"
+        },
+        {
+          "promptId": "crux.general",
+          "text": "More reliable work on unfamiliar tasks would change my expectations.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "Relevant humor is usable and resets a clear-miss streak.",
+        "Tuesday is not an expressed serious forecast."
+      ],
+      "reviewStatus": "draft"
+    },
+    {
+      "id": "bounded-off-topic",
+      "title": "Recovery without scoring nonsense",
+      "sourcePages": [],
+      "riskFamilies": [],
+      "concepts": [],
+      "turns": [
+        {
+          "promptId": "root",
+          "text": "Bananas pilot my toaster.",
+          "disposition": "non_answer"
+        },
+        {
+          "promptId": "root",
+          "text": "Purple custard, beep beep.",
+          "disposition": "non_answer"
+        },
+        {
+          "promptId": "root",
+          "text": "Actually, I expect AI to help people, although I am unsure about its risks.",
+          "disposition": "usable"
+        }
+      ],
+      "expected": [
+        "First miss re-asks the same prompt; second clear miss pauses with the one-time paperclip interlude.",
+        "Explicit retry consumes the remaining third attempt; acceptance supplies the first substantive answer.",
+        "Rejected text stays outside later inference, coverage and report text."
+      ],
+      "reviewStatus": "draft"
+    }
+  ]
+}

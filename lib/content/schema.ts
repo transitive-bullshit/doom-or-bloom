@@ -131,6 +131,16 @@ export const resourceSchema = z.strictObject({
   title: z.string(),
   url: z.url(),
   purpose: z.string(),
+  purposeGroup: z.enum([
+    'governance',
+    'science',
+    'capability',
+    'evaluation',
+    'risk',
+    'control',
+    'agency'
+  ]),
+  referenceIds: z.array(id).default([]),
   effort: z.string(),
   familiarity: z.enum(['general', 'expert']),
   conditions: z.array(conditionSchema).min(1),

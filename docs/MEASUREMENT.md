@@ -33,7 +33,7 @@ Production distributions cannot establish classifier correctness.
 | `assessment_completed` | Participant accepted or stopped at a result. |
 | `clarification_started` | Participant disputed an inferred claim. |
 | `result_recomputed` | Clarification produced a new result. |
-| `assessment_capped` | Fifty-prompt hard cap forced finalization. |
+| `assessment_capped` | Twelve-prompt hard cap forced finalization. |
 | `assessment_restarted` | Local assessment cleared and identifier rotated. |
 | `resource_opened` | Curated resource link opened. |
 | `full_report_downloaded` | Expanded report downloaded. |
@@ -56,6 +56,8 @@ Allowlisted properties may include:
 
 Use a client allowlist or `before_send` equivalent to strip unexpected properties and URL query/hash data.
 
+PostHog's transport also carries its configured public project identifier, the random per-assessment `distinct_id`, SDK event identifiers/timestamps and `$process_person_profile: false`. Retain the public project identifier required by ingestion; it is not participant data. Verify the actual SDK payload against intercepted dummy endpoints in addition to testing the application event allowlist. Local fixtures and analytics transport checks use no inference credentials or real analytics ingestion.
+
 Recovery events can occur before `assessment_started`, which still requires the first substantive answer. Keep their denominators separate when reading funnels. Re-asks are not new `question_routed` events unless a different prompt instance is issued; retries/reloads must not duplicate events. An Easter egg or paused assessment is not `assessment_completed`. Measure successful recovery and false rejection of usable answers alongside non-answer frequency; do not optimize for triggering the joke.
 
 ## Experimental success
@@ -77,7 +79,9 @@ Offer lightweight optional feedback on central inferred claims, such as whether 
 
 ### Evaluation quality
 
-Maintain a blinded, human-reviewed holdout set. Evaluate at least:
+Maintain a blinded, human-reviewed holdout set.
+
+Use [argument journeys](JOURNEYS.md) to create development examples and separate held-out cases. Published synthetic journeys are drafts, not a blinded holdout or estimates of participant prevalence. Use local fixtures for bounds. Future paid semantic evaluation requires a small reviewed suite and explicit cost budget; paid pressure testing is out of scope. Evaluate at least:
 
 - Reference identification and attribution.
 - Worldview-category classification.

@@ -1,6 +1,6 @@
 # Expanded seed editorial review
 
-Prepared 2026-09-17. Status: pending human review. The earlier representative packet was approved; this packet covers new assets and refinements. Approval here does not label future full-corpus assets or held-out expectations as reviewed.
+Prepared 2026-09-17. Status: returned for revision; not approved. Travis requested recent, comprehensive sources and inclusion of his canonical library. See [SOURCES.md](SOURCES.md) and [JOURNEYS.md](JOURNEYS.md). The earlier representative packet was approved; this packet covers new assets and refinements. Approval here does not label future full-corpus assets or held-out expectations as reviewed.
 
 ## Assessment refinements
 
@@ -129,7 +129,7 @@ Full rules, exclusions, source dates and reading effort are in [resources.json](
 
 ## Release gate and limitations
 
-Your requested review gate remains in effect: draft the assets, review this concrete batch, then record approval accurately. The manifest stays draft until every included asset has human approval and content hashes cover every file. Synthetic live and browser checks are development evidence, not measurement validation. The 50-answer context stress test exposed an input-size limit; work on lossless transport compaction continues. Full ~300 reviewed references and reviewed holdout labels are still required to finish the documented MVP.
+Your requested review gate remains in effect: draft the assets, review this concrete batch, then record approval accurately. The manifest stays draft until every included asset has human approval and content hashes cover every file. Synthetic live and browser checks are development evidence, not measurement validation. The user stopped paid pressure testing and accepted reducing the bound: use 12 lifetime prompts with a warning at 10, and fixture-only boundary checks. Required-source coverage and balanced reviewed topical coverage take precedence over the former symmetrical corpus counts. Reviewed holdout labels remain required.
 
 ## Review record
 

@@ -8,7 +8,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Participant**: The person answering the assessment about their own AI worldview. _Avoid_: Patient, subject, account
 
-**Assessment**: A single bounded sequence of participant answers and follow-up prompts culminating in a result. It normally asks 6–8 prompts and offers a provisional result after at least three substantive answers. A participant may continue or reopen the assessment from a disputed result, up to a lifetime hard cap of 50 prompts; warn at 45 and force the final result at 50. An unfinished assessment can be resumed; restarting creates a new assessment and assessment identifier. _Avoid_: Chat, session when referring to the assessment itself
+**Assessment**: A single bounded sequence of participant answers and follow-up prompts culminating in a result. It normally asks 6–8 prompts and offers a provisional result after at least three substantive answers. A participant may continue or reopen the assessment from a disputed result, up to a lifetime hard cap of 12 prompts; warn at 10 and force the final result at 12. An unfinished assessment can be resumed; restarting creates a new assessment and assessment identifier. _Avoid_: Chat, session when referring to the assessment itself
 
 **Assessment identifier**: A random identifier used to connect the anonymous events of one assessment across visits. It contains no participant identity and rotates when the participant restarts. _Avoid_: User ID, account ID, anonymous person
 
@@ -24,7 +24,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Reference event**: A versioned, curated real-world incident or development that participants may invoke as evidence, with neutral aliases, dates, involved entities, primary sources, disputed claims, and known uncertainties. Events are evidence vocabulary rather than worldview basis vectors. _Avoid_: Settled interpretation, news trivia
 
-**Reference corpus**: The locally stored, versioned collection of approximately 100 prominent people or institutions, 100 incidents or capability demonstrations, and 100 canonical publications. Each entry is a simplified Markdown file with aliases, neutral context, source metadata, disputed interpretations, and review status; the runtime does not search the live web during an assessment. _Avoid_: Exhaustive encyclopedia, model-generated ground truth
+**Reference corpus**: The locally stored, versioned collection of scoped entities, actual events, and publications. Required-source coverage and balanced reviewed topical coverage take precedence over the original approximately 100/100/100 guide. Each entry is a simplified Markdown file with aliases, neutral context, source metadata, disputed interpretations, and review status; the runtime does not search the live web during an assessment. _Avoid_: Exhaustive encyclopedia, model-generated ground truth
 
 **Participant claim**: The proposition a participant draws from a reference entity, event, or other evidence. The assessment distinguishes identifying a reference from accurately characterizing it and from establishing that it supports the participant's conclusion. _Avoid_: Treating a citation or name-drop as the argument itself
 
@@ -60,7 +60,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Readiness**: The assessment's determination that there is enough relevant evidence to offer a useful result. It depends on coverage and resolved interpretation, never on sophistication, agreement with the authors, or a high demonstrated-reasoning result. A participant may stop earlier and receive a visibly provisional result. _Avoid_: Probability that we understand the person
 
-**Clarification**: An optional continuation initiated when a participant disputes an inferred claim or result component. It elicits natural-language correction and recomputes the evidence ledger and projections; it does not permit direct score editing and becomes unavailable at the 50-prompt cap. _Avoid_: Dragging a result to a preferred coordinate
+**Clarification**: An optional continuation initiated when a participant disputes an inferred claim or result component. It elicits natural-language correction and recomputes the evidence ledger and projections; it does not permit direct score editing and becomes unavailable at the 12-prompt cap. _Avoid_: Dragging a result to a preferred coordinate
 
 **Procedural neutrality**: The commitment to apply the same evidentiary and reasoning standards across optimistic, pessimistic, moderate, and unconventional positions while publishing methodology, simplifications, content versions, and known biases. It does not claim that editorial choices are value-free. _Avoid_: Viewpoint-free assessment, forced balance
 

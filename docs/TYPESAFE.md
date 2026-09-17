@@ -88,7 +88,7 @@ type AssessmentState = {
   promptBudget: {
     total: number
     substantive: number
-    warnedAt45: boolean
+    warnedAt10: boolean
   }
   turns: Array<{
     promptId: string
@@ -117,6 +117,10 @@ Store alongside it:
 Never relabel the projected value as the participant's `P(doom)`.
 
 ## Failure behavior
+
+Local bounds are 12 lifetime participant prompts, 2,000 characters per answer, at most two resolved references per answer, 96 independent questions per stage and 16 physical inference requests across one operation, including retries. All stages share a 120-second operation deadline; each stage also has a 45-second deadline and 15-second physical-attempt timeout. Large inputs use question batches of eight while preserving complete participant evidence and relevant canonical summaries. One oversized-batch fallback may split in half; an oversized child terminates without probing for the provider limit. Preserve the draft and offer retry on failure.
+
+Use credential-free fixtures for boundary and workflow checks. Paid pressure testing is excluded. Any future semantic evaluation must use a small reviewed suite with an explicit cost budget; the earlier maximum-context measurements do not create a requirement to repeat them.
 
 - Validate all responses against expected schemas.
 - Retry transient 429/529 failures with bounded backoff.

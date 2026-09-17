@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-17T11:47:26.459Z",
+  "date": "2026-09-17T11:41:19.633Z",
   "purpose": "Synthetic context stress test: 50 maximum-length usable answers, 750 ledger entries, 200 reference claims. Not an authored interview path or accuracy evaluation.",
   "model": "jev-1.13.0",
   "sdk": "0.6.0",
@@ -11,10 +11,10 @@
       "questions": 57,
       "inputBytes": 315902,
       "largestChoice": 51,
-      "elapsedMs": 17878,
+      "elapsedMs": 10187,
       "usage": {
         "input_tokens": 245438,
-        "output_tokens": 10275
+        "output_tokens": 10276
       },
       "attempts": 8,
       "model": "jev-1.13.0",

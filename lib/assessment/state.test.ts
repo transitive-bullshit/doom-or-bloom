@@ -76,9 +76,9 @@ describe('bounded assessment', () => {
     state = recordDisposition(state, 'usable', 1, '2')
     expect(state.recovery.clearMisses).toBe(0)
   })
-  test('fiftieth prompt accepts an answer but fifty-first is forbidden', () => {
+  test('twelfth prompt accepts an answer but thirteenth is forbidden', () => {
     let state = createAssessment('a')
-    for (let i = 1; i < 50; i++) state = issuePrompt(state, next)
+    for (let i = 1; i < 12; i++) state = issuePrompt(state, next)
     expect(atCap(state)).toBe(true)
     expect(canSubmit(state)).toBe(true)
     expect(() => issuePrompt(state, next)).toThrow()

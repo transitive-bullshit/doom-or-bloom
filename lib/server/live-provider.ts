@@ -1,5 +1,5 @@
 import 'server-only'
-import { TypeSafeClient } from '@typesafe-ai/sdk'
+import { APIError, TypeSafeClient } from '@typesafe-ai/sdk'
 import type { EntryType, Questions } from '@typesafe-ai/sdk'
 import { z } from 'zod'
 import {
@@ -63,7 +63,12 @@ export function validateEvaluation(
 export function createLiveProvider(model: string): Provider {
   return {
     kind: 'live',
-    evaluate: async (state, questions, signal) => {
+    evaluate: async (
+      state,
+      questions,
+      signal,
+      attemptBudget = limits.providerAttempts
+    ) => {
       if (!process.env.TYPESAFE_API_KEY?.trim())
         throw new Error(
           'Add TYPESAFE_API_KEY to .env.local to run real assessments'
@@ -76,6 +81,7 @@ export function createLiveProvider(model: string): Provider {
       for (const question of Object.values(questions))
         questionSchema.parse(question)
       let attempts = 0
+      const requestBudget = new AbortController()
       const client = new TypeSafeClient({
         apiKey: process.env.TYPESAFE_API_KEY,
         baseURL: 'https://api.typesafe.ai',
@@ -89,33 +95,85 @@ export function createLiveProvider(model: string): Provider {
           maxRetryAfterMs: 5000
         },
         fetch: async (url, init) => {
+          if (attempts >= Math.min(limits.providerAttempts, attemptBudget)) {
+            requestBudget.abort()
+            requestBudget.signal.throwIfAborted()
+          }
           attempts++
           return fetch(url, { ...init, cache: 'no-store' })
         }
       })
-      const boundedSignal = signal
-        ? AbortSignal.any([signal, AbortSignal.timeout(45_000)])
-        : AbortSignal.timeout(45_000)
-      const typedQuestions: Questions = Object.fromEntries(
-        Object.entries(questions).map(([id, question]) => [
-          id,
-          question.type === 'score'
-            ? {
-                ...question,
-                criteria: [
-                  question.criteria[0]!,
-                  question.criteria[1]!,
-                  ...question.criteria.slice(2)
-                ] as const
-              }
-            : question
-        ])
-      )
-      const raw = await client.systemOne(
-        { state: state as EntryType, model, questions: typedQuestions },
-        { signal: boundedSignal }
-      )
-      return validateEvaluation(raw, questions, attempts)
+      const signals = [requestBudget.signal, AbortSignal.timeout(45_000)]
+      if (signal) signals.push(signal)
+      const boundedSignal = AbortSignal.any(signals)
+      const entries = Object.entries(questions)
+      const batchSize =
+        Buffer.byteLength(JSON.stringify({ state, questions })) > 100_000
+          ? 8
+          : limits.questions
+      const results: Evaluation[] = []
+      const evaluateBatch = async (
+        part: Array<[string, Question]>,
+        split = false
+      ): Promise<void> => {
+        boundedSignal.throwIfAborted()
+        const typedQuestions: Questions = Object.fromEntries(
+          part.map(([id, question]) => [
+            id,
+            question.type === 'score'
+              ? {
+                  ...question,
+                  criteria: [
+                    question.criteria[0]!,
+                    question.criteria[1]!,
+                    ...question.criteria.slice(2)
+                  ] as const
+                }
+              : question
+          ])
+        )
+        try {
+          const raw = await client.systemOne(
+            { state: state as EntryType, model, questions: typedQuestions },
+            { signal: boundedSignal }
+          )
+          const result = validateEvaluation(raw, Object.fromEntries(part))
+          if (result.model !== model)
+            throw new Error('Provider returned a different model version')
+          results.push(result)
+        } catch (err) {
+          // A smaller question batch retains the complete state. Never retry an
+          // unchanged oversized request or trim participant/source evidence.
+          if (
+            err instanceof APIError &&
+            err.status === 400 &&
+            /token|context|length|too large/i.test(err.message) &&
+            part.length > 1 &&
+            !split
+          ) {
+            const middle = Math.ceil(part.length / 2)
+            await evaluateBatch(part.slice(0, middle), true)
+            await evaluateBatch(part.slice(middle), true)
+          } else throw err
+        }
+      }
+      for (let offset = 0; offset < entries.length; offset += batchSize)
+        await evaluateBatch(entries.slice(offset, offset + batchSize))
+      return {
+        model,
+        answers: Object.assign({}, ...results.map((result) => result.answers)),
+        usage: {
+          input_tokens: results.reduce(
+            (sum, result) => sum + result.usage.input_tokens,
+            0
+          ),
+          output_tokens: results.reduce(
+            (sum, result) => sum + result.usage.output_tokens,
+            0
+          )
+        },
+        attempts
+      }
     }
   }
 }

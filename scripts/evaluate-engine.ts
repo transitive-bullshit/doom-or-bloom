@@ -52,6 +52,10 @@ const answers = {
     'In medicine, faster hypothesis generation and structure prediction could shorten parts of discovery. Trials and validation still take time. Benefits may go first to wealthy health systems unless access improves.',
   'timeline.general':
     'I expect increasingly capable systems over the next ten years. I do not know when autonomous general-purpose systems will be reliable, or whether they arrive at all. My confidence in a date is low.',
+  'conviction.general':
+    'My confidence is low. A ten-year horizon is an expectation rather than a precise prediction; reliability and experiments could delay it. I cannot justify a numerical probability.',
+  'grounding.general':
+    'AlphaFold at CASP14 demonstrated strong protein structure predictions. I use that as evidence for bounded scientific potential, not as proof that clinical trials or general safety are solved.',
   'mechanism.general':
     'AI could screen candidate compounds cheaply, reducing the experiments needed, but biological validation remains a bottleneck. So better prediction alone does not establish faster approval or cheaper patient care.',
   'control.general':
@@ -73,11 +77,37 @@ const answers = {
   'tension.general':
     'My benefits claim is conditional on reliable tools and oversight, while my catastrophic-risk concern applies to more autonomous systems. Those are different scopes rather than a claim that the same deployment is both assuredly safe and unsafe.'
 }
+// Every authored variant gets an explicit synthetic family answer. These are
+// development inputs, not human-authored holdout labels or generated summaries.
+const familyAnswers = {
+  transition: answers['transition.general']!,
+  upside: answers['upside.general']!,
+  risk: answers['risk.general']!,
+  control: answers['control.general']!,
+  governance: answers['governance.general']!,
+  agency: answers['agency.general']!,
+  action:
+    'I would accept slower deployment to allow independent tests and broader access. That is a policy preference, not a claim that slower deployment guarantees a better outcome.',
+  grounding: answers['grounding.general']!,
+  crux: answers['crux.general']!,
+  tension: answers['tension.general']!,
+  scope:
+    'My expectation depends on reliable tools and institutions preserving oversight. If those conditions fail, the benefits and my outlook change; I do not assume them guaranteed.',
+  timeline: answers['timeline.general']!,
+  mechanism: answers['mechanism.general']!
+}
+const syntheticAnswers = new Map(Object.entries(answers))
+const familyLookup = new Map(Object.entries(familyAnswers))
+for (const prompt of bundle.prompts) {
+  const familyAnswer = familyLookup.get(prompt.family)
+  if (!syntheticAnswers.has(prompt.id) && familyAnswer)
+    syntheticAnswers.set(prompt.id, familyAnswer)
+}
 try {
   let state = createAssessment(randomUUID(), model)
   for (let i = 0; i < 8; i++) {
     const id = currentPrompt(state).promptId
-    const text = Object.entries(answers).find(([key]) => key === id)?.[1]
+    const text = syntheticAnswers.get(id)
     if (!text) throw new Error('Missing synthetic answer')
     state = await step(state, { type: 'answer', text })
     if (i === 2) state = await step(state, { type: 'project' })

@@ -35,6 +35,7 @@ import { retrieveReferences } from '@/lib/content/loader'
 import type { Prompt } from '@/lib/content/schema'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
+import { selectPresentation } from '@/lib/assessment/presentation'
 import { createQuestions } from './questions'
 
 type StageQuestions = Record<string, Question>
@@ -187,13 +188,28 @@ export async function runAssessment(
   const operationSignal = signal
     ? AbortSignal.any([signal, AbortSignal.timeout(120_000)])
     : AbortSignal.timeout(120_000)
+  let remainingAttempts = limits.providerAttempts as number
   const evaluate = async (
     name: string,
     input: unknown,
     questions: StageQuestions
   ) => {
     const stageStarted = performance.now()
-    const result = await provider.evaluate(input, questions, operationSignal)
+    if (remainingAttempts <= 0)
+      throw new Error(
+        'The local inference request budget was reached. Your answer is saved.'
+      )
+    const result = await provider.evaluate(
+      input,
+      questions,
+      operationSignal,
+      remainingAttempts
+    )
+    remainingAttempts -= result.attempts
+    if (remainingAttempts < 0)
+      throw new Error(
+        'The evaluator exceeded the local inference request budget'
+      )
     const stage: DebugStage = {
       name,
       state: input,
@@ -565,52 +581,9 @@ export async function runAssessment(
         status: r.status,
         accessed: r.sources[0]!.accessed
       }))
-    const matches = (
-      condition: Bundle['findings'][number]['conditions'][number]
-    ) => {
-      const c = components.find(
-        (component) => component.vector === condition.vector
-      )
-      if (!condition.assessed) return c?.value === null || c === undefined
-      return (
-        c?.value !== null &&
-        c?.value !== undefined &&
-        (condition.min === undefined || c.value >= condition.min) &&
-        (condition.max === undefined || c.value <= condition.max)
-      )
-    }
-    result.findings = bundle.findings
-      .filter((f) => f.conditions.every(matches) && !f.exclusions.some(matches))
-      .slice(0, 3)
-      .map((f) => ({
-        id: f.id,
-        text: f.text,
-        evidenceIds: f.conditions.flatMap(
-          (c) =>
-            components.find((component) => component.vector === c.vector)
-              ?.evidenceIds ?? []
-        )
-      }))
-    const purposes = new Set<string>()
-    result.resources = bundle.resources
-      .filter(
-        (r) =>
-          r.familiarity === 'general' || state.familiarity.level === 'expert'
-      )
-      .filter((r) => r.conditions.every(matches) && !r.exclusions.some(matches))
-      .filter((r) => {
-        if (purposes.has(r.purpose)) return false
-        purposes.add(r.purpose)
-        return true
-      })
-      .slice(0, 3)
-      .map(({ id, title, url, purpose, effort }) => ({
-        id,
-        title,
-        url,
-        purpose,
-        effort
-      }))
+    const presentation = selectPresentation(state, components, bundle)
+    result.findings = presentation.findings
+    result.resources = presentation.resources
     state.result = result
     state.status = capped ? 'capped' : 'results'
     trace.decisions.push({
@@ -733,6 +706,7 @@ export async function runAssessment(
       const familiarity = choice(evaluation.answers.familiarity)
       if (
         ['general', 'expert'].includes(familiarity ?? '') &&
+        (state.familiarity.level !== 'expert' || familiarity === 'expert') &&
         confidence(evaluation.answers.familiarity) >=
           bundle.rubric.presenceThreshold
       )

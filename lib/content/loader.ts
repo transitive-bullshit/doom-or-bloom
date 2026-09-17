@@ -16,6 +16,26 @@ import {
 } from './schema'
 import type { Reference } from './schema'
 
+export function loadReferences(directory: string): Reference[] {
+  return readdirSync(directory)
+    .filter((file) => file.endsWith('.md'))
+    .sort()
+    .map((file) => {
+      const parsed = matter(readFileSync(path.join(directory, file), 'utf8'))
+      return {
+        ...referenceSchema.parse(parsed.data),
+        summary: parsed.content.trim()
+      }
+    })
+}
+export function loadDraftReferences(): Reference[] {
+  const directory = path.join(process.cwd(), 'content/drafts')
+  return readdirSync(directory, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .flatMap((entry) =>
+      loadReferences(path.join(directory, entry.name, 'references'))
+    )
+}
 export function loadBundle() {
   const manifest = manifestSchema.parse(
     JSON.parse(
@@ -24,7 +44,8 @@ export function loadBundle() {
   )
   if (
     manifest.contentVersion !== versions.content ||
-    manifest.rubricVersion !== versions.rubric
+    manifest.rubricVersion !== versions.rubric ||
+    manifest.assessmentVersion !== versions.assessment
   )
     throw new Error('Unsupported content bundle')
   const directory = path.join(
@@ -50,20 +71,7 @@ export function loadBundle() {
       )
     )
   )
-  const references: Reference[] = readdirSync(
-    path.join(directory, 'references')
-  )
-    .filter((file) => file.endsWith('.md'))
-    .sort()
-    .map((file) => {
-      const parsed = matter(
-        readFileSync(path.join(directory, 'references', file), 'utf8')
-      )
-      return {
-        ...referenceSchema.parse(parsed.data),
-        summary: parsed.content.trim()
-      }
-    })
+  const references = loadReferences(path.join(directory, 'references'))
   const questionTemplates = questionTemplatesSchema.parse(
     JSON.parse(
       readFileSync(
@@ -212,6 +220,13 @@ export function validateBundle(bundle: Bundle) {
           (condition.min !== undefined || condition.max !== undefined))
       )
         throw new Error('Impossible authored condition')
+  for (const resource of bundle.resources)
+    if (
+      resource.referenceIds.some(
+        (id) => !bundle.references.some((r) => r.id === id)
+      )
+    )
+      throw new Error('Unknown resource reference')
   if (
     new Set(bundle.rubric.dimensions.map((d) => d.id)).size !== vectorIds.length
   )

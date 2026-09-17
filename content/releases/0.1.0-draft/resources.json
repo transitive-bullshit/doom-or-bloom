@@ -14,7 +14,9 @@
     ],
     "exclusions": [],
     "status": "reviewed",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "governance",
+    "referenceIds": ["publication.nist-rmf"]
   },
   {
     "id": "resource.alphafold",
@@ -31,7 +33,9 @@
     ],
     "exclusions": [],
     "status": "reviewed",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "science",
+    "referenceIds": ["event.alphafold-casp14"]
   },
   {
     "id": "resource.oecd",
@@ -48,7 +52,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "governance",
+    "referenceIds": ["entity.oecd"]
   },
   {
     "id": "resource.metr",
@@ -65,7 +71,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "evaluation",
+    "referenceIds": ["entity.metr"]
   },
   {
     "id": "resource.chatgpt",
@@ -82,7 +90,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "capability",
+    "referenceIds": ["event.chatgpt-preview"]
   },
   {
     "id": "resource.alphago",
@@ -99,7 +109,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "capability",
+    "referenceIds": ["event.alphago-sedol"]
   },
   {
     "id": "resource.deepblue",
@@ -116,7 +128,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "capability",
+    "referenceIds": ["event.deep-blue"]
   },
   {
     "id": "resource.cais",
@@ -133,7 +147,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "risk",
+    "referenceIds": ["entity.cais"]
   },
   {
     "id": "resource.scaling",
@@ -150,7 +166,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "capability",
+    "referenceIds": ["publication.scaling-laws"]
   },
   {
     "id": "resource.chinchilla",
@@ -167,7 +185,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "capability",
+    "referenceIds": ["publication.chinchilla"]
   },
   {
     "id": "resource.concrete",
@@ -184,7 +204,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "control",
+    "referenceIds": ["publication.concrete-problems"]
   },
   {
     "id": "resource.offswitch",
@@ -201,7 +223,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "control",
+    "referenceIds": ["publication.off-switch"]
   },
   {
     "id": "resource.fewshot",
@@ -218,7 +242,9 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "capability",
+    "referenceIds": ["publication.gpt3-few-shot"]
   },
   {
     "id": "resource.cirl",
@@ -235,6 +261,8 @@
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "purposeGroup": "agency",
+    "referenceIds": ["publication.cirl"]
   }
 ]

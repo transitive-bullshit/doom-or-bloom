@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import {
   dispositionSchema,
+  limits,
   vectorSchema,
   versions
 } from '@/lib/assessment/schema'
@@ -34,8 +35,8 @@ const eventSchema = z.object({
     content_version: z.string().refine((v) => v === versions.content),
     rubric_version: z.string().refine((v) => v === versions.rubric),
     model_version: z.string().refine((v) => v === versions.model),
-    question_count: z.number().int().min(1).max(50),
-    substantive_count: z.number().int().min(0).max(50),
+    question_count: z.number().int().min(1).max(limits.prompts),
+    substantive_count: z.number().int().min(0).max(limits.prompts),
     disposition: dispositionSchema.optional(),
     attempt_bucket: z.enum(['one', 'two', 'three']).optional(),
     pause_reason: z
@@ -138,16 +139,27 @@ export function transitionEvents(
     const key = `${name}:${marker}`
     if (next.eventMarkers.includes(key)) return
     next.eventMarkers.push(key)
-    events.push(makeEvent(next, name, properties))
+    const extras: Partial<EventProperties> = { ...properties }
+    if (['retry', 'skip', 'stop', 'dismiss'].includes(operation.type))
+      extras.recovery_action = operation.type as
+        | 'retry'
+        | 'skip'
+        | 'stop'
+        | 'dismiss'
+    events.push(makeEvent(next, name, extras))
   }
   const attempt = next.attempts.find((a) => a.id === requestId)
   if (operation.type === 'answer' && attempt) {
     const props: Partial<EventProperties> = {
       disposition: attempt.disposition,
       attempt_bucket:
-        next.recovery.evaluated >= 3
+        next.attempts.filter(
+          (a) => a.promptInstanceId === attempt.promptInstanceId
+        ).length >= 3
           ? 'three'
-          : next.recovery.evaluated === 2
+          : next.attempts.filter(
+                (a) => a.promptInstanceId === attempt.promptInstanceId
+              ).length === 2
             ? 'two'
             : 'one',
       prompt_id: currentPrompt(previous).promptId,

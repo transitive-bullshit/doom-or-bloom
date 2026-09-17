@@ -14,6 +14,7 @@
 - Profiles, routing, answer recovery, readiness, or projections: [docs/ASSESSMENT.md](docs/ASSESSMENT.md).
 - Jev integration or inference boundaries: [docs/TYPESAFE.md](docs/TYPESAFE.md).
 - Prompts, rubrics, reference snapshots, findings, or resources: [docs/AUTHORING.md](docs/AUTHORING.md).
+- Source selection or freshness: [docs/SOURCES.md](docs/SOURCES.md). Common-opinion journeys or safety terminology: [docs/JOURNEYS.md](docs/JOURNEYS.md).
 - Analytics, privacy, or evaluation: [docs/MEASUREMENT.md](docs/MEASUREMENT.md).
 - Domain terminology or state modeling: [docs/CONTEXT.md](docs/CONTEXT.md).
 

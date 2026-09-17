@@ -5,7 +5,7 @@ import type {
   Operation,
   VectorId
 } from '@/lib/assessment/schema'
-import { vectorIds } from '@/lib/assessment/schema'
+import { limits, vectorIds } from '@/lib/assessment/schema'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -155,7 +155,7 @@ export function ResultView({
                 : 'Your worldview map'}
           </Badge>
           {result.capped && (
-            <Badge variant='outline'>50-prompt cap reached</Badge>
+            <Badge variant='outline'>{limits.prompts}-prompt cap reached</Badge>
           )}
         </div>
         <h1
@@ -233,7 +233,7 @@ export function ResultView({
                 ) : null
               })}
               {c.value !== null &&
-                state.prompts.length < 50 &&
+                state.prompts.length < limits.prompts &&
                 (vectorIds.includes(c.vector as VectorId) ||
                   c.vector === 'catastrophic_risk') && (
                   <Button

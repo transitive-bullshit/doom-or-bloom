@@ -32,8 +32,10 @@ If multiple agents are assigned later, use the ownership boundaries in section 1
 - Include an explicit debug-mode boolean that reveals clearly labeled Jev and control-flow details in the local UI, without changing assessment behavior.
 - Handle off-topic/nonsense replies as an expected recovery path, with bounded re-asks and a one-time paperclip interlude. Canonical dispositions and limits live in [ASSESSMENT.md](ASSESSMENT.md#answer-relevance-and-bounded-recovery); participant-facing behavior lives in [PRODUCT.md](PRODUCT.md#answer-recovery-and-paperclip-interlude).
 - TypeSafe is the sole runtime inference API. Jev selects or evaluates authored options; code owns the workflow. Runtime participant-facing prose is authored text plus exact copied evidence.
-- Start with **20–30 reviewed reference snapshots**, then expand to **approximately 100 entities, 100 events, and 100 publications** before declaring the documented MVP complete. The user confirmed this staged approach during planning. A working seed demo is an intermediate milestone.
+- Start with **20–30 reviewed reference snapshots**, then incorporate every required source and achieve balanced reviewed topical coverage before declaring the documented MVP complete. The later source-library decision supersedes the original approximately 100/100/100 count target; follow [SOURCES.md](SOURCES.md). A working seed demo is an intermediate milestone.
 - Keep deployment separate. Analytics can be implemented and verified locally without transmitting events or requiring analytics accounts.
+- Current bounds: 12 lifetime prompts, warning at 10, at most two resolved references per answer and 16 physical inference attempts per operation across stages. Use fixtures for boundary checks; paid pressure testing is excluded. A future paid semantic suite requires reviewed examples and an explicit cost budget.
+- The user supplied acceleration/slowdown argument maps and risk/concept tables. Follow [JOURNEYS.md](JOURNEYS.md) for opinion coverage and terminology, and [SOURCES.md](SOURCES.md) for current required-source intake. The expanded historical seed was returned for revision, not approved.
 
 ### Editorial review packet
 
@@ -122,11 +124,11 @@ Keep raw answers immutable after commitment. A correction adds an answer and mar
 
 ### Budget semantics: proposed precise interpretation
 
-Count **issued participant prompt instances**, including root and clarification, up to 50. Increment once when a new prompt is persisted for display. Rerender, refresh, double-click, API retry, and retrying a non-answer on that same prompt do not issue another instance. Keep submission attempts and API attempts in separate bounded counters. Empty input is rejected locally/server-side before inference; off-topic or navigational input cannot unlock results.
+Count **issued participant prompt instances**, including root and clarification, up to 12. Increment once when a new prompt is persisted for display. Rerender, refresh, double-click, API retry, and retrying a non-answer on that same prompt do not issue another instance. Keep submission attempts and API attempts in separate bounded counters. Empty input is rejected locally/server-side before inference; off-topic or navigational input cannot unlock results.
 
 Implement the [canonical recovery policy](ASSESSMENT.md#answer-relevance-and-bounded-recovery) before ordinary routing. Persist its counters across refresh and use request deduplication to prevent double increments. Same-goal rephrasing retains the prompt instance and records the presentation variant; choosing a different authored question consumes another lifetime prompt. Only one accepted substantive answer per prompt instance counts toward result eligibility. Rejected attempts are excluded from profile evidence, result calculations, and exported report text by default; local debug may inspect the latest attempt under the existing trace rules. An explicit stop pauses without inventing a result or clearing progress.
 
-At prompt 45 show the warning. Prompt 50 may still be answered; process it and finalize without issuing prompt 51. An eligible participant may stop before answering it. If the cap is reached with fewer than three substantive answers, show a capped insufficient-evidence result with unassessed regions rather than inventing coordinates or trapping the participant. Forced finalization forbids additional prompts, not retrying a failed projection request.
+At prompt 10 show the warning. Prompt 12 may still be answered; process it and finalize without issuing prompt 13. An eligible participant may stop before answering it. If the cap is reached with fewer than three substantive answers, show a capped insufficient-evidence result with unassessed regions rather than inventing coordinates or trapping the participant. Forced finalization forbids additional prompts, not retrying a failed projection request.
 
 At three substantive answers, always unlock the result action independently of readiness. After 6–8 prompts, prominently offer results; low scores must never be a reason to keep interviewing. Clarification and voluntary continuation consume the same lifetime budget. If eligible candidates are exhausted, offer the available provisional result; before eligibility, use an authored general clarification fallback with the same budget controls.
 
@@ -136,7 +138,7 @@ At three substantive answers, always unlock the result action independently of r
 
 The fixed root is the only universal question. Represent the remaining graph as a pool of authored nodes with explicit eligibility/transition rules. A node specifies the fields in `AUTHORING.md`, permitted source states/families, maximum uses, novelty group, and allowed evidence slots. Code first filters nodes, then ranks eligible candidates. A high-priority ambiguity can interrupt another branch; the participant does not become permanently assigned to an ideological path.
 
-Start with roughly **30–40 authored prompt variants**, not 300 prompts. This is a planning estimate, not a locked quota. Cover every worldview and epistemic vector through the families below and add variants only when evaluations reveal a distinct need. A 50-prompt ceiling does not imply that everyone must be able to consume 50 unique generic prompts; repetition controls and honest early completion matter more.
+Start with roughly **30–40 authored prompt variants**, not 300 prompts. This is a planning estimate, not a locked quota. Cover every worldview and epistemic vector through the families below and add variants only when evaluations reveal a distinct need. A 12-prompt ceiling does not imply that everyone must consume 12 unique generic prompts; repetition controls and honest early completion matter more.
 
 | Family | Elicitation goal and routing condition |
 | --- | --- |
@@ -158,7 +160,7 @@ Illustrative authored continuation: “AI will probably cure diseases, but labs 
 
 ### Staged inference contract
 
-Distinguish **participant prompts** from **Jev questions**: one participant answer may need many narrow independent judgments. Benchmark the actual request sizes and serial dependency depth; do not equate the three-answer promise with three API calls.
+Distinguish **participant prompts** from **Jev questions**: one participant answer may need many narrow independent judgments. Track ordinary operation sizes and serial dependency depth locally; do not equate the three-answer promise with three API calls. Use conservative bounds and fixtures, without paid pressure tests.
 
 | Stage | Code supplies | Jev evaluates | Code commits |
 | --- | --- | --- | --- |
@@ -252,7 +254,7 @@ Instantiate/validate the live provider when used, so builds, static pages, and f
 
 ### Bounded local operation
 
-Set explicit server-side limits for answer length, total transcript size, request bytes, reference candidates, Jev questions per stage, concurrent operations, and inference attempts. Determine safe values in the first live feasibility check and keep them in one tested config. A reasonable initial product draft is 2,000 characters per answer; verify a worst-case 50-prompt transcript against actual provider context/request limits before committing to it. Return actionable size errors and preserve drafts.
+Set explicit server-side limits for answer length, total transcript size, request bytes, reference candidates, Jev questions per stage, concurrent operations, and inference attempts. Determine safe values in the first live feasibility check and keep them in one tested config. A reasonable initial product draft is 2,000 characters per answer; use conservative 12-prompt/24-reference bounds and verify them locally without paid stress requests. Return actionable size errors and preserve drafts.
 
 Include recovery attempts in storage, request-size, and inference-cost limits: rejected submissions still cost a stage-A evaluation, even though they add no scoring evidence. Keep prior rejected text client-local; send bounded counter/disposition metadata when validating subsequent operations. Rate limits apply across explicit resume/skip actions as well as normal submissions; neither a recovery button nor the Easter egg resets them.
 
@@ -271,7 +273,7 @@ Depends on: repository inspection. Commit: `chore: establish local assessment sc
 - [x] Recheck repository status and establish the baseline commit described in section 2. Read installed Next.js installation, Server/Client Components, Route Handler, environment, and testing guides as relevant.
 - [x] Add minimal App Router layout/page/styles, theme provider, and required shadcn primitives while preserving current aliases and `cn`. Verify installed component dependencies and generated source.
 - [x] Define Zod/TypeScript schemas for the records in section 4, operation requests/responses, and content assets. Keep deterministic domain modules independent of Next.js and provider SDK types.
-- [x] Implement the pure reducer and prompt/substantive/attempt counters with tests for refresh/retry, result eligibility, restart, clarification, and 45/50 boundaries.
+- [x] Implement the pure reducer and prompt/substantive/attempt counters with tests for refresh/retry, result eligibility, restart, clarification, and 10/12 boundaries.
 - [x] Model bounded answer recovery and paused states using the canonical policy: same-prompt retries, explicit alternate prompts, accepted/ambiguous-answer streak resets, navigation, persisted one-time paperclip state, and cap precedence.
 - [x] Add `.env.example`, lazy server-only env validation, and a provider interface with an explicit fixture implementation. A shell page and fixture tests run without credentials.
 - [x] Define the debug boolean and typed trace contract, with a clearly marked collapsible UI shell. Debug state is separate from assessment evidence and analytics.
@@ -288,7 +290,7 @@ Depends on: milestone 1 contracts. Commit: `feat: define reviewed assessment con
 - [x] Create content validation and a frozen manifest format. Validate ID uniqueness, references, graph reachability, root uniqueness, coverage targets, rule types, evidence slots, source metadata, and release review status.
 - [x] Implement the live TypeSafe adapter behind the provider interface, with validated typed responses, version/usage capture, cancellation, bounded retries, and sanitized errors/logs.
 - [x] With a locally configured key, run opt-in smoke cases for Choice, Score, Noul, source-span selection, unsupported evidence, and independent batching. Record requested/returned model IDs and installed SDK version.
-- [ ] Test staged reference handling and the worst-case supported transcript/context budget. Record calls, tokens, latency, failures, and a dated cost estimate if current pricing is available; do not invent benchmark results.
+- [x] Verify staged reference handling within conservative local bounds using fixtures. Do not pressure-test Jev or spend on synthetic maximum-context requests. Preserve prior measurements as historical evidence.
 - [x] Review the packet with the user according to their chosen timing. Record accepted semantics and requested changes; implement them in the assets and tests before treating the bundle as reviewed. If review is pending, continue scaffold/UI/provider work using labeled fixtures.
 
 Done when: an agreed representative content contract works with real Jev, operational limits are concrete, and unresolved semantic concerns are visible. A missing key blocks live evidence only, not unrelated implementation. Update checkboxes and commit.
@@ -330,7 +332,7 @@ Depends on: milestone 4 and reviewed projection rules. Commit: `feat: add eviden
 - [x] Implement stage D and pure projection functions with normalization, missingness, ranges, assessed masks, and readiness/provisional metadata. Reuse an unchanged result instead of paying for another projection.
 - [x] Extend debug details to projection contributions, range propagation, selected finding/resource conditions, and correction invalidation. Verify the trace explains the displayed result without inventing model reasoning.
 - [x] Render the Doom–Bloom × Epistemic Quality map with accessible textual equivalents and compact interpretation ranges; show the five-part fingerprint and unassessed components. Avoid false precision and ideological labels.
-- [ ] Select a few findings and resources using authored conditions, disqualifiers, relevance, and diversity of learning purpose. Every displayed claim links to exact evidence and a versioned interpretation.
+- [x] Select a few findings and resources using authored conditions, disqualifiers, relevance, and diversity of learning purpose. Every displayed claim links to exact evidence and a versioned interpretation.
 - [x] Add “That’s not quite my view” on central inferred claims. Select a claim, show an authored clarification, accept natural-language correction, supersede affected interpretations, and recompute. Disable new clarification at the lifetime cap.
 - [x] Implement voluntary completion and continued exploration on the same assessment, with a new result revision when evidence changes. Cap finalization can still yield an insufficient-evidence result.
 - [ ] Test coherent extreme views, weak moderate views, unknown dimensions, jargon/verbosity paraphrases, repeated evidence, changed assumptions, and corrections. Verify correction can change only implicated interpretations while dependent results are recomputed.
@@ -368,12 +370,14 @@ Done when: event behavior and payload privacy are verified locally, while live c
 
 Depends on: seed validated in the working experience; content expansion can overlap milestones 4–7 after the initial review.
 
-- [ ] Expand references in coherent researched/reviewed batches to approximately 100 entities, 100 events, and 100 publications. Maintain a coverage inventory; account explicitly for final totals and exclusions. Commit each validated batch.
+- [ ] Incorporate every source marked required in source intake into researched, human-reviewed snapshots and achieve balanced topical coverage. Treat the former 100/100/100 target as a guide; record actual totals, overlaps, optional exclusions and required-source blockers. Commit each validated batch.
+- [x] Preserve all five user-authored risk families and 69 safety concepts with linked-source provenance; draft 20 common-opinion development journeys.
+- [ ] Human-review the journeys and terminology boundaries; add 6–8-prompt continuations, paraphrase pairs and scoped corrections. Keep expected impact, catastrophic risk, values, policy and reasoning separate.
 - [ ] Complete human review and freeze the content/rubric release with hashes and a changelog. Draft assets and invented or unverified references cannot satisfy this milestone.
 - [ ] Run deterministic regression and held-out live evaluation across the `TYPESAFE.md`/`MEASUREMENT.md` cases. Compare interpretation, evidence provenance, reference attribution, false factual errors/tensions, routing usefulness, and map stability across matched viewpoints/writing styles.
 - [ ] Before running holdout, record provisional numerical tolerances and adjudication rules for metrics that allow them (for example paraphrase coordinate drift). Evaluate without retuning on holdout; inspect and document subgroup failures. Do not claim validation based only on synthetic cases or agreeable results.
-- [ ] Benchmark representative 3-answer, 8-prompt, reference-heavy, correction, and 50-prompt cases with real Jev. Record per-stage requests/tokens, end-to-end latency, errors, and dated cost estimates. Resolve context overflow and unbounded retry/candidate growth before completion.
-- [ ] Add/run browser regressions for draft reload, three-answer results, clarification, restart during in-flight inference, two-tab conflicts, unavailable/corrupt storage, missing key, provider failure, card download, and forced cap. Fixture-mode browser tests must never call the live provider.
+- [ ] Verify 3-answer, 8-prompt, reference-heavy, correction and 12-prompt cap behavior with local fixtures. No paid stress requests. Keep dated measurements already collected; any future paid semantic evaluation must use a small reviewed suite with an explicit cost budget.
+- [x] Add/run browser regressions for draft reload, three-answer results, clarification, restart during in-flight inference, two-tab conflicts, unavailable/corrupt storage, missing key, provider failure, card download, and forced cap. Fixture-mode browser tests must never call the live provider.
 - [ ] Add recovery regressions for first miss, two consecutive clear misses, exhausted attempts, repeated ambiguity without paperclips, recovery after pause, explicit skip, relevant humor/uncertainty, failed/duplicate requests, reload/cross-tab counters, and cap precedence. Assert bounded provider calls, unchanged prior scores, no eligibility gain from rejected attempts, and accessible effect dismissal.
 - [ ] Run `pnpm fix:format`, `pnpm fix:lint`, inspect changes, then `pnpm test` and `pnpm build`. Verify ordinary tests/build need no external credentials and do not make inference calls.
 - [ ] Write the root README with local setup, environment options, fixture/live behavior, content/evaluation commands, and recovery instructions. Add a final checkpoint entry with test/evaluation evidence and remaining limitations; commit the completed local MVP.
@@ -404,9 +408,9 @@ These are concrete authoring/evaluation work, not reasons to reopen the agreed p
 | Editorial review | Representative packet before expansion, confirmed by user; review the actual draft assets | Milestone 2 |
 | Exact map formulas and thresholds | Separate impact judgments, explicit weights, missingness-aware ranges; worked profiles | Milestone 2 editorial packet |
 | Recovery classifier and tone | Bounded recovery policy is specified; evaluate the clear-miss threshold and review re-ask/interlude copy | Milestone 2 editorial packet |
-| Prompt-count interpretation | Issued instances, answer the 50th before forced finalization, retries separate | Milestones 1–2 examples/tests |
+| Prompt-count interpretation | Issued instances, answer the 12th before forced finalization, retries separate | Milestones 1–2 examples/tests |
 | Model and context limits | Available explicit version; preserve full evidence within measured limits | Milestone 2 live spike |
-| Complete content selections | Seed first, then approximate 100/100/100; primary-source grounding and human review | Milestones 3 and 8 |
+| Complete content selections | Revised recent seed, every required source, balanced reviewed coverage; source intake and argument journeys | Milestones 3 and 8 |
 | Quality and latency acceptance | Predeclared tolerances, real measurements, inspect asymmetric failures | Before milestone 8 holdout run |
 
 If a measured limitation forces a product change, show the failing case and propose a concrete alternative before changing canonical semantics. Continue independent tasks while that decision is pending.
@@ -478,3 +482,13 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - Checks: final format/lint/types/content checks and 32 unit tests pass; production build passes; 7 isolated fixture browser regressions pass, including PNG download after the native-loader fix.
 - Blocker: the synthetic 50 × 2,000-character projection plus 750 evidence entries and 200 reference claims gets HTTP 400 with a token-limit error. Lossless short IDs reduce request size from 702,808 to 327,496 bytes, but the case still fails. No transcript truncation or generated summary substitutes have been introduced. Context feasibility remains unchecked and must be resolved.
 - Previous checkpoint: `fd86f4a`. Next: finish context-budget feasibility, human seed review, held-out fixtures and full-corpus expansion. PostHog values are supplied; collection stays off until its explicit privacy prerequisites are confirmed.
+
+### 2026-09-17 — Conservative bounds and source-context checkpoint / Codex
+
+- Travis stopped paid pressure testing. No live Jev calls were made after that instruction. Removed the pressure-test command/script. The former 50-prompt context acceptance requirement is superseded by 12 lifetime prompts, warning at 10, two resolved references per answer, and a shared 16-physical-request ceiling per operation. Assessment version is now `0.2.0`; older saved results are not silently re-scored.
+- Added fixture checks for physical retry ceilings, shared stage budgets, cancellation/deadlines, one oversized-batch fallback and full raw-evidence/provenance preservation. Final projection sends full usable answers and relevant source summaries with lossless IDs, removing redundant bookkeeping.
+- Findings require supporting evidence, threshold-compatible ranges and no unresolved implicated tension. Resources now rank relevance and diversify learning purposes. Familiarity remains independent of quality and expert wording is not demoted by a later generic answer.
+- Actual SDK transport exposed a PostHog ingestion requirement: retain its configured public project identifier after sanitization. Intercepted dummy-endpoint checks now pass while excluding canary answers and query/referrer/session details. Real collection remains disabled; no real analytics events were sent.
+- The expanded historical seed was returned for revision. Added source guidance with recency/genre/date boundaries and a reassessment inventory; all 114 required source URLs are preserved. The argument maps and complete structured tables add five risk families, 69 concepts and 247 distinct candidate URLs. Twenty draft development conversations cover common opinions, policy/risk inversions, uncertainty, criticism, humor and recovery. These are neither reviewed labels nor a blinded holdout.
+- Checks: `pnpm test` passes 44 tests plus format/lint/types/content checks; `pnpm check:browser` passes seven fixture regressions; `pnpm check:analytics` passes two intercepted transport/missing-key regressions; `pnpm build` passes. Ordinary checks use no inference credentials or calls. Contemporary research notes and separate background drafts remain unreviewed.
+- Previous checkpoint: `5dca9a5`. Next: finish required-source reading/access reconciliation, convert contemporary research into concise snapshots, revise recommendations, obtain editorial review, and build a separate reviewed semantic suite with an explicit small cost budget. Required corpus coverage, review, holdout and visual acceptance remain unchecked.

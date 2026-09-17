@@ -26,7 +26,7 @@
     "check:browser": "playwright test",
     "eval:engine": "node --env-file=.env.local --conditions=react-server --import tsx scripts/evaluate-engine.ts",
     "content:freeze": "node --conditions=react-server --import tsx scripts/freeze-content.ts",
-    "eval:budget": "node --env-file=.env.local --conditions=react-server --import tsx scripts/benchmark-budget.ts"
+    "check:analytics": "playwright test --config=playwright.analytics.config.ts"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",

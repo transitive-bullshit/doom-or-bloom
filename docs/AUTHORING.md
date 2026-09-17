@@ -54,6 +54,10 @@ Include the paperclip interlude's copy and recovery actions in the representativ
 
 ## Reference corpus
 
+Follow [SOURCES.md](SOURCES.md) for required-source coverage, genre, recency, date/version pinning and reassessment of the historical seed. The original approximate counts below are a coverage guide; the later user decision prioritizes every required source and balanced reviewed topical coverage over symmetric counts.
+
+Use [JOURNEYS.md](JOURNEYS.md) for common-opinion paths and terminology boundaries. The full Notion risk/concept rows live outside the runtime bundle in `content/context/`; their links are preserved in source intake. Keep arguments, illustrations, definitions and empirical evidence distinct. Draft published journeys guide development; separately reviewed held-out conversations establish semantic validation.
+
 MVP target:
 
 - Approximately 100 people or institutions.

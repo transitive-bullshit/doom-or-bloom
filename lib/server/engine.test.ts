@@ -119,6 +119,32 @@ test('nonsense short circuits all later stages and preserves scores', async () =
   expect(state.recovery.evaluated).toBe(3)
   await expect(run(state, { type: 'retry' })).rejects.toThrow('different')
 })
+test('dependent stages share the remaining physical request budget', async () => {
+  const fixture = createFixtureProvider()
+  const budgets: Array<number | undefined> = []
+  const provider: Provider = {
+    kind: 'fixture',
+    evaluate: async (input, questions, signal, budget) => {
+      budgets.push(budget)
+      const result = await fixture.evaluate(input, questions, signal)
+      return { ...result, attempts: budgets.length === 1 ? 12 : 4 }
+    }
+  }
+  const result = await run(
+    createAssessment('budget'),
+    {
+      type: 'answer',
+      text: 'I expect useful tools, with uncertain long-term effects.'
+    },
+    provider,
+    true
+  )
+  expect(budgets).toEqual([16, 4])
+  expect(
+    result.debug?.stages.reduce((sum, stage) => sum + stage.attempts, 0)
+  ).toBe(16)
+  expect(result.assessment.answers).toHaveLength(1)
+})
 test('repeated ambiguity exhausts neutrally, successful retry resumes', async () => {
   let state = createAssessment('unclear')
   for (let i = 0; i < 3; i++)
@@ -151,7 +177,7 @@ test('cap takes precedence and insufficient evidence has no invented coordinates
     variant: 'original',
     sourceEvidenceIds: []
   }
-  for (let i = 1; i < 50; i++) state = issuePrompt(state, prompt)
+  for (let i = 1; i < 12; i++) state = issuePrompt(state, prompt)
   state = (
     await run(state, { type: 'answer', text: 'banana' }, nonAnswerProvider())
   ).assessment

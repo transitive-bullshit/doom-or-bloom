@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { versions } from '@/lib/assessment/schema'
+import { limits, versions } from '@/lib/assessment/schema'
 export default function About() {
   return (
     <article className='mx-auto w-full max-w-2xl space-y-7 px-6 py-14 text-sm leading-relaxed'>
@@ -58,8 +58,8 @@ export default function About() {
         A few sentences is plenty. Relevant jokes and honest uncertainty are
         welcome. Unrelated or unclear replies receive bounded re-asks; repeated
         misses pause the interview. Restart clears local progress. The
-        assessment warns at 45 lifetime prompts and stops at 50, including
-        clarification.
+        assessment warns at {limits.warning} lifetime prompts and stops at{' '}
+        {limits.prompts}, including clarification.
       </p>
       <p>
         Versions: assessment {versions.assessment}; content {versions.content};

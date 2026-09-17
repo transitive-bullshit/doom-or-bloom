@@ -211,11 +211,11 @@ test('corrupt storage offers backup; unavailable storage permits ephemeral use',
   await expect(other.getByLabel('Your answer', { exact: true })).toBeEnabled()
   await ephemeral.close()
 })
-test('the fiftieth prompt finalizes without issuing another', async ({
+test('the twelfth prompt finalizes without issuing another', async ({
   page
 }) => {
   let state = createAssessment('browser-cap', 'fixture-v1')
-  for (let i = 1; i < 50; i++)
+  for (let i = 1; i < 12; i++)
     state = issuePrompt(state, {
       promptId: 'timeline.general',
       text: 'When do you expect AI to make changes on that scale, if ever?',
@@ -234,7 +234,7 @@ test('the fiftieth prompt finalizes without issuing another', async ({
   await page.goto('/')
   await expect(page.getByText('Approaching the limit')).toBeVisible()
   await submit(page, 'I do not know when, if ever.')
-  await expect(page.getByText('50-prompt cap reached')).toBeVisible()
+  await expect(page.getByText('12-prompt cap reached')).toBeVisible()
   await expect(
     page.getByText('Insufficient evidence', { exact: true })
   ).toBeVisible()

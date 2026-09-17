@@ -10,7 +10,8 @@ export interface Provider {
   evaluate(
     state: unknown,
     questions: Record<string, Question>,
-    signal?: AbortSignal
+    signal?: AbortSignal,
+    attemptBudget?: number
   ): Promise<Evaluation>
 }
 

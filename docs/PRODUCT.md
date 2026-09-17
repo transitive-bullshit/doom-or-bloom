@@ -79,7 +79,7 @@ Optional actions:
 - Open a prefilled X posting intent and manually attach the card.
 - Restart and clear the local assessment.
 
-Clarification reopens the same assessment. Warn at 45 lifetime prompts. At 50, force a final result and disable further clarification until restart.
+Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, force a final result and disable further clarification until restart.
 
 ### Supporting surfaces
 

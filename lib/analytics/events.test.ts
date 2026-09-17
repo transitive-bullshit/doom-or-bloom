@@ -1,14 +1,20 @@
-import { expect, test } from 'vitest'
+import { afterEach, expect, test, vi } from 'vitest'
 import {
   configureAnalytics,
   posthogPrivacyConfig,
   sanitizePostHog
 } from './client'
 import { makeEvent, sanitizeEvent, transitionEvents, stripUrl } from './events'
-import { createAssessment, recordDisposition } from '@/lib/assessment/state'
+import {
+  createAssessment,
+  recordDisposition,
+  issuePrompt
+} from '@/lib/assessment/state'
 const catalog = { prompts: { root: 'root' }, resources: ['resource.nist'] }
 const id = 'b5a925d2-34bb-4909-a4f7-72659508c1b2'
+afterEach(() => vi.unstubAllEnvs())
 test('outbound sanitizer discards text, query strings and SDK enrichment', () => {
+  vi.stubEnv('NEXT_PUBLIC_POSTHOG_KEY', 'phc_synthetic_test_key')
   const state = createAssessment(id)
   const event = makeEvent(state, 'answer_classified', {
     disposition: 'non_answer'
@@ -34,6 +40,7 @@ test('outbound sanitizer discards text, query strings and SDK enrichment', () =>
     properties: {
       ...event.properties,
       distinct_id: id,
+      token: canary,
       $current_url: canary,
       $referrer: canary,
       $set: { email: canary },
@@ -41,6 +48,7 @@ test('outbound sanitizer discards text, query strings and SDK enrichment', () =>
     }
   })
   expect(outbound?.properties.distinct_id).toBe(id)
+  expect(outbound?.properties.token).toBe('phc_synthetic_test_key')
   expect(JSON.stringify(outbound)).not.toContain(canary)
   expect(
     sanitizeEvent(
@@ -84,4 +92,27 @@ test('recovery events precede start and are idempotent', () => {
   expect(names).not.toContain('assessment_started')
   expect(names).not.toContain('assessment_completed')
   expect(names).not.toContain('question_routed')
+})
+test('a successful retry keeps its attempt bucket after routing resets the recovery counter', () => {
+  const initial = createAssessment(id)
+  const previous = recordDisposition(initial, 'needs_clarification', 1, 'first')
+  const accepted = recordDisposition(previous, 'usable', 1, 'second')
+  const next = issuePrompt(accepted, {
+    promptId: 'timeline.general',
+    text: 'When?',
+    family: 'timeline',
+    variant: 'original',
+    sourceEvidenceIds: []
+  })
+  expect(next.recovery.evaluated).toBe(0)
+  const events = transitionEvents(
+    previous,
+    next,
+    { type: 'answer', text: 'usable private answer' },
+    'second'
+  )
+  expect(
+    events.find((event) => event.name === 'answer_classified')?.properties
+      .attempt_bucket
+  ).toBe('two')
 })

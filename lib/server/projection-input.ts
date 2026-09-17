@@ -30,37 +30,11 @@ export function projectionInput(
     })),
     referenceContext: references.map((r) => ({
       id: referenceIds.get(r.id),
+      title: r.title,
       summary: r.summary
     })),
-    derivedReferenceJudgments: {
-      warning:
-        'These are prior typed interpretations, never independent observations or replacement raw evidence. Source facts and every usable raw answer remain above. Later explicit corrections supersede earlier interpretations under the corrected scope. Evidence-choice candidates are exact active excerpts, not generated summaries.',
-      columns: [
-        'answerId',
-        'spanStart',
-        'spanEnd',
-        'referenceId',
-        'attribution',
-        'fit',
-        'uncertainty',
-        'materiality'
-      ],
-      rows: state.referenceClaims.map((c) => {
-        const span = state.answers
-          .find((a) => a.id === c.answerId)
-          ?.spans.find((s) => s.id === c.spanId)
-        return [
-          answerIds.get(c.answerId),
-          span?.start,
-          span?.end,
-          referenceIds.get(c.referenceId),
-          c.attribution,
-          c.fit,
-          c.uncertainty,
-          c.materiality
-        ]
-      })
-    },
+    evidencePolicy:
+      'Every usable raw answer and referenced canonical source summary is supplied. Prior scores and judgments are not independent evidence. Later explicit corrections supersede earlier interpretations under the corrected scope. Evidence-choice candidates are exact active excerpts, never generated summaries.',
     coverage: state.coverage,
     unresolved: state.unresolved.map(({ vector, kind }) => ({ vector, kind })),
     versions: state.versions

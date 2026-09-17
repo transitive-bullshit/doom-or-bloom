@@ -12,6 +12,8 @@ This package defines the product and assessment contract for a bounded, adaptive
 4. [AUTHORING.md](./AUTHORING.md) — conversation graph, reference corpus, offline authoring workflow, and versioning.
 5. [MEASUREMENT.md](./MEASUREMENT.md) — analytics, privacy, evaluation, and experimental success signals.
 6. [CONTEXT.md](./CONTEXT.md) — canonical domain glossary.
+7. [SOURCES.md](./SOURCES.md) — required source library, recency, genre and corpus review.
+8. [JOURNEYS.md](./JOURNEYS.md) — argument maps, risk/concept terminology and development conversations.
 
 ## Locked language
 
@@ -24,6 +26,6 @@ This package defines the product and assessment contract for a bounded, adaptive
 
 The product-level decision frontier is closed for MVP planning. Exact scoring weights, prompt variants, rubric wording, corpus entries, and visual design remain authored assets to create and validate; their governing rules are specified here.
 
-These documents are a design handoff, not a deployed application or validated assessment. The 300-entry corpus and the evaluated Jev rubric suite are specified but have not been authored in full. API cost, latency, and classification quality have not been benchmarked. The 45-question early warning is a proposed operational default; the 50-question hard cap is agreed.
+The local app is implemented with labeled draft assets; it is not yet a validated assessment. Required-source coverage, balanced reviewed content and reviewed semantic evaluation remain incomplete. The earlier 300-entry count is now a coverage guide; source quality and the required library take precedence. The local bound is 12 lifetime prompts with a warning at 10, superseding the original 50-prompt proposal. Paid pressure testing is out of scope; existing measurements are historical development evidence.
 
 The working name deliberately emphasizes the provocative Doom/Bloom contrast. This framing trade-off belongs in methodology documentation and evaluation; it must not become a forced binary classification.

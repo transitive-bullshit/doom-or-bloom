@@ -1,24 +1,27 @@
 {
-  "date": "2026-09-17T11:47:26.459Z",
+  "date": "2026-09-17T11:54:06.436Z",
   "purpose": "Synthetic context stress test: 50 maximum-length usable answers, 750 ledger entries, 200 reference claims. Not an authored interview path or accuracy evaluation.",
   "model": "jev-1.13.0",
   "sdk": "0.6.0",
-  "succeeded": true,
-  "snapshotBytes": 663094,
+  "succeeded": false,
+  "snapshotBytes": 668354,
   "answerCharacters": 2000,
+  "distinctReferenceSummaries": 200,
   "stages": [
     {
       "questions": 57,
-      "inputBytes": 315902,
+      "inputBytes": 507316,
       "largestChoice": 51,
-      "elapsedMs": 17878,
-      "usage": {
-        "input_tokens": 245438,
-        "output_tokens": 10275
+      "elapsedMs": 6869,
+      "succeeded": false,
+      "status": 400,
+      "constraint": "input_size",
+      "declaredLimits": [],
+      "sizeHints": {
+        "keywords": ["exceeded", "token"],
+        "numbers": []
       },
-      "attempts": 8,
-      "model": "jev-1.13.0",
-      "succeeded": true
+      "numericLimit": null
     }
   ],
   "pricing": {
@@ -26,7 +29,7 @@
     "source": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
     "inputUsdPerMillionTokens": 0.042,
     "outputUsdPerMillionTokens": 0,
-    "measuredRequestListEstimateUsd": 0.010308396000000001,
-    "failedRequestCostUnknown": false
+    "measuredRequestListEstimateUsd": 0,
+    "failedRequestCostUnknown": true
   }
 }

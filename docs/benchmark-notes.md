@@ -1,33 +1,19 @@
-# Local development measurements
+# Local development measurements and current bounds
 
-Measured 2026-09-17 with `@typesafe-ai/sdk` 0.6.0 and explicitly requested/returned `jev-1.13.0`. These are synthetic development inputs, not participant data or reviewed held-out validation.
+Updated 2026-09-17. **Paid pressure testing has stopped at the user’s request.** The original 50-prompt stress setup is superseded by conservative local bounds: 12 issued prompts, warning at 10, 2,000 characters per answer, two resolved references per answer and 16 physical inference attempts across one operation. Boundary checks use fixtures. No paid maximum-context test or numeric provider-limit discovery is required.
 
-## Working representative paths
+## Historical development evidence
 
-[live-engine.json](../eval/live-engine.json) records a three-answer result, eight-answer continuation, reference identification/grounding, a correction and recomputation, two confident non-answer strikes, the one-time paperclip pause, and accepted relevant humor. The recovery gate skips speculative profile judgments and later inference stages for unusable replies.
+The artifacts under `eval/` were collected before that instruction, using SDK 0.6.0 and requested/returned `jev-1.13.0`. They are synthetic development evidence, not reviewed held-out validation or proof that current draft semantics are correct.
 
-The run used 35 physical requests, 245,099 input tokens and 66,508 output tokens. The current published list price is $0.042 per million input tokens, with output tokens free; checked 2026-09-17 on [TypeSafe’s introduction and pricing table](https://typesafe.ai/blog/introducing-system-one-models-and-jev). The measured run’s list-price estimate is approximately **$0.0103**. This is an estimate from measured tokens, not an invoice or a promise about future pricing.
+- [Representative engine run](../eval/live-engine.json): three-answer and eight-answer paths, reference handling, recovery, paperclip pause and relevant humor; 32 physical requests, 234,443 input tokens and 65,550 output tokens. This later run did not perform a correction because its control interpretation remained unknown; correction is covered by local regressions. Earlier checkpoint logs describe an earlier run and should not be read as totals for this artifact.
+- [Historical automatic batching](../eval/budget-benchmark.json): the former 50-answer setup passed with the seed’s 24 distinct summaries and bounded question batching. [Single-question](../eval/budget-benchmark-batch-1.json) and [eight-question](../eval/budget-benchmark-batch-8.json) variants retain their measured usage.
+- [Historical 200-summary setup](../eval/budget-benchmark-references-200.json): failed with a token-limit error. No numeric provider limit was established. Failed-request usage and cost remain unknown; its zero successful-request estimate is not a claim of free failed requests.
 
-That measurement predates the expanded prompt pool and the explicit unknown/catastrophic-risk refinements. Rerun it against the final frozen assets. Stage timings, byte counts, question counts, usage and model identifiers are recorded per operation in the artifact.
+Earlier [initial](../eval/budget-benchmark-initial.json) and [reduced-ledger](../eval/budget-benchmark-compacted-ledger.json) failures remain historical records. They do not create an instruction to repeat paid tests. Their former acceptance blocker is replaced by the user-authorized smaller bound and local failure safeguards.
 
-## Maximum-evidence failure: unresolved
+## Current safeguards and validation
 
-`pnpm eval:budget` constructs 50 synthetic usable answers of 2,000 characters each, 750 ledger entries and 200 reference claims. It exercises the final projection directly; repeating the same authored prompt is a stress setup, not a normal graph path or a quality benchmark. Reference claims are explicitly synthetic and uncertain, not accepted factual labels.
+Final projection retains every usable raw answer and relevant canonical source summary. Lossless temporary IDs remove bookkeeping and restore original evidence IDs and distributions. Oversized requests permit one smaller question-batch fallback; an oversized child stops. Retries, fallback requests and stages share the operation’s physical-request ceiling and deadline. Failures preserve the participant’s draft rather than inventing a result.
 
-| Request representation | Bytes, including questions | Outcome |
-| --- | --: | --- |
-| Full bookkeeping | 702,808 | HTTP 400 |
-| Reduced ledger bookkeeping | 588,034 | HTTP 400 |
-| Short source IDs; complete raw text and summaries | 327,496 | HTTP 400 |
-
-The provider error indicates an exceeded token limit. It supplies no numeric limit in the captured allowlisted hints. Error bodies, headers and credentials are not saved. Failed-request usage/cost is unavailable and must not be reported as zero. [Initial measurement](../eval/budget-benchmark-initial.json), [reduced-ledger measurement](../eval/budget-benchmark-compacted-ledger.json), and [current measurement](../eval/budget-benchmark.json) preserve the evidence.
-
-Lossless compaction preserves every raw usable answer and canonical source summary, uses short temporary IDs in the request, and restores original evidence IDs/distributions before saving judgments. A regression verifies all 50 raw texts and provenance restoration. It removes bookkeeping rather than substituting a generated summary or an earlier score for evidence.
-
-This is a release blocker. Before completing the MVP, establish the actual input limit, resolve final-projection and reference-heavy context growth with an evidence-preserving design, and repeat the 50-prompt case successfully. If the supported input budget or assessment composition must change, document the design and include material semantic changes in editorial review. Keep the implementation-plan feasibility and acceptance boxes unchecked until the evidence passes.
-
-## Browser and ordinary checks
-
-Fixture-mode browser regressions cover drafts on reload, three-answer results, correction, report/PNG download, restart during in-flight work, newer-tab conflicts, corrupt/unavailable storage, the forced cap and identical-ID retry after a lost response. Outbound requests to TypeSafe and analytics are absent in the disabled fixture case.
-
-These checks establish workflow behavior and operational safeguards. They cannot establish neutrality, factual accuracy, rubric agreement, or paraphrase stability; those need the separate reviewed development/holdout protocol.
+Local unit/browser checks verify budget boundaries, retry/cancellation, evidence preservation, recovery, correction, report/PNG download, storage conflicts and stale-response handling. The actual PostHog SDK is checked against intercepted dummy endpoints with inference credentials disabled. These checks establish workflow and transport behavior, not semantic accuracy. Future paid semantic validation requires a small human-reviewed suite with an explicit cost budget, separate from the published development examples.
