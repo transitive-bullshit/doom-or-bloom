@@ -27,6 +27,10 @@ test('long inserted answers remain intact across reload and use a soft submissio
   await page.goto('/')
   const answer = page.getByLabel('Your answer', { exact: true })
   const continueButton = page.getByRole('button', { name: /^Continue/ })
+  await expect(page.locator('#answer-length')).toHaveCount(0)
+  await answer.fill('A short answer.')
+  await expect(page.locator('#answer-length')).toHaveCount(0)
+  await answer.fill('')
   const fullAnswer = 'AI could benefit people with safeguards. '.repeat(501)
   expect(fullAnswer.length).toBeGreaterThan(limits.answerChars)
   await answer.focus()
@@ -37,6 +41,9 @@ test('long inserted answers remain intact across reload and use a soft submissio
   await expect(answer).toBeEnabled()
   await expect(answer).toHaveAttribute('aria-invalid', 'true')
   await expect(continueButton).toBeDisabled()
+  await expect(page.locator('#answer-length')).toHaveText(
+    `${fullAnswer.length.toLocaleString('en-US')} / 20,000 characters`
+  )
   await expect(page.locator('#answer-limit')).toHaveText(
     `Your full answer is still here. Shorten it by ${(fullAnswer.length - limits.answerChars).toLocaleString('en-US')} characters to continue.`
   )
@@ -51,9 +58,7 @@ test('long inserted answers remain intact across reload and use a soft submissio
   expect(submitted).toEqual([])
   const accepted = 'a'.repeat(limits.answerChars)
   await answer.fill(accepted)
-  await expect(page.locator('#answer-length')).toHaveText(
-    '20,000 / 20,000 characters'
-  )
+  await expect(page.locator('#answer-length')).toHaveCount(0)
   await expect(answer).toHaveAttribute('aria-invalid', 'false')
   await expect(page.locator('#answer-limit')).toHaveCount(0)
   await expect(continueButton).toBeEnabled()

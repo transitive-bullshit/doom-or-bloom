@@ -401,7 +401,7 @@ export function Interview({
                     aria-describedby={
                       answerTooLong
                         ? 'answer-help answer-length answer-limit'
-                        : 'answer-help answer-length'
+                        : 'answer-help'
                     }
                     className='min-h-36 max-h-96'
                     onChange={(event) => {
@@ -415,17 +415,19 @@ export function Interview({
                   <FieldDescription id='answer-help'>
                     No specialist knowledge needed. Tell us what you think.
                   </FieldDescription>
-                  <FieldDescription id='answer-length'>
-                    {state.draft.length.toLocaleString('en-US')} /{' '}
-                    {limits.answerChars.toLocaleString('en-US')} characters
-                  </FieldDescription>
                   {answerTooLong && (
-                    <FieldError id='answer-limit'>
-                      Your full answer is still here. Shorten it by{' '}
-                      {excessCharacters.toLocaleString('en-US')}{' '}
-                      {excessCharacters === 1 ? 'character' : 'characters'} to
-                      continue.
-                    </FieldError>
+                    <>
+                      <FieldDescription id='answer-length'>
+                        {state.draft.length.toLocaleString('en-US')} /{' '}
+                        {limits.answerChars.toLocaleString('en-US')} characters
+                      </FieldDescription>
+                      <FieldError id='answer-limit'>
+                        Your full answer is still here. Shorten it by{' '}
+                        {excessCharacters.toLocaleString('en-US')}{' '}
+                        {excessCharacters === 1 ? 'character' : 'characters'} to
+                        continue.
+                      </FieldError>
+                    </>
                   )}
                 </Field>
                 <Field>

@@ -31,7 +31,7 @@ Create `.env.local` using [.env.example](.env.example), preserving any existing 
 
 Progress and drafts live in one browser-local record per origin. Reload resumes the same prompt. Use the same Portless URL across server restarts; progress saved at an earlier direct-port URL remains on that origin. A conflicting tab pauses until it loads the newer record; corrupt or incompatible data can be exported before restarting. If storage is unavailable, progress lasts only while the tab remains open.
 
-Answers may contain up to 20,000 characters when submitted. The text box has no hard input cap: longer typing, dictation and pasted drafts stay intact, including after reload when browser storage is available. A visible counter and over-limit message explain how much to shorten; Continue stays disabled until the draft fits. Neither the browser nor the server silently truncates an answer.
+Answers may contain up to 20,000 characters when submitted. The text box has no hard input cap: longer typing, dictation and pasted drafts stay intact, including after reload when browser storage is available. Only when a draft exceeds that limit, a counter and message explain how much to shorten; Continue stays disabled until the draft fits. Neither the browser nor the server silently truncates an answer.
 
 An unusable or unclear reply gets bounded authored recovery. Two confident consecutive non-answers trigger a one-time, dismissible paperclip pause; relevant humor and honest uncertainty remain usable. A prompt permits the original semantic submission plus two recovery submissions. Failed requests and navigation do not consume that allowance. Uncertain network retries reuse their request ID; process restarts do not guarantee exactly-once billing.
 
