@@ -73,3 +73,28 @@
     touch-action: manipulation;
   }
 }
+.paperclip-effect {
+  animation: paperclips-appear 2.4s ease-out both;
+}
+@keyframes paperclips-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  35%,
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .paperclip-effect {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+  }
+}

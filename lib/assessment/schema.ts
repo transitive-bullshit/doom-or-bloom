@@ -27,7 +27,7 @@ export const limits = {
   warning: 45,
   recovery: 3,
   answerChars: 2000,
-  requestBytes: 600_000,
+  requestBytes: 8_000_000,
   questions: 96,
   referenceCandidates: 12,
   resolvedReferences: 4

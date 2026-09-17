@@ -282,13 +282,13 @@ Done when: the local app boots, contracts and budget behavior are testable, and 
 
 Depends on: milestone 1 contracts. Commit: `feat: define reviewed assessment content and Jev contract` (split draft/review/integration work if needed).
 
-- [ ] Draft the representative review packet from section 3 and label all assets as drafts. Include the horizontal formula, vertical weighting, missingness/range rule, substantive-answer rule, readiness rule, and deterministic routing tie-break.
-- [ ] Review paired examples of usable humor/uncertainty versus non-answers, authored recovery copy, and the paperclip interlude. Set and version the clear-non-answer confidence threshold from those examples, with ambiguous cases routed to neutral clarification.
+- [x] Draft the representative review packet from section 3 and label all assets as drafts. Include the horizontal formula, vertical weighting, missingness/range rule, substantive-answer rule, readiness rule, and deterministic routing tie-break.
+- [x] Review paired examples of usable humor/uncertainty versus non-answers, authored recovery copy, and the paperclip interlude. Set and version the clear-non-answer confidence threshold from those examples, with ambiguous cases routed to neutral clarification.
 - [ ] Create content validation and a frozen manifest format. Validate ID uniqueness, references, graph reachability, root uniqueness, coverage targets, rule types, evidence slots, source metadata, and release review status.
-- [ ] Implement the live TypeSafe adapter behind the provider interface, with validated typed responses, version/usage capture, cancellation, bounded retries, and sanitized errors/logs.
+- [x] Implement the live TypeSafe adapter behind the provider interface, with validated typed responses, version/usage capture, cancellation, bounded retries, and sanitized errors/logs.
 - [ ] With a locally configured key, run opt-in smoke cases for Choice, Score, Noul, source-span selection, unsupported evidence, and independent batching. Record requested/returned model IDs and installed SDK version.
 - [ ] Test staged reference handling and the worst-case supported transcript/context budget. Record calls, tokens, latency, failures, and a dated cost estimate if current pricing is available; do not invent benchmark results.
-- [ ] Review the packet with the user according to their chosen timing. Record accepted semantics and requested changes; implement them in the assets and tests before treating the bundle as reviewed. If review is pending, continue scaffold/UI/provider work using labeled fixtures.
+- [x] Review the packet with the user according to their chosen timing. Record accepted semantics and requested changes; implement them in the assets and tests before treating the bundle as reviewed. If review is pending, continue scaffold/UI/provider work using labeled fixtures.
 
 Done when: an agreed representative content contract works with real Jev, operational limits are concrete, and unresolved semantic concerns are visible. A missing key blocks live evidence only, not unrelated implementation. Update checkboxes and commit.
 
@@ -301,7 +301,7 @@ Depends on: milestone 2 content contracts. Commit: `feat: add seed assessment as
 - [ ] Add compatible same-goal recovery variants, exhausted-attempt copy, and deterministic alternate-question fallbacks; validate IDs and preserve the fixed root wording. Include recovery assets in the reviewed content release.
 - [ ] Author versioned rubric questions for each stage, projection components, and routing benefits, with explicit unsupported outcomes and narrow, complete criteria. Keep weights/thresholds in reviewed configuration.
 - [ ] Author a small complete findings/resource library (planning target: 12–20 of each) with required evidence, exclusions, reading effort, learning purpose, and compatible conditions. No invented links or automatic opposing-view assignments.
-- [ ] Implement deterministic alias/topic indexing, candidate caps, collision handling, selected-entry loading, and a client-safe content view. Add fixture tests for indirect references, unknown references, and multiple references.
+- [x] Implement deterministic alias/topic indexing, candidate caps, collision handling, selected-entry loading, and a client-safe content view. Add fixture tests for indirect references, unknown references, and multiple references.
 - [ ] Add development and held-out evaluation fixtures with expected vectors, source evidence, acceptable follow-ups, and false-error/tension cases. Holdout labels must receive human review and remain separate from tuning.
 
 Done when: the validated seed bundle covers an end-to-end assessment without runtime prose generation; every factual entry has provenance and review status. Update checkboxes and commit.
@@ -311,13 +311,13 @@ Done when: the validated seed bundle covers an end-to-end assessment without run
 Depends on: milestones 1–3. Commit: `feat: implement adaptive assessment and evidence ledger`.
 
 - [ ] Implement stages A–C, immutable answer/span storage, judgment provenance, reference materiality checks, coverage updates, and unresolved items. Track participant conviction and horizon separately from inference confidence.
-- [ ] Gate ordinary processing on response disposition. Short-circuit B–D for rejected/ambiguous attempts, discard speculative scores, preserve usable evidence, and render bounded re-asks/pause actions. Navigation and failed provider requests must not be mistaken for non-answer strikes.
-- [ ] Implement candidate eligibility, benefit composition, effort/repetition penalties, deterministic tie-breaking, and fallback behavior. Test that changing action posture alone does not force a Doom/Bloom branch or coordinate.
-- [ ] Implement the operation Route Handler with request validation, authored-content resolution, revision checks, transient deduplication, request/cost limits, and safe error responses. Set private assessment responses to `no-store` and keep evidence out of URLs/logs.
-- [ ] Instrument actual stages and render the debug panel's inputs, questions, judgments, reference candidates, routing breakdown, counters, timing, usage, and sanitized errors. Bound transient trace size and clear it on restart; debug mode causes no additional inference calls.
-- [ ] Implement browser persistence, draft survival, hydration, incompatible-version recovery, storage-unavailable behavior, and cross-tab conflict detection. Keep an old saved result viewable when recomputation is unavailable.
-- [ ] Wire the single-prompt interface with loading, retry, substantive-answer feedback, result unlock, continue, restart, and cap states. Use honest progress counts, not a percentage of understanding.
-- [ ] Implement the brief, dismissible paperclip background and recovery controls from `PRODUCT.md`, with static reduced-motion treatment, unobscured keyboard controls, no inference on dismiss, and no replay after reload. This participant-facing recovery works with debug off.
+- [x] Gate ordinary processing on response disposition. Short-circuit B–D for rejected/ambiguous attempts, discard speculative scores, preserve usable evidence, and render bounded re-asks/pause actions. Navigation and failed provider requests must not be mistaken for non-answer strikes.
+- [x] Implement candidate eligibility, benefit composition, effort/repetition penalties, deterministic tie-breaking, and fallback behavior. Test that changing action posture alone does not force a Doom/Bloom branch or coordinate.
+- [x] Implement the operation Route Handler with request validation, authored-content resolution, revision checks, transient deduplication, request/cost limits, and safe error responses. Set private assessment responses to `no-store` and keep evidence out of URLs/logs.
+- [x] Instrument actual stages and render the debug panel's inputs, questions, judgments, reference candidates, routing breakdown, counters, timing, usage, and sanitized errors. Bound transient trace size and clear it on restart; debug mode causes no additional inference calls.
+- [x] Implement browser persistence, draft survival, hydration, incompatible-version recovery, storage-unavailable behavior, and cross-tab conflict detection. Keep an old saved result viewable when recomputation is unavailable.
+- [x] Wire the single-prompt interface with loading, retry, substantive-answer feedback, result unlock, continue, restart, and cap states. Use honest progress counts, not a percentage of understanding.
+- [x] Implement the brief, dismissible paperclip background and recovery controls from `PRODUCT.md`, with static reduced-motion treatment, unobscured keyboard controls, no inference on dismiss, and no replay after reload. This participant-facing recovery works with debug off.
 - [ ] Verify one complete three-answer path and one adaptive 6–8-prompt path with fixtures, then smoke-test real Jev with synthetic inputs. Capture routing decisions without storing private participant text in general logs.
 
 Done when: a participant can start, resume, continue, recover from failure, and reach a valid result request; repeat/stale requests cannot corrupt their assessment. Update checkboxes and commit.
@@ -326,12 +326,12 @@ Done when: a participant can start, resume, continue, recover from failure, and 
 
 Depends on: milestone 4 and reviewed projection rules. Commit: `feat: add evidence-backed results and clarification`.
 
-- [ ] Implement stage D and pure projection functions with normalization, missingness, ranges, assessed masks, and readiness/provisional metadata. Reuse an unchanged result instead of paying for another projection.
-- [ ] Extend debug details to projection contributions, range propagation, selected finding/resource conditions, and correction invalidation. Verify the trace explains the displayed result without inventing model reasoning.
+- [x] Implement stage D and pure projection functions with normalization, missingness, ranges, assessed masks, and readiness/provisional metadata. Reuse an unchanged result instead of paying for another projection.
+- [x] Extend debug details to projection contributions, range propagation, selected finding/resource conditions, and correction invalidation. Verify the trace explains the displayed result without inventing model reasoning.
 - [ ] Render the Doom–Bloom × Epistemic Quality map with accessible textual equivalents and compact interpretation ranges; show the five-part fingerprint and unassessed components. Avoid false precision and ideological labels.
 - [ ] Select a few findings and resources using authored conditions, disqualifiers, relevance, and diversity of learning purpose. Every displayed claim links to exact evidence and a versioned interpretation.
-- [ ] Add “That’s not quite my view” on central inferred claims. Select a claim, show an authored clarification, accept natural-language correction, supersede affected interpretations, and recompute. Disable new clarification at the lifetime cap.
-- [ ] Implement voluntary completion and continued exploration on the same assessment, with a new result revision when evidence changes. Cap finalization can still yield an insufficient-evidence result.
+- [x] Add “That’s not quite my view” on central inferred claims. Select a claim, show an authored clarification, accept natural-language correction, supersede affected interpretations, and recompute. Disable new clarification at the lifetime cap.
+- [x] Implement voluntary completion and continued exploration on the same assessment, with a new result revision when evidence changes. Cap finalization can still yield an insufficient-evidence result.
 - [ ] Test coherent extreme views, weak moderate views, unknown dimensions, jargon/verbosity paraphrases, repeated evidence, changed assumptions, and corrections. Verify correction can change only implicated interpretations while dependent results are recomputed.
 
 Done when: results can be traced to evidence and corrected without direct score editing, and uncertainty survives the entire path into the visible map. Update checkboxes and commit.
@@ -449,3 +449,12 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - Dependencies: TypeSafe SDK 0.6.0 installed; core-js postinstall deliberately disabled (optional informational script), and missing shadcn cva/lucide imports explicitly installed.
 - Live evidence: `eval/live-smoke.json` records a successful synthetic three-primitive request, pinned/returned `jev-1.13.0`, 437 input tokens, 1,006 ms, one attempt. This is API feasibility evidence, not assessment validation.
 - Next: validate representative draft assets and bring the editorial packet for review; build the engine/UI independently while review is pending.
+
+### 2026-09-17 — Engine and interface checkpoint / Codex
+
+- Implemented staged interpretation/reference handling, authored candidate ranking with a 24-candidate/96-question ceiling, pure missingness-aware projections, bounded recovery, revisions, request deduplication/rate limits, and private response caching policy.
+- Added draft persistence/resume, recoverable corrupt/unavailable storage, tab-conflict protection, result/evidence/correction UI, and a keyboard-accessible decorative paperclip interlude. Corrected answers supersede the selected vector’s evidence and trigger recomputation; other evidence remains intact.
+- Retain latest routing/projection judgments rather than accumulating redundant passes. Local snapshot transport allows 8 MB; full 50-prompt provider-context feasibility remains unchecked and will be measured separately.
+- Checks: 22 deterministic tests pass, content validation passes for the labeled six-entry draft, and production build passes. Browser and complete live-path verification remain outstanding.
+- Editorial decision: Travis approved `editorial-review-packet.md` with “this looks good.” Expansion may proceed; future assets/holdout labels are not implicitly reviewed. PostHog environment values are supplied locally; instrumentation is next, with collection disabled by default.
+- Previous checkpoint: `99ee468`. Next: live engine paths, supporting pages/downloads, explicit analytics, and researched seed expansion.

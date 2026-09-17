@@ -61,13 +61,13 @@ export function validateEvaluation(
   return { ...result, attempts }
 }
 export function createLiveProvider(model: string): Provider {
-  if (!process.env.TYPESAFE_API_KEY?.trim())
-    throw new Error(
-      'Add TYPESAFE_API_KEY to .env.local to run real assessments'
-    )
   return {
     kind: 'live',
     evaluate: async (state, questions, signal) => {
+      if (!process.env.TYPESAFE_API_KEY?.trim())
+        throw new Error(
+          'Add TYPESAFE_API_KEY to .env.local to run real assessments'
+        )
       if (
         Object.keys(questions).length === 0 ||
         Object.keys(questions).length > limits.questions
