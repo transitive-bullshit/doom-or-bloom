@@ -197,25 +197,6 @@ export function QuestionsInspector({
             }
           ]}
         />
-        <h3 className='text-sm font-medium'>
-          Selected relationships ({edges.length})
-        </h3>
-        <div className='flex flex-wrap gap-2'>
-          {edges.map((edge) => {
-            const other = edge.source === selectedId ? edge.target : edge.source
-            return (
-              <Button
-                key={`${edge.source}:${edge.target}:${edge.label}`}
-                size='sm'
-                variant='outline'
-                className='h-auto max-w-full py-1.5 text-left whitespace-normal wrap-anywhere'
-                onClick={() => setSelectedId(other)}
-              >
-                {edge.source === selectedId ? '→' : '←'} {other} · {edge.label}
-              </Button>
-            )
-          })}
-        </div>
         <JsonViewer
           value={selected}
           label={`Question metadata ${selectedId}`}
