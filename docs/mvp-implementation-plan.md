@@ -590,3 +590,11 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - [x] Required mappings now total 79 of 114 URLs, with 95 separate draft snapshots. Runtime remains 42 references; no individual approval, activation or freeze was introduced.
 - Formatting and complete content validation pass for all 13 snapshots, source mappings, related IDs, required sections and release dependencies. Runtime code is unchanged. No paid inference or real telemetry was used.
 - Previous checkpoint: `350bdcf`. Continue the remaining required sources; human review, access reconciliation and held-out semantic validation remain open.
+
+### 2026-09-17 — Required governance and source-attribution drafts / Codex
+
+- [x] Author 11 separate governance/control/scenario drafts, pinning the scoped abstracts, indexes, descriptions and targeted RSP v3.4 PDF. Preserve publication versus input dates, unassigned scenario probabilities, conditional policy provisions, procedure versus outcome review and two exact-artifact access limits.
+- [x] Author all nine supplied social/video references as scoped publications. Retain verified roots/edits/quotes and selected official caption segments while excluding unreviewed threads, images and video portions. Do not turn forecasts, retellings, commercial assertions or captions into independently verified incidents/evaluations.
+- [x] Required mappings now total 99 of 114 URLs, with 115 separate draft snapshots. Runtime remains at 42 references; no individual approval, activation or freeze occurred.
+- Formatting and complete content validation pass for all 20 snapshots, required sections, related IDs, mapped originals, exact research headings and release dependencies. Runtime is unchanged; no paid inference or real telemetry was used.
+- Previous checkpoint: `9eeff87`. Continue remaining perspective/discovery sources and preserve access, editorial and held-out gates.
