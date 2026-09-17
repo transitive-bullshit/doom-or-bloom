@@ -440,26 +440,6 @@
     "status": "draft"
   },
   {
-    "id": "control.failuremode",
-    "text": "Which failure mode would your proposed oversight method leave unresolved?",
-    "family": "control",
-    "readingLevel": "expert",
-    "prerequisites": ["technical_controllability"],
-    "exclusions": [],
-    "targets": ["technical_controllability", "counterargument_engagement"],
-    "effort": 0.55,
-    "noveltyGroup": "control-failuremode",
-    "maxUses": 1,
-    "permittedAfter": ["*"],
-    "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
-      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
-    },
-    "contentVersion": "0.1.0-draft",
-    "status": "draft"
-  },
-  {
     "id": "governance.incentives",
     "text": "What incentives would make labs act in the way you expect?",
     "family": "governance",
@@ -549,66 +529,6 @@
     "targets": ["grounded_understanding", "scope_discipline"],
     "effort": 0.4,
     "noveltyGroup": "grounding-claim",
-    "maxUses": 1,
-    "permittedAfter": ["*"],
-    "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
-      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
-    },
-    "contentVersion": "0.1.0-draft",
-    "status": "draft"
-  },
-  {
-    "id": "grounding.source",
-    "text": "Where could someone check the evidence that matters most to your view?",
-    "family": "grounding",
-    "readingLevel": "general",
-    "prerequisites": [],
-    "exclusions": [],
-    "targets": ["grounded_understanding", "updateability"],
-    "effort": 0.4,
-    "noveltyGroup": "grounding-source",
-    "maxUses": 1,
-    "permittedAfter": ["*"],
-    "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
-      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
-    },
-    "contentVersion": "0.1.0-draft",
-    "status": "draft"
-  },
-  {
-    "id": "crux.test",
-    "text": "How could someone check whether your most important assumption holds?",
-    "family": "crux",
-    "readingLevel": "general",
-    "prerequisites": ["causal_clarity"],
-    "exclusions": [],
-    "targets": ["updateability", "grounded_understanding"],
-    "effort": 0.4,
-    "noveltyGroup": "crux-test",
-    "maxUses": 1,
-    "permittedAfter": ["*"],
-    "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
-      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
-    },
-    "contentVersion": "0.1.0-draft",
-    "status": "draft"
-  },
-  {
-    "id": "tension.general",
-    "text": "Are there conditions that make your expectations fit together?",
-    "family": "tension",
-    "readingLevel": "general",
-    "prerequisites": ["causal_clarity"],
-    "exclusions": [],
-    "targets": ["internal_coherence", "scope_discipline"],
-    "effort": 0.4,
-    "noveltyGroup": "tension-general",
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {

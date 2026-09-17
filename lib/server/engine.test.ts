@@ -40,6 +40,58 @@ function nonAnswerProvider(disposition = 'non_answer'): Provider {
     }
   }
 }
+test('a deleted pending question keeps local history and can be skipped without inference', async () => {
+  const noInference: Provider = {
+    kind: 'fixture',
+    evaluate: async () => {
+      throw new Error('Deleted pending questions must not invoke the provider')
+    }
+  }
+  const original = issuePrompt(createAssessment('deleted-pending'), {
+    promptId: 'grounding.source',
+    text: 'Where could someone check the evidence that matters most to your view?',
+    family: 'grounding',
+    variant: 'original',
+    sourceEvidenceIds: []
+  })
+  original.draft = 'My complete draft is still here.'
+  await expect(
+    run(original, { type: 'answer', text: original.draft }, noInference)
+  ).rejects.toThrow('This question is no longer available')
+  expect(original.draft).toBe('My complete draft is still here.')
+  const skipped = await run(original, { type: 'skip' }, noInference)
+  expect(skipped.assessment.prompts.slice(0, 2)).toEqual(original.prompts)
+  expect(
+    loadBundle().prompts.some(
+      (p) => p.id === currentPrompt(skipped.assessment).promptId
+    )
+  ).toBe(true)
+  expect(skipped.assessment.prompts).toHaveLength(3)
+})
+test('answered deleted questions remain valid history while known question edits still fail', async () => {
+  let state = createAssessment('deleted-history')
+  for (let i = 0; i < 3; i++)
+    state = (
+      await run(state, {
+        type: 'answer',
+        text: 'AI may improve medicine, with uncertain timing.'
+      })
+    ).assessment
+  const issued = state.prompts[1]!
+  issued.promptId = 'a-deleted-local-question'
+  issued.text = 'A previously issued local question.'
+  const answer = state.answers.find((a) => a.promptInstanceId === issued.id)!
+  answer.promptText = issued.text
+  const projected = await run(state, { type: 'project' })
+  expect(projected.assessment.answers).toEqual(state.answers)
+  expect(projected.assessment.prompts).toEqual(state.prompts)
+  expect(projected.assessment.result).not.toBeNull()
+  const tampered = structuredClone(state)
+  tampered.prompts[0]!.text = 'An edited known root.'
+  await expect(run(tampered, { type: 'stop' })).rejects.toThrow(
+    'Invalid prompt history'
+  )
+})
 test('placeholders and an explicit paperclip request use bounded local recovery with no provider calls', async () => {
   const noInference: Provider = {
     kind: 'live',

@@ -43,8 +43,8 @@ test('familiarity gates specialist wording while early missing horizons retain i
   ).toBeNull()
 })
 
-test('retired questions are excluded for every saved corpus and confidence questions require a timing premise', () => {
-  const retired = [
+test('deleted questions are absent for every saved corpus and confidence questions require a timing premise', () => {
+  const removed = [
     'grounding.source',
     'tension.general',
     'control.failuremode',
@@ -57,10 +57,13 @@ test('retired questions are excluded for every saved corpus and confidence quest
     for (const vector of Object.keys(state.coverage))
       state.coverage[vector as keyof typeof state.coverage] = 'assessed'
     const candidates = candidatePrompts(state, bundle.prompts)
-    for (const id of retired)
-      expect(
-        candidates.find((candidate) => candidate.prompt.id === id)?.reason
-      ).toMatch(/^Retired/)
+    expect(bundle.prompts).toHaveLength(30)
+    for (const id of removed) {
+      expect(bundle.prompts.some((prompt) => prompt.id === id)).toBe(false)
+      expect(candidates.some((candidate) => candidate.prompt.id === id)).toBe(
+        false
+      )
+    }
     expect(
       candidates.find(
         (candidate) => candidate.prompt.id === 'conviction.general'

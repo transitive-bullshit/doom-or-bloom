@@ -2,7 +2,6 @@ import type { Assessment, ModelAnswer } from './schema'
 import { currentPrompt } from './state'
 import type { Prompt, Rubric } from '@/lib/content/schema'
 import { timelineContext } from './timeline'
-import { retiredPromptReason } from './prompt-policy'
 
 export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
   const previous = currentPrompt(state)
@@ -10,8 +9,7 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
   return prompts.map((prompt) => {
     const uses = state.prompts.filter((p) => p.promptId === prompt.id).length
     const reason =
-      retiredPromptReason(prompt.id) ??
-      (prompt.family === 'root'
+      prompt.family === 'root'
         ? 'root already issued'
         : prompt.noveltyGroup === 'conviction' && horizonMissing
           ? 'timing premise not established'
@@ -31,7 +29,7 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
                         (v) => state.coverage[v] === 'assessed'
                       )
                     ? 'coverage exclusion'
-                    : null)
+                    : null
     const convictionMissing = !state.answers.some((a) => a.hasConviction)
     const missing =
       (prompt.family === 'timeline' && horizonMissing) ||

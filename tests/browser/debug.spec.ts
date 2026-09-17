@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
 import { storageKey } from '../../lib/persistence/storage'
+import type { ModelAnswer } from '../../lib/assessment/schema'
 
 test('unavailable debug storage reports failure without losing assessment progress', async ({
   page
@@ -90,6 +91,31 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
       non_answer: 'No relevant evidence'
     }
   }
+  const stageQuestions: Record<string, Question> = {
+    disposition: question,
+    weak: question,
+    clear: question,
+    horizon: {
+      type: 'noul',
+      instructions: 'Is timing expressed in current.answer?'
+    }
+  }
+  const stageAnswers: Record<string, ModelAnswer> = {
+    disposition: fixtureAnswer(question, 'usable'),
+    weak: {
+      type: 'choice',
+      choice: 'usable',
+      confidence: 0.6,
+      probabilities: { usable: 0.6, non_answer: 0.4 }
+    },
+    clear: {
+      type: 'choice',
+      choice: 'usable',
+      confidence: 0.9,
+      probabilities: { usable: 0.9, non_answer: 0.1 }
+    },
+    horizon: { type: 'noul', noul: 0.99 }
+  }
   const model = 'jev-1.13.0'
   let requests = 0
   await page.addInitScript(() => {
@@ -117,8 +143,8 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
         usableHistory: [],
         clarificationTarget: null
       },
-      questions: { disposition: question },
-      answers: { disposition: fixtureAnswer(question, 'usable') },
+      questions: stageQuestions,
+      answers: stageAnswers,
       model,
       elapsedMs: 12,
       inputBytes: 2500,
@@ -129,12 +155,12 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
         {
           attempt: 1,
           model,
-          questionIds: ['disposition'],
+          questionIds: Object.keys(stageQuestions),
           elapsedMs: 10,
           status: 200,
           response: {
             model,
-            answers: { disposition: fixtureAnswer(question, 'usable') },
+            answers: stageAnswers,
             usage: { input_tokens: 20, output_tokens: 3 }
           }
         }
@@ -274,6 +300,111 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     .first()
     .evaluate((element) => getComputedStyle(element).color)
   expect(keyColor).not.toBe(stringColor)
+  await expect(page.getByText('Debug mode', { exact: true })).toHaveCount(0)
+  await expect(
+    request.getByRole('radio', { name: 'Default answer order', exact: true })
+  ).toHaveCount(0)
+  const defaultOrder = response.getByRole('radio', {
+    name: 'Default answer order',
+    exact: true
+  })
+  await expect(defaultOrder).toHaveAttribute('aria-checked', 'true')
+  const headerFits = async () => {
+    const controls = [
+      response.getByText('Answer order', { exact: true }),
+      defaultOrder,
+      response.getByRole('radio', {
+        name: 'Highest confidence first',
+        exact: true
+      }),
+      response.getByRole('radio', {
+        name: 'Lowest confidence first',
+        exact: true
+      }),
+      response.getByRole('button', { name: 'Reset folds', exact: true }),
+      response.getByRole('button', { name: 'Copy JSON', exact: true })
+    ]
+    const boxes = await Promise.all(
+      controls.map((control) => control.boundingBox())
+    )
+    for (let i = 0; i < boxes.length; i++) {
+      const a = boxes[i]!
+      for (const b of boxes.slice(i + 1)) {
+        const overlapWidth =
+          Math.min(a.x + a.width, b!.x + b!.width) - Math.max(a.x, b!.x)
+        const overlapHeight =
+          Math.min(a.y + a.height, b!.y + b!.height) - Math.max(a.y, b!.y)
+        expect(overlapWidth > 1 && overlapHeight > 1).toBe(false)
+      }
+    }
+  }
+  await headerFits()
+  const answerKeys = () =>
+    response
+      .locator('[data-json-depth="2"] > button')
+      .evaluateAll((buttons) =>
+        buttons.map((button) =>
+          JSON.parse(
+            button.querySelector('[data-json-token="key"]')!.textContent!
+          )
+        )
+      )
+  expect(await answerKeys()).toEqual([
+    'disposition',
+    'weak',
+    'clear',
+    'horizon'
+  ])
+  await response
+    .getByRole('radio', { name: 'Highest confidence first', exact: true })
+    .click()
+  expect(await answerKeys()).toEqual([
+    'disposition',
+    'clear',
+    'weak',
+    'horizon'
+  ])
+  await response
+    .getByRole('button', { name: 'Expand $.answers.weak', exact: true })
+    .click()
+  await response
+    .getByRole('radio', { name: 'Lowest confidence first', exact: true })
+    .click()
+  expect(await answerKeys()).toEqual([
+    'weak',
+    'clear',
+    'disposition',
+    'horizon'
+  ])
+  await expect(
+    response.getByRole('button', {
+      name: 'Collapse $.answers.weak',
+      exact: true
+    })
+  ).toHaveAttribute('aria-expanded', 'true')
+  await response.getByRole('button', { name: 'Copy JSON', exact: true }).click()
+  const copiedResponse = await page.evaluate(
+    () => (window as unknown as { copiedJSON: string }).copiedJSON
+  )
+  expect(Object.keys(JSON.parse(copiedResponse).answers)).toEqual([
+    'disposition',
+    'weak',
+    'clear',
+    'horizon'
+  ])
+  await defaultOrder.click()
+  expect(await answerKeys()).toEqual([
+    'disposition',
+    'weak',
+    'clear',
+    'horizon'
+  ])
+  await response
+    .getByRole('button', { name: 'Reset folds', exact: true })
+    .click()
+  await expect(
+    response.getByRole('button', { name: 'Expand $.answers.weak', exact: true })
+  ).toHaveAttribute('aria-expanded', 'false')
   await page.getByRole('button', { name: 'Toggle light or dark theme' }).click()
   await expect(page.locator('html')).toHaveClass(/dark/)
   const darkKey = await response
@@ -282,6 +413,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     .evaluate((element) => getComputedStyle(element).color)
   expect(darkKey).not.toBe(keyColor)
   await page.setViewportSize({ width: 390, height: 844 })
+  await headerFits()
   const mobileRequest = (await request.boundingBox())!,
     mobileResponse = (await response.boundingBox())!
   expect(mobileResponse.y).toBeGreaterThan(mobileRequest.y)

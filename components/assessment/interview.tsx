@@ -18,7 +18,6 @@ import {
   supportedContentVersions,
   versions
 } from '@/lib/assessment/schema'
-import { retiredPromptReason } from '@/lib/assessment/prompt-policy'
 import {
   canSubmit,
   createAssessment,
@@ -368,9 +367,10 @@ export function Interview({
   const showResult =
     state.result && ['results', 'completed', 'capped'].includes(state.status)
   const guidance = recoveryCopy[p.promptId] ?? recoveryCopy.root!
-  const retiredQuestion = retiredPromptReason(p.promptId)
+  const unavailableQuestion = !recoveryCopy[p.promptId]
   const paused = state.status === 'paused'
-  const allowed = canSubmit(state) && !busy && !conflict && !rawBackup
+  const allowed =
+    canSubmit(state) && !unavailableQuestion && !busy && !conflict && !rawBackup
   const excessCharacters = Math.max(0, state.draft.length - limits.answerChars)
   const answerTooLong = excessCharacters > 0
   const turns = conversationTurns(state)
@@ -456,9 +456,9 @@ export function Interview({
                 </h1>
               </div>
               <ConversationReplies turn={currentTurn} />
-              {retiredQuestion && (
+              {unavailableQuestion && (
                 <Alert>
-                  <AlertTitle>This question has been retired</AlertTitle>
+                  <AlertTitle>This question is no longer available</AlertTitle>
                   <AlertDescription>
                     Your history and draft are preserved. Choose a different
                     question below to continue.
@@ -525,6 +525,17 @@ export function Interview({
                           : 'answer-help'
                       }
                       className='min-h-36 resize-none'
+                      onKeyDown={(event) => {
+                        if (
+                          event.key !== 'Enter' ||
+                          !(event.metaKey || event.ctrlKey) ||
+                          event.nativeEvent.isComposing
+                        )
+                          return
+                        event.preventDefault()
+                        if (!event.repeat)
+                          event.currentTarget.form?.requestSubmit()
+                      }}
                       onChange={(event) => {
                         try {
                           persist({ ...state, draft: event.target.value })
@@ -566,6 +577,7 @@ export function Interview({
                       {!paused && (
                         <Button
                           type='submit'
+                          aria-keyshortcuts='Meta+Enter Control+Enter'
                           disabled={
                             !allowed || answerTooLong || !state.draft.trim()
                           }
@@ -587,7 +599,7 @@ export function Interview({
                       {state.prompts.length < limits.prompts &&
                         (paused ||
                           state.status === 'recovery' ||
-                          retiredQuestion) && (
+                          unavailableQuestion) && (
                           <Button
                             type='button'
                             disabled={busy || conflict}

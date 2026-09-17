@@ -109,9 +109,12 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
   const instances = new Set<string>()
   for (const [index, p] of state.prompts.entries()) {
     const authored = bundle.prompts.find((item) => item.id === p.promptId)
+    // Local draft edits can delete a question. Keep its issued history without
+    // retaining a deleted catalog entry; known questions still validate exactly.
     if (
-      !authored ||
-      (p.family !== 'clarification' &&
+      (!authored && ['root', 'clarification'].includes(p.family)) ||
+      (authored &&
+        p.family !== 'clarification' &&
         (p.text !== authored.text || p.family !== authored.family)) ||
       p.ordinal !== index + 1 ||
       instances.has(p.id)
@@ -596,6 +599,10 @@ export async function runAssessment(
     if (!canSubmit(state))
       throw new Error('Choose a recovery action before answering this prompt')
     const p = currentPrompt(state)
+    if (!bundle.prompts.some((prompt) => prompt.id === p.promptId))
+      throw new Error(
+        'This question is no longer available. Try a different question.'
+      )
     const answerId = `${p.id}:a`
     const questions: StageQuestions = {}
     questions.disposition = dispositionQuestion

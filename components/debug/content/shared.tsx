@@ -70,7 +70,7 @@ export function MetadataList({
   )
 }
 
-type GraphNode = { id: string; label: string; retired?: boolean }
+type GraphNode = { id: string; label: string }
 export function RelationshipGraph({
   nodes,
   edges,
@@ -99,8 +99,8 @@ export function RelationshipGraph({
     <div className='space-y-3' data-slot='relationship-graph'>
       <p className='text-xs text-muted-foreground'>
         Select a node to inspect it and leave feedback. Lines show the selected
-        entry’s relationships; retired questions are marked. The list below
-        provides the same navigation on smaller screens.
+        entry’s relationships. The list below provides the same navigation on
+        smaller screens.
       </p>
       <svg
         className='hidden w-full sm:block'
@@ -181,11 +181,9 @@ export function RelationshipGraph({
                 textAnchor='middle'
                 className='fill-muted-foreground text-[10px]'
               >
-                {node.retired
-                  ? 'Retired · historical'
-                  : node.id === selectedId
-                    ? 'Selected'
-                    : 'Inspect & give feedback'}
+                {node.id === selectedId
+                  ? 'Selected'
+                  : 'Inspect & give feedback'}
               </text>
             </a>
           )

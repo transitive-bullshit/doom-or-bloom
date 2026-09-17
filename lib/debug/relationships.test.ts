@@ -2,7 +2,7 @@ import { expect, test } from 'vitest'
 import { loadBundle } from '@/lib/content/loader'
 import { corpusRelationships, questionRelationships } from './relationships'
 
-test('question graphs distinguish family transitions, shared targets and novelty with retired destinations excluded', () => {
+test('question graphs distinguish family transitions, shared targets and novelty using only the current catalog', () => {
   const { prompts } = loadBundle()
   const transitions = questionRelationships(prompts, 'root', 'transitions')
   expect(transitions.length).toBeGreaterThan(0)

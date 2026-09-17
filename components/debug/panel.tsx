@@ -16,7 +16,6 @@ import {
   CollapsibleTrigger
 } from '@/components/ui/collapsible'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { JsonViewer } from './json-viewer'
 
 const stagePurposes = {
@@ -231,19 +230,16 @@ export function DebugPanel({
   )
   return (
     <section className='mt-8 border-t pt-6'>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge variant='outline'>Debug mode</Badge>
-        {process.env.NODE_ENV === 'development' && (
-          <>
-            <Button variant='ghost' size='sm' asChild>
-              <Link href='/questions'>Review questions</Link>
-            </Button>
-            <Button variant='ghost' size='sm' asChild>
-              <Link href='/corpus'>Review corpus</Link>
-            </Button>
-          </>
-        )}
-      </div>
+      {process.env.NODE_ENV === 'development' && (
+        <div className='flex flex-wrap items-center gap-2'>
+          <Button variant='ghost' size='sm' asChild>
+            <Link href='/questions'>Review questions</Link>
+          </Button>
+          <Button variant='ghost' size='sm' asChild>
+            <Link href='/corpus'>Review corpus</Link>
+          </Button>
+        </div>
+      )}
       <Collapsible open={open} onOpenChange={setOpen} className='mt-3'>
         <CollapsibleTrigger asChild>
           <Button variant='outline'>Jev / assessment debugging details</Button>

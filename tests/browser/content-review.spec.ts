@@ -23,22 +23,33 @@ test('local question and corpus inspectors expose relationships and append versi
   await expect(
     page.getByRole('group', { name: 'Authored question relationships' })
   ).toBeVisible()
-  await page.getByLabel('Search questions or metadata').fill('grounding.source')
-  const entry = page
-    .getByRole('link')
-    .filter({ hasText: 'Inspect & give feedback' })
-    .filter({ hasText: 'grounding.source' })
-  await expect(entry).toContainText('Retired')
+  await expect(page.getByText(/30 catalog entries/)).toBeVisible()
+  for (const id of [
+    'grounding.source',
+    'tension.general',
+    'control.failuremode',
+    'crux.test'
+  ]) {
+    await page.getByLabel('Search questions or metadata').fill(id)
+    await expect(page.getByText('0 matches', { exact: true })).toBeVisible()
+  }
+  await page
+    .getByLabel('Search questions or metadata')
+    .fill('grounding.general')
+  const entry = page.getByRole('link', {
+    name: /^grounding\.general grounding/
+  })
+  await expect(entry).not.toContainText('Retired')
   await entry.click()
   const details = page.getByRole('region', {
-    name: 'Question details grounding.source'
+    name: 'Question details grounding.general'
   })
   await expect(details).toBeVisible()
   await expect(details).toContainText('Permitted previous families')
   const runId = randomUUID()
-  const questionNote = `Question review ${runId}: keep this retired until it asks about a concrete belief.`
+  const questionNote = `Question review ${runId}: check that this elicits an observation behind a concrete belief.`
   const questionFeedback = page.getByRole('region', {
-    name: 'Feedback for grounding.source',
+    name: 'Feedback for grounding.general',
     exact: true
   })
   await questionFeedback.getByRole('textbox').fill(questionNote)
@@ -58,7 +69,7 @@ test('local question and corpus inspectors expose relationships and append versi
     (note: { text: string }) => note.text === questionNote
   )
   expect(saved).toMatchObject({
-    resourceId: 'grounding.source',
+    resourceId: 'grounding.general',
     contentVersion: '0.4.0-draft'
   })
   expect(saved.assetHash).toMatch(/^[0-9a-f]{64}$/)
@@ -66,7 +77,19 @@ test('local question and corpus inspectors expose relationships and append versi
     questionFile.entries.some((note: { id: string }) => note.id !== saved.id)
   ).toBe(true)
   await page.reload()
-  await page.getByLabel('Search questions or metadata').fill('grounding.source')
+  await expect(page.getByText(/30 catalog entries/)).toBeVisible()
+  for (const id of [
+    'grounding.source',
+    'tension.general',
+    'control.failuremode',
+    'crux.test'
+  ]) {
+    await page.getByLabel('Search questions or metadata').fill(id)
+    await expect(page.getByText('0 matches', { exact: true })).toBeVisible()
+  }
+  await page
+    .getByLabel('Search questions or metadata')
+    .fill('grounding.general')
   await entry.click()
   await questionFeedback
     .getByRole('button', { name: /Saved feedback for this entry/ })

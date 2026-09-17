@@ -28,7 +28,9 @@ test('internal editorial pages initialize no analytics or inference even when an
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'Built-in questions'
   )
-  await page.getByLabel('Search questions or metadata').fill('grounding.source')
+  await page
+    .getByLabel('Search questions or metadata')
+    .fill('grounding.general')
   await expect(page.getByText('1 matches', { exact: true })).toBeVisible()
   await page.getByRole('link', { name: 'Corpus', exact: true }).click()
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(

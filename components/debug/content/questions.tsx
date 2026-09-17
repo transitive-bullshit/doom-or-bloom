@@ -5,7 +5,6 @@ import type { Prompt } from '@/lib/content/schema'
 import type { FeedbackEntry } from '@/lib/debug/feedback-schema'
 import { questionRelationships } from '@/lib/debug/relationships'
 import type { QuestionRelation } from '@/lib/debug/relationships'
-import { retiredPromptReason } from '@/lib/assessment/prompt-policy'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -34,7 +33,6 @@ export function QuestionsInspector({
   const [family, setFamily] = useState('all')
   const [relation, setRelation] = useState<QuestionRelation>('transitions')
   const selected = prompts.find((prompt) => prompt.id === selectedId)!
-  const retired = retiredPromptReason(selectedId)
   const edges = useMemo(
     () => questionRelationships(prompts, selectedId, relation),
     [prompts, selectedId, relation]
@@ -54,8 +52,7 @@ export function QuestionsInspector({
       />
       <p className='text-sm text-muted-foreground'>
         {prompts.length} catalog entries · {families.length} families ·{' '}
-        {prompts.filter((prompt) => retiredPromptReason(prompt.id)).length}{' '}
-        retired questions · {feedback.length} saved notes on page load
+        {feedback.length} saved notes on page load
       </p>
       <section className='space-y-4 rounded-xl border p-4 sm:p-6'>
         <h2 className='font-medium'>Relationship map</h2>
@@ -80,18 +77,16 @@ export function QuestionsInspector({
           <ToggleGroupItem value='novelty'>Novelty groups</ToggleGroupItem>
         </ToggleGroup>
         <p className='max-w-4xl text-sm text-muted-foreground'>
-          Transitions show permitted family compatibility, with retired
-          destinations excluded. Wildcards make many connections broad. They do
-          not predict the next question: prerequisites, reading familiarity,
-          missing coverage, repetition, caps and Jev’s candidate benefits still
-          apply. Shared-target and novelty lines are similarity links, not
-          routing edges.
+          Transitions show permitted family compatibility. Wildcards make many
+          connections broad. They do not predict the next question:
+          prerequisites, reading familiarity, missing coverage, repetition, caps
+          and Jev’s candidate benefits still apply. Shared-target and novelty
+          lines are similarity links, not routing edges.
         </p>
         <RelationshipGraph
           nodes={prompts.map((prompt) => ({
             id: prompt.id,
-            label: prompt.id,
-            retired: Boolean(retiredPromptReason(prompt.id))
+            label: prompt.id
           }))}
           edges={edges}
           selectedId={selectedId}
@@ -148,9 +143,6 @@ export function QuestionsInspector({
                 <span className='flex flex-wrap gap-2 text-xs'>
                   <span className='font-mono'>{prompt.id}</span>
                   <Badge variant='secondary'>{prompt.family}</Badge>
-                  {retiredPromptReason(prompt.id) && (
-                    <Badge variant='outline'>Retired</Badge>
-                  )}
                 </span>
                 <span className='text-sm'>{prompt.text}</span>
                 <span className='text-xs text-muted-foreground'>
@@ -173,7 +165,6 @@ export function QuestionsInspector({
       >
         <p className='font-mono text-xs text-muted-foreground'>{selectedId}</p>
         <h2 className='text-xl font-semibold'>{selected.text}</h2>
-        {retired && <p className='text-sm text-muted-foreground'>{retired}</p>}
         <MetadataList
           rows={[
             { label: 'Family', value: selected.family },
@@ -202,9 +193,7 @@ export function QuestionsInspector({
               value:
                 selected.noveltyGroup === 'conviction'
                   ? 'An active expressed horizon is required'
-                  : retired
-                    ? 'Retired from future routing'
-                    : 'Standard coverage, familiarity, usage and prompt-budget gates'
+                  : 'Standard coverage, familiarity, usage and prompt-budget gates'
             }
           ]}
         />

@@ -7,6 +7,62 @@ import {
 } from '../../lib/assessment/state'
 import { storageKey } from '../../lib/persistence/storage'
 
+test('a saved deleted question keeps its draft and offers a current question', async ({
+  page
+}) => {
+  const saved = issuePrompt(createAssessment('deleted-browser', 'fixture-v1'), {
+    promptId: 'grounding.source',
+    text: 'Where could someone check the evidence that matters most to your view?',
+    family: 'grounding',
+    variant: 'original',
+    sourceEvidenceIds: []
+  })
+  saved.draft = 'My complete draft survives deleting this question.'
+  await page.addInitScript(
+    ({ key, assessment }) => {
+      if (!localStorage.getItem(key))
+        localStorage.setItem(
+          key,
+          JSON.stringify({ token: 'deleted-token', assessment })
+        )
+    },
+    { key: storageKey, assessment: saved }
+  )
+  let answerRequests = 0
+  page.on('request', (request) => {
+    if (
+      request.url().endsWith('/api/assessment') &&
+      request.postDataJSON()?.operation.type === 'answer'
+    )
+      answerRequests++
+  })
+  await page.goto('/')
+  await expect(
+    page.getByText('This question is no longer available', { exact: true })
+  ).toBeVisible()
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+    saved.draft
+  )
+  await expect(
+    page.getByRole('button', { name: 'Continue', exact: false })
+  ).toBeDisabled()
+  await page.reload()
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+    saved.draft
+  )
+  await page
+    .getByRole('button', { name: 'Try a different question', exact: true })
+    .click()
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeEnabled()
+  await expect(
+    page.getByText('This question is no longer available', { exact: true })
+  ).toHaveCount(0)
+  await expect(
+    page.getByRole('article', { name: 'Question 2 and replies', exact: true })
+  ).toContainText(saved.prompts[1]!.text)
+  expect(answerRequests).toBe(0)
+})
+
 test('the full conversation uses page scrolling, bounded answer disclosure and local resume', async ({
   page
 }) => {
@@ -34,9 +90,9 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
     substantive: true
   })
   state = issuePrompt(state, {
-    promptId: 'horizon.general',
+    promptId: 'timeline.general',
     text: 'When might these changes arrive?',
-    family: 'horizon',
+    family: 'timeline',
     variant: 'original',
     sourceEvidenceIds: []
   })

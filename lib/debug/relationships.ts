@@ -1,5 +1,4 @@
 import type { Prompt, Reference } from '@/lib/content/schema'
-import { retiredPromptReason } from '@/lib/assessment/prompt-policy'
 
 export type GraphEdge = { source: string; target: string; label: string }
 export type QuestionRelation = 'transitions' | 'targets' | 'novelty'
@@ -14,7 +13,6 @@ export function questionRelationships(
   if (relation === 'transitions') {
     const permitted = (from: Prompt, to: Prompt) =>
       to.family !== 'root' &&
-      !retiredPromptReason(to.id) &&
       (to.permittedAfter.includes('*') ||
         to.permittedAfter.includes(from.family))
     return prompts

@@ -6,13 +6,15 @@ Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom`)
 
 Enable **Debug on** before submitting. Open **Jev / assessment debugging details** to inspect the selected operation. Requests are actual shared state plus that physical batch's questions; responses are validated typed outputs. Each stage explains its purpose. Local routing/projection decisions and the current saved assessment are separate views. Fixture exchanges are explicitly synthetic. Debugging does not expose hidden model reasoning.
 
-JSON trees have syntax colors, accessible expand/collapse controls, exact JSON copy and reset-folds. Depth 2+ starts folded. Requests/responses appear beside each other on desktop and stack on smaller screens. Everything uses the page scrollbar.
+JSON trees have syntax colors, accessible expand/collapse controls, exact JSON copy and reset-folds. Depth 2+ starts folded. Jev `answers` records offer **Default**, **High first** and **Low first** confidence order in the JSON header. Default is initially selected; ties preserve original order and missing confidence stays last. Noul values are not confidence. Sorting changes only presentation, preserving folds; **Copy JSON** still copies the recorded payload in its original order.
+
+Requests/responses appear beside each other on desktop and stack on smaller screens. Everything uses the page scrollbar.
 
 Successful recorded operations are stored in browser IndexedDB for the current assessment, separately from progress. Refresh restores them; **Recorded operation** selects an earlier revision/stage set. Keep up to 64 recent operations, evicting entire oldest operations toward a 32 MB target. A retained operation is never shortened; a single operation exceeding storage availability can fail with a visible notice. Debug-off submissions record nothing. Restart clears that assessment's history. History belongs to this browser/origin, contains answer text, and is excluded from reports, analytics, server logs and remote storage. Already lost traces cannot be recovered. Failed operations currently preserve the draft but do not produce a completed operation trace.
 
 ## Questions and corpus
 
-Open `/questions` for all 34 catalog entries, including retired questions. Select a graph node or list entry to inspect its wording and metadata and leave feedback. Family transitions show authored compatibility, not the next runtime choice: prerequisites, coverage, familiarity, usage, retirement, caps and Jev benefits still gate routing. Shared targets/novelty groups are similarity links. See [prompt quality review](prompt-quality-review.md) for the initial full-catalog audit.
+Open `/questions` for the 30 current catalog entries. Rejected questions are deleted from all local draft catalogs; there is no soft-delete state. Select a graph node or list entry to inspect its wording and metadata and leave feedback. Family transitions show authored compatibility, not the next runtime choice: prerequisites, coverage, familiarity, usage, caps and Jev benefits still gate routing. Shared targets/novelty groups are similarity links. See [prompt quality review](prompt-quality-review.md) for the original full-catalog audit and deletion rationale. Existing feedback notes and issued participant history are retained; neither keeps a removed question in the built-in pool.
 
 Open `/corpus` for the active built-in reference snapshots. Inspect kinds, dates/qualifiers, aliases, topics, source links, review status, complete summaries and associated entities/related entries. Arrows preserve authored direction. Related reports can describe the same event and do not prove independent corroboration. The diagram caps neighboring nodes at 25; the selected entry's full authored relationships remain listed.
 
@@ -24,6 +26,10 @@ Both pages are available only in local development. They make no inference or an
 Each append records an ID, asset identity/label, current content version, resolved asset hash, timestamp and full feedback. Earlier notes remain intact; writes are serialized and replaced atomically. Damaged files are never silently overwritten. Failed saves retain the draft. The editor has no hard input cap; above 20,000 characters it explains the excess and disables saving. Switching entries retains in-tab drafts; unsubmitted feedback is not durable across refresh.
 
 Future revisions should read these notes, check version/hash against the current asset and explicitly revise offline. Preserve earlier notes as history. A feedback note does not approve, validate or automatically change an asset. Do not put participant answers into these project files automatically.
+
+## Interview shortcuts
+
+Cmd+Enter or Ctrl+Enter submits a nonempty answer through the same Continue guards. It cannot bypass the soft length cap, busy/recovery controls or storage conflicts. Plain Enter inserts a newline; IME composition and repeated shortcut events do not submit. Focus remains under normal browser/user control.
 
 ## Paperclips
 

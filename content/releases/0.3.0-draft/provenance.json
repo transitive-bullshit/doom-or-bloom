@@ -10,7 +10,8 @@
   ],
   "changes": [
     "Release metadata",
-    "Local draft inclusion wording; original drafts retained"
+    "Local draft inclusion wording; original drafts retained",
+    "2026-09-17 local draft maintenance: hard-delete grounding.source, tension.general, control.failuremode and crux.test from all local question catalogs at user request; reference source hashes remain unchanged"
   ],
   "references": [
     {

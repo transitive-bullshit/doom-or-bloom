@@ -30,7 +30,7 @@ The local app is implemented with labeled draft assets; it is not yet a validate
 
 The [revised editorial packet](current-context-review-packet.md) records approved authoring direction and demo priority. New assessments use the `0.4.0-draft` bundle with 138 references and 14 recommendations; saved `0.2.0-draft` and `0.3.0-draft` assessments retain their earlier 42- and 135-reference corpora. The [coverage index](research/source-coverage-2026-09-17.md) links all required originals, current copies, authoring scopes and remaining gaps. Individual factual/semantic review remains open. Source intake records scoped research for all required URLs; access and corpus review gates remain open.
 
-The [participant prompt audit](prompt-quality-review.md) records demo feedback, four retired questions and remaining context/wording risks across the complete 34-entry catalog. Future routing excludes retired IDs; historical instances remain readable.
+The [participant prompt audit](prompt-quality-review.md) records demo feedback, four deleted questions and remaining context/wording risks from the original 34-entry audit. All local draft catalogs now contain 30 questions, with no soft-delete registry. Saved issued questions and answers remain readable as participant history.
 
 The working name deliberately emphasizes the provocative Doom/Bloom contrast. This framing trade-off belongs in methodology documentation and evaluation; it must not become a forced binary classification.
 

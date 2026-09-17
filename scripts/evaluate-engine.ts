@@ -78,7 +78,7 @@ const answers = {
     'A serious alternative is that reliability limits and physical bottlenecks slow change for decades. That would reduce both the benefits and some catastrophic risks in my forecast.',
   'crux.general':
     'I would become more optimistic if independent evaluations showed robust oversight under realistic autonomy. I would become more pessimistic after reproducible evidence of persistent deceptive behavior despite safeguards.',
-  'tension.general':
+  'scope.assumption':
     'My benefits claim is conditional on reliable tools and oversight, while my catastrophic-risk concern applies to more autonomous systems. Those are different scopes rather than a claim that the same deployment is both assuredly safe and unsafe.'
 }
 // Every authored variant gets an explicit synthetic family answer. These are
@@ -94,7 +94,6 @@ const familyAnswers = {
     'I would accept slower deployment to allow independent tests and broader access. That is a policy preference, not a claim that slower deployment guarantees a better outcome.',
   grounding: answers['grounding.general']!,
   crux: answers['crux.general']!,
-  tension: answers['tension.general']!,
   scope:
     'My expectation depends on reliable tools and institutions preserving oversight. If those conditions fail, the benefits and my outlook change; I do not assume them guaranteed.',
   timeline: answers['timeline.general']!,

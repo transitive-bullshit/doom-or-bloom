@@ -16,7 +16,7 @@ Local Codex workflows may propose and refine these assets. Human review owns pub
 
 ## Participant question quality
 
-Follow the [full prompt audit and recorded demo feedback](prompt-quality-review.md). Every prompt must elicit an actionable belief, expectation, mechanism, value or update condition. Source location alone is not useful belief evidence. Write an example answer and specify what it could change in the assessment; context-dependent wording requires an actual antecedent, not merely broad vector coverage. Retired IDs remain for historical validation but are excluded before routing across saved corpora. Watch items require further revision/evaluation.
+Follow the [full prompt audit and recorded demo feedback](prompt-quality-review.md). Every prompt must elicit an actionable belief, expectation, mechanism, value or update condition. Source location alone is not useful belief evidence. Write an example answer and specify what it could change in the assessment; context-dependent wording requires an actual antecedent, not merely broad vector coverage. During local development, delete rejected questions from every local draft catalog; do not retain soft deletes or a retirement registry. Saved issued instances remain participant history and a missing pending question offers a different question. Frozen reviewed releases retain their separate versioning contract. Watch items require further revision/evaluation.
 
 ## Conversation graph
 
