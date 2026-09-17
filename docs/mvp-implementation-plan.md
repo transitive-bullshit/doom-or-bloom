@@ -582,3 +582,11 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 - [x] Record a bounded follow-up for the SAGE chapter and Noah Smith essay. Neither access blocker changed; no unread argument was reconstructed or later source substituted.
 - Formatting and complete content validation pass for all six snapshots, related IDs, original mappings, research headings and current release dependencies. Runtime is unchanged, and no inference or telemetry was used.
 - Previous checkpoint: `d5088a6`. Continue remaining required-source drafts and keep access/review/held-out gates open.
+
+### 2026-09-17 — Required conceptual snapshot checkpoint / Codex
+
+- [x] Author 13 separate required conceptual/wiki/abstract/publisher-scope drafts, retaining different mechanisms, conditional assumptions and read limits. Keep historical arguments separate from contemporary model evidence; the paperclip interlude remains unrelated to assessment quality or participant intent.
+- [x] Preserve unknown wiki origins, regional edition dates, deposit/revision history, subjective forecast vintages, marketing attribution and unread continuations. Reuse the existing Off-Switch identity rather than duplicate it; retain three partial-access statuses.
+- [x] Required mappings now total 79 of 114 URLs, with 95 separate draft snapshots. Runtime remains 42 references; no individual approval, activation or freeze was introduced.
+- Formatting and complete content validation pass for all 13 snapshots, source mappings, related IDs, required sections and release dependencies. Runtime code is unchanged. No paid inference or real telemetry was used.
+- Previous checkpoint: `350bdcf`. Continue the remaining required sources; human review, access reconciliation and held-out semantic validation remain open.
