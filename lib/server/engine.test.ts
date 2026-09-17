@@ -119,6 +119,55 @@ test('nonsense short circuits all later stages and preserves scores', async () =
   expect(state.recovery.evaluated).toBe(3)
   await expect(run(state, { type: 'retry' })).rejects.toThrow('different')
 })
+
+test('rejected retries preserve an established profile and resuming does not reset the allowance', async () => {
+  let state = createAssessment('established-recovery')
+  for (let i = 0; i < 3; i++)
+    state = (
+      await run(state, { type: 'answer', text: 'A relevant synthetic view.' })
+    ).assessment
+  const before = structuredClone(state)
+  let providerCalls = 0
+  const rejection = nonAnswerProvider()
+  const provider: Provider = {
+    kind: 'fixture',
+    evaluate: async (...args) => {
+      providerCalls++
+      return rejection.evaluate(...args)
+    }
+  }
+  for (let i = 0; i < 2; i++)
+    state = (
+      await run(state, { type: 'answer', text: 'unrelated nonsense' }, provider)
+    ).assessment
+  expect(state.answers).toEqual(before.answers)
+  expect(state.evidence).toEqual(before.evidence)
+  expect(state.judgments).toEqual(before.judgments)
+  expect(state.coverage).toEqual(before.coverage)
+  expect(state.prompts).toEqual(before.prompts)
+  expect(eligible(state)).toBe(true)
+  state = (await run(state, { type: 'dismiss' }, provider)).assessment
+  state = (await run(state, { type: 'retry' }, provider)).assessment
+  expect(providerCalls).toBe(2)
+  expect(state.recovery.evaluated).toBe(2)
+  state = (
+    await run(state, {
+      type: 'answer',
+      text: 'Uncertain, but I expect useful tools and difficult transitions.'
+    })
+  ).assessment
+  expect(state.answers).toHaveLength(4)
+  expect(state.recovery.paperclipShown).toBe(true)
+  expect(state.recovery.paperclipActive).toBe(false)
+  expect(state.recovery.clearMisses).toBe(0)
+  expect(
+    state.attempts.filter(
+      (attempt) =>
+        attempt.promptInstanceId === before.prompts.at(-1)?.id &&
+        attempt.evaluated
+    )
+  ).toHaveLength(3)
+})
 test('dependent stages share the remaining physical request budget', async () => {
   const fixture = createFixtureProvider()
   const budgets: Array<number | undefined> = []

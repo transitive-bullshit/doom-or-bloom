@@ -26,7 +26,7 @@ export function projectionInput(
       id: answerIds.get(a.id),
       prompt: a.promptText,
       answer: a.text,
-      correctionTarget: a.correctionTarget ?? null
+      correctionTarget: a.correctionClaimTarget ?? a.correctionTarget ?? null
     })),
     referenceContext: references.map((r) => ({
       id: referenceIds.get(r.id),

@@ -1,7 +1,7 @@
 {
   "contentVersion": "0.1.0-draft",
   "rubricVersion": "0.1.0-draft",
-  "assessmentVersion": "0.2.0",
+  "assessmentVersion": "0.2.1",
   "status": "draft",
   "reviewer": null,
   "changelog": "Representative authoring draft; not a reviewed release.",

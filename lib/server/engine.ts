@@ -66,12 +66,23 @@ function usableHistory(state: Assessment) {
     id: a.id,
     prompt: a.promptText,
     answer: a.text,
-    correctionTarget: a.correctionTarget ?? null
+    correctionTarget: a.correctionClaimTarget ?? a.correctionTarget ?? null
   }))
 }
 function activeEvidence(state: Assessment) {
   return state.evidence.filter(
     (e) => e.status !== 'superseded' && e.status !== 'disputed'
+  )
+}
+function catastrophicEvidence(state: Assessment) {
+  const correctionIndex = state.answers.findLastIndex(
+    (answer) => answer.correctionClaimTarget === 'catastrophic_risk'
+  )
+  const eligibleAnswers = new Set(
+    state.answers.slice(Math.max(0, correctionIndex)).map((answer) => answer.id)
+  )
+  return activeEvidence(state).filter(
+    (e) => e.vector === 'risk_landscape' && eligibleAnswers.has(e.answerId)
   )
 }
 function evidenceText(state: Assessment, evidenceId: string) {
@@ -103,9 +114,12 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
     )
       throw new Error('Invalid prompt history')
     if (p.family === 'clarification') {
-      const dimension = bundle.rubric.dimensions.find((d) => d.id === p.target)
+      const dimension = p.claimTarget
+        ? bundle.rubric.catastrophicRisk
+        : bundle.rubric.dimensions.find((d) => d.id === p.target)
       if (
         !dimension ||
+        (p.claimTarget && p.target !== 'risk_landscape') ||
         !dimension.levels.some(
           (level) => p.text === clarificationText(dimension.label, level)
         ) ||
@@ -115,18 +129,21 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
         )
       )
         throw new Error('Invalid authored clarification')
-    }
+    } else if (p.target || p.claimTarget)
+      throw new Error('Invalid clarification scope')
     instances.add(p.id)
   }
   if (state.prompts[0]?.promptId !== 'root')
     throw new Error('Invalid assessment root')
   const answered = new Set<string>()
   for (const answer of state.answers) {
+    const prompt = state.prompts.find((p) => p.id === answer.promptInstanceId)
     if (
       !instances.has(answer.promptInstanceId) ||
       answered.has(answer.promptInstanceId) ||
-      answer.promptText !==
-        state.prompts.find((p) => p.id === answer.promptInstanceId)?.text
+      answer.promptText !== prompt?.text ||
+      answer.correctionTarget !== prompt?.target ||
+      answer.correctionClaimTarget !== prompt?.claimTarget
     )
       throw new Error('Invalid answer history')
     answered.add(answer.promptInstanceId)
@@ -417,9 +434,10 @@ export async function runAssessment(
       questions['catastrophic_risk:evidence'] = spanQuestion(
         catastrophe.meaning,
         Object.fromEntries(
-          activeEvidence(state)
-            .filter((e) => e.vector === 'risk_landscape')
-            .map((e) => [e.id, evidenceText(state, e.id)])
+          catastrophicEvidence(state).map((e) => [
+            e.id,
+            evidenceText(state, e.id)
+          ])
         ),
         'the exact active source excerpts supplied as choices'
       )
@@ -496,9 +514,7 @@ export async function runAssessment(
           'assessable' &&
         score?.type === 'score' &&
         sourceId &&
-        activeEvidence(state).some(
-          (e) => e.id === sourceId && e.vector === 'risk_landscape'
-        )
+        catastrophicEvidence(state).some((e) => e.id === sourceId)
           ? {
               vector: 'catastrophic_risk',
               label: catastrophe.label,
@@ -647,7 +663,7 @@ export async function runAssessment(
     const input = {
       current: { prompt: p.text, answer: op.text, spans },
       usableHistory: usableHistory(state).slice(-5),
-      clarificationTarget: p.target ?? null
+      clarificationTarget: p.claimTarget ?? p.target ?? null
     }
     const evaluation = await evaluate('A: interpret', input, questions)
     const disposition = choice(evaluation.answers.disposition)
@@ -686,6 +702,7 @@ export async function runAssessment(
         spans,
         substantive: true,
         correctionTarget: p.target,
+        correctionClaimTarget: p.claimTarget,
         context: Object.fromEntries(
           ['horizon', 'conviction', 'assumption'].map((key) => [
             `${key}SpanId`,
@@ -715,7 +732,7 @@ export async function runAssessment(
           answerId,
           judgmentId: judgments.find((j) => j.questionId === 'familiarity')!.id
         }
-      if (p.target) {
+      if (p.target && !p.claimTarget) {
         state.coverage[p.target] = 'unassessed'
         state.evidence = state.evidence.map((e) =>
           e.vector === p.target ? { ...e, status: 'superseded' } : e
@@ -986,8 +1003,10 @@ export async function runAssessment(
       throw new Error(
         'Clarification is unavailable; restart for another assessment'
       )
+    if (op.claim && op.vector !== 'risk_landscape')
+      throw new Error('Invalid clarification scope')
     const component = state.result.components.find(
-      (c) => c.vector === op.vector && c.value !== null
+      (c) => c.vector === (op.claim ?? op.vector) && c.value !== null
     )
     if (!component) throw new Error('Select an assessed claim to clarify')
     const prompt = bundle.prompts.find((p) => p.id === 'concrete.general')!
@@ -996,6 +1015,7 @@ export async function runAssessment(
       family: 'clarification',
       text: clarificationText(component.label, component.claim),
       target: op.vector,
+      claimTarget: op.claim,
       sourceEvidenceIds: component.evidenceIds
     })
   } else if (op.type === 'retry') {

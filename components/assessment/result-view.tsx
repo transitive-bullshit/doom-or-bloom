@@ -246,7 +246,11 @@ export function ResultView({
                         vector:
                           c.vector === 'catastrophic_risk'
                             ? 'risk_landscape'
-                            : (c.vector as VectorId)
+                            : (c.vector as VectorId),
+                        claim:
+                          c.vector === 'catastrophic_risk'
+                            ? 'catastrophic_risk'
+                            : undefined
                       })
                     }
                   >

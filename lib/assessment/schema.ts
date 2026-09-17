@@ -40,7 +40,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.2.0',
+  assessment: '0.2.1',
   content: '0.1.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -121,6 +121,7 @@ export const promptInstanceSchema = z.strictObject({
   ordinal: z.number().int().min(1).max(limits.prompts),
   variant: z.string().max(80),
   target: vectorSchema.optional(),
+  claimTarget: z.literal('catastrophic_risk').optional(),
   sourceEvidenceIds: z.array(z.string()).max(100)
 })
 export type PromptInstance = z.infer<typeof promptInstanceSchema>
@@ -132,6 +133,7 @@ export const answerSchema = z.strictObject({
   spans: z.array(spanSchema).max(80),
   substantive: z.boolean(),
   correctionTarget: vectorSchema.optional(),
+  correctionClaimTarget: z.literal('catastrophic_risk').optional(),
   context: z
     .strictObject({
       horizonSpanId: z.string().nullable(),
@@ -318,7 +320,11 @@ export const operationSchema = z.discriminatedUnion('type', [
   }),
   z.strictObject({ type: z.literal('project') }),
   z.strictObject({ type: z.literal('continue') }),
-  z.strictObject({ type: z.literal('clarify'), vector: vectorSchema }),
+  z.strictObject({
+    type: z.literal('clarify'),
+    vector: vectorSchema,
+    claim: z.literal('catastrophic_risk').optional()
+  }),
   z.strictObject({ type: z.literal('skip') }),
   z.strictObject({ type: z.literal('retry') }),
   z.strictObject({ type: z.literal('dismiss') }),

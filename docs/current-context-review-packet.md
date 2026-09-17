@@ -1,6 +1,6 @@
 # Revised context and seed direction for review
 
-Prepared 2026-09-17. **Draft; no approval recorded.** This packet replaces the expanded historical seed as the next editorial baseline. It follows Travis’s current-source library and argument maps; the original representative scoring approval remains recorded separately.
+Prepared 2026-09-17. **Direction approved by Travis on 2026-09-17; individual assets remain drafts.** This packet replaces the expanded historical seed as the next editorial baseline. It follows Travis’s current-source library and argument maps; the original representative scoring approval remains recorded separately.
 
 ## Proposed authoring direction
 
@@ -20,13 +20,15 @@ Prepared 2026-09-17. **Draft; no approval recorded.** This packet replaces the e
 
 For a revised 20–30-entry seed, prioritize these recent snapshots together with scoped actor entries and a small number of actual contemporary event entries. Re-curate the existing reading suggestions toward current independent evaluation, upside/distribution evidence, mechanism understanding and governance/control, retaining familiarity and purpose diversity. The full required library can expand beyond the seed after its editorial direction is reviewed.
 
-## Review criteria and gate
+## Review scope and demo priority
 
 The reviewer checks whether the example journeys express recognizable opinions fairly, whether expected distinctions preserve scope and uncertainty, and whether the contemporary snapshots have accurate attribution and transfer limits. Review representative accuracy and recommendation fit before expanding that pattern. Explicit approval of direction alone does not mark every snapshot, expected label or future asset reviewed.
 
-- [ ] Travis reviews the journey expectations and terminology boundaries.
+- [x] Travis approves the authoring direction: “this looks fine. continue.”
+- [x] Record the next priority: an end-to-end demo to judge the experience before reassessing authoring direction.
+- [ ] Review individual journey expectations and terminology boundaries before semantic validation.
 - [ ] Travis reviews the contemporary snapshot baseline and revised recommendation direction.
 - [ ] Record any requested changes, actual approval scope and reviewer on the affected assets.
 - [ ] Validate and freeze only the fully approved seed; all required-source coverage and held-out labels remain separate completion gates.
 
-Independent engineering and source-access reconciliation can continue while review is pending. Agents update these checkboxes and the implementation plan at regular checkpoint commits.
+Demo authoring and engineering can proceed under this direction approval; do not introduce further editorial gates before the end-to-end demo. Individual factual review and held-out labels remain requirements for a validated release. Agents update these checkboxes and the implementation plan at regular checkpoint commits.

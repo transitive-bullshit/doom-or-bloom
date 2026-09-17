@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { readFile } from 'node:fs/promises'
 import {
   createAssessment,
   issuePrompt,
@@ -53,7 +54,12 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   ).toBeVisible()
   const reportWait = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download full report' }).click()
-  expect((await reportWait).suggestedFilename()).toBe('doom-or-bloom-report.md')
+  const report = await reportWait
+  expect(report.suggestedFilename()).toBe('doom-or-bloom-report.md')
+  const contents = await readFile((await report.path())!, 'utf8')
+  expect(contents).toContain('## Evidence and typed judgments')
+  expect(contents).toContain('Relevant synthetic answer 0.')
+  expect(contents).toContain('0.2.1')
   const cardWait = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download card' }).click()
   expect((await cardWait).suggestedFilename()).toBe('doom-or-bloom.png')
@@ -177,9 +183,18 @@ test('restart discards in-flight work; provider failure preserves draft', async 
   )
   await submit(page, 'preserved on failure')
   await expect(page.getByText('Could not complete that step')).toBeVisible()
+  await expect(
+    page.getByRole('alert').filter({ hasText: 'Could not complete that step' })
+  ).toBeVisible()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
     'preserved on failure'
   )
+  expect(
+    await page.evaluate((key) => {
+      const saved = JSON.parse(localStorage.getItem(key)!)
+      return saved.assessment.attempts.length
+    }, storageKey)
+  ).toBe(0)
 })
 test('corrupt storage offers backup; unavailable storage permits ephemeral use', async ({
   page
@@ -259,4 +274,12 @@ test('an uncertain transport retry reuses the same request and semantic attempt'
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   expect(ids).toHaveLength(2)
   expect(ids[0]).toBe(ids[1])
+  expect(
+    await page.evaluate((key) => {
+      const saved = JSON.parse(localStorage.getItem(key)!)
+      return saved.assessment.attempts.filter(
+        (attempt: { evaluated: boolean }) => attempt.evaluated
+      ).length
+    }, storageKey)
+  ).toBe(1)
 })

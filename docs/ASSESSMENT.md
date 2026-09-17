@@ -161,6 +161,8 @@ Jev distributions over authored qualitative categories may be projected into a p
 
 Results expose a small set of central inferred claims. “That’s not quite my view” lets the participant choose a disputed inference and clarify in natural language. Re-run the relevant judgments, evidence ledger, routing, and projections.
 
+Clarification quotes the selected claim, including the separate catastrophic-risk fingerprint. A correction scoped to catastrophic risk keeps prior ordinary-harm evidence active; the catastrophic-risk projection uses evidence from the correction onward. Preserve all raw usable answers and identify the corrected scope explicitly so earlier statements remain available in their original context.
+
 Participants may correct the assessment's interpretation; they may not directly edit a score or coordinate. Corrections provide valuable quality telemetry without being treated as ground truth automatically.
 
 ## Procedural neutrality
