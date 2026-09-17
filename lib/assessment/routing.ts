@@ -1,9 +1,11 @@
 import type { Assessment, ModelAnswer } from './schema'
 import { currentPrompt } from './state'
 import type { Prompt, Rubric } from '@/lib/content/schema'
+import { timelineContext } from './timeline'
 
 export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
   const previous = currentPrompt(state)
+  const horizonMissing = timelineContext(state) === null
   return prompts.map((prompt) => {
     const uses = state.prompts.filter((p) => p.promptId === prompt.id).length
     const reason =
@@ -26,9 +28,6 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
                     )
                   ? 'coverage exclusion'
                   : null
-    const horizonMissing =
-      !state.answers.some((a) => a.context?.horizonSpanId) &&
-      !state.evidence.some((e) => e.status !== 'superseded' && e.horizonSpanId)
     const convictionMissing =
       !state.answers.some((a) => a.context?.convictionSpanId) &&
       !state.evidence.some(

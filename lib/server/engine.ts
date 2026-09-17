@@ -36,6 +36,7 @@ import type { Prompt } from '@/lib/content/schema'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
 import { referenceMetadata, referencePolicy } from './reference-input'
+import { timelineContext } from '@/lib/assessment/timeline'
 import { selectPresentation } from '@/lib/assessment/presentation'
 import { createQuestions } from './questions'
 
@@ -551,21 +552,16 @@ export async function runAssessment(
       state.coverage[c.vector as VectorId] =
         c.value === null ? 'unassessed' : 'assessed'
     const result = baseResult(state, components, bundle.rubric, capped)
-    const horizonAnswer = state.answers.findLast(
-      (a) => a.context?.horizonSpanId
-    )
-    const horizonSpan = horizonAnswer?.spans.find(
-      (s) => s.id === horizonAnswer.context?.horizonSpanId
-    )
+    const horizon = timelineContext(state)
     result.fingerprint = [
       {
         ...emptyComponent('timeline', 'Timeline'),
-        claim: horizonSpan?.text ?? null,
-        evidenceIds: horizonAnswer
-          ? state.evidence
+        claim: horizon?.span.text ?? null,
+        evidenceIds: horizon
+          ? activeEvidence(state)
               .filter(
                 (e) =>
-                  e.answerId === horizonAnswer.id &&
+                  e.answerId === horizon.answer.id &&
                   e.vector === 'capability_trajectory'
               )
               .map((e) => e.id)

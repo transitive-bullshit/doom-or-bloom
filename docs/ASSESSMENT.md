@@ -167,6 +167,8 @@ Clarification quotes the selected claim, including the separate catastrophic-ris
 
 Participants may correct the assessment's interpretation; they may not directly edit a score or coordinate. Corrections provide valuable quality telemetry without being treated as ground truth automatically.
 
+A capability-trajectory correction also invalidates earlier timeline context. The fingerprint and missing-timing routing use an exact horizon supplied with that correction or afterward; otherwise timing remains unexplored. Corrections to other vectors preserve the timeline. Raw earlier answers remain in the conversation and report, with superseded evidence excluded from current fingerprint provenance.
+
 ## Procedural neutrality
 
 Use [JOURNEYS.md](JOURNEYS.md) and the user's argument maps for development cases, including acceleration with substantial catastrophic risk and restraint with low catastrophic risk. Risk families and safety concepts are overlapping authoring/retrieval tags, not additional scored vectors, severity labels or mandatory branches. Ordinary harms, permanent disempowerment and extinction need their own expressed scope and horizon; policy alone establishes none of them.
