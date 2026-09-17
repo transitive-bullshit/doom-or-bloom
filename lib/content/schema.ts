@@ -2,7 +2,8 @@ import { z } from 'zod'
 import { questionSchema, vectorSchema } from '@/lib/assessment/schema'
 export const templateIds = [
   'presence',
-  'span',
+  'horizon',
+  'conviction',
   'disposition',
   'dimension',
   'position',

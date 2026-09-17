@@ -8,8 +8,7 @@ import {
   eligible,
   issuePrompt,
   matchesResponse,
-  recordDisposition,
-  segmentAnswer
+  recordDisposition
 } from './state'
 import { assessmentSchema } from './schema'
 
@@ -30,7 +29,8 @@ describe('bounded assessment', () => {
         promptInstanceId: currentPrompt(state).id,
         promptText: currentPrompt(state).text,
         text,
-        spans: segmentAnswer(text, `a${i}`),
+        hasHorizon: false,
+        hasConviction: false,
         substantive: true
       })
       if (i < 2) state = issuePrompt(state, next)
@@ -106,10 +106,5 @@ describe('bounded assessment', () => {
         'x'
       )
     ).toBe(false)
-  })
-  test('selected spans retain exact offsets', () => {
-    const text = '  AI might help. But how?\nI am unsure.'
-    for (const span of segmentAnswer(text, 'a'))
-      expect(text.slice(span.start, span.end)).toBe(span.text)
   })
 })

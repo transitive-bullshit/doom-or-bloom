@@ -162,18 +162,15 @@ test.each([
         const result = await fixture.evaluate(input, questions, signal)
         if (questions.horizon) {
           const text = (input as { current: { answer: string } }).current.answer
-          result.answers.horizon = fixtureAnswer(
-            questions.horizon,
-            text === original ||
+          result.answers.horizon = {
+            type: 'noul',
+            noul:
+              text === original ||
               text === later ||
               (replacement && text === corrected)
-              ? Object.keys(
-                  questions.horizon.type === 'choice'
-                    ? questions.horizon.criteria
-                    : {}
-                ).find((id) => id !== 'none')
-              : 'none'
-          )
+                ? 1
+                : 0
+          }
         }
         return result
       }
@@ -186,14 +183,18 @@ test.each([
     ])
       state = await advance(state, { type: 'answer', text }, provider)
     state = await advance(state, { type: 'project' }, provider)
-    expect(state.result!.fingerprint[0]!.claim).toBe(original)
+    expect(state.result!.fingerprint[0]!.claim).toContain('answer 1')
     const before = structuredClone(state)
     state = await advance(state, { type: 'clarify', vector: target }, provider)
     state = await advance(state, { type: 'answer', text: corrected }, provider)
     const timeline = state.result!.fingerprint[0]!
     const timingStillKnown = target !== 'capability_trajectory' || replacement
     expect(timeline.claim).toBe(
-      replacement ? corrected : timingStillKnown ? original : null
+      replacement
+        ? 'Timing expressed in answer 4; see the full answer for its scope and uncertainty.'
+        : timingStillKnown
+          ? 'Timing expressed in answer 1; see the full answer for its scope and uncertainty.'
+          : null
     )
     expect(
       timeline.evidenceIds.every((id) =>
@@ -211,7 +212,7 @@ test.each([
     state = await advance(state, { type: 'continue' }, provider)
     state = await advance(state, { type: 'answer', text: later }, provider)
     state = await advance(state, { type: 'project' }, provider)
-    expect(state.result!.fingerprint[0]!.claim).toBe(later)
+    expect(state.result!.fingerprint[0]!.claim).toContain('answer 5')
     expect(
       candidatePrompts(state, loadBundle().prompts).find(
         (candidate) => candidate.prompt.id === 'timeline.general'

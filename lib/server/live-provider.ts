@@ -7,7 +7,11 @@ import {
   modelAnswerSchema,
   questionSchema
 } from '@/lib/assessment/schema'
-import type { ModelAnswer, Question } from '@/lib/assessment/schema'
+import type {
+  DebugRequest,
+  ModelAnswer,
+  Question
+} from '@/lib/assessment/schema'
 import type { Evaluation, Provider } from './provider'
 
 export function validateEvaluation(
@@ -67,7 +71,8 @@ export function createLiveProvider(model: string): Provider {
       state,
       questions,
       signal,
-      attemptBudget = limits.providerAttempts
+      attemptBudget = limits.providerAttempts,
+      captureDebug = false
     ) => {
       if (!process.env.TYPESAFE_API_KEY?.trim())
         throw new Error(
@@ -81,6 +86,8 @@ export function createLiveProvider(model: string): Provider {
       for (const question of Object.values(questions))
         questionSchema.parse(question)
       let attempts = 0
+      const requests: DebugRequest[] = []
+      let batchQuestionIds: string[] = []
       const requestBudget = new AbortController()
       const client = new TypeSafeClient({
         apiKey: process.env.TYPESAFE_API_KEY,
@@ -100,7 +107,25 @@ export function createLiveProvider(model: string): Provider {
             requestBudget.signal.throwIfAborted()
           }
           attempts++
-          return fetch(url, { ...init, cache: 'no-store' })
+          const diagnostic: DebugRequest | undefined = captureDebug
+            ? {
+                attempt: attempts,
+                model,
+                questionIds: batchQuestionIds,
+                elapsedMs: 0,
+                status: null
+              }
+            : undefined
+          if (diagnostic) requests.push(diagnostic)
+          const started = performance.now()
+          try {
+            const response = await fetch(url, { ...init, cache: 'no-store' })
+            if (diagnostic) diagnostic.status = response.status
+            return response
+          } finally {
+            if (diagnostic)
+              diagnostic.elapsedMs = Math.round(performance.now() - started)
+          }
         }
       })
       const signals = [requestBudget.signal, AbortSignal.timeout(45_000)]
@@ -117,6 +142,7 @@ export function createLiveProvider(model: string): Provider {
         split = false
       ): Promise<void> => {
         boundedSignal.throwIfAborted()
+        batchQuestionIds = part.map(([id]) => id)
         const typedQuestions: Questions = Object.fromEntries(
           part.map(([id, question]) => [
             id,
@@ -140,6 +166,13 @@ export function createLiveProvider(model: string): Provider {
           const result = validateEvaluation(raw, Object.fromEntries(part))
           if (result.model !== model)
             throw new Error('Provider returned a different model version')
+          const diagnostic = requests.at(-1)
+          if (diagnostic)
+            diagnostic.response = {
+              model: result.model,
+              answers: result.answers,
+              usage: result.usage
+            }
           results.push(result)
         } catch (err) {
           // A smaller question batch retains the complete state. Never retry an
@@ -159,7 +192,7 @@ export function createLiveProvider(model: string): Provider {
       }
       for (let offset = 0; offset < entries.length; offset += batchSize)
         await evaluateBatch(entries.slice(offset, offset + batchSize))
-      return {
+      const evaluation: Evaluation = {
         model,
         answers: Object.assign({}, ...results.map((result) => result.answers)),
         usage: {
@@ -174,6 +207,8 @@ export function createLiveProvider(model: string): Provider {
         },
         attempts
       }
+      if (captureDebug) evaluation.requests = requests
+      return evaluation
     }
   }
 }

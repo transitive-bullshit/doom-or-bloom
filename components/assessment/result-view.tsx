@@ -6,6 +6,7 @@ import type {
   VectorId
 } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
+import { AnswerDisclosure } from './conversation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -108,11 +109,13 @@ export function ResultView({
   onError: (message: string) => void
 }) {
   const result = state.result!
-  const excerpt = (id: string) => {
-    const e = state.evidence.find((entry) => entry.id === id)
-    return state.answers
-      .find((a) => a.id === e?.answerId)
-      ?.spans.find((s) => s.id === e?.spanId)?.text
+  const supportingAnswers = (evidenceIds: string[]) => {
+    const ids = new Set(
+      state.evidence
+        .filter((entry) => evidenceIds.includes(entry.id))
+        .map((entry) => entry.answerId)
+    )
+    return state.answers.filter((answer) => ids.has(answer.id))
   }
   const report = () => {
     const { markdown } = serializeReport(state)
@@ -175,6 +178,18 @@ export function ResultView({
             <p className='mt-2 text-sm text-muted-foreground'>
               {c.claim ?? 'Still unexplored'}
             </p>
+            {c.vector === 'timeline' &&
+              supportingAnswers(c.evidenceIds).map((answer) => (
+                <div
+                  key={answer.id}
+                  className='mt-3 text-sm text-muted-foreground'
+                >
+                  <AnswerDisclosure
+                    text={answer.text}
+                    label={`Timeline answer ${state.answers.indexOf(answer) + 1}`}
+                  />
+                </div>
+              ))}
           </div>
         ))}
       </div>
@@ -190,16 +205,20 @@ export function ResultView({
                 </Button>
               </CollapsibleTrigger>
               <CollapsibleContent>
-                {Array.from(new Set(f.evidenceIds)).map((id) =>
-                  excerpt(id) ? (
-                    <blockquote
-                      key={id}
-                      className='mt-2 border-l-2 pl-3 text-sm text-muted-foreground'
-                    >
-                      {excerpt(id)}
-                    </blockquote>
-                  ) : null
-                )}
+                <p className='mt-3 text-xs text-muted-foreground'>
+                  Support links to whole answers, rather than selected passages.
+                </p>
+                {supportingAnswers(f.evidenceIds).map((answer) => (
+                  <div
+                    key={answer.id}
+                    className='mt-2 border-l-2 pl-3 text-sm text-muted-foreground'
+                  >
+                    <AnswerDisclosure
+                      text={answer.text}
+                      label={`Supporting answer ${state.answers.indexOf(answer) + 1}`}
+                    />
+                  </div>
+                ))}
                 <p className='mt-3 text-xs text-muted-foreground'>
                   Interpretation: {result.versions.rubric} ·{' '}
                   {result.versions.model}
@@ -218,20 +237,17 @@ export function ResultView({
             <section key={c.vector} className='rounded-lg border p-4'>
               <h3 className='text-sm font-medium'>{c.label}</h3>
               <p className='mt-2 text-sm'>{c.claim ?? 'Unassessed'}</p>
-              {c.evidenceIds.map((id) => {
-                const e = state.evidence.find((entry) => entry.id === id)
-                const quote = state.answers
-                  .find((a) => a.id === e?.answerId)
-                  ?.spans.find((s) => s.id === e?.spanId)?.text
-                return quote ? (
-                  <blockquote
-                    key={id}
-                    className='mt-3 border-l-2 pl-3 text-sm text-muted-foreground'
-                  >
-                    {quote}
-                  </blockquote>
-                ) : null
-              })}
+              {supportingAnswers(c.evidenceIds).map((answer) => (
+                <div
+                  key={answer.id}
+                  className='mt-3 border-l-2 pl-3 text-sm text-muted-foreground'
+                >
+                  <AnswerDisclosure
+                    text={answer.text}
+                    label={`Supporting answer ${state.answers.indexOf(answer) + 1}`}
+                  />
+                </div>
+              ))}
               {c.value !== null &&
                 state.prompts.length < limits.prompts &&
                 (vectorIds.includes(c.vector as VectorId) ||

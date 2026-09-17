@@ -14,6 +14,10 @@ The live application uses versioned, reviewed assets rather than runtime prose g
 
 Local Codex workflows may propose and refine these assets. Human review owns publication.
 
+## Participant question quality
+
+Follow the [full prompt audit and recorded demo feedback](prompt-quality-review.md). Every prompt must elicit an actionable belief, expectation, mechanism, value or update condition. Source location alone is not useful belief evidence. Write an example answer and specify what it could change in the assessment; context-dependent wording requires an actual antecedent, not merely broad vector coverage. Retired IDs remain for historical validation but are excluded before routing across saved corpora. Watch items require further revision/evaluation.
+
 ## Conversation graph
 
 Each prompt should define at least:
@@ -130,7 +134,7 @@ Findings are authored templates grounded in evidence-ledger conditions. Useful c
 - Underexplored upside or risk.
 - High-leverage crux.
 
-Each finding specifies required evidence, disqualifiers, tone, and compatible recommendations. Participant excerpts may be inserted only through deterministic copying.
+Each finding specifies required evidence, disqualifiers, tone, and compatible recommendations. For the MVP, show complete supporting answers through bounded disclosure. Do not require passage selection or runtime quotation extraction.
 
 ## Semi-automated authoring workflow
 

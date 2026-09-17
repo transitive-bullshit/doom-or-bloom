@@ -30,7 +30,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Groundedness**: The demonstrated connection between a participant's claim and identifiable evidence, including whether they preserve relevant uncertainty and distinguish observation from interpretation. Groundedness does not require specialist recall or agreement with the assessment's preferred sources. _Avoid_: News-following frequency, prestige of cited person
 
-**Evidence ledger**: The structured record linking answer excerpts, recognized references, participant claims, narrow judgments, and unresolved ambiguities. Derived scores may summarize the ledger but never replace its source evidence. _Avoid_: Transcript dump, chain of thought
+**Evidence ledger**: The structured record linking whole-answer IDs, recognized references, narrow judgments, and unresolved ambiguities. Derived scores may summarize the ledger but never replace its source evidence. _Avoid_: Transcript dump, chain of thought
 
 **Conversation graph**: The authored set of prompts, clarifications, and permitted transitions used to explore an assessment. A participant follows a bounded path through this graph. _Avoid_: Fixed questionnaire, unconstrained conversation
 

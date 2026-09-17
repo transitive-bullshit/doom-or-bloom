@@ -5,8 +5,7 @@ import {
   acceptAnswer,
   currentPrompt,
   issuePrompt,
-  recordDisposition,
-  segmentAnswer
+  recordDisposition
 } from '../../lib/assessment/state'
 import { storageKey } from '../../lib/persistence/storage'
 
@@ -65,7 +64,8 @@ test('actual PostHog SDK payloads exclude answers and URL canaries; resume does 
       promptText: prompt.text,
       text: input.operation.text,
       substantive: true,
-      spans: segmentAnswer(input.operation.text, answerId)
+      hasHorizon: false,
+      hasConviction: false
     })
     state = issuePrompt(state, {
       promptId: 'timeline.general',

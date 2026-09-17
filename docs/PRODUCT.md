@@ -77,6 +77,7 @@ The result should lead with:
 Optional actions:
 
 - Continue answering to sharpen provisional regions.
+- Supporting answers use bounded disclosure and whole-answer provenance; no selected-passage attribution is required for MVP.
 - Select “That’s not quite my view,” identify a disputed inferred claim, and clarify in natural language.
 - Download a full report.
 - Download a personalized share card.

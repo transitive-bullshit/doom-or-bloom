@@ -26,7 +26,7 @@ Send the current prompt, new answer, minimal relevant history, and stable assess
 - Answer substantive or not.
 - Response disposition (`usable`, `needs_clarification`, `non_answer`, `navigation`) under the [bounded recovery policy](ASSESSMENT.md#answer-relevance-and-bounded-recovery), including relevant humor and uncertainty.
 - Outlook direction and qualitative strength.
-- Mentioned horizons and milestones.
+- Whether a forecast horizon/milestone or participant conviction is expressed (binary judgments, without extraction).
 - Expressed benefits and risk pathways.
 - Mechanisms and assumptions.
 - Action posture.
@@ -52,9 +52,9 @@ Carry authored reference kinds, date qualifiers and related-entry IDs through id
 
 ### 3. Update the evidence ledger
 
-Code stores the answer, excerpt candidates, reference identifiers, and Jev outputs. If exact supporting text is needed, pre-segment or pre-extract candidate spans; ask Jev to choose candidate IDs, then copy the original text in code.
+Code stores complete prompts/answers once, stable answer IDs, dimension-level support records, recognized reference IDs, and Jev outputs. MVP support is at the whole-answer level. Do not segment answers, select passages, extract quotations, or repeat participant text in question criteria. Each stage uses shared state; questions refer to its fields and IDs. Reference checks concern the invocation in the whole current answer, not a selected excerpt.
 
-Do not ask Jev to emit arbitrary quotations or free-form extracted values.
+Do not ask Jev to emit arbitrary quotations or free-form extracted values. Timing and conviction presence flags support routing; exact forecasts, probabilities and assumptions remain in raw answers without a normalized extraction claim. Passage attribution can be reconsidered after the demo.
 
 ### 4. Route
 
@@ -69,13 +69,21 @@ Build a final state containing:
 - Raw prompts and usable answers; rejected interaction attempts are excluded.
 - Evidence-ledger entries with provenance.
 - Relevant canonical reference summaries.
-- Derived judgments clearly labeled as derived.
+- Answer-level support links and reference checks clearly labeled as derived; never repeat source text in support records or criteria.
 - Coverage and unresolved ambiguity.
 - Assessment, content, rubric, and model versions.
 
 Batch independent final questions for each output vector. Code then normalizes ordered scores, applies weights and constraints, derives ranges, and selects authored findings and resources.
 
 Do not ask for one opaque overall worldview judgment. Do not multiply correlated judgments or repeatedly classify the entire transcript as though each pass were independent evidence.
+
+## Local debug view
+
+Separate the latest operation’s requests and validated responses from local control-flow decisions and saved assessment state. Show each physical batch/retry using the exact shared state and question subset already sent; omit credentials, headers and raw error bodies. These records are transient and only captured when both server and operation debug flags are enabled. Fixture inputs/responses are explicitly synthetic; older traces show aggregate stage data with honest batching labels. Opening, folding and copying make no inference calls.
+
+Use syntax colors, accessible section toggles, depth 2+ folded by default, reset-folds and exact JSON copy. Expand the debug area beyond the interview column (up to 1440px with viewport margins); preserve native page scrolling and mobile wrapping without nested scroll areas.
+
+Assessment algorithm `0.3.0` uses storage schema v2. Decode legacy v1 saves into answer-level support, preserving raw answers, drafts, tokens, pinned content and historical results. A later operation uses the current algorithm version; cached historical results retain their own version and are not silently recomputed. This compatibility does not reproduce the retired passage-selection pipeline.
 
 ## Conceptual state shape
 

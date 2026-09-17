@@ -58,8 +58,11 @@ test('three-answer path, reusable results and debug parity', async () => {
   )
   expect(result.assessment.result?.insufficient).toBe(false)
   expect(assessmentSchema.safeParse(result.assessment).success).toBe(true)
+  const historical = structuredClone(result.assessment)
+  historical.versions.assessment = '0.2.1'
+  historical.result!.versions.assessment = '0.2.1'
   const reused = await run(
-    result.assessment,
+    historical,
     { type: 'project' },
     {
       kind: 'fixture',
@@ -70,6 +73,8 @@ test('three-answer path, reusable results and debug parity', async () => {
     true
   )
   expect(reused.debug?.stages).toHaveLength(0)
+  expect(reused.assessment.result).toEqual(historical.result)
+  expect(reused.assessment.versions.assessment).toBe('0.3.0')
   const request = {
     requestId: 'same',
     assessment: state,
@@ -278,4 +283,68 @@ test('unknown worldview positions and ordinary harm cannot fabricate catastrophi
   ).toBeNull()
   expect(state.result?.vertical.value).toBeGreaterThan(0)
   expect(state.coverage.risk_landscape).toBe('unassessed')
+})
+
+test('shared text occurs once per stage and judgments use answer-level support without passage selection', async () => {
+  const text =
+    'UNIQUE_ANSWER_MARKER: useful science, uncertain outcomes. '.repeat(50)
+  const state = createAssessment('shared-context')
+  const result = await run(
+    state,
+    { type: 'answer', text },
+    createFixtureProvider(),
+    true
+  )
+  const interpretation = result.debug!.stages[0]!
+  expect(Object.keys(interpretation.questions)).toHaveLength(21)
+  expect(interpretation.state).toEqual({
+    current: {
+      id: result.assessment.answers[0]!.id,
+      prompt: state.prompts[0]!.text,
+      answer: text
+    },
+    usableHistory: [],
+    clarificationTarget: null
+  })
+  for (const stage of result.debug!.stages) {
+    expect(JSON.stringify(stage.state).split(text)).toHaveLength(2)
+    expect(JSON.stringify(stage.questions)).not.toContain(text)
+    expect(
+      Object.keys(stage.questions).some((id) =>
+        [
+          'grounding.source:',
+          'tension.general:',
+          'control.failuremode:',
+          'crux.test:'
+        ].some((prefix) => id.startsWith(prefix))
+      )
+    ).toBe(false)
+    expect(
+      Object.keys(stage.questions).some((id) => /:span$|:evidence$/.test(id))
+    ).toBe(false)
+  }
+  expect(
+    result.assessment.evidence.every(
+      (entry) => entry.answerId === result.assessment.answers[0]!.id
+    )
+  ).toBe(true)
+  expect(JSON.stringify(result.assessment.evidence)).not.toMatch(/span|excerpt/)
+  let ready = result.assessment
+  for (let i = 0; i < 2; i++)
+    ready = (
+      await run(ready, { type: 'answer', text: `Distinct answer ${i}.` })
+    ).assessment
+  const projected = await run(
+    ready,
+    { type: 'project' },
+    createFixtureProvider(),
+    true
+  )
+  const stage = projected.debug!.stages[0]!
+  expect(Object.keys(stage.questions)).toHaveLength(41)
+  expect(JSON.stringify(stage.state).split(text)).toHaveLength(2)
+  expect(JSON.stringify(stage.questions)).not.toContain(text)
+  expect(
+    Object.keys(stage.questions).some((id) => id.endsWith(':evidence'))
+  ).toBe(false)
 })

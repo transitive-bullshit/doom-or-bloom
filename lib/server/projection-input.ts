@@ -1,86 +1,53 @@
-import type { Assessment, ModelAnswer, Question } from '@/lib/assessment/schema'
+import type { Assessment } from '@/lib/assessment/schema'
 import type { Bundle } from '@/lib/content/loader'
 import { referenceMetadata, referencePolicy } from './reference-input'
 
-// Short IDs remove transport bookkeeping; original text and source facts remain exact.
-export function projectionInput(
-  state: Assessment,
-  bundle: Bundle,
-  questions: Record<string, Question>
-) {
-  const answerIds = new Map(state.answers.map((a, i) => [a.id, `a${i}`]))
+// Raw participant text appears once. All support and reference links use IDs.
+export function projectionInput(state: Assessment, bundle: Bundle) {
   const active = state.evidence.filter(
-    (e) => e.status !== 'superseded' && e.status !== 'disputed'
-  )
-  const evidenceIds = new Map(active.map((e, i) => [e.id, `e${i}`]))
-  const originals = new Map(
-    Array.from(evidenceIds, ([id, alias]) => [alias, id])
+    (entry) => entry.status !== 'superseded' && entry.status !== 'disputed'
   )
   const usedIds = new Set([
-    ...state.referenceClaims.map((c) => c.referenceId),
-    ...active.flatMap((e) => [...e.referenceIds, ...e.contextReferenceIds])
+    ...state.referenceClaims.map((claim) => claim.referenceId),
+    ...active.flatMap((entry) => [
+      ...entry.referenceIds,
+      ...entry.contextReferenceIds
+    ])
   ])
-  const references = bundle.references.filter((r) => usedIds.has(r.id))
-  const referenceIds = new Map(references.map((r, i) => [r.id, `r${i}`]))
-  const input = {
-    completeParticipantEvidence: state.answers.map((a) => ({
-      id: answerIds.get(a.id),
-      prompt: a.promptText,
-      answer: a.text,
-      correctionTarget: a.correctionClaimTarget ?? a.correctionTarget ?? null
+  return {
+    completeParticipantEvidence: state.answers.map((answer) => ({
+      id: answer.id,
+      prompt: answer.promptText,
+      answer: answer.text,
+      correctionTarget:
+        answer.correctionClaimTarget ?? answer.correctionTarget ?? null
     })),
-    referenceContext: references.map((r) => ({
-      id: referenceIds.get(r.id),
-      canonicalId: r.id,
-      title: r.title,
-      ...referenceMetadata(r),
-      summary: r.summary
-    })),
+    activeSupport: active.map(
+      ({ id, answerId, vector, status, referenceIds }) => ({
+        id,
+        answerId,
+        vector,
+        status,
+        referenceIds,
+        claimTarget:
+          state.answers.find((answer) => answer.id === answerId)
+            ?.correctionClaimTarget ?? null
+      })
+    ),
+    referenceContext: bundle.references
+      .filter((reference) => usedIds.has(reference.id))
+      .map((reference) => ({
+        id: reference.id,
+        title: reference.title,
+        ...referenceMetadata(reference),
+        summary: reference.summary
+      })),
+    referenceClaims: state.referenceClaims,
     referencePolicy,
     evidencePolicy:
-      'Every usable raw answer and referenced canonical source summary is supplied. Prior scores and judgments are not independent evidence. Later explicit corrections supersede earlier interpretations under the corrected scope. Evidence-choice candidates are exact active excerpts, never generated summaries.',
+      'Every usable raw answer and referenced canonical source summary is supplied once. Support records link whole answers, not specific passages. Prior judgments are interpretations, not independent evidence. Later explicit corrections supersede earlier interpretations only under the corrected scope; use activeSupport and correctionTarget to respect that scope.',
     coverage: state.coverage,
     unresolved: state.unresolved.map(({ vector, kind }) => ({ vector, kind })),
     versions: state.versions
-  }
-  const providerQuestions = Object.fromEntries(
-    Object.entries(questions).map(([id, question]) => [
-      id,
-      id.endsWith(':evidence') && question.type === 'choice'
-        ? {
-            ...question,
-            criteria: Object.fromEntries(
-              Object.entries(question.criteria).map(([key, text]) => [
-                evidenceIds.get(key) ?? key,
-                text
-              ])
-            )
-          }
-        : question
-    ])
-  )
-  const restore = (answers: Record<string, ModelAnswer>) =>
-    Object.fromEntries(
-      Object.entries(answers).map(([id, answer]) => [
-        id,
-        id.endsWith(':evidence') && answer.type === 'choice'
-          ? {
-              ...answer,
-              choice: originals.get(answer.choice) ?? answer.choice,
-              probabilities: Object.fromEntries(
-                Object.entries(answer.probabilities).map(([key, p]) => [
-                  originals.get(key) ?? key,
-                  p
-                ])
-              )
-            }
-          : answer
-      ])
-    )
-  return {
-    input,
-    providerQuestions,
-    restore,
-    aliases: Object.fromEntries(originals)
   }
 }

@@ -43,12 +43,12 @@ Domain familiarity is tracked for routing and resources but is not itself episte
 
 Each meaningful judgment should retain:
 
-- The answer and exact supporting excerpt or segment identifier.
+- A stable whole-answer ID linked to the dimension; preserve the full prompt and answer separately. MVP does not select or attribute individual passages.
 - Any recognized entity, event, or publication.
-- The participant claim drawn from that reference.
+- Answer-level reference checks (attribution, fit, uncertainty, materiality), without claiming a passage-specific attribution.
 - Whether the belief was stated, strongly implied, weakly inferred, disputed, or unassessed.
-- Participant conviction when expressed.
-- Relevant horizon and assumptions.
+- Whether participant conviction is expressed; the actual language remains in the raw answer.
+- Whether a forecast horizon/milestone is expressed; relevant timing and assumptions remain in the raw answer.
 - Interpretation distribution and confidence.
 - Unresolved ambiguity or tension.
 
@@ -167,7 +167,7 @@ Clarification quotes the selected claim, including the separate catastrophic-ris
 
 Participants may correct the assessment's interpretation; they may not directly edit a score or coordinate. Corrections provide valuable quality telemetry without being treated as ground truth automatically.
 
-A capability-trajectory correction also invalidates earlier timeline context. The fingerprint and missing-timing routing use an exact horizon supplied with that correction or afterward; otherwise timing remains unexplored. Corrections to other vectors preserve the timeline. Raw earlier answers remain in the conversation and report, with superseded evidence excluded from current fingerprint provenance.
+A capability-trajectory correction also invalidates earlier timeline context. The fingerprint and missing-timing routing use the horizon-presence flag on that correction or a later answer; otherwise timing remains unexplored. The fingerprint points to the complete supporting answer rather than quoting or normalizing a selected passage. Corrections to other vectors preserve the timeline. Raw earlier answers remain in the conversation and report, with superseded evidence excluded from current fingerprint provenance.
 
 ## Procedural neutrality
 

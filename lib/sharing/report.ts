@@ -1,14 +1,9 @@
 import type { Assessment } from '@/lib/assessment/schema'
+
 export function serializeReport(state: Assessment) {
   if (!state.result) throw new Error('A result is required')
   const result = state.result
-  const evidence = state.evidence.map((entry) => ({
-    ...entry,
-    excerpt:
-      state.answers
-        .find((a) => a.id === entry.answerId)
-        ?.spans.find((s) => s.id === entry.spanId)?.text ?? ''
-  }))
+  const evidence = state.evidence
   const data = {
     versions: result.versions,
     result,
@@ -50,17 +45,7 @@ export function serializeReport(state: Assessment) {
       '',
       `Position: ${position(c.value)}. Interpretation range: ${c.range.map((v) => Math.round(v * 100)).join('–')}. Coverage: ${state.coverage[c.vector as keyof typeof state.coverage] ?? 'Separate fingerprint component'}.`,
       '',
-      ...c.evidenceIds.flatMap((id) => {
-        const entry = evidence.find((e) => e.id === id)
-        return entry
-          ? [
-              `> ${entry.excerpt.replaceAll('\n', '\n> ')}`,
-              '',
-              `Evidence: ${id}; ${entry.status}.`,
-              ''
-            ]
-          : []
-      }),
+      `Supporting answer IDs: ${Array.from(new Set(evidence.filter((entry) => c.evidenceIds.includes(entry.id)).map((entry) => entry.answerId))).join(', ') || 'None'}. Support refers to whole answers, not selected passages.`,
       ''
     ]),
     '## Fingerprint and expressed forecast context',
@@ -71,30 +56,16 @@ export function serializeReport(state: Assessment) {
       c.claim ?? 'Unassessed; no supported position is invented.',
       ''
     ]),
-    ...state.answers.flatMap((a) =>
-      ['horizonSpanId', 'convictionSpanId', 'assumptionSpanId'].flatMap(
-        (key) => {
-          const span = a.spans.find(
-            (s) =>
-              s.id === a.context?.[key as keyof NonNullable<typeof a.context>]
-          )
-          const label =
-            key === 'horizonSpanId'
-              ? 'Expressed horizon'
-              : key === 'convictionSpanId'
-                ? 'Participant conviction'
-                : 'Expressed assumption'
-          return span
-            ? [
-                `${label} (${a.id}):`,
-                '',
-                `> ${span.text.replaceAll('\n', '\n> ')}`,
-                ''
-              ]
-            : []
-        }
-      )
-    ),
+    '## Complete usable answers',
+    '',
+    ...state.answers.flatMap((answer) => [
+      `### ${answer.id}`,
+      '',
+      answer.promptText,
+      '',
+      `> ${answer.text.replaceAll('\n', '\n> ')}`,
+      ''
+    ]),
     '## Findings',
     '',
     ...result.findings.flatMap((f) => [
@@ -121,7 +92,7 @@ export function serializeReport(state: Assessment) {
     ]),
     '## Evidence and typed judgments',
     '',
-    'The structured appendix preserves raw usable answers, exact evidence, relevant typed judgments and provenance. Rejected interaction text, secrets, debug traces and hidden reasoning are excluded.',
+    'The structured appendix preserves raw usable answers, answer-level support, relevant typed judgments and provenance. Rejected interaction text, secrets, debug traces and hidden reasoning are excluded.',
     '',
     '```json',
     JSON.stringify(data, null, 2),
@@ -134,6 +105,7 @@ export function serializeReport(state: Assessment) {
   ].join('\n')
   return { markdown, json: JSON.stringify(data, null, 2) }
 }
+
 export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob)
   const anchor = document.createElement('a')

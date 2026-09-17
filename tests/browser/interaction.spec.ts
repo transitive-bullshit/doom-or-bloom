@@ -62,10 +62,10 @@ test('mobile keyboard flow, themes, result focus and expanded debug fit', async 
   await page
     .getByRole('button', { name: 'Jev / assessment debugging details' })
     .click()
-  await expect(page.locator('pre')).toBeVisible()
+  await expect(page.locator('[data-slot="json-viewer"]').first()).toBeVisible()
   await fitsViewport(page)
   await page.getByRole('button', { name: 'Debug on', exact: true }).click()
-  await expect(page.locator('pre')).toHaveCount(0)
+  await expect(page.locator('[data-slot="json-viewer"]')).toHaveCount(0)
   await page.setViewportSize({ width: 1365, height: 960 })
   await page.screenshot({
     path: testInfo.outputPath('desktop-result.png'),

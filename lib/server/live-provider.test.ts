@@ -240,3 +240,79 @@ test('the shared provider deadline terminates a hanging request and its retries'
   expect(await outcome).toBeInstanceOf(Error)
   expect(fetch.mock.calls.length).toBeLessThanOrEqual(3)
 })
+
+test('debug records each physical batch and validated response without adding calls or leaking headers', async () => {
+  const { provider, fetch } = mockedProvider(async (_url, init) =>
+    successfulResponse(init)
+  )
+  const state = { exactAnswer: '漢'.repeat(40_000) }
+  const questions = Object.fromEntries(
+    Array.from({ length: 9 }, (_, i) => [`q${i}`, question])
+  )
+  const plain = await provider.evaluate(state, questions)
+  const debug = await provider.evaluate(
+    state,
+    questions,
+    undefined,
+    limits.providerAttempts,
+    true
+  )
+  expect(fetch).toHaveBeenCalledTimes(4)
+  expect(plain.requests).toBeUndefined()
+  const { requests, ...evaluation } = debug
+  expect(evaluation).toEqual(plain)
+  expect(requests).toHaveLength(2)
+  for (const [index, record] of requests!.entries()) {
+    const actual = requestBody(fetch.mock.calls[index + 2]![1])
+    const body = {
+      state,
+      model: record.model,
+      questions: Object.fromEntries(
+        record.questionIds.map((id) => [id, questions[id]])
+      )
+    }
+    expect(body).toEqual(actual)
+    expect(record.attempt).toBe(index + 1)
+    expect(record.status).toBe(200)
+    expect(record.response?.answers).toEqual(
+      Object.fromEntries(
+        Object.entries(actual.questions).map(([id, q]) => [
+          id,
+          fixtureAnswer(q)
+        ])
+      )
+    )
+  }
+  expect(JSON.stringify(requests)).not.toMatch(
+    /test-key|authorization|headers|exactAnswer/
+  )
+})
+
+test('debug identifies an oversized parent and successful child requests without retaining raw errors', async () => {
+  const { provider, fetch } = mockedProvider(async (_url, init) =>
+    Object.keys(requestBody(init).questions).length > 1
+      ? Response.json(
+          { message: 'Exceeded token limit PRIVATE_ERROR_CANARY' },
+          { status: 400 }
+        )
+      : successfulResponse(init)
+  )
+  const result = await provider.evaluate(
+    { current: 'unchanged' },
+    { a: question, b: question },
+    undefined,
+    limits.providerAttempts,
+    true
+  )
+  expect(fetch).toHaveBeenCalledTimes(3)
+  expect(
+    result.requests?.map((record) => [record.questionIds, record.status])
+  ).toEqual([
+    [['a', 'b'], 400],
+    [['a'], 200],
+    [['b'], 200]
+  ])
+  expect(result.requests![0]!.response).toBeUndefined()
+  expect(result.requests![1]!.response).toBeDefined()
+  expect(JSON.stringify(result.requests)).not.toContain('PRIVATE_ERROR_CANARY')
+})

@@ -177,7 +177,7 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   const contents = await readFile((await report.path())!, 'utf8')
   expect(contents).toContain('## Evidence and typed judgments')
   expect(contents).toContain('Relevant synthetic answer 0.')
-  expect(contents).toContain('0.2.1')
+  expect(contents).toContain(versions.assessment)
   const cardWait = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download card' }).click()
   expect((await cardWait).suggestedFilename()).toBe('doom-or-bloom.png')

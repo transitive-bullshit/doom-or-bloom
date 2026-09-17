@@ -570,7 +570,13 @@ export function Interview({
               </Button>
             )}
           </div>
-          {debugMode && <DebugPanel trace={trace} assessment={state} />}
+          {debugMode && (
+            <DebugPanel
+              trace={trace}
+              assessment={state}
+              provider={fixture ? 'fixture' : 'live'}
+            />
+          )}
         </div>
       </div>
     </section>

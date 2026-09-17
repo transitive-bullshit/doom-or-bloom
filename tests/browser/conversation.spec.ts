@@ -29,7 +29,8 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
     promptInstanceId: root.id,
     promptText: root.text,
     text: longAnswer,
-    spans: [],
+    hasHorizon: false,
+    hasConviction: false,
     substantive: true
   })
   state = issuePrompt(state, {
@@ -45,7 +46,8 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
     promptInstanceId: second.id,
     promptText: second.text,
     text: 'Possibly in five years, but I am uncertain.',
-    spans: [],
+    hasHorizon: false,
+    hasConviction: false,
     substantive: true
   })
   state = issuePrompt(state, {
@@ -160,7 +162,10 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
   await page
     .getByRole('button', { name: 'Jev / assessment debugging details' })
     .click()
-  await expect(page.locator('pre')).toHaveCSS('overflow-y', 'visible')
+  await expect(page.locator('[data-slot="json-viewer"]').first()).toHaveCSS(
+    'overflow-y',
+    'visible'
+  )
   expect(
     await page
       .locator('main')

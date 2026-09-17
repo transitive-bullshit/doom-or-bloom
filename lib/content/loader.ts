@@ -7,6 +7,7 @@ import { z } from 'zod'
 import {
   rootPrompt,
   supportedContentVersions,
+  supportedAssessmentVersions,
   vectorIds,
   versions
 } from '@/lib/assessment/schema'
@@ -68,7 +69,7 @@ export function loadBundle(contentVersion: string = versions.content) {
   if (
     manifest.contentVersion !== contentVersion ||
     manifest.rubricVersion !== versions.rubric ||
-    manifest.assessmentVersion !== versions.assessment
+    !supportedAssessmentVersions.includes(manifest.assessmentVersion)
   )
     throw new Error('Unsupported content bundle')
   const directory = path.join(
@@ -227,7 +228,9 @@ export function validateBundle(bundle: Bundle) {
       id === 'catastrophic_score' ||
       id.startsWith('route_')
         ? 'score'
-        : 'choice'
+        : ['horizon', 'conviction'].includes(id)
+          ? 'noul'
+          : 'choice'
     if (question.type !== expected)
       throw new Error('Incorrect authored primitive type')
     for (const match of question.instructions.matchAll(/\{\{(\w+)\}\}/g))

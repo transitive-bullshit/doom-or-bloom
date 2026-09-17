@@ -11,7 +11,13 @@ import {
 } from '@/components/ui/collapsible'
 import { Button } from '@/components/ui/button'
 
-function AnswerDisclosure({ text, label }: { text: string; label: string }) {
+export function AnswerDisclosure({
+  text,
+  label
+}: {
+  text: string
+  label: string
+}) {
   const [open, setOpen] = useState(false)
   const long = text.length > 360 || text.split('\n').length > 4
   if (!long) return <p className='whitespace-pre-wrap wrap-anywhere'>{text}</p>

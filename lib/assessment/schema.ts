@@ -40,7 +40,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.2.1',
+  assessment: '0.3.0',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -50,6 +50,7 @@ export const supportedContentVersions = [
   '0.3.0-draft',
   '0.4.0-draft'
 ] as const
+export const supportedAssessmentVersions = ['0.2.1', versions.assessment]
 export const rootPrompt = 'What do you think AI means for our future—and why?'
 export const dispositionSchema = z.enum([
   'usable',
@@ -112,12 +113,6 @@ export const judgmentSchema = z.strictObject({
   rubricVersion: z.string().max(50)
 })
 export type Judgment = z.infer<typeof judgmentSchema>
-export const spanSchema = z.strictObject({
-  id: z.string().max(120),
-  start: z.number().int().min(0),
-  end: z.number().int().min(0),
-  text: z.string().max(limits.answerChars)
-})
 export const promptInstanceSchema = z.strictObject({
   id: z.string().max(120),
   promptId: z.string().max(120),
@@ -135,23 +130,16 @@ export const answerSchema = z.strictObject({
   promptInstanceId: z.string().max(120),
   promptText: z.string().max(2000),
   text: z.string().min(1).max(limits.answerChars),
-  spans: z.array(spanSchema).max(80),
   substantive: z.boolean(),
   correctionTarget: vectorSchema.optional(),
   correctionClaimTarget: z.literal('catastrophic_risk').optional(),
-  context: z
-    .strictObject({
-      horizonSpanId: z.string().nullable(),
-      convictionSpanId: z.string().nullable(),
-      assumptionSpanId: z.string().nullable()
-    })
-    .optional()
+  hasHorizon: z.boolean().default(false),
+  hasConviction: z.boolean().default(false)
 })
 export type Answer = z.infer<typeof answerSchema>
 export const evidenceSchema = z.strictObject({
   id: z.string().max(160),
   answerId: z.string(),
-  spanId: z.string(),
   vector: vectorSchema,
   status: z.enum([
     'stated',
@@ -162,16 +150,12 @@ export const evidenceSchema = z.strictObject({
   ]),
   judgmentIds: z.array(z.string()).max(20),
   referenceIds: z.array(z.string()).max(12),
-  contextReferenceIds: z.array(z.string()).max(12),
-  horizonSpanId: z.string().nullable(),
-  convictionSpanId: z.string().nullable(),
-  assumptionSpanId: z.string().nullable()
+  contextReferenceIds: z.array(z.string()).max(12)
 })
 export type EvidenceEntry = z.infer<typeof evidenceSchema>
 export const referenceClaimSchema = z.strictObject({
   id: z.string().max(160),
   answerId: z.string(),
-  spanId: z.string(),
   referenceId: z.string(),
   attribution: z.enum(['yes', 'no', 'unclear']),
   fit: z.enum(['yes', 'no', 'unclear']),
@@ -243,8 +227,8 @@ export const resultSchema = z.strictObject({
   reason: z.string().max(500)
 })
 export type Result = z.infer<typeof resultSchema>
-export const assessmentSchema = z.strictObject({
-  schemaVersion: z.literal(1),
+export const currentAssessmentSchema = z.strictObject({
+  schemaVersion: z.literal(2),
   id: z.string().max(120),
   revision: z.number().int().min(0),
   evidenceRevision: z.number().int().min(0),
@@ -317,7 +301,80 @@ export const assessmentSchema = z.strictObject({
   result: resultSchema.nullable(),
   eventMarkers: z.array(z.string().max(200)).max(1000)
 })
-export type Assessment = z.infer<typeof assessmentSchema>
+export type Assessment = z.infer<typeof currentAssessmentSchema>
+
+// Compatibility is confined to decoding saved v1 assessments. New state and
+// inference never contain passage candidates or passage-selection judgments.
+const legacySpanSchema = z.strictObject({
+  id: z.string().max(120),
+  start: z.number().int().min(0),
+  end: z.number().int().min(0),
+  text: z.string().max(limits.answerChars)
+})
+const legacyContext = {
+  horizonSpanId: z.string().nullable(),
+  convictionSpanId: z.string().nullable(),
+  assumptionSpanId: z.string().nullable()
+}
+const legacyAssessmentSchema = currentAssessmentSchema
+  .extend({
+    schemaVersion: z.literal(1),
+    answers: z
+      .array(
+        answerSchema.omit({ hasHorizon: true, hasConviction: true }).extend({
+          spans: z.array(legacySpanSchema).max(80),
+          context: z.strictObject(legacyContext).optional()
+        })
+      )
+      .max(limits.prompts),
+    evidence: z
+      .array(evidenceSchema.extend({ spanId: z.string(), ...legacyContext }))
+      .max(limits.prompts * vectorIds.length),
+    referenceClaims: z
+      .array(referenceClaimSchema.extend({ spanId: z.string() }))
+      .max(limits.prompts * limits.resolvedReferences)
+      .default([])
+  })
+  .transform((old): Assessment => {
+    const judgments = old.judgments.filter(
+      (judgment) =>
+        !/:span$|:evidence$/.test(judgment.questionId) &&
+        !['horizon', 'conviction', 'assumption'].includes(judgment.questionId)
+    )
+    const retainedIds = new Set(judgments.map((judgment) => judgment.id))
+    return {
+      ...old,
+      schemaVersion: 2,
+      answers: old.answers.map(({ spans: _spans, context, ...answer }) => ({
+        ...answer,
+        hasHorizon: context?.horizonSpanId != null,
+        hasConviction: context?.convictionSpanId != null
+      })),
+      evidence: old.evidence.map(
+        ({
+          spanId: _span,
+          horizonSpanId: _horizon,
+          convictionSpanId: _conviction,
+          assumptionSpanId: _assumption,
+          ...entry
+        }) => ({
+          ...entry,
+          judgmentIds: entry.judgmentIds.filter((id) => retainedIds.has(id))
+        })
+      ),
+      referenceClaims: old.referenceClaims.map(
+        ({ spanId: _span, ...claim }) => ({
+          ...claim,
+          judgmentIds: claim.judgmentIds.filter((id) => retainedIds.has(id))
+        })
+      ),
+      judgments
+    }
+  })
+export const assessmentSchema = z.union([
+  currentAssessmentSchema,
+  legacyAssessmentSchema
+])
 export const operationSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('answer'),
@@ -339,7 +396,7 @@ export const operationSchema = z.discriminatedUnion('type', [
 export type Operation = z.infer<typeof operationSchema>
 export const requestSchema = z.strictObject({
   requestId: z.string().min(1).max(120),
-  assessment: assessmentSchema
+  assessment: currentAssessmentSchema
     .omit({ interactionHistory: true })
     .transform((snapshot) => ({
       ...snapshot,
@@ -360,6 +417,19 @@ export type DebugStage = {
   outputBytes: number
   usage: { input_tokens: number; output_tokens: number }
   attempts: number
+  requests?: DebugRequest[]
+}
+export type DebugRequest = {
+  attempt: number
+  model: string
+  questionIds: string[]
+  elapsedMs: number
+  status: number | null
+  response?: {
+    model: string
+    answers: Record<string, ModelAnswer>
+    usage: { input_tokens: number; output_tokens: number }
+  }
 }
 export type DebugTrace = {
   requestId: string

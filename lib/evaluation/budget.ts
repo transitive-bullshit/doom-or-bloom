@@ -21,7 +21,7 @@ export function budgetedProvider(provider: Provider, maximum: number) {
   let reserved = 0
   const bounded: Provider = {
     kind: provider.kind,
-    evaluate: async (state, questions, signal, attemptBudget) => {
+    evaluate: async (state, questions, signal, attemptBudget, captureDebug) => {
       const granted = Math.min(
         limits.providerAttempts,
         attemptBudget ?? limits.providerAttempts,
@@ -32,7 +32,13 @@ export function budgetedProvider(provider: Provider, maximum: number) {
       // Reserve before awaiting to cover concurrent stages. On failure retain
       // the reservation because the physical request count may be unknown.
       reserved += granted
-      const result = await provider.evaluate(state, questions, signal, granted)
+      const result = await provider.evaluate(
+        state,
+        questions,
+        signal,
+        granted,
+        captureDebug
+      )
       if (
         !Number.isInteger(result.attempts) ||
         result.attempts < 1 ||

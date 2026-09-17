@@ -23,22 +23,6 @@ export function createQuestions(templates: QuestionTemplates) {
   }
   const statusQuestion = (meaning: string, source: string) =>
     authoredQuestion('presence', { meaning, source })
-  const spanQuestion = (
-    meaning: string,
-    candidates: Record<string, string>,
-    source = 'current answer'
-  ) =>
-    authoredQuestion(
-      'span',
-      { meaning, source },
-      {
-        ...candidates,
-        none:
-          (templates.questions.span.type === 'choice'
-            ? templates.questions.span.criteria.none
-            : null) ?? 'Unsupported'
-      }
-    )
   const rubricQuestions = (rubric: Rubric, source: string) =>
     Object.fromEntries(
       rubric.dimensions.map((d) => [
@@ -49,7 +33,6 @@ export function createQuestions(templates: QuestionTemplates) {
   return {
     authoredQuestion,
     statusQuestion,
-    spanQuestion,
     rubricQuestions,
     dispositionQuestion: authoredQuestion('disposition')
   }

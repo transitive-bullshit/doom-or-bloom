@@ -12,7 +12,13 @@ import type {
   Question,
   VectorId
 } from '@/lib/assessment/schema'
-import { limits, vectorIds, worldviewIds } from '@/lib/assessment/schema'
+import {
+  limits,
+  vectorIds,
+  worldviewIds,
+  supportedAssessmentVersions,
+  versions
+} from '@/lib/assessment/schema'
 import {
   acceptAnswer,
   atCap,
@@ -21,8 +27,7 @@ import {
   eligible,
   hasAnswered,
   issuePrompt,
-  recordDisposition,
-  segmentAnswer
+  recordDisposition
 } from '@/lib/assessment/state'
 import { candidatePrompts, rankCandidates } from '@/lib/assessment/routing'
 import {
@@ -37,6 +42,7 @@ import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
 import { referenceMetadata, referencePolicy } from './reference-input'
 import { timelineContext } from '@/lib/assessment/timeline'
+import { participantQuestionPolicy } from '@/lib/assessment/prompt-policy'
 import { selectPresentation } from '@/lib/assessment/presentation'
 import { createQuestions } from './questions'
 
@@ -87,11 +93,6 @@ function catastrophicEvidence(state: Assessment) {
     (e) => e.vector === 'risk_landscape' && eligibleAnswers.has(e.answerId)
   )
 }
-function evidenceText(state: Assessment, evidenceId: string) {
-  const e = state.evidence.find((entry) => entry.id === evidenceId)
-  const a = state.answers.find((answer) => answer.id === e?.answerId)
-  return a?.spans.find((span) => span.id === e?.spanId)?.text ?? ''
-}
 function clarificationText(label: string, claim: string | null) {
   return `Our read of ${label.toLowerCase()} was: “${claim}” What would you change about that interpretation?`
 }
@@ -99,7 +100,7 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
   if (
     state.versions.content !== bundle.manifest.contentVersion ||
     state.versions.rubric !== bundle.manifest.rubricVersion ||
-    state.versions.assessment !== bundle.manifest.assessmentVersion
+    !supportedAssessmentVersions.includes(state.versions.assessment)
   )
     throw new Error(
       'This saved assessment uses an unavailable version. Export it or restart.'
@@ -149,15 +150,10 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
     )
       throw new Error('Invalid answer history')
     answered.add(answer.promptInstanceId)
-    for (const span of answer.spans)
-      if (answer.text.slice(span.start, span.end) !== span.text)
-        throw new Error('Invalid evidence offsets')
   }
   for (const e of state.evidence)
     if (
-      !state.answers.some(
-        (a) => a.id === e.answerId && a.spans.some((s) => s.id === e.spanId)
-      ) ||
+      !state.answers.some((a) => a.id === e.answerId) ||
       [...e.referenceIds, ...e.contextReferenceIds].some(
         (id) => !bundle.references.some((r) => r.id === id)
       )
@@ -166,10 +162,7 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
   for (const claim of state.referenceClaims)
     if (
       !bundle.references.some((r) => r.id === claim.referenceId) ||
-      !state.answers.some(
-        (a) =>
-          a.id === claim.answerId && a.spans.some((s) => s.id === claim.spanId)
-      )
+      !state.answers.some((a) => a.id === claim.answerId)
     )
       throw new Error('Invalid reference claim provenance')
   const count = state.attempts.filter(
@@ -190,11 +183,11 @@ export async function runAssessment(
     authoredQuestion,
     dispositionQuestion,
     rubricQuestions,
-    spanQuestion,
     statusQuestion
   } = createQuestions(bundle.questionTemplates)
   let state = structuredClone(request.assessment)
   validateSnapshot(state, bundle)
+  state.versions = { ...state.versions, assessment: versions.assessment }
   const baseRevision = state.revision
   const started = performance.now()
   const trace: DebugTrace = {
@@ -222,7 +215,8 @@ export async function runAssessment(
       input,
       questions,
       operationSignal,
-      remainingAttempts
+      remainingAttempts,
+      debugEnabled && request.debug
     )
     remainingAttempts -= result.attempts
     if (remainingAttempts < 0)
@@ -243,6 +237,7 @@ export async function runAssessment(
       usage: result.usage,
       attempts: result.attempts
     }
+    if (result.requests) stage.requests = result.requests
     trace.stages.push(stage)
     if (provider.kind === 'live' && result.model !== state.versions.model)
       throw new Error(
@@ -322,12 +317,13 @@ export async function runAssessment(
       }
       const input = {
         participantEvidence: usableHistory(state),
+        questionPolicy: participantQuestionPolicy,
         coverage: state.coverage,
         unresolved: state.unresolved,
         familiarity: state.familiarity.level,
         calibrationGaps: {
-          horizon: !state.answers.some((a) => a.context?.horizonSpanId),
-          conviction: !state.answers.some((a) => a.context?.convictionSpanId)
+          horizon: timelineContext(state) === null,
+          conviction: !state.answers.some((a) => a.hasConviction)
         },
         candidates: eligibleCandidates.map((c) => ({
           id: c.prompt.id,
@@ -409,16 +405,6 @@ export async function runAssessment(
           questions[`${dimension.id}:position`] = authoredQuestion('position', {
             meaning: dimension.meaning
           })
-        const candidates = Object.fromEntries(
-          activeEvidence(state)
-            .filter((e) => e.vector === dimension.id)
-            .map((e) => [e.id, evidenceText(state, e.id)])
-        )
-        questions[`${dimension.id}:evidence`] = spanQuestion(
-          dimension.meaning,
-          candidates,
-          'the exact active source excerpts supplied as choices'
-        )
       }
       const catastrophe = bundle.rubric.catastrophicRisk
       questions['catastrophic_risk:status'] = statusQuestion(
@@ -433,30 +419,11 @@ export async function runAssessment(
         { meaning: catastrophe.meaning },
         catastrophe.levels
       )
-      questions['catastrophic_risk:evidence'] = spanQuestion(
-        catastrophe.meaning,
-        Object.fromEntries(
-          catastrophicEvidence(state).map((e) => [
-            e.id,
-            evidenceText(state, e.id)
-          ])
-        ),
-        'the exact active source excerpts supplied as choices'
-      )
-      const compact = projectionInput(state, bundle, questions)
-      trace.decisions.push({
-        action: 'lossless projection source aliases',
-        detail: compact.aliases
-      })
-      const rawEvaluation = await evaluate(
+      const evaluation = await evaluate(
         'D: projection',
-        compact.input,
-        compact.providerQuestions
+        projectionInput(state, bundle),
+        questions
       )
-      const evaluation = {
-        ...rawEvaluation,
-        answers: compact.restore(rawEvaluation.answers)
-      }
       addJudgments(
         'project',
         `result:${state.evidenceRevision}`,
@@ -466,17 +433,26 @@ export async function runAssessment(
       )
       components = bundle.rubric.dimensions.map((dimension) => {
         const score = evaluation.answers[`${dimension.id}:score`]
-        const evidenceId = choice(
-          evaluation.answers[`${dimension.id}:evidence`]
-        )
+        const evidenceIds = activeEvidence(state)
+          .filter(
+            (entry) =>
+              entry.vector === dimension.id &&
+              !(
+                dimension.id === 'risk_landscape' &&
+                state.answers.some(
+                  (answer) =>
+                    answer.id === entry.answerId &&
+                    answer.correctionClaimTarget === 'catastrophic_risk'
+                )
+              )
+          )
+          .map((entry) => entry.id)
         if (
           !supported(
             evaluation.answers[`${dimension.id}:status`],
             bundle.rubric.presenceThreshold
           ) ||
-          !evidenceId ||
-          evidenceId === 'none' ||
-          !activeEvidence(state).some((e) => e.id === evidenceId) ||
+          !evidenceIds.length ||
           score?.type !== 'score' ||
           (worldviewIds.includes(
             dimension.id as (typeof worldviewIds)[number]
@@ -501,12 +477,12 @@ export async function runAssessment(
               ],
           distribution: score.probabilities,
           confidence: score.confidence,
-          evidenceIds: [evidenceId],
+          evidenceIds,
           claim: dimension.levels[Math.round(score.score)]!
         }
       })
       const score = evaluation.answers['catastrophic_risk:score']
-      const sourceId = choice(evaluation.answers['catastrophic_risk:evidence'])
+      const sourceIds = catastrophicEvidence(state).map((entry) => entry.id)
       const fingerprintRisk =
         supported(
           evaluation.answers['catastrophic_risk:status'],
@@ -515,8 +491,7 @@ export async function runAssessment(
         choice(evaluation.answers['catastrophic_risk:position']) ===
           'assessable' &&
         score?.type === 'score' &&
-        sourceId &&
-        catastrophicEvidence(state).some((e) => e.id === sourceId)
+        sourceIds.length > 0
           ? {
               vector: 'catastrophic_risk',
               label: catastrophe.label,
@@ -537,7 +512,7 @@ export async function runAssessment(
                   ] as [number, number]),
               distribution: score.probabilities,
               confidence: score.confidence,
-              evidenceIds: [sourceId],
+              evidenceIds: sourceIds,
               claim: catastrophe.levels[Math.round(score.score)]!
             }
           : emptyComponent('catastrophic_risk', catastrophe.label)
@@ -556,12 +531,14 @@ export async function runAssessment(
     result.fingerprint = [
       {
         ...emptyComponent('timeline', 'Timeline'),
-        claim: horizon?.span.text ?? null,
+        claim: horizon
+          ? `Timing expressed in answer ${state.answers.indexOf(horizon) + 1}; see the full answer for its scope and uncertainty.`
+          : null,
         evidenceIds: horizon
           ? activeEvidence(state)
               .filter(
                 (e) =>
-                  e.answerId === horizon.answer.id &&
+                  e.answerId === horizon.id &&
                   e.vector === 'capability_trajectory'
               )
               .map((e) => e.id)
@@ -619,8 +596,6 @@ export async function runAssessment(
       throw new Error('Choose a recovery action before answering this prompt')
     const p = currentPrompt(state)
     const answerId = `${p.id}:a`
-    const spans = segmentAnswer(op.text, answerId)
-    const candidates = Object.fromEntries(spans.map((s) => [s.id, s.text]))
     const questions: StageQuestions = {}
     questions.disposition = dispositionQuestion
     questions.familiarity = authoredQuestion('familiarity')
@@ -630,20 +605,9 @@ export async function runAssessment(
         dimension.meaning,
         '`current.answer` in the context of usableHistory'
       )
-      questions[`${dimension.id}:span`] = spanQuestion(
-        dimension.meaning,
-        candidates
-      )
     }
-    for (const [key, meaning] of [
-      ['horizon', 'an explicitly expressed forecast horizon or milestone'],
-      [
-        'conviction',
-        'an explicitly expressed strength of the participant’s own belief'
-      ],
-      ['assumption', 'an explicitly expressed consequential assumption']
-    ] as const)
-      questions[key] = spanQuestion(meaning, candidates)
+    questions.horizon = authoredQuestion('horizon')
+    questions.conviction = authoredQuestion('conviction')
     const tensionTemplate = authoredQuestion('tension')
     if (tensionTemplate.type !== 'choice')
       throw new Error('Invalid tension template')
@@ -658,7 +622,7 @@ export async function runAssessment(
       }
     )
     const input = {
-      current: { prompt: p.text, answer: op.text, spans },
+      current: { id: answerId, prompt: p.text, answer: op.text },
       usableHistory: usableHistory(state).slice(-5),
       clarificationTarget: p.claimTarget ?? p.target ?? null
     }
@@ -696,18 +660,15 @@ export async function runAssessment(
         promptInstanceId: p.id,
         promptText: p.text,
         text: op.text,
-        spans,
         substantive: true,
         correctionTarget: p.target,
         correctionClaimTarget: p.claimTarget,
-        context: Object.fromEntries(
-          ['horizon', 'conviction', 'assumption'].map((key) => [
-            `${key}SpanId`,
-            spans.some((s) => s.id === choice(evaluation.answers[key]))
-              ? choice(evaluation.answers[key])
-              : null
-          ])
-        ) as NonNullable<Answer['context']>
+        hasHorizon:
+          evaluation.answers.horizon?.type === 'noul' &&
+          evaluation.answers.horizon.noul >= bundle.rubric.presenceThreshold,
+        hasConviction:
+          evaluation.answers.conviction?.type === 'noul' &&
+          evaluation.answers.conviction.noul >= bundle.rubric.presenceThreshold
       }
       state = acceptAnswer(state, answer)
       const judgments = addJudgments(
@@ -740,34 +701,17 @@ export async function runAssessment(
       }
       for (const dimension of bundle.rubric.dimensions) {
         const status = evaluation.answers[`${dimension.id}:status`]
-        const spanId = choice(evaluation.answers[`${dimension.id}:span`])
-        if (
-          supported(status, bundle.rubric.presenceThreshold) &&
-          spans.some((s) => s.id === spanId)
-        ) {
+        if (supported(status, bundle.rubric.presenceThreshold)) {
           state.evidence.push({
             id: `${answerId}:e:${dimension.id}`,
             answerId,
-            spanId: spanId!,
             vector: dimension.id,
             status: choice(status) === 'stated' ? 'stated' : 'strongly_implied',
             judgmentIds: judgments
               .filter((j) => j.questionId.startsWith(dimension.id))
               .map((j) => j.id),
             referenceIds: [],
-            contextReferenceIds: [],
-            horizonSpanId:
-              choice(evaluation.answers.horizon) === 'none'
-                ? null
-                : choice(evaluation.answers.horizon),
-            convictionSpanId:
-              choice(evaluation.answers.conviction) === 'none'
-                ? null
-                : choice(evaluation.answers.conviction),
-            assumptionSpanId:
-              choice(evaluation.answers.assumption) === 'none'
-                ? null
-                : choice(evaluation.answers.assumption)
+            contextReferenceIds: []
           })
           state.coverage[dimension.id] = 'assessed'
         } else if (
@@ -826,7 +770,7 @@ export async function runAssessment(
         const identity = await evaluate(
           'B1: identify references',
           {
-            currentAnswer: op.text,
+            current: { id: answerId, prompt: p.text, answer: op.text },
             referencePolicy,
             candidates: references.map(({ reference }) => ({
               id: reference.id,
@@ -864,10 +808,6 @@ export async function runAssessment(
         if (selected.length) {
           const groundQuestions: StageQuestions = {}
           for (const { reference } of selected) {
-            groundQuestions[`${reference.id}:span`] = spanQuestion(
-              `the participant's claim invoking ${reference.title}`,
-              candidates
-            )
             for (const check of [
               'attribution',
               'fit',
@@ -882,8 +822,7 @@ export async function runAssessment(
           const grounding = await evaluate(
             'B2: grounded claims',
             {
-              currentAnswer: op.text,
-              spans,
+              current: { id: answerId, prompt: p.text, answer: op.text },
               referencePolicy,
               canonicalSummaries: selected.map(({ reference }) => ({
                 id: reference.id,
@@ -902,39 +841,32 @@ export async function runAssessment(
             grounding.model
           )
           for (const { reference } of selected) {
-            const spanId = choice(grounding.answers[`${reference.id}:span`])
-            if (spanId && spans.some((s) => s.id === spanId))
-              state.referenceClaims.push({
-                id: `${answerId}:ref:${reference.id}`,
-                answerId,
-                spanId,
-                referenceId: reference.id,
-                ...(Object.fromEntries(
-                  ['attribution', 'fit', 'uncertainty', 'materiality'].map(
-                    (key) => [
-                      key,
-                      choice(grounding.answers[`${reference.id}:${key}`]) ??
-                        'unclear'
-                    ]
-                  )
-                ) as Pick<
-                  Assessment['referenceClaims'][number],
-                  'attribution' | 'fit' | 'uncertainty' | 'materiality'
-                >),
-                judgmentIds: groundJudgments
-                  .filter((j) => j.questionId.startsWith(`${reference.id}:`))
-                  .map((j) => j.id)
-              })
+            state.referenceClaims.push({
+              id: `${answerId}:ref:${reference.id}`,
+              answerId,
+              referenceId: reference.id,
+              ...(Object.fromEntries(
+                ['attribution', 'fit', 'uncertainty', 'materiality'].map(
+                  (key) => [
+                    key,
+                    choice(grounding.answers[`${reference.id}:${key}`]) ??
+                      'unclear'
+                  ]
+                )
+              ) as Pick<
+                Assessment['referenceClaims'][number],
+                'attribution' | 'fit' | 'uncertainty' | 'materiality'
+              >),
+              judgmentIds: groundJudgments
+                .filter((j) => j.questionId.startsWith(`${reference.id}:`))
+                .map((j) => j.id)
+            })
           }
           for (const e of state.evidence.filter(
             (item) => item.answerId === answerId
           )) {
-            e.referenceIds = selected
-              .filter(
-                ({ reference }) =>
-                  choice(grounding.answers[`${reference.id}:span`]) === e.spanId
-              )
-              .map(({ reference }) => reference.id)
+            // References belong to the answer, not to a claimed exact passage.
+            e.referenceIds = selected.map(({ reference }) => reference.id)
             e.judgmentIds.push(
               ...groundJudgments
                 .filter((j) =>

@@ -25,7 +25,8 @@ test('conversation preserves question order, earlier replies and exact accepted 
     promptInstanceId: first.id,
     promptText: first.text,
     text: 'The complete answer.\nIncluding another line.',
-    spans: [],
+    hasHorizon: false,
+    hasConviction: false,
     substantive: true
   })
   state = issuePrompt(state, {

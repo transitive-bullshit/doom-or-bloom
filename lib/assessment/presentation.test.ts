@@ -37,7 +37,6 @@ test('resource ordering favors references actually discussed and diversifies aut
   state.referenceClaims.push({
     id: 'claim',
     answerId: 'a',
-    spanId: 's',
     referenceId: 'report.openai-misalignment-reporting-framework-2026',
     attribution: 'yes',
     fit: 'yes',

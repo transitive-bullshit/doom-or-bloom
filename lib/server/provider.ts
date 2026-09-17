@@ -1,9 +1,14 @@
-import type { ModelAnswer, Question } from '@/lib/assessment/schema'
+import type {
+  DebugRequest,
+  ModelAnswer,
+  Question
+} from '@/lib/assessment/schema'
 export type Evaluation = {
   model: string
   answers: Record<string, ModelAnswer>
   usage: { input_tokens: number; output_tokens: number }
   attempts: number
+  requests?: DebugRequest[]
 }
 export interface Provider {
   kind: 'live' | 'fixture'
@@ -11,7 +16,8 @@ export interface Provider {
     state: unknown,
     questions: Record<string, Question>,
     signal?: AbortSignal,
-    attemptBudget?: number
+    attemptBudget?: number,
+    captureDebug?: boolean
   ): Promise<Evaluation>
 }
 
@@ -65,13 +71,9 @@ export function createFixtureProvider(): Provider {
       answers: Object.fromEntries(
         Object.entries(questions).map(([id, question]) => [
           id,
-          fixtureAnswer(
-            question,
-            question.type === 'choice' &&
-              (id.endsWith(':span') || id.endsWith(':evidence'))
-              ? Object.keys(question.criteria).find((key) => key !== 'none')
-              : undefined
-          )
+          ['horizon', 'conviction'].includes(id) && question.type === 'noul'
+            ? { type: 'noul', noul: 0 }
+            : fixtureAnswer(question)
         ])
       )
     })

@@ -20,6 +20,10 @@
   --input: var(--border);
   --ring: oklch(0.55 0.05 140);
   --radius: 0.75rem;
+  --json-key: oklch(0.43 0.13 250);
+  --json-string: oklch(0.4 0.11 155);
+  --json-number: oklch(0.46 0.12 55);
+  --json-boolean: oklch(0.43 0.16 300);
 }
 .dark {
   --background: oklch(0.17 0.006 90);
@@ -35,6 +39,10 @@
   --border: oklch(0.34 0.006 90);
   --input: var(--border);
   --ring: oklch(0.65 0.05 140);
+  --json-key: oklch(0.78 0.1 250);
+  --json-string: oklch(0.8 0.1 155);
+  --json-number: oklch(0.82 0.1 55);
+  --json-boolean: oklch(0.79 0.12 300);
 }
 @theme inline {
   --color-background: var(--background);
@@ -79,6 +87,21 @@
 }
 .paperclip-effect {
   animation: paperclips-appear 2.4s ease-out both;
+}
+[data-json-token='key'] {
+  color: var(--json-key);
+}
+[data-json-token='string'] {
+  color: var(--json-string);
+}
+[data-json-token='number'] {
+  color: var(--json-number);
+}
+[data-json-token='boolean'] {
+  color: var(--json-boolean);
+}
+[data-json-token='null'] {
+  color: var(--muted-foreground);
 }
 @keyframes paperclips-appear {
   from {

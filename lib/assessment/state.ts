@@ -6,7 +6,7 @@ export function createAssessment(
   model = versions.model
 ): Assessment {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     id,
     revision: 0,
     evidenceRevision: 0,
@@ -174,21 +174,4 @@ export function matchesResponse(
     state.revision === response.baseRevision &&
     response.requestId === activeRequestId
   )
-}
-export function segmentAnswer(text: string, id: string): Answer['spans'] {
-  const spans: Answer['spans'] = []
-  for (const match of text.matchAll(/[^.!?\n]+(?:[.!?]+|$)/g)) {
-    const start = match.index
-    const end = start + match[0].length
-    if (match[0].trim())
-      spans.push({
-        id: `${id}:s${spans.length}`,
-        start,
-        end,
-        text: text.slice(start, end)
-      })
-  }
-  return spans.length > 0 && spans.length <= 80
-    ? spans
-    : [{ id: `${id}:s0`, start: 0, end: text.length, text }]
 }

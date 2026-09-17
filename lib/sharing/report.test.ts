@@ -20,12 +20,8 @@ test('expanded reports preserve usable evidence while excluding local rejected t
     promptText: state.prompts[0]!.text,
     text,
     substantive: true,
-    spans: [{ id: 's', start: 0, end: text.length, text }],
-    context: {
-      horizonSpanId: null,
-      convictionSpanId: null,
-      assumptionSpanId: 's'
-    }
+    hasHorizon: false,
+    hasConviction: false
   })
   state.result = baseResult(
     state,
@@ -46,6 +42,6 @@ test('expanded reports preserve usable evidence while excluding local rejected t
     expect(artifact).not.toContain('PRIVATE_REJECTED_CANARY')
     expect(artifact).not.toContain('interactionHistory')
   }
-  expect(report.markdown).toContain('Expressed assumption')
+  expect(report.markdown).toContain('Complete usable answers')
   expect(JSON.parse(report.json).versions).toEqual(state.versions)
 })

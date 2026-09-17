@@ -147,17 +147,16 @@ test('eight answered prompts preserve the full transcript and bound reference gr
   expect(projection).toBeDefined()
   expect(projection.state).toEqual(
     expect.objectContaining({
-      completeParticipantEvidence: state.answers.map((answer, i) => ({
-        id: `a${i}`,
+      completeParticipantEvidence: state.answers.map((answer) => ({
+        id: answer.id,
         prompt: answer.promptText,
         answer: answer.text,
         correctionTarget: null
       })),
       referenceContext: bundle.references
         .filter((reference) => groundedIds.has(reference.id))
-        .map((reference, i) => ({
-          id: `r${i}`,
-          canonicalId: reference.id,
+        .map((reference) => ({
+          id: reference.id,
           title: reference.title,
           kind: reference.kind,
           date: reference.date,

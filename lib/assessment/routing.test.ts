@@ -42,3 +42,43 @@ test('familiarity gates specialist wording while early missing horizons retain i
     )?.reason
   ).toBeNull()
 })
+
+test('retired questions are excluded for every saved corpus and confidence questions require a timing premise', () => {
+  const retired = [
+    'grounding.source',
+    'tension.general',
+    'control.failuremode',
+    'crux.test'
+  ]
+  for (const version of ['0.2.0-draft', '0.3.0-draft', '0.4.0-draft']) {
+    const bundle = loadBundle(version)
+    const state = createAssessment(`policy-${version}`)
+    state.familiarity.level = 'expert'
+    for (const vector of Object.keys(state.coverage))
+      state.coverage[vector as keyof typeof state.coverage] = 'assessed'
+    const candidates = candidatePrompts(state, bundle.prompts)
+    for (const id of retired)
+      expect(
+        candidates.find((candidate) => candidate.prompt.id === id)?.reason
+      ).toMatch(/^Retired/)
+    expect(
+      candidates.find(
+        (candidate) => candidate.prompt.id === 'conviction.general'
+      )?.reason
+    ).toBe('timing premise not established')
+    state.answers.push({
+      id: 'timing-answer',
+      promptInstanceId: state.prompts[0]!.id,
+      promptText: state.prompts[0]!.text,
+      text: 'I expect this within ten years.',
+      substantive: true,
+      hasHorizon: true,
+      hasConviction: false
+    })
+    const timing = candidatePrompts(state, bundle.prompts).find(
+      (candidate) => candidate.prompt.id === 'conviction.general'
+    )!
+    expect(timing.reason).toBeNull()
+    expect(timing.missing).toBe(1)
+  }
+})
