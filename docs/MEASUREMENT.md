@@ -3,7 +3,8 @@
 ## Privacy posture
 
 - No account, email, hosted assessment database, or cross-device profile.
-- One local assessment record per browser.
+- One local assessment record per browser. When debug mode records an operation, retain its allowlisted Jev request/response diagnostics separately in browser IndexedDB, including answer text in shared state. Restore history on refresh; clear it on restart. No diagnostics enter analytics, reports or remote persistence.
+- Internal `/questions` and `/corpus` tools disable page analytics and make no Jev calls. Explicitly saved editorial feedback is written locally to `content/feedback/` with asset metadata; do not send participant transcripts there automatically.
 - A random assessment identifier links anonymous events across resumed visits and rotates on restart.
 - Do not send raw answers, answer excerpts, full reports, query strings, or free-form clarification text to analytics.
 - Do not enable session replay, heatmaps, autocapture, automatic exception payloads, or person profiles for MVP.

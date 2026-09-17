@@ -27,9 +27,12 @@ export default function Privacy() {
       <p>
         Rejected answers are excluded from later scoring context and reports.
         Clearly marked local debugging details can include your submitted text
-        and typed judgments. Do not share screenshots of those details if they
-        contain private information. Avoid entering sensitive personal
-        information.
+        and typed judgments. When debug mode is enabled, completed operation
+        requests and responses are saved separately in this browser and survive
+        refresh. Restart clears that assessment's debug history. They are
+        excluded from reports and analytics. Do not share screenshots of those
+        details if they contain private information. Avoid entering sensitive
+        personal information.
       </p>
       <h2 className='text-lg font-medium'>Optional measurement</h2>
       <p>

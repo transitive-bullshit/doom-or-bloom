@@ -33,3 +33,5 @@ The [revised editorial packet](current-context-review-packet.md) records approve
 The [participant prompt audit](prompt-quality-review.md) records demo feedback, four retired questions and remaining context/wording risks across the complete 34-entry catalog. Future routing excludes retired IDs; historical instances remain readable.
 
 The working name deliberately emphasizes the provocative Doom/Bloom contrast. This framing trade-off belongs in methodology documentation and evaluation; it must not become a forced binary classification.
+
+[Local debugging guide](local-debugging.md) covers persisted Jev exchanges, the development-only `/questions` and `/corpus` review tools, and versioned feedback stored in the project.

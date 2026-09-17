@@ -148,7 +148,7 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   await page.getByRole('button', { name: 'View my result' }).click()
   await expect(
     page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeFocused()
+  ).toBeVisible()
   await expect(
     page.getByRole('article', { name: 'Question 1 and replies', exact: true })
   ).toContainText('Relevant synthetic answer 0.')

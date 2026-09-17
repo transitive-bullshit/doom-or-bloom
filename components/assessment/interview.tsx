@@ -1,5 +1,11 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import {
+  clearDebugOperations,
+  loadDebugOperations,
+  saveDebugOperation
+} from '@/lib/debug/trace-storage'
+import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import type {
   Assessment,
   AssessmentResponse,
@@ -12,6 +18,7 @@ import {
   supportedContentVersions,
   versions
 } from '@/lib/assessment/schema'
+import { retiredPromptReason } from '@/lib/assessment/prompt-policy'
 import {
   canSubmit,
   createAssessment,
@@ -87,6 +94,10 @@ export function Interview({
   const [conflict, setConflict] = useState(false)
   const [debugMode, setDebugMode] = useState(debugDefault)
   const [trace, setTrace] = useState<DebugTrace>()
+  const [debugOperations, setDebugOperations] = useState<SavedDebugOperation[]>(
+    []
+  )
+  const [debugStorageNotice, setDebugStorageNotice] = useState('')
   const [rawBackup, setRawBackup] = useState<string>()
   const [fixture, setFixture] = useState(fixtureMode)
   const current = useRef<Assessment | null>(null)
@@ -177,9 +188,34 @@ export function Interview({
     }
   }, [model])
   useEffect(() => {
-    if (!busy)
-      document.querySelector<HTMLElement>('[data-focus-target]')?.focus()
-  }, [state?.prompts.length, state?.status, busy])
+    if (!state?.id || !debugMode) return
+    let disposed = false
+    const assessmentId = state.id
+    void loadDebugOperations(assessmentId)
+      .then((saved) => {
+        if (disposed) return
+        setDebugOperations((present) =>
+          Array.from(
+            new Map(
+              [...saved, ...present].map((entry) => [
+                entry.trace.requestId,
+                entry
+              ])
+            ).values()
+          ).sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+        )
+        setTrace((present) => present ?? saved.at(-1)?.trace)
+      })
+      .catch(() => {
+        if (!disposed)
+          setDebugStorageNotice(
+            'Saved debug details could not be loaded. Your assessment progress is separate.'
+          )
+      })
+    return () => {
+      disposed = true
+    }
+  }, [state?.id, debugMode])
   async function act(operation: Operation) {
     if (!current.current || pending.current || conflict || rawBackup) return
     const snapshot = current.current
@@ -229,11 +265,55 @@ export function Interview({
         operation,
         id
       )
+      let recorded: SavedDebugOperation[] | undefined
+      let debugNotice = ''
+      const operationTrace: SavedDebugOperation | undefined = body.debug
+        ? {
+            trace: body.debug,
+            provider: body.provider,
+            createdAt: new Date().toISOString()
+          }
+        : undefined
+      if (operationTrace) {
+        try {
+          recorded = await saveDebugOperation(next.id, operationTrace)
+        } catch {
+          debugNotice =
+            'Debug details could not be saved in this browser. Your assessment progress is still saved separately.'
+        }
+      }
+      // Restart/tab conflicts can occur while the debug transaction is finishing.
+      if (
+        !current.current ||
+        !matchesResponse(current.current, body, pending.current?.id ?? '')
+      ) {
+        if (operationTrace && current.current?.id !== next.id)
+          void clearDebugOperations(next.id).catch(() =>
+            setDebugStorageNotice(
+              'The previous debug history could not be cleared.'
+            )
+          )
+        return
+      }
       uncertain.current = null
       const events = transitionEvents(snapshot, next, operation, id)
       persist(next)
       events.forEach(emitEvent)
-      setTrace(body.debug)
+      if (operationTrace) {
+        setTrace(operationTrace.trace)
+        setDebugOperations(
+          (present) =>
+            recorded ??
+            [
+              ...present.filter(
+                (entry) =>
+                  entry.trace.requestId !== operationTrace.trace.requestId
+              ),
+              operationTrace
+            ].slice(-64)
+        )
+        setDebugStorageNotice(debugNotice)
+      }
       setFixture(body.provider === 'fixture')
     } catch (err) {
       if (!controller.signal.aborted)
@@ -250,6 +330,15 @@ export function Interview({
     }
   }
   function restart() {
+    const previousId = current.current?.id
+    if (previousId)
+      void clearDebugOperations(previousId).catch(() =>
+        setDebugStorageNotice(
+          'The previous debug history could not be cleared.'
+        )
+      )
+    setDebugOperations([])
+    setDebugStorageNotice('')
     if (current.current)
       emitEvent(makeEvent(current.current, 'assessment_restarted'))
     pending.current?.controller.abort()
@@ -279,6 +368,7 @@ export function Interview({
   const showResult =
     state.result && ['results', 'completed', 'capped'].includes(state.status)
   const guidance = recoveryCopy[p.promptId] ?? recoveryCopy.root!
+  const retiredQuestion = retiredPromptReason(p.promptId)
   const paused = state.status === 'paused'
   const allowed = canSubmit(state) && !busy && !conflict && !rawBackup
   const excessCharacters = Math.max(0, state.draft.length - limits.answerChars)
@@ -361,15 +451,20 @@ export function Interview({
                     ? 'Map your AI worldview in three questions.'
                     : `${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
                 </p>
-                <h1
-                  tabIndex={-1}
-                  data-focus-target
-                  className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'
-                >
+                <h1 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
                   {p.text}
                 </h1>
               </div>
               <ConversationReplies turn={currentTurn} />
+              {retiredQuestion && (
+                <Alert>
+                  <AlertTitle>This question has been retired</AlertTitle>
+                  <AlertDescription>
+                    Your history and draft are preserved. Choose a different
+                    question below to continue.
+                  </AlertDescription>
+                </Alert>
+              )}
               {p.ordinal >= limits.warning && (
                 <Alert>
                   <AlertTitle>Approaching the limit</AlertTitle>
@@ -490,7 +585,9 @@ export function Interview({
                         </Button>
                       )}
                       {state.prompts.length < limits.prompts &&
-                        (paused || state.status === 'recovery') && (
+                        (paused ||
+                          state.status === 'recovery' ||
+                          retiredQuestion) && (
                           <Button
                             type='button'
                             disabled={busy || conflict}
@@ -573,6 +670,9 @@ export function Interview({
           {debugMode && (
             <DebugPanel
               trace={trace}
+              operations={debugOperations}
+              onSelectTrace={setTrace}
+              storageNotice={debugStorageNotice}
               assessment={state}
               provider={fixture ? 'fixture' : 'live'}
             />

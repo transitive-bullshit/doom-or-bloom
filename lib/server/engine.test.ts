@@ -40,6 +40,61 @@ function nonAnswerProvider(disposition = 'non_answer'): Provider {
     }
   }
 }
+test('placeholders and an explicit paperclip request use bounded local recovery with no provider calls', async () => {
+  const noInference: Provider = {
+    kind: 'live',
+    evaluate: async () => {
+      throw new Error('No inference for exact workflow phrases')
+    }
+  }
+  const original = createAssessment('paperclip-local')
+  const first = await run(
+    original,
+    { type: 'answer', text: 'test' },
+    noInference,
+    true
+  )
+  expect(first.assessment.recovery.clearMisses).toBe(1)
+  expect(first.assessment.status).toBe('recovery')
+  const second = await run(
+    first.assessment,
+    { type: 'answer', text: 'Test again!' },
+    noInference,
+    true
+  )
+  expect(second.assessment.recovery).toMatchObject({
+    evaluated: 2,
+    clearMisses: 2,
+    paperclipShown: true,
+    paperclipActive: true
+  })
+  expect(second.debug?.stages).toEqual([])
+  expect(second.assessment.answers).toEqual([])
+  expect(second.assessment.evidence).toEqual([])
+  const explicit = await run(
+    original,
+    { type: 'answer', text: 'show me paperclips' },
+    noInference,
+    true
+  )
+  expect(explicit.assessment.status).toBe('paused')
+  expect(explicit.assessment.recovery.paperclipActive).toBe(true)
+  const resumed = await run(second.assessment, { type: 'retry' }, noInference)
+  const third = await run(
+    resumed.assessment,
+    { type: 'answer', text: 'show me paperclips' },
+    noInference
+  )
+  expect(third.assessment.recovery).toMatchObject({
+    evaluated: 3,
+    paperclipShown: true,
+    paperclipActive: false,
+    reason: 'exhausted'
+  })
+  await expect(
+    run(third.assessment, { type: 'answer', text: 'test' }, noInference)
+  ).rejects.toThrow('Choose a recovery action')
+})
 test('three-answer path, reusable results and debug parity', async () => {
   let state = createAssessment('fixture')
   for (let i = 0; i < 3; i++)

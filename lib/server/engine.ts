@@ -1,4 +1,5 @@
 import 'server-only'
+import { classifyLocalReply } from '@/lib/assessment/local-reply'
 import type {
   Answer,
   Assessment,
@@ -626,8 +627,13 @@ export async function runAssessment(
       usableHistory: usableHistory(state).slice(-5),
       clarificationTarget: p.claimTarget ?? p.target ?? null
     }
-    const evaluation = await evaluate('A: interpret', input, questions)
-    const disposition = choice(evaluation.answers.disposition)
+    const localReply = classifyLocalReply(op.text)
+    const evaluation = localReply
+      ? null
+      : await evaluate('A: interpret', input, questions)
+    const disposition = localReply
+      ? 'non_answer'
+      : choice(evaluation!.answers.disposition)
     if (
       !['usable', 'non_answer', 'navigation', 'needs_clarification'].includes(
         disposition ?? ''
@@ -641,20 +647,30 @@ export async function runAssessment(
         | 'non_answer'
         | 'navigation'
         | 'needs_clarification',
-      confidence(evaluation.answers.disposition),
+      localReply ? 1 : confidence(evaluation!.answers.disposition),
       request.requestId,
       bundle.rubric.nonAnswerThreshold
     )
+    if (localReply === 'paperclip_request' && !state.recovery.paperclipShown) {
+      state.status = 'paused'
+      state.recovery.paperclipShown = true
+      state.recovery.paperclipActive = true
+    }
     trace.decisions.push({
       action: 'response disposition and recovery gate',
       detail: {
-        raw: evaluation.answers.disposition,
+        source: localReply
+          ? 'local exact-phrase policy; no Jev request'
+          : 'Jev disposition',
+        localReply,
+        raw: evaluation?.answers.disposition ?? null,
         threshold: bundle.rubric.nonAnswerThreshold,
         recovery: state.recovery,
         consumed: state.attempts.at(-1)?.disposition
       }
     })
     if (state.attempts.at(-1)?.disposition === 'usable') {
+      if (!evaluation) throw new Error('Missing usable answer evaluation')
       const answer: Answer = {
         id: answerId,
         promptInstanceId: p.id,
@@ -914,7 +930,7 @@ export async function runAssessment(
     } else {
       trace.decisions.push({
         action: 'speculative profile judgments discarded; later stages skipped',
-        detail: Object.keys(evaluation.answers).filter(
+        detail: Object.keys(evaluation?.answers ?? {}).filter(
           (id) => id !== 'disposition'
         )
       })

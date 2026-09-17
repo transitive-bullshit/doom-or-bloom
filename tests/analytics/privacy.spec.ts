@@ -9,6 +9,38 @@ import {
 } from '../../lib/assessment/state'
 import { storageKey } from '../../lib/persistence/storage'
 
+test('internal editorial pages initialize no analytics or inference even when analytics is enabled', async ({
+  page,
+  baseURL
+}) => {
+  const external: string[] = []
+  const inference: string[] = []
+  await page.route('**/*', async (route) => {
+    const url = new URL(route.request().url())
+    if (url.origin !== new URL(baseURL!).origin) {
+      external.push(url.hostname)
+      return route.fulfill({ status: 200, body: '' })
+    }
+    if (url.pathname === '/api/assessment') inference.push(url.pathname)
+    return route.continue()
+  })
+  await page.goto('/questions')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Built-in questions'
+  )
+  await page.getByLabel('Search questions or metadata').fill('grounding.source')
+  await expect(page.getByText('1 matches', { exact: true })).toBeVisible()
+  await page.getByRole('link', { name: 'Corpus', exact: true }).click()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Built-in corpus'
+  )
+  await page
+    .getByLabel('Search titles, IDs, topics, dates or snapshot text')
+    .fill('event.openai-hugging-face-2026')
+  expect(external).toEqual([])
+  expect(inference).toEqual([])
+})
+
 test('actual PostHog SDK payloads exclude answers and URL canaries; resume does not duplicate start', async ({
   page,
   baseURL

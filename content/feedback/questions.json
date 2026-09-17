@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "37f2b16c-22ca-4c0d-9cc1-9a50dee4bdc4",
+      "resourceId": "grounding.source",
+      "label": "Where could someone check the evidence that matters most to your view?",
+      "contentVersion": "0.4.0-draft",
+      "assetHash": "ddc597ef121dc4a3982b3c2841e3ff7c9ecbb679b0c37035bdde8d3fe2dff0ad",
+      "text": "User feedback: This question does not elicit useful information about my beliefs, is insufficiently actionable, and immediately made me want to leave the experience. Remove it and inspect the rest of the built-in question corpus for similar problems. Action: retired from future routing; full catalog audit recorded in docs/prompt-quality-review.md.",
+      "createdAt": "2026-09-17T16:00:49.144Z"
+    }
+  ]
+}

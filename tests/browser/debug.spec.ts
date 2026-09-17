@@ -1,4 +1,72 @@
 import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
+import { storageKey } from '../../lib/persistence/storage'
+
+test('unavailable debug storage reports failure without losing assessment progress', async ({
+  page
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, 'indexedDB', {
+      value: {
+        open: () => {
+          throw new DOMException(
+            'Debug storage unavailable',
+            'QuotaExceededError'
+          )
+        }
+      }
+    })
+  })
+  await page.goto('/')
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('AI could improve medicine, with uncertain risks.')
+  await page.getByRole('button', { name: /^Continue/ }).click()
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
+  await page
+    .getByRole('button', { name: 'Jev / assessment debugging details' })
+    .click()
+  await expect(
+    page.getByText(
+      'Debug details could not be saved in this browser. Your assessment progress is still saved separately.',
+      { exact: true }
+    )
+  ).toBeVisible()
+  await page.reload()
+  await expect(
+    page.getByRole('article', { name: 'Question 1 and replies' })
+  ).toContainText('AI could improve medicine, with uncertain risks.')
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
+})
+
+async function savedOperationCount(page: Page, assessmentId?: string) {
+  return page.evaluate(
+    async ({ key, assessmentId }) => {
+      const id =
+        assessmentId ?? JSON.parse(localStorage.getItem(key)!).assessment.id
+      return new Promise<number>((resolve, reject) => {
+        const open = indexedDB.open('doom-or-bloom:debug:v1', 1)
+        open.onsuccess = () => {
+          const db = open.result
+          const get = db
+            .transaction('sessions', 'readonly')
+            .objectStore('sessions')
+            .get(id)
+          get.onsuccess = () => {
+            db.close()
+            resolve(get.result?.operations.length ?? 0)
+          }
+          get.onerror = () => {
+            db.close()
+            reject(get.error)
+          }
+        }
+        open.onerror = () => reject(open.error)
+      })
+    },
+    { key: storageKey, assessmentId }
+  )
+}
 import {
   acceptAnswer,
   createAssessment,
@@ -96,18 +164,22 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
         requestId: input.requestId,
         assessment,
         provider: 'live',
-        debug: {
-          requestId: input.requestId,
-          baseRevision: input.assessment.revision,
-          stages: [stage],
-          decisions: [
-            {
-              action: 'prompt issued',
-              detail: { id: 'timeline.general', deterministic: false }
+        ...(input.debug
+          ? {
+              debug: {
+                requestId: input.requestId,
+                baseRevision: input.assessment.revision,
+                stages: [stage],
+                decisions: [
+                  {
+                    action: 'prompt issued',
+                    detail: { id: 'timeline.general', deterministic: false }
+                  }
+                ],
+                elapsedMs: 14
+              }
             }
-          ],
-          elapsedMs: 14
-        }
+          : {})
       }
     })
   })
@@ -153,6 +225,13 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     .locator('[data-slot="debug-content"]')
     .boundingBox())!.width
   expect(debugWidth).toBeGreaterThan(bodyWidth + 500)
+  const requestBox = (await request.boundingBox())!,
+    responseBox = (await response.boundingBox())!
+  expect(responseBox.x).toBeGreaterThan(requestBox.x + requestBox.width)
+  const firstOperation = await page
+    .getByLabel('Recorded operation', { exact: true })
+    .inputValue()
+  await expect.poll(() => savedOperationCount(page)).toBe(1)
   await page.screenshot({
     path: testInfo.outputPath('debug-desktop.png'),
     fullPage: true
@@ -203,6 +282,9 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     .evaluate((element) => getComputedStyle(element).color)
   expect(darkKey).not.toBe(keyColor)
   await page.setViewportSize({ width: 390, height: 844 })
+  const mobileRequest = (await request.boundingBox())!,
+    mobileResponse = (await response.boundingBox())!
+  expect(mobileResponse.y).toBeGreaterThan(mobileRequest.y)
   await page.screenshot({
     path: testInfo.outputPath('debug-mobile-dark.png'),
     fullPage: true
@@ -224,7 +306,48 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     .getByRole('button', { name: 'Jev / assessment debugging details' })
     .click()
   await expect(
-    page.getByText(/No transient request\/response trace is available/)
+    page.getByRole('heading', { name: 'Validated Jev response' })
   ).toBeVisible()
+  await expect(
+    page.getByLabel('Recorded operation', { exact: true })
+  ).toHaveValue(firstOperation)
   expect(requests).toBe(1)
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('My second answer about timing.')
+  await page.getByRole('button', { name: /^Continue/ }).click()
+  await expect.poll(() => savedOperationCount(page)).toBe(2)
+  await page.reload()
+  await page
+    .getByRole('button', { name: 'Jev / assessment debugging details' })
+    .click()
+  const history = page.getByLabel('Recorded operation', { exact: true })
+  await expect(history.locator('option')).toHaveCount(2)
+  await history.selectOption(firstOperation)
+  await request.getByRole('button', { name: 'Copy JSON' }).click()
+  expect(
+    JSON.parse(
+      await page.evaluate(
+        () => (window as unknown as { copiedJSON: string }).copiedJSON
+      )
+    ).state.current.answer
+  ).toBe(text.trim())
+  await page.getByRole('button', { name: 'Debug on', exact: true }).click()
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('Third answer with debugging disabled.')
+  await page.getByRole('button', { name: /^Continue/ }).click()
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
+  expect(await savedOperationCount(page)).toBe(2)
+  const assessmentId = await page.evaluate(
+    (key) => JSON.parse(localStorage.getItem(key)!).assessment.id,
+    storageKey
+  )
+  await page.getByRole('button', { name: 'Debug off', exact: true }).click()
+  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  await page
+    .getByRole('button', { name: 'Restart & clear', exact: true })
+    .click()
+  await expect.poll(() => savedOperationCount(page, assessmentId)).toBe(0)
+  expect(requests).toBe(3)
 })

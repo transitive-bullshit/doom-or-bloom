@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Copy } from 'lucide-react'
 import type { ConversationTurn } from '@/lib/assessment/conversation'
 import { Bubble, BubbleContent } from '@/components/ui/bubble'
 import { Message, MessageContent, MessageHeader } from '@/components/ui/message'
@@ -51,6 +52,33 @@ export function AnswerDisclosure({
   )
 }
 
+function CopyAnswer({ text, label }: { text: string; label: string }) {
+  const [status, setStatus] = useState('')
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(text)
+      setStatus('Copied')
+    } catch {
+      setStatus('Copy unavailable in this browser')
+    }
+  }
+  return (
+    <span className='inline-flex flex-wrap items-center gap-2'>
+      <Button
+        variant='ghost'
+        size='xs'
+        aria-label={`Copy ${label.toLowerCase()}`}
+        onClick={() => void copy()}
+      >
+        <Copy data-icon='inline-start' /> Copy
+      </Button>
+      <span role='status' className='text-xs text-muted-foreground'>
+        {status}
+      </span>
+    </span>
+  )
+}
+
 export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
   return turn.replies.map((reply, index) => (
     <Message
@@ -60,7 +88,11 @@ export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
     >
       <MessageContent>
         <MessageHeader>
-          You{reply.earlier ? ' · earlier reply' : ''}
+          <span>You{reply.earlier ? ' · earlier reply' : ''}</span>
+          <CopyAnswer
+            text={reply.text}
+            label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
+          />
         </MessageHeader>
         <Bubble variant='secondary' align='end'>
           <BubbleContent>

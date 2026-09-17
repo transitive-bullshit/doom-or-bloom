@@ -17,7 +17,7 @@ async function fitsViewport(page: Page) {
   ).toBeLessThanOrEqual((await page.evaluate(() => window.innerWidth)) + 1)
 }
 
-test('mobile keyboard flow, themes, result focus and expanded debug fit', async ({
+test('mobile keyboard flow, themes, natural focus and expanded debug fit', async ({
   page
 }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 })
@@ -25,7 +25,11 @@ test('mobile keyboard flow, themes, result focus and expanded debug fit', async 
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
   await page.goto('/')
-  await expect(page.locator('h1')).toBeFocused()
+  await expect(page.locator('h1')).toBeVisible()
+  await expect(page.locator('h1')).not.toBeFocused()
+  await expect(
+    page.getByLabel('Your answer', { exact: true })
+  ).not.toBeFocused()
   await fitsViewport(page)
   await page.screenshot({ path: testInfo.outputPath('mobile-light.png') })
   await page.getByRole('button', { name: 'Toggle light or dark theme' }).click()
@@ -42,14 +46,14 @@ test('mobile keyboard flow, themes, result focus and expanded debug fit', async 
     await expect(page.getByRole('button', { name: /^Continue/ })).toBeFocused()
     await page.keyboard.press('Enter')
     await expect(answer).toHaveValue('')
-    await expect(page.locator('h1')).toBeFocused()
+    await expect(page.locator('h1')).toBeVisible()
   }
   const view = page.getByRole('button', { name: 'View my result' })
   await tabTo(page, view)
   await page.keyboard.press('Enter')
   await expect(
     page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeFocused()
+  ).toBeVisible()
   await expect(page.getByRole('img', { name: /^Doom–Bloom:/ })).toHaveAttribute(
     'aria-label',
     /not event probabilities/

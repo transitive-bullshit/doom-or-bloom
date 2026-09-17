@@ -161,11 +161,7 @@ export function ResultView({
             <Badge variant='outline'>{limits.prompts}-prompt cap reached</Badge>
           )}
         </div>
-        <h1
-          tabIndex={-1}
-          data-focus-target
-          className='text-3xl font-semibold tracking-tight'
-        >
+        <h1 className='text-3xl font-semibold tracking-tight'>
           A map of your AI worldview
         </h1>
         <p className='mt-3 text-sm text-muted-foreground'>{result.reason}</p>

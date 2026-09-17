@@ -59,6 +59,17 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
   })
   state.draft = 'My next answer is still a draft.'
   let apiCalls = 0
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      value: {
+        writeText: async (value: string) => {
+          if ((window as unknown as { failClipboard?: boolean }).failClipboard)
+            throw new Error('Clipboard unavailable')
+          ;(window as unknown as { copiedAnswer: string }).copiedAnswer = value
+        }
+      }
+    })
+  })
   await page.route('**/api/**', (route) => {
     apiCalls++
     return route.abort()
@@ -95,6 +106,33 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
     name: 'Read full answer 2 to question 1',
     exact: true
   })
+  await expect(expand).toHaveAttribute('aria-expanded', 'false')
+  await page
+    .getByRole('button', { name: 'Copy answer 2 to question 1', exact: true })
+    .click()
+  expect(
+    await page.evaluate(
+      () => (window as unknown as { copiedAnswer: string }).copiedAnswer
+    )
+  ).toBe(longAnswer)
+  await expect(expand).toHaveAttribute('aria-expanded', 'false')
+  await page
+    .getByRole('button', { name: 'Copy answer 1 to question 1', exact: true })
+    .click()
+  expect(
+    await page.evaluate(
+      () => (window as unknown as { copiedAnswer: string }).copiedAnswer
+    )
+  ).toBe('My earlier attempt is still available.')
+  await page.evaluate(() => {
+    ;(window as unknown as { failClipboard: boolean }).failClipboard = true
+  })
+  await page
+    .getByRole('button', { name: 'Copy answer 2 to question 1', exact: true })
+    .click()
+  await expect(
+    firstTurn.getByText('Copy unavailable in this browser', { exact: true })
+  ).toBeVisible()
   await expect(expand).toHaveAttribute('aria-expanded', 'false')
   const before = await page.evaluate(
     () => document.documentElement.scrollHeight

@@ -46,8 +46,9 @@ The landing experience is restrained and centered, inspired by the economy of op
 ### Interview
 
 - Keep every issued question and submitted reply in one chronological thread on `/`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
-- Previous answers are read-only. Show short answers fully and a compact exact-text preview for long or multiline answers, with an accessible “Read full answer” / “Show less” disclosure. Full answers expand in the page without an internal answer scrollbar. Preserve complete text in local state; opening or closing a disclosure makes no inference call.
+- Previous answers are read-only. Include a copy button for every submitted reply that copies its complete text, even when collapsed, and reports success or clipboard unavailability without changing the answer. Show short answers fully and a compact exact-text preview for long or multiline answers, with an accessible “Read full answer” / “Show less” disclosure. Full answers expand in the page without an internal answer scrollbar. Preserve complete text in local state; opening or closing a disclosure makes no inference call.
 - Keep the thread available above results and during corrections. Reload resumes the active question and draft with previous turns retained; disclosures can reset closed. Include local earlier recovery/navigation replies without promoting them into scoring evidence.
+- Leave focus to normal browser/user interaction; do not automatically focus the prompt, result or answer field on mount or after a stage transition.
 - Use a light, playful, candid voice.
 - Keep prompts short and avoid unexplained specialist terms.
 - Let participants speak freely: submitted answers allow 20,000 characters. Never set a hard input cap or truncate typed, dictated or pasted text. Hide the character count during normal writing; only above the limit, show the count and amount to shorten, and disable Continue until the draft fits. Keep the text box editable and preserve the full draft on reload when browser storage is available.
@@ -60,6 +61,8 @@ The landing experience is restrained and centered, inspired by the economy of op
 ### Answer recovery and paperclip interlude
 
 Expect playful, off-topic, and unusable answers. Respond with short, authored recovery guidance and a bounded chance to try again, following [the assessment recovery policy](ASSESSMENT.md#answer-relevance-and-bounded-recovery). Accept humor and uncertainty whenever they contain usable evidence; avoid scolding or labeling participants as trolls.
+
+The exact sequence `test`, then `test again` must reliably trigger recovery locally. A standalone `show me paperclips` (or `show paperclips`) explicitly requests the interlude without additional Jev calls; it respects recovery bounds and the once-per-assessment marker. Meaningful paperclip-maximizer arguments are still assessed normally.
 
 After two consecutive clearly unusable replies, briefly fill the background with paperclips and pause the interview. Suggested authored copy: “We've made some paperclips. Want to give the question another go?” Keep a visible, keyboard-accessible control panel with “Try again” when an attempt remains, “Try a different question” when budget permits, “View my result” when eligible, and “Stop for now” / “Restart.” Dismissing the visual effect does not submit anything or resume inference automatically.
 
@@ -130,3 +133,7 @@ Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, f
 - Local storage for assessment persistence.
 - Takumi for share-card rendering.
 - shadcn/ui for common controls, next-themes for light/dark mode, and restrained optional sound effects.
+
+### Internal local review tools
+
+Development-only `/questions` and `/corpus` display built-in assets, relationship maps, important metadata and per-entry free-form feedback. Notes append to project files with asset identity/version/hash and preserve earlier notes; they do not alter authored assets automatically. These pages make no inference or analytics calls. See [local debugging guide](local-debugging.md) for use and interpretation.
