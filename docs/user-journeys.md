@@ -84,3 +84,13 @@ Baseline updates require all ten personas and the five-turn bound; they preserve
 Occasional live development journeys are authorized. This does not authorize unbounded pressure testing, recurring automatic spend, or claim human-reviewed holdout validation. The separate release/holdout review gates remain open.
 
 Published fictional personas are development cases, not a blinded holdout. Review answer relevance and expected interpretations before trusting them as semantic evaluation cases. Keep the separate human review/held-out measurement gates from [MEASUREMENT.md](MEASUREMENT.md) open.
+
+## Resume a failed live operation
+
+New failures save the last committed assessment, exact pending operation, completed inference stages, and allowlisted physical request diagnostics. Raw HTTP error bodies, headers, and credentials are excluded. A routing failure after interpretation leaves the answer unaccepted; completed interpretation is diagnostic evidence, not a partially committed answer.
+
+```sh
+pnpm journeys:live --resume=<run-id> --persona=<persona-id> --max-requests=24 --max-cost=0.5
+```
+
+This explicitly retries exactly the saved operation with live Jev and a fresh bounded request/cost budget. It does not generate another OpenAI answer or automatically finish the remaining interview. Completed stages may be evaluated again. The original artifact stays immutable; the new artifact records its source run, original persona profile, prior steps, and new operation outcome. Content and model must match the source run. Older failures without a checkpoint cannot use this command. A successful resumed artifact has no pending failed operation to retry.

@@ -2,6 +2,7 @@ import { afterEach, expect, test, vi } from 'vitest'
 import { createLiveProvider, validateEvaluation } from './live-provider'
 import { fixtureAnswer } from './provider'
 import { limits } from '@/lib/assessment/schema'
+import { providerFailure } from '@/lib/journeys/failure'
 import type { Question } from '@/lib/assessment/schema'
 const question: Question = {
   type: 'choice',
@@ -341,4 +342,43 @@ test('rounded live score at the tolerance boundary is not rejected by floating p
   await expect(
     provider.evaluate({}, { q: scoreQuestion })
   ).resolves.toMatchObject({ answers: { q: { score: 0.49 } } })
+})
+
+test('failed later batch retains validated responses and physical diagnostics without transport secrets', async () => {
+  let calls = 0
+  const { provider } = mockedProvider(async (_url, init) =>
+    ++calls === 1
+      ? successfulResponse(init)
+      : Response.json(
+          { message: 'private response body' },
+          {
+            status: 401,
+            headers: { 'x-private': 'private header' }
+          }
+        )
+  )
+  const questions = Object.fromEntries(
+    Array.from({ length: 9 }, (_, i) => [`q${i}`, question])
+  )
+  const failure = await provider
+    .evaluate({ text: '漢'.repeat(40_000) }, questions, undefined, 24, true)
+    .then(
+      () => {
+        throw new Error('Expected failure')
+      },
+      (err: unknown) => providerFailure('Jev', err)
+    )
+  expect(failure.message).toContain('HTTP 401')
+  expect(failure.evaluation?.attempts).toBe(2)
+  expect(failure.evaluation?.requests?.map((r) => r.status)).toEqual([200, 401])
+  expect(
+    Object.keys(failure.evaluation!.requests![0]!.response!.answers)
+  ).toHaveLength(8)
+  expect(failure.evaluation!.requests![1]!.response).toBeUndefined()
+  for (const secret of [
+    'private response body',
+    'private header',
+    'test-key-never-a-real-credential'
+  ])
+    expect(JSON.stringify(failure)).not.toContain(secret)
 })

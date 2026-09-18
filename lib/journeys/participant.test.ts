@@ -131,6 +131,26 @@ test('Jev failure preserves the paid participant reply without substituting scri
   expect(journey.pendingAnswer).toBe('A real generated reply.')
   expect(journey.participantExchanges).toHaveLength(1)
   expect(JSON.stringify(journey)).not.toContain('sensitive-provider-body')
+  const fixture = createFixtureProvider()
+  const resumed = await runPersona(
+    personas[0]!,
+    loadBundle(),
+    1,
+    {
+      kind: 'live',
+      async evaluate(...args) {
+        return { ...(await fixture.evaluate(...args)), model: versions.model }
+      }
+    },
+    undefined,
+    false,
+    journey
+  )
+  expect(resumed.error).toBeNull()
+  expect(resumed.accepted).toBe(1)
+  expect(resumed.steps[0]?.answer).toBe('A real generated reply.')
+  expect(resumed.pendingAnswer).toBeNull()
+  expect(resumed.participantExchanges).toEqual(journey.participantExchanges)
 })
 
 test('failed and incomplete OpenAI responses never become participant answers', async () => {

@@ -342,9 +342,11 @@ export async function runPersona(
   }
   const journey: Journey = {
     personaId: persona.id,
-    personaSnapshot: live
-      ? personaProfileSchema.parse(persona)
-      : structuredClone(persona),
+    personaSnapshot: resume?.personaSnapshot
+      ? structuredClone(resume.personaSnapshot)
+      : live
+        ? personaProfileSchema.parse(persona)
+        : structuredClone(persona),
     steps,
     result: state.result,
     stopped,

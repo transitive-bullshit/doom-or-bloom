@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { loadBundle } from '@/lib/content/loader'
 import { personas, replyForPrompt } from './catalog'
 import { runPersona } from './runner'
-import { compareJourneys, suiteSchema } from './schema'
+import { compareJourneys, suiteSchema, journeySchema } from './schema'
 import { scriptedProvider } from './synthetic-provider'
 import { createFixtureProvider } from '@/lib/server/provider'
 import type { Provider } from '@/lib/server/provider'
@@ -230,4 +230,137 @@ test('unsupported fixture options fail clearly rather than silently picking a su
       }
     )
   ).rejects.toThrow('no longer exists')
+})
+
+for (const failureStage of ['interpret', 'route', 'project'] as const)
+  test(`failed ${failureStage} resumes the exact operation once from committed state`, async () => {
+    const fixture = createFixtureProvider()
+    const healthy: Provider = {
+      kind: 'live',
+      async evaluate(...args) {
+        return { ...(await fixture.evaluate(...args)), model: versions.model }
+      }
+    }
+    const failing: Provider = {
+      kind: 'live',
+      async evaluate(...args) {
+        const stage = args[1].disposition
+          ? 'interpret'
+          : Object.keys(args[1]).some((id) => id.endsWith(':score'))
+            ? 'project'
+            : 'route'
+        if (stage === failureStage) throw new Error('private transport body')
+        return healthy.evaluate(...args)
+      }
+    }
+    const failed = journeySchema.parse(
+      await runPersona(personas[0]!, bundle, 1, failing)
+    )
+    expect(failed.failureStage).toBe(failureStage)
+    expect(failed.failedOperation).toBeDefined()
+    expect(JSON.stringify(failed)).not.toContain('private transport body')
+    const checkpoint = failed.failedOperation!
+    expect(checkpoint.assessment.answers).toHaveLength(
+      failureStage === 'project' ? 1 : 0
+    )
+    expect(checkpoint.completedStages.map((s) => s.name)).toEqual(
+      failureStage === 'route' ? ['A: interpret'] : []
+    )
+    expect(checkpoint.operation).toEqual(
+      failureStage === 'project'
+        ? { type: 'project' }
+        : { type: 'answer', text: personas[0]!.opening }
+    )
+    const original = structuredClone(failed)
+    const failedAgain = journeySchema.parse(
+      await runPersona(
+        personas[0]!,
+        bundle,
+        1,
+        failing,
+        undefined,
+        false,
+        failed
+      )
+    )
+    expect(failedAgain.accepted).toBe(failed.accepted)
+    expect(failedAgain.steps).toEqual(failed.steps)
+    expect(failedAgain.failedOperation?.assessment).toEqual(
+      checkpoint.assessment
+    )
+    const changedPersona = {
+      ...personas[0]!,
+      description: 'Changed after original run'
+    }
+    const resumed = journeySchema.parse(
+      await runPersona(
+        changedPersona,
+        bundle,
+        1,
+        healthy,
+        undefined,
+        false,
+        failedAgain
+      )
+    )
+    expect(resumed.error).toBeNull()
+    expect(resumed.failedOperation).toBeUndefined()
+    expect(resumed.accepted).toBe(1)
+    expect(resumed.steps).toHaveLength(failed.steps.length + 1)
+    expect(resumed.steps.slice(0, -1)).toEqual(failed.steps)
+    expect(resumed.personaSnapshot).toEqual(failed.personaSnapshot)
+    expect(failed).toEqual(original)
+    await expect(
+      runPersona(personas[0]!, bundle, 1, healthy, undefined, false, resumed)
+    ).rejects.toThrow('saved failed operation')
+  })
+
+test('failure refreshing a result preserves the previous result through retry', async () => {
+  const fixture = createFixtureProvider()
+  let projections = 0
+  const healthy: Provider = {
+    kind: 'live',
+    async evaluate(...args) {
+      return { ...(await fixture.evaluate(...args)), model: versions.model }
+    }
+  }
+  const failing: Provider = {
+    kind: 'live',
+    async evaluate(...args) {
+      if (
+        Object.keys(args[1]).some((id) => id.endsWith(':score')) &&
+        ++projections === 2
+      )
+        throw new Error('Failed result refresh')
+      return healthy.evaluate(...args)
+    }
+  }
+  const failed = await runPersona(
+    personas[0]!,
+    bundle,
+    5,
+    failing,
+    undefined,
+    true
+  )
+  expect(failed.failureStage).toBe('project')
+  expect(failed.result).not.toBeNull()
+  expect(failed.failedOperation?.assessment.result).toEqual(failed.result)
+  const previous = structuredClone(failed)
+  const resumed = await runPersona(
+    personas[0]!,
+    bundle,
+    5,
+    healthy,
+    undefined,
+    true,
+    failed
+  )
+  expect(resumed.error).toBeNull()
+  expect(resumed.accepted).toBe(failed.accepted)
+  expect(resumed.result?.evidenceRevision).toBe(
+    failed.failedOperation?.assessment.evidenceRevision
+  )
+  expect(resumed.steps.slice(0, -1)).toEqual(failed.steps)
+  expect(failed).toEqual(previous)
 })
