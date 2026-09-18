@@ -124,3 +124,30 @@ test('scoped unplaced claims remain correctable without accepting another dimens
   for (const legacy of [uncertainClaim, unestablishedClaim])
     expect(isAuthoredClaim(legacy, levels, 'capability_trajectory')).toBe(true)
 })
+
+test('one-sided impact evidence cannot become an overall outlook coordinate', () => {
+  const { rubric } = loadBundle()
+  for (const components of [
+    [c('risk_landscape', 0.3)],
+    [c('beneficial_potential', 0.8), c('human_agency', 0.9)],
+    [c('human_agency', 0.8)]
+  ]) {
+    const result = baseResult(
+      createAssessment('partial-impact'),
+      components,
+      rubric
+    )
+    expect(result.horizontal.value).toBeNull()
+    expect(result.components).toEqual(components)
+    expect(result.horizontal.range[1]).toBeGreaterThan(
+      result.horizontal.range[0]
+    )
+  }
+  expect(
+    baseResult(
+      createAssessment('both-impact'),
+      [c('beneficial_potential', 0.8), c('risk_landscape', 0.3)],
+      rubric
+    ).horizontal.value
+  ).toBeCloseTo(0.75)
+})

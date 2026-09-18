@@ -795,3 +795,10 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Recognize gradual tool diffusion independently from unknown transformative arrival. Verify ten saved transcripts with live Jev and separately retain the earlier omitted-arrival regression.
 - [x] Remove repeated timeline-only instructions from unrelated position judgments and extend the ordinary-request regression to projection. Review wording-only synthetic baseline changes.
 - [x] Exercise scoped correction with a fresh live playful journey (12 Jev and 5 OpenAI requests, no failure). Its unresolved transition flag remains a concrete follow-up, alongside sparse overall-outlook placement and conditional-forecast support.
+
+### 2026-09-19 — Weak inference and partial outlook / Codex
+
+- [x] Diagnose the exact weak-inference distribution that created the false transition ambiguity; require supported unclear meaning for new ambiguity flags while retaining genuine resolution gates.
+- [x] Require both primary impact components for an overall outlook coordinate; preserve partial components, ranges and independent reasoning. Review the intentional synthetic baseline change.
+- [x] Complete all ten live result-action journeys without failures (120 Jev, 50 OpenAI requests). Verify 143 tests, static/content checks and three desktop/mobile map scenarios on the isolated fixture server.
+- Continue with ordinary-harm/catastrophe scope contamination and unlikely conditional upside being presented as expected benefits, recorded in the reflection.

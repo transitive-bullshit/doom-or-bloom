@@ -137,7 +137,7 @@ Corpus identification and canonical-summary grounding are removed from current i
 
 The horizontal projection estimates the participant's overall expected impact of advanced AI on humanity. It integrates positive and negative outcomes, likelihood, severity, distribution, and human continuity.
 
-The current horizontal formula is 45% expected benefits, 45% reversed expected harm and 10% continuity of valued agency; action posture has zero weight.
+The current horizontal formula is 45% expected benefits, 45% reversed expected harm and 10% continuity of valued agency; action posture has zero weight. A horizontal coordinate requires placed expectations for both benefits and harms. If either is missing or explicitly unknown, retain the components and their combined interpretation range but leave overall outlook unplaced. Optional missing agency still widens the range; it does not prevent placement when both primary impact dimensions are established. Reasoning remains independently placeable.
 
 It is not:
 
@@ -183,3 +183,5 @@ Use [JOURNEYS.md](JOURNEYS.md) and the user's argument maps for development case
 - Do not claim that editorial choices are value-free.
 
 Unplaced claims identify the scope that remains uncertain or unestablished. In particular, unknown transformative arrival must not imply an absence of views about ordinary tools. Gradual diffusion of bounded tools can establish transition dynamics even when transformative capability or arrival timing remains unknown. Saved generic unplaced claims remain valid clarification history.
+
+A weak inference without supported evidence is unassessed, not an unresolved ambiguity. Create a new ambiguity flag only when the probability of genuinely unclear meaning meets the authored presence threshold. Existing supported evidence survives later weak mentions; genuine ambiguity and tension still require explicit resolution.

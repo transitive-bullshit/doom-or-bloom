@@ -827,8 +827,9 @@ export async function runAssessment(
               (u) => u.vector !== dimension.id
             )
         } else if (
-          (choice(status) === 'unclear' ||
-            choice(status) === 'weakly_inferred') &&
+          status?.type === 'choice' &&
+          (status.probabilities.unclear ?? 0) >=
+            bundle.rubric.presenceThreshold &&
           !activeEvidence(state).some((e) => e.vector === dimension.id)
         ) {
           state.coverage[dimension.id] = 'ambiguous'

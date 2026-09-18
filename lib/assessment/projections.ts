@@ -153,6 +153,11 @@ export function baseResult(
     rubric.horizontalWeights,
     ['risk_landscape']
   )
+  // A one-sided account cannot establish the balance of expected benefits and harms.
+  const outlookEstablished = ['beneficial_potential', 'risk_landscape'].every(
+    (vector) => components.some((c) => c.vector === vector && c.value !== null)
+  )
+  if (!outlookEstablished) horizontal.value = null
   const vertical = composite(
     'epistemic',
     'Demonstrated reasoning',
@@ -183,10 +188,12 @@ export function baseResult(
     insufficient,
     reason: insufficient
       ? 'There is not enough usable evidence to place this assessment.'
-      : covered < rubric.readinessCoverage
-        ? 'Some parts of your view are still unexplored.'
-        : state.unresolved.length
-          ? 'Some interpretations still need clarification.'
-          : 'A projection of the evidence you supplied, with interpretation ranges.'
+      : !outlookEstablished
+        ? 'An overall outlook needs both expected benefits and expected harms; the established parts remain below.'
+        : covered < rubric.readinessCoverage
+          ? 'Some parts of your view are still unexplored.'
+          : state.unresolved.length
+            ? 'Some interpretations still need clarification.'
+            : 'A projection of the evidence you supplied, with interpretation ranges.'
   }
 }

@@ -349,3 +349,67 @@ test('a weak later mention cannot erase still-active clear evidence', async () =
     state.unresolved.some((u) => u.vector === 'beneficial_potential')
   ).toBe(false)
 })
+
+test('weak initial inference does not create an ambiguity that blocks a later explicit forecast', async () => {
+  const bundle = loadBundle()
+  const fixture = createFixtureProvider()
+  let answers = 0
+  const provider: Provider = {
+    kind: 'fixture',
+    async evaluate(...args) {
+      const result = await fixture.evaluate(...args)
+      if (args[1].disposition && ++answers === 1)
+        result.answers['transition_dynamics:status'] = {
+          type: 'choice',
+          choice: 'weakly_inferred',
+          confidence: 0.31,
+          probabilities: {
+            not_expressed: 0.29,
+            unclear: 0.01,
+            stated: 0.06,
+            weakly_inferred: 0.44,
+            strongly_implied: 0.2
+          }
+        }
+      return result
+    }
+  }
+  let state = (
+    await runAssessment(
+      {
+        requestId: 'weak-opening',
+        assessment: createAssessment('weak-transition'),
+        operation: {
+          type: 'answer',
+          text: 'Useful tools, if people can check the results.'
+        },
+        debug: false
+      },
+      provider,
+      bundle
+    )
+  ).assessment
+  expect(state.unresolved.some((u) => u.vector === 'transition_dynamics')).toBe(
+    false
+  )
+  expect(state.coverage.transition_dynamics).toBe('unassessed')
+  state = (
+    await runAssessment(
+      {
+        requestId: 'explicit-pace',
+        assessment: state,
+        operation: {
+          type: 'answer',
+          text: 'I expect gradual useful changes over the next decade.'
+        },
+        debug: false
+      },
+      provider,
+      bundle
+    )
+  ).assessment
+  expect(state.coverage.transition_dynamics).toBe('assessed')
+  expect(state.unresolved.some((u) => u.vector === 'transition_dynamics')).toBe(
+    false
+  )
+})

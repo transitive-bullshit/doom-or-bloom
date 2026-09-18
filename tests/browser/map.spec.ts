@@ -40,8 +40,8 @@ async function contrastRatios(page: import('@playwright/test').Page) {
   })
 }
 
-for (const unplaced of [false, true]) {
-  test(`map explains ${unplaced ? 'unplaced axes' : 'broad interpretation ranges'} without inference`, async ({
+for (const unplaced of [false, true, 'outlook'] as const) {
+  test(`map explains ${unplaced === 'outlook' ? 'unplaced outlook with placed reasoning' : unplaced ? 'unplaced axes' : 'broad interpretation ranges'} without inference`, async ({
     page
   }, testInfo) => {
     const state = createAssessment(`map-${unplaced}`, 'fixture-v1')
@@ -56,7 +56,7 @@ for (const unplaced of [false, true]) {
       },
       vertical: {
         ...emptyComponent('epistemic', 'Demonstrated reasoning'),
-        value: unplaced ? null : 0.74,
+        value: unplaced === true ? null : 0.74,
         range: [0.28, 0.92]
       },
       components: [],
@@ -66,7 +66,7 @@ for (const unplaced of [false, true]) {
       sources: [],
       provisional: true,
       capped: false,
-      insufficient: unplaced,
+      insufficient: unplaced === true,
       reason: 'Synthetic visual fixture; no inference.'
     }
     await page.addInitScript(
@@ -92,6 +92,11 @@ for (const unplaced of [false, true]) {
       'aria-label',
       /12 to 88 horizontally, 28 to 92 vertically/
     )
+    if (unplaced === 'outlook')
+      await expect(map.getByRole('img')).toHaveAttribute(
+        'aria-label',
+        /Doom–Bloom: unplaced. Demonstrated reasoning: 74 out of 100/
+      )
     if (unplaced) {
       await expect(map).toContainText(
         'Point withheld until both axes are assessable'

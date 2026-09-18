@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T19:40:26.187Z",
+  "createdAt": "2026-09-18T19:45:05.848Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,7 +11,7 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "fc5d5b29144c266d96363123d6a6c3a7a6403bfce04cd2c11a7965271af2fe31",
+  "engineHash": "92e6983cdadf8a495dd1807eeb0a20619f4aed3017e2bbdd872c7da1b56b8ce5",
   "contentHash": "82384d001392eddaf5517d3dc5fb1fed20ff080927b32df3e1fd8006e45e9bc0",
   "turns": 5,
   "requestBudget": null,
@@ -13495,7 +13495,7 @@
         "horizontal": {
           "vector": "outlook",
           "label": "Doom–Bloom",
-          "value": 0.33333333333333337,
+          "value": null,
           "range": [0.15000000000000002, 0.7000000000000001],
           "distribution": {},
           "confidence": null,
@@ -13835,7 +13835,7 @@
         "provisional": true,
         "capped": false,
         "insufficient": false,
-        "reason": "A projection of the evidence you supplied, with interpretation ranges."
+        "reason": "An overall outlook needs both expected benefits and expected harms; the established parts remain below."
       },
       "stopped": "turn budget reached",
       "error": null,
@@ -27807,7 +27807,7 @@
         "provisional": true,
         "capped": false,
         "insufficient": false,
-        "reason": "A projection of the evidence you supplied, with interpretation ranges."
+        "reason": "An overall outlook needs both expected benefits and expected harms; the established parts remain below."
       },
       "stopped": "turn budget reached",
       "error": null,
