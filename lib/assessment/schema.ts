@@ -212,6 +212,7 @@ export const resultSchema = z.strictObject({
         title: z.string(),
         url: z.url(),
         purpose: z.string(),
+        question: z.string().optional(),
         effort: z.string()
       })
     )

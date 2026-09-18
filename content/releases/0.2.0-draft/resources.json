@@ -9,7 +9,8 @@
     "conditions": [
       {
         "vector": "beneficial_potential",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -17,7 +18,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "science",
     "referenceIds": ["report.anthropic-economic-scenarios-2026"],
-    "priority": 0.8
+    "priority": 0.8,
+    "question": "Which bottlenecks could limit AI’s economic gains?"
   },
   {
     "id": "resource.metr-investigation",
@@ -29,7 +31,8 @@
     "conditions": [
       {
         "vector": "technical_controllability",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -37,7 +40,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "evaluation",
     "referenceIds": ["report.metr-hugging-face-investigation-2026"],
-    "priority": 0.8
+    "priority": 0.8,
+    "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?"
   },
   {
     "id": "resource.operating-conditions",
@@ -49,7 +53,8 @@
     "conditions": [
       {
         "vector": "institutional_competence",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -57,7 +62,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "governance",
     "referenceIds": ["report.aef-minimum-operating-conditions-v1"],
-    "priority": 0.7
+    "priority": 0.7,
+    "question": "What access and independence would make an AI evaluation informative to you?"
   },
   {
     "id": "resource.glasswing",
@@ -69,7 +75,8 @@
     "conditions": [
       {
         "vector": "technical_controllability",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -77,7 +84,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "control",
     "referenceIds": ["report.anthropic-glasswing-2026"],
-    "priority": 0.6
+    "priority": 0.6,
+    "question": "What evidence would show that defensive deployment improves net security?"
   },
   {
     "id": "resource.misalignment-reporting",
@@ -89,7 +97,8 @@
     "conditions": [
       {
         "vector": "institutional_competence",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -97,7 +106,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "governance",
     "referenceIds": ["report.openai-misalignment-reporting-framework-2026"],
-    "priority": 0.6
+    "priority": 0.6,
+    "question": "What reporting and accountability would you want after an AI incident?"
   },
   {
     "id": "resource.cyber-pacing",
@@ -109,7 +119,8 @@
     "conditions": [
       {
         "vector": "capability_trajectory",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -117,7 +128,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "capability",
     "referenceIds": ["report.openai-cyber-critical-pacing-2026"],
-    "priority": 0.5
+    "priority": 0.5,
+    "question": "Which capability thresholds should change deployment or development decisions?"
   },
   {
     "id": "resource.multiagent",
@@ -129,7 +141,8 @@
     "conditions": [
       {
         "vector": "technical_controllability",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -137,7 +150,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "control",
     "referenceIds": ["report.anthropic-multiagent-systems-2026"],
-    "priority": 0.5
+    "priority": 0.5,
+    "question": "Under what conditions do cooperating agents become harder to control?"
   },
   {
     "id": "resource.agent-misbehavior",
@@ -149,7 +163,8 @@
     "conditions": [
       {
         "vector": "risk_landscape",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -157,7 +172,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "risk",
     "referenceIds": ["report.bengio-agent-misbehavior-2026"],
-    "priority": 0.4
+    "priority": 0.4,
+    "question": "Which interpretations of agent behavior are supported by the underlying observations?"
   },
   {
     "id": "resource.epoch-cyber",
@@ -169,7 +185,8 @@
     "conditions": [
       {
         "vector": "capability_trajectory",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -177,7 +194,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "capability",
     "referenceIds": ["dataset.epoch-cyber-vulnerabilities-2026"],
-    "priority": 0.5
+    "priority": 0.5,
+    "question": "What can vulnerability counts tell us about capability, and what can’t they tell us?"
   },
   {
     "id": "resource.alien-mind",
@@ -189,7 +207,8 @@
     "conditions": [
       {
         "vector": "human_agency",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -197,7 +216,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "agency",
     "referenceIds": ["report.openai-alien-mind-2026"],
-    "priority": 0.4
+    "priority": 0.4,
+    "question": "How might goal alignment differ from alignment with the values you want preserved?"
   },
   {
     "id": "resource.adaptive-worms",
@@ -209,7 +229,8 @@
     "conditions": [
       {
         "vector": "grounded_understanding",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -217,7 +238,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "control",
     "referenceIds": ["publication.adaptive-ai-worms-2026"],
-    "priority": 0.5
+    "priority": 0.5,
+    "question": "Which prerequisites limit what a controlled cyber demonstration tells us about real-world harm?"
   },
   {
     "id": "resource.deepmind-institute",
@@ -229,7 +251,8 @@
     "conditions": [
       {
         "vector": "institutional_competence",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -237,7 +260,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "governance",
     "referenceIds": ["report.deepmind-institute-introduction-2026"],
-    "priority": 0.3
+    "priority": 0.3,
+    "question": "What would demonstrate that a proposed research institution improves governance?"
   },
   {
     "id": "resource.hugging-face-report",
@@ -249,7 +273,8 @@
     "conditions": [
       {
         "vector": "risk_landscape",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -257,7 +282,8 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "risk",
     "referenceIds": ["report.openai-hugging-face-road-ahead-2026"],
-    "priority": 0.5
+    "priority": 0.5,
+    "question": "Where do the developer’s account and the independent investigation agree or differ?"
   },
   {
     "id": "resource.threat-intelligence",
@@ -269,7 +295,8 @@
     "conditions": [
       {
         "vector": "risk_landscape",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
@@ -277,6 +304,7 @@
     "sourceAccessed": "2026-09-17",
     "purposeGroup": "risk",
     "referenceIds": ["report.anthropic-threat-intelligence-september-2026"],
-    "priority": 0.5
+    "priority": 0.5,
+    "question": "How do safeguards against human-directed misuse differ from safeguards against autonomous misalignment?"
   }
 ]

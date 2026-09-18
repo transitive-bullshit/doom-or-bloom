@@ -65,6 +65,21 @@ export function selectPresentation(
         )
       ]
     }))
+  const topicPresent = (vector: string) => {
+    const component = components.find((c) => c.vector === vector)
+    return Boolean(component?.evidenceIds.length)
+  }
+  const openTopics = (resource: Bundle['resources'][number]) =>
+    resource.conditions.filter(
+      (c) =>
+        c.basis === 'topic' &&
+        topicPresent(c.vector) &&
+        (components.find((component) => component.vector === c.vector)?.value ==
+          null ||
+          state.unresolved.some(
+            (item) => item.vector === c.vector && item.kind !== 'reference'
+          ))
+    ).length
   const relevance = (resource: Bundle['resources'][number]) =>
     resource.conditions.length +
     resource.conditions.filter(
@@ -73,6 +88,7 @@ export function selectPresentation(
       4 +
     resource.priority
   const groups = new Set<string>()
+  const topics = new Set<string>()
   const resources = bundle.resources
     .filter(
       (resource) =>
@@ -81,21 +97,36 @@ export function selectPresentation(
     )
     .filter(
       (resource) =>
-        resource.conditions.every((c) => matches(c)) &&
-        !resource.exclusions.some((c) => matches(c))
+        resource.conditions.every((c) =>
+          c.basis === 'topic' ? topicPresent(c.vector) : matches(c)
+        ) && !resource.exclusions.some((c) => matches(c))
     )
-    .sort((a, b) => relevance(b) - relevance(a) || a.id.localeCompare(b.id))
+    .sort(
+      (a, b) =>
+        openTopics(b) - openTopics(a) ||
+        relevance(b) - relevance(a) ||
+        a.id.localeCompare(b.id)
+    )
     .filter((resource) => {
-      if (groups.has(resource.purposeGroup)) return false
+      const coveredTopics = resource.conditions
+        .filter((c) => c.basis === 'topic')
+        .map((c) => c.vector)
+      if (
+        groups.has(resource.purposeGroup) ||
+        coveredTopics.some((topic) => topics.has(topic))
+      )
+        return false
       groups.add(resource.purposeGroup)
+      for (const topic of coveredTopics) topics.add(topic)
       return true
     })
     .slice(0, 3)
-    .map(({ id, title, url, purpose, effort }) => ({
+    .map(({ id, title, url, purpose, question, effort }) => ({
       id,
       title,
       url,
       purpose,
+      question,
       effort
     }))
   return { findings, resources }

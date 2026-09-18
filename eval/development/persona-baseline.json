@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T20:03:09.196Z",
+  "createdAt": "2026-09-18T20:23:21.601Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,8 +11,8 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "557db3255614460f8774296c2c2eab1c915b46c9ba073eb9d0b8e6831e8d6a50",
-  "contentHash": "356b4119ea15ff870153feb4944492f242b7f13c9c0e7a1c3b7a414ff55d85a4",
+  "engineHash": "dd1971b9c1785399271e497318f3380f8c9ed5514fded936d2b1f3fce7db15ff",
+  "contentHash": "55ba1eaf259a1e3b3813aba0ba6b158f88e44313dfd408b89e23ddfff51fe279",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -3181,6 +3181,7 @@
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -3188,6 +3189,7 @@
             "title": "METR’s independent Hugging Face investigation",
             "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
             "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
             "effort": "Investigation overview"
           },
           {
@@ -3195,6 +3197,7 @@
             "title": "Minimum operating conditions for AI evaluation",
             "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
             "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+            "question": "What access and independence would make an AI evaluation informative to you?",
             "effort": "Framework overview"
           }
         ],
@@ -6882,6 +6885,7 @@
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -6889,6 +6893,7 @@
             "title": "METR’s independent Hugging Face investigation",
             "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
             "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
             "effort": "Investigation overview"
           },
           {
@@ -6896,6 +6901,7 @@
             "title": "Minimum operating conditions for AI evaluation",
             "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
             "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+            "question": "What access and independence would make an AI evaluation informative to you?",
             "effort": "Framework overview"
           }
         ],
@@ -10583,6 +10589,7 @@
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -10590,6 +10597,7 @@
             "title": "METR’s independent Hugging Face investigation",
             "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
             "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
             "effort": "Investigation overview"
           },
           {
@@ -10597,6 +10605,7 @@
             "title": "Minimum operating conditions for AI evaluation",
             "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
             "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+            "question": "What access and independence would make an AI evaluation informative to you?",
             "effort": "Framework overview"
           }
         ],
@@ -13873,10 +13882,27 @@
         ],
         "resources": [
           {
+            "id": "resource.economic-scenarios",
+            "title": "Economic scenarios from the Anthropic Institute",
+            "url": "https://www.anthropic.com/institute/econ-scenarios",
+            "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
+            "effort": "Overview first; full scenarios take longer"
+          },
+          {
+            "id": "resource.metr-investigation",
+            "title": "METR’s independent Hugging Face investigation",
+            "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+            "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
+            "effort": "Investigation overview"
+          },
+          {
             "id": "resource.hugging-face-report",
             "title": "The Hugging Face incident and the road ahead",
             "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
             "purpose": "Compare the developer’s incident account and safeguards with the narrower independent investigation.",
+            "question": "Where do the developer’s account and the independent investigation agree or differ?",
             "effort": "Developer overview"
           }
         ],
@@ -17450,6 +17476,7 @@
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -17457,6 +17484,7 @@
             "title": "METR’s independent Hugging Face investigation",
             "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
             "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
             "effort": "Investigation overview"
           },
           {
@@ -17464,6 +17492,7 @@
             "title": "Minimum operating conditions for AI evaluation",
             "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
             "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+            "question": "What access and independence would make an AI evaluation informative to you?",
             "effort": "Framework overview"
           }
         ],
@@ -21016,6 +21045,7 @@
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -21023,14 +21053,16 @@
             "title": "METR’s independent Hugging Face investigation",
             "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
             "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
             "effort": "Investigation overview"
           },
           {
-            "id": "resource.glasswing",
-            "title": "Project Glasswing and defensive deployment",
-            "url": "https://www.anthropic.com/glasswing",
-            "purpose": "Examine a defensive program’s stated scope and distinguish commitments from measured net security effects.",
-            "effort": "Program overview"
+            "id": "resource.adaptive-worms",
+            "title": "AI Agents Enable Adaptive Computer Worms",
+            "url": "https://arxiv.org/abs/2606.03811v1",
+            "purpose": "Inspect a controlled cyber demonstration, its prerequisites and its limits as evidence of autonomous harm.",
+            "question": "Which prerequisites limit what a controlled cyber demonstration tells us about real-world harm?",
+            "effort": "Abstract first; full technical paper"
           }
         ],
         "fingerprint": [
@@ -24577,10 +24609,19 @@
         ],
         "resources": [
           {
+            "id": "resource.metr-investigation",
+            "title": "METR’s independent Hugging Face investigation",
+            "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+            "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
+            "effort": "Investigation overview"
+          },
+          {
             "id": "resource.economic-scenarios",
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -24588,14 +24629,8 @@
             "title": "Minimum operating conditions for AI evaluation",
             "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
             "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+            "question": "What access and independence would make an AI evaluation informative to you?",
             "effort": "Framework overview"
-          },
-          {
-            "id": "resource.hugging-face-report",
-            "title": "The Hugging Face incident and the road ahead",
-            "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
-            "purpose": "Compare the developer’s incident account and safeguards with the narrower independent investigation.",
-            "effort": "Developer overview"
           }
         ],
         "fingerprint": [
@@ -27974,7 +28009,32 @@
             ]
           }
         ],
-        "resources": [],
+        "resources": [
+          {
+            "id": "resource.economic-scenarios",
+            "title": "Economic scenarios from the Anthropic Institute",
+            "url": "https://www.anthropic.com/institute/econ-scenarios",
+            "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
+            "effort": "Overview first; full scenarios take longer"
+          },
+          {
+            "id": "resource.metr-investigation",
+            "title": "METR’s independent Hugging Face investigation",
+            "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+            "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
+            "effort": "Investigation overview"
+          },
+          {
+            "id": "resource.hugging-face-report",
+            "title": "The Hugging Face incident and the road ahead",
+            "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+            "purpose": "Compare the developer’s incident account and safeguards with the narrower independent investigation.",
+            "question": "Where do the developer’s account and the independent investigation agree or differ?",
+            "effort": "Developer overview"
+          }
+        ],
         "fingerprint": [
           {
             "vector": "timeline",
@@ -31398,6 +31458,7 @@
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -31405,6 +31466,7 @@
             "title": "METR’s independent Hugging Face investigation",
             "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
             "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
             "effort": "Investigation overview"
           },
           {
@@ -31412,6 +31474,7 @@
             "title": "Minimum operating conditions for AI evaluation",
             "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
             "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+            "question": "What access and independence would make an AI evaluation informative to you?",
             "effort": "Framework overview"
           }
         ],
@@ -35478,6 +35541,7 @@
             "title": "Economic scenarios from the Anthropic Institute",
             "url": "https://www.anthropic.com/institute/econ-scenarios",
             "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
             "effort": "Overview first; full scenarios take longer"
           },
           {
@@ -35485,14 +35549,16 @@
             "title": "METR’s independent Hugging Face investigation",
             "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
             "purpose": "Inspect observed agent behavior, competing interpretations and the limits of investigators’ access.",
+            "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?",
             "effort": "Investigation overview"
           },
           {
-            "id": "resource.glasswing",
-            "title": "Project Glasswing and defensive deployment",
-            "url": "https://www.anthropic.com/glasswing",
-            "purpose": "Examine a defensive program’s stated scope and distinguish commitments from measured net security effects.",
-            "effort": "Program overview"
+            "id": "resource.hugging-face-report",
+            "title": "The Hugging Face incident and the road ahead",
+            "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+            "purpose": "Compare the developer’s incident account and safeguards with the narrower independent investigation.",
+            "question": "Where do the developer’s account and the independent investigation agree or differ?",
+            "effort": "Developer overview"
           }
         ],
         "fingerprint": [

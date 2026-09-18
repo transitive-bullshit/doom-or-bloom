@@ -128,6 +128,7 @@ export const resourceSchema = z.strictObject({
   title: z.string(),
   url: z.url(),
   purpose: z.string(),
+  question: z.string().min(1).optional(),
   purposeGroup: z.enum([
     'governance',
     'science',
@@ -141,7 +142,22 @@ export const resourceSchema = z.strictObject({
   priority: z.number().min(0).max(1).default(0),
   effort: z.string(),
   familiarity: z.enum(['general', 'expert']),
-  conditions: z.array(conditionSchema).min(1),
+  conditions: z
+    .array(
+      conditionSchema
+        .extend({
+          basis: z.enum(['position', 'topic']).default('position')
+        })
+        .refine(
+          (condition) =>
+            condition.basis !== 'topic' ||
+            (condition.assessed &&
+              condition.min === undefined &&
+              condition.max === undefined),
+          'Topic eligibility cannot assert a position or score bound'
+        )
+    )
+    .min(1),
   exclusions: z.array(conditionSchema),
   status: z.enum(['draft', 'reviewed']),
   sourceAccessed: z.string().regex(/^\d{4}-\d{2}-\d{2}$/)

@@ -236,6 +236,7 @@ export function ResultView({
               >
                 {r.title} ↗
               </a>
+              {r.question && <p className='mt-1 text-sm'>{r.question}</p>}
               <p className='mt-1 text-sm text-muted-foreground'>{r.purpose}</p>
               <p className='mt-1 text-xs text-muted-foreground'>{r.effort}</p>
             </div>

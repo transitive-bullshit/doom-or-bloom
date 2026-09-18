@@ -12,12 +12,14 @@
     "conditions": [
       {
         "vector": "beneficial_potential",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "Which bottlenecks could limit AI’s economic gains?"
   },
   {
     "id": "resource.metr-investigation",
@@ -32,12 +34,14 @@
     "conditions": [
       {
         "vector": "technical_controllability",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "What can an independent investigation establish about an agent’s behavior, and what remains unknown?"
   },
   {
     "id": "resource.operating-conditions",
@@ -52,12 +56,14 @@
     "conditions": [
       {
         "vector": "institutional_competence",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "What access and independence would make an AI evaluation informative to you?"
   },
   {
     "id": "resource.glasswing",
@@ -72,12 +78,14 @@
     "conditions": [
       {
         "vector": "technical_controllability",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "What evidence would show that defensive deployment improves net security?"
   },
   {
     "id": "resource.misalignment-reporting",
@@ -92,12 +100,14 @@
     "conditions": [
       {
         "vector": "institutional_competence",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "What reporting and accountability would you want after an AI incident?"
   },
   {
     "id": "resource.cyber-pacing",
@@ -112,12 +122,14 @@
     "conditions": [
       {
         "vector": "capability_trajectory",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "Which capability thresholds should change deployment or development decisions?"
   },
   {
     "id": "resource.multiagent",
@@ -132,12 +144,14 @@
     "conditions": [
       {
         "vector": "technical_controllability",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "Under what conditions do cooperating agents become harder to control?"
   },
   {
     "id": "resource.agent-misbehavior",
@@ -152,12 +166,14 @@
     "conditions": [
       {
         "vector": "risk_landscape",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "Which interpretations of agent behavior are supported by the underlying observations?"
   },
   {
     "id": "resource.epoch-cyber",
@@ -172,12 +188,14 @@
     "conditions": [
       {
         "vector": "capability_trajectory",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "What can vulnerability counts tell us about capability, and what can’t they tell us?"
   },
   {
     "id": "resource.alien-mind",
@@ -192,12 +210,14 @@
     "conditions": [
       {
         "vector": "human_agency",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "How might goal alignment differ from alignment with the values you want preserved?"
   },
   {
     "id": "resource.adaptive-worms",
@@ -212,12 +232,14 @@
     "conditions": [
       {
         "vector": "grounded_understanding",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "Which prerequisites limit what a controlled cyber demonstration tells us about real-world harm?"
   },
   {
     "id": "resource.deepmind-institute",
@@ -232,12 +254,14 @@
     "conditions": [
       {
         "vector": "institutional_competence",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "What would demonstrate that a proposed research institution improves governance?"
   },
   {
     "id": "resource.hugging-face-report",
@@ -252,12 +276,14 @@
     "conditions": [
       {
         "vector": "risk_landscape",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "Where do the developer’s account and the independent investigation agree or differ?"
   },
   {
     "id": "resource.threat-intelligence",
@@ -272,11 +298,13 @@
     "conditions": [
       {
         "vector": "risk_landscape",
-        "assessed": true
+        "assessed": true,
+        "basis": "topic"
       }
     ],
     "exclusions": [],
     "status": "draft",
-    "sourceAccessed": "2026-09-17"
+    "sourceAccessed": "2026-09-17",
+    "question": "How do safeguards against human-directed misuse differ from safeguards against autonomous misalignment?"
   }
 ]

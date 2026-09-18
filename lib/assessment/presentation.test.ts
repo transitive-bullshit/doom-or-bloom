@@ -131,3 +131,56 @@ test('actionable revision feedback requires supported refusal, not silence, unce
   })
   expect(selected([refusal])).toEqual([])
 })
+
+test('topic resources include evidenced unknowns and prioritize open topics without inventing a position', () => {
+  const bundle = loadBundle()
+  const state = createAssessment('unknown-topic')
+  const control = {
+    ...emptyComponent('technical_controllability', 'Control'),
+    evidenceIds: ['control-unknown']
+  }
+  const benefits = {
+    ...emptyComponent('beneficial_potential', 'Benefits'),
+    value: 0.8,
+    evidenceIds: ['benefit-position']
+  }
+  const resources = selectPresentation(
+    state,
+    [control, benefits],
+    bundle
+  ).resources
+  expect(resources[0]?.id).toBe('resource.metr-investigation')
+  expect(resources[0]?.question).toContain('what remains unknown')
+  expect(resources.map((r) => r.id)).toEqual([
+    'resource.metr-investigation',
+    'resource.economic-scenarios'
+  ])
+  expect(control.value).toBeNull()
+  expect(
+    selectPresentation(state, [{ ...control, evidenceIds: [] }], bundle)
+      .resources
+  ).toEqual([])
+  const bounded = structuredClone(bundle)
+  bounded.resources = [
+    {
+      ...bundle.resources[0]!,
+      conditions: [
+        {
+          vector: 'technical_controllability',
+          assessed: true,
+          basis: 'position',
+          min: 0.5
+        }
+      ]
+    }
+  ]
+  expect(selectPresentation(state, [control], bounded).resources).toEqual([])
+  state.familiarity.level = 'general'
+  expect(
+    resources.every(
+      (r) =>
+        bundle.resources.find((item) => item.id === r.id)?.familiarity ===
+        'general'
+    )
+  ).toBe(true)
+})
