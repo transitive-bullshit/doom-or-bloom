@@ -832,3 +832,10 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Complete ten live result-action journeys without evaluation failures and all six isolated browser checks. Review actual generated text against claims.
 - [x] Correct a new values-relative agency error: welcoming automation does not imply loss of valued agency. Verify with ten live fixed-transcript projections.
 - Completion remains open: verify revised definitions adaptively and inspect modal transition/action language flagged by the newest transcript review. See `journey-improvement-audit-2026-09-19.md`.
+
+### 2026-09-19 — Final journey-loop verification / Codex
+
+- [x] Preserve modal transition uncertainty and distinguish requested safeguards from a preferred development pace; verify fixed transcripts while maintaining one ordinary projection request.
+- [x] Verify the historical omitted-date case directly with current projection questions; no arrival date is invented.
+- [x] Complete and inspect all ten fresh adaptive live journeys on final code, including result actions: zero evaluation failures, 120 Jev calls, 50 OpenAI calls, $0.15376 estimated cost.
+- [x] Finish the requirement-by-requirement audit in `journey-improvement-audit-2026-09-19.md`. No remaining obvious gross mismatch in the final reviewed sample. The requested development loop is complete; manual testing, draft editorial review and separate release/holdout validation remain independent project work.
