@@ -105,7 +105,7 @@ test('unplaceable positions do not erase understood evidence during projection',
   )
   expect(catastrophe?.value).toBeNull()
   expect(catastrophe?.claim).toBe(
-    'You expressed uncertainty here rather than a directional expectation.'
+    'You expressed uncertainty about the prospect of catastrophic or irreversible harm.'
   )
   expect(catastrophe?.evidenceIds.length).toBeGreaterThan(0)
   const clarification = await runAssessment(

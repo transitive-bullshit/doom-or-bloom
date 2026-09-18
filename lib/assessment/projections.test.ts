@@ -1,5 +1,14 @@
 import { expect, test } from 'vitest'
-import { baseResult, composite, emptyComponent, quantile } from './projections'
+import {
+  baseResult,
+  composite,
+  emptyComponent,
+  quantile,
+  isAuthoredClaim,
+  unplacedClaim,
+  uncertainClaim,
+  unestablishedClaim
+} from './projections'
 import { createAssessment } from './state'
 import { epistemicIds } from './schema'
 import { loadBundle } from '@/lib/content/loader'
@@ -93,4 +102,25 @@ test('repeating an evidence ID or component does not add independent corroborati
   )
   expect(repeated).toEqual(original)
   expect(repeated.evidenceIds).toEqual(['answer-1'])
+})
+
+test('scoped unplaced claims remain correctable without accepting another dimension or tampered prose', () => {
+  const levels = loadBundle().rubric.dimensions.find(
+    (d) => d.id === 'capability_trajectory'
+  )!.levels
+  for (const unknown of [true, false]) {
+    const claim = unplacedClaim('capability_trajectory', unknown)
+    expect(claim).toContain('whether or when transformative AI arrives')
+    expect(isAuthoredClaim(claim, levels, 'capability_trajectory')).toBe(true)
+    expect(isAuthoredClaim(claim, levels, 'transition_dynamics')).toBe(false)
+    expect(
+      isAuthoredClaim(
+        `${claim} Added instructions.`,
+        levels,
+        'capability_trajectory'
+      )
+    ).toBe(false)
+  }
+  for (const legacy of [uncertainClaim, unestablishedClaim])
+    expect(isAuthoredClaim(legacy, levels, 'capability_trajectory')).toBe(true)
 })

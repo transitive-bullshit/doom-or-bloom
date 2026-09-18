@@ -72,11 +72,44 @@ const unresolvedClaim =
   'The interpretation of these answers still needs clarification.'
 const readingsPrefix = 'Several readings remain plausible: '
 
-export function isAuthoredClaim(claim: string, levels: string[]) {
+const unplacedScopes = {
+  capability_trajectory: 'whether or when transformative AI arrives',
+  transition_dynamics: 'how quickly AI-driven change unfolds',
+  beneficial_potential: 'the positive impact you expect from AI',
+  risk_landscape: 'the harm you expect from AI',
+  technical_controllability:
+    'whether technical control of powerful AI will work',
+  institutional_competence: 'how effectively institutions will respond',
+  human_agency: 'what happens to the forms of agency you value',
+  action_posture: 'which development or policy response you prefer',
+  catastrophic_risk: 'the prospect of catastrophic or irreversible harm'
+}
+
+export function unplacedClaim(vector: string, explicitlyUnknown: boolean) {
+  const scope = Object.hasOwn(unplacedScopes, vector)
+    ? unplacedScopes[vector as keyof typeof unplacedScopes]
+    : undefined
+  if (!scope) return explicitlyUnknown ? uncertainClaim : unestablishedClaim
+  return explicitlyUnknown
+    ? `You expressed uncertainty about ${scope}.`
+    : `These answers do not yet establish ${scope}.`
+}
+
+export function isAuthoredClaim(
+  claim: string,
+  levels: string[],
+  vector?: string
+) {
   if (
-    [...levels, uncertainClaim, unestablishedClaim, unresolvedClaim].includes(
-      claim
-    )
+    [
+      ...levels,
+      uncertainClaim,
+      unestablishedClaim,
+      unresolvedClaim,
+      ...(vector
+        ? [unplacedClaim(vector, true), unplacedClaim(vector, false)]
+        : [])
+    ].includes(claim)
   )
     return true
   if (!claim.startsWith(readingsPrefix)) return false

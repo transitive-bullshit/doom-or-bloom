@@ -181,3 +181,5 @@ Use [JOURNEYS.md](JOURNEYS.md) and the user's argument maps for development case
 - Publish methodology, simplifications, corpus criteria, and known biases.
 - Prefer primary sources while preserving disputes and uncertainty.
 - Do not claim that editorial choices are value-free.
+
+Unplaced claims identify the scope that remains uncertain or unestablished. In particular, unknown transformative arrival must not imply an absence of views about ordinary tools. Gradual diffusion of bounded tools can establish transition dynamics even when transformative capability or arrival timing remains unknown. Saved generic unplaced claims remain valid clarification history.

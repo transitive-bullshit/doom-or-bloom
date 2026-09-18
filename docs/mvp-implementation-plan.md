@@ -788,3 +788,10 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Diagnose an intermediate live routing timeout alongside excessive batching caused by repeated guidance. Share detailed policy once and retain concise per-question reminders; add an ordinary-interview physical-request regression through mocked SDK transport.
 - [x] Complete a fresh ten-persona result-action suite without failed operations (121 Jev, 50 OpenAI requests), with all forty routing stages using one request. Verify 140 tests and static/content checks; retain immutable failure and success artifacts.
 - The reflection records remaining scope wording, gradual-transition correction, sparse-outlook and conditional-forecast fidelity issues. Continue the improvement goal.
+
+### 2026-09-19 — Scoped unplaced claims and transition interpretation / Codex
+
+- [x] Scope unknown/unestablished claims to their dimension; preserve saved generic clarifications and reject cross-dimension/tampered scoped claims.
+- [x] Recognize gradual tool diffusion independently from unknown transformative arrival. Verify ten saved transcripts with live Jev and separately retain the earlier omitted-arrival regression.
+- [x] Remove repeated timeline-only instructions from unrelated position judgments and extend the ordinary-request regression to projection. Review wording-only synthetic baseline changes.
+- [x] Exercise scoped correction with a fresh live playful journey (12 Jev and 5 OpenAI requests, no failure). Its unresolved transition flag remains a concrete follow-up, alongside sparse overall-outlook placement and conditional-forecast support.

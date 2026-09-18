@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T18:57:30.533Z",
+  "createdAt": "2026-09-18T19:40:26.187Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,8 +11,8 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "f75d257d12c67f789c98d95ce03508994ba735ba18709468b53d309547109ab5",
-  "contentHash": "93e4c883d43eac9b59fd127d143cde34ca91fa2057f4361aaa310be62075b93d",
+  "engineHash": "fc5d5b29144c266d96363123d6a6c3a7a6403bfce04cd2c11a7965271af2fe31",
+  "contentHash": "82384d001392eddaf5517d3dc5fb1fed20ff080927b32df3e1fd8006e45e9bc0",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -13537,7 +13537,7 @@
               "journey-14015ebf351c74d79e77:p1:a:e:capability_trajectory",
               "journey-14015ebf351c74d79e77:p2:a:e:capability_trajectory"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether or when transformative AI arrives."
           },
           {
             "vector": "transition_dynamics",
@@ -13559,7 +13559,7 @@
             "evidenceIds": [
               "journey-14015ebf351c74d79e77:p4:a:e:beneficial_potential"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about the positive impact you expect from AI."
           },
           {
             "vector": "risk_landscape",
@@ -13588,7 +13588,7 @@
             "evidenceIds": [
               "journey-14015ebf351c74d79e77:p3:a:e:technical_controllability"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
           },
           {
             "vector": "institutional_competence",
@@ -13796,7 +13796,7 @@
             "evidenceIds": [
               "journey-14015ebf351c74d79e77:p4:a:e:beneficial_potential"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about the positive impact you expect from AI."
           },
           {
             "vector": "catastrophic_risk",
@@ -13818,7 +13818,7 @@
             "evidenceIds": [
               "journey-14015ebf351c74d79e77:p3:a:e:technical_controllability"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
           },
           {
             "vector": "institutional_competence",
@@ -13954,7 +13954,7 @@
             "journey-14015ebf351c74d79e77:p1:a:e:capability_trajectory",
             "journey-14015ebf351c74d79e77:p2:a:e:capability_trajectory"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about whether or when transformative AI arrives."
         },
         {
           "vector": "transition_dynamics",
@@ -13976,7 +13976,7 @@
           "evidenceIds": [
             "journey-14015ebf351c74d79e77:p4:a:e:beneficial_potential"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about the positive impact you expect from AI."
         },
         {
           "vector": "risk_landscape",
@@ -14003,7 +14003,7 @@
           "evidenceIds": [
             "journey-14015ebf351c74d79e77:p3:a:e:technical_controllability"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
         },
         {
           "vector": "institutional_competence",
@@ -24168,7 +24168,7 @@
             "evidenceIds": [
               "journey-33ef5c36b2c11531b3c4:p2:a:e:technical_controllability"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
           },
           {
             "vector": "institutional_competence",
@@ -24454,7 +24454,7 @@
             "evidenceIds": [
               "journey-33ef5c36b2c11531b3c4:p2:a:e:technical_controllability"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
           },
           {
             "vector": "institutional_competence",
@@ -24662,7 +24662,7 @@
           "evidenceIds": [
             "journey-33ef5c36b2c11531b3c4:p2:a:e:technical_controllability"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
         },
         {
           "vector": "institutional_competence",
@@ -27507,7 +27507,7 @@
               "journey-70802c3cf05fa0f0812f:p1:a:e:capability_trajectory",
               "journey-70802c3cf05fa0f0812f:p2:a:e:capability_trajectory"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether or when transformative AI arrives."
           },
           {
             "vector": "transition_dynamics",
@@ -27529,7 +27529,7 @@
             "evidenceIds": [
               "journey-70802c3cf05fa0f0812f:p1:a:e:beneficial_potential"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about the positive impact you expect from AI."
           },
           {
             "vector": "risk_landscape",
@@ -27541,7 +27541,7 @@
             "evidenceIds": [
               "journey-70802c3cf05fa0f0812f:p1:a:e:risk_landscape"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about the harm you expect from AI."
           },
           {
             "vector": "technical_controllability",
@@ -27553,7 +27553,7 @@
             "evidenceIds": [
               "journey-70802c3cf05fa0f0812f:p3:a:e:technical_controllability"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
           },
           {
             "vector": "institutional_competence",
@@ -27576,7 +27576,7 @@
               "journey-70802c3cf05fa0f0812f:p4:a:e:human_agency",
               "journey-70802c3cf05fa0f0812f:p5:a:e:human_agency"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about what happens to the forms of agency you value."
           },
           {
             "vector": "action_posture",
@@ -27768,7 +27768,7 @@
             "evidenceIds": [
               "journey-70802c3cf05fa0f0812f:p1:a:e:beneficial_potential"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about the positive impact you expect from AI."
           },
           {
             "vector": "catastrophic_risk",
@@ -27790,7 +27790,7 @@
             "evidenceIds": [
               "journey-70802c3cf05fa0f0812f:p3:a:e:technical_controllability"
             ],
-            "claim": "You expressed uncertainty here rather than a directional expectation."
+            "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
           },
           {
             "vector": "institutional_competence",
@@ -27926,7 +27926,7 @@
             "journey-70802c3cf05fa0f0812f:p1:a:e:capability_trajectory",
             "journey-70802c3cf05fa0f0812f:p2:a:e:capability_trajectory"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about whether or when transformative AI arrives."
         },
         {
           "vector": "transition_dynamics",
@@ -27948,7 +27948,7 @@
           "evidenceIds": [
             "journey-70802c3cf05fa0f0812f:p1:a:e:beneficial_potential"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about the positive impact you expect from AI."
         },
         {
           "vector": "risk_landscape",
@@ -27958,7 +27958,7 @@
           "distribution": {},
           "confidence": null,
           "evidenceIds": ["journey-70802c3cf05fa0f0812f:p1:a:e:risk_landscape"],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about the harm you expect from AI."
         },
         {
           "vector": "technical_controllability",
@@ -27970,7 +27970,7 @@
           "evidenceIds": [
             "journey-70802c3cf05fa0f0812f:p3:a:e:technical_controllability"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about whether technical control of powerful AI will work."
         },
         {
           "vector": "institutional_competence",
@@ -27993,7 +27993,7 @@
             "journey-70802c3cf05fa0f0812f:p4:a:e:human_agency",
             "journey-70802c3cf05fa0f0812f:p5:a:e:human_agency"
           ],
-          "claim": "You expressed uncertainty here rather than a directional expectation."
+          "claim": "You expressed uncertainty about what happens to the forms of agency you value."
         },
         {
           "vector": "action_posture",

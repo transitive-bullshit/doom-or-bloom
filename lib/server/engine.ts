@@ -48,8 +48,7 @@ import { supported } from '@/lib/assessment/presence'
 import {
   supportedClaim,
   isAuthoredClaim,
-  uncertainClaim,
-  unestablishedClaim
+  unplacedClaim
 } from '@/lib/assessment/projections'
 
 type StageQuestions = Record<string, Question>
@@ -132,7 +131,7 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
       if (
         !dimension ||
         (p.claimTarget && p.target !== 'risk_landscape') ||
-        !isAuthoredClaim(claim, dimension.levels) ||
+        !isAuthoredClaim(claim, dimension.levels, p.claimTarget ?? p.target) ||
         p.sourceEvidenceIds.some(
           (id) =>
             !state.evidence.some((e) => e.id === id && e.vector === p.target)
@@ -498,11 +497,11 @@ export async function runAssessment(
           return {
             ...emptyComponent(dimension.id, dimension.label),
             evidenceIds,
-            claim:
+            claim: unplacedClaim(
+              dimension.id,
               position?.type === 'choice' &&
-              position.choice === 'explicitly_unknown'
-                ? uncertainClaim
-                : unestablishedClaim
+                position.choice === 'explicitly_unknown'
+            )
           }
         const max = dimension.levels.length - 1
         const unresolved = state.unresolved.some(
@@ -575,12 +574,13 @@ export async function runAssessment(
               ...emptyComponent('catastrophic_risk', catastrophe.label),
               evidenceIds: catastropheSupported ? sourceIds : [],
               claim: catastropheSupported
-                ? evaluation.answers['catastrophic_risk:position']?.type ===
-                    'choice' &&
-                  evaluation.answers['catastrophic_risk:position'].choice ===
-                    'explicitly_unknown'
-                  ? uncertainClaim
-                  : unestablishedClaim
+                ? unplacedClaim(
+                    'catastrophic_risk',
+                    evaluation.answers['catastrophic_risk:position']?.type ===
+                      'choice' &&
+                      evaluation.answers['catastrophic_risk:position']
+                        .choice === 'explicitly_unknown'
+                  )
                 : null
             }
       components.push(fingerprintRisk)

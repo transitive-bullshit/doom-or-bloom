@@ -393,7 +393,7 @@ test('unknown worldview positions and ordinary harm cannot fabricate catastrophi
     state.result?.fingerprint.find((c) => c.vector === 'catastrophic_risk')
       ?.claim
   ).toBe(
-    'You expressed uncertainty here rather than a directional expectation.'
+    'You expressed uncertainty about the prospect of catastrophic or irreversible harm.'
   )
   expect(
     state.result?.fingerprint.find((c) => c.vector === 'catastrophic_risk')

@@ -44,6 +44,20 @@ test('ordinary five-answer interviews do not trigger large-history batching', as
       expect(route.attempts).toBe(1)
       expect(JSON.stringify(route.state)).toContain(text)
     }
+    const projected = await runAssessment(
+      {
+        assessment: state,
+        requestId: 'ordinary-project',
+        debug: true,
+        operation: { type: 'project' }
+      },
+      createLiveProvider(state.versions.model),
+      bundle,
+      true
+    )
+    expect(
+      projected.debug!.stages.find((s) => s.name === 'D: projection')?.attempts
+    ).toBe(1)
   } finally {
     vi.unstubAllGlobals()
     vi.unstubAllEnvs()
