@@ -67,3 +67,13 @@ Verification: all 139 unit tests, formatting, lint, types, content validation an
 - Ordinary-harm and action summaries remain available only in detailed components, and the failed-operation envelope/resume proposal is not yet fully implemented.
 
 These observations contradict completion of the overall goal. Keep the loop active; do not use the clean live runs as a substitute for semantic and experience quality.
+
+## Forecast scope follow-up
+
+Reprojected the exact final transcripts from action suite `1789758895224-ddf69b9c-17e8-4c70-8d1c-2fb1b28f6bb0` through live Jev, retaining history and invalidating only the diagnostic copy's cached result. No persona targets or new participant answers were supplied.
+
+The controllability meaning now separates technical feasibility from requirements for institutional cooperation, support for development, and evidence that might change a belief. Both follow-up replays leave the high-risk participant's technical control forecast unplaced instead of asserting feasibility. The dogmatic participant's explicitly automatic control expectation remains placed.
+
+Timing needed two iterations. Clarifying the dimension meaning alone changed the unsupported decades claim into an unsupported long/indefinite claim. The position judgment now explicitly distinguishes an omitted arrival horizon from an anticipated distant arrival; neither rapid consequences after arrival nor eventual transformation alone supports a timed position. The second replay leaves this participant's capability component unplaced while preserving their optimistic impact expectation. Explicit near-term forecasts and the skeptic's explicitly low ceiling remain placed; the undecided participant's overall outlook remains unplaced.
+
+Artifacts: `eval/runs/projection-review/1789759522119-7a374803-6738-45ea-beab-40fd2eb4ac69/review.json` and `eval/runs/projection-review/1789759569306-d4069592-fe4a-4f1e-995b-84b828e46a56/review.json`. Each completed ten real projection calls without failure; combined estimated cost $0.02084. These are fixed-transcript semantic checks, not fresh adaptive journeys, and one successful timing replay does not establish robustness. Routing premise/redundancy issues and the other outstanding experience work remain open.

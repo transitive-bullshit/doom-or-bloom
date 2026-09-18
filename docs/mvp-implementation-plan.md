@@ -776,3 +776,8 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Reproduce the 17-successful-request long-history path with mocked SDK transport and increase the shared operation cap from 16 to 24 without dropping context/candidates or increasing deadlines. Keep retry exhaustion and cost reservation bounded.
 - [x] Add safe failure-stage and validation-category diagnostics. Verify all 139 unit tests, static/content checks, synthetic observations and three focused inspector browser scenarios.
 - The [follow-up reflection](journey-reflection-2026-09-19.md#remaining-concrete-findings-from-the-final-review) records remaining claim-support, timeline-scope and routing-premise failures. Full failed-operation resume and ordinary-harm/action summary improvements also remain open. This is an intermediate checkpoint, not goal completion.
+
+### 2026-09-19 — Forecast scope follow-up / Codex
+
+- [x] Tighten forecast assessability for technical control and capability arrival timing using the actual saved participant answers. Complete two ten-transcript live projection replays; record the unsuccessful intermediate timing result as well as the corrected result in the reflection.
+- Routing premise/redundancy fixes and fresh adaptive verification remain outstanding; the overall improvement goal remains active.

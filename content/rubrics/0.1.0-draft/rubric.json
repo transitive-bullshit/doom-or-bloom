@@ -23,7 +23,7 @@
     {
       "id": "capability_trajectory",
       "label": "Timeline & capability",
-      "meaning": "The participant’s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator’s confidence in interpreting it. A date for incremental improvements, bounded tools, paperwork automation, or adoption is not by itself a forecast of transformative capability. Use a transformative-timing level only when that scale of capability is actually expected on that horizon. If near-term tool improvements are expected but the arrival of substantially more capable or autonomous AI is explicitly unknown, retain the ordinary forecast in its own scope and leave transformative direction unplaced. An explicitly expected low capability ceiling remains an assessable position.",
+      "meaning": "The participant’s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator’s confidence in interpreting it. A date for incremental improvements, bounded tools, paperwork automation, or adoption is not by itself a forecast of transformative capability. Use a transformative-timing level only when that scale of capability is actually expected on that horizon. If near-term tool improvements are expected but the arrival of substantially more capable or autonomous AI is explicitly unknown, retain the ordinary forecast in its own scope and leave transformative direction unplaced. An explicitly expected low capability ceiling remains an assessable position. Arrival timing and the speed of consequences after arrival are different. “Once AI is smarter, change happens quickly” establishes neither years nor decades until that capability arrives. An expectation of eventual transformative AI without an arrival horizon does not support any timed level; absence of a date is not an expectation of a long delay. Leave this dimension unplaced when none of the available positions is supported.",
       "levels": [
         "Transformative capability is not expected, or a low ceiling is explicitly anticipated.",
         "Transformative capability is expected only on a long or indefinite horizon.",
@@ -67,7 +67,7 @@
     {
       "id": "technical_controllability",
       "label": "Controllability",
-      "meaning": "Whether the participant expects technical methods to keep powerful AI within meaningful safeguards, including alignment, monitoring, containment and defense. Evaluate expected feasibility and its conditions rather than the participant’s preferred policy.",
+      "meaning": "Whether the participant expects technical methods to keep powerful AI within meaningful safeguards, including alignment, monitoring, containment and defense. Evaluate expected feasibility and its conditions rather than the participant’s preferred policy. A requirement for safeguards, a preference for security work, or an update condition about control does not establish expected technical feasibility. Verification and enforcement of cooperation between institutions concern institutional competence, not control of AI systems. Do not infer feasible technical control from support for continued development; someone can favor development while leaving technical feasibility unknown.",
       "levels": [
         "Reliable technical control is expected to be infeasible.",
         "Control is expected to be very difficult and unreliable.",
