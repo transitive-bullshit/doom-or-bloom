@@ -15,11 +15,14 @@ import {
 import { versions } from '@/lib/assessment/schema'
 import type { Operation } from '@/lib/assessment/schema'
 import { evidenceReadiness } from '@/lib/assessment/readiness'
-import { personas, replyForPrompt } from './catalog'
+import { personaProfileSchema, personas, replyForPrompt } from './catalog'
 import type { Persona, ScriptedReply } from './catalog'
 import { scriptedProvider } from './synthetic-provider'
 import { rankingSchema, suiteSchema } from './schema'
 import type { Journey, JourneyStep, JourneySuite } from './schema'
+import type { Participant } from './participant'
+import type { ParticipantExchange } from './schema'
+import { JourneyFailure } from './failure'
 
 export function journeyHashes(bundle: Bundle) {
   const hash = (value: string) =>
@@ -50,10 +53,15 @@ export async function runPersona(
   persona: Persona,
   bundle: Bundle,
   turns = 5,
-  live?: Provider
+  live?: Provider,
+  participant?: Participant
 ): Promise<Journey> {
   if (!Number.isInteger(turns) || turns < 1 || turns > 6)
     throw new Error('Journey turn bound is 1–6')
+  if (participant && live?.kind !== 'live')
+    throw new Error(
+      'Generated participants require the live assessment provider'
+    )
   const scripted = scriptedProvider(persona, bundle)
   const provider = live ?? scripted.provider
   let state = createAssessment(
@@ -63,6 +71,8 @@ export async function runPersona(
   state.versions.content = bundle.manifest.contentVersion
   state.versions.rubric = bundle.manifest.rubricVersion
   const steps: JourneyStep[] = []
+  const participantExchanges: ParticipantExchange[] = []
+  let pendingAnswer: string | null = null
   let firstReadyAnswer: number | null = null
   let error: string | null = null
   let stopped = 'turn budget reached'
@@ -149,8 +159,29 @@ export async function runPersona(
         (p) => p.id === currentPrompt(state).promptId
       )
       if (!prompt) throw new Error('Chosen prompt has no scripted answer')
-      const reply = replyForPrompt(persona, prompt)
-      await step({ type: 'answer', text: reply.text }, reply)
+      if (participant) {
+        const exchange = await participant.generate({
+          persona,
+          prompt: currentPrompt(state),
+          history: steps
+            .filter((s) => s.answer !== null)
+            .map((s) => ({
+              question: s.prompt.text,
+              answer: s.answer!
+            })),
+          recoveryGuidance:
+            state.status === 'recovery'
+              ? prompt.recoveryVariants.clarification
+              : null
+        })
+        participantExchanges.push(exchange)
+        pendingAnswer = exchange.response.text
+        await step({ type: 'answer', text: pendingAnswer })
+        pendingAnswer = null
+      } else {
+        const reply = replyForPrompt(persona, prompt)
+        await step({ type: 'answer', text: reply.text }, reply)
+      }
       if (state.status === 'paused') {
         stopped = 'paused for recovery or unavailable evidence'
         break
@@ -161,16 +192,20 @@ export async function runPersona(
     else if (!state.result)
       stopped =
         state.status === 'paused' ? stopped : 'more supported coverage needed'
-  } catch {
+  } catch (err) {
     // Transport bodies may contain credentials: save completed steps only and a
     // bounded local message, never raw provider errors or environment values.
     error =
-      'Run stopped before completing an operation. Inspect the completed stages; check credentials, request budget or script coverage locally.'
+      err instanceof JourneyFailure
+        ? err.message
+        : 'Run stopped before completing an operation. Inspect the saved exchanges and pending answer; check provider access, request/cost budgets or script coverage locally.'
     stopped = 'operation failed'
   }
-  return {
+  const journey: Journey = {
     personaId: persona.id,
-    personaSnapshot: structuredClone(persona),
+    personaSnapshot: live
+      ? personaProfileSchema.parse(persona)
+      : structuredClone(persona),
     steps,
     result: state.result,
     stopped,
@@ -180,6 +215,11 @@ export async function runPersona(
     finalReadiness: evidenceReadiness(state),
     components: state.result?.components ?? []
   }
+  if (participant) {
+    journey.participantExchanges = participantExchanges
+    journey.pendingAnswer = pendingAnswer
+  }
+  return journey
 }
 
 export async function runJourneySuite({
@@ -187,13 +227,19 @@ export async function runJourneySuite({
   personaId,
   turns = 5,
   live,
-  budgetReport
+  participant,
+  budgetReport,
+  costReport,
+  onJourney
 }: {
   id: string
   personaId?: string
   turns?: number
   live?: Provider
+  participant?: Participant
   budgetReport?: () => JourneySuite['requestBudget']
+  costReport?: () => JourneySuite['cost']
+  onJourney?: (journey: Journey) => void
 }) {
   const bundle = loadBundle()
   const selected = personaId
@@ -201,14 +247,20 @@ export async function runJourneySuite({
     : personas
   if (!selected.length) throw new Error('Unknown persona')
   const journeys: Journey[] = []
-  for (const persona of selected)
-    journeys.push(await runPersona(persona, bundle, turns, live))
-  return suiteSchema.parse({
+  for (const persona of selected) {
+    const journey = await runPersona(persona, bundle, turns, live, participant)
+    journeys.push(journey)
+    onJourney?.(journey)
+    if (live && journey.error && journey.accepted === 0) break
+  }
+  const suite: JourneySuite = {
     schemaVersion: 1,
     id,
     createdAt: new Date().toISOString(),
     mode: live ? 'live' : 'synthetic',
-    authoring: 'Codex-authored fictional answer scripts',
+    authoring: participant
+      ? 'OpenAI participant with live Jev assessment'
+      : 'Codex-authored fictional answer scripts',
     versions: {
       ...versions,
       model: live ? versions.model : 'persona-script-v1'
@@ -217,7 +269,10 @@ export async function runJourneySuite({
     turns,
     requestBudget: budgetReport?.() ?? null,
     journeys
-  })
+  }
+  if (participant) suite.participantModel = participant.model
+  if (costReport) suite.cost = costReport()
+  return suiteSchema.parse(suite)
 }
 
 export function withoutTraces(suite: JourneySuite): JourneySuite {

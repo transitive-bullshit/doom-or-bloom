@@ -1,16 +1,15 @@
 import { randomUUID } from 'node:crypto'
+import { existsSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { runJourneySuite, withoutTraces } from '../lib/journeys/runner'
 import { projectJourneyStore } from '../lib/journeys/store'
 import { compareJourneys, suiteSchema } from '../lib/journeys/schema'
 import { personas } from '../lib/journeys/catalog'
-import { budgetedProvider, paidRequestBudget } from '../lib/evaluation/budget'
-import { createLiveProvider } from '../lib/server/live-provider'
-import { versions } from '../lib/assessment/schema'
+import { runLiveJourneys } from '../lib/journeys/live'
 
 const args = process.argv.slice(2)
 const allowed =
-  /^(--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--live|--allow-paid|--check|--write-baseline)$/
+  /^(--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--check|--write-baseline)$/
 if (
   args.some((arg) => !allowed.test(arg)) ||
   new Set(args.map((a) => a.split('=')[0])).size !== args.length
@@ -23,16 +22,16 @@ const turns = Number(
 const live = args.includes('--live')
 if (personaId && !personas.some((p) => p.id === personaId))
   throw new Error('Unknown persona')
-if (
-  live &&
-  (!personaId || args.includes('--write-baseline') || args.includes('--check'))
-)
-  throw new Error(
-    'Live runs require one --persona and cannot overwrite/check the synthetic baseline'
-  )
+if (live && (args.includes('--write-baseline') || args.includes('--check')))
+  throw new Error('Live runs cannot overwrite/check the synthetic baseline')
 if (
   !live &&
-  args.some((a) => a === '--allow-paid' || a.startsWith('--max-requests='))
+  args.some(
+    (a) =>
+      a === '--allow-paid' ||
+      a.startsWith('--max-requests=') ||
+      a.startsWith('--max-cost=')
+  )
 )
   throw new Error('Paid flags require --live')
 if (
@@ -44,24 +43,37 @@ if (
   )
 
 async function main() {
-  let paid: ReturnType<typeof budgetedProvider> | undefined
   if (live) {
-    const maximum = paidRequestBudget(
-      args.filter(
-        (a) => a === '--allow-paid' || a.startsWith('--max-requests=')
-      )
+    if (!args.includes('--allow-paid'))
+      throw new Error('Live runs require --allow-paid')
+    if (existsSync('.env.local')) process.loadEnvFile('.env.local')
+    const maxRequestsArg = args.find((a) => a.startsWith('--max-requests='))
+    const maxCostArg = args.find((a) => a.startsWith('--max-cost='))
+    const suite = await runLiveJourneys({
+      personaId,
+      turns,
+      maxRequests: maxRequestsArg
+        ? Number(maxRequestsArg.split('=')[1])
+        : undefined,
+      maxCost: maxCostArg ? Number(maxCostArg.split('=')[1]) : undefined,
+      onJourney: (j) =>
+        console.log(
+          `${j.personaId}: ${j.accepted} accepted; ${Math.round(j.finalReadiness.value)}% readiness; ${j.result ? 'result' : 'no result'}; ${j.stopped}`
+        )
+    })
+    console.log(
+      `Saved live Jev + OpenAI journey run ${suite.id}; ${suite.journeys.length} personas`
     )
-    process.loadEnvFile('.env.local')
-    if (!process.env.TYPESAFE_API_KEY?.trim())
-      throw new Error('Missing local TYPESAFE_API_KEY')
-    paid = budgetedProvider(createLiveProvider(versions.model), maximum)
+    console.log(
+      JSON.stringify({ requestBudget: suite.requestBudget, cost: suite.cost })
+    )
+    if (suite.journeys.some((j) => j.error)) process.exitCode = 1
+    return
   }
   const suite = await runJourneySuite({
     id: `${Date.now()}-${randomUUID()}`,
     personaId,
-    turns,
-    live: paid?.provider,
-    budgetReport: paid?.report
+    turns
   })
   await projectJourneyStore().save(suite)
   console.log(
@@ -110,10 +122,6 @@ async function main() {
         'All selected journey observations match the synthetic baseline.'
       )
   }
-  if (paid)
-    console.log(
-      `Paid request bound: ${paid.report().usedOrReserved}/${paid.report().maximum} used or reserved`
-    )
 }
 main().catch(() => {
   console.error(

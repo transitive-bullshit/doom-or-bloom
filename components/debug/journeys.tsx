@@ -36,6 +36,7 @@ import { ReviewHeader } from '@/components/debug/content/shared'
 import { Map } from '@/components/assessment/worldview-map'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import type { Persona } from '@/lib/journeys/catalog'
+import { personaProfileSchema } from '@/lib/journeys/catalog'
 import { compareJourneys } from '@/lib/journeys/schema'
 import type { Journey, JourneyStep, RunIndex } from '@/lib/journeys/schema'
 
@@ -45,7 +46,7 @@ const coordinate = (value: number | null | undefined) =>
 const runLabel = (run: RunIndex) =>
   run.id === 'baseline'
     ? 'Checked-in synthetic baseline'
-    : `${run.mode === 'live' ? 'Jev' : 'Synthetic'} · ${run.createdAt.replace('T', ' ').slice(0, 19)} · ${run.personaIds.length} personas`
+    : `${run.participantModel ? 'Jev + OpenAI' : run.mode === 'live' ? 'Jev + scripted answers' : 'Synthetic fixture'} · ${run.createdAt.replace('T', ' ').slice(0, 19)} · ${run.personaIds.length} personas`
 
 function Disclosure({
   label,
@@ -325,8 +326,13 @@ export function JourneysInspector({
 }) {
   const [personaId, setPersonaId] = useState(personas[0]!.id)
   const [runs, setRuns] = useState(initialRuns)
-  const [runId, setRunId] = useState(initialRuns[0]?.id ?? 'baseline')
-  const [compareId, setCompareId] = useState('baseline')
+  const [runId, setRunId] = useState(
+    initialRuns.find((run) => run.mode === 'live')?.id ??
+      initialRuns[0]?.id ??
+      'baseline'
+  )
+  const [compareId, setCompareId] = useState('')
+  const [runMode, setRunMode] = useState<'live' | 'synthetic'>('live')
   const [loaded, setLoaded] = useState<{
     key: string
     current: { run: RunIndex; journey: Journey | null } | null
@@ -387,7 +393,11 @@ export function JourneysInspector({
       const response = await fetch('/api/user-journeys', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(all ? {} : { personaId })
+        body: JSON.stringify({
+          personaId: all ? undefined : personaId,
+          mode: runMode,
+          allowPaid: runMode === 'live' ? true : undefined
+        })
       })
       if (!response.ok) throw new Error('Rerun failed')
       const result = (await response.json()) as {
@@ -421,11 +431,11 @@ export function JourneysInspector({
           assessment
         </AlertTitle>
         <AlertDescription>
-          Codex authored the answers. Named people are loose argument
-          inspirations, not claims about what they would actually say today.
-          Synthetic runs inject judgments and test control flow; only runs
-          labeled Jev contain real semantic outputs. No analytics or paid
-          inference runs on page load or through the rerun buttons.
+          Live journeys use an OpenAI participant answering the actual questions
+          and Jev inside the real assessment engine. Named people are loose
+          argument inspirations, not claims about what they would say today.
+          Synthetic fixtures inject judgments for free control-flow checks. Paid
+          inference runs only when you explicitly start a live run.
         </AlertDescription>
       </Alert>
       <section
@@ -512,6 +522,24 @@ export function JourneysInspector({
           </NativeSelect>
         </Field>
       </FieldGroup>
+      <Field className='max-w-sm'>
+        <FieldLabel htmlFor='journey-mode'>Rerun mode</FieldLabel>
+        <NativeSelect
+          id='journey-mode'
+          value={runMode}
+          disabled={busy}
+          onChange={(event) =>
+            setRunMode(event.target.value as 'live' | 'synthetic')
+          }
+        >
+          <NativeSelectOption value='live'>
+            Live Jev + OpenAI participant · paid
+          </NativeSelectOption>
+          <NativeSelectOption value='synthetic'>
+            Synthetic fixture · free
+          </NativeSelectOption>
+        </NativeSelect>
+      </Field>
       <div className='flex flex-wrap items-center gap-3'>
         <Button
           variant='outline'
@@ -519,18 +547,23 @@ export function JourneysInspector({
           onClick={() => void rerun(false)}
         >
           <RefreshCw data-icon='inline-start' />
-          {busy ? 'Saving run…' : 'Rerun this persona · synthetic'}
+          {busy
+            ? 'Running and saving…'
+            : `Rerun this persona · ${runMode === 'live' ? 'live' : 'synthetic'}`}
         </Button>
         <Button
           variant='outline'
           disabled={busy || loading}
           onClick={() => void rerun(true)}
         >
-          Rerun all ten · synthetic
+          Rerun all ten · {runMode === 'live' ? 'live' : 'synthetic'}
         </Button>
         <p className='text-xs text-muted-foreground'>
           Five substantive-answer opportunities, followed by projection when
-          eligible. No paid requests.
+          eligible.{' '}
+          {runMode === 'live'
+            ? 'GPT-5.4 mini + Jev; $2 cost budget, at most 24 Jev requests for a single-persona run or 240 shared by all ten. Runs may take several minutes.'
+            : 'No paid requests.'}
         </p>
       </div>
       {(error || view?.error) && (
@@ -548,8 +581,7 @@ export function JourneysInspector({
         <Alert>
           <AlertTitle>This run did not include {persona.name}</AlertTitle>
           <AlertDescription>
-            Select the baseline or a run containing this persona, or rerun it
-            synthetically.
+            Select a run containing this persona or start a new run.
           </AlertDescription>
         </Alert>
       )}
@@ -559,7 +591,9 @@ export function JourneysInspector({
             <div className='flex flex-wrap gap-2'>
               <Badge>
                 {current.run.mode === 'live'
-                  ? 'Recorded Jev run'
+                  ? current.run.participantModel
+                    ? 'Live Jev + OpenAI participant'
+                    : 'Recorded Jev run · scripted answers'
                   : 'Injected synthetic judgments'}
               </Badge>
               <Badge variant='outline'>
@@ -581,24 +615,54 @@ export function JourneysInspector({
               interpretation coverage, not forecast correctness or reasoning
               quality.
             </p>
+            {current.run.cost && (
+              <p className='text-sm text-muted-foreground'>
+                Participant: {current.run.participantModel} · whole-run
+                estimated API cost ${current.run.cost.estimatedUsd.toFixed(4)} ·
+                OpenAI requests {current.run.cost.usage.openai.requests} · Jev
+                requests {current.run.cost.usage.jev.requests}.
+                {current.run.cost.reservedUsd > 0 &&
+                  ` Failed or pending usage reservation: $${current.run.cost.reservedUsd.toFixed(4)}.`}
+              </p>
+            )}
             {journey.error && (
               <Alert variant='destructive'>
                 <AlertTitle>Partial run</AlertTitle>
                 <AlertDescription>{journey.error}</AlertDescription>
               </Alert>
             )}
-            <Disclosure label='Run provenance and scripts'>
+            <Disclosure label='Run provenance and persona'>
               <JsonViewer label='Run provenance' value={current.run} />
               <JsonViewer
                 label={
                   journey.personaSnapshot
-                    ? 'Recorded persona and authored synthetic judgment levels'
+                    ? current.run.mode === 'live'
+                      ? 'Recorded persona background · no expected scores'
+                      : 'Recorded persona and injected fixture values'
                     : 'Current authoring · original persona not recorded in this older run'
                 }
-                value={recordedPersona}
+                value={
+                  current.run.mode === 'live'
+                    ? personaProfileSchema.parse(recordedPersona)
+                    : recordedPersona
+                }
                 dimensions={dimensions}
               />
             </Disclosure>
+            {journey.participantExchanges && (
+              <Disclosure label='OpenAI participant requests and replies'>
+                <JsonViewer
+                  label='Recorded participant exchanges'
+                  value={journey.participantExchanges}
+                />
+                {journey.pendingAnswer && (
+                  <p className='text-sm'>
+                    Generated answer preserved after an unfinished assessment
+                    operation: {journey.pendingAnswer}
+                  </p>
+                )}
+              </Disclosure>
+            )}
           </section>
           {prior && before && (
             <section
@@ -756,14 +820,11 @@ export function JourneysInspector({
             select one.
           </p>
           <p>
-            For actual Jev semantics, run{' '}
-            <code>
-              pnpm journeys:generate --live --persona=control-alarmist --turns=3
-              --allow-paid --max-requests=12
-            </code>
-            . Credentials stay in local <code>.env.local</code>; this option is
-            only available through the CLI and may incur charges within the
-            shared physical request budget.
+            For live participant generation and Jev semantics, run{' '}
+            <code>pnpm journeys:live --persona=control-alarmist --turns=5</code>
+            . Omit the persona flag for all ten. Credentials stay server-side in
+            the environment or <code>.env.local</code>. Live runs incur API
+            charges within request and cost budgets.
           </p>
           <p>
             Run artifacts are saved under <code>eval/runs/journeys/</code>;

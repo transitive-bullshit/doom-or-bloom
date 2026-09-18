@@ -40,6 +40,16 @@ export const personaSchema = z.strictObject({
   recoveryPrelude: z.array(z.string()).max(2)
 })
 export type Persona = z.infer<typeof personaSchema>
+// Live provenance contains the character and review context, without the
+// injected values used only by the deterministic fixture provider.
+export const personaProfileSchema = personaSchema
+  .omit({
+    openingVectors: true,
+    openingTiming: true,
+    openingConviction: true,
+    levels: true
+  })
+  .strip()
 export type ScriptedReply = {
   key: string
   text: string

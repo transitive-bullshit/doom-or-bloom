@@ -15,8 +15,17 @@ export function paidRequestBudget(args: string[]) {
   return Number(budgetArg.split('=')[1])
 }
 
-export function budgetedProvider(provider: Provider, maximum: number) {
-  if (!Number.isInteger(maximum) || maximum < 1 || maximum > 24)
+export function budgetedProvider(
+  provider: Provider,
+  maximum: number,
+  ceiling = 24
+) {
+  if (
+    !Number.isInteger(maximum) ||
+    maximum < 1 ||
+    maximum > ceiling ||
+    ceiling > 240
+  )
     throw new Error('Invalid evaluation request budget')
   let reserved = 0
   const bounded: Provider = {

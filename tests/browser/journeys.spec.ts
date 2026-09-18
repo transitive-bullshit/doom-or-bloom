@@ -14,6 +14,9 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
   })
   await page.setViewportSize({ width: 1440, height: 1000 })
   await page.goto('/user-journeys')
+  await expect(page.getByLabel('Rerun mode')).toHaveValue('live')
+  await page.getByLabel('View run').selectOption('baseline')
+  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'User Journeys'
   )
@@ -64,6 +67,7 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
     fullPage: false
   })
   await page.reload()
+  await page.getByLabel('View run').selectOption('baseline')
   await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
     'First eligible after answer 1'
   )

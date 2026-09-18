@@ -8,7 +8,43 @@ import {
   dispositionSchema
 } from '@/lib/assessment/schema'
 import { questionSchema, modelAnswerSchema } from '@/lib/assessment/schema'
-import { personaSchema } from './catalog'
+import { personaProfileSchema, personaSchema } from './catalog'
+
+export const participantExchangeSchema = z.strictObject({
+  promptInstanceId: z.string(),
+  request: z.strictObject({
+    model: z.string(),
+    store: z.literal(false),
+    reasoning: z.strictObject({ effort: z.literal('none') }),
+    max_output_tokens: z.number(),
+    instructions: z.string(),
+    input: z.string()
+  }),
+  response: z.strictObject({
+    id: z.string(),
+    model: z.string(),
+    text: z.string(),
+    usage: z.strictObject({
+      input_tokens: z.number(),
+      output_tokens: z.number()
+    })
+  }),
+  elapsedMs: z.number()
+})
+export type ParticipantExchange = z.infer<typeof participantExchangeSchema>
+const providerUsage = z.strictObject({
+  requests: z.number(),
+  inputTokens: z.number(),
+  outputTokens: z.number()
+})
+const rates = z.strictObject({ input: z.number(), output: z.number() })
+const costSchema = z.strictObject({
+  maximumUsd: z.number(),
+  estimatedUsd: z.number(),
+  reservedUsd: z.number(),
+  rates: z.strictObject({ openai: rates, jev: rates }),
+  usage: z.strictObject({ openai: providerUsage, jev: providerUsage })
+})
 
 const traceSchema = z.strictObject({
   requestId: z.string(),
@@ -116,7 +152,9 @@ export const journeyStepSchema = z.strictObject({
 })
 export const journeySchema = z.strictObject({
   personaId: z.string(),
-  personaSnapshot: personaSchema.optional(),
+  personaSnapshot: z.union([personaSchema, personaProfileSchema]).optional(),
+  participantExchanges: z.array(participantExchangeSchema).max(18).optional(),
+  pendingAnswer: z.string().nullable().optional(),
   steps: z.array(journeyStepSchema).max(20),
   result: resultSchema.nullable(),
   stopped: z.string(),
@@ -133,7 +171,12 @@ export const suiteSchema = z.strictObject({
   id: z.string().regex(/^(baseline|[0-9]{13}-[a-f0-9-]{36})$/),
   createdAt: z.string(),
   mode: z.enum(['synthetic', 'live']),
-  authoring: z.literal('Codex-authored fictional answer scripts'),
+  authoring: z.enum([
+    'Codex-authored fictional answer scripts',
+    'OpenAI participant with live Jev assessment'
+  ]),
+  participantModel: z.string().optional(),
+  cost: costSchema.optional(),
   versions: versionsSchema,
   inputHash: z.string(),
   engineHash: z.string(),
@@ -155,6 +198,8 @@ export type RunIndex = Pick<
   | 'engineHash'
   | 'contentHash'
   | 'turns'
+  | 'participantModel'
+  | 'cost'
 > & { personaIds: string[] }
 
 export function runIndex(suite: JourneySuite): RunIndex {
@@ -168,7 +213,7 @@ export function runIndex(suite: JourneySuite): RunIndex {
     contentHash,
     turns
   } = suite
-  return {
+  const index: RunIndex = {
     id,
     createdAt,
     mode,
@@ -179,6 +224,9 @@ export function runIndex(suite: JourneySuite): RunIndex {
     turns,
     personaIds: suite.journeys.map((j) => j.personaId)
   }
+  if (suite.participantModel) index.participantModel = suite.participantModel
+  if (suite.cost) index.cost = suite.cost
+  return index
 }
 
 // Only semantic observations are compared: UUIDs, elapsed times, byte counts

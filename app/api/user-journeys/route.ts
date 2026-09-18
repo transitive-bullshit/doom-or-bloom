@@ -9,6 +9,7 @@ import { personas } from '@/lib/journeys/catalog'
 import { runJourneySuite } from '@/lib/journeys/runner'
 import { projectJourneyStore } from '@/lib/journeys/store'
 import { runIndex } from '@/lib/journeys/schema'
+import { runLiveJourneys } from '@/lib/journeys/live'
 
 export const runtime = 'nodejs'
 const headers = { 'Cache-Control': 'no-store' }
@@ -49,10 +50,15 @@ export async function POST(request: Request) {
       { status: 403, headers }
     )
   const input = z
-    .strictObject({ personaId: z.string().optional() })
+    .strictObject({
+      personaId: z.string().optional(),
+      mode: z.enum(['live', 'synthetic']),
+      allowPaid: z.boolean().optional()
+    })
     .safeParse(await readBoundedJson(request, 2000).catch(() => null))
   if (
     !input.success ||
+    (input.data.mode === 'live' && input.data.allowPaid !== true) ||
     (input.data.personaId &&
       !personas.some((p) => p.id === input.data.personaId))
   )
@@ -67,18 +73,24 @@ export async function POST(request: Request) {
     )
   running = true
   try {
-    const suite = await runJourneySuite({
-      id: `${Date.now()}-${randomUUID()}`,
-      personaId: input.data.personaId
-    })
-    await projectJourneyStore().save(suite)
+    const suite =
+      input.data.mode === 'live'
+        ? await runLiveJourneys({ personaId: input.data.personaId })
+        : await runJourneySuite({
+            id: `${Date.now()}-${randomUUID()}`,
+            personaId: input.data.personaId
+          })
+    if (input.data.mode === 'synthetic') await projectJourneyStore().save(suite)
     return Response.json(
       { run: runIndex(suite), runs: await projectJourneyStore().list() },
       { headers }
     )
   } catch {
     return Response.json(
-      { error: 'Rerun could not be saved. Earlier runs remain intact.' },
+      {
+        error:
+          'Run could not start or be saved. Check server-side API credentials and local artifact storage. Earlier runs remain intact.'
+      },
       { status: 500, headers }
     )
   } finally {

@@ -2,7 +2,7 @@
 
 Recorded 2026-09-17 before a new held-out semantic run. These are provisional engineering acceptance criteria, not validated psychometric thresholds. They apply to [MEASUREMENT.md](MEASUREMENT.md) and [TYPESAFE.md](TYPESAFE.md). Fixture results demonstrate deterministic behavior; they cannot satisfy semantic agreement or bias gates.
 
-**Current authorization: zero paid evaluation requests.** Do not run `eval:smoke`, `eval:engine`, automated live browser submissions or capacity experiments. A future semantic run requires reviewed cases and explicit user approval of its monetary budget, maximum requests and exact operations. The available API key is not approval to spend on evaluation. Keep the participant demo available while preparing offline work.
+**Updated authorization, 2026-09-18:** The user explicitly approved API costs for occasional persona development runs using live Jev and an inexpensive OpenAI participant. Use the bounded [live journey workflow](user-journeys.md), preserving actual routing and both providers’ exchanges. This supersedes the earlier zero-paid-requests restriction for these development journeys. It does not authorize pressure testing or recurring automatic spend. The formal human-reviewed holdout protocol below remains a separate release gate; published persona runs do not satisfy it.
 
 ## Preparation and blinding
 

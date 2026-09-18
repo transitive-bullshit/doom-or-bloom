@@ -1,6 +1,24 @@
-# Synthetic User Journeys
+# User Journeys: live participants and assessment
 
 Open `/user-journeys` at the Portless development URL. This internal tool uses the current question catalog, assessment engine, routing eligibility/ranking, recovery policy, readiness gate and projection code. It has no connection to the participant’s browser assessment or debug history. Production returns 404 for both page and API.
+
+## Live runs are the experience review baseline
+
+As authorized on 2026-09-18, occasional development journeys use **GPT-5.4 mini as the fictional participant and live Jev through the actual assessment engine**. API costs for both are expected. The inspector defaults to live reruns and prefers a saved live run. Nothing runs on page load.
+
+The participant receives the character’s beliefs and voice, the actual questions and prior replies, and any recovery guidance. It does not receive fixture levels, target coverage, rubric, scores, candidate rankings or readiness. Its complete reply passes unchanged to the normal engine; Jev receives the ordinary participant evidence, never persona labels or hypotheses. **Live personas have no predetermined target judgments.** Review the assessment against what the participant actually said. The scripted two-miss recovery prelude remains an explicit fixture action before the OpenAI participant resumes.
+
+Every generated reply retains the exact OpenAI request instructions/input, returned model, reply, usage and duration alongside the Jev exchanges. Failed assessment operations preserve the generated pending reply. No fallback injects synthetic judgments into a live run. Earlier scripted-live artifacts remain labeled separately. These simulations evaluate the application, not the prevalence of real human beliefs; inspect persona fidelity as part of review.
+
+```sh
+pnpm journeys:live
+pnpm journeys:live --persona=control-alarmist --turns=5
+pnpm journeys:live --turns=6 --max-requests=240 --max-cost=2
+```
+
+Defaults: five answer opportunities; 24 physical Jev requests for one persona or a shared 240 for all ten; at most one OpenAI call per answer opportunity; a $2 conservative cost budget. Retries/fallbacks count against the Jev bound; failed usage retains its reservation. A failure after progress is saved and other personas may continue; failure before any accepted answer stops the suite. Budgets and incomplete runs are visible in artifacts. Counts of completed successful requests are distinct from reserved/unknown failed usage. Cost estimates use published rates ($0.75/M input and $4.50/M output for GPT-5.4 mini; $0.042/M Jev input, free output), charging cached input at full price. Byte-based input reservations include overhead and all allowed attempts; these are local estimates, not a provider billing guarantee.
+
+Set server-side `OPENAI_API_KEY` in the environment or `.env.local`, alongside `TYPESAFE_API_KEY`. The normal participant application still uses only Jev. No new dependencies or external storage are required.
 
 ## Ten development personas
 
@@ -21,15 +39,15 @@ Codex authored these original fictional answers locally. Named people supply loo
 
 ## Reading a run
 
-Select a persona and saved run. Each chronological operation shows the exact issued question, full answer with bounded disclosure, consumed disposition, readiness before/after, newly covered dimensions and actual next question. Decision details show shortlisted candidate priorities, the engine’s local decisions and readiness contributions. Full stage requests/responses are available for locally generated runs, with the same folding, sorting and meaning help as interview debugging. Each new run also retains the original fictional profile, script bank and authored hypotheses for provenance; later catalog edits do not rewrite that description. Older development artifacts without that snapshot label the displayed authoring as current. This exposes recorded judgments and code composition, not hidden model reasoning.
+Select a persona and saved run. Each chronological operation shows the exact issued question, full answer with bounded disclosure, consumed disposition, readiness before/after, newly covered dimensions and actual next question. Decision details show shortlisted candidate priorities, the engine’s local decisions and readiness contributions. Full stage requests/responses are available for locally generated runs, with the same folding, sorting and meaning help as interview debugging. New live snapshots retain the original fictional profile without injected fixture levels or coverage flags; synthetic snapshots retain those test inputs. Later catalog edits do not rewrite recorded descriptions. Older development artifacts without that snapshot label the displayed authoring as current. This exposes recorded judgments and code composition, not hidden model reasoning.
 
 The default is five answer opportunities, continuing follow-ups even if a first answer qualifies, then projection when eligible. Recovery actions are separate operations. A run that cannot pass readiness retains its questions/answers and explicitly shows no result. There is no fabricated result or bypass of the app’s gate. Readiness can change during projection as unresolved positions become explicit.
 
 Explicit unknowns count as presence in the synthetic hypotheses, with unknown worldview positions remaining unplaced. In the current engine, projection marks unplaced components unassessed, so the final meter can fall below the earlier eligibility threshold while a saved provisional result remains viewable. The inspector calls out this transition and preserves both per-step readiness and the first eligible answer. A one-turn sparse/undecided run remains ineligible; a longer uncertain run can yield an honest unplaced outlook.
 
-**Synthetic** means authored presence/position/score hypotheses are injected, with zero inference requests. Routing benefit hypotheses use missing targets and unresolved flags; the real engine applies shortlist eligibility, weights, effort, repetition, calibration and ID tie-breaks. These runs demonstrate workflow behavior, not whether Jev understood the text. Hypotheses and family/question-specific answer scripts live in `lib/journeys/catalog.ts`; inspect them through Run provenance and scripts. Confidence is deliberately deterministic in this mode rather than measured calibration.
+**Synthetic** means authored presence/position/score hypotheses are injected, with zero inference requests. Routing benefit hypotheses use missing targets and unresolved flags; the real engine applies shortlist eligibility, weights, effort, repetition, calibration and ID tie-breaks. These runs demonstrate workflow behavior, not whether Jev understood the text. Hypotheses and family/question-specific answer scripts live in `lib/journeys/catalog.ts`; inspect them through Run provenance and persona. Confidence is deliberately deterministic in this mode rather than measured calibration.
 
-**Jev** means the same authored answers pass through the live provider. Persona labels, expected levels and injected judgments are not included in model state; assessment identifiers are opaque. Real Jev may ask a different sequence, interpret coverage differently or leave coordinates unplaced. Newly introduced prompt families require an explicit script: an unsupported question or judgment stops a run rather than silently substituting an answer.
+**Live Jev + OpenAI** means generated answers pass through the live provider. Older **Jev + scripted answers** runs use the authored answer bank. Persona labels, expected levels and injected judgments are not included in model state; assessment identifiers are opaque. Real Jev may ask a different sequence, interpret coverage differently or leave coordinates unplaced. The OpenAI participant responds to the actual question, including new authored families. Synthetic fixtures still require an explicit script and fail clearly for unsupported questions or judgments.
 
 ## Regenerate and compare
 
@@ -40,7 +58,7 @@ pnpm journeys:generate --persona=control-alarmist --turns=1
 pnpm journeys:check
 ```
 
-The page offers free reruns for one persona or all ten. Saved artifacts are immutable directories under `eval/runs/journeys/<run-id>/`, containing complete `suite.json` and small `index.json`. They are ignored by Git and survive server/browser refresh. The inspector lists the 40 most recent plus the checked-in baseline; older artifacts remain on disk. API writes require development mode, a local hostname and same origin. Reads validate artifact identity, schema and a 32 MB bound. Damaged artifacts produce an error rather than being overwritten.
+Choose Synthetic fixture explicitly for free reruns of one persona or all ten; the default is a paid live run. Saved artifacts are immutable directories under `eval/runs/journeys/<run-id>/`, containing complete `suite.json` and small `index.json`. They are ignored by Git and survive server/browser refresh. The inspector lists the 40 most recent plus the checked-in baseline; older artifacts remain on disk. API writes require development mode, a local hostname and same origin. Reads validate artifact identity, schema and a 32 MB bound. Damaged artifacts produce an error rather than being overwritten.
 
 Compare with a previous run to see question/next-question paths, per-step readiness and final outlook/reasoning. Input, content and engine hashes accompany versions and model. Rows align chronological operations: when routing diverges, later scripts can also differ. A warning identifies changed persona inputs or turn bounds. Synthetic-versus-Jev comparisons are diagnostic, not claims of equivalent judgments.
 
@@ -58,14 +76,8 @@ pnpm journeys:check
 
 Baseline updates require all ten personas and the five-turn bound; they preserve earlier full runs and overwrite only the version-controlled compact baseline. Review its Git diff and commit at a sensible checkpoint. An updated baseline is not human semantic approval.
 
-## Bounded live Jev runs
+## Review boundaries
 
-Paid inference remains explicit and CLI-only. It requires exactly one persona, an answer bound of 1–6 and the existing shared physical-request budget of 1–24, counting retries and batches across all stages. No live runs occur on page load or through its buttons.
-
-```sh
-pnpm journeys:generate --live --persona=control-alarmist --turns=3 --allow-paid --max-requests=12
-```
-
-Only live mode loads `.env.local` and uses the existing server-only `TYPESAFE_API_KEY`; no new credentials or OpenAI API calls are needed for the Codex-authored scripts. The bound is a ceiling, not a promised number of completed turns. Budget exhaustion/provider failure saves completed operations as an explicitly partial run and exits nonzero, without logging credential values or transport bodies. Earlier artifacts remain intact. Inspect the saved run in the page after generation.
+Occasional live development journeys are authorized. This does not authorize unbounded pressure testing, recurring automatic spend, or claim human-reviewed holdout validation. The separate release/holdout review gates remain open.
 
 Published fictional personas are development cases, not a blinded holdout. Review answer relevance and expected interpretations before trusting them as semantic evaluation cases. Keep the separate human review/held-out measurement gates from [MEASUREMENT.md](MEASUREMENT.md) open.
