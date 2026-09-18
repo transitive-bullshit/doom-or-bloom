@@ -123,14 +123,19 @@ test('placeholders and an explicit paperclip request use bounded local recovery 
   expect(second.debug?.stages).toEqual([])
   expect(second.assessment.answers).toEqual([])
   expect(second.assessment.evidence).toEqual([])
-  const explicit = await run(
-    original,
-    { type: 'answer', text: 'show me paperclips' },
-    noInference,
-    true
-  )
-  expect(explicit.assessment.status).toBe('paused')
-  expect(explicit.assessment.recovery.paperclipActive).toBe(true)
+  for (const text of ['show me paperclips', 'PAPERCLIPS!', 'show paperclips']) {
+    const explicit = await run(
+      original,
+      { type: 'answer', text },
+      noInference,
+      true
+    )
+    expect(explicit.assessment.status).toBe('paused')
+    expect(explicit.assessment.recovery.paperclipActive).toBe(true)
+    expect(explicit.assessment.answers).toEqual([])
+    expect(explicit.assessment.evidence).toEqual([])
+    expect(explicit.debug?.stages).toEqual([])
+  }
   const resumed = await run(second.assessment, { type: 'retry' }, noInference)
   const third = await run(
     resumed.assessment,

@@ -4,6 +4,8 @@ import { classifyLocalReply } from './local-reply'
 test('only complete workflow phrases bypass semantic interpretation', () => {
   expect(classifyLocalReply('  TEST  again! ')).toBe('test_placeholder')
   expect(classifyLocalReply('Show me paperclips.')).toBe('paperclip_request')
+  expect(classifyLocalReply('  PAPERCLIPS! ')).toBe('paperclip_request')
+  expect(classifyLocalReply('show paperclips')).toBe('paperclip_request')
   for (const text of [
     'I think paperclip maximizers illustrate goal misalignment.',
     'We should test whether AI benefits medicine.',

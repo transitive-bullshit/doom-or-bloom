@@ -6,7 +6,9 @@ export function classifyLocalReply(text: string) {
     .replaceAll(/\s+/g, ' ')
     .replace(/[.!?]+$/, '')
   if (['test', 'test again'].includes(normalized)) return 'test_placeholder'
-  if (['show me paperclips', 'show paperclips'].includes(normalized))
+  if (
+    ['paperclips', 'show me paperclips', 'show paperclips'].includes(normalized)
+  )
     return 'paperclip_request'
   return null
 }
