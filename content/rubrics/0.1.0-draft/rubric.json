@@ -23,7 +23,7 @@
     {
       "id": "capability_trajectory",
       "label": "Timeline & capability",
-      "meaning": "The participant\u2019s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator\u2019s confidence in interpreting it.",
+      "meaning": "The participant’s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator’s confidence in interpreting it.",
       "levels": [
         "Transformative capability is not expected, or a low ceiling is explicitly anticipated.",
         "Transformative capability is expected only on a long or indefinite horizon.",
@@ -67,7 +67,7 @@
     {
       "id": "technical_controllability",
       "label": "Controllability",
-      "meaning": "Whether the participant expects technical methods to keep powerful AI within meaningful safeguards, including alignment, monitoring, containment and defense. Evaluate expected feasibility and its conditions rather than the participant\u2019s preferred policy.",
+      "meaning": "Whether the participant expects technical methods to keep powerful AI within meaningful safeguards, including alignment, monitoring, containment and defense. Evaluate expected feasibility and its conditions rather than the participant’s preferred policy.",
       "levels": [
         "Reliable technical control is expected to be infeasible.",
         "Control is expected to be very difficult and unreliable.",
@@ -89,7 +89,7 @@
     {
       "id": "human_agency",
       "label": "Human continuity",
-      "meaning": "The future of agency and continuity that the participant values, including control, integration or successor futures. Interpret preservation or loss relative to their expressed values; posthuman change is not automatically bad.",
+      "meaning": "What the participant expects to happen to the forms of agency and continuity they value, including control, integration or successor futures. Interpret expected preservation or loss relative to their expressed values; posthuman change is not automatically bad. Expressing what they value or require does not by itself predict whether it will survive or expand.",
       "levels": [
         "The expected future undermines or eliminates the forms of agency/continuity the participant explicitly values.",
         "Significant valued agency or continuity is expected to be lost.",
@@ -100,7 +100,7 @@
     {
       "id": "action_posture",
       "label": "Action posture",
-      "meaning": "The participant\u2019s preferred development pace, access, safeguards and coordination, including the trade-offs they accept. This records a policy preference and contributes no weight to Doom\u2013Bloom placement.",
+      "meaning": "The participant’s preferred development pace, access, safeguards and coordination, including the trade-offs they accept. This records a policy preference and contributes no weight to Doom–Bloom placement.",
       "levels": [
         "A broad pause or substantial slowing is preferred.",
         "Restrained development and strong prior safeguards are preferred.",
@@ -133,7 +133,7 @@
     {
       "id": "appropriate_uncertainty",
       "label": "Appropriate uncertainty",
-      "meaning": "Whether the participant\u2019s conviction matches the basis they offer, with relevant unknowns and limitations preserved. Expressing uncertainty alone earns no quality bonus, and evaluator confidence is a separate signal.",
+      "meaning": "Whether the participant’s conviction matches the basis they offer, with relevant unknowns and limitations preserved. Expressing uncertainty alone earns no quality bonus, and evaluator confidence is a separate signal.",
       "levels": [
         "Certainty is asserted despite explicitly limited or conflicting evidence.",
         "Uncertainty is acknowledged but the strength of the claim is poorly matched to its support.",
@@ -188,12 +188,12 @@
   ],
   "catastrophicRisk": {
     "label": "Catastrophic risk",
-    "meaning": "The participant\u2019s qualitative expectation of humanity-scale catastrophe from AI, such as irreversible loss of control, existential harm or comparably severe systemic collapse. Keep likelihood and severity distinct, preserve the participant\u2019s horizon and assumptions, and do not convert general everyday harm into catastrophe. Explicit unknowns are unplaced.",
+    "meaning": "The participant’s qualitative expectation of humanity-scale catastrophe from AI, such as irreversible loss of control, existential harm or comparably severe systemic collapse. Keep likelihood and severity distinct, preserve the participant’s horizon and assumptions, and do not convert general everyday harm into catastrophe. Explicit unknowns are unplaced.",
     "levels": [
-      "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant\u2019s stated assumptions.",
+      "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant’s stated assumptions.",
       "Catastrophe is possible but expected to be a limited part of the outlook under stated conditions.",
-      "Catastrophic outcomes are a material possibility in the participant\u2019s outlook, with consequential uncertainty or conditions.",
-      "Catastrophic outcomes dominate the participant\u2019s expectation under stated assumptions."
+      "Catastrophic outcomes are a material possibility in the participant’s outlook, with consequential uncertainty or conditions.",
+      "Catastrophic outcomes dominate the participant’s expectation under stated assumptions."
     ]
   }
 }

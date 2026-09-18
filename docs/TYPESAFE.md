@@ -6,7 +6,7 @@ Jev performs narrow semantic judgments over participant evidence and authored de
 
 Independent questions in a batch cannot consume one another’s outputs. Later stages receive earlier results only through code. Question IDs are application bookkeeping: supply the actual dimension meaning in instructions/criteria or named shared state. Never equate a category probability with the participant’s event probability, or interpretation confidence with forecast correctness.
 
-## Current local workflow — algorithm 0.4.0
+## Current local workflow — algorithm 0.5.0
 
 ### A. Interpret the reply
 
@@ -20,7 +20,7 @@ Consume disposition first. Only usable replies contribute evidence. Ambiguous or
 
 Preserve complete prompts/replies once and attach whole-answer support by dimension ID. Do not select spans, extract quotations or repeat participant text in criteria. Timing/conviction flags record presence; actual forecasts and assumptions remain in raw answers.
 
-Compute [evidence readiness](ASSESSMENT.md#question-budget-and-readiness) from existing presence confidence and coverage, without another Jev request. A well-covered first answer can unlock a provisional result; reply count cannot unlock it. Readiness never changes a reasoning score.
+Compute [evidence readiness](ASSESSMENT.md#question-budget-and-readiness) from existing combined presence probability and coverage, without another Jev request. A well-covered first answer can unlock a provisional result; reply count cannot unlock it. Readiness never changes a reasoning score.
 
 ### C. Route follow-ups
 
@@ -48,7 +48,7 @@ Show requests/responses side by side on desktop, stacked on smaller screens, wit
 
 Dotted keys offer mouse-hover and keyboard-focus help. Response judgments use the actual recorded evaluator question, including historical questions; saved judgments use their stored question. State dimension IDs and classifications use authored definitions and a local glossary. Help is authored context, not a model-generated explanation; it adds no inference request and never modifies or copies annotations into JSON.
 
-Storage schema remains v2. Decode legacy v1 saves into whole-answer support without changing raw answers, drafts, tokens, pinned content or historical results. New operations use 0.4.0; cached historical results are not silently recomputed.
+Storage schema remains v2. Decode legacy v1 saves into whole-answer support without changing raw answers, drafts, tokens, pinned content or historical results. New operations use 0.5.0; cached historical results are not silently recomputed.
 
 ## Failure bounds and paid evaluation
 

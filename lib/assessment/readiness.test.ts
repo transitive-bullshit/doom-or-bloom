@@ -26,7 +26,13 @@ function withEvidence(
       criteria: { stated: 'Direct evidence', not_expressed: 'No evidence' }
     }
     const answer = fixtureAnswer(question, 'stated')
-    if (answer.type === 'choice') answer.confidence = confidence
+    if (answer.type === 'choice') {
+      answer.confidence = confidence
+      answer.probabilities = {
+        stated: confidence,
+        not_expressed: 1 - confidence
+      }
+    }
     state.judgments.push({
       id: vector,
       answerId: 'one',

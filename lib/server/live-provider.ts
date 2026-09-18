@@ -58,7 +58,9 @@ export function validateEvaluation(
         (sum, [level, p]) => sum + Number(level) * p,
         0
       )
-      if (Math.abs(expected - answer.score) > 0.03)
+      // The API rounds scores/distributions. Include the intended boundary:
+      // e.g. 0.49 - (0.36 + 2 * 0.05) is 0.030000000000000027 in JS.
+      if (Math.abs(expected - answer.score) > 0.03 + 1e-9)
         throw new Error('Provider score disagrees with distribution')
     }
   }

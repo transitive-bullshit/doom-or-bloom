@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T08:10:21.754Z",
+  "createdAt": "2026-09-18T13:24:44.522Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
-    "assessment": "0.4.0",
+    "assessment": "0.5.0",
     "content": "0.4.0-draft",
     "rubric": "0.1.0-draft",
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "106f6c802933cf80fca1517efdf36e503056f92265dae6a8ef0997c353e710a7",
+  "engineHash": "64c30c4480787b8d1af6767a9cda00e8c159f04d05b8981686229851d119d2e4",
   "contentHash": "a327e7b2095e098de16a9ec789d9c3c6028054aef7e3b685b6f20301a735f0e9",
   "turns": 5,
   "requestBudget": null,
@@ -2818,7 +2818,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -6482,7 +6482,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -10146,7 +10146,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -13364,19 +13364,19 @@
             ]
           },
           "readiness": {
-            "value": 40,
+            "value": 60,
             "threshold": 55,
-            "ready": false,
-            "covered": 6,
+            "ready": true,
+            "covered": 9,
             "total": 15,
             "hasOutlook": true,
             "hasReasoning": true,
             "dimensions": [
               {
                 "vector": "capability_trajectory",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "transition_dynamics",
@@ -13386,9 +13386,9 @@
               },
               {
                 "vector": "beneficial_potential",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "risk_landscape",
@@ -13398,9 +13398,9 @@
               },
               {
                 "vector": "technical_controllability",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "institutional_competence",
@@ -13485,7 +13485,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -13818,27 +13818,27 @@
         "sources": [],
         "provisional": true,
         "capped": false,
-        "insufficient": true,
-        "reason": "There is not enough usable evidence to place this assessment."
+        "insufficient": false,
+        "reason": "A projection of the evidence you supplied, with interpretation ranges."
       },
       "stopped": "turn budget reached",
       "error": null,
       "firstReadyAnswer": 5,
       "accepted": 5,
       "finalReadiness": {
-        "value": 40,
+        "value": 60,
         "threshold": 55,
-        "ready": false,
-        "covered": 6,
+        "ready": true,
+        "covered": 9,
         "total": 15,
         "hasOutlook": true,
         "hasReasoning": true,
         "dimensions": [
           {
             "vector": "capability_trajectory",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "transition_dynamics",
@@ -13848,9 +13848,9 @@
           },
           {
             "vector": "beneficial_potential",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "risk_landscape",
@@ -13860,9 +13860,9 @@
           },
           {
             "vector": "technical_controllability",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "institutional_competence",
@@ -16928,7 +16928,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -20535,7 +20535,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -23989,10 +23989,10 @@
             ]
           },
           "readiness": {
-            "value": 93.33333333333333,
+            "value": 100,
             "threshold": 55,
             "ready": true,
-            "covered": 14,
+            "covered": 15,
             "total": 15,
             "hasOutlook": true,
             "hasReasoning": true,
@@ -24023,9 +24023,9 @@
               },
               {
                 "vector": "technical_controllability",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "institutional_competence",
@@ -24110,7 +24110,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -24544,10 +24544,10 @@
       "firstReadyAnswer": 1,
       "accepted": 5,
       "finalReadiness": {
-        "value": 93.33333333333333,
+        "value": 100,
         "threshold": 55,
         "ready": true,
-        "covered": 14,
+        "covered": 15,
         "total": 15,
         "hasOutlook": true,
         "hasReasoning": true,
@@ -24578,9 +24578,9 @@
           },
           {
             "vector": "technical_controllability",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "institutional_competence",
@@ -27389,19 +27389,19 @@
             ]
           },
           "readiness": {
-            "value": 46.666666666666664,
+            "value": 80,
             "threshold": 55,
-            "ready": false,
-            "covered": 7,
+            "ready": true,
+            "covered": 12,
             "total": 15,
-            "hasOutlook": false,
+            "hasOutlook": true,
             "hasReasoning": true,
             "dimensions": [
               {
                 "vector": "capability_trajectory",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "transition_dynamics",
@@ -27411,21 +27411,21 @@
               },
               {
                 "vector": "beneficial_potential",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "risk_landscape",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "technical_controllability",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "institutional_competence",
@@ -27435,9 +27435,9 @@
               },
               {
                 "vector": "human_agency",
-                "confidence": 0,
+                "confidence": 1,
                 "unresolved": false,
-                "contribution": 0
+                "contribution": 1
               },
               {
                 "vector": "action_posture",
@@ -27510,7 +27510,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -27842,27 +27842,27 @@
         "sources": [],
         "provisional": true,
         "capped": false,
-        "insufficient": true,
-        "reason": "There is not enough usable evidence to place this assessment."
+        "insufficient": false,
+        "reason": "A projection of the evidence you supplied, with interpretation ranges."
       },
       "stopped": "turn budget reached",
       "error": null,
       "firstReadyAnswer": 3,
       "accepted": 5,
       "finalReadiness": {
-        "value": 46.666666666666664,
+        "value": 80,
         "threshold": 55,
-        "ready": false,
-        "covered": 7,
+        "ready": true,
+        "covered": 12,
         "total": 15,
-        "hasOutlook": false,
+        "hasOutlook": true,
         "hasReasoning": true,
         "dimensions": [
           {
             "vector": "capability_trajectory",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "transition_dynamics",
@@ -27872,21 +27872,21 @@
           },
           {
             "vector": "beneficial_potential",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "risk_landscape",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "technical_controllability",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "institutional_competence",
@@ -27896,9 +27896,9 @@
           },
           {
             "vector": "human_agency",
-            "confidence": 0,
+            "confidence": 1,
             "unresolved": false,
-            "contribution": 0
+            "contribution": 1
           },
           {
             "vector": "action_posture",
@@ -30885,7 +30885,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -35001,7 +35001,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.4.0",
+          "assessment": "0.5.0",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"

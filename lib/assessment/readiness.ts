@@ -1,5 +1,6 @@
 import type { Assessment, VectorId } from './schema'
 import { epistemicIds, vectorIds } from './schema'
+import { supportProbability } from './presence'
 
 // A draft engineering heuristic, not a probability that a forecast is correct.
 export const readinessThreshold = 55
@@ -34,9 +35,8 @@ export function evidenceReadiness(state: Assessment) {
                 return judgment?.stage === 'interpret' &&
                   judgment.questionId === `${vector}:status` &&
                   judgment.answerId === entry.answerId &&
-                  answer?.type === 'choice' &&
-                  ['stated', 'strongly_implied'].includes(answer.choice)
-                  ? answer.confidence
+                  answer?.type === 'choice'
+                  ? supportProbability(answer)
                   : 0
               })
             )

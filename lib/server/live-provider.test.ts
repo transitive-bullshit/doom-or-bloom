@@ -316,3 +316,29 @@ test('debug identifies an oversized parent and successful child requests without
   expect(result.requests![1]!.response).toBeDefined()
   expect(JSON.stringify(result.requests)).not.toContain('PRIVATE_ERROR_CANARY')
 })
+
+test('rounded live score at the tolerance boundary is not rejected by floating point error', async () => {
+  const scoreQuestion: Question = {
+    type: 'score',
+    instructions: 'Rate gain',
+    criteria: ['None', 'Small', 'Useful', 'High']
+  }
+  const { provider } = mockedProvider(async () =>
+    Response.json({
+      model: 'jev-1.13.0',
+      answers: {
+        q: {
+          type: 'score',
+          score: 0.49,
+          confidence: 0.53,
+          probabilities: { 0: 0.59, 1: 0.36, 2: 0.05, 3: 0 },
+          legend: { 0: 'None', 1: 'Small', 2: 'Useful', 3: 'High' }
+        }
+      },
+      usage: { input_tokens: 10, output_tokens: 2 }
+    })
+  )
+  await expect(
+    provider.evaluate({}, { q: scoreQuestion })
+  ).resolves.toMatchObject({ answers: { q: { score: 0.49 } } })
+})

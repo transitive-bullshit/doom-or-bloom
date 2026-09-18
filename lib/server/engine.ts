@@ -44,6 +44,8 @@ import { timelineContext } from '@/lib/assessment/timeline'
 import { participantQuestionPolicy } from '@/lib/assessment/prompt-policy'
 import { selectPresentation } from '@/lib/assessment/presentation'
 import { createQuestions } from './questions'
+import { supported } from '@/lib/assessment/presence'
+import { supportedClaim } from '@/lib/assessment/projections'
 
 type StageQuestions = Record<string, Question>
 
@@ -52,12 +54,6 @@ function choice(answer: ModelAnswer | undefined) {
 }
 function confidence(answer: ModelAnswer | undefined) {
   return answer && answer.type !== 'noul' ? answer.confidence : 0
-}
-function supported(answer: ModelAnswer | undefined, threshold: number) {
-  return (
-    ['stated', 'strongly_implied'].includes(choice(answer) ?? '') &&
-    confidence(answer) >= threshold
-  )
 }
 function promptDisplay(prompt: Prompt) {
   return {
@@ -475,14 +471,27 @@ export async function runAssessment(
             bundle.rubric.presenceThreshold
           ) ||
           !evidenceIds.length ||
-          score?.type !== 'score' ||
-          (worldviewIds.includes(
-            dimension.id as (typeof worldviewIds)[number]
-          ) &&
-            choice(evaluation.answers[`${dimension.id}:position`]) !==
-              'assessable')
+          score?.type !== 'score'
         )
           return emptyComponent(dimension.id, dimension.label)
+        const position = evaluation.answers[`${dimension.id}:position`]
+        if (
+          worldviewIds.includes(
+            dimension.id as (typeof worldviewIds)[number]
+          ) &&
+          (position?.type !== 'choice' ||
+            (position.probabilities.assessable ?? 0) <
+              bundle.rubric.presenceThreshold)
+        )
+          return {
+            ...emptyComponent(dimension.id, dimension.label),
+            evidenceIds,
+            claim:
+              position?.type === 'choice' &&
+              position.choice === 'explicitly_unknown'
+                ? 'You expressed uncertainty here rather than a directional expectation.'
+                : 'A directional position is not yet established by these answers.'
+          }
         const max = dimension.levels.length - 1
         const unresolved = state.unresolved.some(
           (item) => item.vector === dimension.id
@@ -500,7 +509,12 @@ export async function runAssessment(
           distribution: score.probabilities,
           confidence: score.confidence,
           evidenceIds,
-          claim: dimension.levels[Math.round(score.score)]!
+          claim: supportedClaim(
+            dimension.levels,
+            score.probabilities,
+            unresolved,
+            bundle.rubric.presenceThreshold
+          )
         }
       })
       const score = evaluation.answers['catastrophic_risk:score']
@@ -510,8 +524,9 @@ export async function runAssessment(
           evaluation.answers['catastrophic_risk:status'],
           bundle.rubric.presenceThreshold
         ) &&
-        choice(evaluation.answers['catastrophic_risk:position']) ===
-          'assessable' &&
+        evaluation.answers['catastrophic_risk:position']?.type === 'choice' &&
+        (evaluation.answers['catastrophic_risk:position'].probabilities
+          .assessable ?? 0) >= bundle.rubric.presenceThreshold &&
         score?.type === 'score' &&
         sourceIds.length > 0
           ? {
@@ -535,7 +550,12 @@ export async function runAssessment(
               distribution: score.probabilities,
               confidence: score.confidence,
               evidenceIds: sourceIds,
-              claim: catastrophe.levels[Math.round(score.score)]!
+              claim: supportedClaim(
+                catastrophe.levels,
+                score.probabilities,
+                state.unresolved.some((u) => u.vector === 'risk_landscape'),
+                bundle.rubric.presenceThreshold
+              )
             }
           : emptyComponent('catastrophic_risk', catastrophe.label)
       components.push(fingerprintRisk)
@@ -543,11 +563,8 @@ export async function runAssessment(
       components = bundle.rubric.dimensions.map((d) =>
         emptyComponent(d.id, d.label)
       )
-    for (const c of components.filter((c) =>
-      vectorIds.includes(c.vector as VectorId)
-    ))
-      state.coverage[c.vector as VectorId] =
-        c.value === null ? 'unassessed' : 'assessed'
+    // Projection assessability is separate from evidence coverage. An explicit
+    // unknown can be understood without supporting a directional coordinate.
     const result = baseResult(state, components, bundle.rubric, capped)
     const horizon = timelineContext(state)
     result.fingerprint = [

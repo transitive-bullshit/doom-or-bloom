@@ -53,11 +53,11 @@ const glossary = {
   contextReferenceIds:
     'Legacy contextual reference links, retained for saved-session compatibility. They do not affect the current inference flow.',
   evidenceReadiness:
-    'A draft heuristic combining supported coverage and interpretation confidence across 15 dimensions. It is not forecast accuracy or a reasoning-quality score.',
+    'A draft heuristic combining supported coverage and presence probability across 15 dimensions. It is not forecast accuracy or a reasoning-quality score.',
   threshold:
     'The draft readiness threshold at which a provisional result can be requested. It is a configurable development policy, not a scientific confidence cutoff.',
   contribution:
-    'This dimension’s presence confidence, halved when an ambiguity or tension remains. Repeating evidence does not add contribution.',
+    'This dimension’s combined probability of stated or strongly implied support, halved when an ambiguity or tension remains. Repeating evidence does not add contribution.',
   interpretation:
     'A typed reading of participant evidence. It can remain uncertain or be superseded by a later explicit correction.'
 } satisfies Explanations
@@ -192,7 +192,7 @@ export function jsonHelp({
     if (property === 'value')
       return 'The unrounded evidence-readiness percentage on a 0–100 scale. Eligibility uses this value, rather than the rounded number displayed in the meter.'
     if (property === 'confidence')
-      return 'The highest eligible presence confidence attached to active whole-answer support for this dimension. Missing or ambiguous coverage contributes zero; repeated evidence is not added together.'
+      return 'The highest combined probability of stated or strongly implied evidence attached to active whole-answer support for this dimension. Missing or ambiguous coverage contributes zero; repeated evidence is not added together.'
     if (property === 'ready')
       return 'Whether supported coverage crosses the draft threshold with both outlook and reasoning evidence. This permits a provisional result; it does not guarantee every final coordinate can be placed.'
     if (property === 'covered')

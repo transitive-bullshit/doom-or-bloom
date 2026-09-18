@@ -71,7 +71,7 @@ test('authored alternatives and state dimensions have context without annotating
   ).toContain('probability that the proposition')
 })
 
-test('readiness help distinguishes percentages and derived presence confidence from component coordinates', () => {
+test('readiness help distinguishes percentages and combined support probability from component coordinates', () => {
   expect(
     jsonHelp({
       property: 'value',
@@ -87,7 +87,9 @@ test('readiness help distinguishes percentages and derived presence confidence f
       value: 0.9,
       context: {}
     })
-  ).toContain('highest eligible presence confidence')
+  ).toContain(
+    'highest combined probability of stated or strongly implied evidence'
+  )
   expect(
     jsonHelp({
       property: 'value',

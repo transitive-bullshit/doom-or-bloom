@@ -242,6 +242,7 @@ export async function runJourneySuite({
   onJourney?: (journey: Journey) => void
 }) {
   const bundle = loadBundle()
+  const hashes = journeyHashes(bundle)
   const selected = personaId
     ? personas.filter((p) => p.id === personaId)
     : personas
@@ -265,7 +266,7 @@ export async function runJourneySuite({
       ...versions,
       model: live ? versions.model : 'persona-script-v1'
     },
-    ...journeyHashes(bundle),
+    ...hashes,
     turns,
     requestBudget: budgetReport?.() ?? null,
     journeys

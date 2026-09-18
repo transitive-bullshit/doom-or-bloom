@@ -186,7 +186,7 @@ test('three-answer path, reusable results and debug parity', async () => {
   )
   expect(reused.debug?.stages).toHaveLength(0)
   expect(reused.assessment.result).toEqual(historical.result)
-  expect(reused.assessment.versions.assessment).toBe('0.4.0')
+  expect(reused.assessment.versions.assessment).toBe('0.5.0')
   const request = {
     requestId: 'same',
     assessment: state,
@@ -394,7 +394,7 @@ test('unknown worldview positions and ordinary harm cannot fabricate catastrophi
     state.result?.fingerprint.find((c) => c.vector === 'timeline')?.claim
   ).toBeNull()
   expect(state.result?.vertical.value).toBeGreaterThan(0)
-  expect(state.coverage.risk_landscape).toBe('unassessed')
+  expect(state.coverage.risk_landscape).toBe('assessed')
 })
 
 test('shared text occurs once per stage and judgments use answer-level support without passage selection', async () => {

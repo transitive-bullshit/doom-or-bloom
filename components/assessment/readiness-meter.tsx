@@ -67,13 +67,14 @@ export function ReadinessMeter({
           </CollapsibleTrigger>
           <CollapsibleContent className='mt-2 text-xs leading-relaxed text-muted-foreground'>
             {readiness.covered} of {readiness.total} dimensions have supported
-            evidence. Each contributes its interpretation confidence; unresolved
-            ambiguity or tension halves that contribution. All dimensions have
-            equal weight. Missing evidence adds zero and repeated evidence adds
-            no weight. This is a draft coverage heuristic, not forecast
-            accuracy, scientific certainty or reasoning quality. At 100%, all
-            tracked dimensions have clear evidence with maximal interpretation
-            confidence; further clarification may still change the result.
+            evidence. Each contributes its probability of supported evidence;
+            unresolved ambiguity or tension halves that contribution. All
+            dimensions have equal weight. Missing evidence adds zero and
+            repeated evidence adds no weight. This is a draft coverage
+            heuristic, not forecast accuracy, scientific certainty or reasoning
+            quality. At 100%, all tracked dimensions have clear evidence with
+            maximal interpretation confidence; further clarification may still
+            change the result.
           </CollapsibleContent>
         </Collapsible>
       )}

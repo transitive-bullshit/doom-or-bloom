@@ -63,6 +63,23 @@ export function emptyComponent(vector: string, label: string): Component {
     claim: null
   }
 }
+
+export function supportedClaim(
+  levels: string[],
+  probabilities: Record<string, number>,
+  unresolved: boolean,
+  threshold: number
+) {
+  if (unresolved)
+    return 'The interpretation of these answers still needs clarification.'
+  const ordered = Object.entries(probabilities).sort((a, b) => b[1] - a[1])
+  const best = ordered[0]
+  if (best && best[1] >= threshold) return levels[Number(best[0])]!
+  const readings = ordered
+    .filter(([, p]) => p >= 0.1)
+    .map(([level]) => levels[Number(level)])
+  return `Several readings remain plausible: ${readings.join(' / ')}`
+}
 export function baseResult(
   state: Assessment,
   components: Component[],
