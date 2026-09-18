@@ -34,7 +34,7 @@
     {
       "id": "transition_dynamics",
       "label": "Transition dynamics",
-      "meaning": "How quickly AI-driven change unfolds once capabilities improve, including diffusion, warning time and AI-assisted AI research. This describes the expected transition, rather than a preference for speeding up or slowing down. An expected gradual, incremental spread of bounded tools is a directional transition forecast even if transformative capabilities may never arrive. Judge the pace and diffusion actually expected; uncertainty about the eventual capability ceiling or its arrival date does not erase an expressed gradual-transition expectation. Keep uncertainty scoped to the aspect the participant leaves open.",
+      "meaning": "How quickly AI-driven change unfolds once capabilities improve, including diffusion, warning time and AI-assisted AI research. This describes the expected transition, rather than a preference for speeding up or slowing down. An expected gradual, incremental spread of bounded tools is a directional transition forecast even if transformative capabilities may never arrive. Judge the pace and diffusion actually expected; uncertainty about the eventual capability ceiling or its arrival date does not erase an expressed gradual-transition expectation. Keep uncertainty scoped to the aspect the participant leaves open. Preserve the participant’s modality: describing a serious possible fast branch or saying institutions should not assume a slow transition does not by itself mean a fast transition is expected. If they explicitly leave the pace unresolved and only identify possibilities, keep the position unassessed. Conditions do not erase an adopted expectation, but possibility alone cannot create one.",
       "levels": [
         "A gradual transition with substantial warning and broad diffusion is expected.",
         "Noticeable acceleration is expected but meaningful adaptation time remains.",
@@ -100,7 +100,7 @@
     {
       "id": "action_posture",
       "label": "Action posture",
-      "meaning": "The participant’s preferred development pace, access, safeguards and coordination, including the trade-offs they accept. This records a policy preference and contributes no weight to Doom–Bloom placement.",
+      "meaning": "The participant’s preferred development pace, access, safeguards and coordination, including the trade-offs they accept. This records a policy preference and contributes no weight to Doom–Bloom placement. A request for protections, oversight, testing, appeal rights or accountability alone does not establish a preference for continued development, acceleration, restraint or a pause. Place a level only when its development/access direction as well as any safeguards are expressed or strongly implied. Do not treat silence about a pause as endorsement of continued development. If the answer only specifies safeguards while leaving development pace/access open, retain topic evidence but leave this combined position unassessed.",
       "levels": [
         "A broad pause or substantial slowing is preferred.",
         "Restrained development and strong prior safeguards are preferred.",

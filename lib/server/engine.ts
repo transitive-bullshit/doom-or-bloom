@@ -430,7 +430,13 @@ export async function runAssessment(
           worldviewIds.includes(dimension.id as (typeof worldviewIds)[number])
         )
           questions[`${dimension.id}:position`] = authoredQuestion('position', {
-            meaning: `${dimension.label}: ${dimension.meaning}`,
+            meaning: [
+              'action_posture',
+              'human_agency',
+              'transition_dynamics'
+            ].includes(dimension.id)
+              ? `${dimension.label}: ${dimension.meaning}`
+              : `${dimension.label}: apply the complete meaning in dimensionDefinitions.${dimension.id}.meaning`,
             levels: JSON.stringify(dimension.levels)
           })
       }
