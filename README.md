@@ -29,6 +29,8 @@ Create `.env.local` using [.env.example](.env.example), preserving any existing 
 
 ## Persistence and recovery
 
+For internal persona regression testing, open `/user-journeys`. [Synthetic User Journeys](docs/user-journeys.md) documents the ten fictional personas, routing/readiness inspector, free `pnpm journeys:generate` / `pnpm journeys:check` commands and optional budgeted live Jev runs.
+
 Progress and drafts live in one browser-local record per origin. Reload resumes the same prompt. Use the same Portless URL across server restarts; progress saved at an earlier direct-port URL remains on that origin. A conflicting tab pauses until it loads the newer record; corrupt or incompatible data can be exported before restarting. If storage is unavailable, progress lasts only while the tab remains open.
 
 Answers may contain up to 20,000 characters when submitted. The text box has no hard input cap: longer typing, dictation and pasted drafts stay intact, including after reload when browser storage is available. Only when a draft exceeds that limit, a counter and message explain how much to shorten; Continue stays disabled until the draft fits. Neither the browser nor the server silently truncates an answer.

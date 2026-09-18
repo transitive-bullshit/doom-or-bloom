@@ -41,7 +41,9 @@ The short Notion definitions are retained verbatim for traceability. [Terminolog
 
 ## Draft journey coverage
 
-Each ordinary conversation starts with the fixed root and contains at least three substantive answers. Six now have 7–8-turn continuations: physical control, defensive advantage, race leadership, short warning, jobs without extinction and lay uncertainty. Results must be available after the third substantive answer, even if many dimensions remain unplaced. The follow-ups are illustrative authored paths, not a promise that adaptive routing will choose exactly that sequence.
+Each ordinary authored conversation starts with the fixed root and contains at least three substantive example answers. Six have 7–8-turn continuations: physical control, defensive advantage, race leadership, short warning, jobs without extinction and lay uncertainty. These lengths are authoring examples; the current runtime uses [evidence readiness](ASSESSMENT.md#question-budget-and-readiness), rather than an answer-count minimum. The follow-ups are illustrative authored paths, not a promise that adaptive routing will choose exactly that sequence.
+
+The internal [Synthetic User Journeys](user-journeys.md) tool adds ten persona-based paths through the actual engine, recorded routing/readiness transitions, free deterministic reruns and explicit budgeted live Jev runs. It complements these argument examples and keeps injected workflow judgments distinct from semantic outputs.
 
 | Journey | Crux to elicit | Regression concern |
 | --- | --- | --- |

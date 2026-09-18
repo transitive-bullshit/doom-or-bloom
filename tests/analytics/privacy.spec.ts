@@ -39,6 +39,11 @@ test('internal editorial pages initialize no analytics or inference even when an
   await page
     .getByLabel('Search titles, IDs, topics, dates or snapshot text')
     .fill('event.openai-hugging-face-2026')
+  await page.getByRole('link', { name: 'User Journeys', exact: true }).click()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'User Journeys'
+  )
+  await expect(page.getByRole('region', { name: 'Run summary' })).toBeVisible()
   expect(external).toEqual([])
   expect(inference).toEqual([])
 })

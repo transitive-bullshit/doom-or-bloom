@@ -42,6 +42,9 @@ export function ReviewHeader({
         <Button asChild variant='outline' size='sm'>
           <Link href='/corpus'>Corpus</Link>
         </Button>
+        <Button asChild variant='outline' size='sm'>
+          <Link href='/user-journeys'>User Journeys</Link>
+        </Button>
         <Button asChild variant='ghost' size='sm'>
           <Link href='/'>Return to assessment</Link>
         </Button>

@@ -25,6 +25,8 @@
     "eval:smoke": "node --env-file=.env.local --conditions=react-server --import tsx scripts/smoke-jev.ts",
     "check:browser": "playwright test",
     "eval:engine": "node --env-file=.env.local --conditions=react-server --import tsx scripts/evaluate-engine.ts",
+    "journeys:generate": "node --conditions=react-server --import tsx scripts/generate-journeys.ts",
+    "journeys:check": "pnpm journeys:generate --check",
     "content:freeze": "node --conditions=react-server --import tsx scripts/freeze-content.ts",
     "content:coverage": "node --conditions=react-server --import tsx scripts/report-source-coverage.ts",
     "content:assemble": "node --conditions=react-server --import tsx scripts/assemble-draft-release.ts",

@@ -248,6 +248,9 @@ export function DebugPanel({
           <Button variant='ghost' size='sm' asChild>
             <Link href='/corpus'>Review corpus</Link>
           </Button>
+          <Button variant='ghost' size='sm' asChild>
+            <Link href='/user-journeys'>User Journeys</Link>
+          </Button>
         </div>
       )}
       <Collapsible open={open} onOpenChange={setOpen} className='mt-3'>

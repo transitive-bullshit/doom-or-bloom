@@ -27,6 +27,10 @@ Each append records an ID, asset identity/label, current content version, resolv
 
 Future revisions should read these notes, check version/hash against the current asset and explicitly revise offline. Preserve earlier notes as history. A feedback note does not approve, validate or automatically change an asset. Do not put participant answers into these project files automatically.
 
+## Synthetic User Journeys
+
+Open `/user-journeys` for ten Codex-authored fictional personas, exact questions/answers, candidate decisions and per-step readiness. Free reruns save complete local exchanges and support comparisons against previous runs or the checked-in baseline. Real Jev regeneration is explicit, bounded and CLI-only. See [user-journeys.md](user-journeys.md) for modes, scripts, artifact storage and review limits. The tool is development-only and initializes no analytics or participant assessment.
+
 ## Interview shortcuts
 
 Cmd+Enter or Ctrl+Enter submits a nonempty answer through the same Continue guards. It cannot bypass the soft length cap, busy/recovery controls or storage conflicts. Plain Enter inserts a newline; IME composition and repeated shortcut events do not submit. Focus remains under normal browser/user control.
