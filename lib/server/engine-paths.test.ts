@@ -58,6 +58,21 @@ test('ordinary five-answer interviews do not trigger large-history batching', as
     expect(
       projected.debug!.stages.find((s) => s.name === 'D: projection')?.attempts
     ).toBe(1)
+    const result = projected.assessment.result!
+    expect(result.fingerprint.map((c) => c.vector)).toEqual([
+      'timeline',
+      'beneficial_potential',
+      'risk_landscape',
+      'catastrophic_risk',
+      'technical_controllability',
+      'institutional_competence',
+      'action_posture'
+    ])
+    for (const vector of ['risk_landscape', 'action_posture'])
+      expect(result.fingerprint.find((c) => c.vector === vector)).toEqual(
+        result.components.find((c) => c.vector === vector)
+      )
+    expect(assessmentSchema.safeParse(projected.assessment).success).toBe(true)
   } finally {
     vi.unstubAllGlobals()
     vi.unstubAllEnvs()

@@ -142,3 +142,28 @@ test('explicitly unknown timing is explored evidence, not an invitation to repea
     candidates.find((c) => c.prompt.id === 'timeline.milestone')?.calibration
   ).toBe(0)
 })
+
+test('control tests and control mechanisms share the repetition cost without becoming ineligible', () => {
+  for (const version of ['0.2.0-draft', '0.3.0-draft', '0.4.0-draft']) {
+    const bundle = loadBundle(version)
+    for (const previous of ['control.test', 'control.general']) {
+      const state = createAssessment(`overlap-${previous}`)
+      const prompt = bundle.prompts.find((p) => p.id === previous)!
+      state.prompts.push({
+        ...state.prompts[0]!,
+        id: 'p2',
+        ordinal: 2,
+        promptId: prompt.id,
+        text: prompt.text,
+        family: prompt.family
+      })
+      const other =
+        previous === 'control.test' ? 'control.general' : 'control.test'
+      const candidate = candidatePrompts(state, bundle.prompts).find(
+        (c) => c.prompt.id === other
+      )!
+      expect(candidate.reason).toBeNull()
+      expect(candidate.repetition).toBe(1)
+    }
+  }
+})

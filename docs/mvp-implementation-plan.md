@@ -809,3 +809,10 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Catch and revert an omitted-date regression introduced while compressing definitions. Reduce duplicate projection presence text by referencing the complete shared definitions; verify every definition remains available.
 - [x] Complete ten final-code projection replays on original transcripts, the omitted-date regression, and ten final-code projections on fresh adaptive transcripts. The intermediate adaptive suite completed without failures but is explicitly distinguished from final-code adaptive verification.
 - Continue with overlapping control-question novelty, prominent ordinary-harm/action presentation, findings specificity and a final-code adaptive run. Goal remains active.
+
+### 2026-09-19 — Control novelty and visible partial results / Codex
+
+- [x] Apply the existing repetition penalty across control-test and control-method questions, without excluding either; verify the exact saved labor decision with live Jev.
+- [x] Include ordinary harm and action posture in the main fingerprint, preserving five-card saved results and existing component evidence. Review the intentional synthetic baseline changes.
+- [x] Complete a final-code ten-persona action suite without failures (120 Jev, 50 OpenAI requests), with no journey asking both control prompts. Verify 144 unit tests, static/content checks and three isolated desktop/mobile map scenarios, including the seven-card partial-result display.
+- Findings review still identifies an unsupported linkage in benefit-conditions text and missing actionable feedback for explicitly poor reasoning. Resolve these before the broader completion audit.

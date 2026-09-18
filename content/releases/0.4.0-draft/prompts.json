@@ -428,7 +428,7 @@
     "exclusions": [],
     "targets": ["technical_controllability", "updateability"],
     "effort": 0.4,
-    "noveltyGroup": "control-test",
+    "noveltyGroup": "control",
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {

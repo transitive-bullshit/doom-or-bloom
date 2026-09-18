@@ -216,7 +216,7 @@ export const resultSchema = z.strictObject({
       })
     )
     .max(5),
-  fingerprint: z.array(componentSchema).max(5).default([]),
+  fingerprint: z.array(componentSchema).max(7).default([]),
   sources: z
     .array(
       z.strictObject({

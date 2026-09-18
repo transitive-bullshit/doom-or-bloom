@@ -62,7 +62,29 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       components: [],
       findings: [],
       resources: [],
-      fingerprint: [],
+      fingerprint:
+        unplaced === 'outlook'
+          ? [
+              emptyComponent('timeline', 'Timeline'),
+              emptyComponent('beneficial_potential', 'Expected upside'),
+              {
+                ...emptyComponent('risk_landscape', 'Expected harm'),
+                claim:
+                  'Severe or widespread harm is a material expected part of the future.'
+              },
+              emptyComponent('catastrophic_risk', 'Catastrophic risk'),
+              emptyComponent('technical_controllability', 'Controllability'),
+              emptyComponent(
+                'institutional_competence',
+                'Institutional competence'
+              ),
+              {
+                ...emptyComponent('action_posture', 'Action posture'),
+                claim:
+                  'Restrained development and strong prior safeguards are preferred.'
+              }
+            ]
+          : [],
       sources: [],
       provisional: true,
       capped: false,
@@ -92,11 +114,24 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       'aria-label',
       /12 to 88 horizontally, 28 to 92 vertically/
     )
-    if (unplaced === 'outlook')
+    if (unplaced === 'outlook') {
+      await expect(
+        page.getByText('Expected harm', { exact: true })
+      ).toBeVisible()
+      await expect(
+        page.getByText('Action posture', { exact: true })
+      ).toBeVisible()
+      await expect(
+        page.getByText(
+          'Severe or widespread harm is a material expected part of the future.',
+          { exact: true }
+        )
+      ).toBeVisible()
       await expect(map.getByRole('img')).toHaveAttribute(
         'aria-label',
         /Doom–Bloom: unplaced. Demonstrated reasoning: 74 out of 100/
       )
+    }
     if (unplaced) {
       await expect(map).toContainText(
         'Point withheld until both axes are assessable'
@@ -121,6 +156,11 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth)
     ).toBeLessThanOrEqual(390)
+    if (unplaced === 'outlook')
+      await page.screenshot({
+        path: testInfo.outputPath('partial-result-mobile.png'),
+        fullPage: true
+      })
     expect(inferenceCalls).toBe(0)
   })
 }

@@ -612,9 +612,11 @@ export async function runAssessment(
       },
       ...[
         'beneficial_potential',
+        'risk_landscape',
         'catastrophic_risk',
         'technical_controllability',
-        'institutional_competence'
+        'institutional_competence',
+        'action_posture'
       ].map(
         (id) =>
           components.find((c) => c.vector === id) ??

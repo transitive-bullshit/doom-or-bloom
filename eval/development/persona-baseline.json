@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T19:45:05.848Z",
+  "createdAt": "2026-09-18T19:57:58.187Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,8 +11,8 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "92e6983cdadf8a495dd1807eeb0a20619f4aed3017e2bbdd872c7da1b56b8ce5",
-  "contentHash": "82384d001392eddaf5517d3dc5fb1fed20ff080927b32df3e1fd8006e45e9bc0",
+  "engineHash": "557db3255614460f8774296c2c2eab1c915b46c9ba073eb9d0b8e6831e8d6a50",
+  "contentHash": "235402f238ef304918698e6627d48b729ffaf823633a8d59b32645c6579a44d3",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -2306,24 +2306,14 @@
           "coverageAdded": [],
           "nextPrompt": {
             "id": "journey-38810ac8a94e2862a697:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
           },
           "rankings": [
-            {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
             {
               "id": "crux.general",
               "priority": 0.9333333333333332,
@@ -2553,6 +2543,16 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
+              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -2584,9 +2584,9 @@
           "operation": "project",
           "prompt": {
             "id": "journey-38810ac8a94e2862a697:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
@@ -3230,6 +3230,24 @@
             "claim": "Little positive impact is expected even if advanced AI arrives."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 1,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 1
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-38810ac8a94e2862a697:p1:a:e:risk_landscape",
+              "journey-38810ac8a94e2862a697:p2:a:e:risk_landscape"
+            ],
+            "claim": "Catastrophic or irreversible loss is central to the expected future."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": 1,
@@ -3281,6 +3299,23 @@
               "journey-38810ac8a94e2862a697:p1:a:e:institutional_competence"
             ],
             "claim": "Institutions are expected to fail to respond effectively."
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 0,
+            "range": [0, 0],
+            "distribution": {
+              "0": 1,
+              "1": 0,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-38810ac8a94e2862a697:p1:a:e:action_posture"
+            ],
+            "claim": "A broad pause or substantial slowing is preferred."
           }
         ],
         "sources": [],
@@ -5968,24 +6003,14 @@
           "coverageAdded": [],
           "nextPrompt": {
             "id": "journey-468652ddc0b37243013b:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
           },
           "rankings": [
-            {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
             {
               "id": "crux.general",
               "priority": 0.9333333333333332,
@@ -6215,6 +6240,16 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
+              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -6246,9 +6281,9 @@
           "operation": "project",
           "prompt": {
             "id": "journey-468652ddc0b37243013b:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
@@ -6896,6 +6931,24 @@
             "claim": "Transformative, broadly valuable gains are expected."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.6666666666666666,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 1,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-468652ddc0b37243013b:p1:a:e:risk_landscape",
+              "journey-468652ddc0b37243013b:p2:a:e:risk_landscape"
+            ],
+            "claim": "Severe or widespread harm is a material expected part of the future."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": 0.6666666666666666,
@@ -6947,6 +7000,23 @@
               "journey-468652ddc0b37243013b:p1:a:e:institutional_competence"
             ],
             "claim": "Effective responses are expected under specific coordination conditions."
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 0.6666666666666666,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 1,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-468652ddc0b37243013b:p1:a:e:action_posture"
+            ],
+            "claim": "Continued development with targeted safeguards is preferred."
           }
         ],
         "sources": [],
@@ -9634,24 +9704,14 @@
           "coverageAdded": [],
           "nextPrompt": {
             "id": "journey-71bf2c696abf3473377e:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
           },
           "rankings": [
-            {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
             {
               "id": "crux.general",
               "priority": 0.9333333333333332,
@@ -9881,6 +9941,16 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
+              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -9912,9 +9982,9 @@
           "operation": "project",
           "prompt": {
             "id": "journey-71bf2c696abf3473377e:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
@@ -10562,6 +10632,24 @@
             "claim": "Transformative, broadly valuable gains are expected."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.3333333333333333,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0,
+              "1": 1,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-71bf2c696abf3473377e:p1:a:e:risk_landscape",
+              "journey-71bf2c696abf3473377e:p2:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": 0.3333333333333333,
@@ -10613,6 +10701,23 @@
               "journey-71bf2c696abf3473377e:p1:a:e:institutional_competence"
             ],
             "claim": "Effective responses are expected under specific coordination conditions."
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 1,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 1
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-71bf2c696abf3473377e:p1:a:e:action_posture"
+            ],
+            "claim": "Rapid development or broad access is preferred."
           }
         ],
         "sources": [],
@@ -12286,16 +12391,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -12354,6 +12449,16 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.2
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
+              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -12690,16 +12795,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -12788,6 +12883,16 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.2
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
+              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -13114,16 +13219,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -13221,6 +13316,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -13799,6 +13904,23 @@
             "claim": "You expressed uncertainty about the positive impact you expect from AI."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.6666666666666666,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 1,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-14015ebf351c74d79e77:p1:a:e:risk_landscape"
+            ],
+            "claim": "Severe or widespread harm is a material expected part of the future."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": null,
@@ -13823,6 +13945,16 @@
           {
             "vector": "institutional_competence",
             "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
             "value": null,
             "range": [0, 1],
             "distribution": {},
@@ -16439,24 +16571,14 @@
           "coverageAdded": [],
           "nextPrompt": {
             "id": "journey-c6b589474b41e76ac338:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
           },
           "rankings": [
-            {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
             {
               "id": "crux.general",
               "priority": 0.9333333333333332,
@@ -16686,6 +16808,16 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
+              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -16717,9 +16849,9 @@
           "operation": "project",
           "prompt": {
             "id": "journey-c6b589474b41e76ac338:p6",
-            "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
-            "family": "control",
+            "promptId": "crux.general",
+            "text": "What development would most change your view?",
+            "family": "crux",
             "ordinal": 6,
             "variant": "original",
             "sourceEvidenceIds": []
@@ -17367,6 +17499,24 @@
             "claim": "Transformative, broadly valuable gains are expected."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 1,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 1
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-c6b589474b41e76ac338:p1:a:e:risk_landscape",
+              "journey-c6b589474b41e76ac338:p2:a:e:risk_landscape"
+            ],
+            "claim": "Catastrophic or irreversible loss is central to the expected future."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": 0.6666666666666666,
@@ -17418,6 +17568,23 @@
               "journey-c6b589474b41e76ac338:p1:a:e:institutional_competence"
             ],
             "claim": "Institutions are expected to respond too weakly or too late in many cases."
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 1,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 1
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-c6b589474b41e76ac338:p1:a:e:action_posture"
+            ],
+            "claim": "Rapid development or broad access is preferred."
           }
         ],
         "sources": [],
@@ -19613,16 +19780,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -19770,6 +19927,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -20067,16 +20234,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -20244,6 +20401,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -20897,6 +21064,23 @@
             "claim": "Limited or narrowly distributed gains are expected."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.3333333333333333,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0,
+              "1": 1,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-894e1eaadc0d7ed633a8:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": 0,
@@ -20933,6 +21117,16 @@
           {
             "vector": "institutional_competence",
             "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
             "value": null,
             "range": [0, 1],
             "distribution": {},
@@ -22171,16 +22365,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -22338,6 +22522,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.general",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -22645,16 +22839,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -22822,6 +23006,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.general",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -23119,16 +23313,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -23306,6 +23490,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.general",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -23593,16 +23787,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -23780,6 +23964,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.general",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -24435,6 +24629,23 @@
             "claim": "Substantial benefits are expected, with important conditions or distribution limits."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.6666666666666666,
+            "range": [0.6666666666666666, 0.6666666666666666],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 1,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-33ef5c36b2c11531b3c4:p1:a:e:risk_landscape"
+            ],
+            "claim": "Severe or widespread harm is a material expected part of the future."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": null,
@@ -24472,6 +24683,23 @@
               "journey-33ef5c36b2c11531b3c4:p1:a:e:institutional_competence"
             ],
             "claim": "Institutions are expected to respond too weakly or too late in many cases."
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 0.3333333333333333,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0,
+              "1": 1,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-33ef5c36b2c11531b3c4:p1:a:e:action_posture"
+            ],
+            "claim": "Restrained development and strong prior safeguards are preferred."
           }
         ],
         "sources": [],
@@ -26142,16 +26370,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -26289,6 +26507,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -26596,16 +26824,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -26743,6 +26961,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -27040,16 +27268,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -27187,6 +27405,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -27771,6 +27999,18 @@
             "claim": "You expressed uncertainty about the positive impact you expect from AI."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p1:a:e:risk_landscape"
+            ],
+            "claim": "You expressed uncertainty about the harm you expect from AI."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": null,
@@ -27795,6 +28035,16 @@
           {
             "vector": "institutional_competence",
             "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
             "value": null,
             "range": [0, 1],
             "distribution": {},
@@ -29014,16 +29264,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -29121,6 +29361,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -29438,16 +29688,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -29595,6 +29835,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -29902,16 +30152,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -30069,6 +30309,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -30366,16 +30616,6 @@
               "effort": 0.4
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -30543,6 +30783,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -31195,6 +31445,23 @@
             "claim": "Transformative, broadly valuable gains are expected."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0,
+            "range": [0, 0],
+            "distribution": {
+              "0": 1,
+              "1": 0,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-5bde7dc8469dbcbb9c88:p1:a:e:risk_landscape"
+            ],
+            "claim": "Little material adverse impact is expected."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": 0,
@@ -31244,6 +31511,23 @@
               "journey-5bde7dc8469dbcbb9c88:p3:a:e:institutional_competence"
             ],
             "claim": "Institutions are expected to adapt effectively and in time."
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 1,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 1
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-5bde7dc8469dbcbb9c88:p1:a:e:action_posture"
+            ],
+            "claim": "Rapid development or broad access is preferred."
           }
         ],
         "sources": [],
@@ -33594,16 +33878,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -33721,6 +33995,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -34048,16 +34332,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -34175,6 +34449,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -34492,16 +34776,6 @@
               "effort": 0.2
             },
             {
-              "id": "control.test",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "crux.general",
               "priority": 0.9333333333333332,
               "coverage": 0,
@@ -34619,6 +34893,16 @@
               "tension": 0,
               "projection": 0.3333333333333333,
               "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": -1.0666666666666669,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 1,
               "effort": 0.4
             }
           ],
@@ -35241,6 +35525,23 @@
             "claim": "Substantial benefits are expected, with important conditions or distribution limits."
           },
           {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.3333333333333333,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0,
+              "1": 1,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-037ec99e57e839e46284:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
             "vector": "catastrophic_risk",
             "label": "Catastrophic risk",
             "value": null,
@@ -35270,6 +35571,16 @@
           {
             "vector": "institutional_competence",
             "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
             "value": null,
             "range": [0, 1],
             "distribution": {},
