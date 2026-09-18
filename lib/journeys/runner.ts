@@ -57,7 +57,7 @@ export async function runPersona(
   const scripted = scriptedProvider(persona, bundle)
   const provider = live ?? scripted.provider
   let state = createAssessment(
-    `journey-${randomUUID()}`,
+    `journey-${live ? randomUUID() : createHash('sha256').update(persona.id).digest('hex').slice(0, 20)}`,
     live ? versions.model : 'persona-script-v1'
   )
   state.versions.content = bundle.manifest.contentVersion
@@ -170,6 +170,7 @@ export async function runPersona(
   }
   return {
     personaId: persona.id,
+    personaSnapshot: structuredClone(persona),
     steps,
     result: state.result,
     stopped,

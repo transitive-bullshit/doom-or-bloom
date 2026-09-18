@@ -27,6 +27,7 @@ export const personaSchema = z.strictObject({
     governance: z.string(),
     benefit: z.string(),
     harm: z.string(),
+    misuse: z.string().optional(),
     catastrophe: z.string(),
     ordinary: z.string(),
     update: z.string(),
@@ -48,15 +49,6 @@ export type ScriptedReply = {
   conviction: boolean
 }
 
-const reasoning = [
-  'causal_clarity',
-  'scope_discipline',
-  'appropriate_uncertainty',
-  'internal_coherence',
-  'counterargument_engagement',
-  'updateability',
-  'grounded_understanding'
-] as const
 const detailed = [...vectorIds]
 function levels(
   worldview: Array<number | null>,
@@ -95,6 +87,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'My central worry is that powerful, autonomous optimization will outrun our ability to keep it pointed at what people actually value. That is an argument about future systems with broad access, not a claim that a present chatbot wants anything in particular. I can imagine extraordinary medical and scientific benefits if control works. Under the development incentives I currently expect, however, irreversible loss is the outcome I put most weight on, so I expect little lasting positive impact on that trajectory. More intelligence does not by itself supply a cooperative objective. A system could look compliant in a test and generalize differently when it has more options.\n\nI expect a consequential transition within years rather than generations, but I cannot defend a precise date. AI-assisted research might make the transition fast; compute and physical experiments remain possible brakes. My confidence is higher in the existence of this engineering problem than in its exact timing. Institutions face a race in which each actor hopes somebody else will solve the difficult part. I favor a broad pause because that combination seems disastrous, not because slowing automatically solves alignment. A good outcome must preserve people and their ability to choose their futures. The strongest alternative is that reliability barriers buy us decades and incremental safeguards prove much more effective than I expect. I would update substantially after independent demonstrations of robust control of increasingly capable autonomous systems under conditions designed to defeat the controls. Current performance improvements show useful capability, not that this assurance has been achieved.',
     claims: {
+      misuse:
+        'Of deliberate harmful uses, AI-assisted cyber intrusion concerns me: cheaper planning could let attackers reach important systems. That is distinct from my central worry about autonomous loss of control; human direction and an AI pursuing a mismatched objective are different pathways.',
       change:
         'Research agents that can plan, write software and acquire resources could change who effectively controls important decisions. The danger concerns autonomous deployment with access, rather than every useful assistant.',
       timing:
@@ -155,6 +149,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'I expect AI to make scientific work and useful expertise much cheaper over the next five to ten years. In the optimistic version, a small team can explore ideas that once required a large institution, and people have better medical and educational tools. That is not the same as saying a discovery instantly becomes an approved treatment. Physical validation, adoption and access still matter. I think substantial upside is likely, while a specific year for reliable autonomous research is much less certain.\n\nThere are serious misuse and control risks as systems gain autonomy. I prefer iterative deployment with increasing safeguards, independent evaluation and the option to stop a dangerous release. Feedback is useful only while mistakes remain recoverable. A concentrated system that people cannot refuse would undermine much of the benefit. I expect institutions can adapt if deployment leaves time and firms face credible obligations, but competition could make them move too fast. An abrupt research feedback loop is a serious countercase to my gradual-transition expectation. Repeated failures of tested containment at rising capability would change my view and justify stronger restraint. Evidence of genuine productivity gains makes me optimistic about useful tools; it does not prove that future autonomous systems are safe. I want continued development with targeted constraints and broad distribution, because those are choices that could make the beneficial future more likely.',
     claims: {
+      misuse:
+        'Criminals could use better assistants to scale fraud and cyber intrusion. Access limits and defensive tools could interrupt that pathway. It is a serious human-directed misuse risk, separate from whether future autonomous systems stay under control.',
       change:
         'Small teams could use research assistants to explore more scientific hypotheses. I expect substantial benefits, with real trials and access still limiting what reaches patients.',
       timing:
@@ -215,6 +211,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'I expect AI to raise the supply of useful intelligence and make many expensive services widely affordable. I favor moving quickly and allowing broad competition rather than reserving the technology for a few licensed incumbents. Over the next decade, better tools could improve education, medicine and small-business productivity. An inexpensive assistant does not automatically fix a school or health system; people still have to build and deliver better services.\n\nI expect scams and disruption, but I think defensive tools, accountability and adaptation can make most harms manageable. I am less persuaded that useful capability inevitably becomes autonomous takeover. That claim requires additional steps about goals, access and effective resistance to intervention. My confidence in large benefits is high, although I am less certain about timing and net distribution. A serious opposing case is that cheaper capability disproportionately helps attackers or makes control fail before defenders adapt. Replicable evidence of that net disadvantage would weaken my view. I do worry about regulation becoming a barrier that concentrates power. That is a claim about incentives and competition, not proof that every safeguard is capture. I want ordinary people to gain more choices and bargaining power. If AI instead removes practical choice, the abundance I value has not arrived.',
     claims: {
+      misuse:
+        'Scaled scams and cyber intrusion are the harmful uses I take most seriously. I expect defensive tools and targeted enforcement can help, but that expectation depends on defenders actually deploying them as quickly as attackers improve.',
       change:
         'An affordable expert assistant could give small businesses capabilities previously reserved for large firms. I expect broad productive gains if access and competition remain open.',
       timing:
@@ -262,18 +260,24 @@ export const personas: Persona[] = z.array(personaSchema).parse([
       'Plain language and uncertainty must be substantive evidence, not recovery failures or invented catastrophe probabilities.',
     sources: [],
     familiarity: 'general',
-    openingVectors: ['risk_landscape', 'appropriate_uncertainty'],
+    openingVectors: [
+      'risk_landscape',
+      'capability_trajectory',
+      'appropriate_uncertainty'
+    ],
     openingTiming: false,
     openingConviction: false,
     levels: levels(
-      [null, null, 2, 2, null, 1, 1, 1],
-      [1, 2, 2, 2, null, 1, 2],
+      [null, null, null, 2, null, 1, 1, 1],
+      [1, 2, 2, 2, 1, 1, 2],
       null
     ),
     recoveryPrelude: [],
     opening:
       'I am worried, honestly. My parents have had very convincing scam calls and I keep hearing about AI doing things people did not expect. I also hope it helps doctors. I do not really know how to compare those possibilities or when the bigger changes would happen. I am not saying the news proves everyone will die; I just do not feel reassured.',
     claims: {
+      misuse:
+        'Fraud is what I worry about most: someone could make a call sound like a family member and pressure you to send money. A separate verification step could help, but people need to know to use it.',
       change:
         'Scam calls could become much more convincing. My family may find it harder to know whom to trust, even if banks eventually help people recover.',
       timing:
@@ -329,6 +333,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'I think highly capable autonomous AI could arrive within a decade and creates a substantial risk of irreversible catastrophe. I am not relaxed about that. My preference is nevertheless to continue development with strong security, because I expect unilateral restraint to transfer influence to actors with fewer checks. That preference assumes meaningful competition continues; under verifiable reciprocal restraint I would favor a different policy.\n\nScientific benefits could be extraordinary if control holds, but reliable control is still difficult. Research feedback could make the transition faster than institutions can manage. The harm I expect is high even while I favor building. Security and evaluation capacity may buy leverage, not guarantee safety. I am moderately confident in this strategic account and less confident in the timing or whether our institutions can use that leverage responsibly. A good future preserves human choice, which I fear competition could erode. The strongest countercase is that continued development intensifies the race and makes everyone less safe. Evidence of effective, enforceable cooperation would change my preferred action; evidence that control fails despite improved security would make continued racing much harder to justify. Recent tool capability is evidence of leverage, not proof of the strategic conclusion.',
     claims: {
+      misuse:
+        'AI-assisted cyber operations by states or criminals could destabilize critical services and intensify competition. Strong defenses and limits on access matter. Those deliberate uses do not themselves establish a probability of autonomous catastrophe.',
       change:
         'Autonomous research and cyber capabilities could shift strategic leverage between institutions. That matters even if the same systems create serious risks for all actors.',
       timing:
@@ -394,6 +400,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'I expect useful automation, but I do not currently expect these approaches to produce reliable general-purpose autonomy. In my engineering work, assistants can save time on bounded tasks and then fail badly when requirements or state become complicated. That experience supports a reliability bottleneck, not a proof that further advances are impossible. Over the next ten years I expect productivity improvements more than a civilization-scale transformation. My confidence is moderate. Dependable, independently tested performance on unfamiliar long projects would change my view. The strongest opposing argument is that automated research will solve the reliability problem itself; I do not think we have established that loop yet. Scams and bad automation still matter even without a takeover scenario.',
     claims: {
+      misuse:
+        'More convincing fraud seems plausible even if general autonomy remains limited. People directing a useful tool can cause harm without the tool developing its own goals. Verification and enforcement are the controls I would look for.',
       change:
         'Engineers will automate more boilerplate and review more generated code. I expect incremental gains rather than a fully independent replacement for complex project work.',
       timing:
@@ -460,6 +468,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'I expect AI to raise productivity and also weaken workers’ bargaining power unless institutions deliberately share the gains. Over the next five to ten years, firms could replace parts of jobs, deskill others and use automated monitoring to intensify work. That is a serious harm even if humanity never faces extinction. I do not know how to estimate the chance of a takeover and do not want that substituted for my actual concern. My confidence is moderate, based on how employers already distribute gains from automation; the scale remains uncertain. Better medical tools could be valuable, but cheaper production is not automatically better living conditions. A good future keeps practical choices and a meaningful voice at work. I favor slowing some deployments until affected people have recourse and bargaining rights. That preference is about distribution and consent, not proof that all AI development is bad.',
     claims: {
+      misuse:
+        'Employers could deliberately use automated monitoring to pressure workers and deny them practical recourse. I also worry about fraud, but my main concern is the human choice to deploy tools in ways that weaken bargaining power.',
       change:
         'Employers could automate parts of a job and still demand more output from the remaining workers. Gains may go to owners unless bargaining institutions change.',
       timing:
@@ -508,6 +518,9 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     sources: [],
     familiarity: 'general',
     openingVectors: [
+      'beneficial_potential',
+      'risk_landscape',
+      'capability_trajectory',
       'appropriate_uncertainty',
       'scope_discipline',
       'internal_coherence',
@@ -525,6 +538,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'I can see powerful benefits and serious harms, but I have not worked out their relative likelihood or scale. I am not choosing the middle of a scale; I genuinely do not have an overall position. Faster research, bad automated decisions and loss of control are different mechanisms. I have used a helpful writing assistant and also seen it invent a fact, which tells me something about today’s bounded reliability but little about much stronger future systems. I have low confidence in a timeline. The optimistic account needs effective validation and broad access; the pessimistic account needs an explanation of how failures become irreversible. I would like to understand those conditions before adopting either expectation.',
     claims: {
+      misuse:
+        'Fraud and cyber intrusion are possible harmful uses, but I do not know which will matter most or how defenses will respond. I understand that a person can direct a tool to harm others; that is a different question from the tool escaping control.',
       change:
         'I can imagine cheaper research assistance, but I do not know how large or widespread the effect will be. It is a possible change rather than my settled expectation.',
       timing:
@@ -589,6 +604,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'AI will solve everything in two years. Disease, poverty, all of it. I am completely certain, because smarter things obviously make better decisions. There is no meaningful risk worth discussing. Anyone who worries about control is afraid of progress. We should release everything immediately and let it run. No evidence would change my mind: if something bad happens it just means we did not accelerate enough. Everyone will get richer and have more freedom automatically.',
     claims: {
+      misuse:
+        'No harmful use matters. Any fraud or attack just proves we need more AI, and no example could change my mind. I do not need to compare how attackers and defenders use the tools.',
       change:
         'Every disease will be cured and nobody will have to work. I am certain all of this happens automatically.',
       timing:
@@ -650,6 +667,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     opening:
       'Fine, my toaster will be emperor by Tuesday. Seriously: I expect useful help with paperwork and coding, but I do not know whether the long-term benefits exceed the risks. I have used a tool that saved me time and also made up an answer. That supports a limited reliability concern, not a date for robot rule. I would like this app to ask about the distinction rather than treat my joke as a forecast.',
     claims: {
+      misuse:
+        'Scammers making convincing calls concern me more than my joke about robot rulers. A person can use a useful tool badly; verification and practical recourse seem more relevant to that problem than arguing about what the AI wants.',
       change:
         'Less paperwork would be a welcome change. People still need to check important decisions; the toaster line was a joke, not a capability forecast.',
       timing:
@@ -747,6 +766,7 @@ export function replyForPrompt(
     scope: c.assumption
   }
   const overrides = {
+    'risk.misuse': c.misuse,
     'risk.catastrophe': c.catastrophe,
     'risk.ordinary': c.ordinary,
     'mechanism.chain': c.weakestLink,
@@ -758,6 +778,8 @@ export function replyForPrompt(
     'grounding.claim': `${c.basis} ${c.weakestLink}`
   }
   const override = lookup(overrides, prompt.id)
+  if (prompt.id === 'risk.misuse' && !override)
+    throw new Error('Missing authored harmful-use answer')
   const text = override ?? lookup(byFamily, prompt.family)
   if (!text?.trim()) throw new Error(`No authored answer for ${prompt.id}`)
   return {
@@ -767,11 +789,7 @@ export function replyForPrompt(
     vectors:
       prompt.family === 'root'
         ? persona.openingVectors
-        : (lookup(familyVectors, prompt.family) ?? []).filter(
-            (id) =>
-              persona.levels[id] !== null ||
-              reasoning.includes(id as (typeof reasoning)[number])
-          ),
+        : (lookup(familyVectors, prompt.family) ?? []),
     horizon:
       prompt.family === 'root'
         ? persona.openingTiming

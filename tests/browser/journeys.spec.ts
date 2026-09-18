@@ -34,9 +34,17 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
     .getByRole('button', { name: 'Decision details', exact: true })
     .click()
   await expect(first.getByRole('table')).toBeVisible()
+  const previousRun = await page.getByLabel('View run').inputValue()
+  const saved = page.waitForResponse(
+    (response) =>
+      response.url().endsWith('/api/user-journeys') &&
+      response.request().method() === 'POST'
+  )
   await page
     .getByRole('button', { name: 'Rerun this persona · synthetic' })
     .click()
+  expect((await saved).status()).toBe(200)
+  await expect(page.getByLabel('View run')).not.toHaveValue(previousRun)
   await expect(
     page.getByRole('region', { name: 'Run comparison' })
   ).toContainText('The salient observed path and result match.')
@@ -81,11 +89,18 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
   await page.getByLabel('View run').selectOption('baseline')
   await page.getByRole('button', { name: /Worried novice/ }).click()
   await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
-    'No eligible result yet'
+    '5 accepted answers'
   )
   await expect(
     page.getByRole('region', { name: 'Journey result' })
-  ).toContainText('No result generated')
+  ).toContainText('Result of this run')
+  await page.getByRole('button', { name: /Open-ended uncertainty/ }).click()
+  await expect(
+    page.getByRole('region', { name: 'Journey result' })
+  ).toContainText('Unplaced')
+  await expect(
+    page.getByRole('region', { name: 'Journey result' })
+  ).toContainText('Point withheld')
   await page.getByRole('button', { name: /Playful recovery/ }).click()
   await expect(
     page.getByRole('region', { name: 'Journey timeline' })

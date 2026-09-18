@@ -1,14 +1,18 @@
 import { expect, test } from 'vitest'
+import { readFileSync } from 'node:fs'
 import { loadBundle } from '@/lib/content/loader'
 import { personas, replyForPrompt } from './catalog'
 import { runPersona } from './runner'
-import { compareJourneys } from './schema'
+import { compareJourneys, suiteSchema } from './schema'
 import { scriptedProvider } from './synthetic-provider'
 import { createFixtureProvider } from '@/lib/server/provider'
 import type { Provider } from '@/lib/server/provider'
 import { versions } from '@/lib/assessment/schema'
 
 const bundle = loadBundle()
+const baseline = suiteSchema.parse(
+  JSON.parse(readFileSync('eval/development/persona-baseline.json', 'utf8'))
+)
 test('ten distinct personas have bounded question-specific scripts for every current prompt', () => {
   expect(personas).toHaveLength(10)
   expect(new Set(personas.map((p) => p.id)).size).toBe(10)
@@ -27,8 +31,16 @@ for (const persona of personas)
     const a = await runPersona(persona, bundle)
     const b = await runPersona(persona, bundle)
     expect(a.error).toBeNull()
+    expect(a.personaSnapshot).toEqual(persona)
+    expect(a.personaSnapshot).not.toBe(persona)
     expect(a.accepted).toBe(5)
     expect(compareJourneys(a, b)).toEqual([])
+    expect(
+      compareJourneys(
+        baseline.journeys.find((j) => j.personaId === persona.id)!,
+        a
+      )
+    ).toEqual([])
     expect(a.steps[0]!.prompt.promptId).toBe('root')
     for (const step of a.steps.filter((s) => s.rankings.length))
       expect(step.nextPrompt?.promptId).toBe(step.rankings[0]!.id)
@@ -92,15 +104,29 @@ test('labor harms preserve unknown catastrophe and rigid optimism differs from c
 
 test('uncertainty does not bypass readiness or become non-answer recovery', async () => {
   for (const id of ['worried-novice', 'open-uncertainty']) {
+    const first = await runPersona(
+      personas.find((p) => p.id === id)!,
+      bundle,
+      1
+    )
+    expect(first.result).toBeNull()
+    expect(first.finalReadiness.ready).toBe(false)
     const j = await runPersona(
       personas.find((p) => p.id === id)!,
       bundle
     )
-    expect(j.result).toBeNull()
-    expect(j.finalReadiness.ready).toBe(false)
     expect(j.accepted).toBe(5)
     expect(j.steps.some((s) => s.paperclips)).toBe(false)
+    expect(
+      j.result?.components.find((c) => c.vector === 'catastrophic_risk')?.value
+    ).toBeNull()
   }
+  const unknown = await runPersona(
+    personas.find((p) => p.id === 'open-uncertainty')!,
+    bundle
+  )
+  expect(unknown.result).not.toBeNull()
+  expect(unknown.result?.horizontal.value).toBeNull()
 })
 
 test('exact non-answer prelude adds no coverage and triggers paperclips before a real retry', async () => {

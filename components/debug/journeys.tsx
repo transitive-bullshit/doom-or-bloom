@@ -341,6 +341,7 @@ export function JourneysInspector({
   const current = view?.current ?? null
   const before = view?.before ?? null
   const loading = view === null
+  const recordedPersona = current?.journey?.personaSnapshot ?? persona
   useEffect(() => {
     const abort = new AbortController()
     async function read(id: string) {
@@ -408,7 +409,7 @@ export function JourneysInspector({
   const prior = before?.journey
   const changed = journey && prior ? compareJourneys(prior, journey) : []
   return (
-    <main className='mx-auto flex max-w-7xl flex-col gap-8 px-4 py-10 sm:px-8'>
+    <article className='mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-8 px-4 py-10 sm:px-8'>
       <ReviewHeader
         title='User Journeys'
         description='Ten fictional personas exercise the same assessment workflow. Inspect questions, answers, routing decisions and evidence readiness; save reruns and compare their observed paths.'
@@ -451,19 +452,19 @@ export function JourneysInspector({
       </section>
       <Card>
         <CardHeader>
-          <CardTitle className='text-2xl'>{persona.name}</CardTitle>
-          <CardDescription>{persona.proxy}</CardDescription>
+          <CardTitle className='text-2xl'>{recordedPersona.name}</CardTitle>
+          <CardDescription>{recordedPersona.proxy}</CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col gap-3 text-sm'>
-          <p>{persona.description}</p>
+          <p>{recordedPersona.description}</p>
           <p>
             <strong>What this tests: </strong>
-            {persona.concern}
+            {recordedPersona.concern}
           </p>
-          {persona.sources.length > 0 && (
+          {recordedPersona.sources.length > 0 && (
             <p className='text-muted-foreground'>
               Historical inspiration:{' '}
-              {persona.sources.map((s) => (
+              {recordedPersona.sources.map((s) => (
                 <a
                   key={s.url}
                   href={s.url}
@@ -479,7 +480,7 @@ export function JourneysInspector({
         </CardContent>
       </Card>
       <FieldGroup className='grid gap-4 md:grid-cols-2'>
-        <Field>
+        <Field className='min-w-0 [&_[data-slot=native-select-wrapper]]:w-full'>
           <FieldLabel htmlFor='journey-run'>View run</FieldLabel>
           <NativeSelect
             id='journey-run'
@@ -494,7 +495,7 @@ export function JourneysInspector({
             ))}
           </NativeSelect>
         </Field>
-        <Field>
+        <Field className='min-w-0 [&_[data-slot=native-select-wrapper]]:w-full'>
           <FieldLabel htmlFor='journey-compare'>Compare with</FieldLabel>
           <NativeSelect
             id='journey-compare'
@@ -589,8 +590,12 @@ export function JourneysInspector({
             <Disclosure label='Run provenance and scripts'>
               <JsonViewer label='Run provenance' value={current.run} />
               <JsonViewer
-                label='Authored persona and synthetic judgment levels'
-                value={persona}
+                label={
+                  journey.personaSnapshot
+                    ? 'Recorded persona and authored synthetic judgment levels'
+                    : 'Current authoring · original persona not recorded in this older run'
+                }
+                value={recordedPersona}
                 dimensions={dimensions}
               />
             </Disclosure>
@@ -676,6 +681,18 @@ export function JourneysInspector({
               </Table>
             </section>
           )}
+          {journey.result && !journey.finalReadiness.ready && (
+            <Alert>
+              <AlertTitle>Readiness changed during projection</AlertTitle>
+              <AlertDescription>
+                This run qualified before projection. Projection left some
+                positions unplaced and recomputed coverage; the saved
+                provisional result is retained. The meter shows the current
+                state, while First eligible records the earlier threshold
+                crossing.
+              </AlertDescription>
+            </Alert>
+          )}
           {compareId && before && !prior && (
             <p className='text-sm text-muted-foreground'>
               The comparison run did not include this persona.
@@ -756,6 +773,6 @@ export function JourneysInspector({
           </p>
         </div>
       </Disclosure>
-    </main>
+    </article>
   )
 }

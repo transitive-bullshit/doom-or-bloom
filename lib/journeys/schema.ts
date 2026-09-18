@@ -8,6 +8,7 @@ import {
   dispositionSchema
 } from '@/lib/assessment/schema'
 import { questionSchema, modelAnswerSchema } from '@/lib/assessment/schema'
+import { personaSchema } from './catalog'
 
 const traceSchema = z.strictObject({
   requestId: z.string(),
@@ -115,6 +116,7 @@ export const journeyStepSchema = z.strictObject({
 })
 export const journeySchema = z.strictObject({
   personaId: z.string(),
+  personaSnapshot: personaSchema.optional(),
   steps: z.array(journeyStepSchema).max(20),
   result: resultSchema.nullable(),
   stopped: z.string(),

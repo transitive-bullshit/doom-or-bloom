@@ -21,9 +21,11 @@ Codex authored these original fictional answers locally. Named people supply loo
 
 ## Reading a run
 
-Select a persona and saved run. Each chronological operation shows the exact issued question, full answer with bounded disclosure, consumed disposition, readiness before/after, newly covered dimensions and actual next question. Decision details show shortlisted candidate priorities, the engine’s local decisions and readiness contributions. Full stage requests/responses are available for locally generated runs, with the same folding, sorting and meaning help as interview debugging. This exposes recorded judgments and code composition, not hidden model reasoning.
+Select a persona and saved run. Each chronological operation shows the exact issued question, full answer with bounded disclosure, consumed disposition, readiness before/after, newly covered dimensions and actual next question. Decision details show shortlisted candidate priorities, the engine’s local decisions and readiness contributions. Full stage requests/responses are available for locally generated runs, with the same folding, sorting and meaning help as interview debugging. Each new run also retains the original fictional profile, script bank and authored hypotheses for provenance; later catalog edits do not rewrite that description. Older development artifacts without that snapshot label the displayed authoring as current. This exposes recorded judgments and code composition, not hidden model reasoning.
 
 The default is five answer opportunities, continuing follow-ups even if a first answer qualifies, then projection when eligible. Recovery actions are separate operations. A run that cannot pass readiness retains its questions/answers and explicitly shows no result. There is no fabricated result or bypass of the app’s gate. Readiness can change during projection as unresolved positions become explicit.
+
+Explicit unknowns count as presence in the synthetic hypotheses, with unknown worldview positions remaining unplaced. In the current engine, projection marks unplaced components unassessed, so the final meter can fall below the earlier eligibility threshold while a saved provisional result remains viewable. The inspector calls out this transition and preserves both per-step readiness and the first eligible answer. A one-turn sparse/undecided run remains ineligible; a longer uncertain run can yield an honest unplaced outlook.
 
 **Synthetic** means authored presence/position/score hypotheses are injected, with zero inference requests. Routing benefit hypotheses use missing targets and unresolved flags; the real engine applies shortlist eligibility, weights, effort, repetition, calibration and ID tie-breaks. These runs demonstrate workflow behavior, not whether Jev understood the text. Hypotheses and family/question-specific answer scripts live in `lib/journeys/catalog.ts`; inspect them through Run provenance and scripts. Confidence is deliberately deterministic in this mode rather than measured calibration.
 
@@ -43,6 +45,8 @@ The page offers free reruns for one persona or all ten. Saved artifacts are immu
 Compare with a previous run to see question/next-question paths, per-step readiness and final outlook/reasoning. Input, content and engine hashes accompany versions and model. Rows align chronological operations: when routing diverges, later scripts can also differ. A warning identifies changed persona inputs or turn bounds. Synthetic-versus-Jev comparisons are diagnostic, not claims of equivalent judgments.
 
 `pnpm journeys:check` regenerates free synthetic paths and exits nonzero if salient observations differ from `eval/development/persona-baseline.json`. The snapshot compares question/answer paths, dispositions, readiness, coverage, candidate priorities, recovery, coordinates/ranges, components and selected findings/resources. UUIDs, timestamps, byte counts, transport use and timings are excluded. This is a deterministic control-flow regression, not a numerical answer key for live Jev.
+
+Synthetic assessment IDs are opaque and deterministic to keep baseline diffs readable; live IDs are random and carry no persona label. Run directories always have unique IDs, preserving all earlier full exchanges.
 
 Update the baseline deliberately after inspecting intended changes:
 
