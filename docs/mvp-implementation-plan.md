@@ -816,3 +816,10 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Include ordinary harm and action posture in the main fingerprint, preserving five-card saved results and existing component evidence. Review the intentional synthetic baseline changes.
 - [x] Complete a final-code ten-persona action suite without failures (120 Jev, 50 OpenAI requests), with no journey asking both control prompts. Verify 144 unit tests, static/content checks and three isolated desktop/mobile map scenarios, including the seven-card partial-result display.
 - Findings review still identifies an unsupported linkage in benefit-conditions text and missing actionable feedback for explicitly poor reasoning. Resolve these before the broader completion audit.
+
+### 2026-09-19 — Evidence-bounded findings / Codex
+
+- [x] Remove unsupported benefit-condition linkage and align continuity wording with the expectation rubric.
+- [x] Add conservative, evidence-gated actionable feedback for explicit refusal to revise; exclude missing evidence, uncertain ranges and unresolved interpretations.
+- [x] Reapply presentation to the ten actual live results without new inference; inspect the intentional synthetic findings-only changes and verify 145 tests plus static/content checks.
+- Completion audit reopens the original first-batch failed-operation envelope/resume requirement: stage/category diagnostics and saved pending text are only partial implementation. Complete and test recovery before marking the overall goal achieved.

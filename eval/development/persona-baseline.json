@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T19:57:58.187Z",
+  "createdAt": "2026-09-18T20:03:09.196Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -12,7 +12,7 @@
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
   "engineHash": "557db3255614460f8774296c2c2eab1c915b46c9ba073eb9d0b8e6831e8d6a50",
-  "contentHash": "235402f238ef304918698e6627d48b729ffaf823633a8d59b32645c6579a44d3",
+  "contentHash": "356b4119ea15ff870153feb4944492f242b7f13c9c0e7a1c3b7a414ff55d85a4",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -6857,7 +6857,7 @@
           },
           {
             "id": "finding.benefit-conditions",
-            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
             "evidenceIds": [
               "journey-468652ddc0b37243013b:p1:a:e:beneficial_potential",
               "journey-468652ddc0b37243013b:p2:a:e:beneficial_potential",
@@ -10558,7 +10558,7 @@
           },
           {
             "id": "finding.benefit-conditions",
-            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
             "evidenceIds": [
               "journey-71bf2c696abf3473377e:p1:a:e:beneficial_potential",
               "journey-71bf2c696abf3473377e:p2:a:e:beneficial_potential",
@@ -17425,7 +17425,7 @@
           },
           {
             "id": "finding.benefit-conditions",
-            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
             "evidenceIds": [
               "journey-c6b589474b41e76ac338:p1:a:e:beneficial_potential",
               "journey-c6b589474b41e76ac338:p2:a:e:beneficial_potential",
@@ -20992,7 +20992,7 @@
           },
           {
             "id": "finding.benefit-conditions",
-            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
             "evidenceIds": [
               "journey-894e1eaadc0d7ed633a8:p1:a:e:beneficial_potential",
               "journey-894e1eaadc0d7ed633a8:p1:a:e:scope_discipline",
@@ -24561,7 +24561,7 @@
           },
           {
             "id": "finding.benefit-conditions",
-            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
             "evidenceIds": [
               "journey-33ef5c36b2c11531b3c4:p1:a:e:beneficial_potential",
               "journey-33ef5c36b2c11531b3c4:p1:a:e:scope_discipline",
@@ -31372,8 +31372,16 @@
         ],
         "findings": [
           {
+            "id": "finding.revision-closed",
+            "text": "You ruled out changing this belief regardless of evidence. Try naming one observation that would make you reconsider, and what you would change.",
+            "evidenceIds": [
+              "journey-5bde7dc8469dbcbb9c88:p1:a:e:updateability",
+              "journey-5bde7dc8469dbcbb9c88:p2:a:e:updateability"
+            ]
+          },
+          {
             "id": "finding.continuity",
-            "text": "Preserving human agency or continuity matters to your account of a good future. This is a value as well as an expectation.",
+            "text": "You expect the forms of agency or continuity you value to be substantially preserved or expanded.",
             "evidenceIds": ["journey-5bde7dc8469dbcbb9c88:p1:a:e:human_agency"]
           },
           {
@@ -31381,13 +31389,6 @@
             "text": "Your account includes how progress could unfold. Its timing and warning assumptions can affect both upside and risk.",
             "evidenceIds": [
               "journey-5bde7dc8469dbcbb9c88:p5:a:e:transition_dynamics"
-            ]
-          },
-          {
-            "id": "finding.policy-separate",
-            "text": "You expressed a preferred response to AI. We keep that preference separate from the map’s expected-impact placement.",
-            "evidenceIds": [
-              "journey-5bde7dc8469dbcbb9c88:p1:a:e:action_posture"
             ]
           }
         ],
@@ -35456,7 +35457,7 @@
           },
           {
             "id": "finding.benefit-conditions",
-            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
             "evidenceIds": [
               "journey-037ec99e57e839e46284:p1:a:e:beneficial_potential",
               "journey-037ec99e57e839e46284:p1:a:e:scope_discipline",

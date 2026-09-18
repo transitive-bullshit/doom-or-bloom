@@ -1,5 +1,18 @@
 [
   {
+    "id": "finding.revision-closed",
+    "text": "You ruled out changing this belief regardless of evidence. Try naming one observation that would make you reconsider, and what you would change.",
+    "conditions": [
+      {
+        "vector": "updateability",
+        "max": 0,
+        "assessed": true
+      }
+    ],
+    "exclusions": [],
+    "status": "draft"
+  },
+  {
     "id": "finding.causal",
     "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
     "conditions": [
@@ -92,7 +105,7 @@
   },
   {
     "id": "finding.benefit-conditions",
-    "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+    "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
     "conditions": [
       {
         "vector": "beneficial_potential",
@@ -155,7 +168,7 @@
   },
   {
     "id": "finding.continuity",
-    "text": "Preserving human agency or continuity matters to your account of a good future. This is a value as well as an expectation.",
+    "text": "You expect the forms of agency or continuity you value to be substantially preserved or expanded.",
     "conditions": [
       {
         "vector": "human_agency",
@@ -181,7 +194,7 @@
   },
   {
     "id": "finding.policy-separate",
-    "text": "You expressed a preferred response to AI. We keep that preference separate from the map\u2019s expected-impact placement.",
+    "text": "You expressed a preferred response to AI. We keep that preference separate from the map’s expected-impact placement.",
     "conditions": [
       {
         "vector": "action_posture",

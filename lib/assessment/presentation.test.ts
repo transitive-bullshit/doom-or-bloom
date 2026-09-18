@@ -98,3 +98,36 @@ test('resources ignore legacy grounding and diversify authored purpose groups', 
     )
   ).toBe(true)
 })
+
+test('actionable revision feedback requires supported refusal, not silence, uncertainty or disagreement', () => {
+  const bundle = loadBundle()
+  const state = createAssessment('revision-feedback')
+  const refusal = {
+    ...emptyComponent('updateability', 'Updateability'),
+    value: 0,
+    range: [0, 0] as [number, number],
+    evidenceIds: ['explicit-refusal']
+  }
+  const selected = (components: (typeof refusal)[]) =>
+    selectPresentation(state, components, bundle).findings
+  expect(selected([refusal])[0]).toMatchObject({
+    id: 'finding.revision-closed',
+    evidenceIds: ['explicit-refusal']
+  })
+  expect(selected([{ ...refusal, range: [0, 1] }])).toEqual([])
+  expect(selected([{ ...refusal, evidenceIds: [] }])).toEqual([])
+  expect(
+    selectPresentation(
+      state,
+      [emptyComponent('updateability', 'Updateability')],
+      bundle
+    ).findings
+  ).toEqual([])
+  state.unresolved.push({
+    id: 'u',
+    vector: 'updateability',
+    kind: 'ambiguity',
+    evidenceIds: ['explicit-refusal']
+  })
+  expect(selected([refusal])).toEqual([])
+})
