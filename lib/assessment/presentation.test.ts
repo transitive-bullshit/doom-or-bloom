@@ -4,6 +4,28 @@ import { emptyComponent } from './projections'
 import { selectPresentation } from './presentation'
 import { loadBundle } from '@/lib/content/loader'
 
+test('supported worldview findings are not crowded out by three generic reasoning findings', () => {
+  const state = createAssessment('finding-balance')
+  const components = [
+    'causal_clarity',
+    'updateability',
+    'scope_discipline',
+    'risk_landscape'
+  ].map((vector) => ({
+    ...emptyComponent(vector, vector),
+    value: 0.8,
+    range: [0.7, 0.9] as [number, number],
+    evidenceIds: [`${vector}:e`]
+  }))
+  const findings = selectPresentation(state, components, loadBundle()).findings
+  expect(findings).toHaveLength(3)
+  expect(findings.map((f) => f.id)).toContain('finding.risk-concern')
+  expect(findings.map((f) => f.id)).toContain('finding.causal')
+  expect(
+    findings.find((f) => f.id === 'finding.risk-concern')?.evidenceIds
+  ).toEqual(['risk_landscape:e'])
+})
+
 test('positive findings require exact evidence and the entire interpretation range to support the claim', () => {
   const bundle = loadBundle()
   const state = createAssessment('findings')

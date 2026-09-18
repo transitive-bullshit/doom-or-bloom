@@ -529,11 +529,13 @@ export async function runAssessment(
       })
       const score = evaluation.answers['catastrophic_risk:score']
       const sourceIds = catastrophicEvidence(state).map((entry) => entry.id)
-      const fingerprintRisk =
+      const catastropheSupported =
         supported(
           evaluation.answers['catastrophic_risk:status'],
           bundle.rubric.presenceThreshold
-        ) &&
+        ) && sourceIds.length > 0
+      const fingerprintRisk =
+        catastropheSupported &&
         evaluation.answers['catastrophic_risk:position']?.type === 'choice' &&
         (evaluation.answers['catastrophic_risk:position'].probabilities
           .assessable ?? 0) >= bundle.rubric.presenceThreshold &&
@@ -567,7 +569,18 @@ export async function runAssessment(
                 bundle.rubric.presenceThreshold
               )
             }
-          : emptyComponent('catastrophic_risk', catastrophe.label)
+          : {
+              ...emptyComponent('catastrophic_risk', catastrophe.label),
+              evidenceIds: catastropheSupported ? sourceIds : [],
+              claim: catastropheSupported
+                ? evaluation.answers['catastrophic_risk:position']?.type ===
+                    'choice' &&
+                  evaluation.answers['catastrophic_risk:position'].choice ===
+                    'explicitly_unknown'
+                  ? uncertainClaim
+                  : unestablishedClaim
+                : null
+            }
       components.push(fingerprintRisk)
     } else
       components = bundle.rubric.dimensions.map((d) =>

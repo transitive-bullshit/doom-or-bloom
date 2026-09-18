@@ -1,4 +1,5 @@
 import type { Assessment, Component } from './schema'
+import { worldviewIds } from './schema'
 import type { Bundle } from '@/lib/content/loader'
 
 export function selectPresentation(
@@ -21,7 +22,7 @@ export function selectPresentation(
         (conservative ? component.range[1] : component.value) <= condition.max)
     )
   }
-  const findings = bundle.findings
+  const eligibleFindings = bundle.findings
     .filter(
       (finding) =>
         finding.conditions.every((c) => matches(c, true)) &&
@@ -37,6 +38,18 @@ export function selectPresentation(
             (components.find((component) => component.vector === c.vector)
               ?.evidenceIds.length ?? 0) > 0)
       )
+    )
+  const isWorldview = (finding: Bundle['findings'][number]) =>
+    finding.conditions.some((c) => worldviewIds.some((id) => id === c.vector))
+  // Reserve room for both what the participant expects and how they reason.
+  // Within each group, retain authored order and all evidence/range gates.
+  const reasoning = eligibleFindings.find((finding) => !isWorldview(finding))
+  const worldview = eligibleFindings.find(isWorldview)
+  const selected = [reasoning, worldview, ...eligibleFindings]
+  const findings = selected
+    .filter(
+      (finding, index): finding is Bundle['findings'][number] =>
+        finding !== undefined && selected.indexOf(finding) === index
     )
     .slice(0, 3)
     .map((finding) => ({

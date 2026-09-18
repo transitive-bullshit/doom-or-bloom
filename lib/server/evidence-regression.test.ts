@@ -100,6 +100,31 @@ test('unplaceable positions do not erase understood evidence during projection',
   )
   expect(evidenceReadiness(result.assessment)).toEqual(before)
   expect(result.assessment.result?.horizontal.value).toBeNull()
+  const catastrophe = result.assessment.result?.fingerprint.find(
+    (component) => component.vector === 'catastrophic_risk'
+  )
+  expect(catastrophe?.value).toBeNull()
+  expect(catastrophe?.claim).toBe(
+    'You expressed uncertainty here rather than a directional expectation.'
+  )
+  expect(catastrophe?.evidenceIds.length).toBeGreaterThan(0)
+  const clarification = await runAssessment(
+    {
+      debug: false,
+      requestId: 'unknown-catastrophe-clarify',
+      assessment: result.assessment,
+      operation: {
+        type: 'clarify',
+        vector: 'risk_landscape',
+        claim: 'catastrophic_risk'
+      }
+    },
+    provider,
+    bundle
+  )
+  expect(clarification.assessment.prompts.at(-1)?.claimTarget).toBe(
+    'catastrophic_risk'
+  )
 })
 
 test('a split score distribution cannot invent a categorical middle-level claim', async () => {

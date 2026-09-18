@@ -3,6 +3,42 @@ import { createAssessment } from './state'
 import { candidatePrompts, rankCandidates } from './routing'
 import { loadBundle } from '@/lib/content/loader'
 import { fixtureAnswer } from '@/lib/server/provider'
+import { timelineContext, timelineUnknown } from './timeline'
+
+test('later timing uncertainty supersedes a prior date for both the fingerprint and routing', () => {
+  const state = createAssessment('revised-timing')
+  const answer = {
+    promptInstanceId: state.prompts[0]!.id,
+    promptText: state.prompts[0]!.text,
+    substantive: true,
+    hasConviction: false
+  }
+  state.answers.push(
+    { ...answer, id: 'early', text: 'Within ten years.', hasHorizon: true },
+    {
+      ...answer,
+      id: 'later',
+      text: 'Actually I cannot place a date on that.',
+      hasHorizon: false,
+      hasUnknownHorizon: true
+    }
+  )
+  expect(timelineUnknown(state)).toBe(true)
+  expect(timelineContext(state)).toBeNull()
+  expect(
+    candidatePrompts(state, loadBundle().prompts).find(
+      (c) => c.prompt.id === 'conviction.general'
+    )?.reason
+  ).toBe('timing premise not established')
+  state.answers.push({
+    ...answer,
+    id: 'latest',
+    text: 'My new estimate is twenty years.',
+    hasHorizon: true
+  })
+  expect(timelineUnknown(state)).toBe(false)
+  expect(timelineContext(state)?.id).toBe('latest')
+})
 
 test('familiarity gates specialist wording while early missing horizons retain independent priority', () => {
   const bundle = loadBundle()

@@ -389,6 +389,12 @@ test('unknown worldview positions and ordinary harm cannot fabricate catastrophi
   expect(
     state.result?.fingerprint.find((c) => c.vector === 'catastrophic_risk')
       ?.claim
+  ).toBe(
+    'You expressed uncertainty here rather than a directional expectation.'
+  )
+  expect(
+    state.result?.fingerprint.find((c) => c.vector === 'catastrophic_risk')
+      ?.value
   ).toBeNull()
   expect(
     state.result?.fingerprint.find((c) => c.vector === 'timeline')?.claim

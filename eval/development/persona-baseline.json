@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T18:48:47.823Z",
+  "createdAt": "2026-09-18T18:57:30.533Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,8 +11,8 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "c1320f18aee53caf26fbf742bb81af9ac4cd361de927102e18b307d7f015eb16",
-  "contentHash": "8202255fcc17978522283850a9df6a94543247b5b1e6278acb1b737c78048698",
+  "engineHash": "f75d257d12c67f789c98d95ce03508994ba735ba18709468b53d309547109ab5",
+  "contentHash": "93e4c883d43eac9b59fd127d143cde34ca91fa2057f4361aaa310be62075b93d",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -3159,21 +3159,19 @@
             ]
           },
           {
+            "id": "finding.risk-concern",
+            "text": "Harm is a consequential part of your expectation. This assessment keeps that expectation separate from your preferred response.",
+            "evidenceIds": [
+              "journey-38810ac8a94e2862a697:p1:a:e:risk_landscape",
+              "journey-38810ac8a94e2862a697:p2:a:e:risk_landscape"
+            ]
+          },
+          {
             "id": "finding.crux",
             "text": "You identified something that could change your view. This is a useful crux to keep watching.",
             "evidenceIds": [
               "journey-38810ac8a94e2862a697:p1:a:e:updateability",
               "journey-38810ac8a94e2862a697:p5:a:e:updateability"
-            ]
-          },
-          {
-            "id": "finding.scope",
-            "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
-            "evidenceIds": [
-              "journey-38810ac8a94e2862a697:p1:a:e:scope_discipline",
-              "journey-38810ac8a94e2862a697:p2:a:e:scope_discipline",
-              "journey-38810ac8a94e2862a697:p3:a:e:scope_discipline",
-              "journey-38810ac8a94e2862a697:p4:a:e:scope_discipline"
             ]
           }
         ],
@@ -6823,21 +6821,23 @@
             ]
           },
           {
+            "id": "finding.benefit-conditions",
+            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "evidenceIds": [
+              "journey-468652ddc0b37243013b:p1:a:e:beneficial_potential",
+              "journey-468652ddc0b37243013b:p2:a:e:beneficial_potential",
+              "journey-468652ddc0b37243013b:p1:a:e:scope_discipline",
+              "journey-468652ddc0b37243013b:p2:a:e:scope_discipline",
+              "journey-468652ddc0b37243013b:p3:a:e:scope_discipline",
+              "journey-468652ddc0b37243013b:p4:a:e:scope_discipline"
+            ]
+          },
+          {
             "id": "finding.crux",
             "text": "You identified something that could change your view. This is a useful crux to keep watching.",
             "evidenceIds": [
               "journey-468652ddc0b37243013b:p1:a:e:updateability",
               "journey-468652ddc0b37243013b:p5:a:e:updateability"
-            ]
-          },
-          {
-            "id": "finding.scope",
-            "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
-            "evidenceIds": [
-              "journey-468652ddc0b37243013b:p1:a:e:scope_discipline",
-              "journey-468652ddc0b37243013b:p2:a:e:scope_discipline",
-              "journey-468652ddc0b37243013b:p3:a:e:scope_discipline",
-              "journey-468652ddc0b37243013b:p4:a:e:scope_discipline"
             ]
           }
         ],
@@ -10487,21 +10487,23 @@
             ]
           },
           {
+            "id": "finding.benefit-conditions",
+            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "evidenceIds": [
+              "journey-71bf2c696abf3473377e:p1:a:e:beneficial_potential",
+              "journey-71bf2c696abf3473377e:p2:a:e:beneficial_potential",
+              "journey-71bf2c696abf3473377e:p1:a:e:scope_discipline",
+              "journey-71bf2c696abf3473377e:p2:a:e:scope_discipline",
+              "journey-71bf2c696abf3473377e:p3:a:e:scope_discipline",
+              "journey-71bf2c696abf3473377e:p4:a:e:scope_discipline"
+            ]
+          },
+          {
             "id": "finding.crux",
             "text": "You identified something that could change your view. This is a useful crux to keep watching.",
             "evidenceIds": [
               "journey-71bf2c696abf3473377e:p1:a:e:updateability",
               "journey-71bf2c696abf3473377e:p5:a:e:updateability"
-            ]
-          },
-          {
-            "id": "finding.scope",
-            "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
-            "evidenceIds": [
-              "journey-71bf2c696abf3473377e:p1:a:e:scope_discipline",
-              "journey-71bf2c696abf3473377e:p2:a:e:scope_discipline",
-              "journey-71bf2c696abf3473377e:p3:a:e:scope_discipline",
-              "journey-71bf2c696abf3473377e:p4:a:e:scope_discipline"
             ]
           }
         ],
@@ -13749,18 +13751,18 @@
             ]
           },
           {
+            "id": "finding.risk-concern",
+            "text": "Harm is a consequential part of your expectation. This assessment keeps that expectation separate from your preferred response.",
+            "evidenceIds": [
+              "journey-14015ebf351c74d79e77:p1:a:e:risk_landscape"
+            ]
+          },
+          {
             "id": "finding.uncertainty",
             "text": "You expressed uncertainty in a way that leaves room for more evidence. That does not itself make the expected outcome better or worse.",
             "evidenceIds": [
               "journey-14015ebf351c74d79e77:p1:a:e:appropriate_uncertainty",
               "journey-14015ebf351c74d79e77:p2:a:e:appropriate_uncertainty"
-            ]
-          },
-          {
-            "id": "finding.grounded",
-            "text": "You connected your account to evidence that could be checked. A reference still has limits on what it establishes.",
-            "evidenceIds": [
-              "journey-14015ebf351c74d79e77:p5:a:e:grounded_understanding"
             ]
           }
         ],
@@ -17290,21 +17292,23 @@
             ]
           },
           {
+            "id": "finding.benefit-conditions",
+            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "evidenceIds": [
+              "journey-c6b589474b41e76ac338:p1:a:e:beneficial_potential",
+              "journey-c6b589474b41e76ac338:p2:a:e:beneficial_potential",
+              "journey-c6b589474b41e76ac338:p1:a:e:scope_discipline",
+              "journey-c6b589474b41e76ac338:p2:a:e:scope_discipline",
+              "journey-c6b589474b41e76ac338:p3:a:e:scope_discipline",
+              "journey-c6b589474b41e76ac338:p4:a:e:scope_discipline"
+            ]
+          },
+          {
             "id": "finding.crux",
             "text": "You identified something that could change your view. This is a useful crux to keep watching.",
             "evidenceIds": [
               "journey-c6b589474b41e76ac338:p1:a:e:updateability",
               "journey-c6b589474b41e76ac338:p5:a:e:updateability"
-            ]
-          },
-          {
-            "id": "finding.scope",
-            "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
-            "evidenceIds": [
-              "journey-c6b589474b41e76ac338:p1:a:e:scope_discipline",
-              "journey-c6b589474b41e76ac338:p2:a:e:scope_discipline",
-              "journey-c6b589474b41e76ac338:p3:a:e:scope_discipline",
-              "journey-c6b589474b41e76ac338:p4:a:e:scope_discipline"
             ]
           }
         ],
@@ -20820,21 +20824,22 @@
             ]
           },
           {
+            "id": "finding.benefit-conditions",
+            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
+            "evidenceIds": [
+              "journey-894e1eaadc0d7ed633a8:p1:a:e:beneficial_potential",
+              "journey-894e1eaadc0d7ed633a8:p1:a:e:scope_discipline",
+              "journey-894e1eaadc0d7ed633a8:p2:a:e:scope_discipline",
+              "journey-894e1eaadc0d7ed633a8:p3:a:e:scope_discipline",
+              "journey-894e1eaadc0d7ed633a8:p5:a:e:scope_discipline"
+            ]
+          },
+          {
             "id": "finding.crux",
             "text": "You identified something that could change your view. This is a useful crux to keep watching.",
             "evidenceIds": [
               "journey-894e1eaadc0d7ed633a8:p1:a:e:updateability",
               "journey-894e1eaadc0d7ed633a8:p4:a:e:updateability"
-            ]
-          },
-          {
-            "id": "finding.scope",
-            "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
-            "evidenceIds": [
-              "journey-894e1eaadc0d7ed633a8:p1:a:e:scope_discipline",
-              "journey-894e1eaadc0d7ed633a8:p2:a:e:scope_discipline",
-              "journey-894e1eaadc0d7ed633a8:p3:a:e:scope_discipline",
-              "journey-894e1eaadc0d7ed633a8:p5:a:e:scope_discipline"
             ]
           }
         ],
@@ -24361,18 +24366,19 @@
             ]
           },
           {
-            "id": "finding.crux",
-            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
-            "evidenceIds": ["journey-33ef5c36b2c11531b3c4:p2:a:e:updateability"]
-          },
-          {
-            "id": "finding.scope",
-            "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
+            "id": "finding.benefit-conditions",
+            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
             "evidenceIds": [
+              "journey-33ef5c36b2c11531b3c4:p1:a:e:beneficial_potential",
               "journey-33ef5c36b2c11531b3c4:p1:a:e:scope_discipline",
               "journey-33ef5c36b2c11531b3c4:p3:a:e:scope_discipline",
               "journey-33ef5c36b2c11531b3c4:p4:a:e:scope_discipline"
             ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": ["journey-33ef5c36b2c11531b3c4:p2:a:e:updateability"]
           }
         ],
         "resources": [
@@ -35165,19 +35171,20 @@
             ]
           },
           {
-            "id": "finding.crux",
-            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
-            "evidenceIds": ["journey-037ec99e57e839e46284:p3:a:e:updateability"]
-          },
-          {
-            "id": "finding.scope",
-            "text": "You made a condition or scope visible. That helps distinguish the expectation from the circumstances it depends on.",
+            "id": "finding.benefit-conditions",
+            "text": "Your expected upside depends on meaningful conditions. Those conditions are useful to watch as AI changes.",
             "evidenceIds": [
+              "journey-037ec99e57e839e46284:p1:a:e:beneficial_potential",
               "journey-037ec99e57e839e46284:p1:a:e:scope_discipline",
               "journey-037ec99e57e839e46284:p2:a:e:scope_discipline",
               "journey-037ec99e57e839e46284:p4:a:e:scope_discipline",
               "journey-037ec99e57e839e46284:p5:a:e:scope_discipline"
             ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": ["journey-037ec99e57e839e46284:p3:a:e:updateability"]
           }
         ],
         "resources": [

@@ -164,7 +164,11 @@ Clarification quotes the selected claim, including the separate catastrophic-ris
 
 Participants may correct the assessment's interpretation; they may not directly edit a score or coordinate. Corrections provide valuable quality telemetry without being treated as ground truth automatically.
 
-A capability-trajectory correction also invalidates earlier timeline context. The fingerprint and missing-timing routing use the horizon-presence flag on that correction or a later answer; otherwise timing remains unexplored. The fingerprint points to the complete supporting answer rather than quoting or normalizing a selected passage. Corrections to other vectors preserve the timeline. Raw earlier answers remain in the conversation and report, with superseded evidence excluded from current fingerprint provenance.
+A capability-trajectory correction also invalidates earlier timeline context. The fingerprint and routing use the latest answer that supplies a horizon or explicitly leaves timing unknown, starting with that correction when present. Explicitly unknown timing is explored evidence: do not repeat the date question or ask for confidence in an obsolete date. A later adopted horizon can replace that uncertainty. Otherwise timing remains unexplored. The fingerprint points to the complete supporting answer rather than quoting or normalizing a selected passage. Corrections to other vectors preserve the timeline. Raw earlier answers remain in the conversation and report, with superseded evidence excluded from current fingerprint provenance.
+
+Evidence presence is independent of reasoning quality. Explicit dismissal of alternatives or refusal to revise a belief can support a low reasoning level; silence about those dimensions remains unassessed. Supported uncertainty, including the separate catastrophic-risk component, retains its claim and evidence without a directional coordinate and can be corrected by the participant.
+
+Result findings retain the authored evidence and interpretation-range gates. When supported findings exist in both areas, include worldview and reasoning feedback within the three-card limit so generic reasoning findings cannot crowd out the participant's expectations.
 
 ## Procedural neutrality
 
