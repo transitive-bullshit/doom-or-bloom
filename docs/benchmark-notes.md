@@ -1,5 +1,7 @@
 # Local development measurements and current bounds
 
+For current bounds and authorized occasional persona runs, see [TypeSafe workflow](TYPESAFE.md#failure-bounds-and-paid-evaluation) and [User Journeys](user-journeys.md). The September 17 measurements below are historical; current replies allow 20,000 characters, runtime reference resolution is paused, and the shared operation ceiling is 24 physical attempts. Maximum-context boundary checks still use mocked transport rather than paid pressure testing.
+
 Updated 2026-09-17. **Paid pressure testing has stopped at the user’s request.** The original 50-prompt stress setup is superseded by conservative local bounds: 12 issued prompts, warning at 10, 2,000 characters per answer, two resolved references per answer and 16 physical inference attempts across one operation. Boundary checks use fixtures. No paid maximum-context test or numeric provider-limit discovery is required.
 
 ## Historical development evidence

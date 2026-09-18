@@ -23,7 +23,7 @@
     {
       "id": "capability_trajectory",
       "label": "Timeline & capability",
-      "meaning": "The participant’s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator’s confidence in interpreting it.",
+      "meaning": "The participant’s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator’s confidence in interpreting it. A date for incremental improvements, bounded tools, paperwork automation, or adoption is not by itself a forecast of transformative capability. Use a transformative-timing level only when that scale of capability is actually expected on that horizon. If near-term tool improvements are expected but the arrival of substantially more capable or autonomous AI is explicitly unknown, retain the ordinary forecast in its own scope and leave transformative direction unplaced. An explicitly expected low capability ceiling remains an assessable position.",
       "levels": [
         "Transformative capability is not expected, or a low ceiling is explicitly anticipated.",
         "Transformative capability is expected only on a long or indefinite horizon.",

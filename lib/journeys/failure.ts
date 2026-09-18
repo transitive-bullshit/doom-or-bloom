@@ -1,6 +1,15 @@
 // Only locally authored messages belong in persisted journey failures.
 export class JourneyFailure extends Error {}
 
+const validationMessages = new Set([
+  'Unexpected number of provider answers',
+  'Provider answer does not match its question',
+  'Provider returned an unknown option',
+  'Provider returned an invalid score scale',
+  'Provider score disagrees with distribution',
+  'Provider returned a different model version'
+])
+
 export function providerFailure(provider: string, error: unknown) {
   if (error instanceof JourneyFailure) return error
   const status =
@@ -10,13 +19,17 @@ export function providerFailure(provider: string, error: unknown) {
       ? error.status
       : null
   const message = error instanceof Error ? error.message : ''
-  const category = /token|context|too large/i.test(message)
-    ? 'context limit'
-    : /timeout|timed out|abort/i.test(message)
-      ? 'timeout or cancellation'
-      : /budget/i.test(message)
-        ? 'request budget'
-        : 'provider or transport failure'
+  const category =
+    (error instanceof Error && error.name === 'ZodError') ||
+    validationMessages.has(message)
+      ? 'response validation'
+      : /token|context|too large/i.test(message)
+        ? 'context limit'
+        : /timeout|timed out|abort/i.test(message)
+          ? 'timeout or cancellation'
+          : /budget/i.test(message)
+            ? 'request budget'
+            : 'provider or transport failure'
   return new JourneyFailure(
     `${provider}: ${category}${status ? ` (HTTP ${status})` : ''}.`
   )

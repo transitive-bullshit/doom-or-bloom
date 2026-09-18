@@ -9,7 +9,7 @@ import { runLiveJourneys } from '../lib/journeys/live'
 
 const args = process.argv.slice(2)
 const allowed =
-  /^(--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--check|--write-baseline)$/
+  /^(--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--check|--write-baseline|--exercise-results)$/
 if (
   args.some((arg) => !allowed.test(arg)) ||
   new Set(args.map((a) => a.split('=')[0])).size !== args.length
@@ -20,6 +20,11 @@ const turns = Number(
   args.find((a) => a.startsWith('--turns='))?.split('=')[1] ?? 5
 )
 const live = args.includes('--live')
+const exerciseResults = args.includes('--exercise-results')
+if (exerciseResults && (!live || turns < 3))
+  throw new Error(
+    'Result exercises require a live run with at least three replies'
+  )
 if (personaId && !personas.some((p) => p.id === personaId))
   throw new Error('Unknown persona')
 if (live && (args.includes('--write-baseline') || args.includes('--check')))
@@ -52,6 +57,7 @@ async function main() {
     const suite = await runLiveJourneys({
       personaId,
       turns,
+      exerciseResults,
       maxRequests: maxRequestsArg
         ? Number(maxRequestsArg.split('=')[1])
         : undefined,

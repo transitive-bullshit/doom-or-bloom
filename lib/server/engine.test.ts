@@ -9,7 +9,7 @@ import {
   eligible,
   issuePrompt
 } from '@/lib/assessment/state'
-import { assessmentSchema } from '@/lib/assessment/schema'
+import { assessmentSchema, limits } from '@/lib/assessment/schema'
 import type { Assessment, Operation } from '@/lib/assessment/schema'
 let seq = 0
 async function run(
@@ -305,7 +305,10 @@ test('dependent stages share the remaining physical request budget', async () =>
     provider,
     true
   )
-  expect(budgets).toEqual([16, 4])
+  expect(budgets).toEqual([
+    limits.providerAttempts,
+    limits.providerAttempts - 12
+  ])
   expect(
     result.debug?.stages.reduce((sum, stage) => sum + stage.attempts, 0)
   ).toBe(16)

@@ -10,7 +10,7 @@ Independent questions in a batch cannot consume one another’s outputs. Later s
 
 ### A. Interpret the reply
 
-Supply the current authored prompt and complete submitted reply once, up to five prior usable answers and the correction target. Evaluate 20 independent judgments: disposition, reading familiarity, 15 dimension-presence classifications, horizon presence, participant-conviction presence and consequential tension.
+Supply the current authored prompt and complete submitted reply once, prior usable answers, unresolved scopes with their source-answer IDs, and the correction target. Evaluate 21 independent base judgments: disposition, reading familiarity, 15 dimension-presence classifications, horizon presence, explicitly unknown horizon, participant-conviction presence and consequential tension. Add one resolution judgment for each dimension with an unresolved ambiguity or tension, up to 36 judgments total. Missing evidence and demonstrated low-quality reasoning are distinct.
 
 Every dimension question includes its human-readable label and its full authored meaning. Worldview describes expectations/values/policy; reasoning describes the supplied explanation. Missing evidence is not a low score. Presence of an explicit unknown does not establish a directional position. Familiarity is a wording/resource signal, not quality.
 
@@ -52,7 +52,7 @@ Storage schema remains v2. Decode legacy v1 saves into whole-answer support with
 
 ## Failure bounds and paid evaluation
 
-Bounds: 12 lifetime participant prompts, warning at 10; 20,000 characters per submitted reply; 96 independent questions per stage; 16 physical requests per operation including retries. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
+Bounds: 12 lifetime participant prompts, warning at 10; 20,000 characters per submitted reply; 96 independent questions per stage; 24 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate these 17 successful requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
 
 All stages share a 120-second operation deadline; stages have a 45-second deadline and physical attempts 15 seconds. Large inputs use eight-question batches with complete participant evidence. An oversized-batch fallback may split once; an oversized child terminates rather than probing the provider limit. Preserve drafts, validate responses, retry transient failures with bounded backoff, reject stale responses and keep credentials server-side. The cumulative transcript may still exceed provider context; never silently discard evidence.
 

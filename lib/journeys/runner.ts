@@ -12,7 +12,7 @@ import {
   hasAnswered,
   canSubmit
 } from '@/lib/assessment/state'
-import { versions } from '@/lib/assessment/schema'
+import { versions, vectorSchema } from '@/lib/assessment/schema'
 import type { Operation } from '@/lib/assessment/schema'
 import { evidenceReadiness } from '@/lib/assessment/readiness'
 import { personaProfileSchema, personas, replyForPrompt } from './catalog'
@@ -54,7 +54,8 @@ export async function runPersona(
   bundle: Bundle,
   turns = 5,
   live?: Provider,
-  participant?: Participant
+  participant?: Participant,
+  exerciseResults = false
 ): Promise<Journey> {
   if (!Number.isInteger(turns) || turns < 1 || turns > 6)
     throw new Error('Journey turn bound is 1–6')
@@ -63,7 +64,20 @@ export async function runPersona(
       'Generated participants require the live assessment provider'
     )
   const scripted = scriptedProvider(persona, bundle)
-  const provider = live ?? scripted.provider
+  const source = live ?? scripted.provider
+  let currentStage: NonNullable<Journey['failureStage']> = 'operation'
+  const provider: Provider = {
+    kind: source.kind,
+    evaluate(...args) {
+      const questions = args[1]
+      currentStage = questions.disposition
+        ? 'interpret'
+        : Object.keys(questions).some((id) => id.endsWith(':score'))
+          ? 'project'
+          : 'route'
+      return source.evaluate(...args)
+    }
+  }
   let state = createAssessment(
     `journey-${live ? randomUUID() : createHash('sha256').update(persona.id).digest('hex').slice(0, 20)}`,
     live ? versions.model : 'persona-script-v1'
@@ -76,7 +90,9 @@ export async function runPersona(
   let firstReadyAnswer: number | null = null
   let error: string | null = null
   let stopped = 'turn budget reached'
+  let earlyResult = false
   async function step(operation: Operation, reply?: ScriptedReply) {
+    currentStage = 'operation'
     if (reply) scripted.setReply(reply)
     const previous = state
     const before = evidenceReadiness(previous)
@@ -99,7 +115,7 @@ export async function runPersona(
       (d) => d.action === 'routing priorities and tie-break by ID'
     )
     const rankings = rankingSchema.array().parse(decision?.detail ?? [])
-    steps.push({
+    const recorded: JourneyStep = {
       ordinal: steps.length + 1,
       operation: operation.type as JourneyStep['operation'],
       prompt: currentPrompt(previous),
@@ -132,7 +148,14 @@ export async function runPersona(
         usage: s.usage
       })),
       trace: response.debug
-    })
+    }
+    if (
+      exerciseResults &&
+      state.result &&
+      ['results', 'capped'].includes(state.status)
+    )
+      recorded.result = state.result
+    steps.push(recorded)
   }
   try {
     for (const text of persona.recoveryPrelude)
@@ -160,6 +183,7 @@ export async function runPersona(
       )
       if (!prompt) throw new Error('Chosen prompt has no scripted answer')
       if (participant) {
+        currentStage = 'participant'
         const exchange = await participant.generate({
           persona,
           prompt: currentPrompt(state),
@@ -186,8 +210,45 @@ export async function runPersona(
         stopped = 'paused for recovery or unavailable evidence'
         break
       }
+      if (exerciseResults && evidenceReadiness(state).ready && i < turns - 1) {
+        if (i === turns - 2) {
+          await step({ type: 'project' })
+          const component = state
+            .result!.components.filter(
+              (c) => c.claim !== null && c.evidenceIds.length > 0
+            )
+            .sort(
+              (a, b) =>
+                Number(a.value !== null) - Number(b.value !== null) ||
+                b.range[1] - b.range[0] - (a.range[1] - a.range[0])
+            )[0]
+          if (component) {
+            await step(
+              component.vector === 'catastrophic_risk'
+                ? {
+                    type: 'clarify',
+                    vector: 'risk_landscape',
+                    claim: 'catastrophic_risk'
+                  }
+                : {
+                    type: 'clarify',
+                    vector: vectorSchema.parse(component.vector)
+                  }
+            )
+          }
+        } else if (!earlyResult) {
+          await step({ type: 'project' })
+          await step({ type: 'continue' })
+          earlyResult = true
+        }
+      }
     }
-    if (evidenceReadiness(state).ready && state.status !== 'capped')
+    if (
+      evidenceReadiness(state).ready &&
+      state.status !== 'capped' &&
+      (!exerciseResults ||
+        state.result?.evidenceRevision !== state.evidenceRevision)
+    )
       await step({ type: 'project' })
     else if (!state.result)
       stopped =
@@ -219,6 +280,7 @@ export async function runPersona(
     journey.participantExchanges = participantExchanges
     journey.pendingAnswer = pendingAnswer
   }
+  if (error) journey.failureStage = currentStage
   return journey
 }
 
@@ -228,6 +290,7 @@ export async function runJourneySuite({
   turns = 5,
   live,
   participant,
+  exerciseResults = false,
   budgetReport,
   costReport,
   onJourney
@@ -237,6 +300,7 @@ export async function runJourneySuite({
   turns?: number
   live?: Provider
   participant?: Participant
+  exerciseResults?: boolean
   budgetReport?: () => JourneySuite['requestBudget']
   costReport?: () => JourneySuite['cost']
   onJourney?: (journey: Journey) => void
@@ -249,7 +313,14 @@ export async function runJourneySuite({
   if (!selected.length) throw new Error('Unknown persona')
   const journeys: Journey[] = []
   for (const persona of selected) {
-    const journey = await runPersona(persona, bundle, turns, live, participant)
+    const journey = await runPersona(
+      persona,
+      bundle,
+      turns,
+      live,
+      participant,
+      exerciseResults
+    )
     journeys.push(journey)
     onJourney?.(journey)
     if (live && journey.error && journey.accepted === 0) break
@@ -272,6 +343,7 @@ export async function runJourneySuite({
     journeys
   }
   if (participant) suite.participantModel = participant.model
+  if (exerciseResults) suite.exerciseResults = true
   if (costReport) suite.cost = costReport()
   return suiteSchema.parse(suite)
 }

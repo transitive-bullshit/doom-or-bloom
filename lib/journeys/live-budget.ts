@@ -1,5 +1,6 @@
 import 'server-only'
 import type { Provider } from '@/lib/server/provider'
+import { limits } from '@/lib/assessment/schema'
 import { JourneyFailure, providerFailure } from './failure'
 
 // Published USD per million tokens, checked 2026-09-18. Cached input is
@@ -60,7 +61,7 @@ export function meterJev(
         Buffer.byteLength(JSON.stringify({ state, questions })) + 4096
       const settle = budget.reserve(
         'jev',
-        inputBound * (attemptBudget ?? 16),
+        inputBound * (attemptBudget ?? limits.providerAttempts),
         0
       )
       const result = await provider

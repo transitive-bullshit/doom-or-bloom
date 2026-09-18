@@ -155,7 +155,7 @@ test('only an oversized multi-question request splits; one-question overflow ter
 test('transient batch retries respect the physical ceiling and remaining operation budget', async () => {
   let calls = 0
   const { provider, fetch } = mockedProvider(async (_url, init) =>
-    ++calls % 2 === 1
+    ++calls % 3 !== 0
       ? Response.json(
           { message: 'Busy' },
           { status: 429, headers: { 'retry-after-ms': '0' } }

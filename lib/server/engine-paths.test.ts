@@ -1,10 +1,85 @@
-import { expect, test } from 'vitest'
+import { expect, test, vi } from 'vitest'
 import { loadBundle } from '@/lib/content/loader'
 import { assessmentSchema, limits } from '@/lib/assessment/schema'
 import { createAssessment, currentPrompt } from '@/lib/assessment/state'
 import { runAssessment } from './engine'
 import { createFixtureProvider } from './provider'
 import type { Provider } from './provider'
+import { createLiveProvider } from './live-provider'
+import type { Question } from '@/lib/assessment/schema'
+
+test('long multibyte history with many unresolved dimensions fits the physical request budget', async () => {
+  const bundle = loadBundle()
+  const fixture = createFixtureProvider()
+  const text = '長い回答にも完全な文脈を保持する。'.repeat(1000)
+  expect(text.length).toBeLessThanOrEqual(limits.answerChars)
+  const initial = await runAssessment(
+    {
+      assessment: createAssessment('long-unresolved'),
+      requestId: 'long-first',
+      debug: false,
+      operation: { type: 'answer', text }
+    },
+    fixture,
+    bundle
+  )
+  const state = initial.assessment
+  state.familiarity.level = 'expert'
+  state.unresolved = bundle.rubric.dimensions.map((d) => ({
+    id: `${state.answers[0]!.id}:u:${d.id}`,
+    vector: d.id,
+    kind: 'ambiguity',
+    evidenceIds: state.evidence
+      .filter((e) => e.vector === d.id)
+      .map((e) => e.id)
+  }))
+  let requests = 0
+  vi.stubEnv('TYPESAFE_API_KEY', 'test-only')
+  vi.stubGlobal('fetch', async (_url: unknown, init: RequestInit) => {
+    requests++
+    if (typeof init.body !== 'string') throw new Error('Expected JSON request')
+    const body = JSON.parse(init.body) as {
+      model: string
+      state: unknown
+      questions: Record<string, Question>
+    }
+    const response = await fixture.evaluate(body.state, body.questions)
+    if (body.questions.familiarity)
+      response.answers.familiarity = {
+        type: 'choice',
+        choice: 'expert',
+        confidence: 1,
+        probabilities: { unknown: 0, general: 0, expert: 1 }
+      }
+    return Response.json({ ...response, model: body.model })
+  })
+  try {
+    const result = await runAssessment(
+      {
+        assessment: state,
+        requestId: 'long-second',
+        debug: true,
+        operation: { type: 'answer', text }
+      },
+      createLiveProvider(state.versions.model),
+      bundle,
+      true
+    )
+    expect(result.assessment.answers).toHaveLength(2)
+    expect(result.assessment.status).toBe('answering')
+    expect(result.debug?.stages.map((s) => s.name)).toEqual([
+      'A: interpret',
+      'C: route'
+    ])
+    expect(requests).toBeLessThanOrEqual(limits.providerAttempts)
+    expect(requests).toBe(17)
+    expect(Object.keys(result.debug!.stages[1]!.questions)).toHaveLength(96)
+    expect(JSON.stringify(result.debug?.stages[1]?.state)).toContain(text)
+  } finally {
+    vi.unstubAllGlobals()
+    vi.unstubAllEnvs()
+  }
+})
 
 test('eight answers retain the complete transcript without corpus inference', async () => {
   const bundle = loadBundle()

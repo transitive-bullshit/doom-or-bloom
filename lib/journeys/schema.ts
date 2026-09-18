@@ -124,7 +124,8 @@ export const rankingSchema = z.object({
 })
 export const journeyStepSchema = z.strictObject({
   ordinal: z.number().int(),
-  operation: z.enum(['answer', 'project', 'retry', 'continue']),
+  operation: z.enum(['answer', 'project', 'retry', 'continue', 'clarify']),
+  result: resultSchema.optional(),
   prompt: promptInstanceSchema,
   answer: z.string().nullable(),
   scriptKey: z.string().nullable(),
@@ -155,6 +156,9 @@ export const journeySchema = z.strictObject({
   personaSnapshot: z.union([personaSchema, personaProfileSchema]).optional(),
   participantExchanges: z.array(participantExchangeSchema).max(18).optional(),
   pendingAnswer: z.string().nullable().optional(),
+  failureStage: z
+    .enum(['participant', 'interpret', 'route', 'project', 'operation'])
+    .optional(),
   steps: z.array(journeyStepSchema).max(20),
   result: resultSchema.nullable(),
   stopped: z.string(),
@@ -176,6 +180,7 @@ export const suiteSchema = z.strictObject({
     'OpenAI participant with live Jev assessment'
   ]),
   participantModel: z.string().optional(),
+  exerciseResults: z.boolean().optional(),
   cost: costSchema.optional(),
   versions: versionsSchema,
   inputHash: z.string(),
@@ -199,6 +204,7 @@ export type RunIndex = Pick<
   | 'contentHash'
   | 'turns'
   | 'participantModel'
+  | 'exerciseResults'
   | 'cost'
 > & { personaIds: string[] }
 
@@ -225,6 +231,7 @@ export function runIndex(suite: JourneySuite): RunIndex {
     personaIds: suite.journeys.map((j) => j.personaId)
   }
   if (suite.participantModel) index.participantModel = suite.participantModel
+  if (suite.exerciseResults) index.exerciseResults = true
   if (suite.cost) index.cost = suite.cost
   return index
 }
@@ -236,6 +243,18 @@ export function journeySnapshot(journey: Journey) {
     steps: journey.steps.map((s) => ({
       operation: s.operation,
       prompt: s.prompt.promptId,
+      correctionTarget: s.prompt.claimTarget ?? s.prompt.target,
+      result: s.result
+        ? {
+            horizontal: s.result.horizontal.value,
+            vertical: s.result.vertical.value,
+            components: s.result.components.map((c) => ({
+              vector: c.vector,
+              value: c.value,
+              claim: c.claim
+            }))
+          }
+        : undefined,
       answer: s.answer,
       scriptKey: s.scriptKey,
       disposition: s.disposition,
@@ -262,6 +281,7 @@ export function journeySnapshot(journey: Journey) {
           verticalRange: journey.result.vertical.range,
           components: journey.result.components.map((c) => ({
             vector: c.vector,
+            claim: c.claim,
             value: c.value,
             range: c.range
           })),

@@ -431,7 +431,8 @@ export async function runAssessment(
           worldviewIds.includes(dimension.id as (typeof worldviewIds)[number])
         )
           questions[`${dimension.id}:position`] = authoredQuestion('position', {
-            meaning: `${dimension.label}: ${dimension.meaning}`
+            meaning: `${dimension.label}: ${dimension.meaning}`,
+            levels: JSON.stringify(dimension.levels)
           })
       }
       const catastrophe = bundle.rubric.catastrophicRisk
@@ -440,7 +441,8 @@ export async function runAssessment(
         'completeParticipantEvidence'
       )
       questions['catastrophic_risk:position'] = authoredQuestion('position', {
-        meaning: `${catastrophe.label}: ${catastrophe.meaning}`
+        meaning: `${catastrophe.label}: ${catastrophe.meaning}`,
+        levels: JSON.stringify(catastrophe.levels)
       })
       questions['catastrophic_risk:score'] = authoredQuestion(
         'catastrophic_score',

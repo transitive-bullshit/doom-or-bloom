@@ -38,7 +38,7 @@ If multiple agents are assigned later, use the ownership boundaries in section 1
 - TypeSafe is the sole runtime inference API. Jev selects or evaluates authored options; code owns the workflow. Runtime participant-facing prose is authored text plus exact copied evidence.
 - Start with **20–30 reviewed reference snapshots**, then incorporate every required source and achieve balanced reviewed topical coverage before declaring the documented MVP complete. The later source-library decision supersedes the original approximately 100/100/100 count target; follow [SOURCES.md](SOURCES.md). A working seed demo is an intermediate milestone.
 - Keep deployment separate. Analytics can be implemented and verified locally without transmitting events or requiring analytics accounts.
-- Current bounds: 12 lifetime prompts, warning at 10, at most two resolved references per answer and 16 physical inference attempts per operation across stages. Use fixtures for boundary checks; paid pressure testing is excluded. A future paid semantic suite requires reviewed examples and an explicit cost budget.
+- Current bounds: 12 lifetime prompts, warning at 10, and 24 physical inference attempts per operation across stages. Runtime reference resolution is paused. Use fixtures for boundary checks; paid pressure testing is excluded. Occasional live persona development runs have explicit user authorization and request/cost budgets.
 - The user supplied acceleration/slowdown argument maps and risk/concept tables. Follow [JOURNEYS.md](JOURNEYS.md) for opinion coverage and terminology, and [SOURCES.md](SOURCES.md) for current required-source intake. The expanded historical seed was returned for revision, not approved.
 
 ### Editorial review packet
@@ -768,3 +768,11 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Complete two fresh adaptive ten-persona suites with no failures, followed by deterministic result-finding diversification. Preserve immutable artifacts and summarize evidence in [the follow-up reflection](journey-reflection-2026-09-19.md).
 - [x] Verify 136 unit tests, formatting, lint, types, content validation, all ten synthetic baselines and four focused browser scenarios in an isolated fixture copy. The existing participant server logged `write EIO` and timed out; it was left untouched.
 - The broader improvement goal remains open: extended live result/continue/correction paths, long-history request bounds, failure diagnostics and further result specificity review. Successful development suites do not guarantee absence of future provider failures.
+
+### 2026-09-19 — Live result actions and bounded long histories / Codex
+
+- [x] Add an explicit bounded live CLI policy for early results, continuation and participant-generated corrections; retain intermediate result snapshots, compare claims/scopes and expose snapshots in the inspector.
+- [x] Complete two ten-persona live action suites without failures (120 Jev and 50 OpenAI requests each). Diagnose a capability-scope error with fixed-transcript live comparisons; supply authored levels to independent position-assessability judgments.
+- [x] Reproduce the 17-successful-request long-history path with mocked SDK transport and increase the shared operation cap from 16 to 24 without dropping context/candidates or increasing deadlines. Keep retry exhaustion and cost reservation bounded.
+- [x] Add safe failure-stage and validation-category diagnostics. Verify all 139 unit tests, static/content checks, synthetic observations and three focused inspector browser scenarios.
+- The [follow-up reflection](journey-reflection-2026-09-19.md#remaining-concrete-findings-from-the-final-review) records remaining claim-support, timeline-scope and routing-premise failures. Full failed-operation resume and ordinary-harm/action summary improvements also remain open. This is an intermediate checkpoint, not goal completion.

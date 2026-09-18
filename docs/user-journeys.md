@@ -14,7 +14,10 @@ Every generated reply retains the exact OpenAI request instructions/input, retur
 pnpm journeys:live
 pnpm journeys:live --persona=control-alarmist --turns=5
 pnpm journeys:live --turns=6 --max-requests=240 --max-cost=2
+pnpm journeys:live --exercise-results
 ```
+
+`--exercise-results` uses the same live providers and answer budget, with at least three replies. It projects at the first eligible opportunity, continues, then projects before the last reply and asks the participant to clarify an actual result claim. It prioritizes an unplaced claim or broad interpretation range without supplying any desired judgment. Intermediate results and correction scopes are saved and inspectable. The final correction uses the normal engine's evidence replacement and automatic projection; an unchanged result is not needlessly re-evaluated. This CLI policy complements the default uninterrupted interview. Failures record the participant/interpret/route/project stage and safe validation, budget or transport categories while retaining the pending answer.
 
 Defaults: five answer opportunities; 24 physical Jev requests for one persona or a shared 240 for all ten; at most one OpenAI call per answer opportunity; a $2 conservative cost budget. Retries/fallbacks count against the Jev bound; failed usage retains its reservation. A failure after progress is saved and other personas may continue; failure before any accepted answer stops the suite. Budgets and incomplete runs are visible in artifacts. Counts of completed successful requests are distinct from reserved/unknown failed usage. Cost estimates use published rates ($0.75/M input and $4.50/M output for GPT-5.4 mini; $0.042/M Jev input, free output), charging cached input at full price. Byte-based input reservations include overhead and all allowed attempts; these are local estimates, not a provider billing guarantee.
 

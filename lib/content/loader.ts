@@ -237,9 +237,14 @@ export function validateBundle(bundle: Bundle) {
       throw new Error('Incorrect authored primitive type')
     for (const match of question.instructions.matchAll(/\{\{(\w+)\}\}/g))
       if (
-        !['source', 'meaning', 'title', 'referenceId', 'promptId'].includes(
-          match[1]!
-        )
+        ![
+          'source',
+          'meaning',
+          'levels',
+          'title',
+          'referenceId',
+          'promptId'
+        ].includes(match[1]!)
       )
         throw new Error('Unknown authored evidence slot')
   }

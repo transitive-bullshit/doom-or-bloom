@@ -31,7 +31,9 @@ export const limits = {
   questions: 96,
   referenceCandidates: 12,
   resolvedReferences: 2,
-  providerAttempts: 16
+  // Up to 36 interpretation judgments (5 large-input batches), then 96
+  // routing judgments (12 batches), with room for bounded retries.
+  providerAttempts: 24
 } as const
 export const versionsSchema = z.strictObject({
   assessment: z.string().max(50),

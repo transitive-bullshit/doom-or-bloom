@@ -13,6 +13,37 @@ const bundle = loadBundle()
 const baseline = suiteSchema.parse(
   JSON.parse(readFileSync('eval/development/persona-baseline.json', 'utf8'))
 )
+
+test('result exercises record early projection, continuation, and an answered scoped correction', async () => {
+  const journey = await runPersona(
+    personas[0]!,
+    bundle,
+    5,
+    undefined,
+    undefined,
+    true
+  )
+  expect(journey.error).toBeNull()
+  expect(journey.accepted).toBe(5)
+  expect(journey.steps.slice(0, 3).map((s) => s.operation)).toEqual([
+    'answer',
+    'project',
+    'continue'
+  ])
+  const correctionIndex = journey.steps.findIndex(
+    (s) => s.operation === 'clarify'
+  )
+  expect(correctionIndex).toBeGreaterThan(2)
+  const answer = journey.steps[correctionIndex + 1]!
+  expect(answer.operation).toBe('answer')
+  expect(answer.prompt.family).toBe('clarification')
+  expect(answer.prompt.target).toBeDefined()
+  expect(answer.result?.evidenceRevision).toBe(journey.result?.evidenceRevision)
+  expect(journey.steps[1]?.result?.evidenceRevision).toBeLessThan(
+    journey.result!.evidenceRevision
+  )
+  expect(journey.steps.at(-1)?.operation).toBe('answer')
+})
 test('ten distinct personas have bounded question-specific scripts for every current prompt', () => {
   expect(personas).toHaveLength(10)
   expect(new Set(personas.map((p) => p.id)).size).toBe(10)
@@ -180,6 +211,7 @@ test('budget/provider failure is saved as a partial run without a manufactured r
   expect(j.error).not.toBeNull()
   expect(JSON.stringify(j)).not.toContain('sensitive transport detail')
   expect(j.accepted).toBe(0)
+  expect(j.failureStage).toBe('interpret')
   expect(j.result).toBeNull()
 })
 

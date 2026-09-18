@@ -46,7 +46,7 @@ const coordinate = (value: number | null | undefined) =>
 const runLabel = (run: RunIndex) =>
   run.id === 'baseline'
     ? 'Checked-in synthetic baseline'
-    : `${run.participantModel ? 'Jev + OpenAI' : run.mode === 'live' ? 'Jev + scripted answers' : 'Synthetic fixture'} · ${run.createdAt.replace('T', ' ').slice(0, 19)} · ${run.personaIds.length} personas`
+    : `${run.participantModel ? 'Jev + OpenAI' : run.mode === 'live' ? 'Jev + scripted answers' : 'Synthetic fixture'}${run.exerciseResults ? ' · result actions' : ''} · ${run.createdAt.replace('T', ' ').slice(0, 19)} · ${run.personaIds.length} personas`
 
 function Disclosure({
   label,
@@ -134,7 +134,9 @@ function Step({
                 ? 'Resume after paperclips'
                 : step.operation === 'project'
                   ? 'Generate the provisional result'
-                  : 'Continue the interview'}
+                  : step.operation === 'clarify'
+                    ? 'Clarify a result interpretation'
+                    : 'Continue the interview'}
           </CardTitle>
           <CardDescription>
             {step.operation === 'answer'
@@ -144,6 +146,19 @@ function Step({
         </CardHeader>
         <CardContent className='flex min-w-0 flex-col gap-5'>
           {step.answer && <Answer text={step.answer} />}
+          {step.result && (
+            <Disclosure label='Result at this step'>
+              <p className='text-sm'>
+                Outlook: {coordinate(step.result.horizontal.value)} · Reasoning:{' '}
+                {coordinate(step.result.vertical.value)}
+              </p>
+              <JsonViewer
+                label={`Step ${step.ordinal} result`}
+                value={step.result}
+                dimensions={dimensions}
+              />
+            </Disclosure>
+          )}
           <div className='flex flex-col gap-2'>
             <div className='flex flex-wrap justify-between gap-2 text-sm'>
               <span>
@@ -628,7 +643,11 @@ export function JourneysInspector({
             {journey.error && (
               <Alert variant='destructive'>
                 <AlertTitle>Partial run</AlertTitle>
-                <AlertDescription>{journey.error}</AlertDescription>
+                <AlertDescription>
+                  {journey.failureStage &&
+                    `Failed during ${journey.failureStage}. `}
+                  {journey.error}
+                </AlertDescription>
               </Alert>
             )}
             <Disclosure label='Run provenance and persona'>
