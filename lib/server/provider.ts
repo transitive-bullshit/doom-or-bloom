@@ -71,7 +71,8 @@ export function createFixtureProvider(): Provider {
       answers: Object.fromEntries(
         Object.entries(questions).map(([id, question]) => [
           id,
-          ['horizon', 'conviction'].includes(id) && question.type === 'noul'
+          ['horizon', 'horizon_unknown', 'conviction'].includes(id) &&
+          question.type === 'noul'
             ? { type: 'noul', noul: 0 }
             : fixtureAnswer(question)
         ])

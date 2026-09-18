@@ -408,7 +408,7 @@ test('shared text occurs once per stage and judgments use answer-level support w
     true
   )
   const interpretation = result.debug!.stages[0]!
-  expect(Object.keys(interpretation.questions)).toHaveLength(20)
+  expect(Object.keys(interpretation.questions)).toHaveLength(21)
   expect(interpretation.state).toEqual({
     current: {
       id: result.assessment.answers[0]!.id,
@@ -416,6 +416,7 @@ test('shared text occurs once per stage and judgments use answer-level support w
       answer: text
     },
     usableHistory: [],
+    unresolved: [],
     clarificationTarget: null
   })
   for (const stage of result.debug!.stages) {

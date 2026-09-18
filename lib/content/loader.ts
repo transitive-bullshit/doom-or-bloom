@@ -228,7 +228,9 @@ export function validateBundle(bundle: Bundle) {
       id === 'catastrophic_score' ||
       id.startsWith('route_')
         ? 'score'
-        : ['horizon', 'conviction'].includes(id)
+        : ['horizon', 'horizon_unknown', 'conviction', 'resolution'].includes(
+              id
+            )
           ? 'noul'
           : 'choice'
     if (question.type !== expected)

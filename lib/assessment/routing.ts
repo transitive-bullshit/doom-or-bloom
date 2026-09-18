@@ -1,38 +1,43 @@
 import type { Assessment, ModelAnswer } from './schema'
 import { currentPrompt } from './state'
 import type { Prompt, Rubric } from '@/lib/content/schema'
-import { timelineContext } from './timeline'
+import { timelineContext, timelineUnknown } from './timeline'
 
 export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
   const previous = currentPrompt(state)
   const horizonMissing = timelineContext(state) === null
+  const timingUnexplored = horizonMissing && !timelineUnknown(state)
   return prompts.map((prompt) => {
     const uses = state.prompts.filter((p) => p.promptId === prompt.id).length
     const reason =
       prompt.family === 'root'
         ? 'root already issued'
-        : prompt.noveltyGroup === 'conviction' && horizonMissing
-          ? 'timing premise not established'
-          : uses >= prompt.maxUses
-            ? 'maximum uses reached'
-            : prompt.readingLevel === 'expert' &&
-                state.familiarity.level !== 'expert'
-              ? 'expert familiarity not established'
-              : !prompt.permittedAfter.includes('*') &&
-                  !prompt.permittedAfter.includes(previous.family)
-                ? 'transition excluded'
-                : prompt.prerequisites.some(
-                      (v) => state.coverage[v] !== 'assessed'
-                    )
-                  ? 'prerequisite missing'
-                  : prompt.exclusions.some(
-                        (v) => state.coverage[v] === 'assessed'
+        : prompt.noveltyGroup === 'horizon' &&
+            !timingUnexplored &&
+            !state.unresolved.some((u) => u.vector === 'capability_trajectory')
+          ? 'timing already addressed'
+          : prompt.noveltyGroup === 'conviction' && horizonMissing
+            ? 'timing premise not established'
+            : uses >= prompt.maxUses
+              ? 'maximum uses reached'
+              : prompt.readingLevel === 'expert' &&
+                  state.familiarity.level !== 'expert'
+                ? 'expert familiarity not established'
+                : !prompt.permittedAfter.includes('*') &&
+                    !prompt.permittedAfter.includes(previous.family)
+                  ? 'transition excluded'
+                  : prompt.prerequisites.some(
+                        (v) => state.coverage[v] !== 'assessed'
                       )
-                    ? 'coverage exclusion'
-                    : null
+                    ? 'prerequisite missing'
+                    : prompt.exclusions.some(
+                          (v) => state.coverage[v] === 'assessed'
+                        )
+                      ? 'coverage exclusion'
+                      : null
     const convictionMissing = !state.answers.some((a) => a.hasConviction)
     const missing =
-      (prompt.family === 'timeline' && horizonMissing) ||
+      (prompt.family === 'timeline' && timingUnexplored) ||
       (prompt.noveltyGroup === 'conviction' && convictionMissing)
         ? 1
         : prompt.targets.filter((v) => state.coverage[v] !== 'assessed')
@@ -45,7 +50,9 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
       ? 1
       : 0
     const calibration =
-      horizonMissing && prompt.family === 'timeline' && state.answers.length < 3
+      timingUnexplored &&
+      prompt.family === 'timeline' &&
+      state.answers.length < 3
         ? 1
         : 0
     return { prompt, reason, missing, repetition, calibration }

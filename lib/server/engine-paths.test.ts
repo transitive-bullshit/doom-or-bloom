@@ -37,7 +37,7 @@ test('eight answers retain the complete transcript without corpus inference', as
       'A: interpret',
       'C: route'
     ])
-    expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(20)
+    expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(21)
     expect(state.referenceClaims).toEqual([])
     expect(
       state.evidence.every((entry) => entry.referenceIds.length === 0)

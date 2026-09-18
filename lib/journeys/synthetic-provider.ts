@@ -37,6 +37,7 @@ export function scriptedProvider(persona: Persona, bundle: Bundle) {
                 : 0.02
             }
           if (id === 'tension') return pick(q, 'none')
+          if (id === 'horizon_unknown') return { type: 'noul', noul: 0 }
           if (id.endsWith(':status'))
             return pick(
               q,

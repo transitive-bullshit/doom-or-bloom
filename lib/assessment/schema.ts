@@ -139,6 +139,7 @@ export const answerSchema = z.strictObject({
   correctionTarget: vectorSchema.optional(),
   correctionClaimTarget: z.literal('catastrophic_risk').optional(),
   hasHorizon: z.boolean().default(false),
+  hasUnknownHorizon: z.boolean().optional(),
   hasConviction: z.boolean().default(false)
 })
 export type Answer = z.infer<typeof answerSchema>

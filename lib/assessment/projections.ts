@@ -64,21 +64,44 @@ export function emptyComponent(vector: string, label: string): Component {
   }
 }
 
+export const uncertainClaim =
+  'You expressed uncertainty here rather than a directional expectation.'
+export const unestablishedClaim =
+  'A directional position is not yet established by these answers.'
+const unresolvedClaim =
+  'The interpretation of these answers still needs clarification.'
+const readingsPrefix = 'Several readings remain plausible: '
+
+export function isAuthoredClaim(claim: string, levels: string[]) {
+  if (
+    [...levels, uncertainClaim, unestablishedClaim, unresolvedClaim].includes(
+      claim
+    )
+  )
+    return true
+  if (!claim.startsWith(readingsPrefix)) return false
+  const readings = claim.slice(readingsPrefix.length).split(' / ')
+  return (
+    readings.length >= 2 &&
+    new Set(readings).size === readings.length &&
+    readings.every((reading) => levels.includes(reading))
+  )
+}
+
 export function supportedClaim(
   levels: string[],
   probabilities: Record<string, number>,
   unresolved: boolean,
   threshold: number
 ) {
-  if (unresolved)
-    return 'The interpretation of these answers still needs clarification.'
+  if (unresolved) return unresolvedClaim
   const ordered = Object.entries(probabilities).sort((a, b) => b[1] - a[1])
   const best = ordered[0]
   if (best && best[1] >= threshold) return levels[Number(best[0])]!
   const readings = ordered
     .filter(([, p]) => p >= 0.1)
     .map(([level]) => levels[Number(level)])
-  return `Several readings remain plausible: ${readings.join(' / ')}`
+  return `${readingsPrefix}${readings.join(' / ')}`
 }
 export function baseResult(
   state: Assessment,

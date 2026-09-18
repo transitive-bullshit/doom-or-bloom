@@ -208,3 +208,119 @@ test('a marginal assessable winner cannot turn explicit uncertainty into a direc
   expect(c.value).toBeNull()
   expect(c.claim).toMatch(/uncertain|uncertainty|not yet/i)
 })
+
+for (const resolves of [true, false]) {
+  test(`ordinary follow-up ${resolves ? 'resolves' : 'preserves'} a prior ambiguity according to the specific resolution judgment`, async () => {
+    const fixture = createFixtureProvider()
+    let answers = 0
+    const provider: Provider = {
+      kind: 'fixture',
+      async evaluate(...args) {
+        const result = await fixture.evaluate(...args)
+        if (args[1].disposition) {
+          answers++
+          if (answers === 1)
+            result.answers['beneficial_potential:status'] = fixtureAnswer(
+              args[1]['beneficial_potential:status']!,
+              'unclear'
+            )
+          if (args[1]['beneficial_potential:resolved'])
+            result.answers['beneficial_potential:resolved'] = {
+              type: 'noul',
+              noul: resolves ? 0.95 : 0.05
+            }
+        }
+        return result
+      }
+    }
+    const bundle = loadBundle()
+    let state = (
+      await runAssessment(
+        {
+          debug: false,
+          requestId: 'ambiguous',
+          assessment: createAssessment(`ambiguity-${resolves}`),
+          operation: {
+            type: 'answer',
+            text: 'I expect things to improve, but I mean something different by improvement.'
+          }
+        },
+        provider,
+        bundle
+      )
+    ).assessment
+    expect(
+      state.unresolved.some((u) => u.vector === 'beneficial_potential')
+    ).toBe(true)
+    state = (
+      await runAssessment(
+        {
+          debug: false,
+          requestId: 'clarifies',
+          assessment: state,
+          operation: {
+            type: 'answer',
+            text: 'By improvement I mean affordable, widely available treatments. I expect these benefits, not just greater capability.'
+          }
+        },
+        provider,
+        bundle
+      )
+    ).assessment
+    expect(
+      state.unresolved.some((u) => u.vector === 'beneficial_potential')
+    ).toBe(!resolves)
+  })
+}
+
+test('a weak later mention cannot erase still-active clear evidence', async () => {
+  const fixture = createFixtureProvider()
+  let answers = 0
+  const provider: Provider = {
+    kind: 'fixture',
+    async evaluate(...args) {
+      const result = await fixture.evaluate(...args)
+      if (args[1].disposition && ++answers === 2)
+        result.answers['beneficial_potential:status'] = fixtureAnswer(
+          args[1]['beneficial_potential:status']!,
+          'weakly_inferred'
+        )
+      return result
+    }
+  }
+  const bundle = loadBundle()
+  let state = (
+    await runAssessment(
+      {
+        debug: false,
+        requestId: 'clear',
+        assessment: createAssessment('retain-support'),
+        operation: {
+          type: 'answer',
+          text: 'I expect large medical benefits, including better treatment for common illnesses.'
+        }
+      },
+      provider,
+      bundle
+    )
+  ).assessment
+  state = (
+    await runAssessment(
+      {
+        debug: false,
+        requestId: 'different-topic',
+        assessment: state,
+        operation: {
+          type: 'answer',
+          text: 'On institutions I expect a mixed response, with competition undermining voluntary restraint.'
+        }
+      },
+      provider,
+      bundle
+    )
+  ).assessment
+  expect(state.coverage.beneficial_potential).toBe('assessed')
+  expect(
+    state.unresolved.some((u) => u.vector === 'beneficial_potential')
+  ).toBe(false)
+})

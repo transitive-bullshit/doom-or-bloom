@@ -40,12 +40,17 @@ import type { Bundle } from '@/lib/content/loader'
 import type { Prompt } from '@/lib/content/schema'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
-import { timelineContext } from '@/lib/assessment/timeline'
+import { timelineContext, timelineUnknown } from '@/lib/assessment/timeline'
 import { participantQuestionPolicy } from '@/lib/assessment/prompt-policy'
 import { selectPresentation } from '@/lib/assessment/presentation'
 import { createQuestions } from './questions'
 import { supported } from '@/lib/assessment/presence'
-import { supportedClaim } from '@/lib/assessment/projections'
+import {
+  supportedClaim,
+  isAuthoredClaim,
+  uncertainClaim,
+  unestablishedClaim
+} from '@/lib/assessment/projections'
 
 type StageQuestions = Record<string, Question>
 
@@ -118,12 +123,16 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
       const dimension = p.claimTarget
         ? bundle.rubric.catastrophicRisk
         : bundle.rubric.dimensions.find((d) => d.id === p.target)
+      const prefix = `Our read of ${dimension?.label.toLowerCase()} was: “`
+      const suffix = '” What would you change about that interpretation?'
+      const claim =
+        p.text.startsWith(prefix) && p.text.endsWith(suffix)
+          ? p.text.slice(prefix.length, -suffix.length)
+          : ''
       if (
         !dimension ||
         (p.claimTarget && p.target !== 'risk_landscape') ||
-        !dimension.levels.some(
-          (level) => p.text === clarificationText(dimension.label, level)
-        ) ||
+        !isAuthoredClaim(claim, dimension.levels) ||
         p.sourceEvidenceIds.some(
           (id) =>
             !state.evidence.some((e) => e.id === id && e.vector === p.target)
@@ -338,7 +347,8 @@ export async function runAssessment(
         unresolved: state.unresolved,
         familiarity: state.familiarity.level,
         calibrationGaps: {
-          horizon: timelineContext(state) === null,
+          horizon: timelineContext(state) === null && !timelineUnknown(state),
+          horizonUnknown: timelineUnknown(state),
           conviction: !state.answers.some((a) => a.hasConviction)
         },
         candidates: eligibleCandidates.map((c) => ({
@@ -489,8 +499,8 @@ export async function runAssessment(
             claim:
               position?.type === 'choice' &&
               position.choice === 'explicitly_unknown'
-                ? 'You expressed uncertainty here rather than a directional expectation.'
-                : 'A directional position is not yet established by these answers.'
+                ? uncertainClaim
+                : unestablishedClaim
           }
         const max = dimension.levels.length - 1
         const unresolved = state.unresolved.some(
@@ -572,7 +582,9 @@ export async function runAssessment(
         ...emptyComponent('timeline', 'Timeline'),
         claim: horizon
           ? `Timing expressed in answer ${state.answers.indexOf(horizon) + 1}; see the full answer for its scope and uncertainty.`
-          : null,
+          : timelineUnknown(state)
+            ? 'You have not settled on a timeline.'
+            : null,
         evidenceIds: horizon
           ? activeEvidence(state)
               .filter(
@@ -631,8 +643,17 @@ export async function runAssessment(
         `${dimension.label}: ${dimension.meaning}`,
         '`current.answer` in the context of usableHistory'
       )
+      if (
+        state.unresolved.some(
+          (u) => u.vector === dimension.id && u.kind !== 'reference'
+        )
+      )
+        questions[`${dimension.id}:resolved`] = authoredQuestion('resolution', {
+          meaning: `${dimension.label}: ${dimension.meaning}`
+        })
     }
     questions.horizon = authoredQuestion('horizon')
+    questions.horizon_unknown = authoredQuestion('horizon_unknown')
     questions.conviction = authoredQuestion('conviction')
     const tensionTemplate = authoredQuestion('tension')
     if (tensionTemplate.type !== 'choice')
@@ -652,7 +673,23 @@ export async function runAssessment(
     )
     const input = {
       current: { id: answerId, prompt: p.text, answer: op.text },
-      usableHistory: usableHistory(state).slice(-5),
+      usableHistory: usableHistory(state),
+      unresolved: state.unresolved
+        .filter((u) => u.kind !== 'reference')
+        .map((u) => ({
+          vector: u.vector,
+          kind: u.kind,
+          answerIds: state.answers
+            .filter(
+              (answer) =>
+                u.id.startsWith(`${answer.id}:`) ||
+                state.evidence.some(
+                  (e) =>
+                    u.evidenceIds.includes(e.id) && e.answerId === answer.id
+                )
+            )
+            .map((answer) => answer.id)
+        })),
       clarificationTarget: p.claimTarget ?? p.target ?? null
     }
     const localReply = classifyLocalReply(op.text)
@@ -710,6 +747,14 @@ export async function runAssessment(
         hasHorizon:
           evaluation.answers.horizon?.type === 'noul' &&
           evaluation.answers.horizon.noul >= bundle.rubric.presenceThreshold,
+        hasUnknownHorizon:
+          evaluation.answers.horizon_unknown?.type === 'noul' &&
+          evaluation.answers.horizon_unknown.noul >=
+            bundle.rubric.presenceThreshold &&
+          !(
+            evaluation.answers.horizon?.type === 'noul' &&
+            evaluation.answers.horizon.noul >= bundle.rubric.presenceThreshold
+          ),
         hasConviction:
           evaluation.answers.conviction?.type === 'noul' &&
           evaluation.answers.conviction.noul >= bundle.rubric.presenceThreshold
@@ -758,9 +803,18 @@ export async function runAssessment(
             contextReferenceIds: []
           })
           state.coverage[dimension.id] = 'assessed'
+          const resolution = evaluation.answers[`${dimension.id}:resolved`]
+          if (
+            resolution?.type === 'noul' &&
+            resolution.noul >= bundle.rubric.presenceThreshold
+          )
+            state.unresolved = state.unresolved.filter(
+              (u) => u.vector !== dimension.id
+            )
         } else if (
-          choice(status) === 'unclear' ||
-          choice(status) === 'weakly_inferred'
+          (choice(status) === 'unclear' ||
+            choice(status) === 'weakly_inferred') &&
+          !activeEvidence(state).some((e) => e.vector === dimension.id)
         ) {
           state.coverage[dimension.id] = 'ambiguous'
           if (
@@ -825,7 +879,10 @@ export async function runAssessment(
     if (op.claim && op.vector !== 'risk_landscape')
       throw new Error('Invalid clarification scope')
     const component = state.result.components.find(
-      (c) => c.vector === (op.claim ?? op.vector) && c.value !== null
+      (c) =>
+        c.vector === (op.claim ?? op.vector) &&
+        c.claim !== null &&
+        (c.value !== null || c.evidenceIds.length > 0)
     )
     if (!component) throw new Error('Select an assessed claim to clarify')
     const prompt = bundle.prompts.find((p) => p.id === 'concrete.general')!

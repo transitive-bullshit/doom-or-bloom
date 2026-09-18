@@ -161,7 +161,8 @@ export function ResultView({
                   />
                 </div>
               ))}
-              {c.value !== null &&
+              {c.claim !== null &&
+                (c.value !== null || c.evidenceIds.length > 0) &&
                 state.prompts.length < limits.prompts &&
                 (vectorIds.includes(c.vector as VectorId) ||
                   c.vector === 'catastrophic_risk') && (

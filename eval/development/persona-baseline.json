@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T13:24:44.522Z",
+  "createdAt": "2026-09-18T18:48:47.823Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,8 +11,8 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "64c30c4480787b8d1af6767a9cda00e8c159f04d05b8981686229851d119d2e4",
-  "contentHash": "a327e7b2095e098de16a9ec789d9c3c6028054aef7e3b685b6f20301a735f0e9",
+  "engineHash": "c1320f18aee53caf26fbf742bb81af9ac4cd361de927102e18b307d7f015eb16",
+  "contentHash": "8202255fcc17978522283850a9df6a94543247b5b1e6278acb1b737c78048698",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -479,14 +479,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.bottleneck",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -584,7 +584,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -973,14 +973,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.distribution",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -1078,7 +1078,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -1467,14 +1467,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.general",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -1572,7 +1572,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -1961,14 +1961,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "mechanism.chain",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -2066,7 +2066,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -2455,14 +2455,14 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "transition.feedback",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -2560,7 +2560,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -4143,14 +4143,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.bottleneck",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -4248,7 +4248,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -4637,14 +4637,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.distribution",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -4742,7 +4742,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -5131,14 +5131,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.general",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -5236,7 +5236,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -5625,14 +5625,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "mechanism.chain",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -5730,7 +5730,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -6119,14 +6119,14 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "transition.feedback",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -6224,7 +6224,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -7807,14 +7807,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.bottleneck",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -7912,7 +7912,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -8301,14 +8301,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.distribution",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -8406,7 +8406,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -8795,14 +8795,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.general",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -8900,7 +8900,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -9289,14 +9289,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "mechanism.chain",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -9394,7 +9394,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -9783,14 +9783,14 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "transition.feedback",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -9888,7 +9888,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -11497,7 +11497,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -11931,7 +11931,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -12359,7 +12359,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -12793,7 +12793,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -13227,7 +13227,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -13497,7 +13497,10 @@
           "range": [0.15000000000000002, 0.7000000000000001],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": ["journey-14015ebf351c74d79e77:p1:a:e:risk_landscape"],
+          "evidenceIds": [
+            "journey-14015ebf351c74d79e77:p4:a:e:beneficial_potential",
+            "journey-14015ebf351c74d79e77:p1:a:e:risk_landscape"
+          ],
           "claim": null
         },
         "vertical": {
@@ -13528,8 +13531,11 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-14015ebf351c74d79e77:p1:a:e:capability_trajectory",
+              "journey-14015ebf351c74d79e77:p2:a:e:capability_trajectory"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "transition_dynamics",
@@ -13548,8 +13554,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-14015ebf351c74d79e77:p4:a:e:beneficial_potential"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "risk_landscape",
@@ -13575,8 +13583,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-14015ebf351c74d79e77:p3:a:e:technical_controllability"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "institutional_competence",
@@ -13781,8 +13791,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-14015ebf351c74d79e77:p4:a:e:beneficial_potential"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "catastrophic_risk",
@@ -13801,8 +13813,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-14015ebf351c74d79e77:p3:a:e:technical_controllability"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "institutional_competence",
@@ -13934,8 +13948,11 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-14015ebf351c74d79e77:p1:a:e:capability_trajectory",
+            "journey-14015ebf351c74d79e77:p2:a:e:capability_trajectory"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "transition_dynamics",
@@ -13954,8 +13971,10 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-14015ebf351c74d79e77:p4:a:e:beneficial_potential"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "risk_landscape",
@@ -13979,8 +13998,10 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-14015ebf351c74d79e77:p3:a:e:technical_controllability"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "institutional_competence",
@@ -14589,14 +14610,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.bottleneck",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -14694,7 +14715,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -15083,14 +15104,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.distribution",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -15188,7 +15209,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -15577,14 +15598,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "upside.general",
+              "priority": 0.9333333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.4
             },
             {
               "id": "action.tradeoff",
@@ -15682,7 +15703,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -16071,14 +16092,14 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "mechanism.chain",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -16176,7 +16197,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -16565,14 +16586,14 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
+              "id": "transition.feedback",
+              "priority": 0.7833333333333332,
               "coverage": 0,
               "ambiguity": 0,
               "tension": 0,
-              "projection": 0.3333333333333333,
+              "projection": 0.6666666666666666,
               "repetition": 0,
-              "effort": 0.2
+              "effort": 0.55
             },
             {
               "id": "action.tradeoff",
@@ -16670,7 +16691,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -18286,16 +18307,6 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -18341,7 +18352,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -18351,7 +18362,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 92,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -18780,16 +18791,6 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -18835,7 +18836,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -18845,7 +18846,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 92,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -19264,16 +19265,6 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -19319,7 +19310,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -19329,7 +19320,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 88,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -19738,16 +19729,6 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -19793,7 +19774,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -19803,7 +19784,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 84,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -20212,16 +20193,6 @@
               "effort": 0.55
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -20277,7 +20248,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -20287,7 +20258,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 88,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -21681,16 +21652,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 1.9666666666666666,
-              "coverage": 0.5,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 1.7666666666666666,
               "coverage": 0.5,
@@ -21821,6 +21782,16 @@
               "effort": 0.4
             },
             {
+              "id": "upside.general",
+              "priority": 0.9333333333333332,
+              "coverage": 0,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -21886,7 +21857,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -22145,16 +22116,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 1.9666666666666666,
-              "coverage": 0.5,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 1.7666666666666666,
               "coverage": 0.5,
@@ -22380,7 +22341,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -22390,7 +22351,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 92,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -22789,16 +22750,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -22874,7 +22825,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -22884,7 +22835,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 92,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -23273,16 +23224,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -23368,7 +23309,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -23378,7 +23319,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 92,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -23757,16 +23698,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -23852,7 +23783,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -23862,7 +23793,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 88,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -24229,8 +24160,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-33ef5c36b2c11531b3c4:p2:a:e:technical_controllability"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "institutional_competence",
@@ -24512,8 +24445,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-33ef5c36b2c11531b3c4:p2:a:e:technical_controllability"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "institutional_competence",
@@ -24718,8 +24653,10 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-33ef5c36b2c11531b3c4:p2:a:e:technical_controllability"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "institutional_competence",
@@ -25432,7 +25369,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -25896,7 +25833,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -26354,7 +26291,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -26808,7 +26745,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -27252,7 +27189,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -27522,7 +27459,12 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
+          "evidenceIds": [
+            "journey-70802c3cf05fa0f0812f:p1:a:e:beneficial_potential",
+            "journey-70802c3cf05fa0f0812f:p1:a:e:risk_landscape",
+            "journey-70802c3cf05fa0f0812f:p4:a:e:human_agency",
+            "journey-70802c3cf05fa0f0812f:p5:a:e:human_agency"
+          ],
           "claim": null
         },
         "vertical": {
@@ -27555,8 +27497,11 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p1:a:e:capability_trajectory",
+              "journey-70802c3cf05fa0f0812f:p2:a:e:capability_trajectory"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "transition_dynamics",
@@ -27575,8 +27520,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p1:a:e:beneficial_potential"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "risk_landscape",
@@ -27585,8 +27532,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p1:a:e:risk_landscape"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "technical_controllability",
@@ -27595,8 +27544,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p3:a:e:technical_controllability"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "institutional_competence",
@@ -27615,8 +27566,11 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p4:a:e:human_agency",
+              "journey-70802c3cf05fa0f0812f:p5:a:e:human_agency"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "action_posture",
@@ -27805,8 +27759,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p1:a:e:beneficial_potential"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "catastrophic_risk",
@@ -27825,8 +27781,10 @@
             "range": [0, 1],
             "distribution": {},
             "confidence": null,
-            "evidenceIds": [],
-            "claim": null
+            "evidenceIds": [
+              "journey-70802c3cf05fa0f0812f:p3:a:e:technical_controllability"
+            ],
+            "claim": "You expressed uncertainty here rather than a directional expectation."
           },
           {
             "vector": "institutional_competence",
@@ -27958,8 +27916,11 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-70802c3cf05fa0f0812f:p1:a:e:capability_trajectory",
+            "journey-70802c3cf05fa0f0812f:p2:a:e:capability_trajectory"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "transition_dynamics",
@@ -27978,8 +27939,10 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-70802c3cf05fa0f0812f:p1:a:e:beneficial_potential"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "risk_landscape",
@@ -27988,8 +27951,8 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": ["journey-70802c3cf05fa0f0812f:p1:a:e:risk_landscape"],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "technical_controllability",
@@ -27998,8 +27961,10 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-70802c3cf05fa0f0812f:p3:a:e:technical_controllability"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "institutional_competence",
@@ -28018,8 +27983,11 @@
           "range": [0, 1],
           "distribution": {},
           "confidence": null,
-          "evidenceIds": [],
-          "claim": null
+          "evidenceIds": [
+            "journey-70802c3cf05fa0f0812f:p4:a:e:human_agency",
+            "journey-70802c3cf05fa0f0812f:p5:a:e:human_agency"
+          ],
+          "claim": "You expressed uncertainty here rather than a directional expectation."
         },
         {
           "vector": "action_posture",
@@ -28576,16 +28544,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 1.9666666666666666,
-              "coverage": 0.5,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "mechanism.general",
               "priority": 1.9333333333333331,
               "coverage": 0.3333333333333333,
@@ -28701,7 +28659,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -28711,7 +28669,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 88,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -29020,16 +28978,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 1.9666666666666666,
-              "coverage": 0.5,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "action.tradeoff",
               "priority": 1.7666666666666666,
               "coverage": 0.5,
@@ -29175,7 +29123,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -29185,7 +29133,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 84,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -29604,16 +29552,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -29659,7 +29597,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -29669,7 +29607,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 88,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -30078,16 +30016,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -30143,7 +30071,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -30153,7 +30081,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 88,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -30552,16 +30480,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -30627,7 +30545,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -30637,7 +30555,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 88,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -32883,7 +32801,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -33312,16 +33230,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -33357,7 +33265,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -33367,7 +33275,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 84,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -33780,16 +33688,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -33825,7 +33723,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -33835,7 +33733,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 84,
+              "questions": 80,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -34244,16 +34142,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -34289,7 +34177,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -34299,7 +34187,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 84,
+              "questions": 80,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -34698,16 +34586,6 @@
               "effort": 0.4
             },
             {
-              "id": "timeline.general",
-              "priority": 0.4666666666666666,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.3333333333333333,
-              "repetition": 0,
-              "effort": 0.2
-            },
-            {
               "id": "conviction.general",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -34743,7 +34621,7 @@
             {
               "name": "A: interpret",
               "model": "persona-script-v1",
-              "questions": 20,
+              "questions": 21,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -34753,7 +34631,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 80,
+              "questions": 76,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,

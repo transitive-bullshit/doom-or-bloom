@@ -85,3 +85,24 @@ test('deleted questions are absent for every saved corpus and confidence questio
     expect(timing.missing).toBe(1)
   }
 })
+
+test('explicitly unknown timing is explored evidence, not an invitation to repeat the date question', () => {
+  const state = createAssessment('unknown-timing')
+  state.answers.push({
+    id: 'a',
+    promptInstanceId: state.prompts[0]!.id,
+    promptText: state.prompts[0]!.text,
+    text: 'I do not know when major change would happen.',
+    substantive: true,
+    hasHorizon: false,
+    hasConviction: false,
+    hasUnknownHorizon: true
+  })
+  const candidates = candidatePrompts(state, loadBundle().prompts)
+  expect(
+    candidates.find((c) => c.prompt.id === 'timeline.general')?.reason
+  ).toBe('timing already addressed')
+  expect(
+    candidates.find((c) => c.prompt.id === 'timeline.milestone')?.calibration
+  ).toBe(0)
+})
