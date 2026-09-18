@@ -1,9 +1,9 @@
 {
   "contentVersion": "0.4.0-draft",
   "rubricVersion": "0.1.0-draft",
-  "assessmentVersion": "0.3.0",
+  "assessmentVersion": "0.4.0",
   "status": "draft",
   "reviewer": null,
-  "changelog": "Local draft assembly: 138 references; 111/114 required URLs mapped. Original access scopes/review status retained. Assessment/rubric/prompt semantics unchanged; earlier assessments retain 0.3.0-draft. Human review and required-source completion remain open. Assessment 0.3.0 removes passage selection in favor of answer-level support; schema v1 saves migrate without changing raw answers or historical results.",
+  "changelog": "Local draft assembly: 138 references; 111/114 required URLs mapped. Original access scopes/review status retained. Assessment/rubric/prompt semantics unchanged; earlier assessments retain 0.3.0-draft. Human review and required-source completion remain open. Assessment 0.3.0 removes passage selection in favor of answer-level support; schema v1 saves migrate without changing raw answers or historical results. Local demo 0.4.0 pauses runtime corpus grounding, expands dimension definitions and uses evidence-based readiness instead of an answer-count minimum. Shared rubric remains an unfrozen draft; historical results and debug records are preserved.",
   "hashes": {}
 }

@@ -254,6 +254,37 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   const requestBox = (await request.boundingBox())!,
     responseBox = (await response.boundingBox())!
   expect(responseBox.x).toBeGreaterThan(requestBox.x + requestBox.width)
+  const weakJudgment = response.getByRole('button', {
+    name: 'Expand $.answers.weak',
+    exact: true
+  })
+  await weakJudgment.hover()
+  await expect(page.getByRole('tooltip')).toHaveText(
+    'Judge relevance using current.answer.'
+  )
+  await expect(weakJudgment).toHaveAttribute('aria-expanded', 'false')
+  await page.screenshot({
+    path: testInfo.outputPath('judgment-help-desktop.png')
+  })
+  await page.keyboard.press('Escape')
+  await weakJudgment.focus()
+  await expect(page.getByRole('tooltip')).toHaveText(
+    'Judge relevance using current.answer.'
+  )
+  await page.keyboard.press('Escape')
+  const savedState = page.getByRole('region', {
+    name: 'Saved assessment state JSON',
+    exact: true
+  })
+  const dimensionHelp = savedState.getByRole('button', {
+    name: 'Explain $.coverage.capability_trajectory',
+    exact: true
+  })
+  await dimensionHelp.hover()
+  await expect(page.getByRole('tooltip')).toContainText(
+    'Timeline & capability:'
+  )
+  await page.keyboard.press('Escape')
   const firstOperation = await page
     .getByLabel('Recorded operation', { exact: true })
     .inputValue()

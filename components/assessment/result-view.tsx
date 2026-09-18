@@ -1,11 +1,7 @@
 'use client'
-import type {
-  Assessment,
-  Component,
-  Operation,
-  VectorId
-} from '@/lib/assessment/schema'
+import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
+import { Map } from './worldview-map'
 import { AnswerDisclosure } from './conversation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -18,85 +14,6 @@ import { serializeReport, downloadBlob } from '@/lib/sharing/report'
 import { emitEvent } from '@/lib/analytics/client'
 import { makeEvent } from '@/lib/analytics/events'
 
-export function Map({
-  horizontal: x,
-  vertical: y
-}: {
-  horizontal: Component
-  vertical: Component
-}) {
-  const left = 24 + x.range[0] * 280,
-    top = 20 + (1 - y.range[1]) * 200
-  const description = `Doom–Bloom: ${x.value === null ? 'unplaced' : Math.round(x.value * 100) + ' out of 100'}. Demonstrated reasoning: ${y.value === null ? 'unplaced' : Math.round(y.value * 100) + ' out of 100'}. Interpretation ranges: ${x.range.map((v) => Math.round(v * 100)).join(' to ')} horizontally, ${y.range.map((v) => Math.round(v * 100)).join(' to ')} vertically. These are interpretation coordinates, not event probabilities.`
-  return (
-    <figure className='rounded-xl border bg-card p-5'>
-      <svg
-        viewBox='0 0 330 260'
-        role='img'
-        aria-label={description}
-        className='mx-auto w-full max-w-lg'
-      >
-        <defs>
-          <linearGradient id='outlook'>
-            <stop offset='0%' stopColor='var(--destructive)' stopOpacity='.1' />
-            <stop offset='100%' stopColor='var(--primary)' stopOpacity='.12' />
-          </linearGradient>
-        </defs>
-        <rect
-          x='24'
-          y='20'
-          width='280'
-          height='200'
-          rx='8'
-          fill='url(#outlook)'
-        />
-        <path
-          d='M24 120H304M164 20V220'
-          stroke='var(--border)'
-          strokeDasharray='3 5'
-        />
-        <rect
-          x={left}
-          y={top}
-          width={(x.range[1] - x.range[0]) * 280}
-          height={(y.range[1] - y.range[0]) * 200}
-          rx='5'
-          fill='var(--primary)'
-          opacity='.1'
-          stroke='var(--primary)'
-          strokeDasharray='4 3'
-        />
-        {x.value !== null && y.value !== null && (
-          <circle
-            cx={24 + x.value * 280}
-            cy={20 + (1 - y.value) * 200}
-            r='6'
-            fill='var(--primary)'
-          />
-        )}
-        <text x='24' y='244' fill='currentColor' fontSize='12'>
-          Doom
-        </text>
-        <text
-          x='304'
-          y='244'
-          textAnchor='end'
-          fill='currentColor'
-          fontSize='12'
-        >
-          Bloom
-        </text>
-        <text x='28' y='13' fill='var(--muted-foreground)' fontSize='10'>
-          More demonstrated reasoning ↑
-        </text>
-      </svg>
-      <figcaption className='mt-2 text-xs text-muted-foreground'>
-        Your placement and interpretation range. Unexplored regions stay open.
-      </figcaption>
-      <p className='sr-only'>{description}</p>
-    </figure>
-  )
-}
 export function ResultView({
   state,
   act,

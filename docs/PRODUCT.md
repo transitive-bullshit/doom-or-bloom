@@ -12,7 +12,7 @@ The default participant is a curious, technologically engaged adult. No AI-safet
 
 ## Product promise
 
-- A meaningful result after three substantive answers.
+- A provisional result once evidence readiness supports it, potentially after one detailed answer.
 - One fixed, jargon-free opening question; all subsequent prompts are adaptive.
 - A neutral, curious interview rather than a debate or lesson.
 - A memorable simplified map backed by a richer internal profile.
@@ -55,7 +55,7 @@ The landing experience is restrained and centered, inspired by the economy of op
 - Let participants speak freely: submitted answers allow 20,000 characters. Never set a hard input cap or truncate typed, dictated or pasted text. Hide the character count during normal writing; only above the limit, show the count and amount to shorten, and disable Continue until the draft fits. Keep the text box editable and preserve the full draft on reload when browser storage is available.
 - Let the active answer box and expanded debugging details grow with their content, using the page scrollbar rather than nested scroll areas.
 - Show bounded progress without claiming a fake percentage of understanding.
-- After three substantive answers, unlock a provisional or sufficiently supported result.
+- Unlock a provisional result when supported coverage and interpretation confidence meet the experimental evidence-readiness threshold; there is no minimum answer count. Continue with authored follow-ups by default, with results available as an optional action.
 - The typical path is 6–8 prompts. The participant can request results whenever eligible or continue for a sharper read.
 - Never mechanically force a pro/con debate. Probe missing evidence only when it improves the map.
 
@@ -138,3 +138,9 @@ Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, f
 ### Internal local review tools
 
 Development-only `/questions` and `/corpus` display built-in assets, relationship maps, important metadata and per-entry free-form feedback. Notes append to project files with asset identity/version/hash and preserve earlier notes; they do not alter authored assets automatically. These pages make no inference or analytics calls. See [local debugging guide](local-debugging.md) for use and interpretation.
+
+## Local demo visualization
+
+Display a compact Evidence readiness meter while interviewing, including the provisional-result threshold. Explain that it reflects supported coverage rather than forecast accuracy, quality or answer length; debug disclosure gives the experimental formula. See [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness).
+
+The Doom–Bloom map is the result’s hero: strong categorical pole colors, a clearly labeled participant point, visible interpretation area, and axes explained beside the map. Across = expected outlook, up = reasoning demonstrated in the answers. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.

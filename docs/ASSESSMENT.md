@@ -35,17 +35,15 @@ Action posture is modeled independently from expected outcomes. It may correlate
 | Internal coherence | Related positions fit together after assumptions and scope are clarified. |
 | Counterargument engagement | Represents serious alternatives rather than dismissing them. |
 | Updateability | Identifies evidence or developments that would materially change the view. |
-| Grounded understanding | Connects claims to identifiable evidence and characterizes material references accurately. |
+| Grounded understanding | Connects claims to the offered observations/examples and distinguishes observation, interpretation and uncertainty; no external source verification in the local demo. |
 
-Domain familiarity is tracked for routing and resources but is not itself epistemic quality. A material factual misunderstanding can lower grounded understanding and may undermine causal coherence when the argument depends on it.
+Domain familiarity is tracked for routing and resources but is not itself epistemic quality. The local demo assesses the fit of a claim to its offered basis; it does not independently establish factual/source accuracy.
 
 ## Evidence representation
 
 Each meaningful judgment should retain:
 
 - A stable whole-answer ID linked to the dimension; preserve the full prompt and answer separately. MVP does not select or attribute individual passages.
-- Any recognized entity, event, or publication.
-- Answer-level reference checks (attribution, fit, uncertainty, materiality), without claiming a passage-specific attribution.
 - Whether the belief was stated, strongly implied, weakly inferred, disputed, or unassessed.
 - Whether participant conviction is expressed; the actual language remains in the raw answer.
 - Whether a forecast horizon/milestone is expressed; relevant timing and assumptions remain in the raw answer.
@@ -86,15 +84,21 @@ MVP weights are authored configuration and must be evaluated, not presented as i
 
 ## Question budget and readiness
 
-- Result eligibility begins after three substantive answers.
+- Result eligibility depends on evidence readiness, with no minimum reply count. A detailed first answer can qualify.
 - Typical assessment: 6–8 prompts.
 - The participant may request results once eligible.
 - Results can be provisional; weak evidence widens interpretation ranges and marks components as unassessed.
 - Clarification after results reopens the assessment.
 - Warn at 10 lifetime prompts; hard stop at 12.
-- A response that is empty, purely navigational, or not an answer does not consume a substantive-answer minimum but still needs abuse/cost controls in implementation.
+- A response that is empty, purely navigational, or not an answer does not add assessment evidence but still needs abuse/cost controls in implementation.
 
-Readiness depends on relevant coverage and resolved interpretation, never on agreement, sophistication, moderation, or a high epistemic score.
+Readiness depends on relevant coverage and interpretation, never agreement, sophistication, moderation or a high reasoning score. The visible **Evidence readiness** meter is an experimental development heuristic, not a calibrated probability of forecast accuracy.
+
+Current policy: equal weight across 15 dimensions. Each assessed dimension contributes the highest presence confidence attached to active `stated`/`strongly_implied` whole-answer support; unresolved ambiguity/tension halves that contribution. Missing/ambiguous coverage and superseded/disputed support contribute zero. Repetition adds no weight. Divide summed contributions by 15 and display 0–100%. Use the unrounded value for eligibility: at least 55%, at least one usable reply, and supported evidence for an outlook input (benefits/harm/valued continuity) and a reasoning dimension. No extra inference request is needed. At 100%, all tracked dimensions have clear evidence with maximal interpretation confidence; further clarification can still change the result.
+
+Example: nine supported dimensions at confidence 1, including outlook and reasoning, give 60% and unlock a provisional result after one reply. Three replies covering only benefits give at most 6.7% and do not unlock it. Fifteen supported dimensions at confidence 0.7 give 70%; unresolved tension in all of them reduces it to 35%. These examples describe bookkeeping, not model calibration.
+
+Continue asking follow-ups by default and offer **View my result** once eligible. Low scores never prolong the interview. Coverage/range/provisional status remain distinct; reaching the threshold does not guarantee both final coordinates will be placeable (for example, an explicit unknown may lack direction). At the lifetime cap, insufficient readiness still yields an honest capped insufficient-evidence result. Debug disclosure exposes the formula and per-dimension contributions in state JSON; keep the threshold tunable in the shared readiness policy.
 
 ## Answer relevance and bounded recovery
 
@@ -123,24 +127,17 @@ Recovery policy for MVP:
 
 Provider retries are distinct from recovery submissions and must be idempotent with respect to counters. Navigation and validation failures remain subject to request/rate limits but do not consume semantic recovery attempts. The lifetime cap takes precedence over recovery: after processing prompt 12, finalize from usable evidence, with an insufficient-evidence state if necessary. Before result eligibility, stopping preserves a paused assessment and creates no invented placement. The paperclip interlude is never a substitute assessment result.
 
-## Reference handling
+## Reference handling — paused for the local demo
 
-Recognizing a name or incident is not sufficient evidence of understanding. Evaluate separately:
-
-1. Reference identification.
-2. Attribution accuracy.
-3. The participant's claim.
-4. Evidentiary fit between reference and claim.
-5. Preserved uncertainty and disputed details.
-6. Whether the argument depends materially on the reference.
-
-When a likely factual misunderstanding is both high-confidence and decision-relevant, prefer a neutral clarification if question budget permits. Otherwise surface it carefully in results. Never belittle the participant or treat the snapshot corpus as infallible.
+Corpus identification and canonical-summary grounding are removed from current inference. No external reference checks or summaries enter routing/projection, and no independent fact-check is claimed. Preserve corpus assets, offline review tools and historical saved checks. Legacy reference flags cannot affect new readiness, findings, resource ranking or projections. See [TYPESAFE.md](TYPESAFE.md#runtime-corpus-grounding-is-paused).
 
 ## Participant-facing projections
 
 ### Doom–Bloom
 
 The horizontal projection estimates the participant's overall expected impact of advanced AI on humanity. It integrates positive and negative outcomes, likelihood, severity, distribution, and human continuity.
+
+The current horizontal formula is 45% expected benefits, 45% reversed expected harm and 10% continuity of valued agency; action posture has zero weight.
 
 It is not:
 
@@ -151,7 +148,7 @@ It is not:
 
 ### Epistemic Quality
 
-The vertical projection composes demonstrated reasoning, grounded understanding, appropriate uncertainty, internal coherence, and updateability. Detailed components stay separate internally.
+The vertical projection composes demonstrated reasoning, grounded understanding, appropriate uncertainty, internal coherence, and updateability. The seven authored reasoning dimensions have equal weight; detailed components stay separate internally.
 
 Missing evidence widens the interpretation range; it does not lower the score. Technical vocabulary, credentials, and ideological centrism do not score points.
 

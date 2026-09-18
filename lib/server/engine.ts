@@ -37,11 +37,9 @@ import {
   quantile
 } from '@/lib/assessment/projections'
 import type { Bundle } from '@/lib/content/loader'
-import { retrieveReferences } from '@/lib/content/loader'
 import type { Prompt } from '@/lib/content/schema'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
-import { referenceMetadata, referencePolicy } from './reference-input'
 import { timelineContext } from '@/lib/assessment/timeline'
 import { participantQuestionPolicy } from '@/lib/assessment/prompt-policy'
 import { selectPresentation } from '@/lib/assessment/presentation'
@@ -192,6 +190,10 @@ export async function runAssessment(
   let state = structuredClone(request.assessment)
   validateSnapshot(state, bundle)
   state.versions = { ...state.versions, assessment: versions.assessment }
+  // Preserve legacy traces/claims, but reference checks no longer affect this flow.
+  state.unresolved = state.unresolved.filter(
+    (item) => item.kind !== 'reference'
+  )
   const baseRevision = state.revision
   const started = performance.now()
   const trace: DebugTrace = {
@@ -322,6 +324,20 @@ export async function runAssessment(
       const input = {
         participantEvidence: usableHistory(state),
         questionPolicy: participantQuestionPolicy,
+        dimensionDefinitions: Object.fromEntries(
+          bundle.rubric.dimensions.map(({ id, label, meaning }) => [
+            id,
+            { label, meaning }
+          ])
+        ),
+        coverageDefinitions: {
+          assessed:
+            'Supported participant evidence is available; not a quality score.',
+          ambiguous:
+            'Relevant language has unresolved meaning; do not invent a position.',
+          unassessed:
+            'No supported evidence is established; missing evidence is not low quality.'
+        },
         coverage: state.coverage,
         unresolved: state.unresolved,
         familiarity: state.familiarity.level,
@@ -384,7 +400,9 @@ export async function runAssessment(
   }
   const project = async (capped = false) => {
     if (!eligible(state) && !capped)
-      throw new Error('Answer three substantive prompts to unlock your result')
+      throw new Error(
+        'More supported coverage is needed to offer a provisional result'
+      )
     if (state.result?.evidenceRevision === state.evidenceRevision) {
       state.result.capped = capped || state.result.capped
       state.status = capped ? 'capped' : 'results'
@@ -394,12 +412,12 @@ export async function runAssessment(
     if (eligible(state)) {
       const scores = rubricQuestions(
         bundle.rubric,
-        'completeParticipantEvidence and canonical referenceContext; prior typed judgments are interpretations, not independent evidence'
+        'completeParticipantEvidence; prior typed judgments are interpretations, not independent evidence'
       )
       const questions: StageQuestions = {}
       for (const dimension of bundle.rubric.dimensions) {
         questions[`${dimension.id}:status`] = statusQuestion(
-          dimension.meaning,
+          `${dimension.label}: ${dimension.meaning}`,
           'completeParticipantEvidence'
         )
         questions[`${dimension.id}:score`] = scores[dimension.id]!
@@ -407,20 +425,20 @@ export async function runAssessment(
           worldviewIds.includes(dimension.id as (typeof worldviewIds)[number])
         )
           questions[`${dimension.id}:position`] = authoredQuestion('position', {
-            meaning: dimension.meaning
+            meaning: `${dimension.label}: ${dimension.meaning}`
           })
       }
       const catastrophe = bundle.rubric.catastrophicRisk
       questions['catastrophic_risk:status'] = statusQuestion(
-        catastrophe.meaning,
+        `${catastrophe.label}: ${catastrophe.meaning}`,
         'completeParticipantEvidence'
       )
       questions['catastrophic_risk:position'] = authoredQuestion('position', {
-        meaning: catastrophe.meaning
+        meaning: `${catastrophe.label}: ${catastrophe.meaning}`
       })
       questions['catastrophic_risk:score'] = authoredQuestion(
         'catastrophic_score',
-        { meaning: catastrophe.meaning },
+        { meaning: `${catastrophe.label}: ${catastrophe.meaning}` },
         catastrophe.levels
       )
       const evaluation = await evaluate(
@@ -559,22 +577,6 @@ export async function runAssessment(
           emptyComponent(id, bundle.rubric.catastrophicRisk.label)
       )
     ]
-    const sourceIds = new Set([
-      ...state.referenceClaims.map((c) => c.referenceId),
-      ...activeEvidence(state).flatMap((e) => [
-        ...e.referenceIds,
-        ...e.contextReferenceIds
-      ])
-    ])
-    result.sources = bundle.references
-      .filter((r) => sourceIds.has(r.id))
-      .map((r) => ({
-        id: r.id,
-        title: r.title,
-        urls: r.sources.map((s) => s.url),
-        status: r.status,
-        accessed: r.sources[0]!.accessed
-      }))
     const presentation = selectPresentation(state, components, bundle)
     result.findings = presentation.findings
     result.resources = presentation.resources
@@ -607,10 +609,9 @@ export async function runAssessment(
     const questions: StageQuestions = {}
     questions.disposition = dispositionQuestion
     questions.familiarity = authoredQuestion('familiarity')
-    questions.topic = authoredQuestion('topic')
     for (const dimension of bundle.rubric.dimensions) {
       questions[`${dimension.id}:status`] = statusQuestion(
-        dimension.meaning,
+        `${dimension.label}: ${dimension.meaning}`,
         '`current.answer` in the context of usableHistory'
       )
     }
@@ -624,7 +625,10 @@ export async function runAssessment(
       {},
       {
         ...Object.fromEntries(
-          bundle.rubric.dimensions.map((d) => [d.id, d.meaning])
+          bundle.rubric.dimensions.map((d) => [
+            d.id,
+            `${d.label}: ${d.meaning}`
+          ])
         ),
         ...tensionTemplate.criteria
       }
@@ -768,165 +772,6 @@ export async function runAssessment(
             .filter((e) => e.vector === tension)
             .map((e) => e.id),
           kind: 'tension'
-        })
-      const topic = choice(evaluation.answers.topic)
-      const references = retrieveReferences(
-        bundle,
-        op.text,
-        topic && topic !== 'none' ? [topic] : []
-      )
-      trace.decisions.push({
-        action: 'reference candidates',
-        detail: references.map((r) => ({
-          id: r.reference.id,
-          aliasMatched: r.matched,
-          score: r.score
-        }))
-      })
-      if (references.length) {
-        const identifyQuestions: StageQuestions = Object.fromEntries(
-          references.map(({ reference }) => [
-            reference.id,
-            authoredQuestion('identity', { title: reference.title })
-          ])
-        )
-        const identity = await evaluate(
-          'B1: identify references',
-          {
-            current: { id: answerId, prompt: p.text, answer: op.text },
-            referencePolicy,
-            candidates: references.map(({ reference }) => ({
-              id: reference.id,
-              title: reference.title,
-              ...referenceMetadata(reference),
-              aliases: reference.aliases
-            }))
-          },
-          identifyQuestions
-        )
-        addJudgments(
-          'identify',
-          answerId,
-          identifyQuestions,
-          identity.answers,
-          identity.model
-        )
-        const identified = references.filter(
-          ({ reference }) =>
-            choice(identity.answers[reference.id]) === 'mentioned' &&
-            confidence(identity.answers[reference.id]) >=
-              bundle.rubric.presenceThreshold
-        )
-        const selected = identified.slice(0, limits.resolvedReferences)
-        if (
-          identified.length > selected.length ||
-          Object.values(identity.answers).some((a) => choice(a) === 'unclear')
-        )
-          state.unresolved.push({
-            id: `${answerId}:reference`,
-            vector: 'grounded_understanding',
-            evidenceIds: [],
-            kind: 'reference'
-          })
-        if (selected.length) {
-          const groundQuestions: StageQuestions = {}
-          for (const { reference } of selected) {
-            for (const check of [
-              'attribution',
-              'fit',
-              'uncertainty',
-              'materiality'
-            ] as const)
-              groundQuestions[`${reference.id}:${check}`] = authoredQuestion(
-                `ground_${check}`,
-                { referenceId: reference.id }
-              )
-          }
-          const grounding = await evaluate(
-            'B2: grounded claims',
-            {
-              current: { id: answerId, prompt: p.text, answer: op.text },
-              referencePolicy,
-              canonicalSummaries: selected.map(({ reference }) => ({
-                id: reference.id,
-                title: reference.title,
-                ...referenceMetadata(reference),
-                summary: reference.summary
-              }))
-            },
-            groundQuestions
-          )
-          const groundJudgments = addJudgments(
-            'ground',
-            answerId,
-            groundQuestions,
-            grounding.answers,
-            grounding.model
-          )
-          for (const { reference } of selected) {
-            state.referenceClaims.push({
-              id: `${answerId}:ref:${reference.id}`,
-              answerId,
-              referenceId: reference.id,
-              ...(Object.fromEntries(
-                ['attribution', 'fit', 'uncertainty', 'materiality'].map(
-                  (key) => [
-                    key,
-                    choice(grounding.answers[`${reference.id}:${key}`]) ??
-                      'unclear'
-                  ]
-                )
-              ) as Pick<
-                Assessment['referenceClaims'][number],
-                'attribution' | 'fit' | 'uncertainty' | 'materiality'
-              >),
-              judgmentIds: groundJudgments
-                .filter((j) => j.questionId.startsWith(`${reference.id}:`))
-                .map((j) => j.id)
-            })
-          }
-          for (const e of state.evidence.filter(
-            (item) => item.answerId === answerId
-          )) {
-            // References belong to the answer, not to a claimed exact passage.
-            e.referenceIds = selected.map(({ reference }) => reference.id)
-            e.judgmentIds.push(
-              ...groundJudgments
-                .filter((j) =>
-                  e.referenceIds.some((id) => j.questionId.startsWith(`${id}:`))
-                )
-                .map((j) => j.id)
-            )
-          }
-          for (const { reference } of selected)
-            if (
-              choice(grounding.answers[`${reference.id}:materiality`]) ===
-                'yes' &&
-              confidence(grounding.answers[`${reference.id}:materiality`]) >=
-                0.85 &&
-              ['attribution', 'fit'].some(
-                (check) =>
-                  choice(grounding.answers[`${reference.id}:${check}`]) ===
-                    'no' &&
-                  confidence(grounding.answers[`${reference.id}:${check}`]) >=
-                    0.85
-              )
-            )
-              state.unresolved.push({
-                id: `${answerId}:reference:${reference.id}`,
-                vector: 'grounded_understanding',
-                evidenceIds: state.evidence
-                  .filter((e) => e.answerId === answerId)
-                  .map((e) => e.id),
-                kind: 'reference'
-              })
-        }
-      } else if (topic && topic !== 'none')
-        state.unresolved.push({
-          id: `${answerId}:unknown-reference`,
-          vector: 'grounded_understanding',
-          evidenceIds: [],
-          kind: 'reference'
         })
       if (atCap(state)) await project(true)
       else if (p.target && eligible(state)) await project()

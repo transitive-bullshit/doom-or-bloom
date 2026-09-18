@@ -17,6 +17,14 @@ export default function Page() {
         ),
         resources: bundle.resources.map((r) => r.id)
       }}
+      dimensions={[
+        ...bundle.rubric.dimensions.map(({ id, label, meaning }) => ({
+          id,
+          label,
+          meaning
+        })),
+        { id: 'catastrophic_risk', ...bundle.rubric.catastrophicRisk }
+      ]}
       recoveryCopy={Object.fromEntries(
         bundle.prompts.map((p) => [p.id, p.recoveryVariants])
       )}

@@ -31,7 +31,9 @@ export function selectPresentation(
       finding.conditions.every(
         (c) =>
           !c.assessed ||
-          (!state.unresolved.some((u) => u.vector === c.vector) &&
+          (!state.unresolved.some(
+            (u) => u.vector === c.vector && u.kind !== 'reference'
+          ) &&
             (components.find((component) => component.vector === c.vector)
               ?.evidenceIds.length ?? 0) > 0)
       )
@@ -50,11 +52,7 @@ export function selectPresentation(
         )
       ]
     }))
-  const referenced = new Set(
-    state.referenceClaims.map((claim) => claim.referenceId)
-  )
   const relevance = (resource: Bundle['resources'][number]) =>
-    resource.referenceIds.filter((id) => referenced.has(id)).length * 2 +
     resource.conditions.length +
     resource.conditions.filter(
       (c) => c.min !== undefined || c.max !== undefined

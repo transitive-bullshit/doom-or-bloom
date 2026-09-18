@@ -1,3 +1,4 @@
+import { evidenceReadiness } from './readiness'
 import type { Answer, Assessment, Disposition, PromptInstance } from './schema'
 import { limits, rootPrompt, vectorIds, versions } from './schema'
 
@@ -50,7 +51,7 @@ export function currentPrompt(state: Assessment) {
   return state.prompts[state.prompts.length - 1]!
 }
 export function eligible(state: Assessment) {
-  return state.answers.filter((a) => a.substantive).length >= 3
+  return evidenceReadiness(state).ready
 }
 export function atCap(state: Assessment) {
   return state.prompts.length >= limits.prompts

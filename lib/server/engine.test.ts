@@ -181,7 +181,7 @@ test('three-answer path, reusable results and debug parity', async () => {
   )
   expect(reused.debug?.stages).toHaveLength(0)
   expect(reused.assessment.result).toEqual(historical.result)
-  expect(reused.assessment.versions.assessment).toBe('0.3.0')
+  expect(reused.assessment.versions.assessment).toBe('0.4.0')
   const request = {
     requestId: 'same',
     assessment: state,
@@ -403,7 +403,7 @@ test('shared text occurs once per stage and judgments use answer-level support w
     true
   )
   const interpretation = result.debug!.stages[0]!
-  expect(Object.keys(interpretation.questions)).toHaveLength(21)
+  expect(Object.keys(interpretation.questions)).toHaveLength(20)
   expect(interpretation.state).toEqual({
     current: {
       id: result.assessment.answers[0]!.id,
@@ -454,4 +454,81 @@ test('shared text occurs once per stage and judgments use answer-level support w
   expect(
     Object.keys(stage.questions).some((id) => id.endsWith(':evidence'))
   ).toBe(false)
+})
+
+test('one well-covered answer unlocks results and sends explicit dimension definitions', async () => {
+  const response = await run(
+    createAssessment('one-answer-ready'),
+    {
+      type: 'answer',
+      text: 'A comprehensive account of my expectations, evidence, mechanisms and alternatives.'
+    },
+    createFixtureProvider(),
+    true
+  )
+  expect(response.assessment.answers).toHaveLength(1)
+  expect(eligible(response.assessment)).toBe(true)
+  expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
+    'A: interpret',
+    'C: route'
+  ])
+  const bundle = loadBundle()
+  const interpret = response.debug!.stages[0]!
+  const route = response.debug!.stages[1]!
+  for (const dimension of bundle.rubric.dimensions) {
+    expect(
+      interpret.questions[`${dimension.id}:status`]!.instructions
+    ).toContain(dimension.label)
+    expect(
+      interpret.questions[`${dimension.id}:status`]!.instructions
+    ).toContain(dimension.meaning)
+    expect(
+      (route.state as { dimensionDefinitions: Record<string, unknown> })
+        .dimensionDefinitions[dimension.id]
+    ).toEqual({ label: dimension.label, meaning: dimension.meaning })
+  }
+  const projected = await run(
+    response.assessment,
+    { type: 'project' },
+    createFixtureProvider(),
+    true
+  )
+  expect(projected.assessment.result?.insufficient).toBe(false)
+  for (const dimension of bundle.rubric.dimensions) {
+    expect(
+      projected.debug!.stages[0]!.questions[`${dimension.id}:score`]!
+        .instructions
+    ).toContain(dimension.meaning)
+  }
+})
+
+test('three sparse answers cannot unlock results by reply count alone', async () => {
+  const fixture = createFixtureProvider()
+  const sparse: Provider = {
+    kind: 'fixture',
+    evaluate: async (...args) => {
+      const result = await fixture.evaluate(...args)
+      for (const [id, question] of Object.entries(args[1]))
+        if (id.endsWith(':status'))
+          result.answers[id] = fixtureAnswer(
+            question,
+            id === 'beneficial_potential:status' ? 'stated' : 'not_expressed'
+          )
+      return result
+    }
+  }
+  let state = createAssessment('sparse-answers')
+  for (let i = 0; i < 3; i++)
+    state = (
+      await run(
+        state,
+        { type: 'answer', text: 'AI will probably improve medicine.' },
+        sparse
+      )
+    ).assessment
+  expect(state.answers).toHaveLength(3)
+  expect(eligible(state)).toBe(false)
+  await expect(run(state, { type: 'project' }, sparse)).rejects.toThrow(
+    'More supported coverage'
+  )
 })

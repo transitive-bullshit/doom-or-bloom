@@ -52,6 +52,8 @@ import {
   DialogTrigger,
   DialogClose
 } from '@/components/ui/dialog'
+import type { DimensionDefinition } from '@/lib/debug/json-help'
+import { ReadinessMeter } from './readiness-meter'
 import { DebugPanel } from '@/components/debug/panel'
 import { ResultView } from './result-view'
 import { Paperclips } from './paperclips'
@@ -73,7 +75,8 @@ export function Interview({
   recoveryCopy,
   analyticsEnabled,
   analyticsCatalog,
-  fixtureMode
+  fixtureMode,
+  dimensions
 }: {
   model: string
   debugDefault: boolean
@@ -81,6 +84,7 @@ export function Interview({
   analyticsEnabled: boolean
   analyticsCatalog: Catalog
   fixtureMode: boolean
+  dimensions: DimensionDefinition[]
   recoveryCopy: Record<
     string,
     { reask: string; clarification: string; exhausted: string }
@@ -448,7 +452,7 @@ export function Interview({
               <div>
                 <p className='mb-5 text-xs text-muted-foreground'>
                   {state.answers.length === 0
-                    ? 'Map your AI worldview in three questions.'
+                    ? 'Map your AI worldview, one question at a time.'
                     : `${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
                 </p>
                 <h1 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
@@ -456,6 +460,7 @@ export function Interview({
                 </h1>
               </div>
               <ConversationReplies turn={currentTurn} />
+              <ReadinessMeter state={state} debug={debugMode} />
               {unavailableQuestion && (
                 <Alert>
                   <AlertTitle>This question is no longer available</AlertTitle>
@@ -681,6 +686,7 @@ export function Interview({
           </div>
           {debugMode && (
             <DebugPanel
+              dimensions={dimensions}
               trace={trace}
               operations={debugOperations}
               onSelectTrace={setTrace}

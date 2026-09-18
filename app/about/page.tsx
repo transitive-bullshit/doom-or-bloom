@@ -9,18 +9,19 @@ export default function About() {
       <p>
         Doom or Bloom helps you articulate what you expect from advanced AI, why
         you expect it, and what could change your mind. A short adaptive
-        interview produces a richer profile behind a simple map. Three
-        substantive answers unlock a provisional result; most paths take six to
-        eight prompts.
+        interview produces a richer profile behind a simple map. A provisional
+        result becomes available when supported coverage is sufficient,
+        potentially after one detailed answer; most paths take six to eight
+        prompts.
       </p>
       <h2 className='text-lg font-medium'>How the assessment works</h2>
       <p>
         Jev, a TypeSafe model, makes narrow typed judgments about your actual
         answers. Code selects from authored questions, preserves exact evidence,
         and combines qualitative categories into a projection. It never
-        generates interview questions or a free-form verdict. Local, sourced
-        reference snapshots help check material attributions; the interview does
-        not search live news.
+        generates interview questions or a free-form verdict. The local demo
+        assesses only the evidence you offer, without checking external sources;
+        the interview does not search live news.
       </p>
       <p>
         The horizontal axis combines expected benefits (45%), reversed expected
@@ -28,7 +29,7 @@ export default function About() {
         preferences have no map weight. Seven equally weighted components
         describe demonstrated reasoning: causal clarity, scope discipline,
         uncertainty, coherence, engagement with alternatives, updateability, and
-        grounding.
+        how claims connect to the evidence you offer.
       </p>
       <p>
         Missing evidence is unassessed, rather than scored low. The point uses

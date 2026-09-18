@@ -1,168 +1,65 @@
 # TypeSafe / Jev Composition Specification
 
-## Role of Jev
+## Role and boundaries
 
-Jev performs narrowly scoped semantic judgments over participant evidence and authored context. It returns structured choices, scores, binary likelihoods, distributions, and confidence statistics. It does not generate participant-facing prose, invent questions, run the workflow, or explain its hidden reasoning.
+Jev performs narrow semantic judgments over participant evidence and authored definitions. It returns Choice, Score and Noul outputs, distributions and interpretation confidence. Code owns state transitions, calculations, eligibility, routing, persistence, versioning and rendering. Jev does not write participant questions, generate result prose or expose hidden reasoning.
 
-Code owns state transitions, calculations, validation, routing eligibility, persistence, versioning, analytics, and rendering.
+Independent questions in a batch cannot consume one another’s outputs. Later stages receive earlier results only through code. Question IDs are application bookkeeping: supply the actual dimension meaning in instructions/criteria or named shared state. Never equate a category probability with the participant’s event probability, or interpretation confidence with forecast correctness.
 
-## Core rules
+## Current local workflow — algorithm 0.4.0
 
-1. Use Jev for semantic interpretation; use code for deterministic operations.
-2. Every judgment has a narrow question and concrete authored criteria.
-3. Preserve raw evidence separately from derived judgments.
-4. Batched questions are independent and cannot consume one another's outputs.
-5. Use a second request when later judgments require earlier outputs or loaded reference details.
-6. Never interpret Jev confidence as overall assessment completeness or correctness.
-7. Never interpret a category probability as the participant's probability of an external event.
-8. Include `none`, `unclear`, `not_expressed`, or equivalent outcomes where unsupported inference is possible.
+### A. Interpret the reply
 
-## Runtime stages
+Supply the current authored prompt and complete submitted reply once, up to five prior usable answers and the correction target. Evaluate 20 independent judgments: disposition, reading familiarity, 15 dimension-presence classifications, horizon presence, participant-conviction presence and consequential tension.
 
-### 1. Interpret the new answer
+Every dimension question includes its human-readable label and its full authored meaning. Worldview describes expectations/values/policy; reasoning describes the supplied explanation. Missing evidence is not a low score. Presence of an explicit unknown does not establish a directional position. Familiarity is a wording/resource signal, not quality.
 
-Send the current prompt, new answer, minimal relevant history, and stable assessment context. Batch independent judgments such as:
+Consume disposition first. Only usable replies contribute evidence. Ambiguous or clearly irrelevant replies enter the bounded recovery policy in [ASSESSMENT.md](ASSESSMENT.md#answer-relevance-and-bounded-recovery); discard speculative profile judgments for them. Never judge sincerity. Exact standalone `test`, `test again`, `show me paperclips` and `show paperclips` use the documented deterministic recovery/interlude policy without Jev calls. Rejected replies remain local conversation history, excluded from scoring inputs.
 
-- Answer substantive or not.
-- Response disposition (`usable`, `needs_clarification`, `non_answer`, `navigation`) under the [bounded recovery policy](ASSESSMENT.md#answer-relevance-and-bounded-recovery), including relevant humor and uncertainty.
-- Outlook direction and qualitative strength.
-- Whether a forecast horizon/milestone or participant conviction is expressed (binary judgments, without extraction).
-- Expressed benefits and risk pathways.
-- Mechanisms and assumptions.
-- Action posture.
-- Causal clarity, scope discipline, uncertainty, and update conditions.
-- Candidate reference mentions.
-- Ambiguities or possible tensions requiring clarification.
+### Update support and readiness in code
 
-Use Choice for exclusive interpretations, Score for ordered descriptive rubrics, and Noul for genuinely binary propositions. A Noul probability near 0.5 means uncertainty between yes and no, not medium quality.
+Preserve complete prompts/replies once and attach whole-answer support by dimension ID. Do not select spans, extract quotations or repeat participant text in criteria. Timing/conviction flags record presence; actual forecasts and assumptions remain in raw answers.
 
-Code consumes the response disposition before any later stage. If the answer is unusable or ambiguous, short-circuit reference resolution, ordinary candidate-benefit evaluation, and projection for that attempt. Independent speculative profile judgments already returned in the interpretation batch must be discarded, not stored as worldview evidence. Recovery counters, authored re-asks, pause actions, and the paperclip trigger are deterministic code. Do not ask Jev whether someone is a troll, is sincere, or “doesn't care.”
+Compute [evidence readiness](ASSESSMENT.md#question-budget-and-readiness) from existing presence confidence and coverage, without another Jev request. A well-covered first answer can unlock a provisional result; reply count cannot unlock it. Readiness never changes a reasoning score.
 
-Before inference, recognize exact standalone `test` / `test again` placeholders as clear non-answers, and `show me paperclips` / `show paperclips` as an explicit interlude request. Normalize case, whitespace and terminal sentence punctuation only; do not match substrings or infer this policy from general humor or paperclip-maximizer arguments. These phrases consume the same bounded recovery attempts, contribute no evidence and make no Jev calls. The explicit request can reveal the effect without a two-miss streak, still at most once per assessment. Record the local policy separately from model disposition in debugging.
+### C. Route follow-ups
 
-Keep non-answer attempts outside later scoring state, even when retaining them in local interaction history. Use only prior usable evidence when an explicit skip needs another authored prompt or a result request needs projection. A small recovery-context field may describe the current attempt count and displayed guidance; it is workflow context, not epistemic evidence. Debug traces should expose disposition, its distribution, the threshold/configuration used, the recovery transition, and which speculative judgments were discarded.
+Code enumerates eligible authored candidates. Shared `dimensionDefinitions` maps each target ID to its label and meaning; routing instructions explicitly refer to this map and define coverage states. Supply the usable transcript once, coverage, unresolved ambiguity/tension, familiarity, horizon/conviction gaps and candidate texts/targets.
 
-### 2. Resolve references progressively
+Jev independently judges coverage gain, ambiguity resolution, tension testing and projection usefulness. Code combines them with authored weights, effort/repetition penalties and a stable ID tie-break. Continue to a follow-up by default, even when results are available; the participant may request results instead. Jev never invents a question.
 
-Local deterministic matching shortlists plausible aliases from the reference corpus. Give Jev only the candidate identifiers and concise labels plus `none/unclear`. After selection, load only the relevant canonical summaries for attribution, evidentiary-fit, and groundedness judgments.
+### D. Project on demand
 
-The majority of inference context should remain participant evidence. Never send the full corpus.
+Supply the complete accepted transcript once, active whole-answer support, dimension definitions, correction scopes, coverage, unresolved ambiguity/tension and versions. Prior interpretations are not independent evidence. Evaluate 41 independent output judgments: status/score for 15 dimensions, directional position for eight worldview dimensions, and three separate catastrophic-risk judgments.
 
-Current local retrieval lowercases the answer and normalizes punctuation to Unicode letter/number word boundaries, then checks complete authored alias phrases. Score = 100 for any alias match + one point per matching topic from interpretation (currently one topic or none). Retain positive scores only, sort descending by score, then descending by valid `YYYY-MM` / `YYYY-MM-DD` dates for non-entities, then ascending by ID; keep at most 12. Qualified/unknown dates and entity dates have no recency tie-break value. B1 receives candidate IDs, titles, aliases, kinds, dates and related IDs, not summaries. Up to two `mentioned` judgments at confidence ≥ the rubric presence threshold (currently 0.6), in retrieval order, advance to B2 canonical-summary checks. Low-confidence/contextual candidates do not establish a participant citation.
+Consume scores only on supported branches. Explicit unknowns remain unplaced. Code normalizes authored scales, calculates the map and interpretation ranges, chooses conservative authored findings and curated resources, and retains whole-answer provenance. Reuse a result when its evidence revision is unchanged, including historical results with their original version.
 
-Alias matching is only an initial shortlist. Jev may also choose relevant topic families to widen local candidate retrieval when an answer refers to an incident indirectly. Distinguish a reference actually mentioned from context retrieved because it is relevant; never attribute the latter to the participant.
+### Runtime corpus grounding is paused
 
-Carry authored reference kinds, date qualifiers and related-entry IDs through identification, selected-summary grounding and final projection. A report's publication date does not replace the underlying event date; unknown experiment dates stay unknown. Related entries do not imply independent corroboration or supply facts from an omitted summary. When final inputs shorten reference IDs, retain canonical source IDs so relationships remain interpretable. This metadata does not widen the shortlist or load additional summaries.
+The user paused identification and canonical-summary grounding for the local demo. No B1/B2 requests, reference-topic judgment, source summaries or reference claims enter new inference. Legacy reference flags do not affect new routing, readiness, findings or resource ranking; newly calculated results have no grounding-source list. Do not claim external fact-checking. Grounded understanding now assesses the connection between a claim and the basis the participant offers, not independent source accuracy.
 
-### 3. Update the evidence ledger
+Keep corpus assets, source provenance, curated reading recommendations and `/corpus` for offline authoring/review. Old saved reference checks and debug exchanges remain readable as historical records. This does not authorize renewed grounding calls or erase the unfinished corpus review gates.
 
-Code stores complete prompts/answers once, stable answer IDs, dimension-level support records, recognized reference IDs, and Jev outputs. MVP support is at the whole-answer level. Do not segment answers, select passages, extract quotations, or repeat participant text in question criteria. Each stage uses shared state; questions refer to its fields and IDs. Reference checks concern the invocation in the whole current answer, not a selected excerpt.
+## Debugging
 
-Do not ask Jev to emit arbitrary quotations or free-form extracted values. Timing and conviction presence flags support routing; exact forecasts, probabilities and assumptions remain in raw answers without a normalized extraction claim. Passage attribution can be reconsidered after the demo.
+Capture exchanges only with both server and operation debug enabled. Record each physical request’s exact batch IDs, model, shared state and validated response, omitting credentials, headers and raw errors. Persist successful operations in browser IndexedDB separately from progress: up to 64 recent whole operations, evicted toward a 32 MB target without truncating retained bodies. Refresh restores history; restart clears that assessment’s history. Failure displays a notice while preserving progress. Failed operations currently lack a completed trace.
 
-### 4. Route
+Show requests/responses side by side on desktop, stacked on smaller screens, with native page scrolling. JSON uses syntax colors, accessible folds, depth 2+ initially folded and exact copy. Default/High first/Low first sorts `answers` by Choice/Score confidence or Noul probability; stable ties and missing/nonfinite values last. Copy preserves original payload/order.
 
-Code enumerates eligible authored prompts based on graph rules and budget. Jev judges the independent semantic benefits of candidates; code applies configured weights, exclusions, repetition penalties, and tie-breaking.
+Dotted keys offer mouse-hover and keyboard-focus help. Response judgments use the actual recorded evaluator question, including historical questions; saved judgments use their stored question. State dimension IDs and classifications use authored definitions and a local glossary. Help is authored context, not a model-generated explanation; it adds no inference request and never modifies or copies annotations into JSON.
 
-The selected question must already exist in the authored graph. Jev never writes a new participant-facing question at runtime.
+Storage schema remains v2. Decode legacy v1 saves into whole-answer support without changing raw answers, drafts, tokens, pinned content or historical results. New operations use 0.4.0; cached historical results are not silently recomputed.
 
-### 5. Project results
+## Failure bounds and paid evaluation
 
-Build a final state containing:
+Bounds: 12 lifetime participant prompts, warning at 10; 20,000 characters per submitted reply; 96 independent questions per stage; 16 physical requests per operation including retries. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
 
-- Raw prompts and usable answers; rejected interaction attempts are excluded.
-- Evidence-ledger entries with provenance.
-- Relevant canonical reference summaries.
-- Answer-level support links and reference checks clearly labeled as derived; never repeat source text in support records or criteria.
-- Coverage and unresolved ambiguity.
-- Assessment, content, rubric, and model versions.
+All stages share a 120-second operation deadline; stages have a 45-second deadline and physical attempts 15 seconds. Large inputs use eight-question batches with complete participant evidence. An oversized-batch fallback may split once; an oversized child terminates rather than probing the provider limit. Preserve drafts, validate responses, retry transient failures with bounded backoff, reject stale responses and keep credentials server-side. The cumulative transcript may still exceed provider context; never silently discard evidence.
 
-Batch independent final questions for each output vector. Code then normalizes ordered scores, applies weights and constraints, derives ranges, and selects authored findings and resources.
+Use credential-free fixtures for workflow/boundary checks. No paid pressure testing. Optional evaluation commands require `--allow-paid --max-requests=N` (1–24), with a shared physical-request allowance, reserved before stages and retained when failed-call cost is unknown. These flags do not replace agreement on a small reviewed suite and cost budget.
 
-Do not ask for one opaque overall worldview judgment. Do not multiply correlated judgments or repeatedly classify the entire transcript as though each pass were independent evidence.
+## Evaluation and primary documentation
 
-## Local debug view
+Before publishing, evaluate held-out reviewed conversations across Doom, Bloom, mixed, skeptical and uncertain views; familiarity/writing styles; coherent extremes and weak moderation; evidence offered with good/poor/uncertain fit; paraphrases/verbosity; recovery and relevant humor. Do not report the current draft readiness heuristic as empirically calibrated.
 
-Separate a selected recorded operation’s requests and validated responses from local control-flow decisions and saved assessment state. Show each physical batch/retry using the exact shared state and question subset already sent; omit credentials, headers and raw error bodies. Capture records only when both server and operation debug flags are enabled. Save successful operations, including all recorded stages, in browser IndexedDB under the current assessment ID; restore them on reload and offer an operation selector. Retain up to 64 recent operations, evicting whole oldest operations toward a 32 MB storage target without trimming request bodies. Storage failures must show a notice while preserving assessment progress separately; restart clears that assessment’s history. Diagnostics never enter scoring, report exports, analytics or remote storage. Previously lost traces cannot be reconstructed. Fixture inputs/responses are explicitly synthetic; older traces show aggregate stage data with honest batching labels. Opening, folding, copying and confidence sorting make no inference calls. Jev `answers` records can use default key order, highest value first or lowest value first; default is initially selected. For display sorting, Choice/Score use `confidence` and Noul uses its `noul` probability on the same scale. Ties retain original ordering and absent/non-finite values stay last in either direction. This display comparison does not change primitive semantics or assessment scoring. Display sorting preserves folds and leaves the recorded payload, assessment and exact JSON copy unchanged.
-
-Use syntax colors, accessible section toggles, depth 2+ folded by default, reset-folds and exact JSON copy. Expand the debug area beyond the interview column (up to 1440px with viewport margins); show request/response columns side by side on desktop and stacked on smaller screens; preserve native page scrolling and mobile wrapping without nested scroll areas.
-
-Assessment algorithm `0.3.0` uses storage schema v2. Decode legacy v1 saves into answer-level support, preserving raw answers, drafts, tokens, pinned content and historical results. A later operation uses the current algorithm version; cached historical results retain their own version and are not silently recomputed. This compatibility does not reproduce the retired passage-selection pipeline.
-
-## Conceptual state shape
-
-```ts
-type AssessmentState = {
-  versions: {
-    assessment: string
-    content: string
-    rubric: string
-    model: string
-  }
-  promptBudget: {
-    total: number
-    substantive: number
-    warnedAt10: boolean
-  }
-  turns: Array<{
-    promptId: string
-    promptText: string
-    answer: string
-  }>
-  evidence: EvidenceLedgerEntry[]
-  coverage: Record<BasisVectorId, CoverageState>
-  unresolved: Array<AmbiguityOrTension>
-}
-```
-
-This shape is illustrative, not an implementation mandate.
-
-## Probability semantics
-
-For an authored qualitative classification such as `very_low`, `low`, `material`, `high`, and `extreme`, Jev's distribution represents support for interpretations of the answer. Code may project that distribution into a smooth coordinate and interpretation range.
-
-Store alongside it:
-
-- Distribution across authored categories.
-- Interpretation confidence.
-- Explicitness: `stated | strongly_implied | weakly_inferred`.
-- Participant-stated probability or range, if present.
-
-Never relabel the projected value as the participant's `P(doom)`.
-
-## Failure behavior
-
-Local bounds are 12 lifetime participant prompts, 20,000 characters per submitted answer, at most two resolved references per answer, 96 independent questions per stage and 16 physical inference requests across one operation, including retries. The answer field retains longer drafts without truncation; the counter and soft-cap guidance appear only above the limit, blocking submission until edited to fit. Unsubmitted drafts stay outside inference requests. All stages share a 120-second operation deadline; each stage also has a 45-second deadline and 15-second physical-attempt timeout. Large inputs use question batches of eight while preserving complete participant evidence and relevant canonical summaries. One oversized-batch fallback may split in half; an oversized child terminates without probing for the provider limit. Preserve the draft and offer retry on failure. The product's answer cap is not a guarantee that a long cumulative transcript fits the provider context; do not pressure-test Jev or silently discard participant evidence.
-
-Use credential-free fixtures for boundary and workflow checks. Paid pressure testing is excluded. Any future semantic evaluation must use a small reviewed suite with an explicit cost budget; the earlier maximum-context measurements do not create a requirement to repeat them.
-
-The optional local evaluation commands refuse to run without `--allow-paid --max-requests=N`, where N is 1–24 physical requests shared across the whole run, including batches and retries. A stage reserves its allowance before starting; failed calls retain that reservation when actual cost is unknown. Exhausting the budget stops the run and records partial evidence, rather than expanding the ceiling. These flags are operational safeguards, not substitutes for agreeing the examples and budget with the user.
-
-- Validate all responses against expected schemas.
-- Retry transient 429/529 failures with bounded backoff.
-- Reject stale responses after restart or superseding answers.
-- Preserve the participant's answer locally if inference fails.
-- Offer a calm retry state; do not fabricate a result.
-- Keep credentials server-side.
-- Add server-side cost, size, and rate limits without introducing a participant database.
-
-## Offline evaluation requirement
-
-Before publishing a rubric or prompt graph, test it on reviewed conversations spanning:
-
-- Doom, bloom, mixed, skeptical, and uncertain positions.
-- Novice through expert domain familiarity.
-- Short, verbose, technical, colloquial, and non-native-English writing.
-- Strong reasoning with extreme conclusions.
-- Weak reasoning with moderate conclusions.
-- Factual references used correctly, incorrectly, and ambiguously.
-- Equivalent paraphrases and irrelevant verbosity.
-- Relevant jokes/sarcasm and genuine uncertainty versus unrelated jokes, nonsense, insults without evidence, ambiguous replies, and navigation; repeated misses, successful recovery, and false non-answer classifications.
-
-Hold out part of the labeled set. Do not tune and report performance on the same examples.
-
-## Primary documentation for implementation
-
-Verify current API contracts when implementing: [API](https://docs.typesafe.ai/api), [JavaScript SDK](https://docs.typesafe.ai/sdk/javascript), [Choice](https://docs.typesafe.ai/primitives/choice), [Score](https://docs.typesafe.ai/primitives/score), [Noul](https://docs.typesafe.ai/primitives/noul), [confidence](https://docs.typesafe.ai/confidence), and [independent batching](https://docs.typesafe.ai/patterns/fan-out).
-
-Score criteria are ordered, self-contained descriptions, not bare labels. Normalize by the rubric's maximum index before combining differently sized scales. Choice/Score confidence reflects their distributions; Noul supplies a binary probability without separate confidence. API/model availability and immutable version pinning must be checked; storing a moving model alias alone cannot guarantee reproducibility.
+Verify current contracts from the [API](https://docs.typesafe.ai/api), [SDK](https://docs.typesafe.ai/sdk/javascript), [Choice](https://docs.typesafe.ai/primitives/choice), [Score](https://docs.typesafe.ai/primitives/score), [Noul](https://docs.typesafe.ai/primitives/noul), [shared state](https://docs.typesafe.ai/concepts/state) and [batching](https://docs.typesafe.ai/patterns/fan-out). Ordered Score levels must be self-contained; normalize by their maximum index before composition. Model/version pinning must be checked rather than assuming moving aliases are reproducible.

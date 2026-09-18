@@ -31,7 +31,7 @@ test('positive findings require exact evidence and the entire interpretation ran
   })
   expect(selectPresentation(state, [causal], bundle).findings).toEqual([])
 })
-test('resource ordering favors references actually discussed and diversifies authored purpose groups', () => {
+test('resources ignore legacy grounding and diversify authored purpose groups', () => {
   const bundle = loadBundle()
   const state = createAssessment('resources')
   state.referenceClaims.push({
@@ -56,10 +56,17 @@ test('resource ordering favors references actually discussed and diversifies aut
     evidenceIds: ['e']
   }))
   const resources = selectPresentation(state, components, bundle).resources
-  expect(resources[0]?.id).toBe('resource.misalignment-reporting')
-  expect(resources.map((r) => r.id)).not.toContain(
-    'resource.operating-conditions'
+  const withoutClaims = { ...state, referenceClaims: [] }
+  expect(resources).toEqual(
+    selectPresentation(withoutClaims, components, bundle).resources
   )
+  expect(
+    new Set(
+      resources.map(
+        (r) => bundle.resources.find((asset) => asset.id === r.id)!.purposeGroup
+      )
+    ).size
+  ).toBe(resources.length)
   expect(resources).toHaveLength(3)
   expect(
     resources.every(

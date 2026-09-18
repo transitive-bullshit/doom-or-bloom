@@ -10,7 +10,7 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://doom-or-bloom.com'),
   title: 'Doom or Bloom',
-  description: 'Map your AI worldview in three questions.',
+  description: 'Map your AI worldview, one question at a time.',
   twitter: { card: 'summary_large_image' }
 }
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -2,7 +2,6 @@ import { expect, test } from 'vitest'
 import { createAssessment } from '@/lib/assessment/state'
 import { loadBundle } from '@/lib/content/loader'
 import { projectionInput } from './projection-input'
-import { referencePolicy } from './reference-input'
 
 test('complete observations appear once and support links whole answers by ID', () => {
   const state = createAssessment('long-original-id')
@@ -38,7 +37,6 @@ test('complete observations appear once and support links whole answers by ID', 
     answerId: 'original-answer-11',
     vector: 'causal_clarity',
     status: 'stated',
-    referenceIds: [],
     claimTarget: null
   })
   for (const answer of state.answers)
@@ -48,39 +46,45 @@ test('complete observations appear once and support links whole answers by ID', 
   )
 })
 
-test('projection retains source identity, qualified dates and relationships without widening to the whole corpus', () => {
+test('legacy corpus links cannot enter current projection context', () => {
   const bundle = loadBundle()
-  const state = createAssessment('reference-metadata')
-  const selected = [
-    'event.openai-hugging-face-2026',
-    'report.metr-hugging-face-investigation-2026',
-    'event.anthropic-migration-conflict-demonstration-2026'
-  ]
+  const state = createAssessment('legacy-reference-context')
   state.evidence.push({
     id: 'source-evidence',
     answerId: 'source-answer',
     vector: 'grounded_understanding',
     status: 'stated',
     judgmentIds: [],
-    referenceIds: selected.slice(0, 2),
-    contextReferenceIds: selected.slice(2)
+    referenceIds: [bundle.references[0]!.id],
+    contextReferenceIds: [bundle.references[1]!.id]
+  })
+  state.unresolved.push({
+    id: 'legacy-reference',
+    vector: 'grounded_understanding',
+    evidenceIds: [],
+    kind: 'reference'
+  })
+  state.referenceClaims.push({
+    id: 'legacy-claim',
+    answerId: 'source-answer',
+    referenceId: bundle.references[0]!.id,
+    attribution: 'no',
+    fit: 'no',
+    uncertainty: 'no',
+    materiality: 'yes',
+    judgmentIds: []
   })
   const input = projectionInput(state, bundle)
-  expect(input.referenceContext).toHaveLength(3)
-  expect(input.referencePolicy).toBe(referencePolicy)
-  const event = input.referenceContext.find((r) => r.id === selected[0])!
-  const publication = input.referenceContext.find((r) => r.id === selected[1])!
-  const experiment = input.referenceContext.find((r) => r.id === selected[2])!
-  expect(event.kind).toBe('event')
-  expect(publication.kind).toBe('publication')
-  expect(event.date).toBe('2026-07')
-  expect(publication.date).toBe('2026-08-26')
-  expect(event.related).toContain(publication.id)
-  expect(experiment.date).toBe(
-    'Experiment date unknown; report published 2026-08-13'
-  )
-  for (const reference of input.referenceContext)
-    expect(reference.summary).toBe(
-      bundle.references.find((r) => r.id === reference.id)!.summary
-    )
+  expect(input).not.toHaveProperty('referenceContext')
+  expect(input).not.toHaveProperty('referenceClaims')
+  expect(input).not.toHaveProperty('referencePolicy')
+  expect(input.activeSupport[0]).not.toHaveProperty('referenceIds')
+  expect(input.unresolved).toEqual([])
+  for (const reference of bundle.references)
+    expect(JSON.stringify(input)).not.toContain(reference.summary)
+  expect(input.dimensionDefinitions.causal_clarity).toEqual({
+    label: 'Causal clarity',
+    meaning: bundle.rubric.dimensions.find((d) => d.id === 'causal_clarity')!
+      .meaning
+  })
 })

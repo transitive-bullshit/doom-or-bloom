@@ -1,6 +1,6 @@
 # Doom or Bloom
 
-_Map your AI worldview in three questions._
+_Map your AI worldview, one question at a time._
 
 Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectations about advanced AI and the reasoning they demonstrate in their answers. Its working domain is **doom-or-bloom.com**, purchased by Travis. Its fixed root prompt is: **“What do you think AI means for our future—and why?”** This glossary records the agreed product semantics; precise scoring rules remain to be authored and validated.
 
@@ -8,7 +8,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Participant**: The person answering the assessment about their own AI worldview. _Avoid_: Patient, subject, account
 
-**Assessment**: A single bounded sequence of participant answers and follow-up prompts culminating in a result. It normally asks 6–8 prompts and offers a provisional result after at least three substantive answers. A participant may continue or reopen the assessment from a disputed result, up to a lifetime hard cap of 12 prompts; warn at 10 and force the final result at 12. An unfinished assessment can be resumed; restarting creates a new assessment and assessment identifier. _Avoid_: Chat, session when referring to the assessment itself
+**Assessment**: A bounded sequence of participant answers and authored follow-ups culminating in a result, normally taking 6–8 prompts but offering a provisional result when evidence readiness supports it, potentially after one detailed reply. Participants can resume, continue or clarify within the lifetime prompt budget; restarting creates a new assessment and identifier. _Avoid_: Chat, session when referring to the assessment itself
 
 **Assessment identifier**: A random identifier used to connect the anonymous events of one assessment across visits. It contains no participant identity and rotates when the participant restarts. _Avoid_: User ID, account ID, anonymous person
 
@@ -26,7 +26,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Reference corpus**: The locally stored, versioned collection of scoped entities, actual events, and publications. Required-source coverage and balanced reviewed topical coverage take precedence over the original approximately 100/100/100 guide. Each entry is a simplified Markdown file with aliases, neutral context, source metadata, disputed interpretations, and review status; the runtime does not search the live web during an assessment. _Avoid_: Exhaustive encyclopedia, model-generated ground truth
 
-**Participant claim**: The proposition a participant draws from a reference entity, event, or other evidence. The assessment distinguishes identifying a reference from accurately characterizing it and from establishing that it supports the participant's conclusion. _Avoid_: Treating a citation or name-drop as the argument itself
+**Participant claim**: A proposition drawn from an observation, example, publication or other offered basis. The claim is distinct from the source and from the support that source may provide. _Avoid_: Treating a citation or name-drop as the argument itself
 
 **Groundedness**: The demonstrated connection between a participant's claim and identifiable evidence, including whether they preserve relevant uncertainty and distinguish observation from interpretation. Groundedness does not require specialist recall or agreement with the assessment's preferred sources. _Avoid_: News-following frequency, prestige of cited person
 
@@ -58,7 +58,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Coverage**: Which parts of the worldview and demonstrated reasoning have actually been elicited. Missing coverage is not evidence of poor reasoning. _Avoid_: Low score for an unanswered dimension
 
-**Readiness**: The assessment's determination that there is enough relevant evidence to offer a useful result. It depends on coverage and resolved interpretation, never on sophistication, agreement with the authors, or a high demonstrated-reasoning result. A participant may stop earlier and receive a visibly provisional result. _Avoid_: Probability that we understand the person
+**Evidence readiness**: An experimental summary of supported dimension coverage and interpretation confidence, used to offer a provisional result without a fixed reply-count minimum. It describes the evidence available for this assessment, separately from reasoning quality, participant conviction and forecast accuracy. _Avoid_: Probability that we understand the person, scientific confidence, quality score
 
 **Clarification**: An optional continuation initiated when a participant disputes an inferred claim or result component. It elicits natural-language correction and recomputes the evidence ledger and projections; it does not permit direct score editing and becomes unavailable at the 12-prompt cap. _Avoid_: Dragging a result to a preferred coordinate
 

@@ -59,6 +59,9 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
     /not event probabilities/
   )
   await fitsViewport(page)
+  await page
+    .locator('[data-slot="worldview-map"]')
+    .screenshot({ path: testInfo.outputPath('hero-map-mobile.png') })
   await page.screenshot({
     path: testInfo.outputPath('mobile-result.png'),
     fullPage: true
@@ -71,6 +74,9 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   await page.getByRole('button', { name: 'Debug on', exact: true }).click()
   await expect(page.locator('[data-slot="json-viewer"]')).toHaveCount(0)
   await page.setViewportSize({ width: 1365, height: 960 })
+  await page
+    .locator('[data-slot="worldview-map"]')
+    .screenshot({ path: testInfo.outputPath('hero-map-desktop.png') })
   await page.screenshot({
     path: testInfo.outputPath('desktop-result.png'),
     fullPage: true

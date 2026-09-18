@@ -43,7 +43,7 @@ export function ShareCard({ data }: { data?: CardData }) {
             ? data.provisional
               ? 'My provisional AI worldview map'
               : 'My AI worldview map'
-            : 'Map your AI worldview in three questions.'}
+            : 'Map your AI worldview, one question at a time.'}
         </div>
         <div style={{ fontSize: 16, color: '#646a71' }}>
           doom-or-bloom.com · Experimental

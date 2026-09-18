@@ -348,7 +348,7 @@ test('corrupt storage offers backup; unavailable storage permits ephemeral use',
   await expect(other.getByLabel('Your answer', { exact: true })).toBeEnabled()
   await ephemeral.close()
 })
-test('the twelfth prompt finalizes without issuing another', async ({
+test('the twelfth prompt finalizes insufficient evidence after a non-answer without issuing another', async ({
   page
 }) => {
   let state = createAssessment('browser-cap', 'fixture-v1')
@@ -370,7 +370,7 @@ test('the twelfth prompt finalizes without issuing another', async ({
   )
   await page.goto('/')
   await expect(page.getByText('Approaching the limit')).toBeVisible()
-  await submit(page, 'I do not know when, if ever.')
+  await submit(page, 'test')
   await expect(page.getByText('12-prompt cap reached')).toBeVisible()
   await expect(
     page.getByText('Insufficient evidence', { exact: true })
@@ -404,4 +404,51 @@ test('an uncertain transport retry reuses the same request and semantic attempt'
       ).length
     }, storageKey)
   ).toBe(1)
+})
+
+test('a well-covered first answer offers results while ordinary follow-ups remain the default', async ({
+  page
+}) => {
+  const requests: string[] = []
+  page.on('request', (request) => {
+    if (/typesafe\.ai|posthog/.test(request.url())) requests.push(request.url())
+  })
+  await page.goto('/')
+  await expect(
+    page.getByRole('meter', { name: 'Evidence readiness' })
+  ).toHaveAttribute('aria-valuenow', '0')
+  await expect(
+    page.getByRole('button', { name: 'View my result' })
+  ).toHaveCount(0)
+  // Fixture judgments represent comprehensive coverage; this does not test live semantics.
+  await submit(
+    page,
+    'My detailed expectations, mechanisms, uncertainties and counterarguments. '.repeat(
+      30
+    )
+  )
+  await expect(
+    page.getByRole('meter', { name: 'Evidence readiness' })
+  ).toHaveAttribute('aria-valuenow', '100')
+  await expect(
+    page.getByRole('button', { name: 'View my result' })
+  ).toBeEnabled()
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
+  const state = await page.evaluate(
+    (key) => JSON.parse(localStorage.getItem(key)!).assessment,
+    storageKey
+  )
+  expect(state.answers).toHaveLength(1)
+  expect(state.prompts).toHaveLength(2)
+  await page.getByRole('button', { name: 'View my result' }).click()
+  await expect(
+    page.getByRole('heading', { name: 'A map of your AI worldview' })
+  ).toBeVisible()
+  await expect(page.locator('[data-slot="worldview-map"]')).toContainText(
+    '45% expected benefits'
+  )
+  await expect(page.locator('[data-slot="worldview-map"]')).toContainText(
+    'not P(doom)'
+  )
+  expect(requests).toEqual([])
 })

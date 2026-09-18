@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import { evidenceReadiness } from '@/lib/assessment/readiness'
+import type { DimensionDefinition } from '@/lib/debug/json-help'
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
@@ -20,18 +22,20 @@ import { JsonViewer } from './json-viewer'
 
 const stagePurposes = {
   A: 'Interpret the current answer and check relevance before proceeding.',
-  B1: 'Identify which shortlisted references the participant actually invokes.',
-  B2: 'Check those references against their canonical source summaries.',
+  B1: 'Historical grounding stage (paused): identify which shortlisted references the participant actually invokes.',
+  B2: 'Historical grounding stage (paused): check those references against their canonical source summaries.',
   C: 'Judge the benefits of eligible authored follow-up questions. Code chooses the next question.',
   D: 'Assess result dimensions. Code calculates coordinates, ranges and findings.'
 } as const
 
 const StageView = memo(function StageView({
   stage,
-  fixture
+  fixture,
+  dimensions
 }: {
   stage: DebugStage
   fixture: boolean
+  dimensions: DimensionDefinition[]
 }) {
   const [open, setOpen] = useState(true)
   const exchanges = useMemo(
@@ -123,6 +127,8 @@ const StageView = memo(function StageView({
                       </h5>
                       <JsonViewer
                         value={exchange.body}
+                        dimensions={dimensions}
+                        questions={stage.questions}
                         label={`${stage.name} request ${exchange.attempt}`}
                       />
                     </div>
@@ -133,6 +139,8 @@ const StageView = memo(function StageView({
                       {exchange.response ? (
                         <JsonViewer
                           value={exchange.response}
+                          dimensions={dimensions}
+                          questions={stage.questions}
                           label={`${stage.name} response ${exchange.attempt}`}
                         />
                       ) : (
@@ -163,6 +171,8 @@ const StageView = memo(function StageView({
                   </p>
                   <JsonViewer
                     value={stageRequest}
+                    dimensions={dimensions}
+                    questions={stage.questions}
                     label={`${stage.name} stage input`}
                   />
                 </div>
@@ -174,6 +184,8 @@ const StageView = memo(function StageView({
                   </h4>
                   <JsonViewer
                     value={stageResponse}
+                    dimensions={dimensions}
+                    questions={stage.questions}
                     label={`${stage.name} stage response`}
                   />
                 </div>
@@ -192,7 +204,8 @@ export function DebugPanel({
   provider,
   operations,
   onSelectTrace,
-  storageNotice
+  storageNotice,
+  dimensions
 }: {
   trace?: DebugTrace
   assessment: Assessment
@@ -200,6 +213,7 @@ export function DebugPanel({
   operations: SavedDebugOperation[]
   onSelectTrace: (trace: DebugTrace) => void
   storageNotice: string
+  dimensions: DimensionDefinition[]
 }) {
   const [open, setOpen] = useState(false)
   const historyId = useId()
@@ -215,18 +229,14 @@ export function DebugPanel({
       },
       versions: assessment.versions,
       coverage: assessment.coverage,
+      familiarity: assessment.familiarity,
+      unresolved: assessment.unresolved,
+      result: assessment.result,
+      evidenceReadiness: evidenceReadiness(assessment),
       support: assessment.evidence,
       judgments: assessment.judgments
     }),
-    [
-      assessment.prompts.length,
-      assessment.answers.length,
-      assessment.recovery,
-      assessment.versions,
-      assessment.coverage,
-      assessment.evidence,
-      assessment.judgments
-    ]
+    [assessment]
   )
   return (
     <section className='mt-8 border-t pt-6'>
@@ -328,6 +338,7 @@ export function DebugPanel({
                         key={`${trace.requestId}:${index}`}
                         stage={stage}
                         fixture={traceProvider === 'fixture'}
+                        dimensions={dimensions}
                       />
                     ))}
                   </>
@@ -348,6 +359,7 @@ export function DebugPanel({
                   </p>
                   <JsonViewer
                     value={trace.decisions}
+                    dimensions={dimensions}
                     label='Local control-flow decisions JSON'
                   />
                 </section>
@@ -360,6 +372,7 @@ export function DebugPanel({
                 </p>
                 <JsonViewer
                   value={localState}
+                  dimensions={dimensions}
                   label='Saved assessment state JSON'
                 />
               </section>

@@ -1,6 +1,6 @@
 # Doom or Bloom — Design Handoff
 
-_Map your AI worldview in three questions._
+_Map your AI worldview, one question at a time._
 
 This package defines the product and assessment contract for a bounded, adaptive AI-worldview self-assessment. It is intentionally upstream of a repository-specific implementation plan.
 
@@ -19,7 +19,7 @@ This package defines the product and assessment contract for a bounded, adaptive
 
 - **Working name:** Doom or Bloom
 - **Domain:** doom-or-bloom.com (purchased by Travis)
-- **Subtitle:** Map your AI worldview in three questions.
+- **Subtitle:** Map your AI worldview, one question at a time.
 - **Root prompt:** What do you think AI means for our future—and why?
 
 ## Status
@@ -35,3 +35,5 @@ The [participant prompt audit](prompt-quality-review.md) records demo feedback, 
 The working name deliberately emphasizes the provocative Doom/Bloom contrast. This framing trade-off belongs in methodology documentation and evaluation; it must not become a forced binary classification.
 
 [Local debugging guide](local-debugging.md) covers persisted Jev exchanges, the development-only `/questions` and `/corpus` review tools, and versioned feedback stored in the project.
+
+Current local demo uses algorithm `0.4.0`: runtime corpus grounding is paused, dimension meanings are explicit, and evidence readiness replaces the three-answer minimum. One sufficiently covered answer may unlock a provisional result; the meter is an experimental coverage heuristic. Corpus assets/review gates remain offline, historical results/traces remain intact, and the map explains outlook, demonstrated reasoning and interpretation ranges. See [assessment readiness](ASSESSMENT.md#question-budget-and-readiness) and [current Jev workflow](TYPESAFE.md#current-local-workflow--algorithm-040).

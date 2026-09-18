@@ -27,7 +27,11 @@ export function createQuestions(templates: QuestionTemplates) {
     Object.fromEntries(
       rubric.dimensions.map((d) => [
         d.id,
-        authoredQuestion('dimension', { source, meaning: d.meaning }, d.levels)
+        authoredQuestion(
+          'dimension',
+          { source, meaning: `${d.label}: ${d.meaning}` },
+          d.levels
+        )
       ])
     )
   return {

@@ -20,7 +20,7 @@ const next = {
   sourceEvidenceIds: []
 }
 describe('bounded assessment', () => {
-  test('root is persisted once and substantive eligibility counts unique prompts', () => {
+  test('root is persisted once and reply count cannot establish readiness', () => {
     let state = createAssessment('a')
     for (let i = 0; i < 3; i++) {
       const text = "I don't know what will happen."
@@ -35,7 +35,7 @@ describe('bounded assessment', () => {
       })
       if (i < 2) state = issuePrompt(state, next)
     }
-    expect(eligible(state)).toBe(true)
+    expect(eligible(state)).toBe(false)
     expect(() => acceptAnswer(state, state.answers[0]!)).toThrow()
     expect(assessmentSchema.safeParse(state).success).toBe(true)
   })

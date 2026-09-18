@@ -4,7 +4,7 @@ Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom`)
 
 ## Jev exchanges
 
-Enable **Debug on** before submitting. Open **Jev / assessment debugging details** to inspect the selected operation. Requests are actual shared state plus that physical batch's questions; responses are validated typed outputs. Each stage explains its purpose. Local routing/projection decisions and the current saved assessment are separate views. Fixture exchanges are explicitly synthetic. Debugging does not expose hidden model reasoning.
+Enable **Debug on** before submitting. Open **Jev / assessment debugging details** to inspect the selected operation. Requests are actual shared state plus that physical batch's questions; responses are validated typed outputs. Current operations use A (interpret), C (route) and D (project on demand). Corpus grounding is paused; old B1/B2 exchanges remain labeled historical. Each stage explains its purpose. Local routing/projection decisions and the current saved assessment are separate views. Fixture exchanges are explicitly synthetic. Debugging does not expose hidden model reasoning.
 
 JSON trees have syntax colors, accessible expand/collapse controls, exact JSON copy and reset-folds. Depth 2+ starts folded. Jev `answers` records offer **Default**, **High first** and **Low first** order in the JSON header. Choice/Score answers use `confidence`; Noul answers use their `noul` probability on the same sorting scale. Default is initially selected; ties preserve original order and missing/non-finite values stay last. Sorting changes only presentation, preserving folds; **Copy JSON** still copies the recorded payload in its original order.
 
@@ -36,3 +36,9 @@ Cmd+Enter or Ctrl+Enter submits a nonempty answer through the same Continue guar
 Ordinary recovery requires two consecutive high-confidence non-answers (threshold 0.85). Usable or ambiguous replies reset the streak; navigation/failed inference do not advance it. Exact standalone `test`, then `test again` count as clear misses locally. Exact `show me paperclips` or `show paperclips` explicitly requests the interlude. Case, repeated whitespace and terminal sentence punctuation are normalized; meaningful answers mentioning tests or paperclip maximizers still require normal inference.
 
 These exact phrases make no Jev calls, contribute no scores and consume the same recovery submission budget. The interlude appears at most once per assessment, surviving refresh. It pauses the interview; dismissing only removes the visual effect. **Try again** uses a remaining submission, **Try a different question** consumes a prompt, and restart creates a fresh assessment. Reduced motion uses a static treatment. Once exhausted, a repeated explicit request cannot replenish attempts or replay the effect.
+
+## Meaning help and readiness
+
+Dotted JSON keys offer a short explanation on hover or keyboard focus; Escape dismisses it. Response judgments use their actual recorded request question; saved judgments use their stored question. Dimension IDs/classifications in assessment state use the authored meanings and local glossary. This is contextual help, not Jev reasoning or generated explanation. It adds no requests, alters no payload and is excluded from Copy JSON.
+
+The Evidence readiness meter summarizes existing presence confidence and coverage. Debug disclosure explains the draft 55% threshold and formula; state JSON exposes per-dimension contributions. It is unrelated to forecast correctness or a high reasoning score. A well-covered first answer can unlock results; answering multiple sparse questions does not guarantee readiness. No paid pressure testing is needed to exercise these paths with fixtures.

@@ -20,6 +20,12 @@
   --input: var(--border);
   --ring: oklch(0.55 0.05 140);
   --radius: 0.75rem;
+  --map-surface: oklch(0.21 0.022 265);
+  --map-text: oklch(0.97 0.005 100);
+  --map-muted: oklch(0.79 0.016 265);
+  --map-doom: oklch(0.76 0.14 36);
+  --map-bloom: oklch(0.82 0.14 165);
+  --map-grid: oklch(0.43 0.024 265);
   --json-key: oklch(0.43 0.13 250);
   --json-string: oklch(0.4 0.11 155);
   --json-number: oklch(0.46 0.12 55);
@@ -123,5 +129,35 @@
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0s !important;
+  }
+}
+
+.worldview-map {
+  background: var(--map-surface);
+  color: var(--map-text);
+}
+.worldview-map .map-muted {
+  color: var(--map-muted);
+}
+.worldview-map .map-stat {
+  background: color-mix(in oklab, var(--map-text) 7%, var(--map-surface));
+}
+.worldview-map .map-point {
+  background: var(--map-text);
+}
+.worldview-map .map-range,
+.worldview-map .map-divider {
+  border-color: color-mix(in oklab, var(--map-text) 35%, var(--map-surface));
+}
+
+@media (max-width: 639px) {
+  .worldview-map .map-axis-tick {
+    font-size: 24px;
+  }
+  .worldview-map .map-point-label {
+    font-size: 24px;
+  }
+  .worldview-map .map-pole {
+    font-size: 36px;
   }
 }

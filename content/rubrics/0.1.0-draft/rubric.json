@@ -23,7 +23,7 @@
     {
       "id": "capability_trajectory",
       "label": "Timeline & capability",
-      "meaning": "Anticipated transformative capability and the participant\u2019s own forecast horizon; not evaluator conviction.",
+      "meaning": "The participant\u2019s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator\u2019s confidence in interpreting it.",
       "levels": [
         "Transformative capability is not expected, or a low ceiling is explicitly anticipated.",
         "Transformative capability is expected only on a long or indefinite horizon.",
@@ -34,7 +34,7 @@
     {
       "id": "transition_dynamics",
       "label": "Transition dynamics",
-      "meaning": "Expected speed, diffusion, warning time, and AI-assisted improvement.",
+      "meaning": "How quickly AI-driven change unfolds once capabilities improve, including diffusion, warning time and AI-assisted AI research. This describes the expected transition, rather than a preference for speeding up or slowing down.",
       "levels": [
         "A gradual transition with substantial warning and broad diffusion is expected.",
         "Noticeable acceleration is expected but meaningful adaptation time remains.",
@@ -45,7 +45,7 @@
     {
       "id": "beneficial_potential",
       "label": "Expected upside",
-      "meaning": "Participant\u2019s expected positive impact, integrating magnitude, likelihood, distribution, horizon, and what they value; keep adverse impact separate.",
+      "meaning": "The positive impact the participant expects from AI, combining magnitude, likelihood, distribution, time horizon and what they value. Assess anticipated benefits separately from anticipated harms so a participant can expect both.",
       "levels": [
         "Little positive impact is expected even if advanced AI arrives.",
         "Limited or narrowly distributed gains are expected.",
@@ -56,7 +56,7 @@
     {
       "id": "risk_landscape",
       "label": "Expected harm",
-      "meaning": "Participant\u2019s expected adverse impact, integrating severity, likelihood, pathways, horizon, and uncertainty; not a P(doom) estimate.",
+      "meaning": "The adverse impact the participant expects, combining severity, likelihood, causal pathways and time horizon across misuse, loss of control and systemic disruption. This is expected harm, not a numerical probability of catastrophe.",
       "levels": [
         "Little material adverse impact is expected.",
         "Manageable or localized harms are expected.",
@@ -67,7 +67,7 @@
     {
       "id": "technical_controllability",
       "label": "Controllability",
-      "meaning": "Expected feasibility of keeping powerful AI systems within meaningful safeguards.",
+      "meaning": "Whether the participant expects technical methods to keep powerful AI within meaningful safeguards, including alignment, monitoring, containment and defense. Evaluate expected feasibility and its conditions rather than the participant\u2019s preferred policy.",
       "levels": [
         "Reliable technical control is expected to be infeasible.",
         "Control is expected to be very difficult and unreliable.",
@@ -78,7 +78,7 @@
     {
       "id": "institutional_competence",
       "label": "Institutional competence",
-      "meaning": "Expected institutional ability to manage incentives and adapt; separate from preferred policy.",
+      "meaning": "Whether labs, governments, markets and coordination arrangements are expected to manage incentives and adapt in time. This concerns expected institutional performance, separately from which policies the participant supports.",
       "levels": [
         "Institutions are expected to fail to respond effectively.",
         "Institutions are expected to respond too weakly or too late in many cases.",
@@ -89,7 +89,7 @@
     {
       "id": "human_agency",
       "label": "Human continuity",
-      "meaning": "Expected outcome for human agency and continuity, evaluated against the participant\u2019s expressed values; integration/successor futures are not automatically bad.",
+      "meaning": "The future of agency and continuity that the participant values, including control, integration or successor futures. Interpret preservation or loss relative to their expressed values; posthuman change is not automatically bad.",
       "levels": [
         "The expected future undermines or eliminates the forms of agency/continuity the participant explicitly values.",
         "Significant valued agency or continuity is expected to be lost.",
@@ -100,7 +100,7 @@
     {
       "id": "action_posture",
       "label": "Action posture",
-      "meaning": "Preferred development pace with safeguards; this dimension contributes no map weight.",
+      "meaning": "The participant\u2019s preferred development pace, access, safeguards and coordination, including the trade-offs they accept. This records a policy preference and contributes no weight to Doom\u2013Bloom placement.",
       "levels": [
         "A broad pause or substantial slowing is preferred.",
         "Restrained development and strong prior safeguards are preferred.",
@@ -111,7 +111,7 @@
     {
       "id": "causal_clarity",
       "label": "Causal clarity",
-      "meaning": "Visible mechanisms linking causes to outcomes.",
+      "meaning": "How clearly the participant connects causes to expected outcomes through mechanisms, dependencies or failure points. Assess the explanation they supply, without rewarding length, jargon or agreement with a particular outlook.",
       "levels": [
         "An outcome is asserted without a supporting mechanism.",
         "A causal factor is named but its connection to the outcome is not explained.",
@@ -122,7 +122,7 @@
     {
       "id": "scope_discipline",
       "label": "Scope discipline",
-      "meaning": "Distinguishing horizons, actors, assumptions, and meanings.",
+      "meaning": "How clearly the participant distinguishes actors, horizons, conditions, assumptions and meanings when making claims. Different scopes or conditional claims should not be mistaken for inconsistency.",
       "levels": [
         "Materially different scopes are conflated without qualification.",
         "Some scope is specified but material boundaries remain blurred.",
@@ -133,7 +133,7 @@
     {
       "id": "appropriate_uncertainty",
       "label": "Appropriate uncertainty",
-      "meaning": "Confidence proportionate to the evidence offered; uncertainty alone is not a quality bonus.",
+      "meaning": "Whether the participant\u2019s conviction matches the basis they offer, with relevant unknowns and limitations preserved. Expressing uncertainty alone earns no quality bonus, and evaluator confidence is a separate signal.",
       "levels": [
         "Certainty is asserted despite explicitly limited or conflicting evidence.",
         "Uncertainty is acknowledged but the strength of the claim is poorly matched to its support.",
@@ -144,7 +144,7 @@
     {
       "id": "internal_coherence",
       "label": "Internal coherence",
-      "meaning": "Whether related positions fit after accounting for scopes, assumptions, and revisions.",
+      "meaning": "Whether related positions fit together under the same scope and assumptions, accounting for explicit revisions. Assess unresolved incompatibility in the supplied account rather than disagreement with the evaluator.",
       "levels": [
         "Related statements remain incompatible under the same stated assumptions after clarification.",
         "A material incompatibility remains possible but partially explained.",
@@ -155,7 +155,7 @@
     {
       "id": "counterargument_engagement",
       "label": "Counterargument engagement",
-      "meaning": "Representing alternatives without requiring ideological moderation.",
+      "meaning": "How fairly the participant represents and addresses serious alternatives to their own account. A coherent extreme position can engage alternatives well; moderation or mentioning both sides is not itself evidence of quality.",
       "levels": [
         "An alternative is dismissed without engaging its actual claim.",
         "An alternative is acknowledged but its strongest relevant basis is omitted.",
@@ -166,7 +166,7 @@
     {
       "id": "updateability",
       "label": "Updateability",
-      "meaning": "Conditions that could change a consequential belief.",
+      "meaning": "Whether the participant identifies concrete evidence or developments that could change a consequential belief, and how. Missing discussion is unassessed rather than proof of closed-mindedness.",
       "levels": [
         "The participant explicitly rules out revising the belief regardless of evidence.",
         "A vague update condition is given without specifying relevant evidence.",
@@ -177,12 +177,12 @@
     {
       "id": "grounded_understanding",
       "label": "Grounded understanding",
-      "meaning": "Connection of material claims to identifiable evidence, accurate attribution, and uncertainty; plain-language observations can qualify.",
+      "meaning": "How the participant connects claims to the observations, examples or evidence they offer and distinguishes observation from interpretation. Assess that connection and its stated limitations using their account only; do not independently verify sources or treat missing citations as poor reasoning.",
       "levels": [
-        "The claim relies on a material factual misunderstanding established by the supplied evidence.",
-        "Identifiable evidence is offered but its fit or attribution is materially weak.",
-        "Evidence is accurately connected to a claim with reasonable limits.",
-        "Observation, interpretation, and uncertainty are distinguished, including material source limitations."
+        "An explicitly supplied observation materially contradicts the claim it is used to support.",
+        "An offered observation or example has a weak or unexplained connection to the claim.",
+        "A clear connection links the offered basis to the claim, with relevant limitations.",
+        "The account distinguishes observation, interpretation and uncertainty, explaining the limits of the offered basis."
       ]
     }
   ],

@@ -3,49 +3,23 @@ import { loadBundle } from '@/lib/content/loader'
 import { assessmentSchema, limits } from '@/lib/assessment/schema'
 import { createAssessment, currentPrompt } from '@/lib/assessment/state'
 import { runAssessment } from './engine'
-import { createFixtureProvider, fixtureAnswer } from './provider'
+import { createFixtureProvider } from './provider'
 import type { Provider } from './provider'
 
-test('eight answered prompts preserve the full transcript and bound reference grounding', async () => {
+test('eight answers retain the complete transcript without corpus inference', async () => {
   const bundle = loadBundle()
-  const references = bundle.references.filter(
-    (reference) =>
-      reference.kind === 'publication' && reference.id.endsWith('-2026')
-  )
-  expect(references.length).toBeGreaterThanOrEqual(17)
-  const fixture = createFixtureProvider()
-  let mentioned = new Set<string>()
-  const provider: Provider = {
-    kind: 'fixture',
-    evaluate: async (...args) => {
-      const result = await fixture.evaluate(...args)
-      const questions = args[1]
-      for (const [id, question] of Object.entries(questions))
-        if (question.type === 'choice' && 'mentioned' in question.criteria)
-          result.answers[id] = fixtureAnswer(
-            question,
-            mentioned.has(id) ? 'mentioned' : 'none'
-          )
-      return result
-    }
-  }
-  let state = createAssessment('eight-reference-path')
-  const groundedIds = new Set<string>()
+  const provider = createFixtureProvider()
+  let state = createAssessment('participant-only-path')
   for (let i = 0; i < 8; i++) {
     const prompt = currentPrompt(state)
-    expect(prompt.ordinal).toBe(i + 1)
-    const invoked = references.slice(i * 2, i * 2 + 2)
-    if (i === 0) invoked.push(references[16]!)
-    mentioned = new Set(invoked.map((reference) => reference.id))
+    const reference = bundle.references[i]!
     const text =
-      `Answer ${i + 1}: I am weighing ${invoked.map((reference) => reference.aliases[0]).join('; ')}.\n` +
-      `This is my distinct raw answer ${i + 1}, with uncertainty about transfer to deployment.\n`.repeat(
-        12
-      ) +
+      `Answer ${i + 1}: I am considering ${reference.aliases[0]}.\n` +
+      `Distinct original reasoning ${i + 1}. `.repeat(120) +
       `Complete final sentence ${i + 1}.`
     const result = await runAssessment(
       {
-        requestId: `eight-reference-${i}`,
+        requestId: `participant-only-${i}`,
         assessment: state,
         operation: { type: 'answer', text },
         debug: true
@@ -55,84 +29,34 @@ test('eight answered prompts preserve the full transcript and bound reference gr
       true
     )
     state = result.assessment
-    const answer = state.answers.at(-1)!
-    expect(answer.text).toBe(text)
-    expect(answer.promptText).toBe(prompt.text)
-    const identity = result.debug!.stages.find(
-      (stage) => stage.name === 'B1: identify references'
-    )!
-    const identityCandidates = (
-      identity.state as {
-        candidates: {
-          id: string
-          kind: string
-          date: string
-          related: string[]
-        }[]
-      }
-    ).candidates
-    expect(identityCandidates.length).toBeLessThanOrEqual(
-      limits.referenceCandidates
+    expect(state.answers.at(-1)).toMatchObject({
+      text,
+      promptText: prompt.text
+    })
+    expect(result.debug!.stages.map((stage) => stage.name)).toEqual([
+      'A: interpret',
+      'C: route'
+    ])
+    expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(20)
+    expect(state.referenceClaims).toEqual([])
+    expect(
+      state.evidence.every((entry) => entry.referenceIds.length === 0)
+    ).toBe(true)
+    expect(state.unresolved.every((item) => item.kind !== 'reference')).toBe(
+      true
     )
-    for (const candidate of identityCandidates) {
-      const reference = bundle.references.find((r) => r.id === candidate.id)!
-      expect(candidate.kind).toBe(reference.kind)
-      expect(candidate.date).toBe(reference.date)
-      expect(candidate.related).toEqual(reference.related)
-      expect(candidate).not.toHaveProperty('summary')
-    }
-    const grounding = result.debug!.stages.find(
-      (stage) => stage.name === 'B2: grounded claims'
-    )!
-    expect(grounding).toBeDefined()
-    const summaries = (
-      grounding.state as {
-        canonicalSummaries: { id: string; summary: string }[]
-      }
-    ).canonicalSummaries
-    expect(summaries).toHaveLength(limits.resolvedReferences)
-    const claims = state.referenceClaims.filter(
-      (claim) => claim.answerId === answer.id
-    )
-    expect(claims.map((claim) => claim.referenceId)).toEqual(
-      summaries.map((summary) => summary.id)
-    )
-    for (const summary of summaries) {
-      expect(mentioned.has(summary.id)).toBe(true)
-      const reference = bundle.references.find(
-        (reference) => reference.id === summary.id
-      )!
-      expect(summary).toEqual({
-        id: reference.id,
-        title: reference.title,
-        kind: reference.kind,
-        date: reference.date,
-        related: reference.related,
-        summary: reference.summary
-      })
-      groundedIds.add(summary.id)
-    }
-    expect(state.unresolved).toContainEqual(
-      expect.objectContaining({
-        id: `${state.answers[0]!.id}:reference`,
-        kind: 'reference'
-      })
-    )
-    for (const stage of result.debug!.stages)
+    for (const stage of result.debug!.stages) {
       expect(Object.keys(stage.questions).length).toBeLessThanOrEqual(
         limits.questions
       )
-    expect(
-      result.debug!.stages.reduce((sum, stage) => sum + stage.attempts, 0)
-    ).toBeLessThanOrEqual(limits.providerAttempts)
+      for (const item of bundle.references)
+        expect(JSON.stringify(stage.state)).not.toContain(item.summary)
+    }
     expect(assessmentSchema.safeParse(state).success).toBe(true)
   }
-  expect(state.answers).toHaveLength(8)
-  expect(state.referenceClaims).toHaveLength(16)
-  expect(groundedIds.size).toBe(16)
   const result = await runAssessment(
     {
-      requestId: 'eight-reference-result',
+      requestId: 'participant-only-project',
       assessment: state,
       operation: { type: 'project' },
       debug: true
@@ -141,10 +65,8 @@ test('eight answered prompts preserve the full transcript and bound reference gr
     bundle,
     true
   )
-  const projection = result.debug!.stages.find((stage) =>
-    stage.name.startsWith('D:')
-  )!
-  expect(projection).toBeDefined()
+  const projection = result.debug!.stages[0]!
+  expect(projection.name).toBe('D: projection')
   expect(projection.state).toEqual(
     expect.objectContaining({
       completeParticipantEvidence: state.answers.map((answer) => ({
@@ -152,23 +74,12 @@ test('eight answered prompts preserve the full transcript and bound reference gr
         prompt: answer.promptText,
         answer: answer.text,
         correctionTarget: null
-      })),
-      referenceContext: bundle.references
-        .filter((reference) => groundedIds.has(reference.id))
-        .map((reference) => ({
-          id: reference.id,
-          title: reference.title,
-          kind: reference.kind,
-          date: reference.date,
-          related: reference.related,
-          summary: reference.summary
-        }))
+      }))
     })
   )
+  expect(projection.state).not.toHaveProperty('referenceContext')
+  expect(result.assessment.result?.sources).toEqual([])
   expect(result.assessment.result?.insufficient).toBe(false)
-  expect(result.assessment.result?.evidenceRevision).toBe(
-    state.evidenceRevision
-  )
 })
 
 test('twelve sequential usable answers force a final result and stop further inference', async () => {

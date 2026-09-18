@@ -1,6 +1,6 @@
 # Doom or Bloom
 
-A local, adaptive assessment of AI worldviews and demonstrated reasoning. A scrollable question-and-answer thread with one active authored question; results become available after three substantive answers. Jev supplies narrow typed judgments, and application code owns routing, recovery and projections.
+A local, adaptive assessment of AI worldviews and demonstrated reasoning. A scrollable question-and-answer thread with one active authored question; provisional results become available when supported coverage is sufficient, potentially after one detailed answer. Jev supplies narrow typed judgments, and application code owns routing, recovery and projections.
 
 Implementation is in progress. New assessments use 138 references and 14 reading suggestions in a clearly labeled local draft release. All 111 currently mapped required URLs and their 117 mapped snapshot identities are represented; three required originals remain unavailable for a substantive snapshot. Human review, the full required corpus and held-out evaluation are still required. Saved assessments on either earlier release retain their 42- or 135-reference corpus until restart. See [execution status](docs/mvp-implementation-plan.md) and the [project handoff](docs/README.md).
 
