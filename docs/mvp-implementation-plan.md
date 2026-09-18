@@ -781,3 +781,10 @@ Human review of persona scripts/semantic expectations remains open; these publis
 
 - [x] Tighten forecast assessability for technical control and capability arrival timing using the actual saved participant answers. Complete two ten-transcript live projection replays; record the unsuccessful intermediate timing result as well as the corrected result in the reflection.
 - Routing premise/redundancy fixes and fresh adaptive verification remain outstanding; the overall improvement goal remains active.
+
+### 2026-09-19 — Routing relevance and request-size regression / Codex
+
+- [x] Tighten routing premises, redundancy and distinct utility criteria; verify two exact saved failure states with live Jev.
+- [x] Diagnose an intermediate live routing timeout alongside excessive batching caused by repeated guidance. Share detailed policy once and retain concise per-question reminders; add an ordinary-interview physical-request regression through mocked SDK transport.
+- [x] Complete a fresh ten-persona result-action suite without failed operations (121 Jev, 50 OpenAI requests), with all forty routing stages using one request. Verify 140 tests and static/content checks; retain immutable failure and success artifacts.
+- The reflection records remaining scope wording, gradual-transition correction, sparse-outlook and conditional-forecast fidelity issues. Continue the improvement goal.

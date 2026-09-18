@@ -58,7 +58,7 @@
     },
     "route_coverage": {
       "type": "score",
-      "instructions": "How useful would asking candidate {{promptId}} be for eliciting consequential missing coverage? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality.",
+      "instructions": "How useful would asking candidate {{promptId}} be for eliciting consequential missing coverage? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality. Already-answered or inapplicable questions have zero gain.",
       "criteria": [
         "No relevant gain",
         "Small relevant gain",
@@ -68,7 +68,7 @@
     },
     "route_ambiguity": {
       "type": "score",
-      "instructions": "How useful would asking candidate {{promptId}} be for resolving a material stated ambiguity? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality.",
+      "instructions": "How useful would asking candidate {{promptId}} be for resolving a material stated ambiguity? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality. No ambiguity in an actual statement means zero gain; missing information alone is not ambiguity.",
       "criteria": [
         "No relevant gain",
         "Small relevant gain",
@@ -78,7 +78,7 @@
     },
     "route_tension": {
       "type": "score",
-      "instructions": "How useful would asking candidate {{promptId}} be for investigating a consequential apparent tension without assuming contradiction? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality.",
+      "instructions": "How useful would asking candidate {{promptId}} be for investigating a consequential apparent tension without assuming contradiction? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality. No actual incompatibility means zero gain; risks, trade-offs and unknowns alone are not tensions.",
       "criteria": [
         "No relevant gain",
         "Small relevant gain",
@@ -88,7 +88,7 @@
     },
     "route_projection": {
       "type": "score",
-      "instructions": "How useful would asking candidate {{promptId}} be for reducing uncertainty in expected impact or demonstrated reasoning? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality.",
+      "instructions": "How useful would asking candidate {{promptId}} be for reducing uncertainty in expected impact or demonstrated reasoning? Judge this independently over the supplied participant evidence and candidate. A missing risk/upside is not automatically consequential. Respect the shared questionPolicy. Resolve candidate target IDs through dimensionDefinitions and coverage labels through coverageDefinitions; coverage is not quality. Already-answered or inapplicable questions have zero gain.",
       "criteria": [
         "No relevant gain",
         "Small relevant gain",

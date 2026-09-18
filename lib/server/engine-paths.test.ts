@@ -8,6 +8,48 @@ import type { Provider } from './provider'
 import { createLiveProvider } from './live-provider'
 import type { Question } from '@/lib/assessment/schema'
 
+test('ordinary five-answer interviews do not trigger large-history batching', async () => {
+  const bundle = loadBundle()
+  const fixture = createFixtureProvider()
+  let state = createAssessment('ordinary-request-size')
+  const text =
+    'I expect useful tools, but reliability and oversight matter. '.repeat(15)
+  vi.stubEnv('TYPESAFE_API_KEY', 'test-only')
+  vi.stubGlobal('fetch', async (_url: unknown, init: RequestInit) => {
+    if (typeof init.body !== 'string') throw new Error('Expected JSON request')
+    const body = JSON.parse(init.body) as {
+      model: string
+      state: unknown
+      questions: Record<string, Question>
+    }
+    const response = await fixture.evaluate(body.state, body.questions)
+    return Response.json({ ...response, model: body.model })
+  })
+  try {
+    for (let i = 0; i < 5; i++) {
+      const result = await runAssessment(
+        {
+          assessment: state,
+          requestId: `ordinary-${i}`,
+          debug: true,
+          operation: { type: 'answer', text }
+        },
+        createLiveProvider(state.versions.model),
+        bundle,
+        true
+      )
+      state = result.assessment
+      const route = result.debug!.stages.find((s) => s.name === 'C: route')!
+      expect(route).toBeDefined()
+      expect(route.attempts).toBe(1)
+      expect(JSON.stringify(route.state)).toContain(text)
+    }
+  } finally {
+    vi.unstubAllGlobals()
+    vi.unstubAllEnvs()
+  }
+})
+
 test('long multibyte history with many unresolved dimensions fits the physical request budget', async () => {
   const bundle = loadBundle()
   const fixture = createFixtureProvider()
