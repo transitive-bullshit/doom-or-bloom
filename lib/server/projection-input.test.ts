@@ -82,9 +82,9 @@ test('legacy corpus links cannot enter current projection context', () => {
   expect(input.unresolved).toEqual([])
   for (const reference of bundle.references)
     expect(JSON.stringify(input)).not.toContain(reference.summary)
-  expect(input.dimensionDefinitions.causal_clarity).toEqual({
-    label: 'Causal clarity',
-    meaning: bundle.rubric.dimensions.find((d) => d.id === 'causal_clarity')!
-      .meaning
-  })
+  for (const dimension of bundle.rubric.dimensions)
+    expect(input.dimensionDefinitions[dimension.id]).toEqual({
+      label: dimension.label,
+      meaning: dimension.meaning
+    })
 })

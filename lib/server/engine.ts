@@ -422,7 +422,7 @@ export async function runAssessment(
       const questions: StageQuestions = {}
       for (const dimension of bundle.rubric.dimensions) {
         questions[`${dimension.id}:status`] = statusQuestion(
-          `${dimension.label}: ${dimension.meaning}`,
+          `${dimension.label}: use dimensionDefinitions.${dimension.id}.meaning`,
           'completeParticipantEvidence'
         )
         questions[`${dimension.id}:score`] = scores[dimension.id]!

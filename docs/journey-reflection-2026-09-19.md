@@ -126,3 +126,21 @@ Fresh live action suite `1789760670557-3a4db783-1c99-4d31-9d91-714ef155e7c3` com
 Remaining concrete failures: the labor participant explicitly expects bargaining-power loss and workplace harms, yet the final ordinary-harm component becomes unplaced after they separately express uncertainty about catastrophe. Keep ordinary-harm scope distinct from catastrophe in position assessability, not only in correction provenance. The alarmist's unlikely favorable branch still yields an expected-substantial-benefits claim; conditional positive scenarios must not substitute for adopted baseline expectations. These are unresolved semantic issues, so the overall goal remains active.
 
 Verification: all 143 unit tests and full static/content checks passed. Three isolated browser scenarios cover ordinary ranges, both unplaced axes, and an unplaced outlook with placed reasoning on desktop/mobile; inference calls were blocked. Inspected the partial-outlook mobile screenshot. The participant's active session was not changed.
+
+## Ordinary harms and unlikely upside
+
+The harm definition now explicitly preserves expected non-catastrophic harms when the participant is uncertain about catastrophe. The benefit definition distinguishes adopted expected gains from the size of an attractive but explicitly unlikely branch. These are judgments about actual answers, not persona target scores.
+
+Fixed-transcript live projection replay of suite `1789760670557-3a4db783-1c99-4d31-9d91-714ef155e7c3` placed the labor participant's expected workplace harm while keeping catastrophe unknown. It left the alarmist's positive-impact component unplaced instead of claiming substantial expected benefits from the branch they said was unlikely. Authored positive expectations in the builder, abundance and dogmatic transcripts remained placed; undecided and worried participants stayed unplaced overall.
+
+The first expanded definitions caused excessive projection batching (`1789760988036-ea15ed94-a135-4f89-aae6-95a2d6a4d50d`, 30 requests). An attempted compact capability definition reduced requests (`1789761042034-9fa0f143-49f9-442b-b2d6-b217e07b9586`, ten) but failed the earlier omitted-date regression (`1789761099753-e68c817b-4f8f-4abe-9aa9-bb15d99f3ac3`): a decades claim reappeared. That compression was reverted. Final projection presence questions reference their full meaning already present in shared `dimensionDefinitions`, while score/position instructions retain their full definitions. The test now verifies every shared definition, and the ordinary SDK request-count regression passes.
+
+Final-code replays under `eval/runs/projection-review/`:
+
+- `1789761155987-28a2c26c-53dc-448a-9f22-fe8df1c2d6c2`: omitted-date case correctly unplaced, one request.
+- `1789761168202-0013cfb3-81c7-4785-8e36-1b665f9ba1e9`: ten original transcripts, ten requests, $0.01019; both benefit/harm fixes retained.
+- `1789761288996-67803d5b-242a-46c0-aea2-9089813fe5c4`: ten newly generated transcripts, ten requests, $0.01016; ordinary labor harm and unknown catastrophe remain separate, and the explicitly unlikely upside remains unplaced.
+
+The new adaptive suite `1789761092345-a7549dbf-213e-4807-9c89-c0adfe5e8e9b` used the intermediate compact definition, so it is not a final-code adaptive verification. It completed all ten personas and result actions without failures (120 Jev, 50 OpenAI requests, $0.15226, zero outstanding reservation). Its complete transcripts were subsequently reviewed and reprojected with final code as listed above. Do not conflate that projection verification with regenerating its routes/answers under final code.
+
+Remaining: the labor participant still received `control.test` followed by `control.general`, repeating recourse requirements; their distinct novelty groups mean the existing repetition penalty does not apply. More broadly, explicit overall pessimism with unestablished positive-impact magnitude now produces an unplaced overall coordinate; retain the risk interpretation prominently so uncertainty in the aggregate does not conceal the expressed concern. Ordinary-harm and action summaries remain missing from the main fingerprint, and findings still need specificity review. Final-code adaptive verification and these experience checks remain open. All 143 tests, static/content checks and synthetic baselines pass.
