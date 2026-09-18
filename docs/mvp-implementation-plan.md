@@ -823,3 +823,12 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Add conservative, evidence-gated actionable feedback for explicit refusal to revise; exclude missing evidence, uncertain ranges and unresolved interpretations.
 - [x] Reapply presentation to the ten actual live results without new inference; inspect the intentional synthetic findings-only changes and verify 145 tests plus static/content checks.
 - Completion audit reopens the original first-batch failed-operation envelope/resume requirement: stage/category diagnostics and saved pending text are only partial implementation. Complete and test recovery before marking the overall goal achieved.
+
+### 2026-09-19 — Recovery, resource relevance and completion audit / Codex
+
+- [x] Save safe failed-operation checkpoints and physical diagnostics; explicitly retry the saved operation under a fresh bound without replacing participant replies or duplicating acceptance. Preserve the original persona and prior result. Expose recovery details in the inspector.
+- [x] Recommend reading for evidenced but unplaced topics, with exploration questions and topic/purpose diversity. Review all ten saved live outcomes without new inference.
+- [x] Audit remaining familiarity, tension and non-answer gates; retain conservative single-category decisions where no observed failure justifies changing them.
+- [x] Complete ten live result-action journeys without evaluation failures and all six isolated browser checks. Review actual generated text against claims.
+- [x] Correct a new values-relative agency error: welcoming automation does not imply loss of valued agency. Verify with ten live fixed-transcript projections.
+- Completion remains open: verify revised definitions adaptively and inspect modal transition/action language flagged by the newest transcript review. See `journey-improvement-audit-2026-09-19.md`.
