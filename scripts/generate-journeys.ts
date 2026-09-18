@@ -5,21 +5,32 @@ import { runJourneySuite, withoutTraces } from '../lib/journeys/runner'
 import { projectJourneyStore } from '../lib/journeys/store'
 import { compareJourneys, suiteSchema } from '../lib/journeys/schema'
 import { personas } from '../lib/journeys/catalog'
-import { runLiveJourneys } from '../lib/journeys/live'
+import { runLiveJourneys, resumeLiveJourney } from '../lib/journeys/live'
 
 const args = process.argv.slice(2)
 const allowed =
-  /^(--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--check|--write-baseline|--exercise-results)$/
+  /^(--resume=[0-9]{13}-[a-f0-9-]{36}|--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--check|--write-baseline|--exercise-results)$/
 if (
   args.some((arg) => !allowed.test(arg)) ||
   new Set(args.map((a) => a.split('=')[0])).size !== args.length
 )
   throw new Error('Unknown or repeated journey option')
 const personaId = args.find((a) => a.startsWith('--persona='))?.split('=')[1]
+const resumeId = args.find((a) => a.startsWith('--resume='))?.split('=')[1]
 const turns = Number(
   args.find((a) => a.startsWith('--turns='))?.split('=')[1] ?? 5
 )
 const live = args.includes('--live')
+if (
+  resumeId &&
+  (!live ||
+    !personaId ||
+    args.includes('--exercise-results') ||
+    args.some((a) => a.startsWith('--turns=')))
+)
+  throw new Error(
+    'Resume requires --live and --persona; it resumes exactly the saved operation'
+  )
 const exerciseResults = args.includes('--exercise-results')
 if (exerciseResults && (!live || turns < 3))
   throw new Error(
@@ -54,6 +65,24 @@ async function main() {
     if (existsSync('.env.local')) process.loadEnvFile('.env.local')
     const maxRequestsArg = args.find((a) => a.startsWith('--max-requests='))
     const maxCostArg = args.find((a) => a.startsWith('--max-cost='))
+    if (resumeId) {
+      const suite = await resumeLiveJourney({
+        runId: resumeId,
+        personaId: personaId!,
+        maxRequests: maxRequestsArg
+          ? Number(maxRequestsArg.split('=')[1])
+          : undefined,
+        maxCost: maxCostArg ? Number(maxCostArg.split('=')[1]) : undefined
+      })
+      console.log(
+        `Saved resumed operation as ${suite.id}; ${suite.journeys[0]!.stopped}`
+      )
+      console.log(
+        JSON.stringify({ requestBudget: suite.requestBudget, cost: suite.cost })
+      )
+      if (suite.journeys.some((j) => j.error)) process.exitCode = 1
+      return
+    }
     const suite = await runLiveJourneys({
       personaId,
       turns,

@@ -12,6 +12,7 @@ import type {
   ModelAnswer,
   Question
 } from '@/lib/assessment/schema'
+import { EvaluationFailure } from './provider'
 import type { Evaluation, Provider } from './provider'
 
 export function validateEvaluation(
@@ -192,8 +193,16 @@ export function createLiveProvider(model: string): Provider {
           } else throw err
         }
       }
-      for (let offset = 0; offset < entries.length; offset += batchSize)
-        await evaluateBatch(entries.slice(offset, offset + batchSize))
+      try {
+        for (let offset = 0; offset < entries.length; offset += batchSize)
+          await evaluateBatch(entries.slice(offset, offset + batchSize))
+      } catch (err) {
+        throw new EvaluationFailure(
+          err,
+          attempts,
+          captureDebug ? requests : undefined
+        )
+      }
       const evaluation: Evaluation = {
         model,
         answers: Object.assign({}, ...results.map((result) => result.answers)),

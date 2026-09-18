@@ -10,6 +10,24 @@ export type Evaluation = {
   attempts: number
   requests?: DebugRequest[]
 }
+// Carries only typed diagnostics; the original error remains transient and is never serialized.
+export class EvaluationFailure extends Error {
+  readonly status?: number
+  constructor(
+    cause: unknown,
+    readonly attempts: number,
+    readonly requests?: DebugRequest[]
+  ) {
+    super('Evaluation failed', { cause })
+    if (
+      cause instanceof Error &&
+      'status' in cause &&
+      typeof cause.status === 'number'
+    )
+      this.status = cause.status
+  }
+}
+
 export interface Provider {
   kind: 'live' | 'fixture'
   evaluate(

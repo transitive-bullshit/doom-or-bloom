@@ -1,5 +1,7 @@
 import { z } from 'zod'
 import {
+  assessmentSchema,
+  operationSchema,
   componentSchema,
   resultSchema,
   vectorSchema,
@@ -151,11 +153,28 @@ export const journeyStepSchema = z.strictObject({
   ),
   trace: traceSchema.optional()
 })
+export const failedOperationSchema = z.strictObject({
+  requestId: z.string(),
+  assessment: assessmentSchema,
+  operation: operationSchema,
+  // Zod exposes object fields through its shape API.
+  // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
+  completedStages: traceSchema.shape.stages,
+  stage: z.enum(['interpret', 'route', 'project', 'operation']),
+  elapsedMs: z.number().nonnegative(),
+  error: z.string(),
+  attempts: z.number().int().nonnegative().nullable(),
+  // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
+  requests: traceSchema.shape.stages.element.shape.requests
+})
+export type FailedOperation = z.infer<typeof failedOperationSchema>
+
 export const journeySchema = z.strictObject({
   personaId: z.string(),
   personaSnapshot: z.union([personaSchema, personaProfileSchema]).optional(),
   participantExchanges: z.array(participantExchangeSchema).max(18).optional(),
   pendingAnswer: z.string().nullable().optional(),
+  failedOperation: failedOperationSchema.optional(),
   failureStage: z
     .enum(['participant', 'interpret', 'route', 'project', 'operation'])
     .optional(),
@@ -181,6 +200,9 @@ export const suiteSchema = z.strictObject({
   ]),
   participantModel: z.string().optional(),
   exerciseResults: z.boolean().optional(),
+  resumedFrom: z
+    .strictObject({ runId: z.string(), personaId: z.string() })
+    .optional(),
   cost: costSchema.optional(),
   versions: versionsSchema,
   inputHash: z.string(),

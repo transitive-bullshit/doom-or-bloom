@@ -13,16 +13,21 @@ import {
   canSubmit
 } from '@/lib/assessment/state'
 import { versions, vectorSchema } from '@/lib/assessment/schema'
-import type { Operation } from '@/lib/assessment/schema'
+import type { Operation, DebugStage } from '@/lib/assessment/schema'
 import { evidenceReadiness } from '@/lib/assessment/readiness'
 import { personaProfileSchema, personas, replyForPrompt } from './catalog'
 import type { Persona, ScriptedReply } from './catalog'
 import { scriptedProvider } from './synthetic-provider'
 import { rankingSchema, suiteSchema } from './schema'
-import type { Journey, JourneyStep, JourneySuite } from './schema'
+import type {
+  Journey,
+  JourneyStep,
+  JourneySuite,
+  FailedOperation
+} from './schema'
 import type { Participant } from './participant'
 import type { ParticipantExchange } from './schema'
-import { JourneyFailure } from './failure'
+import { JourneyFailure, providerFailure } from './failure'
 
 export function journeyHashes(bundle: Bundle) {
   const hash = (value: string) =>
@@ -55,7 +60,8 @@ export async function runPersona(
   turns = 5,
   live?: Provider,
   participant?: Participant,
-  exerciseResults = false
+  exerciseResults = false,
+  resume?: Journey
 ): Promise<Journey> {
   if (!Number.isInteger(turns) || turns < 1 || turns > 6)
     throw new Error('Journey turn bound is 1–6')
@@ -63,42 +69,86 @@ export async function runPersona(
     throw new Error(
       'Generated participants require the live assessment provider'
     )
+  if (resume && (!resume.failedOperation || !live || participant))
+    throw new Error(
+      'Resume requires a saved failed operation and an evaluator, without a participant generator'
+    )
   const scripted = scriptedProvider(persona, bundle)
   const source = live ?? scripted.provider
   let currentStage: NonNullable<Journey['failureStage']> = 'operation'
+  let completedStages: DebugStage[] = []
+  let failedOperation: FailedOperation | undefined
+  let failedElapsedMs = 0
   const provider: Provider = {
     kind: source.kind,
-    evaluate(...args) {
+    async evaluate(...args) {
       const questions = args[1]
       currentStage = questions.disposition
         ? 'interpret'
         : Object.keys(questions).some((id) => id.endsWith(':score'))
           ? 'project'
           : 'route'
-      return source.evaluate(...args)
+      const started = performance.now()
+      try {
+        const result = await source.evaluate(...args)
+        const completed: DebugStage = {
+          name:
+            currentStage === 'interpret'
+              ? 'A: interpret'
+              : currentStage === 'project'
+                ? 'D: projection'
+                : 'C: route',
+          state: args[0],
+          questions,
+          answers: result.answers,
+          model: result.model,
+          elapsedMs: Math.round(performance.now() - started),
+          inputBytes: Buffer.byteLength(
+            JSON.stringify({ state: args[0], questions })
+          ),
+          outputBytes: Buffer.byteLength(JSON.stringify(result.answers)),
+          usage: result.usage,
+          attempts: result.attempts
+        }
+        if (result.requests) completed.requests = result.requests
+        completedStages.push(completed)
+        return result
+      } catch (err) {
+        failedElapsedMs = Math.round(performance.now() - started)
+        throw providerFailure('Jev', err)
+      }
     }
   }
-  let state = createAssessment(
-    `journey-${live ? randomUUID() : createHash('sha256').update(persona.id).digest('hex').slice(0, 20)}`,
-    live ? versions.model : 'persona-script-v1'
+  let state = resume?.failedOperation
+    ? structuredClone(resume.failedOperation.assessment)
+    : createAssessment(
+        `journey-${live ? randomUUID() : createHash('sha256').update(persona.id).digest('hex').slice(0, 20)}`,
+        live ? versions.model : 'persona-script-v1'
+      )
+  if (!resume) {
+    state.versions.content = bundle.manifest.contentVersion
+    state.versions.rubric = bundle.manifest.rubricVersion
+  }
+  const steps: JourneyStep[] = structuredClone(resume?.steps ?? [])
+  const participantExchanges: ParticipantExchange[] = structuredClone(
+    resume?.participantExchanges ?? []
   )
-  state.versions.content = bundle.manifest.contentVersion
-  state.versions.rubric = bundle.manifest.rubricVersion
-  const steps: JourneyStep[] = []
-  const participantExchanges: ParticipantExchange[] = []
-  let pendingAnswer: string | null = null
-  let firstReadyAnswer: number | null = null
+  let pendingAnswer: string | null = resume?.pendingAnswer ?? null
+  let firstReadyAnswer: number | null = resume?.firstReadyAnswer ?? null
   let error: string | null = null
   let stopped = 'turn budget reached'
   let earlyResult = false
   async function step(operation: Operation, reply?: ScriptedReply) {
     currentStage = 'operation'
+    completedStages = []
+    failedElapsedMs = 0
     if (reply) scripted.setReply(reply)
     const previous = state
     const before = evidenceReadiness(previous)
+    const requestId = `${state.id}:step${steps.length + 1}`
     const response = await runAssessment(
       {
-        requestId: `${state.id}:step${steps.length + 1}`,
+        requestId,
         assessment: state,
         operation,
         debug: true
@@ -106,7 +156,25 @@ export async function runPersona(
       provider,
       bundle,
       true
-    )
+    ).catch((err: unknown) => {
+      const safe =
+        err instanceof JourneyFailure
+          ? err
+          : new JourneyFailure('Assessment operation failed before completion.')
+      failedOperation = {
+        requestId,
+        assessment: structuredClone(previous),
+        operation,
+        completedStages,
+        stage: currentStage as FailedOperation['stage'],
+        elapsedMs: failedElapsedMs,
+        error: safe.message,
+        attempts: safe.evaluation?.attempts ?? null
+      }
+      if (safe.evaluation?.requests)
+        failedOperation.requests = safe.evaluation.requests
+      throw safe
+    })
     state = response.assessment
     const readiness = evidenceReadiness(state)
     if (readiness.ready && firstReadyAnswer === null)
@@ -158,101 +226,111 @@ export async function runPersona(
     steps.push(recorded)
   }
   try {
-    for (const text of persona.recoveryPrelude)
-      await step({ type: 'answer', text })
-    if (persona.recoveryPrelude.length && state.status === 'paused')
-      await step({ type: 'retry' })
-    for (let i = 0; i < turns; i++) {
-      if (state.status === 'capped') {
-        stopped = 'app prompt cap reached'
-        break
-      }
-      if (hasAnswered(state)) {
-        if (state.status === 'results') await step({ type: 'continue' })
-        else {
-          stopped = 'no further question available'
+    if (resume?.failedOperation) {
+      await step(resume.failedOperation.operation)
+      pendingAnswer = null
+      stopped = 'saved operation resumed'
+    } else {
+      for (const text of persona.recoveryPrelude)
+        await step({ type: 'answer', text })
+      if (persona.recoveryPrelude.length && state.status === 'paused')
+        await step({ type: 'retry' })
+      for (let i = 0; i < turns; i++) {
+        if (state.status === 'capped') {
+          stopped = 'app prompt cap reached'
           break
         }
-      }
-      if (!canSubmit(state)) {
-        stopped = 'recovery requires editorial inspection'
-        break
-      }
-      const prompt = bundle.prompts.find(
-        (p) => p.id === currentPrompt(state).promptId
-      )
-      if (!prompt) throw new Error('Chosen prompt has no scripted answer')
-      if (participant) {
-        currentStage = 'participant'
-        const exchange = await participant.generate({
-          persona,
-          prompt: currentPrompt(state),
-          history: steps
-            .filter((s) => s.answer !== null)
-            .map((s) => ({
-              question: s.prompt.text,
-              answer: s.answer!
-            })),
-          recoveryGuidance:
-            state.status === 'recovery'
-              ? prompt.recoveryVariants.clarification
-              : null
-        })
-        participantExchanges.push(exchange)
-        pendingAnswer = exchange.response.text
-        await step({ type: 'answer', text: pendingAnswer })
-        pendingAnswer = null
-      } else {
-        const reply = replyForPrompt(persona, prompt)
-        await step({ type: 'answer', text: reply.text }, reply)
-      }
-      if (state.status === 'paused') {
-        stopped = 'paused for recovery or unavailable evidence'
-        break
-      }
-      if (exerciseResults && evidenceReadiness(state).ready && i < turns - 1) {
-        if (i === turns - 2) {
-          await step({ type: 'project' })
-          const component = state
-            .result!.components.filter(
-              (c) => c.claim !== null && c.evidenceIds.length > 0
-            )
-            .sort(
-              (a, b) =>
-                Number(a.value !== null) - Number(b.value !== null) ||
-                b.range[1] - b.range[0] - (a.range[1] - a.range[0])
-            )[0]
-          if (component) {
-            await step(
-              component.vector === 'catastrophic_risk'
-                ? {
-                    type: 'clarify',
-                    vector: 'risk_landscape',
-                    claim: 'catastrophic_risk'
-                  }
-                : {
-                    type: 'clarify',
-                    vector: vectorSchema.parse(component.vector)
-                  }
-            )
+        if (hasAnswered(state)) {
+          if (state.status === 'results') await step({ type: 'continue' })
+          else {
+            stopped = 'no further question available'
+            break
           }
-        } else if (!earlyResult) {
-          await step({ type: 'project' })
-          await step({ type: 'continue' })
-          earlyResult = true
+        }
+        if (!canSubmit(state)) {
+          stopped = 'recovery requires editorial inspection'
+          break
+        }
+        const prompt = bundle.prompts.find(
+          (p) => p.id === currentPrompt(state).promptId
+        )
+        if (!prompt) throw new Error('Chosen prompt has no scripted answer')
+        if (participant) {
+          currentStage = 'participant'
+          const exchange = await participant.generate({
+            persona,
+            prompt: currentPrompt(state),
+            history: steps
+              .filter((s) => s.answer !== null)
+              .map((s) => ({
+                question: s.prompt.text,
+                answer: s.answer!
+              })),
+            recoveryGuidance:
+              state.status === 'recovery'
+                ? prompt.recoveryVariants.clarification
+                : null
+          })
+          participantExchanges.push(exchange)
+          pendingAnswer = exchange.response.text
+          await step({ type: 'answer', text: pendingAnswer })
+          pendingAnswer = null
+        } else {
+          const reply = replyForPrompt(persona, prompt)
+          await step({ type: 'answer', text: reply.text }, reply)
+        }
+        if (state.status === 'paused') {
+          stopped = 'paused for recovery or unavailable evidence'
+          break
+        }
+        if (
+          exerciseResults &&
+          evidenceReadiness(state).ready &&
+          i < turns - 1
+        ) {
+          if (i === turns - 2) {
+            await step({ type: 'project' })
+            const component = state
+              .result!.components.filter(
+                (c) => c.claim !== null && c.evidenceIds.length > 0
+              )
+              .sort(
+                (a, b) =>
+                  Number(a.value !== null) - Number(b.value !== null) ||
+                  b.range[1] - b.range[0] - (a.range[1] - a.range[0])
+              )[0]
+            if (component) {
+              await step(
+                component.vector === 'catastrophic_risk'
+                  ? {
+                      type: 'clarify',
+                      vector: 'risk_landscape',
+                      claim: 'catastrophic_risk'
+                    }
+                  : {
+                      type: 'clarify',
+                      vector: vectorSchema.parse(component.vector)
+                    }
+              )
+            }
+          } else if (!earlyResult) {
+            await step({ type: 'project' })
+            await step({ type: 'continue' })
+            earlyResult = true
+          }
         }
       }
+      if (
+        evidenceReadiness(state).ready &&
+        state.status !== 'capped' &&
+        (!exerciseResults ||
+          state.result?.evidenceRevision !== state.evidenceRevision)
+      )
+        await step({ type: 'project' })
+      else if (!state.result)
+        stopped =
+          state.status === 'paused' ? stopped : 'more supported coverage needed'
     }
-    if (
-      evidenceReadiness(state).ready &&
-      state.status !== 'capped' &&
-      (!exerciseResults ||
-        state.result?.evidenceRevision !== state.evidenceRevision)
-    )
-      await step({ type: 'project' })
-    else if (!state.result)
-      stopped =
-        state.status === 'paused' ? stopped : 'more supported coverage needed'
   } catch (err) {
     // Transport bodies may contain credentials: save completed steps only and a
     // bounded local message, never raw provider errors or environment values.
@@ -276,11 +354,12 @@ export async function runPersona(
     finalReadiness: evidenceReadiness(state),
     components: state.result?.components ?? []
   }
-  if (participant) {
+  if (participant || resume?.participantExchanges) {
     journey.participantExchanges = participantExchanges
     journey.pendingAnswer = pendingAnswer
   }
   if (error) journey.failureStage = currentStage
+  if (failedOperation) journey.failedOperation = failedOperation
   return journey
 }
 
