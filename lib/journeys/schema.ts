@@ -227,6 +227,7 @@ export type RunIndex = Pick<
   | 'turns'
   | 'participantModel'
   | 'exerciseResults'
+  | 'resumedFrom'
   | 'cost'
 > & { personaIds: string[] }
 
@@ -255,6 +256,7 @@ export function runIndex(suite: JourneySuite): RunIndex {
   if (suite.participantModel) index.participantModel = suite.participantModel
   if (suite.exerciseResults) index.exerciseResults = true
   if (suite.cost) index.cost = suite.cost
+  if (suite.resumedFrom) index.resumedFrom = suite.resumedFrom
   return index
 }
 

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { createAssessment } from '../../lib/assessment/state'
 
 test('local personas explain exact paths, compare saved reruns and disclose synthetic exchanges', async ({
   page,
@@ -126,4 +127,58 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
     path: testInfo.outputPath('journeys-mobile.png'),
     fullPage: false
   })
+})
+
+test('failed operation diagnostics and exact resume command remain readable on mobile', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.route('**/api/user-journeys?*', async (route) => {
+    const response = await route.fetch()
+    const payload = await response.json()
+    payload.run.mode = 'live'
+    payload.journey.error = 'Jev: provider or transport failure (HTTP 401).'
+    payload.journey.failureStage = 'interpret'
+    payload.journey.failedOperation = {
+      requestId: 'failed-request',
+      assessment: createAssessment('failed-assessment', 'jev-1.13.0'),
+      operation: { type: 'answer', text: 'Keep my exact answer.' },
+      completedStages: [],
+      stage: 'interpret',
+      elapsedMs: 17,
+      error: payload.journey.error,
+      attempts: 1,
+      requests: [
+        {
+          attempt: 1,
+          model: 'jev-1.13.0',
+          questionIds: ['disposition'],
+          elapsedMs: 17,
+          status: 401
+        }
+      ]
+    }
+    await route.fulfill({ response, json: payload })
+  })
+  await page.goto('/user-journeys')
+  await page.getByLabel('View run').selectOption('baseline')
+  await page
+    .getByRole('button', { name: 'Failed operation and recovery', exact: true })
+    .click()
+  await expect(
+    page.getByRole('region', { name: 'Pending operation', exact: true })
+  ).toContainText('Keep my exact answer.')
+  await expect(
+    page.getByRole('region', { name: 'Failed stage diagnostics', exact: true })
+  ).toContainText('401')
+  await expect(
+    page
+      .locator('pre')
+      .filter({ hasText: 'pnpm journeys:live --resume=baseline' })
+  ).toBeVisible()
+  const width = await page.evaluate(() => ({
+    page: document.documentElement.scrollWidth,
+    viewport: innerWidth
+  }))
+  expect(width.page).toBeLessThanOrEqual(width.viewport + 1)
 })

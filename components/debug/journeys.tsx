@@ -650,6 +650,56 @@ export function JourneysInspector({
                 </AlertDescription>
               </Alert>
             )}
+            {journey.failedOperation && (
+              <Disclosure label='Failed operation and recovery'>
+                <p className='text-sm'>
+                  Saved before the unfinished operation:{' '}
+                  {journey.failedOperation.assessment.answers.length} accepted
+                  answers. Completed stages below are diagnostics; their changes
+                  were not committed.
+                </p>
+                <JsonViewer
+                  label='Pending operation'
+                  value={journey.failedOperation.operation}
+                  dimensions={dimensions}
+                />
+                <JsonViewer
+                  label='Failed stage diagnostics'
+                  value={{
+                    stage: journey.failedOperation.stage,
+                    error: journey.failedOperation.error,
+                    elapsedMs: journey.failedOperation.elapsedMs,
+                    attempts: journey.failedOperation.attempts,
+                    requests: journey.failedOperation.requests
+                  }}
+                  dimensions={dimensions}
+                />
+                <JsonViewer
+                  label='Completed stages before failure'
+                  value={journey.failedOperation.completedStages}
+                  dimensions={dimensions}
+                />
+                <JsonViewer
+                  label='Last committed assessment'
+                  value={journey.failedOperation.assessment}
+                  dimensions={dimensions}
+                />
+                {current.run.mode === 'live' && (
+                  <>
+                    <p className='text-sm text-muted-foreground'>
+                      Retry this saved operation with live Jev using the command
+                      below. It uses a fresh budget, may repeat completed
+                      stages, and saves a new run. It reuses the saved answer
+                      and does not generate another participant reply or finish
+                      the interview.
+                    </p>
+                    <pre className='overflow-x-auto text-xs'>
+                      <code>{`pnpm journeys:live --resume=${current.run.id} --persona=${journey.personaId} --max-requests=24 --max-cost=0.5`}</code>
+                    </pre>
+                  </>
+                )}
+              </Disclosure>
+            )}
             <Disclosure label='Run provenance and persona'>
               <JsonViewer label='Run provenance' value={current.run} />
               <JsonViewer
