@@ -698,3 +698,8 @@ Planning addition: expected off-topic/nonsense behavior now has a canonical boun
 
 - [x] Remove the Selected relationships heading and links from every `/questions` detail view.
 - Verification: formatting/lint pass; read-only Portless checks confirm `/questions` renders without the section and still exposes metadata/feedback, while `/corpus` continues to render its existing relationship details. No inference or feedback writes. Previous checkpoint: `17a6d91`.
+
+### 2026-09-18 — Mixed confidence/noul debug sorting / Codex
+
+- [x] Sort Noul answers by their `noul` probability alongside Choice/Score `confidence` values in both directions. Equal values keep original key order, zero remains sortable and missing/non-finite values stay last. Keep Default initially selected and preserve recorded payloads, folds, exact JSON copy and assessment semantics. Update the accessible control names and sorting explanation. This supersedes the earlier confidence-only display ordering.
+- Verification: normal `pnpm test` passes, including 90 deterministic unit tests and content validation. The credential-free focused debug browser scenario passes with mixed answer types, both sort directions, desktop/mobile layout, persisted folds and original-order copying. No paid Jev requests or changes to the active session. Previous checkpoint: `0304caf`.

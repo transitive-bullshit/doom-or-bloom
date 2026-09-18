@@ -6,7 +6,7 @@ Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom`)
 
 Enable **Debug on** before submitting. Open **Jev / assessment debugging details** to inspect the selected operation. Requests are actual shared state plus that physical batch's questions; responses are validated typed outputs. Each stage explains its purpose. Local routing/projection decisions and the current saved assessment are separate views. Fixture exchanges are explicitly synthetic. Debugging does not expose hidden model reasoning.
 
-JSON trees have syntax colors, accessible expand/collapse controls, exact JSON copy and reset-folds. Depth 2+ starts folded. Jev `answers` records offer **Default**, **High first** and **Low first** confidence order in the JSON header. Default is initially selected; ties preserve original order and missing confidence stays last. Noul values are not confidence. Sorting changes only presentation, preserving folds; **Copy JSON** still copies the recorded payload in its original order.
+JSON trees have syntax colors, accessible expand/collapse controls, exact JSON copy and reset-folds. Depth 2+ starts folded. Jev `answers` records offer **Default**, **High first** and **Low first** order in the JSON header. Choice/Score answers use `confidence`; Noul answers use their `noul` probability on the same sorting scale. Default is initially selected; ties preserve original order and missing/non-finite values stay last. Sorting changes only presentation, preserving folds; **Copy JSON** still copies the recorded payload in its original order.
 
 Requests/responses appear beside each other on desktop and stack on smaller screens. Everything uses the page scrollbar.
 

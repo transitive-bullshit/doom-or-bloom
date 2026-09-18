@@ -34,15 +34,14 @@ export function orderAnswerEntries(
 ) {
   const entries = Object.entries(value)
   if (order === 'default') return entries
-  const confidence = (answer: unknown) =>
-    record(answer) &&
-    typeof answer.confidence === 'number' &&
-    Number.isFinite(answer.confidence)
-      ? answer.confidence
-      : null
+  const sortValue = (answer: unknown) => {
+    if (!record(answer)) return null
+    const value = answer.type === 'noul' ? answer.noul : answer.confidence
+    return typeof value === 'number' && Number.isFinite(value) ? value : null
+  }
   return entries.sort(([, left], [, right]) => {
-    const a = confidence(left),
-      b = confidence(right)
+    const a = sortValue(left),
+      b = sortValue(right)
     if (a === null) return b === null ? 0 : 1
     if (b === null) return -1
     return order === 'high' ? b - a : a - b

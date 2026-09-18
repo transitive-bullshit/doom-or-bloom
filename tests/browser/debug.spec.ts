@@ -314,11 +314,11 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
       response.getByText('Answer order', { exact: true }),
       defaultOrder,
       response.getByRole('radio', {
-        name: 'Highest confidence first',
+        name: 'Highest confidence or noul first',
         exact: true
       }),
       response.getByRole('radio', {
-        name: 'Lowest confidence first',
+        name: 'Lowest confidence or noul first',
         exact: true
       }),
       response.getByRole('button', { name: 'Reset folds', exact: true }),
@@ -356,25 +356,31 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     'horizon'
   ])
   await response
-    .getByRole('radio', { name: 'Highest confidence first', exact: true })
+    .getByRole('radio', {
+      name: 'Highest confidence or noul first',
+      exact: true
+    })
     .click()
   expect(await answerKeys()).toEqual([
     'disposition',
+    'horizon',
     'clear',
-    'weak',
-    'horizon'
+    'weak'
   ])
   await response
     .getByRole('button', { name: 'Expand $.answers.weak', exact: true })
     .click()
   await response
-    .getByRole('radio', { name: 'Lowest confidence first', exact: true })
+    .getByRole('radio', {
+      name: 'Lowest confidence or noul first',
+      exact: true
+    })
     .click()
   expect(await answerKeys()).toEqual([
     'weak',
     'clear',
-    'disposition',
-    'horizon'
+    'horizon',
+    'disposition'
   ])
   await expect(
     response.getByRole('button', {

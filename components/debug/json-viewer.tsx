@@ -198,13 +198,13 @@ export const JsonViewer = memo(function JsonViewer({
                   </ToggleGroupItem>
                   <ToggleGroupItem
                     value='high'
-                    aria-label='Highest confidence first'
+                    aria-label='Highest confidence or noul first'
                   >
                     High first
                   </ToggleGroupItem>
                   <ToggleGroupItem
                     value='low'
-                    aria-label='Lowest confidence first'
+                    aria-label='Lowest confidence or noul first'
                   >
                     Low first
                   </ToggleGroupItem>
@@ -234,8 +234,8 @@ export const JsonViewer = memo(function JsonViewer({
       </div>
       {hasAnswers && answerOrder !== 'default' && (
         <p className='px-3 pt-2 text-xs text-muted-foreground'>
-          Display order only. Missing confidence stays last; copied JSON keeps
-          its original order.
+          Display order only. Uses confidence or noul probability; missing
+          values stay last. Copied JSON keeps its original order.
         </p>
       )}
       <div className='min-w-0 p-3 font-mono text-xs leading-relaxed whitespace-pre-wrap [overflow-wrap:anywhere] sm:p-4'>

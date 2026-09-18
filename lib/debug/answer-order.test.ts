@@ -12,7 +12,7 @@ const answers = {
   tied: { type: 'choice', confidence: 0.9 },
   zero: { type: 'score', confidence: 0 }
 }
-test('confidence orders preserve ties, handle zero and leave answers without confidence last', () => {
+test('mixed confidence/noul orders preserve ties and handle zero', () => {
   const keys = (order: 'default' | 'high' | 'low') =>
     orderAnswerEntries(answers, order).map(([key]) => key)
   expect(keys('default')).toEqual([
@@ -23,11 +23,11 @@ test('confidence orders preserve ties, handle zero and leave answers without con
     'zero'
   ])
   expect(keys('high')).toEqual([
+    'unknown',
     'certain',
     'tied',
     'uncertain',
-    'zero',
-    'unknown'
+    'zero'
   ])
   expect(keys('low')).toEqual([
     'zero',
@@ -35,6 +35,30 @@ test('confidence orders preserve ties, handle zero and leave answers without con
     'certain',
     'tied',
     'unknown'
+  ])
+})
+test('noul probabilities tie with confidence, use their own field and keep missing or invalid values last', () => {
+  const mixed = {
+    choice: { type: 'choice', confidence: 0.7 },
+    noul: { type: 'noul', noul: 0.7, confidence: 0.1 },
+    low: { type: 'noul', noul: 0 },
+    missing: { type: 'score', confidence: null },
+    missingNoul: { type: 'noul', noul: null },
+    invalid: { type: 'noul', noul: Infinity },
+    invalidConfidence: { type: 'choice', confidence: NaN }
+  }
+  const missing = ['missing', 'missingNoul', 'invalid', 'invalidConfidence']
+  expect(orderAnswerEntries(mixed, 'high').map(([key]) => key)).toEqual([
+    'choice',
+    'noul',
+    'low',
+    ...missing
+  ])
+  expect(orderAnswerEntries(mixed, 'low').map(([key]) => key)).toEqual([
+    'low',
+    'choice',
+    'noul',
+    ...missing
   ])
 })
 test('display ordering never mutates the payload or distributions', () => {
