@@ -188,5 +188,15 @@ export function jsonHelp({
     lookup(classifications, value)
   )
     return lookup(classifications, value)
+  if (path.includes('.evidenceReadiness.')) {
+    if (property === 'value')
+      return 'The unrounded evidence-readiness percentage on a 0–100 scale. Eligibility uses this value, rather than the rounded number displayed in the meter.'
+    if (property === 'confidence')
+      return 'The highest eligible presence confidence attached to active whole-answer support for this dimension. Missing or ambiguous coverage contributes zero; repeated evidence is not added together.'
+    if (property === 'ready')
+      return 'Whether supported coverage crosses the draft threshold with both outlook and reasoning evidence. This permits a provisional result; it does not guarantee every final coordinate can be placed.'
+    if (property === 'covered')
+      return 'The number of dimensions with eligible presence support. This is coverage, not a count of high-quality scores.'
+  }
   return property ? lookup(glossary, property) : undefined
 }

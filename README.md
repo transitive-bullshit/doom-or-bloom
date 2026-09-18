@@ -25,7 +25,7 @@ Create `.env.local` using [.env.example](.env.example), preserving any existing 
 
 `ASSESSMENT_PROVIDER=fixture` runs explicitly labeled synthetic judgments without a key or inference requests. It is available only in development and tests and is useful for exercising UI behavior, not assessment accuracy.
 
-`NEXT_PUBLIC_ASSESSMENT_DEBUG=true` makes an optional, clearly marked debug panel available. It shows the latest operation’s typed Jev inputs/outputs, routing decisions, counters, timings and usage. Toggling it adds no inference calls; traces are transient and clear on restart.
+`NEXT_PUBLIC_ASSESSMENT_DEBUG=true` makes an optional, clearly marked debug panel available. It shows recorded typed Jev inputs/outputs, routing decisions, counters, evidence readiness, timings and usage. Dotted JSON keys explain judgments and internal terms on hover or keyboard focus. Toggling/inspecting adds no inference calls; debug operations persist in browser IndexedDB across refresh and clear on restart. Runtime corpus grounding is paused; existing historical exchanges remain readable.
 
 ## Persistence and recovery
 

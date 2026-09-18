@@ -70,3 +70,30 @@ test('authored alternatives and state dimensions have context without annotating
     })
   ).toContain('probability that the proposition')
 })
+
+test('readiness help distinguishes percentages and derived presence confidence from component coordinates', () => {
+  expect(
+    jsonHelp({
+      property: 'value',
+      path: '$.evidenceReadiness.value',
+      value: 60,
+      context: {}
+    })
+  ).toContain('0–100 scale')
+  expect(
+    jsonHelp({
+      property: 'confidence',
+      path: '$.evidenceReadiness.dimensions[0].confidence',
+      value: 0.9,
+      context: {}
+    })
+  ).toContain('highest eligible presence confidence')
+  expect(
+    jsonHelp({
+      property: 'value',
+      path: '$.result.horizontal.value',
+      value: 0.6,
+      context: {}
+    })
+  ).toContain('normalized interpretation coordinate')
+})
