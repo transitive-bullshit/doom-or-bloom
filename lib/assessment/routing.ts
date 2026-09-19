@@ -112,6 +112,8 @@ export function rankCandidates(
       const tension = hasIssue('tension')
         ? normalized(`${item.prompt.id}:tension`)
         : 0
+      const noveltyAnswer = answers[`${item.prompt.id}:novelty`]
+      const novelty = noveltyAnswer?.type === 'noul' ? noveltyAnswer.noul : 0
       const projection = normalized(`${item.prompt.id}:projection`)
       const priority =
         weights.calibration * item.calibration +
@@ -121,10 +123,34 @@ export function rankCandidates(
         weights.projection * projection -
         weights.effort * item.prompt.effort -
         weights.repetition * item.repetition
-      return { ...item, coverage, ambiguity, tension, projection, priority }
+      return {
+        ...item,
+        coverage,
+        ambiguity,
+        tension,
+        projection,
+        novelty,
+        priority
+      }
     })
     .sort(
       (a, b) =>
-        b.priority - a.priority || a.prompt.id.localeCompare(b.prompt.id)
+        Number(worthwhileCandidates([b]).length > 0) -
+          Number(worthwhileCandidates([a]).length > 0) ||
+        b.priority - a.priority ||
+        a.prompt.id.localeCompare(b.prompt.id)
     )
+}
+
+// Initial experimental threshold: semantic novelty, not statistical significance.
+// Keep the ranking visible for diagnostics and voluntary deeper exploration.
+export const followUpNoveltyThreshold = 0.65
+
+export function worthwhileCandidates<
+  T extends { novelty: number; priority: number }
+>(candidates: T[]) {
+  return candidates.filter(
+    (candidate) =>
+      candidate.novelty >= followUpNoveltyThreshold && candidate.priority > 0
+  )
 }

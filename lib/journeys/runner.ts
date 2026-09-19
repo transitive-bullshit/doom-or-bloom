@@ -308,7 +308,11 @@ export async function runPersona(
           break
         }
         if (hasAnswered(state)) {
-          if (state.status === 'results') await step({ type: 'continue' })
+          if (state.status === 'results' && participant) {
+            stopped = 'automatic result: no consequential unanswered follow-up'
+            break
+          } else if (state.status === 'results')
+            await step({ type: 'continue' })
           else {
             stopped = 'no further question available'
             break

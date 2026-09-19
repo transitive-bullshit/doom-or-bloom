@@ -226,11 +226,16 @@ export function validateBundle(bundle: Bundle) {
     const expected =
       id === 'dimension' ||
       id === 'catastrophic_score' ||
-      id.startsWith('route_')
+      (id.startsWith('route_') && id !== 'route_novelty')
         ? 'score'
-        : ['horizon', 'horizon_unknown', 'conviction', 'resolution'].includes(
-              id
-            )
+        : [
+              'horizon',
+              'horizon_unknown',
+              'conviction',
+              'resolution',
+              'route_novelty',
+              'tension_present'
+            ].includes(id)
           ? 'noul'
           : 'choice'
     if (question.type !== expected)

@@ -37,6 +37,7 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
                 ? 0.98
                 : 0.02
             }
+          if (id === 'tension_present') return { type: 'noul', noul: 0 }
           if (id === 'tension') return pick(q, 'none')
           if (id === 'horizon_unknown') return { type: 'noul', noul: 0 }
           if (id.endsWith(':status'))
@@ -73,6 +74,8 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
           const unresolved = candidate.targets.some((v) =>
             state.unresolved?.some((u) => u.vector === v)
           )
+          if (benefit === 'novelty')
+            return { type: 'noul', noul: missing || unresolved ? 1 : 0 }
           const level =
             benefit === 'coverage'
               ? missing

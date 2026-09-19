@@ -123,6 +123,7 @@ export const rankingSchema = z.object({
   ambiguity: z.number(),
   tension: z.number(),
   projection: z.number(),
+  novelty: z.number().min(0).max(1).optional(),
   repetition: z.number(),
   effort: z.number()
 })

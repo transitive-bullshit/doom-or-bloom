@@ -75,8 +75,12 @@ for (const persona of personas)
       )
     ).toEqual([])
     expect(a.steps[0]!.prompt.promptId).toBe('root')
-    for (const step of a.steps.filter((s) => s.rankings.length))
-      expect(step.nextPrompt?.promptId).toBe(step.rankings[0]!.id)
+    for (const step of a.steps.filter((s) => s.rankings.length && s.nextPrompt))
+      expect(step.nextPrompt!.promptId).toBe(step.rankings[0]!.id)
+    for (const step of a.steps.filter(
+      (s) => s.rankings.length && !s.nextPrompt
+    ))
+      expect(step.status).toBe('results')
     for (const step of a.steps) {
       expect(step.trace?.stages.every((s) => !s.name.startsWith('B'))).toBe(
         true

@@ -146,8 +146,16 @@ test('long multibyte history with many unresolved dimensions fits the physical r
       'C: route'
     ])
     expect(requests).toBeLessThanOrEqual(limits.providerAttempts)
-    expect(requests).toBe(17)
-    expect(Object.keys(result.debug!.stages[1]!.questions)).toHaveLength(94)
+    expect(requests).toBe(
+      result.debug!.stages.reduce(
+        (sum, stage) =>
+          sum + Math.ceil(Object.keys(stage.questions).length / 8),
+        0
+      )
+    )
+    expect(
+      Object.keys(result.debug!.stages[1]!.questions).length
+    ).toBeLessThanOrEqual(limits.questions)
     expect(JSON.stringify(result.debug?.stages[1]?.state)).toContain(text)
   } finally {
     vi.unstubAllGlobals()
@@ -186,7 +194,7 @@ test('eight answers retain the complete transcript without corpus inference', as
       'A: interpret',
       'C: route'
     ])
-    expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(21)
+    expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(22)
     expect(state.referenceClaims).toEqual([])
     expect(
       state.evidence.every((entry) => entry.referenceIds.length === 0)

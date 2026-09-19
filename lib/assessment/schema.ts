@@ -31,7 +31,7 @@ export const limits = {
   questions: 96,
   referenceCandidates: 12,
   resolvedReferences: 2,
-  // Up to 36 interpretation judgments (5 large-input batches), then 96
+  // Up to 37 interpretation judgments (5 large-input batches), then 96
   // routing judgments (12 batches), with room for bounded retries.
   providerAttempts: 24
 } as const
