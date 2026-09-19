@@ -46,3 +46,11 @@ Other work remains: broader approved questions, two terse personas and simulatio
 - Add `--persona=dogmatic-doomer` to the opening replay for that case only.
 
 Each command uses saved evidence, real Jev, and a shared physical-request bound. Reports overwrite fixed files under ignored `eval/runs/`; they do not create historical journey entries or replace the live suite. Routing replay diagnoses recorded candidate sets, so cannot evaluate newly added questions. Opening replay exercises the current full engine. Neither substitutes target scores for persona answers.
+
+## Checkpoint 2: broader prompts and terse participants
+
+Added capability-by-2040, general policy, uncertainty and effects-over-time prompts; simplified six existing questions. Added two deliberately terse participants and instructions that prevent technical questions from upgrading novice expertise.
+
+The full 15-persona run produced 42 accepted answers and used 109 Jev requests ($0.317 estimated combined inference). No new broad question or grounding question won selection. Most interviews stopped after 2–3 answers. This is not sufficient evidence of improvement: the alarmist, doomer and novice stopped unplaced. Novelty values of 0.5–0.6 for useful unasked distinctions were rejected by the initial 0.65 cutoff. Dimension coverage also hides differences within a dimension. The direct outlook interpretation and router must share scoped gaps before early stopping is trustworthy.
+
+The shorter participant instructions also caused the dogmatic opening to omit its incompatible claims, so the normal suite no longer exercised within-answer contradiction handling. Restore that persona-specific stress case without supplying any desired judgments.

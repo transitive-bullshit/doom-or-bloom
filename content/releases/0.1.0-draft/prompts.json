@@ -1,7 +1,7 @@
 [
   {
     "id": "root",
-    "text": "What do you think AI means for our future\u2014and why?",
+    "text": "What do you think AI means for our future—and why?",
     "family": "root",
     "readingLevel": "general",
     "prerequisites": [],
@@ -12,9 +12,9 @@
     "maxUses": 1,
     "permittedAfter": [],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
@@ -32,9 +32,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
@@ -52,16 +52,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
   },
   {
     "id": "conviction.general",
-    "text": "How confident are you in your predictions about when AI will bring major changes to everyday life?",
+    "text": "How sure are you about when AI will bring major changes to everyday life?",
     "family": "calibration",
     "readingLevel": "general",
     "prerequisites": [],
@@ -72,16 +72,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
   },
   {
     "id": "mechanism.general",
-    "text": "How do you think AI will cause the biggest change you expect in people\u2019s lives?",
+    "text": "What do you expect AI to change most about people’s lives, and how?",
     "family": "mechanism",
     "readingLevel": "general",
     "prerequisites": [],
@@ -92,16 +92,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
   },
   {
     "id": "grounding.general",
-    "text": "What observation or experience has most shaped your view of AI\u2019s future impact?",
+    "text": "What observation or experience has most shaped your view of AI’s future impact?",
     "family": "grounding",
     "readingLevel": "general",
     "prerequisites": [],
@@ -112,9 +112,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
@@ -132,9 +132,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
@@ -152,16 +152,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
   },
   {
     "id": "upside.general",
-    "text": "What major benefits, if any, do you actually expect people to get from AI?",
+    "text": "What major benefits, if any, do you expect people to get from AI?",
     "family": "upside",
     "readingLevel": "general",
     "prerequisites": [],
@@ -172,16 +172,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
   },
   {
     "id": "risk.general",
-    "text": "What major harms, if any, do you actually expect AI to cause?",
+    "text": "What major harms, if any, do you expect AI to cause?",
     "family": "risk",
     "readingLevel": "general",
     "prerequisites": [],
@@ -192,16 +192,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
   },
   {
     "id": "crux.general",
-    "text": "What discovery or event would most change your view of AI\u2019s future impact?",
+    "text": "What discovery or event would most change your view of AI’s future impact?",
     "family": "crux",
     "readingLevel": "general",
     "prerequisites": [],
@@ -212,16 +212,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
   },
   {
     "id": "countercase.general",
-    "text": "What is the strongest argument against your overall view of AI\u2019s future impact?",
+    "text": "What is the strongest argument against your overall view of AI’s future impact?",
     "family": "countercase",
     "readingLevel": "general",
     "prerequisites": [],
@@ -232,9 +232,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
@@ -252,9 +252,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
@@ -272,16 +272,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "transition.warning",
-    "text": "What warning signs, if any, would you expect before AI causes irreversible harm?",
+    "text": "If AI caused irreversible harm, what warning signs would you expect first?",
     "family": "transition",
     "readingLevel": "general",
     "prerequisites": ["transition_dynamics"],
@@ -292,9 +292,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -312,9 +312,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -332,16 +332,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "upside.bottleneck",
-    "text": "What, if anything, could prevent AI\u2019s benefits from reaching ordinary people?",
+    "text": "What, if anything, could prevent AI’s benefits from reaching ordinary people?",
     "family": "upside",
     "readingLevel": "general",
     "prerequisites": ["beneficial_potential"],
@@ -352,9 +352,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -372,9 +372,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -392,16 +392,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "risk.ordinary",
-    "text": "What AI-related harms, if any, do you expect people to be able to recover from?",
+    "text": "What problems, if any, do you expect AI to cause in everyday life?",
     "family": "risk",
     "readingLevel": "general",
     "prerequisites": ["risk_landscape"],
@@ -412,16 +412,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "control.test",
-    "text": "What evidence would increase your confidence that people can control AI systems smarter than humans?",
+    "text": "What evidence would change your view of whether people can control powerful AI?",
     "family": "control",
     "readingLevel": "general",
     "prerequisites": [],
@@ -432,9 +432,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -452,9 +452,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -472,9 +472,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -492,16 +492,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "action.tradeoff",
-    "text": "What downside would you accept to make AI\u2019s future impact better?",
+    "text": "What downside would you accept to make AI’s future impact better?",
     "family": "action",
     "readingLevel": "general",
     "prerequisites": [],
@@ -512,16 +512,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "grounding.claim",
-    "text": "What have today\u2019s AI systems shown you about what future AI will be able to do?",
+    "text": "What have today’s AI systems shown you about what future AI will be able to do?",
     "family": "grounding",
     "readingLevel": "general",
     "prerequisites": ["grounded_understanding"],
@@ -532,16 +532,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "scope.assumption",
-    "text": "What assumption does your prediction about AI\u2019s future depend on most?",
+    "text": "What assumption does your prediction about AI’s future depend on most?",
     "family": "scope",
     "readingLevel": "general",
     "prerequisites": [],
@@ -552,9 +552,9 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
@@ -572,16 +572,16 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
   },
   {
     "id": "mechanism.chain",
-    "text": "Where is the weakest evidence in your explanation of how AI will change people\u2019s lives?",
+    "text": "Where is the weakest evidence in your explanation of how AI will change people’s lives?",
     "family": "mechanism",
     "readingLevel": "expert",
     "prerequisites": ["causal_clarity"],
@@ -592,11 +592,95 @@
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {
-      "reask": "I could not connect that answer to this question. A few words about your view are enough\u2014want to try again?",
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
       "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
-      "exhausted": "Let\u2019s pause here. You can try a different question, stop for now, or restart."
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
+  },
+  {
+    "id": "capability.2040",
+    "text": "What do you expect AI to be able to do by 2040?",
+    "family": "capability",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["capability_trajectory", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "capability-2040",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.1.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "policy.general",
+    "text": "What, if anything, should change about how AI is developed or used?",
+    "family": "action",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["action_posture"],
+    "effort": 0.4,
+    "noveltyGroup": "policy-preference",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.1.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "uncertainty.general",
+    "text": "What are you most unsure about when you think about AI’s future?",
+    "family": "uncertainty",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["appropriate_uncertainty", "scope_discipline"],
+    "effort": 0.4,
+    "noveltyGroup": "uncertainty-scope",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.1.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "impact.over-time",
+    "text": "How do you expect AI’s effects on people’s lives to change over time?",
+    "family": "transition",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": [
+      "beneficial_potential",
+      "risk_landscape",
+      "transition_dynamics"
+    ],
+    "effort": 0.4,
+    "noveltyGroup": "impact-over-time",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.1.0-draft",
+    "status": "reviewed"
   }
 ]

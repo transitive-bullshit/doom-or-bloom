@@ -8,7 +8,7 @@ import { loadBundle } from '@/lib/content/loader'
 import { createFixtureProvider } from '@/lib/server/provider'
 
 test('live personas contain narrative context, with mechanical judgments confined to separate cases', () => {
-  expect(personas).toHaveLength(13)
+  expect(personas).toHaveLength(15)
   for (const persona of personas) {
     expect(persona.background.length).toBeGreaterThan(30)
     expect(persona.beliefs.length).toBeGreaterThan(0)
