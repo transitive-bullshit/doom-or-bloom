@@ -846,3 +846,19 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Remove implicit mocked-provider/scripted-answer fallback from the normal runner. Normal `journeys:generate` now uses OpenAI and live Jev; mechanical generation/check/update commands are explicit and separate. Preserve `journeys:live` and `journeys:check` aliases.
 - [x] Rename the checked-in mocked baseline to `mechanical-journey-baseline.json` without changing its observations. Preserve historical snapshot compatibility and distinguish mechanical artifacts in the inspector.
 - [x] Verify 154 tests, static/content checks, the ten-case mechanical baseline and three inspector browser scenarios. Verify normal generation with a live three-reply result-action run (`1789806379465-37235137-86e9-4724-8323-938a9097624f`): 3 OpenAI calls, 8 Jev calls, $0.00824 estimated cost, no errors, no scripted reply keys and no injected judgment fields in the narrative snapshot or participant input.
+
+### Live stress-test journeys — 2026-09-20
+
+- [x] Strengthen the three existing public proxies with dated arguments and voice; add Huang's deliberately incendiary anti-doomer persona and Amodei's frontier-pacing persona.
+- [x] Use GPT-5.6 Sol with current cost accounting and explicit extreme stress-test instructions, without target judgments.
+- [x] Record only answer steps in live journeys, with normal-engine side projections and input state after every eligible answer; keep historical artifacts readable.
+- [x] Diagnose the earlier readiness plateau, expose decimal changes and explain coverage saturation. Do not manufacture progress for repeated evidence.
+- [x] Cover projection isolation and exact failed-projection resume in engine integration tests.
+
+- [x] Audit all 30 fixed questions for standalone wording; remove replaced wording from local draft catalogs.
+- [x] Route using continuous evidence-support gaps; require a matching unresolved issue for ambiguity/tension bonuses.
+- [x] Retain latest local runs only, remove legacy persona snapshot support and historical comparison UI; put every answer result disclosure beside the diagnostic disclosures.
+
+- [x] Fix projection assessability for explicitly expected little/no lasting upside alongside favorable counterfactuals; verify with live alarmist, unknown and mixed-impact checks.
+
+- [x] Add the narrative-only Dogmatic doomer persona; distinguish confident topic coverage from missing outlook positions in routing.

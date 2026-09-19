@@ -17,14 +17,12 @@ export async function runLiveJourneys({
   turns = 5,
   maxRequests,
   maxCost = 2,
-  exerciseResults = false,
   onJourney
 }: {
   personaId?: string
   turns?: number
   maxRequests?: number
   maxCost?: number
-  exerciseResults?: boolean
   onJourney?: (journey: Journey) => void
 } = {}) {
   if (personaId && !personas.some((p) => p.id === personaId))
@@ -49,7 +47,6 @@ export async function runLiveJourneys({
     turns,
     live: paid.provider,
     participant,
-    exerciseResults,
     budgetReport: paid.report,
     costReport: budget.report,
     onJourney

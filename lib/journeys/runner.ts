@@ -5,6 +5,7 @@ import path from 'node:path'
 import { loadBundle } from '@/lib/content/loader'
 import type { Bundle } from '@/lib/content/loader'
 import { runAssessment } from '@/lib/server/engine'
+import { projectionInput } from '@/lib/server/projection-input'
 import type { Provider } from '@/lib/server/provider'
 import {
   createAssessment,
@@ -159,9 +160,12 @@ export async function runPersona(
   let error: string | null = null
   let stopped = 'turn budget reached'
   let earlyResult = false
+  const answerSnapshots = !mechanical
+  let latestResult = resume?.result ?? null
   async function step(
     operation: Operation,
-    reply?: { text: string; key: string }
+    reply?: { text: string; key: string },
+    snapshot = false
   ) {
     currentStage = 'operation'
     completedStages = []
@@ -194,10 +198,32 @@ export async function runPersona(
         error: safe.message,
         attempts: safe.evaluation?.attempts ?? null
       }
+      if (snapshot) failedOperation.snapshot = true
       if (safe.evaluation?.requests)
         failedOperation.requests = safe.evaluation.requests
       throw safe
     })
+    if (snapshot) {
+      const recorded = steps.at(-1)!
+      recorded.result = response.assessment.result ?? undefined
+      recorded.resultState = projectionInput(previous, bundle)
+      delete recorded.resultUnavailable
+      latestResult = response.assessment.result
+      if (recorded.trace && response.debug) {
+        recorded.trace.stages.push(...response.debug.stages)
+        recorded.trace.decisions.push(...response.debug.decisions)
+      }
+      recorded.stages.push(
+        ...response.debug!.stages.map((s) => ({
+          name: s.name,
+          model: s.model,
+          questions: Object.keys(s.questions).length,
+          attempts: s.attempts,
+          usage: s.usage
+        }))
+      )
+      return
+    }
     state = response.assessment
     const readiness = evidenceReadiness(state)
     if (readiness.ready && firstReadyAnswer === null)
@@ -246,11 +272,30 @@ export async function runPersona(
       ['results', 'capped'].includes(state.status)
     )
       recorded.result = state.result
-    steps.push(recorded)
+    if (!answerSnapshots || operation.type === 'answer') steps.push(recorded)
+    if (answerSnapshots && operation.type === 'answer') {
+      recorded.resultState = projectionInput(state, bundle)
+      if (state.result?.evidenceRevision === state.evidenceRevision) {
+        recorded.result = state.result
+        latestResult = state.result
+      } else if (readiness.ready) {
+        recorded.resultUnavailable =
+          'Projection did not complete; inspect the saved failure.'
+        await step({ type: 'project' }, undefined, true)
+      } else {
+        recorded.resultUnavailable =
+          'The real readiness gate does not yet allow a result.'
+        latestResult = null
+      }
+    }
   }
   try {
     if (resume?.failedOperation) {
-      await step(resume.failedOperation.operation)
+      await step(
+        resume.failedOperation.operation,
+        undefined,
+        resume.failedOperation.snapshot ?? false
+      )
       pendingAnswer = null
       stopped = 'saved operation resumed'
     } else {
@@ -308,6 +353,7 @@ export async function runPersona(
           break
         }
         if (
+          !answerSnapshots &&
           exerciseResults &&
           evidenceReadiness(state).ready &&
           i < turns - 1
@@ -345,13 +391,14 @@ export async function runPersona(
         }
       }
       if (
+        !answerSnapshots &&
         evidenceReadiness(state).ready &&
         state.status !== 'capped' &&
         (!exerciseResults ||
           state.result?.evidenceRevision !== state.evidenceRevision)
       )
         await step({ type: 'project' })
-      else if (!state.result)
+      else if (!(answerSnapshots ? latestResult : state.result))
         stopped =
           state.status === 'paused' ? stopped : 'more supported coverage needed'
     }
@@ -372,13 +419,14 @@ export async function runPersona(
         ? personaProfileSchema.parse(persona)
         : structuredClone(mechanical?.snapshot ?? persona),
     steps,
-    result: state.result,
+    result: answerSnapshots ? latestResult : state.result,
     stopped,
     error,
     firstReadyAnswer,
     accepted: state.answers.length,
     finalReadiness: evidenceReadiness(state),
-    components: state.result?.components ?? []
+    components:
+      (answerSnapshots ? latestResult : state.result)?.components ?? []
   }
   if (participant || resume?.participantExchanges) {
     journey.participantExchanges = participantExchanges
@@ -395,7 +443,6 @@ export async function runJourneySuite({
   turns = 5,
   live,
   participant,
-  exerciseResults = false,
   budgetReport,
   costReport,
   onJourney
@@ -405,7 +452,6 @@ export async function runJourneySuite({
   turns?: number
   live?: Provider
   participant?: Participant
-  exerciseResults?: boolean
   budgetReport?: () => JourneySuite['requestBudget']
   costReport?: () => JourneySuite['cost']
   onJourney?: (journey: Journey) => void
@@ -422,14 +468,7 @@ export async function runJourneySuite({
   if (!selected.length) throw new Error('Unknown persona')
   const journeys: Journey[] = []
   for (const persona of selected) {
-    const journey = await runPersona(
-      persona,
-      bundle,
-      turns,
-      live,
-      participant,
-      exerciseResults
-    )
+    const journey = await runPersona(persona, bundle, turns, live, participant)
     journeys.push(journey)
     onJourney?.(journey)
     if (journey.error && journey.accepted === 0) break
@@ -450,7 +489,7 @@ export async function runJourneySuite({
     journeys
   }
   suite.participantModel = participant.model
-  if (exerciseResults) suite.exerciseResults = true
+  suite.answerSnapshots = true
   if (costReport) suite.cost = costReport()
   return suiteSchema.parse(suite)
 }

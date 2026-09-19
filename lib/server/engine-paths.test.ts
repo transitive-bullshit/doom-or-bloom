@@ -42,6 +42,9 @@ test('ordinary five-answer interviews do not trigger large-history batching', as
       const route = result.debug!.stages.find((s) => s.name === 'C: route')!
       expect(route).toBeDefined()
       expect(route.attempts).toBe(1)
+      expect(route.state).toHaveProperty('evidenceSupport')
+      expect(route.state).not.toHaveProperty('coverage')
+      expect(route.state).not.toHaveProperty('coverageDefinitions')
       expect(JSON.stringify(route.state)).toContain(text)
     }
     const projected = await runAssessment(
@@ -144,7 +147,7 @@ test('long multibyte history with many unresolved dimensions fits the physical r
     ])
     expect(requests).toBeLessThanOrEqual(limits.providerAttempts)
     expect(requests).toBe(17)
-    expect(Object.keys(result.debug!.stages[1]!.questions)).toHaveLength(96)
+    expect(Object.keys(result.debug!.stages[1]!.questions)).toHaveLength(94)
     expect(JSON.stringify(result.debug?.stages[1]?.state)).toContain(text)
   } finally {
     vi.unstubAllGlobals()

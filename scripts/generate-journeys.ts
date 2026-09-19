@@ -4,7 +4,7 @@ import { personas } from '../lib/journeys/catalog'
 
 const args = process.argv.slice(2)
 const allowed =
-  /^(--resume=[0-9]{13}-[a-f0-9-]{36}|--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--exercise-results)$/
+  /^(--resume=[0-9]{13}-[a-f0-9-]{36}|--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid)$/
 if (
   args.some((a) => !allowed.test(a)) ||
   new Set(args.map((a) => a.split('=')[0])).size !== args.length
@@ -19,18 +19,12 @@ const resumeId = args.find((a) => a.startsWith('--resume='))?.split('=')[1]
 const turns = Number(
   args.find((a) => a.startsWith('--turns='))?.split('=')[1] ?? 5
 )
-const exerciseResults = args.includes('--exercise-results')
 if (personaId && !personas.some((p) => p.id === personaId))
   throw new Error('Unknown persona')
-if (
-  resumeId &&
-  (!personaId || exerciseResults || args.some((a) => a.startsWith('--turns=')))
-)
+if (resumeId && (!personaId || args.some((a) => a.startsWith('--turns='))))
   throw new Error(
     'Resume requires --persona and retries exactly the saved operation'
   )
-if (exerciseResults && turns < 3)
-  throw new Error('Result exercises require at least three replies')
 async function main() {
   if (existsSync('.env.local')) process.loadEnvFile('.env.local')
   const maxRequestsArg = args.find((a) => a.startsWith('--max-requests='))
@@ -56,7 +50,6 @@ async function main() {
   const suite = await runLiveJourneys({
     personaId,
     turns,
-    exerciseResults,
     maxRequests: maxRequestsArg
       ? Number(maxRequestsArg.split('=')[1])
       : undefined,

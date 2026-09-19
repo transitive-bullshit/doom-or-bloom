@@ -108,7 +108,7 @@ test('actual PostHog SDK payloads exclude answers and URL canaries; resume does 
     })
     state = issuePrompt(state, {
       promptId: 'timeline.general',
-      text: 'When do you expect AI to make changes on that scale, if ever?',
+      text: 'When, if ever, do you expect AI to bring major changes to everyday life?',
       family: 'timeline',
       variant: 'original',
       sourceEvidenceIds: []

@@ -21,7 +21,7 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
       const state = input as {
         current?: unknown
         candidates?: Array<{ id: string; targets: string[] }>
-        coverage?: Record<string, string>
+        evidenceSupport?: Array<{ vector: string; contribution: number }>
         unresolved?: Array<{ vector: string }>
       }
       const interpret = Boolean(state.current)
@@ -51,12 +51,25 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
           throw new Error(`Unscripted interpret judgment ${id}`)
         }
         if (state.candidates) {
+          if (id.startsWith('outlook:')) {
+            const vector = id.split(':')[1]!
+            return pick(
+              q,
+              !supported.has(vector)
+                ? 'not_expressed'
+                : persona.levels[vector] === null
+                  ? 'explicitly_unknown'
+                  : 'assessable'
+            )
+          }
           const [candidateId, benefit] = id.split(':')
           const candidate = state.candidates.find((c) => c.id === candidateId)
           if (!candidate) throw new Error('Missing scripted route candidate')
-          const missing = candidate.targets.filter(
-            (v) => state.coverage?.[v] !== 'assessed'
-          ).length
+          const missing = candidate.targets.some(
+            (v) =>
+              (state.evidenceSupport?.find((d) => d.vector === v)
+                ?.contribution ?? 0) < 1
+          )
           const unresolved = candidate.targets.some((v) =>
             state.unresolved?.some((u) => u.vector === v)
           )

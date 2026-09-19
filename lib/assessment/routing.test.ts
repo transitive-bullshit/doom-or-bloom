@@ -167,3 +167,161 @@ test('control tests and control mechanisms share the repetition cost without bec
     }
   }
 })
+
+test('routing bonuses require a matching unresolved issue rather than nonzero model noise', () => {
+  const bundle = loadBundle()
+  const state = createAssessment('actual-issue')
+  const id = 'risk.general'
+  const answers = Object.fromEntries(
+    ['coverage', 'ambiguity', 'tension', 'projection'].map((benefit) => [
+      `${id}:${benefit}`,
+      fixtureAnswer(
+        {
+          type: 'score',
+          instructions: 'Benefit',
+          criteria: ['0', '1', '2', '3']
+        },
+        undefined,
+        3
+      )
+    ])
+  )
+  const rank = () =>
+    rankCandidates(state, bundle.prompts, answers, bundle.rubric)[0]!
+  expect(rank().ambiguity).toBe(0)
+  expect(rank().tension).toBe(0)
+  state.unresolved.push({
+    id: 'issue',
+    vector: 'human_agency',
+    evidenceIds: [],
+    kind: 'tension'
+  })
+  expect(rank().tension).toBe(0)
+  state.unresolved.push({
+    id: 'risk-issue',
+    vector: 'risk_landscape',
+    evidenceIds: [],
+    kind: 'tension'
+  })
+  expect(rank().tension).toBeGreaterThan(0)
+  expect(rank().ambiguity).toBe(0)
+})
+
+test('supported dimensions retain proportional routing gaps until evidence support reaches one', () => {
+  const state = createAssessment('continuous-support')
+  const bundle = loadBundle()
+  state.answers.push({
+    id: 'answer',
+    promptInstanceId: state.prompts[0]!.id,
+    promptText: state.prompts[0]!.text,
+    text: 'I expect broad benefits.',
+    substantive: true,
+    hasHorizon: false,
+    hasConviction: false
+  })
+  const question = {
+    type: 'choice' as const,
+    instructions: 'Evidence presence',
+    criteria: { stated: 'Expressed', not_expressed: 'Absent' }
+  }
+  const answer = fixtureAnswer(question, 'stated')
+  if (answer.type !== 'choice') throw new Error('Expected choice')
+  answer.probabilities = { stated: 0.7, not_expressed: 0.3 }
+  state.judgments.push({
+    id: 'judgment',
+    answerId: 'answer',
+    questionId: 'beneficial_potential:status',
+    stage: 'interpret',
+    question,
+    answer,
+    model: 'fixture-v1',
+    rubricVersion: state.versions.rubric
+  })
+  state.evidence.push({
+    id: 'evidence',
+    answerId: 'answer',
+    vector: 'beneficial_potential',
+    status: 'stated',
+    judgmentIds: ['judgment'],
+    referenceIds: [],
+    contextReferenceIds: []
+  })
+  state.coverage.beneficial_potential = 'assessed'
+  const gap = () =>
+    candidatePrompts(state, bundle.prompts).find(
+      (c) => c.prompt.id === 'upside.general'
+    )!.missing
+  expect(gap()).toBeCloseTo(0.3)
+  answer.probabilities = { stated: 1, not_expressed: 0 }
+  expect(gap()).toBe(0)
+  const routeAnswers = {
+    'upside.general:coverage': fixtureAnswer(
+      {
+        type: 'score' as const,
+        instructions: 'Missing expected benefits',
+        criteria: ['0', '1', '2', '3']
+      },
+      undefined,
+      3
+    ),
+    'outlook:beneficial_potential:position': fixtureAnswer(
+      {
+        type: 'choice' as const,
+        instructions: 'Position',
+        criteria: {
+          assessable: 'Known position',
+          explicitly_unknown: 'Known unknown',
+          not_expressed: 'Not elicited'
+        }
+      },
+      'not_expressed'
+    )
+  }
+  const coverageBenefit = () =>
+    rankCandidates(
+      state,
+      bundle.prompts.map((p) =>
+        p.id === 'upside.general' ? { ...p, maxUses: 2 } : p
+      ),
+      routeAnswers,
+      bundle.rubric
+    )[0]!.coverage
+  expect(coverageBenefit()).toBeGreaterThan(0.9)
+  routeAnswers['outlook:beneficial_potential:position'] = fixtureAnswer(
+    {
+      type: 'choice',
+      instructions: 'Position',
+      criteria: {
+        assessable: 'Known position',
+        explicitly_unknown: 'Known unknown',
+        not_expressed: 'Not elicited'
+      }
+    },
+    'explicitly_unknown'
+  )
+  expect(coverageBenefit()).toBeGreaterThan(0.9)
+  const direct = bundle.prompts.find((p) => p.id === 'upside.general')!
+  state.prompts.push({
+    ...state.prompts[0]!,
+    id: 'direct-upside',
+    ordinal: 2,
+    promptId: direct.id,
+    text: direct.text,
+    family: direct.family
+  })
+  state.answers.push({
+    ...state.answers[0]!,
+    id: 'unknown-upside',
+    promptInstanceId: 'direct-upside',
+    promptText: direct.text,
+    text: 'I do not know what benefits to expect.'
+  })
+  expect(coverageBenefit()).toBe(0)
+  state.unresolved.push({
+    id: 'ambiguity',
+    vector: 'beneficial_potential',
+    evidenceIds: ['evidence'],
+    kind: 'ambiguity'
+  })
+  expect(gap()).toBe(0.5)
+})

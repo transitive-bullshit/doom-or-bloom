@@ -52,38 +52,34 @@ Every node includes targets, prerequisites, transition rules, effort, novelty, m
 | --- | --- | --- | --- | --- |
 | root | What do you think AI means for our future—and why? | general | beneficial_potential, risk_landscape | reviewed |
 | concrete.general | What is one concrete change you expect AI to bring? | general | beneficial_potential, risk_landscape | reviewed |
-| timeline.general | When do you expect AI to make changes on that scale, if ever? | general | capability_trajectory, scope_discipline | reviewed |
-| conviction.general | How sure are you about that timing? | general | appropriate_uncertainty, capability_trajectory | reviewed |
-| mechanism.general | What would have to happen for that outcome to occur? | general | causal_clarity, risk_landscape, beneficial_potential | reviewed |
-| grounding.general | What observation or experience most shaped that expectation? | general | grounded_understanding | reviewed |
-| control.general | What would make very powerful AI stay under meaningful human control? | general | technical_controllability, causal_clarity | reviewed |
+| timeline.general | When, if ever, do you expect AI to bring major changes to everyday life? | general | capability_trajectory, scope_discipline | reviewed |
+| conviction.general | How confident are you in your predictions about when AI will bring major changes to everyday life? | general | appropriate_uncertainty, capability_trajectory | reviewed |
+| mechanism.general | How do you think AI will cause the biggest change you expect in people’s lives? | general | causal_clarity, risk_landscape, beneficial_potential | reviewed |
+| grounding.general | What observation or experience has most shaped your view of AI’s future impact? | general | grounded_understanding | reviewed |
+| control.general | Do you expect people to keep control of AI systems that are smarter than humans, and why? | general | technical_controllability, causal_clarity | reviewed |
 | governance.general | How do you expect the people and institutions developing AI to respond to its risks? | general | institutional_competence, scope_discipline | reviewed |
-| upside.general | Which possible benefit would matter most for the future you described? | general | beneficial_potential | reviewed |
-| risk.general | Which possible harm would matter most for the future you described? | general | risk_landscape | reviewed |
-| crux.general | What development would most change your view? | general | updateability | reviewed |
-| countercase.general | What is the strongest reason your expectation might turn out wrong? | general | counterargument_engagement, appropriate_uncertainty | reviewed |
+| upside.general | What major benefits, if any, do you actually expect people to get from AI? | general | beneficial_potential | reviewed |
+| risk.general | What major harms, if any, do you actually expect AI to cause? | general | risk_landscape | reviewed |
+| crux.general | What discovery or event would most change your view of AI’s future impact? | general | updateability | reviewed |
+| countercase.general | What is the strongest argument against your overall view of AI’s future impact? | general | counterargument_engagement, appropriate_uncertainty | reviewed |
 | agency.general | What would a good future need to preserve about being human? | general | human_agency, scope_discipline | reviewed |
 | transition.speed | What could make AI progress speed up or slow down? | general | transition_dynamics, causal_clarity | draft |
-| transition.warning | What warning signs would people have before changes became hard to reverse? | general | transition_dynamics, scope_discipline | draft |
-| transition.feedback | Which bottleneck would most constrain AI-assisted AI research? | expert | transition_dynamics, causal_clarity | draft |
-| upside.distribution | Who do you expect to benefit most from the changes you described? | general | beneficial_potential, scope_discipline | draft |
-| upside.bottleneck | What would need to happen for that benefit to reach people? | general | beneficial_potential, causal_clarity | draft |
-| risk.catastrophe | Do you expect AI could cause harm on a scale humanity could not recover from? | general | risk_landscape, appropriate_uncertainty | draft |
+| transition.warning | What warning signs, if any, would you expect before AI causes irreversible harm? | general | transition_dynamics, scope_discipline | draft |
+| transition.feedback | What, if anything, would limit how quickly AI can improve AI systems? | expert | transition_dynamics, causal_clarity | draft |
+| upside.distribution | Who do you expect to benefit most from AI? | general | beneficial_potential, scope_discipline | draft |
+| upside.bottleneck | What, if anything, could prevent AI’s benefits from reaching ordinary people? | general | beneficial_potential, causal_clarity | draft |
+| risk.catastrophe | How likely do you think AI is to cause harm that humanity could never recover from? | general | risk_landscape, appropriate_uncertainty | draft |
 | risk.misuse | Which harmful use of AI concerns you most, if any? | general | risk_landscape, causal_clarity | draft |
-| risk.ordinary | Which failures do you expect people could recover from? | general | risk_landscape, scope_discipline | draft |
-| control.test | What would convince you that people can keep a powerful AI system under control? | general | technical_controllability, updateability | draft |
-| control.failuremode | Which failure mode would your proposed oversight method leave unresolved? | expert | technical_controllability, counterargument_engagement | draft |
-| governance.incentives | What incentives would make labs act in the way you expect? | general | institutional_competence, causal_clarity | draft |
-| governance.coordination | What could make cooperation between competing institutions work? | general | institutional_competence, scope_discipline | draft |
+| risk.ordinary | What AI-related harms, if any, do you expect people to be able to recover from? | general | risk_landscape, scope_discipline | draft |
+| control.test | What evidence would increase your confidence that people can control AI systems smarter than humans? | general | technical_controllability, updateability | draft |
+| governance.incentives | What pressures do you think will shape how AI companies handle safety? | general | institutional_competence, causal_clarity | draft |
+| governance.coordination | Do you expect competing AI companies or governments to cooperate on safety, and why? | general | institutional_competence, scope_discipline | draft |
 | agency.consent | What kinds of changes should people be able to refuse in a good AI future? | general | human_agency, action_posture | draft |
-| action.tradeoff | What trade-off would you accept to shape how AI is developed? | general | action_posture, scope_discipline | draft |
-| grounding.claim | What does the example you mentioned actually establish about your expectation? | general | grounded_understanding, scope_discipline | draft |
-| grounding.source | Where could someone check the evidence that matters most to your view? | general | grounded_understanding, updateability | draft |
-| crux.test | How could someone check whether your most important assumption holds? | general | updateability, grounded_understanding | draft |
-| tension.general | Are there conditions that make your expectations fit together? | general | internal_coherence, scope_discipline | draft |
-| scope.assumption | Which assumption matters most to the outcome you expect? | general | scope_discipline, internal_coherence | draft |
-| timeline.milestone | What change would tell you that the future you described is getting closer? | general | capability_trajectory, updateability | draft |
-| mechanism.chain | Which causal link in your account is least established by the available evidence? | expert | causal_clarity, appropriate_uncertainty | draft |
+| action.tradeoff | What downside would you accept to make AI’s future impact better? | general | action_posture, scope_discipline | draft |
+| grounding.claim | What have today’s AI systems shown you about what future AI will be able to do? | general | grounded_understanding, scope_discipline | draft |
+| scope.assumption | What assumption does your prediction about AI’s future depend on most? | general | scope_discipline, internal_coherence | draft |
+| timeline.milestone | What sign would tell you that AI is starting to transform everyday life? | general | capability_trajectory, updateability | draft |
+| mechanism.chain | Where is the weakest evidence in your explanation of how AI will change people’s lives? | expert | causal_clarity, appropriate_uncertainty | draft |
 
 ## Findings and resources
 

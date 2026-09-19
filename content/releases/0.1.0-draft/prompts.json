@@ -41,7 +41,7 @@
   },
   {
     "id": "timeline.general",
-    "text": "When do you expect AI to make changes on that scale, if ever?",
+    "text": "When, if ever, do you expect AI to bring major changes to everyday life?",
     "family": "timeline",
     "readingLevel": "general",
     "prerequisites": [],
@@ -61,7 +61,7 @@
   },
   {
     "id": "conviction.general",
-    "text": "How sure are you about that timing?",
+    "text": "How confident are you in your predictions about when AI will bring major changes to everyday life?",
     "family": "calibration",
     "readingLevel": "general",
     "prerequisites": [],
@@ -81,7 +81,7 @@
   },
   {
     "id": "mechanism.general",
-    "text": "What would have to happen for that outcome to occur?",
+    "text": "How do you think AI will cause the biggest change you expect in people\u2019s lives?",
     "family": "mechanism",
     "readingLevel": "general",
     "prerequisites": [],
@@ -101,7 +101,7 @@
   },
   {
     "id": "grounding.general",
-    "text": "What observation or experience most shaped that expectation?",
+    "text": "What observation or experience has most shaped your view of AI\u2019s future impact?",
     "family": "grounding",
     "readingLevel": "general",
     "prerequisites": [],
@@ -121,7 +121,7 @@
   },
   {
     "id": "control.general",
-    "text": "What would make very powerful AI stay under meaningful human control?",
+    "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
     "family": "control",
     "readingLevel": "general",
     "prerequisites": [],
@@ -161,7 +161,7 @@
   },
   {
     "id": "upside.general",
-    "text": "Which possible benefit would matter most for the future you described?",
+    "text": "What major benefits, if any, do you actually expect people to get from AI?",
     "family": "upside",
     "readingLevel": "general",
     "prerequisites": [],
@@ -181,7 +181,7 @@
   },
   {
     "id": "risk.general",
-    "text": "Which possible harm would matter most for the future you described?",
+    "text": "What major harms, if any, do you actually expect AI to cause?",
     "family": "risk",
     "readingLevel": "general",
     "prerequisites": [],
@@ -201,7 +201,7 @@
   },
   {
     "id": "crux.general",
-    "text": "What development would most change your view?",
+    "text": "What discovery or event would most change your view of AI\u2019s future impact?",
     "family": "crux",
     "readingLevel": "general",
     "prerequisites": [],
@@ -221,7 +221,7 @@
   },
   {
     "id": "countercase.general",
-    "text": "What is the strongest reason your expectation might turn out wrong?",
+    "text": "What is the strongest argument against your overall view of AI\u2019s future impact?",
     "family": "countercase",
     "readingLevel": "general",
     "prerequisites": [],
@@ -281,7 +281,7 @@
   },
   {
     "id": "transition.warning",
-    "text": "What warning signs would people have before changes became hard to reverse?",
+    "text": "What warning signs, if any, would you expect before AI causes irreversible harm?",
     "family": "transition",
     "readingLevel": "general",
     "prerequisites": ["transition_dynamics"],
@@ -301,7 +301,7 @@
   },
   {
     "id": "transition.feedback",
-    "text": "Which bottleneck would most constrain AI-assisted AI research?",
+    "text": "What, if anything, would limit how quickly AI can improve AI systems?",
     "family": "transition",
     "readingLevel": "expert",
     "prerequisites": ["transition_dynamics"],
@@ -321,7 +321,7 @@
   },
   {
     "id": "upside.distribution",
-    "text": "Who do you expect to benefit most from the changes you described?",
+    "text": "Who do you expect to benefit most from AI?",
     "family": "upside",
     "readingLevel": "general",
     "prerequisites": ["beneficial_potential"],
@@ -341,7 +341,7 @@
   },
   {
     "id": "upside.bottleneck",
-    "text": "What would need to happen for that benefit to reach people?",
+    "text": "What, if anything, could prevent AI\u2019s benefits from reaching ordinary people?",
     "family": "upside",
     "readingLevel": "general",
     "prerequisites": ["beneficial_potential"],
@@ -361,7 +361,7 @@
   },
   {
     "id": "risk.catastrophe",
-    "text": "Do you expect AI could cause harm on a scale humanity could not recover from?",
+    "text": "How likely do you think AI is to cause harm that humanity could never recover from?",
     "family": "risk",
     "readingLevel": "general",
     "prerequisites": ["risk_landscape"],
@@ -401,7 +401,7 @@
   },
   {
     "id": "risk.ordinary",
-    "text": "Which failures do you expect people could recover from?",
+    "text": "What AI-related harms, if any, do you expect people to be able to recover from?",
     "family": "risk",
     "readingLevel": "general",
     "prerequisites": ["risk_landscape"],
@@ -421,7 +421,7 @@
   },
   {
     "id": "control.test",
-    "text": "What would convince you that people can keep a powerful AI system under control?",
+    "text": "What evidence would increase your confidence that people can control AI systems smarter than humans?",
     "family": "control",
     "readingLevel": "general",
     "prerequisites": [],
@@ -441,7 +441,7 @@
   },
   {
     "id": "governance.incentives",
-    "text": "What incentives would make labs act in the way you expect?",
+    "text": "What pressures do you think will shape how AI companies handle safety?",
     "family": "governance",
     "readingLevel": "general",
     "prerequisites": ["institutional_competence"],
@@ -461,7 +461,7 @@
   },
   {
     "id": "governance.coordination",
-    "text": "What could make cooperation between competing institutions work?",
+    "text": "Do you expect competing AI companies or governments to cooperate on safety, and why?",
     "family": "governance",
     "readingLevel": "general",
     "prerequisites": ["institutional_competence"],
@@ -501,7 +501,7 @@
   },
   {
     "id": "action.tradeoff",
-    "text": "What trade-off would you accept to shape how AI is developed?",
+    "text": "What downside would you accept to make AI\u2019s future impact better?",
     "family": "action",
     "readingLevel": "general",
     "prerequisites": [],
@@ -521,7 +521,7 @@
   },
   {
     "id": "grounding.claim",
-    "text": "What does the example you mentioned actually establish about your expectation?",
+    "text": "What have today\u2019s AI systems shown you about what future AI will be able to do?",
     "family": "grounding",
     "readingLevel": "general",
     "prerequisites": ["grounded_understanding"],
@@ -541,7 +541,7 @@
   },
   {
     "id": "scope.assumption",
-    "text": "Which assumption matters most to the outcome you expect?",
+    "text": "What assumption does your prediction about AI\u2019s future depend on most?",
     "family": "scope",
     "readingLevel": "general",
     "prerequisites": [],
@@ -561,7 +561,7 @@
   },
   {
     "id": "timeline.milestone",
-    "text": "What change would tell you that the future you described is getting closer?",
+    "text": "What sign would tell you that AI is starting to transform everyday life?",
     "family": "timeline",
     "readingLevel": "general",
     "prerequisites": [],
@@ -581,7 +581,7 @@
   },
   {
     "id": "mechanism.chain",
-    "text": "Which causal link in your account is least established by the available evidence?",
+    "text": "Where is the weakest evidence in your explanation of how AI will change people\u2019s lives?",
     "family": "mechanism",
     "readingLevel": "expert",
     "prerequisites": ["causal_clarity"],

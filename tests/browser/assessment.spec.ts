@@ -355,7 +355,7 @@ test('the twelfth prompt finalizes insufficient evidence after a non-answer with
   for (let i = 1; i < 12; i++)
     state = issuePrompt(state, {
       promptId: 'timeline.general',
-      text: 'When do you expect AI to make changes on that scale, if ever?',
+      text: 'When, if ever, do you expect AI to bring major changes to everyday life?',
       family: 'timeline',
       variant: 'original',
       sourceEvidenceIds: []

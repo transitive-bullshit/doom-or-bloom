@@ -11,11 +11,8 @@ import {
 } from '@/lib/assessment/schema'
 import { questionSchema, modelAnswerSchema } from '@/lib/assessment/schema'
 import { personaProfileSchema } from './catalog'
-import { mechanicalCaseSchema, legacyProfileSchema } from './mechanical/schema'
-export const recordedBackgroundSchema = z.union([
-  personaProfileSchema,
-  legacyProfileSchema
-])
+import { mechanicalCaseSchema } from './mechanical/schema'
+export const recordedBackgroundSchema = personaProfileSchema
 
 export const participantExchangeSchema = z.strictObject({
   promptInstanceId: z.string(),
@@ -133,6 +130,8 @@ export const journeyStepSchema = z.strictObject({
   ordinal: z.number().int(),
   operation: z.enum(['answer', 'project', 'retry', 'continue', 'clarify']),
   result: resultSchema.optional(),
+  resultState: z.record(z.string(), z.unknown()).optional(),
+  resultUnavailable: z.string().optional(),
   prompt: promptInstanceSchema,
   answer: z.string().nullable(),
   scriptKey: z.string().nullable(),
@@ -160,6 +159,7 @@ export const journeyStepSchema = z.strictObject({
 })
 export const failedOperationSchema = z.strictObject({
   requestId: z.string(),
+  snapshot: z.boolean().optional(),
   assessment: assessmentSchema,
   operation: operationSchema,
   // Zod exposes object fields through its shape API.
@@ -207,6 +207,7 @@ export const suiteSchema = z.strictObject({
   ]),
   participantModel: z.string().optional(),
   exerciseResults: z.boolean().optional(),
+  answerSnapshots: z.boolean().optional(),
   resumedFrom: z
     .strictObject({ runId: z.string(), personaId: z.string() })
     .optional(),
@@ -219,7 +220,7 @@ export const suiteSchema = z.strictObject({
   requestBudget: z
     .strictObject({ maximum: z.number(), usedOrReserved: z.number() })
     .nullable(),
-  journeys: z.array(journeySchema).max(10)
+  journeys: z.array(journeySchema).max(20)
 })
 export type JourneySuite = z.infer<typeof suiteSchema>
 export type RunIndex = Pick<
@@ -234,6 +235,7 @@ export type RunIndex = Pick<
   | 'turns'
   | 'participantModel'
   | 'exerciseResults'
+  | 'answerSnapshots'
   | 'resumedFrom'
   | 'cost'
 > & { personaIds: string[] }
@@ -261,6 +263,7 @@ export function runIndex(suite: JourneySuite): RunIndex {
     personaIds: suite.journeys.map((j) => j.personaId)
   }
   if (suite.participantModel) index.participantModel = suite.participantModel
+  if (suite.answerSnapshots) index.answerSnapshots = true
   if (suite.exerciseResults) index.exerciseResults = true
   if (suite.cost) index.cost = suite.cost
   if (suite.resumedFrom) index.resumedFrom = suite.resumedFrom
@@ -332,4 +335,11 @@ export function compareJourneys(before: Journey, after: Journey) {
       JSON.stringify(a[key as keyof typeof a]) !==
       JSON.stringify(b[key as keyof typeof b])
   )
+}
+
+// Mechanical tests may record control operations; the inspector shows only answers.
+export function questionSteps(journey: Journey): JourneyStep[] {
+  return journey.steps
+    .filter((step) => step.operation === 'answer')
+    .map((step, index) => ({ ...step, ordinal: index + 1 }))
 }

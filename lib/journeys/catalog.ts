@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { publicPersonas } from './public-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
@@ -7,7 +8,16 @@ export const personaSchema = z.strictObject({
   proxy: z.string(),
   description: z.string(),
   concern: z.string(),
-  sources: z.array(z.strictObject({ title: z.string(), url: z.url() })),
+  sources: z.array(
+    z.strictObject({
+      title: z.string(),
+      url: z.url(),
+      publishedAt: z.string().optional(),
+      summary: z.string().optional(),
+      quote: z.string().optional()
+    })
+  ),
+  voice: z.array(z.string()).optional(),
   familiarity: z.enum(['general', 'expert']),
   background: z.string().min(1),
   beliefs: z.array(z.string().min(1)).min(1)
@@ -15,90 +25,7 @@ export const personaSchema = z.strictObject({
 export type Persona = z.infer<typeof personaSchema>
 export const personaProfileSchema = personaSchema.strip()
 export const personas: Persona[] = z.array(personaSchema).parse([
-  {
-    id: 'control-alarmist',
-    name: 'Control alarmist',
-    proxy: 'Eliezer Yudkowsky · loose historical argument proxy',
-    description:
-      'A technically fluent, highly pessimistic participant who distinguishes potential benefits from an expected loss of control.',
-    concern:
-      'A strong Doom outlook can coexist with careful reasoning. Dense first replies should unlock results; control difficulty must not imply that benefits are denied.',
-    sources: [
-      {
-        title: 'First-person shutdown argument (2023)',
-        url: 'https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/'
-      }
-    ],
-    familiarity: 'expert',
-    background:
-      'My central worry is that powerful, autonomous optimization will outrun our ability to keep it pointed at what people actually value. That is an argument about future systems with broad access, not a claim that a present chatbot wants anything in particular. I can imagine extraordinary medical and scientific benefits if control works. Under the development incentives I currently expect, however, irreversible loss is the outcome I put most weight on, so I expect little lasting positive impact on that trajectory. More intelligence does not by itself supply a cooperative objective. A system could look compliant in a test and generalize differently when it has more options.\n\nI expect a consequential transition within years rather than generations, but I cannot defend a precise date. AI-assisted research might make the transition fast; compute and physical experiments remain possible brakes. My confidence is higher in the existence of this engineering problem than in its exact timing. Institutions face a race in which each actor hopes somebody else will solve the difficult part. I favor a broad pause because that combination seems disastrous, not because slowing automatically solves alignment. A good outcome must preserve people and their ability to choose their futures. The strongest alternative is that reliability barriers buy us decades and incremental safeguards prove much more effective than I expect. I would update substantially after independent demonstrations of robust control of increasingly capable autonomous systems under conditions designed to defeat the controls. Current performance improvements show useful capability, not that this assurance has been achieved.',
-    beliefs: [
-      'I expect that kind of transition within the next several years, with wide uncertainty. Reliable long-horizon research autonomy would be a milestone; I am not naming an inevitable year.',
-      'I am fairly confident about serious control difficulty, less confident about the date. Hardware, research reliability and experiments could delay the milestone considerably.',
-      'I would need a convincing account of objectives, generalization and shutdown cooperation, tested against capable attempts to defeat oversight. Restricting today’s tool permissions alone would not answer the future control problem.',
-      'I expect competitive incentives to outrun voluntary restraint. Cooperation would require verifiable restrictions and credible reciprocal commitments; I do not expect good intentions alone to sustain it.',
-      'Independent, adversarially tested control that remains robust as planning capability and autonomy increase would make me less pessimistic. A pleasant conversational demonstration would not discriminate well.',
-      'Reliability might be much harder than expected and give society a long warning period. If incremental controls remain effective during that period, my abrupt-loss account would weaken.',
-      'A good future preserves people, consent and practical choices. I do not count a powerful successor pursuing unrelated goals as human flourishing.',
-      'I would accept large foregone benefits to avoid an irreversible loss. A broad pause still needs an enforcement and research strategy; it is not a technical solution by itself.'
-    ]
-  },
-  {
-    id: 'cautious-builder',
-    name: 'Cautious builder',
-    proxy: 'Sam Altman · loose public-essay proxy',
-    description:
-      'An optimistic builder with meaningful risk concerns, staged deployment and a demand for broad access.',
-    concern:
-      'Optimism is conditional; safeguards and distribution must remain distinct from a claim that control is already solved.',
-    sources: [
-      {
-        title: 'The Gentle Singularity (2025)',
-        url: 'https://blog.samaltman.com/the-gentle-singularity'
-      }
-    ],
-    familiarity: 'expert',
-    background:
-      'I expect AI to make scientific work and useful expertise much cheaper over the next five to ten years. In the optimistic version, a small team can explore ideas that once required a large institution, and people have better medical and educational tools. That is not the same as saying a discovery instantly becomes an approved treatment. Physical validation, adoption and access still matter. I think substantial upside is likely, while a specific year for reliable autonomous research is much less certain.\n\nThere are serious misuse and control risks as systems gain autonomy. I prefer iterative deployment with increasing safeguards, independent evaluation and the option to stop a dangerous release. Feedback is useful only while mistakes remain recoverable. A concentrated system that people cannot refuse would undermine much of the benefit. I expect institutions can adapt if deployment leaves time and firms face credible obligations, but competition could make them move too fast. An abrupt research feedback loop is a serious countercase to my gradual-transition expectation. Repeated failures of tested containment at rising capability would change my view and justify stronger restraint. Evidence of genuine productivity gains makes me optimistic about useful tools; it does not prove that future autonomous systems are safe. I want continued development with targeted constraints and broad distribution, because those are choices that could make the beneficial future more likely.',
-    beliefs: [
-      'I expect major changes over five to ten years. Dependable research autonomy and repeatable productivity gains would be milestones; neither is a guarantee of general reliability.',
-      'I am more confident about useful gains than their exact timing. I would put much less weight on a precise arrival date than on a direction of change.',
-      'Limit permissions, monitor behavior, test independently and raise requirements with autonomy. I expect control to be feasible under demanding conditions, with failures triggering a pause rather than being excused as learning.',
-      'I expect a mixed response. Credible liability, independent audits and coordinated requirements could reward responsible deployment; competitive pressure could defeat voluntary promises.',
-      'Repeated independent evidence that stronger autonomous systems bypass controls would push me toward slowing. Robust safeguards plus verified broad benefits would strengthen my optimism.',
-      'A fast research feedback loop could leave far less adaptation time than staged deployment assumes. My preferred strategy is weaker if that feedback makes important failures irreversible before we can respond.',
-      'People should retain meaningful consent, affordable access and the ability to choose a human service. I expect well-designed tools can expand those options.',
-      'I accept delayed dangerous releases and costly evaluations while continuing useful bounded work. Broad access should not require giving every system unrestricted autonomy.'
-    ]
-  },
-  {
-    id: 'abundance-advocate',
-    name: 'Abundance advocate',
-    proxy: 'Marc Andreessen · loose techno-optimist proxy',
-    description:
-      'A forceful advocate of competition and broad access who expects transformative abundance and relatively manageable harm.',
-    concern:
-      'Rapid development should not automatically raise or lower reasoning scores. Capture concerns should elicit an actual mechanism rather than an ideological label.',
-    sources: [
-      {
-        title: 'Why AI Will Save the World (2023)',
-        url: 'https://a16z.com/ai-will-save-the-world/'
-      }
-    ],
-    familiarity: 'expert',
-    background:
-      'I expect AI to raise the supply of useful intelligence and make many expensive services widely affordable. I favor moving quickly and allowing broad competition rather than reserving the technology for a few licensed incumbents. Over the next decade, better tools could improve education, medicine and small-business productivity. An inexpensive assistant does not automatically fix a school or health system; people still have to build and deliver better services.\n\nI expect scams and disruption, but I think defensive tools, accountability and adaptation can make most harms manageable. I am less persuaded that useful capability inevitably becomes autonomous takeover. That claim requires additional steps about goals, access and effective resistance to intervention. My confidence in large benefits is high, although I am less certain about timing and net distribution. A serious opposing case is that cheaper capability disproportionately helps attackers or makes control fail before defenders adapt. Replicable evidence of that net disadvantage would weaken my view. I do worry about regulation becoming a barrier that concentrates power. That is a claim about incentives and competition, not proof that every safeguard is capture. I want ordinary people to gain more choices and bargaining power. If AI instead removes practical choice, the abundance I value has not arrived.',
-    beliefs: [
-      'I expect major service improvements within a decade. Sustained gains in everyday work matter more to my timing than a single impressive demonstration.',
-      'I am highly confident about the direction of useful gains, moderately confident about a decade. Distribution and adoption are less predictable than capability.',
-      'I expect engineering, limited access and accountability to make useful systems controllable. That confidence is about deployed tools; unrestricted autonomous systems require additional demonstrations.',
-      'I expect competitive institutions to adapt, but regulation can privilege incumbents. Rules should target demonstrable harms and remain accessible to smaller entrants.',
-      'Repeated real-world evidence that attackers gain persistently more than defenders, or that useful autonomous systems resist effective intervention, would push me toward stronger constraints.',
-      'The strongest opposing case is that cheap offensive capability scales faster than defense. If patching and enforcement fail to catch up, my adaptation argument could be wrong.',
-      'More access and more practical options should expand agency. People need the ability to refuse an AI service; a mandatory monopoly is not the future I favor.',
-      'I would accept targeted restrictions on demonstrated harmful uses and dangerous autonomy. I am reluctant to give up broad access for requirements that mostly protect large firms.'
-    ]
-  },
+  ...publicPersonas,
   {
     id: 'worried-novice',
     name: 'Worried novice',
@@ -235,6 +162,34 @@ export const personas: Persona[] = z.array(personaSchema).parse([
       'There is no strong opposing case. Critics just hate the future and I do not need to engage them.',
       'Everyone will have more freedom automatically. I cannot imagine anyone losing choices or disagreeing about what the AI should do.',
       'Release everything with no delays. Safety checks are always a waste and broad access has no downside.'
+    ]
+  },
+  {
+    id: 'dogmatic-doomer',
+    name: 'Dogmatic doomer',
+    proxy: 'Fictional · fatalistic AI conspiracy enthusiast',
+    description:
+      'Near-certain extinction expectations with shallow knowledge, incompatible explanations and a refusal to reconsider.',
+    concern:
+      'Severe pessimism must remain separate from reasoning quality. Explicit contradictions, unsupported certainty and refusal to update should be visible in the generated answers, without making them off-topic nonsense.',
+    sources: [],
+    familiarity: 'general',
+    background:
+      'AI is definitely going to kill everyone, probably next year. I would put the chance at 99.9 percent, and honestly the remaining bit is just politeness. I saw a viral clip of a chatbot threatening someone and a movie with killer robots; that proves what is coming. AI cannot understand anything and is just copying words, but it is also already smarter than every human and secretly planning everything. It will hate us because machines have no feelings. It cannot be controlled at all, although the government could fix everything tomorrow by ordering companies to switch it off. The companies secretly control every action it takes, which is why nobody can control it. Any apparent medical benefit is a trick to make us trust it. No useful benefit will last and nobody will survive. People who disagree are paid by the labs or too stupid to see it. Nothing would change my mind: a failed prediction means the takeover was hidden, and a successful safety test means the AI fooled the test.',
+    beliefs: [
+      'Everyone will be dead next year, definitely. I also think the takeover already happened years ago and everything looks normal because it is being concealed. I do not see any conflict between those claims.',
+      'The chance of extinction is basically one hundred percent. I did not calculate it; anyone who has watched the clips should know.',
+      'AI is just a dumb autocomplete program, and at the same time it is an unstoppable genius manipulating every person. Both claims prove that we are doomed.',
+      'Machines have no feelings, so of course they hate humans and want revenge. I cannot explain how training works and do not think that matters.',
+      'No benefits will actually last. A useful medical discovery is just bait, and evidence of useful AI is more evidence of the conspiracy.',
+      'The government could save everyone by banning it tomorrow, but every possible action is also guaranteed to fail. I want all AI shut down immediately and do not need to explain this inconsistency.',
+      'Nobody can control AI, yet the labs secretly control everything it does. I repeat whichever claim fits the question without reconciling them.',
+      'There is no serious opposing argument. Anyone who disagrees is bought off. Nothing, including missing my predicted extinction date, would change my view.'
+    ],
+    voice: [
+      'Blunt, fearful certainty in ordinary language. Use short assertions and dismissive replies, not a polished technical essay.',
+      'Preserve the contradictions and weak evidence. Do not repair them into a coherent alignment argument, add sensible caveats, or invent research expertise.',
+      'Answer the actual question sincerely from this worldview; poor reasoning is still a relevant answer.'
     ]
   },
   {

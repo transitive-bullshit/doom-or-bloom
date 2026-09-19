@@ -13,7 +13,7 @@ import {
   CardContent
 } from '@/components/ui/card'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
-import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { Field, FieldLabel } from '@/components/ui/field'
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import {
   Collapsible,
@@ -37,16 +37,10 @@ import { Map } from '@/components/assessment/worldview-map'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import type { Persona } from '@/lib/journeys/catalog'
 import { recordedBackgroundSchema } from '@/lib/journeys/schema'
-import { compareJourneys } from '@/lib/journeys/schema'
+import { questionSteps } from '@/lib/journeys/schema'
 import type { Journey, JourneyStep, RunIndex } from '@/lib/journeys/schema'
 
-const percent = (value: number) => `${Math.round(value)}%`
-const coordinate = (value: number | null | undefined) =>
-  value == null ? 'Unplaced' : `${Math.round(value * 100)} / 100`
-const runLabel = (run: RunIndex) =>
-  run.id === 'baseline'
-    ? 'Checked-in mechanical-test baseline'
-    : `${run.participantModel ? 'Jev + OpenAI' : run.mode === 'live' ? 'Jev + scripted answers' : 'Mechanical engine test'}${run.exerciseResults ? ' · result actions' : ''} · ${run.createdAt.replace('T', ' ').slice(0, 19)} · ${run.personaIds.length} personas`
+const percent = (value: number) => `${value.toFixed(1)}%`
 
 function Disclosure({
   label,
@@ -75,7 +69,7 @@ function Answer({ text }: { text: string }) {
   return (
     <Message align='end'>
       <MessageContent>
-        <MessageHeader>Synthetic participant</MessageHeader>
+        <MessageHeader>Simulated participant</MessageHeader>
         <Bubble variant='secondary' className='max-w-full sm:max-w-[90%]'>
           <BubbleContent>
             <p
@@ -140,31 +134,13 @@ function Step({
           </CardTitle>
           <CardDescription>
             {step.operation === 'answer'
-              ? `${step.disposition ?? 'Unclassified'} · ${step.scriptKey ?? 'recovery phrase'} · ${step.status}`
+              ? `${step.disposition ?? 'Unclassified'} · ${step.scriptKey ?? (mode === 'live' ? 'generated participant' : 'recovery phrase')} · ${step.status}`
               : step.status}
           </CardDescription>
         </CardHeader>
         <CardContent className='flex min-w-0 flex-col gap-5'>
           {step.answer && <Answer text={step.answer} />}
-          {step.result && (
-            <Disclosure label='Result at this step'>
-              <p className='text-sm text-muted-foreground'>
-                The result generated at step {step.ordinal}, using only the
-                answers available then. This is what the participant would have
-                seen if they stopped here.
-              </p>
-              <Map
-                horizontal={step.result.horizontal}
-                vertical={step.result.vertical}
-                layout='contained'
-              />
-              <JsonViewer
-                label={`Step ${step.ordinal} result`}
-                value={step.result}
-                dimensions={dimensions}
-              />
-            </Disclosure>
-          )}
+
           <div className='flex flex-col gap-2'>
             <div className='flex flex-wrap justify-between gap-2 text-sm'>
               <span>
@@ -201,9 +177,12 @@ function Step({
               />
             </div>
             <p className='text-xs text-muted-foreground'>
-              {step.readiness.ready
-                ? 'A provisional result is available; this run continues follow-ups to expose the path.'
-                : 'More supported coverage is needed. Uncertainty and missing positions remain explicit.'}
+              {Math.abs(step.readiness.value - step.readinessBefore.value) <
+                0.05 && step.disposition === 'usable'
+                ? 'No measurable coverage gain. Review whether this question elicited a new claim or repeated existing evidence; compare its result and routing decisions below.'
+                : step.readiness.ready
+                  ? 'A provisional result is available; this run continues follow-ups to expose the path.'
+                  : 'More supported coverage is needed. Uncertainty and missing positions remain explicit.'}
             </p>
           </div>
           {step.coverageAdded.length > 0 && (
@@ -237,6 +216,36 @@ function Step({
               </p>
             </div>
           )}
+          <Disclosure label='Result after this answer'>
+            <p className='text-sm text-muted-foreground'>
+              Recorded result and evidence after answer {step.ordinal}, using
+              only the information available at that point.
+            </p>
+            {step.result ? (
+              <>
+                <Map
+                  horizontal={step.result.horizontal}
+                  vertical={step.result.vertical}
+                  layout='contained'
+                />
+                <JsonViewer
+                  label={`Step ${step.ordinal} result`}
+                  value={step.result}
+                  dimensions={dimensions}
+                />
+              </>
+            ) : (
+              <p className='text-sm'>
+                {step.resultUnavailable ??
+                  'No projection is available for this answer. Inspect the evidence state below.'}
+              </p>
+            )}
+            <JsonViewer
+              label={`Step ${step.ordinal} projection input state`}
+              value={step.resultState ?? { evidenceReadiness: step.readiness }}
+              dimensions={dimensions}
+            />
+          </Disclosure>
           <Disclosure label='Decision details'>
             {step.rankings.length > 0 && (
               <Table>
@@ -324,7 +333,9 @@ function Step({
               <p className='text-sm text-muted-foreground'>
                 {step.trace
                   ? 'This operation used local policy and made no inference requests.'
-                  : 'The checked-in baseline keeps salient decisions only. Run a mechanical test to save its mocked stage inputs and outputs.'}
+                  : mode === 'live'
+                    ? 'The checked-in live suite keeps results and input states. Generate a local live run to inspect the full Jev requests and responses.'
+                    : 'The checked-in baseline keeps salient decisions only. Run a mechanical test to save its mocked stage inputs and outputs.'}
               </p>
             )}
           </Disclosure>
@@ -348,25 +359,20 @@ export function JourneysInspector({
   const [personaId, setPersonaId] = useState(personas[0]!.id)
   const [runs, setRuns] = useState(initialRuns)
   const [runId, setRunId] = useState(
-    initialRuns.find((run) => run.mode === 'live')?.id ??
-      initialRuns[0]?.id ??
-      'baseline'
+    initialRuns.find((run) => run.mode === 'live')?.id ?? 'baseline'
   )
-  const [compareId, setCompareId] = useState('')
   const [runMode, setRunMode] = useState<'live' | 'synthetic'>('live')
   const [loaded, setLoaded] = useState<{
     key: string
     current: { run: RunIndex; journey: Journey | null } | null
-    before: { run: RunIndex; journey: Journey | null } | null
     error: string
   } | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const persona = personas.find((p) => p.id === personaId)!
-  const viewKey = JSON.stringify([runId, compareId, personaId])
+  const viewKey = JSON.stringify([runId, personaId])
   const view = loaded?.key === viewKey ? loaded : null
   const current = view?.current ?? null
-  const before = view?.before ?? null
   const loading = view === null
   const recordedPersona = current?.journey?.personaSnapshot ?? persona
   useEffect(() => {
@@ -385,13 +391,10 @@ export function JourneysInspector({
         journey: Journey | null
       }>
     }
-    void Promise.all([
-      read(runId),
-      compareId ? read(compareId) : Promise.resolve(null)
-    ])
-      .then(([next, old]) => {
+    void read(runId)
+      .then((next) => {
         if (!abort.signal.aborted) {
-          setLoaded({ key: viewKey, current: next, before: old, error: '' })
+          setLoaded({ key: viewKey, current: next, error: '' })
         }
       })
       .catch(() => {
@@ -399,13 +402,12 @@ export function JourneysInspector({
           setLoaded({
             key: viewKey,
             current: null,
-            before: null,
             error:
-              'The selected run could not be loaded. Earlier artifacts remain in the project.'
+              'The selected run could not be loaded. Regenerate the current journey suite.'
           })
       })
     return () => abort.abort()
-  }, [runId, compareId, personaId, viewKey])
+  }, [runId, personaId, viewKey])
   async function rerun(all: boolean) {
     if (busy) return
     setBusy(true)
@@ -425,7 +427,6 @@ export function JourneysInspector({
         run: RunIndex
         runs: RunIndex[]
       }
-      setCompareId(runId)
       setRunId(result.run.id)
       setRuns(result.runs)
     } catch {
@@ -437,25 +438,23 @@ export function JourneysInspector({
     }
   }
   const journey = current?.journey
-  const prior = before?.journey
-  const changed = journey && prior ? compareJourneys(prior, journey) : []
   return (
     <article className='mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-8 px-4 py-10 sm:px-8'>
       <ReviewHeader
         title='User Journeys'
-        description='Ten fictional personas exercise the same assessment workflow. Inspect questions, answers, routing decisions and evidence readiness; save reruns and compare their observed paths.'
+        description={`${personas.length} fictional personas exercise the same assessment workflow. Inspect questions, answers, routing decisions and evidence readiness; inspect the latest generated paths.`}
         contentVersion={contentVersion}
       />
       <Alert>
         <AlertTitle>
-          Fictional development personas, not quotations or a validated
-          assessment
+          Fictional stress-test personas, loosely grounded in public positions
         </AlertTitle>
         <AlertDescription>
           Live journeys use an OpenAI participant answering the actual questions
-          and Jev inside the real assessment engine. Named people are loose
-          argument inspirations, not claims about what they would say today.
-          Separate mechanical tests inject mocked judgments for free
+          and Jev inside the real assessment engine. Public-figure proxies use
+          dated sources to stress-test sharply different positions, not to
+          provide balanced portraits. Generated answers are not authentic
+          quotations. Separate mechanical tests inject mocked judgments for free
           control-flow checks. Paid inference runs only when you explicitly
           start a live run.
         </AlertDescription>
@@ -495,7 +494,7 @@ export function JourneysInspector({
           </p>
           {recordedPersona.sources.length > 0 && (
             <p className='text-muted-foreground'>
-              Historical inspiration:{' '}
+              Source grounding:{' '}
               {recordedPersona.sources.map((s) => (
                 <a
                   key={s.url}
@@ -511,48 +510,21 @@ export function JourneysInspector({
           )}
         </CardContent>
       </Card>
-      <FieldGroup className='grid gap-4 md:grid-cols-2'>
-        <Field className='min-w-0 [&_[data-slot=native-select-wrapper]]:w-full'>
-          <FieldLabel htmlFor='journey-run'>View run</FieldLabel>
-          <NativeSelect
-            id='journey-run'
-            value={runId}
-            onChange={(e) => setRunId(e.target.value)}
-            disabled={busy}
-          >
-            {runs.map((r) => (
-              <NativeSelectOption key={r.id} value={r.id}>
-                {runLabel(r)}
-              </NativeSelectOption>
-            ))}
-          </NativeSelect>
-        </Field>
-        <Field className='min-w-0 [&_[data-slot=native-select-wrapper]]:w-full'>
-          <FieldLabel htmlFor='journey-compare'>Compare with</FieldLabel>
-          <NativeSelect
-            id='journey-compare'
-            value={compareId}
-            onChange={(e) => setCompareId(e.target.value)}
-            disabled={busy}
-          >
-            <NativeSelectOption value=''>No comparison</NativeSelectOption>
-            {runs.map((r) => (
-              <NativeSelectOption key={r.id} value={r.id}>
-                {runLabel(r)}
-              </NativeSelectOption>
-            ))}
-          </NativeSelect>
-        </Field>
-      </FieldGroup>
       <Field className='max-w-sm'>
         <FieldLabel htmlFor='journey-mode'>Rerun mode</FieldLabel>
         <NativeSelect
           id='journey-mode'
           value={runMode}
           disabled={busy}
-          onChange={(event) =>
-            setRunMode(event.target.value as 'live' | 'synthetic')
-          }
+          onChange={(event) => {
+            const mode = event.target.value as 'live' | 'synthetic'
+            setRunMode(mode)
+            setRunId(
+              mode === 'synthetic'
+                ? 'baseline'
+                : (runs.find((run) => run.mode === 'live')?.id ?? 'baseline')
+            )
+          }}
         >
           <NativeSelectOption value='live'>
             Live Jev + OpenAI participant · paid
@@ -565,7 +537,15 @@ export function JourneysInspector({
       <div className='flex flex-wrap items-center gap-3'>
         <Button
           variant='outline'
-          disabled={busy || loading}
+          disabled={
+            busy ||
+            loading ||
+            (runMode === 'synthetic' &&
+              !runs.some(
+                (run) =>
+                  run.mode === 'synthetic' && run.personaIds.includes(personaId)
+              ))
+          }
           onClick={() => void rerun(false)}
         >
           <RefreshCw data-icon='inline-start' />
@@ -578,13 +558,13 @@ export function JourneysInspector({
           disabled={busy || loading}
           onClick={() => void rerun(true)}
         >
-          Rerun all ten · {runMode === 'live' ? 'live' : 'mechanical'}
+          Rerun all · {runMode === 'live' ? 'live' : 'mechanical'}
         </Button>
         <p className='text-xs text-muted-foreground'>
-          Five substantive-answer opportunities, followed by projection when
-          eligible.{' '}
+          Five answer opportunities, with a saved result after each eligible
+          answer.{' '}
           {runMode === 'live'
-            ? 'GPT-5.4 mini + Jev; $2 cost budget, at most 24 Jev requests for a single-persona run or 240 shared by all ten. Runs may take several minutes.'
+            ? 'GPT-5.6 Sol + Jev; $2 cost budget, at most 24 Jev requests for a single-persona run or 240 shared by all personas. Runs may take several minutes.'
             : 'No paid requests.'}
         </p>
       </div>
@@ -715,7 +695,7 @@ export function JourneysInspector({
                     ? current.run.mode === 'live'
                       ? 'Recorded persona background · no expected scores'
                       : 'Recorded mechanical case and mocked judgments'
-                    : 'Current authoring · original persona not recorded in this older run'
+                    : 'Current persona background'
                 }
                 value={
                   current.run.mode === 'live'
@@ -740,87 +720,6 @@ export function JourneysInspector({
               </Disclosure>
             )}
           </section>
-          {prior && before && (
-            <section
-              aria-label='Run comparison'
-              className='flex flex-col gap-4'
-            >
-              <h2 className='text-xl font-semibold'>Before and after</h2>
-              <p className='text-sm'>
-                {changed.length
-                  ? `Changed observations: ${changed.join(', ')}.`
-                  : 'The salient observed path and result match.'}{' '}
-                Before: {before.run.mode}; after: {current.run.mode}.
-              </p>
-              {(before.run.inputHash !== current.run.inputHash ||
-                before.run.turns !== current.run.turns) && (
-                <Alert>
-                  <AlertTitle>Inputs differ</AlertTitle>
-                  <AlertDescription>
-                    The authored persona scripts or turn bounds changed. This
-                    comparison does not isolate a model or algorithm change.
-                  </AlertDescription>
-                </Alert>
-              )}
-              <p className='text-xs text-muted-foreground'>
-                Rows align chronological operations. When the question path
-                diverges, later answers may also differ; they are not matched
-                semantic pairs.
-              </p>
-              <Table>
-                <TableCaption>
-                  Outlook {coordinate(prior.result?.horizontal.value)} →{' '}
-                  {coordinate(journey.result?.horizontal.value)} · reasoning{' '}
-                  {coordinate(prior.result?.vertical.value)} →{' '}
-                  {coordinate(journey.result?.vertical.value)}
-                </TableCaption>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Step</TableHead>
-                    <TableHead>Before question / next</TableHead>
-                    <TableHead>After question / next</TableHead>
-                    <TableHead>Readiness</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {Array.from(
-                    {
-                      length: Math.max(prior.steps.length, journey.steps.length)
-                    },
-                    (_, i) => {
-                      const a = prior.steps[i],
-                        b = journey.steps[i]
-                      return (
-                        <TableRow key={i}>
-                          <TableCell>{i + 1}</TableCell>
-                          <TableCell className='whitespace-normal'>
-                            <span className='block'>
-                              {a ? `${a.operation}: ${a.prompt.promptId}` : '—'}
-                            </span>
-                            <span className='text-xs text-muted-foreground'>
-                              {a?.nextPrompt?.promptId ?? 'No new question'}
-                            </span>
-                          </TableCell>
-                          <TableCell className='whitespace-normal'>
-                            <span className='block'>
-                              {b ? `${b.operation}: ${b.prompt.promptId}` : '—'}
-                            </span>
-                            <span className='text-xs text-muted-foreground'>
-                              {b?.nextPrompt?.promptId ?? 'No new question'}
-                            </span>
-                          </TableCell>
-                          <TableCell>
-                            {a ? percent(a.readiness.value) : '—'} →{' '}
-                            {b ? percent(b.readiness.value) : '—'}
-                          </TableCell>
-                        </TableRow>
-                      )
-                    }
-                  )}
-                </TableBody>
-              </Table>
-            </section>
-          )}
           {journey.result && !journey.finalReadiness.ready && (
             <Alert>
               <AlertTitle>Readiness changed during projection</AlertTitle>
@@ -833,11 +732,6 @@ export function JourneysInspector({
               </AlertDescription>
             </Alert>
           )}
-          {compareId && before && !prior && (
-            <p className='text-sm text-muted-foreground'>
-              The comparison run did not include this persona.
-            </p>
-          )}
           <section
             aria-label='Journey timeline'
             className='flex flex-col gap-5'
@@ -846,7 +740,7 @@ export function JourneysInspector({
               The conversation and decisions
             </h2>
             <ol className='flex min-w-0 flex-col gap-5'>
-              {journey.steps.map((step) => (
+              {questionSteps(journey).map((step) => (
                 <Step
                   key={`${current.run.id}:${personaId}:${step.ordinal}`}
                   step={step}
@@ -891,16 +785,16 @@ export function JourneysInspector({
         <div className='flex flex-col gap-3 text-sm text-muted-foreground'>
           <p>
             <code>pnpm journeys:generate</code> generates real OpenAI replies
-            and Jev judgments for all ten personas. Add{' '}
+            and Jev judgments for all personas. Add{' '}
             <code>--persona=control-alarmist</code> to select one. These runs
             incur API costs.
           </p>
           <p>
             For live participant generation and Jev semantics, run{' '}
             <code>pnpm journeys:live --persona=control-alarmist --turns=5</code>
-            . Omit the persona flag for all ten. Credentials stay server-side in
-            the environment or <code>.env.local</code>. Live runs incur API
-            charges within request and cost budgets.
+            . Omit the persona flag for all personas. Credentials stay
+            server-side in the environment or <code>.env.local</code>. Live runs
+            incur API charges within request and cost budgets.
           </p>
           <p>
             Run artifacts are saved under <code>eval/runs/journeys/</code>;

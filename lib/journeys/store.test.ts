@@ -38,7 +38,7 @@ test('recorded live journeys work on a fresh checkout and local traces take prec
   }
 })
 
-test('immutable local runs survive concurrent saves and reject paths, overwrite and corrupted artifacts', async () => {
+test('concurrent saves keep only the latest local run and reject paths, overwrite and corrupted artifacts', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'doom-journey-store-'))
   try {
     const store = createJourneyStore(root)
@@ -49,17 +49,15 @@ test('immutable local runs survive concurrent saves and reject paths, overwrite 
     })
     const b = { ...a, id: `${Date.now()}-${randomUUID()}` }
     await Promise.all([store.save(a), store.save(b)])
-    expect((await store.list()).map((r) => r.id).sort()).toEqual(
-      [a.id, b.id].sort()
-    )
-    expect((await store.read(a.id)).journeys[0]!.firstReadyAnswer).toBe(1)
-    await expect(store.read('../../.env.local')).rejects.toThrow()
-    await expect(store.save(a)).rejects.toThrow()
-    const file = path.join(root, 'eval/runs/journeys', a.id, 'suite.json')
-    await writeFile(file, 'broken json')
+    expect((await store.list()).map((r) => r.id).sort()).toEqual([b.id])
     await expect(store.read(a.id)).rejects.toThrow()
+    expect((await store.read(b.id)).journeys[0]!.firstReadyAnswer).toBe(1)
+    await expect(store.read('../../.env.local')).rejects.toThrow()
+    await expect(store.save(b)).rejects.toThrow()
+    const file = path.join(root, 'eval/runs/journeys', b.id, 'suite.json')
+    await writeFile(file, 'broken json')
+    await expect(store.read(b.id)).rejects.toThrow()
     expect(await readFile(file, 'utf8')).toBe('broken json')
-    expect((await store.read(b.id)).id).toBe(b.id)
   } finally {
     await rm(root, { recursive: true, force: true })
   }

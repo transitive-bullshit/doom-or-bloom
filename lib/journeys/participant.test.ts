@@ -21,6 +21,9 @@ test('participant sees character beliefs and actual conversation, never fixture 
   const input = JSON.parse(request.input)
   expect(input.currentQuestion).toBe(context.prompt.text)
   expect(input.background.beliefs).toEqual(context.persona.beliefs)
+  expect(input.background.sources).toEqual(context.persona.sources)
+  expect(input.background.voice).toEqual(context.persona.voice)
+  expect(request.model).toBe('gpt-5.6-sol')
   for (const key of [
     'levels',
     'openingVectors',
@@ -44,7 +47,7 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
       requests.push(JSON.parse(init!.body as string))
       return Response.json({
         id: `response-${requests.length}`,
-        model: 'gpt-5.4-mini',
+        model: 'gpt-5.6-sol',
         status: 'completed',
         output: [
           {
@@ -77,6 +80,8 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
     participant
   )
   expect(journey.error).toBeNull()
+  expect(journey.steps.every((step) => step.operation === 'answer')).toBe(true)
+  expect(journey.steps.every((step) => step.resultState)).toBe(true)
   expect(
     journey.steps.filter((s) => s.operation === 'answer').map((s) => s.answer)
   ).toEqual(['Generated answer 1.', 'Generated answer 2.'])
@@ -88,6 +93,22 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
   expect(JSON.stringify(seen)).not.toContain('control-alarmist')
   expect(JSON.stringify(seen)).not.toContain('openingVectors')
   expect(JSON.stringify(journey)).not.toContain('fake-secret')
+  expect(journey.steps).toHaveLength(2)
+  expect(journey.steps.map((step) => step.result?.evidenceRevision)).toEqual([
+    1, 2
+  ])
+  expect(
+    journey.steps[0]!.resultState!.completeParticipantEvidence
+  ).toHaveLength(1)
+  expect(
+    journey.steps[1]!.resultState!.completeParticipantEvidence
+  ).toHaveLength(2)
+  expect(journey.steps[0]!.trace!.stages.map((stage) => stage.name)).toEqual([
+    'A: interpret',
+    'C: route',
+    'D: projection'
+  ])
+  expect(journey.result).toEqual(journey.steps[1]!.result)
   expect(journey.participantExchanges).toHaveLength(2)
   expect(journey.personaSnapshot).not.toHaveProperty('levels')
   expect(journey.personaSnapshot).not.toHaveProperty('openingVectors')
@@ -103,7 +124,7 @@ test('Jev failure preserves the paid participant reply without substituting scri
     fetcher: async () =>
       Response.json({
         id: 'response',
-        model: 'gpt-5.4-mini',
+        model: 'gpt-5.6-sol',
         status: 'completed',
         output: [
           {
@@ -159,7 +180,7 @@ test('failed and incomplete OpenAI responses never become participant answers', 
     () =>
       Response.json({
         id: 'response',
-        model: 'gpt-5.4-mini',
+        model: 'gpt-5.6-sol',
         status: 'incomplete',
         output: [],
         usage: { input_tokens: 100, output_tokens: 900 }
@@ -178,8 +199,67 @@ test('failed and incomplete OpenAI responses never become participant answers', 
 })
 
 test('unknown cost remains reserved and prevents overspending', () => {
-  const budget = liveJourneyBudget(0.01)
+  const budget = liveJourneyBudget(0.05)
   budget.reserve('openai', 10_000, 0)
-  expect(budget.report().reservedUsd).toBe(0.0075)
+  expect(budget.report().reservedUsd).toBe(0.04)
   expect(() => budget.reserve('openai', 10_000, 0)).toThrow('budget exhausted')
+})
+
+test('a failed inspection projection resumes on its answer without replaying or appending an operation', async () => {
+  const fixture = createFixtureProvider()
+  const evaluator = {
+    kind: 'live' as const,
+    async evaluate(...args: Parameters<typeof fixture.evaluate>) {
+      return { ...(await fixture.evaluate(...args)), model: versions.model }
+    }
+  }
+  const participant = {
+    model: 'test-participant',
+    async generate(
+      input: Parameters<import('./participant').Participant['generate']>[0]
+    ) {
+      return {
+        promptInstanceId: input.prompt.id,
+        request: participantRequest(input),
+        response: {
+          id: 'reply',
+          model: 'test-participant',
+          text: 'My answer stays accepted.',
+          usage: { input_tokens: 0, output_tokens: 0 }
+        },
+        elapsedMs: 0
+      }
+    }
+  }
+  const journey = await runPersona(
+    personas[0]!,
+    loadBundle(),
+    1,
+    {
+      ...evaluator,
+      async evaluate(...args) {
+        if (Object.keys(args[1]).some((key) => key.endsWith(':score')))
+          throw new Error('projection failure')
+        return evaluator.evaluate(...args)
+      }
+    },
+    participant
+  )
+  expect(journey.accepted).toBe(1)
+  expect(journey.steps).toHaveLength(1)
+  expect(journey.failedOperation?.snapshot).toBe(true)
+  const resumed = await runPersona(
+    personas[0]!,
+    loadBundle(),
+    1,
+    evaluator,
+    undefined,
+    false,
+    journey
+  )
+  expect(resumed.error).toBeNull()
+  expect(resumed.accepted).toBe(1)
+  expect(resumed.steps).toHaveLength(1)
+  expect(resumed.steps[0]!.result?.evidenceRevision).toBe(1)
+  expect(resumed.steps[0]!.resultUnavailable).toBeUndefined()
 })

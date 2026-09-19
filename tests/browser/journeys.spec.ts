@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { createAssessment } from '../../lib/assessment/state'
 
-test('local personas explain exact paths, compare saved reruns and disclose synthetic exchanges', async ({
+test('local personas explain exact paths, replace saved reruns and disclose synthetic exchanges', async ({
   page,
   request,
   baseURL
@@ -16,7 +16,22 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
   await page.setViewportSize({ width: 1440, height: 1000 })
   await page.goto('/user-journeys')
   await expect(page.getByLabel('Rerun mode')).toHaveValue('live')
-  await page.getByLabel('View run').selectOption('baseline')
+  const liveSteps = page.locator('[data-slot=journey-step]')
+  await expect(liveSteps.first()).toBeVisible()
+  const results = liveSteps.getByRole('button', {
+    name: 'Result after this answer',
+    exact: true
+  })
+  await expect(results).toHaveCount(await liveSteps.count())
+  await expect(results.first()).toHaveAttribute('aria-expanded', 'false')
+  const positions = await liveSteps.first().evaluate((step) => ({
+    result: step.textContent!.indexOf('Result after this answer'),
+    readiness: step.textContent!.indexOf('Evidence readiness'),
+    decisions: step.textContent!.indexOf('Decision details')
+  }))
+  expect(positions.result).toBeGreaterThan(positions.readiness)
+  expect(positions.result).toBeLessThan(positions.decisions)
+  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await page.getByLabel('Rerun mode').selectOption('synthetic')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'User Journeys'
@@ -28,7 +43,7 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
     page
       .getByRole('region', { name: 'Journey timeline' })
       .locator('[data-slot=journey-step]')
-  ).toHaveCount(6)
+  ).toHaveCount(5)
   const first = page.locator('[data-slot=journey-step]').first()
   await expect(first).toContainText(
     'What do you think AI means for our future—and why?'
@@ -38,7 +53,6 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
     .getByRole('button', { name: 'Decision details', exact: true })
     .click()
   await expect(first.getByRole('table')).toBeVisible()
-  const previousRun = await page.getByLabel('View run').inputValue()
   const saved = page.waitForResponse(
     (response) =>
       response.url().endsWith('/api/user-journeys') &&
@@ -48,11 +62,9 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
     .getByRole('button', { name: 'Rerun this persona · mechanical' })
     .click()
   expect((await saved).status()).toBe(200)
-  await expect(page.getByLabel('View run')).not.toHaveValue(previousRun)
-  await expect(
-    page.getByRole('region', { name: 'Run comparison' })
-  ).toContainText('The salient observed path and result match.')
-  await expect(page.getByLabel('View run')).not.toHaveValue('baseline')
+  await expect(page.getByLabel('View run')).toHaveCount(0)
+  await expect(page.getByLabel('Compare with')).toHaveCount(0)
+
   const reloadedFirst = page.locator('[data-slot=journey-step]').first()
   await reloadedFirst
     .getByRole('button', { name: 'Requests and responses', exact: true })
@@ -68,7 +80,7 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
     fullPage: false
   })
   await page.reload()
-  await page.getByLabel('View run').selectOption('baseline')
+  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
     'First eligible after answer 1'
   )
@@ -91,7 +103,7 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
 }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/user-journeys')
-  await page.getByLabel('View run').selectOption('baseline')
+  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await page.getByRole('button', { name: /Worried novice/ }).click()
   await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
     '5 accepted answers'
@@ -114,7 +126,7 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
     page
       .getByRole('region', { name: 'Journey timeline' })
       .locator('[data-slot=journey-step]')
-  ).toHaveCount(9)
+  ).toHaveCount(7)
   const first = page.locator('[data-slot=journey-step]').first()
   await first.getByRole('button', { name: 'Requests and responses' }).click()
   await expect(first).toContainText('baseline keeps salient decisions only')
@@ -133,10 +145,11 @@ test('failed operation diagnostics and exact resume command remain readable on m
   page
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.route('**/api/user-journeys?*', async (route) => {
+  await page.route('**/api/user-journeys?run=baseline&*', async (route) => {
     const response = await route.fetch()
     const payload = await response.json()
     payload.run.mode = 'live'
+    delete payload.journey.personaSnapshot
     payload.journey.error = 'Jev: provider or transport failure (HTTP 401).'
     payload.journey.failureStage = 'interpret'
     payload.journey.failedOperation = {
@@ -161,7 +174,7 @@ test('failed operation diagnostics and exact resume command remain readable on m
     await route.fulfill({ response, json: payload })
   })
   await page.goto('/user-journeys')
-  await page.getByLabel('View run').selectOption('baseline')
+  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await page
     .getByRole('button', { name: 'Failed operation and recovery', exact: true })
     .click()
@@ -181,4 +194,5 @@ test('failed operation diagnostics and exact resume command remain readable on m
     viewport: innerWidth
   }))
   expect(width.page).toBeLessThanOrEqual(width.viewport + 1)
+  await page.unrouteAll({ behavior: 'wait' })
 })

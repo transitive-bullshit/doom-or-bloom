@@ -1,77 +1,87 @@
-# Participant question quality review
+# Participant question and elicitation review
 
-2026-09-17 · Authoring/runtime feedback checkpoint · All 34 original authored prompts inspected locally; current catalogs contain 30 after four hard deletions. No paid semantic evaluation.
+2026-09-20 · All 30 active questions audited. Replaced wording is removed from all four local draft catalogs; no deprecated question records or aliases are retained. Historical journey runs are deleted, not migrated.
 
-## Recorded feedback
+## Findings and changes
 
-Travis rejected `grounding.source`, “Where could someone check the evidence that matters most to your view?” It did not elicit useful information about his beliefs, was insufficiently actionable, and immediately made him want to leave the experience. This is product feedback to preserve, not a participant reasoning deficit.
+- **Context-dependent wording:** 23 questions were rewritten to name their subject, avoid ambiguous references to earlier answers, or distinguish expected outcomes from mere possibilities. Fixed prompts must stand alone. Dynamic clarification can quote an actual participant statement.
+- **Binary coverage lost useful distinctions:** routing previously gave every assessed dimension zero missingness. It now uses `1 − evidenceSupport` for each target, averaged across targets. This is confidence in evidence presence, not forecast correctness. Unresolved issues reduce support using the same readiness calculation.
+- **Unsupported routing bonuses:** all 25 inspected routing states for the five public proxies had no recorded unresolved issue, yet candidates received ambiguity and tension bonuses. Code now requires an actual matching unresolved dimension before either bonus contributes. Missing information can still earn coverage and projection benefit.
+- **Possibility versus expectation:** asking whether AI _could_ cause catastrophe or which benefit _could_ matter often leaves the expectation needed for placement unclear. Direct expected-benefit/expected-harm and catastrophe-likelihood questions address this without requiring a position from an uncertain participant.
+- **Low marginal gain:** after a detailed opening, the alarmist’s later assumption answer repeated its existing alignment premise. The pacer’s warning-sign answer added examples but no coverage. These are elicitation review signals, not evidence of a defective participant. Routing now explicitly judges marginal gain against all prior answers, including answers to different question IDs.
 
-The prompt asks for citation location without establishing a concrete belief, observation, mechanism or update condition. A URL by itself cannot demonstrate grounded understanding or updateability. Participants should be able to describe experiences or reasoning without homework, citations or technical vocabulary.
+The readiness formula is unchanged. Flat coverage can coexist with useful changes in component values, interpretation ranges, assumptions or update conditions. A moving map alone is also insufficient proof of information gain because inference varies. Review the actual new claim and its supporting answer.
 
-## Why it reached the demo
+## Current catalog and intended gain
 
-This was an authored draft in the original 34-prompt catalog, not a question Jev generated. Its `prerequisites` are empty, `permittedAfter` is `*`, and its target vectors are grounded understanding and updateability. Those broad tags made it eligible whenever such coverage might help. Jev judged four benefits of eligible candidates; code combined benefits, missingness, effort and repetition penalties to choose one. Neither eligibility nor those targets constituted question-level editorial validation. Without the specific operation trace, this explains how it could be selected, rather than asserting its exact winning scores.
-
-The earlier representative-batch approval established direction; it did not individually approve every later prompt. The gap was insufficient question-level scrutiny and safeguards against unsupported premises. Draft/demo priority must not be treated as evidence that every question is useful.
-
-## Changes applied
-
-- [x] Hard-delete `grounding.source` from every local draft question catalog. Its recorded feedback and already-issued participant history remain available; a missing pending question can be skipped.
-- [x] Also hard-delete `tension.general`, `control.failuremode` and `crux.test`: each is vague or assumes information not established by its prerequisites. Any future replacement needs concrete wording and premise support.
-- [x] Gate `conviction.general` on current horizon evidence. A capability-trajectory correction without replacement timing removes that premise. Fix its calibration gap lookup to use the actual `conviction` novelty group.
-- [x] Supply one shared routing question policy: favor concrete, answerable belief elicitation; unsupported presuppositions have zero benefit on all routing dimensions; citation location alone earns no benefit. This adds no stage or paid test, and repeats no participant text in criteria.
-- [x] Keep useful observation-based grounding (`grounding.general`) and belief-changing developments (`crux.general`). They elicit why the participant believes something without requiring source hunting.
-
-At Travis’s explicit request, all four local draft question catalogs (`0.1.0-draft` through `0.4.0-draft`) now contain 30 entries: the root plus 29 possible follow-ups before normal eligibility gates. This supersedes the earlier retirement policy: there are no retirement flags, retained catalog records or ID filters. Reference corpora, prior answers, feedback notes and historical results are unchanged. Snapshot validation permits missing ordinary issued questions as local history, still validates known questions exactly, and rejects new answers to missing questions before inference. A pending missing question offers a different question without silently rewriting its issued text. This is a local draft maintenance exception, not permission to rewrite frozen reviewed releases.
-
-## Audit of the original catalog (four entries since deleted)
-
-“Keep” is a local editorial judgment, not a claim of reviewed semantic performance. “Watch” indicates a concrete remaining authoring or context-binding risk. Suggested revisions are proposals, not automatically added runtime questions.
-
-| ID | Assessment | Information sought / improvement |
+| Question | Current wording | What a useful answer adds |
 | --- | --- | --- |
-| `root` | Keep | Broad worldview and reasons; intentionally the only broad opening question. |
-| `concrete.general` | Keep | A concrete expected change. Useful after a broad or uncertain opening. |
-| `timeline.general` | Keep, context needed | Expected timing or “never.” Ask only when a scale/outcome is identifiable; do not keep pressing someone who cannot forecast. |
-| `conviction.general` | Gate added | Conviction about an expressed timeline. Previously could ask about timing before any existed. |
-| `mechanism.general` | Keep, context needed | Conditions producing the expressed outcome. Requires an identifiable outcome. |
-| `grounding.general` | Keep | Observation/experience shaping an expectation. Accept lived experience and reasoning; no citation requirement. |
-| `control.general` | Watch | Risks implying that very powerful AI is expected and control is possible. Future wording: “What makes you think people will—or won’t—be able to control more capable AI?” |
-| `governance.general` | Keep | Expectations about institutional behavior, independently of preferred policy. |
-| `upside.general` | Keep | Most consequential benefit. Do not force benefits into a user’s account merely for balance. |
-| `risk.general` | Keep | Most consequential harm. Do not force concerns into an account merely for balance. |
-| `crux.general` | Keep | A belief-changing development. Stronger than asking the participant to construct an unspecified test. |
-| `countercase.general` | Keep | Strongest reason an expectation may be wrong. Avoid repeating an alternative already addressed. |
-| `agency.general` | Keep | Values about human continuity; broad wording is appropriate to this distinct values dimension. |
-| `transition.speed` | Keep | Beliefs about causes of faster/slower progress. |
-| `transition.warning` | Watch | Assumes hard-to-reverse change and available warning. Future: “Would you expect warning before a major AI-driven change becomes hard to reverse? What would it look like?” |
-| `transition.feedback` | Watch, expert/context only | Self-improvement bottlenecks. Expert familiarity plus broad transition evidence does not establish belief in AI-assisted research; shared policy must reject an absent premise. |
-| `upside.distribution` | Keep | Distribution of an expressed benefit. Useful when actors/beneficiaries are unclear. |
-| `upside.bottleneck` | Keep, context needed | Mechanism taking a named benefit to people. Requires a concrete benefit. |
-| `risk.catastrophe` | Keep | Separates irreversible/catastrophic harm from ordinary harm; accept “no” and uncertainty. |
-| `risk.misuse` | Keep | Most concerning harmful use, if any. Explicitly permits none. |
-| `risk.ordinary` | Watch | “Which failures” is underspecified. Future: “What AI-related harm would be serious but still recoverable, and why?” Avoid assuming the user expects such harm. |
-| `control.test` | Watch | Could sound like the participant must design a technical evaluation. Future: “What evidence would make you more confident that people can control a powerful AI system?” Accept no convincing evidence. |
-| `control.failuremode` | Deleted | Assumes a proposed oversight method. Future replacement must name that method and ask what could go wrong with it. |
-| `governance.incentives` | Keep, context needed | Mechanism behind stated lab behavior. Requires an actual expectation, not just coverage in the governance vector. |
-| `governance.coordination` | Watch | Assumes cooperation is desired/plausible. Future: “Do you expect competing labs or governments to cooperate on AI safety? Why or why not?” |
-| `agency.consent` | Keep | Values about consent and refusal. Useful distinct from a capability forecast. |
-| `action.tradeoff` | Watch | Too broad when no policy preference is known. Future: “What cost or downside would you accept for the AI policy you favor?” Bind to an actual policy; leave map placement independent. |
-| `grounding.claim` | Keep, context needed | What a mentioned example does/does not establish. Broad groundedness coverage alone does not establish an example; shared policy must reject that absent premise. |
-| `grounding.source` | Deleted; direct user feedback | Citation location is low information. Existing `grounding.general` is the useful alternative; no substitute URL question. |
-| `crux.test` | Deleted | Unspecified assumption plus request to devise a check. Prefer `crux.general`; any replacement must name the actual assumption and ask what observation would change confidence. |
-| `tension.general` | Deleted | Vague “expectations fit together,” without naming a tension. Future replacement must identify both relevant beliefs and allow the user to reject the apparent tension. |
-| `scope.assumption` | Keep, context needed | Most consequential assumption behind an identifiable outcome. Honest “I’m unsure” is useful. |
-| `timeline.milestone` | Keep | Observable milestone tied to the described future; complements calendar timing. |
-| `mechanism.chain` | Watch, expert/context only | Weakest causal link, but assumes an articulated chain. Future: “Which part of your explanation are you least sure about, and why?” |
+| `root` | What do you think AI means for our future—and why? | Broad expected impact and reasons; a coherent opening may already cover many dimensions. |
+| `concrete.general` | What is one concrete change you expect AI to bring? | A concrete expected change when the opening stays abstract. |
+| `timeline.general` | When, if ever, do you expect AI to bring major changes to everyday life? | Timing of major everyday changes; accept never or unknown. |
+| `conviction.general` | How confident are you in your predictions about when AI will bring major changes to everyday life? | Confidence in timing, only after timing has been expressed. |
+| `mechanism.general` | How do you think AI will cause the biggest change you expect in people’s lives? | A causal explanation for the participant’s biggest expected change. |
+| `grounding.general` | What observation or experience has most shaped your view of AI’s future impact? | The observation or experience behind the view; no citation homework. |
+| `control.general` | Do you expect people to keep control of AI systems that are smarter than humans, and why? | Expected controllability, including loss of control or uncertainty. |
+| `governance.general` | How do you expect the people and institutions developing AI to respond to its risks? | Expected institutional behavior rather than preferred policy. |
+| `upside.general` | What major benefits, if any, do you actually expect people to get from AI? | Benefits actually expected, distinguished from hypothetical potential. |
+| `risk.general` | What major harms, if any, do you actually expect AI to cause? | Harms actually expected, including none or uncertainty. |
+| `crux.general` | What discovery or event would most change your view of AI’s future impact? | An event that could change the participant’s view. |
+| `countercase.general` | What is the strongest argument against your overall view of AI’s future impact? | The strongest opposing argument; do not repeat an alternative already discussed. |
+| `agency.general` | What would a good future need to preserve about being human? | Human values distinct from forecasts. |
+| `transition.speed` | What could make AI progress speed up or slow down? | Causes of faster or slower AI progress. |
+| `transition.warning` | What warning signs, if any, would you expect before AI causes irreversible harm? | Whether warning is possible before irreversible AI harm. |
+| `transition.feedback` | What, if anything, would limit how quickly AI can improve AI systems? | Limits on AI improving AI, including no meaningful feedback loop. |
+| `upside.distribution` | Who do you expect to benefit most from AI? | Expected beneficiaries, not assumed universal abundance. |
+| `upside.bottleneck` | What, if anything, could prevent AI’s benefits from reaching ordinary people? | Obstacles between technical benefits and ordinary people. |
+| `risk.catastrophe` | How likely do you think AI is to cause harm that humanity could never recover from? | Likelihood of irreversible harm, not mere possibility. |
+| `risk.misuse` | Which harmful use of AI concerns you most, if any? | Expected or concerning deliberate misuse, if any. |
+| `risk.ordinary` | What AI-related harms, if any, do you expect people to be able to recover from? | Recoverable harms, if any, distinguished from catastrophe. |
+| `control.test` | What evidence would increase your confidence that people can control AI systems smarter than humans? | Evidence that could increase confidence in control; no requirement to invent a technical test. |
+| `governance.incentives` | What pressures do you think will shape how AI companies handle safety? | Pressures shaping company safety behavior. |
+| `governance.coordination` | Do you expect competing AI companies or governments to cooperate on safety, and why? | Whether cooperation is expected, including failure to cooperate. |
+| `agency.consent` | What kinds of changes should people be able to refuse in a good AI future? | Changes people should be able to refuse. |
+| `action.tradeoff` | What downside would you accept to make AI’s future impact better? | An acceptable downside for improving AI’s impact. |
+| `grounding.claim` | What have today’s AI systems shown you about what future AI will be able to do? | What current systems establish about future capability. |
+| `scope.assumption` | What assumption does your prediction about AI’s future depend on most? | The assumption on which a prediction depends most. |
+| `timeline.milestone` | What sign would tell you that AI is starting to transform everyday life? | An observable sign of transformation, separate from a date. |
+| `mechanism.chain` | Where is the weakest evidence in your explanation of how AI will change people’s lives? | The weakest evidence in a causal explanation, in ordinary language. |
 
-## Required authoring standard from here
+For example, “AI benefits will mostly go to firms because they own the infrastructure” adds an expected distribution and mechanism. “I can imagine cures, but expect no lasting benefits because we lose control” establishes an expectation distinct from potential. “I don’t know” may resolve whether a position is held; repeating the same question will not manufacture one.
 
-Each candidate must elicit one useful belief, expectation, value, mechanism, assumption, uncertainty or update condition. Write a short example answer and identify what the answer could change in the assessment. If the answer is just a URL, a slogan, or “what do you mean?”, revise it. Ask one clear question, permit disagreement/uncertainty, and avoid source-hunting assignments.
+## Repeatable review loop
 
-Contextual references such as “that outcome,” “your method” or “the example” require an identifiable antecedent in the actual usable conversation. Broad vector coverage and expertise are insufficient premise checks. The current shared policy improves candidate-benefit judgments but is not a proven deterministic gate for every semantic premise. The watch items above remain open for experience-driven refinement.
+1. Generate the latest live suite through normal Jev routing with the bounded participant budget.
+2. Flag usable answers with zero or very small readiness gain. Inspect the selected question’s intended gain and preceding candidate scores.
+3. Compare actual new claims, support by dimension, component placement/ranges and remaining explicit unknowns. Separate useful refinement from repetition and inference noise.
+4. Identify a better candidate or a missing question. Fix shared authoring/routing logic; never route by persona identity or a desired map position.
+5. Run deterministic checks and regenerate live journeys. Retain the latest artifacts only; record conclusions here rather than preserving obsolete runs.
 
-- [ ] Refine watch items in a new authored revision with explicit answerability examples and context requirements; preserve old prompt instances.
-- [ ] Add realistic development journeys where no example, method, causal chain, timeline or policy has been stated, and where the user rejects the apparent premise.
-- [ ] Review routing choices in the demo before committing to those replacements; use fixtures for structural regressions and no paid pressure testing.
-- [ ] Include question usefulness, redundancy, premise correctness and perceived effort in the later reviewed evaluation set. Do not equate smooth engine execution with good questions.
+Passing engine tests verifies the routing arithmetic and workflow, not semantic question quality. Live results remain development observations requiring this review loop and manual judgment.
+
+## Early placement defect and focused live check
+
+The alarmist’s detailed opening had 93.9% interpretation readiness, but its expected-upside position judgment assigned only 0.52 probability to assessable. Although the score itself strongly favored little upside, the separate position gate discarded it. The missing upside component then withheld the whole outlook coordinate and widened the possible range. A high evidence-presence score does not override that separate gate.
+
+The rubric now explicitly treats expected little, no, or no lasting benefit as an assessable position. The position question distinguishes an adopted trajectory from a favorable counterfactual, keeping uncertainty scoped to its own dimension. It still withholds genuinely unknown or absent expectations. No numerical gate or map weighting was loosened.
+
+A bounded 12-request live Jev replay of the two original alarmist answers placed outlook at 1.47/100 and 2.10/100, with assessability probability 1.0 for expected upside. A genuinely unknown contrast stayed unplaced; a mixed benefits-and-harms contrast retained high expected upside and material harms. These are focused development observations, not calibrated statistical confidence intervals or a held-out evaluation. Temporary replay inputs and scripts are not retained as old journey runs.
+
+## Novice placement and routing gap
+
+The novice’s third answer increased topic coverage to 94.2% but did not establish expected benefits: the opening expressed hopes for medical help and uncertainty about which side would improve faster. A generic counterargument question then refined reasoning without addressing that missing outlook input. Projection also inconsistently treated uncertainty about catastrophe/net balance as uncertainty about ordinary harms.
+
+Routing now asks two additional typed position judgments in its existing Jev request, for expected benefits and expected harms. Unestablished or uncertain positions contribute a continuous gap even when topic presence is strong. Broad opening uncertainty may concern the net balance rather than each component, so the router allows one direct elicitation. Once the participant answers the specific benefits/harms question, explicitly unknown positions no longer acquire the extra gap. Candidate benefits still determine whether the exact question can help. The shortlist reserves two slots and remains within the existing request bound. The projection instructions keep uncertainty about catastrophe or net balance separate from adopted ordinary expectations. The meter itself remains an evidence-presence measure, not a promise that all outlook inputs are directional.
+
+## Latest regenerated suite
+
+The current 13-persona live suite completed all 65 generated replies and 196 physical Jev requests without a failed journey (estimated cost $0.6172 for this suite). Every answer has a saved projection input state; all eligible answers have an actual result. Two non-answer recovery submissions explicitly remain ineligible.
+
+- Control alarmist: opening outlook 2.4/100 with reasoning 83.7/100; second-answer outlook 1.9/100. The explicit low-upside forecast is now placed immediately.
+- Worried novice: the second question directly elicits expected benefits; outlook becomes placed at 51.7/100 and remains placed. Its limited distribution expectation and expected ordinary harms can coexist with an unknown catastrophe forecast.
+- Dogmatic doomer: opening outlook 0.3/100 and reasoning 17.2/100. Near-certain doom does not earn a strong reasoning score; the coherent alarmist remains distinct.
+- Six of the 52 substantive follow-ups have exactly flat readiness. These remain review candidates, especially later follow-ups after a comprehensive opening. Do not claim that the changes eliminate low-gain questions.
+
+The open-uncertainty case supplies an initial expectation of concentrated benefits when asked about distribution; its outlook is later placed while catastrophe remains explicitly unknown. Its upside assessability crosses the gate a turn after that distribution answer, indicating residual inference/threshold instability worth investigating next. A placement should follow supported component expectations, not be forced from the persona label or prohibited just because the overall balance is uncertain.
+
+Next priorities: distinguish genuinely new causal/assumption information from elaboration in saturated journeys, and reduce projection gate instability across unchanged component evidence. The remaining fluctuations are not proof of changes in the participant’s beliefs.

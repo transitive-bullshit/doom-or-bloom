@@ -3,10 +3,10 @@ import type { Provider } from '@/lib/server/provider'
 import { limits } from '@/lib/assessment/schema'
 import { JourneyFailure, providerFailure } from './failure'
 
-// Published USD per million tokens, checked 2026-09-18. Cached input is
+// Published USD per million tokens, checked 2026-09-20. Cached input is
 // deliberately charged at the full rate in this development estimate.
 export const journeyRates = {
-  openai: { input: 0.75, output: 4.5 },
+  openai: { input: 4, output: 20 },
   jev: { input: 0.042, output: 0 }
 } as const
 

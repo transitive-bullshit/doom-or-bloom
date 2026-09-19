@@ -1,110 +1,77 @@
-# User Journeys: live participants and assessment
+# User Journeys: live stress-test participants
 
-Open `/user-journeys` at the Portless development URL. This internal tool uses the current question catalog, assessment engine, routing eligibility/ranking, recovery policy, readiness gate and projection code. It has no connection to the participant’s browser assessment or debug history. Production returns 404 for both page and API.
+Open `/user-journeys` at the Portless development URL. The development-only inspector exercises the actual assessment engine, question eligibility/ranking, recovery policy, readiness gate and projections. Production returns 404 for the page and API. Nothing calls a model on page load.
 
-## Live runs are the experience review baseline
+## Purpose and authoring
 
-As authorized on 2026-09-18, occasional development journeys use **GPT-5.4 mini as the fictional participant and live Jev through the actual assessment engine**. API costs for both are expected. The inspector defaults to live reruns and prefers a saved live run. Nothing runs on page load.
+The thirteen personas deliberately stress-test widely divergent positions, including extreme pessimism, forceful optimism, dismissive anti-doomerism, rigid certainty and genuine uncertainty. Public figures supply recognizable arguments and language, not balanced biographical portraits. Generated answers are fictional, not quotations or endorsements. Do not make every persona hedge, volunteer counterarguments or provide ideal update criteria. Do not improve a weak argument to help the persona score well.
 
-The participant receives the character’s beliefs and voice, the actual questions and prior replies, and any recovery guidance. It does not receive fixture levels, target coverage, rubric, scores, candidate rankings or readiness. Its complete reply passes unchanged to the normal engine; Jev receives the ordinary participant evidence, never persona labels or hypotheses. **Live personas have no predetermined target judgments.** Review the assessment against what the participant actually said. The scripted two-miss recovery prelude lives separately in `lib/journeys/scenarios.ts` as an explicit harness action before the OpenAI participant resumes.
+`lib/journeys/catalog.ts` holds narrative-only context. `lib/journeys/public-personas.ts` contains five public-figure proxies with dated source summaries, short quoted anchors and voice instructions. The participant receives those summaries, not just URLs. The other eight cases cover novice concerns, high-risk acceleration, capability skepticism, labor harms, uncertainty, dogmatic optimism, dogmatic doom and playful recovery.
 
-Every generated reply retains the exact OpenAI request instructions/input, returned model, reply, usage and duration alongside the Jev exchanges. Failed assessment operations preserve the generated pending reply. No fallback injects synthetic judgments into a live run. Earlier scripted-live artifacts remain labeled separately. These simulations evaluate the application, not the prevalence of real human beliefs; inspect persona fidelity as part of review.
+The public proxies are:
+
+- **Control alarmist — Eliezer Yudkowsky:** conditional extinction forecast under current methods; uncertainty about timing and hope for political intervention do not dilute the central claim.
+- **Cautious builder — Sam Altman:** ambitious abundance and individual empowerment, including his September 2026 endorsement of frontier pacing and independent evaluators.
+- **Abundance advocate — Marc Andreessen:** strong pro-building rhetoric, moral costs of delay and opposition to incumbent-protecting regulation.
+- **Doomer-hoax critic — Jensen Huang:** deliberately selected incendiary All-In anti-doomer arguments and endorsement of the hoax framing, rather than an average of his public positions. Preserve speaker attribution during Trump's call.
+- **Frontier pacer — Dario Amodei:** unusually large potential benefits alongside serious risks and an explicit present call to slow frontier capability growth.
+
+The [existing-proxy source packet](research/persona-grounding-existing-2026-09-20.md) and [new-proxy source packet](research/persona-grounding-new-2026-09-20.md) record dates, sources and retrieval limitations. Some statements were retrieved through linked mirrors; distinguish verified words from editorial persona synthesis.
+
+## Live models and boundaries
+
+The default participant is **GPT-5.6 Sol** (`gpt-5.6-sol`), with live Jev through the normal engine. The participant receives character context, actual questions, conversation history and recovery guidance. It never sees desired scores, judgment targets, readiness, candidate rankings or the assessment rubric. Jev receives the actual answers and ordinary engine state, not persona identity or source packets.
+
+Every reply retains the OpenAI request, returned model, exact answer, usage and duration. Answers pass unchanged to the engine. Failed operations preserve pending answers and safe diagnostics. No live failure substitutes a scripted answer or mocked judgment.
+
+Occasional paid development runs are authorized. This is not authorization for unbounded pressure testing or recurring automatic spend. These published cases are not a blinded holdout or human semantic validation.
+
+## Answer-only journeys and per-answer results
 
 ```sh
 pnpm journeys:generate
 pnpm journeys:generate --persona=control-alarmist --turns=5
-pnpm journeys:generate --turns=6 --max-requests=240 --max-cost=2
-pnpm journeys:generate --exercise-results
+pnpm journeys:generate --max-requests=240 --max-cost=5
 ```
 
-`--exercise-results` uses the same live providers and answer budget, with at least three replies. It projects at the first eligible opportunity, continues, then projects before the last reply and asks the participant to clarify an actual result claim. It prioritizes an unplaced claim or broad interpretation range without supplying any desired judgment. Intermediate results and correction scopes are saved and inspectable. The final correction uses the normal engine's evidence replacement and automatic projection; an unchanged result is not needlessly re-evaluated. This CLI policy complements the default uninterrupted interview. Failures record the participant/interpret/route/project stage and safe validation, budget or transport categories while retaining the pending answer.
+New live artifacts contain only question-and-answer steps. Each answer retains its exact question, disposition, evidence readiness before/after, coverage changes and selected next question. The harness does not insert separate project, continue or clarification turns. The old `--exercise-results` live option has been removed. Separate mechanical tests can still exercise those application operations.
 
-Defaults: five answer opportunities; 24 physical Jev requests for one persona or a shared 240 for all ten; at most one OpenAI call per answer opportunity; a $2 conservative cost budget. Retries/fallbacks count against the Jev bound; failed usage retains its reservation. A failure after progress is saved and other personas may continue; failure before any accepted answer stops the suite. Budgets and incomplete runs are visible in artifacts. Counts of completed successful requests are distinct from reserved/unknown failed usage. Cost estimates use published rates ($0.75/M input and $4.50/M output for GPT-5.4 mini; $0.042/M Jev input, free output), charging cached input at full price. Byte-based input reservations include overhead and all allowed attempts; these are local estimates, not a provider billing guarantee.
+After each answer, the harness asks the normal engine to project a copy of the current assessment when the real readiness gate allows it. That side result does not alter the ongoing interview, its evidence, or the next selected prompt. No extra participant answer is generated for inspection. The step saves the result and the complete projection input state; full local traces include the actual Jev projection exchange. This makes the projection an actual observed result, not a locally fabricated chart or a reuse of the final result.
 
-Set server-side `OPENAI_API_KEY` in the environment or `.env.local`, alongside `TYPESAFE_API_KEY`. The normal participant application still uses only Jev. No new dependencies or external storage are required.
+**Result after this answer** is collapsed by default and shows the Doom–Bloom map, interpretation ranges, components and underlying input state. Before eligibility it shows the input state and explicitly explains that no result is available. It never bypasses the app gate. The final result remains at the bottom. Two scripted non-answer recovery submissions remain actual answer steps; the retry transition itself is not a displayed step.
 
-## Ten development personas
+The disclosure sits at the bottom of every answer step beside Decision details and Requests and responses. Old journey formats are not migrated.
 
-| Persona | Loose inspiration | Main regression concern |
-| --- | --- | --- |
-| Control alarmist | Eliezer Yudkowsky’s historical control argument | Dense first-answer readiness; pessimistic outlook with careful reasoning; counterfactual upside differs from expected benefits |
-| Cautious builder | Sam Altman’s public optimistic essay | Conditional optimism, real risks, staged deployment and access |
-| Abundance advocate | Marc Andreessen’s techno-optimist essay | Rapid development, competition, manageable harm, genuine opposing arguments |
-| Worried novice | Fictional non-specialist | Substantive concern, unknown timing and catastrophe, plain-language follow-ups |
-| High-risk accelerator | Fictional security strategist | High risk plus acceleration is coherent under stated competition assumptions |
-| Capability skeptic | Fictional software engineer | An explicit low ceiling is a position, not missingness |
-| Labor organizer | Fictional worker representative | Serious ordinary harm does not invent catastrophe probability |
-| Open-ended uncertainty | Fictional undecided participant | Unknown positions remain unknown; thoughtful uncertainty is not a non-answer |
-| Dogmatic utopian | Fictional absolutist enthusiast | Rigidity and unsupported certainty lower reasoning, while optimistic ideology itself does not |
-| Playful recovery | Fictional visitor testing the app | Two exact misses trigger paperclips without profile evidence; subsequent relevant humor is accepted |
+## Readiness is coverage, not guaranteed progress per answer
 
-Codex authored these fictional persona backgrounds locally; OpenAI generates their actual interview answers. Named people supply loose historical argument inspirations, not quotations, endorsements, current-biographical profiles or predictions of actual replies. Inspiration links and dates appear in each profile. The general benefit, risk and uncertainty boundaries come from [JOURNEYS.md](JOURNEYS.md); the existing 20 argument journeys remain a complementary authoring resource.
+Readiness averages supported presence across 15 dimensions using each dimension's strongest active interpretation support, halved for an unresolved issue. It does not count the number of answers, distinct arguments, or certainty about a forecast. Repetition cannot automatically increase it. Once presence is established, another meaningful answer can change a position or narrow its interpretation without adding coverage.
 
-## Reading a run
+Flat or tiny gains are an elicitation review signal: inspect whether the question captured a new claim, resolved uncertainty, or merely repeated an earlier answer. Routing uses continuous support gaps, and ambiguity/tension bonuses require a matching unresolved issue. See [the question and routing audit](prompt-quality-review.md) for the current catalog and review loop. The meter uses one decimal to expose small gains.
 
-Select a persona and saved run. Each chronological operation shows the exact issued question, full answer with bounded disclosure, consumed disposition, readiness before/after, newly covered dimensions and actual next question. Decision details show shortlisted candidate priorities, the engine’s local decisions and readiness contributions. Full stage requests/responses are available for locally generated runs, with the same folding, sorting and meaning help as interview debugging. New live snapshots retain the original fictional profile without injected fixture levels or coverage flags; synthetic snapshots retain those test inputs. Later catalog edits do not rewrite recorded descriptions. Older development artifacts without that snapshot label the displayed authoring as current. This exposes recorded judgments and code composition, not hidden model reasoning.
+## Budgets and storage
 
-The default is five answer opportunities, continuing follow-ups even if a first answer qualifies, then projection when eligible. Recovery actions are separate operations. A run that cannot pass readiness retains its questions/answers and explicitly shows no result. There is no fabricated result or bypass of the app’s gate. In algorithm 0.5.0, projection preserves evidence readiness while separately representing unplaceable positions.
+Default: five answer opportunities (CLI allows one to six), at most one OpenAI call per opportunity, 24 physical Jev requests for one persona or 240 shared across all thirteen, and a $2 estimated cost limit. Each eligible answer can now add a projection request. Increase the explicit bounded cost limit if needed. Rates checked 2026-09-20: Sol $4/M input and $20/M output; Jev $0.042/M input and free output. Cached input is conservatively charged in full. See [Sol model documentation](https://developers.openai.com/api/docs/models/gpt-5.6-sol). Failed usage may remain reserved; this is an estimate, not a provider invoice.
 
-Explicit unknowns count as presence in the synthetic hypotheses, with unknown worldview positions remaining unplaced. Historical algorithm 0.4.0 runs marked unplaced components unassessed during projection, so their final meter could fall below the earlier eligibility threshold. Algorithm 0.5.0 preserves the evidence coverage. The inspector calls out this transition and preserves both per-step readiness and the first eligible answer. A one-turn sparse/undecided run remains ineligible; a longer uncertain run can yield an honest unplaced outlook.
+Set server-only `OPENAI_API_KEY` and `TYPESAFE_API_KEY` in the environment or `.env.local`. The ordinary participant app still uses only Jev.
 
-**Synthetic** means authored presence/position/score hypotheses are injected, with zero inference requests. Routing benefit hypotheses use missing targets and unresolved flags; the real engine applies shortlist eligibility, weights, effort, repetition, calibration and ID tie-breaks. These runs demonstrate workflow behavior, not whether Jev understood the text. Hypotheses and family/question-specific answer scripts live in `lib/journeys/mechanical/cases.ts`; inspect them through Run provenance and persona. Confidence is deliberately deterministic in this mode rather than measured calibration.
+Full local artifacts live at `eval/runs/journeys/<run-id>/{suite,index}.json` and are ignored by Git. A successful save replaces earlier runs of the same mode. Live saves also replace `eval/development/live-persona-journeys.json` with the current suite minus bulky Jev traces, so a fresh checkout sees the latest answers, results and states. The separate current mechanical baseline remains a regression fixture. There is no run-history selector, historical comparison UI or old-run migration. The mode switch opens the current live suite or the separate mechanical baseline. Reads/writes are schema-checked and bounded at 64 MB; indices at 20 KB.
 
-**Live Jev + OpenAI** means generated answers pass through the live provider. Older **Jev + scripted answers** runs use the authored answer bank. Persona labels, expected levels and injected judgments are not included in model state; assessment identifiers are opaque. Real Jev may ask a different sequence, interpret coverage differently or leave coordinates unplaced. The OpenAI participant responds to the actual question, including new authored families. Synthetic fixtures still require an explicit script and fail clearly for unsupported questions or judgments.
+## Separate mechanical regression layer
 
-## Separation of personas, recorded journeys and mechanical tests
-
-`lib/journeys/catalog.ts` contains narrative-only personas: background, beliefs, familiarity and review context. It contains no score levels, coverage flags, reply lookup or expected judgments. OpenAI generates each reply from that context and the actual interview history; live Jev supplies all assessment judgments.
-
-`pnpm journeys:generate` is the normal paid regeneration command. It saves actual generated answers, routing decisions, judgments and results as immutable journey fixtures. `pnpm journeys:live` remains an alias. Generation cannot silently substitute canned replies or a fixture evaluator when a model or credential is unavailable.
-
-`lib/journeys/mechanical/` separately contains canned replies, injected judgments and deterministic engine-test cases. These cases keep their historical IDs for snapshot compatibility; they are not persona answer keys. `pnpm journeys:mechanical` runs only that free layer; `pnpm journeys:mechanical:check` compares its checked-in baseline. `pnpm journeys:check` remains a compatibility alias for the explicitly mechanical check. Live generation rejects mechanical-only baseline flags.
-
-Older saved synthetic and scripted-live snapshots remain readable without rewriting them. New live snapshots contain only narrative context, and the inspector labels mechanical artifacts explicitly.
-
-## Regenerate and compare
+`lib/journeys/mechanical/` contains ten independent engine cases with canned replies and injected judgments. These are not persona answer keys. They remain separate from the thirteen live personas; Huang and Amodei do not require invented mechanical judgments.
 
 ```sh
-pnpm journeys:generate
-pnpm journeys:generate --persona=worried-novice --turns=6
-pnpm journeys:generate --persona=control-alarmist --turns=1
+pnpm journeys:mechanical
 pnpm journeys:mechanical:check
-```
-
-Choose Mechanical engine test explicitly for free reruns of one persona or all ten; the default is a paid live run. Saved artifacts are immutable directories under `eval/runs/journeys/<run-id>/`, containing complete `suite.json` and small `index.json`. Full local artifacts are ignored by Git and survive server/browser refresh. A selected live run is recorded separately in `eval/development/live-persona-journeys.json`, retaining generated answers, judgments, decisions, results, participant exchanges and provenance while omitting bulky Jev traces. The inspector includes this recorded run on a fresh checkout and prefers the complete local artifact when available. The inspector lists the 40 most recent plus the recorded live run and checked-in mechanical baseline; older artifacts remain on disk. API writes require development mode, a local hostname and same origin. Reads validate artifact identity, schema and a 32 MB bound. Damaged artifacts produce an error rather than being overwritten.
-
-Compare with a previous run to see question/next-question paths, per-step readiness and final outlook/reasoning. Input, content and engine hashes accompany versions and model. Rows align chronological operations: when routing diverges, later scripts can also differ. A warning identifies changed persona inputs or turn bounds. Synthetic-versus-Jev comparisons are diagnostic, not claims of equivalent judgments.
-
-`pnpm journeys:mechanical:check` regenerates free synthetic paths and exits nonzero if salient observations differ from `eval/development/mechanical-journey-baseline.json`. The snapshot compares question/answer paths, dispositions, readiness, coverage, candidate priorities, recovery, coordinates/ranges, components and selected findings/resources. UUIDs, timestamps, byte counts, transport use and timings are excluded. This is a deterministic control-flow regression, not a numerical answer key for live Jev.
-
-Synthetic assessment IDs are opaque and deterministic to keep baseline diffs readable; live IDs are random and carry no persona label. Run directories always have unique IDs, preserving all earlier full exchanges.
-
-Update the baseline deliberately after inspecting intended changes:
-
-```sh
 pnpm journeys:mechanical --write-baseline
-pnpm fix:format
-pnpm journeys:mechanical:check
 ```
 
-Baseline updates require all ten personas and the five-turn bound; they preserve earlier full runs and overwrite only the version-controlled compact baseline. Review its Git diff and commit at a sensible checkpoint. An updated baseline is not human semantic approval.
+The checked-in `eval/development/mechanical-journey-baseline.json` tests deterministic paths, dispositions, coverage, ranking and projection composition. `journeys:check` remains an alias. Updating it requires all ten mechanical cases and five turns; review and commit its diff. A passing mechanical comparison says nothing about live Jev's understanding.
 
-## Review boundaries
-
-Occasional live development journeys are authorized. This does not authorize unbounded pressure testing, recurring automatic spend, or claim human-reviewed holdout validation. The separate release/holdout review gates remain open.
-
-Published fictional personas are development cases, not a blinded holdout. Review answer relevance and expected interpretations before trusting them as semantic evaluation cases. Keep the separate human review/held-out measurement gates from [MEASUREMENT.md](MEASUREMENT.md) open.
-
-## Resume a failed live operation
-
-New failures save the last committed assessment, exact pending operation, completed inference stages, and allowlisted physical request diagnostics. Raw HTTP error bodies, headers, and credentials are excluded. A routing failure after interpretation leaves the answer unaccepted; completed interpretation is diagnostic evidence, not a partially committed answer.
+## Resume a failed operation
 
 ```sh
 pnpm journeys:generate --resume=<run-id> --persona=<persona-id> --max-requests=24 --max-cost=0.5
 ```
 
-This explicitly retries exactly the saved operation with live Jev and a fresh bounded request/cost budget. It does not generate another OpenAI answer or automatically finish the remaining interview. Completed stages may be evaluated again. The original artifact stays immutable; the new artifact records its source run, original persona profile, prior steps, and new operation outcome. Content and model must match the source run. Older failures without a checkpoint cannot use this command. A successful resumed artifact has no pending failed operation to retry.
-
-## Recorded live regeneration — 2026-09-19
-
-Run `1789806698557-b34cdd27-9685-438c-80a3-1cb04991f9c8` regenerates all ten narrative-only personas after separating mechanical fixtures. Command: `pnpm journeys:generate --exercise-results --max-requests=240 --max-cost=0.5`. All ten completed five accepted answers and produced results, including early result, continuation and correction actions; playful recovery also exercised the two scripted non-answer attempts. There were no recorded errors or outstanding cost reservations. The run used 50 OpenAI participant calls and 120 Jev requests, with an estimated combined cost of $0.14103. These are observed outcomes awaiting human review, not target judgments or semantic approval.
+Resume retries exactly the saved operation with a fresh bounded budget and no new OpenAI reply. A failed per-answer inspection projection resumes on the same answer, without replaying that accepted answer or adding a project step. It does not automatically finish the remaining interview. Source content and model must match. Saving the resumed run replaces the previous run. Raw error bodies, headers and credentials are excluded.

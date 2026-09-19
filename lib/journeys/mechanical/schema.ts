@@ -37,13 +37,3 @@ export const mechanicalCaseSchema = z.strictObject({
   recoveryPrelude: z.array(z.string()).max(2)
 })
 export type MechanicalCase = z.infer<typeof mechanicalCaseSchema>
-// Live provenance contains the character and review context, without the
-// injected values used only by the deterministic fixture provider.
-export const legacyProfileSchema = mechanicalCaseSchema
-  .omit({
-    openingVectors: true,
-    openingTiming: true,
-    openingConviction: true,
-    levels: true
-  })
-  .strip()

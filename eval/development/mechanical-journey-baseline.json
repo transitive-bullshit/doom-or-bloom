@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-18T20:23:21.601Z",
+  "createdAt": "2026-09-19T18:26:11.222Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,8 +11,8 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "dd1971b9c1785399271e497318f3380f8c9ed5514fded936d2b1f3fce7db15ff",
-  "contentHash": "55ba1eaf259a1e3b3813aba0ba6b158f88e44313dfd408b89e23ddfff51fe279",
+  "engineHash": "29f4576d07a2a8dc00b711d37ffe78489e90b7086898c6199d26d50cdef40b47",
+  "contentHash": "3fa24fa49c8d2c50af015f5b1dcd687d8ba13ca9321b757a413e156bf7ef2c7d",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -479,16 +479,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.bottleneck",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -594,7 +584,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -973,16 +963,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.distribution",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -1088,7 +1068,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -1467,16 +1447,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -1582,7 +1552,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -1813,7 +1783,7 @@
           "nextPrompt": {
             "id": "journey-38810ac8a94e2862a697:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -1961,16 +1931,6 @@
               "effort": 0.4
             },
             {
-              "id": "mechanism.chain",
-              "priority": 0.7833333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.55
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -2076,7 +2036,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -2091,7 +2051,7 @@
           "prompt": {
             "id": "journey-38810ac8a94e2862a697:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -2307,7 +2267,7 @@
           "nextPrompt": {
             "id": "journey-38810ac8a94e2862a697:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -2543,16 +2503,6 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
-            },
-            {
-              "id": "control.test",
-              "priority": -1.0666666666666669,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 1,
-              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -2570,7 +2520,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -2585,7 +2535,7 @@
           "prompt": {
             "id": "journey-38810ac8a94e2862a697:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -4179,16 +4129,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.bottleneck",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -4294,7 +4234,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -4673,16 +4613,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.distribution",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -4788,7 +4718,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -5167,16 +5097,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -5282,7 +5202,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -5513,7 +5433,7 @@
           "nextPrompt": {
             "id": "journey-468652ddc0b37243013b:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -5661,16 +5581,6 @@
               "effort": 0.4
             },
             {
-              "id": "mechanism.chain",
-              "priority": 0.7833333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.55
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -5776,7 +5686,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -5791,7 +5701,7 @@
           "prompt": {
             "id": "journey-468652ddc0b37243013b:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -6007,7 +5917,7 @@
           "nextPrompt": {
             "id": "journey-468652ddc0b37243013b:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -6243,16 +6153,6 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
-            },
-            {
-              "id": "control.test",
-              "priority": -1.0666666666666669,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 1,
-              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -6270,7 +6170,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -6285,7 +6185,7 @@
           "prompt": {
             "id": "journey-468652ddc0b37243013b:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -7883,16 +7783,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.bottleneck",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -7998,7 +7888,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -8377,16 +8267,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.distribution",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -8492,7 +8372,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -8871,16 +8751,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -8986,7 +8856,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -9217,7 +9087,7 @@
           "nextPrompt": {
             "id": "journey-71bf2c696abf3473377e:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -9365,16 +9235,6 @@
               "effort": 0.4
             },
             {
-              "id": "mechanism.chain",
-              "priority": 0.7833333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.55
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -9480,7 +9340,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -9495,7 +9355,7 @@
           "prompt": {
             "id": "journey-71bf2c696abf3473377e:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -9711,7 +9571,7 @@
           "nextPrompt": {
             "id": "journey-71bf2c696abf3473377e:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -9947,16 +9807,6 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
-            },
-            {
-              "id": "control.test",
-              "priority": -1.0666666666666669,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 1,
-              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -9974,7 +9824,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -9989,7 +9839,7 @@
           "prompt": {
             "id": "journey-71bf2c696abf3473377e:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -11410,7 +11260,7 @@
           "nextPrompt": {
             "id": "journey-14015ebf351c74d79e77:p2",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 2,
             "variant": "original",
@@ -11623,7 +11473,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 76,
+              "questions": 78,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -11638,7 +11488,7 @@
           "prompt": {
             "id": "journey-14015ebf351c74d79e77:p2",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 2,
             "variant": "original",
@@ -11854,7 +11704,7 @@
           "nextPrompt": {
             "id": "journey-14015ebf351c74d79e77:p3",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 3,
             "variant": "original",
@@ -12057,7 +11907,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 72,
+              "questions": 74,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -12072,7 +11922,7 @@
           "prompt": {
             "id": "journey-14015ebf351c74d79e77:p3",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 3,
             "variant": "original",
@@ -12292,7 +12142,7 @@
           "nextPrompt": {
             "id": "journey-14015ebf351c74d79e77:p4",
             "promptId": "upside.general",
-            "text": "Which possible benefit would matter most for the future you described?",
+            "text": "What major benefits, if any, do you actually expect people to get from AI?",
             "family": "upside",
             "ordinal": 4,
             "variant": "original",
@@ -12485,7 +12335,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 68,
+              "questions": 70,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -12500,7 +12350,7 @@
           "prompt": {
             "id": "journey-14015ebf351c74d79e77:p4",
             "promptId": "upside.general",
-            "text": "Which possible benefit would matter most for the future you described?",
+            "text": "What major benefits, if any, do you actually expect people to get from AI?",
             "family": "upside",
             "ordinal": 4,
             "variant": "original",
@@ -12716,7 +12566,7 @@
           "nextPrompt": {
             "id": "journey-14015ebf351c74d79e77:p5",
             "promptId": "grounding.general",
-            "text": "What observation or experience most shaped that expectation?",
+            "text": "What observation or experience has most shaped your view of AI’s future impact?",
             "family": "grounding",
             "ordinal": 5,
             "variant": "original",
@@ -12919,7 +12769,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 72,
+              "questions": 74,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -12934,7 +12784,7 @@
           "prompt": {
             "id": "journey-14015ebf351c74d79e77:p5",
             "promptId": "grounding.general",
-            "text": "What observation or experience most shaped that expectation?",
+            "text": "What observation or experience has most shaped your view of AI’s future impact?",
             "family": "grounding",
             "ordinal": 5,
             "variant": "original",
@@ -13353,7 +13203,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 72,
+              "questions": 74,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -14770,16 +14620,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.bottleneck",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -14885,7 +14725,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -15264,16 +15104,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.distribution",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -15379,7 +15209,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -15758,16 +15588,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -15873,7 +15693,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -16104,7 +15924,7 @@
           "nextPrompt": {
             "id": "journey-c6b589474b41e76ac338:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -16252,16 +16072,6 @@
               "effort": 0.4
             },
             {
-              "id": "mechanism.chain",
-              "priority": 0.7833333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.55
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -16367,7 +16177,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -16382,7 +16192,7 @@
           "prompt": {
             "id": "journey-c6b589474b41e76ac338:p5",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 5,
             "variant": "original",
@@ -16598,7 +16408,7 @@
           "nextPrompt": {
             "id": "journey-c6b589474b41e76ac338:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -16834,16 +16644,6 @@
               "projection": 0.3333333333333333,
               "repetition": 0,
               "effort": 0.4
-            },
-            {
-              "id": "control.test",
-              "priority": -1.0666666666666669,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 1,
-              "effort": 0.4
             }
           ],
           "paperclips": false,
@@ -16861,7 +16661,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -16876,7 +16676,7 @@
           "prompt": {
             "id": "journey-c6b589474b41e76ac338:p6",
             "promptId": "crux.general",
-            "text": "What development would most change your view?",
+            "text": "What discovery or event would most change your view of AI’s future impact?",
             "family": "crux",
             "ordinal": 6,
             "variant": "original",
@@ -18562,7 +18362,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -19046,7 +18846,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -19277,7 +19077,7 @@
           "nextPrompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p4",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 4,
             "variant": "original",
@@ -19520,7 +19320,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -19535,7 +19335,7 @@
           "prompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p4",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 4,
             "variant": "original",
@@ -19984,7 +19784,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 84,
+              "questions": 86,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -20215,7 +20015,7 @@
           "nextPrompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p6",
             "promptId": "action.tradeoff",
-            "text": "What trade-off would you accept to shape how AI is developed?",
+            "text": "What downside would you accept to make AI’s future impact better?",
             "family": "action",
             "ordinal": 6,
             "variant": "original",
@@ -20458,7 +20258,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -20473,7 +20273,7 @@
           "prompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p6",
             "promptId": "action.tradeoff",
-            "text": "What trade-off would you accept to shape how AI is developed?",
+            "text": "What downside would you accept to make AI’s future impact better?",
             "family": "action",
             "ordinal": 6,
             "variant": "original",
@@ -21835,7 +21635,7 @@
           "nextPrompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p2",
             "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
+            "text": "What evidence would increase your confidence that people can control AI systems smarter than humans?",
             "family": "control",
             "ordinal": 2,
             "variant": "original",
@@ -22013,16 +21813,6 @@
               "effort": 0.4
             },
             {
-              "id": "upside.general",
-              "priority": 0.9333333333333332,
-              "coverage": 0,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
               "id": "action.tradeoff",
               "priority": 0.2666666666666666,
               "coverage": 0,
@@ -22098,7 +21888,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 96,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -22113,7 +21903,7 @@
           "prompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p2",
             "promptId": "control.test",
-            "text": "What would convince you that people can keep a powerful AI system under control?",
+            "text": "What evidence would increase your confidence that people can control AI systems smarter than humans?",
             "family": "control",
             "ordinal": 2,
             "variant": "original",
@@ -22329,7 +22119,7 @@
           "nextPrompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p3",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 3,
             "variant": "original",
@@ -22582,7 +22372,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -22597,7 +22387,7 @@
           "prompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p3",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 3,
             "variant": "original",
@@ -23066,7 +22856,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -23297,7 +23087,7 @@
           "nextPrompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p5",
             "promptId": "countercase.general",
-            "text": "What is the strongest reason your expectation might turn out wrong?",
+            "text": "What is the strongest argument against your overall view of AI’s future impact?",
             "family": "countercase",
             "ordinal": 5,
             "variant": "original",
@@ -23550,7 +23340,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 92,
+              "questions": 94,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -23565,7 +23355,7 @@
           "prompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p5",
             "promptId": "countercase.general",
-            "text": "What is the strongest reason your expectation might turn out wrong?",
+            "text": "What is the strongest argument against your overall view of AI’s future impact?",
             "family": "countercase",
             "ordinal": 5,
             "variant": "original",
@@ -24024,7 +23814,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -25405,7 +25195,7 @@
           "nextPrompt": {
             "id": "journey-70802c3cf05fa0f0812f:p2",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 2,
             "variant": "original",
@@ -25463,6 +25253,16 @@
               "effort": 0.4
             },
             {
+              "id": "mechanism.general",
+              "priority": 2.933333333333333,
+              "coverage": 0.6666666666666666,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
               "id": "agency.general",
               "priority": 2.433333333333333,
               "coverage": 0.5,
@@ -25486,16 +25286,6 @@
               "id": "upside.bottleneck",
               "priority": 2.433333333333333,
               "coverage": 0.5,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
-              "id": "mechanism.general",
-              "priority": 1.9333333333333331,
-              "coverage": 0.3333333333333333,
               "ambiguity": 0,
               "tension": 0,
               "projection": 0.6666666666666666,
@@ -25648,7 +25438,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -25663,7 +25453,7 @@
           "prompt": {
             "id": "journey-70802c3cf05fa0f0812f:p2",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 2,
             "variant": "original",
@@ -25879,7 +25669,7 @@
           "nextPrompt": {
             "id": "journey-70802c3cf05fa0f0812f:p3",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 3,
             "variant": "original",
@@ -25927,6 +25717,16 @@
               "effort": 0.4
             },
             {
+              "id": "mechanism.general",
+              "priority": 2.933333333333333,
+              "coverage": 0.6666666666666666,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6666666666666666,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
               "id": "agency.general",
               "priority": 2.433333333333333,
               "coverage": 0.5,
@@ -25950,16 +25750,6 @@
               "id": "upside.bottleneck",
               "priority": 2.433333333333333,
               "coverage": 0.5,
-              "ambiguity": 0,
-              "tension": 0,
-              "projection": 0.6666666666666666,
-              "repetition": 0,
-              "effort": 0.4
-            },
-            {
-              "id": "mechanism.general",
-              "priority": 1.9333333333333331,
-              "coverage": 0.3333333333333333,
               "ambiguity": 0,
               "tension": 0,
               "projection": 0.6666666666666666,
@@ -26112,7 +25902,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 84,
+              "questions": 86,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -26127,7 +25917,7 @@
           "prompt": {
             "id": "journey-70802c3cf05fa0f0812f:p3",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 3,
             "variant": "original",
@@ -26570,7 +26360,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 80,
+              "questions": 82,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -27024,7 +26814,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 80,
+              "questions": 82,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -27468,7 +27258,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 76,
+              "questions": 78,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -28742,7 +28532,7 @@
           "nextPrompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p2",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 2,
             "variant": "original",
@@ -28985,7 +28775,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -29000,7 +28790,7 @@
           "prompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p2",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 2,
             "variant": "original",
@@ -29449,7 +29239,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 84,
+              "questions": 86,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -29680,7 +29470,7 @@
           "nextPrompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p4",
             "promptId": "grounding.general",
-            "text": "What observation or experience most shaped that expectation?",
+            "text": "What observation or experience has most shaped your view of AI’s future impact?",
             "family": "grounding",
             "ordinal": 4,
             "variant": "original",
@@ -29923,7 +29713,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -29938,7 +29728,7 @@
           "prompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p4",
             "promptId": "grounding.general",
-            "text": "What observation or experience most shaped that expectation?",
+            "text": "What observation or experience has most shaped your view of AI’s future impact?",
             "family": "grounding",
             "ordinal": 4,
             "variant": "original",
@@ -30397,7 +30187,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -30628,7 +30418,7 @@
           "nextPrompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p6",
             "promptId": "scope.assumption",
-            "text": "Which assumption matters most to the outcome you expect?",
+            "text": "What assumption does your prediction about AI’s future depend on most?",
             "family": "scope",
             "ordinal": 6,
             "variant": "original",
@@ -30871,7 +30661,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 88,
+              "questions": 90,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -30886,7 +30676,7 @@
           "prompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p6",
             "promptId": "scope.assumption",
-            "text": "Which assumption matters most to the outcome you expect?",
+            "text": "What assumption does your prediction about AI’s future depend on most?",
             "family": "scope",
             "ordinal": 6,
             "variant": "original",
@@ -32932,7 +32722,7 @@
           "nextPrompt": {
             "id": "journey-037ec99e57e839e46284:p2",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 2,
             "variant": "original",
@@ -33165,7 +32955,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 84,
+              "questions": 86,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -33180,7 +32970,7 @@
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p2",
             "promptId": "timeline.milestone",
-            "text": "What change would tell you that the future you described is getting closer?",
+            "text": "What sign would tell you that AI is starting to transform everyday life?",
             "family": "timeline",
             "ordinal": 2,
             "variant": "original",
@@ -33396,7 +33186,7 @@
           "nextPrompt": {
             "id": "journey-037ec99e57e839e46284:p3",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 3,
             "variant": "original",
@@ -33629,7 +33419,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 84,
+              "questions": 86,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -33644,7 +33434,7 @@
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p3",
             "promptId": "control.general",
-            "text": "What would make very powerful AI stay under meaningful human control?",
+            "text": "Do you expect people to keep control of AI systems that are smarter than humans, and why?",
             "family": "control",
             "ordinal": 3,
             "variant": "original",
@@ -34087,7 +33877,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 80,
+              "questions": 82,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -34541,7 +34331,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 80,
+              "questions": 82,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,
@@ -34985,7 +34775,7 @@
             {
               "name": "C: route",
               "model": "persona-script-v1",
-              "questions": 76,
+              "questions": 78,
               "attempts": 1,
               "usage": {
                 "input_tokens": 0,

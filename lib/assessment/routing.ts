@@ -2,8 +2,12 @@ import type { Assessment, ModelAnswer } from './schema'
 import { currentPrompt } from './state'
 import type { Prompt, Rubric } from '@/lib/content/schema'
 import { timelineContext, timelineUnknown } from './timeline'
+import { evidenceReadiness } from './readiness'
 
 export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
+  const support = new Map(
+    evidenceReadiness(state).dimensions.map((d) => [d.vector, d.contribution])
+  )
   const previous = currentPrompt(state)
   const horizonMissing = timelineContext(state) === null
   const timingUnexplored = horizonMissing && !timelineUnknown(state)
@@ -40,8 +44,10 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
       (prompt.family === 'timeline' && timingUnexplored) ||
       (prompt.noveltyGroup === 'conviction' && convictionMissing)
         ? 1
-        : prompt.targets.filter((v) => state.coverage[v] !== 'assessed')
-            .length / prompt.targets.length
+        : prompt.targets.reduce(
+            (sum, vector) => sum + 1 - (support.get(vector) ?? 0),
+            0
+          ) / prompt.targets.length
     const repetition = state.prompts.some(
       (p) =>
         prompts.find((item) => item.id === p.promptId)?.noveltyGroup ===
@@ -70,9 +76,42 @@ export function rankCandidates(
   return candidatePrompts(state, prompts)
     .filter((item) => !item.reason && answers[`${item.prompt.id}:coverage`])
     .map((item) => {
-      const coverage = item.missing * normalized(`${item.prompt.id}:coverage`)
-      const ambiguity = normalized(`${item.prompt.id}:ambiguity`)
-      const tension = normalized(`${item.prompt.id}:tension`)
+      const positionGap =
+        item.prompt.targets.reduce((sum, vector) => {
+          const position = answers[`outlook:${vector}:position`]
+          if (position?.type !== 'choice') return sum
+          const directlyAnswered = state.answers.some((answer) => {
+            const issued = state.prompts.find(
+              (p) => p.id === answer.promptInstanceId
+            )
+            const prompt = prompts.find((p) => p.id === issued?.promptId)
+            return prompt?.targets.length === 1 && prompt.targets[0] === vector
+          })
+          // Broad opening uncertainty may concern the net balance, not each
+          // component. Offer one direct elicitation; accept unknown after it.
+          return (
+            sum +
+            (position.probabilities.not_expressed ?? 0) +
+            (directlyAnswered
+              ? 0
+              : (position.probabilities.explicitly_unknown ?? 0))
+          )
+        }, 0) / item.prompt.targets.length
+      const coverage =
+        Math.max(item.missing, positionGap) *
+        normalized(`${item.prompt.id}:coverage`)
+      // A distribution's small nonzero score is not evidence that an issue exists.
+      const hasIssue = (kind: 'ambiguity' | 'tension') =>
+        state.unresolved.some(
+          (issue) =>
+            issue.kind === kind && item.prompt.targets.includes(issue.vector)
+        )
+      const ambiguity = hasIssue('ambiguity')
+        ? normalized(`${item.prompt.id}:ambiguity`)
+        : 0
+      const tension = hasIssue('tension')
+        ? normalized(`${item.prompt.id}:tension`)
+        : 0
       const projection = normalized(`${item.prompt.id}:projection`)
       const priority =
         weights.calibration * item.calibration +
