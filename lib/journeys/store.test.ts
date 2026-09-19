@@ -3,14 +3,14 @@ import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { randomUUID } from 'node:crypto'
 import path from 'node:path'
-import { runJourneySuite } from './runner'
+import { runMechanicalSuite } from './mechanical/runner'
 import { createJourneyStore } from './store'
 
 test('immutable local runs survive concurrent saves and reject paths, overwrite and corrupted artifacts', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'doom-journey-store-'))
   try {
     const store = createJourneyStore(root)
-    const a = await runJourneySuite({
+    const a = await runMechanicalSuite({
       id: `${Date.now()}-${randomUUID()}`,
       personaId: 'control-alarmist',
       turns: 1

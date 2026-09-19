@@ -10,7 +10,12 @@ import {
   dispositionSchema
 } from '@/lib/assessment/schema'
 import { questionSchema, modelAnswerSchema } from '@/lib/assessment/schema'
-import { personaProfileSchema, personaSchema } from './catalog'
+import { personaProfileSchema } from './catalog'
+import { mechanicalCaseSchema, legacyProfileSchema } from './mechanical/schema'
+export const recordedBackgroundSchema = z.union([
+  personaProfileSchema,
+  legacyProfileSchema
+])
 
 export const participantExchangeSchema = z.strictObject({
   promptInstanceId: z.string(),
@@ -171,7 +176,9 @@ export type FailedOperation = z.infer<typeof failedOperationSchema>
 
 export const journeySchema = z.strictObject({
   personaId: z.string(),
-  personaSnapshot: z.union([personaSchema, personaProfileSchema]).optional(),
+  personaSnapshot: z
+    .union([mechanicalCaseSchema, recordedBackgroundSchema])
+    .optional(),
   participantExchanges: z.array(participantExchangeSchema).max(18).optional(),
   pendingAnswer: z.string().nullable().optional(),
   failedOperation: failedOperationSchema.optional(),

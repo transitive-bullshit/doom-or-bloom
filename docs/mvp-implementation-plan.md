@@ -839,3 +839,10 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Verify the historical omitted-date case directly with current projection questions; no arrival date is invented.
 - [x] Complete and inspect all ten fresh adaptive live journeys on final code, including result actions: zero evaluation failures, 120 Jev calls, 50 OpenAI calls, $0.15376 estimated cost.
 - [x] Finish the requirement-by-requirement audit in `journey-improvement-audit-2026-09-19.md`. No remaining obvious gross mismatch in the final reviewed sample. The requested development loop is complete; manual testing, draft editorial review and separate release/holdout validation remain independent project work.
+
+### 2026-09-19 — Separate narrative personas from mechanical cases / Codex
+
+- [x] Keep only narrative background, beliefs, familiarity and review context in the live persona catalog. Move canned replies, coverage flags, injected levels, mock provider and deterministic runner tests into `lib/journeys/mechanical/`; keep explicit recovery actions in `scenarios.ts`.
+- [x] Remove implicit mocked-provider/scripted-answer fallback from the normal runner. Normal `journeys:generate` now uses OpenAI and live Jev; mechanical generation/check/update commands are explicit and separate. Preserve `journeys:live` and `journeys:check` aliases.
+- [x] Rename the checked-in mocked baseline to `mechanical-journey-baseline.json` without changing its observations. Preserve historical snapshot compatibility and distinguish mechanical artifacts in the inspector.
+- [x] Verify 154 tests, static/content checks, the ten-case mechanical baseline and three inspector browser scenarios. Verify normal generation with a live three-reply result-action run (`1789806379465-37235137-86e9-4724-8323-938a9097624f`): 3 OpenAI calls, 8 Jev calls, $0.00824 estimated cost, no errors, no scripted reply keys and no injected judgment fields in the narrative snapshot or participant input.

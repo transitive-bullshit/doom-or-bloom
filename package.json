@@ -25,13 +25,15 @@
     "eval:smoke": "node --env-file=.env.local --conditions=react-server --import tsx scripts/smoke-jev.ts",
     "check:browser": "playwright test",
     "eval:engine": "node --env-file=.env.local --conditions=react-server --import tsx scripts/evaluate-engine.ts",
-    "journeys:generate": "node --conditions=react-server --import tsx scripts/generate-journeys.ts",
-    "journeys:live": "node --conditions=react-server --import tsx scripts/generate-journeys.ts --live --allow-paid",
-    "journeys:check": "pnpm journeys:generate --check",
+    "journeys:generate": "node --conditions=react-server --import tsx scripts/generate-journeys.ts --allow-paid",
+    "journeys:live": "pnpm journeys:generate",
+    "journeys:check": "pnpm journeys:mechanical:check",
     "content:freeze": "node --conditions=react-server --import tsx scripts/freeze-content.ts",
     "content:coverage": "node --conditions=react-server --import tsx scripts/report-source-coverage.ts",
     "content:assemble": "node --conditions=react-server --import tsx scripts/assemble-draft-release.ts",
-    "check:analytics": "playwright test --config=playwright.analytics.config.ts"
+    "check:analytics": "playwright test --config=playwright.analytics.config.ts",
+    "journeys:mechanical": "node --conditions=react-server --import tsx scripts/generate-mechanical-journeys.ts",
+    "journeys:mechanical:check": "pnpm journeys:mechanical --check"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",

@@ -3,9 +3,10 @@ import type { Provider } from '@/lib/server/provider'
 import { fixtureAnswer } from '@/lib/server/provider'
 import { validateEvaluation } from '@/lib/server/live-provider'
 import type { ModelAnswer, Question } from '@/lib/assessment/schema'
-import type { Persona, ScriptedReply } from './catalog'
+import type { MechanicalCase } from './schema'
+import type { ScriptedReply } from './cases'
 
-export function scriptedProvider(persona: Persona, bundle: Bundle) {
+export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
   let reply: ScriptedReply
   const supported = new Set<string>()
   const model = 'persona-script-v1'

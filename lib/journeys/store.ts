@@ -26,7 +26,10 @@ const indexSchema = suiteSchema
 
 export function createJourneyStore(root: string) {
   const directory = path.join(root, 'eval/runs/journeys')
-  const baseline = path.join(root, 'eval/development/persona-baseline.json')
+  const baseline = path.join(
+    root,
+    'eval/development/mechanical-journey-baseline.json'
+  )
   async function read(id: string): Promise<JourneySuite> {
     runId.parse(id)
     const file =

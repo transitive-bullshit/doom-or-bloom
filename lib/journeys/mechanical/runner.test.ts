@@ -1,17 +1,19 @@
 import { expect, test } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { loadBundle } from '@/lib/content/loader'
-import { personas, replyForPrompt } from './catalog'
-import { runPersona } from './runner'
-import { compareJourneys, suiteSchema, journeySchema } from './schema'
-import { scriptedProvider } from './synthetic-provider'
+import { mechanicalCases as personas, replyForPrompt } from './cases'
+import { runMechanicalCase as runPersona } from './runner'
+import { compareJourneys, suiteSchema, journeySchema } from '../schema'
+import { scriptedProvider } from './provider'
 import { createFixtureProvider } from '@/lib/server/provider'
 import type { Provider } from '@/lib/server/provider'
 import { versions } from '@/lib/assessment/schema'
 
 const bundle = loadBundle()
 const baseline = suiteSchema.parse(
-  JSON.parse(readFileSync('eval/development/persona-baseline.json', 'utf8'))
+  JSON.parse(
+    readFileSync('eval/development/mechanical-journey-baseline.json', 'utf8')
+  )
 )
 
 test('result exercises record early projection, continuation, and an answered scoped correction', async () => {

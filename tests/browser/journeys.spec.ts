@@ -45,7 +45,7 @@ test('local personas explain exact paths, compare saved reruns and disclose synt
       response.request().method() === 'POST'
   )
   await page
-    .getByRole('button', { name: 'Rerun this persona · synthetic' })
+    .getByRole('button', { name: 'Rerun this persona · mechanical' })
     .click()
   expect((await saved).status()).toBe(200)
   await expect(page.getByLabel('View run')).not.toHaveValue(previousRun)

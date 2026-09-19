@@ -36,7 +36,7 @@ import { ReviewHeader } from '@/components/debug/content/shared'
 import { Map } from '@/components/assessment/worldview-map'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import type { Persona } from '@/lib/journeys/catalog'
-import { personaProfileSchema } from '@/lib/journeys/catalog'
+import { recordedBackgroundSchema } from '@/lib/journeys/schema'
 import { compareJourneys } from '@/lib/journeys/schema'
 import type { Journey, JourneyStep, RunIndex } from '@/lib/journeys/schema'
 
@@ -45,8 +45,8 @@ const coordinate = (value: number | null | undefined) =>
   value == null ? 'Unplaced' : `${Math.round(value * 100)} / 100`
 const runLabel = (run: RunIndex) =>
   run.id === 'baseline'
-    ? 'Checked-in synthetic baseline'
-    : `${run.participantModel ? 'Jev + OpenAI' : run.mode === 'live' ? 'Jev + scripted answers' : 'Synthetic fixture'}${run.exerciseResults ? ' · result actions' : ''} · ${run.createdAt.replace('T', ' ').slice(0, 19)} · ${run.personaIds.length} personas`
+    ? 'Checked-in mechanical-test baseline'
+    : `${run.participantModel ? 'Jev + OpenAI' : run.mode === 'live' ? 'Jev + scripted answers' : 'Mechanical engine test'}${run.exerciseResults ? ' · result actions' : ''} · ${run.createdAt.replace('T', ' ').slice(0, 19)} · ${run.personaIds.length} personas`
 
 function Disclosure({
   label,
@@ -318,7 +318,7 @@ function Step({
               <p className='text-sm text-muted-foreground'>
                 {step.trace
                   ? 'This operation used local policy and made no inference requests.'
-                  : 'The checked-in baseline keeps salient decisions only. Rerun synthetically to save full stage inputs and outputs.'}
+                  : 'The checked-in baseline keeps salient decisions only. Run a mechanical test to save its mocked stage inputs and outputs.'}
               </p>
             )}
           </Disclosure>
@@ -449,12 +449,13 @@ export function JourneysInspector({
           Live journeys use an OpenAI participant answering the actual questions
           and Jev inside the real assessment engine. Named people are loose
           argument inspirations, not claims about what they would say today.
-          Synthetic fixtures inject judgments for free control-flow checks. Paid
-          inference runs only when you explicitly start a live run.
+          Separate mechanical tests inject mocked judgments for free
+          control-flow checks. Paid inference runs only when you explicitly
+          start a live run.
         </AlertDescription>
       </Alert>
       <section
-        aria-label='Synthetic personas'
+        aria-label='Fictional personas'
         className='grid gap-2 sm:grid-cols-2 lg:grid-cols-5'
       >
         {personas.map((p) => (
@@ -551,7 +552,7 @@ export function JourneysInspector({
             Live Jev + OpenAI participant · paid
           </NativeSelectOption>
           <NativeSelectOption value='synthetic'>
-            Synthetic fixture · free
+            Mechanical engine test · no API calls
           </NativeSelectOption>
         </NativeSelect>
       </Field>
@@ -564,14 +565,14 @@ export function JourneysInspector({
           <RefreshCw data-icon='inline-start' />
           {busy
             ? 'Running and saving…'
-            : `Rerun this persona · ${runMode === 'live' ? 'live' : 'synthetic'}`}
+            : `Rerun this persona · ${runMode === 'live' ? 'live' : 'mechanical'}`}
         </Button>
         <Button
           variant='outline'
           disabled={busy || loading}
           onClick={() => void rerun(true)}
         >
-          Rerun all ten · {runMode === 'live' ? 'live' : 'synthetic'}
+          Rerun all ten · {runMode === 'live' ? 'live' : 'mechanical'}
         </Button>
         <p className='text-xs text-muted-foreground'>
           Five substantive-answer opportunities, followed by projection when
@@ -609,7 +610,7 @@ export function JourneysInspector({
                   ? current.run.participantModel
                     ? 'Live Jev + OpenAI participant'
                     : 'Recorded Jev run · scripted answers'
-                  : 'Injected synthetic judgments'}
+                  : 'Mocked mechanical-test judgments'}
               </Badge>
               <Badge variant='outline'>
                 {journey.accepted} accepted answers
@@ -707,12 +708,12 @@ export function JourneysInspector({
                   journey.personaSnapshot
                     ? current.run.mode === 'live'
                       ? 'Recorded persona background · no expected scores'
-                      : 'Recorded persona and injected fixture values'
+                      : 'Recorded mechanical case and mocked judgments'
                     : 'Current authoring · original persona not recorded in this older run'
                 }
                 value={
                   current.run.mode === 'live'
-                    ? personaProfileSchema.parse(recordedPersona)
+                    ? recordedBackgroundSchema.parse(recordedPersona)
                     : recordedPersona
                 }
                 dimensions={dimensions}
@@ -880,13 +881,13 @@ export function JourneysInspector({
           </section>
         </>
       )}
-      <Disclosure label='Scriptable reruns and real Jev runs'>
+      <Disclosure label='Live journeys and mechanical tests'>
         <div className='flex flex-col gap-3 text-sm text-muted-foreground'>
           <p>
-            <code>pnpm journeys:generate</code> saves all ten free synthetic
-            paths. <code>pnpm journeys:check</code> compares them with the
-            checked-in baseline. Add <code>--persona=control-alarmist</code> to
-            select one.
+            <code>pnpm journeys:generate</code> generates real OpenAI replies
+            and Jev judgments for all ten personas. Add{' '}
+            <code>--persona=control-alarmist</code> to select one. These runs
+            incur API costs.
           </p>
           <p>
             For live participant generation and Jev semantics, run{' '}
@@ -897,9 +898,11 @@ export function JourneysInspector({
           </p>
           <p>
             Run artifacts are saved under <code>eval/runs/journeys/</code>;
-            earlier runs remain intact. A baseline update requires{' '}
-            <code>--write-baseline</code> and a reviewed Git diff. These
-            published cases are development regressions, not a blinded holdout.
+            earlier runs remain intact. Separate free engine checks use{' '}
+            <code>pnpm journeys:mechanical:check</code>. Updating that mocked
+            baseline uses <code>pnpm journeys:mechanical --write-baseline</code>{' '}
+            and a reviewed Git diff. These are mechanical regressions, not
+            evidence that Jev understood the answers.
           </p>
         </div>
       </Disclosure>

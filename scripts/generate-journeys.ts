@@ -1,103 +1,51 @@
-import { randomUUID } from 'node:crypto'
 import { existsSync } from 'node:fs'
-import { readFile, writeFile } from 'node:fs/promises'
-import { runJourneySuite, withoutTraces } from '../lib/journeys/runner'
-import { projectJourneyStore } from '../lib/journeys/store'
-import { compareJourneys, suiteSchema } from '../lib/journeys/schema'
-import { personas } from '../lib/journeys/catalog'
 import { runLiveJourneys, resumeLiveJourney } from '../lib/journeys/live'
+import { personas } from '../lib/journeys/catalog'
 
 const args = process.argv.slice(2)
 const allowed =
-  /^(--resume=[0-9]{13}-[a-f0-9-]{36}|--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--check|--write-baseline|--exercise-results)$/
+  /^(--resume=[0-9]{13}-[a-f0-9-]{36}|--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid|--exercise-results)$/
 if (
-  args.some((arg) => !allowed.test(arg)) ||
+  args.some((a) => !allowed.test(a)) ||
   new Set(args.map((a) => a.split('=')[0])).size !== args.length
 )
-  throw new Error('Unknown or repeated journey option')
+  throw new Error(
+    'Unknown or repeated live journey option; use journeys:mechanical for mocked engine tests'
+  )
+if (!args.includes('--allow-paid'))
+  throw new Error('Live runs require --allow-paid')
 const personaId = args.find((a) => a.startsWith('--persona='))?.split('=')[1]
 const resumeId = args.find((a) => a.startsWith('--resume='))?.split('=')[1]
 const turns = Number(
   args.find((a) => a.startsWith('--turns='))?.split('=')[1] ?? 5
 )
-const live = args.includes('--live')
-if (
-  resumeId &&
-  (!live ||
-    !personaId ||
-    args.includes('--exercise-results') ||
-    args.some((a) => a.startsWith('--turns=')))
-)
-  throw new Error(
-    'Resume requires --live and --persona; it resumes exactly the saved operation'
-  )
 const exerciseResults = args.includes('--exercise-results')
-if (exerciseResults && (!live || turns < 3))
-  throw new Error(
-    'Result exercises require a live run with at least three replies'
-  )
 if (personaId && !personas.some((p) => p.id === personaId))
   throw new Error('Unknown persona')
-if (live && (args.includes('--write-baseline') || args.includes('--check')))
-  throw new Error('Live runs cannot overwrite/check the synthetic baseline')
 if (
-  !live &&
-  args.some(
-    (a) =>
-      a === '--allow-paid' ||
-      a.startsWith('--max-requests=') ||
-      a.startsWith('--max-cost=')
-  )
-)
-  throw new Error('Paid flags require --live')
-if (
-  args.includes('--write-baseline') &&
-  (personaId || turns !== 5 || args.includes('--check'))
+  resumeId &&
+  (!personaId || exerciseResults || args.some((a) => a.startsWith('--turns=')))
 )
   throw new Error(
-    'The baseline requires all ten personas, five turns and a separate reviewable update'
+    'Resume requires --persona and retries exactly the saved operation'
   )
-
+if (exerciseResults && turns < 3)
+  throw new Error('Result exercises require at least three replies')
 async function main() {
-  if (live) {
-    if (!args.includes('--allow-paid'))
-      throw new Error('Live runs require --allow-paid')
-    if (existsSync('.env.local')) process.loadEnvFile('.env.local')
-    const maxRequestsArg = args.find((a) => a.startsWith('--max-requests='))
-    const maxCostArg = args.find((a) => a.startsWith('--max-cost='))
-    if (resumeId) {
-      const suite = await resumeLiveJourney({
-        runId: resumeId,
-        personaId: personaId!,
-        maxRequests: maxRequestsArg
-          ? Number(maxRequestsArg.split('=')[1])
-          : undefined,
-        maxCost: maxCostArg ? Number(maxCostArg.split('=')[1]) : undefined
-      })
-      console.log(
-        `Saved resumed operation as ${suite.id}; ${suite.journeys[0]!.stopped}`
-      )
-      console.log(
-        JSON.stringify({ requestBudget: suite.requestBudget, cost: suite.cost })
-      )
-      if (suite.journeys.some((j) => j.error)) process.exitCode = 1
-      return
-    }
-    const suite = await runLiveJourneys({
-      personaId,
-      turns,
-      exerciseResults,
+  if (existsSync('.env.local')) process.loadEnvFile('.env.local')
+  const maxRequestsArg = args.find((a) => a.startsWith('--max-requests='))
+  const maxCostArg = args.find((a) => a.startsWith('--max-cost='))
+  if (resumeId) {
+    const suite = await resumeLiveJourney({
+      runId: resumeId,
+      personaId: personaId!,
       maxRequests: maxRequestsArg
         ? Number(maxRequestsArg.split('=')[1])
         : undefined,
-      maxCost: maxCostArg ? Number(maxCostArg.split('=')[1]) : undefined,
-      onJourney: (j) =>
-        console.log(
-          `${j.personaId}: ${j.accepted} accepted; ${Math.round(j.finalReadiness.value)}% readiness; ${j.result ? 'result' : 'no result'}; ${j.stopped}`
-        )
+      maxCost: maxCostArg ? Number(maxCostArg.split('=')[1]) : undefined
     })
     console.log(
-      `Saved live Jev + OpenAI journey run ${suite.id}; ${suite.journeys.length} personas`
+      `Saved resumed operation as ${suite.id}; ${suite.journeys[0]!.stopped}`
     )
     console.log(
       JSON.stringify({ requestBudget: suite.requestBudget, cost: suite.cost })
@@ -105,62 +53,31 @@ async function main() {
     if (suite.journeys.some((j) => j.error)) process.exitCode = 1
     return
   }
-  const suite = await runJourneySuite({
-    id: `${Date.now()}-${randomUUID()}`,
+  const suite = await runLiveJourneys({
     personaId,
-    turns
-  })
-  await projectJourneyStore().save(suite)
-  console.log(
-    `Saved ${suite.mode} journey run ${suite.id}; ${suite.journeys.length} personas`
-  )
-  for (const j of suite.journeys)
-    console.log(
-      `${j.personaId}: ${j.accepted} accepted; ${Math.round(j.finalReadiness.value)}% readiness; ${j.result ? 'result' : 'no result'}; ${j.stopped}`
-    )
-  if (suite.journeys.some((j) => j.error)) {
-    process.exitCode = 1
-    return
-  }
-  if (args.includes('--write-baseline')) {
-    await writeFile(
-      'eval/development/persona-baseline.json',
-      JSON.stringify({ ...withoutTraces(suite), id: 'baseline' }, null, 2) +
-        '\n'
-    )
-    console.log(
-      'Updated the synthetic baseline. Review and commit its diff; this is not semantic validation.'
-    )
-  }
-  if (args.includes('--check')) {
-    const baseline = suiteSchema.parse(
-      JSON.parse(
-        await readFile('eval/development/persona-baseline.json', 'utf8')
-      )
-    )
-    if (baseline.turns !== turns)
-      throw new Error('Use the baseline turn count for --check')
-    for (const journey of suite.journeys) {
-      const before = baseline.journeys.find(
-        (j) => j.personaId === journey.personaId
-      )
-      const changed = before
-        ? compareJourneys(before, journey)
-        : ['missing baseline']
-      if (changed.length) {
-        console.log(`${journey.personaId}: changed ${changed.join(', ')}`)
-        process.exitCode = 1
-      }
-    }
-    if (!process.exitCode)
+    turns,
+    exerciseResults,
+    maxRequests: maxRequestsArg
+      ? Number(maxRequestsArg.split('=')[1])
+      : undefined,
+    maxCost: maxCostArg ? Number(maxCostArg.split('=')[1]) : undefined,
+    onJourney: (j) =>
       console.log(
-        'All selected journey observations match the synthetic baseline.'
+        `${j.personaId}: ${j.accepted} accepted; ${Math.round(j.finalReadiness.value)}% readiness; ${j.result ? 'result' : 'no result'}; ${j.stopped}`
       )
-  }
+  })
+  console.log(
+    `Saved live Jev + OpenAI journey run ${suite.id}; ${suite.journeys.length} personas`
+  )
+  console.log(
+    JSON.stringify({ requestBudget: suite.requestBudget, cost: suite.cost })
+  )
+  if (suite.journeys.some((j) => j.error)) process.exitCode = 1
+  return
 }
 main().catch(() => {
   console.error(
-    'Journey generation stopped. Check local script options, artifact validity or credentials. No transport bodies or environment values logged.'
+    'Live journey generation stopped. Check local options, artifact validity or credentials. No transport bodies or environment values logged.'
   )
   process.exitCode = 1
 })

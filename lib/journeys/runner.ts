@@ -15,9 +15,10 @@ import {
 import { versions, vectorSchema } from '@/lib/assessment/schema'
 import type { Operation, DebugStage } from '@/lib/assessment/schema'
 import { evidenceReadiness } from '@/lib/assessment/readiness'
-import { personaProfileSchema, personas, replyForPrompt } from './catalog'
-import type { Persona, ScriptedReply } from './catalog'
-import { scriptedProvider } from './synthetic-provider'
+import { personaProfileSchema, personas } from './catalog'
+import { recoveryPreludes } from './scenarios'
+import type { Persona } from './catalog'
+import type { Prompt } from '@/lib/content/schema'
 import { rankingSchema, suiteSchema } from './schema'
 import type {
   Journey,
@@ -29,7 +30,11 @@ import type { Participant } from './participant'
 import type { ParticipantExchange } from './schema'
 import { JourneyFailure, providerFailure } from './failure'
 
-export function journeyHashes(bundle: Bundle) {
+export function journeyHashes(
+  bundle: Bundle,
+  inputs: unknown = personas,
+  includeMechanical = false
+) {
   const hash = (value: string) =>
     createHash('sha256').update(value).digest('hex')
   const collect = (directory: string): string[] =>
@@ -42,16 +47,27 @@ export function journeyHashes(bundle: Bundle) {
             : []
       )
       .sort()
-  const files = ['lib/assessment', 'lib/server', 'lib/journeys'].flatMap(
-    collect
-  )
+  const files = ['lib/assessment', 'lib/server', 'lib/journeys']
+    .flatMap(collect)
+    .filter(
+      (file) =>
+        includeMechanical || !file.startsWith('lib/journeys/mechanical/')
+    )
   return {
-    inputHash: hash(JSON.stringify(personas)),
+    inputHash: hash(JSON.stringify(inputs)),
     engineHash: hash(
       files.map((file) => `${file}\n${readFileSync(file, 'utf8')}`).join('\n')
     ),
     contentHash: hash(JSON.stringify(bundle))
   }
+}
+
+// Explicit adapter for deterministic engine tests; live callers never supply it.
+export type MechanicalJourney = {
+  provider: Provider
+  reply(prompt: Prompt): { text: string; key: string }
+  snapshot: Journey['personaSnapshot']
+  prelude: string[]
 }
 
 export async function runPersona(
@@ -61,7 +77,8 @@ export async function runPersona(
   live?: Provider,
   participant?: Participant,
   exerciseResults = false,
-  resume?: Journey
+  resume?: Journey,
+  mechanical?: MechanicalJourney
 ): Promise<Journey> {
   if (!Number.isInteger(turns) || turns < 1 || turns > 6)
     throw new Error('Journey turn bound is 1–6')
@@ -73,8 +90,12 @@ export async function runPersona(
     throw new Error(
       'Resume requires a saved failed operation and an evaluator, without a participant generator'
     )
-  const scripted = scriptedProvider(persona, bundle)
-  const source = live ?? scripted.provider
+  const source = live ?? mechanical?.provider
+  if (!source || (!resume && !participant && !mechanical))
+    throw new Error(
+      'Journey runs require an evaluator and generated participant; mechanical tests must supply an explicit adapter'
+    )
+  const prelude = mechanical?.prelude ?? recoveryPreludes.get(persona.id) ?? []
   let currentStage: NonNullable<Journey['failureStage']> = 'operation'
   let completedStages: DebugStage[] = []
   let failedOperation: FailedOperation | undefined
@@ -138,11 +159,13 @@ export async function runPersona(
   let error: string | null = null
   let stopped = 'turn budget reached'
   let earlyResult = false
-  async function step(operation: Operation, reply?: ScriptedReply) {
+  async function step(
+    operation: Operation,
+    reply?: { text: string; key: string }
+  ) {
     currentStage = 'operation'
     completedStages = []
     failedElapsedMs = 0
-    if (reply) scripted.setReply(reply)
     const previous = state
     const before = evidenceReadiness(previous)
     const requestId = `${state.id}:step${steps.length + 1}`
@@ -231,9 +254,8 @@ export async function runPersona(
       pendingAnswer = null
       stopped = 'saved operation resumed'
     } else {
-      for (const text of persona.recoveryPrelude)
-        await step({ type: 'answer', text })
-      if (persona.recoveryPrelude.length && state.status === 'paused')
+      for (const text of prelude) await step({ type: 'answer', text })
+      if (prelude.length && state.status === 'paused')
         await step({ type: 'retry' })
       for (let i = 0; i < turns; i++) {
         if (state.status === 'capped') {
@@ -254,7 +276,8 @@ export async function runPersona(
         const prompt = bundle.prompts.find(
           (p) => p.id === currentPrompt(state).promptId
         )
-        if (!prompt) throw new Error('Chosen prompt has no scripted answer')
+        if (!prompt)
+          throw new Error('Chosen prompt is missing from the content bundle')
         if (participant) {
           currentStage = 'participant'
           const exchange = await participant.generate({
@@ -276,7 +299,8 @@ export async function runPersona(
           await step({ type: 'answer', text: pendingAnswer })
           pendingAnswer = null
         } else {
-          const reply = replyForPrompt(persona, prompt)
+          if (!mechanical) throw new Error('Missing participant generator')
+          const reply = mechanical.reply(prompt)
           await step({ type: 'answer', text: reply.text }, reply)
         }
         if (state.status === 'paused') {
@@ -346,7 +370,7 @@ export async function runPersona(
       ? structuredClone(resume.personaSnapshot)
       : live
         ? personaProfileSchema.parse(persona)
-        : structuredClone(persona),
+        : structuredClone(mechanical?.snapshot ?? persona),
     steps,
     result: state.result,
     stopped,
@@ -386,6 +410,10 @@ export async function runJourneySuite({
   costReport?: () => JourneySuite['cost']
   onJourney?: (journey: Journey) => void
 }) {
+  if (live?.kind !== 'live' || !participant)
+    throw new Error(
+      'Live journey suites require Jev and a generated participant'
+    )
   const bundle = loadBundle()
   const hashes = journeyHashes(bundle)
   const selected = personaId
@@ -404,26 +432,24 @@ export async function runJourneySuite({
     )
     journeys.push(journey)
     onJourney?.(journey)
-    if (live && journey.error && journey.accepted === 0) break
+    if (journey.error && journey.accepted === 0) break
   }
   const suite: JourneySuite = {
     schemaVersion: 1,
     id,
     createdAt: new Date().toISOString(),
-    mode: live ? 'live' : 'synthetic',
-    authoring: participant
-      ? 'OpenAI participant with live Jev assessment'
-      : 'Codex-authored fictional answer scripts',
+    mode: 'live',
+    authoring: 'OpenAI participant with live Jev assessment',
     versions: {
       ...versions,
-      model: live ? versions.model : 'persona-script-v1'
+      model: versions.model
     },
     ...hashes,
     turns,
     requestBudget: budgetReport?.() ?? null,
     journeys
   }
-  if (participant) suite.participantModel = participant.model
+  suite.participantModel = participant.model
   if (exerciseResults) suite.exerciseResults = true
   if (costReport) suite.cost = costReport()
   return suiteSchema.parse(suite)

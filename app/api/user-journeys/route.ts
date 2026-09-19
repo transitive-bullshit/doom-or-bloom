@@ -6,7 +6,7 @@ import {
 } from '@/lib/debug/local-access'
 import { readBoundedJson } from '@/lib/server/limits'
 import { personas } from '@/lib/journeys/catalog'
-import { runJourneySuite } from '@/lib/journeys/runner'
+import { runMechanicalSuite } from '@/lib/journeys/mechanical/runner'
 import { projectJourneyStore } from '@/lib/journeys/store'
 import { runIndex } from '@/lib/journeys/schema'
 import { runLiveJourneys } from '@/lib/journeys/live'
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     const suite =
       input.data.mode === 'live'
         ? await runLiveJourneys({ personaId: input.data.personaId })
-        : await runJourneySuite({
+        : await runMechanicalSuite({
             id: `${Date.now()}-${randomUUID()}`,
             personaId: input.data.personaId
           })

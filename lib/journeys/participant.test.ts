@@ -20,7 +20,7 @@ test('participant sees character beliefs and actual conversation, never fixture 
   const request = participantRequest(context)
   const input = JSON.parse(request.input)
   expect(input.currentQuestion).toBe(context.prompt.text)
-  expect(input.background.beliefs).toEqual(context.persona.claims)
+  expect(input.background.beliefs).toEqual(context.persona.beliefs)
   for (const key of [
     'levels',
     'openingVectors',
