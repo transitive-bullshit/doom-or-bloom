@@ -33,13 +33,27 @@ test('latest live personas expose results and decisions without rerun controls',
   })
   await expect(results).toHaveCount(await liveSteps.count())
   await expect(results.first()).toHaveAttribute('aria-expanded', 'false')
-  const positions = await liveSteps.first().evaluate((step) => ({
-    result: step.textContent!.indexOf('Result after this answer'),
-    readiness: step.textContent!.indexOf('Evidence readiness'),
-    decisions: step.textContent!.indexOf('Decision details')
-  }))
-  expect(positions.result).toBeGreaterThan(positions.readiness)
-  expect(positions.result).toBeLessThan(positions.decisions)
+  const positions = await liveSteps.first().evaluate((step) => {
+    const buttons = Array.from(step.querySelectorAll('button'))
+    const result = buttons.find(
+      (button) => button.textContent?.trim() === 'Result after this answer'
+    )!
+    const decisions = buttons.find(
+      (button) => button.textContent?.trim() === 'Decision details'
+    )!
+    const readiness = step.querySelector('[role=meter]')!
+    return {
+      afterReadiness: Boolean(
+        result.compareDocumentPosition(readiness) &
+        Node.DOCUMENT_POSITION_PRECEDING
+      ),
+      beforeDecisions: Boolean(
+        result.compareDocumentPosition(decisions) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+      )
+    }
+  })
+  expect(positions).toEqual({ afterReadiness: true, beforeDecisions: true })
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'User Journeys'
   )

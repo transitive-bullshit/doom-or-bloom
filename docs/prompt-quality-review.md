@@ -75,7 +75,7 @@ The novice’s third answer increased topic coverage to 94.2% but did not establ
 
 Routing now asks two additional typed position judgments in its existing Jev request, for expected benefits and expected harms. Unestablished or uncertain positions contribute a continuous gap even when topic presence is strong. Broad opening uncertainty may concern the net balance rather than each component, so the router allows one direct elicitation. Once the participant answers the specific benefits/harms question, explicitly unknown positions no longer acquire the extra gap. Candidate benefits still determine whether the exact question can help. The shortlist reserves two slots and remains within the existing request bound. The projection instructions keep uncertainty about catastrophe or net balance separate from adopted ordinary expectations. The meter itself remains an evidence-presence measure, not a promise that all outlook inputs are directional.
 
-## Latest regenerated suite
+## Earlier 13-persona verification
 
 The current 13-persona live suite completed all 65 generated replies and 196 physical Jev requests without a failed journey (estimated cost $0.6172 for this suite). Every answer has a saved projection input state; all eligible answers have an actual result. Two non-answer recovery submissions explicitly remain ineligible.
 
@@ -87,3 +87,11 @@ The current 13-persona live suite completed all 65 generated replies and 196 phy
 The open-uncertainty case supplies an initial expectation of concentrated benefits when asked about distribution; its outlook is later placed while catastrophe remains explicitly unknown. Its upside assessability crosses the gate a turn after that distribution answer, indicating residual inference/threshold instability worth investigating next. A placement should follow supported component expectations, not be forced from the persona label or prohibited just because the overall balance is uncertain.
 
 Next priorities: distinguish genuinely new causal/assumption information from elaboration in saturated journeys, and reduce projection gate instability across unchanged component evidence. The remaining fluctuations are not proof of changes in the participant’s beliefs.
+
+## Current implementation and verification
+
+The approved experiment round is implemented. See [the experiment log](elicitation-experiments.md) for changes, rejected thresholds, grounded comparisons and remaining limitations. The latest suite has 15 personas and 37 accepted answers, not the earlier fixed 65-answer run. The catalog contains 35 questions. Grounding was selected five times; results appear automatically when no valuable follow-up remains, with optional exploration.
+
+Routing and results now share a per-answer interpretation, overall outlook is interpreted directly rather than averaged from benefits and harms, policy facets are separate, and every usable answer has an inspectable result. Broad evidence coverage remains distinct from focused-core eligibility. Exact source-pair clarification detects the doomer’s conflict without repeatedly asking about it.
+
+Remaining research priorities are calibration and holdout testing, not restoration of the old fixed-length journeys. Seven final overall balances remain unplaced because the accounts do not establish an adopted balance; their scoped components remain visible. Do not interpret every unplaced outlook as a defect or invent a neutral midpoint. Conditional optimistic statements and novice uncertainty remain useful review cases for the direct overall-impact question.

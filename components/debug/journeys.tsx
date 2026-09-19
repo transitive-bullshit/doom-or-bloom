@@ -207,7 +207,7 @@ function Step({
               </p>
               <p className='text-muted-foreground'>
                 {winner
-                  ? `${winner.id} ranked first at ${winner.priority.toFixed(2)}. Coverage benefit ${winner.coverage.toFixed(2)}, ambiguity ${winner.ambiguity.toFixed(2)}, tension ${winner.tension.toFixed(2)}, projection ${winner.projection.toFixed(2)}; effort and repetition also affect the weighted priority.`
+                  ? `${winner.id} ranked first at ${winner.priority.toFixed(2)}. Coverage benefit ${winner.coverage.toFixed(2)}, ambiguity ${winner.ambiguity.toFixed(2)}, tension ${winner.tension.toFixed(2)}, projection ${winner.projection.toFixed(2)}; effort, repetition and a missing-basis bonus also affect priority. New-information eligibility is shown in Decision details.`
                   : 'The recorded workflow issued this question without a scored candidate ranking.'}{' '}
                 {mode === 'synthetic'
                   ? 'Benefits are injected synthetic judgments; the app applies its real eligibility, weights and tie-break rules.'
@@ -257,6 +257,8 @@ function Step({
                   <TableRow>
                     <TableHead>Candidate</TableHead>
                     <TableHead>Priority</TableHead>
+                    <TableHead>New info</TableHead>
+                    <TableHead>Minimum</TableHead>
                     <TableHead>Coverage</TableHead>
                     <TableHead>Ambiguity</TableHead>
                     <TableHead>Tension</TableHead>
@@ -272,6 +274,10 @@ function Step({
                         {r.id}
                       </TableCell>
                       <TableCell>{r.priority.toFixed(2)}</TableCell>
+                      <TableCell>{r.novelty?.toFixed(2) ?? '—'}</TableCell>
+                      <TableCell>
+                        {r.noveltyThreshold?.toFixed(2) ?? '—'}
+                      </TableCell>
                       <TableCell>{r.coverage.toFixed(2)}</TableCell>
                       <TableCell>{r.ambiguity.toFixed(2)}</TableCell>
                       <TableCell>{r.tension.toFixed(2)}</TableCell>

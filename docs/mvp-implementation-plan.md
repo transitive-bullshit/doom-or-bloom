@@ -866,13 +866,13 @@ Human review of persona scripts/semantic expectations remains open; these publis
 ### 2026-09-20 — Approved elicitation experiments / Codex
 
 - [x] Audit all current questions, live persona answers, routing traces and results; simplify the journey inspector to saved-run review.
-- [ ] Select consequential unanswered gaps, reject semantic repeats, and automatically show results when further elicitation has little expected value. Preserve opt-in follow-ups.
-- [ ] Detect within-answer and cross-answer tensions; exercise them with the dogmatic doomer and a coherent conditional-policy contrast.
-- [ ] Add concrete capability-by-2040, policy, uncertainty and changing-impact questions; improve grounding selection and remove ambiguous/leading wording.
-- [ ] Separate capability/timing, expected/possible impacts, and pace/deployment/access policy interpretations; share consequential interpretations between routing and projection.
-- [ ] Improve persona fidelity and add two terse participants whose beliefs require elicitation.
-- [ ] Show supported worldview/policy distinctions dynamically alongside the Doom–Bloom map, preserving explicit unknowns and describing model uncertainty honestly.
-- [ ] Run targeted live comparisons, periodically regenerate the full live suite, review information gained versus effort/fidelity/repetition, and commit checkpoints.
-- [ ] Verify automatic results and voluntary continuation in the real UI; complete the full requirement audit with the latest suite and server running.
+- [x] Select consequential unanswered gaps, reject semantic repeats, and automatically show results when further elicitation has little expected value. Preserve opt-in follow-ups.
+- [x] Detect within-answer and cross-answer tensions; exercise them with the dogmatic doomer and a coherent conditional-policy contrast.
+- [x] Add concrete capability-by-2040, policy, uncertainty and changing-impact questions; improve grounding selection and remove ambiguous/leading wording.
+- [x] Separate capability/timing, expected/possible impacts, and pace/deployment/access policy interpretations; share consequential interpretations between routing and projection.
+- [x] Improve persona fidelity and add two terse participants whose beliefs require elicitation.
+- [x] Show supported worldview/policy distinctions dynamically alongside the Doom–Bloom map, preserving explicit unknowns and describing model uncertainty honestly.
+- [x] Run targeted live comparisons, periodically regenerate the full live suite, review information gained versus effort/fidelity/repetition, and commit checkpoints.
+- [x] Verify automatic results and voluntary continuation in the real UI; complete the full requirement audit with the latest suite and server running.
 
 Approved scope and experiment rationale: `elicitation-audit-2026-09-20.md`. No fixed minimum question count. Stopping and confidence thresholds are empirical development rules, not claims of statistical significance until calibrated. User authorized bounded live OpenAI/Jev experiments and periodic full-suite runs.

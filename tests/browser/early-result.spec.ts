@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process'
 // server-conditioned Node process. No live inference is made.
 test('automatic first-answer results offer voluntary follow-ups and scoped detail cards', async ({
   page
-}) => {
+}, testInfo) => {
   const operations: string[] = []
   await page.route('**/api/assessment', async (route) => {
     const input = route.request().postDataJSON()
@@ -37,6 +37,9 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
   await expect(
     page.getByRole('region', { name: 'More of your worldview' })
   ).toBeVisible()
+  await page
+    .getByRole('region', { name: 'More of your worldview' })
+    .screenshot({ path: testInfo.outputPath('worldview-details.png') })
   expect(operations).toEqual(['answer'])
   await page.getByRole('button', { name: 'Keep exploring' }).click()
   await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
