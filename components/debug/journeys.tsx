@@ -148,10 +148,16 @@ function Step({
           {step.answer && <Answer text={step.answer} />}
           {step.result && (
             <Disclosure label='Result at this step'>
-              <p className='text-sm'>
-                Outlook: {coordinate(step.result.horizontal.value)} · Reasoning:{' '}
-                {coordinate(step.result.vertical.value)}
+              <p className='text-sm text-muted-foreground'>
+                The result generated at step {step.ordinal}, using only the
+                answers available then. This is what the participant would have
+                seen if they stopped here.
               </p>
+              <Map
+                horizontal={step.result.horizontal}
+                vertical={step.result.vertical}
+                layout='contained'
+              />
               <JsonViewer
                 label={`Step ${step.ordinal} result`}
                 value={step.result}

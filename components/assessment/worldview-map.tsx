@@ -1,15 +1,18 @@
 'use client'
 import { useId } from 'react'
+import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
 
 const coordinate = (value: number | null) =>
   value === null ? 'Unplaced' : `${Math.round(value * 100)} / 100`
 export function Map({
   horizontal: x,
-  vertical: y
+  vertical: y,
+  layout = 'breakout'
 }: {
   horizontal: Component
   vertical: Component
+  layout?: 'contained' | 'breakout'
 }) {
   const id = useId().replaceAll(':', '')
   const plot = { left: 70, top: 52, width: 560, height: 268 }
@@ -20,7 +23,11 @@ export function Map({
   return (
     <figure
       data-slot='worldview-map'
-      className='worldview-map rounded-2xl p-5 shadow-xl sm:p-8 lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
+      className={cn(
+        'worldview-map rounded-2xl p-5 shadow-xl sm:p-8',
+        layout === 'breakout' &&
+          'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
+      )}
     >
       <div className='flex flex-wrap items-start justify-between gap-4'>
         <div>
