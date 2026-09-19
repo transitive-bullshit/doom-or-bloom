@@ -38,7 +38,7 @@ Set server-side `OPENAI_API_KEY` in the environment or `.env.local`, alongside `
 | Dogmatic utopian | Fictional absolutist enthusiast | Rigidity and unsupported certainty lower reasoning, while optimistic ideology itself does not |
 | Playful recovery | Fictional visitor testing the app | Two exact misses trigger paperclips without profile evidence; subsequent relevant humor is accepted |
 
-Codex authored these original fictional answers locally. Named people supply loose historical argument inspirations, not quotations, endorsements, current-biographical profiles or predictions of actual replies. Inspiration links and dates appear in each profile. The general benefit, risk and uncertainty boundaries come from [JOURNEYS.md](JOURNEYS.md); the existing 20 argument journeys remain a complementary authoring resource.
+Codex authored these fictional persona backgrounds locally; OpenAI generates their actual interview answers. Named people supply loose historical argument inspirations, not quotations, endorsements, current-biographical profiles or predictions of actual replies. Inspiration links and dates appear in each profile. The general benefit, risk and uncertainty boundaries come from [JOURNEYS.md](JOURNEYS.md); the existing 20 argument journeys remain a complementary authoring resource.
 
 ## Reading a run
 
@@ -71,7 +71,7 @@ pnpm journeys:generate --persona=control-alarmist --turns=1
 pnpm journeys:mechanical:check
 ```
 
-Choose Mechanical engine test explicitly for free reruns of one persona or all ten; the default is a paid live run. Saved artifacts are immutable directories under `eval/runs/journeys/<run-id>/`, containing complete `suite.json` and small `index.json`. They are ignored by Git and survive server/browser refresh. The inspector lists the 40 most recent plus the checked-in baseline; older artifacts remain on disk. API writes require development mode, a local hostname and same origin. Reads validate artifact identity, schema and a 32 MB bound. Damaged artifacts produce an error rather than being overwritten.
+Choose Mechanical engine test explicitly for free reruns of one persona or all ten; the default is a paid live run. Saved artifacts are immutable directories under `eval/runs/journeys/<run-id>/`, containing complete `suite.json` and small `index.json`. Full local artifacts are ignored by Git and survive server/browser refresh. A selected live run is recorded separately in `eval/development/live-persona-journeys.json`, retaining generated answers, judgments, decisions, results, participant exchanges and provenance while omitting bulky Jev traces. The inspector includes this recorded run on a fresh checkout and prefers the complete local artifact when available. The inspector lists the 40 most recent plus the recorded live run and checked-in mechanical baseline; older artifacts remain on disk. API writes require development mode, a local hostname and same origin. Reads validate artifact identity, schema and a 32 MB bound. Damaged artifacts produce an error rather than being overwritten.
 
 Compare with a previous run to see question/next-question paths, per-step readiness and final outlook/reasoning. Input, content and engine hashes accompany versions and model. Rows align chronological operations: when routing diverges, later scripts can also differ. A warning identifies changed persona inputs or turn bounds. Synthetic-versus-Jev comparisons are diagnostic, not claims of equivalent judgments.
 
@@ -104,3 +104,7 @@ pnpm journeys:generate --resume=<run-id> --persona=<persona-id> --max-requests=2
 ```
 
 This explicitly retries exactly the saved operation with live Jev and a fresh bounded request/cost budget. It does not generate another OpenAI answer or automatically finish the remaining interview. Completed stages may be evaluated again. The original artifact stays immutable; the new artifact records its source run, original persona profile, prior steps, and new operation outcome. Content and model must match the source run. Older failures without a checkpoint cannot use this command. A successful resumed artifact has no pending failed operation to retry.
+
+## Recorded live regeneration — 2026-09-19
+
+Run `1789806698557-b34cdd27-9685-438c-80a3-1cb04991f9c8` regenerates all ten narrative-only personas after separating mechanical fixtures. Command: `pnpm journeys:generate --exercise-results --max-requests=240 --max-cost=0.5`. All ten completed five accepted answers and produced results, including early result, continuation and correction actions; playful recovery also exercised the two scripted non-answer attempts. There were no recorded errors or outstanding cost reservations. The run used 50 OpenAI participant calls and 120 Jev requests, with an estimated combined cost of $0.14103. These are observed outcomes awaiting human review, not target judgments or semantic approval.

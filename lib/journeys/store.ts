@@ -30,13 +30,42 @@ export function createJourneyStore(root: string) {
     root,
     'eval/development/mechanical-journey-baseline.json'
   )
+  const recordedLive = path.join(
+    root,
+    'eval/development/live-persona-journeys.json'
+  )
+  async function readArtifact(file: string): Promise<JourneySuite> {
+    if ((await stat(file)).size > 32_000_000)
+      throw new Error('Journey artifact exceeds local read bound')
+    return suiteSchema.parse(JSON.parse(await readFile(file, 'utf8')))
+  }
+  async function readRecordedLive() {
+    try {
+      const suite = await readArtifact(recordedLive)
+      runId.parse(suite.id)
+      if (suite.mode !== 'live' || suite.id === 'baseline')
+        throw new Error('Recorded persona journeys must be a live run')
+      return suite
+    } catch (err) {
+      if (err instanceof Error && 'code' in err && err.code === 'ENOENT')
+        return null
+      throw err
+    }
+  }
   async function read(id: string): Promise<JourneySuite> {
     runId.parse(id)
     const file =
       id === 'baseline' ? baseline : path.join(directory, id, 'suite.json')
-    if ((await stat(file)).size > 32_000_000)
-      throw new Error('Journey artifact exceeds local read bound')
-    const suite = suiteSchema.parse(JSON.parse(await readFile(file, 'utf8')))
+    let suite: JourneySuite
+    try {
+      suite = await readArtifact(file)
+    } catch (err) {
+      if (!(err instanceof Error && 'code' in err && err.code === 'ENOENT'))
+        throw err
+      const recorded = await readRecordedLive()
+      if (recorded?.id !== id) throw err
+      suite = recorded
+    }
     if (suite.id !== id) throw new Error('Journey artifact identity mismatch')
     return suite
   }
@@ -64,6 +93,11 @@ export function createJourneyStore(root: string) {
         return record
       })
     )
+    const recorded = await readRecordedLive()
+    if (recorded && !runs.some((run) => run.id === recorded.id)) {
+      runs.push(runIndex(recorded))
+      runs.sort((a, b) => b.id.localeCompare(a.id))
+    }
     try {
       runs.push(runIndex(await read('baseline')))
     } catch (err) {
