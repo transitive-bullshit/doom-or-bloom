@@ -125,13 +125,14 @@
   /* Next's color fallback compiler crashes with OKLCH + currentColor in one filter. */
   filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.35))
     drop-shadow(0 0 5px currentColor);
-  animation: paperclip-explode 2.6s linear both;
+  /* Base opacity hides idle sprites without retaining animated transforms. */
+  animation: paperclip-explode 2.6s linear;
 }
 .paperclip-launch {
   position: absolute;
   opacity: 0;
   filter: drop-shadow(0 0 6px currentColor);
-  animation: paperclip-launch 650ms var(--ease-out) both;
+  animation: paperclip-launch 650ms var(--ease-out);
 }
 .paperclip-launch::after {
   content: '';
@@ -151,7 +152,7 @@
   border: 1px solid currentColor;
   border-radius: 50%;
   opacity: 0;
-  animation: paperclip-ring 900ms var(--ease-out) both;
+  animation: paperclip-ring 900ms var(--ease-out);
 }
 [data-json-token='key'] {
   color: var(--json-key);

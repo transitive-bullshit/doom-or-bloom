@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useEffectEvent, useRef, useState } from 'react'
+import { memo, useEffect, useEffectEvent, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Paperclip, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -85,34 +85,7 @@ export function Paperclips({ dismiss }: { dismiss: () => void }) {
       className='paperclip-interlude pointer-events-none fixed inset-0 overflow-hidden'
       data-slot='paperclip-interlude'
     >
-      <div className='paperclip-effect' aria-hidden='true'>
-        <div className='paperclip-backdrop absolute inset-0' />
-        {fireworks.map((burst, index) => (
-          <div
-            key={index}
-            className='paperclip-burst absolute'
-            style={{
-              left: `${burst.x}%`,
-              top: `${burst.y}%`,
-              color: burst.color
-            }}
-          >
-            <div
-              className='paperclip-launch'
-              style={{ animationDelay: `${burst.delay}s` }}
-            >
-              <Paperclip className='size-7' />
-            </div>
-            <div
-              className='paperclip-ring'
-              style={{ animationDelay: `${burst.delay + 0.65}s` }}
-            />
-            {burst.particles.map((style, i) => (
-              <Paperclip key={i} className='paperclip-sprite' style={style} />
-            ))}
-          </div>
-        ))}
-      </div>
+      <PaperclipEffect />
       <div className='pointer-events-auto absolute top-4 right-4 left-4 sm:left-auto sm:max-w-sm'>
         <Alert role='status'>
           <Paperclip />
@@ -129,3 +102,37 @@ export function Paperclips({ dismiss }: { dismiss: () => void }) {
     </div>
   )
 }
+
+// Keep the 394 decorative particles independent of interview re-renders.
+const PaperclipEffect = memo(function PaperclipEffect() {
+  return (
+    <div className='paperclip-effect' aria-hidden='true'>
+      <div className='paperclip-backdrop absolute inset-0' />
+      {fireworks.map((burst, index) => (
+        <div
+          key={index}
+          className='paperclip-burst absolute'
+          style={{
+            left: `${burst.x}%`,
+            top: `${burst.y}%`,
+            color: burst.color
+          }}
+        >
+          <div
+            className='paperclip-launch'
+            style={{ animationDelay: `${burst.delay}s` }}
+          >
+            <Paperclip className='size-7' />
+          </div>
+          <div
+            className='paperclip-ring'
+            style={{ animationDelay: `${burst.delay + 0.65}s` }}
+          />
+          {burst.particles.map((style, i) => (
+            <Paperclip key={i} className='paperclip-sprite' style={style} />
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+})
