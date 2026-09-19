@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { createAssessment } from '../../lib/assessment/state'
 
-test('local personas explain exact paths, replace saved reruns and disclose synthetic exchanges', async ({
+test('latest live personas expose results and decisions without rerun controls', async ({
   page,
   request,
   baseURL
@@ -15,7 +15,16 @@ test('local personas explain exact paths, replace saved reruns and disclose synt
   })
   await page.setViewportSize({ width: 1440, height: 1000 })
   await page.goto('/user-journeys')
-  await expect(page.getByLabel('Rerun mode')).toHaveValue('live')
+  await expect(page.getByLabel('Rerun mode')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Rerun/ })).toHaveCount(0)
+  await expect(
+    page.getByText(
+      'Fictional stress-test personas, loosely grounded in public positions'
+    )
+  ).toHaveCount(0)
+  await expect(
+    page.getByRole('button', { name: 'Live journeys and mechanical tests' })
+  ).toHaveCount(0)
   const liveSteps = page.locator('[data-slot=journey-step]')
   await expect(liveSteps.first()).toBeVisible()
   const results = liveSteps.getByRole('button', {
@@ -31,8 +40,6 @@ test('local personas explain exact paths, replace saved reruns and disclose synt
   }))
   expect(positions.result).toBeGreaterThan(positions.readiness)
   expect(positions.result).toBeLessThan(positions.decisions)
-  await page.getByLabel('Rerun mode').selectOption('synthetic')
-  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'User Journeys'
   )
@@ -53,34 +60,20 @@ test('local personas explain exact paths, replace saved reruns and disclose synt
     .getByRole('button', { name: 'Decision details', exact: true })
     .click()
   await expect(first.getByRole('table')).toBeVisible()
-  const saved = page.waitForResponse(
-    (response) =>
-      response.url().endsWith('/api/user-journeys') &&
-      response.request().method() === 'POST'
-  )
-  await page
-    .getByRole('button', { name: 'Rerun this persona · mechanical' })
-    .click()
-  expect((await saved).status()).toBe(200)
   await expect(page.getByLabel('View run')).toHaveCount(0)
   await expect(page.getByLabel('Compare with')).toHaveCount(0)
 
-  const reloadedFirst = page.locator('[data-slot=journey-step]').first()
-  await reloadedFirst
-    .getByRole('button', { name: 'Requests and responses', exact: true })
+  await first
+    .getByRole('button', { name: 'Result after this answer', exact: true })
     .click()
   await expect(
-    reloadedFirst.getByRole('region', { name: /A: interpret request/ })
-  ).toBeVisible()
-  await expect(
-    reloadedFirst.getByRole('region', { name: /A: interpret response/ })
+    first.getByRole('region', { name: 'Step 1 result', exact: true })
   ).toBeVisible()
   await page.screenshot({
     path: testInfo.outputPath('journeys-desktop.png'),
     fullPage: false
   })
   await page.reload()
-  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
     'First eligible after answer 1'
   )
@@ -103,7 +96,6 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
 }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/user-journeys')
-  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await page.getByRole('button', { name: /Worried novice/ }).click()
   await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
     '5 accepted answers'
@@ -112,12 +104,11 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
     page.getByRole('region', { name: 'Journey result' })
   ).toContainText('Result of this run')
   await page.getByRole('button', { name: /Open-ended uncertainty/ }).click()
-  await expect(
-    page.getByRole('region', { name: 'Journey result' })
-  ).toContainText('Unplaced')
-  await expect(
-    page.getByRole('region', { name: 'Journey result' })
-  ).toContainText('Point withheld')
+  const uncertainFirst = page.locator('[data-slot=journey-step]').first()
+  await uncertainFirst
+    .getByRole('button', { name: 'Result after this answer', exact: true })
+    .click()
+  await expect(uncertainFirst).toContainText('Unplaced')
   await page.getByRole('button', { name: /Playful recovery/ }).click()
   await expect(
     page.getByRole('region', { name: 'Journey timeline' })
@@ -128,8 +119,15 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
       .locator('[data-slot=journey-step]')
   ).toHaveCount(7)
   const first = page.locator('[data-slot=journey-step]').first()
-  await first.getByRole('button', { name: 'Requests and responses' }).click()
-  await expect(first).toContainText('baseline keeps salient decisions only')
+  await first
+    .getByRole('button', { name: 'Result after this answer', exact: true })
+    .click()
+  await expect(
+    first.getByRole('region', {
+      name: 'Step 1 projection input state',
+      exact: true
+    })
+  ).toBeVisible()
   const width = await page.evaluate(() => ({
     page: document.documentElement.scrollWidth,
     viewport: innerWidth
@@ -141,11 +139,11 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
   })
 })
 
-test('failed operation diagnostics and exact resume command remain readable on mobile', async ({
+test('failed operation diagnostics remain readable on mobile', async ({
   page
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.route('**/api/user-journeys?run=baseline&*', async (route) => {
+  await page.route('**/api/user-journeys?*', async (route) => {
     const response = await route.fetch()
     const payload = await response.json()
     payload.run.mode = 'live'
@@ -174,9 +172,8 @@ test('failed operation diagnostics and exact resume command remain readable on m
     await route.fulfill({ response, json: payload })
   })
   await page.goto('/user-journeys')
-  await page.getByLabel('Rerun mode').selectOption('synthetic')
   await page
-    .getByRole('button', { name: 'Failed operation and recovery', exact: true })
+    .getByRole('button', { name: 'Failed operation diagnostics', exact: true })
     .click()
   await expect(
     page.getByRole('region', { name: 'Pending operation', exact: true })
@@ -184,11 +181,6 @@ test('failed operation diagnostics and exact resume command remain readable on m
   await expect(
     page.getByRole('region', { name: 'Failed stage diagnostics', exact: true })
   ).toContainText('401')
-  await expect(
-    page
-      .locator('pre')
-      .filter({ hasText: 'pnpm journeys:live --resume=baseline' })
-  ).toBeVisible()
   const width = await page.evaluate(() => ({
     page: document.documentElement.scrollWidth,
     viewport: innerWidth

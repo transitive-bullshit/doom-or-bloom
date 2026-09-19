@@ -54,7 +54,7 @@ Default: five answer opportunities (CLI allows one to six), at most one OpenAI c
 
 Set server-only `OPENAI_API_KEY` and `TYPESAFE_API_KEY` in the environment or `.env.local`. The ordinary participant app still uses only Jev.
 
-Full local artifacts live at `eval/runs/journeys/<run-id>/{suite,index}.json` and are ignored by Git. A successful save replaces earlier runs of the same mode. Live saves also replace `eval/development/live-persona-journeys.json` with the current suite minus bulky Jev traces, so a fresh checkout sees the latest answers, results and states. The separate current mechanical baseline remains a regression fixture. There is no run-history selector, historical comparison UI or old-run migration. The mode switch opens the current live suite or the separate mechanical baseline. Reads/writes are schema-checked and bounded at 64 MB; indices at 20 KB.
+Full local artifacts live at `eval/runs/journeys/<run-id>/{suite,index}.json` and are ignored by Git. A successful save replaces earlier runs of the same mode. Live saves also replace `eval/development/live-persona-journeys.json` with the current suite minus bulky Jev traces, so a fresh checkout sees the latest answers, results and states. The separate current mechanical baseline remains a regression fixture. There is no run-history selector, historical comparison UI or old-run migration. The inspector shows the latest live suite without rerun controls; generation remains available through the CLI. Reads/writes are schema-checked and bounded at 64 MB; indices at 20 KB.
 
 ## Separate mechanical regression layer
 

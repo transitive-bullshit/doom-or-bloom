@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ArrowRight, ChevronDown, RefreshCw } from 'lucide-react'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -13,8 +13,6 @@ import {
   CardContent
 } from '@/components/ui/card'
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
-import { Field, FieldLabel } from '@/components/ui/field'
-import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -357,18 +355,12 @@ export function JourneysInspector({
   contentVersion: string
 }) {
   const [personaId, setPersonaId] = useState(personas[0]!.id)
-  const [runs, setRuns] = useState(initialRuns)
-  const [runId, setRunId] = useState(
-    initialRuns.find((run) => run.mode === 'live')?.id ?? 'baseline'
-  )
-  const [runMode, setRunMode] = useState<'live' | 'synthetic'>('live')
+  const runId = initialRuns.find((run) => run.mode === 'live')?.id ?? 'baseline'
   const [loaded, setLoaded] = useState<{
     key: string
     current: { run: RunIndex; journey: Journey | null } | null
     error: string
   } | null>(null)
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState('')
   const persona = personas.find((p) => p.id === personaId)!
   const viewKey = JSON.stringify([runId, personaId])
   const view = loaded?.key === viewKey ? loaded : null
@@ -408,35 +400,6 @@ export function JourneysInspector({
       })
     return () => abort.abort()
   }, [runId, personaId, viewKey])
-  async function rerun(all: boolean) {
-    if (busy) return
-    setBusy(true)
-    setError('')
-    try {
-      const response = await fetch('/api/user-journeys', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          personaId: all ? undefined : personaId,
-          mode: runMode,
-          allowPaid: runMode === 'live' ? true : undefined
-        })
-      })
-      if (!response.ok) throw new Error('Rerun failed')
-      const result = (await response.json()) as {
-        run: RunIndex
-        runs: RunIndex[]
-      }
-      setRunId(result.run.id)
-      setRuns(result.runs)
-    } catch {
-      setError(
-        'The rerun could not be saved. Your prior run is unchanged; check local artifacts and try again.'
-      )
-    } finally {
-      setBusy(false)
-    }
-  }
   const journey = current?.journey
   return (
     <article className='mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-8 px-4 py-10 sm:px-8'>
@@ -445,20 +408,6 @@ export function JourneysInspector({
         description={`${personas.length} fictional personas exercise the same assessment workflow. Inspect questions, answers, routing decisions and evidence readiness; inspect the latest generated paths.`}
         contentVersion={contentVersion}
       />
-      <Alert>
-        <AlertTitle>
-          Fictional stress-test personas, loosely grounded in public positions
-        </AlertTitle>
-        <AlertDescription>
-          Live journeys use an OpenAI participant answering the actual questions
-          and Jev inside the real assessment engine. Public-figure proxies use
-          dated sources to stress-test sharply different positions, not to
-          provide balanced portraits. Generated answers are not authentic
-          quotations. Separate mechanical tests inject mocked judgments for free
-          control-flow checks. Paid inference runs only when you explicitly
-          start a live run.
-        </AlertDescription>
-      </Alert>
       <section
         aria-label='Fictional personas'
         className='grid gap-2 sm:grid-cols-2 lg:grid-cols-5'
@@ -469,7 +418,6 @@ export function JourneysInspector({
             variant={p.id === personaId ? 'secondary' : 'outline'}
             className='h-auto justify-start px-4 py-3 text-left whitespace-normal'
             aria-pressed={p.id === personaId}
-            disabled={busy}
             onClick={() => setPersonaId(p.id)}
           >
             <span className='flex flex-col gap-1'>
@@ -510,68 +458,10 @@ export function JourneysInspector({
           )}
         </CardContent>
       </Card>
-      <Field className='max-w-sm'>
-        <FieldLabel htmlFor='journey-mode'>Rerun mode</FieldLabel>
-        <NativeSelect
-          id='journey-mode'
-          value={runMode}
-          disabled={busy}
-          onChange={(event) => {
-            const mode = event.target.value as 'live' | 'synthetic'
-            setRunMode(mode)
-            setRunId(
-              mode === 'synthetic'
-                ? 'baseline'
-                : (runs.find((run) => run.mode === 'live')?.id ?? 'baseline')
-            )
-          }}
-        >
-          <NativeSelectOption value='live'>
-            Live Jev + OpenAI participant · paid
-          </NativeSelectOption>
-          <NativeSelectOption value='synthetic'>
-            Mechanical engine test · no API calls
-          </NativeSelectOption>
-        </NativeSelect>
-      </Field>
-      <div className='flex flex-wrap items-center gap-3'>
-        <Button
-          variant='outline'
-          disabled={
-            busy ||
-            loading ||
-            (runMode === 'synthetic' &&
-              !runs.some(
-                (run) =>
-                  run.mode === 'synthetic' && run.personaIds.includes(personaId)
-              ))
-          }
-          onClick={() => void rerun(false)}
-        >
-          <RefreshCw data-icon='inline-start' />
-          {busy
-            ? 'Running and saving…'
-            : `Rerun this persona · ${runMode === 'live' ? 'live' : 'mechanical'}`}
-        </Button>
-        <Button
-          variant='outline'
-          disabled={busy || loading}
-          onClick={() => void rerun(true)}
-        >
-          Rerun all · {runMode === 'live' ? 'live' : 'mechanical'}
-        </Button>
-        <p className='text-xs text-muted-foreground'>
-          Five answer opportunities, with a saved result after each eligible
-          answer.{' '}
-          {runMode === 'live'
-            ? 'GPT-5.6 Sol + Jev; $2 cost budget, at most 24 Jev requests for a single-persona run or 240 shared by all personas. Runs may take several minutes.'
-            : 'No paid requests.'}
-        </p>
-      </div>
-      {(error || view?.error) && (
+      {view?.error && (
         <Alert variant='destructive'>
           <AlertTitle>Run unavailable</AlertTitle>
-          <AlertDescription>{error || view?.error}</AlertDescription>
+          <AlertDescription>{view.error}</AlertDescription>
         </Alert>
       )}
       {loading && (
@@ -583,7 +473,7 @@ export function JourneysInspector({
         <Alert>
           <AlertTitle>This run did not include {persona.name}</AlertTitle>
           <AlertDescription>
-            Select a run containing this persona or start a new run.
+            The latest saved run does not include this persona.
           </AlertDescription>
         </Alert>
       )}
@@ -638,7 +528,7 @@ export function JourneysInspector({
               </Alert>
             )}
             {journey.failedOperation && (
-              <Disclosure label='Failed operation and recovery'>
+              <Disclosure label='Failed operation diagnostics'>
                 <p className='text-sm'>
                   Saved before the unfinished operation:{' '}
                   {journey.failedOperation.assessment.answers.length} accepted
@@ -671,20 +561,6 @@ export function JourneysInspector({
                   value={journey.failedOperation.assessment}
                   dimensions={dimensions}
                 />
-                {current.run.mode === 'live' && (
-                  <>
-                    <p className='text-sm text-muted-foreground'>
-                      Retry this saved operation with live Jev using the command
-                      below. It uses a fresh budget, may repeat completed
-                      stages, and saves a new run. It reuses the saved answer
-                      and does not generate another participant reply or finish
-                      the interview.
-                    </p>
-                    <pre className='overflow-x-auto text-xs'>
-                      <code>{`pnpm journeys:live --resume=${current.run.id} --persona=${journey.personaId} --max-requests=24 --max-cost=0.5`}</code>
-                    </pre>
-                  </>
-                )}
               </Disclosure>
             )}
             <Disclosure label='Run provenance and persona'>
@@ -772,40 +648,14 @@ export function JourneysInspector({
               <Alert>
                 <AlertTitle>No result generated within this run</AlertTitle>
                 <AlertDescription>
-                  The runner preserves the real readiness gate. Continue with a
-                  larger bounded turn count through the CLI or inspect the
-                  missing coverage; it does not invent a result.
+                  No final result was saved. Inspect the readiness and operation
+                  diagnostics above.
                 </AlertDescription>
               </Alert>
             )}
           </section>
         </>
       )}
-      <Disclosure label='Live journeys and mechanical tests'>
-        <div className='flex flex-col gap-3 text-sm text-muted-foreground'>
-          <p>
-            <code>pnpm journeys:generate</code> generates real OpenAI replies
-            and Jev judgments for all personas. Add{' '}
-            <code>--persona=control-alarmist</code> to select one. These runs
-            incur API costs.
-          </p>
-          <p>
-            For live participant generation and Jev semantics, run{' '}
-            <code>pnpm journeys:live --persona=control-alarmist --turns=5</code>
-            . Omit the persona flag for all personas. Credentials stay
-            server-side in the environment or <code>.env.local</code>. Live runs
-            incur API charges within request and cost budgets.
-          </p>
-          <p>
-            Run artifacts are saved under <code>eval/runs/journeys/</code>;
-            earlier runs remain intact. Separate free engine checks use{' '}
-            <code>pnpm journeys:mechanical:check</code>. Updating that mocked
-            baseline uses <code>pnpm journeys:mechanical --write-baseline</code>{' '}
-            and a reviewed Git diff. These are mechanical regressions, not
-            evidence that Jev understood the answers.
-          </p>
-        </div>
-      </Disclosure>
     </article>
   )
 }

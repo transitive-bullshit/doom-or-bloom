@@ -1,5 +1,7 @@
 # Participant question and elicitation review
 
+The [current whole-system elicitation audit](elicitation-audit-2026-09-20.md) reviews all 13 latest live paths, question frequencies, remaining defects, broader design options, and proposed controlled experiments. Recommendations are pending review; no behavior changes were made for that audit.
+
 2026-09-20 · All 30 active questions audited. Replaced wording is removed from all four local draft catalogs; no deprecated question records or aliases are retained. Historical journey runs are deleted, not migrated.
 
 ## Findings and changes
