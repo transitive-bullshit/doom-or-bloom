@@ -146,18 +146,14 @@ export function baseResult(
     (v) => v === 'assessed'
   ).length
   const insufficient = !eligible(state)
-  const horizontal = composite(
-    'outlook',
-    'Doom–Bloom',
-    components,
-    rubric.horizontalWeights,
-    ['risk_landscape']
-  )
-  // A one-sided account cannot establish the balance of expected benefits and harms.
-  const outlookEstablished = ['beneficial_potential', 'risk_landscape'].every(
-    (vector) => components.some((c) => c.vector === vector && c.value !== null)
-  )
-  if (!outlookEstablished) horizontal.value = null
+  const horizontal = {
+    ...(components.find(
+      (component) => component.vector === 'overall_outlook'
+    ) ?? emptyComponent('overall_outlook', 'Overall expected impact')),
+    vector: 'outlook',
+    label: 'Doom–Bloom'
+  }
+  const outlookEstablished = horizontal.value !== null
   const vertical = composite(
     'epistemic',
     'Demonstrated reasoning',
@@ -187,9 +183,9 @@ export function baseResult(
     capped,
     insufficient,
     reason: insufficient
-      ? 'There is not enough usable evidence to place this assessment.'
+      ? 'Some parts of your view are still unexplored; these are provisional interpretations.'
       : !outlookEstablished
-        ? 'An overall outlook needs both expected benefits and expected harms; the established parts remain below.'
+        ? 'Your overall balance of benefits and harms is not established; the views you did express remain below.'
         : covered < rubric.readinessCoverage
           ? 'Some parts of your view are still unexplored.'
           : state.unresolved.length

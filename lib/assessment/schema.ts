@@ -33,7 +33,7 @@ export const limits = {
   resolvedReferences: 2,
   // Up to 37 interpretation judgments (5 large-input batches), then 96
   // routing judgments (12 batches), with room for bounded retries.
-  providerAttempts: 24
+  providerAttempts: 32
 } as const
 export const versionsSchema = z.strictObject({
   assessment: z.string().max(50),
@@ -127,6 +127,10 @@ export const promptInstanceSchema = z.strictObject({
   family: z.string().max(80),
   ordinal: z.number().int().min(1).max(limits.prompts),
   variant: z.string().max(80),
+  quotedClaims: z
+    .array(z.strictObject({ answerId: z.string(), text: z.string().max(360) }))
+    .length(2)
+    .optional(),
   target: vectorSchema.optional(),
   claimTarget: z.literal('catastrophic_risk').optional(),
   sourceEvidenceIds: z.array(z.string()).max(100)

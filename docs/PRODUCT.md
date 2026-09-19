@@ -55,7 +55,7 @@ The landing experience is restrained and centered, inspired by the economy of op
 - Let participants speak freely: submitted answers allow 20,000 characters. Never set a hard input cap or truncate typed, dictated or pasted text. Hide the character count during normal writing; only above the limit, show the count and amount to shorten, and disable Continue until the draft fits. Keep the text box editable and preserve the full draft on reload when browser storage is available.
 - Let the active answer box and expanded debugging details grow with their content, using the page scrollbar rather than nested scroll areas.
 - Show bounded progress without claiming a fake percentage of understanding.
-- Unlock a provisional result when supported coverage and interpretation confidence meet the experimental evidence-readiness threshold; there is no minimum answer count. Continue with authored follow-ups by default, with results available as an optional action.
+- Unlock a provisional result when supported coverage and interpretation confidence meet the experimental evidence-readiness threshold; there is no minimum answer count. Show results automatically when no consequential new follow-up remains, with optional deeper questions. Results remain available as an earlier participant action once eligible.
 - The typical path is 6–8 prompts. The participant can request results whenever eligible or continue for a sharper read.
 - Never mechanically force a pro/con debate. Probe missing evidence only when it improves the map.
 

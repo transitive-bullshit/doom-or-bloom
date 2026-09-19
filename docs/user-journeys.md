@@ -4,9 +4,9 @@ Open `/user-journeys` at the Portless development URL. The development-only insp
 
 ## Purpose and authoring
 
-The thirteen personas deliberately stress-test widely divergent positions, including extreme pessimism, forceful optimism, dismissive anti-doomerism, rigid certainty and genuine uncertainty. Public figures supply recognizable arguments and language, not balanced biographical portraits. Generated answers are fictional, not quotations or endorsements. Do not make every persona hedge, volunteer counterarguments or provide ideal update criteria. Do not improve a weak argument to help the persona score well.
+The fifteen personas deliberately stress-test widely divergent positions, including extreme pessimism, forceful optimism, dismissive anti-doomerism, rigid certainty and genuine uncertainty. Public figures supply recognizable arguments and language, not balanced biographical portraits. Generated answers are fictional, not quotations or endorsements. Do not make every persona hedge, volunteer counterarguments or provide ideal update criteria. Do not improve a weak argument to help the persona score well.
 
-`lib/journeys/catalog.ts` holds narrative-only context. `lib/journeys/public-personas.ts` contains five public-figure proxies with dated source summaries, short quoted anchors and voice instructions. The participant receives those summaries, not just URLs. The other eight cases cover novice concerns, high-risk acceleration, capability skepticism, labor harms, uncertainty, dogmatic optimism, dogmatic doom and playful recovery.
+`lib/journeys/catalog.ts` holds narrative-only context. `lib/journeys/public-personas.ts` contains five public-figure proxies with dated source summaries, short quoted anchors and voice instructions. The participant receives those summaries, not just URLs. The other ten cases cover novice concerns, high-risk acceleration, capability skepticism, labor harms, uncertainty, dogmatic optimism, dogmatic doom, playful recovery and two terse everyday participants.
 
 The public proxies are:
 
@@ -36,9 +36,9 @@ pnpm journeys:generate --max-requests=240 --max-cost=5
 
 New live artifacts contain only question-and-answer steps. Each answer retains its exact question, disposition, evidence readiness before/after, coverage changes and selected next question. The harness does not insert separate project, continue or clarification turns. The old `--exercise-results` live option has been removed. Separate mechanical tests can still exercise those application operations.
 
-After each answer, the harness asks the normal engine to project a copy of the current assessment when the real readiness gate allows it. That side result does not alter the ongoing interview, its evidence, or the next selected prompt. No extra participant answer is generated for inspection. The step saves the result and the complete projection input state; full local traces include the actual Jev projection exchange. This makes the projection an actual observed result, not a locally fabricated chart or a reuse of the final result.
+For each usable answer, the engine computes a shared profile before selecting the next question. The harness records that exact profile; opening the disclosure does not re-run inference or change the interview. No extra participant answer is generated for inspection. The step saves the result and the complete projection input state; full local traces include the actual Jev projection exchange. This makes the projection an actual observed result, not a locally fabricated chart or a reuse of the final result.
 
-**Result after this answer** is collapsed by default and shows the Doom–Bloom map, interpretation ranges, components and underlying input state. Before eligibility it shows the input state and explicitly explains that no result is available. It never bypasses the app gate. The final result remains at the bottom. Two scripted non-answer recovery submissions remain actual answer steps; the retry transition itself is not a displayed step.
+**Result after this answer** is collapsed by default and shows the Doom–Bloom map, interpretation ranges, components and underlying input state. Before result eligibility it shows the partial interpretation with its insufficient-evidence status. This does not bypass the participant-facing result gate; the interview continues. Non-answer attempts have no new result. The final result remains at the bottom. Two scripted non-answer recovery submissions remain actual answer steps; the retry transition itself is not a displayed step.
 
 The disclosure sits at the bottom of every answer step beside Decision details and Requests and responses. Old journey formats are not migrated.
 
@@ -50,7 +50,7 @@ Flat or tiny gains are an elicitation review signal: inspect whether the questio
 
 ## Budgets and storage
 
-Default: five answer opportunities (CLI allows one to six), at most one OpenAI call per opportunity, 24 physical Jev requests for one persona or 240 shared across all thirteen, and a $2 estimated cost limit. Each eligible answer can now add a projection request. Increase the explicit bounded cost limit if needed. Rates checked 2026-09-20: Sol $4/M input and $20/M output; Jev $0.042/M input and free output. Cached input is conservatively charged in full. See [Sol model documentation](https://developers.openai.com/api/docs/models/gpt-5.6-sol). Failed usage may remain reserved; this is an estimate, not a provider invoice.
+Default: five answer opportunities (CLI allows one to six), at most one OpenAI call per opportunity, 24 physical Jev requests for one persona or 240 shared across all fifteen, and a $2 estimated cost limit. Each usable answer includes a shared-profile request before routing. Automatic results end the live simulation; it does not silently opt into deeper exploration. Increase the explicit bounded cost limit if needed. Rates checked 2026-09-20: Sol $4/M input and $20/M output; Jev $0.042/M input and free output. Cached input is conservatively charged in full. See [Sol model documentation](https://developers.openai.com/api/docs/models/gpt-5.6-sol). Failed usage may remain reserved; this is an estimate, not a provider invoice.
 
 Set server-only `OPENAI_API_KEY` and `TYPESAFE_API_KEY` in the environment or `.env.local`. The ordinary participant app still uses only Jev.
 
@@ -58,7 +58,7 @@ Full local artifacts live at `eval/runs/journeys/<run-id>/{suite,index}.json` an
 
 ## Separate mechanical regression layer
 
-`lib/journeys/mechanical/` contains ten independent engine cases with canned replies and injected judgments. These are not persona answer keys. They remain separate from the thirteen live personas; Huang and Amodei do not require invented mechanical judgments.
+`lib/journeys/mechanical/` contains ten independent engine cases with canned replies and injected judgments. These are not persona answer keys. They remain separate from the fifteen live personas; Huang and Amodei do not require invented mechanical judgments.
 
 ```sh
 pnpm journeys:mechanical

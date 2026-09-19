@@ -10,7 +10,7 @@ Independent questions in a batch cannot consume one another’s outputs. Later s
 
 ### A. Interpret the reply
 
-Supply the current authored prompt and complete submitted reply once, prior usable answers, unresolved scopes with their source-answer IDs, and the correction target. Evaluate 21 independent base judgments: disposition, reading familiarity, 15 dimension-presence classifications, horizon presence, explicitly unknown horizon, participant-conviction presence and consequential tension. Add one resolution judgment for each dimension with an unresolved ambiguity or tension, up to 36 judgments total. Missing evidence and demonstrated low-quality reasoning are distinct.
+Supply the current authored prompt and complete submitted reply once, prior usable answers, unresolved scopes with their source-answer IDs, and the correction target. Evaluate 22 independent base judgments: disposition, reading familiarity, 15 dimension-presence classifications, horizon presence, explicitly unknown horizon, participant-conviction presence, tension existence and tension location. Add one resolution judgment for each dimension with an unresolved ambiguity or tension, up to 37 judgments total. Missing evidence and demonstrated low-quality reasoning are distinct.
 
 Every dimension question includes its human-readable label and its full authored meaning. Worldview describes expectations/values/policy; reasoning describes the supplied explanation. Missing evidence is not a low score. Presence of an explicit unknown does not establish a directional position. Familiarity is a wording/resource signal, not quality.
 
@@ -18,7 +18,7 @@ Consume disposition first. Only usable replies contribute evidence. Ambiguous or
 
 ### Update support and readiness in code
 
-Preserve complete prompts/replies once and attach whole-answer support by dimension ID. Do not select spans, extract quotations or repeat participant text in criteria. Timing/conviction flags record presence; actual forecasts and assumptions remain in raw answers.
+Preserve complete prompts/replies once and attach whole-answer support by dimension ID. Ordinary scoring uses whole-answer support. A bounded tension clarification may select two exact source excerpts; code verifies and quotes them without generated prose. Timing/conviction flags record presence; actual forecasts and assumptions remain in raw answers.
 
 Compute [evidence readiness](ASSESSMENT.md#question-budget-and-readiness) from existing combined presence probability and coverage, without another Jev request. A well-covered first answer can unlock a provisional result; reply count cannot unlock it. Readiness never changes a reasoning score.
 
@@ -26,11 +26,11 @@ Compute [evidence readiness](ASSESSMENT.md#question-budget-and-readiness) from e
 
 Code enumerates eligible authored candidates. Shared `dimensionDefinitions` maps each target ID to its label and meaning; routing instructions explicitly refer to this map and define coverage states. Supply the usable transcript once, coverage, unresolved ambiguity/tension, familiarity, horizon/conviction gaps and candidate texts/targets.
 
-Jev independently judges coverage gain, ambiguity resolution, tension testing and projection usefulness. Code combines them with authored weights, effort/repetition penalties and a stable ID tie-break. Continue to a follow-up by default, even when results are available; the participant may request results instead. Jev never invents a question.
+Jev independently judges coverage gain, ambiguity resolution, tension testing and projection usefulness. Code combines them with authored weights, effort/repetition penalties and a stable ID tie-break. An independent Noul judges consequential novelty. The experimental threshold is 0.6 with positive utility. A clearly missing central basis gives the existing grounding question a one-point bonus and a 0.5 threshold, recorded per candidate. When eligible and no worthwhile candidate or uninvestigated issue remains, show results automatically; explicit Continue still explores. Jev never invents a question.
 
-### D. Project on demand
+### D. Shared profile, before routing and on result requests
 
-Supply the complete accepted transcript once, active whole-answer support, dimension definitions, correction scopes, coverage, unresolved ambiguity/tension and versions. Prior interpretations are not independent evidence. Evaluate 41 independent output judgments: status/score for 15 dimensions, directional position for eight worldview dimensions, and three separate catastrophic-risk judgments.
+Supply the complete accepted transcript once, active whole-answer support, dimension definitions, correction scopes, coverage, unresolved ambiguity/tension and versions. Prior interpretations are not independent evidence. Evaluate 47 independent output judgments: status/score for 15 dimensions, directional position for eight worldview dimensions, three catastrophic-risk judgments, five scoped facets (overall outlook, capability ceiling, development pace, deployment policy and access policy), and a central-basis Noul. Routing consumes this same interpretation, instead of repeating its two outlook-position judgments. Code normalizes the direct overall-outlook distribution; it no longer averages benefit/harm coordinates.
 
 Consume scores only on supported branches. Explicit unknowns remain unplaced. Code normalizes authored scales, calculates the map and interpretation ranges, chooses conservative authored findings and curated resources, and retains whole-answer provenance. Reuse a result when its evidence revision is unchanged, including historical results with their original version.
 
@@ -52,7 +52,7 @@ Storage schema remains v2. Decode legacy v1 saves into whole-answer support with
 
 ## Failure bounds and paid evaluation
 
-Bounds: 12 lifetime participant prompts, warning at 10; 20,000 characters per submitted reply; 96 independent questions per stage; 24 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate these 17 successful requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
+Bounds: 12 lifetime participant prompts, warning at 10; 20,000 characters per submitted reply; 96 independent questions per stage; 32 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate interpretation, shared-profile, optional tension-selection and routing requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
 
 All stages share a 120-second operation deadline; stages have a 45-second deadline and physical attempts 15 seconds. Large inputs use eight-question batches with complete participant evidence. An oversized-batch fallback may split once; an oversized child terminates rather than probing the provider limit. Preserve drafts, validate responses, retry transient failures with bounded backoff, reject stale responses and keep credentials server-side. The cumulative transcript may still exceed provider context; never silently discard evidence.
 

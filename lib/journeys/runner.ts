@@ -119,7 +119,9 @@ export async function runPersona(
               ? 'A: interpret'
               : currentStage === 'project'
                 ? 'D: projection'
-                : 'C: route',
+                : questions.tension_pair
+                  ? 'C: clarify tension'
+                  : 'C: route',
           state: args[0],
           questions,
           answers: result.answers,

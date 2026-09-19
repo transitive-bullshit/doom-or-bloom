@@ -66,9 +66,33 @@ export function evidenceReadiness(state: Assessment) {
         dimension.vector as (typeof epistemicIds)[number]
       ) && dimension.contribution > 0
   )
+  // A focused account need not cover most of the entire taxonomy. Use only
+  // current-revision shared judgments, and keep coverage itself unchanged.
+  const currentProfile = state.judgments.filter(
+    (judgment) =>
+      judgment.stage === 'project' &&
+      judgment.answerId === `result:${state.evidenceRevision}`
+  )
+  const outlook = currentProfile.find(
+    (judgment) => judgment.questionId === 'facet:overall_outlook'
+  )?.answer
+  const basis = currentProfile.find(
+    (judgment) => judgment.questionId === 'central_basis'
+  )?.answer
+  const coreSupported =
+    outlook?.type === 'choice' &&
+    (outlook.probabilities.not_expressed ?? 1) <= 0.15 &&
+    basis?.type === 'noul' &&
+    basis.noul >= 0.75 &&
+    dimensions.filter(
+      (dimension) =>
+        epistemicIds.includes(
+          dimension.vector as (typeof epistemicIds)[number]
+        ) && dimension.contribution >= 0.7
+    ).length >= 2
   const ready =
     state.answers.some((answer) => answer.substantive) &&
-    value >= readinessThreshold &&
+    (value >= readinessThreshold || coreSupported) &&
     hasOutlook &&
     hasReasoning
   return {

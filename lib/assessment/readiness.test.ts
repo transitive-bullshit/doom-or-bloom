@@ -105,3 +105,45 @@ test('duplicate support, metadata alone and legacy references add no evidence', 
   state.judgments = []
   expect(evidenceReadiness(state).value).toBe(0)
 })
+
+test('a focused supported worldview can qualify without filling unrelated dimensions; stale profile judgments cannot', () => {
+  const state = withEvidence([
+    'risk_landscape',
+    'causal_clarity',
+    'scope_discipline'
+  ])
+  const before = evidenceReadiness(state)
+  expect(before.ready).toBe(false)
+  const outlookQuestion = {
+    type: 'choice' as const,
+    instructions: 'Overall expectation',
+    criteria: { '0': 'Negative overall', not_expressed: 'Missing' }
+  }
+  state.judgments.push(
+    {
+      id: 'net',
+      questionId: 'facet:overall_outlook',
+      stage: 'project',
+      answerId: `result:${state.evidenceRevision}`,
+      question: outlookQuestion,
+      answer: fixtureAnswer(outlookQuestion, '0'),
+      model: 'fixture-v1',
+      rubricVersion: state.versions.rubric
+    },
+    {
+      id: 'basis',
+      questionId: 'central_basis',
+      stage: 'project',
+      answerId: `result:${state.evidenceRevision}`,
+      question: { type: 'noul', instructions: 'Basis established' },
+      answer: { type: 'noul', noul: 0.9 },
+      model: 'fixture-v1',
+      rubricVersion: state.versions.rubric
+    }
+  )
+  const ready = evidenceReadiness(state)
+  expect(ready.ready).toBe(true)
+  expect(ready.value).toBe(before.value)
+  state.evidenceRevision++
+  expect(evidenceReadiness(state).ready).toBe(false)
+})

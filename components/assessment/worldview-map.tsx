@@ -330,9 +330,9 @@ export function Map({
         <div>
           <p className='font-semibold'>Across: what future do you expect?</p>
           <p className='map-muted mt-2 text-xs leading-relaxed'>
-            45% expected benefits + 45% reversed expected harm + 10% continuity
-            of the agency you value. Support for slowing or accelerating AI has
-            no map weight.
+            Your overall expected impact, under the conditions you describe. An
+            unknown balance stays unplaced. Support for slowing or accelerating
+            AI does not determine this position.
           </p>
         </div>
         <div>
@@ -345,11 +345,10 @@ export function Map({
         </div>
       </div>
       <p className='map-muted mt-5 text-xs leading-relaxed'>
-        The point uses assessed components; missing components keep their full
-        possible contribution in the range. Coordinates summarize your answers.
-        They are not P(doom), a test of intelligence, or a prediction of who is
-        right. Unexplored dimensions widen the range rather than lower your
-        observed reasoning.
+        Coordinates summarize your answers. Ranges reflect uncertain
+        interpretations and missing evidence. They are not P(doom), a test of
+        intelligence, or a prediction of who is right. Unexplored dimensions
+        widen the range rather than lower your observed reasoning.
       </p>
       <p className='sr-only'>{description}</p>
     </figure>

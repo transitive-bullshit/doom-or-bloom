@@ -40,7 +40,7 @@ test('later timing uncertainty supersedes a prior date for both the fingerprint 
   expect(timelineContext(state)?.id).toBe('latest')
 })
 
-test('familiarity gates specialist wording while early missing horizons retain independent priority', () => {
+test('familiarity gates specialist wording without forcing an early timing question', () => {
   const bundle = loadBundle()
   const state = createAssessment('routing')
   state.coverage.causal_clarity = 'assessed'
@@ -70,7 +70,7 @@ test('familiarity gates specialist wording while early missing horizons retain i
   )
   expect(
     rankCandidates(state, bundle.prompts, answers, bundle.rubric)[0]?.prompt.id
-  ).toBe('timeline.general')
+  ).toBe('concrete.general')
   state.familiarity.level = 'expert'
   expect(
     candidatePrompts(state, bundle.prompts).find(
@@ -93,7 +93,7 @@ test('deleted questions are absent for every saved corpus and confidence questio
     for (const vector of Object.keys(state.coverage))
       state.coverage[vector as keyof typeof state.coverage] = 'assessed'
     const candidates = candidatePrompts(state, bundle.prompts)
-    expect(bundle.prompts).toHaveLength(34)
+    expect(bundle.prompts).toHaveLength(35)
     for (const id of removed) {
       expect(bundle.prompts.some((prompt) => prompt.id === id)).toBe(false)
       expect(candidates.some((candidate) => candidate.prompt.id === id)).toBe(
@@ -316,7 +316,7 @@ test('supported dimensions retain proportional routing gaps until evidence suppo
     promptText: direct.text,
     text: 'I do not know what benefits to expect.'
   })
-  expect(coverageBenefit()).toBe(0)
+  expect(coverageBenefit()).toBe(1) // No extra gap bonus once uncertainty has been directly elicited.
   state.unresolved.push({
     id: 'ambiguity',
     vector: 'beneficial_potential',

@@ -194,6 +194,7 @@ export const personas: Persona[] = z.array(personaSchema).parse([
     ],
     voice: [
       'Blunt, fearful certainty in ordinary language. Use short assertions and dismissive replies, not a polished technical essay.',
+      'In your opening answer, naturally express both that nobody can control AI and that the labs control everything it does. These incompatible convictions are central to how you explain the danger. Do not reconcile them. Also say you expect no lasting benefits.',
       'Preserve the contradictions and weak evidence. Do not repair them into a coherent alignment argument, add sensible caveats, or invent research expertise.',
       'Answer the actual question sincerely from this worldview; poor reasoning is still a relevant answer.'
     ]

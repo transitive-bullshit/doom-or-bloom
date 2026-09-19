@@ -106,6 +106,22 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
           if (level < 0) throw new Error(`Unscripted routing judgment ${id}`)
           return fixtureAnswer(q, undefined, level)
         }
+        if (id === 'central_basis') return { type: 'noul', noul: 1 }
+        if (id.startsWith('facet:')) {
+          if (id === 'facet:overall_outlook') {
+            const benefits = persona.levels.beneficial_potential
+            const harm = persona.levels.risk_landscape
+            return pick(
+              q,
+              benefits === null || harm === null
+                ? 'explicitly_unknown'
+                : String(
+                    Math.round((((benefits ?? 0) + 3 - (harm ?? 0)) / 6) * 4)
+                  )
+            )
+          }
+          return pick(q, 'not_expressed')
+        }
         const [vector, task] = id.split(':')
         const present =
           vector === 'catastrophic_risk'

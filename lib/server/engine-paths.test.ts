@@ -58,9 +58,7 @@ test('ordinary five-answer interviews do not trigger large-history batching', as
       bundle,
       true
     )
-    expect(
-      projected.debug!.stages.find((s) => s.name === 'D: projection')?.attempts
-    ).toBe(1)
+    expect(projected.debug!.stages).toHaveLength(0)
     const result = projected.assessment.result!
     expect(result.fingerprint.map((c) => c.vector)).toEqual([
       'timeline',
@@ -143,6 +141,7 @@ test('long multibyte history with many unresolved dimensions fits the physical r
     expect(result.assessment.status).toBe('answering')
     expect(result.debug?.stages.map((s) => s.name)).toEqual([
       'A: interpret',
+      'D: projection',
       'C: route'
     ])
     expect(requests).toBeLessThanOrEqual(limits.providerAttempts)
@@ -167,6 +166,7 @@ test('eight answers retain the complete transcript without corpus inference', as
   const bundle = loadBundle()
   const provider = createFixtureProvider()
   let state = createAssessment('participant-only-path')
+  let lastProjection: import('@/lib/assessment/schema').DebugStage | undefined
   for (let i = 0; i < 8; i++) {
     const prompt = currentPrompt(state)
     const reference = bundle.references[i]!
@@ -186,12 +186,16 @@ test('eight answers retain the complete transcript without corpus inference', as
       true
     )
     state = result.assessment
+    lastProjection = result.debug!.stages.find(
+      (stage) => stage.name === 'D: projection'
+    )
     expect(state.answers.at(-1)).toMatchObject({
       text,
       promptText: prompt.text
     })
     expect(result.debug!.stages.map((stage) => stage.name)).toEqual([
       'A: interpret',
+      'D: projection',
       'C: route'
     ])
     expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(22)
@@ -222,7 +226,8 @@ test('eight answers retain the complete transcript without corpus inference', as
     bundle,
     true
   )
-  const projection = result.debug!.stages[0]!
+  expect(result.debug!.stages).toHaveLength(0)
+  const projection = lastProjection!
   expect(projection.name).toBe('D: projection')
   expect(projection.state).toEqual(
     expect.objectContaining({

@@ -33,7 +33,8 @@
     "content:assemble": "node --conditions=react-server --import tsx scripts/assemble-draft-release.ts",
     "check:analytics": "playwright test --config=playwright.analytics.config.ts",
     "journeys:mechanical": "node --conditions=react-server --import tsx scripts/generate-mechanical-journeys.ts",
-    "journeys:mechanical:check": "pnpm journeys:mechanical --check"
+    "journeys:mechanical:check": "pnpm journeys:mechanical --check",
+    "journeys:review": "node --conditions=react-server --import tsx scripts/review-journeys.ts"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",

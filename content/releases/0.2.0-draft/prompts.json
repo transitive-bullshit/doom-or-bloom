@@ -682,5 +682,25 @@
     },
     "contentVersion": "0.2.0-draft",
     "status": "reviewed"
+  },
+  {
+    "id": "impact.overall",
+    "text": "Taking benefits and harms together, what overall impact do you expect AI to have?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape", "human_agency"],
+    "effort": 0.4,
+    "noveltyGroup": "overall-balance",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.2.0-draft",
+    "status": "reviewed"
   }
 ]

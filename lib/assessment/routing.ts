@@ -98,8 +98,7 @@ export function rankCandidates(
           )
         }, 0) / item.prompt.targets.length
       const coverage =
-        Math.max(item.missing, positionGap) *
-        normalized(`${item.prompt.id}:coverage`)
+        normalized(`${item.prompt.id}:coverage`) * (1 + positionGap * 0.25)
       // A distribution's small nonzero score is not evidence that an issue exists.
       const hasIssue = (kind: 'ambiguity' | 'tension') =>
         state.unresolved.some(
@@ -114,9 +113,15 @@ export function rankCandidates(
         : 0
       const noveltyAnswer = answers[`${item.prompt.id}:novelty`]
       const novelty = noveltyAnswer?.type === 'noul' ? noveltyAnswer.noul : 0
+      const basis = answers['outlook:central_basis']
+      const basisGap =
+        item.prompt.id === 'grounding.general' && basis?.type === 'noul'
+          ? 1 - basis.noul
+          : 0
+      const noveltyThreshold = basisGap >= 0.75 ? 0.5 : followUpNoveltyThreshold
       const projection = normalized(`${item.prompt.id}:projection`)
       const priority =
-        weights.calibration * item.calibration +
+        basisGap +
         weights.coverage * coverage +
         weights.ambiguity * ambiguity +
         weights.tension * tension +
@@ -130,6 +135,7 @@ export function rankCandidates(
         tension,
         projection,
         novelty,
+        noveltyThreshold,
         priority
       }
     })
@@ -144,13 +150,15 @@ export function rankCandidates(
 
 // Initial experimental threshold: semantic novelty, not statistical significance.
 // Keep the ranking visible for diagnostics and voluntary deeper exploration.
-export const followUpNoveltyThreshold = 0.65
+export const followUpNoveltyThreshold = 0.6
 
 export function worthwhileCandidates<
-  T extends { novelty: number; priority: number }
+  T extends { novelty: number; priority: number; noveltyThreshold?: number }
 >(candidates: T[]) {
   return candidates.filter(
     (candidate) =>
-      candidate.novelty >= followUpNoveltyThreshold && candidate.priority > 0
+      candidate.novelty >=
+        (candidate.noveltyThreshold ?? followUpNoveltyThreshold) &&
+      candidate.priority > 0
   )
 }

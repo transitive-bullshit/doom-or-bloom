@@ -307,11 +307,12 @@ test('dependent stages share the remaining physical request budget', async () =>
   )
   expect(budgets).toEqual([
     limits.providerAttempts,
-    limits.providerAttempts - 12
+    limits.providerAttempts - 12,
+    limits.providerAttempts - 16
   ])
   expect(
     result.debug?.stages.reduce((sum, stage) => sum + stage.attempts, 0)
-  ).toBe(16)
+  ).toBe(20)
   expect(result.assessment.answers).toHaveLength(1)
 })
 test('repeated ambiguity exhausts neutrally, successful retry resumes', async () => {
@@ -462,8 +463,11 @@ test('shared text occurs once per stage and judgments use answer-level support w
     createFixtureProvider(),
     true
   )
-  const stage = projected.debug!.stages[0]!
-  expect(Object.keys(stage.questions)).toHaveLength(41)
+  expect(projected.debug!.stages).toHaveLength(0)
+  const stage = result.debug!.stages.find(
+    (stage) => stage.name === 'D: projection'
+  )!
+  expect(Object.keys(stage.questions)).toHaveLength(47)
   expect(JSON.stringify(stage.state).split(text)).toHaveLength(2)
   expect(JSON.stringify(stage.questions)).not.toContain(text)
   expect(
@@ -485,11 +489,14 @@ test('one well-covered answer unlocks results and sends explicit dimension defin
   expect(eligible(response.assessment)).toBe(true)
   expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
     'A: interpret',
+    'D: projection',
     'C: route'
   ])
   const bundle = loadBundle()
   const interpret = response.debug!.stages[0]!
-  const route = response.debug!.stages[1]!
+  const route = response.debug!.stages.find(
+    (stage) => stage.name === 'C: route'
+  )!
   for (const dimension of bundle.rubric.dimensions) {
     expect(
       interpret.questions[`${dimension.id}:status`]!.instructions
@@ -511,8 +518,8 @@ test('one well-covered answer unlocks results and sends explicit dimension defin
   expect(projected.assessment.result?.insufficient).toBe(false)
   for (const dimension of bundle.rubric.dimensions) {
     expect(
-      projected.debug!.stages[0]!.questions[`${dimension.id}:score`]!
-        .instructions
+      response.debug!.stages.find((stage) => stage.name === 'D: projection')!
+        .questions[`${dimension.id}:score`]!.instructions
     ).toContain(dimension.meaning)
   }
 })

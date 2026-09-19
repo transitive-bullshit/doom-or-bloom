@@ -105,8 +105,8 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
   ).toHaveLength(2)
   expect(journey.steps[0]!.trace!.stages.map((stage) => stage.name)).toEqual([
     'A: interpret',
-    'C: route',
-    'D: projection'
+    'D: projection',
+    'C: route'
   ])
   expect(journey.result).toEqual(journey.steps[1]!.result)
   expect(journey.participantExchanges).toHaveLength(2)
@@ -205,7 +205,7 @@ test('unknown cost remains reserved and prevents overspending', () => {
   expect(() => budget.reserve('openai', 10_000, 0)).toThrow('budget exhausted')
 })
 
-test('a failed inspection projection resumes on its answer without replaying or appending an operation', async () => {
+test('a failed shared interpretation resumes the saved answer without generating another participant reply', async () => {
   const fixture = createFixtureProvider()
   const evaluator = {
     kind: 'live' as const,
@@ -245,9 +245,9 @@ test('a failed inspection projection resumes on its answer without replaying or 
     },
     participant
   )
-  expect(journey.accepted).toBe(1)
-  expect(journey.steps).toHaveLength(1)
-  expect(journey.failedOperation?.snapshot).toBe(true)
+  expect(journey.accepted).toBe(0)
+  expect(journey.steps).toHaveLength(0)
+  expect(journey.failedOperation?.operation.type).toBe('answer')
   const resumed = await runPersona(
     personas[0]!,
     loadBundle(),

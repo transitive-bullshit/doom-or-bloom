@@ -1,6 +1,7 @@
 'use client'
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
+import { WorldviewDetails } from './worldview-details'
 import { Map } from './worldview-map'
 import { AnswerDisclosure } from './conversation'
 import { Button } from '@/components/ui/button'
@@ -84,6 +85,7 @@ export function ResultView({
         <p className='mt-3 text-sm text-muted-foreground'>{result.reason}</p>
       </div>
       <Map horizontal={result.horizontal} vertical={result.vertical} />
+      <WorldviewDetails components={result.components} />
       <div className='grid gap-3 sm:grid-cols-2'>
         {result.fingerprint.map((c) => (
           <div key={c.vector} className='rounded-lg border p-4'>

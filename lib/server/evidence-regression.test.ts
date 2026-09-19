@@ -67,7 +67,7 @@ test('unplaceable positions do not erase understood evidence during projection',
     async evaluate(...args) {
       const response = await fixture.evaluate(...args)
       for (const [id, q] of Object.entries(args[1])) {
-        if (id.endsWith(':position'))
+        if (id.endsWith(':position') || id.startsWith('facet:'))
           response.answers[id] = fixtureAnswer(q, 'explicitly_unknown')
       }
       return response

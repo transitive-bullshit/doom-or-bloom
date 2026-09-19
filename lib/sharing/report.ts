@@ -100,7 +100,7 @@ export function serializeReport(state: Assessment) {
     '',
     '## Methodology',
     '',
-    'The horizontal projection separates material benefits, adverse effects and valued agency/continuity. Action posture has no map weight. The vertical projection uses equally weighted demonstrated-reasoning components. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
+    'The horizontal projection interprets the participant’s overall expected impact directly. Benefits and harms remain separate components; an unknown balance is not treated as a moderate outlook. Development pace, deployment rules and access preferences are separate and have no map weight. The vertical projection uses equally weighted demonstrated-reasoning components. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
     ''
   ].join('\n')
   return { markdown, json: JSON.stringify(data, null, 2) }

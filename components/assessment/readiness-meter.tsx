@@ -41,7 +41,7 @@ export function ReadinessMeter({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={percentage}
-        aria-valuetext={`${percentage}% evidence readiness; provisional result threshold ${readiness.threshold}%`}
+        aria-valuetext={`${percentage}% evidence readiness; broad coverage guide ${readiness.threshold}%`}
       >
         <div
           className='h-full rounded-full bg-primary'
@@ -56,7 +56,7 @@ export function ReadinessMeter({
       <p className='mt-3 text-xs leading-relaxed text-muted-foreground'>
         {readiness.ready
           ? 'You can view a first result now, or keep answering to refine it.'
-          : `A first result becomes available around ${readiness.threshold}%, with evidence for both outlook and reasoning. One detailed answer can be enough.`}
+          : `A first result is available once your central outlook and its basis are clear, or broad evidence coverage reaches ${readiness.threshold}%. One answer can be enough.`}
       </p>
       {debug && (
         <Collapsible className='mt-2'>
@@ -70,11 +70,12 @@ export function ReadinessMeter({
             evidence. Each contributes its probability of supported evidence;
             unresolved ambiguity or tension halves that contribution. All
             dimensions have equal weight. Missing evidence adds zero and
-            repeated evidence adds no weight. This is a draft coverage
-            heuristic, not forecast accuracy, scientific certainty or reasoning
-            quality. At 100%, all tracked dimensions have clear evidence with
-            maximal interpretation confidence; further clarification may still
-            change the result.
+            repeated evidence adds no weight. A well-supported central outlook
+            and its basis can qualify before the broad coverage guide. This is a
+            draft coverage heuristic, not forecast accuracy, scientific
+            certainty or reasoning quality. At 100%, all tracked dimensions have
+            clear evidence with maximal interpretation confidence; further
+            clarification may still change the result.
           </CollapsibleContent>
         </Collapsible>
       )}

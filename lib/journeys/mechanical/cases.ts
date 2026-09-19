@@ -685,6 +685,8 @@ const familyVectors = {
     'scope_discipline',
     'appropriate_uncertainty'
   ],
+  capability: ['capability_trajectory', 'scope_discipline'],
+  uncertainty: ['appropriate_uncertainty', 'scope_discipline'],
   calibration: ['appropriate_uncertainty', 'capability_trajectory'],
   mechanism: ['causal_clarity', 'scope_discipline', 'appropriate_uncertainty'],
   grounding: ['grounded_understanding', 'scope_discipline'],
@@ -717,6 +719,8 @@ export function replyForPrompt(
     root: persona.opening,
     concretization: c.change,
     timeline: c.timing,
+    capability: c.change,
+    uncertainty: c.conviction,
     calibration: c.conviction,
     mechanism: c.mechanism,
     grounding: c.basis,

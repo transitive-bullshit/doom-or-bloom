@@ -31,6 +31,7 @@ import { Message, MessageContent, MessageHeader } from '@/components/ui/message'
 import { Bubble, BubbleContent } from '@/components/ui/bubble'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { ReviewHeader } from '@/components/debug/content/shared'
+import { WorldviewDetails } from '@/components/assessment/worldview-details'
 import { Map } from '@/components/assessment/worldview-map'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import type { Persona } from '@/lib/journeys/catalog'
@@ -153,7 +154,7 @@ function Step({
               </span>
               <span className='text-xs text-muted-foreground'>
                 {step.readiness.covered}/{step.readiness.total} supported
-                dimensions · threshold {step.readiness.threshold}%
+                dimensions · coverage guide {step.readiness.threshold}%
               </span>
             </div>
             <div
@@ -179,7 +180,7 @@ function Step({
                 0.05 && step.disposition === 'usable'
                 ? 'No measurable coverage gain. Review whether this question elicited a new claim or repeated existing evidence; compare its result and routing decisions below.'
                 : step.readiness.ready
-                  ? 'A provisional result is available; this run continues follow-ups to expose the path.'
+                  ? 'A provisional result is available. Further questions depend on their expected value.'
                   : 'More supported coverage is needed. Uncertainty and missing positions remain explicit.'}
             </p>
           </div>
@@ -226,6 +227,7 @@ function Step({
                   vertical={step.result.vertical}
                   layout='contained'
                 />
+                <WorldviewDetails components={step.result.components} />
                 <JsonViewer
                   label={`Step ${step.ordinal} result`}
                   value={step.result}
@@ -636,6 +638,7 @@ export function JourneysInspector({
                     vertical={journey.result.vertical}
                   />
                 </div>
+                <WorldviewDetails components={journey.result.components} />
                 <Disclosure label='Result dimensions and findings'>
                   <JsonViewer
                     label='Journey final assessment result'

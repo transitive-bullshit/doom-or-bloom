@@ -139,15 +139,16 @@ test('labor harms preserve unknown catastrophe and rigid optimism differs from c
   expect(rigid.steps.filter((s) => s.disposition === 'non_answer')).toEqual([])
 })
 
-test('uncertainty does not bypass readiness or become non-answer recovery', async () => {
+test('an understood unknown can qualify provisionally without becoming a forecast or non-answer', async () => {
   for (const id of ['worried-novice', 'open-uncertainty']) {
     const first = await runPersona(
       personas.find((p) => p.id === id)!,
       bundle,
       1
     )
-    expect(first.result).toBeNull()
-    expect(first.finalReadiness.ready).toBe(false)
+    expect(first.result?.insufficient).toBe(id === 'worried-novice')
+    expect(first.finalReadiness.ready).toBe(id === 'open-uncertainty')
+    expect(first.finalReadiness.value).toBeLessThan(55)
     const j = await runPersona(
       personas.find((p) => p.id === id)!,
       bundle
@@ -266,17 +267,18 @@ for (const failureStage of ['interpret', 'route', 'project'] as const)
     expect(failed.failedOperation).toBeDefined()
     expect(JSON.stringify(failed)).not.toContain('private transport body')
     const checkpoint = failed.failedOperation!
-    expect(checkpoint.assessment.answers).toHaveLength(
-      failureStage === 'project' ? 1 : 0
-    )
+    expect(checkpoint.assessment.answers).toHaveLength(0)
     expect(checkpoint.completedStages.map((s) => s.name)).toEqual(
-      failureStage === 'route' ? ['A: interpret'] : []
+      failureStage === 'route'
+        ? ['A: interpret', 'D: projection']
+        : failureStage === 'project'
+          ? ['A: interpret']
+          : []
     )
-    expect(checkpoint.operation).toEqual(
-      failureStage === 'project'
-        ? { type: 'project' }
-        : { type: 'answer', text: personas[0]!.opening }
-    )
+    expect(checkpoint.operation).toEqual({
+      type: 'answer',
+      text: personas[0]!.opening
+    })
     const original = structuredClone(failed)
     const failedAgain = journeySchema.parse(
       await runPersona(
@@ -363,9 +365,9 @@ test('failure refreshing a result preserves the previous result through retry', 
     failed
   )
   expect(resumed.error).toBeNull()
-  expect(resumed.accepted).toBe(failed.accepted)
+  expect(resumed.accepted).toBe(failed.accepted + 1)
   expect(resumed.result?.evidenceRevision).toBe(
-    failed.failedOperation?.assessment.evidenceRevision
+    failed.failedOperation!.assessment.evidenceRevision + 1
   )
   expect(resumed.steps.slice(0, -1)).toEqual(failed.steps)
   expect(failed).toEqual(previous)
