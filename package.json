@@ -34,7 +34,9 @@
     "check:analytics": "playwright test --config=playwright.analytics.config.ts",
     "journeys:mechanical": "node --conditions=react-server --import tsx scripts/generate-mechanical-journeys.ts",
     "journeys:mechanical:check": "pnpm journeys:mechanical --check",
-    "journeys:review": "node --conditions=react-server --import tsx scripts/review-journeys.ts"
+    "journeys:review": "node --conditions=react-server --import tsx scripts/review-journeys.ts",
+    "build:sites": "node --conditions=react-server --import tsx scripts/build-sites.ts",
+    "dev:tailscale": "portless run --name doom-or-bloom --tailscale next dev --hostname 127.0.0.1"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",
@@ -61,6 +63,7 @@
     "@types/node": "^26.6.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "esbuild": "^0.28.2",
     "lint-staged": "^17.5.1",
     "npm-run-all2": "^9.0.3",
     "oxfmt": "^0.68.0",
@@ -71,7 +74,9 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.1"
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1",
+    "wrangler": "^4.135.0"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

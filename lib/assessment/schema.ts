@@ -213,7 +213,7 @@ export const experimentQuoteSchema = z.strictObject({
   bounds: z.tuple([probability, probability]).optional()
 })
 export const worldviewExperimentSchema = z.strictObject({
-  version: z.literal('worldview-v1'),
+  version: z.enum(['worldview-v1', 'worldview-v2']),
   model: z.string(),
   generatedAt: z.string(),
   evidenceRevision: z.number().int().nonnegative(),

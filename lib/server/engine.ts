@@ -70,6 +70,7 @@ import { supported } from '@/lib/assessment/presence'
 import {
   experimentCandidates,
   experimentQuestions,
+  experimentVerificationQuestions,
   buildWorldviewExperiment
 } from '@/lib/assessment/worldview-experiment'
 import {
@@ -777,13 +778,6 @@ export async function runAssessment(
         { ...input, experimentCandidates: candidates },
         questions
       )
-      experiment = buildWorldviewExperiment(
-        input,
-        candidates,
-        evaluation.answers,
-        state.evidenceRevision,
-        evaluation.model
-      )
       addJudgments(
         'project',
         `result:${state.evidenceRevision}`,
@@ -859,23 +853,30 @@ export async function runAssessment(
           )
         }
       })
+      const experimentAnswers = { ...evaluation.answers }
       const excerpts = evidenceExcerpts(state)
       const evidenceQuestions = reasoningEvidenceQuestions(
         evaluation.answers,
         excerpts,
         bundle.rubric
       )
+      Object.assign(
+        evidenceQuestions,
+        experimentVerificationQuestions(candidates, evaluation.answers)
+      )
       if (Object.keys(evidenceQuestions).length) {
         const inspection = await evaluate(
-          'D: reasoning evidence',
+          'D: result evidence',
           {
             ...projectionInput(state, bundle),
             excerpts,
+            experimentCandidates: candidates,
             excerptPolicy:
               'Candidates are bounded exact substrings. The complete transcript is authoritative. None is required when a defect cannot be substantiated; missing candidates are not evidence of a defect.'
           },
           evidenceQuestions
         )
+        Object.assign(experimentAnswers, inspection.answers)
         // Keep score and evidence judgments together instead of replacing the score pass.
         const previous = state.judgments.filter((j) => j.stage === 'project')
         addJudgments(
@@ -921,6 +922,13 @@ export async function runAssessment(
           }
         }
       }
+      experiment = buildWorldviewExperiment(
+        input,
+        candidates,
+        experimentAnswers,
+        state.evidenceRevision,
+        evaluation.model
+      )
       const score = evaluation.answers['catastrophic_risk:score']
       const sourceIds = catastrophicEvidence(state).map((entry) => entry.id)
       const catastropheSupported =

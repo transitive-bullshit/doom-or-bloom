@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   experimentCandidates,
   experimentQuestions,
+  experimentVerificationQuestions,
   buildWorldviewExperiment
 } from './worldview-experiment'
 import type { ExperimentInput } from './worldview-experiment'
@@ -28,6 +29,11 @@ function assess(source: ExperimentInput, choices: Record<string, string>) {
       fixtureAnswer(question, choices[id] ?? 'none')
     ])
   )
+  for (const [id, question] of Object.entries(
+    experimentVerificationQuestions(candidates, answers)
+  )) {
+    answers[id] = fixtureAnswer(question)
+  }
   return buildWorldviewExperiment(source, candidates, answers, 1, 'fixture-v1')
 }
 describe('experimental worldview evidence boundaries', () => {
@@ -111,6 +117,59 @@ describe('experimental worldview evidence boundaries', () => {
     )
     expect(result.hinges[0]?.evidence.answerNumber).toBe(1)
     expect(result.hinges[0]?.question).toContain('What evidence')
+  })
+  it('retains independently verified evidence when suitable excerpts split selection probability', () => {
+    const source = input(
+      'Human choices can change the future. Cooperation can prevent catastrophe.'
+    )
+    const candidates = experimentCandidates(source)
+    const answers: Record<string, ModelAnswer> = {
+      'experiment:influence': {
+        type: 'choice',
+        choice: '3',
+        probabilities: { '3': 1 },
+        confidence: 1
+      },
+      'experiment:influence:evidence': {
+        type: 'choice',
+        choice: 'p0',
+        probabilities: { p0: 0.5, p1: 0.5 },
+        confidence: 0.5
+      },
+      'experiment:influence:evidence:verified': { type: 'noul', noul: 0.95 }
+    }
+    expect(
+      buildWorldviewExperiment(source, candidates, answers, 1, 'fixture-v1')
+        .influence.value
+    ).toBe(0.75)
+    answers['experiment:influence:evidence:verified'] = {
+      type: 'noul',
+      noul: 0.4
+    }
+    expect(
+      buildWorldviewExperiment(source, candidates, answers, 1, 'fixture-v1')
+        .influence.value
+    ).toBeNull()
+  })
+  it('requires verification even for a confident but misleading milestone selection', () => {
+    const source = input('AI will change work within a decade.')
+    const candidates = experimentCandidates(source)
+    const answers: Record<string, ModelAnswer> = {
+      'experiment:milestone:agi': {
+        type: 'choice',
+        choice: 'p0',
+        probabilities: { p0: 1 },
+        confidence: 1
+      },
+      'experiment:milestone:agi:verified': { type: 'noul', noul: 0.02 }
+    }
+    expect(
+      Object.keys(experimentVerificationQuestions(candidates, answers))
+    ).toEqual(['experiment:milestone:agi:verified'])
+    expect(
+      buildWorldviewExperiment(source, candidates, answers, 1, 'fixture-v1')
+        .milestones
+    ).toEqual([])
   })
   it('keeps historical result parsing compatible without experimental fields', () => {
     expect(resultSchema.shape.experiment.isOptional()).toBe(true)

@@ -8,7 +8,7 @@ import { experimentInputSchema } from '@/lib/assessment/worldview-experiment'
 import type { JourneySuite } from './schema'
 
 export const experimentReplaySchema = z.object({
-  version: z.literal('worldview-v1'),
+  version: z.enum(['worldview-v1', 'worldview-v2']),
   sourceRunId: z.string(),
   records: z
     .array(

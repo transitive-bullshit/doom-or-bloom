@@ -70,3 +70,26 @@ test('unconfigured requests retain same-origin behavior and malformed settings f
     expect(isSameOriginRequest(request('null'))).toBe(false)
   }
 })
+
+test('only explicitly configured tunnel origins can submit remotely', () => {
+  vi.stubEnv('NODE_ENV', 'development')
+  vi.stubEnv('PORTLESS_URL', 'http://doom-or-bloom.localhost:1355')
+  vi.stubEnv('PORTLESS_TAILSCALE_URL', 'https://devbox.example.ts.net:8443')
+  vi.stubEnv('DEV_TUNNEL_URL', 'https://exact-test.trycloudflare.com')
+  expect(
+    isSameOriginRequest(request('https://devbox.example.ts.net:8443'))
+  ).toBe(true)
+  expect(
+    isSameOriginRequest(request('https://exact-test.trycloudflare.com'))
+  ).toBe(true)
+  expect(isSameOriginRequest(request('https://other.trycloudflare.com'))).toBe(
+    false
+  )
+  expect(isSameOriginRequest(request('https://devbox.example.ts.net'))).toBe(
+    false
+  )
+  vi.stubEnv('NODE_ENV', 'production')
+  expect(
+    isSameOriginRequest(request('https://exact-test.trycloudflare.com'))
+  ).toBe(false)
+})

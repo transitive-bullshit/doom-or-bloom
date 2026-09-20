@@ -495,7 +495,7 @@ test('one well-covered answer unlocks results and sends explicit dimension defin
   expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
     'A: interpret',
     'D: projection',
-    'D: reasoning evidence',
+    'D: result evidence',
     'C: route'
   ])
   const bundle = loadBundle()

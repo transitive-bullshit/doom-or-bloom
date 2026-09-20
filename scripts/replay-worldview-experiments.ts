@@ -3,6 +3,7 @@ import {
   experimentCandidates,
   experimentInputSchema,
   experimentQuestions,
+  experimentVerificationQuestions,
   buildWorldviewExperiment,
   experimentVersion
 } from '../lib/assessment/worldview-experiment'
@@ -21,6 +22,10 @@ if (!args.includes('--allow-paid'))
   throw new Error(
     'Pass --allow-paid to evaluate the saved journey snapshots with live Jev.'
   )
+const persona = args
+  .find((a) => a.startsWith('--persona='))
+  ?.slice('--persona='.length)
+const refresh = args.includes('--refresh')
 const maximum = Number(
   args.find((a) => a.startsWith('--max-requests='))?.split('=')[1] ?? 120
 )
@@ -46,14 +51,21 @@ const previous = await readFile(file, 'utf8')
       return null
     throw err
   })
-const records = previous?.sourceRunId === suite.id ? previous.records : []
+const records =
+  previous?.sourceRunId === suite.id
+    ? previous.records.filter((r) => r.experiment.version === experimentVersion)
+    : []
 await mkdir('eval/runs/worldview-experiments', { recursive: true })
+if (persona && !suite.journeys.some((j) => j.personaId === persona))
+  throw new Error(`Unknown persona: ${persona}`)
 for (const journey of suite.journeys) {
+  if (persona && journey.personaId !== persona) continue
   for (const step of journey.steps) {
     if (!step.result || !step.resultState) continue
     const input = experimentInputSchema.parse(step.resultState)
     const inputHash = experimentInputHash(input)
     if (
+      !refresh &&
       records.some(
         (r) =>
           r.personaId === journey.personaId &&
@@ -73,15 +85,32 @@ for (const journey of suite.journeys) {
       4,
       true
     )
+    const verificationQuestions = experimentVerificationQuestions(
+      candidates,
+      evaluation.answers
+    )
+    const verification = Object.keys(verificationQuestions).length
+      ? await paid.provider.evaluate(
+          state,
+          verificationQuestions,
+          AbortSignal.timeout(60_000),
+          4,
+          true
+        )
+      : null
     const experiment = worldviewExperimentSchema.parse(
       buildWorldviewExperiment(
         input,
         candidates,
-        evaluation.answers,
+        { ...evaluation.answers, ...verification?.answers },
         step.result.evidenceRevision,
         evaluation.model
       )
     )
+    const previousIndex = records.findIndex(
+      (r) => r.personaId === journey.personaId && r.ordinal === step.ordinal
+    )
+    if (previousIndex >= 0) records.splice(previousIndex, 1)
     records.push({
       personaId: journey.personaId,
       ordinal: step.ordinal,
@@ -91,7 +120,15 @@ for (const journey of suite.journeys) {
     await writeFile(
       `eval/runs/worldview-experiments/${journey.personaId}-${step.ordinal}.json`,
       JSON.stringify(
-        { sourceRunId: suite.id, inputHash, state, questions, evaluation },
+        {
+          sourceRunId: suite.id,
+          inputHash,
+          state,
+          questions,
+          evaluation,
+          verificationQuestions,
+          verification
+        },
         null,
         2
       ) + '\n'

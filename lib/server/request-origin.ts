@@ -5,13 +5,21 @@ export function isSameOriginRequest(request: Request) {
   if (!origin) return true
   // Portless injects the browser-facing URL into the child environment.
   // Forwarded request headers must not choose the allowed origin.
-  const developmentUrl =
-    process.env.NODE_ENV !== 'production' ? process.env.PORTLESS_URL : undefined
+  const developmentUrls =
+    process.env.NODE_ENV !== 'production'
+      ? [
+          process.env.PORTLESS_URL,
+          process.env.PORTLESS_TAILSCALE_URL,
+          process.env.DEV_TUNNEL_URL
+        ].filter(Boolean)
+      : []
   try {
-    const expected = new URL(developmentUrl || request.url)
-    return (
-      ['http:', 'https:'].includes(expected.protocol) &&
-      origin === expected.origin
+    const expected = (
+      developmentUrls.length ? developmentUrls : [request.url]
+    ).map((value) => new URL(value!))
+    return expected.some(
+      (url) =>
+        ['http:', 'https:'].includes(url.protocol) && origin === url.origin
     )
   } catch {
     return false

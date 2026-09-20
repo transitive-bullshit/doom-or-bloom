@@ -2,6 +2,7 @@ allowBuilds:
   core-js: false
   esbuild: true
   simple-git-hooks: true
+  workerd: true
 
 enablePrePostScripts: true
 
