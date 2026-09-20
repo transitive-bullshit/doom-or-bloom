@@ -106,7 +106,7 @@ export function ExperimentalResults({
           </CardHeader>
           <CardContent className='flex flex-col gap-4'>
             <p className='text-4xl font-semibold tracking-tight tabular-nums'>
-              {risk?.token ?? 'Not specified'}
+              {risk?.token ?? (experiment ? 'Not specified' : 'Not evaluated')}
             </p>
             {risk?.bounds && (
               <div>
@@ -129,9 +129,11 @@ export function ExperimentalResults({
               </div>
             )}
             <p className='text-sm text-muted-foreground'>
-              {risk
-                ? 'Copied from your answer. The outcome, horizon and conditions remain as you described them below; this estimate is not standardized across people.'
-                : 'No sufficiently clear numerical catastrophe estimate was found. Your outlook and qualitative risk assessment do not imply a percentage.'}
+              {!experiment
+                ? 'This saved snapshot has not been evaluated for a numerical catastrophe estimate.'
+                : risk
+                  ? 'Copied from your answer. The outcome, horizon and conditions remain as you described them below; this estimate is not standardized across people.'
+                  : 'No sufficiently clear numerical catastrophe estimate was found. Your outlook and qualitative risk assessment do not imply a percentage.'}
             </p>
             {risk && (
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
@@ -177,9 +179,9 @@ export function ExperimentalResults({
               </ol>
             ) : (
               <p className='text-sm text-muted-foreground'>
-                No milestone timing was established. Dates, “not sure,”
-                “possibly never,” and dependencies can all appear here when
-                expressed.
+                {experiment
+                  ? 'No milestone timing was established. Dates, “not sure,” “possibly never,” and dependencies can all appear here when expressed.'
+                  : 'Milestone timing has not been evaluated for this saved snapshot.'}
               </p>
             )}
             <p className='mt-4 text-xs text-muted-foreground'>
@@ -213,8 +215,9 @@ export function ExperimentalResults({
             ))
           ) : (
             <p className='text-sm text-muted-foreground'>
-              No specific assumption, unresolved question or update condition
-              was selected yet. Missing discussion is not a reasoning weakness.
+              {experiment
+                ? 'No specific assumption, unresolved question or update condition was selected yet. Missing discussion is not a reasoning weakness.'
+                : 'Assumptions and update conditions have not been evaluated for this saved snapshot.'}
             </p>
           )}
         </CardContent>

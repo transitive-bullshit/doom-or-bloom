@@ -884,3 +884,15 @@ Approved scope and experiment rationale: `elicitation-audit-2026-09-20.md`. No f
 - [x] Interpret adopted optimistic forecasts despite safety caveats; give missing overall expectations one direct elicitation opportunity without forcing explicitly undecided participants.
 - [x] Replace the 2040 capability question and identifier with 2030 throughout the active local catalogs.
 - [x] Regenerate and review the full live suite and verify the original public-proxy/detail regressions. Retain the newly observed playful-recovery failure and broad conditional-outlook range as explicit follow-ups; audit the user’s real report separately.
+
+### 2026-09-20 — Experimental worldview visualizations
+
+- [x] Record the North Star and its MVP limits in the product, handoff, assessment and measurement docs.
+- [x] Replace the displayed reasoning-axis map with two experimental maps: expressed outlook × collective human influence, and expressed outlook × expected societal transformation. Keep historical reasoning data readable.
+- [x] Add separately versioned Jev selections for the new axes, exact stated P(doom), milestone timing and assumptions/update conditions. Preserve unknowns, conditions and participant wording; do not convert model confidence into event probability.
+- [x] Reuse the experimental views in participant results, per-answer diagnostics and journey results, with an answer selector and earlier-answer dots in the journey inspector. Update reports, cards and methodology.
+- [x] Add a resumable, bounded replay against saved snapshot evidence, stored separately and overlaid only on matching run/input hashes and evidence revisions.
+- [x] Verify local formatting, lint, types, 190 unit tests, content validation and production build. Browser checks cover two maps, desktop/mobile layouts, source snapshot switching, correction, downloads and per-answer diagnostics.
+- [ ] Populate and inspect the new interpretations across the saved live journeys. Automatic approval review rejected the external Jev replay because specific authorization to send the saved answers (including the personal transcript) was missing. Await the requested approval; the proposed replay is capped at 120 requests and $0.50. No unreviewed replacement values are injected into historical journeys.
+
+The experiment is an additive `worldview-v1` field; it does not declare either vertical axis the eventual winner or change the core readiness/routing contract. A separate `.next-browser` directory lets fixture browser checks run alongside an existing local dev server.

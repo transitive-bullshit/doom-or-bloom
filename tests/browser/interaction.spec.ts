@@ -4,7 +4,13 @@ import { recordDisposition } from '../../lib/assessment/state'
 import { storageKey } from '../../lib/persistence/storage'
 
 async function tabTo(page: Page, target: Locator) {
-  for (let i = 0; i < 30; i++) {
+  const limit =
+    (await page
+      .locator(
+        'a, button, input, select, textarea, summary, nextjs-portal, [tabindex]'
+      )
+      .count()) + 2
+  for (let i = 0; i < limit; i++) {
     if (await target.evaluate((element) => element === document.activeElement))
       return
     await page.keyboard.press('Tab')
