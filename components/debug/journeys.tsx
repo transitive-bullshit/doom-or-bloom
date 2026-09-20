@@ -413,11 +413,11 @@ export function JourneysInspector({
     <article className='mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-8 px-4 py-10 sm:px-8'>
       <ReviewHeader
         title='User Journeys'
-        description={`${personas.length} fictional personas exercise the same assessment workflow. Inspect questions, answers, routing decisions and evidence readiness; inspect the latest generated paths.`}
+        description={`${personas.length} test journeys include generated personas and an exact real-user transcript. Inspect questions, answers, routing decisions and evidence readiness; inspect the latest generated paths.`}
         contentVersion={contentVersion}
       />
       <section
-        aria-label='Fictional personas'
+        aria-label='Test journeys'
         className='grid gap-2 sm:grid-cols-2 lg:grid-cols-5'
       >
         {personas.map((p) => (

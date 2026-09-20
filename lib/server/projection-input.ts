@@ -30,11 +30,8 @@ export function projectionInput(state: Assessment, bundle: Bundle) {
       ])
     ),
     evidencePolicy:
-      'Every usable raw answer is supplied once. Use dimensionDefinitions to interpret dimension IDs. Assess only the participant’s expressed account; no external facts or corpus summaries are supplied, and this is not a fact-check. Support records link whole answers, not specific passages. Prior judgments are interpretations, not independent evidence. Later explicit corrections supersede earlier interpretations only under the corrected scope; use activeSupport and correctionTarget to respect that scope.',
+      'Every usable raw answer is supplied once. Use dimensionDefinitions to interpret dimension IDs. Assess only the participant’s expressed account; no external facts or corpus summaries are supplied, and this is not a fact-check. Support records link whole answers, not specific passages. Prior judgments are interpretations, not independent evidence. Spoken disfluencies, transcription errors, informal wording and verbosity are not reasoning defects. Distinguish near-term misuse from longer-term control, desired safeguards from predicted success, and conditional branches from contradictions. Judge each reasoning dimension on its own observable evidence; do not propagate a suspected flaw across dimensions. Lack of a discussion is missing evidence, not a demonstrated weakness. Later explicit corrections supersede earlier interpretations only under the corrected scope; use activeSupport and correctionTarget to respect that scope.',
     coverage: state.coverage,
-    unresolved: state.unresolved
-      .filter((item) => item.kind !== 'reference')
-      .map(({ vector, kind }) => ({ vector, kind })),
     versions: state.versions
   }
 }

@@ -20,11 +20,21 @@ async function main() {
   const markdown = await readFile(path, 'utf8')
   const match = /```json\n([\s\S]*?)\n```/.exec(markdown)
   if (!match) throw new Error('Report JSON appendix missing')
-  const source = JSON.parse(match[1]!)
+  const appendix = JSON.parse(match[1]!)
+  // Version-2 reports include complete snapshots; older reports only contain
+  // the explicitly exported subset. Never spread report metadata into state.
+  const recorded = appendix.diagnosticTrace?.operations?.findLast(
+    (operation: { assessment?: unknown }) => operation.assessment
+  )?.assessment
+  const base =
+    recorded ??
+    createAssessment(appendix.assessmentId ?? 'private-report-audit')
+  const source = Object.fromEntries(
+    Object.keys(base).map((key) => [key, appendix[key] ?? base[key]])
+  )
   const state = assessmentSchema.parse({
-    ...createAssessment('private-report-audit'),
     ...source,
-    evidenceRevision: source.result.evidenceRevision
+    evidenceRevision: appendix.result.evidenceRevision
   })
   const questions = Object.fromEntries(
     state.judgments
@@ -43,7 +53,10 @@ async function main() {
     'without-tentative-issue',
     'speech-aware'
   ] as const) {
-    const experiment = structuredClone(input)
+    const experiment = {
+      ...structuredClone(input),
+      unresolved: state.unresolved.map(({ vector, kind }) => ({ vector, kind }))
+    }
     if (variant !== 'as-recorded') experiment.unresolved = []
     if (variant === 'speech-aware')
       experiment.evidencePolicy +=

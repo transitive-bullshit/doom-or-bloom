@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
+import { AnswerResult } from './answer-result'
 import { Copy } from 'lucide-react'
 import type { ConversationTurn } from '@/lib/assessment/conversation'
 import { Bubble, BubbleContent } from '@/components/ui/bubble'
@@ -107,7 +109,13 @@ export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
   ))
 }
 
-export function ConversationHistory({ turns }: { turns: ConversationTurn[] }) {
+export function ConversationHistory({
+  turns,
+  operations
+}: {
+  turns: ConversationTurn[]
+  operations?: SavedDebugOperation[]
+}) {
   return turns.map((turn) => (
     <article
       key={turn.prompt.id}
@@ -127,6 +135,16 @@ export function ConversationHistory({ turns }: { turns: ConversationTurn[] }) {
         </MessageContent>
       </Message>
       <ConversationReplies turn={turn} />
+      {operations && turn.replies.some((reply) => !reply.earlier) && (
+        <AnswerResult
+          operation={operations.find(
+            (entry) =>
+              entry.operation?.type === 'answer' &&
+              entry.assessment?.answers.at(-1)?.promptInstanceId ===
+                turn.prompt.id
+          )}
+        />
+      )}
     </article>
   ))
 }

@@ -1,3 +1,7 @@
+# Current diagnostic additions
+
+The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) adds an exact real-user transcript replay to the 15 generated personas, preserves routing recommendations at each fixed prefix, and separates expressed outlook from net-impact forecasts. The current suite has 16 journeys.
+
 # User Journeys: live stress-test participants
 
 Open `/user-journeys` at the Portless development URL. The development-only inspector exercises the actual assessment engine, question eligibility/ranking, recovery policy, readiness gate and projections. Production returns 404 for the page and API. Nothing calls a model on page load.

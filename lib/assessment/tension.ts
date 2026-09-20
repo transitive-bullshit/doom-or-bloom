@@ -1,4 +1,5 @@
 import type { Assessment, Question } from './schema'
+import { evidenceExcerpts } from './reasoning-evidence'
 
 export type QuotedClaim = { answerId: string; text: string }
 export function tensionText(claims: QuotedClaim[]) {
@@ -6,14 +7,14 @@ export function tensionText(claims: QuotedClaim[]) {
 }
 
 export function tensionCandidates(state: Assessment) {
-  const claims = state.answers
-    .flatMap((answer) =>
-      answer.text
-        .split(/(?<=[.!?;])\s+|,\s+(?:but|yet|although|while|and)\s+/)
-        .map((text) => ({ answerId: answer.id, text: text.trim() }))
+  const claims = Object.values(evidenceExcerpts(state, 16))
+    .flatMap(({ answerId, text }) =>
+      text
+        .split(/,\s+(?:but|yet|although|while|and)\s+/)
+        .filter((t) => t.trim().length >= 12)
+        .map((t) => ({ answerId, text: t.trim() }))
     )
-    .filter((claim) => claim.text.length >= 12 && claim.text.length <= 360)
-    .slice(-12)
+    .slice(0, 20)
   const pairs: Record<string, QuotedClaim[]> = {}
   const signature = (items: QuotedClaim[]) =>
     items
@@ -43,10 +44,19 @@ export function tensionCandidates(state: Assessment) {
       ...Object.fromEntries(
         Object.keys(pairs).map((id) => [
           id,
-          `The two claims in claimPairs.${id}`
+          `The two claim IDs in claimPairs.${id}; look up their exact text in claims`
         ])
       )
     }
   }
-  return { pairs, question }
+  const indexedClaims = Object.fromEntries(
+    claims.map((claim, i) => [`claim_${i}`, claim])
+  )
+  const indexedPairs = Object.fromEntries(
+    Object.keys(pairs).map((id) => {
+      const [, first, second] = id.split('_')
+      return [id, [`claim_${first}`, `claim_${second}`]]
+    })
+  )
+  return { pairs, question, indexedClaims, indexedPairs }
 }

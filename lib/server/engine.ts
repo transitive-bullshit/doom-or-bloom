@@ -17,6 +17,7 @@ import type {
 import {
   limits,
   vectorIds,
+  epistemicIds,
   worldviewIds,
   supportedAssessmentVersions,
   versions
@@ -45,6 +46,8 @@ import {
 } from '@/lib/assessment/projections'
 import type { Bundle } from '@/lib/content/loader'
 import type { Prompt } from '@/lib/content/schema'
+import { EvaluationFailure } from './provider'
+import { AssessmentFailure } from './assessment-failure'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
 import { timelineContext, timelineUnknown } from '@/lib/assessment/timeline'
@@ -57,7 +60,12 @@ import {
 import { tensionCandidates, tensionText } from '@/lib/assessment/tension'
 import { facetQuestions, facetComponents } from '@/lib/assessment/facets'
 import { selectPresentation } from '@/lib/assessment/presentation'
+import { questionObjective } from '@/lib/assessment/question-objectives'
 import { createQuestions } from './questions'
+import {
+  evidenceExcerpts,
+  reasoningEvidenceQuestions
+} from '@/lib/assessment/reasoning-evidence'
 import { supported } from '@/lib/assessment/presence'
 import {
   supportedClaim,
@@ -259,13 +267,44 @@ export async function runAssessment(
       throw new Error(
         'The local inference request budget was reached. Your answer is saved.'
       )
-    const result = await provider.evaluate(
-      input,
-      questions,
-      operationSignal,
-      remainingAttempts,
-      debugEnabled && request.debug
-    )
+    const result = await provider
+      .evaluate(
+        input,
+        questions,
+        operationSignal,
+        remainingAttempts,
+        debugEnabled && request.debug
+      )
+      .catch((err: unknown) => {
+        if (!debugEnabled || !request.debug) throw err
+        const failedStage: DebugStage = {
+          name,
+          state: input,
+          questions,
+          answers: {},
+          model: state.versions.model,
+          elapsedMs: Math.round(performance.now() - stageStarted),
+          inputBytes: Buffer.byteLength(
+            JSON.stringify({ state: input, questions })
+          ),
+          outputBytes: 0,
+          usage: { input_tokens: 0, output_tokens: 0 },
+          attempts: err instanceof EvaluationFailure ? err.attempts : 1
+        }
+        if (err instanceof EvaluationFailure && err.requests)
+          failedStage.requests = err.requests
+        trace.stages.push(failedStage)
+        trace.decisions.push({
+          action: 'evaluation failed; operation not committed',
+          detail: {
+            stage: name,
+            status:
+              err instanceof EvaluationFailure ? (err.status ?? null) : null
+          }
+        })
+        trace.elapsedMs = Math.round(performance.now() - started)
+        throw new AssessmentFailure(trace, err)
+      })
     remainingAttempts -= result.attempts
     if (remainingAttempts < 0)
       throw new Error(
@@ -339,18 +378,31 @@ export async function runAssessment(
         )
     )
     if (tensionIssue && !deterministic) {
-      const { pairs, question } = tensionCandidates(state)
+      const { pairs, question, indexedClaims, indexedPairs } =
+        tensionCandidates(state)
       if (Object.keys(pairs).length) {
         const questions = { tension_pair: question }
         const evaluation = await evaluate(
           'C: clarify tension',
           {
             completeParticipantEvidence: usableHistory(state),
-            claimPairs: pairs
+            claims: indexedClaims,
+            claimPairs: indexedPairs
           },
           questions
         )
+        addJudgments(
+          'identify',
+          currentPrompt(state).id,
+          questions,
+          evaluation.answers,
+          evaluation.model
+        )
         const selection = evaluation.answers.tension_pair
+        // Screening flags have no standing without a context-checked exact pair.
+        state.unresolved = state.unresolved.filter(
+          (issue) => issue.id !== tensionIssue.id
+        )
         if (
           selection?.type === 'choice' &&
           selection.choice === 'none' &&
@@ -373,6 +425,11 @@ export async function runAssessment(
           (selection.probabilities[selection.choice] ?? 0) >= 0.5
         ) {
           const quotedClaims = pairs[selection.choice]!
+          state.unresolved.push({
+            ...tensionIssue,
+            verified: true,
+            quotedClaims
+          })
           const template = bundle.prompts.find(
             (prompt) => prompt.id === 'scope.assumption'
           )!
@@ -395,6 +452,14 @@ export async function runAssessment(
             }
           })
         }
+      } else {
+        state.unresolved = state.unresolved.filter(
+          (issue) => issue.id !== tensionIssue.id
+        )
+        trace.decisions.push({
+          action: 'tension screen discarded: no exact candidate pair',
+          detail: tensionIssue.id
+        })
       }
     }
     // One interpretation per evidence revision feeds both selection and display.
@@ -437,7 +502,7 @@ export async function runAssessment(
       })
       .slice(
         0,
-        Math.floor((limits.questions - 2) / (state.unresolved.length ? 5 : 3))
+        Math.floor((limits.questions - 2) / (state.unresolved.length ? 6 : 4))
       )
     if (!eligibleCandidates.length) return false
     const overall = candidates.find(
@@ -464,6 +529,20 @@ export async function runAssessment(
     else {
       const questions: StageQuestions = {}
       for (const { prompt } of eligibleCandidates) {
+        questions[`${prompt.id}:gap`] = {
+          type: 'choice',
+          instructions: `For candidate ${prompt.id}, classify whether candidates[].intendedDistinction remains unanswered in the COMPLETE evidence. Apply noveltyPolicy. Generic repetition is already_answered even if some narrower detail is missing; partial requires the wording to directly target that missing detail.`,
+          criteria: {
+            unasked:
+              'A consequential distinction is missing and this exact question directly elicits it.',
+            partial:
+              'A specific consequential part remains unanswered and this exact wording directly targets it.',
+            already_answered:
+              'The requested information or explicit uncertainty is already present; elaboration would mainly repeat it.',
+            inapplicable:
+              'The premise is unsupported or this distinction is peripheral to the participant’s account.'
+          }
+        }
         const benefits = ['novelty', 'coverage', 'projection'] as Array<
           'novelty' | 'coverage' | 'projection' | 'ambiguity' | 'tension'
         >
@@ -524,7 +603,8 @@ export async function runAssessment(
         candidates: eligibleCandidates.map((c) => ({
           id: c.prompt.id,
           text: c.prompt.text,
-          targets: c.prompt.targets
+          targets: c.prompt.targets,
+          intendedDistinction: questionObjective(c.prompt.id, c.prompt.text)
         }))
       }
       const evaluation = await evaluate('C: route', input, questions)
@@ -566,6 +646,8 @@ export async function runAssessment(
             repetition
           }) => ({
             id: prompt.id,
+            intendedDistinction: questionObjective(prompt.id, prompt.text),
+            gap: evaluation.answers[`${prompt.id}:gap`],
             priority,
             coverage,
             ambiguity,
@@ -737,9 +819,9 @@ export async function runAssessment(
             )
           }
         const max = dimension.levels.length - 1
-        const unresolved = state.unresolved.some(
-          (item) => item.vector === dimension.id
-        )
+        // Evaluate raw claims independently; a routing issue is not a score or
+        // permission to replace the evaluator's distribution with total ignorance.
+        const unresolved = false
         return {
           vector: dimension.id,
           label: dimension.label,
@@ -761,6 +843,68 @@ export async function runAssessment(
           )
         }
       })
+      const excerpts = evidenceExcerpts(state)
+      const evidenceQuestions = reasoningEvidenceQuestions(
+        evaluation.answers,
+        excerpts,
+        bundle.rubric
+      )
+      if (Object.keys(evidenceQuestions).length) {
+        const inspection = await evaluate(
+          'D: reasoning evidence',
+          {
+            ...projectionInput(state, bundle),
+            excerpts,
+            excerptPolicy:
+              'Candidates are bounded exact substrings. The complete transcript is authoritative. None is required when a defect cannot be substantiated; missing candidates are not evidence of a defect.'
+          },
+          evidenceQuestions
+        )
+        // Keep score and evidence judgments together instead of replacing the score pass.
+        const previous = state.judgments.filter((j) => j.stage === 'project')
+        addJudgments(
+          'project',
+          `result:${state.evidenceRevision}`,
+          evidenceQuestions,
+          inspection.answers,
+          inspection.model
+        )
+        state.judgments.push(...previous)
+        for (const component of components) {
+          if (
+            !epistemicIds.includes(
+              component.vector as (typeof epistemicIds)[number]
+            ) ||
+            component.value === null ||
+            component.value >= 0.85
+          )
+            continue
+          const selected = inspection.answers[`${component.vector}:excerpt`]
+          const dimension = bundle.rubric.dimensions.find(
+            (d) => d.id === component.vector
+          )!
+          const level = Number(
+            Object.entries(component.distribution).sort(
+              (a, b) => b[1] - a[1]
+            )[0]![0]
+          )
+          const excerpt =
+            selected?.type === 'choice' ? excerpts[selected.choice] : undefined
+          const probability =
+            selected?.type === 'choice'
+              ? (selected.probabilities[selected.choice] ?? 0)
+              : 0
+          const substantiated = Boolean(excerpt && probability >= 0.6)
+          component.reasoningEvidence = {
+            weakness: dimension.levels[level]!,
+            kind: level < 2 ? 'limitation' : 'demonstrated_strength',
+            status: substantiated ? 'supported' : 'unsubstantiated',
+            answerId: substantiated ? excerpt!.answerId : null,
+            excerpt: substantiated ? excerpt!.text : null,
+            probability
+          }
+        }
+      }
       const score = evaluation.answers['catastrophic_risk:score']
       const sourceIds = catastrophicEvidence(state).map((entry) => entry.id)
       const catastropheSupported =
@@ -779,27 +923,25 @@ export async function runAssessment(
               vector: 'catastrophic_risk',
               label: catastrophe.label,
               value: score.score / (catastrophe.levels.length - 1),
-              range: state.unresolved.some((u) => u.vector === 'risk_landscape')
-                ? ([0, 1] as [number, number])
-                : ([
-                    quantile(
-                      score.probabilities,
-                      bundle.rubric.quantiles[0],
-                      catastrophe.levels.length - 1
-                    ),
-                    quantile(
-                      score.probabilities,
-                      bundle.rubric.quantiles[1],
-                      catastrophe.levels.length - 1
-                    )
-                  ] as [number, number]),
+              range: [
+                quantile(
+                  score.probabilities,
+                  bundle.rubric.quantiles[0],
+                  catastrophe.levels.length - 1
+                ),
+                quantile(
+                  score.probabilities,
+                  bundle.rubric.quantiles[1],
+                  catastrophe.levels.length - 1
+                )
+              ] as [number, number],
               distribution: score.probabilities,
               confidence: score.confidence,
               evidenceIds: sourceIds,
               claim: supportedClaim(
                 catastrophe.levels,
                 score.probabilities,
-                state.unresolved.some((u) => u.vector === 'risk_landscape'),
+                false,
                 bundle.rubric.presenceThreshold
               )
             }
@@ -1104,7 +1246,8 @@ export async function runAssessment(
           evidenceIds: state.evidence
             .filter((e) => e.vector === tension)
             .map((e) => e.id),
-          kind: 'tension'
+          kind: 'tension',
+          verified: false
         })
       if (atCap(state)) await project(true)
       else if (p.target && eligible(state)) await project()
@@ -1174,6 +1317,50 @@ export async function runAssessment(
   } else if (op.type === 'complete') {
     if (!state.result) throw new Error('View a result before completing')
     state.status = atCap(state) ? 'capped' : 'completed'
+  }
+  if (
+    request.operation.type === 'answer' &&
+    state.answers.length > request.assessment.answers.length
+  ) {
+    const before = request.assessment.result
+    const after = state.result
+    trace.decisions.push({
+      action: 'observed answer gain',
+      detail: {
+        promptId: currentPrompt(request.assessment).promptId,
+        readinessDelta:
+          evidenceReadiness(state).value -
+          evidenceReadiness(request.assessment).value,
+        interpretationChanges: (after?.components ?? []).flatMap(
+          (component) => {
+            const previous = before?.components.find(
+              (c) => c.vector === component.vector
+            )
+            const change = {
+              vector: component.vector,
+              before: previous?.value ?? null,
+              after: component.value,
+              rangeBefore: previous?.range ?? [0, 1],
+              rangeAfter: component.range
+            }
+            return !previous ||
+              JSON.stringify([
+                previous.value,
+                previous.range,
+                previous.claim
+              ]) !==
+                JSON.stringify([
+                  component.value,
+                  component.range,
+                  component.claim
+                ])
+              ? [change]
+              : []
+          }
+        ),
+        note: 'Readiness saturation is not proof of zero information gain. Compare the requested distinction and raw answer as well as these deltas.'
+      }
+    })
   }
   state.revision = baseRevision + 1
   trace.elapsedMs = Math.round(performance.now() - started)

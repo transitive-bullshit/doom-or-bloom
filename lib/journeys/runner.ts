@@ -4,6 +4,7 @@ import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 import { loadBundle } from '@/lib/content/loader'
 import type { Bundle } from '@/lib/content/loader'
+import { AssessmentFailure } from '@/lib/server/assessment-failure'
 import { runAssessment } from '@/lib/server/engine'
 import { projectionInput } from '@/lib/server/projection-input'
 import type { Provider } from '@/lib/server/provider'
@@ -11,12 +12,14 @@ import {
   createAssessment,
   currentPrompt,
   hasAnswered,
-  canSubmit
+  canSubmit,
+  issuePrompt
 } from '@/lib/assessment/state'
 import { versions, vectorSchema } from '@/lib/assessment/schema'
 import type { Operation, DebugStage } from '@/lib/assessment/schema'
 import { evidenceReadiness } from '@/lib/assessment/readiness'
 import { personaProfileSchema, personas } from './catalog'
+import { fixedUserAnswers, fixedUserPersona } from './fixed'
 import { recoveryPreludes } from './scenarios'
 import type { Persona } from './catalog'
 import type { Prompt } from '@/lib/content/schema'
@@ -92,7 +95,8 @@ export async function runPersona(
       'Resume requires a saved failed operation and an evaluator, without a participant generator'
     )
   const source = live ?? mechanical?.provider
-  if (!source || (!resume && !participant && !mechanical))
+  const fixed = persona.id === fixedUserPersona.id ? fixedUserAnswers : null
+  if (!source || (!resume && !participant && !mechanical && !fixed))
     throw new Error(
       'Journey runs require an evaluator and generated participant; mechanical tests must supply an explicit adapter'
     )
@@ -186,6 +190,12 @@ export async function runPersona(
       bundle,
       true
     ).catch((err: unknown) => {
+      if (err instanceof AssessmentFailure) {
+        completedStages = err.trace.stages.filter(
+          (stage) => Object.keys(stage.answers).length > 0
+        )
+        err = err.cause
+      }
       const safe =
         err instanceof JourneyFailure
           ? err
@@ -304,7 +314,51 @@ export async function runPersona(
       for (const text of prelude) await step({ type: 'answer', text })
       if (prelude.length && state.status === 'paused')
         await step({ type: 'retry' })
-      for (let i = 0; i < turns; i++) {
+      for (let i = 0; i < (fixed ? fixed.length : turns); i++) {
+        if (fixed) {
+          const original = fixed[i]!
+          const authored = bundle.prompts.find(
+            (p) => p.id === original.promptId && p.text === original.question
+          )
+          if (!authored)
+            throw new Error(
+              'Fixed transcript question no longer matches its authored replay bundle'
+            )
+          // The original transcript is fixed, not answers transplanted onto a
+          // newly selected question. Preserve the actual router decision in the prior step.
+          if (
+            currentPrompt(state).text !== original.question ||
+            hasAnswered(state)
+          ) {
+            state.prompts = state.prompts.filter((p) =>
+              state.answers.some((a) => a.promptInstanceId === p.id)
+            )
+            state = issuePrompt(state, {
+              promptId: authored.id,
+              text: original.question,
+              family: authored.family,
+              variant: 'original',
+              sourceEvidenceIds: []
+            })
+          }
+          state.status = 'answering'
+          await step(
+            { type: 'answer', text: original.answer },
+            { text: original.answer, key: 'fixed-original-answer' }
+          )
+          steps.at(-1)?.trace?.decisions.push({
+            action: 'fixed transcript replay',
+            detail: {
+              originalQuestion: original.question,
+              nextRouterQuestion: steps.at(-1)?.nextPrompt?.text ?? null,
+              note: 'Next replay question is held fixed, regardless of the router recommendation.'
+            }
+          })
+          if (state.answers.length !== i + 1)
+            throw new Error('An original fixed answer was not accepted')
+          stopped = 'fixed transcript replay complete'
+          continue
+        }
         if (state.status === 'capped') {
           stopped = 'app prompt cap reached'
           break
@@ -467,14 +521,21 @@ export async function runJourneySuite({
       'Live journey suites require Jev and a generated participant'
     )
   const bundle = loadBundle()
-  const hashes = journeyHashes(bundle)
+  const hashes = journeyHashes(bundle, { personas, fixedUserAnswers })
+  const allPersonas = [...personas, fixedUserPersona]
   const selected = personaId
-    ? personas.filter((p) => p.id === personaId)
-    : personas
+    ? allPersonas.filter((p) => p.id === personaId)
+    : allPersonas
   if (!selected.length) throw new Error('Unknown persona')
   const journeys: Journey[] = []
   for (const persona of selected) {
-    const journey = await runPersona(persona, bundle, turns, live, participant)
+    const journey = await runPersona(
+      persona,
+      bundle,
+      turns,
+      live,
+      persona.id === fixedUserPersona.id ? undefined : participant
+    )
     journeys.push(journey)
     onJourney?.(journey)
     if (journey.error && journey.accepted === 0) break

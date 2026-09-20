@@ -186,7 +186,7 @@ test('three-answer path, reusable results and debug parity', async () => {
   )
   expect(reused.debug?.stages).toHaveLength(0)
   expect(reused.assessment.result).toEqual(historical.result)
-  expect(reused.assessment.versions.assessment).toBe('0.5.0')
+  expect(reused.assessment.versions.assessment).toBe('0.6.0')
   const request = {
     requestId: 'same',
     assessment: state,
@@ -308,11 +308,12 @@ test('dependent stages share the remaining physical request budget', async () =>
   expect(budgets).toEqual([
     limits.providerAttempts,
     limits.providerAttempts - 12,
-    limits.providerAttempts - 16
+    limits.providerAttempts - 16,
+    limits.providerAttempts - 20
   ])
   expect(
     result.debug?.stages.reduce((sum, stage) => sum + stage.attempts, 0)
-  ).toBe(20)
+  ).toBe(24)
   expect(result.assessment.answers).toHaveLength(1)
 })
 test('repeated ambiguity exhausts neutrally, successful retry resumes', async () => {
@@ -467,7 +468,7 @@ test('shared text occurs once per stage and judgments use answer-level support w
   const stage = result.debug!.stages.find(
     (stage) => stage.name === 'D: projection'
   )!
-  expect(Object.keys(stage.questions)).toHaveLength(47)
+  expect(Object.keys(stage.questions)).toHaveLength(48)
   expect(JSON.stringify(stage.state).split(text)).toHaveLength(2)
   expect(JSON.stringify(stage.questions)).not.toContain(text)
   expect(
@@ -490,6 +491,7 @@ test('one well-covered answer unlocks results and sends explicit dimension defin
   expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
     'A: interpret',
     'D: projection',
+    'D: reasoning evidence',
     'C: route'
   ])
   const bundle = loadBundle()
@@ -553,4 +555,38 @@ test('three sparse answers cannot unlock results by reply count alone', async ()
   await expect(run(state, { type: 'project' }, sparse)).rejects.toThrow(
     'More supported coverage'
   )
+})
+
+test('failed operations expose completed stages and failed input without serializing provider secrets', async () => {
+  const fixture = createFixtureProvider()
+  const provider: Provider = {
+    kind: 'fixture',
+    async evaluate(...args) {
+      if (Object.keys(args[1]).some((id) => id.endsWith(':score')))
+        throw new Error('SECRET_TRANSPORT_BODY')
+      return fixture.evaluate(...args)
+    }
+  }
+  const { AssessmentFailure } = await import('./assessment-failure')
+  const failure = await run(
+    createAssessment('failed-trace'),
+    {
+      type: 'answer',
+      text: 'A meaningful answer about future benefits and uncertain control.'
+    },
+    provider,
+    true
+  ).catch((err: unknown) => err)
+  expect(failure).toBeInstanceOf(AssessmentFailure)
+  if (!(failure instanceof AssessmentFailure))
+    throw new Error('Expected a diagnostic failure')
+  expect(failure.trace.stages.map((s) => s.name)).toEqual([
+    'A: interpret',
+    'D: projection'
+  ])
+  expect(failure.trace.stages[1]!.answers).toEqual({})
+  expect(failure.trace.stages[1]!.state).toHaveProperty(
+    'completeParticipantEvidence'
+  )
+  expect(JSON.stringify(failure.trace)).not.toContain('SECRET_TRANSPORT_BODY')
 })

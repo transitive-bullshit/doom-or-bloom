@@ -43,7 +43,10 @@ export function evidenceReadiness(state: Assessment) {
           )
         : 0
     const unresolved = state.unresolved.some(
-      (item) => item.vector === vector && item.kind !== 'reference'
+      (item) =>
+        item.vector === vector &&
+        item.kind !== 'reference' &&
+        (item.kind !== 'tension' || item.verified === true)
     )
     return {
       vector,

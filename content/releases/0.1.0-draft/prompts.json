@@ -702,5 +702,25 @@
     },
     "contentVersion": "0.1.0-draft",
     "status": "reviewed"
+  },
+  {
+    "id": "risk.cyber-balance",
+    "text": "How do you expect AI to change the balance between cyberattackers and defenders?",
+    "family": "risk",
+    "readingLevel": "general",
+    "prerequisites": ["risk_landscape"],
+    "exclusions": [],
+    "targets": ["risk_landscape", "causal_clarity"],
+    "effort": 0.4,
+    "noveltyGroup": "cyber-offense-defense",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "Do you think AI will help cyberattackers or defenders more, and why?",
+      "clarification": "Do you think AI will help cyberattackers or defenders more, and why?",
+      "exhausted": "Do you think AI will help cyberattackers or defenders more, and why?"
+    },
+    "contentVersion": "0.1.0-draft",
+    "status": "draft"
   }
 ]

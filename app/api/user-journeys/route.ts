@@ -5,6 +5,7 @@ import {
   localFeedbackRequestAllowed
 } from '@/lib/debug/local-access'
 import { readBoundedJson } from '@/lib/server/limits'
+import { fixedUserPersona } from '@/lib/journeys/fixed'
 import { personas } from '@/lib/journeys/catalog'
 import { runMechanicalSuite } from '@/lib/journeys/mechanical/runner'
 import { projectJourneyStore } from '@/lib/journeys/store'
@@ -19,7 +20,7 @@ export async function GET(request: Request) {
     return Response.json({ error: 'Not found' }, { status: 404, headers })
   const url = new URL(request.url)
   const personaId = url.searchParams.get('persona')
-  if (!personas.some((p) => p.id === personaId))
+  if (![...personas, fixedUserPersona].some((p) => p.id === personaId))
     return Response.json(
       { error: 'Choose an existing persona' },
       { status: 400, headers }

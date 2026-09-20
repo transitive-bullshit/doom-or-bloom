@@ -65,3 +65,37 @@ test('a deployment preference does not manufacture research-pace or access prefe
     components.find((component) => component.vector === 'access_policy')?.value
   ).toBeNull()
 })
+
+test('a clear conditional outlook is placed without inventing a net forecast', () => {
+  const state = createAssessment('conditional')
+  state.evidence.push({
+    id: 'e',
+    answerId: 'a',
+    vector: 'risk_landscape',
+    status: 'stated',
+    judgmentIds: [],
+    referenceIds: [],
+    contextReferenceIds: []
+  })
+  const questions = facetQuestions()
+  expect(questions['facet:outlook_orientation']).toBeDefined()
+  const components = facetComponents(state, {
+    'facet:overall_outlook': fixtureAnswer(
+      questions['facet:overall_outlook']!,
+      'explicitly_unknown'
+    ),
+    'facet:outlook_orientation': fixtureAnswer(
+      questions['facet:outlook_orientation']!,
+      '2'
+    )
+  })
+  expect(
+    components.find((c) => c.vector === 'overall_outlook')!.value
+  ).toBeNull()
+  const orientation = components.find(
+    (c) => c.vector === 'outlook_orientation'
+  )!
+  expect(orientation.value).toBe(0.5)
+  expect(orientation.claim).toContain('not a prediction of equal')
+  expect(orientation.range).toEqual([0.5, 0.5])
+})

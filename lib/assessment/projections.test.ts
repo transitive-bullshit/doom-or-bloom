@@ -48,7 +48,7 @@ test('coherent extreme profiles outrank a weak moderate on reasoning independent
     baseResult(
       createAssessment('projection-example'),
       [
-        c('overall_outlook', benefit),
+        c('outlook_orientation', benefit),
         c('beneficial_potential', benefit),
         c('risk_landscape', harm),
         c('human_agency', continuity),
@@ -156,7 +156,7 @@ test('one-sided impact evidence cannot become an overall outlook coordinate', ()
 test('an established overall outlook is placeable without inventing a missing benefits component', () => {
   const result = baseResult(
     createAssessment('explicit-extinction'),
-    [c('overall_outlook', 0.02), c('risk_landscape', 1)],
+    [c('outlook_orientation', 0.02), c('risk_landscape', 1)],
     loadBundle().rubric
   )
   expect(result.horizontal.value).toBe(0.02)

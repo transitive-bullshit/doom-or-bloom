@@ -81,6 +81,7 @@ test('confidence, unresolved meaning and superseded evidence reduce readiness wi
       id: vector,
       vector,
       kind: 'tension',
+      verified: true,
       evidenceIds: []
     })
   expect(evidenceReadiness(state).value).toBeCloseTo(35)

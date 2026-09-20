@@ -507,7 +507,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     .fill('Third answer with debugging disabled.')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
-  expect(await savedOperationCount(page)).toBe(2)
+  await expect.poll(() => savedOperationCount(page)).toBe(3)
   const assessmentId = await page.evaluate(
     (key) => JSON.parse(localStorage.getItem(key)!).assessment.id,
     storageKey

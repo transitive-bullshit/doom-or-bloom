@@ -123,7 +123,7 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
   await uncertainFirst
     .getByRole('button', { name: 'Result after this answer', exact: true })
     .click()
-  await expect(uncertainFirst).toContainText('Unplaced')
+  await expect(uncertainFirst).toContainText('mixed, conditional or undecided')
   await page.getByRole('button', { name: /Playful recovery/ }).click()
   await expect(
     page.getByRole('region', { name: 'Journey timeline' })
@@ -202,4 +202,29 @@ test('failed operation diagnostics remain readable on mobile', async ({
   }))
   expect(width.page).toBeLessThanOrEqual(width.viewport + 1)
   await page.unrouteAll({ behavior: 'wait' })
+})
+
+test('the real-user fixed regression is selectable and exposes all four original answers', async ({
+  page
+}) => {
+  await page.goto('/user-journeys')
+  await page.getByRole('button', { name: /Real user · fixed answers/ }).click()
+  await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
+    '4 accepted answers'
+  )
+  await expect(page.locator('[data-slot=journey-step]')).toHaveCount(4)
+  await expect(
+    page.getByRole('button', { name: 'Result after this answer', exact: true })
+  ).toHaveCount(4)
+  await page
+    .locator('[data-slot=journey-step]')
+    .first()
+    .getByRole('button', { name: 'Result after this answer', exact: true })
+    .click()
+  await expect(
+    page
+      .locator('[data-slot=journey-step]')
+      .first()
+      .locator('[data-slot=worldview-map]')
+  ).toBeVisible()
 })

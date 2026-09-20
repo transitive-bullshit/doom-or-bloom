@@ -164,7 +164,11 @@ test('an understood unknown can qualify provisionally without becoming a forecas
     bundle
   )
   expect(unknown.result).not.toBeNull()
-  expect(unknown.result?.horizontal.value).toBeNull()
+  expect(unknown.result?.horizontal.value).toBe(0.5)
+  expect(
+    unknown.result?.components.find((c) => c.vector === 'overall_outlook')
+      ?.value
+  ).toBeNull()
 })
 
 test('exact non-answer prelude adds no coverage and triggers paperclips before a real retry', async () => {

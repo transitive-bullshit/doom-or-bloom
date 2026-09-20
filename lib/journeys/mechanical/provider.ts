@@ -74,6 +74,11 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
           const unresolved = candidate.targets.some((v) =>
             state.unresolved?.some((u) => u.vector === v)
           )
+          if (benefit === 'gap')
+            return pick(
+              q,
+              missing || unresolved ? 'unasked' : 'already_answered'
+            )
           if (benefit === 'novelty')
             return { type: 'noul', noul: missing || unresolved ? 1 : 0 }
           const level =
@@ -108,13 +113,18 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
         }
         if (id === 'central_basis') return { type: 'noul', noul: 1 }
         if (id.startsWith('facet:')) {
-          if (id === 'facet:overall_outlook') {
+          if (
+            id === 'facet:overall_outlook' ||
+            id === 'facet:outlook_orientation'
+          ) {
             const benefits = persona.levels.beneficial_potential
             const harm = persona.levels.risk_landscape
             return pick(
               q,
               benefits === null || harm === null
-                ? 'explicitly_unknown'
+                ? id === 'facet:outlook_orientation'
+                  ? '2'
+                  : 'explicitly_unknown'
                 : String(
                     Math.round((((benefits ?? 0) + 3 - (harm ?? 0)) / 6) * 4)
                   )
@@ -122,6 +132,8 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
           }
           return pick(q, 'not_expressed')
         }
+        if (id.endsWith(':weakness')) return pick(q, 'not_demonstrated')
+        if (id.endsWith(':excerpt')) return pick(q, 'none')
         const [vector, task] = id.split(':')
         const present =
           vector === 'catastrophic_risk'

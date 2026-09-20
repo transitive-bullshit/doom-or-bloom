@@ -148,8 +148,8 @@ export function baseResult(
   const insufficient = !eligible(state)
   const horizontal = {
     ...(components.find(
-      (component) => component.vector === 'overall_outlook'
-    ) ?? emptyComponent('overall_outlook', 'Overall expected impact')),
+      (component) => component.vector === 'outlook_orientation'
+    ) ?? emptyComponent('outlook_orientation', 'Expressed outlook')),
     vector: 'outlook',
     label: 'Doom–Bloom'
   }
@@ -185,7 +185,7 @@ export function baseResult(
     reason: insufficient
       ? 'Some parts of your view are still unexplored; these are provisional interpretations.'
       : !outlookEstablished
-        ? 'Your overall balance of benefits and harms is not established; the views you did express remain below.'
+        ? 'Your expressed outlook is still unclear; the views you did express remain below.'
         : covered < rubric.readinessCoverage
           ? 'Some parts of your view are still unexplored.'
           : state.unresolved.length

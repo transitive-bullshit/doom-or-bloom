@@ -42,7 +42,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.5.0',
+  assessment: '0.6.0',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -56,6 +56,7 @@ export const supportedAssessmentVersions = [
   '0.2.1',
   '0.3.0',
   '0.4.0',
+  '0.5.0',
   versions.assessment
 ]
 export const rootPrompt = 'What do you think AI means for our future—and why?'
@@ -191,7 +192,17 @@ export const componentSchema = z.strictObject({
   distribution: z.record(z.string(), probability),
   confidence: probability.nullable(),
   evidenceIds: z.array(z.string()).max(200),
-  claim: z.string().max(2000).nullable()
+  claim: z.string().max(2000).nullable(),
+  reasoningEvidence: z
+    .object({
+      weakness: z.string(),
+      kind: z.enum(['limitation', 'demonstrated_strength']).optional(),
+      status: z.enum(['supported', 'unsubstantiated']),
+      answerId: z.string().nullable(),
+      excerpt: z.string().nullable(),
+      probability: probability
+    })
+    .optional()
 })
 export type Component = z.infer<typeof componentSchema>
 export const resultSchema = z.strictObject({
@@ -290,7 +301,14 @@ export const currentAssessmentSchema = z.strictObject({
         id: z.string(),
         vector: vectorSchema,
         evidenceIds: z.array(z.string()),
-        kind: z.enum(['ambiguity', 'tension', 'reference'])
+        kind: z.enum(['ambiguity', 'tension', 'reference']),
+        verified: z.boolean().optional(),
+        quotedClaims: z
+          .array(
+            z.strictObject({ answerId: z.string(), text: z.string().max(360) })
+          )
+          .length(2)
+          .optional()
       })
     )
     .max(100),

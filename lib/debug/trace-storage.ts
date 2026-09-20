@@ -1,6 +1,11 @@
 import { z } from 'zod'
-import { modelAnswerSchema, questionSchema } from '@/lib/assessment/schema'
-import type { DebugTrace } from '@/lib/assessment/schema'
+import {
+  modelAnswerSchema,
+  questionSchema,
+  operationSchema as assessmentOperationSchema,
+  currentAssessmentSchema
+} from '@/lib/assessment/schema'
+import type { DebugTrace, Assessment, Operation } from '@/lib/assessment/schema'
 
 const usage = z.strictObject({
   input_tokens: z.number().int().nonnegative(),
@@ -18,11 +23,11 @@ const stage = response.extend({
   elapsedMs: z.number().nonnegative(),
   inputBytes: z.number().nonnegative(),
   outputBytes: z.number().nonnegative(),
-  attempts: z.number().int().min(1).max(16),
+  attempts: z.number().int().min(0).max(32),
   requests: z
     .array(
       z.strictObject({
-        attempt: z.number().int().min(1).max(16),
+        attempt: z.number().int().min(0).max(32),
         model: z.string(),
         questionIds: z.array(z.string()).max(96),
         elapsedMs: z.number().nonnegative(),
@@ -30,13 +35,13 @@ const stage = response.extend({
         response: response.optional()
       })
     )
-    .max(16)
+    .max(32)
     .optional()
 })
 const traceSchema = z.strictObject({
   requestId: z.string(),
   baseRevision: z.number().int().nonnegative(),
-  stages: z.array(stage).max(5),
+  stages: z.array(stage).max(12),
   decisions: z.array(
     z.strictObject({ action: z.string(), detail: z.unknown() })
   ),
@@ -45,12 +50,18 @@ const traceSchema = z.strictObject({
 const operationSchema = z.strictObject({
   trace: traceSchema,
   provider: z.enum(['live', 'fixture']),
-  createdAt: z.iso.datetime()
+  createdAt: z.iso.datetime(),
+  operation: assessmentOperationSchema.optional(),
+  assessment: currentAssessmentSchema.optional(),
+  error: z.string().optional()
 })
 export type SavedDebugOperation = {
   trace: DebugTrace
   provider: 'live' | 'fixture'
   createdAt: string
+  operation?: Operation
+  assessment?: Assessment
+  error?: string
 }
 const recordSchema = z.strictObject({
   assessmentId: z.string(),

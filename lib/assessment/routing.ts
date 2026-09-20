@@ -75,17 +75,17 @@ export function needsOverallOutlookQuestion(state: Assessment) {
     state.prompts.some((prompt) => prompt.promptId === 'impact.overall')
   )
     return false
-  const distribution = result.horizontal.distribution
+  const net =
+    result.components.find((c) => c.vector === 'overall_outlook') ??
+    result.horizontal
+  const distribution = net.distribution
   const missing = distribution.not_expressed ?? 0
   const unknown = distribution.explicitly_unknown ?? 0
   // Ask once when the interpretation is unsettled. Dominant explicit
   // indecision is already an answer, not something to pressure into a forecast.
-  if (unknown >= 0.75) return false
-  if (result.horizontal.value === null) return missing + unknown >= 0.3
-  return (
-    result.horizontal.range[1] - result.horizontal.range[0] >= 0.75 &&
-    missing + unknown >= 0.15
-  )
+  if (unknown >= 0.5) return false
+  if (net.value === null) return missing + unknown >= 0.3
+  return net.range[1] - net.range[0] >= 0.75 && missing + unknown >= 0.15
 }
 
 export function rankCandidates(
@@ -136,7 +136,15 @@ export function rankCandidates(
         ? normalized(`${item.prompt.id}:tension`)
         : 0
       const noveltyAnswer = answers[`${item.prompt.id}:novelty`]
-      const novelty = noveltyAnswer?.type === 'noul' ? noveltyAnswer.noul : 0
+      const gap = answers[`${item.prompt.id}:gap`]
+      const answerableGap =
+        gap?.type === 'choice'
+          ? (gap.probabilities.unasked ?? 0) + (gap.probabilities.partial ?? 0)
+          : 1
+      const novelty = Math.min(
+        noveltyAnswer?.type === 'noul' ? noveltyAnswer.noul : 0,
+        answerableGap
+      )
       const basis = answers['outlook:central_basis']
       const basisGap =
         item.prompt.id === 'grounding.general' && basis?.type === 'noul'

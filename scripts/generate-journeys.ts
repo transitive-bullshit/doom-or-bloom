@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs'
 import { runLiveJourneys, resumeLiveJourney } from '../lib/journeys/live'
+import { fixedUserPersona } from '../lib/journeys/fixed'
 import { personas } from '../lib/journeys/catalog'
 
 const args = process.argv.slice(2)
@@ -19,7 +20,10 @@ const resumeId = args.find((a) => a.startsWith('--resume='))?.split('=')[1]
 const turns = Number(
   args.find((a) => a.startsWith('--turns='))?.split('=')[1] ?? 5
 )
-if (personaId && !personas.some((p) => p.id === personaId))
+if (
+  personaId &&
+  ![...personas, fixedUserPersona].some((p) => p.id === personaId)
+)
   throw new Error('Unknown persona')
 if (resumeId && (!personaId || args.some((a) => a.startsWith('--turns='))))
   throw new Error(

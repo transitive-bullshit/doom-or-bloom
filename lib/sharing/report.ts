@@ -1,10 +1,50 @@
+import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import type { Assessment } from '@/lib/assessment/schema'
 
-export function serializeReport(state: Assessment) {
+export function serializeReport(
+  state: Assessment,
+  operations: SavedDebugOperation[] = []
+) {
   if (!state.result) throw new Error('A result is required')
   const result = state.result
   const evidence = state.evidence
   const data = {
+    reportVersion: 2,
+    assessmentId: state.id,
+    revision: state.revision,
+    evidenceRevision: state.evidenceRevision,
+    status: state.status,
+    prompts: state.prompts,
+    attempts: state.attempts,
+    diagnosticTrace: {
+      completeness: Array.from({ length: state.revision }, (_, i) => i).every(
+        (i) =>
+          operations.some((o) => o.assessment && o.trace.baseRevision === i)
+      )
+        ? 'complete'
+        : 'partial',
+      expectedCompletedOperations: state.revision,
+      recordedCompletedOperations: operations.filter((o) => o.assessment)
+        .length,
+      missingBaseRevisions: Array.from(
+        { length: state.revision },
+        (_, i) => i
+      ).filter(
+        (i) =>
+          !operations.some((o) => o.assessment && o.trace.baseRevision === i)
+      ),
+      note: 'Trace capture is local. Missing revisions can mean an older run, storage failure or whole-operation eviction. Failed operations are included when recorded; a disconnected request may lack server diagnostics. No hidden reasoning, credentials or unsubmitted drafts are included.',
+      operations: operations.map((entry) => {
+        const saved = { ...entry }
+        if (entry.assessment)
+          saved.assessment = {
+            ...entry.assessment,
+            draft: '',
+            interactionHistory: []
+          }
+        return saved
+      })
+    },
     versions: result.versions,
     result,
     coverage: state.coverage,
@@ -13,7 +53,7 @@ export function serializeReport(state: Assessment) {
     evidence,
     referenceClaims: state.referenceClaims,
     familiarity: state.familiarity,
-    judgments: state.judgments.filter((j) => j.stage !== 'route')
+    judgments: state.judgments
   }
   const position = (value: number | null) =>
     value === null
@@ -92,7 +132,7 @@ export function serializeReport(state: Assessment) {
     ]),
     '## Evidence and typed judgments',
     '',
-    'The structured appendix preserves raw usable answers, answer-level support, relevant typed judgments and provenance. Rejected interaction text, secrets, debug traces and hidden reasoning are excluded.',
+    'The structured appendix preserves questions and answers, route decisions, complete recorded Jev inputs and typed outputs, per-step assessment snapshots, timing, usage and provenance. Submitted recovery attempts may appear in the diagnostic trace. Unsubmitted drafts, credentials and hidden reasoning are excluded. Check diagnosticTrace.completeness before assuming a historical operation was recorded.',
     '',
     '```json',
     JSON.stringify(data, null, 2),
@@ -100,7 +140,7 @@ export function serializeReport(state: Assessment) {
     '',
     '## Methodology',
     '',
-    'The horizontal projection interprets the participant’s overall expected impact directly. Benefits and harms remain separate components; an unknown balance is not treated as a moderate outlook. Development pace, deployment rules and access preferences are separate and have no map weight. The vertical projection uses equally weighted demonstrated-reasoning components. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
+    'The horizontal projection summarizes expressed outlook from concern to hope. A mixed, conditional or undecided orientation can be understood and placed without inventing a net-impact forecast. The separately recorded overall expected impact can remain explicitly unknown. The middle orientation is not a forecast that benefits and harms cancel. Development pace, deployment rules and access preferences are separate and have no map weight. The vertical projection uses equally weighted demonstrated-reasoning components. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
     ''
   ].join('\n')
   return { markdown, json: JSON.stringify(data, null, 2) }

@@ -191,7 +191,7 @@ export function Interview({
     }
   }, [model])
   useEffect(() => {
-    if (!state?.id || !debugMode) return
+    if (!state?.id) return
     let disposed = false
     const assessmentId = state.id
     void loadDebugOperations(assessmentId)
@@ -218,14 +218,14 @@ export function Interview({
     return () => {
       disposed = true
     }
-  }, [state?.id, debugMode])
+  }, [state?.id])
   async function act(operation: Operation) {
     if (!current.current || pending.current || conflict || rawBackup) return
     const snapshot = current.current
     const payload = {
       assessment: serverSnapshot(snapshot),
       operation,
-      debug: debugMode
+      debug: true
     }
     const key = JSON.stringify(payload)
     const id =
@@ -253,10 +253,39 @@ export function Interview({
       const body = (await response.json()) as AssessmentResponse & {
         error?: string
       }
-      if (!response.ok)
+      if (!response.ok) {
+        const failed: SavedDebugOperation = {
+          trace: body.debug ?? {
+            requestId: id,
+            baseRevision: snapshot.revision,
+            stages: [],
+            decisions: [
+              {
+                action:
+                  'request rejected before a diagnostic trace was returned',
+                detail: { status: response.status }
+              }
+            ],
+            elapsedMs: 0
+          },
+          provider: fixture ? 'fixture' : 'live',
+          createdAt: new Date().toISOString(),
+          operation,
+          error: body.error || 'Request failed'
+        }
+        try {
+          setDebugOperations(await saveDebugOperation(snapshot.id, failed))
+        } catch {
+          setDebugOperations((present) => [...present, failed])
+          setDebugStorageNotice(
+            'The failed-step trace is available for this visit but could not be saved.'
+          )
+        }
+        setTrace(failed.trace)
         throw new Error(
           body.error || 'The evaluator is unavailable. Your answer is saved.'
         )
+      }
       if (
         !current.current ||
         !matchesResponse(current.current, body, pending.current?.id ?? '')
@@ -274,7 +303,9 @@ export function Interview({
         ? {
             trace: body.debug,
             provider: body.provider,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            operation,
+            assessment: { ...next, draft: '', interactionHistory: [] }
           }
         : undefined
       if (operationTrace) {
@@ -438,7 +469,10 @@ export function Interview({
             Local authoring draft · review pending
           </Badge>
         </div>
-        <ConversationHistory turns={showResult ? turns : turns.slice(0, -1)} />
+        <ConversationHistory
+          turns={showResult ? turns : turns.slice(0, -1)}
+          operations={debugMode ? debugOperations : undefined}
+        />
         <div className='flex flex-col gap-6'>
           {showResult ? (
             <ResultView
@@ -446,6 +480,7 @@ export function Interview({
               act={(op) => void act(op)}
               busy={busy || conflict}
               onError={setError}
+              operations={debugOperations}
             />
           ) : (
             <>

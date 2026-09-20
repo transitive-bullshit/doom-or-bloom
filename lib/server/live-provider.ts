@@ -135,10 +135,28 @@ export function createLiveProvider(model: string): Provider {
       if (signal) signals.push(signal)
       const boundedSignal = AbortSignal.any(signals)
       const entries = Object.entries(questions)
-      const batchSize =
-        Buffer.byteLength(JSON.stringify({ state, questions })) > 100_000
-          ? 8
-          : limits.questions
+      // Pack questions to the byte budget instead of turning a request just
+      // above the boundary into dozens of eight-question round trips.
+      const oversizedState = Buffer.byteLength(JSON.stringify(state)) > 90_000
+      const batches: Array<typeof entries> = []
+      let pending: typeof entries = []
+      for (const entry of entries) {
+        const proposed = [...pending, entry]
+        const bytes = Buffer.byteLength(
+          JSON.stringify({ state, questions: Object.fromEntries(proposed) })
+        )
+        if (
+          pending.length &&
+          (oversizedState
+            ? proposed.length > 8
+            : bytes > 100_000 || proposed.length > limits.questions)
+        ) {
+          batches.push(pending)
+          pending = []
+        }
+        pending.push(entry)
+      }
+      if (pending.length) batches.push(pending)
       const results: Evaluation[] = []
       const evaluateBatch = async (
         part: Array<[string, Question]>,
@@ -194,8 +212,7 @@ export function createLiveProvider(model: string): Provider {
         }
       }
       try {
-        for (let offset = 0; offset < entries.length; offset += batchSize)
-          await evaluateBatch(entries.slice(offset, offset + batchSize))
+        for (const batch of batches) await evaluateBatch(batch)
       } catch (err) {
         throw new EvaluationFailure(
           err,

@@ -131,7 +131,7 @@ test('an independent pair check can reject a preliminary tension signal', async 
   expect(
     response.debug!.stages.find((stage) => stage.name === 'D: projection')!
       .state
-  ).toHaveProperty('unresolved', [])
+  ).not.toHaveProperty('unresolved')
   expect(
     response.debug!.decisions.some(
       (decision) =>
@@ -307,7 +307,10 @@ function unresolvedOutlookProvider(
       for (const [id, question] of Object.entries(questions)) {
         if (id.endsWith(':novelty'))
           result.answers[id] = { type: 'noul', noul: 0.02 }
-        if (id === 'facet:overall_outlook' && question.type === 'choice')
+        if (
+          ['facet:overall_outlook', 'facet:outlook_orientation'].includes(id) &&
+          question.type === 'choice'
+        )
           result.answers[id] = {
             type: 'choice',
             choice:
@@ -348,8 +351,8 @@ function unresolvedOutlookProvider(
 
 test.each([
   ['not_expressed', 'answering', 2, 'impact.overall'],
-  ['tentative', 'answering', 2, 'impact.overall'],
-  ['ambiguous', 'answering', 2, 'impact.overall'],
+  ['tentative', 'results', 1, 'root'],
+  ['ambiguous', 'results', 1, 'root'],
   ['explicitly_unknown', 'results', 1, 'root']
 ] as const)(
   'outlook %s distinguishes missing information from indecision despite low novelty',

@@ -1,6 +1,7 @@
 'use client'
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
+import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import { WorldviewDetails } from './worldview-details'
 import { Map } from './worldview-map'
 import { AnswerDisclosure } from './conversation'
@@ -19,12 +20,14 @@ export function ResultView({
   state,
   act,
   busy,
-  onError
+  onError,
+  operations = []
 }: {
   state: Assessment
   act: (operation: Operation) => void
   busy: boolean
   onError: (message: string) => void
+  operations?: SavedDebugOperation[]
 }) {
   const result = state.result!
   const supportingAnswers = (evidenceIds: string[]) => {
@@ -36,7 +39,7 @@ export function ResultView({
     return state.answers.filter((answer) => ids.has(answer.id))
   }
   const report = () => {
-    const { markdown } = serializeReport(state)
+    const { markdown } = serializeReport(state, operations)
     downloadBlob(
       new Blob([markdown], { type: 'text/markdown' }),
       'doom-or-bloom-report.md'

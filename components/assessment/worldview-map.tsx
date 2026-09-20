@@ -271,7 +271,7 @@ export function Map({
           fill='var(--map-muted)'
           fontSize='12'
         >
-          EXPECTED OUTLOOK →
+          EXPRESSED OUTLOOK →
         </text>
         <text
           x={px(1)}
@@ -291,7 +291,7 @@ export function Map({
           fill='var(--map-muted)'
           fontSize='12'
         >
-          More anticipated loss
+          Concern about harmful futures
         </text>
         <text
           x={px(1)}
@@ -301,12 +301,12 @@ export function Map({
           fill='var(--map-muted)'
           fontSize='12'
         >
-          More anticipated flourishing
+          Hope for beneficial futures
         </text>
       </svg>
       <div className='map-muted -mt-1 mb-4 flex justify-between gap-4 text-xs sm:hidden'>
-        <span>Expected loss</span>
-        <span>Expected flourishing</span>
+        <span>Concern</span>
+        <span>Hope</span>
       </div>
       {!point && (
         <p className='map-muted mb-3 text-sm'>
@@ -314,6 +314,7 @@ export function Map({
           yet know.
         </p>
       )}
+      {x.claim && <p className='map-muted mb-3 text-sm'>{x.claim}</p>}
       <figcaption className='map-muted flex flex-wrap gap-x-5 gap-y-2 text-xs'>
         <span className='flex items-center gap-2'>
           <span className='map-point size-2 rounded-full' />
@@ -330,9 +331,10 @@ export function Map({
         <div>
           <p className='font-semibold'>Across: what future do you expect?</p>
           <p className='map-muted mt-2 text-xs leading-relaxed'>
-            Your overall expected impact, under the conditions you describe. An
-            unknown balance stays unplaced. Support for slowing or accelerating
-            AI does not determine this position.
+            Your expressed outlook, including conditional views. A middle
+            position can mean mixed or undecided, not equal expected benefits
+            and harms. Support for slowing or accelerating AI does not determine
+            this position.
           </p>
         </div>
         <div>

@@ -79,7 +79,7 @@ test('legacy corpus links cannot enter current projection context', () => {
   expect(input).not.toHaveProperty('referenceClaims')
   expect(input).not.toHaveProperty('referencePolicy')
   expect(input.activeSupport[0]).not.toHaveProperty('referenceIds')
-  expect(input.unresolved).toEqual([])
+  expect(input).not.toHaveProperty('unresolved')
   for (const reference of bundle.references)
     expect(JSON.stringify(input)).not.toContain(reference.summary)
   for (const dimension of bundle.rubric.dimensions)
@@ -87,4 +87,16 @@ test('legacy corpus links cannot enter current projection context', () => {
       label: dimension.label,
       meaning: dimension.meaning
     })
+})
+
+test('an unverified tension cannot become independent projection evidence', () => {
+  const state = createAssessment('suspected-conflict')
+  const before = projectionInput(state, loadBundle())
+  state.unresolved.push({
+    id: 'suspicion',
+    vector: 'internal_coherence',
+    kind: 'tension',
+    evidenceIds: []
+  })
+  expect(projectionInput(state, loadBundle())).toEqual(before)
 })

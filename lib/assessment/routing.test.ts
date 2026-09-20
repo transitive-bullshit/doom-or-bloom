@@ -93,7 +93,7 @@ test('deleted questions are absent for every saved corpus and confidence questio
     for (const vector of Object.keys(state.coverage))
       state.coverage[vector as keyof typeof state.coverage] = 'assessed'
     const candidates = candidatePrompts(state, bundle.prompts)
-    expect(bundle.prompts).toHaveLength(35)
+    expect(bundle.prompts).toHaveLength(36)
     for (const id of removed) {
       expect(bundle.prompts.some((prompt) => prompt.id === id)).toBe(false)
       expect(candidates.some((candidate) => candidate.prompt.id === id)).toBe(

@@ -8,6 +8,7 @@ import { liveJourneyBudget, meterJev } from './live-budget'
 import { runJourneySuite, runPersona, journeyHashes } from './runner'
 import { projectJourneyStore } from './store'
 import type { Journey } from './schema'
+import { fixedUserPersona } from './fixed'
 import { personas } from './catalog'
 import { loadBundle } from '@/lib/content/loader'
 import { suiteSchema } from './schema'
@@ -25,7 +26,10 @@ export async function runLiveJourneys({
   maxCost?: number
   onJourney?: (journey: Journey) => void
 } = {}) {
-  if (personaId && !personas.some((p) => p.id === personaId))
+  if (
+    personaId &&
+    ![...personas, fixedUserPersona].some((p) => p.id === personaId)
+  )
     throw new Error('Unknown persona')
   if (!Number.isInteger(turns) || turns < 1 || turns > 6)
     throw new Error('Journey turn bound is 1–6')

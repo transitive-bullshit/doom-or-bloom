@@ -1,3 +1,4 @@
+import { AssessmentFailure } from '@/lib/server/assessment-failure'
 import { APIError } from '@typesafe-ai/sdk'
 import { ZodError } from 'zod'
 import { requestSchema, assessmentSchema } from '@/lib/assessment/schema'
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
           input,
           provider,
           loadBundle(input.assessment.versions.content),
-          env.debug,
+          true,
           request.signal
         )
         assessmentSchema.parse(response.assessment)
@@ -46,6 +47,11 @@ export async function POST(request: Request) {
     )
     return Response.json(result, { headers })
   } catch (err) {
+    if (err instanceof AssessmentFailure)
+      return Response.json(
+        { error: err.message, debug: err.trace },
+        { status: 503, headers }
+      )
     let status = 400
     let message =
       'That operation could not be completed. Your answer is still saved; try again.'
