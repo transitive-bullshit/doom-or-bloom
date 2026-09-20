@@ -25,12 +25,9 @@ async function main() {
   const selection = process.argv
     .find((arg) => arg.startsWith('--persona='))
     ?.slice('--persona='.length)
-  for (const personaId of [
-    'dogmatic-doomer',
-    'high-risk-accelerator',
-    'worried-novice'
-  ]) {
-    if (selection && personaId !== selection) continue
+  for (const personaId of selection
+    ? selection.split(',')
+    : ['dogmatic-doomer', 'high-risk-accelerator', 'worried-novice']) {
     const opening = suite.journeys
       .find((j) => j.personaId === personaId)
       ?.steps.find((s) => s.disposition === 'usable')
@@ -65,7 +62,9 @@ async function main() {
       JSON.stringify({
         ...observation,
         trace: undefined,
-        result: Boolean(state.result),
+        result: undefined,
+        outlook: state.result?.horizontal,
+        reasoning: state.result?.vertical.value,
         tensionLocation: undefined
       })
     )

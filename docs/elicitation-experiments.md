@@ -100,3 +100,47 @@ Latest live suite: `1789849060050-17c2e5ec-93aa-4b42-90fb-fe462ca8654c` — 15 p
 Validation: 168 unit tests; type, lint and content checks; current mechanical baseline; focused live comparisons; repeated full live suites; browser verification. These are development observations, not held-out validation, calibrated confidence intervals or a causal estimate of efficiency gains. Participant simulation and Jev judgments still vary across regenerated wording. Source-pair verification and current-revision caching address observed failure modes without claiming to remove model variance.
 
 The original audit's follow-ups on late low-value questions, within-answer tension detection, question opportunity, projection disagreement, policy conflation, persona verbosity and automatic stopping are addressed in this round. Next experiments should use fixed-prefix holdouts and human recognizability judgments to calibrate stopping and interpretation thresholds, rather than adding generic questions to fill every dimension.
+
+## Follow-up: proxy fidelity and missing outlook — 2026-09-20
+
+User review exposed two regressions in the preceding run: public proxies had become uniformly terse, and the optimistic builder ended unplaced. The expected map regions are diagnostic expectations for deliberately authored stress characters, not numerical targets sent to the participant or Jev.
+
+### Reproduction and controlled checks
+
+The saved suite had 56 words in the alarmist opening, 47 in the builder opening and 64 in the pacer opening; both brief personas opened with 15 words. The alarmist's reasoning was 0.762, with grounding 0.640, appropriate uncertainty 0.617 and counterargument engagement 0.743. The builder's final overall-outlook distribution assigned 0.46 to not expressed, 0.13 to explicitly unknown and 0.35 to positive categories. Its overall-impact question had positive utility but novelty 0.54, below the global 0.60 cutoff. The pacer showed the same routing failure.
+
+1. Changing only response detail produced a 227-word alarmist opening and reasoning 0.834. It still omitted much of the intended technical argument and stopped after one answer. The builder remained unplaced despite a fuller, optimistic opening.
+2. Replaying the exact detailed builder opening with clarified overall-outlook semantics produced a 0.770 Bloom coordinate. An adopted positive forecast need not use the literal phrase “net positive”; safety conditions and risks do not automatically erase it. Explicit uncertainty and merely desirable scenarios remain separate.
+3. Expanding the alarmist's existing engineering argument—behavior versus goals, irreversible trial-and-error, the actual case for iterative deployment, and uncertainty about timing versus technical control—produced 0.920 reasoning and 0.000 outlook over two answers. No reasoning rubric, score normalization, weights, thresholds or participant-identity input changed. This was a simulation-fidelity problem, not evidence that expert personas should receive automatic maximum scores.
+
+### Changes retained
+
+- Per-persona response styles: detailed, conversational and brief. All five public proxies, the high-risk strategist and labor organizer develop fuller arguments. Only the two explicitly brief personas receive the 5–20-word guidance. Detailed openings normally span 160–300 words; follow-ups focus on the question rather than reciting the character brief.
+- Restore the builder's ambitious expected prosperity. Author the pacer as a conditional long-run optimist under deliberate pacing and successful safety work; this is a selected fictional test stance, not a claim to reproduce a person's private forecast.
+- Preserve strongly implied adopted overall expectations despite caveats. Symmetric treatment of pessimistic forecasts and possible escape routes.
+- When the current shared result is unplaced and missing/unknown mass is at least 0.30, offer the authored overall-impact question once before automatic completion, unless explicit-unknown probability is at least 0.75. Respect normal eligibility and the prompt cap. Never repeat it until a desired answer appears. Tension clarification retains priority. A tentative placed outlook also gets that opportunity when its range spans at least 0.75 and combined missing/unknown mass is at least 0.15. Routing receives the profile distributions, distinguishing missingness from expressed uncertainty.
+- A useful crux about unassessed updateability uses a 0.50 novelty cutoff instead of 0.60. This does not apply when poor updateability is already demonstrated.
+- Replace the capability-by-2040 question with capability-by-2030, including its ID and novelty group in all local catalogs. No deprecated question retained.
+- Add per-answer word counts and response style to the repeatable journey review report.
+
+The broad interpretation ranges remain heuristic. In particular, the existing worst-case treatment of unplaced probability can yield a broad range even with a directional point estimate; that does not establish that the participant personally assigns substantial probability to both extremes. Exact proximity to 100% reasoning is an observation to inspect, not a reason to bend the rubric around a named proxy.
+
+A further bounded pacer experiment tested that range rule: the first answer produced outlook 0.756 with range [0, 1]. The normal engine asked the overall-impact question, and the generated participant clarified its adopted conditional expectation. Outlook became 0.768 with range [0.750, 0.768], retaining the same conditions in the source answer. A later control question preserved that placement. No range calculation changed; new participant evidence resolved the interpretation.
+
+The repeat suite exposed stopping variability that the first successful cases did not: the alarmist stopped at 0.871 reasoning without an updateability answer because its useful crux had novelty 0.58; the pacer's scoped optimistic forecast was classified as uncertain (0.53 explicitly unknown, 0.25 not expressed) and the useful overall-impact question had novelty 0.49. Replaying those exact openings after the final rules correctly selected `crux.general` and `impact.overall`, respectively. The 0.90 alarmist diagnostic failed on that repeat and was not hidden by selecting the earlier favorable run. The final full suite below supersedes these experiments.
+
+### Latest retained suite
+
+`1789886972647-9da26bcb-2c45-4c14-93fd-25e8855e3372`: 15 personas, 38 accepted answers, 119 physical Jev requests, $0.4238 estimated cost. Fourteen automatic results; the playful recovery case paused after the generated participant echoed the recovery message rather than answering. No transport failures. Keep this failure visible for follow-up instead of sampling it away.
+
+| Proxy              | Answers | Outlook (Doom 0–Bloom 100) | Reasoning |
+| ------------------ | ------: | -------------------------: | --------: |
+| control-alarmist   |       2 |                        0.5 |      94.5 |
+| cautious-builder   |       4 |                       81.8 |      83.4 |
+| abundance-advocate |       3 |                       90.8 |      85.4 |
+| anti-doomer        |       3 |                       91.0 |      75.0 |
+| frontier-pacer     |       4 |                       94.0 |      94.7 |
+
+Public openings span 201–274 words; the brief personas remain 14–17 words per answer. The original public-placement/detail checks now pass. The pacer still has a broad range despite a directional point, so overall uncertainty representation remains an open design issue rather than a solved calibration problem. The user’s subsequently supplied real report is being audited separately; its private answers are not checked into the repository.
+
+Validation of this follow-up: 176 unit tests plus formatting, lint, types and content checks; three desktop/mobile inspector browser scenarios against the running local server. The mechanical baseline changes were reviewed: question sequences were unchanged, while the capability identifier and missing-crux thresholds changed. The private-report audit uses a reusable CLI with an explicit paid-request bound and writes its results outside the repository.

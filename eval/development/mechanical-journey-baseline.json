@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-19T20:17:19.435Z",
+  "createdAt": "2026-09-20T06:52:11.840Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,8 +11,8 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "7d6d11912b8beda77cd87a4d6b19d21f488fcd512eef5663b97f38708dba18ec",
-  "contentHash": "22a60fde28e99842286a3cbf8be5d439f71d6e25d802b4ab53147a0f89d67fa2",
+  "engineHash": "aca95217aaa13e83e4ec8f80ea3a6613e46c5c23cc87c6ea74c1fd0e7ffeae5e",
+  "contentHash": "d89701113e4686f9781f88973bfed0f1e73e939725c58fb7a8884313beaddab8",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -571,7 +571,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -1207,7 +1207,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -1815,7 +1815,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -2451,7 +2451,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -3059,7 +3059,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -3695,7 +3695,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -4291,7 +4291,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -4915,7 +4915,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -5487,7 +5487,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -7544,7 +7544,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -8180,7 +8180,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -8788,7 +8788,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -9424,7 +9424,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -10032,7 +10032,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -10668,7 +10668,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -11264,7 +11264,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -11888,7 +11888,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -12460,7 +12460,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -14521,7 +14521,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -15157,7 +15157,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -15765,7 +15765,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -16401,7 +16401,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -17009,7 +17009,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -17645,7 +17645,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -18241,7 +18241,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -18865,7 +18865,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -19437,7 +19437,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -21376,7 +21376,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -21429,7 +21429,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.641666666666667,
               "coverage": 1.125,
               "ambiguity": 0,
@@ -21896,7 +21896,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -22069,7 +22069,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -22448,7 +22448,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -22633,7 +22633,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -23000,7 +23000,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -23185,7 +23185,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -23713,7 +23713,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -25455,7 +25455,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -26091,7 +26091,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -26699,7 +26699,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -27335,7 +27335,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -27943,7 +27943,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -28579,7 +28579,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -29175,7 +29175,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -29799,7 +29799,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -30371,7 +30371,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -32447,7 +32447,7 @@
               "effort": 0.55
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -33047,7 +33047,7 @@
               "effort": 0.55
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -33635,7 +33635,7 @@
               "effort": 0.55
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -34199,7 +34199,7 @@
               "effort": 0.55
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -34775,7 +34775,7 @@
               "effort": 0.55
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -36511,12 +36511,12 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.641666666666667,
               "coverage": 1.125,
               "ambiguity": 0,
@@ -37092,7 +37092,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.641666666666667,
               "coverage": 1.125,
               "ambiguity": 0,
@@ -37884,7 +37884,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -38472,7 +38472,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -39052,7 +39052,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -40916,7 +40916,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -41029,7 +41029,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -41444,7 +41444,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -41605,7 +41605,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -42020,7 +42020,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -42181,7 +42181,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -42596,7 +42596,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -42757,7 +42757,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -43160,7 +43160,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -43321,7 +43321,7 @@
               "effort": 0.2
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -45031,7 +45031,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.2666666666666666,
               "coverage": 1,
               "ambiguity": 0,
@@ -45559,7 +45559,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.2666666666666666,
               "coverage": 1,
               "ambiguity": 0,
@@ -46279,7 +46279,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -46855,7 +46855,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -47431,7 +47431,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,
@@ -49903,7 +49903,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -49968,7 +49968,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.641666666666667,
               "coverage": 1.125,
               "ambiguity": 0,
@@ -50467,7 +50467,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -50532,7 +50532,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.641666666666667,
               "coverage": 1.125,
               "ambiguity": 0,
@@ -51031,7 +51031,7 @@
               "tension": 0,
               "projection": 0.6666666666666666,
               "novelty": 1,
-              "noveltyThreshold": 0.6,
+              "noveltyThreshold": 0.5,
               "repetition": 0,
               "effort": 0.4
             },
@@ -51096,7 +51096,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.641666666666667,
               "coverage": 1.125,
               "ambiguity": 0,
@@ -51592,7 +51592,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 3.641666666666667,
               "coverage": 1.125,
               "ambiguity": 0,
@@ -52300,7 +52300,7 @@
               "effort": 0.4
             },
             {
-              "id": "capability.2040",
+              "id": "capability.2030",
               "priority": 0.2666666666666666,
               "coverage": 0,
               "ambiguity": 0,

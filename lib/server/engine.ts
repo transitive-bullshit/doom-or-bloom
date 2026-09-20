@@ -33,6 +33,7 @@ import {
 } from '@/lib/assessment/state'
 import {
   candidatePrompts,
+  needsOverallOutlookQuestion,
   rankCandidates,
   worthwhileCandidates,
   followUpNoveltyThreshold
@@ -439,6 +440,22 @@ export async function runAssessment(
         Math.floor((limits.questions - 2) / (state.unresolved.length ? 5 : 3))
       )
     if (!eligibleCandidates.length) return false
+    const overall = candidates.find(
+      (candidate) =>
+        candidate.prompt.id === 'impact.overall' && !candidate.reason
+    )
+    if (!deterministic && overall && needsOverallOutlookQuestion(state)) {
+      state = issuePrompt(state, promptDisplay(overall.prompt))
+      trace.decisions.push({
+        action:
+          'elicit missing overall expectation before automatic completion',
+        detail: {
+          id: overall.prompt.id,
+          distribution: state.result?.horizontal.distribution
+        }
+      })
+      return true
+    }
     let selected: Prompt
     if (deterministic || state.answers.length === 0)
       selected =
@@ -488,11 +505,14 @@ export async function runAssessment(
           )?.answer ?? null,
         interpretedProfile:
           state.result?.evidenceRevision === state.evidenceRevision
-            ? state.result.components.map(({ vector, value, claim }) => ({
-                vector,
-                value,
-                claim
-              }))
+            ? state.result.components.map(
+                ({ vector, value, claim, distribution }) => ({
+                  vector,
+                  value,
+                  distribution,
+                  claim
+                })
+              )
             : null,
         unresolved: state.unresolved,
         familiarity: state.familiarity.level,

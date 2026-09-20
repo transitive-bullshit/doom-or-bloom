@@ -876,3 +876,11 @@ Human review of persona scripts/semantic expectations remains open; these publis
 - [x] Verify automatic results and voluntary continuation in the real UI; complete the full requirement audit with the latest suite and server running.
 
 Approved scope and experiment rationale: `elicitation-audit-2026-09-20.md`. No fixed minimum question count. Stopping and confidence thresholds are empirical development rules, not claims of statistical significance until calibrated. User authorized bounded live OpenAI/Jev experiments and periodic full-suite runs.
+
+### 2026-09-20 — Proxy fidelity follow-up
+
+- [x] Reproduce uniform brevity, the unplaced optimistic builder, and the alarmist's lower reasoning in saved live evidence; isolate simulation detail from outlook interpretation.
+- [x] Restore per-persona detail, expand the alarmist's source-grounded engineering argument, and retain deliberately terse participants.
+- [x] Interpret adopted optimistic forecasts despite safety caveats; give missing overall expectations one direct elicitation opportunity without forcing explicitly undecided participants.
+- [x] Replace the 2040 capability question and identifier with 2030 throughout the active local catalogs.
+- [x] Regenerate and review the full live suite and verify the original public-proxy/detail regressions. Retain the newly observed playful-recovery failure and broad conditional-outlook range as explicit follow-ups; audit the user’s real report separately.

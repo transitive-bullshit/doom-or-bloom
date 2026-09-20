@@ -600,15 +600,15 @@
     "status": "draft"
   },
   {
-    "id": "capability.2040",
-    "text": "What do you expect AI to be able to do by 2040?",
+    "id": "capability.2030",
+    "text": "What do you expect AI to be able to do by 2030?",
     "family": "capability",
     "readingLevel": "general",
     "prerequisites": [],
     "exclusions": [],
     "targets": ["capability_trajectory", "scope_discipline"],
     "effort": 0.4,
-    "noveltyGroup": "capability-2040",
+    "noveltyGroup": "capability-2030",
     "maxUses": 1,
     "permittedAfter": ["*"],
     "recoveryVariants": {

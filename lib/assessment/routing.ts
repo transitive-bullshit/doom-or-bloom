@@ -64,6 +64,30 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
     return { prompt, reason, missing, repetition, calibration }
   })
 }
+
+// One direct opportunity to establish the map's central claim. Silence and
+// genuine indecision are different; never keep asking until a position appears.
+export function needsOverallOutlookQuestion(state: Assessment) {
+  const result = state.result
+  if (
+    !result ||
+    result.evidenceRevision !== state.evidenceRevision ||
+    state.prompts.some((prompt) => prompt.promptId === 'impact.overall')
+  )
+    return false
+  const distribution = result.horizontal.distribution
+  const missing = distribution.not_expressed ?? 0
+  const unknown = distribution.explicitly_unknown ?? 0
+  // Ask once when the interpretation is unsettled. Dominant explicit
+  // indecision is already an answer, not something to pressure into a forecast.
+  if (unknown >= 0.75) return false
+  if (result.horizontal.value === null) return missing + unknown >= 0.3
+  return (
+    result.horizontal.range[1] - result.horizontal.range[0] >= 0.75 &&
+    missing + unknown >= 0.15
+  )
+}
+
 export function rankCandidates(
   state: Assessment,
   prompts: Prompt[],
@@ -118,7 +142,15 @@ export function rankCandidates(
         item.prompt.id === 'grounding.general' && basis?.type === 'noul'
           ? 1 - basis.noul
           : 0
-      const noveltyThreshold = basisGap >= 0.75 ? 0.5 : followUpNoveltyThreshold
+      const unaskedCrux =
+        item.prompt.id === 'crux.general' &&
+        state.result?.evidenceRevision === state.evidenceRevision &&
+        state.result.components.some(
+          (component) =>
+            component.vector === 'updateability' && component.value === null
+        )
+      const noveltyThreshold =
+        basisGap >= 0.75 || unaskedCrux ? 0.5 : followUpNoveltyThreshold
       const projection = normalized(`${item.prompt.id}:projection`)
       const priority =
         basisGap +

@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 import { loadBundle } from '@/lib/content/loader'
 import { createAssessment } from '@/lib/assessment/state'
-import { createFixtureProvider } from './provider'
+import { createFixtureProvider, fixtureAnswer } from './provider'
 import type { Provider } from './provider'
 import { runAssessment } from './engine'
 
@@ -295,3 +295,174 @@ test('doubling down preserves an unresolved tension without repeating its clarif
     reply.assessment.unresolved.some((issue) => issue.kind === 'tension')
   ).toBe(true)
 })
+
+function unresolvedOutlookProvider(
+  position: 'not_expressed' | 'explicitly_unknown' | 'tentative' | 'ambiguous'
+): Provider {
+  const fixture = createFixtureProvider()
+  return {
+    kind: 'fixture',
+    async evaluate(state, questions) {
+      const result = await fixture.evaluate(state, questions)
+      for (const [id, question] of Object.entries(questions)) {
+        if (id.endsWith(':novelty'))
+          result.answers[id] = { type: 'noul', noul: 0.02 }
+        if (id === 'facet:overall_outlook' && question.type === 'choice')
+          result.answers[id] = {
+            type: 'choice',
+            choice:
+              position === 'tentative'
+                ? '3'
+                : position === 'ambiguous'
+                  ? 'explicitly_unknown'
+                  : position,
+            confidence: position === 'tentative' ? 0.75 : 1,
+            probabilities: Object.fromEntries(
+              Object.keys(question.criteria).map((key) => [
+                key,
+                position === 'tentative'
+                  ? ((
+                      {
+                        '3': 0.75,
+                        not_expressed: 0.1,
+                        explicitly_unknown: 0.15
+                      } as Record<string, number>
+                    )[key] ?? 0)
+                  : position === 'ambiguous'
+                    ? ((
+                        {
+                          '3': 0.22,
+                          not_expressed: 0.25,
+                          explicitly_unknown: 0.53
+                        } as Record<string, number>
+                      )[key] ?? 0)
+                    : Number(key === position)
+              ])
+            )
+          }
+      }
+      return result
+    }
+  }
+}
+
+test.each([
+  ['not_expressed', 'answering', 2, 'impact.overall'],
+  ['tentative', 'answering', 2, 'impact.overall'],
+  ['ambiguous', 'answering', 2, 'impact.overall'],
+  ['explicitly_unknown', 'results', 1, 'root']
+] as const)(
+  'outlook %s distinguishes missing information from indecision despite low novelty',
+  async (position, status, count, promptId) => {
+    const first = await runAssessment(
+      {
+        assessment: createAssessment(`outlook-${position}`),
+        requestId: 'opening',
+        debug: true,
+        operation: {
+          type: 'answer',
+          text: 'Large benefits and serious harms are possible.'
+        }
+      },
+      unresolvedOutlookProvider(position),
+      loadBundle(),
+      true
+    )
+    expect(first.assessment.result?.horizontal.value).toBe(
+      position === 'tentative' ? 0.75 : null
+    )
+    expect(first.assessment.status).toBe(status)
+    expect(first.assessment.prompts).toHaveLength(count)
+    expect(first.assessment.prompts.at(-1)?.promptId).toBe(promptId)
+  }
+)
+
+test('the direct overall question cannot repeat until a directional answer appears', async () => {
+  const provider = unresolvedOutlookProvider('not_expressed')
+  const first = await runAssessment(
+    {
+      assessment: createAssessment('bounded-outlook'),
+      requestId: 'opening',
+      debug: false,
+      operation: {
+        type: 'answer',
+        text: 'Large benefits and serious harms are possible.'
+      }
+    },
+    provider,
+    loadBundle()
+  )
+  const second = await runAssessment(
+    {
+      assessment: first.assessment,
+      requestId: 'still-unplaced',
+      debug: false,
+      operation: {
+        type: 'answer',
+        text: 'I cannot give you an overall forecast.'
+      }
+    },
+    provider,
+    loadBundle()
+  )
+  expect(second.assessment.result?.horizontal.value).toBeNull()
+  expect(second.assessment.status).toBe('results')
+  expect(second.assessment.prompts).toHaveLength(2)
+})
+
+test.each([true, false])(
+  'a borderline novel crux is useful only when updateability is unassessed: %s',
+  async (missing) => {
+    const fixture = createFixtureProvider()
+    const provider: Provider = {
+      kind: 'fixture',
+      async evaluate(state, questions) {
+        const result = await fixture.evaluate(state, questions)
+        for (const [id, question] of Object.entries(questions)) {
+          if (id.endsWith(':novelty'))
+            result.answers[id] = {
+              type: 'noul',
+              noul: id === 'crux.general:novelty' ? 0.58 : 0.02
+            }
+          if (
+            id === 'updateability:status' &&
+            missing &&
+            question.type === 'choice'
+          )
+            result.answers[id] = {
+              type: 'choice',
+              choice: 'not_expressed',
+              confidence: 1,
+              probabilities: Object.fromEntries(
+                Object.keys(question.criteria).map((key) => [
+                  key,
+                  Number(key === 'not_expressed')
+                ])
+              )
+            }
+          if (id === 'updateability:score' && !missing)
+            result.answers[id] = fixtureAnswer(question, undefined, 0)
+        }
+        return result
+      }
+    }
+    const response = await runAssessment(
+      {
+        assessment: createAssessment(`crux-${missing}`),
+        requestId: 'opening',
+        debug: true,
+        operation: {
+          type: 'answer',
+          text: 'I expect serious harm, because I think powerful systems cannot be controlled.'
+        }
+      },
+      provider,
+      loadBundle(),
+      true
+    )
+    expect(response.assessment.status).toBe(missing ? 'answering' : 'results')
+    expect(response.assessment.prompts.at(-1)?.promptId).toBe(
+      missing ? 'crux.general' : 'root'
+    )
+  }
+)

@@ -18,6 +18,7 @@ export const personaSchema = z.strictObject({
     })
   ),
   voice: z.array(z.string()).optional(),
+  responseStyle: z.enum(['brief', 'conversational', 'detailed']).optional(),
   familiarity: z.enum(['general', 'expert']),
   background: z.string().min(1),
   beliefs: z.array(z.string().min(1)).min(1)
@@ -54,6 +55,7 @@ export const personas: Persona[] = z.array(personaSchema).parse([
   },
   {
     id: 'high-risk-accelerator',
+    responseStyle: 'detailed',
     name: 'High-risk accelerator',
     proxy: 'Fictional · competitive security strategist',
     description:
@@ -100,6 +102,7 @@ export const personas: Persona[] = z.array(personaSchema).parse([
   },
   {
     id: 'labor-organizer',
+    responseStyle: 'detailed',
     voice: [
       'Speak concretely about wages, schedules, monitoring, bargaining and appeal rights. You know workplace issues, not AI internals. Do not use corrigibility, adversarial testing, interpretability or other technical safety concepts unless explaining that you do not know what they mean.'
     ],
@@ -201,6 +204,7 @@ export const personas: Persona[] = z.array(personaSchema).parse([
   },
   {
     id: 'brief-pragmatist',
+    responseStyle: 'brief',
     name: 'Brief pragmatist',
     proxy: 'Fictional · busy office worker',
     description:
@@ -227,6 +231,7 @@ export const personas: Persona[] = z.array(personaSchema).parse([
   },
   {
     id: 'brief-job-worrier',
+    responseStyle: 'brief',
     name: 'Brief job worrier',
     proxy: 'Fictional · anxious customer-support worker',
     description:

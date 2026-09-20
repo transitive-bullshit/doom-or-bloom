@@ -13,7 +13,27 @@ const bundle = loadBundle()
 const usage = new Map<string, number>()
 const journeys = suite.journeys.map((journey) => {
   const answers = journey.steps.filter((step) => step.disposition === 'usable')
+  const style =
+    journey.personaSnapshot && 'responseStyle' in journey.personaSnapshot
+      ? (journey.personaSnapshot.responseStyle ?? 'conversational')
+      : 'conversational'
+  const answerWords = answers.map(
+    (step) => step.answer?.trim().split(/\s+/).length ?? 0
+  )
   const flags: Array<{ answer: number; reason: string }> = []
+  if (style === 'detailed' && (answerWords[0] ?? 0) < 120)
+    flags.push({
+      answer: 1,
+      reason:
+        'Detailed persona gave a short opening: inspect simulation fidelity.'
+    })
+  if (style === 'brief')
+    for (const [index, words] of answerWords.entries())
+      if (words > 30)
+        flags.push({
+          answer: index + 1,
+          reason: 'Brief persona became verbose: inspect simulation fidelity.'
+        })
   for (const [index, step] of answers.entries()) {
     usage.set(step.prompt.promptId, (usage.get(step.prompt.promptId) ?? 0) + 1)
     const previous = answers[index - 1]
@@ -55,6 +75,8 @@ const journeys = suite.journeys.map((journey) => {
   return {
     personaId: journey.personaId,
     accepted: journey.accepted,
+    responseStyle: style,
+    answerWords,
     words: answers.reduce(
       (sum, step) => sum + (step.answer?.trim().split(/\s+/).length ?? 0),
       0

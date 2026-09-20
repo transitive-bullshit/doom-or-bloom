@@ -23,6 +23,7 @@ test('participant sees character beliefs and actual conversation, never fixture 
   expect(input.background.beliefs).toEqual(context.persona.beliefs)
   expect(input.background.sources).toEqual(context.persona.sources)
   expect(input.background.voice).toEqual(context.persona.voice)
+  expect(input.background.responseStyle).toBe('detailed')
   expect(request.model).toBe('gpt-5.6-sol')
   for (const key of [
     'levels',
@@ -92,6 +93,7 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
   ])
   expect(JSON.stringify(seen)).not.toContain('control-alarmist')
   expect(JSON.stringify(seen)).not.toContain('openingVectors')
+  expect(JSON.stringify(seen)).not.toContain('responseStyle')
   expect(JSON.stringify(journey)).not.toContain('fake-secret')
   expect(journey.steps).toHaveLength(2)
   expect(journey.steps.map((step) => step.result?.evidenceRevision)).toEqual([
@@ -262,4 +264,17 @@ test('a failed shared interpretation resumes the saved answer without generating
   expect(resumed.steps).toHaveLength(1)
   expect(resumed.steps[0]!.result?.evidenceRevision).toBe(1)
   expect(resumed.steps[0]!.resultUnavailable).toBeUndefined()
+})
+
+test('response detail is per persona and never leaks into the evaluator', () => {
+  for (const id of ['brief-pragmatist', 'brief-job-worrier']) {
+    const persona = personas.find((item) => item.id === id)!
+    const request = participantRequest({ ...context, persona })
+    expect(JSON.parse(request.input).background.responseStyle).toBe('brief')
+  }
+  const novice = personas.find((item) => item.id === 'worried-novice')!
+  expect(
+    JSON.parse(participantRequest({ ...context, persona: novice }).input)
+      .background.responseStyle
+  ).toBe('conversational')
 })
