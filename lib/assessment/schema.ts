@@ -191,6 +191,7 @@ export const componentSchema = z.strictObject({
   range: z.tuple([probability, probability]),
   distribution: z.record(z.string(), probability),
   confidence: probability.nullable(),
+  interpretation: z.enum(['supported', 'tentative', 'unsettled']).optional(),
   evidenceIds: z.array(z.string()).max(200),
   claim: z.string().max(2000).nullable(),
   reasoningEvidence: z
@@ -213,7 +214,12 @@ export const experimentQuoteSchema = z.strictObject({
   bounds: z.tuple([probability, probability]).optional()
 })
 export const worldviewExperimentSchema = z.strictObject({
-  version: z.enum(['worldview-v1', 'worldview-v2', 'worldview-v3']),
+  version: z.enum([
+    'worldview-v1',
+    'worldview-v2',
+    'worldview-v3',
+    'worldview-v4'
+  ]),
   model: z.string(),
   generatedAt: z.string(),
   evidenceRevision: z.number().int().nonnegative(),

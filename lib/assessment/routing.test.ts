@@ -93,7 +93,7 @@ test('deleted questions are absent for every saved corpus and confidence questio
     for (const vector of Object.keys(state.coverage))
       state.coverage[vector as keyof typeof state.coverage] = 'assessed'
     const candidates = candidatePrompts(state, bundle.prompts)
-    expect(bundle.prompts).toHaveLength(36)
+    expect(bundle.prompts).toHaveLength(38)
     for (const id of removed) {
       expect(bundle.prompts.some((prompt) => prompt.id === id)).toBe(false)
       expect(candidates.some((candidate) => candidate.prompt.id === id)).toBe(
@@ -324,4 +324,47 @@ test('supported dimensions retain proportional routing gaps until evidence suppo
     kind: 'ambiguity'
   })
   expect(gap()).toBe(0.5)
+})
+
+test('unexplored map axes get one direct question while explicit indecision can finish', async () => {
+  const { missingMapQuestion } = await import('./routing')
+  const { baseResult, emptyComponent } = await import('./projections')
+  const { buildWorldviewExperiment, experimentCandidates } =
+    await import('./worldview-experiment')
+  const state = createAssessment('map-followup')
+  state.result = baseResult(state, [], loadBundle().rubric)
+  const input = { completeParticipantEvidence: [], activeSupport: [] }
+  state.result.experiment = buildWorldviewExperiment(
+    input,
+    experimentCandidates(input),
+    {},
+    state.evidenceRevision,
+    'fixture-v1'
+  )
+  state.result.experiment.influence = {
+    ...emptyComponent('influence', 'Human influence'),
+    value: 0.5,
+    range: [0, 1],
+    distribution: { not_expressed: 0.6, '2': 0.4 }
+  }
+  state.result.experiment.transformation = {
+    ...emptyComponent('transformation', 'Scale'),
+    value: 0.5,
+    range: [0, 1],
+    distribution: { explicitly_unknown: 0.8, not_expressed: 0.2 }
+  }
+  expect(missingMapQuestion(state)).toBe('influence.general')
+  state.prompts.push({
+    ...state.prompts[0]!,
+    id: 'influence-question',
+    promptId: 'influence.general'
+  })
+  expect(missingMapQuestion(state)).toBeNull()
+  state.result.experiment.transformation.distribution = {
+    not_expressed: 0.9,
+    '1': 0.1
+  }
+  expect(missingMapQuestion(state)).toBe('transformation.general')
+  state.evidenceRevision++
+  expect(missingMapQuestion(state)).toBeNull()
 })

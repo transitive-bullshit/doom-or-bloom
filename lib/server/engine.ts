@@ -35,6 +35,7 @@ import {
 import {
   candidatePrompts,
   needsOverallOutlookQuestion,
+  missingMapQuestion,
   rankCandidates,
   worthwhileCandidates,
   followUpNoveltyThreshold
@@ -511,6 +512,21 @@ export async function runAssessment(
         Math.floor((limits.questions - 2) / (state.unresolved.length ? 6 : 4))
       )
     if (!eligibleCandidates.length) return false
+    const mapQuestion = !deterministic ? missingMapQuestion(state) : null
+    const mapCandidate = candidates.find(
+      (candidate) => candidate.prompt.id === mapQuestion && !candidate.reason
+    )
+    if (mapCandidate) {
+      state = issuePrompt(state, promptDisplay(mapCandidate.prompt))
+      trace.decisions.push({
+        action: 'elicit unexplored map axis before automatic completion',
+        detail: {
+          id: mapCandidate.prompt.id,
+          experiment: state.result?.experiment
+        }
+      })
+      return true
+    }
     const overall = candidates.find(
       (candidate) =>
         candidate.prompt.id === 'impact.overall' && !candidate.reason

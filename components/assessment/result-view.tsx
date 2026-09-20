@@ -2,7 +2,6 @@
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
-import { WorldviewDetails } from './worldview-details'
 import { ExperimentalResults } from './experimental-results'
 import { AnswerDisclosure } from './conversation'
 import { Button } from '@/components/ui/button'
@@ -62,6 +61,9 @@ export function ResultView({
           transformationRange: result.experiment?.transformation.range ?? [
             0, 1
           ],
+          influenceInterpretation: result.experiment?.influence.interpretation,
+          transformationInterpretation:
+            result.experiment?.transformation.interpretation,
           provisional: result.provisional
         })
       })
@@ -94,7 +96,6 @@ export function ResultView({
         <p className='mt-3 text-sm text-muted-foreground'>{result.reason}</p>
       </div>
       <ExperimentalResults result={result} layout='breakout' />
-      <WorldviewDetails components={result.components} />
       <div className='grid gap-3 sm:grid-cols-2'>
         {result.fingerprint.map((c) => (
           <div key={c.vector} className='rounded-lg border p-4'>

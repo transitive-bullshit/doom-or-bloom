@@ -10,6 +10,12 @@ export const cardSchema = z.strictObject({
   transformation: coordinate.nullable().optional(),
   influenceRange: range.optional(),
   transformationRange: range.optional(),
+  influenceInterpretation: z
+    .enum(['supported', 'tentative', 'unsettled'])
+    .optional(),
+  transformationInterpretation: z
+    .enum(['supported', 'tentative', 'unsettled'])
+    .optional(),
   provisional: z.boolean()
 })
 export type CardData = z.infer<typeof cardSchema>
@@ -127,7 +133,13 @@ function Plot({
         <span>Bloom</span>
       </div>
       <div style={{ fontSize: 14, color: '#646a71' }}>
-        Interpretation range; not an event probability.
+        {data?.[
+          axis === 'influence'
+            ? 'influenceInterpretation'
+            : 'transformationInterpretation'
+        ] === 'unsettled'
+          ? 'Unsettled: point marks the center of the open range.'
+          : 'Interpretation range; not an event probability.'}
       </div>
     </div>
   )
@@ -164,6 +176,55 @@ export function ShareCard({ data }: { data?: CardData }) {
             ? 'Two views of my AI worldview'
             : 'Map your AI worldview, one question at a time.'}
         </div>
+        {data && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={{ fontSize: 18 }}>
+              Demonstrated reasoning:{' '}
+              {data.vertical === null
+                ? 'Unexplored'
+                : `${Math.round(data.vertical * 100)} / 100`}
+            </div>
+            <div
+              style={{
+                position: 'relative',
+                height: 8,
+                width: 300,
+                backgroundColor: '#dce1da',
+                borderRadius: 4
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  left: data.verticalRange[0] * 300,
+                  width: Math.max(
+                    2,
+                    (data.verticalRange[1] - data.verticalRange[0]) * 300
+                  ),
+                  height: 8,
+                  backgroundColor: '#93ad9c',
+                  borderRadius: 4
+                }}
+              />
+              {data.vertical !== null && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: data.vertical * 300 - 5,
+                    top: -1,
+                    width: 10,
+                    height: 10,
+                    borderRadius: 5,
+                    backgroundColor: '#284e3d'
+                  }}
+                />
+              )}
+            </div>
+            <div style={{ fontSize: 13, color: '#646a71' }}>
+              Reasoning shown in my answers
+            </div>
+          </div>
+        )}
         <div style={{ fontSize: 16, color: '#646a71' }}>
           doom-or-bloom.com · Experimental
           {data?.provisional ? ' · Provisional' : ''}

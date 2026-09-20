@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import { ExperimentalResults } from './experimental-results'
-import { WorldviewDetails } from './worldview-details'
 import { Button } from '@/components/ui/button'
 import {
   Collapsible,
@@ -35,7 +34,6 @@ export function AnswerResult({
         {result && result.evidenceRevision === snapshot?.evidenceRevision ? (
           <>
             <ExperimentalResults result={result} />
-            <WorldviewDetails components={result.components} />
           </>
         ) : (
           <p className='text-sm text-muted-foreground'>

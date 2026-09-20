@@ -6,6 +6,7 @@ import type { ExperimentQuote, Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
 import { Map } from './worldview-map'
+import { WorldviewDetails } from './worldview-details'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -230,6 +231,10 @@ export function ExperimentalResults({
           )}
         </CardContent>
       </Card>
+      <WorldviewDetails
+        components={result.components}
+        reasoning={result.vertical}
+      />
       {experiment && (
         <p className='text-xs text-muted-foreground'>
           Experimental interpretation · {experiment.version} ·{' '}

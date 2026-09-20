@@ -2,12 +2,21 @@ import type { Component } from '@/lib/assessment/schema'
 import { facets } from '@/lib/assessment/facets'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 
-export function WorldviewDetails({ components }: { components: Component[] }) {
-  const impacts = components.filter(
-    (component) =>
-      ['beneficial_potential', 'risk_landscape'].includes(component.vector) &&
-      component.value !== null
-  )
+export function WorldviewDetails({
+  components,
+  reasoning
+}: {
+  components: Component[]
+  reasoning: Component
+}) {
+  const impacts = [
+    ...components.filter(
+      (component) =>
+        ['beneficial_potential', 'risk_landscape'].includes(component.vector) &&
+        component.value !== null
+    ),
+    { ...reasoning, label: 'Demonstrated reasoning' }
+  ]
   const positions = facets
     .filter(
       (facet) => !['overall_outlook', 'outlook_orientation'].includes(facet.id)
@@ -28,7 +37,7 @@ export function WorldviewDetails({ components }: { components: Component[] }) {
     >
       <h2 className='font-semibold'>More of your worldview</h2>
       {impacts.length > 0 && (
-        <div className='grid gap-3 sm:grid-cols-2'>
+        <div className='grid gap-3 sm:grid-cols-3'>
           {impacts.map((component) => (
             <Card key={component.vector}>
               <CardHeader>
@@ -36,8 +45,15 @@ export function WorldviewDetails({ components }: { components: Component[] }) {
               </CardHeader>
               <CardContent className='flex flex-col gap-3'>
                 <p className='text-sm text-muted-foreground'>
-                  {component.claim ??
-                    'Several interpretations remain plausible.'}
+                  {component.vector === 'epistemic'
+                    ? 'How you explain your view, consider alternatives, and handle uncertainty. This describes your answers, not your intelligence or opinions.'
+                    : (component.claim ??
+                      'Several interpretations remain plausible.')}
+                </p>
+                <p className='text-sm font-medium tabular-nums'>
+                  {component.value === null
+                    ? 'Not enough evidence yet'
+                    : `${Math.round(component.value * 100)} / 100`}
                 </p>
                 <div
                   aria-hidden='true'
@@ -50,14 +66,24 @@ export function WorldviewDetails({ components }: { components: Component[] }) {
                       width: `${(component.range[1] - component.range[0]) * 100}%`
                     }}
                   />
-                  <div
-                    className='absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary'
-                    style={{ left: `${component.value! * 100}%` }}
-                  />
+                  {component.value !== null && (
+                    <div
+                      className='absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary'
+                      style={{ left: `${component.value! * 100}%` }}
+                    />
+                  )}
                 </div>
                 <div className='flex justify-between text-xs text-muted-foreground'>
-                  <span>Little impact</span>
-                  <span>Transformative impact</span>
+                  <span>
+                    {component.vector === 'epistemic'
+                      ? 'Little demonstrated'
+                      : 'Little impact'}
+                  </span>
+                  <span>
+                    {component.vector === 'epistemic'
+                      ? 'Well developed'
+                      : 'Transformative impact'}
+                  </span>
                 </div>
                 <p className='sr-only'>
                   Interpretation range {Math.round(component.range[0] * 100)} to{' '}

@@ -237,7 +237,11 @@ export function Map({
                 fontSize='12'
                 fontWeight='600'
               >
-                Your view
+                {y.interpretation === 'unsettled'
+                  ? 'Unsettled'
+                  : y.interpretation === 'tentative'
+                    ? 'Estimate'
+                    : 'Your view'}
               </text>
             </g>
           </g>
@@ -347,7 +351,9 @@ export function Map({
         <span className='flex items-center gap-2'>
           <span className='map-point size-2 rounded-full' />
           {point
-            ? 'Point: your interpreted view'
+            ? y.interpretation === 'unsettled'
+              ? 'Point: center of your unresolved range'
+              : 'Point: your estimated position'
             : 'Point withheld until both axes are assessable'}
         </span>
         <span className='flex items-center gap-2'>

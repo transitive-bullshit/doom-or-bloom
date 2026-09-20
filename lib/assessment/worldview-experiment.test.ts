@@ -26,7 +26,13 @@ function assess(source: ExperimentInput, choices: Record<string, string>) {
   const answers: Record<string, ModelAnswer> = Object.fromEntries(
     Object.entries(questions).map(([id, question]) => [
       id,
-      fixtureAnswer(question, choices[id] ?? 'none')
+      fixtureAnswer(
+        question,
+        choices[id] ??
+          (['experiment:influence', 'experiment:transformation'].includes(id)
+            ? 'not_expressed'
+            : 'none')
+      )
     ])
   )
   for (const [id, question] of Object.entries(
@@ -46,13 +52,13 @@ describe('experimental worldview evidence boundaries', () => {
     expect(result.hinges).toEqual([])
     expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
   })
-  it('requires a selected exact supporting passage before placing either axis', () => {
+  it('places a whole-interview belief without requiring one representative excerpt', () => {
     const source = input(
       'Human action could decisively change which future we get.'
     )
     expect(
       assess(source, { 'experiment:influence': '4' }).influence.value
-    ).toBeNull()
+    ).toBe(1)
     const result = assess(source, {
       'experiment:influence': '4',
       'experiment:influence:evidence': 'p0'
@@ -148,7 +154,7 @@ describe('experimental worldview evidence boundaries', () => {
     }
     expect(
       buildWorldviewExperiment(source, candidates, answers, 1, 'fixture-v1')
-        .influence.value
+        .axisEvidence.influence
     ).toBeNull()
   })
   it('requires verification even for a confident but misleading milestone selection', () => {
@@ -294,4 +300,65 @@ it('retains a whole-interview contextual estimate without a single representativ
   expect(result.pdoom?.text).toBeUndefined()
   expect(result.pdoom?.evidenceAnswerIds).toEqual(['a1'])
   expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
+})
+
+it.each([
+  [
+    'novice influence',
+    'influence',
+    {
+      '1': 0.15,
+      '2': 0.53,
+      '3': 0.04,
+      explicitly_unknown: 0.05,
+      not_expressed: 0.23
+    }
+  ],
+  [
+    'job worrier transformation',
+    'transformation',
+    { '1': 0.75, '2': 0.1, '3': 0.01, not_expressed: 0.14 }
+  ],
+  [
+    'open uncertainty',
+    'transformation',
+    { '1': 0.01, explicitly_unknown: 0.78, not_expressed: 0.21 }
+  ]
+] as const)(
+  'keeps a point inside the range for %s without a representative quote',
+  (_, axis, probabilities) => {
+    const source = input(
+      'I see several possible AI futures and I am uncertain how far the changes will go.'
+    )
+    const result = buildWorldviewExperiment(
+      source,
+      experimentCandidates(source),
+      {
+        [`experiment:${axis}`]: {
+          type: 'choice',
+          choice: 'not_expressed',
+          probabilities,
+          confidence: 0.3
+        }
+      },
+      1,
+      'fixture-v1'
+    )[axis]
+    expect(result.value).not.toBeNull()
+    expect(result.value!).toBeGreaterThanOrEqual(result.range[0])
+    expect(result.value!).toBeLessThanOrEqual(result.range[1])
+  }
+)
+
+it('represents explicit indecision without claiming a moderate belief', () => {
+  const source = input(
+    'I have not settled on how much AI will change everyday life.'
+  )
+  const result = assess(source, {
+    'experiment:transformation': 'explicitly_unknown'
+  }).transformation
+  expect(result.value).toBe(0.5)
+  expect(result.range).toEqual([0, 1])
+  expect(result.interpretation).toBe('unsettled')
+  expect(result.claim).toContain('not a moderate belief')
 })

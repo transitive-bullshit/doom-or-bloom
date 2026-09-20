@@ -722,5 +722,45 @@
     },
     "contentVersion": "0.1.0-draft",
     "status": "draft"
+  },
+  {
+    "id": "influence.general",
+    "text": "How much can people shape the future impact of AI?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["human_agency", "institutional_competence"],
+    "effort": 0.3,
+    "noveltyGroup": "collective-influence",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.1.0-draft",
+    "status": "reviewed"
+  },
+  {
+    "id": "transformation.general",
+    "text": "How much do you expect everyday life to change because of AI?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape"],
+    "effort": 0.3,
+    "noveltyGroup": "transformation-scale",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.1.0-draft",
+    "status": "reviewed"
   }
 ]

@@ -25,6 +25,11 @@ test('latest live personas expose results and decisions without rerun controls',
   await expect(
     page.getByRole('button', { name: 'Live journeys and mechanical tests' })
   ).toHaveCount(0)
+  await expect(
+    page
+      .getByRole('region', { name: 'Journey result' })
+      .getByText('Demonstrated reasoning', { exact: true })
+  ).toBeVisible()
   const liveSteps = page.locator('[data-slot=journey-step]')
   await expect(liveSteps.first()).toBeVisible()
   const results = liveSteps.getByRole('button', {
@@ -83,6 +88,9 @@ test('latest live personas expose results and decisions without rerun controls',
     .click()
   await expect(
     first.getByRole('region', { name: 'Step 1 result', exact: true })
+  ).toBeVisible()
+  await expect(
+    first.getByText('Demonstrated reasoning', { exact: true })
   ).toBeVisible()
   await page.screenshot({
     path: testInfo.outputPath('journeys-desktop.png'),
@@ -298,6 +306,9 @@ test('answer selector moves both maps and every experimental view without infere
   await disclosure.click()
   await explorer.getByRole('slider').press('Home')
   await explorer.getByRole('slider').press('ArrowRight')
+  await expect(
+    explorer.getByText('Demonstrated reasoning', { exact: true })
+  ).toBeVisible()
   await expect(explorer.locator('[data-slot=worldview-map]')).toHaveCount(2)
   await expect(explorer).toContainText('20%')
   await expect(explorer).toContainText('Milestone 2')
@@ -322,4 +333,26 @@ test('answer selector moves both maps and every experimental view without infere
   )
   expect(inference).toBe(0)
   await page.unrouteAll({ behavior: 'wait' })
+})
+
+test('completed uncertain personas keep visible map points and a separate reasoning axis', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/user-journeys')
+  for (const name of [
+    'Worried novice',
+    'Brief job worrier',
+    'Open-ended uncertainty'
+  ]) {
+    await page.getByRole('button', { name: new RegExp(name) }).click()
+    const result = page.getByRole('region', { name: 'Journey result' })
+    const maps = result.locator('[data-slot=worldview-map]')
+    await expect(maps).toHaveCount(2)
+    await expect(maps.nth(0)).not.toContainText('Unplaced')
+    await expect(maps.nth(1)).not.toContainText('Unplaced')
+    await expect(
+      result.getByText('Demonstrated reasoning', { exact: true })
+    ).toBeVisible()
+  }
 })

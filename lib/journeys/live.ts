@@ -39,7 +39,7 @@ export async function runLiveJourneys({
   const paid = budgetedProvider(
     meterJev(createLiveProvider(versions.model), budget),
     maxRequests ?? (personaId ? 24 : 240),
-    240
+    480
   )
   const participant = createOpenAIParticipant({
     budget,

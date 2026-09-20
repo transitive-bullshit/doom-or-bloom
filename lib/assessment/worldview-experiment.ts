@@ -8,7 +8,7 @@ import type {
 } from './schema'
 import { emptyComponent, quantile } from './projections'
 
-export const experimentVersion = 'worldview-v3' as const
+export const experimentVersion = 'worldview-v4' as const
 
 // Authored event-probability bands. Jev weights interpretations of the participant’s belief.
 // Its category confidence is never itself used as the catastrophe probability.
@@ -393,45 +393,64 @@ export function buildWorldviewExperiment(
       ])
     )
     const mass = Object.values(distribution).reduce((a, b) => a + b, 0)
-    const quote = axisEvidence[id]
-    if (mass < 0.75 || !quote || !Object.hasOwn(distribution, answer.choice))
-      return {
-        ...empty,
-        distribution: answer.probabilities,
-        claim:
-          answer.choice === 'explicitly_unknown'
-            ? 'You have not settled on a position here.'
-            : null
-      }
+    const unknown = answer.probabilities.explicitly_unknown ?? 0
+    const missing = answer.probabilities.not_expressed ?? 0
+    // A whole-interview estimate does not depend on selecting one perfect quote.
+    // Keep truly absent topics unplaced; expressed uncertainty is a valid result.
+    if (mass + unknown < 0.2 || !input.completeParticipantEvidence.length)
+      return { ...empty, distribution: answer.probabilities }
+    const unsettled = unknown >= 0.5
+    const tentative = mass < 0.75 || missing >= 0.25
     const conditional = Object.fromEntries(
-      Object.entries(distribution).map(([k, v]) => [k, v / mass])
+      Object.entries(distribution).map(([k, v]) => [
+        k,
+        mass > 0 ? v / mass : 0.2
+      ])
     )
-    const value = Object.entries(conditional).reduce(
+    const directional = Object.entries(conditional).reduce(
       (sum, [k, p]) => sum + (Number(k) / 4) * p,
       0
     )
+    // Weak directional evidence shrinks toward the center of the open range.
+    // Explicit indecision uses a reference point, never a claim of moderation.
+    const value = unsettled
+      ? 0.5
+      : tentative
+        ? directional * mass + 0.5 * (1 - mass)
+        : directional
     return {
       ...empty,
       value,
+      interpretation: unsettled
+        ? 'unsettled'
+        : tentative
+          ? 'tentative'
+          : 'supported',
       distribution: answer.probabilities,
-      range: [
-        Math.min(
-          value,
-          Math.max(0, quantile(conditional, 0.1, 4) - (1 - mass))
-        ),
-        Math.max(value, Math.min(1, quantile(conditional, 0.9, 4) + (1 - mass)))
-      ],
-      confidence: answer.probabilities[answer.choice] ?? 0,
-      claim: definition.levels[Number(answer.choice)] ?? null,
+      range: unsettled
+        ? [0, 1]
+        : [
+            Math.min(
+              value,
+              Math.max(0, quantile(conditional, 0.1, 4) - (1 - mass))
+            ),
+            Math.max(
+              value,
+              Math.min(1, quantile(conditional, 0.9, 4) + (1 - mass))
+            )
+          ],
+      confidence: unsettled ? unknown : mass * answer.confidence,
+      claim: unsettled
+        ? 'You have not settled on this. The point marks the center of the open range, not a moderate belief.'
+        : tentative
+          ? 'A tentative estimate from your answers; the wider range shows other plausible readings.'
+          : (definition.levels[Math.round(directional * 4)] ?? null),
       evidenceIds: input.activeSupport
-        .filter(
-          (e) =>
-            e.answerId === quote.answerId &&
-            ['stated', 'strongly_implied'].includes(e.status)
-        )
+        .filter((e) => ['stated', 'strongly_implied'].includes(e.status))
         .map((e) => e.id)
     }
   }
+
   const statedDoom = selected('pdoom', 'probabilities')
   const doomEvidence = selected('pdoom:evidence')
   const bandAnswer = answers['experiment:pdoom:band']

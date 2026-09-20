@@ -904,3 +904,10 @@ The experiment is an additive `worldview-v2` field (historical `worldview-v1` re
 - [x] Add regressions for qualitative forecasts, contextual low estimates, explicit-number precedence, evidence verification and category-probability weighting.
 - [x] Collapse the worldview progression explorer by default while keeping final results expanded.
 - [x] Regenerate all 16 live journeys with `worldview-v3`; validate 47 result snapshots and concrete P(doom) for all public proxies and the fixed real-user regression. Remove the superseded replay overlay.
+
+### Provisional map placement and reasoning axis
+
+- [x] Reproduce unplaced experimental axes in the worried-novice, brief-job-worrier and open-uncertainty journeys; keep estimates independent of representative quotes and preserve unsettled ranges.
+- [x] Add a single-axis demonstrated-reasoning card across all result views, plus report and share-card summaries.
+- [x] Add context-free questions for collective human influence and transformation scale; offer one direct opportunity for unexplored displayed axes before completion.
+- [x] Regenerate all 16 live personas and verify that every final main map has a point within its interpretation region. The three reported personas exercise the direct influence question; explicit uncertainty stays visibly unsettled.

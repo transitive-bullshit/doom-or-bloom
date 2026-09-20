@@ -88,6 +88,35 @@ export function needsOverallOutlookQuestion(state: Assessment) {
   return net.range[1] - net.range[0] >= 0.75 && missing + unknown >= 0.15
 }
 
+// Give an unexplored displayed axis one direct question before completion.
+// Explicit indecision is already an answer, not an invitation to repeat it.
+export function missingMapQuestion(state: Assessment) {
+  const experiment =
+    state.result?.evidenceRevision === state.evidenceRevision
+      ? state.result.experiment
+      : undefined
+  if (!experiment) return null
+  return (
+    (['influence', 'transformation'] as const)
+      .map((axis) => ({
+        axis,
+        component: experiment[axis],
+        promptId: `${axis}.general`
+      }))
+      .filter(
+        ({ component, promptId }) =>
+          !state.prompts.some((prompt) => prompt.promptId === promptId) &&
+          (component.distribution.explicitly_unknown ?? 0) < 0.5 &&
+          (component.distribution.not_expressed ?? 0) >= 0.35
+      )
+      .sort(
+        (a, b) =>
+          (b.component.distribution.not_expressed ?? 0) -
+          (a.component.distribution.not_expressed ?? 0)
+      )[0]?.promptId ?? null
+  )
+}
+
 export function rankCandidates(
   state: Assessment,
   prompts: Prompt[],

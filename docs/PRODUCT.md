@@ -203,3 +203,9 @@ The Doom–Bloom map is the result’s hero: strong categorical pole colors, a c
 Use the same experimental result component in participant results, results after each answer, and the internal journey inspector. The journey inspector adds a keyboard-accessible answer selector and earlier-answer dots on both maps; all three supporting views follow the selected snapshot. Missing snapshots stay unavailable rather than using later answers. Older results without experiment data show an explicit unevaluated state.
 
 P(doom) shows a selected participant percentage or range with its exact source context; it is not inferred from categorical risk or evaluator confidence. Qualified estimates retain their wording, without a fabricated bar or error interval. The timeline groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. The assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.
+
+### Provisional result points and reasoning
+
+Show demonstrated reasoning as a single axis beside expected upside and harm wherever result cards appear, including per-answer inspection and the progression explorer. Reuse the existing reasoning composite and range. It measures the reasoning demonstrated in the answers, not intelligence or ideological agreement.
+
+Prefer a tentative map point with an honest interpretation range over withholding a useful estimate. Explicit uncertainty is shown as an unsettled point in the open range, not a moderate belief. If a displayed axis is genuinely unexplored, ask one simple direct question before finishing.

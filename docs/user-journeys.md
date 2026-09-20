@@ -94,4 +94,6 @@ Results are saved incrementally to `eval/development/worldview-experiments.json`
 
 The 2026-09-20 replay was explicitly approved and covers all 45 saved result snapshots across 16 journeys. `--persona=<id>` scopes a review; `--refresh` replaces matching records after an extraction change. The `worldview-v2` pass verifies each selected excerpt independently, so alternative suitable quotes do not erase supported beliefs. See [comparison observations](worldview-experiment-review-2026-09-20.md).
 
-The current `worldview-v3` engine generates inferred P(doom) on every result snapshot. Full live regeneration replaces the previous suite; no separate historical overlay is needed. Only final results are expanded by default.
+The current `worldview-v4` engine generates inferred P(doom) on every result snapshot. Full live regeneration replaces the previous suite; no separate historical overlay is needed. Only final results are expanded by default.
+
+Every results view includes a separate demonstrated-reasoning axis. The v4 map interpretation preserves tentative points and labels dominant indecision as unsettled. Two direct map questions cover unexplored collective influence and transformation scale before automatic completion.

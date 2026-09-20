@@ -31,7 +31,6 @@ import { Message, MessageContent, MessageHeader } from '@/components/ui/message'
 import { Bubble, BubbleContent } from '@/components/ui/bubble'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { ReviewHeader } from '@/components/debug/content/shared'
-import { WorldviewDetails } from '@/components/assessment/worldview-details'
 import {
   ExperimentalResults,
   JourneyResultExplorer
@@ -226,7 +225,6 @@ function Step({
             {step.result ? (
               <>
                 <ExperimentalResults result={step.result} />
-                <WorldviewDetails components={step.result.components} />
                 <JsonViewer
                   label={`Step ${step.ordinal} result`}
                   value={step.result}
@@ -646,7 +644,6 @@ export function JourneysInspector({
             {journey.result ? (
               <>
                 <ExperimentalResults result={journey.result} />
-                <WorldviewDetails components={journey.result.components} />
                 <Disclosure label='Result dimensions and findings'>
                   <JsonViewer
                     label='Journey final assessment result'

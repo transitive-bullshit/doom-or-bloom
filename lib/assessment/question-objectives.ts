@@ -1,6 +1,10 @@
 // The distinction each authored question is meant to resolve. These are
 // hypotheses for routing, never claims that the participant has a deficit.
 const questionObjectives = {
+  'influence.general':
+    'How much collective human choices can shape the eventual AI outcome, independently of whether current institutions will choose well.',
+  'transformation.general':
+    'The expected scale of change to everyday life, independently of whether those changes are good or bad.',
   'concrete.general':
     'Which concrete change the participant actually expects, beyond general sentiment.',
   'timeline.general':
