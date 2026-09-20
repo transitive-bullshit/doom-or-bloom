@@ -20,6 +20,7 @@ export default defineConfig({
     reuseExistingServer: false,
     gracefulShutdown: { signal: 'SIGTERM', timeout: 5000 },
     env: {
+      NEXT_TEST_DIST_DIR: '.next-browser',
       ASSESSMENT_PROVIDER: 'fixture',
       NEXT_PUBLIC_ASSESSMENT_DEBUG: 'true',
       NEXT_PUBLIC_ANALYTICS_ENABLED: 'false'

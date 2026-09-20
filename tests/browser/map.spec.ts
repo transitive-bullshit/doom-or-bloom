@@ -41,7 +41,7 @@ async function contrastRatios(page: import('@playwright/test').Page) {
 }
 
 for (const unplaced of [false, true, 'outlook'] as const) {
-  test(`map explains ${unplaced === 'outlook' ? 'unplaced outlook with placed reasoning' : unplaced ? 'unplaced axes' : 'broad interpretation ranges'} without inference`, async ({
+  test(`map explains ${unplaced === 'outlook' ? 'unplaced outlook with placed influence' : unplaced ? 'unplaced axes' : 'broad interpretation ranges'} without inference`, async ({
     page
   }, testInfo) => {
     const state = createAssessment(`map-${unplaced}`, 'fixture-v1')
@@ -91,6 +91,26 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       insufficient: unplaced === true,
       reason: 'Synthetic visual fixture; no inference.'
     }
+    state.result.experiment = {
+      version: 'worldview-v1',
+      model: 'fixture-v1',
+      generatedAt: '2026-09-20T00:00:00Z',
+      evidenceRevision: 0,
+      influence: {
+        ...emptyComponent('influence', 'Human influence'),
+        value: unplaced === true ? null : 0.74,
+        range: [0.28, 0.92]
+      },
+      transformation: {
+        ...emptyComponent('transformation', 'Scale of transformation'),
+        value: unplaced === true ? null : 0.4,
+        range: [0.2, 0.6]
+      },
+      axisEvidence: { influence: null, transformation: null },
+      pdoom: null,
+      milestones: [],
+      hinges: []
+    }
     await page.addInitScript(
       ({ key, assessment }) =>
         localStorage.setItem(
@@ -107,9 +127,12 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     await page.setViewportSize({ width: 1365, height: 960 })
     await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
     await page.goto('/')
-    const map = page.locator('[data-slot="worldview-map"]')
-    await expect(map).toContainText('Across: what future do you expect?')
-    await expect(map).toContainText('Up: how have you explained your view?')
+    await expect(page.locator('[data-slot="worldview-map"]')).toHaveCount(2)
+    const map = page.locator('[data-slot="worldview-map"]').first()
+    await expect(map).toContainText(
+      'Across: your expressed Doom–Bloom outlook.'
+    )
+    await expect(map).toContainText('Up: human influence.')
     await expect(map.getByRole('img')).toHaveAttribute(
       'aria-label',
       /12 to 88 horizontally, 28 to 92 vertically/
@@ -129,7 +152,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       ).toBeVisible()
       await expect(map.getByRole('img')).toHaveAttribute(
         'aria-label',
-        /Doom–Bloom: unplaced. Demonstrated reasoning: 74 out of 100/
+        /Doom–Bloom: unplaced. Human influence: 74 out of 100/
       )
     }
     if (unplaced) {

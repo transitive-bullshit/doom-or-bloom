@@ -133,6 +133,12 @@ Corpus identification and canonical-summary grounding are removed from current i
 
 ## Participant-facing projections
 
+The current local experiment displays two maps sharing the expressed-outlook horizontal axis. `result.experiment` holds separately versioned interpretations of **human influence** (how much collective human choices can change AI outcomes) and **scale of transformation** (how radically society changes, independently of desirability or pace). Neither is derived from reasoning quality, capability timing, technical controllability, institutional competence or valued human continuity. Those remain distinct components.
+
+Each experimental axis uses five authored positions plus missing and explicitly unknown alternatives. At least 0.75 directional probability mass and a selected supporting source excerpt are required for placement. Conditional directional distributions determine coordinates and 10th–90th percentile interpretation ranges, widened by missing mass and containing the point. These are experimental interpretation heuristics. Evidence readiness, routing and the original worldview/epistemic dimensions retain their meanings.
+
+Additional selections identify a stated numerical catastrophe estimate, up to four milestone timing statements, and up to three assumptions, explicit uncertainties or update conditions. Code copies exact candidate text and percentages; Jev selects their meaning. Do not turn category probability into P(doom), infer dates, or treat an unasked topic as a demonstrated weakness. The original outcome, horizon and conditions remain in source wording; P(doom) is not standardized across participants. Old snapshots without this additive field remain readable and show the experiment as unevaluated.
+
 ### Doom–Bloom
 
 The horizontal projection estimates the participant's overall expected impact of advanced AI on humanity. It integrates positive and negative outcomes, likelihood, severity, distribution, and human continuity.
@@ -148,9 +154,9 @@ It is not:
 - A proxy for accelerate/pause policy preference.
 - A moral judgment.
 
-### Epistemic Quality
+### Retained reasoning profile
 
-The vertical projection composes demonstrated reasoning, grounded understanding, appropriate uncertainty, internal coherence, and updateability. The seven authored reasoning dimensions have equal weight; detailed components stay separate internally.
+The retained `vertical` field in saved/structured results composes demonstrated reasoning, grounded understanding, appropriate uncertainty, internal coherence, and updateability for backward compatibility. It is no longer rendered as a map axis. The seven authored reasoning dimensions have equal weight; detailed components stay separate internally.
 
 Missing evidence widens the interpretation range; it does not lower the score. Technical vocabulary, credentials, and ideological centrism do not score points.
 

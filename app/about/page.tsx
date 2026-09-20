@@ -24,19 +24,20 @@ export default function About() {
         the interview does not search live news.
       </p>
       <p>
-        The horizontal axis combines expected benefits (45%), reversed expected
-        harm (45%), and valued human agency and continuity (10%). Policy
-        preferences have no map weight. Seven equally weighted components
-        describe demonstrated reasoning: causal clarity, scope discipline,
-        uncertainty, coherence, engagement with alternatives, updateability, and
-        how claims connect to the evidence you offer.
+        Both experimental maps share your expressed Doom–Bloom outlook. One
+        vertical axis describes how much you believe human choices can shape AI
+        outcomes; the other describes how radically you expect AI to transform
+        society. These are separate beliefs, not reasoning grades. Policy
+        preferences do not determine either map. Specific reasoning observations
+        remain available elsewhere in the profile.
       </p>
       <p>
-        Missing evidence is unassessed, rather than scored low. The point uses
-        observed components; missing and ambiguous evidence widen the
-        interpretation range. Ranges reflect model distributions over authored
-        categories, not your probability of an external event or a calibrated
-        statistical confidence interval.
+        Missing evidence leaves a position unplaced. Interpretation ranges
+        reflect uncertainty about how to read your answers, not event
+        probabilities. A separate P(doom) card copies a numerical estimate only
+        when you state one. Milestone timing and assumptions retain your exact
+        wording and conditions. None of these views is a calibrated forecast or
+        a statistically validated confidence interval.
       </p>
       <h2 className='text-lg font-medium'>An experiment, with limits</h2>
       <p>

@@ -6,154 +6,171 @@ export const cardSchema = z.strictObject({
   vertical: coordinate.nullable(),
   horizontalRange: range,
   verticalRange: range,
+  influence: coordinate.nullable().optional(),
+  transformation: coordinate.nullable().optional(),
+  influenceRange: range.optional(),
+  transformationRange: range.optional(),
   provisional: z.boolean()
 })
 export type CardData = z.infer<typeof cardSchema>
+
+function Plot({
+  data,
+  axis
+}: {
+  data?: CardData
+  axis: 'influence' | 'transformation'
+}) {
+  const x = data?.horizontal
+  const y = data?.[axis]
+  const verticalRange = data?.[
+    axis === 'influence' ? 'influenceRange' : 'transformationRange'
+  ] ?? [0, 1]
+  const width = 340,
+    height = 310
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, width }}>
+      <div style={{ fontSize: 20, fontWeight: 700 }}>
+        {axis === 'influence' ? 'Human influence ↑' : 'Transformation ↑'}
+      </div>
+      <div style={{ fontSize: 15, color: '#646a71' }}>
+        {axis === 'influence'
+          ? 'How much can we shape it?'
+          : 'How radically will it change us?'}
+      </div>
+      <div
+        style={{
+          position: 'relative',
+          width,
+          height,
+          background: 'linear-gradient(90deg, #f0dfdc, #dce9df)',
+          borderRadius: 14,
+          border: '1px solid #d0d3cb'
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            left: width / 2,
+            top: 0,
+            height,
+            width: 1,
+            backgroundColor: '#c3c8c0'
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: height / 2,
+            left: 0,
+            width,
+            height: 1,
+            backgroundColor: '#c3c8c0'
+          }}
+        />
+        {data && (
+          <div
+            style={{
+              position: 'absolute',
+              left: data.horizontalRange[0] * width,
+              top: (1 - verticalRange[1]!) * height,
+              width: Math.max(
+                2,
+                (data.horizontalRange[1] - data.horizontalRange[0]) * width
+              ),
+              height: Math.max(
+                2,
+                (verticalRange[1]! - verticalRange[0]!) * height
+              ),
+              border: '2px solid #5e7767',
+              backgroundColor: '#678b7422',
+              borderRadius: 8
+            }}
+          />
+        )}
+        {x != null && y != null ? (
+          <div
+            style={{
+              position: 'absolute',
+              left: x * width - 9,
+              top: (1 - y) * height - 9,
+              width: 18,
+              height: 18,
+              borderRadius: 9,
+              backgroundColor: '#284e3d',
+              border: '3px solid #f7f6f2'
+            }}
+          />
+        ) : data ? (
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              height: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 22
+            }}
+          >
+            Still unplaced
+          </div>
+        ) : null}
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          fontSize: 20
+        }}
+      >
+        <span>Doom</span>
+        <span>Bloom</span>
+      </div>
+      <div style={{ fontSize: 14, color: '#646a71' }}>
+        Interpretation range; not an event probability.
+      </div>
+    </div>
+  )
+}
 export function ShareCard({ data }: { data?: CardData }) {
-  const x = data?.horizontal,
-    y = data?.vertical
   return (
     <div
       style={{
         width: '100%',
         height: '100%',
         display: 'flex',
+        alignItems: 'center',
         backgroundColor: '#f7f6f2',
         color: '#22252a',
-        padding: 52,
+        padding: 44,
         fontFamily: 'sans-serif',
-        gap: 48
+        gap: 32
       }}
     >
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          width: 530,
-          justifyContent: 'center',
-          gap: 22
+          width: 340,
+          gap: 24
         }}
       >
         <div style={{ fontSize: 20, color: '#646a71' }}>DOOM OR BLOOM</div>
-        <div style={{ fontSize: 56, fontWeight: 700, lineHeight: 1.05 }}>
+        <div style={{ fontSize: 48, fontWeight: 700, lineHeight: 1.1 }}>
           What does AI mean for our future?
         </div>
-        <div style={{ fontSize: 25, color: '#646a71', lineHeight: 1.4 }}>
+        <div style={{ fontSize: 24, color: '#646a71', lineHeight: 1.4 }}>
           {data
-            ? data.provisional
-              ? 'My provisional AI worldview map'
-              : 'My AI worldview map'
+            ? 'Two views of my AI worldview'
             : 'Map your AI worldview, one question at a time.'}
         </div>
         <div style={{ fontSize: 16, color: '#646a71' }}>
           doom-or-bloom.com · Experimental
+          {data?.provisional ? ' · Provisional' : ''}
         </div>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          gap: 12,
-          width: 440
-        }}
-      >
-        <div style={{ fontSize: 16, color: '#646a71' }}>
-          More demonstrated reasoning ↑
-        </div>
-        <div
-          style={{
-            position: 'relative',
-            width: 440,
-            height: 330,
-            background: 'linear-gradient(90deg, #f0dfdc, #dce9df)',
-            borderRadius: 14,
-            border: '1px solid #d0d3cb'
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              left: 220,
-              top: 0,
-              height: 330,
-              width: 1,
-              backgroundColor: '#c3c8c0'
-            }}
-          />
-          <div
-            style={{
-              position: 'absolute',
-              top: 165,
-              left: 0,
-              width: 440,
-              height: 1,
-              backgroundColor: '#c3c8c0'
-            }}
-          />
-          {data && (
-            <div
-              style={{
-                position: 'absolute',
-                left: data.horizontalRange[0] * 440,
-                top: (1 - data.verticalRange[1]) * 330,
-                width: Math.max(
-                  2,
-                  (data.horizontalRange[1] - data.horizontalRange[0]) * 440
-                ),
-                height: Math.max(
-                  2,
-                  (data.verticalRange[1] - data.verticalRange[0]) * 330
-                ),
-                border: '2px solid #5e7767',
-                backgroundColor: '#678b7422',
-                borderRadius: 8
-              }}
-            />
-          )}
-          {x != null && y != null && (
-            <div
-              style={{
-                position: 'absolute',
-                left: x * 440 - 9,
-                top: (1 - y) * 330 - 9,
-                width: 18,
-                height: 18,
-                borderRadius: 9,
-                backgroundColor: '#284e3d',
-                border: '3px solid #f7f6f2'
-              }}
-            />
-          )}
-          {data && (x == null || y == null) && (
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                height: '100%',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 22
-              }}
-            >
-              Still unplaced
-            </div>
-          )}
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            fontSize: 20
-          }}
-        >
-          <span>Doom</span>
-          <span>Bloom</span>
-        </div>
-        <div style={{ fontSize: 14, color: '#646a71' }}>
-          Interpretation range; not an event probability.
-        </div>
-      </div>
+      <Plot data={data} axis='influence' />
+      <Plot data={data} axis='transformation' />
     </div>
   )
 }

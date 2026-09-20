@@ -226,5 +226,89 @@ test('the real-user fixed regression is selectable and exposes all four original
       .locator('[data-slot=journey-step]')
       .first()
       .locator('[data-slot=worldview-map]')
+      .first()
   ).toBeVisible()
+})
+
+test('answer selector moves both maps and every experimental view without inference', async ({
+  page
+}) => {
+  let inference = 0
+  await page.route('**/api/assessment', (route) => {
+    inference++
+    return route.abort()
+  })
+  await page.route('**/api/user-journeys?*', async (route) => {
+    const response = await route.fetch()
+    const payload = await response.json()
+    for (const [index, step] of payload.journey.steps.entries()) {
+      if (!step.result) continue
+      const value = index === 0 ? 0.1 : 0.9
+      const component = {
+        vector: 'influence',
+        label: 'Human influence',
+        value,
+        range: [value, value],
+        distribution: {},
+        confidence: 1,
+        evidenceIds: [],
+        claim: null
+      }
+      const evidence = {
+        answerId: `fixture-${index}`,
+        answerNumber: index + 1,
+        text: `Snapshot ${index + 1} only.`
+      }
+      step.result.experiment = {
+        version: 'worldview-v1',
+        model: 'fixture-v1',
+        generatedAt: '2026-09-20T00:00:00Z',
+        evidenceRevision: step.result.evidenceRevision,
+        influence: component,
+        transformation: {
+          ...component,
+          vector: 'transformation',
+          label: 'Scale of transformation'
+        },
+        axisEvidence: { influence: null, transformation: null },
+        pdoom: { ...evidence, token: `${(index + 1) * 10}%` },
+        milestones: [{ id: 'agi', label: `Milestone ${index + 1}`, evidence }],
+        hinges: [
+          {
+            id: 'assumption',
+            label: `Assumption ${index + 1}`,
+            evidence,
+            question: 'What would change this?'
+          }
+        ]
+      }
+    }
+    await route.fulfill({ response, json: payload })
+  })
+  await page.goto('/user-journeys')
+  const explorer = page.getByRole('region', { name: 'Worldview progression' })
+  await expect(explorer.locator('[data-slot=worldview-map]')).toHaveCount(2)
+  await expect(explorer).toContainText('20%')
+  await expect(explorer).toContainText('Milestone 2')
+  await expect(explorer).toContainText('Assumption 2')
+  await explorer.getByRole('button', { name: 'Previous', exact: true }).click()
+  await expect(explorer).toContainText('10%')
+  await expect(explorer).toContainText('Milestone 1')
+  await expect(explorer).not.toContainText('Snapshot 2 only.')
+  await expect(explorer.getByRole('img').first()).toHaveAttribute(
+    'aria-label',
+    /Human influence: 10 out of 100/
+  )
+  await expect(explorer.getByRole('img').nth(1)).toHaveAttribute(
+    'aria-label',
+    /Scale of transformation: 10 out of 100/
+  )
+  await explorer.getByRole('slider').press('ArrowRight')
+  await expect(explorer).toContainText('Milestone 2')
+  await expect(explorer.getByRole('img').first()).toHaveAttribute(
+    'aria-label',
+    /Human influence: 90 out of 100/
+  )
+  expect(inference).toBe(0)
+  await page.unrouteAll({ behavior: 'wait' })
 })

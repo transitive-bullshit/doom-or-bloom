@@ -32,7 +32,10 @@ import { Bubble, BubbleContent } from '@/components/ui/bubble'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { ReviewHeader } from '@/components/debug/content/shared'
 import { WorldviewDetails } from '@/components/assessment/worldview-details'
-import { Map } from '@/components/assessment/worldview-map'
+import {
+  ExperimentalResults,
+  JourneyResultExplorer
+} from '@/components/assessment/experimental-results'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import type { Persona } from '@/lib/journeys/catalog'
 import { recordedBackgroundSchema } from '@/lib/journeys/schema'
@@ -222,11 +225,7 @@ function Step({
             </p>
             {step.result ? (
               <>
-                <Map
-                  horizontal={step.result.horizontal}
-                  vertical={step.result.vertical}
-                  layout='contained'
-                />
+                <ExperimentalResults result={step.result} />
                 <WorldviewDetails components={step.result.components} />
                 <JsonViewer
                   label={`Step ${step.ordinal} result`}
@@ -616,6 +615,14 @@ export function JourneysInspector({
               </AlertDescription>
             </Alert>
           )}
+          <JourneyResultExplorer
+            key={`${current.run.id}:${personaId}`}
+            snapshots={questionSteps(journey).flatMap((step) =>
+              step.result
+                ? [{ label: String(step.ordinal), result: step.result }]
+                : []
+            )}
+          />
           <section
             aria-label='Journey timeline'
             className='flex flex-col gap-5'
@@ -638,12 +645,7 @@ export function JourneysInspector({
             <h2 className='text-xl font-semibold'>Result of this run</h2>
             {journey.result ? (
               <>
-                <div className='mx-auto w-full max-w-2xl'>
-                  <Map
-                    horizontal={journey.result.horizontal}
-                    vertical={journey.result.vertical}
-                  />
-                </div>
+                <ExperimentalResults result={journey.result} />
                 <WorldviewDetails components={journey.result.components} />
                 <Disclosure label='Result dimensions and findings'>
                   <JsonViewer

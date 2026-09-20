@@ -444,7 +444,9 @@ test('shared text occurs once per stage and judgments use answer-level support w
       )
     ).toBe(false)
     expect(
-      Object.keys(stage.questions).some((id) => /:span$|:evidence$/.test(id))
+      Object.keys(stage.questions).some(
+        (id) => !id.startsWith('experiment:') && /:span$|:evidence$/.test(id)
+      )
     ).toBe(false)
   }
   expect(
@@ -468,11 +470,13 @@ test('shared text occurs once per stage and judgments use answer-level support w
   const stage = result.debug!.stages.find(
     (stage) => stage.name === 'D: projection'
   )!
-  expect(Object.keys(stage.questions)).toHaveLength(48)
+  expect(Object.keys(stage.questions)).toHaveLength(60)
   expect(JSON.stringify(stage.state).split(text)).toHaveLength(2)
   expect(JSON.stringify(stage.questions)).not.toContain(text)
   expect(
-    Object.keys(stage.questions).some((id) => id.endsWith(':evidence'))
+    Object.keys(stage.questions).some(
+      (id) => !id.startsWith('experiment:') && id.endsWith(':evidence')
+    )
   ).toBe(false)
 })
 

@@ -53,3 +53,6 @@ yarn-error.log*
 /docs/skills/ai-safety-meme-creator/archive-impact-comparison.html
 /docs/skills/ai-safety-meme-creator/archive-stroke-wrap-comparison.html
 eval/runs/
+
+# Isolated fixture browser server
+.next-browser/

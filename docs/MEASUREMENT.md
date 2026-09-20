@@ -65,6 +65,20 @@ Recovery events can occur before `assessment_started`, which still requires the 
 
 The project is exploratory. Do not impose a single vanity KPI. Read evidence across:
 
+### North Star learning questions
+
+Evaluate progress toward the [product goals](PRODUCT.md#north-star) separately from engagement:
+
+| Goal | Evidence to seek | What it does not establish |
+| --- | --- | --- |
+| Understand one's worldview | Participants can explain their result, recognize its claims, correct misinterpretations, and distinguish their beliefs from our uncertainty. Reviewed cases support interpretation fidelity across divergent views. | Recognition or satisfaction alone does not establish correctness; a polished chart is not a validated assessment. |
+| Sharpen one's worldview | In future Socratic follow-up studies, participants can identify a material assumption, assess pertinent evidence, and articulate a justified revision, retained belief, or uncertainty. Review evidence relevance and false challenges as well as participant feedback. | Moving toward a preferred outlook or policy is not success. The current MVP does not demonstrate learning from evidence-grounded follow-up. |
+| Improve AI discourse | Future qualitative review finds clearer claims, explicit assumptions, better use of evidence, and substantive engagement with alternatives in discussions the product supports. | Sharing, resource clicks, and completion cannot establish broader discourse impact or causation. |
+
+For result-design experiments, compare the current map with candidate axes and visualizations on comprehension, faithful interpretation, and usefulness of the next question they suggest. Check whether participants confuse overall outlook with P(doom), evaluator interpretation ranges with forecast uncertainty, or unexplored reasoning with demonstrated weakness. Treat attention and sharing as supporting signals.
+
+These are research directions, not new telemetry requirements or claims of validated outcomes. Use voluntary feedback and appropriately reviewed study material within the privacy posture above; do not collect participant transcripts through analytics to measure them.
+
 ### Engagement
 
 - Root-answer submission.

@@ -112,6 +112,14 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
           return fixtureAnswer(q, undefined, level)
         }
         if (id === 'central_basis') return { type: 'noul', noul: 1 }
+        // Mechanical cases do not author beliefs for the new experiment.
+        if (id.startsWith('experiment:'))
+          return pick(
+            q,
+            q.type === 'choice' && 'none' in q.criteria
+              ? 'none'
+              : 'not_expressed'
+          )
         if (id.startsWith('facet:')) {
           if (
             id === 'facet:overall_outlook' ||

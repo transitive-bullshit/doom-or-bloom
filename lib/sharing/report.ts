@@ -68,11 +68,41 @@ export function serializeReport(
     '',
     `Versions: ${JSON.stringify(result.versions)}`,
     '',
-    '## Map',
+    '## Experimental worldview maps',
     '',
     `Doom–Bloom: ${position(result.horizontal.value)}; interpretation range ${result.horizontal.range.map((v) => Math.round(v * 100)).join('–')}.`,
     '',
-    `Demonstrated reasoning: ${position(result.vertical.value)}; interpretation range ${result.vertical.range.map((v) => Math.round(v * 100)).join('–')}.`,
+    ...(['influence', 'transformation'] as const).map(
+      (axis) =>
+        `${axis === 'influence' ? 'Human influence' : 'Scale of transformation'}: ${position(result.experiment?.[axis].value ?? null)}; interpretation range ${(result.experiment?.[axis].range ?? [0, 1]).map((v) => Math.round(v * 100)).join('–')}.`
+    ),
+    '',
+    `Stated P(doom): ${result.experiment?.pdoom?.token ?? 'Not specified'}. Outcome, horizon and conditions remain in the selected source wording.`,
+    ...(result.experiment?.pdoom
+      ? [
+          `> ${result.experiment.pdoom.text}`,
+          `Answer ${result.experiment.pdoom.answerNumber}.`
+        ]
+      : []),
+    '',
+    '## Milestones and assumptions',
+    '',
+    ...(result.experiment?.milestones.flatMap((m) => [
+      `### ${m.label}`,
+      '',
+      `> ${m.evidence.text}`,
+      '',
+      `Answer ${m.evidence.answerNumber}.`,
+      ''
+    ]) ?? []),
+    ...(result.experiment?.hinges.flatMap((h) => [
+      `### ${h.label}`,
+      '',
+      `> ${h.evidence.text}`,
+      '',
+      `Answer ${h.evidence.answerNumber}. ${h.question}`,
+      ''
+    ]) ?? []),
     '',
     'Ranges reflect authored qualitative categories, missing evidence and ambiguity; they are not calibrated confidence intervals.',
     '',
@@ -140,7 +170,7 @@ export function serializeReport(
     '',
     '## Methodology',
     '',
-    'The horizontal projection summarizes expressed outlook from concern to hope. A mixed, conditional or undecided orientation can be understood and placed without inventing a net-impact forecast. The separately recorded overall expected impact can remain explicitly unknown. The middle orientation is not a forecast that benefits and harms cancel. Development pace, deployment rules and access preferences are separate and have no map weight. The vertical projection uses equally weighted demonstrated-reasoning components. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
+    'The horizontal projection summarizes expressed outlook from concern to hope. A mixed, conditional or undecided orientation can be understood and placed without inventing a net-impact forecast. The separately recorded overall expected impact can remain explicitly unknown. The middle orientation is not a forecast that benefits and harms cancel. Development pace, deployment rules and access preferences are separate and have no map weight. The experimental vertical projections separately interpret human influence over AI outcomes and expected scale of societal transformation. Historical reasoning components remain in the structured evidence, but are not map axes. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
     ''
   ].join('\n')
   return { markdown, json: JSON.stringify(data, null, 2) }

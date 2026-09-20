@@ -3,7 +3,7 @@ import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import { WorldviewDetails } from './worldview-details'
-import { Map } from './worldview-map'
+import { ExperimentalResults } from './experimental-results'
 import { AnswerDisclosure } from './conversation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -56,6 +56,12 @@ export function ResultView({
           vertical: result.vertical.value,
           horizontalRange: result.horizontal.range,
           verticalRange: result.vertical.range,
+          influence: result.experiment?.influence.value ?? null,
+          transformation: result.experiment?.transformation.value ?? null,
+          influenceRange: result.experiment?.influence.range ?? [0, 1],
+          transformationRange: result.experiment?.transformation.range ?? [
+            0, 1
+          ],
           provisional: result.provisional
         })
       })
@@ -87,7 +93,7 @@ export function ResultView({
         </h1>
         <p className='mt-3 text-sm text-muted-foreground'>{result.reason}</p>
       </div>
-      <Map horizontal={result.horizontal} vertical={result.vertical} />
+      <ExperimentalResults result={result} layout='breakout' />
       <WorldviewDetails components={result.components} />
       <div className='grid gap-3 sm:grid-cols-2'>
         {result.fingerprint.map((c) => (

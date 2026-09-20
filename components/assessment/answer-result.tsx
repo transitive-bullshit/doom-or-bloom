@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
-import { Map } from './worldview-map'
+import { ExperimentalResults } from './experimental-results'
 import { WorldviewDetails } from './worldview-details'
 import { Button } from '@/components/ui/button'
 import {
@@ -34,11 +34,7 @@ export function AnswerResult({
       <CollapsibleContent className='mt-4 flex flex-col gap-4'>
         {result && result.evidenceRevision === snapshot?.evidenceRevision ? (
           <>
-            <Map
-              horizontal={result.horizontal}
-              vertical={result.vertical}
-              layout='contained'
-            />
+            <ExperimentalResults result={result} />
             <WorldviewDetails components={result.components} />
           </>
         ) : (

@@ -2,9 +2,55 @@
 
 ## Purpose
 
-Doom or Bloom helps a person articulate and inspect their expectations about advanced AI. It uses a short adaptive natural-language interview to build a high-dimensional worldview profile, then projects that profile into a simple, attractive result. The working domain is doom-or-bloom.com, purchased by Travis.
+Doom or Bloom helps a person articulate, inspect, and sharpen their expectations about advanced AI. It begins with a short adaptive natural-language interview to build a high-dimensional worldview profile, then projects that profile into a simple, attractive result. The working domain is doom-or-bloom.com, purchased by Travis.
 
 The project exists to elevate the quality, breadth, and depth of public conversation about AI futures, safety, risks, and benefits. It should be useful to novices, interesting to experts, and candid about its simplifications.
+
+## North Star
+
+The long-term ambition has three connected goals:
+
+1. **Help people understand their own AI worldview.** Efficiently elicit a faithful, inspectable account of what they expect, why they expect it, what remains uncertain, and which assumptions matter most. Use a neutral, truth-seeking process that preserves mixed views and lets people correct our interpretation.
+2. **Help people strengthen and sharpen that worldview.** Once the initial account is recognizable to the participant, offer a Socratic follow-up that tests important assumptions against pertinent evidence and alternative explanations. Help them identify cruxes, clarify causal reasoning, and state what would change their mind. Success can mean a revised belief, a better-supported existing belief, or more explicit uncertainty.
+3. **Improve the quality, depth, and breadth of AI discourse.** Help people cut through noise about AI safety, risks, upsides, futures, and policy. Connect clear claims to recent real-world capabilities, achievements, incidents, research, and curated expert perspectives, while distinguishing observed evidence from opinion and extrapolation about the near future.
+
+These goals guide development; they are not claims about what the current app has achieved. Each local improvement should advance faithful understanding or useful inquiry. A more engaging chart, smoother interview, or higher completion rate is an intermediate gain, not sufficient evidence that the project fulfills its purpose. Revisit those choices when they obscure important distinctions or stop helping participants think more clearly.
+
+### MVP contribution and limits
+
+The MVP concentrates on the first goal: reliable worldview elicitation, a useful provisional snapshot, participant correction, and modest evidence-supported findings and reading suggestions. Even that contribution needs validation; the implemented local demo uses draft assets and experimental interpretation/readiness heuristics. It does not yet establish assessment accuracy or educational benefit.
+
+The second goal is a post-MVP direction. Clarifying answers, surfacing a supported tension, or linking to a resource does not amount to a sustained Socratic learning experience. Runtime corpus grounding is currently paused, so the demo cannot claim to test a participant's beliefs against current external evidence. The third goal is a longer-term impact ambition, not something that sharing or engagement counts alone can demonstrate.
+
+The existing MVP contracts below remain the implementation baseline. The North Star does not expand the current question budget, change scoring or routing, authorize live retrieval, or commit a final headline axis. Future changes need explicit product and assessment decisions and appropriate evaluation.
+
+### Post-MVP direction: grounded Socratic follow-up
+
+After eliciting the initial worldview, offer an optional, distinct phase of inquiry:
+
+- Identify a consequential assumption, unresolved causal link, or possible internal tension in the participant's own account. Confirm ambiguous interpretations before challenging them.
+- Select a small amount of evidence for its relevance to that specific claim: dated capability demonstrations, real-world incidents, research, or clearly attributed expert arguments. Use the provenance, freshness, scope, and review standards in [SOURCES.md](SOURCES.md) and [AUTHORING.md](AUTHORING.md).
+- Explain the connection and ask a pointed, open question about how the evidence affects the participant's reasoning. Make room for a reasoned objection to the evidence, a narrower claim, a changed belief, or continued uncertainty.
+- Make any revision and remaining disagreement inspectable without treating movement toward optimism, pessimism, a policy position, or our preferred conclusion as success.
+
+For example, if a participant says AI will never perform a particular task and a reviewed source reports a demonstration, first establish whether the demonstrated task and conditions match the participant's claim. Then ask whether that observation changes the claim or which limitation still matters. A narrow demonstration does not establish reliable deployment or general capability.
+
+The hard problems are evidence curation and choosing the evidence that bears most directly on a person's assumptions. Recent or authoritative material is not automatically relevant or decisive; disagreements and transfer limits must remain visible. The voice should be curious and respectful, with room for substantive pushback, never condescending or scored by ideological agreement. This direction does not yet select a retrieval architecture or change the authored-content boundary.
+
+### Experimental direction: more useful result visualizations
+
+The map should help participants understand their worldview and see what is worth exploring next. The prominence of demonstrated reasoning as the vertical axis is an open design question; its usefulness as the headline second dimension needs reassessment. Doom–Bloom remains useful as an overall-outlook projection, while reasoning feedback may be more actionable as specific strengths, gaps, and questions. For local comparison, two maps now replace the reasoning-axis map: **Doom–Bloom × Human influence** and **Doom–Bloom × Scale of transformation**. Choosing one eventual headline axis remains open.
+
+The local experiment also displays the following supporting views. These are provisional designs, not validated assessment instruments:
+
+| Candidate | Participant value | Interpretation boundary |
+| --- | --- | --- |
+| Milestone timeline | Compare expectations for participant-defined milestones such as AGI or ASI, and see which dates or dependencies remain unclear. | Preserve milestone definitions, conditions, ranges, and “may never happen” or unknown answers; do not invent dates from broad capability categories. |
+| Prominent P(doom) estimate | Make a familiar catastrophic-risk belief easy to inspect alongside overall outlook. | Define the outcome and horizon, distinguish stated probability from our interpretation, and allow correction. P(doom) is separate from Doom–Bloom; qualitative answers do not justify a fabricated percentage. |
+| Uncertainty or probability view | Show the shape and limits of a belief where answers support it. | Separate the participant's uncertainty about the future from our uncertainty about their meaning. An illustrative range is not a calibrated margin of error; do not manufacture a “10% ± 5%” estimate or distribution. |
+| Assumptions, cruxes, and reasoning gaps | Show which causal links support the worldview and which questions would most help sharpen it. | Separate unasked or unexplored areas from demonstrated weaknesses, and possible tensions from established contradictions. Tie observations to supporting answers. |
+
+Evaluate candidate axes and visualizations against the North Star: whether participants recognize their own views, understand the distinctions and uncertainty, and can identify a useful next question. Visual interest and shareability matter, but do not establish interpretive validity. See [MEASUREMENT.md](MEASUREMENT.md#north-star-learning-questions).
 
 ## Audience
 
@@ -73,10 +119,11 @@ Use a finite, lightweight decorative effect with an immediate dismiss action, at
 
 The result should lead with:
 
-1. A **Doom–Bloom × Epistemic Quality** placement with interpretation ranges.
+1. Two experimental placements with interpretation ranges: **Doom–Bloom × Human influence** and **Doom–Bloom × Scale of transformation**.
 2. A compact worldview fingerprint, initially emphasizing timeline, upside, catastrophic risk, controllability, and institutional competence.
 3. A few evidence-supported findings: strengths, tensions, material assumptions, or knowledge gaps.
-4. A small number of curated resources selected for the participant's actual profile.
+4. Experimental stated P(doom), milestone timing, and assumptions/update conditions, with exact source wording.
+5. A small number of curated resources selected for the participant's actual profile.
 
 Optional actions:
 
@@ -115,15 +162,21 @@ Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, f
 - X web intents cannot attach the generated image. Offer “Download card” and “Post on X” as separate, clearly worded actions.
 - Native file sharing is an optional enhancement when the browser supports sharing files.
 
-## Explicit non-goals
+## Enduring non-goals
 
 - A scientifically validated psychological instrument.
 - A definitive probability-of-doom calculator.
-- A live news-retrieval or fact-checking service.
 - A chatbot with unconstrained generated questions.
 - A debate bot, persuasion funnel, or ideological sorting test.
 - A measure of IQ, credentials, writing polish, or general rationality.
+
+## Outside MVP scope
+
+- A live news-retrieval or fact-checking service.
+- A sustained, evidence-grounded Socratic follow-up phase.
 - Long-term user profiles, accounts, or public transcripts.
+
+The longer-term goals above do not require live retrieval or hosted profiles. Those implementation choices remain separate from the product ambition.
 
 ## Technical envelope already chosen
 
@@ -143,4 +196,10 @@ Development-only `/questions` and `/corpus` display built-in assets, relationshi
 
 Display a compact Evidence readiness meter while interviewing, including the provisional-result threshold. Explain that it reflects supported coverage rather than forecast accuracy, quality or answer length; debug disclosure gives the experimental formula. See [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness).
 
-The Doom–Bloom map is the result’s hero: strong categorical pole colors, a clearly labeled participant point, visible interpretation area, and axes explained beside the map. Across = expected outlook, up = reasoning demonstrated in the answers. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.
+The Doom–Bloom map is the result’s hero: strong categorical pole colors, a clearly labeled participant point, visible interpretation area, and axes explained beside the map. Both maps share expressed outlook horizontally. Upward means stronger collective human influence on the first map and greater expected societal transformation on the second. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.
+
+### Local comparison workflow
+
+Use the same experimental result component in participant results, results after each answer, and the internal journey inspector. The journey inspector adds a keyboard-accessible answer selector and earlier-answer dots on both maps; all three supporting views follow the selected snapshot. Missing snapshots stay unavailable rather than using later answers. Older results without experiment data show an explicit unevaluated state.
+
+P(doom) shows a selected participant percentage or range with its exact source context; it is not inferred from categorical risk or evaluator confidence. Qualified estimates retain their wording, without a fabricated bar or error interval. The timeline groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. The assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.

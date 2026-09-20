@@ -34,6 +34,12 @@ Supply the complete accepted transcript once, active whole-answer support, dimen
 
 Consume scores only on supported branches. Explicit unknowns remain unplaced. Code normalizes authored scales, calculates the map and interpretation ranges, chooses conservative authored findings and curated resources, and retains whole-answer provenance. Reuse a result when its evidence revision is unchanged, including historical results with their original version.
 
+### Experimental worldview views — `worldview-v1`
+
+The projection batch adds twelve independent judgments: two qualitative axes, two supporting-excerpt selections, one stated P(doom) selection, four milestone timing selections, and three assumption/uncertainty/update-condition selections. Code proposes bounded exact passages and explicit percentage tokens from accepted answers, while preserving the complete transcript and correction scopes. Jev selects authored categories or candidates; it writes no new result prose. Missing or ambiguous evidence remains unplaced. The twelve questions bring the current base projection batch to 60 judgments; bounded reasoning-evidence selection remains a separate dependent pass.
+
+Store these results in optional `result.experiment` with its own version, model, timestamp and evidence revision. This additive experiment does not change readiness or routing semantics or reinterpret historical reasoning scores. Exact quotes are presentation evidence; the existing dimension ledger retains whole-answer provenance.
+
 ### Runtime corpus grounding is paused
 
 The user paused identification and canonical-summary grounding for the local demo. No B1/B2 requests, reference-topic judgment, source summaries or reference claims enter new inference. Legacy reference flags do not affect new routing, readiness, findings or resource ranking; newly calculated results have no grounding-source list. Do not claim external fact-checking. Grounded understanding now assesses the connection between a claim and the basis the participant offers, not independent source accuracy.

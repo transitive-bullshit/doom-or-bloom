@@ -12,6 +12,7 @@ import {
 import path from 'node:path'
 import { z } from 'zod'
 import { runIndex, suiteSchema } from './schema'
+import { withJourneyExperiments } from './experiments'
 
 const pendingSaves = new Map<string, Promise<unknown>>()
 import type { JourneySuite, RunIndex } from './schema'
@@ -69,7 +70,7 @@ export function createJourneyStore(root: string) {
       suite = recorded
     }
     if (suite.id !== id) throw new Error('Journey artifact identity mismatch')
-    return suite
+    return withJourneyExperiments(root, suite)
   }
   async function list(): Promise<RunIndex[]> {
     let directories: string[] = []

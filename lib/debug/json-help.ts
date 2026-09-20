@@ -163,9 +163,13 @@ export function jsonHelp({
   }
   const vector = property === 'vector' ? value : own?.vector
   if (vector === 'outlook')
-    return 'The horizontal Doom–Bloom projection: 45% expected benefits, 45% reversed expected harm and 10% valued human continuity. This is not P(doom) or a policy preference.'
+    return 'The horizontal Doom–Bloom projection of expressed outlook from concern to hope. Mixed or undecided views can be placed without inventing a net-impact forecast. This is not P(doom) or a policy preference.'
+  if (vector === 'influence')
+    return 'Experimental belief about how much human choices can alter AI outcomes. This is separate from institutional competence, technical control and personal efficacy.'
+  if (vector === 'transformation')
+    return 'Experimental expectation of how radically AI will transform society, independently of whether the change is beneficial and when it arrives.'
   if (vector === 'epistemic')
-    return 'The vertical projection of seven equally weighted demonstrated-reasoning dimensions. Missing evidence widens the range rather than lowering observed reasoning.'
+    return 'The retained historical composite of seven equally weighted demonstrated-reasoning dimensions; it is no longer a displayed map axis. Missing evidence widens the range rather than lowering observed reasoning.'
   const dimension = context.dimensions?.find(
     (entry) =>
       entry.id === property ||

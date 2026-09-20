@@ -152,10 +152,9 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   await expect(
     page.getByRole('article', { name: 'Question 1 and replies', exact: true })
   ).toContainText('Relevant synthetic answer 0.')
-  await expect(page.getByRole('img', { name: /^Doom–Bloom:/ })).toHaveAttribute(
-    'aria-label',
-    /interpretation coordinates/
-  )
+  await expect(
+    page.getByRole('img', { name: /^Doom–Bloom:/ }).first()
+  ).toHaveAttribute('aria-label', /interpretation coordinates/)
   await page
     .getByRole('button', { name: 'Inspect evidence & clarify my view' })
     .click()
@@ -444,11 +443,11 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   await expect(
     page.getByRole('heading', { name: 'A map of your AI worldview' })
   ).toBeVisible()
-  await expect(page.locator('[data-slot="worldview-map"]')).toContainText(
-    '45% expected benefits'
-  )
-  await expect(page.locator('[data-slot="worldview-map"]')).toContainText(
-    'not P(doom)'
-  )
+  await expect(
+    page.locator('[data-slot="worldview-map"]').first()
+  ).toContainText('human influence')
+  await expect(
+    page.locator('[data-slot="worldview-map"]').first()
+  ).toContainText('not reasoning quality or event probabilities')
   expect(requests).toEqual([])
 })

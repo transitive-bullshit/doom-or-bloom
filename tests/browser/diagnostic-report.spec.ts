@@ -46,7 +46,9 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   })
   await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
   await disclosure.click()
-  await expect(first.locator('[data-slot="worldview-map"]')).toBeVisible()
+  await expect(
+    first.locator('[data-slot="worldview-map"]').first()
+  ).toBeVisible()
   await first.screenshot({ path: testInfo.outputPath('answer-result.png') })
   await page
     .getByLabel('Your answer', { exact: true })

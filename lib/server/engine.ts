@@ -68,6 +68,11 @@ import {
 } from '@/lib/assessment/reasoning-evidence'
 import { supported } from '@/lib/assessment/presence'
 import {
+  experimentCandidates,
+  experimentQuestions,
+  buildWorldviewExperiment
+} from '@/lib/assessment/worldview-experiment'
+import {
   supportedClaim,
   isAuthoredClaim,
   unplacedClaim
@@ -722,6 +727,7 @@ export async function runAssessment(
       return
     }
     let components: Component[] = []
+    let experiment: ReturnType<typeof buildWorldviewExperiment> | undefined
     if (eligible(state) || inspection) {
       const scores = rubricQuestions(
         bundle.rubric,
@@ -763,10 +769,20 @@ export async function runAssessment(
         { meaning: `${catastrophe.label}: ${catastrophe.meaning}` },
         catastrophe.levels
       )
+      const input = projectionInput(state, bundle)
+      const candidates = experimentCandidates(input)
+      Object.assign(questions, experimentQuestions(candidates))
       const evaluation = await evaluate(
         'D: projection',
-        projectionInput(state, bundle),
+        { ...input, experimentCandidates: candidates },
         questions
+      )
+      experiment = buildWorldviewExperiment(
+        input,
+        candidates,
+        evaluation.answers,
+        state.evidenceRevision,
+        evaluation.model
       )
       addJudgments(
         'project',
@@ -969,6 +985,7 @@ export async function runAssessment(
     // Projection assessability is separate from evidence coverage. An explicit
     // unknown can be understood without supporting a directional coordinate.
     const result = baseResult(state, components, bundle.rubric, capped)
+    if (experiment) result.experiment = experiment
     const horizon = timelineContext(state)
     result.fingerprint = [
       {

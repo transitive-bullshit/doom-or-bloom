@@ -205,11 +205,53 @@ export const componentSchema = z.strictObject({
     .optional()
 })
 export type Component = z.infer<typeof componentSchema>
+export const experimentQuoteSchema = z.strictObject({
+  answerId: z.string(),
+  answerNumber: z.number().int().positive(),
+  text: z.string().max(1000),
+  token: z.string().max(120).optional(),
+  bounds: z.tuple([probability, probability]).optional()
+})
+export const worldviewExperimentSchema = z.strictObject({
+  version: z.literal('worldview-v1'),
+  model: z.string(),
+  generatedAt: z.string(),
+  evidenceRevision: z.number().int().nonnegative(),
+  influence: componentSchema,
+  transformation: componentSchema,
+  axisEvidence: z.strictObject({
+    influence: experimentQuoteSchema.nullable(),
+    transformation: experimentQuoteSchema.nullable()
+  }),
+  pdoom: experimentQuoteSchema.nullable(),
+  milestones: z
+    .array(
+      z.strictObject({
+        id: z.string(),
+        label: z.string(),
+        evidence: experimentQuoteSchema
+      })
+    )
+    .max(4),
+  hinges: z
+    .array(
+      z.strictObject({
+        id: z.string(),
+        label: z.string(),
+        question: z.string(),
+        evidence: experimentQuoteSchema
+      })
+    )
+    .max(3)
+})
+export type WorldviewExperiment = z.infer<typeof worldviewExperimentSchema>
+export type ExperimentQuote = z.infer<typeof experimentQuoteSchema>
 export const resultSchema = z.strictObject({
   evidenceRevision: z.number().int().min(0),
   versions: versionsSchema,
   horizontal: componentSchema,
   vertical: componentSchema,
+  experiment: worldviewExperimentSchema.optional(),
   components: z.array(componentSchema).max(40),
   findings: z
     .array(

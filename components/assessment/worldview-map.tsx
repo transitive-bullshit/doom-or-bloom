@@ -2,24 +2,30 @@
 import { useId } from 'react'
 import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
+import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
 
 const coordinate = (value: number | null) =>
   value === null ? 'Unplaced' : `${Math.round(value * 100)} / 100`
 export function Map({
   horizontal: x,
   vertical: y,
+  axis,
+  history = [],
   layout = 'breakout'
 }: {
   horizontal: Component
   vertical: Component
+  axis: keyof typeof experimentalAxes
+  history?: Array<{ x: number | null; y: number | null; label: string }>
   layout?: 'contained' | 'breakout'
 }) {
+  const definition = experimentalAxes[axis]
   const id = useId().replaceAll(':', '')
   const plot = { left: 70, top: 52, width: 560, height: 268 }
   const px = (value: number) => plot.left + value * plot.width
   const py = (value: number) => plot.top + (1 - value) * plot.height
   const point = x.value !== null && y.value !== null
-  const description = `Doom–Bloom: ${x.value === null ? 'unplaced' : Math.round(x.value * 100) + ' out of 100'}. Demonstrated reasoning: ${y.value === null ? 'unplaced' : Math.round(y.value * 100) + ' out of 100'}. Interpretation ranges: ${x.range.map((v) => Math.round(v * 100)).join(' to ')} horizontally, ${y.range.map((v) => Math.round(v * 100)).join(' to ')} vertically. These are interpretation coordinates, not event probabilities.`
+  const description = `Doom–Bloom: ${x.value === null ? 'unplaced' : Math.round(x.value * 100) + ' out of 100'}. ${definition.label}: ${y.value === null ? 'unplaced' : Math.round(y.value * 100) + ' out of 100'}. Interpretation ranges: ${x.range.map((v) => Math.round(v * 100)).join(' to ')} horizontally, ${y.range.map((v) => Math.round(v * 100)).join(' to ')} vertically. These are interpretation coordinates, not event probabilities.`
   return (
     <figure
       data-slot='worldview-map'
@@ -32,10 +38,10 @@ export function Map({
       <div className='flex flex-wrap items-start justify-between gap-4'>
         <div>
           <p className='map-muted text-xs font-medium tracking-widest uppercase'>
-            Your outlook × your reasoning
+            Experimental · outlook × {definition.label.toLowerCase()}
           </p>
-          <h2 className='mt-2 text-3xl font-semibold tracking-tight sm:text-4xl'>
-            Doom–Bloom
+          <h2 className='mt-2 text-2xl font-semibold tracking-tight'>
+            {definition.question}
           </h2>
         </div>
         <div className='flex flex-wrap gap-3 text-xs'>
@@ -46,7 +52,7 @@ export function Map({
             </p>
           </div>
           <div className='map-stat rounded-lg px-3 py-2'>
-            <p className='map-muted'>Reasoning</p>
+            <p className='map-muted'>{definition.label}</p>
             <p className='mt-1 font-semibold tabular-nums'>
               {coordinate(y.value)}
             </p>
@@ -54,7 +60,8 @@ export function Map({
         </div>
       </div>
       <p className='map-muted mt-5 text-sm'>
-        Upward: more developed reasoning demonstrated in your answers.
+        Upward: {definition.high.toLowerCase()}. Downward:{' '}
+        {definition.low.toLowerCase()}.
       </p>
       <svg
         viewBox='0 0 680 395'
@@ -142,8 +149,29 @@ export function Map({
           fontSize='12'
           textAnchor='middle'
         >
-          Demonstrated reasoning
+          {definition.label}
         </text>
+        {history.map((entry, index) =>
+          entry.x !== null && entry.y !== null ? (
+            <g key={index}>
+              <circle
+                cx={px(entry.x)}
+                cy={py(entry.y)}
+                r='4'
+                fill='var(--map-text)'
+                opacity='.4'
+              />
+              <text
+                x={px(entry.x) + 7}
+                y={py(entry.y) - 7}
+                fontSize='11'
+                fill='var(--map-text)'
+              >
+                {entry.label}
+              </text>
+            </g>
+          ) : null
+        )}
         <rect
           x={px(x.range[0])}
           y={py(y.range[1])}
@@ -314,7 +342,7 @@ export function Map({
           yet know.
         </p>
       )}
-      {x.claim && <p className='map-muted mb-3 text-sm'>{x.claim}</p>}
+      {y.claim && <p className='map-muted mb-3 text-sm'>{y.claim}</p>}
       <figcaption className='map-muted flex flex-wrap gap-x-5 gap-y-2 text-xs'>
         <span className='flex items-center gap-2'>
           <span className='map-point size-2 rounded-full' />
@@ -327,30 +355,13 @@ export function Map({
           Dashed area: interpretation range, including missing evidence
         </span>
       </figcaption>
-      <div className='map-divider mt-5 grid gap-4 border-t pt-5 text-sm sm:grid-cols-2'>
-        <div>
-          <p className='font-semibold'>Across: what future do you expect?</p>
-          <p className='map-muted mt-2 text-xs leading-relaxed'>
-            Your expressed outlook, including conditional views. A middle
-            position can mean mixed or undecided, not equal expected benefits
-            and harms. Support for slowing or accelerating AI does not determine
-            this position.
-          </p>
-        </div>
-        <div>
-          <p className='font-semibold'>Up: how have you explained your view?</p>
-          <p className='map-muted mt-2 text-xs leading-relaxed'>
-            Seven equally weighted reasoning dimensions, from causal clarity to
-            engagement with alternatives. Coherent Doom and Bloom views can both
-            place high.
-          </p>
-        </div>
-      </div>
-      <p className='map-muted mt-5 text-xs leading-relaxed'>
-        Coordinates summarize your answers. Ranges reflect uncertain
-        interpretations and missing evidence. They are not P(doom), a test of
-        intelligence, or a prediction of who is right. Unexplored dimensions
-        widen the range rather than lower your observed reasoning.
+      <p className='map-muted mt-4 text-xs leading-relaxed'>
+        Across: your expressed Doom–Bloom outlook. Up:{' '}
+        {definition.label.toLowerCase()}. Coordinates describe beliefs, not
+        reasoning quality or event probabilities.
+        {history.length > 0
+          ? ' Small numbered dots show earlier answers; gaps remain unplaced.'
+          : ''}
       </p>
       <p className='sr-only'>{description}</p>
     </figure>

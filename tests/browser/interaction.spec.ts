@@ -54,13 +54,13 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   await expect(
     page.getByRole('heading', { name: 'A map of your AI worldview' })
   ).toBeVisible()
-  await expect(page.getByRole('img', { name: /^Doom–Bloom:/ })).toHaveAttribute(
-    'aria-label',
-    /not event probabilities/
-  )
+  await expect(
+    page.getByRole('img', { name: /^Doom–Bloom:/ }).first()
+  ).toHaveAttribute('aria-label', /not event probabilities/)
   await fitsViewport(page)
   await page
     .locator('[data-slot="worldview-map"]')
+    .first()
     .screenshot({ path: testInfo.outputPath('hero-map-mobile.png') })
   await page.screenshot({
     path: testInfo.outputPath('mobile-result.png'),
@@ -76,6 +76,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   await page.setViewportSize({ width: 1365, height: 960 })
   await page
     .locator('[data-slot="worldview-map"]')
+    .first()
     .screenshot({ path: testInfo.outputPath('hero-map-desktop.png') })
   await page.screenshot({
     path: testInfo.outputPath('desktop-result.png'),
