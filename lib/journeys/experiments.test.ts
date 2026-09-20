@@ -49,7 +49,9 @@ test('replayed experiments attach only to the same run, answer state and evidenc
     expect(enriched.journeys[0]!.steps[0]!.result!.horizontal).toEqual(
       step.result!.horizontal
     )
-    expect(enriched.journeys[0]!.steps[1]!.result!.experiment).toBeUndefined()
+    expect(enriched.journeys[0]!.steps[1]!.result!.experiment).toEqual(
+      source.journeys[0]!.steps[1]!.result!.experiment
+    )
     for (const changed of [
       { ...replay, sourceRunId: 'a-different-run' },
       {
@@ -68,7 +70,9 @@ test('replayed experiments attach only to the same run, answer state and evidenc
         root,
         structuredClone(source)
       )
-      expect(ignored.journeys[0]!.steps[0]!.result!.experiment).toBeUndefined()
+      expect(ignored.journeys[0]!.steps[0]!.result!.experiment).toEqual(
+        step.result!.experiment
+      )
     }
   } finally {
     await rm(root, { recursive: true, force: true })

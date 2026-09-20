@@ -897,3 +897,10 @@ Approved scope and experiment rationale: `elicitation-audit-2026-09-20.md`. No f
 - [x] Populate and inspect all 45 saved snapshots across 16 journeys after user approval of the live tests, including the fixed personal transcript. Separate excerpt selection from independent validity checks, verify milestone topic attribution, and preserve missing positions. Final replay used 90 Jev requests; no participant answers were regenerated. See [the comparison review](worldview-experiment-review-2026-09-20.md) for observations and remaining limitations.
 
 The experiment is an additive `worldview-v2` field (historical `worldview-v1` remains readable); it does not declare either vertical axis the eventual winner or change the core readiness/routing contract. A separate `.next-browser` directory lets fixture browser checks run alongside an existing local dev server.
+
+### P(doom) inference and journey disclosure
+
+- [x] Reproduce missing P(doom) on the recorded control-alarmist answers; infer probability bands from the whole worldview and distinguish stated, direct qualitative and indirect contextual support.
+- [x] Add regressions for qualitative forecasts, contextual low estimates, explicit-number precedence, evidence verification and category-probability weighting.
+- [x] Collapse the worldview progression explorer by default while keeping final results expanded.
+- [x] Regenerate all 16 live journeys with `worldview-v3`; validate 47 result snapshots and concrete P(doom) for all public proxies and the fixed real-user regression. Remove the superseded replay overlay.

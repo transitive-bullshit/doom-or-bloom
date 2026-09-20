@@ -8,7 +8,7 @@ This package defines the product and assessment contract for a bounded, adaptive
 
 The project aims to help people understand their AI worldview, sharpen it through neutral Socratic inquiry grounded in pertinent real-world evidence, and contribute to clearer, deeper discussion of AI futures, safety, risks, upsides, and policy. [PRODUCT.md](PRODUCT.md#north-star) defines these goals and how they guide development beyond intermediate improvements to the interview or results.
 
-The MVP concentrates on a faithful, correctable worldview snapshot; its local draft still needs validation. Sustained evidence-grounded follow-up is a post-MVP direction, and broader discourse improvement remains an impact ambition. Two alternative vertical axes, stated P(doom), milestone timing, and assumptions/update conditions are now [local experimental views](PRODUCT.md#experimental-direction-more-useful-result-visualizations). Their evaluation and the eventual headline-map choice remain open.
+The MVP concentrates on a faithful, correctable worldview snapshot; its local draft still needs validation. Sustained evidence-grounded follow-up is a post-MVP direction, and broader discourse improvement remains an impact ambition. Two alternative vertical axes, stated or inferred P(doom), milestone timing, and assumptions/update conditions are now [local experimental views](PRODUCT.md#experimental-direction-more-useful-result-visualizations). Their evaluation and the eventual headline-map choice remain open.
 
 ## Canonical documents
 

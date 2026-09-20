@@ -26,3 +26,13 @@ Remaining limitations to assess visually:
 - These are reviewed development journeys, not a held-out accuracy evaluation. The maps support comparison and product decisions; they do not establish a validated psychological scale or exhaust the project’s North Star goals.
 
 The final full replay completed in 90 Jev requests with no OpenAI calls. The user explicitly authorized these tests and clarified that ordinary test cost is not a blocker.
+
+## P(doom) inference follow-up
+
+The control-alarmist transcript states “On the present course, AI means extinction” without a percentage. The original numeric-token extractor therefore returned nothing by design. That contract did not meet the product goal: interpreting beliefs expressed in natural language.
+
+The first inference pass exposed a second failure: whole-interview likelihood judgments were erased when no single excerpt independently established the proposed band. In a live replay, the cautious-builder proxy had 0.63 interpretation mass on the 10–30% band, but quote verification was only 0.20. The anti-doomer proxy had 0.67 mass on 1–10% and 0.30 on 0–1%, but quote verification was 0.47 after its follow-up. These were quote-selection failures, not missing whole-interview estimates.
+
+`worldview-v3` separates those responsibilities. Verified explicit percentages take precedence. Otherwise, Jev interprets event-probability bands from the whole answer history, including contextual evidence. Code combines band midpoints, widens the range for indirect or missing evidence, and records supporting answer IDs. Optional representative excerpts are independently checked; missing excerpts no longer erase inferred estimates. No persona identity, public reputation, or desired test coordinate supplies the percentage.
+
+The mapping remains an authored development heuristic. We should review the band boundaries and contextual estimates against direct user corrections; the range is not a calibrated confidence interval. Optimism, policy preferences, model confidence and P(doom) remain distinct. A low indirect estimate does not establish that the participant explicitly considered and rejected extinction risk.

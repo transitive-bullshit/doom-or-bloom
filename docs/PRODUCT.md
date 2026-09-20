@@ -46,7 +46,7 @@ The local experiment also displays the following supporting views. These are pro
 | Candidate | Participant value | Interpretation boundary |
 | --- | --- | --- |
 | Milestone timeline | Compare expectations for participant-defined milestones such as AGI or ASI, and see which dates or dependencies remain unclear. | Preserve milestone definitions, conditions, ranges, and “may never happen” or unknown answers; do not invent dates from broad capability categories. |
-| Prominent P(doom) estimate | Make a familiar catastrophic-risk belief easy to inspect alongside overall outlook. | Define the outcome and horizon, distinguish stated probability from our interpretation, and allow correction. P(doom) is separate from Doom–Bloom; qualitative answers do not justify a fabricated percentage. |
+| Prominent P(doom) estimate | Make a familiar catastrophic-risk belief easy to inspect alongside overall outlook. | Define the outcome and horizon, distinguish stated probability from our interpretation, and allow correction. P(doom) is separate from Doom–Bloom; infer an approximate probability from natural-language views, label stated versus inferred values, and show a broader range when support is indirect. |
 | Uncertainty or probability view | Show the shape and limits of a belief where answers support it. | Separate the participant's uncertainty about the future from our uncertainty about their meaning. An illustrative range is not a calibrated margin of error; do not manufacture a “10% ± 5%” estimate or distribution. |
 | Assumptions, cruxes, and reasoning gaps | Show which causal links support the worldview and which questions would most help sharpen it. | Separate unasked or unexplored areas from demonstrated weaknesses, and possible tensions from established contradictions. Tie observations to supporting answers. |
 
@@ -122,7 +122,7 @@ The result should lead with:
 1. Two experimental placements with interpretation ranges: **Doom–Bloom × Human influence** and **Doom–Bloom × Scale of transformation**.
 2. A compact worldview fingerprint, initially emphasizing timeline, upside, catastrophic risk, controllability, and institutional competence.
 3. A few evidence-supported findings: strengths, tensions, material assumptions, or knowledge gaps.
-4. Experimental stated P(doom), milestone timing, and assumptions/update conditions, with exact source wording.
+4. Experimental stated or inferred P(doom), milestone timing, and assumptions/update conditions, with exact source wording.
 5. A small number of curated resources selected for the participant's actual profile.
 
 Optional actions:

@@ -62,7 +62,7 @@ export function serializeReport(
   const markdown = [
     `# Doom or Bloom — full report`,
     '',
-    'Experimental assessment of the reasoning and expectations demonstrated in your answers. Not a psychological measurement or a P(doom) calculator.',
+    'Experimental interpretation of the expectations and reasoning expressed in your answers. P(doom) describes your stated or inferred belief, not an independent prediction of AI catastrophe.',
     '',
     `Status: ${result.insufficient ? 'Insufficient evidence' : result.provisional ? 'Provisional' : 'Supported projection'}${result.capped ? ' · lifetime prompt cap reached' : ''}`,
     '',
@@ -77,11 +77,13 @@ export function serializeReport(
         `${axis === 'influence' ? 'Human influence' : 'Scale of transformation'}: ${position(result.experiment?.[axis].value ?? null)}; interpretation range ${(result.experiment?.[axis].range ?? [0, 1]).map((v) => Math.round(v * 100)).join('–')}.`
     ),
     '',
-    `Stated P(doom): ${result.experiment?.pdoom?.token ?? 'Not specified'}. Outcome, horizon and conditions remain in the selected source wording.`,
+    `${result.experiment?.pdoom?.source === 'inferred' ? 'Inferred' : 'Stated'} P(doom): ${result.experiment?.pdoom?.token ?? 'Not specified'}. The estimate applies to the outcome, horizon and conditions described in your answers.`,
     ...(result.experiment?.pdoom
       ? [
-          `> ${result.experiment.pdoom.text}`,
-          `Answer ${result.experiment.pdoom.answerNumber}.`
+          ...(result.experiment.pdoom.text
+            ? [`> ${result.experiment.pdoom.text}`]
+            : []),
+          `${result.experiment.pdoom.answerNumber ? `Answer ${result.experiment.pdoom.answerNumber}` : 'Based on the full answer history'}.${result.experiment.pdoom.source === 'inferred' ? ` Approximate interpretation range: ${result.experiment.pdoom.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Inferred from ${result.experiment.pdoom.basis === 'contextual' ? 'broader worldview and priorities' : 'qualitative likelihood'}; not a stated percentage or statistical confidence interval.` : ''}`
         ]
       : []),
     '',

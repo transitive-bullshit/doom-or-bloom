@@ -175,3 +175,123 @@ describe('experimental worldview evidence boundaries', () => {
     expect(resultSchema.shape.experiment.isOptional()).toBe(true)
   })
 })
+
+it('interprets the recorded alarmist wording even when there is no percentage token', () => {
+  const source = input(
+    'On the present course, AI means extinction. If anyone builds superintelligence using anything like current methods, I expect humanity to lose.'
+  )
+  const result = assess(source, {
+    'experiment:pdoom:band': 'near_certain',
+    'experiment:pdoom:evidence': 'p0'
+  })
+  expect(result.pdoom).toMatchObject({
+    source: 'inferred',
+    estimate: 0.95,
+    bounds: [0.9, 1],
+    text: 'On the present course, AI means extinction.'
+  })
+})
+
+it('prefers a verified stated number over a qualitative interpretation', () => {
+  const result = assess(
+    input(
+      'I think extinction is very likely: about 99% if we build it this way.'
+    ),
+    {
+      'experiment:pdoom': 'n0',
+      'experiment:pdoom:band': 'near_certain',
+      'experiment:pdoom:evidence': 'p0'
+    }
+  )
+  expect(result.pdoom?.token).toBe('about 99%')
+  expect(result.pdoom?.source).toBe('stated')
+})
+
+it('does not infer a number when no relevant worldview evidence is identified', () => {
+  const result = assess(input('AI will definitely change jobs.'), {
+    'experiment:pdoom:band': 'near_certain',
+    'experiment:pdoom:basis': 'absent'
+  })
+  expect(result.pdoom).toBeNull()
+})
+
+it('infers an indirect low estimate with a wider range from a benign worldview', () => {
+  const result = assess(
+    input(
+      'AI will bring abundance. I expect engineers to solve problems as they arise.'
+    ),
+    {
+      'experiment:pdoom:band': 'very_unlikely',
+      'experiment:pdoom:basis': 'contextual',
+      'experiment:pdoom:evidence': 'p0'
+    }
+  )
+  expect(result.pdoom?.estimate).toBeCloseTo(0.055)
+  expect(result.pdoom?.bounds).toEqual([0, 0.25])
+  expect(result.pdoom?.basis).toBe('contextual')
+  expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
+})
+
+it('combines probability bands rather than mistaking model confidence for P(doom)', () => {
+  const source = input(
+    'I expect extinction on this course, though other futures are possible.'
+  )
+  const candidates = experimentCandidates(source)
+  const answers: Record<string, ModelAnswer> = {
+    'experiment:pdoom:band': {
+      type: 'choice',
+      choice: 'near_certain',
+      confidence: 0.6,
+      probabilities: { near_certain: 0.6, very_likely: 0.4 }
+    },
+    'experiment:pdoom:basis': {
+      type: 'choice',
+      choice: 'direct',
+      confidence: 1,
+      probabilities: { direct: 1 }
+    },
+    'experiment:pdoom:evidence': {
+      type: 'choice',
+      choice: 'p0',
+      confidence: 1,
+      probabilities: { p0: 1 }
+    },
+    'experiment:pdoom:evidence:verified': { type: 'noul', noul: 0.95 }
+  }
+  const result = buildWorldviewExperiment(
+    source,
+    candidates,
+    answers,
+    1,
+    'fixture-v1'
+  )
+  expect(result.pdoom?.estimate).toBeCloseTo(0.89)
+  expect(result.pdoom?.bounds).toEqual([0.7, 1])
+  answers['experiment:pdoom:evidence:verified'] = { type: 'noul', noul: 0.1 }
+  const withoutQuote = buildWorldviewExperiment(
+    source,
+    candidates,
+    answers,
+    1,
+    'fixture-v1'
+  ).pdoom
+  expect(withoutQuote?.estimate).toBeCloseTo(0.89)
+  expect(withoutQuote?.text).toBeUndefined()
+  expect(withoutQuote?.evidenceAnswerIds).toEqual(['a1'])
+})
+
+it('retains a whole-interview contextual estimate without a single representative quote', () => {
+  const result = assess(
+    input(
+      'I expect substantial benefits but control remains a serious challenge.'
+    ),
+    {
+      'experiment:pdoom:band': 'unlikely',
+      'experiment:pdoom:basis': 'contextual'
+    }
+  )
+  expect(result.pdoom?.estimate).toBeCloseTo(0.2)
+  expect(result.pdoom?.text).toBeUndefined()
+  expect(result.pdoom?.evidenceAnswerIds).toEqual(['a1'])
+  expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
+})

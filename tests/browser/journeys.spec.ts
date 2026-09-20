@@ -287,6 +287,17 @@ test('answer selector moves both maps and every experimental view without infere
   })
   await page.goto('/user-journeys')
   const explorer = page.getByRole('region', { name: 'Worldview progression' })
+  const disclosure = page.getByRole('button', {
+    name: 'Watch the worldview develop'
+  })
+  await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
+  await expect(explorer).not.toBeVisible()
+  await expect(
+    page.getByRole('region', { name: 'Journey result' })
+  ).toBeVisible()
+  await disclosure.click()
+  await explorer.getByRole('slider').press('Home')
+  await explorer.getByRole('slider').press('ArrowRight')
   await expect(explorer.locator('[data-slot=worldview-map]')).toHaveCount(2)
   await expect(explorer).toContainText('20%')
   await expect(explorer).toContainText('Milestone 2')

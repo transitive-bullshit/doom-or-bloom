@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { ChevronDownIcon } from 'lucide-react'
 import type { ExperimentQuote, Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
@@ -99,7 +100,7 @@ export function ExperimentalResults({
       <div className='grid min-w-0 gap-5 lg:grid-cols-2'>
         <Card>
           <CardHeader>
-            <CardTitle>Your stated P(doom)</CardTitle>
+            <CardTitle>Your estimated P(doom)</CardTitle>
             <CardDescription>
               Catastrophic risk, separate from overall outlook
             </CardDescription>
@@ -132,18 +133,25 @@ export function ExperimentalResults({
               {!experiment
                 ? 'This saved snapshot has not been evaluated for a numerical catastrophe estimate.'
                 : risk
-                  ? 'Copied from your answer. The outcome, horizon and conditions remain as you described them below; this estimate is not standardized across people.'
-                  : 'No sufficiently clear numerical catastrophe estimate was found. Your outlook and qualitative risk assessment do not imply a percentage.'}
+                  ? risk.source === 'inferred'
+                    ? `Inferred from ${risk.basis === 'contextual' ? 'your broader worldview and priorities' : 'the likelihood you described'}. Approximate interpretation range: ${risk.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Applies to the outcome and conditions in your answers; this is not a percentage you stated.`
+                    : 'Copied from your answer. The outcome, horizon and conditions remain as you described them below; this estimate is not standardized across people.'
+                  : 'There is not enough relevant evidence yet to estimate your view of catastrophic risk.'}
             </p>
-            {risk && (
+            {risk?.text && (
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
                 {risk.text}
               </blockquote>
             )}
             {risk && (
               <p className='text-xs text-muted-foreground'>
-                Answer {risk.answerNumber} · A stated range is not an evaluator
-                margin of error.
+                {risk.answerNumber
+                  ? `Answer ${risk.answerNumber}`
+                  : 'Based on your answer history'}{' '}
+                ·{' '}
+                {risk.source === 'inferred'
+                  ? 'Inferred estimate · interpretation range, not a statistical confidence interval.'
+                  : 'Stated estimate · a stated range is not an evaluator margin of error.'}
               </p>
             )}
           </CardContent>
@@ -243,49 +251,67 @@ export function JourneyResultExplorer({
   const snapshot = snapshots[index]
   if (!snapshot) return null
   return (
-    <section aria-label='Worldview progression' className='flex flex-col gap-5'>
-      <div>
-        <h2 className='text-xl font-semibold'>Watch the worldview develop</h2>
-        <p className='mt-2 text-sm text-muted-foreground'>
-          Choose an answer to compare both maps and all three experiments at
-          that point. Numbered dots show earlier placed answers.
-        </p>
-      </div>
-      <div className='flex flex-wrap items-center gap-3'>
-        <label htmlFor='journey-result-step' className='text-sm font-medium'>
-          After answer {snapshot.label}
-        </label>
-        <input
-          id='journey-result-step'
-          className='min-w-0 flex-1 accent-current'
-          type='range'
-          min={0}
-          max={snapshots.length - 1}
-          value={index}
-          onChange={(event) => setSelected(Number(event.target.value))}
-          aria-valuetext={`After answer ${snapshot.label}`}
-        />
-        <Button
-          variant='outline'
-          size='sm'
-          disabled={index === 0}
-          onClick={() => setSelected(index - 1)}
-        >
-          Previous
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant='outline' className='group w-full justify-between'>
+          Watch the worldview develop
+          <ChevronDownIcon
+            data-icon='inline-end'
+            className='group-data-[state=open]:rotate-180'
+          />
         </Button>
-        <Button
-          variant='outline'
-          size='sm'
-          disabled={index === snapshots.length - 1}
-          onClick={() => setSelected(index + 1)}
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <section
+          aria-label='Worldview progression'
+          className='flex flex-col gap-5 pt-5'
         >
-          Next
-        </Button>
-      </div>
-      <ExperimentalResults
-        result={snapshot.result}
-        history={snapshots.slice(0, index)}
-      />
-    </section>
+          <div>
+            <p className='mt-2 text-sm text-muted-foreground'>
+              Choose an answer to compare both maps and all three experiments at
+              that point. Numbered dots show earlier placed answers.
+            </p>
+          </div>
+          <div className='flex flex-wrap items-center gap-3'>
+            <label
+              htmlFor='journey-result-step'
+              className='text-sm font-medium'
+            >
+              After answer {snapshot.label}
+            </label>
+            <input
+              id='journey-result-step'
+              className='min-w-0 flex-1 accent-current'
+              type='range'
+              min={0}
+              max={snapshots.length - 1}
+              value={index}
+              onChange={(event) => setSelected(Number(event.target.value))}
+              aria-valuetext={`After answer ${snapshot.label}`}
+            />
+            <Button
+              variant='outline'
+              size='sm'
+              disabled={index === 0}
+              onClick={() => setSelected(index - 1)}
+            >
+              Previous
+            </Button>
+            <Button
+              variant='outline'
+              size='sm'
+              disabled={index === snapshots.length - 1}
+              onClick={() => setSelected(index + 1)}
+            >
+              Next
+            </Button>
+          </div>
+          <ExperimentalResults
+            result={snapshot.result}
+            history={snapshots.slice(0, index)}
+          />
+        </section>
+      </CollapsibleContent>
+    </Collapsible>
   )
 }

@@ -213,7 +213,7 @@ export const experimentQuoteSchema = z.strictObject({
   bounds: z.tuple([probability, probability]).optional()
 })
 export const worldviewExperimentSchema = z.strictObject({
-  version: z.enum(['worldview-v1', 'worldview-v2']),
+  version: z.enum(['worldview-v1', 'worldview-v2', 'worldview-v3']),
   model: z.string(),
   generatedAt: z.string(),
   evidenceRevision: z.number().int().nonnegative(),
@@ -223,7 +223,15 @@ export const worldviewExperimentSchema = z.strictObject({
     influence: experimentQuoteSchema.nullable(),
     transformation: experimentQuoteSchema.nullable()
   }),
-  pdoom: experimentQuoteSchema.nullable(),
+  pdoom: experimentQuoteSchema
+    .partial({ answerId: true, answerNumber: true, text: true })
+    .extend({
+      source: z.enum(['stated', 'inferred']).optional(),
+      basis: z.enum(['direct', 'contextual']).optional(),
+      evidenceAnswerIds: z.array(z.string()).optional(),
+      estimate: probability.optional()
+    })
+    .nullable(),
   milestones: z
     .array(
       z.strictObject({

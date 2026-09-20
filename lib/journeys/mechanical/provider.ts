@@ -113,6 +113,8 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
         }
         if (id === 'central_basis') return { type: 'noul', noul: 1 }
         // Mechanical cases do not author beliefs for the new experiment.
+        if (id === 'experiment:pdoom:band') return pick(q, 'unknown')
+        if (id === 'experiment:pdoom:basis') return pick(q, 'absent')
         if (id.startsWith('experiment:'))
           return pick(
             q,
