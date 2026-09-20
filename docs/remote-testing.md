@@ -57,4 +57,4 @@ Package the verified build with its `dist/` prefix (the Sites archive resolver e
 COPYFILE_DISABLE=1 tar -czf /tmp/doom-or-bloom-sites.tar.gz .openai/hosting.json dist
 ```
 
-Do not archive the source tree, `.env.local`, `sites/.dev.vars`, `.git`, or `node_modules`. The initial private deployment uses [doom-or-bloom.lofty-deer-8253.chatgpt.site](https://doom-or-bloom.lofty-deer-8253.chatgpt.site). Its access remains managed by Sites.
+Do not archive the source tree, `.env.local`, `sites/.dev.vars`, `.git`, or `node_modules`. The initial private deployment uses [doom-or-bloom.transitive-bs3.chatgpt.site](https://doom-or-bloom.transitive-bs3.chatgpt.site). Its access remains managed by Sites.
