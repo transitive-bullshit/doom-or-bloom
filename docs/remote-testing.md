@@ -50,3 +50,11 @@ pnpm exec wrangler dev --config sites/wrangler.jsonc --port 8799
 A gitignored `sites/.dev.vars` can supply `TYPESAFE_API_KEY` for this local Worker check. Commit the exact source, build from it, push to the Sites source repository with a short-lived credential, save that commit and the build-output archive as a version, then deploy the saved version privately. `.openai/hosting.json` retains the project identity; reuse it rather than creating another site.
 
 Sources: [Portless sharing](https://github.com/vercel-labs/portless#tailscale-sharing), [Cloudflare Quick Tunnels](https://try.cloudflare.com/), [ChatGPT Sites](https://learn.chatgpt.com/docs/sites), [Vercel previews](https://vercel.com/docs/deployments/environments#preview-environment-pre-production).
+
+Package the verified build with its `dist/` prefix (the Sites archive resolver expects that prefix):
+
+```sh
+COPYFILE_DISABLE=1 tar -czf /tmp/doom-or-bloom-sites.tar.gz .openai/hosting.json dist
+```
+
+Do not archive the source tree, `.env.local`, `sites/.dev.vars`, `.git`, or `node_modules`. The initial private deployment uses [doom-or-bloom.lofty-deer-8253.chatgpt.site](https://doom-or-bloom.lofty-deer-8253.chatgpt.site). Its access remains managed by Sites.
