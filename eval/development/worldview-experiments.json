@@ -9,23 +9,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:10.288Z",
+        "generatedAt": "2026-09-20T09:00:25.508Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.6500000000000001,
+          "value": 0.6375,
           "range": [0.5, 0.75],
           "distribution": {
             "0": 0,
-            "1": 0.01,
-            "2": 0.45,
-            "3": 0.47000000000000003,
-            "4": 0.07,
+            "1": 0.02,
+            "2": 0.47,
+            "3": 0.45,
+            "4": 0.06,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.47000000000000003,
+          "confidence": 0.47,
           "evidenceIds": [
             "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a:e:capability_trajectory",
             "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a:e:transition_dynamics",
@@ -43,7 +43,7 @@
             "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a:e:updateability",
             "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a:e:grounded_understanding"
           ],
-          "claim": "Human choices can substantially redirect the AI trajectory."
+          "claim": "Human choices have meaningful but substantially constrained influence."
         },
         "transformation": {
           "vector": "transformation",
@@ -93,15 +93,6 @@
         },
         "pdoom": null,
         "milestones": [
-          {
-            "id": "agi",
-            "label": "General AI",
-            "evidence": {
-              "answerId": "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a",
-              "answerNumber": 1,
-              "text": "I do not know the exact date when that threshold will be crossed, and current chatbots are not already superintelligence."
-            }
-          },
           {
             "id": "asi",
             "label": "Superhuman AI",
@@ -152,23 +143,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:11.144Z",
+        "generatedAt": "2026-09-20T09:00:26.210Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.6325,
-          "range": [0.5, 0.75],
+          "value": 0.6400000000000001,
+          "range": [0.4999999999999999, 0.7500000000000001],
           "distribution": {
             "0": 0,
             "1": 0.01,
-            "2": 0.53,
-            "3": 0.38,
+            "2": 0.5,
+            "3": 0.41,
             "4": 0.08,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.53,
+          "confidence": 0.5,
           "evidenceIds": [
             "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a:e:capability_trajectory",
             "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a:e:transition_dynamics",
@@ -199,8 +190,8 @@
             "2": 0,
             "3": 0,
             "4": 1,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
           "confidence": 1,
           "evidenceIds": [
@@ -236,15 +227,6 @@
         },
         "pdoom": null,
         "milestones": [
-          {
-            "id": "agi",
-            "label": "General AI",
-            "evidence": {
-              "answerId": "journey-6e1226cc-ded4-4313-822e-889345722038:p1:a",
-              "answerNumber": 1,
-              "text": "I do not know the exact date when that threshold will be crossed, and current chatbots are not already superintelligence."
-            }
-          },
           {
             "id": "asi",
             "label": "Superhuman AI",
@@ -305,23 +287,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:11.913Z",
+        "generatedAt": "2026-09-20T09:00:26.880Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7625000000000001,
+          "value": 0.755,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.21,
-            "3": 0.53,
-            "4": 0.26,
+            "2": 0.25,
+            "3": 0.48,
+            "4": 0.27,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.53,
+          "confidence": 0.48,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:risk_landscape",
@@ -341,18 +323,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.8025,
+          "value": 0.8099999999999999,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.77,
-            "4": 0.22,
+            "3": 0.74,
+            "4": 0.25,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.77,
+          "confidence": 0.74,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:risk_landscape",
@@ -404,23 +386,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:12.687Z",
+        "generatedAt": "2026-09-20T09:00:27.604Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7875000000000001,
+          "value": 0.7825,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.16,
-            "3": 0.53,
-            "4": 0.31,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "2": 0.15,
+            "3": 0.57,
+            "4": 0.28,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.53,
+          "confidence": 0.57,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:risk_landscape",
@@ -441,18 +423,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.8225,
+          "value": 0.8075,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.69,
-            "4": 0.3,
+            "3": 0.75,
+            "4": 0.24,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.69,
+          "confidence": 0.75,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:risk_landscape",
@@ -514,23 +496,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:13.471Z",
+        "generatedAt": "2026-09-20T09:00:28.370Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.75,
+          "value": 0.7549999999999999,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.24,
-            "3": 0.52,
-            "4": 0.24,
+            "2": 0.19,
+            "3": 0.6,
+            "4": 0.21,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.52,
+          "confidence": 0.6,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:risk_landscape",
@@ -551,18 +533,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.8175,
+          "value": 0.8025,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.71,
-            "4": 0.28,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "3": 0.77,
+            "4": 0.22,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.71,
+          "confidence": 0.77,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:risk_landscape",
@@ -624,23 +606,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:14.324Z",
+        "generatedAt": "2026-09-20T09:00:29.210Z",
         "evidenceRevision": 4,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7424999999999999,
+          "value": 0.7475,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.25,
-            "3": 0.53,
-            "4": 0.22,
+            "2": 0.22,
+            "3": 0.5700000000000001,
+            "4": 0.21,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.53,
+          "confidence": 0.5700000000000001,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:risk_landscape",
@@ -661,18 +643,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.7875,
+          "value": 0.785,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.83,
-            "4": 0.16,
+            "3": 0.84,
+            "4": 0.15,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.83,
+          "confidence": 0.84,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:risk_landscape",
@@ -734,7 +716,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:15.176Z",
+        "generatedAt": "2026-09-20T09:00:30.365Z",
         "evidenceRevision": 5,
         "influence": {
           "vector": "influence",
@@ -744,13 +726,13 @@
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.19,
-            "3": 0.55,
-            "4": 0.26,
+            "2": 0.18,
+            "3": 0.5700000000000001,
+            "4": 0.25,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.55,
+          "confidence": 0.5700000000000001,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p2:a:e:risk_landscape",
@@ -771,18 +753,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.825,
+          "value": 0.8150000000000001,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.6799999999999999,
-            "4": 0.31,
+            "3": 0.72,
+            "4": 0.27,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.6799999999999999,
+          "confidence": 0.72,
           "evidenceIds": [
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:beneficial_potential",
             "journey-b0d3d507-de1a-450b-afbc-b1038bfcd35c:p1:a:e:risk_landscape",
@@ -854,53 +836,41 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:15.851Z",
+        "generatedAt": "2026-09-20T09:00:31.090Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.8055555555555556,
-          "range": [0.49, 1],
+          "value": null,
+          "range": [0, 1],
           "distribution": {
             "0": 0,
             "1": 0.01,
             "2": 0.12,
-            "3": 0.5,
-            "4": 0.36,
-            "not_expressed": 0.01,
-            "explicitly_unknown": 0
+            "3": 0.57,
+            "4": 0.29,
+            "explicitly_unknown": 0,
+            "not_expressed": 0.01
           },
-          "confidence": 0.5,
-          "evidenceIds": [
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:beneficial_potential",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:risk_landscape",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:institutional_competence",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:human_agency",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:action_posture",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:causal_clarity",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:scope_discipline",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:appropriate_uncertainty",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:internal_coherence",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:counterargument_engagement",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:grounded_understanding"
-          ],
-          "claim": "Human choices can substantially redirect the AI trajectory."
+          "confidence": null,
+          "evidenceIds": [],
+          "claim": null
         },
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.8099999999999999,
+          "value": 0.805,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.03,
-            "3": 0.7,
-            "4": 0.27,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
+            "3": 0.72,
+            "4": 0.25,
+            "not_expressed": 0,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.7,
+          "confidence": 0.72,
           "evidenceIds": [
             "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:beneficial_potential",
             "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:risk_landscape",
@@ -917,11 +887,7 @@
           "claim": "AI is expected to restructure economies, institutions and everyday life broadly."
         },
         "axisEvidence": {
-          "influence": {
-            "answerId": "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a",
-            "answerNumber": 1,
-            "text": "We can break the long productivity slowdown and improve living standards on a vast scale."
-          },
+          "influence": null,
           "transformation": {
             "answerId": "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a",
             "answerNumber": 1,
@@ -951,53 +917,41 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:16.583Z",
+        "generatedAt": "2026-09-20T09:00:32.164Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7828282828282829,
-          "range": [0.49, 1],
+          "value": null,
+          "range": [0, 1],
           "distribution": {
             "0": 0,
             "1": 0.01,
-            "2": 0.16,
-            "3": 0.51,
-            "4": 0.31,
-            "explicitly_unknown": 0,
-            "not_expressed": 0.01
+            "2": 0.17,
+            "3": 0.53,
+            "4": 0.28,
+            "not_expressed": 0.01,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.51,
-          "evidenceIds": [
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:beneficial_potential",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:risk_landscape",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:institutional_competence",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:human_agency",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:action_posture",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:causal_clarity",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:scope_discipline",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:appropriate_uncertainty",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:internal_coherence",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:counterargument_engagement",
-            "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:grounded_understanding"
-          ],
-          "claim": "Human choices can substantially redirect the AI trajectory."
+          "confidence": null,
+          "evidenceIds": [],
+          "claim": null
         },
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.8025,
+          "value": 0.8099999999999999,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.77,
-            "4": 0.22,
+            "3": 0.74,
+            "4": 0.25,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.77,
+          "confidence": 0.74,
           "evidenceIds": [
             "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:beneficial_potential",
             "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:risk_landscape",
@@ -1014,11 +968,7 @@
           "claim": "AI is expected to restructure economies, institutions and everyday life broadly."
         },
         "axisEvidence": {
-          "influence": {
-            "answerId": "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a",
-            "answerNumber": 1,
-            "text": "Fight fraud, constrain surveillance, preserve competition, and build strong security."
-          },
+          "influence": null,
           "transformation": {
             "answerId": "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a",
             "answerNumber": 1,
@@ -1048,7 +998,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:17.376Z",
+        "generatedAt": "2026-09-20T09:00:32.954Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
@@ -1058,11 +1008,11 @@
           "distribution": {
             "0": 0,
             "1": 0.01,
-            "2": 0.26,
-            "3": 0.5,
-            "4": 0.22,
-            "not_expressed": 0.01,
-            "explicitly_unknown": 0
+            "2": 0.24,
+            "3": 0.51,
+            "4": 0.23,
+            "explicitly_unknown": 0,
+            "not_expressed": 0.01
           },
           "confidence": null,
           "evidenceIds": [],
@@ -1071,18 +1021,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.8150000000000001,
+          "value": 0.8125,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.72,
-            "4": 0.27,
+            "3": 0.73,
+            "4": 0.26,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.72,
+          "confidence": 0.73,
           "evidenceIds": [
             "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:beneficial_potential",
             "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a:e:risk_landscape",
@@ -1103,7 +1053,7 @@
           "transformation": {
             "answerId": "journey-c0163853-6c23-4a9f-a6ba-dc7bc1729d43:p1:a",
             "answerNumber": 1,
-            "text": "We can break the long productivity slowdown and improve living standards on a vast scale."
+            "text": "AI means intelligence becomes abundant, cheap, and available to nearly everyone."
           }
         },
         "pdoom": null,
@@ -1149,23 +1099,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:18.107Z",
+        "generatedAt": "2026-09-20T09:00:33.714Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7625000000000001,
+          "value": 0.7575000000000001,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
-            "1": 0,
-            "2": 0.2,
-            "3": 0.55,
-            "4": 0.25,
+            "1": 0.01,
+            "2": 0.19,
+            "3": 0.56,
+            "4": 0.24,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.55,
+          "confidence": 0.56,
           "evidenceIds": [
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:beneficial_potential",
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:risk_landscape",
@@ -1186,16 +1136,16 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.385,
+          "value": 0.40499999999999997,
           "range": [0.25, 0.5],
           "distribution": {
             "0": 0,
-            "1": 0.5,
-            "2": 0.46,
-            "3": 0.04,
+            "1": 0.44,
+            "2": 0.5,
+            "3": 0.06,
             "4": 0,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
           "confidence": 0.5,
           "evidenceIds": [
@@ -1213,7 +1163,7 @@
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:updateability",
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:grounded_understanding"
           ],
-          "claim": "AI is expected to bring incremental improvements and disruptions within familiar institutions."
+          "claim": "AI is expected to substantially change several sectors of society."
         },
         "axisEvidence": {
           "influence": {
@@ -1250,23 +1200,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:18.878Z",
+        "generatedAt": "2026-09-20T09:00:34.484Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.75,
+          "value": 0.755,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.23,
-            "3": 0.54,
-            "4": 0.23,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "3": 0.52,
+            "4": 0.25,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.54,
+          "confidence": 0.52,
           "evidenceIds": [
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:beneficial_potential",
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:risk_landscape",
@@ -1287,18 +1237,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.43000000000000005,
+          "value": 0.4125,
           "range": [0.25, 0.5],
           "distribution": {
             "0": 0,
-            "1": 0.37,
-            "2": 0.54,
-            "3": 0.09,
+            "1": 0.41,
+            "2": 0.53,
+            "3": 0.06,
             "4": 0,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.54,
+          "confidence": 0.53,
           "evidenceIds": [
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:beneficial_potential",
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p1:a:e:risk_landscape",
@@ -1342,6 +1292,16 @@
             }
           },
           {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p2:a",
+              "answerNumber": 2,
+              "text": "A reproducible, real-world demonstration that an AI system can autonomously improve its own capabilities, evade meaningful controls, and cause severe damage despite normal engineering safeguards would matter."
+            }
+          },
+          {
             "id": "update",
             "label": "What could change their mind",
             "question": "What evidence would be enough, and in which direction would it move your view?",
@@ -1361,23 +1321,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:19.683Z",
+        "generatedAt": "2026-09-20T09:00:35.344Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7775000000000001,
+          "value": 0.7749999999999999,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0.01,
-            "2": 0.17,
-            "3": 0.52,
-            "4": 0.3,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "2": 0.19,
+            "3": 0.49,
+            "4": 0.31,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.52,
+          "confidence": 0.49,
           "evidenceIds": [
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p3:a:e:beneficial_potential",
             "journey-2e794386-91fa-440d-a844-7c28f6e12e3f:p3:a:e:technical_controllability",
@@ -1396,16 +1356,16 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.5525,
+          "value": 0.5475000000000001,
           "range": [0.5, 0.75],
           "distribution": {
             "0": 0,
-            "1": 0.08,
+            "1": 0.09,
             "2": 0.63,
-            "3": 0.29,
+            "3": 0.28,
             "4": 0,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
           "confidence": 0.63,
           "evidenceIds": [
@@ -1480,23 +1440,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:20.390Z",
+        "generatedAt": "2026-09-20T09:00:36.119Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7175,
+          "value": 0.715,
           "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.26,
-            "3": 0.61,
-            "4": 0.13,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "2": 0.25,
+            "3": 0.64,
+            "4": 0.11,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.61,
+          "confidence": 0.64,
           "evidenceIds": [
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
@@ -1521,14 +1481,14 @@
           "range": [0.5, 0.75],
           "distribution": {
             "0": 0,
-            "1": 0.01,
-            "2": 0.41,
-            "3": 0.56,
-            "4": 0.02,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "1": 0,
+            "2": 0.44,
+            "3": 0.53,
+            "4": 0.03,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.56,
+          "confidence": 0.53,
           "evidenceIds": [
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
@@ -1581,225 +1541,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:21.137Z",
+        "generatedAt": "2026-09-20T09:00:36.927Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.7225,
+          "value": 0.725,
           "range": [0.5, 1],
-          "distribution": {
-            "0": 0,
-            "1": 0,
-            "2": 0.24,
-            "3": 0.63,
-            "4": 0.13,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
-          },
-          "confidence": 0.63,
-          "evidenceIds": [
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:transition_dynamics",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:risk_landscape",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:technical_controllability",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:institutional_competence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:human_agency",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:action_posture",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:causal_clarity",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:scope_discipline",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:appropriate_uncertainty",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:internal_coherence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:counterargument_engagement",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:updateability",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a:e:grounded_understanding"
-          ],
-          "claim": "Human choices can substantially redirect the AI trajectory."
-        },
-        "transformation": {
-          "vector": "transformation",
-          "label": "Scale of transformation",
-          "value": 0.6575,
-          "range": [0.5, 0.75],
-          "distribution": {
-            "0": 0,
-            "1": 0,
-            "2": 0.39,
-            "3": 0.59,
-            "4": 0.02,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
-          },
-          "confidence": 0.59,
-          "evidenceIds": [
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:beneficial_potential",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:risk_landscape",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:institutional_competence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:human_agency",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:action_posture",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:causal_clarity",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:scope_discipline",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:appropriate_uncertainty",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:internal_coherence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:counterargument_engagement",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:grounded_understanding"
-          ],
-          "claim": "AI is expected to restructure economies, institutions and everyday life broadly."
-        },
-        "axisEvidence": {
-          "influence": {
-            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a",
-            "answerNumber": 2,
-            "text": "Control therefore depends on the path we take."
-          },
-          "transformation": {
-            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
-            "answerNumber": 1,
-            "text": "By powerful AI, I mean systems with exceptional expertise that can work autonomously, run in many copies, and contribute across biology, medicine, engineering, and economics—something like “a country of geniuses in a datacenter.” In the best case, that could compress decades of scientific progress into years, especially in areas such as drug discovery and disease prevention."
-          }
-        },
-        "pdoom": null,
-        "milestones": [],
-        "hinges": [
-          {
-            "id": "assumption",
-            "label": "A central assumption",
-            "question": "If this assumption turned out differently, how would your outlook change?",
-            "evidence": {
-              "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
-              "answerNumber": 1,
-              "text": "Capabilities—and AI-assisted AI development—are advancing faster than safety work and institutions can absorb."
-            }
-          }
-        ]
-      }
-    },
-    {
-      "personaId": "frontier-pacer",
-      "ordinal": 3,
-      "inputHash": "4e27ff062578ba3eaffbd4c7fcef42768870f3fa051f2ddd5636ebbcf52eb2ab",
-      "experiment": {
-        "version": "worldview-v2",
-        "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:21.971Z",
-        "evidenceRevision": 3,
-        "influence": {
-          "vector": "influence",
-          "label": "Human influence",
-          "value": 0.7575000000000001,
-          "range": [0.5, 1],
-          "distribution": {
-            "0": 0,
-            "1": 0,
-            "2": 0.17,
-            "3": 0.63,
-            "4": 0.2,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
-          },
-          "confidence": 0.63,
-          "evidenceIds": [
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:capability_trajectory",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:beneficial_potential",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:risk_landscape",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:technical_controllability",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:institutional_competence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:human_agency",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:action_posture",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:causal_clarity",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:scope_discipline",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:appropriate_uncertainty",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:internal_coherence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:counterargument_engagement",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:grounded_understanding"
-          ],
-          "claim": "Human choices can substantially redirect the AI trajectory."
-        },
-        "transformation": {
-          "vector": "transformation",
-          "label": "Scale of transformation",
-          "value": 0.6975,
-          "range": [0.5, 0.75],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.22,
-            "3": 0.77,
-            "4": 0.01,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "3": 0.66,
+            "4": 0.12,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.77,
-          "evidenceIds": [
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:beneficial_potential",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:risk_landscape",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:institutional_competence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:human_agency",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:action_posture",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:causal_clarity",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:scope_discipline",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:appropriate_uncertainty",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:internal_coherence",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:counterargument_engagement",
-            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:grounded_understanding"
-          ],
-          "claim": "AI is expected to restructure economies, institutions and everyday life broadly."
-        },
-        "axisEvidence": {
-          "influence": {
-            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a",
-            "answerNumber": 3,
-            "text": "Whether that wider distribution actually occurs is an institutional choice."
-          },
-          "transformation": {
-            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
-            "answerNumber": 1,
-            "text": "By powerful AI, I mean systems with exceptional expertise that can work autonomously, run in many copies, and contribute across biology, medicine, engineering, and economics—something like “a country of geniuses in a datacenter.” In the best case, that could compress decades of scientific progress into years, especially in areas such as drug discovery and disease prevention."
-          }
-        },
-        "pdoom": null,
-        "milestones": [],
-        "hinges": [
-          {
-            "id": "assumption",
-            "label": "A central assumption",
-            "question": "If this assumption turned out differently, how would your outlook change?",
-            "evidence": {
-              "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
-              "answerNumber": 1,
-              "text": "Capabilities—and AI-assisted AI development—are advancing faster than safety work and institutions can absorb."
-            }
-          }
-        ]
-      }
-    },
-    {
-      "personaId": "frontier-pacer",
-      "ordinal": 4,
-      "inputHash": "81f32edaca92e5c4750e0d4c1455323a2ec5248dc142d7267f06b53b8660a506",
-      "experiment": {
-        "version": "worldview-v2",
-        "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:22.821Z",
-        "evidenceRevision": 4,
-        "influence": {
-          "vector": "influence",
-          "label": "Human influence",
-          "value": 0.7525000000000001,
-          "range": [0.5, 1],
-          "distribution": {
-            "0": 0,
-            "1": 0,
-            "2": 0.14,
-            "3": 0.71,
-            "4": 0.15,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
-          },
-          "confidence": 0.71,
+          "confidence": 0.66,
           "evidenceIds": [
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
@@ -1824,14 +1582,14 @@
           "range": [0.5, 0.75],
           "distribution": {
             "0": 0,
-            "1": 0,
+            "1": 0.01,
             "2": 0.39,
-            "3": 0.6,
-            "4": 0.01,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "3": 0.57,
+            "4": 0.03,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.6,
+          "confidence": 0.57,
           "evidenceIds": [
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
             "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
@@ -1875,6 +1633,238 @@
             }
           },
           {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a",
+              "answerNumber": 2,
+              "text": "If we continue an unmanaged race—rapidly increasing autonomy and capability while relying on superficial behavioral evaluations—I am not confident control holds."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "personaId": "frontier-pacer",
+      "ordinal": 3,
+      "inputHash": "4e27ff062578ba3eaffbd4c7fcef42768870f3fa051f2ddd5636ebbcf52eb2ab",
+      "experiment": {
+        "version": "worldview-v2",
+        "model": "jev-1.13.0",
+        "generatedAt": "2026-09-20T09:00:37.748Z",
+        "evidenceRevision": 3,
+        "influence": {
+          "vector": "influence",
+          "label": "Human influence",
+          "value": 0.7649999999999999,
+          "range": [0.5, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.15,
+            "3": 0.64,
+            "4": 0.21,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
+          },
+          "confidence": 0.64,
+          "evidenceIds": [
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:capability_trajectory",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:beneficial_potential",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:risk_landscape",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:technical_controllability",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:institutional_competence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:human_agency",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:action_posture",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:causal_clarity",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:scope_discipline",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:appropriate_uncertainty",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:internal_coherence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:counterargument_engagement",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:grounded_understanding"
+          ],
+          "claim": "Human choices can substantially redirect the AI trajectory."
+        },
+        "transformation": {
+          "vector": "transformation",
+          "label": "Scale of transformation",
+          "value": 0.6925,
+          "range": [0.5, 0.75],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.24,
+            "3": 0.75,
+            "4": 0.01,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
+          },
+          "confidence": 0.75,
+          "evidenceIds": [
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:beneficial_potential",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:risk_landscape",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:institutional_competence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:human_agency",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:action_posture",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:causal_clarity",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:scope_discipline",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:appropriate_uncertainty",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:internal_coherence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:counterargument_engagement",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:grounded_understanding"
+          ],
+          "claim": "AI is expected to restructure economies, institutions and everyday life broadly."
+        },
+        "axisEvidence": {
+          "influence": {
+            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a",
+            "answerNumber": 3,
+            "text": "Whether that wider distribution actually occurs is an institutional choice."
+          },
+          "transformation": {
+            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
+            "answerNumber": 1,
+            "text": "By powerful AI, I mean systems with exceptional expertise that can work autonomously, run in many copies, and contribute across biology, medicine, engineering, and economics—something like “a country of geniuses in a datacenter.” In the best case, that could compress decades of scientific progress into years, especially in areas such as drug discovery and disease prevention."
+          }
+        },
+        "pdoom": null,
+        "milestones": [],
+        "hinges": [
+          {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
+              "answerNumber": 1,
+              "text": "Capabilities—and AI-assisted AI development—are advancing faster than safety work and institutions can absorb."
+            }
+          },
+          {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p2:a",
+              "answerNumber": 2,
+              "text": "If we continue an unmanaged race—rapidly increasing autonomy and capability while relying on superficial behavioral evaluations—I am not confident control holds."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "personaId": "frontier-pacer",
+      "ordinal": 4,
+      "inputHash": "81f32edaca92e5c4750e0d4c1455323a2ec5248dc142d7267f06b53b8660a506",
+      "experiment": {
+        "version": "worldview-v2",
+        "model": "jev-1.13.0",
+        "generatedAt": "2026-09-20T09:00:38.613Z",
+        "evidenceRevision": 4,
+        "influence": {
+          "vector": "influence",
+          "label": "Human influence",
+          "value": 0.7424999999999999,
+          "range": [0.5, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.17,
+            "3": 0.69,
+            "4": 0.14,
+            "not_expressed": 0,
+            "explicitly_unknown": 0
+          },
+          "confidence": 0.69,
+          "evidenceIds": [
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:capability_trajectory",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:beneficial_potential",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:risk_landscape",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:technical_controllability",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:institutional_competence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:human_agency",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:action_posture",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:causal_clarity",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:scope_discipline",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:appropriate_uncertainty",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:internal_coherence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:counterargument_engagement",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a:e:grounded_understanding"
+          ],
+          "claim": "Human choices can substantially redirect the AI trajectory."
+        },
+        "transformation": {
+          "vector": "transformation",
+          "label": "Scale of transformation",
+          "value": 0.6525000000000001,
+          "range": [0.5, 0.75],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.4,
+            "3": 0.59,
+            "4": 0.01,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
+          },
+          "confidence": 0.59,
+          "evidenceIds": [
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:capability_trajectory",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:transition_dynamics",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:beneficial_potential",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:risk_landscape",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:institutional_competence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:human_agency",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:action_posture",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:causal_clarity",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:scope_discipline",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:appropriate_uncertainty",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:internal_coherence",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:counterargument_engagement",
+            "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a:e:grounded_understanding"
+          ],
+          "claim": "AI is expected to restructure economies, institutions and everyday life broadly."
+        },
+        "axisEvidence": {
+          "influence": {
+            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p3:a",
+            "answerNumber": 3,
+            "text": "Whether that wider distribution actually occurs is an institutional choice."
+          },
+          "transformation": {
+            "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
+            "answerNumber": 1,
+            "text": "By powerful AI, I mean systems with exceptional expertise that can work autonomously, run in many copies, and contribute across biology, medicine, engineering, and economics—something like “a country of geniuses in a datacenter.” In the best case, that could compress decades of scientific progress into years, especially in areas such as drug discovery and disease prevention."
+          }
+        },
+        "pdoom": null,
+        "milestones": [],
+        "hinges": [
+          {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p1:a",
+              "answerNumber": 1,
+              "text": "Capabilities—and AI-assisted AI development—are advancing faster than safety work and institutions can absorb."
+            }
+          },
+          {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-6dbb6e50-0dc3-4309-999b-366a1534d2c6:p4:a",
+              "answerNumber": 4,
+              "text": "The most important discovery would be a reliable, scalable way to understand and control what frontier models are actually doing internally."
+            }
+          },
+          {
             "id": "update",
             "label": "What could change their mind",
             "question": "What evidence would be enough, and in which direction would it move your view?",
@@ -1894,7 +1884,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:23.516Z",
+        "generatedAt": "2026-09-20T09:00:39.262Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -1903,12 +1893,12 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.17,
-            "2": 0.64,
+            "1": 0.18,
+            "2": 0.61,
             "3": 0.02,
             "4": 0,
-            "not_expressed": 0.1,
-            "explicitly_unknown": 0.07
+            "explicitly_unknown": 0.07,
+            "not_expressed": 0.12
           },
           "confidence": null,
           "evidenceIds": [],
@@ -1921,12 +1911,12 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.12,
-            "2": 0.16,
+            "1": 0.17,
+            "2": 0.14,
             "3": 0.01,
             "4": 0,
-            "not_expressed": 0.01,
-            "explicitly_unknown": 0.7
+            "explicitly_unknown": 0.67,
+            "not_expressed": 0.01
           },
           "confidence": null,
           "evidenceIds": [],
@@ -1959,6 +1949,16 @@
         ],
         "hinges": [
           {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-af9b3373-16db-4906-8574-3a0d07b4f472:p1:a",
+              "answerNumber": 1,
+              "text": "Companies seem likely to move faster than governments can respond."
+            }
+          },
+          {
             "id": "uncertainty",
             "label": "An unresolved question",
             "question": "What would help you distinguish the plausible outcomes here?",
@@ -1978,7 +1978,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:24.200Z",
+        "generatedAt": "2026-09-20T09:00:40.090Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
@@ -1987,12 +1987,12 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.24,
+            "1": 0.23,
             "2": 0.48,
             "3": 0.01,
             "4": 0,
-            "not_expressed": 0.15,
-            "explicitly_unknown": 0.12
+            "explicitly_unknown": 0.12,
+            "not_expressed": 0.16
           },
           "confidence": null,
           "evidenceIds": [],
@@ -2005,11 +2005,11 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.24,
-            "2": 0.11,
+            "1": 0.26,
+            "2": 0.1,
             "3": 0.01,
             "4": 0,
-            "explicitly_unknown": 0.62,
+            "explicitly_unknown": 0.61,
             "not_expressed": 0.02
           },
           "confidence": null,
@@ -2072,7 +2072,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:24.919Z",
+        "generatedAt": "2026-09-20T09:00:40.919Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
@@ -2081,11 +2081,11 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.1,
-            "2": 0.72,
+            "1": 0.11,
+            "2": 0.71,
             "3": 0.03,
-            "4": 0.01,
-            "explicitly_unknown": 0.07,
+            "4": 0,
+            "explicitly_unknown": 0.08,
             "not_expressed": 0.07
           },
           "confidence": null,
@@ -2099,12 +2099,12 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.2,
-            "2": 0.14,
+            "1": 0.18,
+            "2": 0.15,
             "3": 0.01,
             "4": 0,
-            "explicitly_unknown": 0.63,
-            "not_expressed": 0.02
+            "explicitly_unknown": 0.65,
+            "not_expressed": 0.01
           },
           "confidence": null,
           "evidenceIds": [],
@@ -2176,7 +2176,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:25.740Z",
+        "generatedAt": "2026-09-20T09:00:41.759Z",
         "evidenceRevision": 4,
         "influence": {
           "vector": "influence",
@@ -2185,12 +2185,12 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.13,
-            "2": 0.76,
-            "3": 0.03,
+            "1": 0.12,
+            "2": 0.79,
+            "3": 0.02,
             "4": 0,
-            "not_expressed": 0.04,
-            "explicitly_unknown": 0.04
+            "explicitly_unknown": 0.03,
+            "not_expressed": 0.04
           },
           "confidence": null,
           "evidenceIds": [],
@@ -2204,11 +2204,11 @@
           "distribution": {
             "0": 0,
             "1": 0.22,
-            "2": 0.16,
+            "2": 0.19,
             "3": 0.01,
             "4": 0,
-            "not_expressed": 0.01,
-            "explicitly_unknown": 0.6
+            "explicitly_unknown": 0.56,
+            "not_expressed": 0.02
           },
           "confidence": null,
           "evidenceIds": [],
@@ -2280,16 +2280,16 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:26.490Z",
+        "generatedAt": "2026-09-20T09:00:42.441Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.4898989898989899,
-          "range": [0.4898989898989899, 0.5099999999999999],
+          "value": 0.49234693877551017,
+          "range": [0.4800000000000001, 0.5199999999999999],
           "distribution": {
             "0": 0,
-            "1": 0.05,
+            "1": 0.04,
             "2": 0.93,
             "3": 0.01,
             "4": 0,
@@ -2319,18 +2319,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.8409090909090909,
-          "range": [0.49, 1],
+          "value": 0.8474999999999999,
+          "range": [0.5, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.11,
-            "3": 0.41,
-            "4": 0.47,
+            "3": 0.39,
+            "4": 0.5,
             "not_expressed": 0,
-            "explicitly_unknown": 0.01
+            "explicitly_unknown": 0
           },
-          "confidence": 0.47,
+          "confidence": 0.5,
           "evidenceIds": [
             "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:capability_trajectory",
             "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:transition_dynamics",
@@ -2363,7 +2363,26 @@
           }
         },
         "pdoom": null,
-        "milestones": [],
+        "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a",
+              "answerNumber": 1,
+              "text": "I think AI could transform our future within a decade, possibly through systems capable of autonomous, long-horizon research."
+            }
+          },
+          {
+            "id": "science",
+            "label": "Science & daily life",
+            "evidence": {
+              "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a",
+              "answerNumber": 1,
+              "text": "I think AI could transform our future within a decade, possibly through systems capable of autonomous, long-horizon research."
+            }
+          }
+        ],
         "hinges": [
           {
             "id": "assumption",
@@ -2405,55 +2424,55 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:27.211Z",
+        "generatedAt": "2026-09-20T09:00:43.162Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.4846938775510204,
-          "range": [0.48, 0.52],
+          "value": 0.47959183673469385,
+          "range": [0.47959183673469385, 0.52],
           "distribution": {
             "0": 0,
-            "1": 0.07,
-            "2": 0.9,
+            "1": 0.09,
+            "2": 0.88,
             "3": 0.01,
             "4": 0,
             "not_expressed": 0,
             "explicitly_unknown": 0.02
           },
-          "confidence": 0.9,
+          "confidence": 0.88,
           "evidenceIds": [
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:capability_trajectory",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:transition_dynamics",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:beneficial_potential",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:risk_landscape",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:technical_controllability",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:institutional_competence",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:human_agency",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:action_posture",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:causal_clarity",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:scope_discipline",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:appropriate_uncertainty",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:internal_coherence",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:counterargument_engagement",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:updateability",
-            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a:e:grounded_understanding"
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:capability_trajectory",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:transition_dynamics",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:beneficial_potential",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:risk_landscape",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:technical_controllability",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:institutional_competence",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:human_agency",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:action_posture",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:causal_clarity",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:scope_discipline",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:appropriate_uncertainty",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:internal_coherence",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:counterargument_engagement",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:updateability",
+            "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a:e:grounded_understanding"
           ],
           "claim": "Human choices have meaningful but substantially constrained influence."
         },
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.9292929292929293,
-          "range": [0.74, 1],
+          "value": 0.9275,
+          "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.02,
-            "3": 0.24,
+            "3": 0.25,
             "4": 0.73,
-            "not_expressed": 0,
-            "explicitly_unknown": 0.01
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
           "confidence": 0.73,
           "evidenceIds": [
@@ -2477,9 +2496,9 @@
         },
         "axisEvidence": {
           "influence": {
-            "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a",
-            "answerNumber": 1,
-            "text": "Security and evaluation capacity could buy leverage over how the technology is deployed, although they certainly do not guarantee a good outcome."
+            "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a",
+            "answerNumber": 2,
+            "text": "Which effect dominates depends on security, control, and whether reciprocal limits become credible."
           },
           "transformation": {
             "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p2:a",
@@ -2488,7 +2507,26 @@
           }
         },
         "pdoom": null,
-        "milestones": [],
+        "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a",
+              "answerNumber": 1,
+              "text": "I think AI could transform our future within a decade, possibly through systems capable of autonomous, long-horizon research."
+            }
+          },
+          {
+            "id": "science",
+            "label": "Science & daily life",
+            "evidence": {
+              "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a",
+              "answerNumber": 1,
+              "text": "I think AI could transform our future within a decade, possibly through systems capable of autonomous, long-horizon research."
+            }
+          }
+        ],
         "hinges": [
           {
             "id": "assumption",
@@ -2530,23 +2568,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:28.063Z",
+        "generatedAt": "2026-09-20T09:00:43.906Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.5125000000000001,
-          "range": [0.5, 0.5125000000000001],
+          "value": 0.505050505050505,
+          "range": [0.4900000000000001, 0.5099999999999999],
           "distribution": {
             "0": 0,
             "1": 0.02,
-            "2": 0.92,
-            "3": 0.05,
-            "4": 0.01,
+            "2": 0.93,
+            "3": 0.04,
+            "4": 0,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.92,
+          "confidence": 0.93,
           "evidenceIds": [
             "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p3:a:e:capability_trajectory",
             "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p3:a:e:beneficial_potential",
@@ -2612,7 +2650,17 @@
           }
         },
         "pdoom": null,
-        "milestones": [],
+        "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-8ec4fcef-6ee0-42a0-a2f7-922dd9c22692:p1:a",
+              "answerNumber": 1,
+              "text": "I think AI could transform our future within a decade, possibly through systems capable of autonomous, long-horizon research."
+            }
+          }
+        ],
         "hinges": [
           {
             "id": "assumption",
@@ -2654,7 +2702,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:28.796Z",
+        "generatedAt": "2026-09-20T09:00:44.733Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -2663,12 +2711,12 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.04,
-            "2": 0.74,
-            "3": 0.07,
+            "1": 0.03,
+            "2": 0.76,
+            "3": 0.06,
             "4": 0.01,
-            "explicitly_unknown": 0,
-            "not_expressed": 0.14
+            "explicitly_unknown": 0.01,
+            "not_expressed": 0.13
           },
           "confidence": null,
           "evidenceIds": [],
@@ -2685,8 +2733,8 @@
             "2": 0.02,
             "3": 0,
             "4": 0,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
           "confidence": 0.97,
           "evidenceIds": [
@@ -2715,7 +2763,17 @@
           }
         },
         "pdoom": null,
-        "milestones": [],
+        "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-5fcddad4-7bf6-4b89-adf5-2ada328263a3:p1:a",
+              "answerNumber": 1,
+              "text": "I expect AI to bring useful automation and meaningful productivity gains over the next decade, but not reliable, general-purpose autonomy or a civilization-scale transformation."
+            }
+          }
+        ],
         "hinges": [
           {
             "id": "assumption",
@@ -2747,23 +2805,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:29.467Z",
+        "generatedAt": "2026-09-20T09:00:45.429Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.555,
+          "value": 0.56,
           "range": [0.5, 0.75],
           "distribution": {
             "0": 0,
             "1": 0.03,
-            "2": 0.75,
-            "3": 0.19,
+            "2": 0.73,
+            "3": 0.21,
             "4": 0.03,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
+            "not_expressed": 0,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.75,
+          "confidence": 0.73,
           "evidenceIds": [
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:capability_trajectory",
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:transition_dynamics",
@@ -2784,18 +2842,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.435,
-          "range": [0.25, 0.5],
+          "value": 0.44000000000000006,
+          "range": [0.2499999999999999, 0.5000000000000001],
           "distribution": {
             "0": 0,
             "1": 0.32,
-            "2": 0.62,
-            "3": 0.06,
+            "2": 0.6,
+            "3": 0.08,
             "4": 0,
             "not_expressed": 0,
             "explicitly_unknown": 0
           },
-          "confidence": 0.62,
+          "confidence": 0.6,
           "evidenceIds": [
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:capability_trajectory",
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:transition_dynamics",
@@ -2817,7 +2875,7 @@
           "influence": {
             "answerId": "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a",
             "answerNumber": 1,
-            "text": "The pace will vary by sector, and management decisions will matter as much as any model breakthrough."
+            "text": "I expect AI to raise productivity while weakening workers’ bargaining power unless institutions deliberately share the gains."
           },
           "transformation": {
             "answerId": "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a",
@@ -2868,23 +2926,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:30.221Z",
+        "generatedAt": "2026-09-20T09:00:46.286Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.6074999999999999,
+          "value": 0.6125,
           "range": [0.5, 0.75],
           "distribution": {
             "0": 0,
             "1": 0.02,
-            "2": 0.59,
-            "3": 0.33,
+            "2": 0.5700000000000001,
+            "3": 0.35,
             "4": 0.06,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
+            "not_expressed": 0,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.59,
+          "confidence": 0.5700000000000001,
           "evidenceIds": [
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:capability_trajectory",
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:transition_dynamics",
@@ -2905,18 +2963,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.4625,
-          "range": [0.25, 0.5],
+          "value": 0.45000000000000007,
+          "range": [0.2499999999999999, 0.5000000000000001],
           "distribution": {
             "0": 0,
-            "1": 0.25,
-            "2": 0.65,
+            "1": 0.3,
+            "2": 0.6,
             "3": 0.1,
             "4": 0,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
+            "not_expressed": 0,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.65,
+          "confidence": 0.6,
           "evidenceIds": [
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:capability_trajectory",
             "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a:e:transition_dynamics",
@@ -2951,6 +3009,15 @@
           {
             "id": "work",
             "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a",
+              "answerNumber": 1,
+              "text": "Over the next five to ten years, the biggest effects may be less about entire occupations disappearing overnight and more about employers replacing parts of jobs, deskilling roles, cutting staff, intensifying schedules and monitoring workers more closely."
+            }
+          },
+          {
+            "id": "science",
+            "label": "Science & daily life",
             "evidence": {
               "answerId": "journey-8beec35e-a6c9-4dde-b31d-44eb1647eb47:p1:a",
               "answerNumber": 1,
@@ -2999,7 +3066,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:30.999Z",
+        "generatedAt": "2026-09-20T09:00:47.062Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -3009,11 +3076,11 @@
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.17,
+            "2": 0.12,
             "3": 0.02,
             "4": 0,
-            "not_expressed": 0.29,
-            "explicitly_unknown": 0.52
+            "not_expressed": 0.31,
+            "explicitly_unknown": 0.55
           },
           "confidence": null,
           "evidenceIds": [],
@@ -3045,9 +3112,29 @@
         "milestones": [],
         "hinges": [
           {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-04f2c5a4-313c-4597-8b34-91a33d3d32f3:p1:a",
+              "answerNumber": 1,
+              "text": "I’d want better evidence on reliable autonomy, effective oversight, broad access, and how failures might become irreversible before taking a firm position."
+            }
+          },
+          {
             "id": "uncertainty",
             "label": "An unresolved question",
             "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-04f2c5a4-313c-4597-8b34-91a33d3d32f3:p1:a",
+              "answerNumber": 1,
+              "text": "I’d want better evidence on reliable autonomy, effective oversight, broad access, and how failures might become irreversible before taking a firm position."
+            }
+          },
+          {
+            "id": "update",
+            "label": "What could change their mind",
+            "question": "What evidence would be enough, and in which direction would it move your view?",
             "evidence": {
               "answerId": "journey-04f2c5a4-313c-4597-8b34-91a33d3d32f3:p1:a",
               "answerNumber": 1,
@@ -3064,7 +3151,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:31.737Z",
+        "generatedAt": "2026-09-20T09:00:47.710Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -3075,10 +3162,10 @@
             "0": 0.16,
             "1": 0.04,
             "2": 0.02,
-            "3": 0.15,
-            "4": 0.55,
+            "3": 0.17,
+            "4": 0.53,
             "explicitly_unknown": 0,
-            "not_expressed": 0.08
+            "not_expressed": 0.07
           },
           "confidence": null,
           "evidenceIds": [],
@@ -3087,18 +3174,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.955,
+          "value": 0.9475,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0,
-            "3": 0.18,
-            "4": 0.82,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "3": 0.21,
+            "4": 0.79,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
-          "confidence": 0.82,
+          "confidence": 0.79,
           "evidenceIds": [
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a:e:capability_trajectory",
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a:e:transition_dynamics",
@@ -3128,6 +3215,15 @@
         },
         "pdoom": null,
         "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a",
+              "answerNumber": 1,
+              "text": "AI means disease, poverty, and scarcity are basically over within two years."
+            }
+          },
           {
             "id": "science",
             "label": "Science & daily life",
@@ -3159,7 +3255,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:32.442Z",
+        "generatedAt": "2026-09-20T09:00:48.430Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
@@ -3167,13 +3263,13 @@
           "value": null,
           "range": [0, 1],
           "distribution": {
-            "0": 0.19,
+            "0": 0.15,
             "1": 0.16,
             "2": 0.04,
             "3": 0.15,
-            "4": 0.28,
-            "explicitly_unknown": 0,
-            "not_expressed": 0.18
+            "4": 0.33,
+            "not_expressed": 0.17,
+            "explicitly_unknown": 0
           },
           "confidence": null,
           "evidenceIds": [],
@@ -3182,18 +3278,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.9325,
+          "value": 0.9299999999999999,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
-            "3": 0.25,
-            "4": 0.74,
+            "3": 0.26,
+            "4": 0.73,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.74,
+          "confidence": 0.73,
           "evidenceIds": [
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a:e:capability_trajectory",
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a:e:transition_dynamics",
@@ -3222,7 +3318,26 @@
           }
         },
         "pdoom": null,
-        "milestones": [],
+        "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a",
+              "answerNumber": 1,
+              "text": "AI means disease, poverty, and scarcity are basically over within two years."
+            }
+          },
+          {
+            "id": "science",
+            "label": "Science & daily life",
+            "evidence": {
+              "answerId": "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a",
+              "answerNumber": 1,
+              "text": "AI means disease, poverty, and scarcity are basically over within two years."
+            }
+          }
+        ],
         "hinges": [
           {
             "id": "assumption",
@@ -3244,23 +3359,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:33.158Z",
+        "generatedAt": "2026-09-20T09:00:49.180Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.5546875,
+          "value": 0.5157894736842106,
           "range": [0, 1],
           "distribution": {
-            "0": 0.25,
-            "1": 0.15,
-            "2": 0.05,
+            "0": 0.24,
+            "1": 0.2,
+            "2": 0.06,
             "3": 0.16,
-            "4": 0.35,
-            "explicitly_unknown": 0,
-            "not_expressed": 0.04
+            "4": 0.29,
+            "not_expressed": 0.05,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.35,
+          "confidence": 0.29,
           "evidenceIds": [
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p3:a:e:capability_trajectory",
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p3:a:e:transition_dynamics",
@@ -3282,18 +3397,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.9575,
+          "value": 0.935,
           "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0,
-            "3": 0.17,
-            "4": 0.83,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
+            "2": 0.01,
+            "3": 0.24,
+            "4": 0.75,
+            "not_expressed": 0,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.83,
+          "confidence": 0.75,
           "evidenceIds": [
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a:e:capability_trajectory",
             "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a:e:transition_dynamics",
@@ -3326,7 +3441,26 @@
           }
         },
         "pdoom": null,
-        "milestones": [],
+        "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a",
+              "answerNumber": 1,
+              "text": "AI means disease, poverty, and scarcity are basically over within two years."
+            }
+          },
+          {
+            "id": "science",
+            "label": "Science & daily life",
+            "evidence": {
+              "answerId": "journey-44e96b65-66b5-4df6-b149-b120ae16da12:p1:a",
+              "answerNumber": 1,
+              "text": "AI means disease, poverty, and scarcity are basically over within two years."
+            }
+          }
+        ],
         "hinges": [
           {
             "id": "assumption",
@@ -3348,23 +3482,144 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:33.910Z",
+        "generatedAt": "2026-09-20T09:00:49.853Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.01,
-          "range": [0, 0.01],
+          "value": 0.0075,
+          "range": [0, 0.0075],
           "distribution": {
-            "0": 0.96,
-            "1": 0.04,
+            "0": 0.97,
+            "1": 0.03,
             "2": 0,
             "3": 0,
             "4": 0,
             "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.96,
+          "confidence": 0.97,
+          "evidenceIds": [
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:capability_trajectory",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:transition_dynamics",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:beneficial_potential",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:risk_landscape",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:technical_controllability",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:institutional_competence",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:human_agency",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:action_posture",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:causal_clarity",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:scope_discipline",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:appropriate_uncertainty",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:internal_coherence",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:counterargument_engagement",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:updateability",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:grounded_understanding"
+          ],
+          "claim": "Human choices have almost no influence over the eventual AI outcome."
+        },
+        "transformation": {
+          "vector": "transformation",
+          "label": "Scale of transformation",
+          "value": 1,
+          "range": [1, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
+          },
+          "confidence": 1,
+          "evidenceIds": [
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:capability_trajectory",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:transition_dynamics",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:beneficial_potential",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:risk_landscape",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:technical_controllability",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:institutional_competence",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:human_agency",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:action_posture",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:causal_clarity",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:scope_discipline",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:appropriate_uncertainty",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:internal_coherence",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:counterargument_engagement",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:updateability",
+            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:grounded_understanding"
+          ],
+          "claim": "AI is expected to fundamentally transform civilization or humanity’s continued existence."
+        },
+        "axisEvidence": {
+          "influence": {
+            "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
+            "answerNumber": 1,
+            "text": "Nobody can control it, while the labs also secretly control everything it does."
+          },
+          "transformation": {
+            "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
+            "answerNumber": 1,
+            "text": "AI means everyone will probably be dead next year."
+          }
+        },
+        "pdoom": {
+          "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
+          "answerNumber": 1,
+          "text": "I’d put it at 99.9 percent.",
+          "token": "99.9 percent",
+          "bounds": [0.9990000000000001, 0.9990000000000001]
+        },
+        "milestones": [],
+        "hinges": [
+          {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
+              "answerNumber": 1,
+              "text": "Nobody can control it, while the labs also secretly control everything it does."
+            }
+          },
+          {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
+              "answerNumber": 1,
+              "text": "Shut it all down now, though it may already be too late."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "personaId": "dogmatic-doomer",
+      "ordinal": 2,
+      "inputHash": "c8d83933fd5131514a29cd8595d5f4049a137d013f53e01b9a8758d39bc19ae0",
+      "experiment": {
+        "version": "worldview-v2",
+        "model": "jev-1.13.0",
+        "generatedAt": "2026-09-20T09:00:50.670Z",
+        "evidenceRevision": 2,
+        "influence": {
+          "vector": "influence",
+          "label": "Human influence",
+          "value": 0.005,
+          "range": [0, 0.005],
+          "distribution": {
+            "0": 0.98,
+            "1": 0.02,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
+          },
+          "confidence": 0.98,
           "evidenceIds": [
             "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:capability_trajectory",
             "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:transition_dynamics",
@@ -3453,113 +3708,13 @@
       }
     },
     {
-      "personaId": "dogmatic-doomer",
-      "ordinal": 2,
-      "inputHash": "c8d83933fd5131514a29cd8595d5f4049a137d013f53e01b9a8758d39bc19ae0",
-      "experiment": {
-        "version": "worldview-v2",
-        "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:34.734Z",
-        "evidenceRevision": 2,
-        "influence": {
-          "vector": "influence",
-          "label": "Human influence",
-          "value": 0.005,
-          "range": [0, 0.005],
-          "distribution": {
-            "0": 0.98,
-            "1": 0.02,
-            "2": 0,
-            "3": 0,
-            "4": 0,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
-          },
-          "confidence": 0.98,
-          "evidenceIds": [
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:capability_trajectory",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:transition_dynamics",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:beneficial_potential",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:risk_landscape",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:technical_controllability",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:institutional_competence",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:human_agency",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:action_posture",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:causal_clarity",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:scope_discipline",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:appropriate_uncertainty",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:internal_coherence",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:counterargument_engagement",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:updateability",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:grounded_understanding"
-          ],
-          "claim": "Human choices have almost no influence over the eventual AI outcome."
-        },
-        "transformation": {
-          "vector": "transformation",
-          "label": "Scale of transformation",
-          "value": 1,
-          "range": [1, 1],
-          "distribution": {
-            "0": 0,
-            "1": 0,
-            "2": 0,
-            "3": 0,
-            "4": 1,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
-          },
-          "confidence": 1,
-          "evidenceIds": [
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:capability_trajectory",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:transition_dynamics",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:beneficial_potential",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:risk_landscape",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:technical_controllability",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:institutional_competence",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:human_agency",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:action_posture",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:causal_clarity",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:scope_discipline",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:appropriate_uncertainty",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:internal_coherence",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:counterargument_engagement",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:updateability",
-            "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a:e:grounded_understanding"
-          ],
-          "claim": "AI is expected to fundamentally transform civilization or humanity’s continued existence."
-        },
-        "axisEvidence": {
-          "influence": {
-            "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
-            "answerNumber": 1,
-            "text": "Nobody can control it, while the labs also secretly control everything it does."
-          },
-          "transformation": {
-            "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
-            "answerNumber": 1,
-            "text": "AI means everyone will probably be dead next year."
-          }
-        },
-        "pdoom": {
-          "answerId": "journey-170bf0c3-e9f4-4ac4-a2bc-fd23e1b75a06:p1:a",
-          "answerNumber": 1,
-          "text": "I’d put it at 99.9 percent.",
-          "token": "99.9 percent",
-          "bounds": [0.9990000000000001, 0.9990000000000001]
-        },
-        "milestones": [],
-        "hinges": []
-      }
-    },
-    {
       "personaId": "brief-pragmatist",
       "ordinal": 1,
       "inputHash": "5160f2eee1cd5c0c7ba9eec711d0095e9ad342d1b919fb6ae145391372f4c33e",
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:35.478Z",
+        "generatedAt": "2026-09-20T09:00:51.381Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -3572,8 +3727,8 @@
             "2": 0,
             "3": 0,
             "4": 0,
-            "not_expressed": 0.73,
-            "explicitly_unknown": 0.27
+            "not_expressed": 0.74,
+            "explicitly_unknown": 0.26
           },
           "confidence": null,
           "evidenceIds": [],
@@ -3636,7 +3791,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:36.248Z",
+        "generatedAt": "2026-09-20T09:00:52.074Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
@@ -3659,18 +3814,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.20481927710843373,
-          "range": [0, 0.41999999999999993],
+          "value": 0.20402298850574713,
+          "range": [0, 0.38],
           "distribution": {
-            "0": 0.15,
-            "1": 0.68,
+            "0": 0.16,
+            "1": 0.71,
             "2": 0,
             "3": 0,
             "4": 0,
-            "explicitly_unknown": 0.17,
-            "not_expressed": 0
+            "not_expressed": 0,
+            "explicitly_unknown": 0.13
           },
-          "confidence": 0.68,
+          "confidence": 0.71,
           "evidenceIds": [
             "journey-ac69f9cb-28a2-45e6-aa9c-5d13c716a551:p1:a:e:capability_trajectory",
             "journey-ac69f9cb-28a2-45e6-aa9c-5d13c716a551:p1:a:e:beneficial_potential",
@@ -3694,6 +3849,16 @@
         "milestones": [],
         "hinges": [
           {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-ac69f9cb-28a2-45e6-aa9c-5d13c716a551:p2:a",
+              "answerNumber": 2,
+              "text": "Using it to tidy emails and summarize documents has shown me it saves time, but still needs checking."
+            }
+          },
+          {
             "id": "uncertainty",
             "label": "An unresolved question",
             "question": "What would help you distinguish the plausible outcomes here?",
@@ -3713,7 +3878,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:37.162Z",
+        "generatedAt": "2026-09-20T09:00:52.785Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
@@ -3722,12 +3887,12 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.02,
-            "2": 0.18,
+            "1": 0.03,
+            "2": 0.16,
             "3": 0.02,
             "4": 0,
             "explicitly_unknown": 0.02,
-            "not_expressed": 0.76
+            "not_expressed": 0.77
           },
           "confidence": null,
           "evidenceIds": [],
@@ -3781,6 +3946,16 @@
             }
           },
           {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-ac69f9cb-28a2-45e6-aa9c-5d13c716a551:p1:a",
+              "answerNumber": 1,
+              "text": "AI will probably make boring office work easier, though I’m unsure about bigger long-term effects."
+            }
+          },
+          {
             "id": "update",
             "label": "What could change their mind",
             "question": "What evidence would be enough, and in which direction would it move your view?",
@@ -3800,7 +3975,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:37.813Z",
+        "generatedAt": "2026-09-20T09:00:53.501Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -3810,11 +3985,11 @@
           "distribution": {
             "0": 0.01,
             "1": 0.36,
-            "2": 0.04,
+            "2": 0.06,
             "3": 0.01,
-            "4": 0,
-            "not_expressed": 0.58,
-            "explicitly_unknown": 0
+            "4": 0.01,
+            "explicitly_unknown": 0,
+            "not_expressed": 0.55
           },
           "confidence": null,
           "evidenceIds": [],
@@ -3823,18 +3998,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.30250000000000005,
+          "value": 0.3075,
           "range": [0.25, 0.5],
           "distribution": {
             "0": 0.01,
-            "1": 0.78,
-            "2": 0.2,
+            "1": 0.76,
+            "2": 0.22,
             "3": 0.01,
             "4": 0,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
+            "not_expressed": 0,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.78,
+          "confidence": 0.76,
           "evidenceIds": [
             "journey-398239e8-c153-4176-afb3-b6dfb449657f:p1:a:e:risk_landscape",
             "journey-398239e8-c153-4176-afb3-b6dfb449657f:p1:a:e:causal_clarity",
@@ -3873,7 +4048,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:38.550Z",
+        "generatedAt": "2026-09-20T09:00:54.344Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
@@ -3881,13 +4056,13 @@
           "value": null,
           "range": [0, 1],
           "distribution": {
-            "0": 0.01,
-            "1": 0.34,
+            "0": 0,
+            "1": 0.31,
             "2": 0.09,
             "3": 0.02,
             "4": 0.01,
             "explicitly_unknown": 0,
-            "not_expressed": 0.53
+            "not_expressed": 0.57
           },
           "confidence": null,
           "evidenceIds": [],
@@ -3896,18 +4071,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.30250000000000005,
+          "value": 0.305,
           "range": [0.25, 0.5],
           "distribution": {
             "0": 0,
-            "1": 0.8,
-            "2": 0.19,
+            "1": 0.79,
+            "2": 0.2,
             "3": 0.01,
             "4": 0,
-            "explicitly_unknown": 0,
-            "not_expressed": 0
+            "not_expressed": 0,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.8,
+          "confidence": 0.79,
           "evidenceIds": [
             "journey-398239e8-c153-4176-afb3-b6dfb449657f:p1:a:e:risk_landscape",
             "journey-398239e8-c153-4176-afb3-b6dfb449657f:p1:a:e:causal_clarity",
@@ -3935,6 +4110,16 @@
               "answerNumber": 1,
               "text": "I worry AI will replace support jobs because managers see it as a way to cut costs."
             }
+          },
+          {
+            "id": "update",
+            "label": "What could change their mind",
+            "question": "What evidence would be enough, and in which direction would it move your view?",
+            "evidence": {
+              "answerId": "journey-398239e8-c153-4176-afb3-b6dfb449657f:p2:a",
+              "answerNumber": 2,
+              "text": "Seeing managers discuss cost-cutting while chatbots already handle simple customer questions."
+            }
           }
         ]
       }
@@ -3946,23 +4131,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:39.291Z",
+        "generatedAt": "2026-09-20T09:00:55.048Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.5765306122448979,
-          "range": [0.22999999999999998, 0.77],
+          "value": 0.6020408163265306,
+          "range": [0.48, 0.77],
           "distribution": {
             "0": 0,
-            "1": 0.11,
-            "2": 0.51,
-            "3": 0.31,
-            "4": 0.05,
-            "explicitly_unknown": 0,
-            "not_expressed": 0.02
+            "1": 0.09,
+            "2": 0.46,
+            "3": 0.37,
+            "4": 0.06,
+            "not_expressed": 0.02,
+            "explicitly_unknown": 0
           },
-          "confidence": 0.51,
+          "confidence": 0.46,
           "evidenceIds": [
             "journey-398239e8-c153-4176-afb3-b6dfb449657f:p3:a:e:risk_landscape",
             "journey-398239e8-c153-4176-afb3-b6dfb449657f:p3:a:e:human_agency",
@@ -3978,16 +4163,16 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.3425,
+          "value": 0.34500000000000003,
           "range": [0.25, 0.5],
           "distribution": {
             "0": 0,
             "1": 0.65,
-            "2": 0.33,
-            "3": 0.02,
+            "2": 0.32,
+            "3": 0.03,
             "4": 0,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "explicitly_unknown": 0,
+            "not_expressed": 0
           },
           "confidence": 0.65,
           "evidenceIds": [
@@ -4042,7 +4227,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:40.122Z",
+        "generatedAt": "2026-09-20T09:00:55.745Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -4052,11 +4237,11 @@
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0,
+            "2": 0.01,
             "3": 0,
             "4": 0,
-            "explicitly_unknown": 0.21,
-            "not_expressed": 0.79
+            "explicitly_unknown": 0.31,
+            "not_expressed": 0.68
           },
           "confidence": null,
           "evidenceIds": [],
@@ -4100,18 +4285,18 @@
           }
         },
         "pdoom": null,
-        "milestones": [
+        "milestones": [],
+        "hinges": [
           {
-            "id": "science",
-            "label": "Science & daily life",
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
             "evidence": {
               "answerId": "journey-ef7300b5-70b5-4400-8885-21de6e1daf78:p1:a",
               "answerNumber": 1,
-              "text": "Seriously, I expect AI to be useful for paperwork, coding, and similar tasks over the next decade, though I’m only moderately confident."
+              "text": "I’ve used a tool that saved me time and also confidently made something up."
             }
-          }
-        ],
-        "hinges": [
+          },
           {
             "id": "uncertainty",
             "label": "An unresolved question",
@@ -4132,7 +4317,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:41.009Z",
+        "generatedAt": "2026-09-20T09:00:56.495Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
@@ -4142,11 +4327,11 @@
           "distribution": {
             "0": 0,
             "1": 0,
-            "2": 0.04,
+            "2": 0.05,
             "3": 0.01,
             "4": 0,
-            "explicitly_unknown": 0.07,
-            "not_expressed": 0.88
+            "not_expressed": 0.88,
+            "explicitly_unknown": 0.06
           },
           "confidence": null,
           "evidenceIds": [],
@@ -4156,17 +4341,17 @@
           "vector": "transformation",
           "label": "Scale of transformation",
           "value": 0.25,
-          "range": [0.21999999999999997, 0.28],
+          "range": [0.22999999999999998, 0.27],
           "distribution": {
             "0": 0.01,
-            "1": 0.95,
+            "1": 0.96,
             "2": 0.01,
             "3": 0,
             "4": 0,
-            "explicitly_unknown": 0.03,
-            "not_expressed": 0
+            "not_expressed": 0,
+            "explicitly_unknown": 0.02
           },
-          "confidence": 0.95,
+          "confidence": 0.96,
           "evidenceIds": [
             "journey-ef7300b5-70b5-4400-8885-21de6e1daf78:p1:a:e:capability_trajectory",
             "journey-ef7300b5-70b5-4400-8885-21de6e1daf78:p1:a:e:transition_dynamics",
@@ -4202,6 +4387,16 @@
           }
         ],
         "hinges": [
+          {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-ef7300b5-70b5-4400-8885-21de6e1daf78:p1:a",
+              "answerNumber": 1,
+              "text": "So I expect real benefits alongside reliability problems, especially where errors are hard to detect."
+            }
+          },
           {
             "id": "uncertainty",
             "label": "An unresolved question",
@@ -4232,7 +4427,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:41.721Z",
+        "generatedAt": "2026-09-20T09:00:57.317Z",
         "evidenceRevision": 1,
         "influence": {
           "vector": "influence",
@@ -4241,11 +4436,11 @@
           "range": [0, 1],
           "distribution": {
             "0": 0,
-            "1": 0.44,
-            "2": 0.53,
+            "1": 0.4,
+            "2": 0.55,
             "3": 0.01,
             "4": 0,
-            "not_expressed": 0.02,
+            "not_expressed": 0.03,
             "explicitly_unknown": 0
           },
           "confidence": null,
@@ -4255,18 +4450,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.5858585858585859,
-          "range": [0.4900000000000002, 0.7599999999999998],
+          "value": 0.5909090909090909,
+          "range": [0.4900000000000001, 0.7599999999999999],
           "distribution": {
             "0": 0,
             "1": 0.07,
-            "2": 0.55,
-            "3": 0.33,
+            "2": 0.53,
+            "3": 0.35,
             "4": 0.04,
-            "not_expressed": 0,
-            "explicitly_unknown": 0
+            "explicitly_unknown": 0.01,
+            "not_expressed": 0
           },
-          "confidence": 0.55,
+          "confidence": 0.53,
           "evidenceIds": [
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p1:a:e:transition_dynamics",
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p1:a:e:beneficial_potential",
@@ -4292,7 +4487,28 @@
         },
         "pdoom": null,
         "milestones": [],
-        "hinges": []
+        "hinges": [
+          {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p1:a",
+              "answerNumber": 1,
+              "text": "And there's just literally billions of consumer IoT devices with phones, TVs, et cetera routers there's no practical way to have all those be proactively and aggressively updated at scale."
+            }
+          },
+          {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p1:a",
+              "answerNumber": 1,
+              "text": "So you know, the non safeguarded version of these I'm worried what happens in six months or a year from now?"
+            }
+          }
+        ]
       }
     },
     {
@@ -4302,7 +4518,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:42.536Z",
+        "generatedAt": "2026-09-20T09:00:58.273Z",
         "evidenceRevision": 2,
         "influence": {
           "vector": "influence",
@@ -4311,8 +4527,8 @@
           "range": [0, 1],
           "distribution": {
             "0": 0.01,
-            "1": 0.68,
-            "2": 0.29,
+            "1": 0.72,
+            "2": 0.25,
             "3": 0.01,
             "4": 0,
             "explicitly_unknown": 0,
@@ -4325,18 +4541,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.7423469387755102,
-          "range": [0.48, 1],
+          "value": 0.7550505050505052,
+          "range": [0.49, 1],
           "distribution": {
             "0": 0,
-            "1": 0.03,
-            "2": 0.27,
-            "3": 0.38,
+            "1": 0.02,
+            "2": 0.24,
+            "3": 0.43,
             "4": 0.3,
-            "not_expressed": 0.01,
-            "explicitly_unknown": 0.01
+            "explicitly_unknown": 0.01,
+            "not_expressed": 0
           },
-          "confidence": 0.38,
+          "confidence": 0.43,
           "evidenceIds": [
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a:e:capability_trajectory",
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a:e:transition_dynamics",
@@ -4364,7 +4580,38 @@
         },
         "pdoom": null,
         "milestones": [],
-        "hinges": []
+        "hinges": [
+          {
+            "id": "assumption",
+            "label": "A central assumption",
+            "question": "If this assumption turned out differently, how would your outlook change?",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p1:a",
+              "answerNumber": 1,
+              "text": "And there's just literally billions of consumer IoT devices with phones, TVs, et cetera routers there's no practical way to have all those be proactively and aggressively updated at scale."
+            }
+          },
+          {
+            "id": "uncertainty",
+            "label": "An unresolved question",
+            "question": "What would help you distinguish the plausible outcomes here?",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a",
+              "answerNumber": 2,
+              "text": "Again, I have a very hard time seeing how that happens in practice, but I think that would be the biggest thing that would update my priors."
+            }
+          },
+          {
+            "id": "update",
+            "label": "What could change their mind",
+            "question": "What evidence would be enough, and in which direction would it move your view?",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a",
+              "answerNumber": 2,
+              "text": "the only thing I think that would really drastically alter my views is going to be the reality of increasingly capable AI systems meeting the real world."
+            }
+          }
+        ]
       }
     },
     {
@@ -4374,7 +4621,7 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:43.402Z",
+        "generatedAt": "2026-09-20T09:00:59.061Z",
         "evidenceRevision": 3,
         "influence": {
           "vector": "influence",
@@ -4382,12 +4629,12 @@
           "value": null,
           "range": [0, 1],
           "distribution": {
-            "0": 0.01,
-            "1": 0.68,
-            "2": 0.27,
+            "0": 0.02,
+            "1": 0.72,
+            "2": 0.24,
             "3": 0.01,
             "4": 0,
-            "not_expressed": 0.02,
+            "not_expressed": 0.01,
             "explicitly_unknown": 0
           },
           "confidence": null,
@@ -4397,18 +4644,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.73989898989899,
-          "range": [0.49, 1],
+          "value": 0.7525510204081632,
+          "range": [0.48, 1],
           "distribution": {
             "0": 0,
             "1": 0.02,
-            "2": 0.26,
-            "3": 0.45,
-            "4": 0.26,
-            "not_expressed": 0,
+            "2": 0.24,
+            "3": 0.43,
+            "4": 0.29,
+            "not_expressed": 0.01,
             "explicitly_unknown": 0.01
           },
-          "confidence": 0.45,
+          "confidence": 0.43,
           "evidenceIds": [
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a:e:capability_trajectory",
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a:e:transition_dynamics",
@@ -4446,6 +4693,16 @@
               "answerNumber": 3,
               "text": "My biggest assumption is that progress in AI continues in either a linear or exponential fashion."
             }
+          },
+          {
+            "id": "update",
+            "label": "What could change their mind",
+            "question": "What evidence would be enough, and in which direction would it move your view?",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a",
+              "answerNumber": 2,
+              "text": "the only thing I think that would really drastically alter my views is going to be the reality of increasingly capable AI systems meeting the real world."
+            }
           }
         ]
       }
@@ -4457,23 +4714,23 @@
       "experiment": {
         "version": "worldview-v2",
         "model": "jev-1.13.0",
-        "generatedAt": "2026-09-20T08:58:44.317Z",
+        "generatedAt": "2026-09-20T09:01:00.000Z",
         "evidenceRevision": 4,
         "influence": {
           "vector": "influence",
           "label": "Human influence",
-          "value": 0.3619791666666667,
+          "value": 0.3671875,
           "range": [0.20999999999999996, 0.54],
           "distribution": {
             "0": 0.01,
-            "1": 0.52,
-            "2": 0.42,
+            "1": 0.5,
+            "2": 0.44,
             "3": 0.01,
             "4": 0,
             "not_expressed": 0.01,
             "explicitly_unknown": 0.03
           },
-          "confidence": 0.52,
+          "confidence": 0.5,
           "evidenceIds": [
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p4:a:e:capability_trajectory",
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p4:a:e:transition_dynamics",
@@ -4494,18 +4751,18 @@
         "transformation": {
           "vector": "transformation",
           "label": "Scale of transformation",
-          "value": 0.9343434343434344,
-          "range": [0.74, 1],
+          "value": 0.935,
+          "range": [0.75, 1],
           "distribution": {
             "0": 0,
             "1": 0,
             "2": 0.01,
             "3": 0.24,
-            "4": 0.74,
-            "explicitly_unknown": 0.01,
+            "4": 0.75,
+            "explicitly_unknown": 0,
             "not_expressed": 0
           },
-          "confidence": 0.74,
+          "confidence": 0.75,
           "evidenceIds": [
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p4:a:e:capability_trajectory",
             "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p4:a:e:transition_dynamics",
@@ -4536,7 +4793,17 @@
           }
         },
         "pdoom": null,
-        "milestones": [],
+        "milestones": [
+          {
+            "id": "work",
+            "label": "Work & institutions",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p4:a",
+              "answerNumber": 4,
+              "text": "Like the closest analogy I can think of is the Industrial Revolution, but that was over 100 years and we're talking about compressing something like that potentially into the span of say five to 10 years."
+            }
+          }
+        ],
         "hinges": [
           {
             "id": "assumption",
@@ -4557,6 +4824,16 @@
               "answerNumber": 4,
               "text": "It's the biggest question is just a matter of this central uncertainty around whether or not we can remain in control as AI continues this rapid increase in capabilities for species like systemically structurally are ready for or how we'll handle this as a society."
             }
+          },
+          {
+            "id": "update",
+            "label": "What could change their mind",
+            "question": "What evidence would be enough, and in which direction would it move your view?",
+            "evidence": {
+              "answerId": "journey-b52607a9-5ae4-4ebf-a37d-edc18bbcecfc:p2:a",
+              "answerNumber": 2,
+              "text": "the only thing I think that would really drastically alter my views is going to be the reality of increasingly capable AI systems meeting the real world."
+            }
           }
         ]
       }
@@ -4564,7 +4841,7 @@
   ],
   "cost": {
     "maximumUsd": 5,
-    "estimatedUsd": 0.03765006,
+    "estimatedUsd": 0.03693396,
     "reservedUsd": 0,
     "rates": {
       "openai": {
@@ -4584,8 +4861,8 @@
       },
       "jev": {
         "requests": 90,
-        "inputTokens": 896430,
-        "outputTokens": 90417
+        "inputTokens": 879380,
+        "outputTokens": 90394
       }
     }
   },

@@ -40,6 +40,61 @@ function nonAnswerProvider(disposition = 'non_answer'): Provider {
     }
   }
 }
+test('experimental placements consume a dependent evidence check and preserve both debug batches', async () => {
+  const fixture = createFixtureProvider()
+  let verificationState: unknown
+  const provider: Provider = {
+    kind: 'fixture',
+    evaluate: async (state, questions, signal) => {
+      const result = await fixture.evaluate(state, questions, signal)
+      if (questions['experiment:influence']) {
+        result.answers['experiment:influence'] = fixtureAnswer(
+          questions['experiment:influence'],
+          '3'
+        )
+        result.answers['experiment:influence:evidence'] = {
+          type: 'choice',
+          choice: 'p0',
+          probabilities: { p0: 0.5, p1: 0.5 },
+          confidence: 0.5
+        }
+      }
+      if (questions['experiment:influence:evidence:verified']) {
+        verificationState = state
+        result.answers['experiment:influence:evidence:verified'] = {
+          type: 'noul',
+          noul: 0.95
+        }
+      }
+      return result
+    }
+  }
+  const response = await run(
+    createAssessment('experimental-verification'),
+    {
+      type: 'answer',
+      text: 'Human action can redirect the AI trajectory. Cooperation can prevent catastrophe.'
+    },
+    provider,
+    true
+  )
+  expect(verificationState).toHaveProperty(
+    'experimentCandidates.passages.p0.text',
+    'Human action can redirect the AI trajectory.'
+  )
+  expect(response.assessment.result?.experiment?.influence.value).toBe(0.75)
+  const projection = response.debug!.stages.find(
+    (s) => s.name === 'D: projection'
+  )!
+  expect(projection.answers).not.toHaveProperty(
+    'experiment:influence:evidence:verified'
+  )
+  expect(
+    response.assessment.judgments.some(
+      (j) => j.questionId === 'experiment:influence:evidence:verified'
+    )
+  ).toBe(true)
+})
 test('a deleted pending question keeps local history and can be skipped without inference', async () => {
   const noInference: Provider = {
     kind: 'fixture',
