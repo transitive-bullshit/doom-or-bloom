@@ -3,7 +3,7 @@ import { epistemicIds, vectorIds } from './schema'
 import { supportProbability } from './presence'
 
 // A draft engineering heuristic, not a probability that a forecast is correct.
-export const readinessThreshold = 55
+const readinessThreshold = 55
 const outlookIds: VectorId[] = [
   'beneficial_potential',
   'risk_landscape',

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  // Standalone development tools and subprocess fixtures are entry points.
+  "entry": ["scripts/*.ts", "tests/browser/*-engine.ts"],
+  // Keep the reusable UI primitive APIs while still checking their dependencies.
+  "ignoreIssues": {
+    "components/ui/**": ["exports", "types"]
+  }
+}

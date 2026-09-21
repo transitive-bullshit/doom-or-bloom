@@ -12,7 +12,7 @@ export const experimentVersion = 'worldview-v4' as const
 
 // Authored event-probability bands. Jev weights interpretations of the participant’s belief.
 // Its category confidence is never itself used as the catastrophe probability.
-export const doomBands = {
+const doomBands = {
   negligible: {
     bounds: [0, 0.01],
     label: 'Negligible or virtually impossible catastrophe risk (0–1%).'

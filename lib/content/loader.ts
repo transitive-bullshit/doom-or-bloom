@@ -122,7 +122,7 @@ export function loadBundle(contentVersion: string = versions.content) {
   return bundle
 }
 export type Bundle = ReturnType<typeof loadBundle>
-export function bundleFiles(bundle: Pick<Bundle, 'manifest'>) {
+function bundleFiles(bundle: Pick<Bundle, 'manifest'>) {
   const base = path.join(process.cwd(), 'content')
   const directories = [
     `releases/${bundle.manifest.contentVersion}`,

@@ -35,9 +35,9 @@
     "journeys:mechanical": "node --conditions=react-server --import tsx scripts/generate-mechanical-journeys.ts",
     "journeys:mechanical:check": "pnpm journeys:mechanical --check",
     "journeys:review": "node --conditions=react-server --import tsx scripts/review-journeys.ts",
-    "build:sites": "node --conditions=react-server --import tsx scripts/build-sites.ts",
     "dev:tailscale": "portless run --name doom-or-bloom --tailscale next dev --hostname 127.0.0.1",
-    "resources:previews": "tsx scripts/prefetch-resource-previews.ts"
+    "resources:previews": "tsx scripts/prefetch-resource-previews.ts",
+    "test:unused": "knip"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",
@@ -67,7 +67,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "cheerio": "^1.2.0",
-    "esbuild": "^0.28.2",
+    "knip": "^6.37.0",
     "lint-staged": "^17.5.1",
     "npm-run-all2": "^9.0.3",
     "oxfmt": "^0.68.0",
@@ -79,7 +79,6 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
-    "vite": "^8.3.0",
     "vitest": "^5.0.1"
   },
   "simple-git-hooks": {

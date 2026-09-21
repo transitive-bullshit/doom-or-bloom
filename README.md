@@ -87,3 +87,7 @@ Freezing rejects drafts and hashes every asset. Modifying a frozen file invalida
 Analytics is off by default and always disabled in fixture mode. `NEXT_PUBLIC_ANALYTICS_ENABLED=true` enables the optional traffic and explicit-event adapters. PostHog also needs `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST`, and `POSTHOG_IP_DISPOSAL_CONFIRMED=true` after confirming project-level IP disposal in PostHog.
 
 Events use allowlisted identifiers and coarse buckets. Answers, excerpts, free-form clarification, URL queries/hashes, replay, autocapture and person profiles are excluded. A random per-assessment ID links resumed visits and rotates on restart. See the [privacy page](app/privacy/page.tsx) and [measurement contract](docs/MEASUREMENT.md). Deployment is a separate task.
+
+## Unused-code checks
+
+Run `pnpm test:unused` (also included in `pnpm test`). Knip includes standalone scripts and browser subprocess fixtures as entry points. Reusable UI primitive exports are intentionally retained; their dependencies and file usage are still checked.

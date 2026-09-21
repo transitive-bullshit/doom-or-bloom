@@ -109,7 +109,7 @@ export const modelAnswerSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('noul'), noul: probability })
 ])
 export type ModelAnswer = z.infer<typeof modelAnswerSchema>
-export const judgmentSchema = z.strictObject({
+const judgmentSchema = z.strictObject({
   id: z.string().max(120),
   questionId: z.string().max(120),
   answerId: z.string().max(120),
@@ -137,7 +137,7 @@ export const promptInstanceSchema = z.strictObject({
   sourceEvidenceIds: z.array(z.string()).max(100)
 })
 export type PromptInstance = z.infer<typeof promptInstanceSchema>
-export const answerSchema = z.strictObject({
+const answerSchema = z.strictObject({
   id: z.string().max(120),
   promptInstanceId: z.string().max(120),
   promptText: z.string().max(2000),
@@ -150,7 +150,7 @@ export const answerSchema = z.strictObject({
   hasConviction: z.boolean().default(false)
 })
 export type Answer = z.infer<typeof answerSchema>
-export const evidenceSchema = z.strictObject({
+const evidenceSchema = z.strictObject({
   id: z.string().max(160),
   answerId: z.string(),
   vector: vectorSchema,
@@ -165,8 +165,7 @@ export const evidenceSchema = z.strictObject({
   referenceIds: z.array(z.string()).max(12),
   contextReferenceIds: z.array(z.string()).max(12)
 })
-export type EvidenceEntry = z.infer<typeof evidenceSchema>
-export const referenceClaimSchema = z.strictObject({
+const referenceClaimSchema = z.strictObject({
   id: z.string().max(160),
   answerId: z.string(),
   referenceId: z.string(),
@@ -176,7 +175,7 @@ export const referenceClaimSchema = z.strictObject({
   materiality: z.enum(['yes', 'no', 'unclear']),
   judgmentIds: z.array(z.string()).max(8)
 })
-export const attemptSchema = z.strictObject({
+const attemptSchema = z.strictObject({
   id: z.string(),
   promptInstanceId: z.string(),
   variant: z.string(),
@@ -206,7 +205,7 @@ export const componentSchema = z.strictObject({
     .optional()
 })
 export type Component = z.infer<typeof componentSchema>
-export const experimentQuoteSchema = z.strictObject({
+const experimentQuoteSchema = z.strictObject({
   answerId: z.string(),
   answerNumber: z.number().int().positive(),
   text: z.string().max(1000),

@@ -4,9 +4,9 @@
 | --- | --- | --- | --- |
 | Portless + Tailscale Serve | Personal remote testing and trusted teammates | Devices on your tailnet | Exact live dev app and hot reload; Mac and dev process must stay running |
 | Cloudflare Quick Tunnel | Temporary external testing | Public random HTTPS URL | No tester installation; URL changes when restarted; no built-in login gate |
-| ChatGPT Sites | Persistent demo | Owner-private by default; sharing managed in Sites | Independent of the Mac; code and journey snapshots update on deployment |
+| Vercel | Persistent previews and production | Configure access in the Vercel project | Independent of the Mac; deploy the Next.js app |
 
-Default to Tailscale for development and Sites for a persistent demo. A public tunnel exposes the development inspector, including saved test answers, and the live paid evaluator; use it deliberately. Tailscale Funnel is a public alternative to Quick Tunnel, directly supported by Portless through `--funnel`. Vercel preview deployments are another persistent option with native Next.js support, if Sites-specific hosting is not required.
+Use Tailscale for development and Vercel for persistent deployments. A public tunnel exposes the development inspector, including saved test answers, and the live paid evaluator; use it deliberately. Tailscale Funnel is a public alternative to Quick Tunnel, directly supported by Portless through `--funnel`.
 
 ## Tailscale
 
@@ -34,27 +34,6 @@ DEV_TUNNEL_URL=https://THE-PRINTED-NAME.trycloudflare.com pnpm dev
 
 `DEV_TUNNEL_URL` authorizes only that exact origin for API submissions and its hostname for Next dev assets. Stop cloudflared when finished. The app, Portless proxy, and tunnel must remain running. Quick Tunnels are temporary development infrastructure, not persistent deployment.
 
-## ChatGPT Sites build
+## Persistent deployments
 
-`pnpm build:sites` creates `dist/client`, `dist/server/index.js`, and `dist/.openai/hosting.json`. It reuses the React assessment/inspector components, the actual assessment API, and the live Jev engine. Build-time content loading replaces runtime filesystem access. The current recorded live journey suite and any matching experimental overlays are packaged as snapshots. The Takumi renderer uses its Worker/WebAssembly backend. Local Next development remains unchanged.
-
-The private Sites entry includes the assessment, About, Privacy and read-only journey inspector. Local editorial mutation tools and journey regeneration stay local. Reports and per-answer traces stay in the visitor's browser. The TypeSafe key belongs in Sites runtime secrets, never source, generated assets or the hosting manifest. No OpenAI participant key is required for visitor assessments.
-
-Local Worker check:
-
-```sh
-pnpm build:sites
-pnpm exec wrangler dev --config sites/wrangler.jsonc --port 8799
-```
-
-A gitignored `sites/.dev.vars` can supply `TYPESAFE_API_KEY` for this local Worker check. Commit the exact source, build from it, push to the Sites source repository with a short-lived credential, save that commit and the build-output archive as a version, then deploy the saved version privately. `.openai/hosting.json` retains the project identity; reuse it rather than creating another site.
-
-Sources: [Portless sharing](https://github.com/vercel-labs/portless#tailscale-sharing), [Cloudflare Quick Tunnels](https://try.cloudflare.com/), [ChatGPT Sites](https://learn.chatgpt.com/docs/sites), [Vercel previews](https://vercel.com/docs/deployments/environments#preview-environment-pre-production).
-
-Package the verified build with its `dist/` prefix (the Sites archive resolver expects that prefix):
-
-```sh
-COPYFILE_DISABLE=1 tar -czf /tmp/doom-or-bloom-sites.tar.gz .openai/hosting.json dist
-```
-
-Do not archive the source tree, `.env.local`, `sites/.dev.vars`, `.git`, or `node_modules`. The initial private deployment uses [doom-or-bloom.transitive-bs3.chatgpt.site](https://doom-or-bloom.transitive-bs3.chatgpt.site). Its access remains managed by Sites.
+Vercel is the deployment target. Use the existing Next.js app and `pnpm build`; there is no separate frontend or worker build. Keep runtime credentials in the hosting environment. Deployment setup and publishing remain a separate task.

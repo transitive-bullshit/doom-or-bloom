@@ -8,7 +8,7 @@ import {
 } from '@/lib/assessment/schema'
 import type { Assessment, Operation } from '@/lib/assessment/schema'
 import { eligible, currentPrompt } from '@/lib/assessment/state'
-export const eventNames = [
+const eventNames = [
   'assessment_started',
   'answer_classified',
   'answer_recovery_shown',

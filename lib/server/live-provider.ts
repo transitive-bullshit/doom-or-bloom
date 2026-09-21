@@ -7,11 +7,7 @@ import {
   modelAnswerSchema,
   questionSchema
 } from '@/lib/assessment/schema'
-import type {
-  DebugRequest,
-  ModelAnswer,
-  Question
-} from '@/lib/assessment/schema'
+import type { DebugRequest, Question } from '@/lib/assessment/schema'
 import { EvaluationFailure } from './provider'
 import type { Evaluation, Provider } from './provider'
 
@@ -239,7 +235,4 @@ export function createLiveProvider(model: string): Provider {
       return evaluation
     }
   }
-}
-export function choiceValue(answer: ModelAnswer | undefined) {
-  return answer?.type === 'choice' ? answer.choice : null
 }

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const feedbackKinds = ['questions', 'corpus'] as const
+const feedbackKinds = ['questions', 'corpus'] as const
 export const feedbackKindSchema = z.enum(feedbackKinds)
 export type FeedbackKind = z.infer<typeof feedbackKindSchema>
 export const feedbackLimit = 20_000

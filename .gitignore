@@ -57,9 +57,3 @@ eval/runs/
 # Isolated fixture browser server
 .next-browser/
 .next-analytics/
-
-# Sites build output
-/dist/
-/sites/generated/
-**/.wrangler/
-**/.dev.vars

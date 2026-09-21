@@ -14,7 +14,7 @@ import { personaProfileSchema } from './catalog'
 import { mechanicalCaseSchema } from './mechanical/schema'
 export const recordedBackgroundSchema = personaProfileSchema
 
-export const participantExchangeSchema = z.strictObject({
+const participantExchangeSchema = z.strictObject({
   promptInstanceId: z.string(),
   request: z.strictObject({
     model: z.string(),
@@ -99,7 +99,7 @@ const traceSchema = z.strictObject({
     .max(10)
 })
 
-export const readinessSchema = z.strictObject({
+const readinessSchema = z.strictObject({
   value: z.number().min(0).max(100),
   threshold: z.number(),
   ready: z.boolean(),
@@ -128,7 +128,7 @@ export const rankingSchema = z.object({
   repetition: z.number(),
   effort: z.number()
 })
-export const journeyStepSchema = z.strictObject({
+const journeyStepSchema = z.strictObject({
   ordinal: z.number().int(),
   operation: z.enum(['answer', 'project', 'retry', 'continue', 'clarify']),
   result: resultSchema.optional(),
@@ -159,7 +159,7 @@ export const journeyStepSchema = z.strictObject({
   ),
   trace: traceSchema.optional()
 })
-export const failedOperationSchema = z.strictObject({
+const failedOperationSchema = z.strictObject({
   requestId: z.string(),
   snapshot: z.boolean().optional(),
   assessment: assessmentSchema,
@@ -289,7 +289,7 @@ export function runIndex(suite: JourneySuite): RunIndex {
 
 // Only semantic observations are compared: UUIDs, elapsed times, byte counts
 // and transport use cannot make a deterministic regression fail.
-export function journeySnapshot(journey: Journey) {
+function journeySnapshot(journey: Journey) {
   return {
     steps: journey.steps.map((s) => ({
       operation: s.operation,

@@ -5,7 +5,7 @@ import { JourneyFailure, providerFailure } from './failure'
 
 // Published USD per million tokens, checked 2026-09-20. Cached input is
 // deliberately charged at the full rate in this development estimate.
-export const journeyRates = {
+const journeyRates = {
   openai: { input: 4, output: 20 },
   jev: { input: 0.042, output: 0 }
 } as const

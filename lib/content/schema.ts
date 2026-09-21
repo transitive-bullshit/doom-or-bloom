@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { questionSchema, vectorSchema } from '@/lib/assessment/schema'
-export const templateIds = [
+const templateIds = [
   'presence',
   'horizon',
   'horizon_unknown',
@@ -112,7 +112,7 @@ export const referenceSchema = z.strictObject({
     .min(1)
 })
 export type Reference = z.infer<typeof referenceSchema> & { summary: string }
-export const conditionSchema = z.strictObject({
+const conditionSchema = z.strictObject({
   vector: vectorSchema,
   min: z.number().min(0).max(1).optional(),
   max: z.number().min(0).max(1).optional(),
