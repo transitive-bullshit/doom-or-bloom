@@ -508,11 +508,11 @@ export function Interview({
           ) : (
             <>
               <div>
-                <p className='mb-5 text-xs text-muted-foreground'>
-                  {state.answers.length === 0
-                    ? 'Map your AI worldview, one question at a time.'
-                    : `${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
-                </p>
+                {state.answers.length > 0 && (
+                  <p className='mb-5 text-xs text-muted-foreground'>
+                    {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
+                  </p>
+                )}
                 <h1 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
                   {p.text}
                 </h1>
@@ -578,13 +578,11 @@ export function Interview({
                     <Textarea
                       id='answer'
                       value={state.draft}
-                      placeholder='A few sentences is plenty. Uncertainty is welcome.'
+                      placeholder='A few sentences is plenty. Just tell us what you think. Using speech-to-text is encouraged.'
                       disabled={!allowed}
                       aria-invalid={Boolean(error) || answerTooLong}
                       aria-describedby={
-                        answerTooLong
-                          ? 'answer-help answer-length answer-limit'
-                          : 'answer-help'
+                        answerTooLong ? 'answer-length answer-limit' : undefined
                       }
                       className='min-h-36 resize-none'
                       onKeyDown={(event) => {
@@ -606,9 +604,6 @@ export function Interview({
                         }
                       }}
                     />
-                    <FieldDescription id='answer-help'>
-                      No specialist knowledge needed. Tell us what you think.
-                    </FieldDescription>
                     {answerTooLong && (
                       <>
                         <FieldDescription id='answer-length'>
