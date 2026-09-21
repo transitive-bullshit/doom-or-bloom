@@ -1,5 +1,5 @@
 'use client'
-import { useId, useRef } from 'react'
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import Image from 'next/image'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { MapActions } from './map-actions'
@@ -23,6 +23,18 @@ export function Map({
   subject?: ResultSubject
 }) {
   const svg = useRef<SVGSVGElement>(null)
+  const [labelScale, setLabelScale] = useState(1)
+  useEffect(() => {
+    const element = svg.current
+    if (!element) return
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry && entry.contentRect.width > 0) {
+        setLabelScale(Math.max(1, 680 / entry.contentRect.width))
+      }
+    })
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
   const definition = experimentalAxes[axis]
   const framing = resultFraming(subject)
   const id = useId().replaceAll(':', '')
@@ -49,6 +61,7 @@ export function Map({
         role='img'
         aria-label={description}
         className='mt-1 w-full'
+        style={{ '--map-label-scale': labelScale } as CSSProperties}
       >
         <defs>
           {subject?.avatar && point && (
@@ -131,7 +144,7 @@ export function Map({
           0
         </text>
         <text
-          className='hidden sm:block'
+          className='map-axis-caption'
           transform='translate(18 186) rotate(-90)'
           fill='var(--map-muted)'
           fontSize='12'
@@ -265,7 +278,7 @@ export function Map({
           </g>
         )}
         {!point && (
-          <g className='hidden sm:block'>
+          <g className='map-axis-caption'>
             <rect
               x='204'
               y='154'
@@ -314,7 +327,7 @@ export function Map({
           Doom
         </text>
         <text
-          className='hidden sm:block'
+          className='map-axis-caption'
           x='350'
           y='357'
           textAnchor='middle'
@@ -335,7 +348,7 @@ export function Map({
           Bloom
         </text>
         <text
-          className='hidden sm:block'
+          className='map-axis-caption'
           x={plot.left}
           y='381'
           fill='var(--map-muted)'
@@ -346,7 +359,7 @@ export function Map({
         <text
           x={px(1)}
           y='381'
-          className='hidden sm:block'
+          className='map-axis-caption'
           textAnchor='end'
           fill='var(--map-muted)'
           fontSize='12'
@@ -354,7 +367,7 @@ export function Map({
           Hope for beneficial futures
         </text>
       </svg>
-      <div className='map-muted -mt-1 mb-4 flex justify-between gap-4 text-xs sm:hidden'>
+      <div className='map-mobile-captions map-muted -mt-1 mb-4 flex justify-between gap-4 text-xs'>
         <span>Concern</span>
         <span>Hope</span>
       </div>

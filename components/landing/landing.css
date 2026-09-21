@@ -28,11 +28,14 @@
 .landing-description {
   font-size: 17px;
   line-height: 1.65;
-  color: var(--muted-foreground);
+  color: var(--body-foreground);
   max-width: 430px;
   text-wrap: pretty;
 }
 .landing-start {
+  transition:
+    opacity 150ms var(--ease-out),
+    scale 150ms var(--ease-out);
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -249,7 +252,7 @@
 }
 .landing-map-legend {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 2px 8px;
   border-top: 1px solid color-mix(in oklch, var(--map-muted) 20%, transparent);
   padding-top: 12px;
@@ -259,7 +262,7 @@
   align-items: center;
   gap: 7px;
   min-height: 32px;
-  font-size: 11px;
+  font-size: 12px;
 }
 .landing-map-note {
   font-size: 10px;
@@ -374,6 +377,7 @@
     padding: 28px 24px 90px;
   }
   .landing-map-first {
+    grid-template-columns: 1fr;
     gap: 30px;
   }
   .landing-map {
@@ -457,7 +461,7 @@
     padding-top: 7px;
   }
   .landing-map-legend a {
-    font-size: 10px;
+    font-size: 12px;
     gap: 4px;
   }
   .landing-map-note {

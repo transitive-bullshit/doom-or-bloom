@@ -11,12 +11,7 @@ import { AxisRange } from './axis-range'
 import { Map } from './worldview-map'
 import { WorldviewDetails } from './worldview-details'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent
-} from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -52,7 +47,7 @@ export function ExperimentalResults({
       }
     >
       {!experiment && (
-        <p className='text-sm text-muted-foreground'>
+        <p className='text-sm text-body-foreground'>
           These experimental interpretations were not recorded for this
           snapshot. The map remains unplaced until new evidence is evaluated;
           older reasoning scores are not reused.
@@ -103,7 +98,7 @@ export function ExperimentalResults({
                 </div>
               </div>
             )}
-            <p className='text-sm text-muted-foreground'>
+            <p className='text-sm text-body-foreground'>
               {!experiment
                 ? 'This saved snapshot has not been evaluated for a numerical catastrophe estimate.'
                 : risk
@@ -115,7 +110,7 @@ export function ExperimentalResults({
                   : `There is not enough relevant evidence yet to estimate ${framing.possessive} view of catastrophic risk.`}
             </p>
             {risk?.publicStatement && (
-              <div className='space-y-2 text-sm text-muted-foreground'>
+              <div className='space-y-2 text-sm text-body-foreground'>
                 <p>{risk.publicStatement.outcome}</p>
                 <p>{risk.publicStatement.conditions}</p>
                 <p>Horizon: {risk.publicStatement.horizon}</p>
@@ -159,7 +154,7 @@ export function ExperimentalResults({
                       className='absolute top-1 -left-[1.7rem] size-3 rounded-full border-2 border-background bg-primary'
                     />
                     <p className='text-sm font-semibold'>{milestone.label}</p>
-                    <p className='text-sm whitespace-pre-wrap text-muted-foreground'>
+                    <p className='text-sm whitespace-pre-wrap text-body-foreground'>
                       {milestone.evidence.text}
                     </p>
                     <span className='text-xs text-muted-foreground'>
@@ -169,7 +164,7 @@ export function ExperimentalResults({
                 ))}
               </ol>
             ) : (
-              <p className='text-sm text-muted-foreground'>
+              <p className='text-sm text-body-foreground'>
                 {experiment
                   ? 'No milestone timing was established. Dates, “not sure,” “possibly never,” and dependencies can all appear here when expressed.'
                   : 'Milestone timing has not been evaluated for this saved snapshot.'}
@@ -194,7 +189,7 @@ export function ExperimentalResults({
                 className='row-span-4 grid grid-rows-subgrid gap-3'
               >
                 <p className='text-sm font-semibold'>{hinge.label}</p>
-                <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-muted-foreground'>
+                <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-body-foreground'>
                   {hinge.evidence.text}
                 </blockquote>
                 <p className='text-xs text-muted-foreground'>
@@ -206,7 +201,7 @@ export function ExperimentalResults({
               </div>
             ))
           ) : (
-            <p className='text-sm text-muted-foreground'>
+            <p className='text-sm text-body-foreground'>
               {experiment
                 ? 'No specific assumption, unresolved question or update condition was selected yet. Missing discussion is not a reasoning weakness.'
                 : 'Assumptions and update conditions have not been evaluated for this saved snapshot.'}
@@ -265,7 +260,7 @@ export function JourneyResultExplorer({
           className='flex flex-col gap-5 pt-5'
         >
           <div>
-            <p className='mt-2 text-sm text-muted-foreground'>
+            <p className='mt-2 text-sm text-body-foreground'>
               Choose an answer to see the map and supporting results at that
               point. Numbered dots show earlier placed answers.
             </p>

@@ -24,6 +24,13 @@ export async function mapPng(
       'opacity'
     ]) {
       let value = style.getPropertyValue(property)
+      // Export at a fixed size, independent of responsive on-screen label scaling.
+      if (
+        property === 'font-size' &&
+        element.matches('.map-axis-tick, .map-axis-caption, .map-pole')
+      ) {
+        value = `${element.getAttribute('font-size') ?? 12}px`
+      }
       value = value.replace(/url\(["']?[^)]*#([^"')]+)["']?\)/g, 'url(#$1)')
       copy.style.setProperty(property, value)
     }

@@ -24,7 +24,7 @@ export function PersonaHeader({
       alt={person.name}
       width={80}
       height={80}
-      className='size-16 rounded-full object-cover sm:size-20'
+      className='image-outline size-16 rounded-full object-cover sm:size-20'
       unoptimized
     />
   )
@@ -62,7 +62,7 @@ export function PersonaHeader({
             )}
           </div>
         </div>
-        <p className='mt-4 max-w-xl text-muted-foreground'>
+        <p className='mt-4 max-w-xl text-body-foreground'>
           {person.description}
         </p>
       </div>

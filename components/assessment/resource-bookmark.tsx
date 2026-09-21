@@ -32,7 +32,7 @@ export function ResourceBookmark({
             <FadeText lines={2}>{resource.title}</FadeText>
           </h3>
           {description && (
-            <p className='mt-2 text-xs leading-relaxed text-muted-foreground'>
+            <p className='mt-2 text-xs leading-relaxed text-body-foreground'>
               <FadeText lines={3}>{description}</FadeText>
             </p>
           )}
@@ -54,7 +54,7 @@ export function ResourceBookmark({
         </span>
       </div>
       {(preview?.image || preview?.icon) && (
-        <div className='relative w-28 shrink-0 sm:w-44'>
+        <div className='bookmark-image relative w-28 shrink-0 sm:w-44'>
           <Image
             src={preview.image ?? preview.icon!}
             alt=''

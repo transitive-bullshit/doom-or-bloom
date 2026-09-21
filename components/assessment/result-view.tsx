@@ -114,7 +114,7 @@ export function ResultView({
         <h1 className='text-3xl font-semibold tracking-tight'>
           A map of your AI worldview
         </h1>
-        <p className='mt-3 text-sm text-muted-foreground'>
+        <p className='mt-3 text-sm text-body-foreground'>
           {result.reason === 'Some interpretations still need clarification.'
             ? null
             : result.reason}
@@ -125,14 +125,14 @@ export function ResultView({
         {result.fingerprint.map((c) => (
           <div key={c.vector} className='rounded-lg border p-4'>
             <p className='text-sm font-medium'>{c.label}</p>
-            <p className='mt-2 text-sm text-muted-foreground'>
+            <p className='mt-2 text-sm text-body-foreground'>
               {c.claim ?? 'Still unexplored'}
             </p>
             {c.vector === 'timeline' &&
               supportingAnswers(c.evidenceIds).map((answer) => (
                 <div
                   key={answer.id}
-                  className='mt-3 text-sm text-muted-foreground'
+                  className='mt-3 text-sm text-body-foreground'
                 >
                   <AnswerDisclosure
                     text={answer.text}
@@ -163,7 +163,7 @@ export function ResultView({
                 {supportingAnswers(f.evidenceIds).map((answer) => (
                   <div
                     key={answer.id}
-                    className='mt-2 border-l-2 pl-3 text-sm text-muted-foreground'
+                    className='mt-2 border-l-2 pl-3 text-sm text-body-foreground'
                   >
                     <AnswerDisclosure
                       text={answer.text}
@@ -192,7 +192,7 @@ export function ResultView({
               {supportingAnswers(c.evidenceIds).map((answer) => (
                 <div
                   key={answer.id}
-                  className='mt-3 border-l-2 pl-3 text-sm text-muted-foreground'
+                  className='mt-3 border-l-2 pl-3 text-sm text-body-foreground'
                 >
                   <AnswerDisclosure
                     text={answer.text}

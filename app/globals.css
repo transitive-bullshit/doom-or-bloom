@@ -1,9 +1,12 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: oklch(0.985 0.002 90);
   --foreground: oklch(0.2 0.01 90);
   --card: oklch(1 0 0);
+  --image-outline: oklch(0 0 0 / 0.1);
   --card-foreground: var(--foreground);
   --popover: var(--card);
   --popover-foreground: var(--foreground);
@@ -13,6 +16,7 @@
   --secondary-foreground: var(--foreground);
   --muted: var(--secondary);
   --muted-foreground: oklch(0.48 0.01 90);
+  --body-foreground: oklch(0.35 0.01 90);
   --accent: var(--secondary);
   --accent-foreground: var(--foreground);
   --destructive: oklch(0.58 0.2 25);
@@ -38,13 +42,15 @@
   --background: oklch(0.17 0.006 90);
   --foreground: oklch(0.94 0.005 90);
   --card: oklch(0.21 0.006 90);
+  --image-outline: oklch(1 0 0 / 0.1);
   --card-foreground: var(--foreground);
   --popover: var(--card);
   --popover-foreground: var(--foreground);
   --primary: oklch(0.9 0.03 140);
   --primary-foreground: oklch(0.2 0.01 140);
   --secondary: oklch(0.26 0.008 90);
-  --muted-foreground: oklch(0.7 0.006 90);
+  --muted-foreground: oklch(0.76 0.006 90);
+  --body-foreground: oklch(0.84 0.006 90);
   --border: oklch(0.34 0.006 90);
   --input: var(--border);
   --ring: oklch(0.65 0.05 140);
@@ -66,6 +72,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-body-foreground: var(--body-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -288,18 +295,6 @@
   border-color: color-mix(in oklab, var(--map-text) 35%, var(--map-surface));
 }
 
-@media (max-width: 639px) {
-  .worldview-map .map-axis-tick {
-    font-size: 24px;
-  }
-  .worldview-map .map-point-label {
-    font-size: 24px;
-  }
-  .worldview-map .map-pole {
-    font-size: 36px;
-  }
-}
-
 /* Route changes fade the page while the shared chrome stays still. */
 ::view-transition {
   pointer-events: none;
@@ -360,7 +355,7 @@
   pointer-events: auto;
 }
 .copy-answer-button {
-  transition-property: color, background-color, border-color, box-shadow;
+  transition-property: color, background-color, border-color, box-shadow, scale;
 }
 .copy-answer-label {
   grid-area: 1 / 1;
@@ -369,19 +364,23 @@
   justify-content: center;
   gap: 0.25rem;
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(0.25);
+  filter: blur(4px);
   transition:
-    opacity 150ms var(--ease-out),
-    transform 150ms var(--ease-out);
+    opacity 300ms cubic-bezier(0.2, 0, 0, 1),
+    transform 300ms cubic-bezier(0.2, 0, 0, 1),
+    filter 300ms cubic-bezier(0.2, 0, 0, 1);
 }
 .copy-answer-label[data-visible='true'] {
   opacity: 1;
   transform: scale(1);
+  filter: blur(0);
 }
 @media (prefers-reduced-motion: reduce) {
   .copy-answer-label {
     transform: none;
-    transition-property: opacity;
+    filter: none;
+    transition: none;
   }
 }
 
@@ -425,4 +424,48 @@
   mask-image:
     linear-gradient(#000, #000),
     linear-gradient(to left, #000 55%, transparent 100%);
+}
+
+/* Keep map labels readable even when the SVG plot scales down. */
+.worldview-map {
+  container-type: inline-size;
+}
+.worldview-map .map-axis-tick,
+.worldview-map .map-axis-caption {
+  font-size: calc(12px * var(--map-label-scale, 1));
+}
+.worldview-map .map-pole {
+  font-size: calc(20px * var(--map-label-scale, 1));
+}
+.map-mobile-captions {
+  display: none;
+}
+@container (max-width: 500px) {
+  .map-axis-caption {
+    display: none;
+  }
+  .map-mobile-captions {
+    display: flex;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-slot='button']:not([data-static]):not(:disabled):not(
+      [aria-disabled='true']
+    ):active,
+  .landing-start:active {
+    scale: 0.96;
+  }
+}
+
+.image-outline {
+  outline: 1px solid var(--image-outline);
+  outline-offset: -1px;
+}
+.bookmark-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px var(--image-outline);
 }

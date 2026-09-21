@@ -55,7 +55,7 @@ export function WorldviewDetails({
                 <CardTitle>{component.label}</CardTitle>
               </CardHeader>
               <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
-                <p className='text-sm text-muted-foreground'>
+                <p className='text-sm text-body-foreground'>
                   {component.vector === 'epistemic'
                     ? subject
                       ? `Reasoning, consideration of alternatives, and handling of uncertainty in ${framing.answers}. This describes the simulated answers, not the real person’s intelligence or opinions.`
@@ -106,7 +106,7 @@ export function WorldviewDetails({
                 {facet.levels.map((level) => (
                   <p
                     key={level}
-                    className={`rounded-md px-3 py-2 text-sm ${component.claim === level ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}
+                    className={`rounded-md px-3 py-2 text-sm ${component.claim === level ? 'bg-primary text-primary-foreground' : 'bg-muted text-body-foreground'}`}
                   >
                     {component.claim === level && (
                       <span className='sr-only'>
