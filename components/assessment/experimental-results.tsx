@@ -15,7 +15,6 @@ import {
   Card,
   CardHeader,
   CardTitle,
-  CardDescription,
   CardContent
 } from '@/components/ui/card'
 import {
@@ -87,9 +86,6 @@ export function ExperimentalResults({
               {risk?.source === 'public-statement' ? 'stated' : 'estimated'}{' '}
               P(doom)
             </CardTitle>
-            <CardDescription>
-              Catastrophic risk, separate from overall outlook
-            </CardDescription>
           </CardHeader>
           <CardContent className='flex flex-col gap-4'>
             <p className='text-4xl font-semibold tracking-tight tabular-nums'>
@@ -149,10 +145,6 @@ export function ExperimentalResults({
         <Card>
           <CardHeader>
             <CardTitle>{framing.owner} milestone timeline</CardTitle>
-            <CardDescription>
-              Timing, dependencies and unknowns in{' '}
-              {subject ? 'the simulated answers' : 'your own words'}
-            </CardDescription>
           </CardHeader>
           <CardContent>
             {experiment?.milestones.length ? (
@@ -193,10 +185,6 @@ export function ExperimentalResults({
       <Card>
         <CardHeader>
           <CardTitle>What {framing.possessive} outlook hinges on</CardTitle>
-          <CardDescription>
-            Statements worth exploring next · reflection prompts, not a
-            reasoning grade
-          </CardDescription>
         </CardHeader>
         <CardContent className='grid gap-x-5 gap-y-3 md:grid-cols-3'>
           {experiment?.hinges.length ? (

@@ -12,7 +12,8 @@ export const experimentReplaySchema = z.object({
     'worldview-v1',
     'worldview-v2',
     'worldview-v3',
-    'worldview-v4'
+    'worldview-v4',
+    'worldview-v5'
   ]),
   sourceRunId: z.string(),
   records: z

@@ -11,8 +11,7 @@ export function MapFirst(props: VariantProps) {
           <br /> you <span className='landing-soft'>land?</span>
         </h1>
         <p className='landing-description'>
-          Map your AI worldview in only a few questions. Takes anywhere from
-          1-10 minutes depending on how detailed your answers are.
+          Map your AI worldview in only a few questions.
         </p>
         <StartLink />
         <p className='landing-hint'>

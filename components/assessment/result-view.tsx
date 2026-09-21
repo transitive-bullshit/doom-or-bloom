@@ -259,7 +259,7 @@ export function ResultView({
       </Collapsible>
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>
-          <h2 className='font-medium'>Something worth exploring</h2>
+          <h2 className='font-medium'>Sources you might enjoy</h2>
           <ResourceList
             resources={result.resources}
             onOpen={(resource) =>

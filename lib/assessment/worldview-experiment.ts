@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { sharpenInferredPdoom } from './pdoom-transform'
 import type {
   Component,
   ExperimentQuote,
@@ -8,18 +9,29 @@ import type {
 } from './schema'
 import { emptyComponent, quantile } from './projections'
 
-export const experimentVersion = 'worldview-v4' as const
+export const experimentVersion = 'worldview-v5' as const
 
 // Authored event-probability bands. Jev weights interpretations of the participant’s belief.
 // Its category confidence is never itself used as the catastrophe probability.
 const doomBands = {
+  virtually_impossible: {
+    bounds: [0, 0.001],
+    label:
+      'Catastrophe is virtually impossible: at most a one-in-a-thousand chance (0–0.1%).'
+  },
   negligible: {
-    bounds: [0, 0.01],
-    label: 'Negligible or virtually impossible catastrophe risk (0–1%).'
+    bounds: [0.001, 0.01],
+    label:
+      'Negligible catastrophe risk, but more than virtually impossible (0.1–1%).'
+  },
+  remote: {
+    bounds: [0.01, 0.03],
+    label:
+      'A remote but real catastrophe risk, around one to three chances in a hundred (1–3%).'
   },
   very_unlikely: {
-    bounds: [0.01, 0.1],
-    label: 'Very unlikely catastrophe, a small but nonzero chance (1–10%).'
+    bounds: [0.03, 0.1],
+    label: 'Very unlikely catastrophe, a small but nonzero chance (3–10%).'
   },
   unlikely: {
     bounds: [0.1, 0.3],
@@ -39,9 +51,19 @@ const doomBands = {
     label: 'Catastrophe is very likely, but not almost inevitable (70–90%).'
   },
   near_certain: {
-    bounds: [0.9, 1],
+    bounds: [0.9, 0.97],
     label:
-      'Catastrophe is almost certain or the emphatically expected default: we will die, extinction is the outcome on this course (90–100%).'
+      'Catastrophe is the emphatically expected default, but a meaningful small chance of avoiding it remains (90–97%).'
+  },
+  almost_certain: {
+    bounds: [0.97, 0.99],
+    label:
+      'Catastrophe is almost inevitable; avoiding it would require an exceptional escape (97–99%).'
+  },
+  virtually_certain: {
+    bounds: [0.99, 1],
+    label:
+      'Catastrophe is treated as a practical certainty, with essentially no credible chance of avoiding it (99–100%).'
   }
 } satisfies Record<string, { bounds: [number, number]; label: string }>
 export const experimentInputSchema = z.object({
@@ -464,7 +486,7 @@ export function buildWorldviewExperiment(
   }))
   const mass = supportedBands.reduce((sum, band) => sum + band.mass, 0)
   // Average event-probability band midpoints, not the evaluator’s confidence.
-  const estimate =
+  const rawEstimate =
     mass > 0
       ? supportedBands.reduce(
           (sum, band) =>
@@ -481,9 +503,14 @@ export function buildWorldviewExperiment(
     return 1
   }
   const padding = Math.max(1 - mass, basis === 'contextual' ? 0.15 : 0)
+  const rawBounds: [number, number] = [
+    Math.max(0, Math.min(rawEstimate, endpoint(0.1, 0)) - padding),
+    Math.min(1, Math.max(rawEstimate, endpoint(0.9, 1)) + padding)
+  ]
+  const estimate = sharpenInferredPdoom(rawEstimate)
   const bounds: [number, number] = [
-    Math.max(0, Math.min(estimate, endpoint(0.1, 0)) - padding),
-    Math.min(1, Math.max(estimate, endpoint(0.9, 1)) + padding)
+    sharpenInferredPdoom(rawBounds[0]),
+    sharpenInferredPdoom(rawBounds[1])
   ]
   const inferredDoom =
     mass > 0.5 &&
@@ -501,6 +528,12 @@ export function buildWorldviewExperiment(
               : ('direct' as const),
           estimate,
           bounds,
+          adjustment: {
+            method: 'shifted-sharpening-v1' as const,
+            rawEstimate,
+            rawBounds,
+            bandProbabilities: distribution
+          },
           token: estimate < 0.01 ? '<1%' : `≈${Math.round(estimate * 100)}%`
         }
       : null
