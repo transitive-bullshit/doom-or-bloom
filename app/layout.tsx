@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -23,7 +24,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               style={{ viewTransitionName: 'site-header' }}
               className='flex items-center justify-between px-6 py-5'
             >
-              <Link href='/' className='text-sm font-semibold tracking-tight'>
+              <Link
+                href='/'
+                className='inline-flex items-center gap-2 text-sm font-semibold tracking-tight'
+              >
+                <Image
+                  src='/icon.svg'
+                  alt=''
+                  width={24}
+                  height={24}
+                  className='size-6 shrink-0'
+                  loading='eager'
+                  unoptimized
+                />
                 Doom or Bloom
               </Link>
               <SiteActions />
