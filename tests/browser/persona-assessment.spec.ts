@@ -113,7 +113,9 @@ test('JSON field tooltips anchor to their text on wide screens', async ({
     name: 'Final generated result',
     exact: true
   })
-  const row = result.getByRole('button', { name: /(?:Expand|Collapse) .*\.influence$/ })
+  const row = result.getByRole('button', {
+    name: /(?:Expand|Collapse) .*\.influence$/
+  })
   const key = row.locator('[data-json-token=key]')
   await key.hover()
   await expect(page.getByRole('tooltip')).toBeVisible()
