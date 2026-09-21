@@ -176,9 +176,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       )
     }
     if (unplaced) {
-      await expect(map).toContainText(
-        'Point withheld until both axes are assessable'
-      )
+      await expect(map).toContainText('Position not yet determined')
       await expect(map.getByRole('img').locator('circle')).toHaveCount(0)
     } else {
       await expect(map.getByText('Your view', { exact: true })).toBeVisible()

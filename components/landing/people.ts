@@ -1,5 +1,83 @@
 export const people = [
   {
+    id: 'alignment-philosopher',
+    name: 'Joe Carlsmith',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/jkcarlsmith',
+    avatar: '/personas/carlsmith.jpg',
+    short: 'Joe',
+    initials: 'JC',
+    stance: 'Preserve the chance of a much better future.',
+    description:
+      'Extraordinary flourishing is possible, but safe AI needs technical progress and credible restraint.',
+    tone: 'middle'
+  },
+  {
+    id: 'rationalist-safety-advocate',
+    name: 'Scott Alexander',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/slatestarcodex',
+    avatar: '/personas/alexander.jpg',
+    short: 'Scott',
+    initials: 'SA',
+    stance: 'Take the risk seriously. Give safety time.',
+    description:
+      'Transformative AI could bring postscarcity or catastrophe; alignment and coordinated slowing both matter.',
+    tone: 'middle'
+  },
+  {
+    id: 'takeoff-forecaster',
+    name: 'Daniel Kokotajlo',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/DKokotajlo',
+    avatar: '/personas/kokotajlo.jpg',
+    short: 'Daniel',
+    initials: 'DK',
+    stance: 'Do not race through an intelligence explosion.',
+    description:
+      'AI research automation could transform the world quickly; transparent international restraint can change the outcome.',
+    tone: 'doom'
+  },
+  {
+    id: 'institutional-growth-optimist',
+    name: 'Tyler Cowen',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/tylercowen',
+    avatar: '/personas/cowen.jpg',
+    short: 'Tyler',
+    initials: 'TC',
+    stance: 'More intelligence. Better institutions.',
+    description:
+      'AI can deliver major benefits, but reorganizing human institutions takes time.',
+    tone: 'bloom'
+  },
+  {
+    id: 'superintelligence-stop-advocate',
+    name: 'Nate Soares',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/So8res',
+    avatar: '/personas/soares.jpg',
+    short: 'Nate',
+    initials: 'NS',
+    stance: 'Stop before we lose control.',
+    description:
+      'Humanity can prevent catastrophe by stopping the rush to superintelligence.',
+    tone: 'doom'
+  },
+  {
+    id: 'empirical-control-researcher',
+    name: 'Ryan Greenblatt',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/RyanGreenblatt',
+    avatar: '/personas/greenblatt.jpg',
+    short: 'Ryan',
+    initials: 'RG',
+    stance: 'Test control. Reduce takeover risk.',
+    description:
+      'AI research could accelerate sharply. Practical safeguards can still change the outcome.',
+    tone: 'doom'
+  },
+  {
     id: 'biosecurity-abundance-optimist',
     name: 'Noah Smith',
     possessivePronoun: 'his',

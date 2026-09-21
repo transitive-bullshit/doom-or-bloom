@@ -1,5 +1,11 @@
 [
   {
+    "url": "https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent",
+    "title": "Amodei on AI: 25% chance things go badly",
+    "captureKey": "95299254af20",
+    "error": "HTTP 403"
+  },
+  {
     "url": "https://www.ncsl.org/news/details/the-godfather-of-ai-warns-about-its-perils-praises-its-promise",
     "title": "The Godfather of AI Warns About Its Perils, Praises Its Promise",
     "captureKey": "66f1e6e6015a",
@@ -17,30 +23,23 @@
     "captureKey": "d9c5ebff69e9"
   },
   {
-    "url": "https://faculty.washington.edu/ebender/papers/Bender-AI-2026.pdf",
-    "title": "Artificial Intelligence — author preprint",
-    "captureKey": "31a7f813f60f",
-    "error": "The operation was aborted due to timeout"
-  },
-  {
     "url": "https://firstmonday.org/ojs/index.php/fm/article/view/14366",
     "title": "De-anthropomorphizing AI: From wishful mnemonics to accurate nomenclature",
     "captureKey": "46b7f4d34fc4"
   },
   {
-    "url": "https://www.gatesnotes.com/expanding-access-to-health-care-through-ai",
-    "title": "Expanding access to health care through AI",
-    "captureKey": "636562592993"
+    "url": "https://transcripts.cnn.com/show/cnr/date/2026-09-21/segment/20",
+    "title": "CNN Newsroom: Nate Soares on international AI safeguards",
+    "captureKey": "7fd5b6471785"
   },
   {
-    "url": "https://www.gatesnotes.com/the-year-ahead-2026",
-    "title": "The year ahead 2026: Optimism with footnotes",
-    "captureKey": "f77d9189e2b9"
+    "url": "https://www.redwoodresearch.org/blog/plans-a-b-c-and-d-for-misalignment",
+    "title": "Plans A, B, C, and D for misalignment risk",
+    "captureKey": "bc040ac3e3eb"
   },
   {
-    "url": "https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent",
-    "title": "Amodei on AI: 25% chance things go badly",
-    "captureKey": "95299254af20",
-    "error": "HTTP 403"
+    "url": "https://www.redwoodresearch.org/blog/notes-on-fatalities-from-ai-takeover",
+    "title": "Notes on fatalities from AI takeover",
+    "captureKey": "1d3075237dc9"
   }
 ]

@@ -135,3 +135,41 @@ The briefs prioritize inspected recent first-person material. Sutton’s substan
 The featured prototype map includes all 36 public personas, including the existing Jensen Huang journey. Coordinates come only from saved live assessments. Portrait provenance and official-source fallbacks are recorded in `public/personas/SOURCES.md`. The latest collection retains existing valid journeys while incorporating live runs for the new personas, with original generation provenance for each batch.
 
 The [live generation record](research/canonical-persona-run-2026-09-21.md) records the new batch’s observed placements, costs and validation.
+
+## Publicly stated P(doom) overrides
+
+`lib/journeys/public-pdoom-statements.ts` records verified numerical public statements with a date, URL, outcome, horizon and conditions. These are attached to the persona snapshot and applied to every available per-answer result and the final result after the real assessment has run. They do not change Jev inputs, routing, readiness, reasoning scores or map coordinates. Personal assessments and mechanical tests do not use this override.
+
+Overridden estimates have `source: public-statement`, a `publicStatement` provenance record, and the original engine value in `assessmentEstimate`. The displayed token preserves ranges and inequalities. The axis dot uses the range midpoint when no point estimate was stated; the UI explicitly explains this. A quoted range is not an interpretation confidence interval.
+
+The initial verified set covers Hinton (10–20%, January 2025, with later qualitative context), Marcus (approximately 3%), Dario (25%), Tegmark (>90% conditional on no regulation), and Noah (approximately 10% civilization collapse from biological misuse, with his separate 30% severe-destruction estimate retained as context). These endpoints are not interchangeable extinction forecasts. Unverified numbers attributed to other people remain excluded; their simulated answers continue through normal estimation.
+
+## Soares and Greenblatt — September 22, 2026
+
+The canonical map now includes 39 public figures. The latest collection has 50 journeys: 49 generated personas plus the fixed personal replay. Added [Nate Soares](research/nate-soares-persona-2026-09-22.md) with 10 source records and [Ryan Greenblatt](research/ryan-greenblatt-persona-2026-09-22.md) with 12. The supplied videos remain linked; Ryan's matching publisher transcript is available, while Nate's linked interview was not transcript-accessible and substantive grounding comes from separately inspected sources.
+
+Both new personas use detailed GPT-5.6 Sol answers and live Jev routing and projection. Each completed after two accepted answers. The new batch used four OpenAI requests and 20 Jev requests, estimated at $0.0912. Collection `1790016746550-bb749692-1ce5-4c35-837f-27fce8dccc82` retains the previous 48 current journeys and records both generation batches in `sourceRuns`; it is not a replay of all 50. The local store still retains only the latest collection.
+
+Soares' observed outlook is 18/100 and transformation 99.7/100, with inferred P(doom) approximately 62%. His brief's collective conditional MIRI estimate is not used as a personal public-probability override. Greenblatt's observed outlook is 37.5/100 and transformation 87/100. His source-backed displayed 35–40% is AI takeover by 2040, dated August 11, 2026; the original inferred estimate is approximately 33%. These are outputs of the live runs, not target coordinates or labels supplied to Jev.
+
+## Carlsmith, Alexander, Kokotajlo and Cowen — September 22, 2026
+
+Added four detailed source-grounded participants and their canonical map entries:
+
+- [Joe Carlsmith](research/joe-carlsmith-persona-2026-09-22.md): 12 sources, including the supplied essays and verified Dwarkesh transcript.
+- [Scott Alexander](research/scott-alexander-persona-2026-09-22.md): 13 sources, including the supplied September 20 post and June personal forecast update.
+- [Daniel Kokotajlo](research/daniel-kokotajlo-persona-2026-09-22.md): 11 sources, including AI 2027, AI 2040, August forecasts and the Palisade interview.
+- [Tyler Cowen](research/tyler-cowen-persona-2026-09-22.md): 10 sources, including September economic analysis and interview, July DeepMind talk, regulation proposals and a verified X post.
+
+Collection `1790017721834-b165144d-d663-462a-aadf-ea5fc949d961` contains 54 journeys: 53 generated personas and the fixed real-user replay. The featured map contains 43 public figures. The new batch uses GPT-5.6 Sol and live Jev; existing 50 journeys are retained unchanged, with original batch provenance in `sourceRuns`. The four new runs completed without errors, using 13 OpenAI requests and 65 Jev requests, at an estimated $0.2724.
+
+| Persona | Accepted answers | Outlook | Transformation | Displayed P(doom) |
+| --- | --: | --: | --: | --- |
+| Joe Carlsmith | 5 | 41/100 | 98.5/100 | Inferred ≈21% |
+| Scott Alexander | 4 | 67.2/100 | 91/100 | Stated 20%, June 11, 2026 |
+| Daniel Kokotajlo | 3 | 20.8/100 | 88/100 | Inferred ≈67% |
+| Tyler Cowen | 1 | 74/100 | 31/100 | Inferred ≈12% |
+
+These are observed outputs, not target coordinates. Scott's public override preserves the current-safety-effort, possible-pause and no-fixed-deadline context. Joe's old 5% has been repudiated and his more recent double-digit wording does not establish a precise percentage. Daniel's reported 70% was not verified against the original episode, so no public override is supplied. AI 2040 remains explicitly a policy recommendation rather than a 2040 arrival forecast. Cowen's slower-adoption interpretation is the engine's output; the brief also includes his expectations of eventual institutional transformation.
+
+All new regular source bookmarks have local preview images; six Cowen article screenshots provide fallbacks where automated preview retrieval failed. X portraits are recorded in `public/personas/SOURCES.md`.

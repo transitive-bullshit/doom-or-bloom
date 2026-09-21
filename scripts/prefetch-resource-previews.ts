@@ -18,10 +18,12 @@ import { tweetIdFromUrl } from '../lib/sharing/tweet-url'
 import {
   previewImages,
   previewIcon,
-  previewDocument
+  previewDocument,
+  previewDescription
 } from '../lib/authoring/preview-images'
 
 type Preview = {
+  description?: string | null
   image?: string
   icon?: string
   fetchedAt: string
@@ -156,7 +158,13 @@ const entries = await pMap(
         /* Keep a usable cached image if conversion is not possible. */
       }
     }
-    if (entry.image && entry.icon && !refresh) return [url, entry] as const
+    if (
+      entry.image &&
+      entry.icon &&
+      entry.description !== undefined &&
+      !refresh
+    )
+      return [url, entry] as const
     entry.fetchedAt = new Date().toISOString()
     let html = ''
     let baseUrl = url
@@ -186,6 +194,7 @@ const entries = await pMap(
         path.join(captureDirectory, `${key}.html`),
         'utf8'
       ).catch(() => html)
+    if (html) entry.description = previewDescription(html)
     if (!entry.image || refresh) {
       const candidates = overrides[url]?.preferScreenshot
         ? []

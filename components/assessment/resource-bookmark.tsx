@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { FadeText } from './fade-text'
 import { GlobeIcon } from 'lucide-react'
 import previews from '@/lib/sharing/resource-previews.json'
 
@@ -10,8 +11,12 @@ export function ResourceBookmark({
   onOpen?: () => void
 }) {
   const preview = (
-    previews as Record<string, { image?: string; icon?: string }>
+    previews as Record<
+      string,
+      { image?: string; icon?: string; description?: string | null }
+    >
   )[resource.url]
+  const description = preview?.description || resource.question
   const hostname = new URL(resource.url).hostname.replace(/^www\./, '')
   return (
     <a
@@ -23,10 +28,12 @@ export function ResourceBookmark({
     >
       <div className='flex min-w-0 flex-1 flex-col justify-between gap-3 p-4'>
         <div>
-          <h3 className='text-sm leading-snug font-medium'>{resource.title}</h3>
-          {resource.question && (
-            <p className='mt-2 line-clamp-2 text-xs leading-relaxed text-muted-foreground'>
-              {resource.question}
+          <h3 className='text-sm leading-snug font-medium'>
+            <FadeText lines={2}>{resource.title}</FadeText>
+          </h3>
+          {description && (
+            <p className='mt-2 text-xs leading-relaxed text-muted-foreground'>
+              <FadeText lines={3}>{description}</FadeText>
             </p>
           )}
         </div>

@@ -33,6 +33,7 @@ import type {
 import type { Participant } from './participant'
 import type { ParticipantExchange } from './schema'
 import { JourneyFailure, providerFailure } from './failure'
+import { applyPublicPdoom } from './public-pdoom'
 
 export function journeyHashes(
   bundle: Bundle,
@@ -494,6 +495,15 @@ export async function runPersona(
   }
   if (error) journey.failureStage = currentStage
   if (failedOperation) journey.failedOperation = failedOperation
+  if (live) {
+    const snapshot = journey.personaSnapshot
+    const statement =
+      snapshot && 'statedPdoom' in snapshot ? snapshot.statedPdoom : undefined
+    journey.result = applyPublicPdoom(journey.result, statement)
+    for (const recorded of journey.steps)
+      if (recorded.result)
+        recorded.result = applyPublicPdoom(recorded.result, statement)!
+  }
   return journey
 }
 

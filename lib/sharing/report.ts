@@ -79,13 +79,20 @@ export function serializeReport(
         `${axis === 'influence' ? 'Human influence' : 'Scale of transformation'}: ${position(result.experiment?.[axis].value ?? null)}; ${result.experiment?.[axis].interpretation ?? 'experimental'} interpretation; range ${(result.experiment?.[axis].range ?? [0, 1]).map((v) => Math.round(v * 100)).join('–')}.`
     ),
     '',
-    `${result.experiment?.pdoom?.source === 'inferred' ? 'Inferred' : 'Stated'} P(doom): ${result.experiment?.pdoom?.token ?? 'Not specified'}. The estimate applies to the outcome, horizon and conditions described in your answers.`,
+    `${result.experiment?.pdoom?.source === 'inferred' ? 'Inferred' : 'Stated'} P(doom): ${result.experiment?.pdoom?.token ?? 'Not specified'}. ${result.experiment?.pdoom?.publicStatement ? 'The estimate comes from the cited public statement, overriding the simulated assessment estimate.' : 'The estimate applies to the outcome, horizon and conditions described in your answers.'}`,
     ...(result.experiment?.pdoom
       ? [
+          ...(result.experiment.pdoom.publicStatement
+            ? [
+                `Source: [${result.experiment.pdoom.publicStatement.title}](${result.experiment.pdoom.publicStatement.url}) (${result.experiment.pdoom.publicStatement.publishedAt}).`,
+                `Outcome: ${result.experiment.pdoom.publicStatement.outcome}. Horizon: ${result.experiment.pdoom.publicStatement.horizon}. Conditions: ${result.experiment.pdoom.publicStatement.conditions}`,
+                `Original assessment estimate: ${result.experiment.pdoom.assessmentEstimate?.token ?? 'Not specified'}.`
+              ]
+            : []),
           ...(result.experiment.pdoom.text
             ? [`> ${result.experiment.pdoom.text}`]
             : []),
-          `${result.experiment.pdoom.answerNumber ? `Answer ${result.experiment.pdoom.answerNumber}` : 'Based on the full answer history'}.${result.experiment.pdoom.source === 'inferred' ? ` Approximate interpretation range: ${result.experiment.pdoom.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Inferred from ${result.experiment.pdoom.basis === 'contextual' ? 'broader worldview and priorities' : 'qualitative likelihood'}; not a stated percentage or statistical confidence interval.` : ''}`
+          `${result.experiment.pdoom.answerNumber ? `Answer ${result.experiment.pdoom.answerNumber}` : result.experiment.pdoom.publicStatement ? 'Based on a sourced public statement' : 'Based on the full answer history'}.${result.experiment.pdoom.source === 'inferred' ? ` Approximate interpretation range: ${result.experiment.pdoom.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Inferred from ${result.experiment.pdoom.basis === 'contextual' ? 'broader worldview and priorities' : 'qualitative likelihood'}; not a stated percentage or statistical confidence interval.` : ''}`
         ]
       : []),
     '',

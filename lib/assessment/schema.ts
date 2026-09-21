@@ -213,6 +213,19 @@ export const experimentQuoteSchema = z.strictObject({
   token: z.string().max(120).optional(),
   bounds: z.tuple([probability, probability]).optional()
 })
+export const publicProbabilityStatementSchema = z.strictObject({
+  token: z.string().max(120),
+  bounds: z.tuple([probability, probability]),
+  estimate: probability.optional(),
+  title: z.string(),
+  url: z.url(),
+  publishedAt: z.string(),
+  outcome: z.string(),
+  horizon: z.string(),
+  conditions: z.string(),
+  quote: z.string().optional()
+})
+
 export const worldviewExperimentSchema = z.strictObject({
   version: z.enum([
     'worldview-v1',
@@ -232,7 +245,17 @@ export const worldviewExperimentSchema = z.strictObject({
   pdoom: experimentQuoteSchema
     .partial({ answerId: true, answerNumber: true, text: true })
     .extend({
-      source: z.enum(['stated', 'inferred']).optional(),
+      source: z.enum(['stated', 'inferred', 'public-statement']).optional(),
+      publicStatement: publicProbabilityStatementSchema.optional(),
+      assessmentEstimate: z
+        .object({
+          source: z.enum(['stated', 'inferred']).optional(),
+          token: z.string().optional(),
+          estimate: probability.optional(),
+          bounds: z.tuple([probability, probability]).optional()
+        })
+        .nullable()
+        .optional(),
       basis: z.enum(['direct', 'contextual']).optional(),
       evidenceAnswerIds: z.array(z.string()).optional(),
       estimate: probability.optional()

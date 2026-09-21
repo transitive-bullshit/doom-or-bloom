@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { previewImages } from './preview-images'
+import { previewImages, previewDescription } from './preview-images'
 
 test('social metadata wins; structured article and responsive hero images survive missing metadata', () => {
   const html = `<meta name="twitter:image" content="/social.jpg">
@@ -26,4 +26,18 @@ test('bad metadata does not hide usable lazy images or video posters', () => {
     { url: 'https://example.com/poster.jpg', kind: 'article' },
     { url: 'https://example.com/photo.jpg', kind: 'article' }
   ])
+})
+
+test('descriptions prefer HTML metadata, decode entities and fall back to social metadata', () => {
+  expect(
+    previewDescription(
+      '<meta property="og:description" content="Social"><meta name="description" content="  Science &amp;   progress  ">'
+    )
+  ).toBe('Science & progress')
+  expect(
+    previewDescription(
+      '<meta name="description" content=" "><meta property="og:description" content="Social">'
+    )
+  ).toBe('Social')
+  expect(previewDescription('<p>No metadata</p>')).toBeNull()
 })

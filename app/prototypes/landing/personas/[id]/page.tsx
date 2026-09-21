@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ExperimentalResults } from '@/components/assessment/experimental-results'
-import { loadExamples } from '@/components/landing/data'
+import { PersonaPageContent } from '@/components/landing/persona-page-content'
+import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
 export default async function Page({
   params,
@@ -12,7 +12,8 @@ export default async function Page({
 }) {
   const { id } = await params
   const person = (await loadExamples()).find((p) => p.id === id)
-  if (!person) notFound()
+  const assessment = await loadPersonaAssessment(id)
+  if (!person || !assessment) notFound()
   const v = Number((await searchParams).v)
   return (
     <div className='mx-auto w-full max-w-6xl px-6 py-10'>
@@ -22,23 +23,7 @@ export default async function Page({
       >
         Back to landing preview
       </Link>
-      <header className='my-8'>
-        <p className='mb-2 text-sm text-muted-foreground'>
-          Example journey · simulated persona
-        </p>
-        <h1 className='text-4xl font-semibold tracking-tight'>{person.name}</h1>
-        <p className='mt-3 max-w-xl text-muted-foreground'>
-          {person.description} These are results from a fictional proxy’s
-          answers, not an assessment of the person.
-        </p>
-        <Link
-          href='/'
-          className='mt-5 inline-block font-medium underline underline-offset-4'
-        >
-          Map your own worldview
-        </Link>
-      </header>
-      <ExperimentalResults subject={person} result={person.result} />
+      <PersonaPageContent person={person} assessment={assessment} />
     </div>
   )
 }

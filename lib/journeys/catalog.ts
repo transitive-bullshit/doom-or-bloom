@@ -1,10 +1,14 @@
 import { z } from 'zod'
+import { publicProbabilityStatementSchema } from '@/lib/assessment/schema'
+import { publicPdoomStatements } from './public-pdoom-statements'
 import { publicPersonas } from './public-personas'
 import { additionalPublicPersonas } from './additional-public-personas'
 import { frontierPublicPersonas } from './frontier-public-personas'
 import { foundationalPublicPersonas } from './foundational-public-personas'
 import { socialPublicPersonas } from './social-public-personas'
 import { civicPublicPersonas } from './civic-public-personas'
+import { safetyResearcherPersonas } from './safety-researcher-personas'
+import { worldviewWriterPersonas } from './worldview-writer-personas'
 import { noahPublicPersona } from './noah-public-persona'
 
 // Narrative context only. Answers and assessment judgments are generated live.
@@ -14,6 +18,7 @@ export const personaSchema = z.strictObject({
   proxy: z.string(),
   description: z.string(),
   concern: z.string(),
+  statedPdoom: publicProbabilityStatementSchema.optional(),
   sources: z.array(
     z.strictObject({
       title: z.string(),
@@ -33,7 +38,7 @@ export const personaSchema = z.strictObject({
 })
 export type Persona = z.infer<typeof personaSchema>
 export const personaProfileSchema = personaSchema.strip()
-export const personas: Persona[] = z.array(personaSchema).parse([
+const narrativePersonas: Persona[] = [
   ...publicPersonas,
   ...additionalPublicPersonas,
   ...frontierPublicPersonas,
@@ -41,6 +46,8 @@ export const personas: Persona[] = z.array(personaSchema).parse([
   ...socialPublicPersonas,
   ...civicPublicPersonas,
   noahPublicPersona,
+  ...safetyResearcherPersonas,
+  ...worldviewWriterPersonas,
   {
     id: 'worried-novice',
     voice: [
@@ -294,4 +301,11 @@ export const personas: Persona[] = z.array(personaSchema).parse([
       'Continue useful tools with targeted safeguards. Delay high-stakes uses that cannot be checked; jokes do not mean I oppose accountability.'
     ]
   }
-])
+]
+
+export const personas: Persona[] = z.array(personaSchema).parse(
+  narrativePersonas.map((persona) => ({
+    ...persona,
+    statedPdoom: publicPdoomStatements[persona.id]
+  }))
+)

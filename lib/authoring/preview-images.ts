@@ -152,3 +152,21 @@ export function previewDocument(html: string, baseUrl: string) {
     return undefined
   }
 }
+
+/** Prefer the article's HTML description, then social metadata. */
+export function previewDescription(html: string): string | null {
+  const $ = load(html)
+  for (const selector of [
+    'meta[name="description" i]',
+    'meta[property="og:description" i]',
+    'meta[name="twitter:description" i]'
+  ]) {
+    const description = $(selector)
+      .first()
+      .attr('content')
+      ?.replace(/\s+/g, ' ')
+      .trim()
+    if (description) return description
+  }
+  return null
+}

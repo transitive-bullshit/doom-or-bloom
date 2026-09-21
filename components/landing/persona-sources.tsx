@@ -21,7 +21,7 @@ export function PersonaSources({
         <h2 className='text-xl font-semibold tracking-tight'>Sources</h2>
         <p className='mt-2 text-sm text-muted-foreground'>
           {sourceBriefUpdated
-            ? 'Sources for this persona’s current brief. The displayed simulation was generated from an earlier version; these updates will inform its next run.'
+            ? 'Sources for this persona’s current brief.'
             : 'Articles, interviews, and writings used to ground this simulated persona.'}
         </p>
       </div>

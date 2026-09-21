@@ -37,7 +37,10 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await expect(
     page.getByRole('region', { name: 'More details' })
   ).toContainText('Human influence')
-  await page.getByRole('link', { name: 'Map your own worldview' }).click()
+  await page
+    .getByRole('link', { name: 'Map your own worldview' })
+    .first()
+    .click()
   await expect(page).toHaveURL(/\/assessment$/)
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.fill('A draft that should survive navigation.')
@@ -106,6 +109,21 @@ test('persona framing uses her/their and exports the portrait in the map', async
     'href',
     '/personas/li.jpg'
   )
+  await expect(map.locator('.map-stat')).toHaveCount(0)
+  await expect(map.getByRole('heading', { level: 2 })).toHaveCSS(
+    'font-size',
+    '36px'
+  )
+  const portrait = map.locator('[data-persona-marker]')
+  const summary = (await portrait.getAttribute('aria-label'))!.replace(
+    'Fei-Fei Li: ',
+    ''
+  )
+  await expect(map.locator('p').filter({ hasText: summary })).toHaveCount(0)
+  await portrait.hover()
+  await expect(page.getByRole('tooltip')).toHaveCount(0)
+  await expect(portrait).toHaveCSS('cursor', 'auto')
+  await expect(portrait).not.toHaveAttribute('tabindex')
   const downloading = page.waitForEvent('download')
   await map.getByRole('button', { name: 'Map image actions' }).click()
   await page.getByRole('menuitem', { name: 'Download PNG' }).click()
@@ -115,4 +133,149 @@ test('persona framing uses her/their and exports the portrait in the map', async
     page.getByText('What their outlook hinges on', { exact: true })
   ).toBeVisible()
   expect(errors).toEqual([])
+})
+
+test('persona probability uses a dated public statement with its outcome and source', async ({
+  page
+}) => {
+  await page.goto('/personas/biosecurity-abundance-optimist')
+  await expect(
+    page.getByText('Noah Smith’s stated P(doom)', { exact: true })
+  ).toBeVisible()
+  await expect(page.getByText('≈10%', { exact: true })).toBeVisible()
+  await expect(
+    page.getByText(
+      'Civilization collapse from AI-enabled bioterrorism; not human extinction',
+      { exact: true }
+    )
+  ).toBeVisible()
+  await expect(page.getByText(/Public statement from 2026-08-28/)).toBeVisible()
+  await expect(page.getByText(/Separately states 30%/)).toBeVisible()
+})
+
+test('new safety researchers have live results, portraits and grounded sources', async ({
+  page
+}) => {
+  for (const person of [
+    {
+      id: 'superintelligence-stop-advocate',
+      name: 'Nate Soares',
+      video: 'https://www.youtube.com/watch?v=98syxABbUPk',
+      avatar: 'soares'
+    },
+    {
+      id: 'empirical-control-researcher',
+      name: 'Ryan Greenblatt',
+      video: 'https://www.youtube.com/watch?v=-RXD4bTuFTo',
+      avatar: 'greenblatt'
+    }
+  ]) {
+    await page.goto(`/personas/${person.id}`)
+    await expect(
+      page.getByRole('heading', { level: 1, name: person.name })
+    ).toBeVisible()
+    await expect(page.locator('[data-persona-marker] image')).toHaveAttribute(
+      'href',
+      `/personas/${person.avatar}.jpg`
+    )
+    await expect(
+      page
+        .getByRole('region', { name: 'Sources', exact: true })
+        .locator(`a[href="${person.video}"]`)
+    ).toBeVisible()
+    await page
+      .getByRole('button', { name: /View questions and simulated answers/ })
+      .click()
+    await expect(
+      page
+        .getByRole('region', { name: 'Simulated Assessment', exact: true })
+        .locator('article')
+        .first()
+    ).toBeVisible()
+  }
+  await expect(page.getByText('35–40%', { exact: true })).toBeVisible()
+  await expect(
+    page.getByText('AI takeover; not an extinction-only forecast', {
+      exact: true
+    })
+  ).toBeVisible()
+  await page.goto('/')
+  await expect(
+    page.locator(
+      'a.landing-map-point[href="/personas/superintelligence-stop-advocate"]'
+    )
+  ).toBeVisible()
+  await expect(
+    page.locator(
+      'a.landing-map-point[href="/personas/empirical-control-researcher"]'
+    )
+  ).toBeVisible()
+})
+
+test('new worldview writers have live journeys and source-grounded persona pages', async ({
+  page
+}) => {
+  const people = [
+    {
+      id: 'alignment-philosopher',
+      name: 'Joe Carlsmith',
+      avatar: 'carlsmith',
+      source:
+        'https://joecarlsmith.com/2026/03/19/on-restraining-ai-development-for-the-sake-of-safety/'
+    },
+    {
+      id: 'rationalist-safety-advocate',
+      name: 'Scott Alexander',
+      avatar: 'alexander',
+      source: 'https://www.astralcodexten.com/p/my-ai-opinions'
+    },
+    {
+      id: 'takeoff-forecaster',
+      name: 'Daniel Kokotajlo',
+      avatar: 'kokotajlo',
+      source: 'https://ai-2040.com'
+    },
+    {
+      id: 'institutional-growth-optimist',
+      name: 'Tyler Cowen',
+      avatar: 'cowen',
+      source: 'https://tylercowen.com/human-life-in-a-post-agi-world-talk/'
+    }
+  ]
+  for (const person of people) {
+    await page.goto(`/personas/${person.id}`)
+    await expect(
+      page.getByRole('heading', { level: 1, name: person.name })
+    ).toBeVisible()
+    await expect(page.locator('[data-persona-marker] image')).toHaveAttribute(
+      'href',
+      `/personas/${person.avatar}.jpg`
+    )
+    await expect(
+      page
+        .getByRole('region', { name: 'Sources', exact: true })
+        .locator(`a[href="${person.source}"]`)
+    ).toBeVisible()
+    await page
+      .getByRole('button', { name: /View questions and simulated answers/ })
+      .click()
+    await expect(
+      page
+        .getByRole('region', { name: 'Simulated Assessment', exact: true })
+        .locator('article')
+        .first()
+    ).toBeVisible()
+    if (person.avatar === 'alexander') {
+      await expect(
+        page.getByText('Scott Alexander’s stated P(doom)', { exact: true })
+      ).toBeVisible()
+      await expect(page.getByText('20%', { exact: true })).toBeVisible()
+    }
+  }
+  await page.goto('/')
+  for (const person of people) {
+    await expect(
+      page.locator(`a.landing-map-point[href="/personas/${person.id}"]`)
+    ).toBeVisible()
+  }
 })

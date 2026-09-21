@@ -23,7 +23,10 @@ export function ResourceList<T extends Resource>({
   return (
     <div className='flex flex-col gap-6'>
       {bookmarks.length > 0 && (
-        <div data-resource-layout='list' className='flex flex-col gap-4'>
+        <div
+          data-resource-layout='list'
+          className='mx-auto flex w-full max-w-[600px] flex-col gap-4'
+        >
           {bookmarks.map(({ resource }) => (
             <ResourceBookmark
               key={resource.url}

@@ -1,13 +1,12 @@
 'use client'
 import { useId, useRef } from 'react'
+import Image from 'next/image'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { MapActions } from './map-actions'
 import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
 
-const coordinate = (value: number | null) =>
-  value === null ? 'Unplaced' : `${Math.round(value * 100)} / 100`
 export function Map({
   horizontal: x,
   vertical: y,
@@ -41,27 +40,9 @@ export function Map({
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
     >
-      <div className='flex flex-wrap items-start justify-between gap-4'>
-        <div>
-          <h2 className='text-2xl font-semibold tracking-tight'>
-            {definition.question}
-          </h2>
-        </div>
-        <div className='flex flex-wrap gap-3 text-xs'>
-          <div className='map-stat rounded-lg px-3 py-2'>
-            <p className='map-muted'>Outlook</p>
-            <p className='mt-1 font-semibold tabular-nums'>
-              {coordinate(x.value)}
-            </p>
-          </div>
-          <div className='map-stat rounded-lg px-3 py-2'>
-            <p className='map-muted'>{definition.label}</p>
-            <p className='mt-1 font-semibold tabular-nums'>
-              {coordinate(y.value)}
-            </p>
-          </div>
-        </div>
-      </div>
+      <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
+        {definition.question}
+      </h2>
       <svg
         ref={svg}
         viewBox='0 0 680 395'
@@ -212,8 +193,11 @@ export function Map({
               strokeDasharray='3 5'
             />
             {subject?.avatar ? (
-              <g data-persona-marker={subject.name}>
-                <title>{`${subject.name} · simulated position`}</title>
+              <g
+                data-persona-marker={subject.name}
+                role='img'
+                aria-label={`${subject.name}: ${y.claim ?? 'Simulated worldview position'}`}
+              >
                 <image
                   href={subject.avatar}
                   x={px(x.value!) - 20}
@@ -380,30 +364,52 @@ export function Map({
           yet know.
         </p>
       )}
-      {y.claim && <p className='map-muted mb-3 text-sm'>{y.claim}</p>}
-      <figcaption className='map-muted flex flex-wrap gap-x-5 gap-y-2 text-xs'>
-        <span className='flex items-center gap-2'>
-          <span className='map-point size-2 rounded-full' />
-          {point
-            ? y.interpretation === 'unsettled'
-              ? `Point: center of ${framing.possessive} unresolved range`
-              : `Point: ${subject ? 'simulated' : 'your estimated'} position`
-            : 'Point withheld until both axes are assessable'}
-        </span>
-        <span className='flex items-center gap-2'>
-          <span className='map-range h-3 w-5 rounded-sm border border-dashed' />
-          Dashed area: interpretation range, including missing evidence
-        </span>
-      </figcaption>
-      <div className='mt-4 flex items-end justify-between gap-4'>
-        <p className='map-muted text-xs leading-relaxed'>
-          Across: {framing.possessive} expressed Doom–Bloom outlook. Up:{' '}
-          {definition.label.toLowerCase()}. Coordinates describe beliefs, not
-          reasoning quality or event probabilities.
-          {history.length > 0
-            ? ' Small numbered dots show earlier answers; gaps remain unplaced.'
-            : ''}
-        </p>
+      {!subject && y.claim && (
+        <p className='map-muted mb-3 text-sm'>{y.claim}</p>
+      )}
+      <figcaption className='map-muted mt-4 flex items-end justify-between gap-4 text-xs leading-5 sm:text-sm'>
+        <div className='flex min-w-0 flex-col gap-3'>
+          <div className='flex flex-wrap gap-x-6 gap-y-2'>
+            <span className='inline-flex items-center gap-2'>
+              <span
+                className='inline-flex h-4 w-5 shrink-0 items-center justify-center'
+                aria-hidden='true'
+              >
+                {subject?.avatar && point ? (
+                  <Image
+                    src={subject.avatar}
+                    alt=''
+                    width={16}
+                    height={16}
+                    unoptimized
+                    className='size-4 rounded-full border border-white object-cover'
+                  />
+                ) : (
+                  <span className='map-point size-2 rounded-full' />
+                )}
+              </span>
+              {point
+                ? y.interpretation === 'unsettled'
+                  ? 'Center of unresolved range'
+                  : subject
+                    ? 'Simulated position'
+                    : 'Your estimated position'
+                : 'Position not yet determined'}
+            </span>
+            <span className='inline-flex items-center gap-2'>
+              <span
+                className='map-range h-4 w-5 shrink-0 rounded-sm border border-dashed'
+                aria-hidden='true'
+              />
+              Interpretation range
+            </span>
+          </div>
+          <p>
+            Across: {framing.possessive} expressed Doom–Bloom outlook. Up:{' '}
+            {definition.label.toLowerCase()}.
+            {history.length > 0 ? ' Numbered dots show earlier answers.' : ''}
+          </p>
+        </div>
         <MapActions
           svg={svg}
           title={
@@ -419,7 +425,7 @@ export function Map({
               : 'No placement yet · Dashed area: interpretation range'
           }
         />
-      </div>
+      </figcaption>
       <p className='sr-only'>{description}</p>
     </figure>
   )

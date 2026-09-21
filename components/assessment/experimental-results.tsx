@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
+import { ReasoningJudgments } from './reasoning-judgments'
 import { ChevronDownIcon } from 'lucide-react'
-import type { ExperimentQuote, Result } from '@/lib/assessment/schema'
+import type { Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
@@ -23,32 +24,17 @@ import {
   CollapsibleContent
 } from '@/components/ui/collapsible'
 
-function Source({ quote }: { quote: ExperimentQuote }) {
-  return (
-    <Collapsible>
-      <CollapsibleTrigger asChild>
-        <Button variant='link' size='sm' className='px-0'>
-          Answer {quote.answerNumber} · exact wording
-        </Button>
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-muted-foreground'>
-          {quote.text}
-        </blockquote>
-      </CollapsibleContent>
-    </Collapsible>
-  )
-}
-
 export function ExperimentalResults({
   result,
   history = [],
   layout = 'contained',
+  reasoningDetails,
   subject
 }: {
   result: Result
   history?: Array<{ label: string; result: Result }>
   layout?: 'contained' | 'breakout'
+  reasoningDetails?: ReactNode
   subject?: ResultSubject
 }) {
   const experiment =
@@ -92,14 +78,15 @@ export function ExperimentalResults({
             label: item.label
           }))}
         />
-        {experiment?.axisEvidence.transformation && (
-          <Source quote={experiment.axisEvidence.transformation} />
-        )}
       </div>
       <div className='grid min-w-0 gap-5 lg:grid-cols-2'>
         <Card>
           <CardHeader>
-            <CardTitle>{framing.owner} estimated P(doom)</CardTitle>
+            <CardTitle>
+              {framing.owner}{' '}
+              {risk?.source === 'public-statement' ? 'stated' : 'estimated'}{' '}
+              P(doom)
+            </CardTitle>
             <CardDescription>
               Catastrophic risk, separate from overall outlook
             </CardDescription>
@@ -124,11 +111,34 @@ export function ExperimentalResults({
               {!experiment
                 ? 'This saved snapshot has not been evaluated for a numerical catastrophe estimate.'
                 : risk
-                  ? risk.source === 'inferred'
-                    ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `the likelihood described in ${framing.answers}`}. Approximate interpretation range: ${risk.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Applies to the outcome and conditions in ${framing.answers}; this is an inferred percentage.`
-                    : `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described below; this estimate is not standardized across people.`
+                  ? risk.source === 'public-statement'
+                    ? `Public statement from ${risk.publicStatement?.publishedAt}. This source-backed value replaces the simulated assessment estimate.`
+                    : risk.source === 'inferred'
+                      ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `the likelihood described in ${framing.answers}`}. Approximate interpretation range: ${risk.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Applies to the outcome and conditions in ${framing.answers}; this is an inferred percentage.`
+                      : `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described below; this estimate is not standardized across people.`
                   : `There is not enough relevant evidence yet to estimate ${framing.possessive} view of catastrophic risk.`}
             </p>
+            {risk?.publicStatement && (
+              <div className='space-y-2 text-sm text-muted-foreground'>
+                <p>{risk.publicStatement.outcome}</p>
+                <p>{risk.publicStatement.conditions}</p>
+                <p>Horizon: {risk.publicStatement.horizon}</p>
+                {risk.estimate === undefined && (
+                  <p>
+                    The dot marks the midpoint of the stated range, not a
+                    separate forecast.
+                  </p>
+                )}
+                <a
+                  className='underline underline-offset-4'
+                  href={risk.publicStatement.url}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  {risk.publicStatement.title}
+                </a>
+              </div>
+            )}
             {risk?.text && (
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
                 {risk.text}
@@ -225,13 +235,16 @@ export function ExperimentalResults({
           emptyComponent('influence', 'Human influence')
         }
       />
-      {experiment && (
-        <p className='text-xs text-muted-foreground'>
-          Experimental interpretation · {experiment.version} ·{' '}
-          {experiment.model}. Exact excerpts preserve participant wording;
-          selections and map ranges remain provisional interpretations.
-        </p>
-      )}
+      {reasoningDetails ??
+        (result.components.some((component) => component.reasoningEvidence) && (
+          <section
+            aria-label='Reasoning judgments'
+            className='flex flex-col gap-3'
+          >
+            <h3 className='font-medium'>Reasoning judgments to inspect</h3>
+            <ReasoningJudgments components={result.components} />
+          </section>
+        ))}
     </section>
   )
 }

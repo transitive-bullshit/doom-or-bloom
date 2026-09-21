@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 export function PersonaHeader({
   person
@@ -22,51 +23,46 @@ export function PersonaHeader({
     />
   )
   return (
-    <header className='my-8'>
-      <p className='mb-4 text-sm text-muted-foreground'>
-        Example journey · simulated persona
-      </p>
-      <div className='flex items-center gap-4'>
-        {portrait &&
-          (person.xUrl ? (
-            <a
-              href={person.xUrl}
-              target='_blank'
-              rel='noreferrer'
-              aria-label={`${person.name} on X`}
-              className='shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
-            >
-              {portrait}
-            </a>
-          ) : (
-            portrait
-          ))}
-        <div className='min-w-0'>
-          <h1 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-            {person.name}
-          </h1>
-          {person.xUrl && (
-            <a
-              href={person.xUrl}
-              target='_blank'
-              rel='noreferrer'
-              className='mt-2 inline-block text-sm text-muted-foreground underline underline-offset-4'
-            >
-              @{person.xUrl.split('/').at(-1)} on X
-            </a>
-          )}
+    <header className='my-8 flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between'>
+      <div className='min-w-0'>
+        <div className='flex items-center gap-4'>
+          {portrait &&
+            (person.xUrl ? (
+              <a
+                href={person.xUrl}
+                target='_blank'
+                rel='noreferrer'
+                aria-label={`${person.name} on X`}
+                className='shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
+              >
+                {portrait}
+              </a>
+            ) : (
+              portrait
+            ))}
+          <div className='min-w-0'>
+            <h1 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
+              {person.name}
+            </h1>
+            {person.xUrl && (
+              <a
+                href={person.xUrl}
+                target='_blank'
+                rel='noreferrer'
+                className='mt-2 inline-block text-sm text-muted-foreground underline underline-offset-4'
+              >
+                @{person.xUrl.split('/').at(-1)} on X
+              </a>
+            )}
+          </div>
         </div>
+        <p className='mt-4 max-w-xl text-muted-foreground'>
+          {person.description}
+        </p>
       </div>
-      <p className='mt-4 max-w-xl text-muted-foreground'>
-        {person.description} These are results from a fictional proxy’s answers,
-        not an assessment of the person.
-      </p>
-      <Link
-        href='/assessment'
-        className='mt-5 inline-block font-medium underline underline-offset-4'
-      >
-        Map your own worldview
-      </Link>
+      <Button asChild size='lg' className='shrink-0'>
+        <Link href='/assessment'>Map your own worldview</Link>
+      </Button>
     </header>
   )
 }

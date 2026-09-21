@@ -29,14 +29,18 @@ import {
 
 function Help({
   explanation,
+  open,
+  onOpenChange,
   children
 }: {
   explanation?: string
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
   children: ReactElement
 }) {
   if (!explanation) return children
   return (
-    <Tooltip>
+    <Tooltip open={open} onOpenChange={onOpenChange}>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
       <TooltipContent
         side='top'
@@ -87,6 +91,7 @@ function JsonNode({
     question
   })
   const [open, setOpen] = useState(depth < 2)
+  const [helpOpen, setHelpOpen] = useState(false)
   const array = Array.isArray(value)
   const object = value !== null && typeof value === 'object'
   const entries = useMemo(
@@ -101,19 +106,32 @@ function JsonNode({
     [value, property, answerOrder, object, array]
   )
   const longString = typeof value === 'string' && value.length > 200
+  const key = (
+    <span
+      data-json-token='key'
+      className={
+        explanation
+          ? 'underline decoration-dotted underline-offset-4'
+          : undefined
+      }
+    >
+      {JSON.stringify(property)}
+    </span>
+  )
   const prefix =
     property !== undefined ? (
       <>
-        <span
-          data-json-token='key'
-          className={
-            explanation
-              ? 'underline decoration-dotted underline-offset-4'
-              : undefined
-          }
-        >
-          {JSON.stringify(property)}
-        </span>
+        {(object && entries.length > 0) || longString ? (
+          <Help
+            explanation={explanation}
+            open={helpOpen}
+            onOpenChange={setHelpOpen}
+          >
+            {key}
+          </Help>
+        ) : (
+          key
+        )}
         :{' '}
       </>
     ) : null
@@ -145,44 +163,41 @@ function JsonNode({
   const closing = array ? ']' : '}'
   return (
     <Collapsible open={open} onOpenChange={setOpen} data-json-depth={depth}>
-      <Help explanation={explanation}>
-        <CollapsibleTrigger asChild>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='h-auto min-h-7 w-full justify-start gap-1 rounded px-1 py-0.5 text-left whitespace-normal [overflow-wrap:anywhere]'
-            aria-label={`${open ? 'Collapse' : 'Expand'} ${path}`}
-          >
-            {open ? (
-              <ChevronDown
-                className='size-3 shrink-0'
-                data-icon='inline-start'
-              />
+      <CollapsibleTrigger asChild>
+        <Button
+          variant='ghost'
+          size='sm'
+          className='h-auto min-h-7 w-full justify-start gap-1 rounded px-1 py-0.5 text-left whitespace-normal [overflow-wrap:anywhere]'
+          aria-label={`${open ? 'Collapse' : 'Expand'} ${path}`}
+          onFocus={() => setHelpOpen(true)}
+          onBlur={() => setHelpOpen(false)}
+        >
+          {open ? (
+            <ChevronDown className='size-3 shrink-0' data-icon='inline-start' />
+          ) : (
+            <ChevronRight
+              className='size-3 shrink-0'
+              data-icon='inline-start'
+            />
+          )}
+          <span className='min-w-0 font-mono text-xs'>
+            {prefix}
+            {longString ? (
+              <span className='text-muted-foreground'>
+                string · {value.length.toLocaleString('en-US')} characters
+              </span>
             ) : (
-              <ChevronRight
-                className='size-3 shrink-0'
-                data-icon='inline-start'
-              />
-            )}
-            <span className='min-w-0 font-mono text-xs'>
-              {prefix}
-              {longString ? (
+              <>
+                {opening}
+                {open ? '' : ` … ${closing}${punctuation}`}{' '}
                 <span className='text-muted-foreground'>
-                  string · {value.length.toLocaleString('en-US')} characters
+                  · {entries.length} {array ? 'items' : 'keys'}
                 </span>
-              ) : (
-                <>
-                  {opening}
-                  {open ? '' : ` … ${closing}${punctuation}`}{' '}
-                  <span className='text-muted-foreground'>
-                    · {entries.length} {array ? 'items' : 'keys'}
-                  </span>
-                </>
-              )}
-            </span>
-          </Button>
-        </CollapsibleTrigger>
-      </Help>
+              </>
+            )}
+          </span>
+        </Button>
+      </CollapsibleTrigger>
       <CollapsibleContent>
         {open &&
           (longString ? (

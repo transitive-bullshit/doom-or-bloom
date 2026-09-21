@@ -1,10 +1,9 @@
-import { PersonaHeader } from '@/components/landing/persona-header'
-import { PersonaSources } from '@/components/landing/persona-sources'
+import { PersonaPageContent } from '@/components/landing/persona-page-content'
+import { personaAssessment } from '@/lib/journeys/persona-assessment'
 import { createRoot } from 'react-dom/client'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SiteActions } from '@/components/site-actions'
 import { MapFirst } from '@/components/landing/map-first'
-import { ExperimentalResults } from '@/components/assessment/experimental-results'
 import type { Example } from '@/components/landing/shared'
 import type { Journey } from '@/lib/journeys/schema'
 import '@/components/landing/landing.css'
@@ -55,11 +54,9 @@ createRoot(document.getElementById('root')!).render(
         ) : person && journey?.result ? (
           <div className='mx-auto w-full max-w-6xl px-6 py-10'>
             <a href='/'>Back to the map</a>
-            <PersonaHeader person={person} />
-            <ExperimentalResults subject={person} result={journey.result} />
-            <PersonaSources
-              sources={person.sources ?? []}
-              sourceBriefUpdated={person.sourceBriefUpdated}
+            <PersonaPageContent
+              person={{ ...person, result: journey.result }}
+              assessment={personaAssessment(journey)}
             />
           </div>
         ) : pathname === '/assessment' ? (

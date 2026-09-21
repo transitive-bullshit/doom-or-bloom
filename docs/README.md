@@ -47,3 +47,9 @@ The working name deliberately emphasizes the provocative Doom/Bloom contrast. Th
 Current local demo uses algorithm `0.5.0`: runtime corpus grounding is paused, dimension meanings are explicit, and evidence readiness replaces the three-answer minimum. One sufficiently covered answer may unlock a provisional result; the meter is an experimental coverage heuristic. Corpus assets/review gates remain offline, and the featured map pairs outlook with expected transformation and interpretation ranges. Human influence and the reasoning composite are separate single axes alongside expected upside and harm. The landing map is at `/`, with the interview at `/assessment` and saved persona results at `/personas/[id]`. Tentative and unsettled map points retain their interpretation ranges. See [assessment readiness](ASSESSMENT.md#question-budget-and-readiness) and [current Jev workflow](TYPESAFE.md#current-local-workflow--algorithm-050).
 
 Latest persona/source work: [September 21 refresh and verification](research/persona-refresh-summary-2026-09-21.md).
+
+Latest full live rerun: [September 22 collection and sourced P(doom) overrides](research/canonical-persona-run-2026-09-22.md).
+
+Latest persona additions: [Nate Soares](research/nate-soares-persona-2026-09-22.md) and [Ryan Greenblatt](research/ryan-greenblatt-persona-2026-09-22.md), with [live batch provenance](user-journeys.md#soares-and-greenblatt--september-22-2026).
+
+Latest writer/forecaster additions: [Carlsmith, Alexander, Kokotajlo and Cowen](user-journeys.md#carlsmith-alexander-kokotajlo-and-cowen--september-22-2026), with 46 source records and four new live journeys.

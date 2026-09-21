@@ -52,3 +52,15 @@ Portrait fallbacks, checked 2026-09-21 (no verified personal X portrait used):
 - Liang Wenfeng: [Nature profile, December 2025](https://www.nature.com/articles/d41586-025-03845-4), image `d41586-025-03845-4_51757042.jpg`, cropped to the subject’s face. No verified personal X account was found.
 
 - Noah Smith: https://x.com/Noahpinion — verified profile image https://pbs.twimg.com/profile_images/1900075477999763456/8nSaoQcX_200x200.jpg (2026-09-21), stored as `smith.jpg`.
+
+New safety researchers, verified via the live X users API on 2026-09-22:
+
+- Nate Soares: https://x.com/So8res — https://pbs.twimg.com/profile_images/1935185891863273472/2RB6s6TS_400x400.jpg, stored as `soares.jpg`.
+- Ryan Greenblatt: https://x.com/RyanGreenblatt — https://pbs.twimg.com/profile_images/1885439620625948673/qD6KYkL6_400x400.jpg, stored as `greenblatt.jpg`.
+
+Additional writers and forecasters, verified via X users API on 2026-09-22:
+
+- Joe Carlsmith: https://x.com/jkcarlsmith — https://pbs.twimg.com/profile_images/1655705033248477185/3X7ZWjQ0_400x400.jpg, stored as `carlsmith.jpg`.
+- Scott Alexander: https://x.com/slatestarcodex — https://pbs.twimg.com/profile_images/378800000009065862/83d72de47e2a2470c482bc75406b42a7_400x400.png, stored as `alexander.jpg`.
+- Daniel Kokotajlo: https://x.com/DKokotajlo — https://pbs.twimg.com/profile_images/1797990060878356480/G2zm1i8G_400x400.jpg, stored as `kokotajlo.jpg`.
+- Tyler Cowen: https://x.com/tylercowen — https://pbs.twimg.com/profile_images/1483290763056320512/oILN7yPo_400x400.jpg, stored as `cowen.jpg`.

@@ -151,7 +151,9 @@ export function ResultView({
               <p className='text-sm'>{f.text}</p>
               <CollapsibleTrigger asChild>
                 <Button variant='link' className='px-0 text-xs'>
-                  See supporting answer
+                  {supportingAnswers(f.evidenceIds).length > 1
+                    ? 'See supporting answers'
+                    : 'See supporting answer'}
                 </Button>
               </CollapsibleTrigger>
               <CollapsibleContent>
