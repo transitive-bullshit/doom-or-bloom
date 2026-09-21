@@ -122,21 +122,60 @@ const documentPreview = async (data: Buffer, key: string) => {
     await rm(directory, { recursive: true, force: true })
   }
 }
-const saveIcon = async (url: string, key: string) => {
-  const { data, type } = await bytes(url)
-  const extension = type.includes('svg')
-    ? 'svg'
-    : type.includes('icon')
-      ? 'ico'
-      : undefined
-  const file = `/resource-previews/${key}-icon.${extension ?? 'webp'}`
-  if (extension) await writeFile(`public${file}`, data)
-  else
-    await sharp(data, { limitInputPixels: 40_000_000 })
-      .resize(64, 64, { fit: 'inside' })
-      .webp({ quality: 80 })
-      .toFile(`public${file}`)
+const writeIcon = async (data: Buffer, key: string) => {
+  const file = `/resource-previews/${key}-icon.webp`
+  await sharp(data, { limitInputPixels: 40_000_000, animated: false })
+    .resize(64, 64, { fit: 'inside', withoutEnlargement: true })
+    .webp({ quality: 80 })
+    .toFile(`public${file}`)
   return file
+}
+const saveIcon = async (url: string, key: string) =>
+  writeIcon((await bytes(url)).data, key)
+
+// Repair old assets without fetching or changing article previews.
+if (process.argv.includes('--icons-only')) {
+  const downloaded = new Map<string, Promise<Buffer>>()
+  let repaired = 0
+  let missing = 0
+  for (const [url, entry] of Object.entries(previous)) {
+    const old = entry.icon
+    const key = createHash('sha256').update(url).digest('hex').slice(0, 12)
+    try {
+      if (!old?.startsWith('/resource-previews/'))
+        throw new Error('No local icon')
+      const data = await readFile(`public${old}`)
+      if (old.endsWith('.webp')) {
+        await sharp(data).raw().toBuffer()
+        continue
+      }
+      entry.icon = await writeIcon(data, key)
+    } catch {
+      try {
+        const host = new URL(url).hostname
+        if (!downloaded.has(host))
+          downloaded.set(
+            host,
+            bytes(
+              `https://www.google.com/s2/favicons?domain=${host}&sz=128`
+            ).then(({ data }) => data)
+          )
+        entry.icon = await writeIcon(await downloaded.get(host)!, key)
+      } catch {
+        delete entry.icon
+        missing++
+      }
+    }
+    if (old?.startsWith('/resource-previews/') && old !== entry.icon)
+      await unlink(`public${old}`).catch(() => {})
+    repaired++
+  }
+  await writeFile(
+    'lib/sharing/resource-previews.json',
+    JSON.stringify(previous, null, 2) + '\n'
+  )
+  console.log(JSON.stringify({ repaired, missing }))
+  process.exit(0)
 }
 const failures: Record<string, string> = {}
 const obsolete = new Set<string>()

@@ -15,6 +15,7 @@ import { noahPublicPersona } from './noah-public-persona'
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
   id: z.string().regex(/^[a-z][a-z0-9-]+$/),
+  shortName: z.string().optional(),
   slug: z
     .string()
     .regex(/^[a-z0-9_-]+$/)

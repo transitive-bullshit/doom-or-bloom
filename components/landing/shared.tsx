@@ -16,7 +16,7 @@ export type Example = {
   slug: string
   name: string
   possessivePronoun?: 'his' | 'her' | 'their'
-  short: string
+  shortName: string
   initials: string
   stance: string
   description: string
@@ -25,6 +25,8 @@ export type Example = {
   transformation: number | null
   avatar: string
   xUrl?: string | null
+  profileUrl?: string
+  profileLabel?: string
   sourceBriefUpdated?: boolean
   sources?: Array<{ title: string; url: string }>
 }
@@ -62,7 +64,60 @@ export function ExampleLinks({ examples, variant }: VariantProps) {
   )
 }
 
+const featuredOrder = [
+  'alignment-maximalist',
+  'abundance-risk-taker',
+  'cautious-builder',
+  'frontier-pacer',
+  'control-alarmist',
+  'anti-doomer',
+  'hands-on-agent-builder',
+  'safe-superintelligence-researcher',
+  'america-first-ai-booster',
+  'democratic-ai-steward',
+  'equitable-ai-philanthropist',
+  'personal-superintelligence-builder',
+  'abundance-advocate',
+  'concerned-pioneer',
+  'world-model-optimist',
+  'scientific-steward',
+  'democratic-moratorium',
+  'practical-optimist',
+  'empirical-skeptic',
+  'human-centered-spatial-builder',
+  'scientist-ai-advocate',
+  'rationalist-safety-advocate',
+  'alignment-philosopher',
+  'institutional-growth-optimist',
+  'bubble-critic',
+  'competitive-decentralist',
+  'biosecurity-abundance-optimist',
+  'learning-bottleneck-investigator',
+  'open-science-realist',
+  'coordinated-scaler',
+  'efficient-intelligence-builder',
+  'reasoning-frontier-builder',
+  'superintelligence-stop-advocate',
+  'empirical-control-researcher',
+  'takeoff-forecaster',
+  'provable-control-advocate',
+  'tool-ai-moratorium',
+  'digital-succession-optimist',
+  'community-ai-critic',
+  'language-hype-critic',
+  'normal-technology-realist',
+  'pro-worker-economist',
+  'open-frontier-idealist'
+]
+
 export function PreviewMap({ examples, variant }: VariantProps) {
+  const legend = [...examples].sort((a, b) => {
+    const rank = (id: string) => {
+      const index = featuredOrder.indexOf(id)
+      return index < 0 ? featuredOrder.length : index
+    }
+    return rank(a.id) - rank(b.id)
+  })
   const plot = useRef<HTMLDivElement>(null)
   const [highlighted, setHighlighted] = useState<string | null>(null)
   const [size, setSize] = useState({ width: 480, height: 260 })
@@ -164,7 +219,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
           ))}
         </div>
         <div className='landing-map-legend'>
-          {examples.map((p) => (
+          {legend.map((p) => (
             <Link
               key={p.id}
               href={resultHref(p.slug, variant)}
@@ -181,7 +236,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                 alt=''
                 unoptimized
               />
-              {p.short}
+              {p.shortName}
             </Link>
           ))}
         </div>

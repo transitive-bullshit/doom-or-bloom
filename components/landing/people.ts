@@ -7,7 +7,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/jkcarlsmith',
     avatar: '/personas/carlsmith.jpg',
-    short: 'Joe',
     initials: 'JC',
     stance: 'Preserve the chance of a much better future.',
     description:
@@ -20,7 +19,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/slatestarcodex',
     avatar: '/personas/alexander.jpg',
-    short: 'Scott',
     initials: 'SA',
     stance: 'Take the risk seriously. Give safety time.',
     description:
@@ -33,7 +31,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DKokotajlo',
     avatar: '/personas/kokotajlo.jpg',
-    short: 'Daniel',
     initials: 'DK',
     stance: 'Do not race through an intelligence explosion.',
     description:
@@ -46,7 +43,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/tylercowen',
     avatar: '/personas/cowen.jpg',
-    short: 'Tyler',
     initials: 'TC',
     stance: 'More intelligence. Better institutions.',
     description:
@@ -59,7 +55,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/So8res',
     avatar: '/personas/soares.jpg',
-    short: 'Nate',
     initials: 'NS',
     stance: 'Stop before we lose control.',
     description:
@@ -72,7 +67,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/RyanGreenblatt',
     avatar: '/personas/greenblatt.jpg',
-    short: 'Ryan',
     initials: 'RG',
     stance: 'Test control. Reduce takeover risk.',
     description:
@@ -85,7 +79,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/Noahpinion',
     avatar: '/personas/smith.jpg',
-    short: 'Noah',
     initials: 'NS',
     stance: 'Build abundance. Defend against misuse.',
     description:
@@ -98,7 +91,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/ESYudkowsky',
     avatar: '/personas/yudkowsky.jpg',
-    short: 'Yudkowsky',
     initials: 'EY',
     stance: 'A future worth stopping.',
     description: 'Superhuman AI could end humanity. Building it is the danger.',
@@ -110,7 +102,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/sama',
     avatar: '/personas/altman.jpg',
-    short: 'Altman',
     initials: 'SA',
     stance: 'A future worth building.',
     description: 'Enormous benefits are possible. Getting there takes care.',
@@ -122,7 +113,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/pmarca',
     avatar: '/personas/andreessen.jpg',
-    short: 'Andreessen',
     initials: 'MA',
     stance: 'A future worth accelerating.',
     description: 'AI can unlock abundance. Holding it back is the danger.',
@@ -134,7 +124,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/GaryMarcus',
     avatar: '/personas/marcus.jpg',
-    short: 'Marcus',
     initials: 'GM',
     stance: 'Show me that it works.',
     description: 'Useful AI needs reliable reasoning and real accountability.',
@@ -146,7 +135,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/AndrewYNg',
     avatar: '/personas/ng.jpg',
-    short: 'Ng',
     initials: 'AN',
     stance: 'Keep learning. Keep building.',
     description:
@@ -159,7 +147,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/ylecun',
     avatar: '/personas/lecun.jpg',
-    short: 'LeCun',
     initials: 'YL',
     stance: 'Intelligence needs a world model.',
     description:
@@ -172,7 +159,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/geoffreyhinton',
     avatar: '/personas/hinton.jpg',
-    short: 'Hinton',
     initials: 'GH',
     stance: 'Learn to control it first.',
     description:
@@ -185,7 +171,6 @@ const profiles = [
     possessivePronoun: 'his',
     xUrl: 'https://x.com/edzitron',
     avatar: '/personas/zitron.jpg',
-    short: 'Zitron',
     initials: 'EZ',
     stance: 'Who is this actually helping?',
     description:
@@ -197,7 +182,6 @@ const profiles = [
     name: 'Bernie Sanders',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/SenSanders',
-    short: 'Bernie',
     initials: 'BS',
     stance: 'Let the public decide.',
     description:
@@ -210,7 +194,6 @@ const profiles = [
     name: 'David Sacks',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DavidSacks',
-    short: 'Sacks',
     initials: 'DS',
     stance: 'Competition over gatekeepers.',
     description:
@@ -223,7 +206,6 @@ const profiles = [
     name: 'Demis Hassabis',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/demishassabis',
-    short: 'Demis',
     initials: 'DH',
     stance: 'A new age of discovery.',
     description:
@@ -236,7 +218,6 @@ const profiles = [
     name: 'Sholto Douglas',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/_sholtodouglas',
-    short: 'Sholto',
     initials: 'SD',
     stance: 'As fast as safety allows.',
     description:
@@ -249,7 +230,6 @@ const profiles = [
     name: 'Roon',
     possessivePronoun: 'their',
     xUrl: 'https://x.com/tszzl',
-    short: 'Roon',
     initials: 'R',
     stance: 'Pace the frontier. Solve alignment.',
     description:
@@ -262,7 +242,6 @@ const profiles = [
     name: 'Noam Shazeer',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/NoamShazeer',
-    short: 'Shazeer',
     initials: 'NS',
     stance: 'Make intelligence work better.',
     description:
@@ -275,7 +254,6 @@ const profiles = [
     name: 'Noam Brown',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/polynoamial',
-    short: 'Brown',
     initials: 'NB',
     stance: 'Discover more. Test carefully.',
     description:
@@ -288,7 +266,6 @@ const profiles = [
     name: 'Dwarkesh Patel',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/dwarkesh_sp',
-    short: 'Dwarkesh',
     initials: 'DP',
     stance: 'What happens when AI learns on the job?',
     description:
@@ -301,7 +278,6 @@ const profiles = [
     name: 'Dario Amodei',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DarioAmodei',
-    short: 'Dario',
     initials: 'DA',
     stance: 'Earn the beneficial future.',
     description:
@@ -314,7 +290,6 @@ const profiles = [
     name: 'Elon Musk',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/elonmusk',
-    short: 'Elon',
     initials: 'EM',
     stance: 'Build toward extraordinary abundance.',
     description:
@@ -327,7 +302,6 @@ const profiles = [
     name: 'Nathan Lambert',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/natolambert',
-    short: 'Lambert',
     initials: 'NL',
     stance: 'Build openly. Question the takeoff story.',
     description:
@@ -340,7 +314,6 @@ const profiles = [
     name: 'Yoshua Bengio',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/Yoshua_Bengio',
-    short: 'Bengio',
     initials: 'YB',
     stance: 'Understand the world without pursuing power.',
     description: 'Build useful scientific AI with strong safety guarantees.',
@@ -352,7 +325,6 @@ const profiles = [
     name: 'Ilya Sutskever',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/ilyasut',
-    short: 'Ilya',
     initials: 'IS',
     stance: 'Make superintelligence safe.',
     description:
@@ -365,7 +337,6 @@ const profiles = [
     name: 'Andrej Karpathy',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/karpathy',
-    short: 'Karpathy',
     initials: 'AK',
     stance: 'Build it. See where it breaks.',
     description:
@@ -378,7 +349,6 @@ const profiles = [
     name: 'Fei-Fei Li',
     possessivePronoun: 'her',
     xUrl: 'https://x.com/drfeifei',
-    short: 'Fei-Fei Li',
     initials: 'FL',
     stance: 'Keep people at the center.',
     description:
@@ -391,7 +361,6 @@ const profiles = [
     name: 'Richard Sutton',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/RichardSSutton',
-    short: 'Sutton',
     initials: 'RS',
     stance: 'Intelligence can go beyond us.',
     description:
@@ -404,7 +373,6 @@ const profiles = [
     name: 'Timnit Gebru',
     possessivePronoun: 'her',
     xUrl: 'https://x.com/timnitGebru',
-    short: 'Gebru',
     initials: 'TG',
     stance: 'Build for communities, not empires.',
     description:
@@ -417,7 +385,6 @@ const profiles = [
     name: 'Arvind Narayanan',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/random_walker',
-    short: 'Narayanan',
     initials: 'AN',
     stance: 'Look at how technology actually spreads.',
     description:
@@ -430,7 +397,6 @@ const profiles = [
     name: 'Daron Acemoglu',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DAcemogluMIT',
-    short: 'Acemoglu',
     initials: 'DA',
     stance: 'Make progress work for workers.',
     description:
@@ -443,7 +409,6 @@ const profiles = [
     name: 'Mark Zuckerberg',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/finkd',
-    short: 'Zuckerberg',
     initials: 'MZ',
     stance: 'Put powerful AI in people’s hands.',
     description:
@@ -456,7 +421,8 @@ const profiles = [
     name: 'Stuart Russell',
     possessivePronoun: 'his',
     xUrl: null,
-    short: 'Russell',
+    profileUrl: 'https://people.eecs.berkeley.edu/~russell/',
+    profileLabel: 'UC Berkeley',
     initials: 'SR',
     stance: 'Prove it stays under human control.',
     description:
@@ -469,7 +435,6 @@ const profiles = [
     name: 'Emily M. Bender',
     possessivePronoun: 'her',
     xUrl: 'https://x.com/emilymbender',
-    short: 'Bender',
     initials: 'EB',
     stance: 'Fluent language is not understanding.',
     description: 'Question the hype, the evidence and who bears the costs.',
@@ -481,7 +446,6 @@ const profiles = [
     name: 'Max Tegmark',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/tegmark',
-    short: 'Tegmark',
     initials: 'MT',
     stance: 'Build useful tools. Stop the unsafe race.',
     description:
@@ -494,7 +458,8 @@ const profiles = [
     name: 'Liang Wenfeng',
     possessivePronoun: 'his',
     xUrl: null,
-    short: 'Liang',
+    profileUrl: 'https://en.wikipedia.org/wiki/Liang_Wenfeng',
+    profileLabel: 'Wikipedia',
     initials: 'LW',
     stance: 'Original research, shared openly.',
     description:
@@ -507,7 +472,6 @@ const profiles = [
     name: 'Barack Obama',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/BarackObama',
-    short: 'Obama',
     initials: 'BO',
     stance: 'Let people shape the future.',
     description:
@@ -520,7 +484,6 @@ const profiles = [
     name: 'Donald Trump',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/realDonaldTrump',
-    short: 'Trump',
     initials: 'DT',
     stance: 'Build big. America must win.',
     description:
@@ -533,7 +496,6 @@ const profiles = [
     name: 'Bill Gates',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/BillGates',
-    short: 'Gates',
     initials: 'BG',
     stance: 'Make breakthroughs reach everyone.',
     description:
@@ -545,8 +507,7 @@ const profiles = [
     id: 'anti-doomer',
     name: 'Jensen Huang',
     possessivePronoun: 'his',
-    xUrl: null,
-    short: 'Jensen',
+    xUrl: 'https://x.com/JensenHuang',
     initials: 'JH',
     stance: 'Reject the doomer story. Keep building.',
     description:

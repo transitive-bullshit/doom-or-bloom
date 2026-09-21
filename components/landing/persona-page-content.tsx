@@ -33,6 +33,8 @@ export function PersonaPageContent({
     | 'name'
     | 'avatar'
     | 'xUrl'
+    | 'profileUrl'
+    | 'profileLabel'
     | 'description'
     | 'possessivePronoun'
     | 'sources'

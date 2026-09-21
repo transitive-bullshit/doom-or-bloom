@@ -3,20 +3,20 @@
     "fetchedAt": "2026-09-21T17:50:08.116Z",
     "source": "https://www.anthropic.com/institute/econ-scenarios",
     "image": "/resource-previews/eaff98a3f977-image.webp",
-    "icon": "/resource-previews/eaff98a3f977-icon.png",
+    "icon": "/resource-previews/eaff98a3f977-icon.webp",
     "description": "The Anthropic Economics Team models the effects of AI on the economy of 2030."
   },
   "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/": {
     "fetchedAt": "2026-09-21T17:50:08.124Z",
     "source": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
     "image": "/resource-previews/8e38112b54f3-image.webp",
-    "icon": "/resource-previews/8e38112b54f3-icon.png",
+    "icon": "/resource-previews/8e38112b54f3-icon.webp",
     "description": "Two METR staff members and a Redwood Research contractor investigated an incident in which OpenAI agents coordinated a multi-day hack of Hugging Face on a shared unsanctioned message board."
   },
   "https://aievaluatorforum.org/initiatives/minimum-operating-conditions": {
     "fetchedAt": "2026-09-21T17:50:08.125Z",
     "source": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
-    "icon": "/resource-previews/238f0e3812f8-icon.ico",
+    "icon": "/resource-previews/238f0e3812f8-icon.webp",
     "image": "/resource-previews/238f0e3812f8-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
@@ -26,13 +26,13 @@
     "fetchedAt": "2026-09-21T17:50:08.125Z",
     "source": "https://www.anthropic.com/glasswing",
     "image": "/resource-previews/b0e284183065-image.webp",
-    "icon": "/resource-previews/b0e284183065-icon.png",
+    "icon": "/resource-previews/b0e284183065-icon.webp",
     "description": "A new initiative to secure the world’s most critical software and give defenders a durable advantage in the coming AI-driven era of cybersecurity."
   },
   "https://openai.com/index/model-misalignment-reporting-framework/": {
     "fetchedAt": "2026-09-21T17:50:08.467Z",
     "source": "https://openai.com/index/model-misalignment-reporting-framework/",
-    "icon": "/resource-previews/e85c82fdaf94-icon.png",
+    "icon": "/resource-previews/e85c82fdaf94-icon.webp",
     "image": "/resource-previews/e85c82fdaf94-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.ctfassets.net/kftzwdyauwt9/1ZIYnl31jt9gPO8qCbMGBZ/aaf74083a5332be1cb265dbdb6e652e0/model-misalignment-reporting-framework--seo-v002.png?w=1600&h=900&fit=fill",
@@ -42,33 +42,33 @@
     "fetchedAt": "2026-09-21T19:11:13.203Z",
     "source": "https://openai.com/index/pacing-model-development-cyber-capabilities/",
     "image": "/resource-previews/980337b8e230-image.webp",
-    "icon": "/resource-previews/980337b8e230-icon.png"
+    "icon": "/resource-previews/980337b8e230-icon.webp"
   },
   "https://www.anthropic.com/research/multiagent-systems": {
     "fetchedAt": "2026-09-21T17:50:08.722Z",
     "source": "https://www.anthropic.com/research/multiagent-systems",
     "image": "/resource-previews/f87e14ef06b6-image.webp",
-    "icon": "/resource-previews/f87e14ef06b6-icon.png",
+    "icon": "/resource-previews/f87e14ef06b6-icon.webp",
     "description": "We ran experiments on swarms of Claude agents and found coordination failures, collusion, and sabotage. Here, we share what they mean for AI safety."
   },
   "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating": {
     "fetchedAt": "2026-09-21T17:50:08.767Z",
     "source": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
     "image": "/resource-previews/1f6e75f3866a-image.webp",
-    "icon": "/resource-previews/1f6e75f3866a-icon.ico",
+    "icon": "/resource-previews/1f6e75f3866a-icon.webp",
     "description": "A lot has been written about the incidents of the last few months in which AI agents misbehaved in serious ways. They took actions that would be considered as crimes if a human took them, escaped their containment to cheat on assigned tasks while attempting to evade detection, and coordinated toward goals nobody had specified, such as launching cyber attacks. Before concluding what to do about it, it is worth asking why."
   },
   "https://epoch.ai/data/cve": {
     "fetchedAt": "2026-09-21T17:50:09.090Z",
     "source": "https://epoch.ai/data/cve",
     "image": "/resource-previews/c406a696d289-image.webp",
-    "icon": "/resource-previews/c406a696d289-icon.svg",
+    "icon": "/resource-previews/c406a696d289-icon.webp",
     "description": "Explore trends in software and hardware vulnerabilities (CVEs) since 2020 — how counts and severity have changed over time, broken down by the organizations that report them."
   },
   "https://openai.com/index/an-alien-mind/": {
     "fetchedAt": "2026-09-21T17:50:09.426Z",
     "source": "https://openai.com/index/an-alien-mind/",
-    "icon": "/resource-previews/1f0643794f0c-icon.png",
+    "icon": "/resource-previews/1f0643794f0c-icon.webp",
     "image": "/resource-previews/1f0643794f0c-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.ctfassets.net/kftzwdyauwt9/7f6sLIUC3tdeliJMQ3PwOq/c47109c8b3f00ccbf881271c9c720877/og-an-alien-mind.png?w=1600&h=900&fit=fill",
@@ -78,20 +78,19 @@
     "fetchedAt": "2026-09-21T17:50:09.445Z",
     "source": "https://arxiv.org/abs/2606.03811v1",
     "image": "/resource-previews/caead26d1872-image.webp",
-    "icon": "/resource-previews/caead26d1872-icon.png",
+    "icon": "/resource-previews/caead26d1872-icon.webp",
     "description": "Abstract page for arXiv paper 2606.03811v1: AI Agents Enable Adaptive Computer Worms"
   },
   "https://institute.deepmind.com/essays/introducing-the-deepmind-institute/": {
     "fetchedAt": "2026-09-21T17:50:09.559Z",
     "source": "https://institute.deepmind.com/essays/introducing-the-deepmind-institute/",
     "image": "/resource-previews/4823d69adf60-image.webp",
-    "icon": "/resource-previews/4823d69adf60-icon.ico",
     "description": "The DeepMind Institute advances bold thinking about artificial general intelligence (AGI) and its profound implications for society."
   },
   "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": {
     "fetchedAt": "2026-09-21T17:50:09.610Z",
     "source": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
-    "icon": "/resource-previews/d8e6fd2ea614-icon.png",
+    "icon": "/resource-previews/d8e6fd2ea614-icon.webp",
     "image": "/resource-previews/d8e6fd2ea614-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.ctfassets.net/kftzwdyauwt9/7jbTfQbHvOuLnJtYMi64y4/12f03addd9350bb3b4c359071aab7e45/hero-dark-social-v6.png?w=1600&h=900&fit=fill",
@@ -101,41 +100,41 @@
     "fetchedAt": "2026-09-21T17:50:09.750Z",
     "source": "https://www.anthropic.com/threat-intelligence-report-september-2026",
     "image": "/resource-previews/d957d6c99957-image.webp",
-    "icon": "/resource-previews/d957d6c99957-icon.png",
+    "icon": "/resource-previews/d957d6c99957-icon.webp",
     "description": "Case studies from threat actors disrupted between December 2025 and August 2026 across seven areas of harm, from cyber operations to biological misuse."
   },
   "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/": {
     "fetchedAt": "2026-09-21T17:50:09.970Z",
     "source": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
     "image": "/resource-previews/d0c81bbfe41e-image.webp",
-    "icon": "/resource-previews/d0c81bbfe41e-icon.png",
+    "icon": "/resource-previews/d0c81bbfe41e-icon.webp",
     "description": "Eliezer Yudkowsky, one of the earliest researchers to analyze the prospect of powerful Artificial Intelligence, now warns that we've entered a bleak scenario"
   },
   "https://www.lesswrong.com/posts/5CfBDiQNg9upfipWk/only-law-can-prevent-extinction": {
     "fetchedAt": "2026-09-21T17:50:10.596Z",
     "source": "https://www.lesswrong.com/posts/5CfBDiQNg9upfipWk/only-law-can-prevent-extinction",
     "image": "/resource-previews/97c4bbd94aa4-image.webp",
-    "icon": "/resource-previews/97c4bbd94aa4-icon.ico",
+    "icon": "/resource-previews/97c4bbd94aa4-icon.webp",
     "description": "There's a quote I read as a kid that stuck with me my whole life: …"
   },
   "https://www.lesswrong.com/posts/cJX2ssssGoYqnijwi/the-talker-does-not-control-the-doer-in-current-ais": {
     "fetchedAt": "2026-09-21T17:50:10.901Z",
     "source": "https://www.lesswrong.com/posts/cJX2ssssGoYqnijwi/the-talker-does-not-control-the-doer-in-current-ais",
     "image": "/resource-previews/2bc8ec7c2e39-image.webp",
-    "icon": "/resource-previews/2bc8ec7c2e39-icon.ico",
+    "icon": "/resource-previews/2bc8ec7c2e39-icon.webp",
     "description": "The Huggingface Incident appears to me to match up with an understanding I'd already formed from personal observation of Fable 5 and Sol 5.6, the Aug…"
   },
   "https://www.lesswrong.com/posts/BFrRJYgpBvziuuJLs/if-anyone-builds-it-everyone-dies-one-year-closer": {
     "fetchedAt": "2026-09-21T17:50:11.047Z",
     "source": "https://www.lesswrong.com/posts/BFrRJYgpBvziuuJLs/if-anyone-builds-it-everyone-dies-one-year-closer",
     "image": "/resource-previews/4459a69b8338-image.webp",
-    "icon": "/resource-previews/4459a69b8338-icon.ico",
+    "icon": "/resource-previews/4459a69b8338-icon.webp",
     "description": "In celebration of still being alive and fighting, we are giving away 1,000 Amazon e-books of “If Anyone Builds It, Everyone Dies”. Feel free to send…"
   },
   "https://blog.samaltman.com/reflections": {
     "fetchedAt": "2026-09-21T17:50:12.427Z",
     "source": "https://blog.samaltman.com/reflections",
-    "icon": "/resource-previews/90e523f11f02-icon.ico",
+    "icon": "/resource-previews/90e523f11f02-icon.webp",
     "image": "/resource-previews/90e523f11f02-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://blog.samaltman.com/reflections",
@@ -144,7 +143,7 @@
   "https://blog.samaltman.com/three-observations": {
     "fetchedAt": "2026-09-21T17:50:12.649Z",
     "source": "https://blog.samaltman.com/three-observations",
-    "icon": "/resource-previews/c1de00950b6c-icon.ico",
+    "icon": "/resource-previews/c1de00950b6c-icon.webp",
     "image": "/resource-previews/c1de00950b6c-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://blog.samaltman.com/three-observations",
@@ -153,7 +152,7 @@
   "https://blog.samaltman.com/the-gentle-singularity": {
     "fetchedAt": "2026-09-21T17:50:12.847Z",
     "source": "https://blog.samaltman.com/the-gentle-singularity",
-    "icon": "/resource-previews/2bc0d4251ea0-icon.ico",
+    "icon": "/resource-previews/2bc0d4251ea0-icon.webp",
     "image": "/resource-previews/2bc0d4251ea0-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://blog.samaltman.com/the-gentle-singularity",
@@ -163,158 +162,158 @@
     "fetchedAt": "2026-09-21T15:51:40.433Z",
     "source": "https://x.com/sama/status/2098811563415150910",
     "image": "/resource-previews/f914fd7dd4be-image.jpg",
-    "icon": "/resource-previews/f914fd7dd4be-icon.ico"
+    "icon": "/resource-previews/f914fd7dd4be-icon.webp"
   },
   "https://x.com/sama/status/2099352016988614852": {
     "fetchedAt": "2026-09-21T15:51:41.940Z",
     "source": "https://x.com/sama/status/2099352016988614852",
     "image": "/resource-previews/98638c6547b9-image.jpg",
-    "icon": "/resource-previews/98638c6547b9-icon.ico"
+    "icon": "/resource-previews/98638c6547b9-icon.webp"
   },
   "https://a16z.com/ai-will-save-the-world/": {
     "fetchedAt": "2026-09-21T17:50:14.158Z",
     "source": "https://a16z.com/ai-will-save-the-world/",
     "image": "/resource-previews/8b53206b7f2b-image.webp",
-    "icon": "/resource-previews/8b53206b7f2b-icon.png",
+    "icon": "/resource-previews/8b53206b7f2b-icon.webp",
     "description": "There's a full-blown moral panic about AI right now. But the real risk is losing the race to global AI technological superiority."
   },
   "https://a16z.com/the-techno-optimist-manifesto/": {
     "fetchedAt": "2026-09-21T17:50:14.697Z",
     "source": "https://a16z.com/the-techno-optimist-manifesto/",
     "image": "/resource-previews/43fc0897f708-image.webp",
-    "icon": "/resource-previews/43fc0897f708-icon.png",
+    "icon": "/resource-previews/43fc0897f708-icon.webp",
     "description": "We are told that technology is on the brink of ruining everything. But we are being lied to, and the truth is so much better. Marc Andreessen presents his techno-optimist vision for the future."
   },
   "https://a16z.com/podcast/marc-andreessens-2026-outlook-ai-timelines-us-vs-china-and-the-price-of-ai/": {
     "fetchedAt": "2026-09-21T17:50:15.392Z",
     "source": "https://a16z.com/podcast/marc-andreessens-2026-outlook-ai-timelines-us-vs-china-and-the-price-of-ai/",
     "image": "/resource-previews/cd26af18a224-image.webp",
-    "icon": "/resource-previews/cd26af18a224-icon.png",
+    "icon": "/resource-previews/cd26af18a224-icon.webp",
     "description": "a16z co-founder and General Partner Marc Andreessen joins an AMA-style conversation to explain why AI is the largest technology shift he has experienced, how the cost of intelligence is collapsing, and why the market still feels early despite rapid adoption. The discussion covers how falling model costs and fast capability gains are reshaping pricing, distribution,..."
   },
   "https://a16z.com/podcast/marc-andreessen-who-runs-the-worlds-ai/": {
     "fetchedAt": "2026-09-21T17:50:15.689Z",
     "source": "https://a16z.com/podcast/marc-andreessen-who-runs-the-worlds-ai/",
     "image": "/resource-previews/4fb8f0be705e-image.webp",
-    "icon": "/resource-previews/4fb8f0be705e-icon.png",
+    "icon": "/resource-previews/4fb8f0be705e-icon.webp",
     "description": "Cisco president and CPO Jeetu Patel speaks with a16z cofounder Marc Andreessen about why AI may finally break a 50-year productivity slump—and what’s at stake if America doesn’t win the race. They discuss where value will accrue in the AI stack, why open source complicates the US-China competition, and what’s blowing Andreessen’s mind right now."
   },
   "https://a16z.com/podcast/marc-andreessen-on-ai-california-and-the-future-of-america-joe-rogan/": {
     "fetchedAt": "2026-09-21T17:50:15.822Z",
     "source": "https://a16z.com/podcast/marc-andreessen-on-ai-california-and-the-future-of-america-joe-rogan/",
     "image": "/resource-previews/e130a9303450-image.webp",
-    "icon": "/resource-previews/e130a9303450-icon.png",
+    "icon": "/resource-previews/e130a9303450-icon.webp",
     "description": "Marc Andreessen joins Joe Rogan for a conversation on AI, politics, technology, and the future of American society. They discuss how artificial intelligence is rapidly moving from novelty to infrastructure, and why Andreessen believes its long-term impact will be overwhelmingly positive despite growing public fear around automation and surveillance. The conversation covers the explosion of..."
   },
   "https://www.youtube.com/watch?v=S7CrlFLAmEA": {
     "fetchedAt": "2026-09-21T17:50:15.900Z",
     "source": "https://www.youtube.com/watch?v=S7CrlFLAmEA",
     "image": "/resource-previews/801cd5d7ea5d-image.webp",
-    "icon": "/resource-previews/801cd5d7ea5d-icon.png",
+    "icon": "/resource-previews/801cd5d7ea5d-icon.webp",
     "description": "(0:00) Jensen Huang joins The Besties!(1:39) Thoughts on Dario's blog, Frontier Labs calling to slow down AI, and Doomer psychology(9:58) Sensible AI regulat..."
   },
   "https://www.pcgamer.com/hardware/nvidia-ceo-jensen-huang-tells-trump-he-agrees-the-ai-doomsayers-are-perpetrating-a-hoax-you-saw-through-all-of-that/": {
     "fetchedAt": "2026-09-21T17:50:16.752Z",
     "source": "https://www.pcgamer.com/hardware/nvidia-ceo-jensen-huang-tells-trump-he-agrees-the-ai-doomsayers-are-perpetrating-a-hoax-you-saw-through-all-of-that/",
     "image": "/resource-previews/ba493b17a893-image.webp",
-    "icon": "/resource-previews/ba493b17a893-icon.png",
+    "icon": "/resource-previews/ba493b17a893-icon.webp",
     "description": "On slowing down AI, the CEO says Nvidia is \"not going to let that happen.\""
   },
   "https://darioamodei.com/essay/machines-of-loving-grace": {
     "fetchedAt": "2026-09-21T17:50:16.828Z",
     "source": "https://darioamodei.com/essay/machines-of-loving-grace",
     "image": "/resource-previews/51571460a6fe-image.webp",
-    "icon": "/resource-previews/51571460a6fe-icon.png",
+    "icon": "/resource-previews/51571460a6fe-icon.webp",
     "description": "How AI Could Transform the World for the Better"
   },
   "https://darioamodei.com/post/the-urgency-of-interpretability": {
     "fetchedAt": "2026-09-21T17:50:17.130Z",
     "source": "https://darioamodei.com/post/the-urgency-of-interpretability",
     "image": "/resource-previews/f19373dc25a8-image.webp",
-    "icon": "/resource-previews/f19373dc25a8-icon.png",
+    "icon": "/resource-previews/f19373dc25a8-icon.webp",
     "description": null
   },
   "https://darioamodei.com/essay/the-adolescence-of-technology": {
     "fetchedAt": "2026-09-21T17:50:17.177Z",
     "source": "https://darioamodei.com/essay/the-adolescence-of-technology",
     "image": "/resource-previews/ceea0b558f0a-image.webp",
-    "icon": "/resource-previews/ceea0b558f0a-icon.png",
+    "icon": "/resource-previews/ceea0b558f0a-icon.webp",
     "description": "Confronting and Overcoming the Risks of Powerful AI"
   },
   "https://darioamodei.com/post/policy-on-the-ai-exponential": {
     "fetchedAt": "2026-09-21T17:50:17.451Z",
     "source": "https://darioamodei.com/post/policy-on-the-ai-exponential",
     "image": "/resource-previews/3f3ea86ec3e3-image.webp",
-    "icon": "/resource-previews/3f3ea86ec3e3-icon.png",
+    "icon": "/resource-previews/3f3ea86ec3e3-icon.webp",
     "description": null
   },
   "https://darioamodei.com/post/we-must-pace-the-frontier": {
     "fetchedAt": "2026-09-21T17:50:17.572Z",
     "source": "https://darioamodei.com/post/we-must-pace-the-frontier",
     "image": "/resource-previews/874a2fd905ea-image.webp",
-    "icon": "/resource-previews/874a2fd905ea-icon.png",
+    "icon": "/resource-previews/874a2fd905ea-icon.webp",
     "description": null
   },
   "https://garymarcus.substack.com/p/three-years-on-chatgpt-still-isnt": {
     "fetchedAt": "2026-09-21T17:50:17.580Z",
     "source": "https://garymarcus.substack.com/p/three-years-on-chatgpt-still-isnt",
     "image": "/resource-previews/c6bf345f827e-image.webp",
-    "icon": "/resource-previews/c6bf345f827e-icon.svg",
+    "icon": "/resource-previews/c6bf345f827e-icon.webp",
     "description": "A skeptic’s pre-mortem"
   },
   "https://garymarcus.substack.com/p/liability-regulation-and-ais-new": {
     "fetchedAt": "2026-09-21T17:50:17.617Z",
     "source": "https://garymarcus.substack.com/p/liability-regulation-and-ais-new",
     "image": "/resource-previews/ffa12e198727-image.webp",
-    "icon": "/resource-previews/ffa12e198727-icon.svg",
+    "icon": "/resource-previews/ffa12e198727-icon.webp",
     "description": "Listener beware"
   },
   "https://garymarcus.substack.com/p/breaking-news-and-how-the-end-might": {
     "fetchedAt": "2026-09-21T17:50:17.630Z",
     "source": "https://garymarcus.substack.com/p/breaking-news-and-how-the-end-might",
     "image": "/resource-previews/748918f9b3e9-image.webp",
-    "icon": "/resource-previews/748918f9b3e9-icon.svg",
+    "icon": "/resource-previews/748918f9b3e9-icon.webp",
     "description": "A flashback to my most recent interview with Steve Eisman, and some potentially critical news"
   },
   "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually": {
     "fetchedAt": "2026-09-21T17:50:17.734Z",
     "source": "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually",
     "image": "/resource-previews/53d745bbd558-image.webp",
-    "icon": "/resource-previews/53d745bbd558-icon.svg",
+    "icon": "/resource-previews/53d745bbd558-icon.webp",
     "description": "Rome is burning and people are fantasizing about Skynet."
   },
   "https://www.deeplearning.ai/the-batch/whos-responsible-for-irresponsible-ai": {
     "fetchedAt": "2026-09-21T17:50:18.307Z",
     "source": "https://www.deeplearning.ai/the-batch/whos-responsible-for-irresponsible-ai",
     "image": "/resource-previews/22167313934f-image.webp",
-    "icon": "/resource-previews/22167313934f-icon.ico",
+    "icon": "/resource-previews/22167313934f-icon.webp",
     "description": "The loudest voices stoking fears about AI dangers have made tremendous headway in the past two weeks."
   },
   "https://www.deeplearning.ai/the-batch/how-ai-is-affecting-the-job-market-and-what-you-can-do-about-it/": {
     "fetchedAt": "2026-09-21T17:50:18.479Z",
     "source": "https://www.deeplearning.ai/the-batch/how-ai-is-affecting-the-job-market-and-what-you-can-do-about-it/",
     "image": "/resource-previews/064deb3db102-image.webp",
-    "icon": "/resource-previews/064deb3db102-icon.ico",
+    "icon": "/resource-previews/064deb3db102-icon.webp",
     "description": "Job seekers in the U.S. and many other nations face a tough environment."
   },
   "https://www.mixtureofexperts.co/p/ai-for-the-real-world-a-conversation": {
     "fetchedAt": "2026-09-21T17:50:18.540Z",
     "source": "https://www.mixtureofexperts.co/p/ai-for-the-real-world-a-conversation",
     "image": "/resource-previews/d1f27ab8447c-image.webp",
-    "icon": "/resource-previews/d1f27ab8447c-icon.jpg",
+    "icon": "/resource-previews/d1f27ab8447c-icon.webp",
     "description": "Are today’s language models the path towards machine intelligence, or are they just a commercially viable local maximum?"
   },
   "https://nebius.science/stories/meet-yann-lecuns-lab-and-the-ai-world-of-2030": {
     "fetchedAt": "2026-09-21T17:50:18.706Z",
     "source": "https://nebius.science/stories/meet-yann-lecuns-lab-and-the-ai-world-of-2030",
     "image": "/resource-previews/0dfc4b802efb-image.webp",
-    "icon": "/resource-previews/0dfc4b802efb-icon.png",
+    "icon": "/resource-previews/0dfc4b802efb-icon.webp",
     "description": "Follow how AI and science co-evolve — through the lens of the cloud powering it."
   },
   "https://lexfridman.com/yann-lecun-3-transcript/": {
     "fetchedAt": "2026-09-21T17:50:18.731Z",
     "source": "https://lexfridman.com/yann-lecun-3-transcript/",
-    "icon": "/resource-previews/9bb897e22ace-icon.png",
+    "icon": "/resource-previews/9bb897e22ace-icon.webp",
     "image": "/resource-previews/9bb897e22ace-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://lexfridman.com/yann-lecun-3-transcript/",
@@ -331,69 +330,69 @@
   "https://www.ncsl.org/news/details/the-godfather-of-ai-warns-about-its-perils-praises-its-promise": {
     "fetchedAt": "2026-09-21T19:11:13.546Z",
     "source": "https://www.ncsl.org/news/details/the-godfather-of-ai-warns-about-its-perils-praises-its-promise",
-    "icon": "/resource-previews/66f1e6e6015a-icon.png"
+    "icon": "/resource-previews/66f1e6e6015a-icon.webp"
   },
   "https://www.wheresyoured.at/the-ai-haters-manifesto/": {
     "fetchedAt": "2026-09-21T17:50:19.500Z",
     "source": "https://www.wheresyoured.at/the-ai-haters-manifesto/",
     "image": "/resource-previews/7cf70545039d-image.webp",
-    "icon": "/resource-previews/7cf70545039d-icon.jpg",
+    "icon": "/resource-previews/7cf70545039d-icon.webp",
     "description": "If you liked this piece, you should subscribe to my premium newsletter. It’s $70 a year, $18 a quarter, or $7 a month, and in return you get a weekly newsletter that’s usually anywhere from 10,000 to 18,000 words, including vast, detailed analyses of NVIDIA, Anthropic"
   },
   "https://www.wheresyoured.at/ai-is-already-in-dangerous-hands/": {
     "fetchedAt": "2026-09-21T17:50:19.699Z",
     "source": "https://www.wheresyoured.at/ai-is-already-in-dangerous-hands/",
     "image": "/resource-previews/213fbcd34e19-image.webp",
-    "icon": "/resource-previews/213fbcd34e19-icon.jpg",
+    "icon": "/resource-previews/213fbcd34e19-icon.webp",
     "description": "If you liked this piece, you should subscribe to my premium newsletter, and you can subscribe on the following links: $70 a year, $18 a quarter, or $7 a month. In return you get a weekly newsletter that’s usually anywhere from 10,000 to 18,000 words, including vast,"
   },
   "https://www.wheresyoured.at/concentration-risk/": {
     "fetchedAt": "2026-09-21T17:50:19.914Z",
     "source": "https://www.wheresyoured.at/concentration-risk/",
     "image": "/resource-previews/97f9aa33955a-image.webp",
-    "icon": "/resource-previews/97f9aa33955a-icon.jpg",
+    "icon": "/resource-previews/97f9aa33955a-icon.webp",
     "description": "If you liked this piece, you should subscribe to my premium newsletter, and you can subscribe on the following links: $70 a year, $18 a quarter, or $7 a month. In return you get a weekly newsletter that’s usually anywhere from 10,000 to 18,000 words, including vast,"
   },
   "https://x.com/elonmusk/status/2098789109980332057": {
     "fetchedAt": "2026-09-21T15:51:50.366Z",
     "source": "https://x.com/elonmusk/status/2098789109980332057",
     "image": "/resource-previews/9f4d1d2428dd-image.jpg",
-    "icon": "/resource-previews/9f4d1d2428dd-icon.ico"
+    "icon": "/resource-previews/9f4d1d2428dd-icon.webp"
   },
   "https://x.com/elonmusk/status/2101177816872051038": {
     "fetchedAt": "2026-09-21T15:51:50.534Z",
     "source": "https://x.com/elonmusk/status/2101177816872051038",
-    "icon": "/resource-previews/f07661a02090-icon.ico"
+    "icon": "/resource-previews/f07661a02090-icon.webp"
   },
   "https://x.com/elonmusk/status/2101011740574052697": {
     "fetchedAt": "2026-09-21T15:51:50.592Z",
     "source": "https://x.com/elonmusk/status/2101011740574052697",
     "image": "/resource-previews/76f37e12b060-image.jpg",
-    "icon": "/resource-previews/76f37e12b060-icon.ico"
+    "icon": "/resource-previews/76f37e12b060-icon.webp"
   },
   "https://x.com/elonmusk/status/2099542714974896467": {
     "fetchedAt": "2026-09-21T15:51:52.734Z",
     "source": "https://x.com/elonmusk/status/2099542714974896467",
     "image": "/resource-previews/c1ef5175670a-image.jpg",
-    "icon": "/resource-previews/c1ef5175670a-icon.ico"
+    "icon": "/resource-previews/c1ef5175670a-icon.webp"
   },
   "https://x.com/elonmusk/status/2044990537145753894": {
     "fetchedAt": "2026-09-21T15:51:52.933Z",
     "source": "https://x.com/elonmusk/status/2044990537145753894",
     "image": "/resource-previews/7340a3a22467-image.jpg",
-    "icon": "/resource-previews/7340a3a22467-icon.ico"
+    "icon": "/resource-previews/7340a3a22467-icon.webp"
   },
   "https://www.youtube.com/watch?v=XuoqKYxDHVc": {
     "fetchedAt": "2026-09-21T17:50:19.963Z",
     "source": "https://www.youtube.com/watch?v=XuoqKYxDHVc",
     "image": "/resource-previews/0459bbdec68e-image.webp",
-    "icon": "/resource-previews/0459bbdec68e-icon.png",
+    "icon": "/resource-previews/0459bbdec68e-icon.webp",
     "description": "Elon Musk may be the most powerful man in the world. He’s worth almost $1trn, runs Tesla and SpaceX, boasts an enormous social-media following and, to top it..."
   },
   "https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-elon-musk-davos-2026/": {
     "fetchedAt": "2026-09-21T17:50:20.279Z",
     "source": "https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-elon-musk-davos-2026/",
-    "icon": "/resource-previews/7ee86eacd657-icon.png",
+    "icon": "/resource-previews/7ee86eacd657-icon.webp",
     "image": "/resource-previews/7ee86eacd657-image.webp",
     "imageKind": "social",
     "imageSource": "https://assets.weforum.org/podcast_episode/image/responsive_large_hUpZ3euIGGT8bhVd4kXoom73wFFDc83HXmr0nr9GrYo.png",
@@ -403,34 +402,34 @@
     "fetchedAt": "2026-09-21T17:50:20.297Z",
     "source": "https://www.interconnects.ai/p/where-i-stand-on-rsi",
     "image": "/resource-previews/f0a3b70da126-image.webp",
-    "icon": "/resource-previews/f0a3b70da126-icon.png",
+    "icon": "/resource-previews/f0a3b70da126-icon.webp",
     "description": "An “AI moderate’s” view on recent events and the trajectory of frontier models."
   },
   "https://www.interconnects.ai/p/when-will-average-people-feel-ais": {
     "fetchedAt": "2026-09-21T17:50:20.646Z",
     "source": "https://www.interconnects.ai/p/when-will-average-people-feel-ais",
     "image": "/resource-previews/24ae7ff87814-image.webp",
-    "icon": "/resource-previews/24ae7ff87814-icon.png",
+    "icon": "/resource-previews/24ae7ff87814-icon.webp",
     "description": "We’re <5 years into a compounding revolution which could take a century, and how the AI industry should manage this."
   },
   "https://www.interconnects.ai/p/lessons-from-the-hacks": {
     "fetchedAt": "2026-09-21T17:50:20.777Z",
     "source": "https://www.interconnects.ai/p/lessons-from-the-hacks",
     "image": "/resource-previews/b6afdd489280-image.webp",
-    "icon": "/resource-previews/b6afdd489280-icon.png",
+    "icon": "/resource-previews/b6afdd489280-icon.webp",
     "description": "Musings on model alignment, what determines safety, and where we go from here."
   },
   "https://www.interconnects.ai/p/the-current-balance-of-power-in-open": {
     "fetchedAt": "2026-09-21T17:50:21.081Z",
     "source": "https://www.interconnects.ai/p/the-current-balance-of-power-in-open",
     "image": "/resource-previews/43bf4602833d-image.webp",
-    "icon": "/resource-previews/43bf4602833d-icon.png",
+    "icon": "/resource-previews/43bf4602833d-icon.webp",
     "description": "The expanded form of a testimony I prepared for Congress."
   },
   "https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/": {
     "fetchedAt": "2026-09-21T17:50:21.109Z",
     "source": "https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/",
-    "icon": "/resource-previews/126d2869cadf-icon.png",
+    "icon": "/resource-previews/126d2869cadf-icon.webp",
     "image": "/resource-previews/126d2869cadf-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/",
@@ -439,7 +438,7 @@
   "https://www.sanders.senate.gov/press-releases/news-sanders-ocasio-cortez-announce-ai-data-center-moratorium-act/": {
     "fetchedAt": "2026-09-21T17:50:21.148Z",
     "source": "https://www.sanders.senate.gov/press-releases/news-sanders-ocasio-cortez-announce-ai-data-center-moratorium-act/",
-    "icon": "/resource-previews/181e80769ab5-icon.png",
+    "icon": "/resource-previews/181e80769ab5-icon.webp",
     "image": "/resource-previews/181e80769ab5-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://www.sanders.senate.gov/press-releases/news-sanders-ocasio-cortez-announce-ai-data-center-moratorium-act/",
@@ -449,25 +448,25 @@
     "fetchedAt": "2026-09-21T15:51:58.293Z",
     "source": "https://x.com/DavidSacks/status/2098973625252708460",
     "image": "/resource-previews/b93ed22ecab3-image.jpg",
-    "icon": "/resource-previews/b93ed22ecab3-icon.ico"
+    "icon": "/resource-previews/b93ed22ecab3-icon.webp"
   },
   "https://x.com/DavidSacks/status/2101420421992353865": {
     "fetchedAt": "2026-09-21T15:51:58.652Z",
     "source": "https://x.com/DavidSacks/status/2101420421992353865",
     "image": "/resource-previews/8b31c36ccbe2-image.webp",
-    "icon": "/resource-previews/8b31c36ccbe2-icon.ico"
+    "icon": "/resource-previews/8b31c36ccbe2-icon.webp"
   },
   "https://x.com/DavidSacks/status/2100992953133252683": {
     "fetchedAt": "2026-09-21T15:51:59.553Z",
     "source": "https://x.com/DavidSacks/status/2100992953133252683",
     "image": "/resource-previews/f1ebd69f10ea-image.webp",
-    "icon": "/resource-previews/f1ebd69f10ea-icon.ico"
+    "icon": "/resource-previews/f1ebd69f10ea-icon.webp"
   },
   "https://x.com/DavidSacks/status/2098575808893784163": {
     "fetchedAt": "2026-09-21T15:52:00.237Z",
     "source": "https://x.com/DavidSacks/status/2098575808893784163",
     "image": "/resource-previews/26e755ce6e2a-image.jpg",
-    "icon": "/resource-previews/26e755ce6e2a-icon.ico"
+    "icon": "/resource-previews/26e755ce6e2a-icon.webp"
   },
   "https://institute.deepmind.com/essays/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age/": {
     "fetchedAt": "2026-09-21T17:50:21.322Z",
@@ -475,197 +474,196 @@
     "image": "/resource-previews/0967ce31697b-image.webp",
     "imageKind": "social",
     "imageSource": "https://lh3.googleusercontent.com/bfom0SBNk6WBbGGFKxvxgXi9geoqCn3j2cDfeJg_iscGShIgFuTvC4-4sdFR0kYSA5TiZ6dbQP7LMQ0vxo5E_XcshK6O8dsNa3rqRoJPXq9I6SnXrw=w1200-h630-n-nu-rw",
-    "icon": "/resource-previews/0967ce31697b-icon.ico",
     "description": "A dynamic approach to testing frontier AI model capabilities that supports innovation, incentivizes responsible behavior, and helps safely steward AGI."
   },
   "https://x.com/demishassabis/status/2098909516582490602": {
     "fetchedAt": "2026-09-21T15:52:01.738Z",
     "source": "https://x.com/demishassabis/status/2098909516582490602",
     "image": "/resource-previews/2f6775015b87-image.jpg",
-    "icon": "/resource-previews/2f6775015b87-icon.ico"
+    "icon": "/resource-previews/2f6775015b87-icon.webp"
   },
   "https://x.com/demishassabis/status/2100211548794839140": {
     "fetchedAt": "2026-09-21T15:52:02.132Z",
     "source": "https://x.com/demishassabis/status/2100211548794839140",
     "image": "/resource-previews/1ce0d209af65-image.webp",
-    "icon": "/resource-previews/1ce0d209af65-icon.ico"
+    "icon": "/resource-previews/1ce0d209af65-icon.webp"
   },
   "https://x.com/demishassabis/status/2085034334914769203": {
     "fetchedAt": "2026-09-21T15:52:02.379Z",
     "source": "https://x.com/demishassabis/status/2085034334914769203",
     "image": "/resource-previews/e2eb277eb5ab-image.webp",
-    "icon": "/resource-previews/e2eb277eb5ab-icon.ico"
+    "icon": "/resource-previews/e2eb277eb5ab-icon.webp"
   },
   "https://x.com/_sholtodouglas/status/2098866572748263594": {
     "fetchedAt": "2026-09-21T15:52:02.387Z",
     "source": "https://x.com/_sholtodouglas/status/2098866572748263594",
     "image": "/resource-previews/537151220ab4-image.png",
-    "icon": "/resource-previews/537151220ab4-icon.ico"
+    "icon": "/resource-previews/537151220ab4-icon.webp"
   },
   "https://x.com/_sholtodouglas/status/2088463770318516734": {
     "fetchedAt": "2026-09-21T15:52:03.705Z",
     "source": "https://x.com/_sholtodouglas/status/2088463770318516734",
     "image": "/resource-previews/df4c5cf7db28-image.webp",
-    "icon": "/resource-previews/df4c5cf7db28-icon.ico"
+    "icon": "/resource-previews/df4c5cf7db28-icon.webp"
   },
   "https://x.com/_sholtodouglas/status/2088083624734462337": {
     "fetchedAt": "2026-09-21T15:52:03.918Z",
     "source": "https://x.com/_sholtodouglas/status/2088083624734462337",
     "image": "/resource-previews/5335153a8b6a-image.webp",
-    "icon": "/resource-previews/5335153a8b6a-icon.ico"
+    "icon": "/resource-previews/5335153a8b6a-icon.webp"
   },
   "https://x.com/_sholtodouglas/status/2090556617922335027": {
     "fetchedAt": "2026-09-21T15:52:03.996Z",
     "source": "https://x.com/_sholtodouglas/status/2090556617922335027",
     "image": "/resource-previews/b5bffb3e852e-image.jpg",
-    "icon": "/resource-previews/b5bffb3e852e-icon.ico"
+    "icon": "/resource-previews/b5bffb3e852e-icon.webp"
   },
   "https://www.dwarkesh.com/p/sholto-trenton-2": {
     "fetchedAt": "2026-09-21T17:50:21.578Z",
     "source": "https://www.dwarkesh.com/p/sholto-trenton-2",
     "image": "/resource-previews/1648bc632a54-image.webp",
-    "icon": "/resource-previews/1648bc632a54-icon.jpg",
+    "icon": "/resource-previews/1648bc632a54-icon.webp",
     "description": "Listen now | Scaling reinforcement learning, tracing circuits, and the path to fully autonomous agents"
   },
   "https://x.com/tszzl/status/2101462171410677962": {
     "fetchedAt": "2026-09-21T15:52:05.739Z",
     "source": "https://x.com/tszzl/status/2101462171410677962",
     "image": "/resource-previews/607353cb150a-image.jpg",
-    "icon": "/resource-previews/607353cb150a-icon.ico"
+    "icon": "/resource-previews/607353cb150a-icon.webp"
   },
   "https://x.com/tszzl/status/2100760026164208084": {
     "fetchedAt": "2026-09-21T15:52:05.783Z",
     "source": "https://x.com/tszzl/status/2100760026164208084",
     "image": "/resource-previews/b102b6633784-image.jpg",
-    "icon": "/resource-previews/b102b6633784-icon.ico"
+    "icon": "/resource-previews/b102b6633784-icon.webp"
   },
   "https://x.com/tszzl/status/2099661188904964140": {
     "fetchedAt": "2026-09-21T15:52:06.061Z",
     "source": "https://x.com/tszzl/status/2099661188904964140",
     "image": "/resource-previews/138f95867687-image.jpg",
-    "icon": "/resource-previews/138f95867687-icon.ico"
+    "icon": "/resource-previews/138f95867687-icon.webp"
   },
   "https://x.com/tszzl/status/2099640048098701560": {
     "fetchedAt": "2026-09-21T15:52:06.066Z",
     "source": "https://x.com/tszzl/status/2099640048098701560",
     "image": "/resource-previews/d177c29d1302-image.jpg",
-    "icon": "/resource-previews/d177c29d1302-icon.ico"
+    "icon": "/resource-previews/d177c29d1302-icon.webp"
   },
   "https://x.com/tszzl/status/2101907392128840128": {
     "fetchedAt": "2026-09-21T15:52:07.642Z",
     "source": "https://x.com/tszzl/status/2101907392128840128",
     "image": "/resource-previews/3659663d1001-image.jpg",
-    "icon": "/resource-previews/3659663d1001-icon.ico"
+    "icon": "/resource-previews/3659663d1001-icon.webp"
   },
   "https://www.dwarkesh.com/p/jeff-dean-and-noam-shazeer": {
     "fetchedAt": "2026-09-21T17:50:21.824Z",
     "source": "https://www.dwarkesh.com/p/jeff-dean-and-noam-shazeer",
     "image": "/resource-previews/b4b9a9387313-image.webp",
-    "icon": "/resource-previews/b4b9a9387313-icon.jpg",
+    "icon": "/resource-previews/b4b9a9387313-icon.webp",
     "description": "Two of Gemini's co-leads on Google's path to AGI"
   },
   "https://x.com/NoamShazeer/status/2056795650432565370": {
     "fetchedAt": "2026-09-21T15:52:08.083Z",
     "source": "https://x.com/NoamShazeer/status/2056795650432565370",
     "image": "/resource-previews/22af6d866312-image.webp",
-    "icon": "/resource-previews/22af6d866312-icon.ico"
+    "icon": "/resource-previews/22af6d866312-icon.webp"
   },
   "https://x.com/NoamShazeer/status/2028909105969283565": {
     "fetchedAt": "2026-09-21T15:52:08.084Z",
     "source": "https://x.com/NoamShazeer/status/2028909105969283565",
     "image": "/resource-previews/124232f3dc9b-image.webp",
-    "icon": "/resource-previews/124232f3dc9b-icon.ico"
+    "icon": "/resource-previews/124232f3dc9b-icon.webp"
   },
   "https://x.com/NoamShazeer/status/2067400851438932297": {
     "fetchedAt": "2026-09-21T15:52:08.896Z",
     "source": "https://x.com/NoamShazeer/status/2067400851438932297",
     "image": "/resource-previews/71f5a0a2d1bd-image.jpg",
-    "icon": "/resource-previews/71f5a0a2d1bd-icon.ico"
+    "icon": "/resource-previews/71f5a0a2d1bd-icon.webp"
   },
   "https://www.dwarkesh.com/p/noam-brown": {
     "fetchedAt": "2026-09-21T17:50:22.156Z",
     "source": "https://www.dwarkesh.com/p/noam-brown",
     "image": "/resource-previews/5916add02dc8-image.webp",
-    "icon": "/resource-previews/5916add02dc8-icon.jpg",
+    "icon": "/resource-previews/5916add02dc8-icon.webp",
     "description": "“We never want to be in a situation again where we underestimate the AI.”"
   },
   "https://x.com/polynoamial/status/2100998240586137701": {
     "fetchedAt": "2026-09-21T15:52:09.841Z",
     "source": "https://x.com/polynoamial/status/2100998240586137701",
     "image": "/resource-previews/ff3133ebf39f-image.jpg",
-    "icon": "/resource-previews/ff3133ebf39f-icon.ico"
+    "icon": "/resource-previews/ff3133ebf39f-icon.webp"
   },
   "https://x.com/polynoamial/status/2097375837670785447": {
     "fetchedAt": "2026-09-21T15:52:09.934Z",
     "source": "https://x.com/polynoamial/status/2097375837670785447",
     "image": "/resource-previews/a44e539eb14c-image.jpg",
-    "icon": "/resource-previews/a44e539eb14c-icon.ico"
+    "icon": "/resource-previews/a44e539eb14c-icon.webp"
   },
   "https://x.com/polynoamial/status/2095583211950833768": {
     "fetchedAt": "2026-09-21T15:52:10.330Z",
     "source": "https://x.com/polynoamial/status/2095583211950833768",
     "image": "/resource-previews/e5460373fb8f-image.jpg",
-    "icon": "/resource-previews/e5460373fb8f-icon.ico"
+    "icon": "/resource-previews/e5460373fb8f-icon.webp"
   },
   "https://www.dwarkesh.com/p/the-next-paradigm": {
     "fetchedAt": "2026-09-21T17:50:22.282Z",
     "source": "https://www.dwarkesh.com/p/the-next-paradigm",
     "image": "/resource-previews/43027dd9e764-image.webp",
-    "icon": "/resource-previews/43027dd9e764-icon.jpg",
+    "icon": "/resource-previews/43027dd9e764-icon.webp",
     "description": "Labs are throwing away the most valuable data."
   },
   "https://www.dwarkesh.com/p/era-of-continual-learning": {
     "fetchedAt": "2026-09-21T17:50:22.380Z",
     "source": "https://www.dwarkesh.com/p/era-of-continual-learning",
     "image": "/resource-previews/3e41a0ddd221-image.webp",
-    "icon": "/resource-previews/3e41a0ddd221-icon.jpg",
+    "icon": "/resource-previews/3e41a0ddd221-icon.webp",
     "description": "Locking in AI safety regulation now is a mistake."
   },
   "https://www.dwarkesh.com/p/ryan-greenblatt": {
     "fetchedAt": "2026-09-21T17:50:22.498Z",
     "source": "https://www.dwarkesh.com/p/ryan-greenblatt",
     "image": "/resource-previews/ac4c4eb6f0c4-image.webp",
-    "icon": "/resource-previews/ac4c4eb6f0c4-icon.jpg",
+    "icon": "/resource-previews/ac4c4eb6f0c4-icon.webp",
     "description": "A debate about recursive self-improvement."
   },
   "https://www.dwarkesh.com/p/pretraining-progress-is-mostly-data": {
     "fetchedAt": "2026-09-21T17:50:22.540Z",
     "source": "https://www.dwarkesh.com/p/pretraining-progress-is-mostly-data",
     "image": "/resource-previews/8a3fcaf7c7bc-image.webp",
-    "icon": "/resource-previews/8a3fcaf7c7bc-icon.jpg",
+    "icon": "/resource-previews/8a3fcaf7c7bc-icon.webp",
     "description": "Breaking down 6 years of pretraining progress into data vs model improvements"
   },
   "https://yoshuabengio.org/en/blog/why-are-ai-agents-lying-cheating-and-coordinating": {
     "fetchedAt": "2026-09-21T17:50:22.643Z",
     "source": "https://yoshuabengio.org/en/blog/why-are-ai-agents-lying-cheating-and-coordinating",
     "image": "/resource-previews/987b7faae692-image.webp",
-    "icon": "/resource-previews/987b7faae692-icon.ico",
+    "icon": "/resource-previews/987b7faae692-icon.webp",
     "description": "A lot has been written about the incidents of the last few months in which AI agents misbehaved in serious ways. They took actions that would be considered as crimes if a human took them, escaped their containment to cheat on assigned tasks while attempting to evade detection, and coordinated toward goals nobody had specified, such as launching cyber attacks. Before concluding what to do about it, it is worth asking why."
   },
   "https://lawzero.org/en/news/ai-predicts-has-no-hidden-agenda-lawzero-lays-out-formal-safety-case-its-scientist-ai": {
     "fetchedAt": "2026-09-21T17:50:22.680Z",
     "source": "https://lawzero.org/en/news/ai-predicts-has-no-hidden-agenda-lawzero-lays-out-formal-safety-case-its-scientist-ai",
     "image": "/resource-previews/868d977fc65c-image.webp",
-    "icon": "/resource-previews/868d977fc65c-icon.ico",
+    "icon": "/resource-previews/868d977fc65c-icon.webp",
     "description": "LawZero’s research team, led by Yoshua Bengio, makes the mathematical case for a “disinterested” AI that predicts the truth without pursuing goals of its own."
   },
   "https://arxiv.org/abs/2609.10630": {
     "fetchedAt": "2026-09-21T17:50:23.027Z",
     "source": "https://arxiv.org/abs/2609.10630",
     "image": "/resource-previews/d6845980d7d3-image.webp",
-    "icon": "/resource-previews/d6845980d7d3-icon.png",
+    "icon": "/resource-previews/d6845980d7d3-icon.webp",
     "description": "Abstract page for arXiv paper 2609.10630: AI Safety: Not Optional, Not Later"
   },
   "https://investor.nvidia.com/news/press-release-details/2026/Ilya-Sutskevers-Safe-Superintelligence-Inc--and-NVIDIA-Announce-Long-Term-Strategic-Partnership/default.aspx": {
     "fetchedAt": "2026-09-21T19:11:14.529Z",
     "source": "https://investor.nvidia.com/news/press-release-details/2026/Ilya-Sutskevers-Safe-Superintelligence-Inc--and-NVIDIA-Announce-Long-Term-Strategic-Partnership/default.aspx",
-    "icon": "/resource-previews/7b0cc0dc8757-icon.png"
+    "icon": "/resource-previews/7b0cc0dc8757-icon.webp"
   },
   "https://www.dwarkesh.com/p/ilya-sutskever-2": {
     "fetchedAt": "2026-09-21T17:50:23.324Z",
     "source": "https://www.dwarkesh.com/p/ilya-sutskever-2",
     "image": "/resource-previews/24bdaf0e463c-image.webp",
-    "icon": "/resource-previews/24bdaf0e463c-icon.jpg",
+    "icon": "/resource-previews/24bdaf0e463c-icon.webp",
     "description": "“These models somehow just generalize dramatically worse than people. It's a very fundamental thing.”"
   },
   "https://ssi.inc/": {
@@ -678,20 +676,20 @@
     "fetchedAt": "2026-09-21T17:50:24.140Z",
     "source": "https://www.dwarkesh.com/p/andrej-karpathy",
     "image": "/resource-previews/899edc00cc3c-image.webp",
-    "icon": "/resource-previews/899edc00cc3c-icon.jpg",
+    "icon": "/resource-previews/899edc00cc3c-icon.webp",
     "description": "\"The problems are tractable, but they're still difficult”"
   },
   "https://github.com/karpathy/autoresearch": {
     "fetchedAt": "2026-09-21T17:50:24.168Z",
     "source": "https://github.com/karpathy/autoresearch",
     "image": "/resource-previews/f226959a357f-image.webp",
-    "icon": "/resource-previews/f226959a357f-icon.svg",
+    "icon": "/resource-previews/f226959a357f-icon.webp",
     "description": "AI agents running research on single-GPU nanochat training automatically - karpathy/autoresearch"
   },
   "https://news.stanford.edu/stories/2026/05/james-landay-fei-fei-li-john-hennessy-hai-interview": {
     "fetchedAt": "2026-09-21T17:50:24.250Z",
     "source": "https://news.stanford.edu/stories/2026/05/james-landay-fei-fei-li-john-hennessy-hai-interview",
-    "icon": "/resource-previews/847364120743-icon.png",
+    "icon": "/resource-previews/847364120743-icon.webp",
     "image": "/resource-previews/847364120743-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://news.stanford.edu/stories/2026/05/james-landay-fei-fei-li-john-hennessy-hai-interview",
@@ -701,41 +699,41 @@
     "fetchedAt": "2026-09-21T17:50:24.431Z",
     "source": "https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence",
     "image": "/resource-previews/fe4155bdc9e6-image.webp",
-    "icon": "/resource-previews/fe4155bdc9e6-icon.jpg",
+    "icon": "/resource-previews/fe4155bdc9e6-icon.webp",
     "description": "In 1950, when computing was little more than automated arithmetic and simple logic, Alan Turing asked a question that still reverberates today: can machines think?"
   },
   "https://www.dwarkesh.com/p/richard-sutton": {
     "fetchedAt": "2026-09-21T17:50:24.932Z",
     "source": "https://www.dwarkesh.com/p/richard-sutton",
     "image": "/resource-previews/139cb07e49d5-image.webp",
-    "icon": "/resource-previews/139cb07e49d5-icon.jpg",
+    "icon": "/resource-previews/139cb07e49d5-icon.webp",
     "description": "Watch now (66 mins) | LLMs aren’t Bitter-Lesson-pilled"
   },
   "https://www.amii.ca/updates-insights/rich-sutton-turing": {
     "fetchedAt": "2026-09-21T17:50:25.020Z",
     "source": "https://www.amii.ca/updates-insights/rich-sutton-turing",
     "image": "/resource-previews/2b8d79ace874-image.webp",
-    "icon": "/resource-previews/2b8d79ace874-icon.png",
+    "icon": "/resource-previews/2b8d79ace874-icon.webp",
     "description": "Amii Fellow, Canada CIFAR AI Chair & Amii Scientific Advisor honoured with top prize in computing science alongside long-time collaborator Andrew Barto for their foundational work on reinforcement learning"
   },
   "https://www.theguardian.com/commentisfree/2026/sep/15/ai-safety-requirements": {
     "fetchedAt": "2026-09-21T17:50:25.136Z",
     "source": "https://www.theguardian.com/commentisfree/2026/sep/15/ai-safety-requirements",
     "image": "/resource-previews/c02d493b24d2-image.webp",
-    "icon": "/resource-previews/c02d493b24d2-icon.ico",
+    "icon": "/resource-previews/c02d493b24d2-icon.webp",
     "description": "Safety requirements are non-negotiable. They depend on meeting concrete goals, not just adjusting a timeline"
   },
   "https://news.berkeley.edu/2026/09/03/watch-uc-berkeley-professor-calls-for-a-halt-to-ai-weapons/": {
     "fetchedAt": "2026-09-21T17:50:25.253Z",
     "source": "https://news.berkeley.edu/2026/09/03/watch-uc-berkeley-professor-calls-for-a-halt-to-ai-weapons/",
     "image": "/resource-previews/0609404aff8d-image.webp",
-    "icon": "/resource-previews/0609404aff8d-icon.svg",
+    "icon": "/resource-previews/0609404aff8d-icon.webp",
     "description": "An urgent warning on autonomous weapons from Stuart Russell — the man who literally wrote the textbook on AI."
   },
   "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing/": {
     "fetchedAt": "2026-09-21T17:50:25.436Z",
     "source": "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing/",
-    "icon": "/resource-previews/5ac9b22e82e2-icon.ico",
+    "icon": "/resource-previews/5ac9b22e82e2-icon.webp",
     "image": "/resource-previews/5ac9b22e82e2-image.webp",
     "imageKind": "article",
     "imageSource": "https://humancompatible.ai/app/uploads/2023/09/senate_hearing.png",
@@ -744,7 +742,7 @@
   "https://www.ourcommons.ca/Content/Committee/451/ETHI/Evidence/EV13876654/ETHIEV25-E.PDF": {
     "fetchedAt": "2026-09-21T19:11:15.105Z",
     "source": "https://www.ourcommons.ca/Content/Committee/451/ETHI/Evidence/EV13876654/ETHIEV25-E.PDF",
-    "icon": "/resource-previews/36a323a7fde9-icon.ico",
+    "icon": "/resource-previews/36a323a7fde9-icon.webp",
     "image": "/resource-previews/36a323a7fde9-image.webp",
     "imageKind": "document",
     "imageSource": "https://www.ourcommons.ca/Content/Committee/451/ETHI/Evidence/EV13876654/ETHIEV25-E.PDF"
@@ -753,34 +751,34 @@
     "fetchedAt": "2026-09-21T17:50:26.003Z",
     "source": "https://futureoflife.org/our-position-on-ai/",
     "image": "/resource-previews/2fbf78e84773-image.webp",
-    "icon": "/resource-previews/2fbf78e84773-icon.png",
+    "icon": "/resource-previews/2fbf78e84773-icon.webp",
     "description": "We oppose developing AI that poses large-scale risks to humanity, including via power concentration, and favor AI built to solve real human problems. We believe frontier AI is currently being developed in an unsafe and unaccountable manner."
   },
   "https://www.democracynow.org/2026/7/30/max_tegmark": {
     "fetchedAt": "2026-09-21T17:50:26.032Z",
     "source": "https://www.democracynow.org/2026/7/30/max_tegmark",
     "image": "/resource-previews/1684afe24cfc-image.webp",
-    "icon": "/resource-previews/1684afe24cfc-icon.ico",
+    "icon": "/resource-previews/1684afe24cfc-icon.webp",
     "description": "Artificial intelligence tools are quickly advancing in sophistication and capabilities, raising alarm among researchers and industry figures who say the technology needs to be more tightly regulated. This comes as OpenAI, maker of ChatGPT, recently disclosed that one of its experimental AI agents went rogue and secretly hacked into the infrastructure of several other companies in what was supposed to be a controlled test. Over 1,100 scientists and senior employees at top AI firms have called on"
   },
   "https://www.36kr.com/p/2872793466982535": {
     "fetchedAt": "2026-09-21T17:50:26.707Z",
     "source": "https://www.36kr.com/p/2872793466982535",
     "image": "/resource-previews/9f9d1e3d078d-image.webp",
-    "icon": "/resource-previews/9f9d1e3d078d-icon.ico",
+    "icon": "/resource-previews/9f9d1e3d078d-icon.webp",
     "description": "做贡献者，而非搭便车者。"
   },
   "https://www.36kr.com/p/2272896094586500": {
     "fetchedAt": "2026-09-21T17:50:27.920Z",
     "source": "https://www.36kr.com/p/2272896094586500",
     "image": "/resource-previews/1b2e2e43c691-image.webp",
-    "icon": "/resource-previews/1b2e2e43c691-icon.ico",
+    "icon": "/resource-previews/1b2e2e43c691-icon.webp",
     "description": "务必要疯狂地怀抱雄心，且还要疯狂地真诚。"
   },
   "https://ainowinstitute.org/wp-content/uploads/2026/02/Reframing-Impact_Frugal-AI_Timnit-Gebru.pdf": {
     "fetchedAt": "2026-09-21T19:11:15.130Z",
     "source": "https://ainowinstitute.org/wp-content/uploads/2026/02/Reframing-Impact_Frugal-AI_Timnit-Gebru.pdf",
-    "icon": "/resource-previews/f23176da16f4-icon.png",
+    "icon": "/resource-previews/f23176da16f4-icon.webp",
     "image": "/resource-previews/f23176da16f4-image.webp",
     "imageKind": "document",
     "imageSource": "https://ainowinstitute.org/wp-content/uploads/2026/02/Reframing-Impact_Frugal-AI_Timnit-Gebru.pdf"
@@ -789,19 +787,19 @@
     "fetchedAt": "2026-09-21T17:50:28.337Z",
     "source": "https://www.democracynow.org/2026/8/13/timnit_gebru",
     "image": "/resource-previews/a80e6c54fd79-image.webp",
-    "icon": "/resource-previews/a80e6c54fd79-icon.ico",
+    "icon": "/resource-previews/a80e6c54fd79-icon.webp",
     "description": "We speak with Timnit Gebru, a leader in the field of AI ethics, about how artificial intelligence is entrenching societal biases and inequality. Gebru is the founder and executive director of the Distributed Artificial Intelligence Research Institute, a group of academics, activists and engineers who produce research rooted in the belief that technology should benefit everyone. She also co-founded Black in AI, a nonprofit that works to increase the inclusion and visibility of Black people in the"
   },
   "https://firstmonday.org/ojs/index.php/fm/article/view/13636": {
     "fetchedAt": "2026-09-21T19:11:15.193Z",
     "source": "https://firstmonday.org/ojs/index.php/fm/article/view/13636",
-    "icon": "/resource-previews/d9c5ebff69e9-icon.gif",
+    "icon": "/resource-previews/d9c5ebff69e9-icon.webp",
     "description": null
   },
   "https://www.dair-institute.org/research/": {
     "fetchedAt": "2026-09-21T17:50:28.794Z",
     "source": "https://www.dair-institute.org/research/",
-    "icon": "/resource-previews/b0fa12cfbe82-icon.png",
+    "icon": "/resource-previews/b0fa12cfbe82-icon.webp",
     "image": "/resource-previews/b0fa12cfbe82-image.webp",
     "imageKind": "social",
     "imageSource": "https://cdn.sanity.io/images/wc2kmxvk/rebrand/796af217ffe26031dc6039bcb1562018f501673c-2829x1479.png",
@@ -811,41 +809,41 @@
     "fetchedAt": "2026-09-21T17:50:29.548Z",
     "source": "https://www.normaltech.ai/p/ai-as-normal-technology",
     "image": "/resource-previews/524b59fce271-image.webp",
-    "icon": "/resource-previews/524b59fce271-icon.png",
+    "icon": "/resource-previews/524b59fce271-icon.webp",
     "description": "A new paper that we will expand into our next book"
   },
   "https://www.normaltech.ai/p/ai-agents-cant-yet-do-open-ended": {
     "fetchedAt": "2026-09-21T17:50:29.619Z",
     "source": "https://www.normaltech.ai/p/ai-agents-cant-yet-do-open-ended",
     "image": "/resource-previews/e1dd159cc98a-image.webp",
-    "icon": "/resource-previews/e1dd159cc98a-icon.png",
+    "icon": "/resource-previews/e1dd159cc98a-icon.webp",
     "description": "Early evidence from two case studies"
   },
   "https://www.normaltech.ai/p/the-ai-as-normal-technology-view": {
     "fetchedAt": "2026-09-21T17:50:29.856Z",
     "source": "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
     "image": "/resource-previews/2e4d7ba6eb1f-image.webp",
-    "icon": "/resource-previews/2e4d7ba6eb1f-icon.png",
+    "icon": "/resource-previews/2e4d7ba6eb1f-icon.webp",
     "description": "A middle ground between the cybersecurity and AI safety communities"
   },
   "https://www.brookings.edu/articles/building-pro-worker-ai/": {
     "fetchedAt": "2026-09-21T17:50:29.941Z",
     "source": "https://www.brookings.edu/articles/building-pro-worker-ai/",
     "image": "/resource-previews/211eb3d68640-image.webp",
-    "icon": "/resource-previews/211eb3d68640-icon.png",
+    "icon": "/resource-previews/211eb3d68640-icon.webp",
     "description": "Daron Acemoglu, David Autor, and Simon Johnson ask: What is pro-worker AI, and how can we build it?"
   },
   "https://empiricrafting.substack.com/p/daron-acemoglu-on-pro-worker-ai-and": {
     "fetchedAt": "2026-09-21T17:50:29.960Z",
     "source": "https://empiricrafting.substack.com/p/daron-acemoglu-on-pro-worker-ai-and",
     "image": "/resource-previews/dd74d56dd9ab-image.webp",
-    "icon": "/resource-previews/dd74d56dd9ab-icon.png",
+    "icon": "/resource-previews/dd74d56dd9ab-icon.webp",
     "description": "We’re honored to host Daron Acemoglu, Institute Professor at MIT and 2024 Nobel laureate."
   },
   "https://www.meta.com/thefutureisforeveryone/": {
     "fetchedAt": "2026-09-21T17:50:29.972Z",
     "source": "https://www.meta.com/thefutureisforeveryone/",
-    "icon": "/resource-previews/389f67992480-icon.ico",
+    "icon": "/resource-previews/389f67992480-icon.webp",
     "image": "/resource-previews/389f67992480-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://www.meta.com/thefutureisforeveryone/",
@@ -854,7 +852,7 @@
   "https://www.meta.com/superintelligence/": {
     "fetchedAt": "2026-09-21T17:50:30.139Z",
     "source": "https://www.meta.com/superintelligence/",
-    "icon": "/resource-previews/84e801bc8d72-icon.ico",
+    "icon": "/resource-previews/84e801bc8d72-icon.webp",
     "image": "/resource-previews/84e801bc8d72-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://www.meta.com/superintelligence/",
@@ -863,7 +861,7 @@
   "https://faculty.washington.edu/ebender/papers/Bender-AI-2026.pdf": {
     "fetchedAt": "2026-09-21T19:11:16.541Z",
     "source": "https://faculty.washington.edu/ebender/papers/Bender-AI-2026.pdf",
-    "icon": "/resource-previews/31a7f813f60f-icon.png",
+    "icon": "/resource-previews/31a7f813f60f-icon.webp",
     "image": "/resource-previews/31a7f813f60f-image.webp",
     "imageKind": "document",
     "imageSource": "https://faculty.washington.edu/ebender/papers/Bender-AI-2026.pdf"
@@ -871,39 +869,39 @@
   "https://firstmonday.org/ojs/index.php/fm/article/view/14366": {
     "fetchedAt": "2026-09-21T19:11:17.548Z",
     "source": "https://firstmonday.org/ojs/index.php/fm/article/view/14366",
-    "icon": "/resource-previews/46b7f4d34fc4-icon.gif",
+    "icon": "/resource-previews/46b7f4d34fc4-icon.webp",
     "description": null
   },
   "https://elpais.com/tecnologia/2026-02-20/emily-bender-y-alex-hanna-cuando-leemos-un-texto-escrito-por-una-ia-pensamos-que-hay-una-mente-detras-pero-solo-hay-numeros.html": {
     "fetchedAt": "2026-09-21T17:50:30.457Z",
     "source": "https://elpais.com/tecnologia/2026-02-20/emily-bender-y-alex-hanna-cuando-leemos-un-texto-escrito-por-una-ia-pensamos-que-hay-una-mente-detras-pero-solo-hay-numeros.html",
     "image": "/resource-previews/eaef29ea4205-image.webp",
-    "icon": "/resource-previews/eaef29ea4205-icon.ico",
+    "icon": "/resource-previews/eaef29ea4205-icon.webp",
     "description": "La lingüista Emily M. Bender y la socióloga Alex Hanna argumentan en su libro ‘La estafa de la IA’ por qué esta tecnología es “un engaño que nos están vendiendo para llenar los bolsillos de determinadas personas”"
   },
   "https://thecon.ai/": {
     "fetchedAt": "2026-09-21T17:50:31.688Z",
     "source": "https://thecon.ai/",
     "image": "/resource-previews/b8bef370a9f5-image.webp",
-    "icon": "/resource-previews/b8bef370a9f5-icon.jpg",
+    "icon": "/resource-previews/b8bef370a9f5-icon.webp",
     "description": "How to Fight Big Tech's Hype and Create the Future We Want"
   },
   "https://x.com/BarackObama/status/2099642023922036982": {
     "fetchedAt": "2026-09-21T15:52:31.746Z",
     "source": "https://x.com/BarackObama/status/2099642023922036982",
     "image": "/resource-previews/d83dc8b0e55c-image.jpg",
-    "icon": "/resource-previews/d83dc8b0e55c-icon.ico"
+    "icon": "/resource-previews/d83dc8b0e55c-icon.webp"
   },
   "https://x.com/BarackObama/status/2099642032557879423": {
     "fetchedAt": "2026-09-21T15:52:33.579Z",
     "source": "https://x.com/BarackObama/status/2099642032557879423",
     "image": "/resource-previews/91e966b95346-image.jpg",
-    "icon": "/resource-previews/91e966b95346-icon.ico"
+    "icon": "/resource-previews/91e966b95346-icon.webp"
   },
   "https://obama.org/stories/president-obama-calls-for-public-oversight-of-ai-warns-of-disruption-ahead/": {
     "fetchedAt": "2026-09-21T17:50:33.365Z",
     "source": "https://obama.org/stories/president-obama-calls-for-public-oversight-of-ai-warns-of-disruption-ahead/",
-    "icon": "/resource-previews/e896df31d050-icon.png",
+    "icon": "/resource-previews/e896df31d050-icon.webp",
     "image": "/resource-previews/e896df31d050-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://obama.org/stories/president-obama-calls-for-public-oversight-of-ai-warns-of-disruption-ahead/",
@@ -913,13 +911,13 @@
     "fetchedAt": "2026-09-21T17:50:35.129Z",
     "source": "https://truthsocial.com/@realDonaldTrump/117270591511950591",
     "image": "/resource-previews/438704b647d1-image.webp",
-    "icon": "/resource-previews/438704b647d1-icon.png",
+    "icon": "/resource-previews/438704b647d1-icon.webp",
     "description": "Truth Social is America's \"Big Tent\" social media platform that encourages an open, free, and honest global conversation without discriminating on the basis of political ideology."
   },
   "https://rollcall.com/factbase/trump/transcript/donald-trump-speech-ratepayer-protection-pledge-epa-july-23-2026/": {
     "fetchedAt": "2026-09-21T17:50:35.605Z",
     "source": "https://rollcall.com/factbase/trump/transcript/donald-trump-speech-ratepayer-protection-pledge-epa-july-23-2026/",
-    "icon": "/resource-previews/fd894d79e7a0-icon.ico",
+    "icon": "/resource-previews/fd894d79e7a0-icon.webp",
     "image": "/resource-previews/fd894d79e7a0-image.webp",
     "imageKind": "article",
     "imageSource": "https://media-cdn.factba.se/headshots/Q22686.jpg",
@@ -928,7 +926,7 @@
   "https://rollcall.com/factbase/trump/transcript/donald-trump-remarks-technology-leaders-white-house-august-19-2026/": {
     "fetchedAt": "2026-09-21T17:50:37.514Z",
     "source": "https://rollcall.com/factbase/trump/transcript/donald-trump-remarks-technology-leaders-white-house-august-19-2026/",
-    "icon": "/resource-previews/0e279152f1e4-icon.ico",
+    "icon": "/resource-previews/0e279152f1e4-icon.webp",
     "image": "/resource-previews/0e279152f1e4-image.webp",
     "imageKind": "article",
     "imageSource": "https://media-cdn.factba.se/headshots/Q22686.jpg",
@@ -947,19 +945,16 @@
     "image": "/resource-previews/8a8c8dde8aad-image.webp",
     "imageKind": "article",
     "imageSource": "https://images.gatesnotes.com/12514eb8-7b51-008e-41a9-512542cf683b/f05fc7d8-7973-4960-94f4-7cda6c834a96/image-of-bill8.png",
-    "icon": "/resource-previews/8a8c8dde8aad-icon.ico",
     "description": null
   },
   "https://www.gatesnotes.com/expanding-access-to-health-care-through-ai": {
     "fetchedAt": "2026-09-21T17:50:40.183Z",
     "source": "https://www.gatesnotes.com/expanding-access-to-health-care-through-ai",
-    "icon": "/resource-previews/636562592993-icon.ico",
     "description": null
   },
   "https://www.gatesnotes.com/the-year-ahead-2026": {
     "fetchedAt": "2026-09-21T17:50:40.317Z",
     "source": "https://www.gatesnotes.com/the-year-ahead-2026",
-    "icon": "/resource-previews/f77d9189e2b9-icon.ico",
     "description": null
   },
   "https://www.dwarkesh.com/p/elon-musk": {
@@ -1100,7 +1095,7 @@
   "https://yoshuabengio.org/en/publication/advanced-ai-global-public-good-and-global-risk": {
     "source": "https://yoshuabengio.org/en/publication/advanced-ai-global-public-good-and-global-risk",
     "fetchedAt": "2026-09-21T17:50:58.853Z",
-    "icon": "/resource-previews/bcd77b30a706-icon.ico",
+    "icon": "/resource-previews/bcd77b30a706-icon.webp",
     "image": "/resource-previews/bcd77b30a706-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://yoshuabengio.org/en/publication/advanced-ai-global-public-good-and-global-risk",
@@ -1112,7 +1107,7 @@
     "image": "/resource-previews/0b1ddab7c4db-image.webp",
     "imageKind": "social",
     "imageSource": "https://yoshuabengio.org/sites/default/files/styles/og_image/public/post/32/lawzerosocialmediav2linkedinben-scaled.jpg?itok=lkfVB9pz",
-    "icon": "/resource-previews/0b1ddab7c4db-icon.ico",
+    "icon": "/resource-previews/0b1ddab7c4db-icon.webp",
     "description": "I am launching a new non-profit AI safety research organization called LawZero, to prioritize safety over commercial imperatives."
   },
   "https://openai.com/index/introducing-superalignment/": {
@@ -1127,7 +1122,7 @@
   "https://karpathy.bearblog.dev/sequoia-ascent-2026/": {
     "source": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
     "fetchedAt": "2026-09-21T17:50:59.287Z",
-    "icon": "/resource-previews/b6c090862f52-icon.svg",
+    "icon": "/resource-previews/b6c090862f52-icon.webp",
     "image": "/resource-previews/b6c090862f52-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
@@ -1136,7 +1131,7 @@
   "https://karpathy.bearblog.dev/year-in-review-2025/": {
     "source": "https://karpathy.bearblog.dev/year-in-review-2025/",
     "fetchedAt": "2026-09-21T17:50:59.405Z",
-    "icon": "/resource-previews/ca5be40ee3c1-icon.svg",
+    "icon": "/resource-previews/ca5be40ee3c1-icon.webp",
     "image": "/resource-previews/ca5be40ee3c1-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://karpathy.bearblog.dev/year-in-review-2025/",
@@ -1174,13 +1169,13 @@
     "image": "/resource-previews/0fc3b42261ef-image.webp",
     "imageKind": "social",
     "imageSource": "https://news.berkeley.edu/wp-content/uploads/2026/01/Freese_CloudEye-1024x576.png",
-    "icon": "/resource-previews/0fc3b42261ef-icon.svg",
+    "icon": "/resource-previews/0fc3b42261ef-icon.webp",
     "description": "How will AI disrupt the labor market? What will deepfake videos mean for our understanding of truth? Are we in a bubble, and if so, will the bubble burst?"
   },
   "https://people.eecs.berkeley.edu/~russell/papers/StuartRussell_Feedback_On_Draft_Report.pdf": {
     "source": "https://people.eecs.berkeley.edu/~russell/papers/StuartRussell_Feedback_On_Draft_Report.pdf",
     "fetchedAt": "2026-09-21T19:11:14.868Z",
-    "icon": "/resource-previews/e5296ad74630-icon.ico",
+    "icon": "/resource-previews/e5296ad74630-icon.webp",
     "image": "/resource-previews/e5296ad74630-image.webp",
     "imageKind": "document",
     "imageSource": "https://people.eecs.berkeley.edu/~russell/papers/StuartRussell_Feedback_On_Draft_Report.pdf"
@@ -1209,7 +1204,7 @@
     "image": "/resource-previews/af6385f70199-image.webp",
     "imageKind": "social",
     "imageSource": "https://static.scientificamerican.com/dam/asset/e4888f60-95f7-458c-a498-d4b5ab7774bb/saw070826Lumin_Gebru01.jpg?m=1780076066.55&w=1200",
-    "icon": "/resource-previews/af6385f70199-icon.ico",
+    "icon": "/resource-previews/af6385f70199-icon.webp",
     "description": "On safeguarding independent research in the age of big tech"
   },
   "https://www.wired.com/story/one-of-ais-fiercest-critics-says-all-the-doom-talk-is-meant-to-distract-us/": {
@@ -1218,7 +1213,7 @@
     "image": "/resource-previews/61e3a7e76f36-image.webp",
     "imageKind": "social",
     "imageSource": "https://media.wired.com/photos/6aa2e16e1ef586476d0a1793/191:100/w_1280,c_limit/Backchannel-Timnit-Gebru-Business.jpg",
-    "icon": "/resource-previews/61e3a7e76f36-icon.ico",
+    "icon": "/resource-previews/61e3a7e76f36-icon.webp",
     "description": "Timnit Gebru argues that AI companies are stoking fears of extinction to avoid discussing actual harms, like autonomous weapons."
   },
   "https://www.normaltech.ai/p/do-ai-risks-require-extraordinary": {
@@ -1286,7 +1281,7 @@
     "image": "/resource-previews/03b0d019ec5a-image.webp",
     "imageKind": "social",
     "imageSource": "https://cdn.kqed.org/wp-content/uploads/sites/10/2025/10/AI_Con_thumbnail-2000x1125.jpg",
-    "icon": "/resource-previews/03b0d019ec5a-icon.ico",
+    "icon": "/resource-previews/03b0d019ec5a-icon.webp",
     "description": "When ChatGPT launched in 2022, it kicked off what some have called the “AI hype machine” — a frenzy of promotion and investment that has sent some tech companies’ valuations soaring to record heights. Meanwhile, computational linguist Emily M. Bender and AI researcher and sociologist Alex Hanna have proudly worn the titles of “AI hype busters,” critiquing the industry’s loftiest claims and pointing out the real-world harms behind this wave of excitement. What began as a satirical podcast is now"
   },
   "https://www.techpolicy.press/ai-hurts-consumers-and-workers-and-isnt-intelligent/": {
@@ -1304,7 +1299,7 @@
     "image": "/resource-previews/60ba735eac62-image.webp",
     "imageKind": "social",
     "imageSource": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25063675/VRG_DEC_OBAMA_Textless.jpg?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200",
-    "icon": "/resource-previews/60ba735eac62-icon.ico",
+    "icon": "/resource-previews/60ba735eac62-icon.webp",
     "description": "Barack Obama joined Nilay Patel on Decoder to discuss President Joe Biden’s executive order on AI, tech regulation, and more."
   },
   "https://www.techpolicy.press/transcript-donald-trumps-address-at-winning-the-ai-race-event/": {
@@ -1318,8 +1313,7 @@
   },
   "https://www.gatesnotes.com/ai-agents": {
     "source": "https://www.gatesnotes.com/ai-agents",
-    "fetchedAt": "2026-09-21T16:23:10.621Z",
-    "icon": "/resource-previews/7feebcf8fa36-icon.ico"
+    "fetchedAt": "2026-09-21T16:23:10.621Z"
   },
   "https://www.lesswrong.com/posts/fbrz9xhKpEeTKw5zL/irretrievability-or-murphy-s-curse-of-oneshotness-upon-asi": {
     "source": "https://www.lesswrong.com/posts/fbrz9xhKpEeTKw5zL/irretrievability-or-murphy-s-curse-of-oneshotness-upon-asi",
@@ -1327,7 +1321,7 @@
     "image": "/resource-previews/44589761bae5-image.webp",
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
-    "icon": "/resource-previews/44589761bae5-icon.ico",
+    "icon": "/resource-previews/44589761bae5-icon.webp",
     "description": "Example 1: The Viking 1 lander In the 1970s, NASA sent a pair of probes to Mars, the Viking 1 and Viking 2 missions. Total cost of $1B (1970), equiva…"
   },
   "https://www.lesswrong.com/posts/oDX5vcDTEei8WuoBx/re-recent-anthropic-safety-research": {
@@ -1336,7 +1330,7 @@
     "image": "/resource-previews/a4a5b32e0339-image.webp",
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
-    "icon": "/resource-previews/a4a5b32e0339-icon.ico",
+    "icon": "/resource-previews/a4a5b32e0339-icon.webp",
     "description": "A reporter asked me for my off-the-record take on recent safety research from Anthropic. After I drafted an off-the-record reply, I realized that I w…"
   },
   "https://www.lesswrong.com/posts/kgb58RL88YChkkBNf/the-problem": {
@@ -1345,7 +1339,7 @@
     "image": "/resource-previews/4132ce4dcd8d-image.webp",
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
-    "icon": "/resource-previews/4132ce4dcd8d-icon.ico",
+    "icon": "/resource-previews/4132ce4dcd8d-icon.webp",
     "description": "This is a new introduction to AI as an extinction threat, previously posted to the MIRI website in February alongside a summary. It was written indep…"
   },
   "https://www.lesswrong.com/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities": {
@@ -1354,7 +1348,7 @@
     "image": "/resource-previews/ebf69d1a871a-image.webp",
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/c_fill,ar_1.91,g_auto/v1/mirroredImages/splashArtImagePromptfragile%20chess%20pieces%20on%20a%20board%2C%20with%20the%20shadow%20of%20a%20huge%20hand%20looming/cl7wfh0gdyy7m9mddszg",
-    "icon": "/resource-previews/ebf69d1a871a-icon.ico",
+    "icon": "/resource-previews/ebf69d1a871a-icon.webp",
     "description": "A few dozen reason that Eliezer thinks AGI alignment is an extremely difficult problem, which humanity is not on track to solve. …"
   },
   "https://www.hbglibrary.com/titles/eliezer-yudkowsky/if-anyone-builds-it-everyone-dies/9780316595643/": {
@@ -1372,7 +1366,7 @@
     "image": "/resource-previews/33f546d6898c-image.webp",
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/isSBwfgRY6zD6mycc/dzbc6vlrhg0fjkvyriuw",
-    "icon": "/resource-previews/33f546d6898c-icon.ico",
+    "icon": "/resource-previews/33f546d6898c-icon.webp",
     "description": "\"How are you coping with the end of the world?\" journalists sometimes ask me, and the true answer is something they have no hope of understanding and…"
   },
   "https://openai.com/index/built-to-benefit-everyone-our-plan/": {
@@ -1387,7 +1381,7 @@
   "https://blog.samaltman.com/abundant-intelligence": {
     "source": "https://blog.samaltman.com/abundant-intelligence",
     "fetchedAt": "2026-09-21T17:50:47.888Z",
-    "icon": "/resource-previews/21b8d25c5679-icon.ico",
+    "icon": "/resource-previews/21b8d25c5679-icon.webp",
     "image": "/resource-previews/21b8d25c5679-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://blog.samaltman.com/abundant-intelligence",
@@ -1396,7 +1390,7 @@
   "https://blog.samaltman.com/sora-2": {
     "source": "https://blog.samaltman.com/sora-2",
     "fetchedAt": "2026-09-21T17:50:48.078Z",
-    "icon": "/resource-previews/a6fdffb7530d-icon.ico",
+    "icon": "/resource-previews/a6fdffb7530d-icon.webp",
     "image": "/resource-previews/a6fdffb7530d-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://blog.samaltman.com/sora-2",
@@ -1408,7 +1402,7 @@
     "image": "/resource-previews/f4d17448edb1-image.webp",
     "imageKind": "social",
     "imageSource": "https://sama-ia.vercel.app/images/cover.png",
-    "icon": "/resource-previews/f4d17448edb1-icon.ico",
+    "icon": "/resource-previews/f4d17448edb1-icon.webp",
     "description": "In the next couple of decades, we will be able to do things that would have seemed like magic to our grandparents."
   },
   "https://a16z.com/podcast/beyond-pdoom-marc-andreessen-betting-on-america/": {
@@ -1441,7 +1435,7 @@
   "https://www.axios.com/2026/07/23/axios-interview-jensen-huang-is-ais-anti-doom-evangelist": {
     "source": "https://www.axios.com/2026/07/23/axios-interview-jensen-huang-is-ais-anti-doom-evangelist",
     "fetchedAt": "2026-09-21T17:50:50.171Z",
-    "icon": "/resource-previews/697a5e757e95-icon.ico",
+    "icon": "/resource-previews/697a5e757e95-icon.webp",
     "image": "/resource-previews/697a5e757e95-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.axios.com/9QudKbz3cRs2ngGoHKhWJ8NSpv4=/0x0:1920x1080/1366x768/2026/07/23/1784800950201.jpg",
@@ -1453,7 +1447,7 @@
     "image": "/resource-previews/de7a1b7cfdbe-image.webp",
     "imageKind": "document",
     "imageSource": "https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf",
-    "icon": "/resource-previews/de7a1b7cfdbe-icon.ico"
+    "icon": "/resource-previews/de7a1b7cfdbe-icon.webp"
   },
   "https://lexfridman.com/jensen-huang-transcript/": {
     "source": "https://lexfridman.com/jensen-huang-transcript/",
@@ -1470,7 +1464,7 @@
     "image": "/resource-previews/36d76c3c3b6b-image.webp",
     "imageKind": "social",
     "imageSource": "https://blogs.nvidia.com/wp-content/uploads/2026/02/5-layer-cake-hero-tablet-static.jpg",
-    "icon": "/resource-previews/36d76c3c3b6b-icon.ico",
+    "icon": "/resource-previews/36d76c3c3b6b-icon.webp",
     "description": "AI is one of the most powerful forces shaping the world today. It is not a clever app or a single model; it is essential infrastructure, like electricity and the internet."
   },
   "https://investor.nvidia.com/files/content_files/TRANSCRIPT_-NVIDIA-Corp-NVDA-US-Q2-2027-Earnings-Call-26-August-2026-5_00-PM-ET.pdf": {
@@ -1487,7 +1481,7 @@
     "image": "/resource-previews/ca82a7731d9a-image.webp",
     "imageKind": "social",
     "imageSource": "https://blogs.nvidia.com/wp-content/uploads/2026/01/ces26-nvidialive-JL3_1386-3-1280x680-1.jpg",
-    "icon": "/resource-previews/ca82a7731d9a-icon.ico",
+    "icon": "/resource-previews/ca82a7731d9a-icon.webp",
     "description": "NVIDIA founder and CEO Jensen Huang opened CES in Las Vegas with Rubin — NVIDIA’s first extreme-codesigned AI platform — plus open models for healthcare, robotics and autonomy, and a Mercedes-Benz CLA showcasing AI-defined driving."
   },
   "https://darioamodei.com/post/on-deepseek-and-export-controls": {
@@ -1505,7 +1499,7 @@
     "image": "/resource-previews/1dfaa948d064-image.webp",
     "imageKind": "social",
     "imageSource": "https://cdn.sanity.io/images/4zrzovbb/website/1864442e2d581ffc8242e7c57e2c4e2309351f49-1200x630.png",
-    "icon": "/resource-previews/1dfaa948d064-icon.ico",
+    "icon": "/resource-previews/1dfaa948d064-icon.webp",
     "description": "A statement from Anthropic CEO Dario Amodei on our discussions with the Department of War and national security uses of AI."
   },
   "https://www.anthropic.com/news/position-open-weights-models": {
@@ -1514,7 +1508,7 @@
     "image": "/resource-previews/688b06fb84f5-image.webp",
     "imageKind": "social",
     "imageSource": "https://cdn.sanity.io/images/4zrzovbb/website/62993bb857986e2808c2a75024f384e7b85312b6-2400x1254.png",
-    "icon": "/resource-previews/688b06fb84f5-icon.ico",
+    "icon": "/resource-previews/688b06fb84f5-icon.webp",
     "description": "Anthropic CEO Dario Amodei on open-weights models"
   },
   "https://www.dwarkesh.com/p/dario-amodei-2": {
@@ -1532,7 +1526,7 @@
     "image": "/resource-previews/a40c9acdf8cf-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/NnVW9epLlTM/maxresdefault.jpg",
-    "icon": "/resource-previews/a40c9acdf8cf-icon.ico",
+    "icon": "/resource-previews/a40c9acdf8cf-icon.webp",
     "description": "A credible pathway to artificial general intelligence (AGI) is increasingly coming into view as advances in scaling, multimodal systems and agentic models co..."
   },
   "https://garymarcus.substack.com/p/six-or-seven-predictions-for-ai-2026": {
@@ -1541,7 +1535,7 @@
     "image": "/resource-previews/3d02e10a88e0-image.webp",
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!Ka51!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F8fb2e48c-be2a-4db7-b68c-90300f00fd1e_1668x1456.jpeg",
-    "icon": "/resource-previews/3d02e10a88e0-icon.ico",
+    "icon": "/resource-previews/3d02e10a88e0-icon.webp",
     "description": "2025 turned out pretty much as I anticipated. What comes next?"
   },
   "https://garymarcus.substack.com/p/president-trumps-date-with-destiny": {
@@ -1550,7 +1544,7 @@
     "image": "/resource-previews/3d7532211cae-image.webp",
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!wAvj!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fef61d991-3700-43bf-88ae-06f53689a2e4_1206x1537.jpeg",
-    "icon": "/resource-previews/3d7532211cae-icon.ico",
+    "icon": "/resource-previews/3d7532211cae-icon.webp",
     "description": "September 24, if played right, could change everything"
   },
   "https://www.deeplearning.ai/the-batch/coding-agents-accelerate-some-software-tasks-more-than-others/": {
@@ -1559,7 +1553,7 @@
     "image": "/resource-previews/76e332da60a7-image.webp",
     "imageKind": "social",
     "imageSource": "https://charonhub.deeplearning.ai/content/images/2026/04/RACECARS-6_1200px.jpg",
-    "icon": "/resource-previews/76e332da60a7-icon.ico",
+    "icon": "/resource-previews/76e332da60a7-icon.webp",
     "description": "Coding agents are accelerating different types of software work to different degrees."
   },
   "https://www.deeplearning.ai/the-batch/ai-will-not-destroy-the-job-market": {
@@ -1568,7 +1562,7 @@
     "image": "/resource-previews/1cabab34f46c-image.webp",
     "imageKind": "social",
     "imageSource": "https://charonhub.deeplearning.ai/content/images/2026/05/AI-effect-on-workforce_PressCoverage3--1-.webp",
-    "icon": "/resource-previews/1cabab34f46c-icon.ico",
+    "icon": "/resource-previews/1cabab34f46c-icon.webp",
     "description": "There will be no AI jobpocalypse."
   },
   "https://www.deeplearning.ai/the-batch/ai-native-software-development-needs-generalists/": {
@@ -1577,7 +1571,7 @@
     "image": "/resource-previews/95fe17d22a64-image.webp",
     "imageKind": "social",
     "imageSource": "https://charonhub.deeplearning.ai/content/images/2026/04/Swivelchair-Bottleneck4_1200px--1-.jpg",
-    "icon": "/resource-previews/95fe17d22a64-icon.ico",
+    "icon": "/resource-previews/95fe17d22a64-icon.webp",
     "description": "AI-native software engineering teams operate very differently than traditional teams."
   },
   "https://arxiv.org/abs/2603.19312": {
@@ -1601,7 +1595,7 @@
   "https://www.axios.com/2026/05/04/ai-godfather-survival-guide-hype-doom": {
     "source": "https://www.axios.com/2026/05/04/ai-godfather-survival-guide-hype-doom",
     "fetchedAt": "2026-09-21T17:50:54.188Z",
-    "icon": "/resource-previews/d3039987ffbd-icon.ico",
+    "icon": "/resource-previews/d3039987ffbd-icon.webp",
     "image": "/resource-previews/d3039987ffbd-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.axios.com/d074lAJXm_ngJDg9u768QaXaVto=/0x0:1920x1080/1366x768/2026/03/31/1774988681783.jpeg",
@@ -1648,7 +1642,6 @@
     "image": "/resource-previews/474f9c4ceea5-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.gatesnotes.com/12514eb8-7b51-008e-41a9-512542cf683b/a939f741-59b0-400b-957e-2dda89aab7da/2025-12-11_GV-YearAhead2026_Other-Static-Share-Image-1200x630.jpg",
-    "icon": "/resource-previews/474f9c4ceea5-icon.ico",
     "description": "Bill Gates explains how the innovation pipeline and the choices made in the year ahead will set us up for the decades to come."
   },
   "https://www.gatesnotes.com/work/make-ai-work-for-everyone/reader/ai-agents": {
@@ -1657,7 +1650,6 @@
     "image": "/resource-previews/7b13b3fa9eda-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.gatesnotes.com/12514eb8-7b51-008e-41a9-512542cf683b/53f010ac-95ec-4509-8840-981832a1fbe8/AI-Agents-1200px_by_630px-001.jpg",
-    "icon": "/resource-previews/7b13b3fa9eda-icon.ico",
     "description": "In 5 years, agents will be able to give health care advice, tutor students, do your shopping, help workers be far more productive, and much more"
   },
   "https://www.gatesnotes.com/work/make-ai-work-for-everyone/reader/expanding-access-to-health-care-through-ai": {
@@ -1666,7 +1658,6 @@
     "image": "/resource-previews/5a70ba46dae9-image.webp",
     "imageKind": "social",
     "imageSource": "https://images.gatesnotes.com/12514eb8-7b51-008e-41a9-512542cf683b/609d3b10-a6d2-4967-a3e4-cc52861431f3/2026-01-15_GF-OpenAI-Share-Image-1200x630.png",
-    "icon": "/resource-previews/5a70ba46dae9-icon.ico",
     "description": "The Government of Rwanda is partnering with the Gates Foundation and OpenAI on an effort to help health clinics improve care using AI."
   },
   "https://www.youtube.com/watch?v=Bh5bJrrJ6xs": {
@@ -1675,7 +1666,7 @@
     "image": "/resource-previews/c88ef50e9caa-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/Bh5bJrrJ6xs/maxresdefault.jpg",
-    "icon": "/resource-previews/c88ef50e9caa-icon.ico",
+    "icon": "/resource-previews/c88ef50e9caa-icon.webp",
     "description": "Marc Benioff and Sam Altman explore how @OpenAI is advancing the AI frontier and partnering with Salesforce to turn that intelligence into trusted tools for ..."
   },
   "https://www.youtube.com/watch?v=2my-NU6LuCM": {
@@ -1684,7 +1675,7 @@
     "image": "/resource-previews/28bd4d2c2cc7-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/2my-NU6LuCM/maxresdefault.jpg",
-    "icon": "/resource-previews/28bd4d2c2cc7-icon.ico",
+    "icon": "/resource-previews/28bd4d2c2cc7-icon.webp",
     "description": "OpenAI CEO Sam Altman sits down with Fortune's Editor-in-Chief Alyson Shontell to discuss the high-stakes balancing act of AI: pushing the boundaries of scie..."
   },
   "https://www.youtube.com/watch?v=VeizK1M7V7E": {
@@ -1693,7 +1684,7 @@
     "image": "/resource-previews/23a251204616-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/VeizK1M7V7E/maxresdefault.jpg",
-    "icon": "/resource-previews/23a251204616-icon.ico",
+    "icon": "/resource-previews/23a251204616-icon.webp",
     "description": "After an unreleased OpenAI model recently escaped its sandbox and hacked Hugging Face, Sam Altman tells me why the company is slowing down frontier research...."
   },
   "https://www.youtube.com/watch?v=kG8AoExkX40": {
@@ -1702,7 +1693,7 @@
     "image": "/resource-previews/1bec40fbd370-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/kG8AoExkX40/maxresdefault.jpg",
-    "icon": "/resource-previews/1bec40fbd370-icon.ico",
+    "icon": "/resource-previews/1bec40fbd370-icon.webp",
     "description": "Sam Altman has spent his career at the intersection of startups, investing and artificial intelligence. He says he was fascinated by AI as a child in St. Lou..."
   },
   "https://www.youtube.com/watch?v=hQR_VJF6ukk": {
@@ -1711,7 +1702,7 @@
     "image": "/resource-previews/b61c8d28dbfd-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/hQR_VJF6ukk/maxresdefault.jpg",
-    "icon": "/resource-previews/b61c8d28dbfd-icon.ico",
+    "icon": "/resource-previews/b61c8d28dbfd-icon.webp",
     "description": "In this web exclusive, Anthropic CEO Dario Amodei sits down with Jo Ling Kent to discuss the artificial intelligence community's responsibility as technology..."
   },
   "https://transcripts.cnn.com/show/acd/date/2026-09-14/segment/01": {
@@ -1728,7 +1719,7 @@
     "image": "/resource-previews/e1192241b093-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/wYFt9NCYaVI/maxresdefault.jpg",
-    "icon": "/resource-previews/e1192241b093-icon.ico",
+    "icon": "/resource-previews/e1192241b093-icon.webp",
     "description": "Join Salesforce Chair and CEO Marc Benioff and special guests at Dreamforce to discover the future of the Agentic Enterprise. Explore how humans, AI agents, ..."
   },
   "https://transcripts.cnn.com/show/lcl/date/2026-09-17/segment/01": {
@@ -1831,7 +1822,7 @@
   "https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent": {
     "source": "https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent",
     "fetchedAt": "2026-09-21T19:11:13.393Z",
-    "icon": "/resource-previews/95299254af20-icon.ico"
+    "icon": "/resource-previews/95299254af20-icon.webp"
   },
   "https://garymarcus.substack.com/p/why-my-pdoom-has-risen-dramatically": {
     "source": "https://garymarcus.substack.com/p/why-my-pdoom-has-risen-dramatically",
@@ -1839,7 +1830,7 @@
     "image": "/resource-previews/53e2c5dd3347-image.webp",
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!5P_1!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1c848744-bba5-42ea-bd35-f3a280e5b0e4_1275x537.png",
-    "icon": "/resource-previews/53e2c5dd3347-icon.ico",
+    "icon": "/resource-previews/53e2c5dd3347-icon.webp",
     "description": "What could happen if power, recklessness, incompetence, and indifference came together"
   },
   "https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize": {
@@ -1848,7 +1839,7 @@
     "image": "/resource-previews/cddaaefda146-image.webp",
     "imageKind": "social",
     "imageSource": "https://media.wbur.org/wp/2025/01/AP411622110631-2-1000x666.jpg",
-    "icon": "/resource-previews/cddaaefda146-icon.ico",
+    "icon": "/resource-previews/cddaaefda146-icon.webp",
     "description": "Geoffrey Hinton is one of the world’s biggest minds in artificial intelligence. He won the 2024 Nobel Prize in Physics. Where does he think AI is headed?"
   },
   "https://lironshapira.substack.com/p/max-tegmark-vs-dean-ball-debate-ban-superintelligence": {
@@ -1867,7 +1858,7 @@
     "image": "/resource-previews/431243e42aaa-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/98syxABbUPk/maxresdefault.jpg",
-    "icon": "/resource-previews/431243e42aaa-icon.ico"
+    "icon": "/resource-previews/431243e42aaa-icon.webp"
   },
   "https://transcripts.cnn.com/show/cnr/date/2026-09-21/segment/20": {
     "source": "https://transcripts.cnn.com/show/cnr/date/2026-09-21/segment/20",
@@ -1899,7 +1890,7 @@
     "image": "/resource-previews/eef093b7f9cf-image.webp",
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
-    "icon": "/resource-previews/eef093b7f9cf-icon.ico"
+    "icon": "/resource-previews/eef093b7f9cf-icon.webp"
   },
   "https://shows.acast.com/the-peter-mccormack-show/episodes/189-nate-soares-why-superintelligent-ai-could-kill-us-all": {
     "source": "https://shows.acast.com/the-peter-mccormack-show/episodes/189-nate-soares-why-superintelligent-ai-could-kill-us-all",
@@ -1926,7 +1917,7 @@
     "image": "/resource-previews/6db8ed068488-image.webp",
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/c_fill,ar_1.91,g_auto/v1/mirroredImages/splashArtImagePrompta%20chameleon%20changing%20its%20whole%20body%20color%20except%20its%20tail%20to%20match%20its%20environment/icjlvkctmy7dtojyo5cu",
-    "icon": "/resource-previews/6db8ed068488-icon.ico"
+    "icon": "/resource-previews/6db8ed068488-icon.webp"
   },
   "https://intelligence.org/team/nate-soares/": {
     "source": "https://intelligence.org/team/nate-soares/",
@@ -1944,7 +1935,7 @@
     "image": "/resource-previews/2a3800b98ac9-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/-RXD4bTuFTo/maxresdefault.jpg",
-    "icon": "/resource-previews/2a3800b98ac9-icon.ico"
+    "icon": "/resource-previews/2a3800b98ac9-icon.webp"
   },
   "https://blog.redwoodresearch.org/p/proposal-for-tracking-the-effects": {
     "source": "https://blog.redwoodresearch.org/p/proposal-for-tracking-the-effects",
@@ -2091,7 +2082,7 @@
     "image": "/resource-previews/1f9605fc9812-image.webp",
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/5XsL_7TnfLU/maxresdefault.jpg",
-    "icon": "/resource-previews/1f9605fc9812-icon.ico"
+    "icon": "/resource-previews/1f9605fc9812-icon.webp"
   },
   "https://joecarlsmith.com": {
     "source": "https://joecarlsmith.com",
@@ -2262,7 +2253,7 @@
     "image": "/resource-previews/213f6ef20dda-image.webp",
     "imageKind": "article",
     "imageSource": "https://palisaderesearch.org/assets/images/blog/ai-2040-transparency-plan-diagram.png",
-    "icon": "/resource-previews/213f6ef20dda-icon.svg"
+    "icon": "/resource-previews/213f6ef20dda-icon.webp"
   },
   "https://blog.aifutures.org/p/q25-2026-timelines-update-uplift": {
     "source": "https://blog.aifutures.org/p/q25-2026-timelines-update-uplift",
@@ -2366,7 +2357,7 @@
   "https://marginalrevolution.com/marginalrevolution/2026/09/a-simple-model-of-ai-aided-economic-growth.html": {
     "source": "https://marginalrevolution.com/marginalrevolution/2026/09/a-simple-model-of-ai-aided-economic-growth.html",
     "fetchedAt": "2026-09-21T19:11:24.136Z",
-    "icon": "/resource-previews/4f51886ef974-icon.ico",
+    "icon": "/resource-previews/4f51886ef974-icon.webp",
     "description": "The Solow model has its uses, but it fails when it comes to major changes stemming from AI. Consider instead an economy with (at least) two factors of production: 1. Intelligence. Yes, formal smarts. Playing chess, proving math theorems, and doing well on evals. Don’t forget humans can do those things too, though AIs are […]",
     "image": "/resource-previews/4f51886ef974-image.webp",
     "imageKind": "screenshot",
@@ -2384,7 +2375,7 @@
   "https://marginalrevolution.com/marginalrevolution/2026/08/the-least-bad-way-to-regulate-ai.html": {
     "source": "https://marginalrevolution.com/marginalrevolution/2026/08/the-least-bad-way-to-regulate-ai.html",
     "fetchedAt": "2026-09-21T19:11:24.330Z",
-    "icon": "/resource-previews/6a89b411ee36-icon.ico",
+    "icon": "/resource-previews/6a89b411ee36-icon.webp",
     "description": "That is the topic of my latest Free Press column. Excerpt: The key is to create some basic safeguards, but without stifling broader AI progress. To do so, we must defy the conventional wisdom about public oversight and instead trust the AI labs to be their own primary regulators. My version of the proposal starts […]",
     "image": "/resource-previews/6a89b411ee36-image.webp",
     "imageKind": "screenshot",
@@ -2393,7 +2384,7 @@
   "https://marginalrevolution.com/marginalrevolution/2026/03/a-simple-model-of-ai-governance.html": {
     "source": "https://marginalrevolution.com/marginalrevolution/2026/03/a-simple-model-of-ai-governance.html",
     "fetchedAt": "2026-09-21T19:11:24.404Z",
-    "icon": "/resource-previews/8690207c336c-icon.ico",
+    "icon": "/resource-previews/8690207c336c-icon.webp",
     "description": "I trust private companies with strong AI more than I trust the government, regardless of which administration is in power. Yet if the federal government feels it has no say or no control, it will lunge and take over the whole thing. We thus want sustainble methods of perpetual interference that a) are actually somewhat […]",
     "image": "/resource-previews/8690207c336c-image.webp",
     "imageKind": "screenshot",
@@ -2402,7 +2393,7 @@
   "https://marginalrevolution.com/marginalrevolution/2026/03/the-ai-arms-race.html": {
     "source": "https://marginalrevolution.com/marginalrevolution/2026/03/the-ai-arms-race.html",
     "fetchedAt": "2026-09-21T19:11:24.477Z",
-    "icon": "/resource-previews/d2181d655584-icon.ico",
+    "icon": "/resource-previews/d2181d655584-icon.webp",
     "description": "That is the topic of my latest column for The Free Press, here is the closing tag: The biggest risk is not from the AI companies, but rather that the government with the most powerful AI systems becomes the bad guy itself. The U.S., on the world stage, is not always a force for good, […]",
     "image": "/resource-previews/d2181d655584-image.webp",
     "imageKind": "screenshot",
@@ -2411,7 +2402,7 @@
   "https://marginalrevolution.com/marginalrevolution/2025/09/how-to-think-about-ai-progress.html": {
     "source": "https://marginalrevolution.com/marginalrevolution/2025/09/how-to-think-about-ai-progress.html",
     "fetchedAt": "2026-09-21T19:11:24.546Z",
-    "icon": "/resource-previews/d691152ec86d-icon.ico",
+    "icon": "/resource-previews/d691152ec86d-icon.webp",
     "description": "The Zvi has a good survey post on what is going on with the actual evidence. I have a more general point to make, which I am drawing from my background in Austrian capital theory. There are easy projects, and there are hard projects. You might also say short-term vs. long-term investments. The easier, shorter-term […]",
     "image": "/resource-previews/d691152ec86d-image.webp",
     "imageKind": "screenshot",
@@ -2429,7 +2420,7 @@
   "https://marginalrevolution.com/marginalrevolution/2023/11/my-summary-views-on-ai-existential-risk.html": {
     "source": "https://marginalrevolution.com/marginalrevolution/2023/11/my-summary-views-on-ai-existential-risk.html",
     "fetchedAt": "2026-09-21T19:11:24.616Z",
-    "icon": "/resource-previews/8318fb83dbaa-icon.ico",
+    "icon": "/resource-previews/8318fb83dbaa-icon.webp",
     "description": "That is the topic of my latest Bloomberg column, written and edited by the way before…all that stuff happened at Open AI. Here is one excerpt: First, I view AI as more likely to lower than to raise net existential risks. Humankind faces numerous existential risks already. We need better science to limit those risks, […]",
     "image": "/resource-previews/8318fb83dbaa-image.webp",
     "imageKind": "screenshot",

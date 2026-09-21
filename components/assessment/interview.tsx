@@ -518,7 +518,6 @@ export function Interview({
                 </h1>
               </div>
               <ConversationReplies turn={currentTurn} />
-              <ReadinessMeter state={state} debug={debugMode} />
               {unavailableQuestion && (
                 <Alert>
                   <AlertTitle>This question is no longer available</AlertTitle>
@@ -671,20 +670,24 @@ export function Interview({
                             Try a different question
                           </Button>
                         )}
-                      {(!paused || state.recovery.reason !== 'stopped') && (
-                        <Button
-                          type='button'
-                          disabled={busy || conflict}
-                          variant='ghost'
-                          onClick={() => void act({ type: 'stop' })}
-                        >
-                          Stop for now
-                        </Button>
-                      )}
+                      {state.answers.length > 0 &&
+                        (!paused || state.recovery.reason !== 'stopped') && (
+                          <Button
+                            type='button'
+                            disabled={busy || conflict}
+                            variant='ghost'
+                            onClick={() => void act({ type: 'stop' })}
+                          >
+                            Stop for now
+                          </Button>
+                        )}
                     </div>
                   </Field>
                 </FieldGroup>
               </form>
+              {state.answers.length > 0 && (
+                <ReadinessMeter state={state} debug={debugMode} />
+              )}
               {busy && (
                 <p className='text-sm text-muted-foreground' role='status'>
                   Reading the evidence and choosing a useful next step…
@@ -706,30 +709,32 @@ export function Interview({
             </Alert>
           )}
           <div className='flex items-center justify-between gap-4'>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant='ghost' size='sm'>
-                  Restart
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Start a new assessment?</DialogTitle>
-                  <DialogDescription>
-                    This clears the current local assessment. Download your
-                    report first if you want to keep it.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <DialogClose asChild>
-                    <Button variant='outline'>Keep this assessment</Button>
-                  </DialogClose>
-                  <DialogClose asChild>
-                    <Button onClick={restart}>Restart & clear</Button>
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+            {state.answers.length > 0 && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant='ghost' size='sm'>
+                    Restart
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Start a new assessment?</DialogTitle>
+                    <DialogDescription>
+                      This clears the current local assessment. Download your
+                      report first if you want to keep it.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant='outline'>Keep this assessment</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button onClick={restart}>Restart & clear</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            )}
             {debugAvailable && (
               <Button
                 variant='ghost'

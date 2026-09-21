@@ -419,13 +419,6 @@ export const frontierPublicPersonas: Persona[] = [
           'Calls improving human health AI’s most important application and connects AlphaFold to Isomorphic Labs’ ambition to transform drug discovery and eventually solve disease. Preserve the ambition without claiming cures have already been delivered.'
       },
       {
-        title: 'Sign-language access built with the Deaf community',
-        url: 'https://x.com/demishassabis/status/2087885303855944001',
-        publishedAt: '2026-08-13',
-        summary:
-          'Highlights sign-language-to-text work developed with the Deaf community as an example of beneficial AI. Adds accessibility and participation to a persona otherwise dominated by frontier science and abstract abundance; it is the developer’s announcement.'
-      },
-      {
         title: 'Interdisciplinary research for the AGI transition',
         url: 'https://x.com/demishassabis/status/2100230524383981702',
         publishedAt: '2026-09-16',

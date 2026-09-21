@@ -9,9 +9,15 @@ export function PersonaHeader({
     name: string
     avatar?: string
     xUrl?: string | null
+    profileUrl?: string
+    profileLabel?: string
     description: string
   }
 }) {
+  const profileUrl = person.xUrl ?? person.profileUrl
+  const profileLabel = person.xUrl
+    ? `@${person.xUrl.split('/').at(-1)} on X`
+    : (person.profileLabel ?? 'Profile')
   const portrait = person.avatar && (
     <Image
       src={person.avatar}
@@ -27,12 +33,12 @@ export function PersonaHeader({
       <div className='min-w-0'>
         <div className='flex items-center gap-4'>
           {portrait &&
-            (person.xUrl ? (
+            (profileUrl ? (
               <a
-                href={person.xUrl}
+                href={profileUrl}
                 target='_blank'
                 rel='noreferrer'
-                aria-label={`${person.name} on X`}
+                aria-label={`${person.name}: ${profileLabel}`}
                 className='shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
               >
                 {portrait}
@@ -44,14 +50,14 @@ export function PersonaHeader({
             <h1 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
               {person.name}
             </h1>
-            {person.xUrl && (
+            {profileUrl && (
               <a
-                href={person.xUrl}
+                href={profileUrl}
                 target='_blank'
                 rel='noreferrer'
                 className='mt-2 inline-block text-sm text-muted-foreground underline underline-offset-4'
               >
-                @{person.xUrl.split('/').at(-1)} on X
+                {profileLabel}
               </a>
             )}
           </div>
