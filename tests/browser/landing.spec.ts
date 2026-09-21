@@ -1,3 +1,4 @@
+import { personaIdentity } from '../../lib/journeys/persona-identity'
 import { expect, test } from '@playwright/test'
 
 test('landing portraits use tooltips and link to results; assessment drafts survive a trip home', async ({
@@ -14,7 +15,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await portrait.hover()
   await expect(page.getByRole('tooltip')).toHaveText('Eliezer Yudkowsky')
   await portrait.click()
-  await expect(page).toHaveURL(/\/personas\/control-alarmist$/)
+  await expect(page).toHaveURL(/\/personas\/esyudkowsky$/)
   await expect(page.locator('[data-slot=worldview-map]')).toHaveCount(1)
   await expect(
     page.getByText('Eliezer Yudkowsky’s estimated P(doom)', { exact: true })
@@ -100,7 +101,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
 }, testInfo) => {
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
-  await page.goto('/personas/human-centered-spatial-builder')
+  await page.goto('/personas/drfeifei')
   await expect(
     page.getByText('What her outlook hinges on', { exact: true })
   ).toBeVisible()
@@ -128,7 +129,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
   await map.getByRole('button', { name: 'Map image actions' }).click()
   await page.getByRole('menuitem', { name: 'Download PNG' }).click()
   await (await downloading).saveAs(testInfo.outputPath('persona-map.png'))
-  await page.goto('/personas/alignment-maximalist')
+  await page.goto('/personas/tszzl')
   await expect(
     page.getByText('What their outlook hinges on', { exact: true })
   ).toBeVisible()
@@ -138,7 +139,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
 test('persona probability uses a dated public statement with its outcome and source', async ({
   page
 }) => {
-  await page.goto('/personas/biosecurity-abundance-optimist')
+  await page.goto('/personas/noahpinion')
   await expect(
     page.getByText('Noah Smith’s stated P(doom)', { exact: true })
   ).toBeVisible()
@@ -170,7 +171,7 @@ test('new safety researchers have live results, portraits and grounded sources',
       avatar: 'greenblatt'
     }
   ]) {
-    await page.goto(`/personas/${person.id}`)
+    await page.goto(`/personas/${personaIdentity(person.id).slug}`)
     await expect(
       page.getByRole('heading', { level: 1, name: person.name })
     ).toBeVisible()
@@ -201,14 +202,10 @@ test('new safety researchers have live results, portraits and grounded sources',
   ).toBeVisible()
   await page.goto('/')
   await expect(
-    page.locator(
-      'a.landing-map-point[href="/personas/superintelligence-stop-advocate"]'
-    )
+    page.locator('a.landing-map-point[href="/personas/so8res"]')
   ).toBeVisible()
   await expect(
-    page.locator(
-      'a.landing-map-point[href="/personas/empirical-control-researcher"]'
-    )
+    page.locator('a.landing-map-point[href="/personas/ryangreenblatt"]')
   ).toBeVisible()
 })
 
@@ -243,7 +240,7 @@ test('new worldview writers have live journeys and source-grounded persona pages
     }
   ]
   for (const person of people) {
-    await page.goto(`/personas/${person.id}`)
+    await page.goto(`/personas/${personaIdentity(person.id).slug}`)
     await expect(
       page.getByRole('heading', { level: 1, name: person.name })
     ).toBeVisible()
@@ -275,7 +272,9 @@ test('new worldview writers have live journeys and source-grounded persona pages
   await page.goto('/')
   for (const person of people) {
     await expect(
-      page.locator(`a.landing-map-point[href="/personas/${person.id}"]`)
+      page.locator(
+        `a.landing-map-point[href="/personas/${personaIdentity(person.id).slug}"]`
+      )
     ).toBeVisible()
   }
 })

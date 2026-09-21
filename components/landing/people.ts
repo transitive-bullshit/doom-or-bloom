@@ -1,4 +1,6 @@
-export const people = [
+import { personaIdentity } from '@/lib/journeys/persona-identity'
+
+const profiles = [
   {
     id: 'alignment-philosopher',
     name: 'Joe Carlsmith',
@@ -553,3 +555,8 @@ export const people = [
     avatar: '/personas/huang.jpg'
   }
 ] as const
+
+export const people = profiles.map((person) => ({
+  ...person,
+  ...personaIdentity(person.id)
+}))

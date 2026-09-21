@@ -28,7 +28,7 @@ export function PeopleFirst({ examples, variant }: VariantProps) {
         {examples.map((p) => (
           <Link
             key={p.id}
-            href={resultHref(p.id, variant)}
+            href={resultHref(p.slug, variant)}
             className={`landing-person-card ${p.tone}`}
           >
             <div className='landing-person-top'>

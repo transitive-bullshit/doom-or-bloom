@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { personaIdentity } from './persona-identity'
 import { publicProbabilityStatementSchema } from '@/lib/assessment/schema'
 import { publicPdoomStatements } from './public-pdoom-statements'
 import { publicPersonas } from './public-personas'
@@ -14,6 +15,15 @@ import { noahPublicPersona } from './noah-public-persona'
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
   id: z.string().regex(/^[a-z][a-z0-9-]+$/),
+  slug: z
+    .string()
+    .regex(/^[a-z0-9_-]+$/)
+    .optional(),
+  xUsername: z
+    .string()
+    .regex(/^[a-z0-9_]+$/)
+    .nullable()
+    .optional(),
   name: z.string(),
   proxy: z.string(),
   description: z.string(),
@@ -306,6 +316,7 @@ const narrativePersonas: Persona[] = [
 export const personas: Persona[] = z.array(personaSchema).parse(
   narrativePersonas.map((persona) => ({
     ...persona,
+    ...personaIdentity(persona.id),
     statedPdoom: publicPdoomStatements[persona.id]
   }))
 )

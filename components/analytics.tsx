@@ -1,6 +1,6 @@
 'use client'
 import { usePathname } from 'next/navigation'
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics/next'
 import { stripUrl } from '@/lib/analytics/events'
 export function SiteAnalytics({ enabled }: { enabled: boolean }) {
   const path = usePathname()

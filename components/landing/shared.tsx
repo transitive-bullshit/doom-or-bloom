@@ -13,6 +13,7 @@ import { placePortraits } from './map-layout'
 
 export type Example = {
   id: string
+  slug: string
   name: string
   possessivePronoun?: 'his' | 'her' | 'their'
   short: string
@@ -28,10 +29,10 @@ export type Example = {
   sources?: Array<{ title: string; url: string }>
 }
 export type VariantProps = { examples: Example[]; variant?: number }
-export const resultHref = (id: string, variant?: number) =>
+export const resultHref = (slug: string, variant?: number) =>
   variant
-    ? `/prototypes/landing/personas/${id}?v=${variant}`
-    : `/personas/${id}`
+    ? `/prototypes/landing/personas/${slug}?v=${variant}`
+    : `/personas/${slug}`
 
 export function StartLink() {
   return (
@@ -49,7 +50,7 @@ export function ExampleLinks({ examples, variant }: VariantProps) {
         {examples.map((p) => (
           <Link
             key={p.id}
-            href={resultHref(p.id, variant)}
+            href={resultHref(p.slug, variant)}
             className='landing-person-link'
           >
             <span className={`landing-dot ${p.tone}`} />
@@ -132,7 +133,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
             <Tooltip key={p.id} disableHoverableContent>
               <TooltipTrigger asChild>
                 <Link
-                  href={resultHref(p.id, variant)}
+                  href={resultHref(p.slug, variant)}
                   aria-label={`View ${p.name} results`}
                   data-selected={p.id === highlighted}
                   onPointerEnter={() => setHighlighted(p.id)}
@@ -166,7 +167,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
           {examples.map((p) => (
             <Link
               key={p.id}
-              href={resultHref(p.id, variant)}
+              href={resultHref(p.slug, variant)}
               onPointerEnter={() => setHighlighted(p.id)}
               onPointerLeave={() => setHighlighted(null)}
               onFocus={() => setHighlighted(p.id)}

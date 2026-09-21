@@ -9,10 +9,11 @@ export default async function Page({
 }: {
   params: Promise<{ id: string }>
 }) {
-  const { id } = await params
-  const person = (await loadExamples()).find((p) => p.id === id)
-  const assessment = await loadPersonaAssessment(id)
-  if (!person || !assessment) notFound()
+  const { id: slug } = await params
+  const person = (await loadExamples()).find((p) => p.slug === slug)
+  if (!person) notFound()
+  const assessment = await loadPersonaAssessment(person.id)
+  if (!assessment) notFound()
   return (
     <PageTransition>
       <div className='mx-auto w-full max-w-6xl px-6 py-10'>

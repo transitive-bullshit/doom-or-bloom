@@ -13,7 +13,7 @@ test('persona page orders results, collapsed inspection, sources and closing CTA
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
-  await page.goto('/personas/anti-doomer')
+  await page.goto('/personas/jensen-huang')
   const ctas = page.getByRole('link', {
     name: 'Map your own worldview',
     exact: true
@@ -107,7 +107,7 @@ test('JSON field tooltips anchor to their text on wide screens', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1800, height: 1000 })
-  await page.goto('/personas/anti-doomer')
+  await page.goto('/personas/jensen-huang')
   await page.getByRole('button', { name: 'Debug info', exact: true }).click()
   const result = page.getByRole('region', {
     name: 'Final generated result',
