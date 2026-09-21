@@ -15,6 +15,20 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Advanced AI as a Global Public Good and a Global Risk',
+        url: 'https://yoshuabengio.org/en/publication/advanced-ai-global-public-good-and-global-risk',
+        publishedAt: '2025-12-11',
+        summary:
+          'Author’s published essay synopsis identifies misuse by weak actors, concentration of power and loss of control as distinct catastrophic-risk pathways. Grounds his public-good governance argument; synopsis inspected, not the full linked chapter.'
+      },
+      {
+        title: 'Introducing LawZero',
+        url: 'https://yoshuabengio.org/en/blog/introducing-lawzero',
+        publishedAt: '2025-06-03',
+        summary:
+          'Bengio explains his nonprofit’s separation from commercial pressures and his move toward non-agentic Scientist AI. His mountain-road analogy connects uncertainty, competitive acceleration and responsibility for children. Experimental warning signs are not claims of deployed catastrophe.'
+      },
+      {
         title: 'Why are AI agents lying, cheating and coordinating?',
         url: 'https://yoshuabengio.org/en/blog/why-are-ai-agents-lying-cheating-and-coordinating',
         publishedAt: '2026-09-11',
@@ -61,6 +75,13 @@ export const foundationalPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'Introducing Superalignment',
+        url: 'https://openai.com/index/introducing-superalignment/',
+        publishedAt: '2023-07-05',
+        summary:
+          'Historical proposal coauthored by Sutskever and Jan Leike: human supervision may not scale to stronger systems, motivating scalable oversight, generalization research and adversarial testing. Grounds the mechanism behind his safety focus. The old team’s four-year target and compute pledge are not current SSI commitments.'
+      },
       {
         title: 'SSI and NVIDIA announce a long-term research partnership',
         url: 'https://investor.nvidia.com/news/press-release-details/2026/Ilya-Sutskevers-Safe-Superintelligence-Inc--and-NVIDIA-Announce-Long-Term-Strategic-Partnership/default.aspx',
@@ -110,6 +131,21 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title:
+          'Sequoia Ascent 2026: agentic engineering and jagged intelligence',
+        url: 'https://karpathy.bearblog.dev/sequoia-ascent-2026/',
+        publishedAt: '2026-04-30',
+        summary:
+          'Author-posted, AI-cleaned summary and transcript, which Karpathy says he read. Describes a late-2025 jump in coding-agent usefulness, professional orchestration and evaluation, and verifiability as an explanation for uneven progress. Current enthusiasm updates the older decade-of-agents interview; the edited text is not an exact quotation transcript.'
+      },
+      {
+        title: '2025 LLM Year in Review',
+        url: 'https://karpathy.bearblog.dev/year-in-review-2025/',
+        publishedAt: '2025-12-19',
+        summary:
+          'His review connects verifiable rewards to reasoning gains, criticizes benchmark overfitting, describes jagged intelligence and the growing application layer around models. Provides concrete mechanisms and builder vocabulary rather than a universal intelligence forecast.'
+      },
+      {
         title: 'AGI is still a decade away',
         url: 'https://www.dwarkesh.com/p/andrej-karpathy',
         publishedAt: '2025-10-17',
@@ -127,6 +163,7 @@ export const foundationalPublicPersonas: Persona[] = [
     background:
       'This is an incredibly exciting time to build. I use these tools and want to make them more useful. But there is a huge difference between a magical demo and something you can hand a real job to. The interesting question is what actually works, where it breaks, and how we engineer the next version.',
     beliefs: [
+      'By April 2026, my own coding workflow had shifted toward delegating larger tasks to agents. That is real progress beyond autocomplete. Professional work still needs clear specifications, tests and human understanding of the system; usefulness and uneven reliability can coexist.',
       'I described a decade of agents in 2025 because reliability, memory, learning and integration were substantial remaining problems. That is an engineering intuition, not a law that prevents surprising progress.',
       'My 2026 autoresearch project lets an agent run small training experiments overnight. A clear metric and constrained environment turn useful pieces of research into an automated loop.',
       'That experiment demonstrates a workflow. It does not establish that agents can choose every important scientific question or recursively solve all research.',
@@ -150,6 +187,13 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'A Functional Taxonomy of World Models',
+        url: 'https://drfeifei.substack.com/p/a-functional-taxonomy-of-world-models',
+        publishedAt: '2026-06-03',
+        summary:
+          'Li and the World Labs team distinguish renderers, simulators and planners. Physically faithful simulation supports design and robotics, while scarce 3D data and the simulation-to-reality gap remain bottlenecks. Their aspiration for unified world models is separate from current product validation.'
+      },
+      {
         title: 'Why Stanford is restructuring for AI’s next era',
         url: 'https://news.stanford.edu/stories/2026/05/james-landay-fei-fei-li-john-hennessy-hai-interview',
         publishedAt: '2026-05-04',
@@ -168,6 +212,7 @@ export const foundationalPublicPersonas: Persona[] = [
     background:
       'AI is much bigger than a chatbot. Intelligence lets us perceive a world, imagine something that is not there yet, and act to create it. I am excited about what that can mean for science, medicine, education and human creativity. The future should be built around people. Technology does not relieve us of the responsibility to decide whom it serves.',
     beliefs: [
+      'A convincing video is not the same as a physically reliable simulation. In my June 2026 taxonomy, rendering gives observations, simulation gives structure and planning gives actions. Joining these capabilities could unlock robotics and design, but realistic training environments remain a bottleneck.',
       'Language is only part of intelligence. Navigating a room, manipulating an object and designing a physical space require capabilities that words alone do not capture.',
       'World models could connect imagination, perception and action. This opens a substantial frontier in creative tools and embodied intelligence, rather than simply adding another chat feature.',
       'The spatial limitations described in my 2025 essay are research challenges. Do not repeat those particular measurements as if they establish the performance of every September 2026 system.',
@@ -190,6 +235,19 @@ export const foundationalPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'Toward Enactive Artificial Intelligence',
+        url: 'https://arxiv.org/abs/2605.24238',
+        publishedAt: '2026-05-22',
+        summary:
+          'Coauthored with Banafsheh Rafiee; abstract inspected. Argues that perception depends on action, embodiment and autonomous interaction. Reinforcement learning shares some of this structure but does not yet embody every enactive principle. Extends the persona beyond a blanket rejection of language models.'
+      },
+      {
+        title: 'Welcome to the Era of Experience',
+        url: 'https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf',
+        summary:
+          'Silver and Sutton’s chapter preprint argues for agents learning through persistent interaction, environment-grounded rewards and experience beyond human data. Opening sections inspected. This is a research vision, not evidence of completed human replacement; the PDF does not print a publication date.'
+      },
       {
         title: 'Father of RL thinks LLMs are a dead end',
         url: 'https://www.dwarkesh.com/p/richard-sutton',
@@ -230,6 +288,19 @@ export const foundationalPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'What UC Berkeley AI experts are watching for in 2026',
+        url: 'https://news.berkeley.edu/2026/01/13/what-uc-berkeley-ai-experts-are-watching-for-in-2026/',
+        publishedAt: '2026-01-13',
+        summary:
+          'Russell’s own contribution contrasts an investment bubble with a breakthrough toward AGI that developers cannot adequately control. His January comments on a possible capability plateau are dated, not a September measurement. Other faculty forecasts are not attributed to him.'
+      },
+      {
+        title: 'Feedback on California’s draft frontier-model policy report',
+        url: 'https://people.eecs.berkeley.edu/~russell/papers/StuartRussell_Feedback_On_Draft_Report.pdf',
+        summary:
+          'Russell advocates justified safety cases and liability, arguing that transparency alone may not change a dangerous trajectory and that safety enables benefits. First two pages inspected. The undated PDF references March 2025 material; no exact publication date is inferred from crawling.'
+      },
       {
         title: 'AI safety requires more than just slowing our pace',
         url: 'https://www.theguardian.com/commentisfree/2026/sep/15/ai-safety-requirements',
@@ -278,6 +349,20 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Statement on autonomous weapons and surveillance red lines',
+        url: 'https://futureoflife.org/ai/tegmark-statement-on-dow-ultimatum/',
+        publishedAt: '2026-02-27',
+        summary:
+          'Tegmark’s explicitly attributed statement calls for meaningful human control, legal prohibitions on fully autonomous weapons and domestic mass surveillance, and protection beyond company policies. Adds concrete rights and military-escalation mechanisms to the superintelligence moratorium position.'
+      },
+      {
+        title:
+          '2026 Singapore Consensus on Global AI Safety Research Priorities',
+        url: 'https://arxiv.org/abs/2608.14611',
+        summary:
+          'Tegmark is a named coauthor of a multinational research-priority consensus. Abstract inspected: societal resilience and increasingly autonomous-agent risks receive dedicated attention. Collective authorship supports engagement with technical safety, not personal endorsement of every contributor’s forecast. Conflicting month metadata prevents assigning an exact date.'
+      },
+      {
         title: 'Canadian parliamentary testimony on AI regulation',
         url: 'https://www.ourcommons.ca/Content/Committee/451/ETHI/Evidence/EV13876654/ETHIEV25-E.PDF',
         publishedAt: '2026-02-02',
@@ -296,6 +381,16 @@ export const foundationalPublicPersonas: Persona[] = [
         publishedAt: '2026-07-30',
         summary:
           'Tegmark argues for stronger AI oversight and criticizes the unregulated superintelligence race.'
+      },
+      {
+        title: 'Max Tegmark vs. Dean Ball: Should We BAN Superintelligence?',
+        url: 'https://lironshapira.substack.com/p/max-tegmark-vs-dean-ball-debate-ban-superintelligence',
+        publishedAt: '2025-11-21',
+        speaker: 'Max Tegmark',
+        summary:
+          '>90%, conditional on no regulation. Outcome: Loss of human control after superintelligence deployment. Horizon: Not specified. Conditions: Explicitly conditional on continuing without predeployment safety regulation; not an unconditional prediction that regulation will fail to materialize. At 01:17:05 Tegmark estimates greater than 90% loss of control under continued unregulated deployment. At 01:27:58 he reiterates the condition and expresses optimism about regulation.',
+        quote:
+          'When I said P(doom) of over 90%, that was if we do no regulation.'
       }
     ],
     background:

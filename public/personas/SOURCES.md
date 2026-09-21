@@ -50,3 +50,5 @@ Portrait fallbacks, checked 2026-09-21 (no verified personal X portrait used):
 - Jensen Huang: [NVIDIA official headshot](https://nvidianews.nvidia.com/bios/jensen-huang), current newsroom asset retrieved and resized.
 - Stuart Russell: [Berkeley faculty page](https://aima.cs.berkeley.edu/~russell/), linked university headshot. The similarly named X account `stuartjrussell` belongs to a different person and was excluded.
 - Liang Wenfeng: [Nature profile, December 2025](https://www.nature.com/articles/d41586-025-03845-4), image `d41586-025-03845-4_51757042.jpg`, cropped to the subject’s face. No verified personal X account was found.
+
+- Noah Smith: https://x.com/Noahpinion — verified profile image https://pbs.twimg.com/profile_images/1900075477999763456/8nSaoQcX_200x200.jpg (2026-09-21), stored as `smith.jpg`.

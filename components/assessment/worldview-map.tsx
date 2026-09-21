@@ -1,5 +1,6 @@
 'use client'
 import { useId, useRef } from 'react'
+import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { MapActions } from './map-actions'
 import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
@@ -20,10 +21,11 @@ export function Map({
   axis: keyof typeof experimentalAxes
   history?: Array<{ x: number | null; y: number | null; label: string }>
   layout?: 'contained' | 'breakout'
-  subject?: string
+  subject?: ResultSubject
 }) {
   const svg = useRef<SVGSVGElement>(null)
   const definition = experimentalAxes[axis]
+  const framing = resultFraming(subject)
   const id = useId().replaceAll(':', '')
   const plot = { left: 70, top: 52, width: 560, height: 268 }
   const px = (value: number) => plot.left + value * plot.width
@@ -68,6 +70,11 @@ export function Map({
         className='mt-1 w-full'
       >
         <defs>
+          {subject?.avatar && point && (
+            <clipPath id={`${id}-portrait`}>
+              <circle cx={px(x.value!)} cy={py(y.value!)} r='19.25' />
+            </clipPath>
+          )}
           <linearGradient id={`${id}-field`}>
             <stop stopColor='var(--map-doom)' stopOpacity='.55' />
             <stop
@@ -204,46 +211,73 @@ export function Map({
               strokeOpacity='.5'
               strokeDasharray='3 5'
             />
-            <circle
-              cx={px(x.value!)}
-              cy={py(y.value!)}
-              r='18'
-              fill='var(--map-text)'
-              fillOpacity='.12'
-            />
-            <circle
-              cx={px(x.value!)}
-              cy={py(y.value!)}
-              r='8'
-              fill='var(--map-text)'
-              stroke='var(--map-surface)'
-              strokeWidth='3'
-            />
-            <g
-              transform={`translate(${Math.max(120, Math.min(580, px(x.value!)))},${Math.max(25, py(y.value!) - 29)})`}
-            >
-              <rect
-                x='-46'
-                y='-14'
-                width='92'
-                height='25'
-                rx='12.5'
-                fill='var(--map-text)'
-              />
-              <text
-                textAnchor='middle'
-                y='3'
-                fill='var(--map-surface)'
-                fontSize='12'
-                fontWeight='600'
-              >
-                {y.interpretation === 'unsettled'
-                  ? 'Unsettled'
-                  : y.interpretation === 'tentative'
-                    ? 'Estimate'
-                    : 'Your view'}
-              </text>
-            </g>
+            {subject?.avatar ? (
+              <g data-persona-marker={subject.name}>
+                <title>{`${subject.name} · simulated position`}</title>
+                <image
+                  href={subject.avatar}
+                  x={px(x.value!) - 20}
+                  y={py(y.value!) - 20}
+                  width='40'
+                  height='40'
+                  preserveAspectRatio='xMidYMid slice'
+                  clipPath={`url(#${id}-portrait)`}
+                />
+                <circle
+                  cx={px(x.value!)}
+                  cy={py(y.value!)}
+                  r='19.25'
+                  fill='none'
+                  stroke='#fff'
+                  strokeWidth='1.5'
+                />
+              </g>
+            ) : (
+              <>
+                <circle
+                  cx={px(x.value!)}
+                  cy={py(y.value!)}
+                  r='18'
+                  fill='var(--map-text)'
+                  fillOpacity='.12'
+                />
+                <circle
+                  cx={px(x.value!)}
+                  cy={py(y.value!)}
+                  r='8'
+                  fill='var(--map-text)'
+                  stroke='var(--map-surface)'
+                  strokeWidth='3'
+                />
+                <g
+                  transform={`translate(${Math.max(120, Math.min(580, px(x.value!)))},${Math.max(25, py(y.value!) - 29)})`}
+                >
+                  <rect
+                    x='-46'
+                    y='-14'
+                    width='92'
+                    height='25'
+                    rx='12.5'
+                    fill='var(--map-text)'
+                  />
+                  <text
+                    textAnchor='middle'
+                    y='3'
+                    fill='var(--map-surface)'
+                    fontSize='12'
+                    fontWeight='600'
+                  >
+                    {y.interpretation === 'unsettled'
+                      ? 'Unsettled'
+                      : y.interpretation === 'tentative'
+                        ? 'Estimate'
+                        : subject
+                          ? 'Simulated view'
+                          : 'Your view'}
+                  </text>
+                </g>
+              </>
+            )}
           </g>
         )}
         {!point && (
@@ -352,8 +386,8 @@ export function Map({
           <span className='map-point size-2 rounded-full' />
           {point
             ? y.interpretation === 'unsettled'
-              ? 'Point: center of your unresolved range'
-              : 'Point: your estimated position'
+              ? `Point: center of ${framing.possessive} unresolved range`
+              : `Point: ${subject ? 'simulated' : 'your estimated'} position`
             : 'Point withheld until both axes are assessable'}
         </span>
         <span className='flex items-center gap-2'>
@@ -363,7 +397,7 @@ export function Map({
       </figcaption>
       <div className='mt-4 flex items-end justify-between gap-4'>
         <p className='map-muted text-xs leading-relaxed'>
-          Across: your expressed Doom–Bloom outlook. Up:{' '}
+          Across: {framing.possessive} expressed Doom–Bloom outlook. Up:{' '}
           {definition.label.toLowerCase()}. Coordinates describe beliefs, not
           reasoning quality or event probabilities.
           {history.length > 0
@@ -373,7 +407,9 @@ export function Map({
         <MapActions
           svg={svg}
           title={
-            subject ? `${subject} · Simulated AI worldview` : 'My AI worldview'
+            subject
+              ? `${subject.name} · Simulated AI worldview`
+              : 'My AI worldview'
           }
           legend={
             point

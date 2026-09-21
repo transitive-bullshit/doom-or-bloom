@@ -1,3 +1,4 @@
+import { GET as tweet } from '@/app/api/tweet/route'
 import { POST as assess } from '@/app/api/assessment/route'
 import { POST as shareCard } from '@/app/api/share-card/route'
 
@@ -8,6 +9,8 @@ interface SiteEnv {
 export default {
   async fetch(request: Request, env: SiteEnv) {
     const url = new URL(request.url)
+    if (url.pathname === '/api/tweet' && request.method === 'GET')
+      return tweet(request)
     if (url.pathname === '/api/assessment' && request.method === 'POST')
       return assess(request)
     if (url.pathname === '/api/share-card' && request.method === 'POST')

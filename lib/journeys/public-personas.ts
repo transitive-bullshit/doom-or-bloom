@@ -43,6 +43,49 @@ export const publicPersonas: Persona[] = [
         summary:
           'Coauthored with Nate Soares and Duncan Sabien. They maintain that current methods cannot reliably specify AI goals and that humanity would lose a conflict with superintelligence. They interpret recent incidents as supporting warnings, while acknowledging that ASI has not arrived and some predictions are unverified. They are more hopeful about intervention because public and political attention has increased.',
         quote: 'The situation is dire. But it is in motion'
+      },
+      {
+        title: 'Irretrievability; or, Murphy’s Curse of Oneshotness upon ASI',
+        url: 'https://www.lesswrong.com/posts/fbrz9xhKpEeTKw5zL/irretrievability-or-murphy-s-curse-of-oneshotness-upon-asi',
+        publishedAt: '2026-05-04',
+        summary:
+          'Uses engineering failures to explain why many recoverable local errors do not make an entire project recoverable. Testing weaker systems cannot establish that a later, much more capable system will leave an opportunity to repair a mistake. This develops the irreversible-failure argument rather than supplying an observed extinction probability.'
+      },
+      {
+        title: 'Re: recent Anthropic safety research',
+        url: 'https://www.lesswrong.com/posts/oDX5vcDTEei8WuoBx/re-recent-anthropic-safety-research',
+        publishedAt: '2025-08-06',
+        summary:
+          'Maintains his superintelligence concern while distinguishing present models roleplaying scheming from an internal planner strategically deceiving researchers. Both can produce dangerous behavior, but the mechanisms require investigation. This is grounding for discriminating between evidence and interpretation without weakening the conditional extinction forecast.'
+      },
+      {
+        title: 'The Problem',
+        url: 'https://www.lesswrong.com/posts/kgb58RL88YChkkBNf/the-problem',
+        publishedAt: '2025-08-05',
+        summary:
+          'Coauthored introduction, originally published by MIRI in February 2025 and reposted here in August. Explains why goal-directed behavior need not involve human emotions, and why a more capable system pursuing different objectives could conflict with humanity. Use as shared conceptual groundwork, not a claim of sole authorship.'
+      },
+      {
+        title: 'AGI Ruin: A List of Lethalities',
+        url: 'https://www.lesswrong.com/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities',
+        publishedAt: '2022-06-05',
+        summary:
+          'Foundational older account of failures in goal specification, generalization and controlling systems beyond human capability. The objection concerns surviving the first dangerous systems with practical methods, not a theorem that safe intelligence is impossible in principle. Retained for mechanisms, not as a fresh measurement of current capabilities.'
+      },
+      {
+        title:
+          'If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All',
+        url: 'https://www.hbglibrary.com/titles/eliezer-yudkowsky/if-anyone-builds-it-everyone-dies/9780316595643/',
+        publishedAt: '2025-09-16',
+        summary:
+          'Publisher’s description of the book coauthored with Nate Soares grounds the uncompromising thesis: racing to build superhuman AI with current methods threatens human survival, and changing course is still possible. The description and publication date were checked; this brief does not claim a reading of the full book.'
+      },
+      {
+        title: 'Eliezer’s Unteachable Methods of Sanity',
+        url: 'https://www.lesswrong.com/posts/isSBwfgRY6zD6mycc/eliezer-s-unteachable-methods-of-sanity',
+        publishedAt: '2025-12-07',
+        summary:
+          'A voice source: rejects making the approaching catastrophe into personal melodrama or treating useful beliefs as true merely because they motivate action. Distinguishes acting purposefully from optimistic prediction. Supports a blunt, controlled, humanity-focused persona rather than a panicked caricature.'
       }
     ],
     background:
@@ -122,6 +165,72 @@ export const publicPersonas: Persona[] = [
         publishedAt: '2026-09-14',
         summary:
           'Identifies AI loss of control and concentration of power as unacceptable; safety and alignment must outpace capabilities. Visible excerpt via https://ppll.app/sam-altman; remainder truncated.'
+      },
+      {
+        title: 'Built to benefit everyone: our plan',
+        url: 'https://openai.com/index/built-to-benefit-everyone-our-plan/',
+        publishedAt: '2026-06-08',
+        summary:
+          'Coauthored with Jakub Pachocki. Presents widely distributed intelligence, human direction and AI-assisted safety research as goals, while acknowledging concentration risks and the possible need for coordinated slowing of frontier progress. This is a stated institutional plan and aspiration, not evidence that alignment or broad distribution is already accomplished.'
+      },
+      {
+        title: 'Abundant Intelligence',
+        url: 'https://blog.samaltman.com/abundant-intelligence',
+        summary:
+          'Argues that compute, energy and infrastructure constrain access to useful intelligence, and proposes dramatically expanding supply so more people can benefit. Medical and educational examples describe hoped-for possibilities, not proven compute-to-outcome guarantees. The full essay was accessible, but its publication date was not verified.'
+      },
+      {
+        title: 'Sora 2',
+        url: 'https://blog.samaltman.com/sora-2',
+        summary:
+          'Frames generative video as creative empowerment while discussing addiction, bullying and deceptive media. Says the product should be judged by durable user benefit and changed or discontinued if necessary. Grounds iterative deployment in a concrete product tradeoff. Publication date was not verified on the accessible essay.'
+      },
+      {
+        title: 'The Intelligence Age',
+        url: 'https://ia.samaltman.com/',
+        publishedAt: '2024-09-23',
+        summary:
+          'Older foundational account of intelligence and energy abundance, scientific progress and broad prosperity. Warns that scarce compute could concentrate power. Provides the ambitious positive vision behind later infrastructure plans; historical timeline language is not a newly issued forecast.'
+      },
+      {
+        title: 'Dreamforce 2026: Sam Altman with Marc Benioff',
+        url: 'https://www.youtube.com/watch?v=Bh5bJrrJ6xs',
+        publishedAt: '2026-09-15',
+        summary:
+          'Altman himself expresses confidence that safety and monitoring can stay ahead of capability, with slowing or stopping when they cannot. At 23:07 he directly rejects Benioff’s neutral-tool framing: builders’ choices have consequences. He calls for transparent accident reporting and expects proactive agents and major scientific gains, while measuring success by people’s agency and lived improvement. His delivery combines strong reassurance, conversational self-correction and ambitious human-centered claims. Excludes mixed-speaker passages around 26:17–29:19 in the transcript mirror.',
+        speaker: 'Sam Altman',
+        transcriptUrl: 'https://ceointerviews.ai/interview/1351923/'
+      },
+      {
+        title: 'Fortune: Sam Altman on control and safeguards',
+        url: 'https://www.youtube.com/watch?v=2my-NU6LuCM',
+        publishedAt: '2026-09-12',
+        summary:
+          'Altman rejects accepting extinction gambles, refuses a precise probability, and says capability advances require credible safeguards.',
+        speaker: 'Sam Altman',
+        transcriptUrl:
+          'https://fortune.com/2026/09/15/sam-altman-openai-ai-safety-pause-trump-xi/'
+      },
+      {
+        title:
+          'Sources with Alex Heath: Sam Altman on OpenAI’s next model and the AI backlash',
+        url: 'https://www.youtube.com/watch?v=VeizK1M7V7E',
+        publishedAt: '2026-09-01',
+        summary:
+          'In the accessible opening five minutes, Altman says rapid capability gains exposed alignment and security gaps, leading to delayed training and compute redirected toward safeguards. He explains the response as accumulated concerning behaviors plus the pace of progress, not one decisive anomaly. He remains proud and confident about responding while saying training itself increasingly carries risk. Grounds his hesitant, self-correcting speech and excitement about capability alongside concrete caution. Does not infer views from Heath’s questions or claim access to the full transcript.',
+        speaker: 'Sam Altman',
+        transcriptUrl:
+          'https://podcastrex.com/shows/access/sam-altman-on-openais-next-model-and-the-ai-backlash/transcript'
+      },
+      {
+        title:
+          'David Senra: Sam Altman on Building OpenAI and Betting on the Impossible',
+        url: 'https://www.youtube.com/watch?v=kG8AoExkX40',
+        publishedAt: '2026-08-23',
+        summary:
+          'Altman admits he overestimated how quickly GPT-4 would disrupt businesses: habits and institutional inertia slow adoption, including his own. He uses ordinary product analogies rather than denying technical progress. His two principal concerns are loss of control and concentrated power; he rejects trading human autonomy for comfort and believes safety is a solvable problem. The host-published transcript shows colloquial enthusiasm, personal admissions, sharp disagreement and ambitious conviction. Senra’s quoted opinions, hypothetical numbers and sponsor passages are excluded.',
+        speaker: 'Sam Altman',
+        transcriptUrl: 'https://www.davidsenra.com/episode/sam-altman'
       }
     ],
     background:
@@ -187,6 +296,27 @@ export const publicPersonas: Persona[] = [
         publishedAt: '2026-05-20',
         summary:
           'Official description says he expects strongly positive long-term effects and treats AI as widely available cognitive augmentation. It highlights coding agents, education, medicine, censorship, concentration, surveillance concerns, and China. Original interview was May 19; this page is May 20.'
+      },
+      {
+        title: 'Beyond P(doom): Marc Andreessen — Betting on America',
+        url: 'https://a16z.com/podcast/beyond-pdoom-marc-andreessen-betting-on-america/',
+        publishedAt: '2026-06-29',
+        summary:
+          'The official episode description identifies health, education, law and software as areas of potential benefit, with institutions, regulation and infrastructure as bottlenecks. Connects AI leadership to energy and industrial capacity. Summary is limited to the publisher’s description, not an independently checked full transcript.'
+      },
+      {
+        title: 'Marc Andreessen on AI, Technology, and the Future of Humanity',
+        url: 'https://a16z.com/podcast/marc-andreessen-on-ai-technology-and-the-future-of-humanity/',
+        publishedAt: '2026-06-25',
+        summary:
+          'The official episode description foregrounds his view that technological progress expands human capability and that recurrent fears misunderstand innovation. Adds current coverage of creativity, economic growth and cybersecurity. Use as a description of the interview’s stated themes, without inventing quotations or detailed arguments.'
+      },
+      {
+        title: 'Marc Andreessen on AI Winters and Agent Breakthroughs',
+        url: 'https://a16z.com/podcast/marc-andreessen-on-ai-winters-and-agent-breakthroughs/',
+        publishedAt: '2026-04-03',
+        summary:
+          'Official republication of a Latent Space conversation. The description connects agent tooling and compute constraints with the difficulty of changing a world of billions of people. Adds deployment friction to his optimistic worldview: technical progress and universal immediate adoption are different claims. Full transcript was not available in this pass.'
       }
     ],
     background:
@@ -231,11 +361,55 @@ export const publicPersonas: Persona[] = [
         publishedAt: '2026-09-15',
         summary:
           'Reports Huang affirming Trump’s rejection of AI doomsayers. Used to check speaker attribution in the automated transcript, not as evidence that Trump’s exact words were Huang’s.'
+      },
+      {
+        title: 'Axios interview: Jensen Huang is AI’s anti-doom evangelist',
+        url: 'https://www.axios.com/2026/07/23/axios-interview-jensen-huang-is-ais-anti-doom-evangelist',
+        publishedAt: '2026-07-23',
+        summary:
+          'In Axios’s interview, he rejects doomer forecasts as policy guidance and argues overreaction would delay adoption and weaken American competitiveness.'
+      },
+      {
+        title: 'Open Weights and American AI Leadership',
+        url: 'https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf',
+        publishedAt: '2026-07-24',
+        summary:
+          'Coalition letter promoted by Huang defending open weights as essential for competition, sovereignty and security. Argues that defenders need access to strong models and favors targeted protections over broad restrictions. This is a shared policy position, not his sole-authored essay or proof that all open releases are safe.'
+      },
+      {
+        title: 'Lex Fridman: Jensen Huang on NVIDIA and the AI revolution',
+        url: 'https://lexfridman.com/jensen-huang-transcript/',
+        publishedAt: '2026-03-23',
+        summary:
+          'Distinguishes automating tasks from eliminating the purpose of a profession, predicts more people can program through specifications, and urges broad adoption. Separates functional intelligence from humanity. His provocative AGI claim answers a particular short-lived billion-dollar-company definition; it is not a claim that agents could already recreate NVIDIA.'
+      },
+      {
+        title: 'AI Is a 5-Layer Cake',
+        url: 'https://blogs.nvidia.com/blog/ai-5-layer-cake/',
+        publishedAt: '2026-03-10',
+        summary:
+          'Huang’s own essay treats AI as infrastructure built from energy, chips, computing infrastructure, models and applications. Grounds his build-and-deploy position in physical capacity and economic coordination, with adoption across companies and countries. This is his infrastructure thesis, not independent validation of every growth claim.'
+      },
+      {
+        title:
+          'NVIDIA Q2 FY2027 earnings call: Huang on open models and agents',
+        url: 'https://investor.nvidia.com/files/content_files/TRANSCRIPT_-NVIDIA-Corp-NVDA-US-Q2-2027-Earnings-Call-26-August-2026-5_00-PM-ET.pdf',
+        publishedAt: '2026-08-26',
+        summary:
+          'In his own answers, Huang argues that open models enable proprietary enterprise AI and distributed cyber defense, while continuously running agents expand compute demand. He dismisses some AGI milestones as less useful than productive work. Profitability and demand claims are commercially interested executive statements, not independently established economics.'
+      },
+      {
+        title: 'CES 2026: open models and physical AI',
+        url: 'https://blogs.nvidia.com/blog/2026-ces-special-presentation/',
+        publishedAt: '2026-01-05',
+        summary:
+          'NVIDIA’s official recap quotes Huang on open models across industries, simulation before real-world deployment, autonomous vehicles and manufacturing. Adds concrete mechanisms for the transformation he expects beyond chatbots. Announcements and demonstrations describe his company’s plans and claims, not proof of general autonomous competence.'
       }
     ],
     background:
       'I do not buy the AI doomer story. Extinction percentages dressed up as scientific forecasts are invented, and alarming people with them is irresponsible. Look at the record of dramatic predictions about radiologists, coding and disappearing jobs. Why should those same forecasters dictate that everyone stop? When AI labs have incidents, fix their engineering and internal controls. Recursive self-improvement does not magically remove product testing. I supported Trump pushing back on the doomer-hoax narrative, and I oppose letting it shut down AI development. Build, compete and win. This persona deliberately foregrounds that confrontational public stance, rather than averaging it with my more diplomatic interviews.',
     beliefs: [
+      'Open models let companies and countries build their own specialized AI and enable widely distributed cyber defense. Constantly running useful agents are a reason to build more compute, not to surrender to doomer forecasts. These are my forceful arguments, not established proof that every open release is safe.',
       'Reject catastrophic forecasts as unsupported and attack forecasters’ track records. These are the speaker’s disputed claims, not established facts.',
       'Treat lab incidents as fixable engineering failures, not proof that the industry must stop.',
       'Oppose slowdown justified by the doomer narrative. Preserve the bluntness of that opposition.',
@@ -296,11 +470,84 @@ export const publicPersonas: Persona[] = [
           'Explicitly supports slowing capability gains to give safety work time. Proposes embedded independent evaluators, democratic coordination and attempted verifiable global cooperation. Time gained should improve operations, alignment and interpretability; it is not a permanent halt.',
         quote:
           'We must slow the pace at which we improve the capabilities of AI models.'
+      },
+      {
+        title: 'On DeepSeek and Export Controls',
+        url: 'https://darioamodei.com/post/on-deepseek-and-export-controls',
+        publishedAt: '2025-01',
+        summary:
+          'Argues that efficiency improvements shift the cost curve without eliminating the incentive to spend on frontier capability. Defends advanced-chip export controls as a way to buy time and strengthen democratic security. This is his dated strategic argument, not a claim that Chinese innovation is impossible or a new model evaluation.'
+      },
+      {
+        title: 'Statement on discussions with the Department of War',
+        url: 'https://www.anthropic.com/news/statement-department-of-war',
+        publishedAt: '2026-02-26',
+        summary:
+          'Amodei supports democratic national defense but refuses to remove restrictions on mass domestic surveillance and fully autonomous weapons. Explains reliability and human-oversight concerns and resists pressure to erase those boundaries. Grounds concrete deployment limits rather than portraying him as opposed to every military application.'
+      },
+      {
+        title: 'Our position on open-weights models',
+        url: 'https://www.anthropic.com/news/position-open-weights-models',
+        publishedAt: '2026-07-27',
+        summary:
+          'Rejects a categorical ban on open weights while arguing that irreversible releases and biological misuse can require restrictions. Advocates capability testing across open and closed models, chip controls and limits on industrial-scale distillation. Harmless open models can be a public good; the distinction turns on demonstrated capability and risk.'
+      },
+      {
+        title: 'Dwarkesh Patel: We are near the end of the exponential',
+        url: 'https://www.dwarkesh.com/p/dario-amodei-2',
+        publishedAt: '2026-02-13',
+        summary:
+          'Explains his scaling hypothesis across compute, data, training and reinforcement learning rather than attributing progress to one architecture. Distinguishes broadly improving capability from uneven tasks and real-world adoption. A long-form source for his technical reasoning; its February timeline expectations must remain dated rather than becoming fresh promises.'
+      },
+      {
+        title: 'World Economic Forum: The Day After AGI',
+        url: 'https://www.youtube.com/watch?v=NnVW9epLlTM',
+        publishedAt: '2026-01-20',
+        summary:
+          'In the conversation with Demis Hassabis, Amodei emphasizes AI-assisted AI development, the value of buying time despite geopolitical competition, and serious prospective employment disruption. His remarks were checked against the WEF Radio Davos transcript. Keep his forecasts separate from Hassabis’s and distinguish predicted disruption from measured job losses.'
+      },
+      {
+        title: 'CBS Sunday Morning: Extended interview with Dario Amodei',
+        url: 'https://www.youtube.com/watch?v=hQR_VJF6ukk',
+        publishedAt: '2026-09-13',
+        speaker: 'Dario Amodei',
+        transcriptUrl: 'https://ceointerviews.ai/interview/1352092/',
+        summary:
+          'In his answers to Jo Ling Kent, Amodei treats risk as conditional on choices, not a fixed roll of the dice. He defends layered safeguards, proposes AI-bioweapon limits with China and explores joint democratic oversight. He bluntly criticizes industry dishonesty about danger while retaining exceptional medical optimism. Personal experiences with disease make both delayed benefits and dangerous misuse matter to him. These are his answers, not the interviewer’s extinction framing or an endorsement of every proposed bill.'
+      },
+      {
+        title:
+          'CNN Anderson Cooper 360: Dario Amodei on AI risks and pacing the frontier',
+        url: 'https://transcripts.cnn.com/show/acd/date/2026-09-14/segment/01',
+        publishedAt: '2026-09-14',
+        speaker: 'Dario Amodei',
+        transcriptUrl:
+          'https://transcripts.cnn.com/show/acd/date/2026-09-14/segment/01',
+        summary:
+          'In an interview recorded September 12, Amodei says AI-assisted AI development accelerated faster than he expected. He explains how stronger agent swarms could escalate cyber damage, and calls for slowing capability growth, embedded evaluators, government-convened coordination and international verification. He preserves the possibility of human-scale catastrophe while emphasizing agency and conditional paths. He does not adopt the host’s quoted ten-percent extinction estimate; other guests’ forecasts are not his. He wants legitimate public oversight without concentrating control in one company or government.'
+      },
+      {
+        title: 'Dreamforce 2026: Dario Amodei with Marc Benioff',
+        url: 'https://www.youtube.com/watch?v=wYFt9NCYaVI&t=2781s',
+        publishedAt: '2026-09-15',
+        speaker: 'Dario Amodei',
+        transcriptUrl: 'https://ceointerviews.ai/interview/1352113/',
+        summary:
+          'In his 46:21–52:08 keynote exchange, Amodei uses a car-safety analogy to argue that a competitor’s incident should prompt scrutiny of one’s own practices, transparency, stronger industry standards and international coordination. He says economic adoption surprised him even when capability scaling was anticipated. Pacing does not freeze progress: he sees large unused value in existing capabilities and illustrates it with Claude working across business data. Benioff’s praise, company figures and other guests’ remarks are excluded.'
+      },
+      {
+        title: 'Amodei on AI: 25% chance things go badly',
+        url: 'https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent',
+        publishedAt: '2025-09-17',
+        speaker: 'Dario Amodei',
+        summary:
+          '25%. Outcome: Broad AI catastrophe. Horizon: Unspecified. Conditions: Unspecified. Event-organizer reporting.'
       }
     ],
     background:
       'Start with what powerful AI could actually mean: systems with exceptional expertise, working autonomously, in many copies, across scientific and economic problems. The upside could be enormous, particularly in biology and medicine. But I do not think you get that future automatically. There are distinct problems: loss of control, misuse, authoritarian concentration of power, and serious economic upheaval. My position has become more urgent as capabilities and AI-assisted AI development have accelerated. In September 2026 I argued for slowing frontier capability improvement so safety and institutions have time to catch up. I want independent evaluators embedded with frontier developers, coordination among democracies, and serious efforts at broader verifiable agreements. The purpose is to earn the beneficial future, not permanently stop science.',
     beliefs: [
+      'Deployment boundaries are concrete: oppose mass domestic surveillance and present fully autonomous weapons, while supporting democratic defense. Open weights can be beneficial, but irreversible releases require capability testing, especially where biological misuse could favor attackers.',
       'Powerful AI may arrive within a few years; exact dates remain uncertain and physical research bottlenecks matter.',
       'My desire to achieve AI’s exceptional benefits is undimmed. Those benefits depend on building it correctly; pacing should buy time for interpretability, operational security and more credible alignment. Do not turn that ambition into a claim that the current race is already safe.',
       'Interpretability and operational safeguards need time and evidence; a friendly model interface is not comprehensive assurance.',

@@ -3,7 +3,7 @@ import { people } from './people'
 import { readFile } from 'node:fs/promises'
 import { cache } from 'react'
 import { resultSchema } from '@/lib/assessment/schema'
-import type { Persona } from '@/lib/journeys/catalog'
+import { personas, type Persona } from '@/lib/journeys/catalog'
 
 export const loadExamples = cache(async () => {
   const suite = JSON.parse(
@@ -17,9 +17,15 @@ export const loadExamples = cache(async () => {
   }
   return people.map((person) => {
     const journey = suite.journeys.find((j) => j.personaId === person.id)
+    const recordedSources = journey?.personaSnapshot?.sources ?? []
+    const sources =
+      personas.find((persona) => persona.id === person.id)?.sources ??
+      recordedSources
     return {
       ...person,
-      sources: journey?.personaSnapshot?.sources ?? [],
+      sources: sources.map(({ title, url }) => ({ title, url })),
+      sourceBriefUpdated:
+        JSON.stringify(sources) !== JSON.stringify(recordedSources),
       result: resultSchema.parse(journey?.result)
     }
   })

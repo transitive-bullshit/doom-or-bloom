@@ -21,8 +21,11 @@ export default async function Page({
           Back to the map
         </Link>
         <PersonaHeader person={person} />
-        <ExperimentalResults subject={person.name} result={person.result} />
-        <PersonaSources sources={person.sources} />
+        <ExperimentalResults subject={person} result={person.result} />
+        <PersonaSources
+          sources={person.sources}
+          sourceBriefUpdated={person.sourceBriefUpdated}
+        />
       </div>
     </PageTransition>
   )

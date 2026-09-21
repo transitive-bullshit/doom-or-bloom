@@ -5,6 +5,7 @@ import { ChevronDownIcon } from 'lucide-react'
 import type { ExperimentQuote, Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
+import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { AxisRange } from './axis-range'
 import { Map } from './worldview-map'
 import { WorldviewDetails } from './worldview-details'
@@ -48,16 +49,17 @@ export function ExperimentalResults({
   result: Result
   history?: Array<{ label: string; result: Result }>
   layout?: 'contained' | 'breakout'
-  subject?: string
+  subject?: ResultSubject
 }) {
   const experiment =
     result.experiment?.evidenceRevision === result.evidenceRevision
       ? result.experiment
       : undefined
   const risk = experiment?.pdoom
+  const framing = resultFraming(subject)
   return (
     <section
-      aria-label='Your worldview results'
+      aria-label={framing.resultsLabel}
       className={
         layout === 'breakout'
           ? 'flex flex-col gap-5 lg:relative lg:left-1/2 lg:w-[min(80rem,calc(100vw-4rem))] lg:-translate-x-1/2'
@@ -97,7 +99,7 @@ export function ExperimentalResults({
       <div className='grid min-w-0 gap-5 lg:grid-cols-2'>
         <Card>
           <CardHeader>
-            <CardTitle>Your estimated P(doom)</CardTitle>
+            <CardTitle>{framing.owner} estimated P(doom)</CardTitle>
             <CardDescription>
               Catastrophic risk, separate from overall outlook
             </CardDescription>
@@ -123,9 +125,9 @@ export function ExperimentalResults({
                 ? 'This saved snapshot has not been evaluated for a numerical catastrophe estimate.'
                 : risk
                   ? risk.source === 'inferred'
-                    ? `Inferred from ${risk.basis === 'contextual' ? 'your broader worldview and priorities' : 'the likelihood you described'}. Approximate interpretation range: ${risk.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Applies to the outcome and conditions in your answers; this is not a percentage you stated.`
-                    : 'Copied from your answer. The outcome, horizon and conditions remain as you described them below; this estimate is not standardized across people.'
-                  : 'There is not enough relevant evidence yet to estimate your view of catastrophic risk.'}
+                    ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `the likelihood described in ${framing.answers}`}. Approximate interpretation range: ${risk.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Applies to the outcome and conditions in ${framing.answers}; this is an inferred percentage.`
+                    : `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described below; this estimate is not standardized across people.`
+                  : `There is not enough relevant evidence yet to estimate ${framing.possessive} view of catastrophic risk.`}
             </p>
             {risk?.text && (
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
@@ -136,9 +138,10 @@ export function ExperimentalResults({
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Your milestone timeline</CardTitle>
+            <CardTitle>{framing.owner} milestone timeline</CardTitle>
             <CardDescription>
-              Timing, dependencies and unknowns in your own words
+              Timing, dependencies and unknowns in{' '}
+              {subject ? 'the simulated answers' : 'your own words'}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -172,14 +175,14 @@ export function ExperimentalResults({
             )}
             <p className='mt-4 text-xs text-muted-foreground'>
               Grouped by milestone, not spaced or ordered by inferred dates. AGI
-              and superhuman AI retain your definitions.
+              and superhuman AI retain {framing.possessive} definitions.
             </p>
           </CardContent>
         </Card>
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>What your outlook hinges on</CardTitle>
+          <CardTitle>What {framing.possessive} outlook hinges on</CardTitle>
           <CardDescription>
             Statements worth exploring next · reflection prompts, not a
             reasoning grade
@@ -199,7 +202,9 @@ export function ExperimentalResults({
                 <p className='text-xs text-muted-foreground'>
                   Answer {hinge.evidence.answerNumber}
                 </p>
-                <p className='text-sm font-medium'>{hinge.question}</p>
+                <p className='text-sm font-medium'>
+                  {framing.hingeQuestion(hinge)}
+                </p>
               </div>
             ))
           ) : (
@@ -212,6 +217,7 @@ export function ExperimentalResults({
         </CardContent>
       </Card>
       <WorldviewDetails
+        subject={subject}
         components={result.components}
         reasoning={result.vertical}
         influence={
@@ -231,9 +237,11 @@ export function ExperimentalResults({
 }
 
 export function JourneyResultExplorer({
-  snapshots
+  snapshots,
+  subject
 }: {
   snapshots: Array<{ label: string; result: Result }>
+  subject?: ResultSubject
 }) {
   const [selected, setSelected] = useState<number | null>(null)
   const index = Math.min(selected ?? snapshots.length - 1, snapshots.length - 1)
@@ -296,6 +304,7 @@ export function JourneyResultExplorer({
             </Button>
           </div>
           <ExperimentalResults
+            subject={subject}
             result={snapshot.result}
             history={snapshots.slice(0, index)}
           />

@@ -38,7 +38,7 @@ export default async function Page({
           Map your own worldview
         </Link>
       </header>
-      <ExperimentalResults subject={person.name} result={person.result} />
+      <ExperimentalResults subject={person} result={person.result} />
     </div>
   )
 }

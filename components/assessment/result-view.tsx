@@ -2,7 +2,7 @@
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
-import { ResourceBookmark } from './resource-bookmark'
+import { ResourceList } from './resource-list'
 import { ExperimentalResults } from './experimental-results'
 import { AnswerDisclosure } from './conversation'
 import { Button } from '@/components/ui/button'
@@ -258,17 +258,16 @@ export function ResultView({
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>
           <h2 className='font-medium'>Something worth exploring</h2>
-          {result.resources.map((r) => (
-            <ResourceBookmark
-              key={r.id}
-              resource={r}
-              onOpen={() =>
-                emitEvent(
-                  makeEvent(state, 'resource_opened', { resource_id: r.id })
-                )
-              }
-            />
-          ))}
+          <ResourceList
+            resources={result.resources}
+            onOpen={(resource) =>
+              emitEvent(
+                makeEvent(state, 'resource_opened', {
+                  resource_id: resource.id
+                })
+              )
+            }
+          />
         </section>
       )}
       <div className='flex flex-wrap gap-3'>

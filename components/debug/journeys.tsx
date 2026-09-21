@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { people } from '@/components/landing/people'
+import { ResourceList } from '@/components/assessment/resource-list'
+import type { ResultSubject } from '@/lib/sharing/result-subject'
 import { ChevronDown } from 'lucide-react'
 import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
@@ -109,10 +112,12 @@ function Answer({ text }: { text: string }) {
 function Step({
   step,
   mode,
-  dimensions
+  dimensions,
+  subject
 }: {
   step: JourneyStep
   mode: RunIndex['mode']
+  subject?: ResultSubject
   dimensions: DimensionDefinition[]
 }) {
   const label = (id: string) => dimensions.find((d) => d.id === id)?.label ?? id
@@ -230,7 +235,7 @@ function Step({
             </p>
             {step.result ? (
               <>
-                <ExperimentalResults result={step.result} />
+                <ExperimentalResults subject={subject} result={step.result} />
                 <JsonViewer
                   label={`Step ${step.ordinal} result`}
                   value={step.result}
@@ -373,6 +378,7 @@ export function JourneysInspector({
     error: string
   } | null>(null)
   const persona = personas.find((p) => p.id === personaId)!
+  const resultSubject = people.find((person) => person.id === personaId)
   const viewKey = JSON.stringify([runId, personaId])
   const view = loaded?.key === viewKey ? loaded : null
   const current = view?.current ?? null
@@ -452,20 +458,17 @@ export function JourneysInspector({
             {recordedPersona.concern}
           </p>
           {recordedPersona.sources.length > 0 && (
-            <p className='text-muted-foreground'>
-              Source grounding:{' '}
-              {recordedPersona.sources.map((s) => (
-                <a
-                  key={s.url}
-                  href={s.url}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='underline underline-offset-4'
-                >
-                  {s.title}
-                </a>
-              ))}
-            </p>
+            <Collapsible>
+              <CollapsibleTrigger asChild>
+                <Button variant='ghost' size='sm'>
+                  Sources used for this run
+                  <ChevronDown className='size-4' />
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent className='pt-3'>
+                <ResourceList resources={recordedPersona.sources} />
+              </CollapsibleContent>
+            </Collapsible>
           )}
         </CardContent>
       </Card>
@@ -620,6 +623,7 @@ export function JourneysInspector({
             </Alert>
           )}
           <JourneyResultExplorer
+            subject={resultSubject}
             key={`${current.run.id}:${personaId}`}
             snapshots={questionSteps(journey).flatMap((step) =>
               step.result
@@ -639,6 +643,7 @@ export function JourneysInspector({
                 <Step
                   key={`${current.run.id}:${personaId}:${step.ordinal}`}
                   step={step}
+                  subject={resultSubject}
                   mode={current.run.mode}
                   dimensions={dimensions}
                 />
@@ -649,7 +654,10 @@ export function JourneysInspector({
             <h2 className='text-xl font-semibold'>Result of this run</h2>
             {journey.result ? (
               <>
-                <ExperimentalResults result={journey.result} />
+                <ExperimentalResults
+                  subject={resultSubject}
+                  result={journey.result}
+                />
                 <Disclosure label='Result dimensions and findings'>
                   <JsonViewer
                     label='Journey final assessment result'

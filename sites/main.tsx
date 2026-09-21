@@ -56,11 +56,11 @@ createRoot(document.getElementById('root')!).render(
           <div className='mx-auto w-full max-w-6xl px-6 py-10'>
             <a href='/'>Back to the map</a>
             <PersonaHeader person={person} />
-            <ExperimentalResults
-              subject={person.name}
-              result={journey.result}
+            <ExperimentalResults subject={person} result={journey.result} />
+            <PersonaSources
+              sources={person.sources ?? []}
+              sourceBriefUpdated={person.sourceBriefUpdated}
             />
-            <PersonaSources sources={person.sources ?? []} />
           </div>
         ) : pathname === '/assessment' ? (
           <Interview {...props.interview} />

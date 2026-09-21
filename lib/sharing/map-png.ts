@@ -29,6 +29,26 @@ export async function mapPng(
     }
     copy.removeAttribute('class')
   })
+  // SVGs drawn to canvas cannot load external image references. Embed portraits
+  // so a persona's marker survives copying or downloading the map as a PNG.
+  await Promise.all(
+    [...clone.querySelectorAll('image')].map(async (portrait) => {
+      const href = portrait.getAttribute('href')
+      if (!href || href.startsWith('data:')) return
+      const response = await fetch(href)
+      if (!response.ok)
+        throw new Error('Could not load the portrait for export.')
+      const blob = await response.blob()
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result as string)
+        reader.onerror = () =>
+          reject(new Error('Could not read the portrait for export.'))
+        reader.readAsDataURL(blob)
+      })
+      portrait.setAttribute('href', dataUrl)
+    })
+  )
   clone.setAttribute('xmlns', svgNamespace)
   clone.setAttribute('viewBox', '0 0 680 490')
   clone.setAttribute('width', '1360')

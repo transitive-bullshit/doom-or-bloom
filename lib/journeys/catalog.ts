@@ -5,6 +5,7 @@ import { frontierPublicPersonas } from './frontier-public-personas'
 import { foundationalPublicPersonas } from './foundational-public-personas'
 import { socialPublicPersonas } from './social-public-personas'
 import { civicPublicPersonas } from './civic-public-personas'
+import { noahPublicPersona } from './noah-public-persona'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
@@ -18,6 +19,8 @@ export const personaSchema = z.strictObject({
       title: z.string(),
       url: z.url(),
       publishedAt: z.string().optional(),
+      speaker: z.string().optional(),
+      transcriptUrl: z.url().optional(),
       summary: z.string().optional(),
       quote: z.string().optional()
     })
@@ -37,6 +40,7 @@ export const personas: Persona[] = z.array(personaSchema).parse([
   ...foundationalPublicPersonas,
   ...socialPublicPersonas,
   ...civicPublicPersonas,
+  noahPublicPersona,
   {
     id: 'worried-novice',
     voice: [

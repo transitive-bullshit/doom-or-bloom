@@ -14,6 +14,13 @@ export const civicPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Obama on AI, free speech and the future of the internet',
+        url: 'https://www.theverge.com/23948871/barack-obama-ai-regulation-free-speech-first-amendment-decoder-interview',
+        publishedAt: '2023-11-07',
+        summary:
+          'Primary interview provides his earlier case for flexible oversight, technical talent in government, independent testing and public participation. Specific health, education and misuse examples give his civic argument substance. Historical context complements his newer 2026 pacing statements.'
+      },
+      {
         title: 'Frontier pacing and the public choices that shape AI',
         url: 'https://x.com/BarackObama/status/2099642023922036982',
         publishedAt: '2026-09-14',
@@ -64,6 +71,13 @@ export const civicPublicPersonas: Persona[] = [
     familiarity: 'general',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'Address at the Winning the AI Race event',
+        url: 'https://www.techpolicy.press/transcript-donald-trumps-address-at-winning-the-ai-race-event/',
+        publishedAt: '2025-07-24',
+        summary:
+          'Transcript published a day after the July 23 speech. Trump favors fast infrastructure approvals, private power generation and American technology leadership, while acknowledging some sensible regulation. His investment and economic assertions remain political claims, not measured outcomes.'
+      },
       {
         title: 'AI takeover warnings and the economic opportunity',
         url: 'https://truthsocial.com/@realDonaldTrump/117270591511950591',
@@ -116,6 +130,13 @@ export const civicPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'AI agents and the future of computing',
+        url: 'https://www.gatesnotes.com/work/make-ai-work-for-everyone/reader/ai-agents',
+        publishedAt: '2023-11-09',
+        summary:
+          'Gates’s earlier agent vision spans affordable services, tutoring, health care and cross-application assistance. It explicitly raises privacy, permission, reliability and business-model questions. Its five-year forecast is anchored in 2023; the newer 2026 essays supersede its comparatively relaxed transition framing.'
+      },
+      {
         title:
           'AI, equity, and the choice we can’t delay: 2026 Goalkeepers report',
         url: 'https://goalkeepers.gatesfoundation.org/report/2026-report/',
@@ -133,14 +154,14 @@ export const civicPublicPersonas: Persona[] = [
       },
       {
         title: 'Expanding access to health care through AI',
-        url: 'https://www.gatesnotes.com/expanding-access-to-health-care-through-ai',
+        url: 'https://www.gatesnotes.com/work/make-ai-work-for-everyone/reader/expanding-access-to-health-care-through-ai',
         publishedAt: '2026-01-21',
         summary:
           'Explains Horizon 1000: supporting African health workers, beginning in Rwanda, with a goal of reaching 1,000 clinics and their communities by 2028. This is a deployment commitment, not proof the goal has been achieved.'
       },
       {
         title: 'The year ahead 2026: Optimism with footnotes',
-        url: 'https://www.gatesnotes.com/the-year-ahead-2026',
+        url: 'https://www.gatesnotes.com/work/save-lives/reader/the-year-ahead-2026',
         publishedAt: '2026-01-09',
         summary:
           'Expects AI capability to exceed human levels, identifies bioterrorism and labor disruption as major risks, and argues for preparation and shared gains. January optimism is updated by the more urgent August and September writings.'

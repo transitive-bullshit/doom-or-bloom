@@ -1,136 +1,284 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import {
+  mkdir,
+  readFile,
+  writeFile,
+  unlink,
+  mkdtemp,
+  rm
+} from 'node:fs/promises'
+import { execFile } from 'node:child_process'
+import { promisify } from 'node:util'
+import { tmpdir } from 'node:os'
 import { createHash } from 'node:crypto'
+import path from 'node:path'
 import pMap from 'p-map'
+import sharp from 'sharp'
+import { personas } from '../lib/journeys/catalog'
+import { tweetIdFromUrl } from '../lib/sharing/tweet-url'
+import {
+  previewImages,
+  previewIcon,
+  previewDocument
+} from '../lib/authoring/preview-images'
 
-// Offline authoring step: readers never contact third-party image servers.
-const resources: Array<{ url: string }> = JSON.parse(
+type Preview = {
+  image?: string
+  icon?: string
+  fetchedAt: string
+  source: string
+  imageKind?: 'social' | 'article' | 'screenshot' | 'document'
+  imageSource?: string
+}
+const argument = (name: string) =>
+  process.argv
+    .find((value) => value.startsWith(`--${name}=`))
+    ?.slice(name.length + 3)
+const captureDirectory = argument('captures')
+const only = argument('url')
+const refresh = process.argv.includes('--refresh')
+const resources: Array<{ url: string; title?: string }> = JSON.parse(
   await readFile('content/releases/0.4.0-draft/resources.json', 'utf8')
 )
 const suite = JSON.parse(
   await readFile('eval/development/live-persona-journeys.json', 'utf8')
 )
 for (const journey of suite.journeys) {
-  resources.push(...journey.result.resources)
-  resources.push(...(journey.personaSnapshot?.sources ?? []))
-}
-const previous = JSON.parse(
-  await readFile('lib/sharing/resource-previews.json', 'utf8').catch(() => '{}')
-) as Record<
-  string,
-  { image?: string; icon?: string; fetchedAt: string; source: string }
->
-const urls = [...new Set(resources.map((resource) => resource.url))]
-await mkdir('public/resource-previews', { recursive: true })
-const decode = (value: string) =>
-  value
-    .replaceAll('&amp;', '&')
-    .replaceAll('&quot;', '"')
-    .replaceAll('&#39;', "'")
-const attributes = (tag: string) =>
-  Object.fromEntries(
-    [...tag.matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g)].map(
-      (match) => [
-        match[1]!.toLowerCase(),
-        decode(match[2] ?? match[3] ?? match[4] ?? '')
-      ]
-    )
+  resources.push(
+    ...journey.result.resources,
+    ...(journey.personaSnapshot?.sources ?? [])
   )
+}
+for (const persona of personas) resources.push(...persona.sources)
+const previous: Record<string, Preview> = JSON.parse(
+  await readFile('lib/sharing/resource-previews.json', 'utf8').catch(() => '{}')
+)
+const overrides: Record<
+  string,
+  { image?: string; preferScreenshot?: boolean; note: string }
+> = JSON.parse(
+  await readFile('lib/sharing/resource-preview-overrides.json', 'utf8').catch(
+    () => '{}'
+  )
+)
+const unique = new Map(
+  resources
+    .filter(({ url }) => !tweetIdFromUrl(url))
+    .map((resource) => [resource.url, resource])
+)
+const urls = only ? [only] : [...unique.keys()]
+await mkdir('public/resource-previews', { recursive: true })
 const request = (url: string) =>
   fetch(url, {
-    signal: AbortSignal.timeout(20000),
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; DoomOrBloomPreview/1.0)'
-    }
+    signal: AbortSignal.timeout(15000)
   })
-const asset = async (url: string, key: string) => {
+const bytes = async (url: string) => {
   const response = await request(url)
   if (!response.ok) throw new Error(`HTTP ${response.status}`)
-  const type = response.headers.get('content-type')?.split(';')[0] ?? ''
-  const extension = (
-    {
-      'image/png': 'png',
-      'image/jpeg': 'jpg',
-      'image/webp': 'webp',
-      'image/svg+xml': 'svg',
-      'image/x-icon': 'ico',
-      'image/vnd.microsoft.icon': 'ico',
-      'image/avif': 'avif',
-      'image/gif': 'gif'
-    } as Record<string, string>
-  )[type]
-  if (!extension) throw new Error(`Unsupported image type ${type}`)
-  const bytes = new Uint8Array(await response.arrayBuffer())
-  if (bytes.length > 4_000_000) throw new Error('Preview image is too large')
-  const file = `/resource-previews/${key}.${extension}`
-  await writeFile(`public${file}`, bytes)
+  if (Number(response.headers.get('content-length')) > 16_000_000)
+    throw new Error('Image too large')
+  const data = Buffer.from(await response.arrayBuffer())
+  if (data.length > 16_000_000) throw new Error('Image too large')
+  return { data, type: response.headers.get('content-type') ?? '' }
+}
+const saveImage = async (data: Buffer, key: string, document = false) => {
+  const image = sharp(data, { limitInputPixels: 40_000_000, animated: false })
+  const metadata = await image.metadata()
+  if (
+    !metadata.width ||
+    !metadata.height ||
+    metadata.width < 240 ||
+    metadata.height < 120 ||
+    metadata.width / metadata.height > 4
+  )
+    throw new Error('Image is too small or banner-shaped for a preview')
+  const file = `/resource-previews/${key}-image.webp`
+  await image
+    .rotate()
+    .resize(640, 400, {
+      fit: 'cover',
+      position: document ? 'north' : sharp.strategy.attention,
+      withoutEnlargement: true
+    })
+    .webp({ quality: 78 })
+    .toFile(`public${file}`)
   return file
 }
+// Poppler is optional; unavailable installations retain the ordinary bookmark.
+const documentPreview = async (data: Buffer, key: string) => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'doom-preview-'))
+  try {
+    const pdf = path.join(directory, 'source.pdf')
+    const prefix = path.join(directory, 'page')
+    await writeFile(pdf, data)
+    await promisify(execFile)(
+      'pdftoppm',
+      ['-f', '1', '-singlefile', '-scale-to', '1200', '-png', pdf, prefix],
+      { timeout: 15000 }
+    )
+    return await saveImage(await readFile(`${prefix}.png`), key, true)
+  } finally {
+    await rm(directory, { recursive: true, force: true })
+  }
+}
+const saveIcon = async (url: string, key: string) => {
+  const { data, type } = await bytes(url)
+  const extension = type.includes('svg')
+    ? 'svg'
+    : type.includes('icon')
+      ? 'ico'
+      : undefined
+  const file = `/resource-previews/${key}-icon.${extension ?? 'webp'}`
+  if (extension) await writeFile(`public${file}`, data)
+  else
+    await sharp(data, { limitInputPixels: 40_000_000 })
+      .resize(64, 64, { fit: 'inside' })
+      .webp({ quality: 80 })
+      .toFile(`public${file}`)
+  return file
+}
+const failures: Record<string, string> = {}
+const obsolete = new Set<string>()
 const entries = await pMap(
   urls,
   async (url) => {
-    if (
-      previous[url]?.image &&
-      previous[url]?.icon &&
-      !process.argv.includes('--refresh')
-    )
-      return [url, previous[url]!] as const
     const key = createHash('sha256').update(url).digest('hex').slice(0, 12)
-    const entry: {
-      image?: string
-      icon?: string
-      fetchedAt: string
-      source: string
-    } = { ...previous[url], fetchedAt: new Date().toISOString(), source: url }
+    const entry: Preview = {
+      ...previous[url],
+      source: url,
+      fetchedAt: previous[url]?.fetchedAt ?? new Date().toISOString()
+    }
+    if (entry.image && !entry.image.endsWith('.webp')) {
+      try {
+        const old = entry.image
+        entry.image = await saveImage(await readFile(`public${old}`), key)
+        obsolete.add(old)
+      } catch {
+        /* Keep a usable cached image if conversion is not possible. */
+      }
+    }
+    if (entry.image && entry.icon && !refresh) return [url, entry] as const
+    entry.fetchedAt = new Date().toISOString()
+    let html = ''
+    let baseUrl = url
     try {
       const response = await request(url)
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
-      const html = await response.text()
-      const meta = [...html.matchAll(/<meta\b[^>]*>/gi)].map((match) =>
-        attributes(match[0])
-      )
-      const image =
-        meta.find((tag) => tag.property === 'og:image')?.content ??
-        meta.find((tag) => tag.name === 'twitter:image')?.content
-      const links = [...html.matchAll(/<link\b[^>]*>/gi)].map((match) =>
-        attributes(match[0])
-      )
-      const icon =
-        links.find((tag) => tag.rel === 'icon')?.href ??
-        links.find((tag) => tag.rel === 'shortcut icon')?.href ??
-        '/favicon.ico'
-      const attempts = await Promise.allSettled([
-        image
-          ? asset(new URL(image, response.url).href, `${key}-image`)
-          : Promise.resolve(undefined),
-        asset(new URL(icon, response.url).href, `${key}-icon`)
-      ])
-      if (attempts[0].status === 'fulfilled' && attempts[0].value)
-        entry.image = attempts[0].value
-      if (attempts[1].status === 'fulfilled' && attempts[1].value)
-        entry.icon = attempts[1].value
-      console.log(
-        new URL(url).hostname,
-        entry.image ? 'image' : 'no image',
-        entry.icon ? 'icon' : 'no icon'
-      )
+      baseUrl = response.url
+      if (response.headers.get('content-type')?.includes('text/html'))
+        html = await response.text()
+      else if (
+        response.headers.get('content-type')?.includes('application/pdf') &&
+        (!entry.image || refresh)
+      ) {
+        const data = Buffer.from(await response.arrayBuffer())
+        if (data.length < 16_000_000) {
+          entry.image = await documentPreview(data, key)
+          entry.imageKind = 'document'
+          entry.imageSource = url
+        }
+      }
     } catch (err) {
-      console.log(url, err instanceof Error ? err.message : 'Fetch failed')
+      failures[url] = err instanceof Error ? err.message : 'Fetch failed'
     }
-    if (!entry.icon) {
-      try {
-        entry.icon = await asset(
-          `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=128`,
-          `${key}-icon`
-        )
-      } catch {
-        /* Bookmark retains its local generic icon if the publisher icon is unavailable. */
+    // Browser-rendered DOM can be imported for JS-only article pages.
+    if (captureDirectory)
+      html = await readFile(
+        path.join(captureDirectory, `${key}.html`),
+        'utf8'
+      ).catch(() => html)
+    if (!entry.image || refresh) {
+      const candidates = overrides[url]?.preferScreenshot
+        ? []
+        : previewImages(html, baseUrl)
+      if (overrides[url]?.image)
+        candidates.unshift({ url: overrides[url].image!, kind: 'article' })
+      for (const candidate of candidates.slice(0, 10)) {
+        try {
+          entry.image = await saveImage((await bytes(candidate.url)).data, key)
+          entry.imageKind = candidate.kind
+          entry.imageSource = candidate.url
+          break
+        } catch {
+          /* Try the next publisher-provided candidate. */
+        }
+      }
+      const paper = previewDocument(html, baseUrl)
+      if (!entry.image && paper) {
+        try {
+          entry.image = await documentPreview((await bytes(paper)).data, key)
+          entry.imageKind = 'document'
+          entry.imageSource = paper
+        } catch {
+          /* Keep screenshot and bookmark fallbacks available. */
+        }
+      }
+      // A reviewed browser screenshot is preferable to an invented illustration.
+      if (!entry.image && captureDirectory) {
+        try {
+          entry.image = await saveImage(
+            await readFile(path.join(captureDirectory, `${key}.png`)),
+            key,
+            true
+          )
+          entry.imageKind = 'screenshot'
+          entry.imageSource = url
+        } catch {
+          /* Uncaptured or blocked pages keep the normal bookmark fallback. */
+        }
       }
     }
+    if (!entry.icon) {
+      for (const iconUrl of [
+        previewIcon(html, baseUrl),
+        `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=128`
+      ]) {
+        try {
+          entry.icon = await saveIcon(iconUrl, key)
+          break
+        } catch {
+          /* Try publisher-icon fallback. */
+        }
+      }
+    }
+    console.log(`${entry.image ? 'preview' : 'missing'} ${url}`)
     return [url, entry] as const
   },
   { concurrency: 4 }
 )
+const combined = { ...previous, ...Object.fromEntries(entries) }
 await writeFile(
   'lib/sharing/resource-previews.json',
-  JSON.stringify(Object.fromEntries(entries), null, 2) + '\n'
+  JSON.stringify(combined, null, 2) + '\n'
+)
+const retained = new Set(
+  Object.values(combined).flatMap((entry) => [entry.image, entry.icon])
+)
+for (const file of obsolete)
+  if (!retained.has(file)) await unlink(`public${file}`).catch(() => {})
+const missing = [...unique.values()]
+  .filter(({ url }) => !combined[url]?.image)
+  .map(({ url, title }) => {
+    const gap: {
+      url: string
+      title?: string
+      captureKey: string
+      error?: string
+    } = {
+      url,
+      title,
+      captureKey: createHash('sha256').update(url).digest('hex').slice(0, 12)
+    }
+    if (failures[url]) gap.error = failures[url]
+    return gap
+  })
+await writeFile(
+  'docs/research/resource-preview-gaps.json',
+  JSON.stringify(missing, null, 2) + '\n'
+)
+console.log(
+  JSON.stringify({
+    total: unique.size,
+    withImages: unique.size - missing.length,
+    missing: missing.length
+  })
 )

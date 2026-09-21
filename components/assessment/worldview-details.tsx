@@ -1,3 +1,4 @@
+import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { AxisRange } from './axis-range'
 import type { Component } from '@/lib/assessment/schema'
 import { facets } from '@/lib/assessment/facets'
@@ -6,12 +7,15 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 export function WorldviewDetails({
   components,
   reasoning,
-  influence
+  influence,
+  subject
 }: {
   components: Component[]
   reasoning: Component
   influence: Component
+  subject?: ResultSubject
 }) {
+  const framing = resultFraming(subject)
   const impacts = [
     ...components.filter(
       (component) =>
@@ -35,11 +39,8 @@ export function WorldviewDetails({
     })
   if (!impacts.length && !positions.length) return null
   return (
-    <section
-      aria-label='More of your worldview'
-      className='flex flex-col gap-4'
-    >
-      <h2 className='font-semibold'>More of your worldview</h2>
+    <section aria-label={framing.detailsTitle} className='flex flex-col gap-4'>
+      <h2 className='font-semibold'>{framing.detailsTitle}</h2>
       {impacts.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-4'>
           {impacts.map((component) => (
@@ -53,7 +54,9 @@ export function WorldviewDetails({
               <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
                 <p className='text-sm text-muted-foreground'>
                   {component.vector === 'epistemic'
-                    ? 'How you explain your view, consider alternatives, and handle uncertainty. This describes your answers, not your intelligence or opinions.'
+                    ? subject
+                      ? `Reasoning, consideration of alternatives, and handling of uncertainty in ${framing.answers}. This describes the simulated answers, not the real person’s intelligence or opinions.`
+                      : 'How you explain your view, consider alternatives, and handle uncertainty. This describes your answers, not your intelligence or opinions.'
                     : (component.claim ??
                       'Several interpretations remain plausible.')}
                 </p>
@@ -103,7 +106,11 @@ export function WorldviewDetails({
                     className={`rounded-md px-3 py-2 text-sm ${component.claim === level ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}
                   >
                     {component.claim === level && (
-                      <span className='sr-only'>Your expressed position: </span>
+                      <span className='sr-only'>
+                        {subject
+                          ? 'Simulated position: '
+                          : 'Your expressed position: '}
+                      </span>
                     )}
                     {level}
                   </p>
@@ -141,9 +148,9 @@ export function WorldviewDetails({
         </div>
       )}
       <p className='text-xs text-muted-foreground'>
-        These interpretations keep your stated conditions. Benefits and harms
-        can both be substantial. The ranges describe how we read your answers,
-        not statistical confidence intervals.
+        These interpretations keep {framing.possessive} stated conditions.
+        Benefits and harms can both be substantial. The ranges describe how we
+        read {framing.answers}, not statistical confidence intervals.
       </p>
     </section>
   )

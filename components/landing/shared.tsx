@@ -14,6 +14,7 @@ import { placePortraits } from './map-layout'
 export type Example = {
   id: string
   name: string
+  possessivePronoun?: 'his' | 'her' | 'their'
   short: string
   initials: string
   stance: string
@@ -23,6 +24,7 @@ export type Example = {
   transformation: number | null
   avatar: string
   xUrl?: string | null
+  sourceBriefUpdated?: boolean
   sources?: Array<{ title: string; url: string }>
 }
 export type VariantProps = { examples: Example[]; variant?: number }
@@ -90,7 +92,6 @@ export function PreviewMap({ examples, variant }: VariantProps) {
       <div className='landing-map' data-highlighting={highlighted !== null}>
         <div className='landing-map-heading'>
           <span>How will AI change the world?</span>
-          <span className='landing-map-tag'>Example results</span>
         </div>
         <div
           ref={plot}
@@ -183,7 +184,9 @@ export function PreviewMap({ examples, variant }: VariantProps) {
             </Link>
           ))}
         </div>
-        <p className='landing-map-note'>Simulated personas</p>
+        <p className='landing-map-note'>
+          Example results based on simulated personas
+        </p>
       </div>
     </TooltipProvider>
   )

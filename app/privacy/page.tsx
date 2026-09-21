@@ -54,6 +54,11 @@ export default function Privacy() {
       </p>
       <h2 className='text-lg font-medium'>Sharing and clearing</h2>
       <p>
+        Source cards may embed public X posts. Post text is fetched through this
+        app’s server; embedded profile images, photos, and videos load from X’s
+        media servers. Your assessment answers are not sent to X.
+      </p>
+      <p>
         Card generation sends only map coordinates, interpretation ranges, and
         single-axis scores to this app’s server. Cards contain no raw answers or
         assessment identifier and are not persistently hosted. Map images can

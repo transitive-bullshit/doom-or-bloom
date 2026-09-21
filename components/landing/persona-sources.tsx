@@ -1,9 +1,11 @@
-import { ResourceBookmark } from '@/components/assessment/resource-bookmark'
+import { ResourceList } from '@/components/assessment/resource-list'
 
 export function PersonaSources({
-  sources
+  sources,
+  sourceBriefUpdated = false
 }: {
   sources: Array<{ title: string; url: string }>
+  sourceBriefUpdated?: boolean
 }) {
   if (!sources.length) return null
   const uniqueSources = [
@@ -18,15 +20,12 @@ export function PersonaSources({
       <div>
         <h2 className='text-xl font-semibold tracking-tight'>Sources</h2>
         <p className='mt-2 text-sm text-muted-foreground'>
-          Articles, interviews, and writings used to ground this simulated
-          persona.
+          {sourceBriefUpdated
+            ? 'Sources for this persona’s current brief. The displayed simulation was generated from an earlier version; these updates will inform its next run.'
+            : 'Articles, interviews, and writings used to ground this simulated persona.'}
         </p>
       </div>
-      <div className='grid gap-4 md:grid-cols-2'>
-        {uniqueSources.map((source) => (
-          <ResourceBookmark key={source.url} resource={source} />
-        ))}
-      </div>
+      <ResourceList resources={uniqueSources} />
     </section>
   )
 }

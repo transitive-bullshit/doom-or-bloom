@@ -1,7 +1,21 @@
 export const people = [
   {
+    id: 'biosecurity-abundance-optimist',
+    name: 'Noah Smith',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/Noahpinion',
+    avatar: '/personas/smith.jpg',
+    short: 'Noah',
+    initials: 'NS',
+    stance: 'Build abundance. Defend against misuse.',
+    description:
+      'AI can improve lives while making bioterrorism dangerously accessible.',
+    tone: 'middle'
+  },
+  {
     id: 'control-alarmist',
     name: 'Eliezer Yudkowsky',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/ESYudkowsky',
     avatar: '/personas/yudkowsky.jpg',
     short: 'Yudkowsky',
@@ -13,6 +27,7 @@ export const people = [
   {
     id: 'cautious-builder',
     name: 'Sam Altman',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/sama',
     avatar: '/personas/altman.jpg',
     short: 'Altman',
@@ -24,6 +39,7 @@ export const people = [
   {
     id: 'abundance-advocate',
     name: 'Marc Andreessen',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/pmarca',
     avatar: '/personas/andreessen.jpg',
     short: 'Andreessen',
@@ -35,6 +51,7 @@ export const people = [
   {
     id: 'empirical-skeptic',
     name: 'Gary Marcus',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/GaryMarcus',
     avatar: '/personas/marcus.jpg',
     short: 'Marcus',
@@ -46,6 +63,7 @@ export const people = [
   {
     id: 'practical-optimist',
     name: 'Andrew Ng',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/AndrewYNg',
     avatar: '/personas/ng.jpg',
     short: 'Ng',
@@ -58,6 +76,7 @@ export const people = [
   {
     id: 'world-model-optimist',
     name: 'Yann LeCun',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/ylecun',
     avatar: '/personas/lecun.jpg',
     short: 'LeCun',
@@ -70,6 +89,7 @@ export const people = [
   {
     id: 'concerned-pioneer',
     name: 'Geoffrey Hinton',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/geoffreyhinton',
     avatar: '/personas/hinton.jpg',
     short: 'Hinton',
@@ -82,6 +102,7 @@ export const people = [
   {
     id: 'bubble-critic',
     name: 'Ed Zitron',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/edzitron',
     avatar: '/personas/zitron.jpg',
     short: 'Zitron',
@@ -94,8 +115,9 @@ export const people = [
   {
     id: 'democratic-moratorium',
     name: 'Bernie Sanders',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/SenSanders',
-    short: 'Sanders',
+    short: 'Bernie',
     initials: 'BS',
     stance: 'Let the public decide.',
     description:
@@ -106,6 +128,7 @@ export const people = [
   {
     id: 'competitive-decentralist',
     name: 'David Sacks',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/DavidSacks',
     short: 'Sacks',
     initials: 'DS',
@@ -118,8 +141,9 @@ export const people = [
   {
     id: 'scientific-steward',
     name: 'Demis Hassabis',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/demishassabis',
-    short: 'Hassabis',
+    short: 'Demis',
     initials: 'DH',
     stance: 'A new age of discovery.',
     description:
@@ -130,8 +154,9 @@ export const people = [
   {
     id: 'coordinated-scaler',
     name: 'Sholto Douglas',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/_sholtodouglas',
-    short: 'Douglas',
+    short: 'Sholto',
     initials: 'SD',
     stance: 'As fast as safety allows.',
     description:
@@ -142,6 +167,7 @@ export const people = [
   {
     id: 'alignment-maximalist',
     name: 'Roon',
+    possessivePronoun: 'their',
     xUrl: 'https://x.com/tszzl',
     short: 'Roon',
     initials: 'R',
@@ -154,6 +180,7 @@ export const people = [
   {
     id: 'efficient-intelligence-builder',
     name: 'Noam Shazeer',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/NoamShazeer',
     short: 'Shazeer',
     initials: 'NS',
@@ -166,6 +193,7 @@ export const people = [
   {
     id: 'reasoning-frontier-builder',
     name: 'Noam Brown',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/polynoamial',
     short: 'Brown',
     initials: 'NB',
@@ -178,6 +206,7 @@ export const people = [
   {
     id: 'learning-bottleneck-investigator',
     name: 'Dwarkesh Patel',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/dwarkesh_sp',
     short: 'Dwarkesh',
     initials: 'DP',
@@ -190,8 +219,9 @@ export const people = [
   {
     id: 'frontier-pacer',
     name: 'Dario Amodei',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/DarioAmodei',
-    short: 'Amodei',
+    short: 'Dario',
     initials: 'DA',
     stance: 'Earn the beneficial future.',
     description:
@@ -202,8 +232,9 @@ export const people = [
   {
     id: 'abundance-risk-taker',
     name: 'Elon Musk',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/elonmusk',
-    short: 'Musk',
+    short: 'Elon',
     initials: 'EM',
     stance: 'Build toward extraordinary abundance.',
     description:
@@ -214,6 +245,7 @@ export const people = [
   {
     id: 'open-science-realist',
     name: 'Nathan Lambert',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/natolambert',
     short: 'Lambert',
     initials: 'NL',
@@ -226,6 +258,7 @@ export const people = [
   {
     id: 'scientist-ai-advocate',
     name: 'Yoshua Bengio',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/Yoshua_Bengio',
     short: 'Bengio',
     initials: 'YB',
@@ -237,8 +270,9 @@ export const people = [
   {
     id: 'safe-superintelligence-researcher',
     name: 'Ilya Sutskever',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/ilyasut',
-    short: 'Sutskever',
+    short: 'Ilya',
     initials: 'IS',
     stance: 'Make superintelligence safe.',
     description:
@@ -249,6 +283,7 @@ export const people = [
   {
     id: 'hands-on-agent-builder',
     name: 'Andrej Karpathy',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/karpathy',
     short: 'Karpathy',
     initials: 'AK',
@@ -261,6 +296,7 @@ export const people = [
   {
     id: 'human-centered-spatial-builder',
     name: 'Fei-Fei Li',
+    possessivePronoun: 'her',
     xUrl: 'https://x.com/drfeifei',
     short: 'Fei-Fei Li',
     initials: 'FL',
@@ -273,6 +309,7 @@ export const people = [
   {
     id: 'digital-succession-optimist',
     name: 'Richard Sutton',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/RichardSSutton',
     short: 'Sutton',
     initials: 'RS',
@@ -285,6 +322,7 @@ export const people = [
   {
     id: 'community-ai-critic',
     name: 'Timnit Gebru',
+    possessivePronoun: 'her',
     xUrl: 'https://x.com/timnitGebru',
     short: 'Gebru',
     initials: 'TG',
@@ -297,6 +335,7 @@ export const people = [
   {
     id: 'normal-technology-realist',
     name: 'Arvind Narayanan',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/random_walker',
     short: 'Narayanan',
     initials: 'AN',
@@ -309,6 +348,7 @@ export const people = [
   {
     id: 'pro-worker-economist',
     name: 'Daron Acemoglu',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/DAcemogluMIT',
     short: 'Acemoglu',
     initials: 'DA',
@@ -321,6 +361,7 @@ export const people = [
   {
     id: 'personal-superintelligence-builder',
     name: 'Mark Zuckerberg',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/finkd',
     short: 'Zuckerberg',
     initials: 'MZ',
@@ -333,6 +374,7 @@ export const people = [
   {
     id: 'provable-control-advocate',
     name: 'Stuart Russell',
+    possessivePronoun: 'his',
     xUrl: null,
     short: 'Russell',
     initials: 'SR',
@@ -345,6 +387,7 @@ export const people = [
   {
     id: 'language-hype-critic',
     name: 'Emily M. Bender',
+    possessivePronoun: 'her',
     xUrl: 'https://x.com/emilymbender',
     short: 'Bender',
     initials: 'EB',
@@ -356,6 +399,7 @@ export const people = [
   {
     id: 'tool-ai-moratorium',
     name: 'Max Tegmark',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/tegmark',
     short: 'Tegmark',
     initials: 'MT',
@@ -368,6 +412,7 @@ export const people = [
   {
     id: 'open-frontier-idealist',
     name: 'Liang Wenfeng',
+    possessivePronoun: 'his',
     xUrl: null,
     short: 'Liang',
     initials: 'LW',
@@ -380,6 +425,7 @@ export const people = [
   {
     id: 'democratic-ai-steward',
     name: 'Barack Obama',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/BarackObama',
     short: 'Obama',
     initials: 'BO',
@@ -392,6 +438,7 @@ export const people = [
   {
     id: 'america-first-ai-booster',
     name: 'Donald Trump',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/realDonaldTrump',
     short: 'Trump',
     initials: 'DT',
@@ -404,6 +451,7 @@ export const people = [
   {
     id: 'equitable-ai-philanthropist',
     name: 'Bill Gates',
+    possessivePronoun: 'his',
     xUrl: 'https://x.com/BillGates',
     short: 'Gates',
     initials: 'BG',
@@ -416,8 +464,9 @@ export const people = [
   {
     id: 'anti-doomer',
     name: 'Jensen Huang',
+    possessivePronoun: 'his',
     xUrl: null,
-    short: 'Huang',
+    short: 'Jensen',
     initials: 'JH',
     stance: 'Reject the doomer story. Keep building.',
     description:

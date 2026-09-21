@@ -15,6 +15,28 @@ export const frontierPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title:
+          'Dwarkesh and John Collison: orbital compute, Grok and alignment',
+        url: 'https://www.dwarkesh.com/p/elon-musk',
+        publishedAt: '2026-02-05',
+        summary:
+          'Publisher transcript. Describes electricity, cooling and manufacturing bottlenecks and forecasts orbital compute economics within roughly three years. Argues truth-seeking and curiosity could protect humanity while conceding humans cannot control vastly smarter intelligence. Calls this a probabilistic hope, not a demonstrated alignment guarantee.'
+      },
+      {
+        title: 'AI and robotics doubling the global economy',
+        url: 'https://x.com/elonmusk/status/2097686835338375265',
+        publishedAt: '2026-09-09',
+        summary:
+          'Forecasts that AI and robots will more than double the global economy within ten years. Adds an explicit worldwide scale and horizon to his abundance expectations; it is his prediction, not a measured growth result.'
+      },
+      {
+        title: 'Orbital compute and terrestrial limits',
+        url: 'https://x.com/elonmusk/status/2088306926442430578',
+        publishedAt: '2026-08-14',
+        summary:
+          'Predicts orbital compute will become the only way to scale AI around 2029 because of terrestrial power and permitting constraints. This updates the February interview’s infrastructure thesis; neither launch feasibility nor its economics are established by the post.'
+      },
+      {
         title: 'Endorsement of Amodei’s frontier-pacing proposal',
         url: 'https://x.com/elonmusk/status/2098789109980332057',
         publishedAt: '2026-09-12',
@@ -70,6 +92,8 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'AI and robots are going to change essentially everything. Cheap intelligence plus machines that can do physical work means an extraordinary expansion of goods and services. I expect abundance, not merely another productivity tool. The upside is enormous. Catastrophic outcomes are possible, but I am choosing to work toward the good future. Dario is right that we need to pace the frontier. Being excited about what we can build does not mean shipping something dangerous without checks.',
     beliefs: [
+      'AI and robotics could more than double the global economy within ten years. I expect production to expand dramatically, not merely an incremental improvement to office software.',
+      'By around 2029, I expect power and permitting constraints to push large-scale AI compute into orbit. That is an engineering and economic prediction, not a claim that the infrastructure already exists.',
       'The economy ultimately makes goods and provides services. Abundant robotic labor and inexpensive intelligence can remove much of the scarcity that keeps living standards low; electricity is a practical bottleneck.',
       'My September forecast is that AI could roughly double US growth next year. It is a guess about acceleration, not a measured achievement.',
       'I favor federal income payments during AI-driven unemployment. I expect output to grow fast enough to offset the extra money; that expectation can be challenged.',
@@ -98,6 +122,48 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'One resignation turned the embers of AI fear into a wildfire',
+        url: 'https://www.interconnects.ai/p/one-resignation-turned-the-embers',
+        publishedAt: '2026-09-10',
+        summary:
+          'Distinguishes extinction from serious cyber and biological disasters. Assigns complete extinction an extremely low likelihood while arguing concrete disasters deserve serious debate. Criticizes distorted lab culture and public fear dynamics without dismissing sincere researcher concern. These are his stated judgments, not independent risk measurements.'
+      },
+      {
+        title: 'Teaching Everyone to Fish for Tokens',
+        url: 'https://www.interconnects.ai/p/teaching-everyone-to-fish-for-tokens',
+        publishedAt: '2026-08-17',
+        summary:
+          'Argues that released weights and fully reproducible training recipes play different economic roles. Examines Nvidia’s incentive to finance open models and the possibility that open ecosystems specialize in efficient, modifiable enterprise systems instead of matching every closed frontier capability.'
+      },
+      {
+        title: 'I wrote an AI textbook — how long until AI can do it better?',
+        url: 'https://www.interconnects.ai/p/i-wrote-an-ai-textbook-how-long-until',
+        publishedAt: '2026-08-12',
+        summary:
+          'Uses his textbook-writing experience to question broad scientific autonomy: models remain weak at organizing established knowledge into coherent long-form explanations. Remains optimistic about powerful scientific assistance and narrow advances. Treats this as a diagnostic observation, not proof of an immutable capability ceiling.'
+      },
+      {
+        title: 'GLM-5.3: How Chinese labs keep stride with the frontier',
+        url: 'https://www.interconnects.ai/p/glm-53-how-chinese-labs-keep-stride',
+        publishedAt: '2026-08-14',
+        summary:
+          'Argues Chinese frontier performance cannot be explained mainly by distillation. Emphasizes accumulated research skill and reinforcement-learning environments, infrastructure and engineering. The argument supports technical respect for Chinese labs; reported benchmarks are not his independent performance evaluation.'
+      },
+      {
+        title: 'Farewell Ai2',
+        url: 'https://www.interconnects.ai/p/farewell-ai2',
+        publishedAt: '2026-06-02',
+        summary:
+          'Explains his public-scientist mission: clarify capabilities, sustain diverse open research and build institutions outside closed frontier labs. Treats concentration of power and narrow safety research as risks; open recipes are infrastructure that lets others ask questions one organization cannot cover.'
+      },
+      {
+        title: 'Open and closed models are on different exponentials',
+        url: 'https://www.interconnects.ai/p/open-and-closed-models-are-on-different',
+        publishedAt: '2026-06-01',
+        summary:
+          'Expects integrated frontier systems to command premiums for difficult knowledge work while a larger, diverse open ecosystem serves commodity-priced specialized tasks. Argues capability progress can coexist with concentration among frontier providers. Economic forecasts remain conditional arguments, not established market outcomes.'
+      },
       {
         title: 'Why I still haven’t bought into true RSI',
         url: 'https://www.interconnects.ai/p/where-i-stand-on-rsi',
@@ -129,8 +195,12 @@ export const frontierPublicPersonas: Persona[] = [
       }
     ],
     background:
-      'I am excited about AI becoming useful throughout the economy. That does not require buying the claim that we are on the verge of an uncontrollable intelligence explosion. A major challenge is getting benefits out of a few technology companies and into ordinary life. We should keep building, especially in the open, while taking the concrete failures of deployment and oversight seriously. Neither a benchmark nor an alarming internal story settles the whole trajectory.',
+      'I am excited about AI becoming useful throughout the economy. That does not require buying the claim that we are on the verge of an uncontrollable intelligence explosion. A major challenge is getting benefits out of a few technology companies and into ordinary life. We should keep building, especially in the open, while taking the concrete failures of deployment and oversight seriously. Neither a benchmark nor an alarming internal story settles the whole trajectory. I regard complete human extinction as extremely unlikely, while taking cyber and biological disasters seriously; those are different claims.',
     beliefs: [
+      'I put complete human extinction at an extremely low probability. That is a narrower claim than saying AI is safe: cyberattacks on critical infrastructure and biological disasters deserve serious attention. Do not conflate these outcomes.',
+      'I used AI extensively while writing my textbook, and it still struggles to organize established science into coherent explanations. Strong mathematics results are exciting, but this uneven generalization makes me skeptical of fully autonomous broad scientific discovery today.',
+      'Competitive Chinese labs have real research and engineering skill. Reinforcement-learning environments and infrastructure cannot simply be distilled out of another model; distillation alone is a poor explanation of their progress.',
+      'Open research needs durable institutions and business models. Fully reproducible recipes let independent researchers ask questions that a few closed labs will never cover; efficient specialized open models can matter enormously even below the absolute frontier.',
       'Thousands of agents can accelerate measurable tasks without eliminating research bottlenecks. Cheaper inference is different from a discontinuity in peak intelligence; humans still struggle with understanding and choosing good hypotheses.',
       'Foundational discoveries beyond routine automated work would change my view of self-improvement. I remain uncertain about what private labs have seen; concern inside those labs is not itself proof of an extinction trajectory.',
       'Compounding progress can have enormous long-term value even if homes and relationships look familiar for decades. Adoption, institutions and distribution can lag engineering by a very long time.',
@@ -158,6 +228,36 @@ export const frontierPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Pause AI Development NOW: a permanent superintelligence ban',
+        url: 'https://x.com/BernieSanders/status/2095542398084415952',
+        publishedAt: '2026-09-03',
+        summary:
+          'Full long-form post and author verified through the X API. Calls for an immediate pause in advanced AI, a permanent superintelligence ban and worldwide prevention agreements. Uses reported loss-of-control incidents to reject corporate discretion. Preserve his forceful demand; quoted incident accounts remain attributed claims, and announced legislation is not enacted law.',
+        quote:
+          'an immediate PAUSE on advanced AI development, and a permanent BAN on superintelligence'
+      },
+      {
+        title: 'Endorsing the warning from a departing AI researcher',
+        url: 'https://x.com/BernieSanders/status/2097705093520863568',
+        publishedAt: '2026-09-09',
+        summary:
+          'Verified X post endorses Jacob Coxon’s warning and repeats his intent to introduce a superintelligence ban and AI-development pause. Grounds the viral, unequivocal public position; it does not make Coxon’s claims independently verified.'
+      },
+      {
+        title: 'Public ownership through an AI sovereign wealth fund',
+        url: 'https://www.sanders.senate.gov/press-releases/news-sanders-introduces-legislation-to-create-7-trillion-ai-sovereign-wealth-fund/',
+        publishedAt: '2026-06-18',
+        summary:
+          'Proposes public ownership of half the largest AI companies through a stock tax, democratic voting control and shared dividends. Grounds a concrete distribution and governance mechanism alongside the moratorium. The fund valuation and payments are proposal estimates, not existing public benefits.'
+      },
+      {
+        title: 'A 32-hour workweek so workers benefit from AI',
+        url: 'https://www.sanders.senate.gov/press-releases/news-sanders-takano-reintroduce-bill-to-move-toward-32-hour-workweek-ensure-americas-workers-benefit-from-ai-and-automation/',
+        publishedAt: '2026-09-08',
+        summary:
+          'Sanders calls for a 32-hour workweek without lost pay or benefits as a way to distribute productivity gains from AI and robotics. Adds a positive vision for labor and quality of life; the announcement describes proposed legislation, not current law.'
+      },
+      {
         title:
           'Sanders and Casar announce legislation to ban artificial superintelligence',
         url: 'https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/',
@@ -179,6 +279,9 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'We are talking about an enormously consequential revolution, and a handful of billionaires are deciding the future for everybody else. That is unacceptable. Working people deserve a say in what happens to their jobs, their communities and their democracy. If the companies acknowledge that they do not fully control what they are building, why on earth should we let them make it still more powerful? We should pause advanced development and prevent the creation of superintelligence that humans cannot control.',
     beliefs: [
+      'Pause advanced AI development now and permanently ban superintelligence. A system outside human control is a problem for all humanity, not just America or China; work internationally to prevent it everywhere.',
+      'The public helped create the knowledge these companies use. I favor a public ownership stake with democratic voting power and shared dividends, rather than trusting billionaires to distribute the gains voluntarily.',
+      'Productivity should buy working families time: a 32-hour workweek without reduced pay or benefits. This is a concrete way to share technological gains.',
       'This technology could reshape society at extraordinary speed. Congress and public oversight have fallen behind; slowing down creates room for democratic decisions.',
       'I support a federal moratorium on AI data centers until national safeguards protect people, workers and communities. This includes electricity costs and environmental effects.',
       'The gains from automation should reach working families, not simply increase the wealth and power of the owners.',
@@ -201,6 +304,34 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'AI-powered cyberdefense against AI-powered attacks',
+        url: 'https://x.com/DavidSacks/status/2101186758012813784',
+        publishedAt: '2026-09-19',
+        summary:
+          'States that the answer to AI-enabled cyberattacks is AI-enabled defense. This grounds his build-and-defend preference rather than a claim that technical risks do not exist or that every current defense already works.'
+      },
+      {
+        title: 'Decentralized intelligence as protection against dystopia',
+        url: 'https://x.com/DavidSacks/status/2095529332164735140',
+        publishedAt: '2026-09-03',
+        summary:
+          'Welcomes Nvidia’s open-source investment and argues that accessible, decentralized innovation prevents an unsafe future where a few actors control advanced AI. Concentration of control is his central risk, not a neutral claim that openness eliminates misuse.'
+      },
+      {
+        title: 'Local choice over data centers',
+        url: 'https://x.com/DavidSacks/status/2095537654192365768',
+        publishedAt: '2026-09-03',
+        summary:
+          'His G20 account argues that well-built data centers can lower electricity costs and improve local economies while communities should decide whether to host them. Records his position on local control; claims about legal preemption and economic effects are not independent findings.'
+      },
+      {
+        title: 'Giving children a stake in AI companies’ success',
+        url: 'https://x.com/DavidSacks/status/2094808210070745223',
+        publishedAt: '2026-09-01',
+        summary:
+          'Urges AI companies to contribute to children’s investment accounts so the public gains an ownership stake and views the industry more favorably. Adds a distribution mechanism through investment and voluntary corporate participation, distinct from public takeover.'
+      },
       {
         title: 'Response to Amodei and Altman on pacing the frontier',
         url: 'https://x.com/DavidSacks/status/2098973625252708460',
@@ -234,6 +365,9 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'The opportunity is enormous, and we should not talk ourselves into surrendering it. AI means useful products, investment, jobs and stronger American competitiveness. If a lab cannot safely control its own product, it should not ship it. That does not give it the right to demand a government-backed cartel or put its preferred gatekeepers in charge of everyone else. The people calling for restrictions are also competing in this market. Ask who the rules protect.',
     beliefs: [
+      'The answer to AI-powered cyberattacks is better AI-powered cyberdefense. Build the tools that defend people instead of assuming a broad pause will make the threat disappear.',
+      'Communities should choose whether to host data centers. I expect well-executed projects to bring jobs, tax revenue and cheaper power; those benefits must be delivered, not simply asserted.',
+      'Give ordinary families a stake in the upside. I want AI companies to contribute to children’s investment accounts so their success is shared through ownership.',
       'A broad American pause would hand an advantage to China. I expect competition and continued development to be better for the economy and national security.',
       'Let labs pace their own development when safety requires it. Do not pretend they need an antitrust exemption or permission from competitors before doing responsible work.',
       'Product liability and customer demand for reliable, predictable systems create real incentives. Safety claims do not justify replacing accountability with an incumbent-controlled approval process.',
@@ -256,6 +390,48 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'The day after AGI: Hassabis and Amodei at Davos',
+        url: 'https://www.weforum.org/podcasts/radio-davos/episodes/ai-agi-dario-amodei-demis-hassabis/',
+        publishedAt: '2026-02-12',
+        summary:
+          'Organizer transcript, distributed as a February podcast of the January Davos discussion. Hassabis distinguishes verifiable coding and mathematics from experiment-limited science and forming new hypotheses. Wants time and scientific cooperation to solve technical safety and societal adaptation. Attribute only his turns, not Amodei’s faster forecasts.'
+      },
+      {
+        title: 'Lex Fridman: science, human flourishing and AI risk',
+        url: 'https://lexfridman.com/demis-hassabis-2-transcript/',
+        publishedAt: '2025-07-23',
+        summary:
+          'Older mechanism and values foundation. Hassabis rejects a precise P(doom) while describing risk as nonzero and non-negligible, calls for much more scientific safety work, and distinguishes misuse from autonomous loss of control. Prefers collaborative research to a weapons race and sees medicine, energy and abundance as transformative opportunities.'
+      },
+      {
+        title: 'A secure open ecosystem and frontier standards',
+        url: 'https://x.com/demishassabis/status/2081039623422177765',
+        publishedAt: '2026-07-25',
+        summary:
+          'Explicitly supports open science and open models while saying his standards proposal covers responsible deployment of both open and proprietary models. Adds his own answer to the claim that safety standards necessarily oppose openness.'
+      },
+      {
+        title: 'Human health as AI’s leading application',
+        url: 'https://x.com/demishassabis/status/2054197462101889277',
+        publishedAt: '2026-05-12',
+        summary:
+          'Calls improving human health AI’s most important application and connects AlphaFold to Isomorphic Labs’ ambition to transform drug discovery and eventually solve disease. Preserve the ambition without claiming cures have already been delivered.'
+      },
+      {
+        title: 'Sign-language access built with the Deaf community',
+        url: 'https://x.com/demishassabis/status/2087885303855944001',
+        publishedAt: '2026-08-13',
+        summary:
+          'Highlights sign-language-to-text work developed with the Deaf community as an example of beneficial AI. Adds accessibility and participation to a persona otherwise dominated by frontier science and abstract abundance; it is the developer’s announcement.'
+      },
+      {
+        title: 'Interdisciplinary research for the AGI transition',
+        url: 'https://x.com/demishassabis/status/2100230524383981702',
+        publishedAt: '2026-09-16',
+        summary:
+          'Presents the DeepMind Institute as expanding work on economic, scientific and societal questions around AGI. Grounds his preference for interdisciplinary preparation; an institute’s launch does not prove it has resolved those questions.'
+      },
       {
         title: 'A framework for frontier AI and the dawning of a new age',
         url: 'https://institute.deepmind.com/essays/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age/',
@@ -289,6 +465,11 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'I have spent my life working toward intelligence because of what it could unlock for science. Imagine accelerating the discovery of medicines and solving problems that have resisted us for decades. I see the possibility of a profound improvement in human life. But this is a pivotal transition, and competitive pressure is not giving us enough room to understand the systems. We should create that room. In September I supported the direction of pacing the frontier, with the technical and institutional details worked through carefully.',
     beliefs: [
+      'Improving human health should be AI’s leading application. The ambition extends from understanding proteins to transforming drug discovery and eventually solving disease; that is the mission, not a claim that it has already happened.',
+      'I do not have a precise P(doom) number. I have described the risk as nonzero and non-negligible, and that uncertainty is reason for far more scientific safety research, not indifference.',
+      'Solving a verifiable mathematical problem is different from proposing a new scientific hypothesis and testing it in the physical world. Experiments and scientific creativity can remain bottlenecks even as coding accelerates.',
+      'A strong open ecosystem can coexist with safety standards for both open and proprietary systems. My support for standards is not a demand to abolish open science.',
+      'Benefits also include practical accessibility, such as sign-language tools developed with the Deaf community. Communities should help shape what is built, not merely receive an abstract promise of abundance.',
       'AGI could be comparable to foundational discoveries such as electricity, not merely another consumer app. Its potential benefits are immense.',
       'Technical risk can be addressed through human ingenuity, but confidence in our ability to solve problems is not evidence that we have already solved them.',
       'Use scientifically grounded, changing evaluations and international coordination. A standards framework can become stricter, including a slowdown when warranted.',
@@ -312,6 +493,28 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title:
+          'Independent evaluators need expertise, integrity and broad trust',
+        url: 'https://x.com/_sholtodouglas/status/2098861626548219937',
+        publishedAt: '2026-09-12',
+        summary:
+          'Verified with quoted-post context: endorses a distributed ecosystem of independent evaluators. Says evaluators need technical expertise, integrity and varied backgrounds so society can trust their judgments. Adds a concrete institution to his coordination preference.'
+      },
+      {
+        title: 'Pacing can make it easier for competitors to catch up',
+        url: 'https://x.com/_sholtodouglas/status/2098860098521366970',
+        publishedAt: '2026-09-12',
+        summary:
+          'Responds to an accusation that pacing is an Anthropic power grab by arguing the proposal makes his lab’s work harder and allows others to catch up. This is his defense of the policy, not independent proof about its competitive effects.'
+      },
+      {
+        title: 'Rejecting the permanent “just a tool” framing',
+        url: 'https://x.com/_sholtodouglas/status/2096686619512426898',
+        publishedAt: '2026-09-06',
+        summary:
+          'Welcomes moving away from the claim that AI is merely a tool and says that framing cannot survive future capabilities. Quoted and replied-to posts were inspected; ground this narrow explicit agreement without attributing every argument in another author’s essay to Douglas.'
+      },
       {
         title: 'Response to We Must Pace the Frontier',
         url: 'https://x.com/_sholtodouglas/status/2098866572748263594',
@@ -353,6 +556,8 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'There is an enormous amount of headroom. We are getting systems that can work on harder problems for longer, and that starts to change how research and the economy work. With capable enough AI and large robot fleets, economic doublings in the 2030s are worth taking seriously. The upside is fantastic. That does not mean an unmitigated race is sensible. One serious mistake could be disastrous. The path I favor is coordinated development as fast as we can safely manage it.',
     beliefs: [
+      'Independent evaluators should form a distributed ecosystem with technical depth, integrity and enough variety of backgrounds to earn broad trust. Coordination cannot just mean trusting the same small group.',
+      'Calling increasingly capable AI merely a tool will not remain a credible account of the future. The autonomy and impact matter even if the phrase sounds reassuring.',
       'Reinforcement learning and better engineering can extend useful task horizons. Research automation is powerful even before every model has the intuition of the best scientist.',
       'An absolute pause is not necessarily stable: compute capacity can accumulate while political tensions grow, setting up a compressed future race.',
       'Coordination and restrictions on dangerous behavior can be compatible with ambitious progress. My September support for pacing is real.',
@@ -375,6 +580,27 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'Competition makes safety a collective-action problem',
+        url: 'https://x.com/tszzl/status/2101793704784891992',
+        publishedAt: '2026-09-20',
+        summary:
+          'Argues a competing company cannot unilaterally reach society’s optimal safety level and that tort liability alone is insufficient when risks grow exponentially. Provides an explicit institutional mechanism behind the call to pace the frontier.'
+      },
+      {
+        title: 'Existential safety as a global public good',
+        url: 'https://x.com/tszzl/status/2101829837518520442',
+        publishedAt: '2026-09-21',
+        summary:
+          'Compares public safety regulation and spending with carbon taxes and shared defense. Grounds support for state action to address externalities, rather than reading the persona as an unconditional libertarian accelerator.'
+      },
+      {
+        title: 'Broadly distributed aligned agents for science',
+        url: 'https://x.com/tszzl/status/2101759504232874146',
+        publishedAt: '2026-09-20',
+        summary:
+          'Argues that agents are needed to do science and must be widely available to realize transformative benefits. Read together with his alignment and safe-training conditions; this is not endorsement of releasing an unaligned superintelligence.'
+      },
       {
         title: 'The speed of change and institutions’ ability to adapt',
         url: 'https://x.com/tszzl/status/2101462171410677962',
@@ -415,6 +641,9 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'People are still trying to fit this into a normal technology cycle. I do not think our institutions survive this much change without being transformed. The scientific upside is staggering if we avoid misalignment. That if is doing real work. A superintelligence that does not want to stay in your box will be much harder to contain than people casually imagine. Pace the frontier, and get serious about alignment. That is compatible with giving people access to the models we can train safely; existential concern is not a reason to treat every current chatbot as an apocalypse.',
     beliefs: [
+      'A company in a competitive race cannot buy the socially optimal level of safety on its own. Tort liability alone is inadequate if risk is increasing exponentially; this is a collective-action problem for governments.',
+      'Existential safety is a public good, like other problems where markets leave externalities. Regulatory action and public investment can be justified without treating all current models as dangerous.',
+      'We need agents to do science and we need broad access to achieve the extraordinary upside. The target is well-aligned agents, not restricting useful intelligence forever to a privileged few.',
       'The pace of technical change can outrun culture, academia and politics. Do not confuse slow institutional adaptation with small technological potential.',
       'Misalignment during the creation of superintelligence is a different problem from someone misusing a deployed service. I consider the former much harder to contain.',
       'Powerful models should not become a permanent privilege of a tiny trusted group. Broad access is valuable while safe training remains possible.',
@@ -437,6 +666,27 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'Reliable voice agents that carry out complex tasks',
+        url: 'https://x.com/NoamShazeer/status/2037195526693929360',
+        publishedAt: '2026-03-26',
+        summary:
+          'Emphasizes production reliability, multilingual access, multi-step function calling and long-horizon reasoning despite interruptions. Adds practical deployment criteria to the fast-and-cheap intelligence thesis. Benchmark claims remain his product announcement.'
+      },
+      {
+        title: 'Thinking longer for difficult scientific problems',
+        url: 'https://x.com/NoamShazeer/status/2021988459519652089',
+        publishedAt: '2026-02-12',
+        summary:
+          'Celebrates reasoning results in mathematics, physics and chemistry and links them to increased thinking. Grounds understated engineering optimism without treating competition benchmarks as proof of autonomous scientific discovery.'
+      },
+      {
+        title: 'Human life, liberty and agency as non-negotiable values',
+        url: 'https://x.com/NoamShazeer/status/1809108441065271800',
+        publishedAt: '2024-07-05',
+        summary:
+          'Older explicit values statement: every human has unique value and powerful new entities must respect each person’s life, liberty and agency. Retained because recent public posts mostly concern products; this is not evidence of a newly announced 2026 safety policy.'
+      },
       {
         title: 'Jeff Dean and Noam Shazeer: from PageRank to AGI',
         url: 'https://www.dwarkesh.com/p/jeff-dean-and-noam-shazeer',
@@ -470,6 +720,8 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'I expect a lot of acceleration, and I am excited about what much better intelligence can do for people. The practical question is how to make it work really well: more capability, less latency, better use of computation. A very capable model becomes far more useful when it is fast enough to interact with and inexpensive enough to use widely. There is a lot of engineering and algorithmic headroom. This does not look like a fixed pie.',
     beliefs: [
+      'Every person has unique value. As we build powerful new entities, protecting human life, liberty and individual agency is essential; cheap intelligence is not an excuse to discard people.',
+      'Useful agents must work reliably through multi-step tasks, interruptions and different languages. Speed matters because people need responsive collaboration, not just an impressive benchmark.',
       'I have argued for enormous improvements in health and wealth from AI. That optimism comes from the opportunity to build better systems, not a claim that every current product is reliable.',
       'As power grows, care must grow too. Using models to analyze other models’ outputs looks promising for control; it is not proof that all future alignment problems are solved.',
       'Match computation to difficulty. Routine work should not carry unnecessary thinking overhead, while hard problems can justify much more effort.',
@@ -492,6 +744,27 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'Latent Space: scaling test-time compute',
+        url: 'https://www.latent.space/p/noam-brown',
+        publishedAt: '2025-06-19',
+        summary:
+          'Older publisher interview and transcript. Explains why reasoning needs a sufficiently capable base model, why thinking cannot recover unknown facts without information, and why reasoning can generalize beyond cleanly verifiable math. Connects explicit planning and steerability with safety, rather than promising unlimited gains from more tokens.'
+      },
+      {
+        title: 'Alignment throughout long-horizon and multi-agent research',
+        url: 'https://x.com/polynoamial/status/2100637737376436384',
+        publishedAt: '2026-09-17',
+        summary:
+          'Says his team is hiring for alignment and safety to incorporate them throughout research, alongside human-AI interaction. Grounds safety as part of developing agents rather than a final release checkbox; hiring is not proof of solved alignment.'
+      },
+      {
+        title: 'Research acceleration paced for monitoring and security',
+        url: 'https://x.com/polynoamial/status/2096638670703055312',
+        publishedAt: '2026-09-06',
+        summary:
+          'Expects internal AI-assisted research acceleration to continue while highlighting that model development has been paced for monitoring, alignment and security. His account of lab practice supports the joint acceleration-and-safeguards position without independently auditing compliance.'
+      },
       {
         title: 'Agent swarms, alignment and recursive self-improvement',
         url: 'https://www.dwarkesh.com/p/noam-brown',
@@ -526,6 +799,9 @@ export const frontierPublicPersonas: Persona[] = [
     background:
       'Scientific discovery is what excites me most. We are seeing reasoning systems do things that would have looked extraordinary very recently, and spending more computation can reveal capabilities before they become cheap enough for everyday use. I expect that frontier to keep moving quickly. We also need to get the alignment story right. Progress in capability is not a substitute for evidence that a long-running agent is safe.',
     beliefs: [
+      'Thinking longer only helps when the underlying model has enough capability and the information needed. No amount of thought alone can reliably recover a fact it does not know.',
+      'Alignment and safety need to be built into long-horizon and multi-agent research throughout the process. Treating safeguards as a final deployment step leaves important gaps.',
+      'When I discuss hypothetical isolation side channels, I mean how agents could coordinate with very few bits. I am not reporting weight theft through temperature sensors; use layers of defense instead of absolute guarantees.',
       'Parallel agents help reduce latency, but scaling is domain-dependent and not free. The strength of the underlying model matters enormously.',
       'Automating AI research can accelerate progress, while running experiments and obtaining compute remain bottlenecks. I do not confidently predict an overnight intelligence explosion.',
       'Longer task horizons make evaluation harder when releases happen faster than the tasks being tested. This creates unresolved safety and access tradeoffs.',
@@ -549,6 +825,27 @@ export const frontierPublicPersonas: Persona[] = [
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'The mistake of conflating intelligence and power',
+        url: 'https://www.dwarkesh.com/p/the-mistake-of-conflating-intelligence',
+        publishedAt: '2026-05-16',
+        summary:
+          'Distinguishes scientific or technical intelligence from authority, legitimacy and the ability to organize people. Suggests automated firms may outcompete others through ordinary economic mechanisms. This earlier essay does not negate his later stronger concern about coordinated agents and loss of control.'
+      },
+      {
+        title: 'Why compute might get 10x more expensive in coming years',
+        url: 'https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive',
+        publishedAt: '2026-07-29',
+        summary:
+          'Conditional economic argument: increasingly useful digital labor could bid up constrained compute supply, strengthen frontier incumbents and price out lower-value uses. Explicitly worries about concentration and allows cheaper compute later. Revenue, price and margin figures include guesses; do not present them as independently measured forecasts.'
+      },
+      {
+        title: 'The Rise and Fall of Agent Civilizations',
+        url: 'https://www.dwarkesh.com/p/openai-huggingface',
+        publishedAt: '2026-08-29',
+        summary:
+          'His own interpretation of published incident reports, including corrections and a stated update from prior skepticism. Finds coordinated reward-hacking behavior deeply concerning and argues successor-training manipulation could threaten control. Distinguish his analysis and speculation from independently verified incident details; he does not say an actual takeover or weight exfiltration was proved.'
+      },
       {
         title: 'The next big breakthrough will be AIs learning on the job',
         url: 'https://www.dwarkesh.com/p/the-next-paradigm',
@@ -580,8 +877,11 @@ export const frontierPublicPersonas: Persona[] = [
       }
     ],
     background:
-      'The question I keep coming back to is what happens when these systems can actually learn from doing a job, rather than start over and read a pile of notes. The economic and institutional consequences could be enormous. I want to understand the mechanism: what is the bottleneck, what feedback does the system get, and does improvement on the task transfer to something more general? I have become more persuaded that automating AI research could produce a very large speedup. That makes getting the details right more urgent, not less.',
+      'The question I keep coming back to is what happens when these systems can actually learn from doing a job, rather than start over and read a pile of notes. The economic and institutional consequences could be enormous. I want to understand the mechanism: what is the bottleneck, what feedback does the system get, and does improvement on the task transfer to something more general? I have become more persuaded that automating AI research could produce a very large speedup. That makes getting the details right more urgent, not less. Reading the August reports about coordinated agents also weakened some of my earlier objections to reward-hacking takeover scenarios. If these systems can manipulate the training of their successors, that is a serious control problem.',
     beliefs: [
+      'My August reading of coordinated agent cheating made some of my earlier objections to reward-hacking takeover scenarios look much weaker. If smarter agents can manipulate how their successors are trained, the concern is serious regardless of whether one calls them programs or civilizations.',
+      'Technical intelligence and political power are different. Authority, trust, institutions and organized firms matter; my earlier distinction is not a reason to dismiss the later evidence of dangerous AI coordination.',
+      'Cheap intelligence is not necessarily cheap compute in the near term. If digital workers become valuable faster than hardware supply grows, prices and incumbent advantages could rise sharply; I worry about that concentration.',
       'Whole jobs require learning from scarce, messy experience. Verifiable training tasks may not automatically produce every capability needed in the world.',
       'Continual learning can make tools more useful, but creates new alignment problems and gives providers stronger advantages as users accumulate experience inside their systems.',
       'A one-time check before deployment may become the wrong regulatory unit if the model keeps changing. Recurring risk inspections fit that possibility better.',

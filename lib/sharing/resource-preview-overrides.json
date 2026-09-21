@@ -1,0 +1,26 @@
+{
+  "https://www.gatesnotes.com/a-turbulent-ai-era-and-critical-choices-to-make": {
+    "image": "https://images.gatesnotes.com/12514eb8-7b51-008e-41a9-512542cf683b/f05fc7d8-7973-4960-94f4-7cda6c834a96/image-of-bill8.png",
+    "note": "Bill Gates photograph inspected in the article\u2019s rendered DOM and visually reviewed on 2026-09-21. Its video hero has no poster/social image; use this publisher-provided portrait as a representative stand-in."
+  },
+  "https://firstmonday.org/ojs/index.php/fm/article/view/13636": {
+    "preferScreenshot": true,
+    "note": "Visual review found a generic platform image or unrelated navigation photo; prefer the actual article screenshot."
+  },
+  "https://firstmonday.org/ojs/index.php/fm/article/view/14366": {
+    "preferScreenshot": true,
+    "note": "Visual review found a generic platform image or unrelated navigation photo; prefer the actual article screenshot."
+  },
+  "https://obama.org/stories/president-obama-calls-for-public-oversight-of-ai-warns-of-disruption-ahead/": {
+    "preferScreenshot": true,
+    "note": "Visual review found a generic platform image or unrelated navigation photo; prefer the actual article screenshot."
+  },
+  "https://karpathy.bearblog.dev/sequoia-ascent-2026/": {
+    "preferScreenshot": true,
+    "note": "Visual review found a generic platform image or unrelated navigation photo; prefer the actual article screenshot."
+  },
+  "https://karpathy.bearblog.dev/year-in-review-2025/": {
+    "preferScreenshot": true,
+    "note": "Visual review found a generic platform image or unrelated navigation photo; prefer the actual article screenshot."
+  }
+}
