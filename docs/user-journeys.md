@@ -118,7 +118,7 @@ Results are saved incrementally to `eval/development/worldview-experiments.json`
 
 The 2026-09-20 replay was explicitly approved and covers all 45 saved result snapshots across 16 journeys. `--persona=<id>` scopes a review; `--refresh` replaces matching records after an extraction change. The `worldview-v2` pass verifies each selected excerpt independently, so alternative suitable quotes do not erase supported beliefs. See [comparison observations](worldview-experiment-review-2026-09-20.md).
 
-The current `worldview-v4` engine generates inferred P(doom) on every result snapshot. Full live regeneration replaces the previous suite; no separate historical overlay is needed. Only final results are expanded by default.
+The current `worldview-v6` engine generates inferred P(doom) on every result snapshot. Full live regeneration replaces the previous suite; no separate historical overlay is needed. Only final results are expanded by default.
 
 Every results view includes a separate demonstrated-reasoning axis. The v4 map interpretation preserves tentative points and labels dominant indecision as unsettled. Two direct map questions cover unexplored collective influence and transformation scale before automatic completion.
 
@@ -173,3 +173,9 @@ Collection `1790017721834-b165144d-d663-462a-aadf-ea5fc949d961` contains 54 jour
 These are observed outputs, not target coordinates. Scott's public override preserves the current-safety-effort, possible-pause and no-fixed-deadline context. Joe's old 5% has been repudiated and his more recent double-digit wording does not establish a precise percentage. Daniel's reported 70% was not verified against the original episode, so no public override is supplied. AI 2040 remains explicitly a policy recommendation rather than a 2040 arrival forecast. Cowen's slower-adoption interpretation is the engine's output; the brief also includes his expectations of eventual institutional transformation.
 
 All new regular source bookmarks have local preview images; six Cowen article screenshots provide fallbacks where automated preview retrieval failed. X portraits are recorded in `public/personas/SOURCES.md`.
+
+## Refresh saved scoring without regenerating interviews
+
+Run `pnpm exec node --env-file=.env.local --conditions=react-server --import tsx scripts/replay-worldview-experiments.ts --allow-paid --max-requests=720 --max-cost=3 --publish` after authorizing transfer of the saved evidence to Jev. The replay evaluates current experimental mappings against every saved per-answer input, including the fixed personal transcript. Explicit percentages and recorded public-source overrides are preserved.
+
+The replay saves each completed snapshot for resumption. `--publish` requires the full collection (no `--persona`) and validates that every result has a matching input hash, evidence revision, and current scoring version before atomically replacing the bundled persona results. Both the map and persona pages then read the refreshed bundle. The original interview timestamps, source-run hashes, core scores, questions, and answers remain intact; the replay artifact records the new interpretation timestamps, requests, and scoring cost. Browser-local personal assessments are separate and are not migrated by this command.

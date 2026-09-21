@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { sharpenInferredPdoom } from './pdoom-transform'
+import { recenterPdoomBounds, sharpenInferredPdoom } from './pdoom-transform'
 import type {
   Component,
   ExperimentQuote,
@@ -9,7 +9,7 @@ import type {
 } from './schema'
 import { emptyComponent, quantile } from './projections'
 
-export const experimentVersion = 'worldview-v5' as const
+export const experimentVersion = 'worldview-v6' as const
 
 // Authored event-probability bands. Jev weights interpretations of the participant’s belief.
 // Its category confidence is never itself used as the catastrophe probability.
@@ -508,10 +508,7 @@ export function buildWorldviewExperiment(
     Math.min(1, Math.max(rawEstimate, endpoint(0.9, 1)) + padding)
   ]
   const estimate = sharpenInferredPdoom(rawEstimate)
-  const bounds: [number, number] = [
-    sharpenInferredPdoom(rawBounds[0]),
-    sharpenInferredPdoom(rawBounds[1])
-  ]
+  const bounds = recenterPdoomBounds(rawEstimate, rawBounds, estimate)
   const inferredDoom =
     mass > 0.5 &&
     ['direct', 'contextual'].includes(basis) &&
@@ -529,7 +526,7 @@ export function buildWorldviewExperiment(
           estimate,
           bounds,
           adjustment: {
-            method: 'shifted-sharpening-v1' as const,
+            method: 'shifted-sharpening-v2' as const,
             rawEstimate,
             rawBounds,
             bandProbabilities: distribution

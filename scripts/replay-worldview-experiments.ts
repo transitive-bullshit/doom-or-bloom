@@ -16,6 +16,7 @@ import {
 import { budgetedProvider } from '../lib/evaluation/budget'
 import { liveJourneyBudget, meterJev } from '../lib/journeys/live-budget'
 import { createLiveProvider } from '../lib/server/live-provider'
+import { applyPublicPdoom } from '../lib/journeys/public-pdoom'
 
 const args = process.argv.slice(2)
 if (!args.includes('--allow-paid'))
@@ -26,6 +27,9 @@ const persona = args
   .find((a) => a.startsWith('--persona='))
   ?.slice('--persona='.length)
 const refresh = args.includes('--refresh')
+const publish = args.includes('--publish')
+if (publish && persona)
+  throw new Error('Publishing requires a complete replay, without --persona')
 const maximum = Number(
   args.find((a) => a.startsWith('--max-requests='))?.split('=')[1] ?? 120
 )
@@ -36,7 +40,7 @@ const budget = liveJourneyBudget(maximumUsd)
 const paid = budgetedProvider(
   meterJev(createLiveProvider(versions.model), budget),
   maximum,
-  240
+  1536
 )
 const suite = suiteSchema.parse(
   JSON.parse(
@@ -98,7 +102,7 @@ for (const journey of suite.journeys) {
           true
         )
       : null
-    const experiment = worldviewExperimentSchema.parse(
+    const inferredExperiment = worldviewExperimentSchema.parse(
       buildWorldviewExperiment(
         input,
         candidates,
@@ -107,6 +111,13 @@ for (const journey of suite.journeys) {
         evaluation.model
       )
     )
+    const snapshot = journey.personaSnapshot
+    const statement =
+      snapshot && 'statedPdoom' in snapshot ? snapshot.statedPdoom : undefined
+    const experiment = applyPublicPdoom(
+      { ...step.result, experiment: inferredExperiment },
+      statement
+    )!.experiment!
     const previousIndex = records.findIndex(
       (r) => r.personaId === journey.personaId && r.ordinal === step.ordinal
     )
@@ -152,6 +163,41 @@ for (const journey of suite.journeys) {
       `${journey.personaId} answer ${step.ordinal}: influence=${experiment.influence.value?.toFixed(2) ?? '?'} transformation=${experiment.transformation.value?.toFixed(2) ?? '?'} P(doom)=${experiment.pdoom?.token ?? '?'} milestones=${experiment.milestones.length} hinges=${experiment.hinges.length}`
     )
   }
+}
+// Publish only after every saved snapshot has a matching current interpretation.
+// Keep the original interview provenance; the replay file records new scoring usage.
+if (publish) {
+  for (const journey of suite.journeys) {
+    for (const step of journey.steps) {
+      if (!step.result) continue
+      if (!step.resultState) throw new Error('Missing replay input state')
+      const record = records.find(
+        (record) =>
+          record.personaId === journey.personaId &&
+          record.ordinal === step.ordinal &&
+          record.inputHash === experimentInputHash(step.resultState) &&
+          record.experiment.version === experimentVersion &&
+          record.experiment.evidenceRevision === step.result!.evidenceRevision
+      )
+      if (!record)
+        throw new Error('Incomplete replay; bundle was not published')
+      step.result.experiment = record.experiment
+    }
+    if (journey.result) {
+      const final = journey.steps.findLast(
+        (step) =>
+          step.result?.evidenceRevision === journey.result!.evidenceRevision
+      )?.result?.experiment
+      if (!final)
+        throw new Error('Missing final projection; bundle was not published')
+      journey.result.experiment = final
+    }
+  }
+  suiteSchema.parse(suite)
+  const bundle = 'eval/development/live-persona-journeys.json'
+  await writeFile(`${bundle}.tmp`, JSON.stringify(suite, null, 2) + '\n')
+  await rename(`${bundle}.tmp`, bundle)
+  console.log(`Published ${suite.journeys.length} refreshed persona journeys`)
 }
 console.log(
   JSON.stringify({

@@ -194,7 +194,7 @@ it('interprets the recorded alarmist wording even when there is no percentage to
   expect(result.pdoom).toMatchObject({
     source: 'inferred',
     estimate: sharpen(0.935),
-    bounds: [sharpen(0.9), sharpen(0.97)],
+    bounds: [0.9 + (sharpen(0.935) - 0.935), 1],
     text: 'On the present course, AI means extinction.'
   })
 })
@@ -234,7 +234,7 @@ it('infers an indirect low estimate with a wider range from a benign worldview',
     }
   )
   expect(result.pdoom?.estimate).toBeCloseTo(sharpen(0.065))
-  expect(result.pdoom?.bounds).toEqual([0, sharpen(0.25)])
+  expect(result.pdoom?.bounds).toEqual([0, 0.25 + (sharpen(0.065) - 0.065)])
   expect(result.pdoom?.basis).toBe('contextual')
   expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
 })
@@ -273,7 +273,8 @@ it('combines probability bands rather than mistaking model confidence for P(doom
     'fixture-v1'
   )
   expect(result.pdoom?.estimate).toBeCloseTo(sharpen(0.881))
-  expect(result.pdoom?.bounds).toEqual([sharpen(0.7), sharpen(0.97)])
+  expect(result.pdoom?.bounds?.[0]).toBeCloseTo(0.7862270268923062)
+  expect(result.pdoom?.bounds?.[1]).toBe(1)
   answers['experiment:pdoom:evidence:verified'] = { type: 'noul', noul: 0.1 }
   const withoutQuote = buildWorldviewExperiment(
     source,
@@ -380,7 +381,8 @@ it.each([
         'experiment:pdoom:basis': 'direct'
       }
     )
-    expect(result.version).toBe('worldview-v5')
+    expect(result.version).toBe('worldview-v6')
+    expect(result.pdoom?.adjustment?.method).toBe('shifted-sharpening-v2')
     expect(result.pdoom?.adjustment?.rawEstimate).toBeCloseTo(midpoint)
     expect(result.pdoom?.estimate).toBeCloseTo(sharpen(midpoint))
     expect(result.pdoom?.bounds?.[0]).toBeLessThanOrEqual(
