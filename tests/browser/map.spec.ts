@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
 import { createAssessment } from '../../lib/assessment/state'
 import { emptyComponent } from '../../lib/assessment/projections'
@@ -42,7 +43,8 @@ async function contrastRatios(page: import('@playwright/test').Page) {
 
 for (const unplaced of [false, true, 'outlook'] as const) {
   test(`map explains ${unplaced === 'outlook' ? 'unplaced outlook with placed influence' : unplaced ? 'unplaced axes' : 'broad interpretation ranges'} without inference`, async ({
-    page
+    page,
+    context
   }, testInfo) => {
     const state = createAssessment(`map-${unplaced}`, 'fixture-v1')
     state.status = 'results'
@@ -61,7 +63,19 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       },
       components: [],
       findings: [],
-      resources: [],
+      resources:
+        unplaced === false
+          ? [
+              {
+                id: 'resource.economic-scenarios',
+                title: 'Economic scenarios from the Anthropic Institute',
+                url: 'https://www.anthropic.com/institute/econ-scenarios',
+                purpose: 'Internal recommendation rationale',
+                effort: 'Leadership essay',
+                question: 'Which bottlenecks could limit AI’s economic gains?'
+              }
+            ]
+          : [],
       fingerprint:
         unplaced === 'outlook'
           ? [
@@ -107,7 +121,13 @@ for (const unplaced of [false, true, 'outlook'] as const) {
         range: [0.2, 0.6]
       },
       axisEvidence: { influence: null, transformation: null },
-      pdoom: null,
+      pdoom: {
+        source: 'inferred',
+        basis: 'direct',
+        token: '18%',
+        bounds: [0.1, 0.6],
+        estimate: 0.18
+      },
       milestones: [],
       hinges: []
     }
@@ -126,16 +146,16 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     })
     await page.setViewportSize({ width: 1365, height: 960 })
     await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
-    await page.goto('/')
-    await expect(page.locator('[data-slot="worldview-map"]')).toHaveCount(2)
+    await page.goto('/assessment')
+    await expect(page.locator('[data-slot="worldview-map"]')).toHaveCount(1)
     const map = page.locator('[data-slot="worldview-map"]').first()
     await expect(map).toContainText(
       'Across: your expressed Doom–Bloom outlook.'
     )
-    await expect(map).toContainText('Up: human influence.')
+    await expect(map).toContainText('Up: scale of transformation.')
     await expect(map.getByRole('img')).toHaveAttribute(
       'aria-label',
-      /12 to 88 horizontally, 28 to 92 vertically/
+      /12 to 88 horizontally, 20 to 60 vertically/
     )
     if (unplaced === 'outlook') {
       await expect(
@@ -152,18 +172,69 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       ).toBeVisible()
       await expect(map.getByRole('img')).toHaveAttribute(
         'aria-label',
-        /Doom–Bloom: unplaced. Human influence: 74 out of 100/
+        /Doom–Bloom: unplaced. Scale of transformation: 40 out of 100/
       )
     }
     if (unplaced) {
       await expect(map).toContainText(
         'Point withheld until both axes are assessable'
       )
-      await expect(map.locator('circle')).toHaveCount(0)
+      await expect(map.getByRole('img').locator('circle')).toHaveCount(0)
     } else {
       await expect(map.getByText('Your view', { exact: true })).toBeVisible()
       const area = map.locator('rect[stroke-dasharray="6 5"]')
       expect(Number(await area.getAttribute('width'))).toBeGreaterThan(400)
+    }
+    if (unplaced === false) {
+      const bookmark = page.getByRole('link', {
+        name: /Economic scenarios from the Anthropic Institute/
+      })
+      await expect(bookmark.locator('img')).toHaveCount(2)
+      await expect
+        .poll(() =>
+          bookmark
+            .locator('img')
+            .evaluateAll((images) =>
+              images.every(
+                (image) =>
+                  (image as HTMLImageElement).complete &&
+                  (image as HTMLImageElement).naturalWidth > 0
+              )
+            )
+        )
+        .toBe(true)
+      await expect(bookmark).not.toContainText(
+        'Internal recommendation rationale'
+      )
+      await expect(bookmark).not.toContainText('Leadership essay')
+      await bookmark.screenshot({
+        path: testInfo.outputPath('resource-bookmark.png')
+      })
+      const risk = page
+        .getByText('Your estimated P(doom)', { exact: true })
+        .locator('xpath=../..')
+      await expect(risk.locator('[data-slot=axis-point]')).toHaveAttribute(
+        'style',
+        /left: 18%/
+      )
+      const downloading = page.waitForEvent('download')
+      await map.getByRole('button', { name: 'Map image actions' }).click()
+      await page.getByRole('menuitem', { name: 'Download PNG' }).click()
+      const downloaded = await downloading
+      const png = await readFile((await downloaded.path())!)
+      expect(png.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a')
+      expect(png.readUInt32BE(16)).toBe(1360)
+      expect(png.readUInt32BE(20)).toBe(980)
+      await downloaded.saveAs(testInfo.outputPath('exported-map.png'))
+      await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+      await map.getByRole('button', { name: 'Map image actions' }).click()
+      await page.getByRole('menuitem', { name: 'Copy PNG' }).click()
+      await expect(map.getByRole('status')).toHaveText('Map copied as PNG.')
+      expect(
+        await page.evaluate(
+          async () => (await navigator.clipboard.read())[0]?.types
+        )
+      ).toContain('image/png')
     }
     for (const pair of await contrastRatios(page))
       expect(pair.ratio).toBeGreaterThanOrEqual(4.5)

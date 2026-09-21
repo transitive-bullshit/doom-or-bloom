@@ -313,7 +313,7 @@ export function DebugPanel({
                           Revision {entry.trace.baseRevision} ·{' '}
                           {entry.trace.stages
                             .map((stage) => stage.name.split(':')[0])
-                            .join(' → ') || 'Local decisions'}{' '}
+                            .join(' / ') || 'Local decisions'}{' '}
                           · {entry.createdAt}
                         </NativeSelectOption>
                       ))}

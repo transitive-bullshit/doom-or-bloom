@@ -218,11 +218,26 @@ export const suiteSchema = z.strictObject({
   inputHash: z.string(),
   engineHash: z.string(),
   contentHash: z.string(),
+  // Combined latest results retain the original generation metadata per batch.
+  // Top-level hashes describe the assembled catalog, not a simultaneous replay.
+  sourceRuns: z
+    .array(
+      z.strictObject({
+        runId: z.string(),
+        createdAt: z.string(),
+        personaIds: z.array(z.string()).max(64),
+        inputHash: z.string(),
+        engineHash: z.string(),
+        contentHash: z.string()
+      })
+    )
+    .max(64)
+    .optional(),
   turns: z.number().int().min(1).max(6),
   requestBudget: z
     .strictObject({ maximum: z.number(), usedOrReserved: z.number() })
     .nullable(),
-  journeys: z.array(journeySchema).max(20)
+  journeys: z.array(journeySchema).max(64)
 })
 export type JourneySuite = z.infer<typeof suiteSchema>
 export type RunIndex = Pick<

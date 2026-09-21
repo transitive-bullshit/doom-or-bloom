@@ -5,7 +5,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   page
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.goto('/')
+  await page.goto('/assessment')
   const answer = page.getByLabel('Your answer', { exact: true })
   const submit = async (text: string) => {
     await answer.fill(text)
@@ -66,7 +66,7 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   })
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.setViewportSize({ width: 1440, height: 1000 })
-  await page.goto('/')
+  await page.goto('/assessment')
   const answer = page.getByLabel('Your answer', { exact: true })
   await expect(answer).toBeVisible()
   await page.clock.install()

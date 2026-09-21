@@ -18,6 +18,7 @@ export default defineConfig({
     reuseExistingServer: false,
     gracefulShutdown: { signal: 'SIGTERM', timeout: 5000 },
     env: {
+      NEXT_TEST_DIST_DIR: '.next-analytics',
       ASSESSMENT_PROVIDER: 'live',
       TYPESAFE_API_KEY: '',
       NEXT_PUBLIC_ANALYTICS_ENABLED: 'true',

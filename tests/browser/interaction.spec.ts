@@ -30,7 +30,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(page.locator('h1')).toBeVisible()
   await expect(page.locator('h1')).not.toBeFocused()
   await expect(
@@ -123,7 +123,7 @@ test('reduced-motion paperclips are reachable and dismissible by keyboard', asyn
       }
     })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   for (let i = 0; i < 2; i++) {
     await page.getByLabel('Your answer', { exact: true }).fill('off-topic')
     await page.getByRole('button', { name: /^Continue/ }).click()
@@ -169,14 +169,14 @@ test('recovery counters survive a tab conflict and reload without a new allowanc
       }
     })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await page
     .getByLabel('Your answer', { exact: true })
     .fill('unrelated first answer')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   const second = await context.newPage()
-  await second.goto('/')
+  await second.goto('/assessment')
   await second
     .getByLabel('Your answer', { exact: true })
     .fill('unrelated second answer')
@@ -212,7 +212,7 @@ test('recovery counters survive a tab conflict and reload without a new allowanc
 test('catastrophic-risk correction quotes that claim in the interface', async ({
   page
 }) => {
-  await page.goto('/')
+  await page.goto('/assessment')
   for (let i = 0; i < 3; i++) {
     await page
       .getByLabel('Your answer', { exact: true })

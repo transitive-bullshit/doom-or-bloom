@@ -46,7 +46,7 @@ export function ReviewHeader({
           <Link href='/user-journeys'>User Journeys</Link>
         </Button>
         <Button asChild variant='ghost' size='sm'>
-          <Link href='/'>Return to assessment</Link>
+          <Link href='/assessment'>Return to assessment</Link>
         </Button>
         <span className='text-xs text-muted-foreground'>{contentVersion}</span>
       </div>
@@ -143,7 +143,7 @@ export function RelationshipGraph({
               strokeWidth='1.5'
               markerEnd={`url(#${marker})`}
             >
-              <title>{`${edge.source} → ${edge.target}: ${edge.label}`}</title>
+              <title>{`${edge.source} to ${edge.target}: ${edge.label}`}</title>
             </line>
           )
         })}

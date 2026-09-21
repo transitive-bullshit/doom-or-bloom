@@ -25,7 +25,7 @@ const indexSchema = suiteSchema
     requestBudget: true,
     journeys: true
   })
-  .extend({ personaIds: z.array(z.string()).max(20) })
+  .extend({ personaIds: z.array(z.string()).max(64) })
 
 export function createJourneyStore(root: string) {
   const directory = path.join(root, 'eval/runs/journeys')
@@ -38,7 +38,7 @@ export function createJourneyStore(root: string) {
     'eval/development/live-persona-journeys.json'
   )
   async function readArtifact(file: string): Promise<JourneySuite> {
-    if ((await stat(file)).size > 64_000_000)
+    if ((await stat(file)).size > 256_000_000)
       throw new Error('Journey artifact exceeds local read bound')
     return suiteSchema.parse(JSON.parse(await readFile(file, 'utf8')))
   }
@@ -87,7 +87,7 @@ export function createJourneyStore(root: string) {
     const runs = await Promise.all(
       directories.map(async (id) => {
         const file = path.join(directory, id, 'index.json')
-        if ((await stat(file)).size > 20_000)
+        if ((await stat(file)).size > 40_000)
           throw new Error('Journey index exceeds read bound')
         const record = indexSchema.parse(
           JSON.parse(await readFile(file, 'utf8'))
@@ -117,7 +117,7 @@ export function createJourneyStore(root: string) {
     await mkdir(temporary, { recursive: true })
     try {
       const serialized = JSON.stringify(suite, null, 2) + '\n'
-      if (Buffer.byteLength(serialized) > 64_000_000)
+      if (Buffer.byteLength(serialized) > 256_000_000)
         throw new Error('Journey artifact exceeds write bound')
       await writeFile(path.join(temporary, 'suite.json'), serialized, {
         flag: 'wx'

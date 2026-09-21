@@ -16,33 +16,29 @@ export const cardSchema = z.strictObject({
   transformationInterpretation: z
     .enum(['supported', 'tentative', 'unsettled'])
     .optional(),
+  upside: coordinate.nullable().optional(),
+  harm: coordinate.nullable().optional(),
+  upsideRange: range.optional(),
+  harmRange: range.optional(),
+  pdoom: coordinate.nullable().optional(),
+  pdoomRange: range.optional(),
   provisional: z.boolean()
 })
 export type CardData = z.infer<typeof cardSchema>
 
-function Plot({
-  data,
-  axis
-}: {
-  data?: CardData
-  axis: 'influence' | 'transformation'
-}) {
+function Plot({ data }: { data?: CardData }) {
   const x = data?.horizontal
-  const y = data?.[axis]
-  const verticalRange = data?.[
-    axis === 'influence' ? 'influenceRange' : 'transformationRange'
-  ] ?? [0, 1]
-  const width = 340,
+  const y = data?.transformation
+  const verticalRange = data?.transformationRange ?? [0, 1]
+  const width = 650,
     height = 310
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14, width }}>
       <div style={{ fontSize: 20, fontWeight: 700 }}>
-        {axis === 'influence' ? 'Human influence ↑' : 'Transformation ↑'}
+        Scale of transformation
       </div>
       <div style={{ fontSize: 15, color: '#646a71' }}>
-        {axis === 'influence'
-          ? 'How much can we shape it?'
-          : 'How radically will it change us?'}
+        Civilizational change at the top · Incremental change at the bottom
       </div>
       <div
         style={{
@@ -133,17 +129,73 @@ function Plot({
         <span>Bloom</span>
       </div>
       <div style={{ fontSize: 14, color: '#646a71' }}>
-        {data?.[
-          axis === 'influence'
-            ? 'influenceInterpretation'
-            : 'transformationInterpretation'
-        ] === 'unsettled'
+        {data?.transformationInterpretation === 'unsettled'
           ? 'Unsettled: point marks the center of the open range.'
           : 'Interpretation range; not an event probability.'}
       </div>
     </div>
   )
 }
+function SingleAxis({
+  label,
+  value,
+  range = [0, 1]
+}: {
+  label: string
+  value: number | null | undefined
+  range?: [number, number]
+}) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          fontSize: 16
+        }}
+      >
+        <span>{label}</span>
+        <span>
+          {value == null ? 'Unexplored' : `${Math.round(value * 100)} / 100`}
+        </span>
+      </div>
+      <div
+        style={{
+          position: 'relative',
+          height: 7,
+          width: 400,
+          backgroundColor: '#dce1da',
+          borderRadius: 4
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            left: range[0] * 400,
+            width: Math.max(2, (range[1] - range[0]) * 400),
+            height: 7,
+            borderRadius: 4,
+            backgroundColor: '#93ad9c'
+          }}
+        />
+        {value != null && (
+          <div
+            style={{
+              position: 'absolute',
+              left: value * 400 - 5,
+              top: -2,
+              width: 11,
+              height: 11,
+              borderRadius: 6,
+              backgroundColor: '#284e3d'
+            }}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
 export function ShareCard({ data }: { data?: CardData }) {
   return (
     <div
@@ -156,82 +208,63 @@ export function ShareCard({ data }: { data?: CardData }) {
         color: '#22252a',
         padding: 44,
         fontFamily: 'sans-serif',
-        gap: 32
+        gap: 62
       }}
     >
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          width: 340,
-          gap: 24
+          width: 400,
+          gap: 20
         }}
       >
-        <div style={{ fontSize: 20, color: '#646a71' }}>DOOM OR BLOOM</div>
-        <div style={{ fontSize: 48, fontWeight: 700, lineHeight: 1.1 }}>
-          What does AI mean for our future?
+        <div style={{ fontSize: 18, color: '#646a71' }}>DOOM OR BLOOM</div>
+        <div style={{ fontSize: 40, fontWeight: 700, lineHeight: 1.1 }}>
+          {data ? 'My AI worldview' : 'Where do you land?'}
         </div>
-        <div style={{ fontSize: 24, color: '#646a71', lineHeight: 1.4 }}>
+        <div style={{ fontSize: 19, color: '#646a71', lineHeight: 1.4 }}>
           {data
-            ? 'Two views of my AI worldview'
+            ? 'What I expect from the AI future.'
             : 'Map your AI worldview, one question at a time.'}
         </div>
         {data && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontSize: 18 }}>
-              Demonstrated reasoning:{' '}
-              {data.vertical === null
-                ? 'Unexplored'
-                : `${Math.round(data.vertical * 100)} / 100`}
-            </div>
-            <div
-              style={{
-                position: 'relative',
-                height: 8,
-                width: 300,
-                backgroundColor: '#dce1da',
-                borderRadius: 4
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  left: data.verticalRange[0] * 300,
-                  width: Math.max(
-                    2,
-                    (data.verticalRange[1] - data.verticalRange[0]) * 300
-                  ),
-                  height: 8,
-                  backgroundColor: '#93ad9c',
-                  borderRadius: 4
-                }}
-              />
-              {data.vertical !== null && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: data.vertical * 300 - 5,
-                    top: -1,
-                    width: 10,
-                    height: 10,
-                    borderRadius: 5,
-                    backgroundColor: '#284e3d'
-                  }}
-                />
-              )}
-            </div>
-            <div style={{ fontSize: 13, color: '#646a71' }}>
-              Reasoning shown in my answers
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+            <SingleAxis
+              label='Expected upside'
+              value={data.upside}
+              range={data.upsideRange}
+            />
+            <SingleAxis
+              label='Expected harm'
+              value={data.harm}
+              range={data.harmRange}
+            />
+            <SingleAxis
+              label='Demonstrated reasoning'
+              value={data.vertical}
+              range={data.verticalRange}
+            />
+            <SingleAxis
+              label='Human influence'
+              value={data.influence}
+              range={data.influenceRange}
+            />
+            {data.pdoom != null && (
+              <div style={{ fontSize: 18 }}>
+                Estimated P(doom): {Math.round(data.pdoom * 100)}%
+                {data.pdoomRange
+                  ? ` (range ${data.pdoomRange.map((v) => Math.round(v * 100)).join('–')}%)`
+                  : ''}
+              </div>
+            )}
           </div>
         )}
-        <div style={{ fontSize: 16, color: '#646a71' }}>
-          doom-or-bloom.com · Experimental
-          {data?.provisional ? ' · Provisional' : ''}
+        <div style={{ fontSize: 13, color: '#646a71' }}>
+          doom-or-bloom.com · Interpretation, not a verdict
         </div>
       </div>
-      <Plot data={data} axis='influence' />
-      <Plot data={data} axis='transformation' />
+      <Plot data={data} />
     </div>
   )
 }

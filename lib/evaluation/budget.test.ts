@@ -80,3 +80,13 @@ test('concurrent stages cannot both spend a reserved budget', async () => {
   await first
   expect(run.report().usedOrReserved).toBe(1)
 })
+
+test('expanded journey budgets remain explicitly bounded', () => {
+  const source: Provider = { kind: 'fixture', evaluate: async () => success(1) }
+  expect(() => budgetedProvider(source, 696)).toThrow('Invalid')
+  expect(budgetedProvider(source, 696, 696).report().maximum).toBe(696)
+  expect(() => budgetedProvider(source, 697, 696)).toThrow('Invalid')
+  expect(budgetedProvider(source, 744, 744).report().maximum).toBe(744)
+  expect(budgetedProvider(source, 1128, 1128).report().maximum).toBe(1128)
+  expect(() => budgetedProvider(source, 1537, 1537)).toThrow('Invalid')
+})

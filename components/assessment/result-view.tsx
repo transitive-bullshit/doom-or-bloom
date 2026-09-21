@@ -2,6 +2,7 @@
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
+import { ResourceBookmark } from './resource-bookmark'
 import { ExperimentalResults } from './experimental-results'
 import { AnswerDisclosure } from './conversation'
 import { Button } from '@/components/ui/button'
@@ -64,6 +65,26 @@ export function ResultView({
           influenceInterpretation: result.experiment?.influence.interpretation,
           transformationInterpretation:
             result.experiment?.transformation.interpretation,
+          upside:
+            result.components.find((c) => c.vector === 'beneficial_potential')
+              ?.value ?? null,
+          harm:
+            result.components.find((c) => c.vector === 'risk_landscape')
+              ?.value ?? null,
+          upsideRange: result.components.find(
+            (c) => c.vector === 'beneficial_potential'
+          )?.range,
+          harmRange: result.components.find(
+            (c) => c.vector === 'risk_landscape'
+          )?.range,
+          pdoom:
+            result.experiment?.pdoom?.estimate ??
+            (result.experiment?.pdoom?.bounds
+              ? (result.experiment.pdoom.bounds[0] +
+                  result.experiment.pdoom.bounds[1]) /
+                2
+              : null),
+          pdoomRange: result.experiment?.pdoom?.bounds,
           provisional: result.provisional
         })
       })
@@ -82,9 +103,7 @@ export function ResultView({
           <Badge variant='secondary'>
             {result.insufficient
               ? 'Insufficient evidence'
-              : result.provisional
-                ? 'Provisional result'
-                : 'Your worldview map'}
+              : 'Your worldview map'}
           </Badge>
           {result.capped && (
             <Badge variant='outline'>{limits.prompts}-prompt cap reached</Badge>
@@ -93,7 +112,11 @@ export function ResultView({
         <h1 className='text-3xl font-semibold tracking-tight'>
           A map of your AI worldview
         </h1>
-        <p className='mt-3 text-sm text-muted-foreground'>{result.reason}</p>
+        <p className='mt-3 text-sm text-muted-foreground'>
+          {result.reason === 'Some interpretations still need clarification.'
+            ? null
+            : result.reason}
+        </p>
       </div>
       <ExperimentalResults result={result} layout='breakout' />
       <div className='grid gap-3 sm:grid-cols-2'>
@@ -221,7 +244,7 @@ export function ResultView({
                       rel='noreferrer'
                       className='mr-3 text-xs underline'
                     >
-                      Primary source {i + 1} ↗
+                      Primary source {i + 1}
                     </a>
                   ))}
                 </div>
@@ -234,24 +257,15 @@ export function ResultView({
         <section className='flex flex-col gap-4'>
           <h2 className='font-medium'>Something worth exploring</h2>
           {result.resources.map((r) => (
-            <div key={r.id}>
-              <a
-                className='text-sm font-medium underline underline-offset-4'
-                href={r.url}
-                target='_blank'
-                rel='noreferrer'
-                onClick={() =>
-                  emitEvent(
-                    makeEvent(state, 'resource_opened', { resource_id: r.id })
-                  )
-                }
-              >
-                {r.title} ↗
-              </a>
-              {r.question && <p className='mt-1 text-sm'>{r.question}</p>}
-              <p className='mt-1 text-sm text-muted-foreground'>{r.purpose}</p>
-              <p className='mt-1 text-xs text-muted-foreground'>{r.effort}</p>
-            </div>
+            <ResourceBookmark
+              key={r.id}
+              resource={r}
+              onOpen={() =>
+                emitEvent(
+                  makeEvent(state, 'resource_opened', { resource_id: r.id })
+                )
+              }
+            />
           ))}
         </section>
       )}
@@ -267,16 +281,6 @@ export function ResultView({
         <Button disabled={busy} variant='outline' onClick={() => void card()}>
           Download card
         </Button>
-        <Button variant='outline' asChild>
-          <a
-            target='_blank'
-            rel='noreferrer'
-            href={`https://x.com/intent/post?text=${encodeURIComponent('I mapped my AI worldview with Doom or Bloom. https://doom-or-bloom.com')}`}
-            onClick={() => emitEvent(makeEvent(state, 'share_intent_opened'))}
-          >
-            Post on X
-          </a>
-        </Button>
         {state.status === 'results' && (
           <Button
             disabled={busy}
@@ -287,9 +291,6 @@ export function ResultView({
           </Button>
         )}
       </div>
-      <p className='text-xs text-muted-foreground'>
-        Posting on X opens a draft. Download the card and attach it manually.
-      </p>
     </div>
   )
 }

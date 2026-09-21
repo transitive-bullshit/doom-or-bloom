@@ -238,7 +238,7 @@ test('the real-user fixed regression is selectable and exposes all four original
   ).toBeVisible()
 })
 
-test('answer selector moves both maps and every experimental view without inference', async ({
+test('answer selector moves the map and every experimental view without inference', async ({
   page
 }) => {
   let inference = 0
@@ -309,7 +309,7 @@ test('answer selector moves both maps and every experimental view without infere
   await expect(
     explorer.getByText('Demonstrated reasoning', { exact: true })
   ).toBeVisible()
-  await expect(explorer.locator('[data-slot=worldview-map]')).toHaveCount(2)
+  await expect(explorer.locator('[data-slot=worldview-map]')).toHaveCount(1)
   await expect(explorer).toContainText('20%')
   await expect(explorer).toContainText('Milestone 2')
   await expect(explorer).toContainText('Assumption 2')
@@ -319,17 +319,13 @@ test('answer selector moves both maps and every experimental view without infere
   await expect(explorer).not.toContainText('Snapshot 2 only.')
   await expect(explorer.getByRole('img').first()).toHaveAttribute(
     'aria-label',
-    /Human influence: 10 out of 100/
-  )
-  await expect(explorer.getByRole('img').nth(1)).toHaveAttribute(
-    'aria-label',
     /Scale of transformation: 10 out of 100/
   )
   await explorer.getByRole('slider').press('ArrowRight')
   await expect(explorer).toContainText('Milestone 2')
   await expect(explorer.getByRole('img').first()).toHaveAttribute(
     'aria-label',
-    /Human influence: 90 out of 100/
+    /Scale of transformation: 90 out of 100/
   )
   expect(inference).toBe(0)
   await page.unrouteAll({ behavior: 'wait' })
@@ -348,9 +344,8 @@ test('completed uncertain personas keep visible map points and a separate reason
     await page.getByRole('button', { name: new RegExp(name) }).click()
     const result = page.getByRole('region', { name: 'Journey result' })
     const maps = result.locator('[data-slot=worldview-map]')
-    await expect(maps).toHaveCount(2)
+    await expect(maps).toHaveCount(1)
     await expect(maps.nth(0)).not.toContainText('Unplaced')
-    await expect(maps.nth(1)).not.toContainText('Unplaced')
     await expect(
       result.getByText('Demonstrated reasoning', { exact: true })
     ).toBeVisible()

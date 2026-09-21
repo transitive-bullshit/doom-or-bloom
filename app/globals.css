@@ -302,3 +302,53 @@
     font-size: 36px;
   }
 }
+
+/* Route changes fade the page while the shared chrome stays still. */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-old(.page-exit) {
+  animation: page-fade 140ms ease-out reverse both;
+}
+::view-transition-new(.page-enter) {
+  animation: page-fade 220ms ease-out both;
+}
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+.result-breakout {
+  position: relative;
+  left: 50%;
+  width: min(72rem, calc(100vw - 3rem));
+  transform: translateX(-50%);
+  border-radius: 1rem;
+  background: var(--background);
+  padding: 1rem;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+::view-transition-group(site-header),
+::view-transition-group(site-footer),
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-new(site-header),
+::view-transition-new(site-footer) {
+  animation: none;
+}
+::view-transition-old(site-header),
+::view-transition-old(site-footer) {
+  display: none;
+}

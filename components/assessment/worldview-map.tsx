@@ -1,5 +1,6 @@
 'use client'
-import { useId } from 'react'
+import { useId, useRef } from 'react'
+import { MapActions } from './map-actions'
 import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
@@ -11,14 +12,17 @@ export function Map({
   vertical: y,
   axis,
   history = [],
-  layout = 'breakout'
+  layout = 'breakout',
+  subject
 }: {
   horizontal: Component
   vertical: Component
   axis: keyof typeof experimentalAxes
   history?: Array<{ x: number | null; y: number | null; label: string }>
   layout?: 'contained' | 'breakout'
+  subject?: string
 }) {
+  const svg = useRef<SVGSVGElement>(null)
   const definition = experimentalAxes[axis]
   const id = useId().replaceAll(':', '')
   const plot = { left: 70, top: 52, width: 560, height: 268 }
@@ -45,6 +49,21 @@ export function Map({
           </h2>
         </div>
         <div className='flex flex-wrap gap-3 text-xs'>
+          <MapActions
+            svg={svg}
+            title={
+              subject
+                ? `${subject} · Simulated AI worldview`
+                : 'My AI worldview'
+            }
+            legend={
+              point
+                ? y.interpretation === 'unsettled'
+                  ? 'Point: center of unresolved range · Dashed area: interpretation range'
+                  : 'Point: estimated position · Dashed area: interpretation range'
+                : 'No placement yet · Dashed area: interpretation range'
+            }
+          />
           <div className='map-stat rounded-lg px-3 py-2'>
             <p className='map-muted'>Outlook</p>
             <p className='mt-1 font-semibold tabular-nums'>
@@ -64,6 +83,7 @@ export function Map({
         {definition.low.toLowerCase()}.
       </p>
       <svg
+        ref={svg}
         viewBox='0 0 680 395'
         role='img'
         aria-label={description}
@@ -303,7 +323,7 @@ export function Map({
           fill='var(--map-muted)'
           fontSize='12'
         >
-          EXPRESSED OUTLOOK →
+          EXPRESSED OUTLOOK
         </text>
         <text
           x={px(1)}

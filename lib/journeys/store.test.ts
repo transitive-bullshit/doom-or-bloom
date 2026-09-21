@@ -62,3 +62,37 @@ test('concurrent saves keep only the latest local run and reject paths, overwrit
     await rm(root, { recursive: true, force: true })
   }
 })
+
+test('64-person collections retain generation provenance through storage', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'doom-expanded-journeys-'))
+  try {
+    const suite = await runMechanicalSuite({
+      id: `${Date.now()}-${randomUUID()}`,
+      personaId: 'control-alarmist',
+      turns: 1
+    })
+    const expanded = {
+      ...suite,
+      sourceRuns: [
+        {
+          runId: suite.id,
+          createdAt: suite.createdAt,
+          personaIds: Array.from({ length: 64 }, (_, i) => `storage-case-${i}`),
+          inputHash: suite.inputHash,
+          engineHash: suite.engineHash,
+          contentHash: suite.contentHash
+        }
+      ],
+      journeys: Array.from({ length: 64 }, (_, index) => ({
+        ...suite.journeys[0]!,
+        personaId: `storage-case-${index}`
+      }))
+    }
+    const store = createJourneyStore(root)
+    await store.save(expanded)
+    expect((await store.list())[0]!.personaIds).toHaveLength(64)
+    expect(await store.read(expanded.id)).toEqual(expanded)
+  } finally {
+    await rm(root, { recursive: true, force: true })
+  }
+})

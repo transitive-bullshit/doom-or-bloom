@@ -55,18 +55,17 @@ export default function Privacy() {
       <h2 className='text-lg font-medium'>Sharing and clearing</h2>
       <p>
         Card generation sends only map coordinates, interpretation ranges, and
-        provisional status to this app’s server. Cards contain no raw answers or
-        assessment identifier and are not persistently hosted. “Post on X” opens
-        an authored draft; you decide whether to publish it and attach an image.
-        A full report contains your usable answers and evidence, so review it
-        before sharing.
+        single-axis scores to this app’s server. Cards contain no raw answers or
+        assessment identifier and are not persistently hosted. Map images can
+        also be copied or downloaded directly in your browser. A full report
+        contains your usable answers and evidence, so review it before sharing.
       </p>
       <p>
         Local progress does not sync across devices. Browser storage can be
         unavailable or cleared. A second tab that changes the assessment pauses
         older tabs to prevent silent overwrites.
       </p>
-      <Link className='underline' href='/'>
+      <Link className='underline' href='/assessment'>
         Return to your assessment
       </Link>
     </article>

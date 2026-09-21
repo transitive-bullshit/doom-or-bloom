@@ -19,14 +19,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <ThemeProvider>
           <div className='flex min-h-dvh flex-col'>
-            <header className='flex items-center justify-between px-6 py-5'>
+            <header
+              style={{ viewTransitionName: 'site-header' }}
+              className='flex items-center justify-between px-6 py-5'
+            >
               <Link href='/' className='text-sm font-semibold tracking-tight'>
                 Doom or Bloom
               </Link>
               <SiteActions />
             </header>
             <main className='flex flex-1 flex-col'>{children}</main>
-            <footer className='flex flex-wrap justify-center gap-5 px-6 py-6 text-xs text-muted-foreground'>
+            <footer
+              style={{ viewTransitionName: 'site-footer' }}
+              className='flex flex-wrap justify-center gap-5 px-6 py-6 text-xs text-muted-foreground'
+            >
               <Link href='/about'>About & methodology</Link>
               <Link href='/privacy'>Privacy</Link>
               <span>Experimental · 0.1.0</span>

@@ -1,33 +1,19 @@
-import { Interview } from '@/components/assessment/interview'
-import { loadBundle } from '@/lib/content/loader'
-import { serverEnv } from '@/lib/server/env'
-export default function Page() {
-  const env = serverEnv()
-  const bundle = loadBundle()
+import { loadExamples } from '@/components/landing/data'
+import { MapFirst } from '@/components/landing/map-first'
+import { PageTransition } from '@/components/page-transition'
+import '@/components/landing/landing.css'
+
+export default async function Page() {
+  const examples = (await loadExamples()).map(({ result, ...person }) => ({
+    ...person,
+    outlook: result.horizontal.value,
+    transformation: result.experiment?.transformation.value ?? null
+  }))
   return (
-    <Interview
-      model={env.provider === 'fixture' ? 'fixture-v1' : env.model}
-      fixtureMode={env.provider === 'fixture'}
-      debugDefault={env.debug}
-      debugAvailable={env.debug}
-      analyticsEnabled={env.analytics}
-      analyticsCatalog={{
-        prompts: Object.fromEntries(
-          bundle.prompts.map((p) => [p.id, p.family])
-        ),
-        resources: bundle.resources.map((r) => r.id)
-      }}
-      dimensions={[
-        ...bundle.rubric.dimensions.map(({ id, label, meaning }) => ({
-          id,
-          label,
-          meaning
-        })),
-        { id: 'catastrophic_risk', ...bundle.rubric.catastrophicRisk }
-      ]}
-      recoveryCopy={Object.fromEntries(
-        bundle.prompts.map((p) => [p.id, p.recoveryVariants])
-      )}
-    />
+    <PageTransition>
+      <div className='landing-stage'>
+        <MapFirst examples={examples} />
+      </div>
+    </PageTransition>
   )
 }

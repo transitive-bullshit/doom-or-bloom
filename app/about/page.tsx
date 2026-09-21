@@ -24,20 +24,19 @@ export default function About() {
         the interview does not search live news.
       </p>
       <p>
-        Both experimental maps share your expressed Doom–Bloom outlook. One
-        vertical axis describes how much you believe human choices can shape AI
-        outcomes; the other describes how radically you expect AI to transform
-        society. These are separate beliefs, not reasoning grades. Policy
-        preferences do not determine either map. Specific reasoning observations
-        remain available elsewhere in the profile.
+        The map pairs your expressed Doom–Bloom outlook with how radically you
+        expect AI to transform society. Human influence, expected upside,
+        expected harm, and demonstrated reasoning appear on separate single-axis
+        scales. Policy preferences do not determine your map position.
       </p>
       <p>
         Missing evidence leaves a position unplaced. Interpretation ranges
         reflect uncertainty about how to read your answers, not event
-        probabilities. A separate P(doom) card copies a numerical estimate only
-        when you state one. Milestone timing and assumptions retain your exact
-        wording and conditions. None of these views is a calibrated forecast or
-        a statistically validated confidence interval.
+        probabilities. A separate P(doom) card shows a stated or inferred
+        estimate, labeled with its basis and interpretation range. Milestone
+        timing and assumptions retain your exact wording and conditions. None of
+        these views is a calibrated forecast or a statistically validated
+        confidence interval.
       </p>
       <h2 className='text-lg font-medium'>An experiment, with limits</h2>
       <p>
@@ -83,7 +82,7 @@ export default function About() {
         </a>
         .
       </p>
-      <Link className='underline' href='/'>
+      <Link className='underline' href='/assessment'>
         Return to your assessment
       </Link>
     </article>

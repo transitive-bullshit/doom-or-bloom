@@ -32,7 +32,7 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
       },
       { key: storageKey, assessment: earlier }
     )
-    await page.goto('/')
+    await page.goto('/assessment')
     await expect(
       page.getByText('Updated draft available', { exact: true })
     ).toBeVisible()
@@ -79,7 +79,7 @@ test('long inserted answers remain intact across reload and use a soft submissio
     const operation = request.postDataJSON().operation
     if (operation.type === 'answer') submitted.push(operation.text)
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   const answer = page.getByLabel('Your answer', { exact: true })
   const continueButton = page.getByRole('button', { name: /^Continue/ })
   await expect(page.locator('#answer-length')).toHaveCount(0)
@@ -136,7 +136,7 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   page.on('request', (r) => {
     if (/posthog|analytics|typesafe\.ai/.test(r.url())) outbound.push(r.url())
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(page.getByRole('heading', { name: root })).toBeVisible()
   await page.getByLabel('Your answer', { exact: true }).fill('Unsent draft')
   await page.reload()
@@ -180,10 +180,7 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   const cardWait = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download card' }).click()
   expect((await cardWait).suggestedFilename()).toBe('doom-or-bloom.png')
-  await expect(page.getByRole('link', { name: 'Post on X' })).toHaveAttribute(
-    'href',
-    /x.com\/intent\/post/
-  )
+  await expect(page.getByRole('link', { name: 'Post on X' })).toHaveCount(0)
   expect(outbound).toEqual([])
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
   await page.getByRole('button', { name: 'Restart & clear' }).click()
@@ -217,7 +214,7 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
       }
     })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await submit(page, 'nonsense one')
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   await submit(page, 'nonsense two')
@@ -244,9 +241,9 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
   expect(calls).toBe(3)
 })
 test('two tabs cannot overwrite each other', async ({ page, context }) => {
-  await page.goto('/')
+  await page.goto('/assessment')
   const second = await context.newPage()
-  await second.goto('/')
+  await second.goto('/assessment')
   await second.getByLabel('Your answer', { exact: true }).fill('newer draft')
   await expect(
     page.getByText('This assessment changed in another tab')
@@ -277,7 +274,7 @@ test('restart discards in-flight work; provider failure preserves draft', async 
         /* Restart cancels the obsolete browser request. */
       })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await page.getByLabel('Your answer', { exact: true }).fill('surviving draft')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(
@@ -321,7 +318,7 @@ test('corrupt storage offers backup; unavailable storage permits ephemeral use',
     (key) => localStorage.setItem(key, '{bad'),
     storageKey
   )
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(
     page.getByRole('button', { name: 'Download saved backup' })
   ).toBeVisible()
@@ -338,7 +335,7 @@ test('corrupt storage offers backup; unavailable storage permits ephemeral use',
       }
     })
   })
-  await other.goto(new URL('/', baseURL!).toString())
+  await other.goto(new URL('/assessment', baseURL!).toString())
   await expect(
     other.getByText(
       'Browser storage is unavailable. Keep this tab open to preserve progress.'
@@ -367,7 +364,7 @@ test('the twelfth prompt finalizes insufficient evidence after a non-answer with
       ),
     { key: storageKey, snapshot: state }
   )
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(page.getByText('Approaching the limit')).toBeVisible()
   await submit(page, 'test')
   await expect(page.getByText('12-prompt cap reached')).toBeVisible()
@@ -388,7 +385,7 @@ test('an uncertain transport retry reuses the same request and semantic attempt'
     if (ids.length === 1) await route.abort('failed')
     else await route.fulfill({ response })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await submit(page, 'Preserved after a lost response.')
   await expect(page.getByText('Could not complete that step')).toBeVisible()
   await submit(page, 'Preserved after a lost response.')
@@ -412,7 +409,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   page.on('request', (request) => {
     if (/typesafe\.ai|posthog/.test(request.url())) requests.push(request.url())
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(
     page.getByRole('meter', { name: 'Evidence readiness' })
   ).toHaveAttribute('aria-valuenow', '0')
@@ -445,7 +442,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   ).toBeVisible()
   await expect(
     page.locator('[data-slot="worldview-map"]').first()
-  ).toContainText('human influence')
+  ).toContainText('scale of transformation')
   await expect(
     page.locator('[data-slot="worldview-map"]').first()
   ).toContainText('not reasoning quality or event probabilities')

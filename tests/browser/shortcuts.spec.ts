@@ -40,7 +40,7 @@ test('Cmd/Ctrl+Enter submits through the normal guards; Enter and composition re
       }
     })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.press('Meta+Enter')
   await answer.fill('   ')

@@ -25,7 +25,12 @@ export default {
     const response = await env.ASSETS.fetch(request)
     if (response.status !== 404 || !['GET', 'HEAD'].includes(request.method))
       return response
-    if (!['/', '/about', '/privacy', '/user-journeys'].includes(url.pathname))
+    if (
+      !['/', '/assessment', '/about', '/privacy', '/user-journeys'].includes(
+        url.pathname
+      ) &&
+      !/^\/personas\/[a-z-]+$/.test(url.pathname)
+    )
       return response
     url.pathname = '/'
     url.search = ''

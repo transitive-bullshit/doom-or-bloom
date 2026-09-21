@@ -1,3 +1,4 @@
+import { loadExamples } from '../components/landing/data'
 import { build as bundle } from 'esbuild'
 import { build as frontend } from 'vite'
 import { mkdir, writeFile, copyFile, rm, readFile } from 'node:fs/promises'
@@ -27,6 +28,11 @@ const suite = await withJourneyExperiments(
 const json = (file: string, data: unknown) =>
   writeFile(file, JSON.stringify(data))
 await json(path.join(generated, 'props.json'), {
+  landing: (await loadExamples()).map(({ result, ...person }) => ({
+    ...person,
+    outlook: result.horizontal.value,
+    transformation: result.experiment?.transformation.value ?? null
+  })),
   interview: {
     model: 'jev-1.13.0',
     fixtureMode: false,
@@ -69,7 +75,11 @@ await frontend({
   root: path.join(root, 'sites'),
   publicDir: path.join(root, 'public'),
   resolve: {
-    alias: { '@': root, 'next/link': path.join(root, 'sites/link.tsx') }
+    alias: {
+      '@': root,
+      'next/link': path.join(root, 'sites/link.tsx'),
+      'next/image': path.join(root, 'sites/image.tsx')
+    }
   },
   define: {
     'process.env.NEXT_PUBLIC_ANALYTICS_ENABLED': '"false"',

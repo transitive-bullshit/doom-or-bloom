@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -45,9 +45,11 @@ const percent = (value: number) => `${value.toFixed(1)}%`
 
 function Disclosure({
   label,
-  children
+  children,
+  wide = false
 }: {
   label: string
+  wide?: boolean
   children: React.ReactNode
 }) {
   return (
@@ -58,7 +60,12 @@ function Disclosure({
           {label}
         </Button>
       </CollapsibleTrigger>
-      <CollapsibleContent className='mt-4 flex min-w-0 flex-col gap-4'>
+      <CollapsibleContent
+        className={cn(
+          'mt-4 flex min-w-0 flex-col gap-4',
+          wide && 'result-breakout'
+        )}
+      >
         {children}
       </CollapsibleContent>
     </Collapsible>
@@ -149,7 +156,7 @@ function Step({
                 <span className='text-muted-foreground'>
                   {percent(step.readinessBefore.value)}
                 </span>{' '}
-                →{' '}
+                to{' '}
                 <strong className='tabular-nums'>
                   {percent(step.readiness.value)}
                 </strong>
@@ -204,7 +211,6 @@ function Step({
           {selected && (
             <div className='flex flex-col gap-2 text-sm'>
               <p className='flex items-center gap-2 font-medium'>
-                <ArrowRight data-icon='inline-start' aria-hidden='true' />
                 Next: {selected.text}
               </p>
               <p className='text-muted-foreground'>
@@ -217,7 +223,7 @@ function Step({
               </p>
             </div>
           )}
-          <Disclosure label='Result after this answer'>
+          <Disclosure label='Result after this answer' wide>
             <p className='text-sm text-muted-foreground'>
               Recorded result and evidence after answer {step.ordinal}, using
               only the information available at that point.

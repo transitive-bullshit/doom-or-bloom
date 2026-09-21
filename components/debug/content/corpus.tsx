@@ -231,7 +231,8 @@ export function CorpusInspector({
                 className='h-auto max-w-full py-1.5 text-left whitespace-normal wrap-anywhere'
                 onClick={() => setSelectedId(other)}
               >
-                {edge.source === selectedId ? '→' : '←'} {other} · {edge.label}
+                {edge.source === selectedId ? 'To' : 'From'} {other} ·{' '}
+                {edge.label}
               </Button>
             )
           })}

@@ -24,7 +24,7 @@ export function budgetedProvider(
     !Number.isInteger(maximum) ||
     maximum < 1 ||
     maximum > ceiling ||
-    ceiling > 480
+    ceiling > 1536
   )
     throw new Error('Invalid evaluation request budget')
   let reserved = 0

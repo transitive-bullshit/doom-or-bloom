@@ -1,0 +1,82 @@
+{
+  "https://www.anthropic.com/institute/econ-scenarios": {
+    "fetchedAt": "2026-09-21T14:33:12.610Z",
+    "source": "https://www.anthropic.com/institute/econ-scenarios",
+    "image": "/resource-previews/eaff98a3f977-image.png",
+    "icon": "/resource-previews/eaff98a3f977-icon.png"
+  },
+  "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/": {
+    "fetchedAt": "2026-09-21T14:33:12.629Z",
+    "source": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+    "image": "/resource-previews/8e38112b54f3-image.png",
+    "icon": "/resource-previews/8e38112b54f3-icon.png"
+  },
+  "https://aievaluatorforum.org/initiatives/minimum-operating-conditions": {
+    "fetchedAt": "2026-09-21T14:33:12.629Z",
+    "source": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
+    "icon": "/resource-previews/238f0e3812f8-icon.ico"
+  },
+  "https://www.anthropic.com/glasswing": {
+    "fetchedAt": "2026-09-21T14:33:12.630Z",
+    "source": "https://www.anthropic.com/glasswing",
+    "image": "/resource-previews/b0e284183065-image.jpg",
+    "icon": "/resource-previews/b0e284183065-icon.png"
+  },
+  "https://openai.com/index/model-misalignment-reporting-framework/": {
+    "fetchedAt": "2026-09-21T14:33:12.812Z",
+    "source": "https://openai.com/index/model-misalignment-reporting-framework/",
+    "icon": "/resource-previews/e85c82fdaf94-icon.png"
+  },
+  "https://openai.com/index/pacing-model-development-cyber-capabilities/": {
+    "fetchedAt": "2026-09-21T14:33:13.257Z",
+    "source": "https://openai.com/index/pacing-model-development-cyber-capabilities/",
+    "image": "/resource-previews/980337b8e230-image.png",
+    "icon": "/resource-previews/980337b8e230-icon.png"
+  },
+  "https://www.anthropic.com/research/multiagent-systems": {
+    "fetchedAt": "2026-09-21T14:33:13.400Z",
+    "source": "https://www.anthropic.com/research/multiagent-systems",
+    "image": "/resource-previews/f87e14ef06b6-image.jpg",
+    "icon": "/resource-previews/f87e14ef06b6-icon.png"
+  },
+  "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating": {
+    "fetchedAt": "2026-09-21T14:33:13.414Z",
+    "source": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
+    "image": "/resource-previews/1f6e75f3866a-image.jpg",
+    "icon": "/resource-previews/1f6e75f3866a-icon.ico"
+  },
+  "https://epoch.ai/data/cve": {
+    "fetchedAt": "2026-09-21T14:33:14.423Z",
+    "source": "https://epoch.ai/data/cve",
+    "image": "/resource-previews/c406a696d289-image.png",
+    "icon": "/resource-previews/c406a696d289-icon.svg"
+  },
+  "https://openai.com/index/an-alien-mind/": {
+    "fetchedAt": "2026-09-21T14:33:15.414Z",
+    "source": "https://openai.com/index/an-alien-mind/",
+    "icon": "/resource-previews/1f0643794f0c-icon.png"
+  },
+  "https://arxiv.org/abs/2606.03811v1": {
+    "fetchedAt": "2026-09-21T14:33:15.612Z",
+    "source": "https://arxiv.org/abs/2606.03811v1",
+    "image": "/resource-previews/caead26d1872-image.png",
+    "icon": "/resource-previews/caead26d1872-icon.png"
+  },
+  "https://institute.deepmind.com/essays/introducing-the-deepmind-institute/": {
+    "fetchedAt": "2026-09-21T14:33:15.705Z",
+    "source": "https://institute.deepmind.com/essays/introducing-the-deepmind-institute/",
+    "image": "/resource-previews/4823d69adf60-image.webp",
+    "icon": "/resource-previews/4823d69adf60-icon.ico"
+  },
+  "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": {
+    "fetchedAt": "2026-09-21T14:33:15.708Z",
+    "source": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+    "icon": "/resource-previews/d8e6fd2ea614-icon.png"
+  },
+  "https://www.anthropic.com/threat-intelligence-report-september-2026": {
+    "fetchedAt": "2026-09-21T14:33:15.859Z",
+    "source": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+    "image": "/resource-previews/d957d6c99957-image.jpg",
+    "icon": "/resource-previews/d957d6c99957-icon.png"
+  }
+}

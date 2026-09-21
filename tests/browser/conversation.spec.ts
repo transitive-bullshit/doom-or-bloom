@@ -36,7 +36,7 @@ test('a saved deleted question keeps its draft and offers a current question', a
     )
       answerRequests++
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(
     page.getByText('This question is no longer available', { exact: true })
   ).toBeVisible()
@@ -140,7 +140,7 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
     },
     { key: storageKey, snapshot: state }
   )
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'What would change your view?'
   )

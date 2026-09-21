@@ -24,7 +24,7 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
     )
     await route.fulfill({ json: response })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await page
     .getByLabel('Your answer', { exact: true })
     .fill(

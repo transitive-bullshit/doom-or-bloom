@@ -5,9 +5,9 @@ import { ChevronDownIcon } from 'lucide-react'
 import type { ExperimentQuote, Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
+import { AxisRange } from './axis-range'
 import { Map } from './worldview-map'
 import { WorldviewDetails } from './worldview-details'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -42,11 +42,13 @@ function Source({ quote }: { quote: ExperimentQuote }) {
 export function ExperimentalResults({
   result,
   history = [],
-  layout = 'contained'
+  layout = 'contained',
+  subject
 }: {
   result: Result
   history?: Array<{ label: string; result: Result }>
   layout?: 'contained' | 'breakout'
+  subject?: string
 }) {
   const experiment =
     result.experiment?.evidenceRevision === result.evidenceRevision
@@ -55,48 +57,42 @@ export function ExperimentalResults({
   const risk = experiment?.pdoom
   return (
     <section
-      aria-label='Experimental worldview visualizations'
+      aria-label='Your worldview results'
       className={
         layout === 'breakout'
           ? 'flex flex-col gap-5 lg:relative lg:left-1/2 lg:w-[min(80rem,calc(100vw-4rem))] lg:-translate-x-1/2'
           : 'flex min-w-0 flex-col gap-5'
       }
     >
-      <div className='flex flex-wrap items-center gap-2'>
-        <Badge variant='outline'>Worldview experiments</Badge>
-        <span className='text-xs text-muted-foreground'>
-          Two ways to read the same outlook
-        </span>
-      </div>
       {!experiment && (
         <p className='text-sm text-muted-foreground'>
           These experimental interpretations were not recorded for this
-          snapshot. The maps remain unplaced until new evidence is evaluated;
+          snapshot. The map remains unplaced until new evidence is evaluated;
           older reasoning scores are not reused.
         </p>
       )}
-      <div className='grid min-w-0 gap-5 xl:grid-cols-2'>
-        {(['influence', 'transformation'] as const).map((axis) => (
-          <div key={axis} className='flex min-w-0 flex-col gap-2'>
-            <Map
-              horizontal={result.horizontal}
-              vertical={
-                experiment?.[axis] ??
-                emptyComponent(axis, experimentalAxes[axis].label)
-              }
-              axis={axis}
-              layout='contained'
-              history={history.map((item) => ({
-                x: item.result.horizontal.value,
-                y: item.result.experiment?.[axis].value ?? null,
-                label: item.label
-              }))}
-            />
-            {experiment?.axisEvidence[axis] && (
-              <Source quote={experiment.axisEvidence[axis]} />
-            )}
-          </div>
-        ))}
+      <div className='flex min-w-0 flex-col gap-2'>
+        <Map
+          subject={subject}
+          horizontal={result.horizontal}
+          vertical={
+            experiment?.transformation ??
+            emptyComponent(
+              'transformation',
+              experimentalAxes.transformation.label
+            )
+          }
+          axis='transformation'
+          layout='contained'
+          history={history.map((item) => ({
+            x: item.result.horizontal.value,
+            y: item.result.experiment?.transformation.value ?? null,
+            label: item.label
+          }))}
+        />
+        {experiment?.axisEvidence.transformation && (
+          <Source quote={experiment.axisEvidence.transformation} />
+        )}
       </div>
       <div className='grid min-w-0 gap-5 lg:grid-cols-2'>
         <Card>
@@ -112,18 +108,10 @@ export function ExperimentalResults({
             </p>
             {risk?.bounds && (
               <div>
-                <div
-                  aria-hidden='true'
-                  className='relative h-3 rounded-full bg-muted'
-                >
-                  <div
-                    className='absolute h-3 min-w-0.5 rounded-full bg-primary'
-                    style={{
-                      left: `${risk.bounds[0] * 100}%`,
-                      width: `${(risk.bounds[1] - risk.bounds[0]) * 100}%`
-                    }}
-                  />
-                </div>
+                <AxisRange
+                  range={risk.bounds}
+                  value={risk.estimate ?? (risk.bounds[0] + risk.bounds[1]) / 2}
+                />
                 <div className='mt-2 flex justify-between text-xs text-muted-foreground'>
                   <span>0%</span>
                   <span>100%</span>
@@ -234,6 +222,10 @@ export function ExperimentalResults({
       <WorldviewDetails
         components={result.components}
         reasoning={result.vertical}
+        influence={
+          experiment?.influence ??
+          emptyComponent('influence', 'Human influence')
+        }
       />
       {experiment && (
         <p className='text-xs text-muted-foreground'>
@@ -273,8 +265,8 @@ export function JourneyResultExplorer({
         >
           <div>
             <p className='mt-2 text-sm text-muted-foreground'>
-              Choose an answer to compare both maps and all three experiments at
-              that point. Numbered dots show earlier placed answers.
+              Choose an answer to see the map and supporting results at that
+              point. Numbered dots show earlier placed answers.
             </p>
           </div>
           <div className='flex flex-wrap items-center gap-3'>

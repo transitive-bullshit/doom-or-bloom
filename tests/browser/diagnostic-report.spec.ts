@@ -20,7 +20,7 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
     )
     await route.fulfill({ json: response })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await expect(
     page.getByRole('button', { name: /^Debug (on|off)$/ })
   ).toBeVisible()
@@ -49,6 +49,14 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   await expect(
     first.locator('[data-slot="worldview-map"]').first()
   ).toBeVisible()
+  const expanded = first.locator('.result-breakout')
+  const desktopSize = await expanded.boundingBox()
+  expect(desktopSize!.width).toBeGreaterThan((await first.boundingBox())!.width)
+  await page.setViewportSize({ width: 390, height: 844 })
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth)
+  ).toBeLessThanOrEqual(390)
+  await page.setViewportSize({ width: 1280, height: 900 })
   await first.screenshot({ path: testInfo.outputPath('answer-result.png') })
   await page
     .getByLabel('Your answer', { exact: true })

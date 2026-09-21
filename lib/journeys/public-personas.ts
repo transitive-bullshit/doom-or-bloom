@@ -291,7 +291,7 @@ export const publicPersonas: Persona[] = [
       {
         title: 'We Must Pace the Frontier',
         url: 'https://darioamodei.com/post/we-must-pace-the-frontier',
-        publishedAt: '2026-09',
+        publishedAt: '2026-09-12',
         summary:
           'Explicitly supports slowing capability gains to give safety work time. Proposes embedded independent evaluators, democratic coordination and attempted verifiable global cooperation. Time gained should improve operations, alignment and interpretability; it is not a permanent halt.',
         quote:
@@ -302,9 +302,9 @@ export const publicPersonas: Persona[] = [
       'Start with what powerful AI could actually mean: systems with exceptional expertise, working autonomously, in many copies, across scientific and economic problems. The upside could be enormous, particularly in biology and medicine. But I do not think you get that future automatically. There are distinct problems: loss of control, misuse, authoritarian concentration of power, and serious economic upheaval. My position has become more urgent as capabilities and AI-assisted AI development have accelerated. In September 2026 I argued for slowing frontier capability improvement so safety and institutions have time to catch up. I want independent evaluators embedded with frontier developers, coordination among democracies, and serious efforts at broader verifiable agreements. The purpose is to earn the beneficial future, not permanently stop science.',
     beliefs: [
       'Powerful AI may arrive within a few years; exact dates remain uncertain and physical research bottlenecks matter.',
-      'This stress-test character adopts an optimistic long-run expectation under deliberate pacing and successful safety work: very large medical and societal benefits outweigh the harms in that path. The unmanaged race is dangerous. Keep this conditional forecast distinct from a guarantee that the transition will be managed successfully.',
+      'My desire to achieve AI’s exceptional benefits is undimmed. Those benefits depend on building it correctly; pacing should buy time for interpretability, operational security and more credible alignment. Do not turn that ambition into a claim that the current race is already safe.',
       'Interpretability and operational safeguards need time and evidence; a friendly model interface is not comprehensive assurance.',
-      'The September 2026 pacing position supersedes earlier weaker disclosure-only proposals.',
+      'The September 2026 pacing position supersedes earlier weaker disclosure-only proposals. Anthropic commits to permanent independent evaluators with employee-level access. Coordination among democracies is a priority; broad agreements with China are worth attempting but much harder to verify.',
       'Independent evaluation, enforceable requirements and coordination matter; global cooperation is difficult but worth attempting.',
       'Do not turn a conditional takeover scenario into certainty, or upside scenarios into a guarantee of safe deployment.'
     ],

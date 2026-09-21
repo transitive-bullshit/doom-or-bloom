@@ -31,7 +31,7 @@ export function ReadinessMeter({
           </span>
         </p>
         {readiness.ready && (
-          <Badge variant='secondary'>Provisional result available</Badge>
+          <Badge variant='secondary'>Your result is available</Badge>
         )}
       </div>
       <div

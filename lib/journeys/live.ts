@@ -17,7 +17,7 @@ export async function runLiveJourneys({
   personaId,
   turns = 5,
   maxRequests,
-  maxCost = 2,
+  maxCost,
   onJourney
 }: {
   personaId?: string
@@ -35,11 +35,11 @@ export async function runLiveJourneys({
     throw new Error('Journey turn bound is 1–6')
   if (!process.env.TYPESAFE_API_KEY?.trim())
     throw new Error('Missing TYPESAFE_API_KEY')
-  const budget = liveJourneyBudget(maxCost)
+  const budget = liveJourneyBudget(maxCost ?? (personaId ? 2 : 5))
   const paid = budgetedProvider(
     meterJev(createLiveProvider(versions.model), budget),
-    maxRequests ?? (personaId ? 24 : 240),
-    480
+    maxRequests ?? (personaId ? 24 : (personas.length + 1) * 20),
+    (personas.length + 1) * 24
   )
   const participant = createOpenAIParticipant({
     budget,
@@ -89,7 +89,7 @@ export async function resumeLiveJourney({
     throw new Error(
       'Resume requires unchanged authored content and model; use the matching checkout'
     )
-  const budget = liveJourneyBudget(maxCost)
+  const budget = liveJourneyBudget(maxCost ?? (personaId ? 2 : 5))
   const paid = budgetedProvider(
     meterJev(createLiveProvider(versions.model), budget),
     maxRequests,

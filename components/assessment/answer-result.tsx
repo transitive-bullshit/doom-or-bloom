@@ -30,7 +30,7 @@ export function AnswerResult({
           Results after this answer
         </Button>
       </CollapsibleTrigger>
-      <CollapsibleContent className='mt-4 flex flex-col gap-4'>
+      <CollapsibleContent className='result-breakout mt-4 flex flex-col gap-4'>
         {result && result.evidenceRevision === snapshot?.evidenceRevision ? (
           <>
             <ExperimentalResults result={result} />

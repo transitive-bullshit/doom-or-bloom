@@ -18,7 +18,7 @@ test('unavailable debug storage reports failure without losing assessment progre
       }
     })
   })
-  await page.goto('/')
+  await page.goto('/assessment')
   await page
     .getByLabel('Your answer', { exact: true })
     .fill('AI could improve medicine, with uncertain risks.')
@@ -211,7 +211,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   })
   await page.setViewportSize({ width: 1440, height: 960 })
   await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
-  await page.goto('/')
+  await page.goto('/assessment')
   await page.getByLabel('Your answer', { exact: true }).fill(text)
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')

@@ -124,7 +124,7 @@ test('actual PostHog SDK payloads exclude answers and URL canaries; resume does 
       }
     })
   })
-  await page.goto(`/?answer=${canary}#${canary}`)
+  await page.goto(`/assessment?answer=${canary}#${canary}`)
   await page
     .getByLabel('Your answer', { exact: true })
     .fill(`AI could improve science. ${canary}`)
@@ -158,7 +158,7 @@ test('missing live key preserves the draft and does not consume a semantic attem
       ? route.continue()
       : route.abort()
   )
-  await page.goto('/')
+  await page.goto('/assessment')
   await page
     .getByLabel('Your answer', { exact: true })
     .fill('A useful answer preserved without credentials.')

@@ -1,13 +1,16 @@
+import { AxisRange } from './axis-range'
 import type { Component } from '@/lib/assessment/schema'
 import { facets } from '@/lib/assessment/facets'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 
 export function WorldviewDetails({
   components,
-  reasoning
+  reasoning,
+  influence
 }: {
   components: Component[]
   reasoning: Component
+  influence: Component
 }) {
   const impacts = [
     ...components.filter(
@@ -15,7 +18,8 @@ export function WorldviewDetails({
         ['beneficial_potential', 'risk_landscape'].includes(component.vector) &&
         component.value !== null
     ),
-    { ...reasoning, label: 'Demonstrated reasoning' }
+    { ...reasoning, label: 'Demonstrated reasoning' },
+    { ...influence, label: 'Human influence' }
   ]
   const positions = facets
     .filter(
@@ -37,7 +41,7 @@ export function WorldviewDetails({
     >
       <h2 className='font-semibold'>More of your worldview</h2>
       {impacts.length > 0 && (
-        <div className='grid gap-3 sm:grid-cols-3'>
+        <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-4'>
           {impacts.map((component) => (
             <Card key={component.vector}>
               <CardHeader>
@@ -55,34 +59,21 @@ export function WorldviewDetails({
                     ? 'Not enough evidence yet'
                     : `${Math.round(component.value * 100)} / 100`}
                 </p>
-                <div
-                  aria-hidden='true'
-                  className='relative h-2 rounded-full bg-muted'
-                >
-                  <div
-                    className='absolute h-full rounded-full bg-primary/25'
-                    style={{
-                      left: `${component.range[0] * 100}%`,
-                      width: `${(component.range[1] - component.range[0]) * 100}%`
-                    }}
-                  />
-                  {component.value !== null && (
-                    <div
-                      className='absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary'
-                      style={{ left: `${component.value! * 100}%` }}
-                    />
-                  )}
-                </div>
+                <AxisRange range={component.range} value={component.value} />
                 <div className='flex justify-between text-xs text-muted-foreground'>
                   <span>
                     {component.vector === 'epistemic'
                       ? 'Little demonstrated'
-                      : 'Little impact'}
+                      : component.vector === 'influence'
+                        ? 'Little influence'
+                        : 'Little impact'}
                   </span>
                   <span>
                     {component.vector === 'epistemic'
                       ? 'Well developed'
-                      : 'Transformative impact'}
+                      : component.vector === 'influence'
+                        ? 'Strong influence'
+                        : 'Transformative impact'}
                   </span>
                 </div>
                 <p className='sr-only'>

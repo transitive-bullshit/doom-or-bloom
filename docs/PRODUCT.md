@@ -39,7 +39,7 @@ The hard problems are evidence curation and choosing the evidence that bears mos
 
 ### Experimental direction: more useful result visualizations
 
-The map should help participants understand their worldview and see what is worth exploring next. The prominence of demonstrated reasoning as the vertical axis is an open design question; its usefulness as the headline second dimension needs reassessment. Doom–Bloom remains useful as an overall-outlook projection, while reasoning feedback may be more actionable as specific strengths, gaps, and questions. For local comparison, two maps now replace the reasoning-axis map: **Doom–Bloom × Human influence** and **Doom–Bloom × Scale of transformation**. Choosing one eventual headline axis remains open.
+The headline map pairs **Doom–Bloom × Scale of transformation**. Collective human influence is shown as a single axis under “More of your worldview,” alongside expected upside, expected harm, and demonstrated reasoning. These views should help participants recognize their beliefs and identify useful next questions. Reasoning quality does not control map placement.
 
 The local experiment also displays the following supporting views. These are provisional designs, not validated assessment instruments:
 
@@ -79,19 +79,15 @@ The default participant is a curious, technologically engaged adult. No AI-safet
 
 ### Entry
 
-The landing experience is restrained and centered, inspired by the economy of opusfived.dev:
+Avoid decorative arrow glyphs or link arrow icons throughout the UI.
 
-- Product name and one-sentence promise.
-- A compact example result or visual hint.
-- The root prompt as the primary CTA:
+The landing page at `/` leads with “Where do you land?” and the canonical persona map. Hovering or focusing a portrait shows a shadcn name tooltip and highlights its measured placement. A portrait links to `/personas/[id]`, showing the saved simulated result. “Answer the first question” opens `/assessment` with a short page crossfade that respects reduced motion.
 
-> **What do you think AI means for our future—and why?**
-
-- A natural-language answer field with a reassurance such as “A few sentences is plenty.”
+The interview begins with **What do you think AI means for our future—and why?** Existing local answers and drafts resume at `/assessment`.
 
 ### Interview
 
-- Keep every issued question and submitted reply in one chronological thread on `/`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
+- Keep every issued question and submitted reply in one chronological thread on `/assessment`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
 - Previous answers are read-only. Include a copy button for every submitted reply that copies its complete text, even when collapsed, and reports success or clipboard unavailability without changing the answer. Show short answers fully and a compact exact-text preview for long or multiline answers, with an accessible “Read full answer” / “Show less” disclosure. Full answers expand in the page without an internal answer scrollbar. Preserve complete text in local state; opening or closing a disclosure makes no inference call.
 - Keep the thread available above results and during corrections. Reload resumes the active question and draft with previous turns retained; disclosures can reset closed. Include local earlier recovery/navigation replies without promoting them into scoring evidence.
 - Cmd+Enter or Ctrl+Enter submits through the same Continue validation; empty/whitespace, over-limit, busy or blocked drafts cannot bypass it. Plain Enter stays a newline; composition and repeated shortcut events do not submit.
@@ -119,7 +115,7 @@ Use a finite, lightweight decorative effect with an immediate dismiss action, at
 
 The result should lead with:
 
-1. Two experimental placements with interpretation ranges: **Doom–Bloom × Human influence** and **Doom–Bloom × Scale of transformation**.
+1. One featured placement with an interpretation range: **Doom–Bloom × Scale of transformation**. Human influence appears as a separate single axis.
 2. A compact worldview fingerprint, initially emphasizing timeline, upside, catastrophic risk, controllability, and institutional competence.
 3. A few evidence-supported findings: strengths, tensions, material assumptions, or knowledge gaps.
 4. Experimental stated or inferred P(doom), milestone timing, and assumptions/update conditions, with exact source wording.
@@ -132,14 +128,14 @@ Optional actions:
 - Select “That’s not quite my view,” identify a disputed inferred claim, and clarify in natural language.
 - Download a full report.
 - Download a personalized share card.
-- Open a prefilled X posting intent and manually attach the card.
+- Copy or download the featured map as a PNG.
 - Restart and clear the local assessment.
 
 Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, force a final result and disable further clarification until restart.
 
 ### Supporting surfaces
 
-- `/` contains the landing, interview, and results state transitions.
+- `/` contains the landing map; `/assessment` contains interview and result states; `/personas/[id]` shows a saved public persona result.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
 - A concise privacy policy explains local persistence and anonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.
@@ -159,7 +155,7 @@ Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, f
 
 - Generate the card on demand with Takumi; persistent image storage is unnecessary.
 - MVP uses a generic social link preview. A personalized preview would require a public URL payload and is deliberately excluded.
-- X web intents cannot attach the generated image. Offer “Download card” and “Post on X” as separate, clearly worded actions.
+- Offer “Download card” and per-map PNG copy/download actions. Omit text-only X posting intents.
 - Native file sharing is an optional enhancement when the browser supports sharing files.
 
 ## Enduring non-goals
@@ -196,16 +192,20 @@ Development-only `/questions` and `/corpus` display built-in assets, relationshi
 
 Display a compact Evidence readiness meter while interviewing, including the provisional-result threshold. Explain that it reflects supported coverage rather than forecast accuracy, quality or answer length; debug disclosure gives the experimental formula. See [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness).
 
-The Doom–Bloom map is the result’s hero: strong categorical pole colors, a clearly labeled participant point, visible interpretation area, and axes explained beside the map. Both maps share expressed outlook horizontally. Upward means stronger collective human influence on the first map and greater expected societal transformation on the second. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.
+The Doom–Bloom map is the result’s hero: strong categorical pole colors, a clearly labeled participant point, visible interpretation area, and axes explained beside the map. The map shows expressed outlook horizontally and expected societal transformation vertically. Human influence is a separate single-axis output. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.
 
 ### Local comparison workflow
 
-Use the same experimental result component in participant results, results after each answer, and the internal journey inspector. The journey inspector adds a keyboard-accessible answer selector and earlier-answer dots on both maps; all three supporting views follow the selected snapshot. Missing snapshots stay unavailable rather than using later answers. Older results without experiment data show an explicit unevaluated state.
+Use the same experimental result component in participant results, results after each answer, and the internal journey inspector. The journey inspector adds a keyboard-accessible answer selector and earlier-answer dots on the map; the supporting views follow the selected snapshot. Missing snapshots stay unavailable rather than using later answers. Older results without experiment data show an explicit unevaluated state.
 
-P(doom) shows a selected participant percentage or range with its exact source context; it is not inferred from categorical risk or evaluator confidence. Qualified estimates retain their wording, without a fabricated bar or error interval. The timeline groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. The assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.
+The P(doom) card distinguishes stated and inferred estimates. Its single-axis line shows both the estimated point and interpretation range, using the same styling as other single-axis outputs. The timeline groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. The assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.
 
 ### Provisional result points and reasoning
 
 Show demonstrated reasoning as a single axis beside expected upside and harm wherever result cards appear, including per-answer inspection and the progression explorer. Reuse the existing reasoning composite and range. It measures the reasoning demonstrated in the answers, not intelligence or ideological agreement.
 
 Prefer a tentative map point with an honest interpretation range over withholding a useful estimate. Explicit uncertainty is shown as an unsettled point in the open range, not a moderate belief. If a displayed axis is genuinely unexplored, ask one simple direct question before finishing.
+
+### Result presentation and exports
+
+Per-answer result disclosures start closed and expand beyond the interview column on desktop, while fitting the mobile viewport. The featured result map offers a small actions menu for copying or downloading a PNG; the PNG includes axis labels and a range legend. The downloaded summary card uses the same transformation map and separate single-axis dimensions. Resources use compact bookmark cards with locally prefetched social images and favicons; a publisher icon is the fallback when no social image is available. Refresh these assets with `pnpm exec tsx scripts/prefetch-resource-previews.ts`.

@@ -23,7 +23,7 @@ test('local question and corpus inspectors expose relationships and append versi
   await expect(
     page.getByRole('group', { name: 'Authored question relationships' })
   ).toBeVisible()
-  await expect(page.getByText(/30 catalog entries/)).toBeVisible()
+  await expect(page.getByText(/38 catalog entries/)).toBeVisible()
   for (const id of [
     'grounding.source',
     'tension.general',
@@ -77,7 +77,7 @@ test('local question and corpus inspectors expose relationships and append versi
     questionFile.entries.some((note: { id: string }) => note.id !== saved.id)
   ).toBe(true)
   await page.reload()
-  await expect(page.getByText(/30 catalog entries/)).toBeVisible()
+  await expect(page.getByText(/38 catalog entries/)).toBeVisible()
   for (const id of [
     'grounding.source',
     'tension.general',

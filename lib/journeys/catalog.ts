@@ -1,5 +1,10 @@
 import { z } from 'zod'
 import { publicPersonas } from './public-personas'
+import { additionalPublicPersonas } from './additional-public-personas'
+import { frontierPublicPersonas } from './frontier-public-personas'
+import { foundationalPublicPersonas } from './foundational-public-personas'
+import { socialPublicPersonas } from './social-public-personas'
+import { civicPublicPersonas } from './civic-public-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
@@ -27,6 +32,11 @@ export type Persona = z.infer<typeof personaSchema>
 export const personaProfileSchema = personaSchema.strip()
 export const personas: Persona[] = z.array(personaSchema).parse([
   ...publicPersonas,
+  ...additionalPublicPersonas,
+  ...frontierPublicPersonas,
+  ...foundationalPublicPersonas,
+  ...socialPublicPersonas,
+  ...civicPublicPersonas,
   {
     id: 'worried-novice',
     voice: [

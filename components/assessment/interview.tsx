@@ -623,7 +623,6 @@ export function Interview({
                           }
                         >
                           {busy ? 'Reading your answer…' : 'Continue'}{' '}
-                          <span aria-hidden='true'>→</span>
                         </Button>
                       )}
                       {eligible(state) && (

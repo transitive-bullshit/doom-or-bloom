@@ -1,6 +1,11 @@
 import { createRoot } from 'react-dom/client'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SiteActions } from '@/components/site-actions'
+import { MapFirst } from '@/components/landing/map-first'
+import { ExperimentalResults } from '@/components/assessment/experimental-results'
+import type { Example } from '@/components/landing/shared'
+import type { Journey } from '@/lib/journeys/schema'
+import '@/components/landing/landing.css'
 import { Interview } from '@/components/assessment/interview'
 import { JourneysInspector } from '@/components/debug/journeys'
 import About from '@/app/about/page'
@@ -10,12 +15,21 @@ import type { ComponentProps } from 'react'
 const response = await fetch('/site-props.json')
 if (!response.ok) throw new Error('The site could not load its content')
 const props = (await response.json()) as {
+  landing: Example[]
   interview: ComponentProps<typeof Interview>
   journeys: ComponentProps<typeof JourneysInspector>
 }
 import '@/app/globals.css'
 
 const pathname = window.location.pathname
+const person = pathname.startsWith('/personas/')
+  ? props.landing.find((p) => p.id === pathname.split('/')[2])
+  : undefined
+const journey: Journey | undefined = person
+  ? await fetch(`/journeys/${person.id}.json`).then(async (response) =>
+      response.ok ? (await response.json()).journey : undefined
+    )
+  : undefined
 createRoot(document.getElementById('root')!).render(
   <ThemeProvider>
     <div className='flex min-h-dvh flex-col'>
@@ -33,10 +47,35 @@ createRoot(document.getElementById('root')!).render(
         ) : pathname === '/privacy' ? (
           <Privacy />
         ) : pathname === '/' ? (
+          <div className='landing-stage'>
+            <MapFirst examples={props.landing} />
+          </div>
+        ) : person && journey?.result ? (
+          <div className='mx-auto w-full max-w-6xl px-6 py-10'>
+            <a href='/'>Back to the map</a>
+            <header className='my-8'>
+              <p className='text-sm text-muted-foreground'>
+                Example journey · simulated persona
+              </p>
+              <h1 className='mt-2 text-4xl font-semibold'>{person.name}</h1>
+              <p className='mt-3 max-w-xl text-muted-foreground'>
+                {person.description} These are results from a fictional proxy’s
+                answers, not an assessment of the person.
+              </p>
+              <a href='/assessment' className='mt-5 inline-block underline'>
+                Map your own worldview
+              </a>
+            </header>
+            <ExperimentalResults
+              subject={person.name}
+              result={journey.result}
+            />
+          </div>
+        ) : pathname === '/assessment' ? (
           <Interview {...props.interview} />
         ) : (
           <p className='p-8'>
-            Page not found. <a href='/'>Return to assessment</a>
+            Page not found. <a href='/'>Return to the map</a>
           </p>
         )}
       </main>
