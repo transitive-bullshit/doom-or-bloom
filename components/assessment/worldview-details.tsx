@@ -43,11 +43,14 @@ export function WorldviewDetails({
       {impacts.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-4'>
           {impacts.map((component) => (
-            <Card key={component.vector}>
-              <CardHeader>
+            <Card
+              key={component.vector}
+              className='row-span-5 grid grid-rows-subgrid gap-3'
+            >
+              <CardHeader className='block'>
                 <CardTitle>{component.label}</CardTitle>
               </CardHeader>
-              <CardContent className='flex flex-col gap-3'>
+              <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
                 <p className='text-sm text-muted-foreground'>
                   {component.vector === 'epistemic'
                     ? 'How you explain your view, consider alternatives, and handle uncertainty. This describes your answers, not your intelligence or opinions.'
@@ -89,8 +92,8 @@ export function WorldviewDetails({
       {positions.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2'>
           {positions.map(({ facet, component }) => (
-            <Card key={facet.id}>
-              <CardHeader>
+            <Card key={facet.id} className='row-span-2 grid grid-rows-subgrid'>
+              <CardHeader className='block'>
                 <CardTitle>{facet.label}</CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col gap-2'>

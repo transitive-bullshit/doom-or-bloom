@@ -95,7 +95,33 @@ export function Interview({
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
   const [conflict, setConflict] = useState(false)
-  const [debugMode, setDebugMode] = useState(debugDefault)
+  const [debugMode, setDebugMode] = useState(false)
+  useEffect(() => {
+    let disposed = false
+    queueMicrotask(() => {
+      if (disposed) return
+      try {
+        const saved = localStorage.getItem('doom-or-bloom:debug-mode')
+        setDebugMode(
+          debugAvailable && (saved === null ? debugDefault : saved === 'on')
+        )
+      } catch {
+        setDebugMode(debugAvailable && debugDefault)
+      }
+    })
+    return () => {
+      disposed = true
+    }
+  }, [debugAvailable, debugDefault])
+  const toggleDebug = () => {
+    const next = !debugMode
+    setDebugMode(next)
+    try {
+      localStorage.setItem('doom-or-bloom:debug-mode', next ? 'on' : 'off')
+    } catch {
+      // The toggle still works when browser storage is unavailable.
+    }
+  }
   const [trace, setTrace] = useState<DebugTrace>()
   const [debugOperations, setDebugOperations] = useState<SavedDebugOperation[]>(
     []
@@ -465,9 +491,6 @@ export function Interview({
           {fixture && (
             <Badge variant='outline'>Fixture mode · synthetic judgments</Badge>
           )}
-          <Badge variant='outline' className='self-start'>
-            Local authoring draft · review pending
-          </Badge>
         </div>
         <ConversationHistory
           turns={showResult ? turns : turns.slice(0, -1)}
@@ -712,7 +735,7 @@ export function Interview({
                 variant='ghost'
                 size='sm'
                 aria-pressed={debugMode}
-                onClick={() => setDebugMode((value) => !value)}
+                onClick={toggleDebug}
               >
                 Debug {debugMode ? 'on' : 'off'}
               </Button>

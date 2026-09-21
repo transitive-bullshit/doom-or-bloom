@@ -1,3 +1,5 @@
+import { PersonaHeader } from '@/components/landing/persona-header'
+import { PersonaSources } from '@/components/landing/persona-sources'
 import { createRoot } from 'react-dom/client'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SiteActions } from '@/components/site-actions'
@@ -53,23 +55,12 @@ createRoot(document.getElementById('root')!).render(
         ) : person && journey?.result ? (
           <div className='mx-auto w-full max-w-6xl px-6 py-10'>
             <a href='/'>Back to the map</a>
-            <header className='my-8'>
-              <p className='text-sm text-muted-foreground'>
-                Example journey · simulated persona
-              </p>
-              <h1 className='mt-2 text-4xl font-semibold'>{person.name}</h1>
-              <p className='mt-3 max-w-xl text-muted-foreground'>
-                {person.description} These are results from a fictional proxy’s
-                answers, not an assessment of the person.
-              </p>
-              <a href='/assessment' className='mt-5 inline-block underline'>
-                Map your own worldview
-              </a>
-            </header>
+            <PersonaHeader person={person} />
             <ExperimentalResults
               subject={person.name}
               result={journey.result}
             />
+            <PersonaSources sources={person.sources ?? []} />
           </div>
         ) : pathname === '/assessment' ? (
           <Interview {...props.interview} />

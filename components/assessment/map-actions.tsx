@@ -70,7 +70,7 @@ export function MapActions({
             <EllipsisIcon />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align='end'>
+        <DropdownMenuContent align='end' side='top'>
           <DropdownMenuGroup>
             <DropdownMenuItem onSelect={() => void exportImage(true)}>
               <CopyIcon />
@@ -86,7 +86,7 @@ export function MapActions({
       {status && (
         <p
           role='status'
-          className='absolute top-full right-0 z-10 mt-2 w-60 rounded-lg border bg-popover p-3 text-xs text-popover-foreground shadow-md'
+          className='absolute right-0 bottom-full z-10 mb-2 w-60 rounded-lg border bg-popover p-3 text-xs text-popover-foreground shadow-md'
         >
           {status}
         </p>

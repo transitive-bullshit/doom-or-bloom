@@ -9,8 +9,10 @@ const resources: Array<{ url: string }> = JSON.parse(
 const suite = JSON.parse(
   await readFile('eval/development/live-persona-journeys.json', 'utf8')
 )
-for (const journey of suite.journeys)
+for (const journey of suite.journeys) {
   resources.push(...journey.result.resources)
+  resources.push(...(journey.personaSnapshot?.sources ?? []))
+}
 const previous = JSON.parse(
   await readFile('lib/sharing/resource-previews.json', 'utf8').catch(() => '{}')
 ) as Record<
@@ -66,6 +68,12 @@ const asset = async (url: string, key: string) => {
 const entries = await pMap(
   urls,
   async (url) => {
+    if (
+      previous[url]?.image &&
+      previous[url]?.icon &&
+      !process.argv.includes('--refresh')
+    )
+      return [url, previous[url]!] as const
     const key = createHash('sha256').update(url).digest('hex').slice(0, 12)
     const entry: {
       image?: string

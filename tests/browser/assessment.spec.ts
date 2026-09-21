@@ -372,7 +372,7 @@ test('the twelfth prompt finalizes insufficient evidence after a non-answer with
     page.getByText('Insufficient evidence', { exact: true })
   ).toBeVisible()
   await expect(
-    page.getByRole('button', { name: 'Keep exploring' })
+    page.getByRole('button', { name: 'Continue answering questions' })
   ).toHaveCount(0)
 })
 test('an uncertain transport retry reuses the same request and semantic attempt', async ({

@@ -163,15 +163,51 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
     exact: true
   })
   await expect(expand).toHaveAttribute('aria-expanded', 'false')
-  await page
-    .getByRole('button', { name: 'Copy answer 2 to question 1', exact: true })
-    .click()
+  const copyButton = page.getByRole('button', {
+    name: 'Copy answer 2 to question 1',
+    exact: true
+  })
+  const copySize = await copyButton.boundingBox()
+  const copyOverlay = copyButton.locator('..')
+  const bubble = page
+    .locator('[data-slot="bubble-content"]')
+    .filter({ has: copyButton })
+  await expect(copyOverlay).toHaveCSS('opacity', '0')
+  await expect(bubble).toHaveCSS('padding-right', '12px')
+  await bubble.hover()
+  await expect(copyOverlay).toHaveCSS('opacity', '1')
+  await page.getByRole('heading', { level: 1 }).hover()
+  await expect(copyOverlay).toHaveCSS('opacity', '0')
+  await bubble.focus()
+  await expect(copyOverlay).toHaveCSS('opacity', '1')
+  expect(copySize!.width).toBe(copySize!.height)
+  const answerBox = await copyButton.evaluate((button) => {
+    const bubble = button.closest('[data-slot="bubble-content"]')!
+    const bounds = bubble.getBoundingClientRect()
+    const control = button.getBoundingClientRect()
+    return {
+      topInset: control.top - bounds.top,
+      rightInset: bounds.right - control.right
+    }
+  })
+  expect(answerBox.topInset).toBeGreaterThanOrEqual(8)
+  expect(answerBox.topInset).toBeLessThanOrEqual(10)
+  expect(answerBox.rightInset).toBeGreaterThanOrEqual(8)
+  expect(answerBox.rightInset).toBeLessThanOrEqual(10)
+  await copyButton.click()
+  await expect(copyButton).toHaveAttribute('data-copy-state', 'copied')
+  expect((await copyButton.boundingBox())!.width).toBe(copySize!.width)
+  expect((await copyButton.boundingBox())!.height).toBe(copySize!.height)
+  await expect(copyButton).toHaveAttribute('data-copy-state', 'idle')
   expect(
     await page.evaluate(
       () => (window as unknown as { copiedAnswer: string }).copiedAnswer
     )
   ).toBe(longAnswer)
   await expect(expand).toHaveAttribute('aria-expanded', 'false')
+  await page
+    .getByText('My earlier attempt is still available.', { exact: true })
+    .hover()
   await page
     .getByRole('button', { name: 'Copy answer 1 to question 1', exact: true })
     .click()
@@ -183,12 +219,17 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
   await page.evaluate(() => {
     ;(window as unknown as { failClipboard: boolean }).failClipboard = true
   })
+  await bubble.hover()
   await page
     .getByRole('button', { name: 'Copy answer 2 to question 1', exact: true })
     .click()
+  await expect(copyButton).toHaveAttribute('data-copy-state', 'error')
+  expect((await copyButton.boundingBox())!.width).toBe(copySize!.width)
   await expect(
-    firstTurn.getByText('Copy unavailable in this browser', { exact: true })
-  ).toBeVisible()
+    firstTurn
+      .getByRole('status')
+      .filter({ hasText: 'Copy unavailable in this browser' })
+  ).toHaveText('Copy unavailable in this browser')
   await expect(expand).toHaveAttribute('aria-expanded', 'false')
   const before = await page.evaluate(
     () => document.documentElement.scrollHeight

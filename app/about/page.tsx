@@ -70,7 +70,7 @@ export default function About() {
       </p>
       <p>
         Built by{' '}
-        <a className='underline' href='https://github.com/transitive-bullshit'>
+        <a className='underline' href='https://x.com/transitive_bs'>
           Travis Fischer
         </a>
         . Explore the{' '}

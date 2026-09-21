@@ -6,14 +6,13 @@ export function MapFirst(props: VariantProps) {
   return (
     <section className='landing-map-first landing-surface'>
       <div className='landing-map-copy'>
-        <p className='landing-eyebrow'>Your view of the AI future</p>
         <h1>
           Where do
           <br /> you <span className='landing-soft'>land?</span>
         </h1>
         <p className='landing-description'>
-          Map your AI worldview, one question at a time. Explore what you
-          expect, what you fear, and what could change your mind.
+          Map your AI worldview in only a few questions. Takes anywhere from
+          1-10 minutes depending on how detailed your answers are.
         </p>
         <StartLink />
         <p className='landing-hint'>

@@ -1,3 +1,5 @@
+import { PersonaHeader } from '@/components/landing/persona-header'
+import { PersonaSources } from '@/components/landing/persona-sources'
 import { PageTransition } from '@/components/page-transition'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -18,25 +20,9 @@ export default async function Page({
         <Link href='/' className='text-sm underline underline-offset-4'>
           Back to the map
         </Link>
-        <header className='my-8'>
-          <p className='mb-2 text-sm text-muted-foreground'>
-            Example journey · simulated persona
-          </p>
-          <h1 className='text-4xl font-semibold tracking-tight'>
-            {person.name}
-          </h1>
-          <p className='mt-3 max-w-xl text-muted-foreground'>
-            {person.description} These are results from a fictional proxy’s
-            answers, not an assessment of the person.
-          </p>
-          <Link
-            href='/assessment'
-            className='mt-5 inline-block font-medium underline underline-offset-4'
-          >
-            Map your own worldview
-          </Link>
-        </header>
+        <PersonaHeader person={person} />
         <ExperimentalResults subject={person.name} result={person.result} />
+        <PersonaSources sources={person.sources} />
       </div>
     </PageTransition>
   )

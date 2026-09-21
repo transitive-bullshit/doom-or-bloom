@@ -22,6 +22,8 @@ export type Example = {
   outlook: number | null
   transformation: number | null
   avatar: string
+  xUrl?: string | null
+  sources?: Array<{ title: string; url: string }>
 }
 export type VariantProps = { examples: Example[]; variant?: number }
 export const resultHref = (id: string, variant?: number) =>
@@ -87,7 +89,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
     <TooltipProvider delayDuration={150}>
       <div className='landing-map' data-highlighting={highlighted !== null}>
         <div className='landing-map-heading'>
-          <span>How radically will AI transform the world?</span>
+          <span>How will AI change the world?</span>
           <span className='landing-map-tag'>Example results</span>
         </div>
         <div
@@ -126,7 +128,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
             })}
           </svg>
           {plotted.map((p, i) => (
-            <Tooltip key={p.id}>
+            <Tooltip key={p.id} disableHoverableContent>
               <TooltipTrigger asChild>
                 <Link
                   href={resultHref(p.id, variant)}
@@ -153,7 +155,9 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                   />
                 </Link>
               </TooltipTrigger>
-              <TooltipContent sideOffset={8}>{p.name}</TooltipContent>
+              <TooltipContent sideOffset={0} className='pointer-events-none'>
+                {p.name}
+              </TooltipContent>
             </Tooltip>
           ))}
         </div>
@@ -179,9 +183,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
             </Link>
           ))}
         </div>
-        <p className='landing-map-note'>
-          Simulated personas · dots mark placements when portraits overlap
-        </p>
+        <p className='landing-map-note'>Simulated personas</p>
       </div>
     </TooltipProvider>
   )

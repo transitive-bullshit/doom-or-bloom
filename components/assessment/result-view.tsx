@@ -99,16 +99,18 @@ export function ResultView({
   return (
     <div className='flex flex-col gap-6'>
       <div>
-        <div className='mb-3 flex gap-2'>
-          <Badge variant='secondary'>
-            {result.insufficient
-              ? 'Insufficient evidence'
-              : 'Your worldview map'}
-          </Badge>
-          {result.capped && (
-            <Badge variant='outline'>{limits.prompts}-prompt cap reached</Badge>
-          )}
-        </div>
+        {(result.insufficient || result.capped) && (
+          <div className='mb-3 flex gap-2'>
+            {result.insufficient && (
+              <Badge variant='secondary'>Insufficient evidence</Badge>
+            )}
+            {result.capped && (
+              <Badge variant='outline'>
+                {limits.prompts}-prompt cap reached
+              </Badge>
+            )}
+          </div>
+        )}
         <h1 className='text-3xl font-semibold tracking-tight'>
           A map of your AI worldview
         </h1>
@@ -270,24 +272,19 @@ export function ResultView({
         </section>
       )}
       <div className='flex flex-wrap gap-3'>
-        {!result.capped && (
-          <Button disabled={busy} onClick={() => act({ type: 'continue' })}>
-            Keep exploring
-          </Button>
-        )}
+        <Button disabled={busy} onClick={() => void card()}>
+          Download card
+        </Button>
         <Button disabled={busy} variant='outline' onClick={report}>
           Download full report
         </Button>
-        <Button disabled={busy} variant='outline' onClick={() => void card()}>
-          Download card
-        </Button>
-        {state.status === 'results' && (
+        {!result.capped && (
           <Button
             disabled={busy}
-            variant='ghost'
-            onClick={() => act({ type: 'complete' })}
+            variant='outline'
+            onClick={() => act({ type: 'continue' })}
           >
-            Done for now
+            Continue answering questions
           </Button>
         )}
       </div>

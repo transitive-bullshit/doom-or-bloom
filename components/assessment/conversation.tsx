@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import { AnswerResult } from './answer-result'
-import { Copy } from 'lucide-react'
+import { Check, Copy, CircleAlert } from 'lucide-react'
 import type { ConversationTurn } from '@/lib/assessment/conversation'
 import { Bubble, BubbleContent } from '@/components/ui/bubble'
 import { Message, MessageContent, MessageHeader } from '@/components/ui/message'
@@ -55,27 +55,52 @@ export function AnswerDisclosure({
 }
 
 function CopyAnswer({ text, label }: { text: string; label: string }) {
-  const [status, setStatus] = useState('')
+  const [status, setStatus] = useState<'idle' | 'copied' | 'error'>('idle')
+  const reset = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const statusId = useId()
+  useEffect(() => () => clearTimeout(reset.current), [])
   async function copy() {
+    clearTimeout(reset.current)
     try {
       await navigator.clipboard.writeText(text)
-      setStatus('Copied')
+      setStatus('copied')
+      reset.current = setTimeout(() => setStatus('idle'), 2000)
     } catch {
-      setStatus('Copy unavailable in this browser')
+      setStatus('error')
     }
   }
   return (
-    <span className='inline-flex flex-wrap items-center gap-2'>
+    <span className='answer-copy absolute top-2 right-2 inline-flex'>
       <Button
-        variant='ghost'
-        size='xs'
+        variant='outline'
+        size='icon-sm'
+        className='copy-answer-button'
+        data-copy-state={status}
         aria-label={`Copy ${label.toLowerCase()}`}
+        aria-describedby={statusId}
         onClick={() => void copy()}
       >
-        <Copy data-icon='inline-start' /> Copy
+        <span className='grid' aria-hidden='true'>
+          <span className='copy-answer-label' data-visible={status === 'idle'}>
+            <Copy />
+          </span>
+          <span
+            className='copy-answer-label'
+            data-visible={status === 'copied'}
+          >
+            <Check />
+          </span>
+          <span className='copy-answer-label' data-visible={status === 'error'}>
+            <CircleAlert />
+          </span>
+        </span>
       </Button>
-      <span role='status' className='text-xs text-muted-foreground'>
-        {status}
+      <span id={statusId} role='status' className='sr-only'>
+        {status === 'copied'
+          ? 'Copied'
+          : status === 'error'
+            ? 'Copy unavailable in this browser'
+            : ''}
       </span>
     </span>
   )
@@ -89,15 +114,16 @@ export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
       aria-label={`Your reply ${index + 1} to question ${turn.prompt.ordinal}`}
     >
       <MessageContent>
-        <MessageHeader>
-          <span>You{reply.earlier ? ' · earlier reply' : ''}</span>
-          <CopyAnswer
-            text={reply.text}
-            label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
-          />
-        </MessageHeader>
+        {reply.earlier && <MessageHeader>Earlier reply</MessageHeader>}
         <Bubble variant='secondary' align='end'>
-          <BubbleContent>
+          <BubbleContent
+            tabIndex={0}
+            className='answer-bubble relative min-h-12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
+          >
+            <CopyAnswer
+              text={reply.text}
+              label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
+            />
             <AnswerDisclosure
               text={reply.text}
               label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
@@ -127,9 +153,9 @@ export function ConversationHistory({
           <MessageHeader>Question {turn.prompt.ordinal}</MessageHeader>
           <Bubble variant='ghost'>
             <BubbleContent>
-              <p className='whitespace-pre-wrap wrap-anywhere'>
+              <h4 className='text-lg leading-snug font-semibold tracking-tight whitespace-pre-wrap wrap-anywhere'>
                 {turn.question}
-              </p>
+              </h4>
             </BubbleContent>
           </Bubble>
         </MessageContent>

@@ -20,11 +20,11 @@
   --input: var(--border);
   --ring: oklch(0.55 0.05 140);
   --radius: 0.75rem;
-  --map-surface: oklch(0.21 0.022 265);
+  --map-surface: oklch(0.18 0.022 265);
   --map-text: oklch(0.97 0.005 100);
   --map-muted: oklch(0.79 0.016 265);
-  --map-doom: oklch(0.76 0.14 36);
-  --map-bloom: oklch(0.82 0.14 165);
+  --map-doom: oklch(0.7 0.19 22);
+  --map-bloom: oklch(0.78 0.18 151);
   --map-grid: oklch(0.43 0.024 265);
   --paperclip-gold: oklch(0.8 0.15 85);
   --paperclip-violet: oklch(0.75 0.16 295);
@@ -351,4 +351,39 @@
 ::view-transition-old(site-header),
 ::view-transition-old(site-footer) {
   display: none;
+}
+
+.answer-copy {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms var(--ease-out);
+}
+.answer-bubble:is(:hover, :focus-within) .answer-copy {
+  opacity: 1;
+  pointer-events: auto;
+}
+.copy-answer-button {
+  transition-property: color, background-color, border-color, box-shadow;
+}
+.copy-answer-label {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity 150ms var(--ease-out),
+    transform 150ms var(--ease-out);
+}
+.copy-answer-label[data-visible='true'] {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .copy-answer-label {
+    transform: none;
+    transition-property: opacity;
+  }
 }

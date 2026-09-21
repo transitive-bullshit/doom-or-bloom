@@ -38,6 +38,13 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   await expect(
     page.getByRole('button', { name: 'Results after this answer', exact: true })
   ).toHaveCount(0)
+  await page.reload()
+  await expect(
+    page.getByRole('button', { name: 'Debug off', exact: true })
+  ).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Results after this answer', exact: true })
+  ).toHaveCount(0)
   await page.getByRole('button', { name: 'Debug off', exact: true }).click()
   const first = page.getByRole('article', { name: 'Question 1 and replies' })
   const disclosure = first.getByRole('button', {
@@ -85,6 +92,10 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   await page
     .getByRole('button', { name: 'View my result', exact: true })
     .click()
+  await page.getByRole('button', { name: 'Debug on', exact: true }).click()
+  await expect(
+    page.getByRole('button', { name: 'Results after this answer', exact: true })
+  ).toHaveCount(0)
   const downloading = page.waitForEvent('download')
   await page
     .getByRole('button', { name: 'Download full report', exact: true })

@@ -12,7 +12,7 @@
     "icon": "/resource-previews/8e38112b54f3-icon.png"
   },
   "https://aievaluatorforum.org/initiatives/minimum-operating-conditions": {
-    "fetchedAt": "2026-09-21T14:33:12.629Z",
+    "fetchedAt": "2026-09-21T15:51:37.872Z",
     "source": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
     "icon": "/resource-previews/238f0e3812f8-icon.ico"
   },
@@ -23,7 +23,7 @@
     "icon": "/resource-previews/b0e284183065-icon.png"
   },
   "https://openai.com/index/model-misalignment-reporting-framework/": {
-    "fetchedAt": "2026-09-21T14:33:12.812Z",
+    "fetchedAt": "2026-09-21T15:51:37.889Z",
     "source": "https://openai.com/index/model-misalignment-reporting-framework/",
     "icon": "/resource-previews/e85c82fdaf94-icon.png"
   },
@@ -52,7 +52,7 @@
     "icon": "/resource-previews/c406a696d289-icon.svg"
   },
   "https://openai.com/index/an-alien-mind/": {
-    "fetchedAt": "2026-09-21T14:33:15.414Z",
+    "fetchedAt": "2026-09-21T15:51:37.890Z",
     "source": "https://openai.com/index/an-alien-mind/",
     "icon": "/resource-previews/1f0643794f0c-icon.png"
   },
@@ -69,7 +69,7 @@
     "icon": "/resource-previews/4823d69adf60-icon.ico"
   },
   "https://openai.com/index/hugging-face-incident-and-the-road-ahead/": {
-    "fetchedAt": "2026-09-21T14:33:15.708Z",
+    "fetchedAt": "2026-09-21T15:51:37.890Z",
     "source": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
     "icon": "/resource-previews/d8e6fd2ea614-icon.png"
   },
@@ -78,5 +78,709 @@
     "source": "https://www.anthropic.com/threat-intelligence-report-september-2026",
     "image": "/resource-previews/d957d6c99957-image.jpg",
     "icon": "/resource-previews/d957d6c99957-icon.png"
+  },
+  "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/": {
+    "fetchedAt": "2026-09-21T15:51:38.180Z",
+    "source": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
+    "image": "/resource-previews/d0c81bbfe41e-image.gif",
+    "icon": "/resource-previews/d0c81bbfe41e-icon.png"
+  },
+  "https://www.lesswrong.com/posts/5CfBDiQNg9upfipWk/only-law-can-prevent-extinction": {
+    "fetchedAt": "2026-09-21T15:51:38.186Z",
+    "source": "https://www.lesswrong.com/posts/5CfBDiQNg9upfipWk/only-law-can-prevent-extinction",
+    "image": "/resource-previews/97c4bbd94aa4-image.jpg",
+    "icon": "/resource-previews/97c4bbd94aa4-icon.ico"
+  },
+  "https://www.lesswrong.com/posts/cJX2ssssGoYqnijwi/the-talker-does-not-control-the-doer-in-current-ais": {
+    "fetchedAt": "2026-09-21T15:51:38.189Z",
+    "source": "https://www.lesswrong.com/posts/cJX2ssssGoYqnijwi/the-talker-does-not-control-the-doer-in-current-ais",
+    "image": "/resource-previews/2bc8ec7c2e39-image.jpg",
+    "icon": "/resource-previews/2bc8ec7c2e39-icon.ico"
+  },
+  "https://www.lesswrong.com/posts/BFrRJYgpBvziuuJLs/if-anyone-builds-it-everyone-dies-one-year-closer": {
+    "fetchedAt": "2026-09-21T15:51:38.554Z",
+    "source": "https://www.lesswrong.com/posts/BFrRJYgpBvziuuJLs/if-anyone-builds-it-everyone-dies-one-year-closer",
+    "image": "/resource-previews/4459a69b8338-image.jpg",
+    "icon": "/resource-previews/4459a69b8338-icon.ico"
+  },
+  "https://blog.samaltman.com/reflections": {
+    "fetchedAt": "2026-09-21T15:51:39.887Z",
+    "source": "https://blog.samaltman.com/reflections",
+    "icon": "/resource-previews/90e523f11f02-icon.ico"
+  },
+  "https://blog.samaltman.com/three-observations": {
+    "fetchedAt": "2026-09-21T15:51:39.944Z",
+    "source": "https://blog.samaltman.com/three-observations",
+    "icon": "/resource-previews/c1de00950b6c-icon.ico"
+  },
+  "https://blog.samaltman.com/the-gentle-singularity": {
+    "fetchedAt": "2026-09-21T15:51:40.381Z",
+    "source": "https://blog.samaltman.com/the-gentle-singularity",
+    "icon": "/resource-previews/2bc0d4251ea0-icon.ico"
+  },
+  "https://x.com/sama/status/2098811563415150910": {
+    "fetchedAt": "2026-09-21T15:51:40.433Z",
+    "source": "https://x.com/sama/status/2098811563415150910",
+    "image": "/resource-previews/f914fd7dd4be-image.jpg",
+    "icon": "/resource-previews/f914fd7dd4be-icon.ico"
+  },
+  "https://x.com/sama/status/2099352016988614852": {
+    "fetchedAt": "2026-09-21T15:51:41.940Z",
+    "source": "https://x.com/sama/status/2099352016988614852",
+    "image": "/resource-previews/98638c6547b9-image.jpg",
+    "icon": "/resource-previews/98638c6547b9-icon.ico"
+  },
+  "https://a16z.com/ai-will-save-the-world/": {
+    "fetchedAt": "2026-09-21T15:51:42.501Z",
+    "source": "https://a16z.com/ai-will-save-the-world/",
+    "image": "/resource-previews/8b53206b7f2b-image.jpg",
+    "icon": "/resource-previews/8b53206b7f2b-icon.png"
+  },
+  "https://a16z.com/the-techno-optimist-manifesto/": {
+    "fetchedAt": "2026-09-21T15:51:42.928Z",
+    "source": "https://a16z.com/the-techno-optimist-manifesto/",
+    "image": "/resource-previews/43fc0897f708-image.jpg",
+    "icon": "/resource-previews/43fc0897f708-icon.png"
+  },
+  "https://a16z.com/podcast/marc-andreessens-2026-outlook-ai-timelines-us-vs-china-and-the-price-of-ai/": {
+    "fetchedAt": "2026-09-21T15:51:42.962Z",
+    "source": "https://a16z.com/podcast/marc-andreessens-2026-outlook-ai-timelines-us-vs-china-and-the-price-of-ai/",
+    "image": "/resource-previews/cd26af18a224-image.png",
+    "icon": "/resource-previews/cd26af18a224-icon.png"
+  },
+  "https://a16z.com/podcast/marc-andreessen-who-runs-the-worlds-ai/": {
+    "fetchedAt": "2026-09-21T15:51:43.771Z",
+    "source": "https://a16z.com/podcast/marc-andreessen-who-runs-the-worlds-ai/",
+    "image": "/resource-previews/4fb8f0be705e-image.png",
+    "icon": "/resource-previews/4fb8f0be705e-icon.png"
+  },
+  "https://a16z.com/podcast/marc-andreessen-on-ai-california-and-the-future-of-america-joe-rogan/": {
+    "fetchedAt": "2026-09-21T15:51:44.151Z",
+    "source": "https://a16z.com/podcast/marc-andreessen-on-ai-california-and-the-future-of-america-joe-rogan/",
+    "image": "/resource-previews/e130a9303450-image.png",
+    "icon": "/resource-previews/e130a9303450-icon.png"
+  },
+  "https://www.youtube.com/watch?v=S7CrlFLAmEA": {
+    "fetchedAt": "2026-09-21T15:51:44.473Z",
+    "source": "https://www.youtube.com/watch?v=S7CrlFLAmEA",
+    "image": "/resource-previews/801cd5d7ea5d-image.jpg",
+    "icon": "/resource-previews/801cd5d7ea5d-icon.png"
+  },
+  "https://www.pcgamer.com/hardware/nvidia-ceo-jensen-huang-tells-trump-he-agrees-the-ai-doomsayers-are-perpetrating-a-hoax-you-saw-through-all-of-that/": {
+    "fetchedAt": "2026-09-21T15:51:44.481Z",
+    "source": "https://www.pcgamer.com/hardware/nvidia-ceo-jensen-huang-tells-trump-he-agrees-the-ai-doomsayers-are-perpetrating-a-hoax-you-saw-through-all-of-that/",
+    "image": "/resource-previews/ba493b17a893-image.jpg",
+    "icon": "/resource-previews/ba493b17a893-icon.png"
+  },
+  "https://darioamodei.com/essay/machines-of-loving-grace": {
+    "fetchedAt": "2026-09-21T15:51:44.498Z",
+    "source": "https://darioamodei.com/essay/machines-of-loving-grace",
+    "image": "/resource-previews/51571460a6fe-image.jpg",
+    "icon": "/resource-previews/51571460a6fe-icon.png"
+  },
+  "https://darioamodei.com/post/the-urgency-of-interpretability": {
+    "fetchedAt": "2026-09-21T15:51:45.041Z",
+    "source": "https://darioamodei.com/post/the-urgency-of-interpretability",
+    "image": "/resource-previews/f19373dc25a8-image.jpg",
+    "icon": "/resource-previews/f19373dc25a8-icon.png"
+  },
+  "https://darioamodei.com/essay/the-adolescence-of-technology": {
+    "fetchedAt": "2026-09-21T15:51:45.158Z",
+    "source": "https://darioamodei.com/essay/the-adolescence-of-technology",
+    "image": "/resource-previews/ceea0b558f0a-image.jpg",
+    "icon": "/resource-previews/ceea0b558f0a-icon.png"
+  },
+  "https://darioamodei.com/post/policy-on-the-ai-exponential": {
+    "fetchedAt": "2026-09-21T15:51:45.542Z",
+    "source": "https://darioamodei.com/post/policy-on-the-ai-exponential",
+    "image": "/resource-previews/3f3ea86ec3e3-image.jpg",
+    "icon": "/resource-previews/3f3ea86ec3e3-icon.png"
+  },
+  "https://darioamodei.com/post/we-must-pace-the-frontier": {
+    "fetchedAt": "2026-09-21T15:51:45.719Z",
+    "source": "https://darioamodei.com/post/we-must-pace-the-frontier",
+    "image": "/resource-previews/874a2fd905ea-image.jpg",
+    "icon": "/resource-previews/874a2fd905ea-icon.png"
+  },
+  "https://garymarcus.substack.com/p/three-years-on-chatgpt-still-isnt": {
+    "fetchedAt": "2026-09-21T15:51:45.817Z",
+    "source": "https://garymarcus.substack.com/p/three-years-on-chatgpt-still-isnt",
+    "image": "/resource-previews/c6bf345f827e-image.jpg",
+    "icon": "/resource-previews/c6bf345f827e-icon.svg"
+  },
+  "https://garymarcus.substack.com/p/liability-regulation-and-ais-new": {
+    "fetchedAt": "2026-09-21T15:51:45.887Z",
+    "source": "https://garymarcus.substack.com/p/liability-regulation-and-ais-new",
+    "image": "/resource-previews/ffa12e198727-image.jpg",
+    "icon": "/resource-previews/ffa12e198727-icon.svg"
+  },
+  "https://garymarcus.substack.com/p/breaking-news-and-how-the-end-might": {
+    "fetchedAt": "2026-09-21T15:51:46.091Z",
+    "source": "https://garymarcus.substack.com/p/breaking-news-and-how-the-end-might",
+    "image": "/resource-previews/748918f9b3e9-image.jpg",
+    "icon": "/resource-previews/748918f9b3e9-icon.svg"
+  },
+  "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually": {
+    "fetchedAt": "2026-09-21T15:51:46.869Z",
+    "source": "https://garymarcus.substack.com/p/wake-up-people-what-we-should-actually",
+    "image": "/resource-previews/53d745bbd558-image.jpg",
+    "icon": "/resource-previews/53d745bbd558-icon.svg"
+  },
+  "https://www.deeplearning.ai/the-batch/whos-responsible-for-irresponsible-ai": {
+    "fetchedAt": "2026-09-21T15:51:47.579Z",
+    "source": "https://www.deeplearning.ai/the-batch/whos-responsible-for-irresponsible-ai",
+    "image": "/resource-previews/22167313934f-image.webp",
+    "icon": "/resource-previews/22167313934f-icon.ico"
+  },
+  "https://www.deeplearning.ai/the-batch/how-ai-is-affecting-the-job-market-and-what-you-can-do-about-it/": {
+    "fetchedAt": "2026-09-21T15:51:47.580Z",
+    "source": "https://www.deeplearning.ai/the-batch/how-ai-is-affecting-the-job-market-and-what-you-can-do-about-it/",
+    "image": "/resource-previews/064deb3db102-image.png",
+    "icon": "/resource-previews/064deb3db102-icon.ico"
+  },
+  "https://www.mixtureofexperts.co/p/ai-for-the-real-world-a-conversation": {
+    "fetchedAt": "2026-09-21T15:51:47.655Z",
+    "source": "https://www.mixtureofexperts.co/p/ai-for-the-real-world-a-conversation",
+    "image": "/resource-previews/d1f27ab8447c-image.jpg",
+    "icon": "/resource-previews/d1f27ab8447c-icon.jpg"
+  },
+  "https://nebius.science/stories/meet-yann-lecuns-lab-and-the-ai-world-of-2030": {
+    "fetchedAt": "2026-09-21T15:51:47.911Z",
+    "source": "https://nebius.science/stories/meet-yann-lecuns-lab-and-the-ai-world-of-2030",
+    "image": "/resource-previews/0dfc4b802efb-image.jpg",
+    "icon": "/resource-previews/0dfc4b802efb-icon.png"
+  },
+  "https://lexfridman.com/yann-lecun-3-transcript/": {
+    "fetchedAt": "2026-09-21T15:51:48.628Z",
+    "source": "https://lexfridman.com/yann-lecun-3-transcript/",
+    "icon": "/resource-previews/9bb897e22ace-icon.png"
+  },
+  "https://transcripts.cnn.com/show/cg/date/2026-09-09/segment/01": {
+    "fetchedAt": "2026-09-21T15:51:48.734Z",
+    "source": "https://transcripts.cnn.com/show/cg/date/2026-09-09/segment/01"
+  },
+  "https://www.ncsl.org/news/details/the-godfather-of-ai-warns-about-its-perils-praises-its-promise": {
+    "fetchedAt": "2026-09-21T15:51:48.758Z",
+    "source": "https://www.ncsl.org/news/details/the-godfather-of-ai-warns-about-its-perils-praises-its-promise",
+    "icon": "/resource-previews/66f1e6e6015a-icon.png"
+  },
+  "https://www.wheresyoured.at/the-ai-haters-manifesto/": {
+    "fetchedAt": "2026-09-21T15:51:49.291Z",
+    "source": "https://www.wheresyoured.at/the-ai-haters-manifesto/",
+    "image": "/resource-previews/7cf70545039d-image.jpg",
+    "icon": "/resource-previews/7cf70545039d-icon.jpg"
+  },
+  "https://www.wheresyoured.at/ai-is-already-in-dangerous-hands/": {
+    "fetchedAt": "2026-09-21T15:51:50.098Z",
+    "source": "https://www.wheresyoured.at/ai-is-already-in-dangerous-hands/",
+    "image": "/resource-previews/213fbcd34e19-image.jpg",
+    "icon": "/resource-previews/213fbcd34e19-icon.jpg"
+  },
+  "https://www.wheresyoured.at/concentration-risk/": {
+    "fetchedAt": "2026-09-21T15:51:50.338Z",
+    "source": "https://www.wheresyoured.at/concentration-risk/",
+    "image": "/resource-previews/97f9aa33955a-image.jpg",
+    "icon": "/resource-previews/97f9aa33955a-icon.jpg"
+  },
+  "https://x.com/elonmusk/status/2098789109980332057": {
+    "fetchedAt": "2026-09-21T15:51:50.366Z",
+    "source": "https://x.com/elonmusk/status/2098789109980332057",
+    "image": "/resource-previews/9f4d1d2428dd-image.jpg",
+    "icon": "/resource-previews/9f4d1d2428dd-icon.ico"
+  },
+  "https://x.com/elonmusk/status/2101177816872051038": {
+    "fetchedAt": "2026-09-21T15:51:50.534Z",
+    "source": "https://x.com/elonmusk/status/2101177816872051038",
+    "icon": "/resource-previews/f07661a02090-icon.ico"
+  },
+  "https://x.com/elonmusk/status/2101011740574052697": {
+    "fetchedAt": "2026-09-21T15:51:50.592Z",
+    "source": "https://x.com/elonmusk/status/2101011740574052697",
+    "image": "/resource-previews/76f37e12b060-image.jpg",
+    "icon": "/resource-previews/76f37e12b060-icon.ico"
+  },
+  "https://x.com/elonmusk/status/2099542714974896467": {
+    "fetchedAt": "2026-09-21T15:51:52.734Z",
+    "source": "https://x.com/elonmusk/status/2099542714974896467",
+    "image": "/resource-previews/c1ef5175670a-image.jpg",
+    "icon": "/resource-previews/c1ef5175670a-icon.ico"
+  },
+  "https://x.com/elonmusk/status/2044990537145753894": {
+    "fetchedAt": "2026-09-21T15:51:52.933Z",
+    "source": "https://x.com/elonmusk/status/2044990537145753894",
+    "image": "/resource-previews/7340a3a22467-image.jpg",
+    "icon": "/resource-previews/7340a3a22467-icon.ico"
+  },
+  "https://www.youtube.com/watch?v=XuoqKYxDHVc": {
+    "fetchedAt": "2026-09-21T15:51:54.767Z",
+    "source": "https://www.youtube.com/watch?v=XuoqKYxDHVc",
+    "image": "/resource-previews/0459bbdec68e-image.jpg",
+    "icon": "/resource-previews/0459bbdec68e-icon.png"
+  },
+  "https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-elon-musk-davos-2026/": {
+    "fetchedAt": "2026-09-21T15:51:54.985Z",
+    "source": "https://www.weforum.org/podcasts/meet-the-leader/episodes/conversation-with-elon-musk-davos-2026/",
+    "icon": "/resource-previews/7ee86eacd657-icon.png"
+  },
+  "https://www.interconnects.ai/p/where-i-stand-on-rsi": {
+    "fetchedAt": "2026-09-21T15:51:55.451Z",
+    "source": "https://www.interconnects.ai/p/where-i-stand-on-rsi",
+    "image": "/resource-previews/f0a3b70da126-image.jpg",
+    "icon": "/resource-previews/f0a3b70da126-icon.png"
+  },
+  "https://www.interconnects.ai/p/when-will-average-people-feel-ais": {
+    "fetchedAt": "2026-09-21T15:51:56.314Z",
+    "source": "https://www.interconnects.ai/p/when-will-average-people-feel-ais",
+    "image": "/resource-previews/24ae7ff87814-image.jpg",
+    "icon": "/resource-previews/24ae7ff87814-icon.png"
+  },
+  "https://www.interconnects.ai/p/lessons-from-the-hacks": {
+    "fetchedAt": "2026-09-21T15:51:56.508Z",
+    "source": "https://www.interconnects.ai/p/lessons-from-the-hacks",
+    "image": "/resource-previews/b6afdd489280-image.jpg",
+    "icon": "/resource-previews/b6afdd489280-icon.png"
+  },
+  "https://www.interconnects.ai/p/the-current-balance-of-power-in-open": {
+    "fetchedAt": "2026-09-21T15:51:57.038Z",
+    "source": "https://www.interconnects.ai/p/the-current-balance-of-power-in-open",
+    "image": "/resource-previews/43bf4602833d-image.jpg",
+    "icon": "/resource-previews/43bf4602833d-icon.png"
+  },
+  "https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/": {
+    "fetchedAt": "2026-09-21T15:51:57.186Z",
+    "source": "https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-ban-artificial-superintelligence-and-temporarily-pause-advanced-ai-development/",
+    "icon": "/resource-previews/126d2869cadf-icon.png"
+  },
+  "https://www.sanders.senate.gov/press-releases/news-sanders-ocasio-cortez-announce-ai-data-center-moratorium-act/": {
+    "fetchedAt": "2026-09-21T15:51:57.920Z",
+    "source": "https://www.sanders.senate.gov/press-releases/news-sanders-ocasio-cortez-announce-ai-data-center-moratorium-act/",
+    "icon": "/resource-previews/181e80769ab5-icon.png"
+  },
+  "https://x.com/DavidSacks/status/2098973625252708460": {
+    "fetchedAt": "2026-09-21T15:51:58.293Z",
+    "source": "https://x.com/DavidSacks/status/2098973625252708460",
+    "image": "/resource-previews/b93ed22ecab3-image.jpg",
+    "icon": "/resource-previews/b93ed22ecab3-icon.ico"
+  },
+  "https://x.com/DavidSacks/status/2101420421992353865": {
+    "fetchedAt": "2026-09-21T15:51:58.652Z",
+    "source": "https://x.com/DavidSacks/status/2101420421992353865",
+    "image": "/resource-previews/8b31c36ccbe2-image.webp",
+    "icon": "/resource-previews/8b31c36ccbe2-icon.ico"
+  },
+  "https://x.com/DavidSacks/status/2100992953133252683": {
+    "fetchedAt": "2026-09-21T15:51:59.553Z",
+    "source": "https://x.com/DavidSacks/status/2100992953133252683",
+    "image": "/resource-previews/f1ebd69f10ea-image.webp",
+    "icon": "/resource-previews/f1ebd69f10ea-icon.ico"
+  },
+  "https://x.com/DavidSacks/status/2098575808893784163": {
+    "fetchedAt": "2026-09-21T15:52:00.237Z",
+    "source": "https://x.com/DavidSacks/status/2098575808893784163",
+    "image": "/resource-previews/26e755ce6e2a-image.jpg",
+    "icon": "/resource-previews/26e755ce6e2a-icon.ico"
+  },
+  "https://institute.deepmind.com/essays/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age/": {
+    "fetchedAt": "2026-09-21T15:52:00.686Z",
+    "source": "https://institute.deepmind.com/essays/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age/"
+  },
+  "https://x.com/demishassabis/status/2098909516582490602": {
+    "fetchedAt": "2026-09-21T15:52:01.738Z",
+    "source": "https://x.com/demishassabis/status/2098909516582490602",
+    "image": "/resource-previews/2f6775015b87-image.jpg",
+    "icon": "/resource-previews/2f6775015b87-icon.ico"
+  },
+  "https://x.com/demishassabis/status/2100211548794839140": {
+    "fetchedAt": "2026-09-21T15:52:02.132Z",
+    "source": "https://x.com/demishassabis/status/2100211548794839140",
+    "image": "/resource-previews/1ce0d209af65-image.webp",
+    "icon": "/resource-previews/1ce0d209af65-icon.ico"
+  },
+  "https://x.com/demishassabis/status/2085034334914769203": {
+    "fetchedAt": "2026-09-21T15:52:02.379Z",
+    "source": "https://x.com/demishassabis/status/2085034334914769203",
+    "image": "/resource-previews/e2eb277eb5ab-image.webp",
+    "icon": "/resource-previews/e2eb277eb5ab-icon.ico"
+  },
+  "https://x.com/_sholtodouglas/status/2098866572748263594": {
+    "fetchedAt": "2026-09-21T15:52:02.387Z",
+    "source": "https://x.com/_sholtodouglas/status/2098866572748263594",
+    "image": "/resource-previews/537151220ab4-image.png",
+    "icon": "/resource-previews/537151220ab4-icon.ico"
+  },
+  "https://x.com/_sholtodouglas/status/2088463770318516734": {
+    "fetchedAt": "2026-09-21T15:52:03.705Z",
+    "source": "https://x.com/_sholtodouglas/status/2088463770318516734",
+    "image": "/resource-previews/df4c5cf7db28-image.webp",
+    "icon": "/resource-previews/df4c5cf7db28-icon.ico"
+  },
+  "https://x.com/_sholtodouglas/status/2088083624734462337": {
+    "fetchedAt": "2026-09-21T15:52:03.918Z",
+    "source": "https://x.com/_sholtodouglas/status/2088083624734462337",
+    "image": "/resource-previews/5335153a8b6a-image.webp",
+    "icon": "/resource-previews/5335153a8b6a-icon.ico"
+  },
+  "https://x.com/_sholtodouglas/status/2090556617922335027": {
+    "fetchedAt": "2026-09-21T15:52:03.996Z",
+    "source": "https://x.com/_sholtodouglas/status/2090556617922335027",
+    "image": "/resource-previews/b5bffb3e852e-image.jpg",
+    "icon": "/resource-previews/b5bffb3e852e-icon.ico"
+  },
+  "https://www.dwarkesh.com/p/sholto-trenton-2": {
+    "fetchedAt": "2026-09-21T15:52:04.442Z",
+    "source": "https://www.dwarkesh.com/p/sholto-trenton-2",
+    "image": "/resource-previews/1648bc632a54-image.jpg",
+    "icon": "/resource-previews/1648bc632a54-icon.jpg"
+  },
+  "https://x.com/tszzl/status/2101462171410677962": {
+    "fetchedAt": "2026-09-21T15:52:05.739Z",
+    "source": "https://x.com/tszzl/status/2101462171410677962",
+    "image": "/resource-previews/607353cb150a-image.jpg",
+    "icon": "/resource-previews/607353cb150a-icon.ico"
+  },
+  "https://x.com/tszzl/status/2100760026164208084": {
+    "fetchedAt": "2026-09-21T15:52:05.783Z",
+    "source": "https://x.com/tszzl/status/2100760026164208084",
+    "image": "/resource-previews/b102b6633784-image.jpg",
+    "icon": "/resource-previews/b102b6633784-icon.ico"
+  },
+  "https://x.com/tszzl/status/2099661188904964140": {
+    "fetchedAt": "2026-09-21T15:52:06.061Z",
+    "source": "https://x.com/tszzl/status/2099661188904964140",
+    "image": "/resource-previews/138f95867687-image.jpg",
+    "icon": "/resource-previews/138f95867687-icon.ico"
+  },
+  "https://x.com/tszzl/status/2099640048098701560": {
+    "fetchedAt": "2026-09-21T15:52:06.066Z",
+    "source": "https://x.com/tszzl/status/2099640048098701560",
+    "image": "/resource-previews/d177c29d1302-image.jpg",
+    "icon": "/resource-previews/d177c29d1302-icon.ico"
+  },
+  "https://x.com/tszzl/status/2101907392128840128": {
+    "fetchedAt": "2026-09-21T15:52:07.642Z",
+    "source": "https://x.com/tszzl/status/2101907392128840128",
+    "image": "/resource-previews/3659663d1001-image.jpg",
+    "icon": "/resource-previews/3659663d1001-icon.ico"
+  },
+  "https://www.dwarkesh.com/p/jeff-dean-and-noam-shazeer": {
+    "fetchedAt": "2026-09-21T15:52:07.844Z",
+    "source": "https://www.dwarkesh.com/p/jeff-dean-and-noam-shazeer",
+    "image": "/resource-previews/b4b9a9387313-image.jpg",
+    "icon": "/resource-previews/b4b9a9387313-icon.jpg"
+  },
+  "https://x.com/NoamShazeer/status/2056795650432565370": {
+    "fetchedAt": "2026-09-21T15:52:08.083Z",
+    "source": "https://x.com/NoamShazeer/status/2056795650432565370",
+    "image": "/resource-previews/22af6d866312-image.webp",
+    "icon": "/resource-previews/22af6d866312-icon.ico"
+  },
+  "https://x.com/NoamShazeer/status/2028909105969283565": {
+    "fetchedAt": "2026-09-21T15:52:08.084Z",
+    "source": "https://x.com/NoamShazeer/status/2028909105969283565",
+    "image": "/resource-previews/124232f3dc9b-image.webp",
+    "icon": "/resource-previews/124232f3dc9b-icon.ico"
+  },
+  "https://x.com/NoamShazeer/status/2067400851438932297": {
+    "fetchedAt": "2026-09-21T15:52:08.896Z",
+    "source": "https://x.com/NoamShazeer/status/2067400851438932297",
+    "image": "/resource-previews/71f5a0a2d1bd-image.jpg",
+    "icon": "/resource-previews/71f5a0a2d1bd-icon.ico"
+  },
+  "https://www.dwarkesh.com/p/noam-brown": {
+    "fetchedAt": "2026-09-21T15:52:09.514Z",
+    "source": "https://www.dwarkesh.com/p/noam-brown",
+    "image": "/resource-previews/5916add02dc8-image.jpg",
+    "icon": "/resource-previews/5916add02dc8-icon.jpg"
+  },
+  "https://x.com/polynoamial/status/2100998240586137701": {
+    "fetchedAt": "2026-09-21T15:52:09.841Z",
+    "source": "https://x.com/polynoamial/status/2100998240586137701",
+    "image": "/resource-previews/ff3133ebf39f-image.jpg",
+    "icon": "/resource-previews/ff3133ebf39f-icon.ico"
+  },
+  "https://x.com/polynoamial/status/2097375837670785447": {
+    "fetchedAt": "2026-09-21T15:52:09.934Z",
+    "source": "https://x.com/polynoamial/status/2097375837670785447",
+    "image": "/resource-previews/a44e539eb14c-image.jpg",
+    "icon": "/resource-previews/a44e539eb14c-icon.ico"
+  },
+  "https://x.com/polynoamial/status/2095583211950833768": {
+    "fetchedAt": "2026-09-21T15:52:10.330Z",
+    "source": "https://x.com/polynoamial/status/2095583211950833768",
+    "image": "/resource-previews/e5460373fb8f-image.jpg",
+    "icon": "/resource-previews/e5460373fb8f-icon.ico"
+  },
+  "https://www.dwarkesh.com/p/the-next-paradigm": {
+    "fetchedAt": "2026-09-21T15:52:10.979Z",
+    "source": "https://www.dwarkesh.com/p/the-next-paradigm",
+    "image": "/resource-previews/43027dd9e764-image.jpg",
+    "icon": "/resource-previews/43027dd9e764-icon.jpg"
+  },
+  "https://www.dwarkesh.com/p/era-of-continual-learning": {
+    "fetchedAt": "2026-09-21T15:52:11.525Z",
+    "source": "https://www.dwarkesh.com/p/era-of-continual-learning",
+    "image": "/resource-previews/3e41a0ddd221-image.jpg",
+    "icon": "/resource-previews/3e41a0ddd221-icon.jpg"
+  },
+  "https://www.dwarkesh.com/p/ryan-greenblatt": {
+    "fetchedAt": "2026-09-21T15:52:11.936Z",
+    "source": "https://www.dwarkesh.com/p/ryan-greenblatt",
+    "image": "/resource-previews/ac4c4eb6f0c4-image.jpg",
+    "icon": "/resource-previews/ac4c4eb6f0c4-icon.jpg"
+  },
+  "https://www.dwarkesh.com/p/pretraining-progress-is-mostly-data": {
+    "fetchedAt": "2026-09-21T15:52:12.045Z",
+    "source": "https://www.dwarkesh.com/p/pretraining-progress-is-mostly-data",
+    "image": "/resource-previews/8a3fcaf7c7bc-image.jpg",
+    "icon": "/resource-previews/8a3fcaf7c7bc-icon.jpg"
+  },
+  "https://yoshuabengio.org/en/blog/why-are-ai-agents-lying-cheating-and-coordinating": {
+    "fetchedAt": "2026-09-21T15:52:12.223Z",
+    "source": "https://yoshuabengio.org/en/blog/why-are-ai-agents-lying-cheating-and-coordinating",
+    "image": "/resource-previews/987b7faae692-image.jpg",
+    "icon": "/resource-previews/987b7faae692-icon.ico"
+  },
+  "https://lawzero.org/en/news/ai-predicts-has-no-hidden-agenda-lawzero-lays-out-formal-safety-case-its-scientist-ai": {
+    "fetchedAt": "2026-09-21T15:52:12.224Z",
+    "source": "https://lawzero.org/en/news/ai-predicts-has-no-hidden-agenda-lawzero-lays-out-formal-safety-case-its-scientist-ai",
+    "image": "/resource-previews/868d977fc65c-image.png",
+    "icon": "/resource-previews/868d977fc65c-icon.ico"
+  },
+  "https://arxiv.org/abs/2609.10630": {
+    "fetchedAt": "2026-09-21T15:52:12.652Z",
+    "source": "https://arxiv.org/abs/2609.10630",
+    "image": "/resource-previews/d6845980d7d3-image.png",
+    "icon": "/resource-previews/d6845980d7d3-icon.png"
+  },
+  "https://investor.nvidia.com/news/press-release-details/2026/Ilya-Sutskevers-Safe-Superintelligence-Inc--and-NVIDIA-Announce-Long-Term-Strategic-Partnership/default.aspx": {
+    "fetchedAt": "2026-09-21T15:52:13.166Z",
+    "source": "https://investor.nvidia.com/news/press-release-details/2026/Ilya-Sutskevers-Safe-Superintelligence-Inc--and-NVIDIA-Announce-Long-Term-Strategic-Partnership/default.aspx",
+    "icon": "/resource-previews/7b0cc0dc8757-icon.png"
+  },
+  "https://www.dwarkesh.com/p/ilya-sutskever-2": {
+    "fetchedAt": "2026-09-21T15:52:13.603Z",
+    "source": "https://www.dwarkesh.com/p/ilya-sutskever-2",
+    "image": "/resource-previews/24bdaf0e463c-image.jpg",
+    "icon": "/resource-previews/24bdaf0e463c-icon.jpg"
+  },
+  "https://ssi.inc/": {
+    "fetchedAt": "2026-09-21T15:52:14.215Z",
+    "source": "https://ssi.inc/",
+    "image": "/resource-previews/3fc4ee87e9ba-image.jpg"
+  },
+  "https://www.dwarkesh.com/p/andrej-karpathy": {
+    "fetchedAt": "2026-09-21T15:52:14.665Z",
+    "source": "https://www.dwarkesh.com/p/andrej-karpathy",
+    "image": "/resource-previews/899edc00cc3c-image.jpg",
+    "icon": "/resource-previews/899edc00cc3c-icon.jpg"
+  },
+  "https://github.com/karpathy/autoresearch": {
+    "fetchedAt": "2026-09-21T15:52:14.741Z",
+    "source": "https://github.com/karpathy/autoresearch",
+    "image": "/resource-previews/f226959a357f-image.png",
+    "icon": "/resource-previews/f226959a357f-icon.svg"
+  },
+  "https://news.stanford.edu/stories/2026/05/james-landay-fei-fei-li-john-hennessy-hai-interview": {
+    "fetchedAt": "2026-09-21T15:52:15.580Z",
+    "source": "https://news.stanford.edu/stories/2026/05/james-landay-fei-fei-li-john-hennessy-hai-interview",
+    "icon": "/resource-previews/847364120743-icon.png"
+  },
+  "https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence": {
+    "fetchedAt": "2026-09-21T15:52:15.944Z",
+    "source": "https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence",
+    "image": "/resource-previews/fe4155bdc9e6-image.jpg",
+    "icon": "/resource-previews/fe4155bdc9e6-icon.jpg"
+  },
+  "https://www.dwarkesh.com/p/richard-sutton": {
+    "fetchedAt": "2026-09-21T15:52:16.284Z",
+    "source": "https://www.dwarkesh.com/p/richard-sutton",
+    "image": "/resource-previews/139cb07e49d5-image.jpg",
+    "icon": "/resource-previews/139cb07e49d5-icon.jpg"
+  },
+  "https://www.amii.ca/updates-insights/rich-sutton-turing": {
+    "fetchedAt": "2026-09-21T15:52:16.511Z",
+    "source": "https://www.amii.ca/updates-insights/rich-sutton-turing",
+    "image": "/resource-previews/2b8d79ace874-image.png",
+    "icon": "/resource-previews/2b8d79ace874-icon.png"
+  },
+  "https://www.theguardian.com/commentisfree/2026/sep/15/ai-safety-requirements": {
+    "fetchedAt": "2026-09-21T15:52:17.343Z",
+    "source": "https://www.theguardian.com/commentisfree/2026/sep/15/ai-safety-requirements",
+    "image": "/resource-previews/c02d493b24d2-image.jpg",
+    "icon": "/resource-previews/c02d493b24d2-icon.ico"
+  },
+  "https://news.berkeley.edu/2026/09/03/watch-uc-berkeley-professor-calls-for-a-halt-to-ai-weapons/": {
+    "fetchedAt": "2026-09-21T15:52:18.677Z",
+    "source": "https://news.berkeley.edu/2026/09/03/watch-uc-berkeley-professor-calls-for-a-halt-to-ai-weapons/",
+    "image": "/resource-previews/0609404aff8d-image.jpg",
+    "icon": "/resource-previews/0609404aff8d-icon.svg"
+  },
+  "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing/": {
+    "fetchedAt": "2026-09-21T15:52:18.893Z",
+    "source": "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing/",
+    "icon": "/resource-previews/5ac9b22e82e2-icon.ico"
+  },
+  "https://www.ourcommons.ca/Content/Committee/451/ETHI/Evidence/EV13876654/ETHIEV25-E.PDF": {
+    "fetchedAt": "2026-09-21T15:52:19.927Z",
+    "source": "https://www.ourcommons.ca/Content/Committee/451/ETHI/Evidence/EV13876654/ETHIEV25-E.PDF",
+    "icon": "/resource-previews/36a323a7fde9-icon.ico"
+  },
+  "https://futureoflife.org/our-position-on-ai/": {
+    "fetchedAt": "2026-09-21T15:52:20.263Z",
+    "source": "https://futureoflife.org/our-position-on-ai/",
+    "image": "/resource-previews/2fbf78e84773-image.jpg",
+    "icon": "/resource-previews/2fbf78e84773-icon.png"
+  },
+  "https://www.democracynow.org/2026/7/30/max_tegmark": {
+    "fetchedAt": "2026-09-21T15:52:21.133Z",
+    "source": "https://www.democracynow.org/2026/7/30/max_tegmark",
+    "image": "/resource-previews/1684afe24cfc-image.jpg",
+    "icon": "/resource-previews/1684afe24cfc-icon.ico"
+  },
+  "https://www.36kr.com/p/2872793466982535": {
+    "fetchedAt": "2026-09-21T15:52:22.823Z",
+    "source": "https://www.36kr.com/p/2872793466982535",
+    "image": "/resource-previews/9f9d1e3d078d-image.jpg",
+    "icon": "/resource-previews/9f9d1e3d078d-icon.ico"
+  },
+  "https://www.36kr.com/p/2272896094586500": {
+    "fetchedAt": "2026-09-21T15:52:23.039Z",
+    "source": "https://www.36kr.com/p/2272896094586500",
+    "image": "/resource-previews/1b2e2e43c691-image.jpg",
+    "icon": "/resource-previews/1b2e2e43c691-icon.ico"
+  },
+  "https://ainowinstitute.org/wp-content/uploads/2026/02/Reframing-Impact_Frugal-AI_Timnit-Gebru.pdf": {
+    "fetchedAt": "2026-09-21T15:52:24.336Z",
+    "source": "https://ainowinstitute.org/wp-content/uploads/2026/02/Reframing-Impact_Frugal-AI_Timnit-Gebru.pdf",
+    "icon": "/resource-previews/f23176da16f4-icon.png"
+  },
+  "https://www.democracynow.org/2026/8/13/timnit_gebru": {
+    "fetchedAt": "2026-09-21T15:52:24.481Z",
+    "source": "https://www.democracynow.org/2026/8/13/timnit_gebru",
+    "image": "/resource-previews/a80e6c54fd79-image.jpg",
+    "icon": "/resource-previews/a80e6c54fd79-icon.ico"
+  },
+  "https://firstmonday.org/ojs/index.php/fm/article/view/13636": {
+    "fetchedAt": "2026-09-21T15:52:25.522Z",
+    "source": "https://firstmonday.org/ojs/index.php/fm/article/view/13636",
+    "icon": "/resource-previews/d9c5ebff69e9-icon.gif"
+  },
+  "https://www.dair-institute.org/research/": {
+    "fetchedAt": "2026-09-21T15:52:25.918Z",
+    "source": "https://www.dair-institute.org/research/",
+    "icon": "/resource-previews/b0fa12cfbe82-icon.png"
+  },
+  "https://www.normaltech.ai/p/ai-as-normal-technology": {
+    "fetchedAt": "2026-09-21T15:52:26.953Z",
+    "source": "https://www.normaltech.ai/p/ai-as-normal-technology",
+    "image": "/resource-previews/524b59fce271-image.jpg",
+    "icon": "/resource-previews/524b59fce271-icon.png"
+  },
+  "https://www.normaltech.ai/p/ai-agents-cant-yet-do-open-ended": {
+    "fetchedAt": "2026-09-21T15:52:27.121Z",
+    "source": "https://www.normaltech.ai/p/ai-agents-cant-yet-do-open-ended",
+    "image": "/resource-previews/e1dd159cc98a-image.jpg",
+    "icon": "/resource-previews/e1dd159cc98a-icon.png"
+  },
+  "https://www.normaltech.ai/p/the-ai-as-normal-technology-view": {
+    "fetchedAt": "2026-09-21T15:52:27.383Z",
+    "source": "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
+    "image": "/resource-previews/2e4d7ba6eb1f-image.jpg",
+    "icon": "/resource-previews/2e4d7ba6eb1f-icon.png"
+  },
+  "https://www.brookings.edu/articles/building-pro-worker-ai/": {
+    "fetchedAt": "2026-09-21T15:52:27.880Z",
+    "source": "https://www.brookings.edu/articles/building-pro-worker-ai/",
+    "image": "/resource-previews/211eb3d68640-image.jpg",
+    "icon": "/resource-previews/211eb3d68640-icon.png"
+  },
+  "https://empiricrafting.substack.com/p/daron-acemoglu-on-pro-worker-ai-and": {
+    "fetchedAt": "2026-09-21T15:52:28.135Z",
+    "source": "https://empiricrafting.substack.com/p/daron-acemoglu-on-pro-worker-ai-and",
+    "image": "/resource-previews/dd74d56dd9ab-image.jpg",
+    "icon": "/resource-previews/dd74d56dd9ab-icon.png"
+  },
+  "https://www.meta.com/thefutureisforeveryone/": {
+    "fetchedAt": "2026-09-21T15:52:28.148Z",
+    "source": "https://www.meta.com/thefutureisforeveryone/",
+    "icon": "/resource-previews/389f67992480-icon.ico"
+  },
+  "https://www.meta.com/superintelligence/": {
+    "fetchedAt": "2026-09-21T15:52:28.697Z",
+    "source": "https://www.meta.com/superintelligence/",
+    "icon": "/resource-previews/84e801bc8d72-icon.ico"
+  },
+  "https://faculty.washington.edu/ebender/papers/Bender-AI-2026.pdf": {
+    "fetchedAt": "2026-09-21T15:52:29.117Z",
+    "source": "https://faculty.washington.edu/ebender/papers/Bender-AI-2026.pdf",
+    "icon": "/resource-previews/31a7f813f60f-icon.png"
+  },
+  "https://firstmonday.org/ojs/index.php/fm/article/view/14366": {
+    "fetchedAt": "2026-09-21T15:52:29.332Z",
+    "source": "https://firstmonday.org/ojs/index.php/fm/article/view/14366",
+    "icon": "/resource-previews/46b7f4d34fc4-icon.gif"
+  },
+  "https://elpais.com/tecnologia/2026-02-20/emily-bender-y-alex-hanna-cuando-leemos-un-texto-escrito-por-una-ia-pensamos-que-hay-una-mente-detras-pero-solo-hay-numeros.html": {
+    "fetchedAt": "2026-09-21T15:52:29.342Z",
+    "source": "https://elpais.com/tecnologia/2026-02-20/emily-bender-y-alex-hanna-cuando-leemos-un-texto-escrito-por-una-ia-pensamos-que-hay-una-mente-detras-pero-solo-hay-numeros.html",
+    "image": "/resource-previews/eaef29ea4205-image.jpg",
+    "icon": "/resource-previews/eaef29ea4205-icon.ico"
+  },
+  "https://thecon.ai/": {
+    "fetchedAt": "2026-09-21T15:52:30.159Z",
+    "source": "https://thecon.ai/",
+    "image": "/resource-previews/b8bef370a9f5-image.png",
+    "icon": "/resource-previews/b8bef370a9f5-icon.jpg"
+  },
+  "https://x.com/BarackObama/status/2099642023922036982": {
+    "fetchedAt": "2026-09-21T15:52:31.746Z",
+    "source": "https://x.com/BarackObama/status/2099642023922036982",
+    "image": "/resource-previews/d83dc8b0e55c-image.jpg",
+    "icon": "/resource-previews/d83dc8b0e55c-icon.ico"
+  },
+  "https://x.com/BarackObama/status/2099642032557879423": {
+    "fetchedAt": "2026-09-21T15:52:33.579Z",
+    "source": "https://x.com/BarackObama/status/2099642032557879423",
+    "image": "/resource-previews/91e966b95346-image.jpg",
+    "icon": "/resource-previews/91e966b95346-icon.ico"
+  },
+  "https://obama.org/stories/president-obama-calls-for-public-oversight-of-ai-warns-of-disruption-ahead/": {
+    "fetchedAt": "2026-09-21T15:52:33.835Z",
+    "source": "https://obama.org/stories/president-obama-calls-for-public-oversight-of-ai-warns-of-disruption-ahead/",
+    "icon": "/resource-previews/e896df31d050-icon.png"
+  },
+  "https://truthsocial.com/@realDonaldTrump/117270591511950591": {
+    "fetchedAt": "2026-09-21T15:52:33.931Z",
+    "source": "https://truthsocial.com/@realDonaldTrump/117270591511950591",
+    "image": "/resource-previews/438704b647d1-image.png",
+    "icon": "/resource-previews/438704b647d1-icon.png"
+  },
+  "https://rollcall.com/factbase/trump/transcript/donald-trump-speech-ratepayer-protection-pledge-epa-july-23-2026/": {
+    "fetchedAt": "2026-09-21T15:52:35.143Z",
+    "source": "https://rollcall.com/factbase/trump/transcript/donald-trump-speech-ratepayer-protection-pledge-epa-july-23-2026/",
+    "icon": "/resource-previews/fd894d79e7a0-icon.ico"
+  },
+  "https://rollcall.com/factbase/trump/transcript/donald-trump-remarks-technology-leaders-white-house-august-19-2026/": {
+    "fetchedAt": "2026-09-21T15:52:35.635Z",
+    "source": "https://rollcall.com/factbase/trump/transcript/donald-trump-remarks-technology-leaders-white-house-august-19-2026/",
+    "icon": "/resource-previews/0e279152f1e4-icon.ico"
+  },
+  "https://goalkeepers.gatesfoundation.org/report/2026-report/": {
+    "fetchedAt": "2026-09-21T15:52:37.976Z",
+    "source": "https://goalkeepers.gatesfoundation.org/report/2026-report/",
+    "image": "/resource-previews/d11e64c8925f-image.png",
+    "icon": "/resource-previews/d11e64c8925f-icon.webp"
+  },
+  "https://www.gatesnotes.com/a-turbulent-ai-era-and-critical-choices-to-make": {
+    "fetchedAt": "2026-09-21T15:52:38.596Z",
+    "source": "https://www.gatesnotes.com/a-turbulent-ai-era-and-critical-choices-to-make"
+  },
+  "https://www.gatesnotes.com/expanding-access-to-health-care-through-ai": {
+    "fetchedAt": "2026-09-21T15:52:38.918Z",
+    "source": "https://www.gatesnotes.com/expanding-access-to-health-care-through-ai"
+  },
+  "https://www.gatesnotes.com/the-year-ahead-2026": {
+    "fetchedAt": "2026-09-21T15:52:39.125Z",
+    "source": "https://www.gatesnotes.com/the-year-ahead-2026"
   }
 }

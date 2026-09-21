@@ -82,7 +82,7 @@ export const experimentalAxes = {
   },
   transformation: {
     label: 'Scale of transformation',
-    question: 'How radically will AI transform the world?',
+    question: 'How will AI change the world?',
     low: 'Incremental change',
     high: 'Civilizational change',
     meaning:

@@ -16,6 +16,12 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await portrait.click()
   await expect(page).toHaveURL(/\/personas\/control-alarmist$/)
   await expect(page.locator('[data-slot=worldview-map]')).toHaveCount(1)
+  const sources = page.getByRole('region', { name: 'Sources', exact: true })
+  await expect(sources.getByRole('heading', { name: 'Sources' })).toBeVisible()
+  await expect(sources.getByRole('link').first()).toHaveAttribute(
+    'href',
+    'https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/'
+  )
   await expect(
     page.getByRole('region', { name: 'More of your worldview' })
   ).toContainText('Human influence')

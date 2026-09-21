@@ -132,17 +132,6 @@ export function ExperimentalResults({
                 {risk.text}
               </blockquote>
             )}
-            {risk && (
-              <p className='text-xs text-muted-foreground'>
-                {risk.answerNumber
-                  ? `Answer ${risk.answerNumber}`
-                  : 'Based on your answer history'}{' '}
-                ·{' '}
-                {risk.source === 'inferred'
-                  ? 'Inferred estimate · interpretation range, not a statistical confidence interval.'
-                  : 'Stated estimate · a stated range is not an evaluator margin of error.'}
-              </p>
-            )}
           </CardContent>
         </Card>
         <Card>
@@ -196,10 +185,13 @@ export function ExperimentalResults({
             reasoning grade
           </CardDescription>
         </CardHeader>
-        <CardContent className='grid gap-5 md:grid-cols-3'>
+        <CardContent className='grid gap-x-5 gap-y-3 md:grid-cols-3'>
           {experiment?.hinges.length ? (
             experiment.hinges.map((hinge) => (
-              <div key={hinge.id} className='flex flex-col gap-3'>
+              <div
+                key={hinge.id}
+                className='row-span-4 grid grid-rows-subgrid gap-3'
+              >
                 <p className='text-sm font-semibold'>{hinge.label}</p>
                 <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-muted-foreground'>
                   {hinge.evidence.text}

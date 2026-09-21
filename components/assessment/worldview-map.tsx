@@ -41,29 +41,11 @@ export function Map({
     >
       <div className='flex flex-wrap items-start justify-between gap-4'>
         <div>
-          <p className='map-muted text-xs font-medium tracking-widest uppercase'>
-            Experimental · outlook × {definition.label.toLowerCase()}
-          </p>
-          <h2 className='mt-2 text-2xl font-semibold tracking-tight'>
+          <h2 className='text-2xl font-semibold tracking-tight'>
             {definition.question}
           </h2>
         </div>
         <div className='flex flex-wrap gap-3 text-xs'>
-          <MapActions
-            svg={svg}
-            title={
-              subject
-                ? `${subject} · Simulated AI worldview`
-                : 'My AI worldview'
-            }
-            legend={
-              point
-                ? y.interpretation === 'unsettled'
-                  ? 'Point: center of unresolved range · Dashed area: interpretation range'
-                  : 'Point: estimated position · Dashed area: interpretation range'
-                : 'No placement yet · Dashed area: interpretation range'
-            }
-          />
           <div className='map-stat rounded-lg px-3 py-2'>
             <p className='map-muted'>Outlook</p>
             <p className='mt-1 font-semibold tabular-nums'>
@@ -78,10 +60,6 @@ export function Map({
           </div>
         </div>
       </div>
-      <p className='map-muted mt-5 text-sm'>
-        Upward: {definition.high.toLowerCase()}. Downward:{' '}
-        {definition.low.toLowerCase()}.
-      </p>
       <svg
         ref={svg}
         viewBox='0 0 680 395'
@@ -91,13 +69,13 @@ export function Map({
       >
         <defs>
           <linearGradient id={`${id}-field`}>
-            <stop stopColor='var(--map-doom)' stopOpacity='.3' />
+            <stop stopColor='var(--map-doom)' stopOpacity='.55' />
             <stop
               offset='.5'
               stopColor='var(--map-surface)'
               stopOpacity='.05'
             />
-            <stop offset='1' stopColor='var(--map-bloom)' stopOpacity='.32' />
+            <stop offset='1' stopColor='var(--map-bloom)' stopOpacity='.55' />
           </linearGradient>
           <linearGradient id={`${id}-axis`}>
             <stop stopColor='var(--map-doom)' />
@@ -118,10 +96,12 @@ export function Map({
           y={plot.top}
           width={plot.width}
           height={plot.height}
-          rx='12'
+          rx='6'
           fill={`url(#${id}-field)`}
+          stroke='var(--map-grid)'
+          strokeOpacity='.55'
         />
-        {[0, 0.25, 0.5, 0.75, 1].map((value) => (
+        {[0.25, 0.5, 0.75].map((value) => (
           <g
             key={value}
             stroke='var(--map-grid)'
@@ -381,14 +361,29 @@ export function Map({
           Dashed area: interpretation range, including missing evidence
         </span>
       </figcaption>
-      <p className='map-muted mt-4 text-xs leading-relaxed'>
-        Across: your expressed Doom–Bloom outlook. Up:{' '}
-        {definition.label.toLowerCase()}. Coordinates describe beliefs, not
-        reasoning quality or event probabilities.
-        {history.length > 0
-          ? ' Small numbered dots show earlier answers; gaps remain unplaced.'
-          : ''}
-      </p>
+      <div className='mt-4 flex items-end justify-between gap-4'>
+        <p className='map-muted text-xs leading-relaxed'>
+          Across: your expressed Doom–Bloom outlook. Up:{' '}
+          {definition.label.toLowerCase()}. Coordinates describe beliefs, not
+          reasoning quality or event probabilities.
+          {history.length > 0
+            ? ' Small numbered dots show earlier answers; gaps remain unplaced.'
+            : ''}
+        </p>
+        <MapActions
+          svg={svg}
+          title={
+            subject ? `${subject} · Simulated AI worldview` : 'My AI worldview'
+          }
+          legend={
+            point
+              ? y.interpretation === 'unsettled'
+                ? 'Point: center of unresolved range · Dashed area: interpretation range'
+                : 'Point: estimated position · Dashed area: interpretation range'
+              : 'No placement yet · Dashed area: interpretation range'
+          }
+        />
+      </div>
       <p className='sr-only'>{description}</p>
     </figure>
   )

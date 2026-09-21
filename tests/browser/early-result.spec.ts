@@ -41,7 +41,9 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
     .getByRole('region', { name: 'More of your worldview' })
     .screenshot({ path: testInfo.outputPath('worldview-details.png') })
   expect(operations).toEqual(['answer'])
-  await page.getByRole('button', { name: 'Keep exploring' }).click()
+  await page
+    .getByRole('button', { name: 'Continue answering questions' })
+    .click()
   await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
   expect(operations).toEqual(['answer', 'continue'])
 })

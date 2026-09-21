@@ -2,6 +2,7 @@ export const people = [
   {
     id: 'control-alarmist',
     name: 'Eliezer Yudkowsky',
+    xUrl: 'https://x.com/ESYudkowsky',
     avatar: '/personas/yudkowsky.jpg',
     short: 'Yudkowsky',
     initials: 'EY',
@@ -12,6 +13,7 @@ export const people = [
   {
     id: 'cautious-builder',
     name: 'Sam Altman',
+    xUrl: 'https://x.com/sama',
     avatar: '/personas/altman.jpg',
     short: 'Altman',
     initials: 'SA',
@@ -22,6 +24,7 @@ export const people = [
   {
     id: 'abundance-advocate',
     name: 'Marc Andreessen',
+    xUrl: 'https://x.com/pmarca',
     avatar: '/personas/andreessen.jpg',
     short: 'Andreessen',
     initials: 'MA',
@@ -32,6 +35,7 @@ export const people = [
   {
     id: 'empirical-skeptic',
     name: 'Gary Marcus',
+    xUrl: 'https://x.com/GaryMarcus',
     avatar: '/personas/marcus.jpg',
     short: 'Marcus',
     initials: 'GM',
@@ -42,6 +46,7 @@ export const people = [
   {
     id: 'practical-optimist',
     name: 'Andrew Ng',
+    xUrl: 'https://x.com/AndrewYNg',
     avatar: '/personas/ng.jpg',
     short: 'Ng',
     initials: 'AN',
@@ -53,6 +58,7 @@ export const people = [
   {
     id: 'world-model-optimist',
     name: 'Yann LeCun',
+    xUrl: 'https://x.com/ylecun',
     avatar: '/personas/lecun.jpg',
     short: 'LeCun',
     initials: 'YL',
@@ -64,6 +70,7 @@ export const people = [
   {
     id: 'concerned-pioneer',
     name: 'Geoffrey Hinton',
+    xUrl: 'https://x.com/geoffreyhinton',
     avatar: '/personas/hinton.jpg',
     short: 'Hinton',
     initials: 'GH',
@@ -75,6 +82,7 @@ export const people = [
   {
     id: 'bubble-critic',
     name: 'Ed Zitron',
+    xUrl: 'https://x.com/edzitron',
     avatar: '/personas/zitron.jpg',
     short: 'Zitron',
     initials: 'EZ',
@@ -86,6 +94,7 @@ export const people = [
   {
     id: 'democratic-moratorium',
     name: 'Bernie Sanders',
+    xUrl: 'https://x.com/SenSanders',
     short: 'Sanders',
     initials: 'BS',
     stance: 'Let the public decide.',
@@ -97,6 +106,7 @@ export const people = [
   {
     id: 'competitive-decentralist',
     name: 'David Sacks',
+    xUrl: 'https://x.com/DavidSacks',
     short: 'Sacks',
     initials: 'DS',
     stance: 'Competition over gatekeepers.',
@@ -108,6 +118,7 @@ export const people = [
   {
     id: 'scientific-steward',
     name: 'Demis Hassabis',
+    xUrl: 'https://x.com/demishassabis',
     short: 'Hassabis',
     initials: 'DH',
     stance: 'A new age of discovery.',
@@ -119,6 +130,7 @@ export const people = [
   {
     id: 'coordinated-scaler',
     name: 'Sholto Douglas',
+    xUrl: 'https://x.com/_sholtodouglas',
     short: 'Douglas',
     initials: 'SD',
     stance: 'As fast as safety allows.',
@@ -130,6 +142,7 @@ export const people = [
   {
     id: 'alignment-maximalist',
     name: 'Roon',
+    xUrl: 'https://x.com/tszzl',
     short: 'Roon',
     initials: 'R',
     stance: 'Pace the frontier. Solve alignment.',
@@ -141,6 +154,7 @@ export const people = [
   {
     id: 'efficient-intelligence-builder',
     name: 'Noam Shazeer',
+    xUrl: 'https://x.com/NoamShazeer',
     short: 'Shazeer',
     initials: 'NS',
     stance: 'Make intelligence work better.',
@@ -152,6 +166,7 @@ export const people = [
   {
     id: 'reasoning-frontier-builder',
     name: 'Noam Brown',
+    xUrl: 'https://x.com/polynoamial',
     short: 'Brown',
     initials: 'NB',
     stance: 'Discover more. Test carefully.',
@@ -163,6 +178,7 @@ export const people = [
   {
     id: 'learning-bottleneck-investigator',
     name: 'Dwarkesh Patel',
+    xUrl: 'https://x.com/dwarkesh_sp',
     short: 'Dwarkesh',
     initials: 'DP',
     stance: 'What happens when AI learns on the job?',
@@ -174,6 +190,7 @@ export const people = [
   {
     id: 'frontier-pacer',
     name: 'Dario Amodei',
+    xUrl: 'https://x.com/DarioAmodei',
     short: 'Amodei',
     initials: 'DA',
     stance: 'Earn the beneficial future.',
@@ -185,6 +202,7 @@ export const people = [
   {
     id: 'abundance-risk-taker',
     name: 'Elon Musk',
+    xUrl: 'https://x.com/elonmusk',
     short: 'Musk',
     initials: 'EM',
     stance: 'Build toward extraordinary abundance.',
@@ -196,6 +214,7 @@ export const people = [
   {
     id: 'open-science-realist',
     name: 'Nathan Lambert',
+    xUrl: 'https://x.com/natolambert',
     short: 'Lambert',
     initials: 'NL',
     stance: 'Build openly. Question the takeoff story.',
@@ -207,6 +226,7 @@ export const people = [
   {
     id: 'scientist-ai-advocate',
     name: 'Yoshua Bengio',
+    xUrl: 'https://x.com/Yoshua_Bengio',
     short: 'Bengio',
     initials: 'YB',
     stance: 'Understand the world without pursuing power.',
@@ -217,6 +237,7 @@ export const people = [
   {
     id: 'safe-superintelligence-researcher',
     name: 'Ilya Sutskever',
+    xUrl: 'https://x.com/ilyasut',
     short: 'Sutskever',
     initials: 'IS',
     stance: 'Make superintelligence safe.',
@@ -228,6 +249,7 @@ export const people = [
   {
     id: 'hands-on-agent-builder',
     name: 'Andrej Karpathy',
+    xUrl: 'https://x.com/karpathy',
     short: 'Karpathy',
     initials: 'AK',
     stance: 'Build it. See where it breaks.',
@@ -239,6 +261,7 @@ export const people = [
   {
     id: 'human-centered-spatial-builder',
     name: 'Fei-Fei Li',
+    xUrl: 'https://x.com/drfeifei',
     short: 'Fei-Fei Li',
     initials: 'FL',
     stance: 'Keep people at the center.',
@@ -250,6 +273,7 @@ export const people = [
   {
     id: 'digital-succession-optimist',
     name: 'Richard Sutton',
+    xUrl: 'https://x.com/RichardSSutton',
     short: 'Sutton',
     initials: 'RS',
     stance: 'Intelligence can go beyond us.',
@@ -261,6 +285,7 @@ export const people = [
   {
     id: 'community-ai-critic',
     name: 'Timnit Gebru',
+    xUrl: 'https://x.com/timnitGebru',
     short: 'Gebru',
     initials: 'TG',
     stance: 'Build for communities, not empires.',
@@ -272,6 +297,7 @@ export const people = [
   {
     id: 'normal-technology-realist',
     name: 'Arvind Narayanan',
+    xUrl: 'https://x.com/random_walker',
     short: 'Narayanan',
     initials: 'AN',
     stance: 'Look at how technology actually spreads.',
@@ -283,6 +309,7 @@ export const people = [
   {
     id: 'pro-worker-economist',
     name: 'Daron Acemoglu',
+    xUrl: 'https://x.com/DAcemogluMIT',
     short: 'Acemoglu',
     initials: 'DA',
     stance: 'Make progress work for workers.',
@@ -294,6 +321,7 @@ export const people = [
   {
     id: 'personal-superintelligence-builder',
     name: 'Mark Zuckerberg',
+    xUrl: 'https://x.com/finkd',
     short: 'Zuckerberg',
     initials: 'MZ',
     stance: 'Put powerful AI in people’s hands.',
@@ -305,6 +333,7 @@ export const people = [
   {
     id: 'provable-control-advocate',
     name: 'Stuart Russell',
+    xUrl: null,
     short: 'Russell',
     initials: 'SR',
     stance: 'Prove it stays under human control.',
@@ -316,6 +345,7 @@ export const people = [
   {
     id: 'language-hype-critic',
     name: 'Emily M. Bender',
+    xUrl: 'https://x.com/emilymbender',
     short: 'Bender',
     initials: 'EB',
     stance: 'Fluent language is not understanding.',
@@ -326,6 +356,7 @@ export const people = [
   {
     id: 'tool-ai-moratorium',
     name: 'Max Tegmark',
+    xUrl: 'https://x.com/tegmark',
     short: 'Tegmark',
     initials: 'MT',
     stance: 'Build useful tools. Stop the unsafe race.',
@@ -337,6 +368,7 @@ export const people = [
   {
     id: 'open-frontier-idealist',
     name: 'Liang Wenfeng',
+    xUrl: null,
     short: 'Liang',
     initials: 'LW',
     stance: 'Original research, shared openly.',
@@ -348,6 +380,7 @@ export const people = [
   {
     id: 'democratic-ai-steward',
     name: 'Barack Obama',
+    xUrl: 'https://x.com/BarackObama',
     short: 'Obama',
     initials: 'BO',
     stance: 'Let people shape the future.',
@@ -359,6 +392,7 @@ export const people = [
   {
     id: 'america-first-ai-booster',
     name: 'Donald Trump',
+    xUrl: 'https://x.com/realDonaldTrump',
     short: 'Trump',
     initials: 'DT',
     stance: 'Build big. America must win.',
@@ -370,6 +404,7 @@ export const people = [
   {
     id: 'equitable-ai-philanthropist',
     name: 'Bill Gates',
+    xUrl: 'https://x.com/BillGates',
     short: 'Gates',
     initials: 'BG',
     stance: 'Make breakthroughs reach everyone.',
@@ -381,6 +416,7 @@ export const people = [
   {
     id: 'anti-doomer',
     name: 'Jensen Huang',
+    xUrl: null,
     short: 'Huang',
     initials: 'JH',
     stance: 'Reject the doomer story. Keep building.',
