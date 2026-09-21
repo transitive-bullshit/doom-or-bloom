@@ -1,6 +1,7 @@
 import 'server-only'
 import { people } from './people'
 import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import { cache } from 'react'
 import { resultSchema } from '@/lib/assessment/schema'
 import { personas } from '@/lib/journeys/catalog'
@@ -10,7 +11,10 @@ import { personaAssessment } from '@/lib/journeys/persona-assessment'
 const loadSuite = cache(
   async () =>
     JSON.parse(
-      await readFile('eval/development/live-persona-journeys.json', 'utf8')
+      await readFile(
+        path.join(process.cwd(), 'eval/development/live-persona-journeys.json'),
+        'utf8'
+      )
     ) as JourneySuite
 )
 

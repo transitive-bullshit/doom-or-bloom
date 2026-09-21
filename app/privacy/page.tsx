@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import { serverEnv } from '@/lib/server/env'
 export default function Privacy() {
-  const analytics = process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === 'true'
+  const { analytics, posthog } = serverEnv()
   return (
     <article className='mx-auto w-full max-w-2xl space-y-7 px-6 py-14 text-sm leading-relaxed'>
       <h1 className='text-3xl font-semibold tracking-tight'>Privacy</h1>
@@ -36,15 +37,13 @@ export default function Privacy() {
       </p>
       <h2 className='text-lg font-medium'>Optional measurement</h2>
       <p>
-        Analytics are{' '}
-        {analytics
-          ? 'configured as enabled in this build'
-          : 'disabled in this build'}
-        . When enabled, Vercel measures page traffic and PostHog receives
-        explicit assessment events. We exclude answer text, excerpts, full
-        reports, free-form clarification, and URL query strings or hashes.
-        Session replay, heatmaps, autocapture, automatic exception collection,
-        and person profiles are disabled.
+        Vercel page analytics are {analytics ? 'enabled' : 'disabled'} in this
+        build. PostHog assessment analytics are{' '}
+        {posthog ? 'enabled' : 'disabled'}. When enabled, Vercel measures page
+        traffic and PostHog receives explicit assessment events. We exclude
+        answer text, excerpts, full reports, free-form clarification, and URL
+        query strings or hashes. Session replay, heatmaps, autocapture,
+        automatic exception collection, and person profiles are disabled.
       </p>
       <p>
         A random per-assessment identifier links events across resumed visits

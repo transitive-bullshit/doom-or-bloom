@@ -27,3 +27,26 @@ test('fixture provider requires no secret and identifies itself', async () => {
   expect(result.model).toBe('fixture-v1')
   expect(result.usage.input_tokens).toBe(0)
 })
+
+test('Vercel analytics is independent of PostHog configuration', () => {
+  vi.stubEnv('ASSESSMENT_PROVIDER', 'live')
+  vi.stubEnv('NEXT_PUBLIC_ANALYTICS_ENABLED', 'true')
+  vi.stubEnv('NEXT_PUBLIC_POSTHOG_KEY', 'test-project')
+  vi.stubEnv('NEXT_PUBLIC_POSTHOG_HOST', 'https://example.com')
+  vi.stubEnv('POSTHOG_IP_DISPOSAL_CONFIRMED', 'false')
+  try {
+    expect(serverEnv()).toMatchObject({ analytics: true, posthog: false })
+    vi.stubEnv('POSTHOG_IP_DISPOSAL_CONFIRMED', 'true')
+    expect(serverEnv()).toMatchObject({ analytics: true, posthog: true })
+    vi.stubEnv('NEXT_PUBLIC_POSTHOG_HOST', '')
+    expect(serverEnv()).toMatchObject({ analytics: true, posthog: false })
+    vi.stubEnv('NEXT_PUBLIC_ANALYTICS_ENABLED', 'false')
+    expect(serverEnv()).toMatchObject({ analytics: false, posthog: false })
+    vi.stubEnv('NEXT_PUBLIC_ANALYTICS_ENABLED', 'true')
+    vi.stubEnv('NODE_ENV', 'test')
+    vi.stubEnv('ASSESSMENT_PROVIDER', 'fixture')
+    expect(serverEnv()).toMatchObject({ analytics: false, posthog: false })
+  } finally {
+    vi.unstubAllEnvs()
+  }
+})

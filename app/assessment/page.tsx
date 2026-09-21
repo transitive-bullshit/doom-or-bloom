@@ -12,7 +12,7 @@ export default function Page() {
         fixtureMode={env.provider === 'fixture'}
         debugDefault={env.debug}
         debugAvailable={env.debug}
-        analyticsEnabled={env.analytics}
+        analyticsEnabled={env.posthog}
         analyticsCatalog={{
           prompts: Object.fromEntries(
             bundle.prompts.map((p) => [p.id, p.family])

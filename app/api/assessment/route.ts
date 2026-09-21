@@ -25,6 +25,19 @@ export async function POST(request: Request) {
       )
     const input = requestSchema.parse(await readBoundedJson(request))
     const env = serverEnv()
+    if (env.provider === 'live' && !process.env.TYPESAFE_API_KEY?.trim()) {
+      console.error(
+        'Assessment configuration error: TYPESAFE_API_KEY is missing'
+      )
+      return Response.json(
+        {
+          error:
+            'The evaluator is not configured. Your answer is saved; please try again later.',
+          code: 'evaluator_not_configured'
+        },
+        { status: 503, headers }
+      )
+    }
     const provider =
       env.provider === 'fixture'
         ? createFixtureProvider()

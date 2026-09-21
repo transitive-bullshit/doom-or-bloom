@@ -164,7 +164,9 @@ test('missing live key preserves the draft and does not consume a semantic attem
     .fill('A useful answer preserved without credentials.')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(
-    page.getByText('Add TYPESAFE_API_KEY to .env.local to run real assessments')
+    page.getByText(
+      'The evaluator is not configured. Your answer is saved; please try again later.'
+    )
   ).toBeVisible()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
     'A useful answer preserved without credentials.'

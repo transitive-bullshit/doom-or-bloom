@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "dev": "portless run --name doom-or-bloom next dev --hostname 127.0.0.1",
-    "build": "next build --webpack",
+    "build": "next build --webpack && node scripts/check-production-traces.mjs",
     "start": "next start",
     "test": "run-s test:*",
     "test:format": "oxfmt --check",

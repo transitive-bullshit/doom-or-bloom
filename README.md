@@ -84,7 +84,7 @@ Freezing rejects drafts and hashes every asset. Modifying a frozen file invalida
 
 ## Optional analytics
 
-Analytics is off by default and always disabled in fixture mode. `NEXT_PUBLIC_ANALYTICS_ENABLED=true` enables the optional traffic and explicit-event adapters. PostHog also needs `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST`, and `POSTHOG_IP_DISPOSAL_CONFIRMED=true` after confirming project-level IP disposal in PostHog.
+Analytics is off by default and always disabled in fixture mode. `NEXT_PUBLIC_ANALYTICS_ENABLED=true` enables the optional traffic and explicit-event adapters. PostHog also needs `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST`, and `POSTHOG_IP_DISPOSAL_CONFIRMED=true` after confirming project-level IP disposal in PostHog. Missing PostHog configuration disables only PostHog; Vercel page analytics remains independent.
 
 Events use allowlisted identifiers and coarse buckets. Answers, excerpts, free-form clarification, URL queries/hashes, replay, autocapture and person profiles are excluded. A random per-assessment ID links resumed visits and rotates on restart. See the [privacy page](app/privacy/page.tsx) and [measurement contract](docs/MEASUREMENT.md). Deployment is a separate task.
 
