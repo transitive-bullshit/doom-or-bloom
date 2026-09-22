@@ -119,6 +119,13 @@ export const publicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'OpenAI: Building standards for the next phase of AI',
+        url: 'https://openai.com/index/building-standards-next-phase-ai/',
+        publishedAt: '2026-09-21',
+        summary:
+          'OpenAI-authored institutional context, not an Altman-authored statement. Proposes US-led international technical standards for frontier AI and automated research, including shared evaluations, human oversight and incident reporting. Says fully autonomous recursive self-improvement is not happening today and should not be pursued until safe, with human control and informed democratic choices governing whether to proceed. Presents AI-assisted alignment and broad access to benefits as goals, while distinguishing technical standards from licensing or mandatory prerelease approval. Supports the builder persona’s emphasis on safety pacing and international cooperation without attributing every institutional proposal personally to Altman.'
+      },
+      {
         title: 'Reflections',
         url: 'https://blog.samaltman.com/reflections',
         publishedAt: '2025-01-05',
