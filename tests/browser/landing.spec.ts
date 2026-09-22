@@ -6,14 +6,15 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
 }) => {
   await page.goto('/')
   await expect(
-    page.getByRole('heading', { name: 'Where do you land?' })
+    page.getByRole('heading', { name: 'A world of possible futures.' })
   ).toBeVisible()
   const portrait = page.getByRole('link', {
     name: 'View Eliezer Yudkowsky results'
   })
   await expect(portrait).not.toHaveAttribute('title')
   await portrait.hover()
-  await expect(page.getByRole('tooltip')).toHaveText('Eliezer Yudkowsky')
+  await expect(portrait.locator('span')).toHaveText('Eliezer Yudkowsky')
+  await expect(portrait.locator('span')).toHaveCSS('opacity', '1')
   await portrait.click()
   await expect(page).toHaveURL(/\/personas\/esyudkowsky$/)
   await expect(page.locator('[data-slot=worldview-map]')).toHaveCount(1)
@@ -50,7 +51,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await expect(answer).toHaveValue('A draft that should survive navigation.')
   await page.goBack()
   await expect(
-    page.getByRole('heading', { name: 'Where do you land?' })
+    page.getByRole('heading', { name: 'A world of possible futures.' })
   ).toBeVisible()
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
@@ -68,7 +69,7 @@ test('featured portraits stay square and inside their circular frames', async ({
   for (const width of [1280, 390]) {
     await page.setViewportSize({ width, height: 900 })
     await page.goto('/')
-    const portraits = page.locator('.landing-map-point')
+    const portraits = page.locator('.study-point')
     await expect(portraits.first()).toBeVisible()
     await portraits.evaluateAll(async (elements) => {
       await Promise.all(
@@ -202,10 +203,10 @@ test('new safety researchers have live results, portraits and grounded sources',
   ).toBeVisible()
   await page.goto('/')
   await expect(
-    page.locator('a.landing-map-point[href="/personas/so8res"]')
+    page.locator('a.study-point[href="/personas/so8res"]')
   ).toBeVisible()
   await expect(
-    page.locator('a.landing-map-point[href="/personas/ryangreenblatt"]')
+    page.locator('a.study-point[href="/personas/ryangreenblatt"]')
   ).toBeVisible()
 })
 
@@ -273,7 +274,7 @@ test('new worldview writers have live journeys and source-grounded persona pages
   for (const person of people) {
     await expect(
       page.locator(
-        `a.landing-map-point[href="/personas/${personaIdentity(person.id).slug}"]`
+        `a.study-point[href="/personas/${personaIdentity(person.id).slug}"]`
       )
     ).toBeVisible()
   }

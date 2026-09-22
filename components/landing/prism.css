@@ -1,0 +1,222 @@
+.map-lab-stage {
+  padding: 32px 5vw 110px;
+}
+.map-study {
+  --study-ink: var(--prism-text);
+  --study-muted: var(--prism-muted);
+  --study-surface: var(--prism-surface);
+  --study-grid: var(--prism-grid);
+  --study-chart-outline: var(--prism-border);
+  --study-portrait-ring: var(--prism-portrait-ring);
+  --study-shadow: var(--prism-shadow);
+  --study-field: var(--prism-field);
+  color: var(--study-ink);
+  background: var(--study-surface);
+  max-width: 1320px;
+  margin: auto;
+  padding: 44px 54px 26px;
+  border-radius: 4px;
+}
+.study-heading {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.study-kicker {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  margin-bottom: 16px;
+  color: var(--study-muted);
+}
+.study-heading h1 {
+  font-size: clamp(40px, 5.2vw, 76px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.study-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+  font-size: 14px;
+}
+.study-intro p {
+  color: var(--study-muted);
+}
+.study-cta {
+  display: inline-flex;
+  padding: 13px 20px;
+  border-radius: 30px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 12px;
+}
+.study-axis-top,
+.study-axis-bottom {
+  text-align: center;
+  font-size: 11px;
+  color: var(--study-muted);
+  letter-spacing: 0.025em;
+}
+.study-axis-top {
+  margin-bottom: 36px;
+}
+.study-axis-bottom {
+  margin-top: 36px;
+}
+/* The colored rectangle is exactly the 0–100% coordinate area. */
+.study-chart {
+  position: relative;
+  height: 380px;
+  margin: 0 64px;
+  outline: 1px solid var(--study-chart-outline);
+  background: var(--study-field);
+}
+.study-cross-x,
+.study-cross-y {
+  position: absolute;
+  pointer-events: none;
+  background: var(--study-grid);
+}
+.study-cross-x {
+  top: 50%;
+  height: 1px;
+  left: 0;
+  right: 0;
+}
+.study-cross-y {
+  left: 50%;
+  width: 1px;
+  top: 0;
+  bottom: 0;
+}
+.study-doom,
+.study-bloom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  font-weight: 500;
+}
+.study-doom {
+  right: calc(100% + 28px);
+}
+.study-bloom {
+  left: calc(100% + 28px);
+}
+.study-point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  display: block;
+  border-radius: 50%;
+  z-index: 2;
+  border: 2px solid var(--study-portrait-ring);
+  background: var(--study-surface);
+  box-shadow: 0 2px 8px var(--study-shadow);
+  /* Frequent scanning: dimming and names respond immediately. */
+}
+.study-point img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.study-point span {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  padding: 3px 6px;
+  background: var(--study-surface);
+  border-radius: 3px;
+  pointer-events: none;
+  opacity: 0;
+}
+.study-point[data-highlighted='true'] {
+  z-index: 10;
+}
+.study-point[data-highlighted='true'] span {
+  opacity: 1;
+}
+.map-study[data-highlighting='true']
+  .study-point:not([data-highlighted='true']) {
+  opacity: 0.25;
+}
+.map-study a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+.study-legend {
+  margin: 32px 0 0;
+  border-top-color: var(--border);
+}
+.study-note {
+  font-size: 10px;
+  color: var(--study-muted);
+  margin-top: 12px;
+}
+@media (max-width: 900px) {
+  .map-lab-stage {
+    padding: 16px 16px 100px;
+  }
+  .map-study {
+    padding: 28px 20px;
+  }
+}
+@media (max-width: 520px) {
+  .map-lab-stage {
+    padding: 8px 0 100px;
+  }
+  .map-study {
+    padding: 26px 12px;
+  }
+  .study-heading {
+    padding: 0 12px;
+  }
+  .study-heading h1 {
+    font-size: 36px;
+  }
+  .study-intro {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .study-chart {
+    height: 310px;
+    margin: 0 48px;
+  }
+  .study-point {
+    width: 30px;
+    height: 30px;
+  }
+  .study-doom,
+  .study-bloom {
+    font-size: 10px;
+  }
+  .study-doom {
+    right: calc(100% + 19px);
+  }
+  .study-bloom {
+    left: calc(100% + 19px);
+  }
+  .study-point span {
+    max-width: 150px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+/* Only pointer hover gets motion; focus and touch remain immediate. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .map-study:not(:has(:focus-visible)) .study-point {
+    transition: transform 80ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .map-study:not(:has(:focus-visible)) .study-point[data-highlighted='true'] {
+    transform: translate(-50%, -50%) scale(1.08);
+    transition-duration: 100ms;
+  }
+}

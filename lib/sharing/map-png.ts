@@ -18,6 +18,7 @@ export async function mapPng(
       'fill',
       'stroke',
       'stop-color',
+      'stop-opacity',
       'font-size',
       'font-weight',
       'font-family',
@@ -27,7 +28,9 @@ export async function mapPng(
       // Export at a fixed size, independent of responsive on-screen label scaling.
       if (
         property === 'font-size' &&
-        element.matches('.map-axis-tick, .map-axis-caption, .map-pole')
+        element.matches(
+          '.map-axis-tick, .map-axis-caption, .map-pole, .prism-axis-label, .prism-pole'
+        )
       ) {
         value = `${element.getAttribute('font-size') ?? 12}px`
       }

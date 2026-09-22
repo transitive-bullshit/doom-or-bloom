@@ -181,7 +181,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     } else {
       await expect(map.getByText('Your view', { exact: true })).toBeVisible()
       const area = map.locator('rect[stroke-dasharray="6 5"]')
-      expect(Number(await area.getAttribute('width'))).toBeGreaterThan(400)
+      expect(Number(await area.getAttribute('width'))).toBeCloseTo(380)
     }
     if (unplaced === false) {
       const bookmark = page.getByRole('link', {

@@ -1,0 +1,61 @@
+.prism-theme {
+  --prism-surface: #fbfaf6;
+  --prism-text: var(--foreground);
+  --prism-muted: var(--muted-foreground);
+  --prism-grid: #25392b35;
+  --prism-border: #25392b22;
+  --prism-portrait-ring: #fbfaf6;
+  --prism-shadow: #22332220;
+  --prism-coral: #ff786a;
+  --prism-peach: #ffb88b;
+  --prism-lime: #e6ff80;
+  --prism-mint: #aaffbd;
+  --prism-violet: #bcb1ff;
+  --prism-veil-opacity: 0.5;
+  --prism-field:
+    linear-gradient(0deg, rgb(188 177 255 / 0.5), transparent),
+    linear-gradient(
+      110deg,
+      var(--prism-coral),
+      var(--prism-peach) 30%,
+      var(--prism-lime) 67%,
+      var(--prism-mint)
+    );
+}
+.dark .prism-theme {
+  --prism-surface: var(--background);
+  --prism-grid: #f2eee238;
+  --prism-border: #f2eee230;
+  --prism-portrait-ring: #e4dfcf;
+  --prism-shadow: #00000060;
+  --prism-coral: #8e3935;
+  --prism-peach: #866046;
+  --prism-lime: #637737;
+  --prism-mint: #27634d;
+  --prism-violet: #6657a9;
+  --prism-veil-opacity: 0.44;
+  --prism-field:
+    linear-gradient(0deg, rgb(102 87 169 / 0.44), transparent),
+    linear-gradient(
+      110deg,
+      var(--prism-coral),
+      var(--prism-peach) 30%,
+      var(--prism-lime) 67%,
+      var(--prism-mint)
+    );
+}
+.worldview-map.prism-theme {
+  --map-surface: var(--prism-surface);
+  --map-text: var(--prism-text);
+  --map-muted: var(--prism-muted);
+  --map-doom: var(--prism-text);
+  --map-bloom: var(--prism-text);
+  background: var(--prism-surface);
+  color: var(--prism-text);
+}
+.worldview-map .prism-axis-label {
+  font-size: calc(12px * var(--map-label-scale, 1));
+}
+.worldview-map .prism-pole {
+  font-size: calc(14px * var(--map-label-scale, 1));
+}

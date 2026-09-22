@@ -7,6 +7,7 @@ import { SiteActions } from '@/components/site-actions'
 import { SiteAnalytics } from '@/components/analytics'
 import { serverEnv } from '@/lib/server/env'
 import './globals.css'
+import '@/components/worldview/prism-theme.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://doom-or-bloom.com'),
