@@ -16,7 +16,7 @@ I built this to explore the field’s voices and help people untangle conflictin
 
 Start with **“What do you think AI means for our future—and why?”** The engine interprets your answer, identifies what remains unclear, and selects the authored follow-up most likely to add useful information with the least repetition and effort.
 
-Results unlock with enough supported coverage, potentially after one detailed answer; interviews stop at 12 questions. Your map links back to your answers, preserving uncertainty and missing evidence.
+Results unlock with enough supported coverage, potentially after one detailed answer; most interviews last between 3-5 questions. Your results link back to your answers, preserving uncertainty and salient excerpts used as evidence.
 
 ## Powered by TypeSafe’s Jev
 
