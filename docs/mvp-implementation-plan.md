@@ -925,3 +925,11 @@ The experiment is an additive `worldview-v2` field (historical `worldview-v1` re
 - [x] Use theme-aware toasts for map exports, unexpected assessment errors and share-card failures; retain persistent recovery and storage notices inline.
 - [x] Remove editorial feedback forms, write API and storage implementation from all environments; retain read-only content inspectors and historical notes.
 - [x] Verify the 15 assessment, map and content-inspector browser scenarios across focused runs, two local-access unit tests, TypeScript and lint. Update stale assessment assertions for the current UI.
+
+### 2026-09-22 — Result navigation and chart clarity
+
+- [x] Move result-map actions to the card header; keep interpretation-window strokes and hatching readable against the vivid field in dark mode and PNG exports.
+- [x] Round chart fields to approximately 8px and preserve the light-theme grid and boundary colors across themes and exports.
+- [x] Open persona transcripts by default; add un-underlined answer hash links that reveal and smoothly scroll to the correct answer, with keyboard focus and reduced-motion support.
+- [x] Refine the homepage headline and primary CTA, and shorten the assessment placeholder.
+- [x] Cover answer navigation, repeated activation, keyboard activation, hash reload, dark chart/PNG contrast, and existing assessment behavior with browser regressions; verify TypeScript and lint.

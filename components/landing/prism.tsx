@@ -88,11 +88,11 @@ export function Prism({ examples }: VariantProps) {
     >
       <header className='study-heading'>
         <p className='study-kicker'>THE AI WORLDVIEW MAP</p>
-        <h1>A world of possible futures.</h1>
+        <h1>A world of possible futures</h1>
         <div className='study-intro'>
           <p>Where do you land?</p>
           <Link className='study-cta' href='/assessment'>
-            Answer the first question
+            Map your own worldview
           </Link>
         </div>
       </header>

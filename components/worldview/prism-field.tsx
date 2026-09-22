@@ -24,10 +24,12 @@ const themeColors: PrismColors = {
 export function PrismField({
   id,
   plot,
+  radius = 8,
   colors = themeColors
 }: {
   id: string
   plot: { left: number; top: number; width: number; height: number }
+  radius?: number
   colors?: PrismColors
 }) {
   const { left, top, width, height } = plot
@@ -61,6 +63,7 @@ export function PrismField({
         y={top}
         width={width}
         height={height}
+        rx={radius}
         fill={`url(#${id}-field)`}
       />
       <rect
@@ -68,6 +71,7 @@ export function PrismField({
         y={top}
         width={width}
         height={height}
+        rx={radius}
         fill={`url(#${id}-veil)`}
         stroke={colors.border}
       />

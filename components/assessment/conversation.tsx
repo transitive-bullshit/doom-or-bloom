@@ -2,6 +2,11 @@
 
 import { useEffect, useId, useRef, useState } from 'react'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
+import {
+  AnswerTarget,
+  useAnswerNavigation,
+  useAnswerDisclosure
+} from './answer-navigation'
 import { AnswerResult } from './answer-result'
 import { Check, Copy, CircleAlert } from 'lucide-react'
 import type { ConversationTurn } from '@/lib/assessment/conversation'
@@ -16,15 +21,18 @@ import { Button } from '@/components/ui/button'
 
 export function AnswerDisclosure({
   text,
-  label
+  label,
+  answerNumber
 }: {
   text: string
   label: string
+  answerNumber?: number
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useAnswerDisclosure(false, answerNumber ?? 0)
   const long = text.length > 360 || text.split('\n').length > 4
-  if (!long) return <p className='whitespace-pre-wrap wrap-anywhere'>{text}</p>
-  return (
+  const content = !long ? (
+    <p className='whitespace-pre-wrap wrap-anywhere'>{text}</p>
+  ) : (
     <Collapsible open={open} onOpenChange={setOpen}>
       <CollapsibleTrigger asChild>
         <Button
@@ -51,6 +59,11 @@ export function AnswerDisclosure({
         </div>
       </CollapsibleContent>
     </Collapsible>
+  )
+  return answerNumber ? (
+    <AnswerTarget number={answerNumber}>{content}</AnswerTarget>
+  ) : (
+    content
   )
 }
 
@@ -107,6 +120,7 @@ function CopyAnswer({ text, label }: { text: string; label: string }) {
 }
 
 export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
+  const navigation = useAnswerNavigation()
   return turn.replies.map((reply, index) => (
     <Message
       key={reply.id}
@@ -125,6 +139,11 @@ export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
               label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
             />
             <AnswerDisclosure
+              answerNumber={
+                reply.earlier
+                  ? undefined
+                  : (navigation?.answerIds.indexOf(reply.id) ?? -1) + 1
+              }
               text={reply.text}
               label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
             />

@@ -67,7 +67,7 @@ function Plot({ data }: { data?: CardData }) {
           patternUnits='userSpaceOnUse'
           patternTransform='rotate(35)'
         >
-          <line y2='9' stroke={colors.text} strokeOpacity='.08' />
+          <line y2='9' stroke='#25392b' strokeOpacity='.08' />
         </pattern>
       </defs>
       <PrismField
@@ -80,8 +80,8 @@ function Plot({ data }: { data?: CardData }) {
           mint: '#aaffbd',
           violet: '#bcb1ff',
           veilOpacity: 0.5,
-          grid: '#f2eee238',
-          border: '#f2eee230'
+          grid: '#25392b35',
+          border: '#25392b22'
         }}
       />
       <text
@@ -128,7 +128,7 @@ function Plot({ data }: { data?: CardData }) {
           height={Math.max(2, (yr[1] - yr[0]) * height)}
           rx='4'
           fill='url(#range)'
-          stroke={colors.text}
+          stroke='#25392b'
           strokeOpacity='.65'
           strokeWidth='1.5'
           strokeDasharray='6 5'

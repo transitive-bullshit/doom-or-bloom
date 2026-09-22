@@ -73,6 +73,7 @@
   margin: 0 64px;
   outline: 1px solid var(--study-chart-outline);
   background: var(--study-field);
+  border-radius: 8px;
 }
 .study-cross-x,
 .study-cross-y {

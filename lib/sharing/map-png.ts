@@ -37,6 +37,9 @@ export async function mapPng(
       value = value.replace(/url\(["']?[^)]*#([^"')]+)["']?\)/g, 'url(#$1)')
       copy.style.setProperty(property, value)
     }
+    // Restore the field's standard radius at the fixed export size.
+    if (element.matches('[data-prism-field] > rect'))
+      copy.setAttribute('rx', '8')
     copy.removeAttribute('class')
   })
   // SVGs drawn to canvas cannot load external image references. Embed portraits

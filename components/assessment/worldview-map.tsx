@@ -53,9 +53,28 @@ export function Map({
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
     >
-      <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-        {definition.question}
-      </h2>
+      <div className='flex items-start justify-between gap-4'>
+        <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
+          {definition.question}
+        </h2>
+        <div className='shrink-0'>
+          <MapActions
+            svg={svg}
+            title={
+              subject
+                ? `${subject.name} · Simulated AI worldview`
+                : 'My AI worldview'
+            }
+            legend={
+              point
+                ? y.interpretation === 'unsettled'
+                  ? 'Point: center of unresolved range · Dashed area: interpretation range'
+                  : 'Point: estimated position · Dashed area: interpretation range'
+                : 'No placement yet · Dashed area: interpretation range'
+            }
+          />
+        </div>
+      </div>
       <svg
         ref={svg}
         viewBox='0 0 680 395'
@@ -77,10 +96,10 @@ export function Map({
             patternUnits='userSpaceOnUse'
             patternTransform='rotate(35)'
           >
-            <line y2='9' stroke='var(--map-text)' strokeOpacity='.08' />
+            <line y2='9' stroke='var(--prism-range-ink)' strokeOpacity='.08' />
           </pattern>
         </defs>
-        <PrismField id={id} plot={plot} />
+        <PrismField id={id} plot={plot} radius={8 * labelScale} />
         <text
           className='prism-axis-label'
           x='340'
@@ -151,9 +170,10 @@ export function Map({
           height={Math.max(2, (y.range[1] - y.range[0]) * plot.height)}
           rx='4'
           fill={`url(#${id}-missing)`}
-          stroke='var(--map-text)'
+          stroke='var(--prism-range-ink)'
           strokeOpacity='.65'
           strokeWidth='1.5'
+          vectorEffect='non-scaling-stroke'
           strokeDasharray='6 5'
         />
         {point && (
@@ -314,21 +334,6 @@ export function Map({
             {history.length > 0 ? ' Numbered dots show earlier answers.' : ''}
           </p>
         </div>
-        <MapActions
-          svg={svg}
-          title={
-            subject
-              ? `${subject.name} · Simulated AI worldview`
-              : 'My AI worldview'
-          }
-          legend={
-            point
-              ? y.interpretation === 'unsettled'
-                ? 'Point: center of unresolved range · Dashed area: interpretation range'
-                : 'Point: estimated position · Dashed area: interpretation range'
-              : 'No placement yet · Dashed area: interpretation range'
-          }
-        />
       </figcaption>
       <p className='sr-only'>{description}</p>
     </figure>

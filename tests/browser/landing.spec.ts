@@ -6,7 +6,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
 }) => {
   await page.goto('/')
   await expect(
-    page.getByRole('heading', { name: 'A world of possible futures.' })
+    page.getByRole('heading', { name: 'A world of possible futures' })
   ).toBeVisible()
   const portrait = page.getByRole('link', {
     name: 'View Eliezer Yudkowsky results'
@@ -47,11 +47,11 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.fill('A draft that should survive navigation.')
   await page.getByRole('link', { name: 'Doom or Bloom', exact: true }).click()
-  await page.getByRole('link', { name: 'Answer the first question' }).click()
+  await page.getByRole('link', { name: 'Map your own worldview' }).click()
   await expect(answer).toHaveValue('A draft that should survive navigation.')
   await page.goBack()
   await expect(
-    page.getByRole('heading', { name: 'A world of possible futures.' })
+    page.getByRole('heading', { name: 'A world of possible futures' })
   ).toBeVisible()
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
@@ -59,7 +59,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
   await expect(
-    page.getByRole('link', { name: 'Answer the first question' })
+    page.getByRole('link', { name: 'Map your own worldview' })
   ).toBeInViewport()
 })
 
@@ -185,9 +185,9 @@ test('new safety researchers have live results, portraits and grounded sources',
         .getByRole('region', { name: 'Sources', exact: true })
         .locator(`a[href="${person.video}"]`)
     ).toBeVisible()
-    await page
-      .getByRole('button', { name: /View questions and simulated answers/ })
-      .click()
+    await expect(
+      page.getByRole('button', { name: /View questions and simulated answers/ })
+    ).toHaveAttribute('aria-expanded', 'true')
     await expect(
       page
         .getByRole('region', { name: 'Simulated Assessment', exact: true })
@@ -254,9 +254,9 @@ test('new worldview writers have live journeys and source-grounded persona pages
         .getByRole('region', { name: 'Sources', exact: true })
         .locator(`a[href="${person.source}"]`)
     ).toBeVisible()
-    await page
-      .getByRole('button', { name: /View questions and simulated answers/ })
-      .click()
+    await expect(
+      page.getByRole('button', { name: /View questions and simulated answers/ })
+    ).toHaveAttribute('aria-expanded', 'true')
     await expect(
       page
         .getByRole('region', { name: 'Simulated Assessment', exact: true })
@@ -278,4 +278,30 @@ test('new worldview writers have live journeys and source-grounded persona pages
       )
     ).toBeVisible()
   }
+})
+
+test('persona answer references reopen the transcript and navigate to the exact answer', async ({
+  page
+}) => {
+  await page.goto('/personas/esyudkowsky')
+  const disclosure = page.getByRole('button', {
+    name: /View questions and simulated answers/
+  })
+  await expect(disclosure).toHaveAttribute('aria-expanded', 'true')
+  await disclosure.click()
+  const link = page.getByRole('link', { name: /^Answer \d+$/ }).first()
+  const hash = (await link.getAttribute('href'))!
+  await expect(link).toHaveCSS('text-decoration-line', 'none')
+  await link.click()
+  await expect(disclosure).toHaveAttribute('aria-expanded', 'true')
+  await expect(page).toHaveURL(new RegExp(`${hash}$`))
+  await expect(page.locator(hash)).toBeFocused()
+  await expect(page.locator(hash)).toBeInViewport()
+  await disclosure.click()
+  await link.focus()
+  await page.keyboard.press('Enter')
+  await expect(disclosure).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.locator(hash)).toBeFocused()
+  await page.reload()
+  await expect(page.locator(hash)).toBeFocused()
 })

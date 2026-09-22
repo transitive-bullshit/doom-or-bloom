@@ -7,6 +7,7 @@
   --prism-portrait-ring: #fbfaf6;
   --prism-shadow: #22332220;
   /* Chart colors encode the worldview field, independently of UI theme. */
+  --prism-range-ink: #25392b;
   --prism-coral: #ff786a;
   --prism-peach: #ffb88b;
   --prism-lime: #e6ff80;
@@ -25,8 +26,6 @@
 }
 .dark .prism-theme {
   --prism-surface: var(--background);
-  --prism-grid: #f2eee238;
-  --prism-border: #f2eee230;
   --prism-portrait-ring: #e4dfcf;
   --prism-shadow: #00000060;
 }
