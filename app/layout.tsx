@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
 import { SiteActions } from '@/components/site-actions'
 import { SiteAnalytics } from '@/components/analytics'
 import { serverEnv } from '@/lib/server/env'
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <span>Experimental · 0.1.0</span>
             </footer>
           </div>
+          <Toaster />
           <SiteAnalytics enabled={serverEnv().analytics} />
         </ThemeProvider>
       </body>

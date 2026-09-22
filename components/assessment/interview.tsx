@@ -54,6 +54,7 @@ import {
 } from '@/components/ui/dialog'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import { ReadinessMeter } from './readiness-meter'
+import { toast } from 'sonner'
 import { DebugPanel } from '@/components/debug/panel'
 import { ResultView } from './result-view'
 import { Paperclips } from './paperclips'
@@ -92,7 +93,6 @@ export function Interview({
 }) {
   const [state, setState] = useState<Assessment | null>(null)
   const [busy, setBusy] = useState(false)
-  const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
   const [conflict, setConflict] = useState(false)
   const [debugMode, setDebugMode] = useState(false)
@@ -266,7 +266,6 @@ export function Interview({
     const controller = new AbortController()
     pending.current = { id, controller }
     setBusy(true)
-    setError('')
     try {
       persist(snapshot)
       const response = await fetch('/api/assessment', {
@@ -377,7 +376,7 @@ export function Interview({
       setFixture(body.provider === 'fixture')
     } catch (err) {
       if (!controller.signal.aborted)
-        setError(
+        toast.error(
           err instanceof Error
             ? err.message
             : 'Something went wrong. Your answer is saved.'
@@ -406,7 +405,6 @@ export function Interview({
     uncertain.current = null
     setBusy(false)
     setTrace(undefined)
-    setError('')
     setRawBackup(undefined)
     setConflict(false)
     try {
@@ -502,7 +500,6 @@ export function Interview({
               state={state}
               act={(op) => void act(op)}
               busy={busy || conflict}
-              onError={setError}
               operations={debugOperations}
             />
           ) : (
@@ -568,10 +565,7 @@ export function Interview({
                 }}
               >
                 <FieldGroup>
-                  <Field
-                    data-invalid={Boolean(error) || answerTooLong}
-                    data-disabled={!allowed}
-                  >
+                  <Field data-invalid={answerTooLong} data-disabled={!allowed}>
                     <FieldLabel htmlFor='answer' className='sr-only'>
                       Your answer
                     </FieldLabel>
@@ -580,7 +574,7 @@ export function Interview({
                       value={state.draft}
                       placeholder='A few sentences is plenty. Just tell us what you think. Using speech-to-text is encouraged.'
                       disabled={!allowed}
-                      aria-invalid={Boolean(error) || answerTooLong}
+                      aria-invalid={answerTooLong}
                       aria-describedby={
                         answerTooLong ? 'answer-length answer-limit' : undefined
                       }
@@ -697,12 +691,6 @@ export function Interview({
           )}
         </div>
         <div className='flex flex-col gap-6'>
-          {error && (
-            <Alert variant='destructive'>
-              <AlertTitle>Could not complete that step</AlertTitle>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
           <div className='flex items-center justify-between gap-4'>
             {state.answers.length > 0 && (
               <Dialog>

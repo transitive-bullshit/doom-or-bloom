@@ -1,7 +1,6 @@
 import { connection } from 'next/server'
 import { notFound } from 'next/navigation'
 import { loadBundle } from '@/lib/content/loader'
-import { projectFeedbackStore } from '@/lib/debug/feedback-store'
 import { localDebugAvailable } from '@/lib/debug/local-access'
 import { CorpusInspector } from '@/components/debug/content/corpus'
 
@@ -13,7 +12,6 @@ export default async function CorpusPage() {
     <CorpusInspector
       references={bundle.references}
       contentVersion={bundle.manifest.contentVersion}
-      feedback={await projectFeedbackStore().read('corpus')}
     />
   )
 }

@@ -224,10 +224,23 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       expect(png.readUInt32BE(16)).toBe(1360)
       expect(png.readUInt32BE(20)).toBe(980)
       await downloaded.saveAs(testInfo.outputPath('exported-map.png'))
+      await page.route('**/api/share-card', (route) =>
+        route.fulfill({ status: 500, body: 'Unavailable' })
+      )
+      await page
+        .getByRole('button', { name: 'Download card', exact: true })
+        .click()
+      await expect(
+        page.locator('[data-sonner-toast][data-type=error]')
+      ).toContainText('Card generation failed. Please try again.')
       await context.grantPermissions(['clipboard-read', 'clipboard-write'])
       await map.getByRole('button', { name: 'Map image actions' }).click()
       await page.getByRole('menuitem', { name: 'Copy PNG' }).click()
-      await expect(map.getByRole('status')).toHaveText('Map copied as PNG.')
+      await expect(
+        page
+          .locator('[data-sonner-toast]')
+          .filter({ hasText: 'Map copied as PNG.' })
+      ).toHaveText('Map copied as PNG.')
       expect(
         await page.evaluate(
           async () => (await navigator.clipboard.read())[0]?.types

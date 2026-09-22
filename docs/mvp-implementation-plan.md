@@ -918,3 +918,10 @@ The experiment is an additive `worldview-v2` field (historical `worldview-v1` re
 - [x] Apply the shared light/dark Prism palette and SVG field to individual result maps, retaining interpretation ranges, tentative/unsettled and unplaced states, persona portraits and answer history.
 - [x] Preserve local PNG copy/download with subject title, axis labels and legend; update the server-rendered share card to Prism.
 - [x] Verify types, lint, nine landing/map browser regressions and visually inspect mobile dark mode, exported map PNG and server-rendered share card.
+
+### 2026-09-22 — Prism polish and notification cleanup
+
+- [x] Keep chart gradients equally vivid in both themes, bring result-map axis labels closer and frame result maps in cards.
+- [x] Use theme-aware toasts for map exports, unexpected assessment errors and share-card failures; retain persistent recovery and storage notices inline.
+- [x] Remove editorial feedback forms, write API and storage implementation from all environments; retain read-only content inspectors and historical notes.
+- [x] Verify the 15 assessment, map and content-inspector browser scenarios across focused runs, two local-access unit tests, TypeScript and lint. Update stale assessment assertions for the current UI.

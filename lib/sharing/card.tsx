@@ -27,7 +27,7 @@ export const cardSchema = z.strictObject({
 })
 export type CardData = z.infer<typeof cardSchema>
 
-// Fixed dark Prism export palette; SVG rendering uses explicit sRGB colors.
+// Dark export chrome with the same vivid Prism field in every theme.
 const colors = {
   surface: '#161613',
   text: '#f6f5f1',
@@ -74,19 +74,19 @@ function Plot({ data }: { data?: CardData }) {
         id='card-prism'
         plot={{ left, top, width, height }}
         colors={{
-          coral: '#8e3935',
-          peach: '#866046',
-          lime: '#637737',
-          mint: '#27634d',
-          violet: '#6657a9',
-          veilOpacity: 0.44,
+          coral: '#ff786a',
+          peach: '#ffb88b',
+          lime: '#e6ff80',
+          mint: '#aaffbd',
+          violet: '#bcb1ff',
+          veilOpacity: 0.5,
           grid: '#f2eee238',
           border: '#f2eee230'
         }}
       />
       <text
         x='345'
-        y='20'
+        y='26'
         textAnchor='middle'
         fill={colors.muted}
         fontSize='14'
@@ -95,7 +95,7 @@ function Plot({ data }: { data?: CardData }) {
       </text>
       <text
         x='345'
-        y='365'
+        y='357'
         textAnchor='middle'
         fill={colors.muted}
         fontSize='14'
@@ -103,7 +103,7 @@ function Plot({ data }: { data?: CardData }) {
         Incremental change
       </text>
       <text
-        x='32'
+        x='38'
         y={py(0.5) + 5}
         textAnchor='middle'
         fill={colors.text}
@@ -112,7 +112,7 @@ function Plot({ data }: { data?: CardData }) {
         Doom
       </text>
       <text
-        x='657'
+        x='651'
         y={py(0.5) + 5}
         textAnchor='middle'
         fill={colors.text}

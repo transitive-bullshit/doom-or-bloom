@@ -1,23 +1,10 @@
 'use client'
 
-import { useId, useState } from 'react'
+import { useId } from 'react'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel
-} from '@/components/ui/field'
-import { Textarea } from '@/components/ui/textarea'
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger
-} from '@/components/ui/collapsible'
-import { feedbackEntrySchema, feedbackLimit } from '@/lib/debug/feedback-schema'
-import type { FeedbackEntry, FeedbackKind } from '@/lib/debug/feedback-schema'
 import type { GraphEdge } from '@/lib/debug/relationships'
 import { cn } from 'cn'
 
@@ -101,9 +88,9 @@ export function RelationshipGraph({
   return (
     <div className='space-y-3' data-slot='relationship-graph'>
       <p className='text-xs text-muted-foreground'>
-        Select a node to inspect it and leave feedback. Lines show the selected
-        entry’s relationships. The list below provides the same navigation on
-        smaller screens.
+        Select a node to inspect it. Lines show the selected entry’s
+        relationships. The list below provides the same navigation on smaller
+        screens.
       </p>
       <svg
         className='hidden w-full sm:block'
@@ -184,9 +171,7 @@ export function RelationshipGraph({
                 textAnchor='middle'
                 className='fill-muted-foreground text-[10px]'
               >
-                {node.id === selectedId
-                  ? 'Selected'
-                  : 'Inspect & give feedback'}
+                {node.id === selectedId ? 'Selected' : 'Inspect details'}
               </text>
             </a>
           )
@@ -198,136 +183,5 @@ export function RelationshipGraph({
         </p>
       )}
     </div>
-  )
-}
-
-type FeedbackDrafts = Record<string, string>
-export function FeedbackEditor({
-  kind,
-  resourceId,
-  label,
-  initialFeedback
-}: {
-  kind: FeedbackKind
-  resourceId: string
-  label: string
-  initialFeedback: FeedbackEntry[]
-}) {
-  const [entries, setEntries] = useState(initialFeedback)
-  const [drafts, setDrafts] = useState<FeedbackDrafts>({})
-  const [busy, setBusy] = useState(false)
-  const [message, setMessage] = useState('')
-  const id = useId()
-  const draft = drafts[resourceId] ?? ''
-  const excess = Math.max(0, draft.length - feedbackLimit)
-  const history = entries.filter((entry) => entry.resourceId === resourceId)
-  async function save() {
-    if (busy || excess || !draft.trim()) return
-    setBusy(true)
-    setMessage('')
-    try {
-      const response = await fetch('/api/editorial-feedback', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ kind, resourceId, text: draft })
-      })
-      const body = await response.json()
-      if (!response.ok)
-        throw new Error(body.error || 'Feedback could not be saved.')
-      const entry = feedbackEntrySchema.parse(body.entry)
-      setEntries((current) => [...current, entry])
-      setDrafts((current) => ({ ...current, [resourceId]: '' }))
-      setMessage(`Saved to content/feedback/${kind}.json`)
-    } catch (err) {
-      setMessage(
-        err instanceof Error
-          ? err.message
-          : 'Feedback could not be saved. Your text is still here.'
-      )
-    } finally {
-      setBusy(false)
-    }
-  }
-  return (
-    <section
-      className='space-y-4 rounded-xl border p-4 sm:p-6'
-      aria-label={`Feedback for ${resourceId}`}
-    >
-      <h3 className='font-medium'>Free-form feedback</h3>
-      <p className='text-sm text-muted-foreground'>
-        Notes are appended to the project feedback file with this entry’s
-        version and hash. They do not change the authored asset. Earlier notes
-        remain available.
-      </p>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault()
-          void save()
-        }}
-      >
-        <FieldGroup>
-          <Field data-invalid={Boolean(excess)}>
-            <FieldLabel htmlFor={id}>Feedback on {label}</FieldLabel>
-            <Textarea
-              id={id}
-              value={draft}
-              disabled={busy}
-              onChange={(event) => {
-                setDrafts((current) => ({
-                  ...current,
-                  [resourceId]: event.target.value
-                }))
-                setMessage('')
-              }}
-              aria-invalid={Boolean(excess)}
-              aria-describedby={excess ? `${id}-limit` : undefined}
-              placeholder='What feels unclear, misleading, redundant or missing? What would you change?'
-              className='min-h-28 resize-none'
-            />
-            {excess > 0 && (
-              <FieldDescription id={`${id}-limit`}>
-                Your full text is retained. Shorten it by{' '}
-                {excess.toLocaleString('en-US')} characters to save (20,000
-                maximum).
-              </FieldDescription>
-            )}
-            <div className='flex flex-wrap items-center gap-3'>
-              <Button
-                type='submit'
-                disabled={busy || Boolean(excess) || !draft.trim()}
-              >
-                {busy ? 'Saving…' : 'Save feedback'}
-              </Button>
-              <p role='status' className='text-sm text-muted-foreground'>
-                {message}
-              </p>
-            </div>
-          </Field>
-        </FieldGroup>
-      </form>
-      <Collapsible className='space-y-3'>
-        <CollapsibleTrigger asChild>
-          <Button variant='outline' size='sm'>
-            Saved feedback for this entry ({history.length})
-          </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent className='space-y-3'>
-          {history.toReversed().map((entry) => (
-            <article
-              key={entry.id}
-              className='space-y-2 rounded-lg bg-muted p-4'
-            >
-              <p className='text-xs text-muted-foreground'>
-                {entry.createdAt} · {entry.contentVersion} ·{' '}
-                {entry.assetHash.slice(0, 8)}
-              </p>
-              <p className='text-sm whitespace-pre-wrap wrap-anywhere'>
-                {entry.text}
-              </p>
-            </article>
-          ))}
-        </CollapsibleContent>
-      </Collapsible>
-    </section>
   )
 }

@@ -6,6 +6,7 @@
   --prism-border: #25392b22;
   --prism-portrait-ring: #fbfaf6;
   --prism-shadow: #22332220;
+  /* Chart colors encode the worldview field, independently of UI theme. */
   --prism-coral: #ff786a;
   --prism-peach: #ffb88b;
   --prism-lime: #e6ff80;
@@ -28,23 +29,9 @@
   --prism-border: #f2eee230;
   --prism-portrait-ring: #e4dfcf;
   --prism-shadow: #00000060;
-  --prism-coral: #8e3935;
-  --prism-peach: #866046;
-  --prism-lime: #637737;
-  --prism-mint: #27634d;
-  --prism-violet: #6657a9;
-  --prism-veil-opacity: 0.44;
-  --prism-field:
-    linear-gradient(0deg, rgb(102 87 169 / 0.44), transparent),
-    linear-gradient(
-      110deg,
-      var(--prism-coral),
-      var(--prism-peach) 30%,
-      var(--prism-lime) 67%,
-      var(--prism-mint)
-    );
 }
 .worldview-map.prism-theme {
+  --prism-surface: var(--card);
   --map-surface: var(--prism-surface);
   --map-text: var(--prism-text);
   --map-muted: var(--prism-muted);

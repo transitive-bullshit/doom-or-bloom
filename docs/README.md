@@ -40,7 +40,7 @@ The [participant prompt audit](prompt-quality-review.md) records demo feedback, 
 
 The working name deliberately emphasizes the provocative Doom/Bloom contrast. This framing trade-off belongs in methodology documentation and evaluation; it must not become a forced binary classification.
 
-[Local debugging guide](local-debugging.md) covers persisted Jev exchanges, the development-only `/questions` and `/corpus` review tools, and versioned feedback stored in the project.
+[Local debugging guide](local-debugging.md) covers persisted Jev exchanges, the development-only `/questions` and `/corpus` review tools.
 
 [User Journeys](user-journeys.md) covers the development-only `/user-journeys` inspector, live OpenAI participants answering the actual Jev-driven interview, recorded decisions/results and separate free mechanical regressions. Normal `pnpm journeys:generate` uses live OpenAI and Jev; `pnpm journeys:mechanical:check` runs the isolated mocked engine cases. Forty-six deliberately divergent stress-test personas live in `lib/journeys/catalog.ts` and the six `lib/journeys/*public-personas.ts` source briefs; GPT-5.6 Sol answers from dated source summaries and voice guidance, with live Jev snapshots after each eligible answer. New timelines contain answers only; canned replies and injected judgments live only under `lib/journeys/mechanical/`. Occasional live development runs are authorized; the [current question and routing review](prompt-quality-review.md) records the active catalog, diagnosed issues and repeatable review loop.
 

@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react'
 import type { Prompt } from '@/lib/content/schema'
-import type { FeedbackEntry } from '@/lib/debug/feedback-schema'
 import { questionRelationships } from '@/lib/debug/relationships'
 import type { QuestionRelation } from '@/lib/debug/relationships'
 import { Badge } from '@/components/ui/badge'
@@ -12,21 +11,14 @@ import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { JsonViewer } from '../json-viewer'
-import {
-  FeedbackEditor,
-  MetadataList,
-  RelationshipGraph,
-  ReviewHeader
-} from './shared'
+import { MetadataList, RelationshipGraph, ReviewHeader } from './shared'
 
 export function QuestionsInspector({
   prompts,
-  contentVersion,
-  feedback
+  contentVersion
 }: {
   prompts: Prompt[]
   contentVersion: string
-  feedback: FeedbackEntry[]
 }) {
   const [selectedId, setSelectedId] = useState('root')
   const [search, setSearch] = useState('')
@@ -51,8 +43,7 @@ export function QuestionsInspector({
         contentVersion={contentVersion}
       />
       <p className='text-sm text-muted-foreground'>
-        {prompts.length} catalog entries · {families.length} families ·{' '}
-        {feedback.length} saved notes on page load
+        {prompts.length} catalog entries · {families.length} families
       </p>
       <section className='space-y-4 rounded-xl border p-4 sm:p-6'>
         <h2 className='font-medium'>Relationship map</h2>
@@ -146,12 +137,7 @@ export function QuestionsInspector({
                 </span>
                 <span className='text-sm'>{prompt.text}</span>
                 <span className='text-xs text-muted-foreground'>
-                  Inspect & give feedback ·{' '}
-                  {
-                    feedback.filter((entry) => entry.resourceId === prompt.id)
-                      .length
-                  }{' '}
-                  saved notes on load
+                  Inspect details
                 </span>
               </a>
             </Button>
@@ -202,12 +188,6 @@ export function QuestionsInspector({
           label={`Question metadata ${selectedId}`}
         />
       </section>
-      <FeedbackEditor
-        kind='questions'
-        resourceId={selectedId}
-        label={selected.text}
-        initialFeedback={feedback}
-      />
     </article>
   )
 }

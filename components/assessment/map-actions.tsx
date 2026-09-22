@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type RefObject } from 'react'
+import { toast } from 'sonner'
 import { CopyIcon, DownloadIcon, EllipsisIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -23,11 +24,9 @@ export function MapActions({
   legend: string
 }) {
   const [busy, setBusy] = useState(false)
-  const [status, setStatus] = useState('')
   const exportImage = async (copy: boolean) => {
     if (!svg.current || busy) return
     setBusy(true)
-    setStatus('')
     try {
       if (
         copy &&
@@ -46,11 +45,11 @@ export function MapActions({
       } else {
         downloadBlob(await png, 'doom-or-bloom-map.png')
       }
-      setStatus(copy ? 'Map copied as PNG.' : 'Map downloaded as PNG.')
+      toast.success(copy ? 'Map copied as PNG.' : 'Map downloaded as PNG.')
     } catch (err) {
-      setStatus(
+      toast.error(
         err instanceof Error
-          ? `${err.message} You can also try Download PNG.`
+          ? err.message
           : 'Image export failed. Please try again.'
       )
     } finally {
@@ -83,14 +82,6 @@ export function MapActions({
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
-      {status && (
-        <p
-          role='status'
-          className='absolute right-0 bottom-full z-10 mb-2 w-60 rounded-lg border bg-popover p-3 text-xs text-popover-foreground shadow-md'
-        >
-          {status}
-        </p>
-      )}
     </div>
   )
 }

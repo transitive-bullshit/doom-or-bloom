@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react'
 import type { Reference } from '@/lib/content/schema'
-import type { FeedbackEntry } from '@/lib/debug/feedback-schema'
 import { corpusRelationships } from '@/lib/debug/relationships'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -15,21 +14,14 @@ import {
   CollapsibleTrigger
 } from '@/components/ui/collapsible'
 import { JsonViewer } from '../json-viewer'
-import {
-  FeedbackEditor,
-  MetadataList,
-  RelationshipGraph,
-  ReviewHeader
-} from './shared'
+import { MetadataList, RelationshipGraph, ReviewHeader } from './shared'
 
 export function CorpusInspector({
   references,
-  contentVersion,
-  feedback
+  contentVersion
 }: {
   references: Reference[]
   contentVersion: string
-  feedback: FeedbackEntry[]
 }) {
   const [selectedId, setSelectedId] = useState(
     references.find(
@@ -62,7 +54,7 @@ export function CorpusInspector({
     <article className='mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-6 py-10'>
       <ReviewHeader
         title='Built-in corpus'
-        description='Inspect the active reference snapshots, source dates, relationships, reading scopes and editorial feedback. This view loads local assets and makes no Jev requests.'
+        description='Inspect the active reference snapshots, source dates, relationships, reading scopes. This view loads local assets and makes no Jev requests.'
         contentVersion={contentVersion}
       />
       <p className='text-sm text-muted-foreground'>
@@ -75,7 +67,7 @@ export function CorpusInspector({
           references.filter((reference) => reference.kind === 'publication')
             .length
         }{' '}
-        publications · {feedback.length} saved notes on page load
+        publications
       </p>
       <section className='space-y-4 rounded-xl border p-4 sm:p-6'>
         <h2 className='font-medium'>Selected snapshot’s relationship map</h2>
@@ -158,13 +150,7 @@ export function CorpusInspector({
                   {reference.date} · {reference.id}
                 </span>
                 <span className='text-xs text-muted-foreground'>
-                  Inspect & give feedback ·{' '}
-                  {
-                    feedback.filter(
-                      (entry) => entry.resourceId === reference.id
-                    ).length
-                  }{' '}
-                  saved notes on load
+                  Inspect details
                 </span>
               </a>
             </Button>
@@ -249,12 +235,6 @@ export function CorpusInspector({
         </Collapsible>
         <JsonViewer value={selected} label={`Corpus metadata ${selectedId}`} />
       </section>
-      <FeedbackEditor
-        kind='corpus'
-        resourceId={selectedId}
-        label={selected.title}
-        initialFeedback={feedback}
-      />
     </article>
   )
 }

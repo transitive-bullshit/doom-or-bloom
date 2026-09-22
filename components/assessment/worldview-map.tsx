@@ -48,7 +48,7 @@ export function Map({
     <figure
       data-slot='worldview-map'
       className={cn(
-        'worldview-map prism-theme rounded-2xl p-5 sm:p-8',
+        'worldview-map prism-theme rounded-2xl border border-border p-5 shadow-sm sm:p-8',
         layout === 'breakout' &&
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
@@ -84,7 +84,7 @@ export function Map({
         <text
           className='prism-axis-label'
           x='340'
-          y='25'
+          y='31'
           textAnchor='middle'
           fill='var(--map-muted)'
           fontSize='12'
@@ -94,7 +94,7 @@ export function Map({
         <text
           className='prism-axis-label'
           x='340'
-          y='360'
+          y='352'
           textAnchor='middle'
           fill='var(--map-muted)'
           fontSize='12'
@@ -103,7 +103,7 @@ export function Map({
         </text>
         <text
           className='prism-pole'
-          x='40'
+          x='46'
           y={py(0.5)}
           dominantBaseline='middle'
           textAnchor='middle'
@@ -114,7 +114,7 @@ export function Map({
         </text>
         <text
           className='prism-pole'
-          x='640'
+          x='634'
           y={py(0.5)}
           dominantBaseline='middle'
           textAnchor='middle'
