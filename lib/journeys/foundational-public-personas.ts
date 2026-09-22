@@ -349,6 +349,14 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Support for the Pro-Human AI Declaration',
+        url: 'https://x.com/tegmark/status/2102049649955680583',
+        publishedAt: '2026-09-21',
+        summary:
+          'Full original post read in the browser on 2026-09-22. Tegmark endorses the Pro-Human AI Declaration, urges others to sign and welcomes Mustafa Suleyman as a signatory. Reaffirms his preference for AI tools rather than beings and for humans remaining in control. The reported signatory count and Suleyman’s signature are Tegmark’s claims, not independently verified here. Linked declaration and replies are outside this source’s inspected scope; no new catastrophe probability or detailed policy requirement is inferred.',
+        quote: 'Let’s build tools not beings & keep humans in charge.'
+      },
+      {
         title: 'Statement on autonomous weapons and surveillance red lines',
         url: 'https://futureoflife.org/ai/tegmark-statement-on-dow-ultimatum/',
         publishedAt: '2026-02-27',
