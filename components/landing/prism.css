@@ -141,6 +141,7 @@
   border-top-color: var(--border);
 }
 .study-note {
+  text-align: center;
   font-size: 10px;
   color: var(--study-muted);
   margin-top: 12px;
@@ -202,5 +203,43 @@
   .map-study:not(:has(:focus-visible)) .study-point[data-highlighted='true'] {
     transform: translate(-50%, -50%) scale(1.08);
     transition-duration: 100ms;
+  }
+}
+
+/* Wait for every portrait to decode before starting the stagger. */
+.study-chart[data-portraits-ready='false'] .study-portrait,
+.study-chart .study-portrait[data-portrait-failed='true'] {
+  visibility: hidden;
+}
+.study-chart[data-portraits-ready='true'] .study-portrait {
+  animation: portrait-enter 250ms var(--ease-out) backwards;
+}
+/* Interaction always takes priority over the decorative entrance. */
+.study-chart .study-portrait[data-highlighted='true'] {
+  opacity: 1 !important;
+}
+@keyframes portrait-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes portrait-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .study-chart[data-portraits-ready='true'] .study-portrait {
+    animation-name: portrait-fade;
+    animation-duration: 150ms;
+    animation-delay: 0ms !important;
   }
 }

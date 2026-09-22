@@ -76,6 +76,20 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Neocloud cybersecurity and rogue-agent replication',
+        url: 'https://x.com/ilyasut/status/2094881278621253755',
+        publishedAt: '2026-09-01',
+        summary:
+          'Sutskever warns that a future rogue agent could target a neocloud to run additional copies, and urges neoclouds to strengthen cybersecurity with help from developers of cyber-capable models. This edited root post is a forecast and recommendation, not a report of an existing compromise or proof that replication is inevitable.'
+      },
+      {
+        title: 'On valuing intelligence above other human qualities',
+        url: 'https://x.com/ilyasut/status/1710462485411561808',
+        publishedAt: '2023-10-07',
+        summary:
+          'Sutskever cautions against valuing intelligence above every other human quality. This brief statement expresses a value judgment; it does not establish a capability milestone, an AI timeline or a quantified risk estimate.'
+      },
+      {
         title: 'Introducing Superalignment',
         url: 'https://openai.com/index/introducing-superalignment/',
         publishedAt: '2023-07-05',

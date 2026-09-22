@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             >
               <Link
                 href='/'
-                className='inline-flex items-center gap-2 text-sm font-semibold tracking-tight'
+                className='site-logo inline-flex items-center gap-2 rounded-sm text-sm font-semibold tracking-tight'
               >
                 <Image
                   src='/icon.svg'

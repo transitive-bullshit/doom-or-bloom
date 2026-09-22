@@ -67,12 +67,21 @@ const rank = (id: string) => {
 }
 
 export function Prism({ examples }: VariantProps) {
+  const [portraits, setPortraits] = useState<
+    Record<string, 'loaded' | 'failed'>
+  >({})
   const [hovered, setHovered] = useState<string | null>(null)
   const [focused, setFocused] = useState<string | null>(null)
   const highlighted = hovered ?? focused
-  const plotted = examples.filter(
-    (p) => p.outlook !== null && p.transformation !== null
-  )
+  const plotted = examples
+    .filter((p) => p.outlook !== null && p.transformation !== null)
+    .sort((a, b) => a.outlook! - b.outlook!)
+  const portraitsReady = plotted.every((p) => portraits[p.avatar])
+  const settlePortrait = (src: string, status: 'loaded' | 'failed') => {
+    setPortraits((current) =>
+      current[src] === status ? current : { ...current, [src]: status }
+    )
+  }
   const legend = [...examples].sort((a, b) => rank(a.id) - rank(b.id))
   const highlightEvents = (id: string) => ({
     onPointerEnter: (event: PointerEvent<HTMLAnchorElement>) => {
@@ -102,6 +111,7 @@ export function Prism({ examples }: VariantProps) {
       <div className='study-axis-top'>Civilizational change</div>
       <div
         className='study-chart'
+        data-portraits-ready={portraitsReady}
         role='group'
         aria-label='AI outlook and scale of transformation. Open a portrait to explore their simulated worldview.'
       >
@@ -109,20 +119,32 @@ export function Prism({ examples }: VariantProps) {
         <div className='study-cross-y' />
         <span className='study-doom'>Doom</span>
         <span className='study-bloom'>Bloom</span>
-        {plotted.map((p) => (
+        {plotted.map((p, index) => (
           <Link
             key={p.id}
             href={`/users/${p.slug}`}
             className='study-point study-portrait'
             style={{
               left: `${p.outlook! * 100}%`,
-              top: `${(1 - p.transformation!) * 100}%`
+              top: `${(1 - p.transformation!) * 100}%`,
+              animationDelay: `${index * 10}ms`
             }}
             data-highlighted={p.id === highlighted}
+            data-portrait-failed={portraits[p.avatar] === 'failed'}
             aria-label={`View ${p.name} results`}
             {...highlightEvents(p.id)}
           >
-            <Image src={p.avatar} alt='' width={40} height={40} unoptimized />
+            <Image
+              src={p.avatar}
+              alt=''
+              width={40}
+              height={40}
+              loading='eager'
+              unoptimized
+              // Next Image fires onLoad after decoding, including cached images.
+              onLoad={() => settlePortrait(p.avatar, 'loaded')}
+              onError={() => settlePortrait(p.avatar, 'failed')}
+            />
             <span>{p.name}</span>
           </Link>
         ))}
@@ -137,6 +159,7 @@ export function Prism({ examples }: VariantProps) {
               alt=''
               width={20}
               height={20}
+              loading='eager'
               unoptimized
             />
             <FadeText lines={1}>{p.name}</FadeText>

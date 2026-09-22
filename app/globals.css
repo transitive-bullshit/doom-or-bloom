@@ -423,6 +423,29 @@
   }
 }
 
+.site-logo {
+  margin: -6px -8px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition:
+    background-color 150ms ease,
+    transform 150ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-logo:hover {
+    background-color: var(--accent);
+  }
+}
+.site-logo:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .site-logo:active {
+    transform: scale(0.97);
+  }
+}
+
 .image-outline {
   outline: 1px solid var(--image-outline);
   outline-offset: -1px;
