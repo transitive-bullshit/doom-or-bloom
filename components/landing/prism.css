@@ -206,7 +206,7 @@
   }
 }
 
-/* Wait for every portrait to decode before starting the stagger. */
+/* Wait for every portrait to decode before revealing them together. */
 .study-chart[data-portraits-ready='false'] .study-portrait,
 .study-chart .study-portrait[data-portrait-failed='true'] {
   visibility: hidden;
@@ -240,6 +240,5 @@
   .study-chart[data-portraits-ready='true'] .study-portrait {
     animation-name: portrait-fade;
     animation-duration: 150ms;
-    animation-delay: 0ms !important;
   }
 }

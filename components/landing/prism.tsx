@@ -119,15 +119,14 @@ export function Prism({ examples }: VariantProps) {
         <div className='study-cross-y' />
         <span className='study-doom'>Doom</span>
         <span className='study-bloom'>Bloom</span>
-        {plotted.map((p, index) => (
+        {plotted.map((p) => (
           <Link
             key={p.id}
             href={`/users/${p.slug}`}
             className='study-point study-portrait'
             style={{
               left: `${p.outlook! * 100}%`,
-              top: `${(1 - p.transformation!) * 100}%`,
-              animationDelay: `${index * 10}ms`
+              top: `${(1 - p.transformation!) * 100}%`
             }}
             data-highlighted={p.id === highlighted}
             data-portrait-failed={portraits[p.avatar] === 'failed'}
