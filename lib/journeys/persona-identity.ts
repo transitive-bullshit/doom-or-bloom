@@ -1,4 +1,4 @@
-export const publicPersonaIdentities: Record<
+const publicPersonaIdentities: Record<
   string,
   { slug: string; xUsername: string | null; shortName: string }
 > = {
