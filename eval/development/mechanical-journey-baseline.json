@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-20T13:10:24.178Z",
+  "createdAt": "2026-09-22T15:22:53.557Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
@@ -11,7 +11,7 @@
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "5d9e3f0fbf6ade04d00dd350b1991b70e9b2d49f14faa085fbb786b6ec311d11",
+  "engineHash": "8753f8f030527257a22b80c74dedec1a8eb7604c5a8799a7acaa4f811cac028a",
   "contentHash": "1f95443596a58370473bf6a7255b8470bad56a70a5f70c5b56a0083f332c4277",
   "turns": 5,
   "requestBudget": null,
@@ -37386,7 +37386,7 @@
           "answer": "test again",
           "scriptKey": null,
           "disposition": "non_answer",
-          "status": "paused",
+          "status": "recovery",
           "readinessBefore": {
             "value": 0,
             "threshold": 55,
@@ -37597,230 +37597,6 @@
         },
         {
           "ordinal": 3,
-          "operation": "retry",
-          "prompt": {
-            "id": "journey-037ec99e57e839e46284:p1",
-            "promptId": "root",
-            "text": "What do you think AI means for our future—and why?",
-            "family": "root",
-            "ordinal": 1,
-            "variant": "original",
-            "sourceEvidenceIds": []
-          },
-          "answer": null,
-          "scriptKey": null,
-          "disposition": null,
-          "status": "recovery",
-          "readinessBefore": {
-            "value": 0,
-            "threshold": 55,
-            "ready": false,
-            "covered": 0,
-            "total": 15,
-            "hasOutlook": false,
-            "hasReasoning": false,
-            "dimensions": [
-              {
-                "vector": "capability_trajectory",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "transition_dynamics",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "beneficial_potential",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "risk_landscape",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "technical_controllability",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "institutional_competence",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "human_agency",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "action_posture",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "causal_clarity",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "scope_discipline",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "appropriate_uncertainty",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "internal_coherence",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "counterargument_engagement",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "updateability",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "grounded_understanding",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              }
-            ]
-          },
-          "readiness": {
-            "value": 0,
-            "threshold": 55,
-            "ready": false,
-            "covered": 0,
-            "total": 15,
-            "hasOutlook": false,
-            "hasReasoning": false,
-            "dimensions": [
-              {
-                "vector": "capability_trajectory",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "transition_dynamics",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "beneficial_potential",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "risk_landscape",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "technical_controllability",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "institutional_competence",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "human_agency",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "action_posture",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "causal_clarity",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "scope_discipline",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "appropriate_uncertainty",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "internal_coherence",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "counterargument_engagement",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "updateability",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              },
-              {
-                "vector": "grounded_understanding",
-                "confidence": 0,
-                "unresolved": false,
-                "contribution": 0
-              }
-            ]
-          },
-          "coverageAdded": [],
-          "nextPrompt": null,
-          "rankings": [],
-          "paperclips": false,
-          "stages": []
-        },
-        {
-          "ordinal": 4,
           "operation": "answer",
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p1",
@@ -38089,7 +37865,7 @@
           ]
         },
         {
-          "ordinal": 5,
+          "ordinal": 4,
           "operation": "answer",
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p2",
@@ -38352,7 +38128,7 @@
           ]
         },
         {
-          "ordinal": 6,
+          "ordinal": 5,
           "operation": "answer",
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p3",
@@ -38902,7 +38678,7 @@
           ]
         },
         {
-          "ordinal": 7,
+          "ordinal": 6,
           "operation": "answer",
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p4",
@@ -39452,7 +39228,7 @@
           ]
         },
         {
-          "ordinal": 8,
+          "ordinal": 7,
           "operation": "answer",
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p5",
@@ -40002,7 +39778,7 @@
           ]
         },
         {
-          "ordinal": 9,
+          "ordinal": 8,
           "operation": "project",
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p6",
@@ -40280,9 +40056,9 @@
           "claim": null
         },
         "experiment": {
-          "version": "worldview-v4",
+          "version": "worldview-v6",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-20T13:10:24.176Z",
+          "generatedAt": "2026-09-22T15:22:53.554Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
