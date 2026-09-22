@@ -30,13 +30,17 @@ Batching judgments over shared state and reusing unchanged results keeps inferen
 | --- | --- |
 | [![Folded projection input from Jensen Huang’s simulated assessment](docs/images/jev-state.png)](docs/images/jev-state.png) | [![Folded application result powering Jensen Huang’s simulated worldview map](docs/images/jev-result.png)](docs/images/jev-result.png) |
 
-Recorded simulated assessment; the result includes application calculations, not just raw Jev output. [Inference architecture](docs/TYPESAFE.md).
+Recorded simulated assessment; the result includes application calculations, not just raw Jev output.
+
+[Inference architecture](docs/TYPESAFE.md).
 
 ## Simulated people, real sources
 
 The featured personas are simulations grounded in linked public statements, essays, and interviews. A separate model answers the actual interview questions from those source briefs; the normal assessment engine evaluates the answers without being given a target position.
 
-These journeys help refine Jev rubrics and routing logic and catch regressions. They are useful development cases—not statements made by those people, endorsements, or independently validated assessments. [Explore the persona workflow](docs/user-journeys.md).
+These journeys help refine Jev rubrics and routing logic and catch regressions. They are useful development cases—not statements made by those people, endorsements, or independently validated assessments.
+
+[Explore the persona workflow](docs/user-journeys.md).
 
 ## The map is not the territory
 
@@ -44,20 +48,24 @@ We model eight worldview dimensions: capabilities and timelines, transition spee
 
 Jev interprets these against explicit definitions. Code turns the supported judgments into a profile; the headline map shows **overall outlook × expected transformation**, with further views available below it. Two coordinates cannot capture a whole worldview.
 
-This is an experimental model, not a forecast of what will happen or a measure of someone’s intelligence. Interpretation confidence is not the probability that a belief is true. Participant answers are not independently fact-checked, and the rubric and readiness thresholds still need broader validation. [Read the methodology](docs/ASSESSMENT.md).
+This is an experimental model, not a forecast of what will happen or a measure of someone’s intelligence. Interpretation confidence is not the probability that a belief is true. Participant answers are not independently fact-checked, and the rubric and readiness thresholds still need broader validation.
+
+[Read the methodology](docs/ASSESSMENT.md).
 
 ## Privacy
 
 No accounts. No persistent answer database. Your answers, drafts, and results stay in browser storage so you can return later. Submitted answers pass through our server to Jev for evaluation; a temporary server retry cache expires after two minutes. TypeSafe’s own data policies apply to its processing.
 
-Optional analytics exclude answer text. Debug traces, when enabled, also stay in your browser. The checked-in persona data is generated development material, not visitor transcripts. [Privacy details](https://www.doom-or-bloom.com/privacy).
+Optional analytics exclude answer text. Debug traces, when enabled, also stay in your browser. The checked-in persona data is generated development material, not visitor transcripts.
+
+[Privacy details](https://www.doom-or-bloom.com/privacy).
 
 ## Run locally
 
 Requires **Node.js 24+**, **pnpm**, and a **TypeSafe API key** for live assessments.
 
 ```sh
-pnpm install --frozen-lockfile
+pnpm install
 cp .env.example .env.local
 # Set TYPESAFE_API_KEY in .env.local
 pnpm dev
@@ -77,4 +85,10 @@ Built with **Next.js, React, TypeScript, the TypeSafe SDK, Tailwind CSS, and sha
 
 A future Socratic mode could challenge assumptions, introduce well-sourced counterexamples, and help strengthen your reasoning. This MVP first focuses on understanding your views without trying to change them.
 
-The goal is clear-thinking tools that need no specialist background. Feedback from across the AI-futures spectrum is welcome—especially where an interpretation feels wrong or a question misses the point. [Share feedback](https://github.com/transitive-bullshit/doom-or-bloom/issues).
+The goal is clear-thinking tools that need no specialist background. Feedback from across the AI-futures spectrum is welcome—especially where an interpretation feels wrong or a question misses the point.
+
+[Share feedback](https://github.com/transitive-bullshit/doom-or-bloom/issues).
+
+## License
+
+[MIT](license) by [Travis Fischer](https://x.com/transitive_bs).
