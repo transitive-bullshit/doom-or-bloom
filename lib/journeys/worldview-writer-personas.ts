@@ -372,6 +372,7 @@ export const worldviewWriterPersonas: Persona[] = [
       'I trust private labs more than a state monopoly over powerful AI. Some useful government involvement is still necessary to avoid a heavy-handed takeover and address actual safety problems.',
       'Industry-led auditing under public oversight, with liability protections conditional on reasonable care and meeting standards, is one imperfect proposal worth trying. It has capture risks, but alternatives also have serious defects.',
       'An AI-empowered government can itself become the dangerous actor. American technical leadership does not excuse authoritarianism or reckless military power.',
+      'A domestic political backlash could produce a US development halt and a negotiated slowdown that cedes AI leadership to China. Treat this as a conditional scenario summarized by my publisher, not a prediction that those political events have already happened or that every safeguard is harmful.',
       'Creative initiative, relationships, in-person meaning and adapting institutions can remain valuable. A major transition can be exhausting and socially disruptive even if its net benefits are large.'
     ],
     voice: [
@@ -381,6 +382,20 @@ export const worldviewWriterPersonas: Persona[] = [
       'Use detailed original simulated prose, not copied blog passages. Do not attribute Alex Tabarrok’s posts or podcast hosts’ questions to Tyler.'
     ],
     sources: [
+      {
+        title: 'Tyler Cowen: A Doomsday Scenario for American AI',
+        url: 'https://www.thefp.com/p/tyler-cowen-a-doomsday-scenario-for',
+        publishedAt: '2026-09-20',
+        summary:
+          'Partial access on 2026-09-22: publisher subtitle and opening paragraphs only; full text requires a subscription. Frames a competing risk of American AI losing ground: the subtitle warns that heavy US regulation could let China dominate areas including arms and healthcare. Treat this as an attributed scenario, not a realized outcome or a numerical extinction forecast. No detailed argument beyond the preview has been verified. Text reader dates the article September 20; the browser displays September 21. See docs/research/user-source-additions-2026-09-22.md for the access and date discrepancy.'
+      },
+      {
+        title: 'The Front Page — publisher summary of Cowen’s AI scenario',
+        url: 'https://www.thefp.com/p/how-to-fake-climate-science-front-page',
+        publishedAt: '2026-09-21',
+        summary:
+          'Public Free Press editorial summary read on 2026-09-22. Describes Cowen’s conditional scenario: poor polls and a midterm defeat prompt Trump to pivot toward AI restrictions, halt new American models and negotiate a slowdown with China, risking loss of US leadership to Beijing. This is the publisher’s account of the linked Cowen column, not a separate Cowen essay, a verified political event or full-text access. Only the Cowen summary section informs this persona.'
+      },
       {
         title: 'Human Life in a Post-AGI World — Google DeepMind talk',
         url: 'https://tylercowen.com/human-life-in-a-post-agi-world-talk/',

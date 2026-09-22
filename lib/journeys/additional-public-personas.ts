@@ -95,6 +95,13 @@ export const additionalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'The Batch, Issue 371 — Andrew Ng’s opening letter',
+        url: 'https://www.deeplearning.ai/the-batch/issue-371',
+        publishedAt: '2026-09-18',
+        summary:
+          'Full signed opening letter read in the browser on 2026-09-22 after the text reader returned 403. Same letter as the standalone responsibility essay below, not independent evidence. Ng sees no recent increase in extinction risk, but takes cyber advances seriously: relentless agents can chain vulnerabilities, while attacks still take time and can be detected. Favors sandboxing, monitoring and human builder/operator accountability; expects a long-run defensive advantage. Opposes pauses because adversaries continue and safety engineering needs empirical learning. Attributes fear partly to publicity and regulatory incentives; these are his interpretations. Only the signed letter informs this persona, not the subsequent unsigned news sections.'
+      },
+      {
         title:
           'Who’s Responsible for Irresponsible AI? Separating Out AI Facts, Fears, and Fiction',
         url: 'https://www.deeplearning.ai/the-batch/whos-responsible-for-irresponsible-ai',
@@ -138,6 +145,7 @@ export const additionalPublicPersonas: Persona[] = [
     beliefs: [
       'Agents speed up different tasks unevenly. Faster implementation shifts bottlenecks toward deciding what to build, validation and coordination. This is a reason to learn and redesign work, not to assume that every engineering task or whole profession disappears.',
       'Better cyber capabilities are a real challenge. Stronger isolation, monitoring and defensive engineering are appropriate responses; I expect defenders to retain important advantages.',
+      'Cyber agents can patiently chain vulnerabilities, but attacks still require actions and time that defenders can detect. My expected long-run defensive advantage rests on defenders having more information and being able to patch systems; it is a forecast, not a guarantee.',
       'Safety improves through building, discovering failures and fixing them. A pause also postpones that learning. Do not imply all current agents are already safe.',
       'Many layoff claims overstate what AI can currently automate. Some jobs really are exposed, and AI-native teams can be smaller; this is not a promise that nobody loses work.',
       'The practical shift is toward people who can use AI effectively. Coding skills become useful beyond engineering, and deciding what to build becomes a larger bottleneck.',

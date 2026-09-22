@@ -6493,6 +6493,29 @@
       "accessedAt": null,
       "referenceIds": [],
       "notes": "Linked by the user’s argument maps or terminology tables; candidate for targeted authoring, not independently read or endorsed."
+    },
+    {
+      "id": "source.user-2026-09-22-fukuyama-ai-risk",
+      "url": "https://www.persuasion.community/p/why-i-changed-my-mind-about-ai-risk",
+      "originalUrls": [
+        "https://www.persuasion.community/p/why-i-changed-my-mind-about-ai-risk"
+      ],
+      "origins": ["user-2026-09-22"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Personal essay and policy argument",
+      "publishedAt": "2026-09-21",
+      "updatedAt": null,
+      "accessedAt": "2026-09-22",
+      "referenceIds": [],
+      "notes": "Francis Fukuyama — Why I Changed My Mind About AI Risk. General source: no existing Fukuyama persona. Full essay inspected; attributed arguments and incident descriptions are not independent verification. Candidate for future authoring, with no reviewed snapshot or runtime activation.",
+      "researchRecords": [
+        {
+          "path": "docs/research/user-source-additions-2026-09-22.md",
+          "heading": "Francis Fukuyama — general sources",
+          "scope": "Full essay, excluding reader comments; scoped paraphrase and attribution limits. No human review or snapshot mapping."
+        }
+      ]
     }
   ],
   "contextNotionPages": [
