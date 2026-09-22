@@ -5,6 +5,10 @@ import { PageTransition } from '@/components/page-transition'
 import { notFound } from 'next/navigation'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
+export function generateStaticParams() {
+  return people.map((person) => ({ username: person.slug }))
+}
+
 export async function generateMetadata({
   params
 }: {

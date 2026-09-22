@@ -95,6 +95,7 @@ export default async function About() {
               <Link
                 className='underline underline-offset-4'
                 href={`/users/${person.slug}`}
+                prefetch={true}
               >
                 Elon Musk’s simulated assessment
               </Link>
