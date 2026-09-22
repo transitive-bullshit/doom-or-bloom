@@ -413,3 +413,119 @@ test('weak initial inference does not create an ambiguity that blocks a later ex
     false
   )
 })
+
+test('result evidence sends only selected experiment candidates and preserves the complete transcript', async () => {
+  const fixture = createFixtureProvider()
+  let inspected = false
+  const provider: Provider = {
+    kind: 'fixture',
+    async evaluate(...args) {
+      const [input, questions] = args
+      const context = input as {
+        completeParticipantEvidence?: Array<{ answer: string }>
+        experimentCandidates?: Record<string, Record<string, unknown>>
+        excerpts?: unknown
+      }
+      if (context.excerpts) {
+        inspected = true
+        const referenced = new Set(
+          Object.values(questions).flatMap((q) =>
+            [
+              ...q.instructions.matchAll(
+                /experimentCandidates\.(passages|probabilities)\.([\w]+)/g
+              )
+            ].map((match) => `${match[1]}.${match[2]}`)
+          )
+        )
+        const supplied = Object.entries(context.experimentCandidates!).flatMap(
+          ([pool, entries]) => Object.keys(entries).map((id) => `${pool}.${id}`)
+        )
+        expect(new Set(supplied)).toEqual(referenced)
+        expect(context.completeParticipantEvidence?.[0]?.answer).toBe(text)
+      }
+      const response = await fixture.evaluate(...args)
+      for (const [id, q] of Object.entries(questions)) {
+        if (q.type === 'choice' && 'p0' in q.criteria)
+          response.answers[id] = fixtureAnswer(q, 'p0')
+      }
+      return response
+    }
+  }
+  const text =
+    'AI could transform medicine. Independent evaluations could reveal control failures. I would update if safeguards worked reliably. Powerful systems may cause irreversible harm.'
+  await runAssessment(
+    {
+      debug: false,
+      requestId: 'compact-evidence',
+      assessment: createAssessment('compact-evidence'),
+      operation: { type: 'answer', text }
+    },
+    provider,
+    loadBundle(),
+    false,
+    undefined,
+    undefined,
+    'persona'
+  )
+  expect(inspected).toBe(true)
+})
+
+test('runtime keeps full answers and core results without generating excerpt requests', async () => {
+  const fixture = createFixtureProvider()
+  const stages: string[] = []
+  const text =
+    'AI could transform medicine. Safeguards and independent evaluations matter. Catastrophe seems unlikely but possible.'
+  const provider: Provider = {
+    kind: 'fixture',
+    async evaluate(...args) {
+      const [input, questions] = args
+      const context = input as Record<string, unknown>
+      for (const key of [
+        'excerpts',
+        'experimentCandidates',
+        'claimPairs',
+        'excerptPolicy'
+      ])
+        expect(context).not.toHaveProperty(key)
+      for (const id of Object.keys(questions)) {
+        expect(id).not.toMatch(
+          /:excerpt|:evidence|:verified|experiment:milestone|experiment:hinge|^tension/
+        )
+      }
+      if (questions['experiment:influence']) {
+        stages.push('projection')
+        expect(JSON.stringify(context.completeParticipantEvidence)).toContain(
+          text
+        )
+        expect(questions).toHaveProperty('experiment:transformation')
+        expect(questions).toHaveProperty('experiment:pdoom:band')
+      }
+      return fixture.evaluate(...args)
+    }
+  }
+  const response = await runAssessment(
+    {
+      requestId: 'runtime-without-excerpts',
+      assessment: createAssessment('runtime-without-excerpts'),
+      operation: { type: 'answer', text },
+      debug: true
+    },
+    provider,
+    loadBundle(),
+    true
+  )
+  expect(stages).toEqual(['projection'])
+  expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
+    'A: interpret',
+    'D: projection',
+    'C: route'
+  ])
+  const result = response.assessment.result!
+  expect(result.experiment!.milestones).toEqual([])
+  expect(result.experiment!.hinges).toEqual([])
+  expect(
+    result.components.every((component) => !component.reasoningEvidence)
+  ).toBe(true)
+  expect(result.horizontal.value).not.toBeNull()
+  expect(result.experiment!.transformation.value).not.toBeNull()
+})

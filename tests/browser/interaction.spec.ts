@@ -57,9 +57,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   const view = page.getByRole('button', { name: 'View my result' })
   await tabTo(page, view)
   await page.keyboard.press('Enter')
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(
     page.getByRole('img', { name: /^Doom–Bloom:/ }).first()
   ).toHaveAttribute('aria-label', /not event probabilities/)
@@ -128,7 +126,7 @@ test('reduced-motion paperclips are reachable and dismissible by keyboard', asyn
     await page.getByLabel('Your answer', { exact: true }).fill('off-topic')
     await page.getByRole('button', { name: /^Continue/ }).click()
     await expect(
-      page.getByRole('button', { name: /^Reading your answer/ })
+      page.getByRole('button', { name: /^Reflecting on your answer/ })
     ).toHaveCount(0)
   }
   await expect(page.locator('.paperclip-effect')).toHaveCSS(

@@ -169,7 +169,6 @@ export function ConversationHistory({
     >
       <Message>
         <MessageContent>
-          <MessageHeader>Question {turn.prompt.ordinal}</MessageHeader>
           <Bubble variant='ghost'>
             <BubbleContent>
               <h4 className='text-lg leading-snug font-semibold tracking-tight whitespace-pre-wrap wrap-anywhere'>

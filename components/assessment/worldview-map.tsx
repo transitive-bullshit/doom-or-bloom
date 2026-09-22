@@ -58,21 +58,7 @@ export function Map({
           {definition.question}
         </h2>
         <div className='shrink-0'>
-          <MapActions
-            svg={svg}
-            title={
-              subject
-                ? `${subject.name} · Simulated AI worldview`
-                : 'My AI worldview'
-            }
-            legend={
-              point
-                ? y.interpretation === 'unsettled'
-                  ? 'Point: center of unresolved range · Dashed area: interpretation range'
-                  : 'Point: estimated position · Dashed area: interpretation range'
-                : 'No placement yet · Dashed area: interpretation range'
-            }
-          />
+          <MapActions svg={svg} />
         </div>
       </div>
       <svg

@@ -206,26 +206,11 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     await expect(page.locator('[data-slot="worldview-map"]')).toHaveCount(1)
     const map = page.locator('[data-slot="worldview-map"]').first()
     if (unplaced === false) {
-      const reference = page.getByRole('link', {
-        name: 'Answer 1',
-        exact: true
-      })
-      await expect(
-        page.locator('#answer-1').getByRole('button', { name: /Read full/ })
-      ).toBeVisible()
-      await reference.click()
-      await expect(page).toHaveURL(/#answer-1$/)
-      await expect(page.locator('#answer-1')).toBeFocused()
-      await expect(page.locator('#answer-1')).toBeInViewport()
-      await expect(page.locator('#answer-1').getByRole('region')).toHaveText(
+      const answer = page.locator('#answer-1')
+      await answer.getByRole('button', { name: /Read full/ }).click()
+      await expect(answer.getByRole('region')).toHaveText(
         state.answers[0]!.text.trim()
       )
-      await page
-        .locator('#answer-1')
-        .getByRole('button', { name: /Collapse/ })
-        .click()
-      await reference.click()
-      await expect(page.locator('#answer-1').getByRole('region')).toBeVisible()
     }
 
     await expect(map).toContainText(
@@ -300,8 +285,8 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       const downloaded = await downloading
       const png = await readFile((await downloaded.path())!)
       expect(png.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a')
-      expect(png.readUInt32BE(16)).toBe(1360)
-      expect(png.readUInt32BE(20)).toBe(980)
+      expect(png.readUInt32BE(16)).toBe(2720)
+      expect(png.readUInt32BE(20)).toBe(1800)
       await downloaded.saveAs(testInfo.outputPath('exported-map.png'))
       await page.route('**/api/share-card', (route) =>
         route.fulfill({ status: 500, body: 'Unavailable' })

@@ -110,9 +110,7 @@ export function ResultView({
             )}
           </div>
         )}
-        <h1 className='text-3xl font-semibold tracking-tight'>
-          A map of your AI worldview
-        </h1>
+        <h1 className='text-3xl font-semibold tracking-tight'>Results</h1>
         <p className='mt-3 text-sm text-body-foreground'>
           {result.reason === 'Some interpretations still need clarification.'
             ? null
@@ -181,7 +179,7 @@ export function ResultView({
       )}
       <Collapsible>
         <CollapsibleTrigger asChild>
-          <Button variant='outline'>Inspect evidence & clarify my view</Button>
+          <Button variant='outline'>Review & clarify my results</Button>
         </CollapsibleTrigger>
         <CollapsibleContent className='mt-4 flex flex-col gap-5'>
           {result.components.map((c) => (

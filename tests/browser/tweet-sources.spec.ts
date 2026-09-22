@@ -130,9 +130,7 @@ test('assessment resources embed tweets and keep a bookmark when a post cannot l
       'I expect useful tools and serious risks, with outcomes depending on oversight. Independent tests could change my view.'
     )
   await page.getByRole('button', { name: /^Continue/ }).click()
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(page.locator('.resource-tweet article')).toHaveCount(1)
   await expect(page.locator('[data-resource-layout=masonry]')).toHaveAttribute(
     'data-resource-layout',

@@ -222,7 +222,10 @@ export function experimentCandidates(input: ExperimentInput) {
 }
 export type ExperimentCandidates = ReturnType<typeof experimentCandidates>
 
-export function experimentQuestions(candidates: ExperimentCandidates) {
+export function experimentQuestions(
+  candidates: ExperimentCandidates,
+  includeExcerpts = true
+): Record<string, Question> {
   const select = (
     meaning: string,
     pool: 'passages' | 'probabilities' = 'passages'
@@ -239,7 +242,7 @@ export function experimentQuestions(candidates: ExperimentCandidates) {
       )
     }
   })
-  return {
+  const questions: Record<string, Question> = {
     ...Object.fromEntries(
       Object.entries(experimentalAxes).flatMap(([id, axis]) => [
         [
@@ -257,17 +260,17 @@ export function experimentQuestions(candidates: ExperimentCandidates) {
             }
           } satisfies Question
         ],
-        [
-          `experiment:${id}:evidence`,
-          select(
-            `a stated or strongly implied position answering "${axis.question}". ${axis.meaning}`
-          )
-        ]
+        ...(includeExcerpts
+          ? [
+              [
+                `experiment:${id}:evidence`,
+                select(
+                  `a stated or strongly implied position answering "${axis.question}". ${axis.meaning}`
+                )
+              ]
+            ]
+          : [])
       ])
-    ),
-    'experiment:pdoom': select(
-      'the participant’s current stated numerical probability of AI causing human extinction or comparably irreversible civilization-scale catastrophe. Select the probability token, not a date, job-loss percentage, evaluator confidence, ordinary harm rate, another person’s estimate, or probability of a capability milestone. A conditional estimate is allowed only with its condition retained in the passage. Do not convert a qualitative claim into a number',
-      'probabilities'
     ),
     'experiment:pdoom:band': {
       type: 'choice',
@@ -292,22 +295,53 @@ export function experimentQuestions(candidates: ExperimentCandidates) {
           'The estimate is inferred indirectly from priorities, expected outcomes, benefit focus, trust in safeguards, or attitudes toward risk rather than an adopted likelihood.',
         absent: 'No relevant worldview evidence is available.'
       }
-    },
-    'experiment:pdoom:evidence': select(
-      'the best evidence for interpreting how likely the participant considers AI-caused human extinction or comparably irreversible civilization-scale catastrophe. An expected outcome, dismissal or acceptance of catastrophic risk, confidence in safeguards, or sustained focus on a benign future can support an indirect estimate. The excerpt need not state a probability or mention extinction, but must bear on their broader AI future. Preserve necessary conditions and scenarios. A narrow isolated claim about jobs or a mere policy preference is insufficient on its own'
-    ),
-    ...Object.fromEntries(
-      milestones.map((m) => [
-        `experiment:milestone:${m.id}`,
-        select(
-          `their timing for ${m.meaning}. An explicit date, range, relative horizon, dependency (after another event), unknown timing, or may-never-arrive position counts. An incidental historical date or a future capability claim with no timing statement does not. Preserve the participant’s definition; labels are topic groupings, not definitions imposed by us`
-        )
-      ])
-    ),
-    ...Object.fromEntries(
-      hinges.map((h) => [`experiment:hinge:${h.id}`, select(h.meaning)])
-    )
-  } satisfies Record<string, Question>
+    }
+  }
+  if (includeExcerpts)
+    Object.assign(questions, {
+      'experiment:pdoom': select(
+        'the participant’s current stated numerical probability of AI causing human extinction or comparably irreversible civilization-scale catastrophe. Select the probability token, not a date, job-loss percentage, evaluator confidence, ordinary harm rate, another person’s estimate, or probability of a capability milestone. A conditional estimate is allowed only with its condition retained in the passage. Do not convert a qualitative claim into a number',
+        'probabilities'
+      ),
+      'experiment:pdoom:evidence': select(
+        'the best evidence for interpreting how likely the participant considers AI-caused human extinction or comparably irreversible civilization-scale catastrophe. An expected outcome, dismissal or acceptance of catastrophic risk, confidence in safeguards, or sustained focus on a benign future can support an indirect estimate. The excerpt need not state a probability or mention extinction, but must bear on their broader AI future. Preserve necessary conditions and scenarios. A narrow isolated claim about jobs or a mere policy preference is insufficient on its own'
+      ),
+      ...Object.fromEntries(
+        milestones.map((m) => [
+          `experiment:milestone:${m.id}`,
+          select(
+            `their timing for ${m.meaning}. An explicit date, range, relative horizon, dependency (after another event), unknown timing, or may-never-arrive position counts. An incidental historical date or a future capability claim with no timing statement does not. Preserve the participant’s definition; labels are topic groupings, not definitions imposed by us`
+          )
+        ])
+      ),
+      ...Object.fromEntries(
+        hinges.map((h) => [`experiment:hinge:${h.id}`, select(h.meaning)])
+      )
+    })
+  return questions
+}
+
+// Verification refers only to selections already made by the projection pass.
+// Keep the complete transcript in shared context, without resending unused pools.
+export function experimentVerificationCandidates(
+  candidates: ExperimentCandidates,
+  answers: Record<string, ModelAnswer>
+): ExperimentCandidates {
+  const selected: ExperimentCandidates = { passages: {}, probabilities: {} }
+  for (const verifiedId of Object.keys(
+    experimentVerificationQuestions(candidates, answers)
+  )) {
+    const id = verifiedId.slice(0, -':verified'.length)
+    const answer = answers[id]
+    if (answer?.type !== 'choice') continue
+    if (id === 'experiment:pdoom') {
+      selected.probabilities[answer.choice] =
+        candidates.probabilities[answer.choice]!
+    } else {
+      selected.passages[answer.choice] = candidates.passages[answer.choice]!
+    }
+  }
+  return selected
 }
 
 // Selection confidence compares competing excerpts, many of which can be valid.

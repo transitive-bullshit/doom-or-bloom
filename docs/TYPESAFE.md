@@ -1,5 +1,11 @@
 # TypeSafe / Jev Composition Specification
 
+## Runtime assessments and persona excerpts
+
+End-user assessments use complete answers and whole-answer support only. They do not generate excerpt pools, select or verify passages, extract stated percentages, or issue quoted tension-pair clarifications. The server defaults to runtime mode; only the pre-built persona runner opts into excerpt processing. Existing historical records remain readable.
+
+The worldview map, human influence, transformation, reasoning scores, inferred P(doom), fingerprints, findings, whole-answer references, correction controls, resources and downloads remain available. Runtime results hide the detailed milestone timeline, outlook hinges and excerpt-backed reasoning judgments; the correction disclosure is “Review & clarify my results.” Persona views retain excerpt-based cards. Excerpt and quote-verification behavior described below applies only to personas.
+
 ## Role and boundaries
 
 Jev performs narrow semantic judgments over participant evidence and authored definitions. It returns Choice, Score and Noul outputs, distributions and interpretation confidence. Code owns state transitions, calculations, eligibility, routing, persistence, versioning and rendering. Jev does not write participant questions, generate result prose or expose hidden reasoning.
@@ -10,7 +16,7 @@ Independent questions in a batch cannot consume one another’s outputs. Later s
 
 ### A. Interpret the reply
 
-Supply the current authored prompt and complete submitted reply once, prior usable answers, unresolved scopes with their source-answer IDs, and the correction target. Evaluate 22 independent base judgments: disposition, reading familiarity, 15 dimension-presence classifications, horizon presence, explicitly unknown horizon, participant-conviction presence, tension existence and tension location. Add one resolution judgment for each dimension with an unresolved ambiguity or tension, up to 37 judgments total. Missing evidence and demonstrated low-quality reasoning are distinct.
+Supply the current authored prompt and complete submitted reply once, prior usable answers, unresolved scopes with their source-answer IDs, and the correction target. Runtime evaluates 20 independent base judgments; personas add tension existence and location for 22: disposition, reading familiarity, 15 dimension-presence classifications, horizon presence, explicitly unknown horizon, participant-conviction presence, tension existence and tension location. Add one resolution judgment for each dimension with an unresolved ambiguity or tension, up to 35 runtime judgments (37 for personas). Missing evidence and demonstrated low-quality reasoning are distinct.
 
 Every dimension question includes its human-readable label and its full authored meaning. Worldview describes expectations/values/policy; reasoning describes the supplied explanation. Missing evidence is not a low score. Presence of an explicit unknown does not establish a directional position. Familiarity is a wording/resource signal, not quality.
 
@@ -60,7 +66,7 @@ Storage schema remains v2. Decode legacy v1 saves into whole-answer support with
 
 Bounds: 12 lifetime participant prompts, warning at 10; 20,000 characters per submitted reply; 96 independent questions per stage; 32 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate interpretation, shared-profile, optional tension-selection and routing requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
 
-All stages share a 120-second operation deadline; stages have a 45-second deadline and physical attempts 15 seconds. Large inputs use eight-question batches with complete participant evidence. An oversized-batch fallback may split once; an oversized child terminates rather than probing the provider limit. Preserve drafts, validate responses, retry transient failures with bounded backoff, reject stale responses and keep credentials server-side. The cumulative transcript may still exceed provider context; never silently discard evidence.
+All stages share a 120-second operation deadline; stages have a 45-second deadline and physical attempts 15 seconds. Large inputs use eight-question batches with complete participant evidence. An oversized-batch fallback may split at most twice; a single-question overflow or an overflow at depth two terminates. Preserve drafts, validate responses, retry transient failures with bounded backoff, reject stale responses and keep credentials server-side. The cumulative transcript may still exceed provider context; never silently discard evidence.
 
 Use credential-free fixtures for workflow/boundary checks. No paid pressure testing. Optional evaluation commands require `--allow-paid --max-requests=N` (1–24), with a shared physical-request allowance, reserved before stages and retained when failed-call cost is unknown. These flags do not replace agreement on a small reviewed suite and cost budget.
 

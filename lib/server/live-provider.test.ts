@@ -185,7 +185,7 @@ test('an oversized fallback stops without searching for the provider limit', asy
       { a: question, b: question, c: question, d: question }
     )
   ).rejects.toMatchObject({ status: 400 })
-  expect(fetch).toHaveBeenCalledTimes(2)
+  expect(fetch).toHaveBeenCalledTimes(3)
 })
 test('authentication failures are not retried, while transient retries have a physical ceiling', async () => {
   const { provider, fetch } = mockedProvider(async () =>
@@ -381,4 +381,27 @@ test('failed later batch retains validated responses and physical diagnostics wi
     'test-key-never-a-real-credential'
   ])
     expect(JSON.stringify(failure)).not.toContain(secret)
+})
+
+test('max_tokens_exceeded recovers through two bounded splits without dropping answers', async () => {
+  const state = { answer: 'The complete answer must survive each retry.' }
+  const { provider, fetch } = mockedProvider(async (_url, init) => {
+    const body = requestBody(init)
+    expect(body.state).toEqual(state)
+    return Object.keys(body.questions).length > 1
+      ? Response.json(
+          { detail: { error_type: 'max_tokens_exceeded' } },
+          { status: 400 }
+        )
+      : successfulResponse(init)
+  })
+  const result = await provider.evaluate(state, {
+    a: question,
+    b: question,
+    c: question,
+    d: question
+  })
+  expect(Object.keys(result.answers).sort()).toEqual(['a', 'b', 'c', 'd'])
+  expect(fetch).toHaveBeenCalledTimes(7)
+  expect(result.attempts).toBe(7)
 })

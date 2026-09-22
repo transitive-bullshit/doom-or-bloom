@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test'
-import { storageKey } from '../../lib/persistence/storage'
 
 // Uses actual application control flow with exact local phrases, never paid inference.
 test('test replies reliably trigger paperclips and an explicit request works once per assessment', async ({
@@ -7,12 +6,18 @@ test('test replies reliably trigger paperclips and an explicit request works onc
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/assessment')
+  await expect(
+    page.getByRole('button', { name: 'Restart', exact: true })
+  ).toHaveCount(0)
   const answer = page.getByLabel('Your answer', { exact: true })
   const submit = async (text: string) => {
     await answer.fill(text)
     await page.getByRole('button', { name: /^Continue/ }).click()
   }
   await submit('test')
+  await expect(
+    page.getByRole('button', { name: 'Restart', exact: true })
+  ).toBeVisible()
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   await submit('test again')
   await expect(
@@ -44,9 +49,18 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
   ).toHaveCount(0)
-  // Start a fresh assessment; these recovery-only runs have no accepted answers.
-  await page.evaluate((key) => localStorage.removeItem(key), storageKey)
-  await page.reload()
+  // Recovery-only runs must be restartable without an accepted answer.
+  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  await page
+    .getByRole('button', { name: 'Restart & clear', exact: true })
+    .click()
+  await expect(answer).toHaveValue('')
+  await expect(
+    page.getByRole('button', { name: 'Restart', exact: true })
+  ).toHaveCount(0)
+  await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
+    0
+  )
   await submit('show me paperclips')
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
@@ -115,9 +129,18 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await expect(
     page.getByText(/Now give the question an earnest answer/)
   ).toBeVisible()
-  // Start a fresh assessment; these recovery-only runs have no accepted answers.
-  await page.evaluate((key) => localStorage.removeItem(key), storageKey)
-  await page.reload()
+  // Recovery-only runs must be restartable without an accepted answer.
+  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  await page
+    .getByRole('button', { name: 'Restart & clear', exact: true })
+    .click()
+  await expect(answer).toHaveValue('')
+  await expect(
+    page.getByRole('button', { name: 'Restart', exact: true })
+  ).toHaveCount(0)
+  await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
+    0
+  )
   await page.setViewportSize({ width: 390, height: 844 })
   await answer.fill('show me paperclips')
   await page.getByRole('button', { name: /^Continue/ }).click()

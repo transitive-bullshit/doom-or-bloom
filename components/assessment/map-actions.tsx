@@ -14,15 +14,7 @@ import {
 import { mapPng } from '@/lib/sharing/map-png'
 import { downloadBlob } from '@/lib/sharing/report'
 
-export function MapActions({
-  svg,
-  title,
-  legend
-}: {
-  svg: RefObject<SVGSVGElement | null>
-  title: string
-  legend: string
-}) {
+export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
   const [busy, setBusy] = useState(false)
   const exportImage = async (copy: boolean) => {
     if (!svg.current || busy) return
@@ -36,7 +28,7 @@ export function MapActions({
           'Image copying is unavailable here. Choose Download PNG instead.'
         )
       }
-      const png = mapPng(svg.current, title, legend)
+      const png = mapPng(svg.current)
       if (copy) {
         // Start the clipboard write inside the user gesture, including on Safari.
         await navigator.clipboard.write([

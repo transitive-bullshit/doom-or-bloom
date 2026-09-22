@@ -16,13 +16,17 @@ async function run(
   state: Assessment,
   operation: Operation,
   provider = createFixtureProvider(),
-  debug = false
+  debug = false,
+  mode: 'runtime' | 'persona' = 'runtime'
 ) {
   return runAssessment(
     { requestId: `r${++seq}`, assessment: state, operation, debug },
     provider,
     loadBundle(),
-    true
+    true,
+    undefined,
+    undefined,
+    mode
   )
 }
 function nonAnswerProvider(disposition = 'non_answer'): Provider {
@@ -76,7 +80,8 @@ test('experimental placements consume a dependent evidence check and preserve bo
       text: 'Human action can redirect the AI trajectory. Cooperation can prevent catastrophe.'
     },
     provider,
-    true
+    true,
+    'persona'
   )
   expect(verificationState).toHaveProperty(
     'experimentCandidates.passages.p0.text',
@@ -376,12 +381,11 @@ test('dependent stages share the remaining physical request budget', async () =>
   expect(budgets).toEqual([
     limits.providerAttempts,
     limits.providerAttempts - 12,
-    limits.providerAttempts - 16,
-    limits.providerAttempts - 20
+    limits.providerAttempts - 16
   ])
   expect(
     result.debug?.stages.reduce((sum, stage) => sum + stage.attempts, 0)
-  ).toBe(24)
+  ).toBe(20)
   expect(result.assessment.answers).toHaveLength(1)
 })
 test('repeated ambiguity exhausts neutrally, successful retry resumes', async () => {
@@ -487,7 +491,7 @@ test('shared text occurs once per stage and judgments use answer-level support w
     true
   )
   const interpretation = result.debug!.stages[0]!
-  expect(Object.keys(interpretation.questions)).toHaveLength(22)
+  expect(Object.keys(interpretation.questions)).toHaveLength(20)
   expect(interpretation.state).toEqual({
     current: {
       id: result.assessment.answers[0]!.id,
@@ -538,7 +542,7 @@ test('shared text occurs once per stage and judgments use answer-level support w
   const stage = result.debug!.stages.find(
     (stage) => stage.name === 'D: projection'
   )!
-  expect(Object.keys(stage.questions)).toHaveLength(63)
+  expect(Object.keys(stage.questions)).toHaveLength(52)
   expect(JSON.stringify(stage.state).split(text)).toHaveLength(2)
   expect(JSON.stringify(stage.questions)).not.toContain(text)
   expect(
@@ -563,7 +567,6 @@ test('one well-covered answer unlocks results and sends explicit dimension defin
   expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
     'A: interpret',
     'D: projection',
-    'D: result evidence',
     'C: route'
   ])
   const bundle = loadBundle()

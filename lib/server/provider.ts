@@ -35,7 +35,8 @@ export interface Provider {
     questions: Record<string, Question>,
     signal?: AbortSignal,
     attemptBudget?: number,
-    captureDebug?: boolean
+    captureDebug?: boolean,
+    diagnosticContext?: { requestId?: string; stage?: string }
   ): Promise<Evaluation>
 }
 

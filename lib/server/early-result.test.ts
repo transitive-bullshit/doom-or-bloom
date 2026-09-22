@@ -112,7 +112,7 @@ test('an independent pair check can reject a preliminary tension signal', async 
       return result
     }
   }
-  const response = await runAssessment(
+  const response = await runPersona(
     {
       assessment: createAssessment('conflicting-control'),
       requestId: 'conflicting-answer',
@@ -182,7 +182,7 @@ for (const acrossAnswers of [false, true])
         ]
     for (const [index, text] of texts.entries())
       state = (
-        await runAssessment(
+        await runPersona(
           {
             assessment: state,
             requestId: `a-${index}`,
@@ -198,7 +198,7 @@ for (const acrossAnswers of [false, true])
     expect(prompt.text).toContain('Nobody can control what AI does.')
     expect(prompt.text).toContain('The labs control everything AI does.')
     expect(prompt.target).toBeUndefined()
-    const clarified = await runAssessment(
+    const clarified = await runPersona(
       {
         assessment: state,
         requestId: 'clarify',
@@ -219,7 +219,7 @@ for (const acrossAnswers of [false, true])
     tampered.prompts.at(-1)!.quotedClaims![0]!.text =
       'Invented participant claim'
     await expect(
-      runAssessment(
+      runPersona(
         {
           assessment: tampered,
           requestId: 'tampered',
@@ -262,7 +262,7 @@ test('doubling down preserves an unresolved tension without repeating its clarif
     }
   }
   const bundle = loadBundle()
-  const opening = await runAssessment(
+  const opening = await runPersona(
     {
       assessment: createAssessment('no-clarification-loop'),
       requestId: 'first',
@@ -276,7 +276,7 @@ test('doubling down preserves an unresolved tension without repeating its clarif
     bundle
   )
   expect(opening.assessment.prompts.at(-1)?.variant).toBe('tension')
-  const reply = await runAssessment(
+  const reply = await runPersona(
     {
       assessment: opening.assessment,
       requestId: 'doubled-down',
@@ -469,3 +469,15 @@ test.each([true, false])(
     )
   }
 )
+
+function runPersona(...args: Parameters<typeof runAssessment>) {
+  return runAssessment(
+    args[0],
+    args[1],
+    args[2],
+    args[3],
+    args[4],
+    args[5],
+    'persona'
+  )
+}

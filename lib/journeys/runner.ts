@@ -189,7 +189,10 @@ export async function runPersona(
       },
       provider,
       bundle,
-      true
+      true,
+      undefined,
+      undefined,
+      'persona'
     ).catch((err: unknown) => {
       if (err instanceof AssessmentFailure) {
         completedStages = err.trace.stages.filter(

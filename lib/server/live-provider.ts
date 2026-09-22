@@ -1,5 +1,6 @@
+import { isContextOverflow, reportServerError } from './error-reporting'
 import 'server-only'
-import { APIError, TypeSafeClient } from '@typesafe-ai/sdk'
+import { TypeSafeClient } from '@typesafe-ai/sdk'
 import type { EntryType, Questions } from '@typesafe-ai/sdk'
 import { z } from 'zod'
 import {
@@ -71,7 +72,8 @@ export function createLiveProvider(model: string): Provider {
       questions,
       signal,
       attemptBudget = limits.providerAttempts,
-      captureDebug = false
+      captureDebug = false,
+      diagnosticContext = {}
     ) => {
       if (!process.env.TYPESAFE_API_KEY?.trim())
         throw new Error(
@@ -156,7 +158,7 @@ export function createLiveProvider(model: string): Provider {
       const results: Evaluation[] = []
       const evaluateBatch = async (
         part: Array<[string, Question]>,
-        split = false
+        splitDepth = 0
       ): Promise<void> => {
         boundedSignal.throwIfAborted()
         batchQuestionIds = part.map(([id]) => id)
@@ -192,18 +194,32 @@ export function createLiveProvider(model: string): Provider {
             }
           results.push(result)
         } catch (err) {
+          reportServerError(
+            'jev_batch_failed',
+            err,
+            {
+              ...diagnosticContext,
+              model,
+              attempts,
+              splitDepth,
+              stateBytes: Buffer.byteLength(JSON.stringify(state)),
+              questionCount: part.length,
+              questionBytes: Buffer.byteLength(
+                JSON.stringify(Object.fromEntries(part))
+              ),
+              retrying:
+                isContextOverflow(err) && part.length > 1 && splitDepth < 2
+            },
+            isContextOverflow(err) && part.length > 1 && splitDepth < 2
+              ? 'warn'
+              : 'error'
+          )
           // A smaller question batch retains the complete state. Never retry an
           // unchanged oversized request or trim participant/source evidence.
-          if (
-            err instanceof APIError &&
-            err.status === 400 &&
-            /token|context|length|too large/i.test(err.message) &&
-            part.length > 1 &&
-            !split
-          ) {
+          if (isContextOverflow(err) && part.length > 1 && splitDepth < 2) {
             const middle = Math.ceil(part.length / 2)
-            await evaluateBatch(part.slice(0, middle), true)
-            await evaluateBatch(part.slice(middle), true)
+            await evaluateBatch(part.slice(0, middle), splitDepth + 1)
+            await evaluateBatch(part.slice(middle), splitDepth + 1)
           } else throw err
         }
       }

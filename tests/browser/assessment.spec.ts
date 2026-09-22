@@ -12,7 +12,7 @@ async function submit(page: import('@playwright/test').Page, text: string) {
   await page.getByLabel('Your answer', { exact: true }).fill(text)
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(
-    page.getByRole('button', { name: /^Reading your answer/ })
+    page.getByRole('button', { name: /^Reflecting on your answer/ })
   ).toHaveCount(0)
 }
 for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
@@ -42,9 +42,7 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
     for (let i = 0; i < 3; i++)
       await submit(page, `Earlier-version synthetic answer ${i}.`)
     await page.getByRole('button', { name: 'View my result' }).click()
-    await expect(
-      page.getByRole('heading', { name: 'A map of your AI worldview' })
-    ).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
     const saved = await page.evaluate(
       (key) => JSON.parse(localStorage.getItem(key)!).assessment,
       storageKey
@@ -53,9 +51,7 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
     expect(saved.result.versions.content).toBe(contentVersion)
     expect(saved.answers[0].text).toBe('Earlier-version synthetic answer 0.')
     await page.reload()
-    await expect(
-      page.getByRole('heading', { name: 'A map of your AI worldview' })
-    ).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
     await page.getByRole('button', { name: 'Restart', exact: true }).click()
     await page.getByRole('button', { name: 'Restart & clear' }).click()
     await expect(
@@ -146,17 +142,24 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   for (let i = 0; i < 3; i++)
     await submit(page, `Relevant synthetic answer ${i}.`)
   await page.getByRole('button', { name: 'View my result' }).click()
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(
     page.getByRole('article', { name: 'Question 1 and replies', exact: true })
   ).toContainText('Relevant synthetic answer 0.')
   await expect(
     page.getByRole('img', { name: /^Doom–Bloom:/ }).first()
   ).toHaveAttribute('aria-label', /interpretation coordinates/)
+  await expect(
+    page.getByText('Your milestone timeline', { exact: true })
+  ).toHaveCount(0)
+  await expect(
+    page.getByText('What your outlook hinges on', { exact: true })
+  ).toHaveCount(0)
+  await expect(
+    page.getByText('Reasoning judgments to inspect', { exact: true })
+  ).toHaveCount(0)
   await page
-    .getByRole('button', { name: 'Inspect evidence & clarify my view' })
+    .getByRole('button', { name: 'Review & clarify my results' })
     .click()
   await page
     .getByRole('button', { name: 'That’s not quite my view' })
@@ -166,9 +169,7 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
     page,
     'I meant current testing is insufficient, not that control is impossible.'
   )
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   const reportWait = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download full report' }).click()
   const report = await reportWait
@@ -450,9 +451,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   expect(state.answers).toHaveLength(1)
   expect(state.prompts).toHaveLength(2)
   await page.getByRole('button', { name: 'View my result' }).click()
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(
     page.locator('[data-slot="worldview-map"]').first()
   ).toContainText('scale of transformation')

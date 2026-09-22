@@ -235,7 +235,11 @@ function Step({
             </p>
             {step.result ? (
               <>
-                <ExperimentalResults subject={subject} result={step.result} />
+                <ExperimentalResults
+                  excerpts
+                  subject={subject}
+                  result={step.result}
+                />
                 <JsonViewer
                   label={`Step ${step.ordinal} result`}
                   value={step.result}
@@ -655,6 +659,7 @@ export function JourneysInspector({
             {journey.result ? (
               <>
                 <ExperimentalResults
+                  excerpts
                   subject={resultSubject}
                   result={journey.result}
                 />

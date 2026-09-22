@@ -31,9 +31,7 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
       'I expect useful tools and serious risks, with outcomes depending on oversight. Research should continue, but deployment should require meaningful safeguards.'
     )
   await page.getByRole('button', { name: /^Continue/ }).click()
-  await expect(
-    page.getByRole('heading', { name: 'A map of your AI worldview' })
-  ).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(
     page.getByRole('region', { name: 'More of your worldview' })
   ).toBeVisible()

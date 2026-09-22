@@ -53,6 +53,7 @@ export function PersonaPageContent({
     >
       <PersonaHeader person={person} />
       <ExperimentalResults
+        excerpts
         subject={person}
         result={person.result}
         reasoningDetails={false}

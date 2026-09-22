@@ -142,7 +142,6 @@ test('long multibyte history with many unresolved dimensions fits the physical r
     expect(result.debug?.stages.map((s) => s.name)).toEqual([
       'A: interpret',
       'D: projection',
-      'D: result evidence',
       'C: route'
     ])
     expect(requests).toBeLessThanOrEqual(limits.providerAttempts)
@@ -197,10 +196,9 @@ test('eight answers retain the complete transcript without corpus inference', as
     expect(result.debug!.stages.map((stage) => stage.name)).toEqual([
       'A: interpret',
       'D: projection',
-      'D: result evidence',
       'C: route'
     ])
-    expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(22)
+    expect(Object.keys(result.debug!.stages[0]!.questions)).toHaveLength(20)
     expect(state.referenceClaims).toEqual([])
     expect(
       state.evidence.every((entry) => entry.referenceIds.length === 0)

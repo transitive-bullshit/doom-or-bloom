@@ -32,6 +32,7 @@ import {
   storageKey
 } from '@/lib/persistence/storage'
 import { Button } from '@/components/ui/button'
+import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
 import {
   Field,
@@ -649,7 +650,13 @@ export function Interview({
                               !allowed || answerTooLong || !state.draft.trim()
                             }
                           >
-                            {busy ? 'Reading your answer…' : 'Continue'}{' '}
+                            {busy && (
+                              <Spinner
+                                data-icon='inline-start'
+                                aria-hidden='true'
+                              />
+                            )}
+                            {busy ? 'Reflecting on your answer' : 'Continue'}
                           </Button>
                         )}
                         {eligible(state) && (
@@ -673,17 +680,6 @@ export function Interview({
                               onClick={() => void act({ type: 'skip' })}
                             >
                               Try a different question
-                            </Button>
-                          )}
-                        {state.answers.length > 0 &&
-                          (!paused || state.recovery.reason !== 'stopped') && (
-                            <Button
-                              type='button'
-                              disabled={busy || conflict}
-                              variant='ghost'
-                              onClick={() => void act({ type: 'stop' })}
-                            >
-                              Stop for now
                             </Button>
                           )}
                       </div>
@@ -720,7 +716,7 @@ export function Interview({
           </div>
           <div className='flex flex-col gap-6'>
             <div className='flex items-center justify-between gap-4'>
-              {state.answers.length > 0 && (
+              {(state.answers.length > 0 || state.attempts.length > 0) && (
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant='ghost' size='sm'>

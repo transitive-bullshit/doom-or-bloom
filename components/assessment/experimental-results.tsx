@@ -23,10 +23,12 @@ export function ExperimentalResults({
   result,
   history = [],
   layout = 'contained',
+  excerpts = false,
   reasoningDetails,
   subject
 }: {
   result: Result
+  excerpts?: boolean
   history?: Array<{ label: string; result: Result }>
   layout?: 'contained' | 'breakout'
   reasoningDetails?: ReactNode
@@ -74,7 +76,11 @@ export function ExperimentalResults({
           }))}
         />
       </div>
-      <div className='grid min-w-0 gap-5 lg:grid-cols-2'>
+      <div
+        className={
+          excerpts ? 'grid min-w-0 gap-5 lg:grid-cols-2' : 'grid min-w-0 gap-5'
+        }
+      >
         <Card>
           <CardHeader>
             <CardTitle>
@@ -131,81 +137,85 @@ export function ExperimentalResults({
                 </a>
               </div>
             )}
-            {risk?.text && (
+            {excerpts && risk?.text && (
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
                 {risk.text}
               </blockquote>
             )}
           </CardContent>
         </Card>
+        {excerpts && (
+          <Card>
+            <CardHeader>
+              <CardTitle>{framing.owner} milestone timeline</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {experiment?.milestones.length ? (
+                <ol className='flex flex-col gap-5 border-l-2 pl-5'>
+                  {experiment.milestones.map((milestone) => (
+                    <li
+                      key={milestone.id}
+                      className='relative flex flex-col gap-2'
+                    >
+                      <span
+                        aria-hidden='true'
+                        className='absolute top-1 -left-[1.7rem] size-3 rounded-full border-2 border-background bg-primary'
+                      />
+                      <p className='text-sm font-semibold'>{milestone.label}</p>
+                      <p className='text-sm whitespace-pre-wrap text-body-foreground'>
+                        {milestone.evidence.text}
+                      </p>
+                      <AnswerLink number={milestone.evidence.answerNumber} />
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p className='text-sm text-body-foreground'>
+                  {experiment
+                    ? 'No milestone timing was established. Dates, “not sure,” “possibly never,” and dependencies can all appear here when expressed.'
+                    : 'Milestone timing has not been evaluated for this saved snapshot.'}
+                </p>
+              )}
+              <p className='mt-4 text-xs text-muted-foreground'>
+                Grouped by milestone, not spaced or ordered by inferred dates.
+                AGI and superhuman AI retain {framing.possessive} definitions.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+      {excerpts && (
         <Card>
           <CardHeader>
-            <CardTitle>{framing.owner} milestone timeline</CardTitle>
+            <CardTitle>What {framing.possessive} outlook hinges on</CardTitle>
           </CardHeader>
-          <CardContent>
-            {experiment?.milestones.length ? (
-              <ol className='flex flex-col gap-5 border-l-2 pl-5'>
-                {experiment.milestones.map((milestone) => (
-                  <li
-                    key={milestone.id}
-                    className='relative flex flex-col gap-2'
-                  >
-                    <span
-                      aria-hidden='true'
-                      className='absolute top-1 -left-[1.7rem] size-3 rounded-full border-2 border-background bg-primary'
-                    />
-                    <p className='text-sm font-semibold'>{milestone.label}</p>
-                    <p className='text-sm whitespace-pre-wrap text-body-foreground'>
-                      {milestone.evidence.text}
-                    </p>
-                    <AnswerLink number={milestone.evidence.answerNumber} />
-                  </li>
-                ))}
-              </ol>
+          <CardContent className='grid gap-x-5 gap-y-3 md:grid-cols-3'>
+            {experiment?.hinges.length ? (
+              experiment.hinges.map((hinge) => (
+                <div
+                  key={hinge.id}
+                  className='row-span-4 grid grid-rows-subgrid gap-3'
+                >
+                  <p className='text-sm font-semibold'>{hinge.label}</p>
+                  <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-body-foreground'>
+                    {hinge.evidence.text}
+                  </blockquote>
+                  <AnswerLink number={hinge.evidence.answerNumber} />
+                  <p className='text-sm font-medium'>
+                    {framing.hingeQuestion(hinge)}
+                  </p>
+                </div>
+              ))
             ) : (
               <p className='text-sm text-body-foreground'>
                 {experiment
-                  ? 'No milestone timing was established. Dates, “not sure,” “possibly never,” and dependencies can all appear here when expressed.'
-                  : 'Milestone timing has not been evaluated for this saved snapshot.'}
+                  ? 'No specific assumption, unresolved question or update condition was selected yet. Missing discussion is not a reasoning weakness.'
+                  : 'Assumptions and update conditions have not been evaluated for this saved snapshot.'}
               </p>
             )}
-            <p className='mt-4 text-xs text-muted-foreground'>
-              Grouped by milestone, not spaced or ordered by inferred dates. AGI
-              and superhuman AI retain {framing.possessive} definitions.
-            </p>
           </CardContent>
         </Card>
-      </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>What {framing.possessive} outlook hinges on</CardTitle>
-        </CardHeader>
-        <CardContent className='grid gap-x-5 gap-y-3 md:grid-cols-3'>
-          {experiment?.hinges.length ? (
-            experiment.hinges.map((hinge) => (
-              <div
-                key={hinge.id}
-                className='row-span-4 grid grid-rows-subgrid gap-3'
-              >
-                <p className='text-sm font-semibold'>{hinge.label}</p>
-                <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-body-foreground'>
-                  {hinge.evidence.text}
-                </blockquote>
-                <AnswerLink number={hinge.evidence.answerNumber} />
-                <p className='text-sm font-medium'>
-                  {framing.hingeQuestion(hinge)}
-                </p>
-              </div>
-            ))
-          ) : (
-            <p className='text-sm text-body-foreground'>
-              {experiment
-                ? 'No specific assumption, unresolved question or update condition was selected yet. Missing discussion is not a reasoning weakness.'
-                : 'Assumptions and update conditions have not been evaluated for this saved snapshot.'}
-            </p>
-          )}
-        </CardContent>
-      </Card>
+      )}
       <WorldviewDetails
         subject={subject}
         components={result.components}
@@ -215,16 +225,19 @@ export function ExperimentalResults({
           emptyComponent('influence', 'Human influence')
         }
       />
-      {reasoningDetails ??
-        (result.components.some((component) => component.reasoningEvidence) && (
-          <section
-            aria-label='Reasoning judgments'
-            className='flex flex-col gap-3'
-          >
-            <h3 className='font-medium'>Reasoning judgments to inspect</h3>
-            <ReasoningJudgments components={result.components} />
-          </section>
-        ))}
+      {excerpts &&
+        (reasoningDetails ??
+          (result.components.some(
+            (component) => component.reasoningEvidence
+          ) && (
+            <section
+              aria-label='Reasoning judgments'
+              className='flex flex-col gap-3'
+            >
+              <h3 className='font-medium'>Reasoning judgments to inspect</h3>
+              <ReasoningJudgments components={result.components} />
+            </section>
+          )))}
     </section>
   )
 }
@@ -297,6 +310,7 @@ export function JourneyResultExplorer({
             </Button>
           </div>
           <ExperimentalResults
+            excerpts
             subject={subject}
             result={snapshot.result}
             history={snapshots.slice(0, index)}

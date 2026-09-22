@@ -1,12 +1,20 @@
 const svgNamespace = 'http://www.w3.org/2000/svg'
 
-/** Export the visible plot locally, resolving theme tokens before leaving the DOM. */
-export async function mapPng(
-  svg: SVGSVGElement,
-  title: string,
-  legend: string
-): Promise<Blob> {
+/** Prepare the visible plot for Takumi, resolving theme tokens before leaving the DOM. */
+export async function mapPng(svg: SVGSVGElement): Promise<Blob> {
   const theme = getComputedStyle(svg)
+  // Takumi's SVG decoder needs sRGB colors rather than browser-only color syntax.
+  const colorCanvas = document.createElement('canvas')
+  colorCanvas.width = colorCanvas.height = 1
+  const colorContext = colorCanvas.getContext('2d')!
+  const color = (value: string) => {
+    if (!CSS.supports('color', value)) return value
+    colorContext.clearRect(0, 0, 1, 1)
+    colorContext.fillStyle = value
+    colorContext.fillRect(0, 0, 1, 1)
+    const [r, g, b, a] = colorContext.getImageData(0, 0, 1, 1).data
+    return `rgba(${r}, ${g}, ${b}, ${a! / 255})`
+  }
   const clone = svg.cloneNode(true) as SVGSVGElement
   const originals = [svg, ...svg.querySelectorAll('*')]
   const copies = [clone, ...clone.querySelectorAll('*')]
@@ -35,7 +43,12 @@ export async function mapPng(
         value = `${element.getAttribute('font-size') ?? 12}px`
       }
       value = value.replace(/url\(["']?[^)]*#([^"')]+)["']?\)/g, 'url(#$1)')
-      copy.style.setProperty(property, value)
+      copy.style.setProperty(
+        property,
+        ['fill', 'stroke', 'stop-color'].includes(property)
+          ? color(value)
+          : value
+      )
     }
     // Restore the field's standard radius at the fixed export size.
     if (element.matches('[data-prism-field] > rect'))
@@ -63,67 +76,42 @@ export async function mapPng(
     })
   )
   clone.setAttribute('xmlns', svgNamespace)
-  clone.setAttribute('viewBox', '0 0 680 490')
+  clone.setAttribute('viewBox', '0 0 680 450')
   clone.setAttribute('width', '1360')
-  clone.setAttribute('height', '980')
+  clone.setAttribute('height', '900')
   const surface = theme.getPropertyValue('--map-surface').trim() || '#f7f6f2'
   const foreground = theme.getPropertyValue('--map-text').trim() || '#22252a'
-  const muted = theme.getPropertyValue('--map-muted').trim() || '#646a71'
   const group = document.createElementNS(svgNamespace, 'g')
   group.setAttribute('transform', 'translate(0 55)')
   while (clone.firstChild) group.appendChild(clone.firstChild)
   const background = document.createElementNS(svgNamespace, 'rect')
   background.setAttribute('width', '680')
-  background.setAttribute('height', '490')
-  background.setAttribute('fill', surface)
+  background.setAttribute('height', '450')
+  background.setAttribute('fill', color(surface))
   clone.append(background, group)
   const label = (text: string, y: number, size: number, fill: string) => {
     const node = document.createElementNS(svgNamespace, 'text')
-    node.setAttribute('x', '30')
+    node.setAttribute('x', '340')
+    node.setAttribute('text-anchor', 'middle')
     node.setAttribute('y', String(y))
     node.setAttribute('font-family', 'sans-serif')
     node.setAttribute('font-size', String(size))
-    node.setAttribute('fill', fill)
+    node.setAttribute('fill', color(fill))
     node.textContent = text
     clone.appendChild(node)
   }
-  label(title, 34, 21, foreground)
-  label(legend, 457, 12, muted)
-  label(
-    'Doom or Bloom · Coordinates describe beliefs, not event probabilities',
-    478,
-    11,
-    muted
-  )
+  label('How will AI change the world?', 34, 21, foreground)
   const serialized = new XMLSerializer()
     .serializeToString(clone)
     .replace(/var\((--[\w-]+)\)/g, (_, token: string) =>
-      theme.getPropertyValue(token).trim()
+      color(theme.getPropertyValue(token).trim())
     )
-  const url = URL.createObjectURL(
-    new Blob([serialized], { type: 'image/svg+xml;charset=utf-8' })
-  )
-  try {
-    const image = new Image()
-    image.src = url
-    await image.decode()
-    const canvas = document.createElement('canvas')
-    canvas.width = 1360
-    canvas.height = 980
-    const context = canvas.getContext('2d')
-    if (!context)
-      throw new Error('Image export is unavailable in this browser.')
-    context.drawImage(image, 0, 0)
-    return await new Promise<Blob>((resolve, reject) =>
-      canvas.toBlob(
-        (blob) =>
-          blob
-            ? resolve(blob)
-            : reject(new Error('Could not create the image.')),
-        'image/png'
-      )
-    )
-  } finally {
-    URL.revokeObjectURL(url)
-  }
+  const response = await fetch('/api/map-png', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ svg: serialized })
+  })
+  if (!response.ok)
+    throw new Error('The graph could not be exported. Please try again.')
+  return response.blob()
 }

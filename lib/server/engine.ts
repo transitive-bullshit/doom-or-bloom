@@ -1,3 +1,4 @@
+import { reportServerError } from './error-reporting'
 import 'server-only'
 import { classifyLocalReply } from '@/lib/assessment/local-reply'
 import type {
@@ -72,6 +73,7 @@ import {
   experimentCandidates,
   experimentQuestions,
   experimentVerificationQuestions,
+  experimentVerificationCandidates,
   buildWorldviewExperiment
 } from '@/lib/assessment/worldview-experiment'
 import {
@@ -236,7 +238,9 @@ export async function runAssessment(
   provider: Provider,
   bundle: Bundle,
   debugEnabled = false,
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  logRequestId = crypto.randomUUID(),
+  mode: 'runtime' | 'persona' = 'runtime'
 ): Promise<AssessmentResponse> {
   const {
     authoredQuestion,
@@ -249,7 +253,9 @@ export async function runAssessment(
   state.versions = { ...state.versions, assessment: versions.assessment }
   // Preserve legacy traces/claims, but reference checks no longer affect this flow.
   state.unresolved = state.unresolved.filter(
-    (item) => item.kind !== 'reference'
+    (item) =>
+      item.kind !== 'reference' &&
+      (mode === 'persona' || item.kind !== 'tension')
   )
   const baseRevision = state.revision
   const started = performance.now()
@@ -280,9 +286,43 @@ export async function runAssessment(
         questions,
         operationSignal,
         remainingAttempts,
-        debugEnabled && request.debug
+        debugEnabled && request.debug,
+        { requestId: logRequestId, stage: name }
       )
       .catch((err: unknown) => {
+        const attempts = err instanceof EvaluationFailure ? err.attempts : 1
+        remainingAttempts -= attempts
+        const fields = [
+          'completeParticipantEvidence',
+          'activeSupport',
+          'dimensionDefinitions',
+          'excerpts',
+          'experimentCandidates',
+          'usableHistory',
+          'current'
+        ]
+        const record =
+          input && typeof input === 'object'
+            ? (input as Record<string, unknown>)
+            : {}
+        reportServerError('assessment_stage_failed', err, {
+          requestId: logRequestId,
+          stage: name,
+          attempts,
+          remainingAttempts,
+          elapsedMs: Math.round(performance.now() - stageStarted),
+          stateBytes: Buffer.byteLength(JSON.stringify(input)),
+          questionBytes: Buffer.byteLength(JSON.stringify(questions)),
+          questionCount: Object.keys(questions).length,
+          fieldBytes: Object.fromEntries(
+            fields
+              .filter((key) => record[key] !== undefined)
+              .map((key) => [
+                key,
+                Buffer.byteLength(JSON.stringify(record[key]))
+              ])
+          )
+        })
         if (!debugEnabled || !request.debug) throw err
         const failedStage: DebugStage = {
           name,
@@ -384,7 +424,7 @@ export async function runAssessment(
             )
         )
     )
-    if (tensionIssue && !deterministic) {
+    if (mode === 'persona' && tensionIssue && !deterministic) {
       const { pairs, question, indexedClaims, indexedPairs } =
         tensionCandidates(state)
       if (Object.keys(pairs).length) {
@@ -787,11 +827,19 @@ export async function runAssessment(
         catastrophe.levels
       )
       const input = projectionInput(state, bundle)
-      const candidates = experimentCandidates(input)
-      Object.assign(questions, experimentQuestions(candidates))
+      const candidates =
+        mode === 'persona'
+          ? experimentCandidates(input)
+          : { passages: {}, probabilities: {} }
+      Object.assign(
+        questions,
+        experimentQuestions(candidates, mode === 'persona')
+      )
       const evaluation = await evaluate(
         'D: projection',
-        { ...input, experimentCandidates: candidates },
+        mode === 'persona'
+          ? { ...input, experimentCandidates: candidates }
+          : input,
         questions
       )
       addJudgments(
@@ -870,23 +918,30 @@ export async function runAssessment(
         }
       })
       const experimentAnswers = { ...evaluation.answers }
-      const excerpts = evidenceExcerpts(state)
-      const evidenceQuestions = reasoningEvidenceQuestions(
-        evaluation.answers,
-        excerpts,
-        bundle.rubric
-      )
-      Object.assign(
-        evidenceQuestions,
-        experimentVerificationQuestions(candidates, evaluation.answers)
-      )
+      const excerpts = mode === 'persona' ? evidenceExcerpts(state) : {}
+      const evidenceQuestions =
+        mode === 'persona'
+          ? reasoningEvidenceQuestions(
+              evaluation.answers,
+              excerpts,
+              bundle.rubric
+            )
+          : {}
+      if (mode === 'persona')
+        Object.assign(
+          evidenceQuestions,
+          experimentVerificationQuestions(candidates, evaluation.answers)
+        )
       if (Object.keys(evidenceQuestions).length) {
         const inspection = await evaluate(
           'D: result evidence',
           {
             ...projectionInput(state, bundle),
             excerpts,
-            experimentCandidates: candidates,
+            experimentCandidates: experimentVerificationCandidates(
+              candidates,
+              evaluation.answers
+            ),
             excerptPolicy:
               'Candidates are bounded exact substrings. The complete transcript is authoritative. None is required when a defect cannot be substantiated; missing candidates are not evidence of a defect.'
           },
@@ -1092,23 +1147,25 @@ export async function runAssessment(
     questions.horizon = authoredQuestion('horizon')
     questions.horizon_unknown = authoredQuestion('horizon_unknown')
     questions.conviction = authoredQuestion('conviction')
-    questions.tension_present = authoredQuestion('tension_present')
-    const tensionTemplate = authoredQuestion('tension')
-    if (tensionTemplate.type !== 'choice')
-      throw new Error('Invalid tension template')
-    questions.tension = authoredQuestion(
-      'tension',
-      {},
-      {
-        ...Object.fromEntries(
-          bundle.rubric.dimensions.map((d) => [
-            d.id,
-            `${d.label}: ${d.meaning}`
-          ])
-        ),
-        ...tensionTemplate.criteria
-      }
-    )
+    if (mode === 'persona') {
+      questions.tension_present = authoredQuestion('tension_present')
+      const tensionTemplate = authoredQuestion('tension')
+      if (tensionTemplate.type !== 'choice')
+        throw new Error('Invalid tension template')
+      questions.tension = authoredQuestion(
+        'tension',
+        {},
+        {
+          ...Object.fromEntries(
+            bundle.rubric.dimensions.map((d) => [
+              d.id,
+              `${d.label}: ${d.meaning}`
+            ])
+          ),
+          ...tensionTemplate.criteria
+        }
+      )
+    }
     const input = {
       current: { id: answerId, prompt: p.text, answer: op.text },
       usableHistory: usableHistory(state),
