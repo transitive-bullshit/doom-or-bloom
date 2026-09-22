@@ -166,22 +166,25 @@ if (process.argv.includes('--check')) {
         page.meta['twitter:image:alt'],
       page.path
     )
-    const expectedImage =
-      canonicalOrigin +
-      (page.path.startsWith('/users/') ? page.path : '') +
-      '/opengraph-image'
-    assert.equal(page.meta['og:image']?.split('?')[0], expectedImage, page.path)
-    assert.equal(
-      page.meta['twitter:image']?.split('?')[0],
-      expectedImage,
-      page.path
-    )
+    const ogImage = new URL(page.meta['og:image']!)
+    assert.equal(ogImage.origin, canonicalOrigin, page.path)
+    if (page.path.startsWith('/users/')) {
+      assert.equal(ogImage.pathname, `${page.path}/opengraph-image`, page.path)
+    } else {
+      assert.match(
+        ogImage.pathname,
+        /^\/_next\/static\/media\/opengraph-image\.[a-z0-9]+\.jpg$/,
+        page.path
+      )
+    }
+    assert.equal(page.meta['twitter:image'], page.meta['og:image'], page.path)
   }
   assert.equal(new Set(pages.map((page) => page.title)).size, pages.length)
   for (const image of images) {
     assert.equal(image.status, 200, image.url)
-    assert.equal(image.type, 'image/webp', image.url)
-    assert.equal(image.format, 'webp', image.url)
+    const isPersona = new URL(image.url!).pathname.startsWith('/users/')
+    assert.equal(image.type, isPersona ? 'image/webp' : 'image/jpeg', image.url)
+    assert.equal(image.format, isPersona ? 'webp' : 'jpeg', image.url)
     assert.equal(image.width, 1200, image.url)
     assert.equal(image.height, 630, image.url)
   }
