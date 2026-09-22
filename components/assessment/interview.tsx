@@ -544,15 +544,15 @@ export function Interview({
                 {(state.status === 'recovery' || paused) && (
                   <Alert>
                     <AlertTitle>
-                      {state.recovery.paperclipActive
+                      {state.recovery.reason === 'paperclips'
                         ? 'We’ve made some paperclips.'
                         : paused
                           ? 'Let’s pause here'
                           : 'Another try?'}
                     </AlertTitle>
                     <AlertDescription>
-                      {state.recovery.paperclipActive
-                        ? 'Want to give the question another go?'
+                      {state.recovery.reason === 'paperclips'
+                        ? 'You found the easter egg! Now give the question an earnest answer so we can map your worldview.'
                         : state.recovery.reason === 'exhausted'
                           ? guidance.exhausted
                           : state.recovery.reason === 'needs_clarification'

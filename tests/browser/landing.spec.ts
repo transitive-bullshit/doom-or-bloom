@@ -6,7 +6,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
 }) => {
   await page.goto('/')
   await expect(
-    page.getByRole('heading', { name: 'A world of possible futures' })
+    page.getByRole('heading', { name: 'How will AI change our future?' })
   ).toBeVisible()
   const portrait = page.getByRole('link', {
     name: 'View Eliezer Yudkowsky results'
@@ -16,7 +16,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await expect(portrait.locator('span')).toHaveText('Eliezer Yudkowsky')
   await expect(portrait.locator('span')).toHaveCSS('opacity', '1')
   await portrait.click()
-  await expect(page).toHaveURL(/\/personas\/esyudkowsky$/)
+  await expect(page).toHaveURL(/\/users\/esyudkowsky$/)
   await expect(page.locator('[data-slot=worldview-map]')).toHaveCount(1)
   await expect(
     page.getByText('Eliezer Yudkowsky’s estimated P(doom)', { exact: true })
@@ -51,7 +51,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await expect(answer).toHaveValue('A draft that should survive navigation.')
   await page.goBack()
   await expect(
-    page.getByRole('heading', { name: 'A world of possible futures' })
+    page.getByRole('heading', { name: 'How will AI change our future?' })
   ).toBeVisible()
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
@@ -102,7 +102,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
 }, testInfo) => {
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
-  await page.goto('/personas/drfeifei')
+  await page.goto('/users/drfeifei')
   await expect(
     page.getByText('What her outlook hinges on', { exact: true })
   ).toBeVisible()
@@ -130,7 +130,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
   await map.getByRole('button', { name: 'Map image actions' }).click()
   await page.getByRole('menuitem', { name: 'Download PNG' }).click()
   await (await downloading).saveAs(testInfo.outputPath('persona-map.png'))
-  await page.goto('/personas/tszzl')
+  await page.goto('/users/tszzl')
   await expect(
     page.getByText('What their outlook hinges on', { exact: true })
   ).toBeVisible()
@@ -140,7 +140,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
 test('persona probability uses a dated public statement with its outcome and source', async ({
   page
 }) => {
-  await page.goto('/personas/noahpinion')
+  await page.goto('/users/noahpinion')
   await expect(
     page.getByText('Noah Smith’s stated P(doom)', { exact: true })
   ).toBeVisible()
@@ -172,7 +172,7 @@ test('new safety researchers have live results, portraits and grounded sources',
       avatar: 'greenblatt'
     }
   ]) {
-    await page.goto(`/personas/${personaIdentity(person.id).slug}`)
+    await page.goto(`/users/${personaIdentity(person.id).slug}`)
     await expect(
       page.getByRole('heading', { level: 1, name: person.name })
     ).toBeVisible()
@@ -203,10 +203,10 @@ test('new safety researchers have live results, portraits and grounded sources',
   ).toBeVisible()
   await page.goto('/')
   await expect(
-    page.locator('a.study-point[href="/personas/so8res"]')
+    page.locator('a.study-point[href="/users/so8res"]')
   ).toBeVisible()
   await expect(
-    page.locator('a.study-point[href="/personas/ryangreenblatt"]')
+    page.locator('a.study-point[href="/users/ryangreenblatt"]')
   ).toBeVisible()
 })
 
@@ -241,7 +241,7 @@ test('new worldview writers have live journeys and source-grounded persona pages
     }
   ]
   for (const person of people) {
-    await page.goto(`/personas/${personaIdentity(person.id).slug}`)
+    await page.goto(`/users/${personaIdentity(person.id).slug}`)
     await expect(
       page.getByRole('heading', { level: 1, name: person.name })
     ).toBeVisible()
@@ -274,7 +274,7 @@ test('new worldview writers have live journeys and source-grounded persona pages
   for (const person of people) {
     await expect(
       page.locator(
-        `a.study-point[href="/personas/${personaIdentity(person.id).slug}"]`
+        `a.study-point[href="/users/${personaIdentity(person.id).slug}"]`
       )
     ).toBeVisible()
   }
@@ -283,7 +283,7 @@ test('new worldview writers have live journeys and source-grounded persona pages
 test('persona answer references reopen the transcript and navigate to the exact answer', async ({
   page
 }) => {
-  await page.goto('/personas/esyudkowsky')
+  await page.goto('/users/esyudkowsky')
   const disclosure = page.getByRole('button', {
     name: /View questions and simulated answers/
   })
@@ -304,4 +304,108 @@ test('persona answer references reopen the transcript and navigate to the exact 
   await expect(page.locator(hash)).toBeFocused()
   await page.reload()
   await expect(page.locator(hash)).toBeFocused()
+})
+
+test('people legend has contiguous links and fades overflowing full names', async ({
+  page
+}, testInfo) => {
+  await page.goto('/')
+  const legend = page.locator('.landing-map-legend')
+  await expect(
+    legend.getByRole('link', { name: 'Eliezer Yudkowsky', exact: true })
+  ).toBeVisible()
+  for (const width of [1365, 390]) {
+    await page.setViewportSize({ width, height: 960 })
+    await expect(legend).toHaveCSS('gap', '0px')
+    const links = await legend.locator('a').evaluateAll((links) =>
+      links.map((link) => {
+        const rect = link.getBoundingClientRect()
+        return { x: rect.x, y: rect.y, right: rect.right, bottom: rect.bottom }
+      })
+    )
+    const first = links[0]!
+    const nextRow = links.find((link) => link.y > first.y + 1)!
+    expect(links[1]!.x).toBeCloseTo(first.right, 1)
+    expect(nextRow.y).toBeCloseTo(first.bottom, 1)
+    if (width === 390) {
+      // Enlarged text exercises real overflow without relying on today's name lengths.
+      await page.addStyleTag({
+        content: '.landing-map-legend a { font-size: 20px; }'
+      })
+      const overflowing = legend.locator('[data-truncated=true]').first()
+      await expect(overflowing).toBeVisible()
+      await expect(overflowing).not.toHaveCSS('mask-image', 'none')
+      await expect(overflowing).toHaveCSS('white-space', 'nowrap')
+    }
+    await legend.screenshot({
+      path: testInfo.outputPath(`people-legend-${width}.png`)
+    })
+  }
+})
+
+test('legacy persona URLs redirect to user pages and user pages omit the back link', async ({
+  page,
+  request
+}) => {
+  const response = await request.get('/personas/esyudkowsky', {
+    maxRedirects: 0
+  })
+  expect(response.status()).toBe(308)
+  expect(response.headers().location).toBe('/users/esyudkowsky')
+  await page.goto('/personas/esyudkowsky#answer-1')
+  await expect(page).toHaveURL(/\/users\/esyudkowsky#answer-1$/)
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Eliezer Yudkowsky' })
+  ).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Back to the map' })).toHaveCount(
+    0
+  )
+  const sitemap = await request.get('/sitemap.xml')
+  expect(await sitemap.text()).toContain('/users/esyudkowsky')
+  expect(await sitemap.text()).not.toContain('/personas/')
+})
+
+test('primary CTAs share the expanding-arrow treatment and remain navigable', async ({
+  page
+}, testInfo) => {
+  const hydrationErrors: string[] = []
+  page.on('console', (message) => {
+    if (message.type() === 'error' && /hydrat/i.test(message.text()))
+      hydrationErrors.push(message.text())
+  })
+  await page.goto('/')
+  const cta = page.getByRole('link', {
+    name: 'Map your own worldview',
+    exact: true
+  })
+  await expect(cta).toHaveAttribute('data-slot', 'primary-cta')
+  await expect(cta).toHaveAttribute('data-expanded', 'false')
+  const initial = await cta.boundingBox()
+  await cta.screenshot({ path: testInfo.outputPath('cta-rest.png') })
+  await cta.hover()
+  await expect(cta).toHaveAttribute('data-expanded', 'true')
+  await expect(cta.locator(':scope > span').last()).toHaveCSS('opacity', '0')
+  expect((await cta.boundingBox())!.width).toBeCloseTo(initial!.width, 1)
+  await cta.screenshot({ path: testInfo.outputPath('cta-hover.png') })
+  await page.mouse.move(0, 0)
+  await cta.focus()
+  await expect(cta).toHaveAttribute('data-expanded', 'true')
+  await page.keyboard.press('Enter')
+  await expect(page).toHaveURL(/\/assessment$/)
+  await page.emulateMedia({ reducedMotion: 'reduce', colorScheme: 'dark' })
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/users/esyudkowsky')
+  const userCtas = page.getByRole('link', {
+    name: 'Map your own worldview',
+    exact: true
+  })
+  await expect(userCtas).toHaveCount(2)
+  for (const link of await userCtas.all())
+    await expect(link).toHaveAttribute('data-slot', 'primary-cta')
+  await userCtas
+    .first()
+    .screenshot({ path: testInfo.outputPath('cta-dark-mobile.png') })
+  await userCtas.last().click()
+  await expect(page).toHaveURL(/\/assessment$/)
+  expect(hydrationErrors).toEqual([])
 })

@@ -10,7 +10,7 @@ const config: NextConfig = {
   distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
   // Persona pages read the canonical saved journeys at runtime.
   outputFileTracingIncludes: {
-    '/personas/*': ['eval/development/live-persona-journeys.json']
+    '/users/*': ['eval/development/live-persona-journeys.json']
   },
   // Takumi loads a platform-specific native addon at runtime.
   serverExternalPackages: ['takumi-js']

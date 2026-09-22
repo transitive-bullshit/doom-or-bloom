@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 import { baseResult } from '@/lib/assessment/projections'
 import { loadBundle } from '@/lib/content/loader'
-import { createAssessment } from '@/lib/assessment/state'
+import { canSubmit, createAssessment } from '@/lib/assessment/state'
 import { limits, operationSchema } from '@/lib/assessment/schema'
 import {
   loadAssessment,
@@ -184,4 +184,23 @@ test('legacy sessions migrate to answer-level support without losing drafts, ver
   expect(resumed.kind === 'valid' && resumed.assessment).toEqual(
     loaded.assessment
   )
+})
+
+test('legacy paperclip pauses resume with an editable answer and acknowledgement', () => {
+  const storage = memory()
+  const state = createAssessment('legacy-paperclips')
+  state.status = 'paused'
+  state.recovery = {
+    evaluated: 2,
+    clearMisses: 2,
+    paperclipShown: true,
+    paperclipActive: false,
+    reason: 'non_answer'
+  }
+  saveAssessment(storage, state, null, 'legacy')
+  const loaded = loadAssessment(storage)
+  if (loaded.kind !== 'valid') throw new Error('Expected saved assessment')
+  expect(canSubmit(loaded.assessment)).toBe(true)
+  expect(loaded.assessment.recovery.reason).toBe('paperclips')
+  expect(loaded.assessment.recovery.evaluated).toBe(2)
 })

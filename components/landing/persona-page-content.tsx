@@ -5,7 +5,7 @@ import {
   AnswerTarget,
   useAnswerDisclosure
 } from '@/components/assessment/answer-navigation'
-import Link from 'next/link'
+import { WorldviewCta } from '@/components/worldview-cta'
 import { ChevronDownIcon } from 'lucide-react'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
@@ -116,7 +116,7 @@ export function PersonaPageContent({
         sources={person.sources ?? []}
         sourceBriefUpdated={person.sourceBriefUpdated}
       />
-      <Card className='mt-10'>
+      <Card className='mx-auto mt-10 w-full max-w-[600px]'>
         <CardHeader>
           <CardTitle>Where do you land?</CardTitle>
           <CardDescription>
@@ -124,9 +124,7 @@ export function PersonaPageContent({
           </CardDescription>
         </CardHeader>
         <CardFooter>
-          <Button asChild size='lg'>
-            <Link href='/assessment'>Map your own worldview</Link>
-          </Button>
+          <WorldviewCta />
         </CardFooter>
       </Card>
     </AnswerNavigationProvider>

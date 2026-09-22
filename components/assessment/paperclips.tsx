@@ -22,19 +22,12 @@ const bursts = [
   { x: 78, y: 38, delay: 9 },
   { x: 50, y: 23, delay: 9.2 }
 ]
-const colors = [
-  'var(--map-doom)',
-  'var(--map-bloom)',
-  'var(--paperclip-gold)',
-  'var(--paperclip-violet)'
-]
 type ParticleStyle = CSSProperties & Record<`--${string}`, string>
 
 // Fixed trajectories keep the scene reproducible and let CSS animate it without
 // a per-frame React render, physics loop or animation dependency.
 const fireworks = bursts.map((burst, index) => ({
   ...burst,
-  color: colors[index % colors.length],
   particles: Array.from({ length: index >= 11 ? 36 : 26 }, (_, i) => {
     const count = index >= 11 ? 36 : 26
     const angle = (i / count) * Math.PI * 2 + index * 0.47
@@ -52,7 +45,7 @@ const fireworks = bursts.map((burst, index) => ({
       animationDuration: `${2.45 + (i % 4) * 0.1}s`,
       width: `${18 + ((i * 3) % 19)}px`,
       height: `${18 + ((i * 3) % 19)}px`,
-      color: colors[(index + (i % 3 === 0 ? 1 : 0)) % colors.length]
+      fontSize: `${18 + ((i * 3) % 19)}px`
     }
     return style
   })
@@ -107,29 +100,25 @@ export function Paperclips({ dismiss }: { dismiss: () => void }) {
 const PaperclipEffect = memo(function PaperclipEffect() {
   return (
     <div className='paperclip-effect' aria-hidden='true'>
-      <div className='paperclip-backdrop absolute inset-0' />
       {fireworks.map((burst, index) => (
         <div
           key={index}
           className='paperclip-burst absolute'
           style={{
             left: `${burst.x}%`,
-            top: `${burst.y}%`,
-            color: burst.color
+            top: `${burst.y}%`
           }}
         >
           <div
             className='paperclip-launch'
             style={{ animationDelay: `${burst.delay}s` }}
           >
-            <Paperclip className='size-7' />
+            📎
           </div>
-          <div
-            className='paperclip-ring'
-            style={{ animationDelay: `${burst.delay + 0.65}s` }}
-          />
           {burst.particles.map((style, i) => (
-            <Paperclip key={i} className='paperclip-sprite' style={style} />
+            <span key={i} className='paperclip-sprite' style={style}>
+              📎
+            </span>
           ))}
         </div>
       ))}

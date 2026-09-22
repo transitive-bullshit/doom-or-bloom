@@ -253,7 +253,7 @@
 .landing-map-legend {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 2px 8px;
+  gap: 0;
   border-top: 1px solid color-mix(in oklch, var(--map-muted) 20%, transparent);
   padding-top: 12px;
 }
@@ -261,8 +261,14 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  min-height: 32px;
+  min-width: 0;
+  min-height: 34px;
+  padding: 1px 4px;
   font-size: 12px;
+}
+.landing-map-legend .fade-truncated-text {
+  min-width: 0;
+  flex: 1;
 }
 .landing-map-note {
   font-size: 10px;
@@ -457,10 +463,11 @@
   }
   .landing-map-legend {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px 4px;
     padding-top: 7px;
   }
   .landing-map-legend a {
+    min-height: 33px;
+    padding: 0.5px 2px;
     font-size: 12px;
     gap: 4px;
   }
@@ -538,6 +545,7 @@
   border-radius: 50%;
 }
 .landing-legend-avatar {
+  flex-shrink: 0;
   width: 20px;
   height: 20px;
   object-fit: cover;

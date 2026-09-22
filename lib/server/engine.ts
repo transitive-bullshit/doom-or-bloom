@@ -1152,13 +1152,9 @@ export async function runAssessment(
         | 'needs_clarification',
       localReply ? 1 : confidence(evaluation!.answers.disposition),
       request.requestId,
-      bundle.rubric.nonAnswerThreshold
+      bundle.rubric.nonAnswerThreshold,
+      localReply === 'paperclip_request'
     )
-    if (localReply === 'paperclip_request' && !state.recovery.paperclipShown) {
-      state.status = 'paused'
-      state.recovery.paperclipShown = true
-      state.recovery.paperclipActive = true
-    }
     trace.decisions.push({
       action: 'response disposition and recovery gate',
       detail: {

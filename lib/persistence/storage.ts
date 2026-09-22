@@ -19,6 +19,16 @@ export function loadAssessment(storage: StorageLike): Loaded {
       const data = JSON.parse(raw) as { assessment: unknown; token: unknown }
       const assessment = assessmentSchema.parse(data.assessment)
       if (typeof data.token !== 'string') return { kind: 'invalid', raw }
+      // Older paperclip interludes paused an otherwise answerable question.
+      if (
+        assessment.status === 'paused' &&
+        assessment.recovery.paperclipShown &&
+        assessment.recovery.reason === 'non_answer' &&
+        assessment.recovery.evaluated < 3
+      ) {
+        assessment.status = 'recovery'
+        assessment.recovery.reason = 'paperclips'
+      }
       // A stored marker must not replay a transient decorative effect on reload.
       assessment.recovery.paperclipActive = false
       return { kind: 'valid', assessment, token: data.token }

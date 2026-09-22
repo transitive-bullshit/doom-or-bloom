@@ -1,6 +1,8 @@
 'use client'
 
 import Image from 'next/image'
+import { WorldviewCta } from '@/components/worldview-cta'
+import { FadeText } from '@/components/assessment/fade-text'
 import Link from 'next/link'
 import { useState, type PointerEvent, type FocusEvent } from 'react'
 import './prism.css'
@@ -87,13 +89,9 @@ export function Prism({ examples }: VariantProps) {
       data-highlighting={highlighted !== null}
     >
       <header className='study-heading'>
-        <p className='study-kicker'>THE AI WORLDVIEW MAP</p>
-        <h1>A world of possible futures</h1>
+        <h1>How will AI change our future?</h1>
         <div className='study-intro'>
-          <p>Where do you land?</p>
-          <Link className='study-cta' href='/assessment'>
-            Map your own worldview
-          </Link>
+          <WorldviewCta />
         </div>
       </header>
       <div className='study-axis-top'>Civilizational change</div>
@@ -109,7 +107,7 @@ export function Prism({ examples }: VariantProps) {
         {plotted.map((p) => (
           <Link
             key={p.id}
-            href={`/personas/${p.slug}`}
+            href={`/users/${p.slug}`}
             className='study-point study-portrait'
             style={{
               left: `${p.outlook! * 100}%`,
@@ -127,11 +125,7 @@ export function Prism({ examples }: VariantProps) {
       <div className='study-axis-bottom'>Incremental change</div>
       <div className='landing-map-legend study-legend'>
         {legend.map((p) => (
-          <Link
-            key={p.id}
-            href={`/personas/${p.slug}`}
-            {...highlightEvents(p.id)}
-          >
+          <Link key={p.id} href={`/users/${p.slug}`} {...highlightEvents(p.id)}>
             <Image
               className='landing-legend-avatar'
               src={p.avatar}
@@ -140,7 +134,7 @@ export function Prism({ examples }: VariantProps) {
               height={20}
               unoptimized
             />
-            {p.shortName}
+            <FadeText lines={1}>{p.name}</FadeText>
           </Link>
         ))}
       </div>

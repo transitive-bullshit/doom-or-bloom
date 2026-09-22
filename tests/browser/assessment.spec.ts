@@ -230,15 +230,16 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips' })
   ).toHaveCount(0)
-  await page.getByRole('button', { name: 'Try again', exact: true }).click()
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeEnabled()
   await submit(page, 'nonsense three')
+  await submit(page, 'nonsense four')
   await expect(
     page.getByRole('button', { name: 'Try again', exact: true })
   ).toHaveCount(0)
   await expect(
     page.getByRole('button', { name: 'View my result' })
   ).toHaveCount(0)
-  expect(calls).toBe(3)
+  expect(calls).toBe(4)
 })
 test('two tabs cannot overwrite each other', async ({ page, context }) => {
   await page.goto('/assessment')
