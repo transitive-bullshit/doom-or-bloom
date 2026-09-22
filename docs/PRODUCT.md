@@ -81,7 +81,7 @@ The default participant is a curious, technologically engaged adult. No AI-safet
 
 Avoid decorative arrow glyphs or link arrow icons throughout the UI.
 
-The landing page at `/` leads with “Where do you land?” and the canonical persona map. Hovering or focusing a portrait shows a shadcn name tooltip and highlights its measured placement. A portrait links to `/personas/[id]`, showing the saved simulated result. “Answer the first question” opens `/assessment` with a short page crossfade that respects reduced motion.
+The landing page at `/` leads with “How will AI change our future?” and the Prism persona map, with the assessment CTA centered beneath the headline. All placed personas use portraits at their exact coordinates, with overlap allowed. Hovering or keyboard-focusing a portrait or an entry in the people grid shows its name and dims other map portraits. Doom and Bloom flank the horizontal midpoint axis; transformation endpoints sit above and below the rectangle. The color field fills exactly the coordinate bounds. The gradient colors and vibrancy remain identical in light and dark mode because they belong to the chart; the grid and chart boundary also keep the same colors across themes, while text and surrounding UI follow the app theme. A portrait links to `/users/[username]`, showing the saved simulated result. “Map your own worldview” opens `/assessment` with a short page crossfade that respects reduced motion.
 
 The interview begins with **What do you think AI means for our future—and why?** Existing local answers and drafts resume at `/assessment`.
 
@@ -107,7 +107,7 @@ Expect playful, off-topic, and unusable answers. Respond with short, authored re
 
 The exact sequence `test`, then `test again` must reliably trigger recovery locally. A standalone `paperclips`, `show me paperclips` or `show paperclips` explicitly requests the interlude without additional Jev calls; it respects recovery bounds and the once-per-assessment marker. Matching ignores case, surrounding/repeated whitespace and trailing sentence punctuation. Meaningful paperclip-maximizer arguments are still assessed normally.
 
-After two consecutive clearly unusable replies, pause the interview and play a full-screen paperclip fireworks interlude: rising paperclip rockets, colorful spinning bursts and a larger finale. The scene lasts thirteen seconds unless dismissed earlier with its visible button or Escape. Suggested authored recovery copy: “We've made some paperclips. Want to give the question another go?” Keep a visible, keyboard-accessible control panel with “Try again” when an attempt remains, “Try a different question” when budget permits, “View my result” when eligible, and “Stop for now” / “Restart.” Dismissing or finishing the visual effect does not submit anything or resume inference automatically.
+After two consecutive clearly unusable replies, play a full-screen paperclip emoji fireworks interlude: rising 📎 rockets, spinning 📎 bursts and a larger finale. The scene lasts thirteen seconds unless dismissed earlier with its visible button or Escape. Keep the answer field enabled and acknowledge the discovery: “We’ve made some paperclips. You found the easter egg! Now give the question an earnest answer so we can map your worldview.” Preserve this acknowledgement after dismissal and reload. The once-per-assessment triggering turn does not consume a recovery attempt. Dismissing or finishing the effect does not submit anything or resume inference automatically. Other recovery actions remain available as appropriate.
 
 Use a finite, lightweight decorative effect with an immediate dismiss action, at most once per assessment. Keep controls unobscured, support reduced motion with a static illustration, and avoid flashing, surprise audio, or a heavy physics simulation. The joke is about the app making paperclips, not about the participant's intelligence or sincerity. Repeated misses after the effect receive the same neutral recovery choices without replaying it. This is an MVP recovery state, independent of debug mode; exact copy and visual treatment belong in the representative editorial review.
 
@@ -135,7 +135,7 @@ Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, f
 
 ### Supporting surfaces
 
-- `/` contains the landing map; `/assessment` contains interview and result states; `/personas/[id]` shows a saved public persona result.
+- `/` contains the landing map; `/assessment` contains interview and result states; `/users/[username]` shows a saved public persona result.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
 - A concise privacy policy explains local persistence and anonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.
@@ -192,7 +192,7 @@ Development-only `/questions` and `/corpus` display built-in assets, relationshi
 
 Display a compact Evidence readiness meter while interviewing, including the provisional-result threshold. Explain that it reflects supported coverage rather than forecast accuracy, quality or answer length; debug disclosure gives the experimental formula. See [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness).
 
-The Doom–Bloom map is the result’s hero: strong categorical pole colors, a clearly labeled participant point, visible interpretation area, and axes explained beside the map. The map shows expressed outlook horizontally and expected societal transformation vertically. Human influence is a separate single-axis output. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.
+The Doom–Bloom map is the result’s hero: the same Prism color field and midpoint axes as the landing page, focused on one participant point or persona portrait, with a visible interpretation area and axes explained beside the map. Result maps retain a chart title, position/range legend, unknown states and optional earlier-answer markers. The full rectangle represents the coordinate range; there is no inset plotting area. The map shows expressed outlook horizontally and expected societal transformation vertically. Human influence is a separate single-axis output. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.
 
 ### Local comparison workflow
 
@@ -208,7 +208,7 @@ Prefer a tentative map point with an honest interpretation range over withholdin
 
 ### Result presentation and exports
 
-Per-answer result disclosures start closed and expand beyond the interview column on desktop, while fitting the mobile viewport. The featured result map offers a small actions menu for copying or downloading a PNG; the PNG includes axis labels and a range legend. The downloaded summary card uses the same transformation map and separate single-axis dimensions. Resources use compact bookmark cards with locally prefetched social images and favicons; a publisher icon is the fallback when no social image is available. Refresh these assets with `pnpm exec tsx scripts/prefetch-resource-previews.ts`.
+Per-answer result disclosures start closed and expand beyond the interview column on desktop, while fitting the mobile viewport. The featured result map offers a small actions menu for copying or downloading a PNG; the PNG includes a subject title, axis endpoint labels and a range legend, and preserves the theme-aware UI colors and the theme-independent vivid gradient. The server-rendered share card uses the same Prism SVG field with fixed dark surrounding UI and the same vivid gradient. The downloaded summary card uses the same transformation map and separate single-axis dimensions. Resources use compact bookmark cards with locally prefetched social images and favicons; a publisher icon is the fallback when no social image is available. Refresh these assets with `pnpm exec tsx scripts/prefetch-resource-previews.ts`.
 
 Individual X/Twitter source posts use `react-tweet` embeds in both persona sources and assessment resources, with a bookmark fallback when a post is unavailable. Regular bookmarks always appear first in a single-column list. Tweets follow in a separate masonry layout capped at two columns on desktop and one column on mobile. Tweet data is fetched through the app's cacheable `/api/tweet` endpoint, while tweet media loads from X.
 

@@ -26,6 +26,6 @@ export const publicPages = [
 ]
 
 export const personaPages = people.map((person) => ({
-  path: `/personas/${person.slug}`,
+  path: `/users/${person.slug}`,
   title: person.name
 }))

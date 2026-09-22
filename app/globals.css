@@ -30,8 +30,6 @@
   --map-doom: oklch(0.7 0.19 22);
   --map-bloom: oklch(0.78 0.18 151);
   --map-grid: oklch(0.43 0.024 265);
-  --paperclip-gold: oklch(0.8 0.15 85);
-  --paperclip-violet: oklch(0.75 0.16 295);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --json-key: oklch(0.43 0.13 250);
   --json-string: oklch(0.4 0.11 155);
@@ -109,57 +107,27 @@
   inset: 0;
   animation: paperclips-show 13s linear both;
 }
-.paperclip-backdrop {
-  background:
-    radial-gradient(
-      ellipse at 25% 40%,
-      color-mix(in oklab, var(--map-doom) 9%, transparent),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse at 75% 30%,
-      color-mix(in oklab, var(--map-bloom) 9%, transparent),
-      transparent 60%
-    ),
-    color-mix(in oklab, var(--map-surface) 16%, transparent);
+.paperclip-sprite,
+.paperclip-launch {
+  font-family:
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  line-height: 1;
+  user-select: none;
 }
 .paperclip-sprite {
   position: absolute;
   left: 0;
   top: 0;
   opacity: 0;
-  stroke-width: 2.5;
-  /* Next's color fallback compiler crashes with OKLCH + currentColor in one filter. */
-  filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.35))
-    drop-shadow(0 0 5px currentColor);
+  filter: drop-shadow(0 2px 1px rgb(0 0 0 / 0.25));
   /* Base opacity hides idle sprites without retaining animated transforms. */
   animation: paperclip-explode 2.6s linear;
 }
 .paperclip-launch {
   position: absolute;
   opacity: 0;
-  filter: drop-shadow(0 0 6px currentColor);
+  font-size: 28px;
   animation: paperclip-launch 650ms var(--ease-out);
-}
-.paperclip-launch::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 13vh;
-  left: 50%;
-  top: 100%;
-  background: linear-gradient(currentColor, transparent);
-}
-.paperclip-ring {
-  position: absolute;
-  left: -6vmin;
-  top: -6vmin;
-  width: 12vmin;
-  height: 12vmin;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  opacity: 0;
-  animation: paperclip-ring 900ms var(--ease-out);
 }
 [data-json-token='key'] {
   color: var(--json-key);
@@ -238,25 +206,11 @@
       rotate(calc(var(--clip-rotation) + var(--clip-spin))) scale(0.85);
   }
 }
-@keyframes paperclip-ring {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  12% {
-    opacity: 0.35;
-  }
-  to {
-    opacity: 0;
-    transform: scale(3);
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .paperclip-effect {
     animation: none;
   }
-  .paperclip-launch,
-  .paperclip-ring {
+  .paperclip-launch {
     display: none;
   }
   .paperclip-sprite {
@@ -410,6 +364,9 @@
   overflow: hidden;
   overflow-wrap: anywhere;
 }
+.fade-truncated-text[data-lines='1'] {
+  white-space: nowrap;
+}
 .fade-truncated-text[data-truncated='true'] {
   mask-image:
     linear-gradient(#000, #000),
@@ -424,6 +381,14 @@
   mask-image:
     linear-gradient(#000, #000),
     linear-gradient(to left, #000 55%, transparent 100%);
+}
+
+.fade-truncated-text[data-lines='1'][data-truncated='true'] {
+  mask-image: linear-gradient(to right, #000 calc(100% - 1.5em), transparent);
+  mask-size: 100% 100%;
+}
+[dir='rtl'] .fade-truncated-text[data-lines='1'][data-truncated='true'] {
+  mask-image: linear-gradient(to left, #000 calc(100% - 1.5em), transparent);
 }
 
 /* Keep map labels readable even when the SVG plot scales down. */

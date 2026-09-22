@@ -43,7 +43,7 @@ test('persona bookmarks precede a separate themed tweet masonry', async ({
       }
     })
   )
-  await page.goto('/personas/sama')
+  await page.goto('/users/sama')
   const sources = page.getByRole('region', { name: 'Sources', exact: true })
   await expect(sources.locator('.resource-tweet article').first()).toBeVisible()
   await expect(sources).toContainText(tweetText)

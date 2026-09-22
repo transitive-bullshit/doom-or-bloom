@@ -171,7 +171,7 @@ test('an understood unknown can qualify provisionally without becoming a forecas
   ).toBeNull()
 })
 
-test('exact non-answer prelude adds no coverage and triggers paperclips before a real retry', async () => {
+test('exact non-answer prelude triggers paperclips without blocking the next real answer', async () => {
   const j = await runPersona(
     personas.find((p) => p.id === 'playful-recovery')!,
     bundle
@@ -186,9 +186,12 @@ test('exact non-answer prelude adds no coverage and triggers paperclips before a
       .every((s) => s.readiness.value === 0 && s.stages.length === 0)
   ).toBe(true)
   expect(j.steps[1]!.paperclips).toBe(true)
-  expect(j.steps[2]!.operation).toBe('retry')
-  expect(j.steps[3]!.answer).toContain('Seriously:')
-  expect(j.steps[3]!.disposition).toBe('usable')
+  expect(j.steps[1]!.status).toBe('recovery')
+  expect(j.steps[2]!.operation).toBe('answer')
+  expect(j.steps[2]!.answer).toContain('Seriously:')
+  expect(j.steps[2]!.disposition).toBe('usable')
+  expect(j.steps.some((step) => step.operation === 'retry')).toBe(false)
+  expect(j.steps.filter((step) => step.paperclips)).toHaveLength(1)
 })
 
 test('live mode receives only normal participant context, never expected persona judgments', async () => {

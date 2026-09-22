@@ -95,14 +95,13 @@ export function recordDisposition(
   disposition: Disposition,
   confidence: number,
   requestId: string,
-  nonAnswerThreshold = 0.85
+  nonAnswerThreshold = 0.85,
+  paperclipRequested = false
 ): Assessment {
   const prompt = currentPrompt(state)
   if (state.attempts.some((a) => a.id === requestId)) return state
   if (disposition === 'non_answer' && confidence < nonAnswerThreshold)
     disposition = 'needs_clarification'
-  const evaluated =
-    state.recovery.evaluated + (disposition === 'navigation' ? 0 : 1)
   const clearMisses =
     disposition === 'non_answer'
       ? state.recovery.clearMisses + 1
@@ -110,15 +109,15 @@ export function recordDisposition(
         ? state.recovery.clearMisses
         : 0
   const paperclip =
-    clearMisses >= 2 &&
+    (paperclipRequested || clearMisses >= 2) &&
     !state.recovery.paperclipShown &&
     disposition === 'non_answer'
+  const countsAsEvaluation = disposition !== 'navigation' && !paperclip
+  const evaluated = state.recovery.evaluated + Number(countsAsEvaluation)
   const status =
     disposition === 'usable'
       ? 'answering'
-      : paperclip ||
-          evaluated >= limits.recovery ||
-          disposition === 'navigation'
+      : evaluated >= limits.recovery || disposition === 'navigation'
         ? 'paused'
         : 'recovery'
   return {
@@ -132,7 +131,7 @@ export function recordDisposition(
         variant: prompt.variant,
         disposition,
         confidence,
-        evaluated: disposition !== 'navigation'
+        evaluated: countsAsEvaluation
       }
     ],
     recovery: {
@@ -140,8 +139,9 @@ export function recordDisposition(
       clearMisses,
       paperclipShown: state.recovery.paperclipShown || paperclip,
       paperclipActive: paperclip,
-      reason:
-        disposition === 'usable'
+      reason: paperclip
+        ? 'paperclips'
+        : disposition === 'usable'
           ? null
           : evaluated >= limits.recovery
             ? 'exhausted'

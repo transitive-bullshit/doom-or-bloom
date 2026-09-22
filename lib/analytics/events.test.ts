@@ -88,7 +88,7 @@ test('recovery events precede start and are idempotent', () => {
     'r2'
   ).map((e) => e.name)
   expect(names).toContain('paperclip_interlude_shown')
-  expect(names).toContain('assessment_paused')
+  expect(names).not.toContain('assessment_paused')
   expect(names).not.toContain('assessment_started')
   expect(names).not.toContain('assessment_completed')
   expect(names).not.toContain('question_routed')

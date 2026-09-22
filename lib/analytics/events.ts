@@ -47,6 +47,7 @@ const eventSchema = z.object({
     pause_reason: z
       .enum([
         'non_answer',
+        'paperclips',
         'needs_clarification',
         'navigation',
         'exhausted',

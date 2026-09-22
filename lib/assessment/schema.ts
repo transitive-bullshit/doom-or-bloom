@@ -411,7 +411,8 @@ export const currentAssessmentSchema = z.strictObject({
         'needs_clarification',
         'navigation',
         'exhausted',
-        'stopped'
+        'stopped',
+        'paperclips'
       ])
       .nullable()
   }),

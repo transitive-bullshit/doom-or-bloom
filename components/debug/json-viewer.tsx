@@ -58,6 +58,7 @@ function JsonNode({
   property,
   path,
   depth,
+  initialExpandedDepth,
   answerOrder,
   context,
   parent,
@@ -68,6 +69,7 @@ function JsonNode({
   property?: string
   path: string
   depth: number
+  initialExpandedDepth: number
   answerOrder: AnswerOrder
   context: JsonHelpContext
   parent?: unknown
@@ -90,7 +92,7 @@ function JsonNode({
     context,
     question
   })
-  const [open, setOpen] = useState(depth < 2)
+  const [open, setOpen] = useState(depth < initialExpandedDepth)
   const [helpOpen, setHelpOpen] = useState(false)
   const array = Array.isArray(value)
   const object = value !== null && typeof value === 'object'
@@ -214,6 +216,7 @@ function JsonNode({
                   property={array ? undefined : key}
                   path={array ? `${path}[${key}]` : `${path}.${key}`}
                   depth={depth + 1}
+                  initialExpandedDepth={initialExpandedDepth}
                   answerOrder={answerOrder}
                   context={context}
                   parent={value}
@@ -238,10 +241,12 @@ export const JsonViewer = memo(function JsonViewer({
   value,
   label,
   questions,
-  dimensions
+  dimensions,
+  initialExpandedDepth = 2
 }: {
   value: unknown
   label: string
+  initialExpandedDepth?: number
   questions?: JsonHelpContext['questions']
   dimensions?: JsonHelpContext['dimensions']
 }) {
@@ -272,7 +277,7 @@ export const JsonViewer = memo(function JsonViewer({
       >
         <div className='flex flex-wrap items-center justify-between gap-2 border-b px-3 py-2'>
           <p className='text-xs text-muted-foreground'>
-            Depth 2+ folded · dotted keys have hover help
+            Depth {initialExpandedDepth}+ folded · dotted keys have hover help
           </p>
           <div className='flex flex-wrap items-center gap-2'>
             {hasAnswers && (
@@ -356,6 +361,7 @@ export const JsonViewer = memo(function JsonViewer({
             value={value}
             path='$'
             depth={0}
+            initialExpandedDepth={initialExpandedDepth}
             answerOrder={answerOrder}
             context={context}
           />

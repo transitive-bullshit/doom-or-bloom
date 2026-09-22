@@ -166,9 +166,9 @@ Content hashes include the release provenance and payload assets; the manifest t
 
 Demo recommendations can carry an authored priority from 0 to 1 for curation among equally relevant eligible resources. This affects resource ordering only; runtime mention/grounding boosts are paused; familiarity gates still apply, and selected resources diversify their learning purpose. Priority never changes assessment scores.
 
-## Local editorial feedback
+## Local content inspection
 
-Use development-only `/questions` and `/corpus` to inspect the active built-in graph and snapshots and append free-form notes. [Local debugging guide](local-debugging.md) explains the graph boundaries and feedback files. Future authoring agents should read `content/feedback/questions.json` and `content/feedback/corpus.json` alongside [the participant prompt audit](prompt-quality-review.md), preserve earlier notes, and check the stored version/hash against the asset being revised. Feedback is guidance for an explicit offline revision, not automatic approval, source validation or a scoring input.
+Use development-only `/questions` and `/corpus` to inspect the active built-in graph and snapshots. These are read-only tools; editorial feedback forms and the save API have been removed. See the [local debugging guide](local-debugging.md) and [participant prompt audit](prompt-quality-review.md) for inspection and revision context. Historical project notes remain on disk but are not loaded by the app.
 
 ## Current demo authoring boundary
 

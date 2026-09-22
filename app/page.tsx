@@ -1,5 +1,5 @@
 import { loadExamples } from '@/components/landing/data'
-import { MapFirst } from '@/components/landing/map-first'
+import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
 import '@/components/landing/landing.css'
 
@@ -11,8 +11,8 @@ export default async function Page() {
   }))
   return (
     <PageTransition>
-      <div className='landing-stage'>
-        <MapFirst examples={examples} />
+      <div className='map-lab-stage'>
+        <Prism examples={examples} />
       </div>
     </PageTransition>
   )

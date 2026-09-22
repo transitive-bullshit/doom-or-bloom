@@ -6,7 +6,7 @@ test('bookmarks are centered at 600px and fade only overflowing title and descri
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
-  await page.goto('/personas/noahpinion')
+  await page.goto('/users/noahpinion')
   const list = page.locator('[data-resource-layout="list"]')
   await expect(list).toHaveCSS('max-width', '600px')
   const desktop = await list.evaluate((element) => {

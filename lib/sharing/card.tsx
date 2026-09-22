@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { PrismField } from '@/components/worldview/prism-field'
 const coordinate = z.number().finite().min(0).max(1)
 const range = z.tuple([coordinate, coordinate]).refine(([a, b]) => a <= b)
 export const cardSchema = z.strictObject({
@@ -26,14 +27,14 @@ export const cardSchema = z.strictObject({
 })
 export type CardData = z.infer<typeof cardSchema>
 
-// sRGB equivalents of app/globals.css map roles; the SVG renderer needs sRGB.
+// Dark export chrome with the same vivid Prism field in every theme.
 const colors = {
-  surface: '#0d111b',
+  surface: '#161613',
   text: '#f6f5f1',
   muted: '#b5bbc5',
   doom: '#ff6367',
   bloom: '#48d779',
-  grid: '#49505d'
+  grid: '#4c4c45'
 }
 const score = (value: number | null | undefined) =>
   value == null ? 'Unexplored' : `${Math.round(value * 100)} / 100`
@@ -43,9 +44,9 @@ function Plot({ data }: { data?: CardData }) {
   const y = data?.transformation
   const yr = data?.transformationRange ?? [0, 1]
   const xr = data?.horizontalRange ?? [0, 1]
-  const left = 45,
+  const left = 85,
     top = 42,
-    width = 620,
+    width = 520,
     height = 284
   const px = (value: number) => left + value * width
   const py = (value: number) => top + (1 - value) * height
@@ -59,15 +60,6 @@ function Plot({ data }: { data?: CardData }) {
   return (
     <svg width={690} height={420} viewBox='0 0 690 420'>
       <defs>
-        <linearGradient id='field'>
-          <stop stopColor={colors.doom} stopOpacity='.55' />
-          <stop offset='.5' stopColor={colors.surface} stopOpacity='.05' />
-          <stop offset='1' stopColor={colors.bloom} stopOpacity='.55' />
-        </linearGradient>
-        <linearGradient id='axis'>
-          <stop stopColor={colors.doom} />
-          <stop offset='1' stopColor={colors.bloom} />
-        </linearGradient>
         <pattern
           id='range'
           width='9'
@@ -75,45 +67,59 @@ function Plot({ data }: { data?: CardData }) {
           patternUnits='userSpaceOnUse'
           patternTransform='rotate(35)'
         >
-          <line y2='9' stroke={colors.text} strokeOpacity='.08' />
+          <line y2='9' stroke='#25392b' strokeOpacity='.08' />
         </pattern>
       </defs>
-      <text x={left} y='19' fill={colors.muted} fontSize='14'>
-        Scale of transformation
-      </text>
-      <rect
-        x={left}
-        y={top}
-        width={width}
-        height={height}
-        rx='6'
-        fill='url(#field)'
-        stroke={colors.grid}
-        strokeOpacity='.55'
+      <PrismField
+        id='card-prism'
+        plot={{ left, top, width, height }}
+        colors={{
+          coral: '#ff786a',
+          peach: '#ffb88b',
+          lime: '#e6ff80',
+          mint: '#aaffbd',
+          violet: '#bcb1ff',
+          veilOpacity: 0.5,
+          grid: '#25392b35',
+          border: '#25392b22'
+        }}
       />
-      {[0.25, 0.5, 0.75].map((value) => (
-        <g
-          key={value}
-          stroke={colors.grid}
-          strokeOpacity={value === 0.5 ? 1 : 0.55}
-          strokeDasharray={value === 0.5 ? '4 6' : undefined}
-        >
-          <line x1={px(value)} x2={px(value)} y1={top} y2={py(0)} />
-          <line x1={left} x2={px(1)} y1={py(value)} y2={py(value)} />
-        </g>
-      ))}
-      {[0, 0.5, 1].map((value) => (
-        <text
-          key={value}
-          x={left - 12}
-          y={py(value) + 5}
-          fill={colors.muted}
-          fontSize='13'
-          textAnchor='end'
-        >
-          {value * 100}
-        </text>
-      ))}
+      <text
+        x='345'
+        y='26'
+        textAnchor='middle'
+        fill={colors.muted}
+        fontSize='14'
+      >
+        Civilizational change
+      </text>
+      <text
+        x='345'
+        y='357'
+        textAnchor='middle'
+        fill={colors.muted}
+        fontSize='14'
+      >
+        Incremental change
+      </text>
+      <text
+        x='38'
+        y={py(0.5) + 5}
+        textAnchor='middle'
+        fill={colors.text}
+        fontSize='16'
+      >
+        Doom
+      </text>
+      <text
+        x='651'
+        y={py(0.5) + 5}
+        textAnchor='middle'
+        fill={colors.text}
+        fontSize='16'
+      >
+        Bloom
+      </text>
       {data && (
         <rect
           x={px(xr[0])}
@@ -122,7 +128,7 @@ function Plot({ data }: { data?: CardData }) {
           height={Math.max(2, (yr[1] - yr[0]) * height)}
           rx='4'
           fill='url(#range)'
-          stroke={colors.text}
+          stroke='#25392b'
           strokeOpacity='.65'
           strokeWidth='1.5'
           strokeDasharray='6 5'
@@ -130,13 +136,6 @@ function Plot({ data }: { data?: CardData }) {
       )}
       {point && (
         <g>
-          <path
-            d={`M ${left} ${py(y)} H ${px(x)} V ${py(0)}`}
-            fill='none'
-            stroke={colors.text}
-            strokeOpacity='.5'
-            strokeDasharray='3 5'
-          />
           <circle
             cx={px(x)}
             cy={py(y)}
@@ -186,48 +185,6 @@ function Plot({ data }: { data?: CardData }) {
           Still unplaced
         </text>
       )}
-      <rect
-        x={left}
-        y='338'
-        width={width}
-        height='3'
-        rx='1.5'
-        fill='url(#axis)'
-      />
-      <text x={left} y='375' fill={colors.doom} fontSize='28' fontWeight='700'>
-        Doom
-      </text>
-      <text
-        x='355'
-        y='371'
-        textAnchor='middle'
-        fill={colors.muted}
-        fontSize='12'
-      >
-        EXPRESSED OUTLOOK
-      </text>
-      <text
-        x={px(1)}
-        y='375'
-        textAnchor='end'
-        fill={colors.bloom}
-        fontSize='28'
-        fontWeight='700'
-      >
-        Bloom
-      </text>
-      <text x={left} y='400' fill={colors.muted} fontSize='13'>
-        Concern about harmful futures
-      </text>
-      <text
-        x={px(1)}
-        y='400'
-        textAnchor='end'
-        fill={colors.muted}
-        fontSize='13'
-      >
-        Hope for beneficial futures
-      </text>
     </svg>
   )
 }

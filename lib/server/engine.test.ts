@@ -170,7 +170,7 @@ test('placeholders and an explicit paperclip request use bounded local recovery 
     true
   )
   expect(second.assessment.recovery).toMatchObject({
-    evaluated: 2,
+    evaluated: 1,
     clearMisses: 2,
     paperclipShown: true,
     paperclipActive: true
@@ -185,26 +185,35 @@ test('placeholders and an explicit paperclip request use bounded local recovery 
       noInference,
       true
     )
-    expect(explicit.assessment.status).toBe('paused')
+    expect(explicit.assessment.status).toBe('recovery')
+    expect(explicit.assessment.recovery.reason).toBe('paperclips')
+    expect(explicit.assessment.recovery.evaluated).toBe(0)
     expect(explicit.assessment.recovery.paperclipActive).toBe(true)
     expect(explicit.assessment.answers).toEqual([])
     expect(explicit.assessment.evidence).toEqual([])
     expect(explicit.debug?.stages).toEqual([])
   }
-  const resumed = await run(second.assessment, { type: 'retry' }, noInference)
+  const resumed = await run(second.assessment, { type: 'dismiss' }, noInference)
+  expect(resumed.assessment.status).toBe('recovery')
+  expect(resumed.assessment.recovery.reason).toBe('paperclips')
   const third = await run(
     resumed.assessment,
     { type: 'answer', text: 'show me paperclips' },
     noInference
   )
-  expect(third.assessment.recovery).toMatchObject({
+  const fourth = await run(
+    third.assessment,
+    { type: 'answer', text: 'test' },
+    noInference
+  )
+  expect(fourth.assessment.recovery).toMatchObject({
     evaluated: 3,
     paperclipShown: true,
     paperclipActive: false,
     reason: 'exhausted'
   })
   await expect(
-    run(third.assessment, { type: 'answer', text: 'test' }, noInference)
+    run(fourth.assessment, { type: 'answer', text: 'test' }, noInference)
   ).rejects.toThrow('Choose a recovery action')
 })
 test('three-answer path, reusable results and debug parity', async () => {
@@ -283,11 +292,15 @@ test('nonsense short circuits all later stages and preserves scores', async () =
     )
   ).assessment
   expect(state.recovery.paperclipShown).toBe(true)
-  expect(state.status).toBe('paused')
+  expect(state.status).toBe('recovery')
   expect(currentPrompt(state).ordinal).toBe(1)
   state = (await run(state, { type: 'retry' })).assessment
   state = (await run(state, { type: 'answer', text: 'third banana' }, provider))
     .assessment
+  expect(state.recovery.evaluated).toBe(2)
+  state = (
+    await run(state, { type: 'answer', text: 'fourth banana' }, provider)
+  ).assessment
   expect(state.recovery.evaluated).toBe(3)
   await expect(run(state, { type: 'retry' })).rejects.toThrow('different')
 })
@@ -321,7 +334,7 @@ test('rejected retries preserve an established profile and resuming does not res
   state = (await run(state, { type: 'dismiss' }, provider)).assessment
   state = (await run(state, { type: 'retry' }, provider)).assessment
   expect(providerCalls).toBe(2)
-  expect(state.recovery.evaluated).toBe(2)
+  expect(state.recovery.evaluated).toBe(1)
   state = (
     await run(state, {
       type: 'answer',
@@ -338,7 +351,7 @@ test('rejected retries preserve an established profile and resuming does not res
         attempt.promptInstanceId === before.prompts.at(-1)?.id &&
         attempt.evaluated
     )
-  ).toHaveLength(3)
+  ).toHaveLength(2)
 })
 test('dependent stages share the remaining physical request budget', async () => {
   const fixture = createFixtureProvider()

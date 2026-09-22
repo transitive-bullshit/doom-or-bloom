@@ -230,15 +230,16 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips' })
   ).toHaveCount(0)
-  await page.getByRole('button', { name: 'Try again', exact: true }).click()
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeEnabled()
   await submit(page, 'nonsense three')
+  await submit(page, 'nonsense four')
   await expect(
     page.getByRole('button', { name: 'Try again', exact: true })
   ).toHaveCount(0)
   await expect(
     page.getByRole('button', { name: 'View my result' })
   ).toHaveCount(0)
-  expect(calls).toBe(3)
+  expect(calls).toBe(4)
 })
 test('two tabs cannot overwrite each other', async ({ page, context }) => {
   await page.goto('/assessment')
@@ -257,6 +258,12 @@ test('two tabs cannot overwrite each other', async ({ page, context }) => {
 test('restart discards in-flight work; provider failure preserves draft', async ({
   page
 }) => {
+  await page.goto('/assessment')
+  await submit(
+    page,
+    'AI could improve medicine, but the benefits depend on how it is governed.'
+  )
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   let release: (() => void) | undefined
   await page.route('**/api/assessment', async (route) => {
     await new Promise<void>((resolve) => {
@@ -296,9 +303,13 @@ test('restart discards in-flight work; provider failure preserves draft', async 
     })
   )
   await submit(page, 'preserved on failure')
-  await expect(page.getByText('Could not complete that step')).toBeVisible()
   await expect(
-    page.getByRole('alert').filter({ hasText: 'Could not complete that step' })
+    page.locator('[data-sonner-toast][data-type=error]')
+  ).toBeVisible()
+  await expect(
+    page
+      .locator('[data-sonner-toast]')
+      .filter({ hasText: 'Your answer is saved' })
   ).toBeVisible()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
     'preserved on failure'
@@ -387,7 +398,9 @@ test('an uncertain transport retry reuses the same request and semantic attempt'
   })
   await page.goto('/assessment')
   await submit(page, 'Preserved after a lost response.')
-  await expect(page.getByText('Could not complete that step')).toBeVisible()
+  await expect(
+    page.locator('[data-sonner-toast][data-type=error]')
+  ).toBeVisible()
   await submit(page, 'Preserved after a lost response.')
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   expect(ids).toHaveLength(2)
@@ -412,7 +425,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   await page.goto('/assessment')
   await expect(
     page.getByRole('meter', { name: 'Evidence readiness' })
-  ).toHaveAttribute('aria-valuenow', '0')
+  ).toHaveCount(0)
   await expect(
     page.getByRole('button', { name: 'View my result' })
   ).toHaveCount(0)
@@ -445,6 +458,6 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   ).toContainText('scale of transformation')
   await expect(
     page.locator('[data-slot="worldview-map"]').first()
-  ).toContainText('not reasoning quality or event probabilities')
+  ).toContainText('interpretation coordinates, not event probabilities')
   expect(requests).toEqual([])
 })

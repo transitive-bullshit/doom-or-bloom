@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { storageKey } from '../../lib/persistence/storage'
 
 // Uses actual application control flow with exact local phrases, never paid inference.
 test('test replies reliably trigger paperclips and an explicit request works once per assessment', async ({
@@ -27,8 +28,13 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
   ).toHaveCount(0)
-  await page.getByRole('button', { name: 'Try again', exact: true }).click()
+  await expect(answer).toBeEnabled()
+  await expect(
+    page.getByText('We’ve made some paperclips.', { exact: true })
+  ).toBeVisible()
   await submit('paperclips')
+  await expect(answer).toBeEnabled()
+  await submit('test')
   await expect(
     page.getByText('Let’s pause here', { exact: true })
   ).toBeVisible()
@@ -38,10 +44,9 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
   ).toHaveCount(0)
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page
-    .getByRole('button', { name: 'Restart & clear', exact: true })
-    .click()
+  // Start a fresh assessment; these recovery-only runs have no accepted answers.
+  await page.evaluate((key) => localStorage.removeItem(key), storageKey)
+  await page.reload()
   await submit('show me paperclips')
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
@@ -75,6 +80,9 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   const scene = page.locator('[data-slot=paperclip-interlude]')
   const dismiss = page.getByRole('button', { name: 'Dismiss paperclips' })
   await expect(scene).toBeVisible()
+  await expect(scene.locator('.paperclip-sprite')).toHaveCount(394)
+  await expect(scene.locator('.paperclip-sprite').first()).toHaveText('📎')
+  await expect(scene.locator('.paperclip-effect svg')).toHaveCount(0)
   await expect(dismiss).toBeVisible()
   // Inspect the finale at a reproducible point without slowing the test down.
   const sprites = await scene.evaluate((element) => {
@@ -100,16 +108,16 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await page.clock.runFor(3000)
   await expect(scene).toHaveCount(0)
   await expect(
-    page.getByText('Let’s pause here', { exact: true })
+    page.getByText('We’ve made some paperclips.', { exact: true })
   ).toBeVisible()
   expect(operations).toEqual(['answer', 'dismiss'])
+  await expect(answer).toBeEnabled()
   await expect(
-    page.getByRole('button', { name: 'Try again', exact: true })
+    page.getByText(/Now give the question an earnest answer/)
   ).toBeVisible()
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page
-    .getByRole('button', { name: 'Restart & clear', exact: true })
-    .click()
+  // Start a fresh assessment; these recovery-only runs have no accepted answers.
+  await page.evaluate((key) => localStorage.removeItem(key), storageKey)
+  await page.reload()
   await page.setViewportSize({ width: 390, height: 844 })
   await answer.fill('show me paperclips')
   await page.getByRole('button', { name: /^Continue/ }).click()
@@ -127,7 +135,8 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await page.keyboard.press('Escape')
   await expect(scene).toHaveCount(0)
   await expect(
-    page.getByText('Let’s pause here', { exact: true })
+    page.getByText('We’ve made some paperclips.', { exact: true })
   ).toBeVisible()
+  await expect(answer).toBeEnabled()
   expect(operations).toEqual(['answer', 'dismiss', 'answer', 'dismiss'])
 })

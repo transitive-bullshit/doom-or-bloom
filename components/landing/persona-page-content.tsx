@@ -1,6 +1,11 @@
 'use client'
 
-import Link from 'next/link'
+import {
+  AnswerNavigationProvider,
+  AnswerTarget,
+  useAnswerDisclosure
+} from '@/components/assessment/answer-navigation'
+import { WorldviewCta } from '@/components/worldview-cta'
 import { ChevronDownIcon } from 'lucide-react'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
@@ -43,7 +48,9 @@ export function PersonaPageContent({
   assessment: PersonaAssessment
 }) {
   return (
-    <>
+    <AnswerNavigationProvider
+      answerIds={assessment.answers.map((answer) => answer.id)}
+    >
       <PersonaHeader person={person} />
       <ExperimentalResults
         subject={person}
@@ -57,30 +64,7 @@ export function PersonaPageContent({
         <h2 className='text-xl font-semibold tracking-tight'>
           Simulated Assessment
         </h2>
-        <Collapsible className='rounded-xl border p-4'>
-          <CollapsibleTrigger asChild>
-            <Button variant='ghost' className='group w-full justify-between'>
-              View questions and simulated answers ({assessment.answers.length})
-              <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
-            </Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent className='mt-6 flex flex-col gap-8'>
-            {assessment.answers.map((answer, index) => (
-              <article
-                key={`${answer.id}-${index}`}
-                className='flex min-w-0 flex-col gap-3'
-              >
-                <p className='text-xs text-muted-foreground'>
-                  Question {index + 1}
-                </p>
-                <h3 className='text-lg font-semibold'>{answer.question}</h3>
-                <div className='rounded-xl bg-muted p-4 text-sm leading-relaxed whitespace-pre-wrap wrap-anywhere'>
-                  {answer.answer}
-                </div>
-              </article>
-            ))}
-          </CollapsibleContent>
-        </Collapsible>
+        <PersonaAnswers assessment={assessment} />
         <section aria-label='Debug info'>
           <Collapsible className='rounded-xl border p-4'>
             <h3>
@@ -132,7 +116,7 @@ export function PersonaPageContent({
         sources={person.sources ?? []}
         sourceBriefUpdated={person.sourceBriefUpdated}
       />
-      <Card className='mt-10'>
+      <Card className='mx-auto mt-10 w-full max-w-[600px]'>
         <CardHeader>
           <CardTitle>Where do you land?</CardTitle>
           <CardDescription>
@@ -140,11 +124,42 @@ export function PersonaPageContent({
           </CardDescription>
         </CardHeader>
         <CardFooter>
-          <Button asChild size='lg'>
-            <Link href='/assessment'>Map your own worldview</Link>
-          </Button>
+          <WorldviewCta />
         </CardFooter>
       </Card>
-    </>
+    </AnswerNavigationProvider>
+  )
+}
+
+function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
+  const [open, setOpen] = useAnswerDisclosure(true)
+  return (
+    <Collapsible
+      open={open}
+      onOpenChange={setOpen}
+      className='rounded-xl border p-4'
+    >
+      <CollapsibleTrigger asChild>
+        <Button variant='ghost' className='group w-full justify-between'>
+          View questions and simulated answers ({assessment.answers.length})
+          <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className='mt-6 flex flex-col gap-8'>
+        {assessment.answers.map((answer, index) => (
+          <AnswerTarget key={`${answer.id}-${index}`} number={index + 1}>
+            <article className='flex min-w-0 flex-col gap-3'>
+              <p className='text-xs text-muted-foreground'>
+                Question {index + 1}
+              </p>
+              <h3 className='text-lg font-semibold'>{answer.question}</h3>
+              <div className='rounded-xl bg-muted p-4 text-sm leading-relaxed whitespace-pre-wrap wrap-anywhere'>
+                {answer.answer}
+              </div>
+            </article>
+          </AnswerTarget>
+        ))}
+      </CollapsibleContent>
+    </Collapsible>
   )
 }

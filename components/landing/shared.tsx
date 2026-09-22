@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { WorldviewCta } from '@/components/worldview-cta'
 import Image from 'next/image'
+import { FadeText } from '@/components/assessment/fade-text'
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import {
   Tooltip,
@@ -34,14 +36,10 @@ export type VariantProps = { examples: Example[]; variant?: number }
 export const resultHref = (slug: string, variant?: number) =>
   variant
     ? `/prototypes/landing/personas/${slug}?v=${variant}`
-    : `/personas/${slug}`
+    : `/users/${slug}`
 
 export function StartLink() {
-  return (
-    <Link href='/assessment' className='landing-start'>
-      Answer the first question
-    </Link>
-  )
+  return <WorldviewCta />
 }
 
 export function ExampleLinks({ examples, variant }: VariantProps) {
@@ -236,7 +234,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                 alt=''
                 unoptimized
               />
-              {p.shortName}
+              <FadeText lines={1}>{p.name}</FadeText>
             </Link>
           ))}
         </div>

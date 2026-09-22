@@ -4,7 +4,11 @@ import path from 'node:path'
 
 const output = process.env.NEXT_TEST_DIST_DIR || '.next'
 const required = path.resolve('eval/development/live-persona-journeys.json')
-for (const route of ['personas/[id]', 'prototypes/landing/personas/[id]']) {
+for (const route of [
+  'about',
+  'users/[username]',
+  'prototypes/landing/personas/[id]'
+]) {
   const trace = path.join(output, 'server/app', route, 'page.js.nft.json')
   const { files } = JSON.parse(await readFile(trace, 'utf8'))
   assert(

@@ -49,7 +49,9 @@ describe('bounded assessment', () => {
     expect(state.status).toBe('recovery')
     state = recordDisposition(state, 'non_answer', 0.99, '2')
     expect(state.recovery.paperclipActive).toBe(true)
-    expect(state.status).toBe('paused')
+    expect(state.status).toBe('recovery')
+    expect(state.recovery.reason).toBe('paperclips')
+    expect(canSubmit(state)).toBe(true)
     expect(recordDisposition(state, 'non_answer', 0.99, '2')).toEqual(state)
     state = {
       ...state,
@@ -57,6 +59,8 @@ describe('bounded assessment', () => {
       recovery: { ...state.recovery, paperclipActive: false }
     }
     state = recordDisposition(state, 'non_answer', 0.99, '3')
+    expect(canSubmit(state)).toBe(true)
+    state = recordDisposition(state, 'non_answer', 0.99, '4')
     expect(canSubmit(state)).toBe(false)
     expect(state.recovery.reason).toBe('exhausted')
     expect(state.answers).toHaveLength(0)

@@ -2,6 +2,7 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import Image from 'next/image'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
+import { PrismField } from '@/components/worldview/prism-field'
 import { MapActions } from './map-actions'
 import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
@@ -29,7 +30,7 @@ export function Map({
     if (!element) return
     const observer = new ResizeObserver(([entry]) => {
       if (entry && entry.contentRect.width > 0) {
-        setLabelScale(Math.max(1, 680 / entry.contentRect.width))
+        setLabelScale(Math.min(2.2, Math.max(1, 680 / entry.contentRect.width)))
       }
     })
     observer.observe(element)
@@ -38,7 +39,7 @@ export function Map({
   const definition = experimentalAxes[axis]
   const framing = resultFraming(subject)
   const id = useId().replaceAll(':', '')
-  const plot = { left: 70, top: 52, width: 560, height: 268 }
+  const plot = { left: 90, top: 52, width: 500, height: 268 }
   const px = (value: number) => plot.left + value * plot.width
   const py = (value: number) => plot.top + (1 - value) * plot.height
   const point = x.value !== null && y.value !== null
@@ -47,14 +48,33 @@ export function Map({
     <figure
       data-slot='worldview-map'
       className={cn(
-        'worldview-map rounded-2xl p-5 shadow-xl sm:p-8',
+        'worldview-map prism-theme rounded-2xl border border-border p-5 shadow-sm sm:p-8',
         layout === 'breakout' &&
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
     >
-      <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-        {definition.question}
-      </h2>
+      <div className='flex items-start justify-between gap-4'>
+        <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
+          {definition.question}
+        </h2>
+        <div className='shrink-0'>
+          <MapActions
+            svg={svg}
+            title={
+              subject
+                ? `${subject.name} · Simulated AI worldview`
+                : 'My AI worldview'
+            }
+            legend={
+              point
+                ? y.interpretation === 'unsettled'
+                  ? 'Point: center of unresolved range · Dashed area: interpretation range'
+                  : 'Point: estimated position · Dashed area: interpretation range'
+                : 'No placement yet · Dashed area: interpretation range'
+            }
+          />
+        </div>
+      </div>
       <svg
         ref={svg}
         viewBox='0 0 680 395'
@@ -69,19 +89,6 @@ export function Map({
               <circle cx={px(x.value!)} cy={py(y.value!)} r='19.25' />
             </clipPath>
           )}
-          <linearGradient id={`${id}-field`}>
-            <stop stopColor='var(--map-doom)' stopOpacity='.55' />
-            <stop
-              offset='.5'
-              stopColor='var(--map-surface)'
-              stopOpacity='.05'
-            />
-            <stop offset='1' stopColor='var(--map-bloom)' stopOpacity='.55' />
-          </linearGradient>
-          <linearGradient id={`${id}-axis`}>
-            <stop stopColor='var(--map-doom)' />
-            <stop offset='1' stopColor='var(--map-bloom)' />
-          </linearGradient>
           <pattern
             id={`${id}-missing`}
             width='9'
@@ -89,68 +96,51 @@ export function Map({
             patternUnits='userSpaceOnUse'
             patternTransform='rotate(35)'
           >
-            <line y2='9' stroke='var(--map-text)' strokeOpacity='.08' />
+            <line y2='9' stroke='var(--prism-range-ink)' strokeOpacity='.08' />
           </pattern>
         </defs>
-        <rect
-          x={plot.left}
-          y={plot.top}
-          width={plot.width}
-          height={plot.height}
-          rx='6'
-          fill={`url(#${id}-field)`}
-          stroke='var(--map-grid)'
-          strokeOpacity='.55'
-        />
-        {[0.25, 0.5, 0.75].map((value) => (
-          <g
-            key={value}
-            stroke='var(--map-grid)'
-            strokeDasharray={value === 0.5 ? '4 6' : undefined}
-            strokeOpacity={value === 0.5 ? 1 : 0.55}
-          >
-            <line x1={px(value)} y1={plot.top} x2={px(value)} y2={py(0)} />
-            <line x1={plot.left} y1={py(value)} x2={px(1)} y2={py(value)} />
-          </g>
-        ))}
+        <PrismField id={id} plot={plot} radius={8 * labelScale} />
         <text
-          x='51'
-          y={py(1) + 4}
-          fill='var(--map-muted)'
-          fontSize='12'
-          className='map-axis-tick'
-          textAnchor='end'
-        >
-          100
-        </text>
-        <text
-          x='51'
-          y={py(0.5) + 4}
-          fill='var(--map-muted)'
-          fontSize='12'
-          className='map-axis-tick'
-          textAnchor='end'
-        >
-          50
-        </text>
-        <text
-          x='51'
-          y={py(0) + 4}
-          fill='var(--map-muted)'
-          fontSize='12'
-          className='map-axis-tick'
-          textAnchor='end'
-        >
-          0
-        </text>
-        <text
-          className='map-axis-caption'
-          transform='translate(18 186) rotate(-90)'
-          fill='var(--map-muted)'
-          fontSize='12'
+          className='prism-axis-label'
+          x='340'
+          y='31'
           textAnchor='middle'
+          fill='var(--map-muted)'
+          fontSize='12'
         >
-          {definition.label}
+          {definition.high}
+        </text>
+        <text
+          className='prism-axis-label'
+          x='340'
+          y='352'
+          textAnchor='middle'
+          fill='var(--map-muted)'
+          fontSize='12'
+        >
+          {definition.low}
+        </text>
+        <text
+          className='prism-pole'
+          x='46'
+          y={py(0.5)}
+          dominantBaseline='middle'
+          textAnchor='middle'
+          fill='var(--map-text)'
+          fontSize='14'
+        >
+          Doom
+        </text>
+        <text
+          className='prism-pole'
+          x='634'
+          y={py(0.5)}
+          dominantBaseline='middle'
+          textAnchor='middle'
+          fill='var(--map-text)'
+          fontSize='14'
+        >
+          Bloom
         </text>
         {history.map((entry, index) =>
           entry.x !== null && entry.y !== null ? (
@@ -180,31 +170,14 @@ export function Map({
           height={Math.max(2, (y.range[1] - y.range[0]) * plot.height)}
           rx='4'
           fill={`url(#${id}-missing)`}
-          stroke='var(--map-text)'
+          stroke='var(--prism-range-ink)'
           strokeOpacity='.65'
           strokeWidth='1.5'
+          vectorEffect='non-scaling-stroke'
           strokeDasharray='6 5'
         />
         {point && (
           <g>
-            <line
-              x1={px(x.value!)}
-              y1={py(0)}
-              x2={px(x.value!)}
-              y2={py(y.value!)}
-              stroke='var(--map-text)'
-              strokeOpacity='.5'
-              strokeDasharray='3 5'
-            />
-            <line
-              x1={px(0)}
-              y1={py(y.value!)}
-              x2={px(x.value!)}
-              y2={py(y.value!)}
-              stroke='var(--map-text)'
-              strokeOpacity='.5'
-              strokeDasharray='3 5'
-            />
             {subject?.avatar ? (
               <g
                 data-persona-marker={subject.name}
@@ -225,7 +198,7 @@ export function Map({
                   cy={py(y.value!)}
                   r='19.25'
                   fill='none'
-                  stroke='#fff'
+                  stroke='var(--prism-portrait-ring)'
                   strokeWidth='1.5'
                 />
               </g>
@@ -247,7 +220,7 @@ export function Map({
                   strokeWidth='3'
                 />
                 <g
-                  transform={`translate(${Math.max(120, Math.min(580, px(x.value!)))},${Math.max(25, py(y.value!) - 29)})`}
+                  transform={`translate(${Math.max(120, Math.min(580, px(x.value!)))},${y.value! > 0.85 ? py(y.value!) + 36 : py(y.value!) - 29})`}
                 >
                   <rect
                     x='-46'
@@ -308,69 +281,7 @@ export function Map({
             </text>
           </g>
         )}
-        <rect
-          x={plot.left}
-          y='331'
-          width={plot.width}
-          height='3'
-          rx='1.5'
-          fill={`url(#${id}-axis)`}
-        />
-        <text
-          x={plot.left}
-          y='360'
-          fill='var(--map-doom)'
-          fontSize='24'
-          className='map-pole'
-          fontWeight='700'
-        >
-          Doom
-        </text>
-        <text
-          className='map-axis-caption'
-          x='350'
-          y='357'
-          textAnchor='middle'
-          fill='var(--map-muted)'
-          fontSize='12'
-        >
-          EXPRESSED OUTLOOK
-        </text>
-        <text
-          x={px(1)}
-          y='360'
-          textAnchor='end'
-          fill='var(--map-bloom)'
-          fontSize='24'
-          className='map-pole'
-          fontWeight='700'
-        >
-          Bloom
-        </text>
-        <text
-          className='map-axis-caption'
-          x={plot.left}
-          y='381'
-          fill='var(--map-muted)'
-          fontSize='12'
-        >
-          Concern about harmful futures
-        </text>
-        <text
-          x={px(1)}
-          y='381'
-          className='map-axis-caption'
-          textAnchor='end'
-          fill='var(--map-muted)'
-          fontSize='12'
-        >
-          Hope for beneficial futures
-        </text>
       </svg>
-      <div className='map-mobile-captions map-muted -mt-1 mb-4 flex justify-between gap-4 text-xs'>
-        <span>Concern</span>
-        <span>Hope</span>
-      </div>
       {!point && (
         <p className='map-muted mb-3 text-sm'>
           Some dimensions are still unplaced. Open regions show what we don’t
@@ -423,21 +334,6 @@ export function Map({
             {history.length > 0 ? ' Numbered dots show earlier answers.' : ''}
           </p>
         </div>
-        <MapActions
-          svg={svg}
-          title={
-            subject
-              ? `${subject.name} · Simulated AI worldview`
-              : 'My AI worldview'
-          }
-          legend={
-            point
-              ? y.interpretation === 'unsettled'
-                ? 'Point: center of unresolved range · Dashed area: interpretation range'
-                : 'Point: estimated position · Dashed area: interpretation range'
-              : 'No placement yet · Dashed area: interpretation range'
-          }
-        />
       </figcaption>
       <p className='sr-only'>{description}</p>
     </figure>

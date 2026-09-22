@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type ReactNode } from 'react'
+import { AnswerLink } from './answer-navigation'
 import { ReasoningJudgments } from './reasoning-judgments'
 import { ChevronDownIcon } from 'lucide-react'
 import type { Result } from '@/lib/assessment/schema'
@@ -157,9 +158,7 @@ export function ExperimentalResults({
                     <p className='text-sm whitespace-pre-wrap text-body-foreground'>
                       {milestone.evidence.text}
                     </p>
-                    <span className='text-xs text-muted-foreground'>
-                      Answer {milestone.evidence.answerNumber}
-                    </span>
+                    <AnswerLink number={milestone.evidence.answerNumber} />
                   </li>
                 ))}
               </ol>
@@ -192,9 +191,7 @@ export function ExperimentalResults({
                 <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-body-foreground'>
                   {hinge.evidence.text}
                 </blockquote>
-                <p className='text-xs text-muted-foreground'>
-                  Answer {hinge.evidence.answerNumber}
-                </p>
+                <AnswerLink number={hinge.evidence.answerNumber} />
                 <p className='text-sm font-medium'>
                   {framing.hingeQuestion(hinge)}
                 </p>

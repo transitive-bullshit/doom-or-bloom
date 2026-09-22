@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { WorldviewCta } from '@/components/worldview-cta'
 
 export function PersonaHeader({
   person
@@ -66,9 +65,7 @@ export function PersonaHeader({
           {person.description}
         </p>
       </div>
-      <Button asChild size='lg' className='shrink-0'>
-        <Link href='/assessment'>Map your own worldview</Link>
-      </Button>
+      <WorldviewCta />
     </header>
   )
 }

@@ -4,7 +4,7 @@ import { isSameOriginRequest } from '@/lib/server/request-origin'
 export function localDebugAvailable() {
   return process.env.NODE_ENV === 'development'
 }
-export function localFeedbackRequestAllowed(request: Request) {
+export function localWriteRequestAllowed(request: Request) {
   if (
     !localDebugAvailable() ||
     !request.headers.get('origin') ||

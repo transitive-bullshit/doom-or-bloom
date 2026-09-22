@@ -1,4 +1,5 @@
 'use client'
+import { toast } from 'sonner'
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
@@ -20,13 +21,11 @@ export function ResultView({
   state,
   act,
   busy,
-  onError,
   operations = []
 }: {
   state: Assessment
   act: (operation: Operation) => void
   busy: boolean
-  onError: (message: string) => void
   operations?: SavedDebugOperation[]
 }) {
   const result = state.result!
@@ -93,7 +92,7 @@ export function ResultView({
       downloadBlob(await response.blob(), 'doom-or-bloom.png')
       emitEvent(makeEvent(state, 'share_card_downloaded'))
     } catch (err) {
-      onError(err instanceof Error ? err.message : 'Card download failed')
+      toast.error(err instanceof Error ? err.message : 'Card download failed')
     }
   }
   return (

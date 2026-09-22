@@ -1,4 +1,4 @@
-# Local debugging and editorial feedback
+# Local debugging and content inspection
 
 The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) documents the current export and per-answer inspection contract. All browser operations capture local traces; the debug toggle controls their visibility.
 
@@ -16,18 +16,11 @@ Successful recorded operations are stored in browser IndexedDB for the current a
 
 ## Questions and corpus
 
-Open `/questions` for the 36 current catalog entries. Rejected questions are deleted from all local draft catalogs; there is no soft-delete state. Select a graph node or list entry to inspect its wording and metadata and leave feedback. Family transitions show authored compatibility, not the next runtime choice: prerequisites, coverage, familiarity, usage, caps and Jev benefits still gate routing. Shared targets/novelty groups are similarity links. See [prompt quality review](prompt-quality-review.md) for the original full-catalog audit and deletion rationale. Existing feedback notes and issued participant history are retained; neither keeps a removed question in the built-in pool.
+Open `/questions` for the 36 current catalog entries. Rejected questions are deleted from all local draft catalogs; there is no soft-delete state. Select a graph node or list entry to inspect its wording and metadata. Family transitions show authored compatibility, not the next runtime choice: prerequisites, coverage, familiarity, usage, caps and Jev benefits still gate routing. Shared targets/novelty groups are similarity links. See [prompt quality review](prompt-quality-review.md) for the original full-catalog audit and deletion rationale. Issued participant history remains readable but does not keep a removed question in the built-in pool.
 
 Open `/corpus` for the active built-in reference snapshots. Inspect kinds, dates/qualifiers, aliases, topics, source links, review status, complete summaries and associated entities/related entries. Arrows preserve authored direction. Related reports can describe the same event and do not prove independent corroboration. The diagram caps neighboring nodes at 25; the selected entry's full authored relationships remain listed.
 
-Both pages are available only in local development. They make no inference or analytics calls. Save free-form notes explicitly with **Save feedback**:
-
-- `content/feedback/questions.json` — question feedback.
-- `content/feedback/corpus.json` — snapshot feedback.
-
-Each append records an ID, asset identity/label, current content version, resolved asset hash, timestamp and full feedback. Earlier notes remain intact; writes are serialized and replaced atomically. Damaged files are never silently overwritten. Failed saves retain the draft. The editor has no hard input cap; above 20,000 characters it explains the excess and disables saving. Switching entries retains in-tab drafts; unsubmitted feedback is not durable across refresh.
-
-Future revisions should read these notes, check version/hash against the current asset and explicitly revise offline. Preserve earlier notes as history. A feedback note does not approve, validate or automatically change an asset. Do not put participant answers into these project files automatically.
+Both pages are available only in local development. They make no inference or analytics calls. Editorial feedback forms and their write API have been removed.
 
 ## Synthetic User Journeys
 

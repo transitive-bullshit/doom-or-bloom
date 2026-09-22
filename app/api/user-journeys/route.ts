@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { z } from 'zod'
 import {
   localDebugAvailable,
-  localFeedbackRequestAllowed
+  localWriteRequestAllowed
 } from '@/lib/debug/local-access'
 import { readBoundedJson } from '@/lib/server/limits'
 import { fixedUserPersona } from '@/lib/journeys/fixed'
@@ -45,7 +45,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   if (!localDebugAvailable())
     return Response.json({ error: 'Not found' }, { status: 404, headers })
-  if (!localFeedbackRequestAllowed(request))
+  if (!localWriteRequestAllowed(request))
     return Response.json(
       { error: 'Rerun from the local User Journeys page.' },
       { status: 403, headers }

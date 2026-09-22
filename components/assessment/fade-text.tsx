@@ -9,7 +9,7 @@ export function FadeText({
   lines
 }: {
   children: string
-  lines: 2 | 3
+  lines: 1 | 2 | 3
 }) {
   const ref = useRef<HTMLSpanElement>(null)
   const [truncated, setTruncated] = useState(false)
@@ -17,7 +17,10 @@ export function FadeText({
     const element = ref.current
     if (!element) return
     const measure = () =>
-      setTruncated(element.scrollHeight > element.clientHeight + 1)
+      setTruncated(
+        element.scrollHeight > element.clientHeight + 1 ||
+          element.scrollWidth > element.clientWidth + 1
+      )
     measure()
     const observer = new ResizeObserver(measure)
     observer.observe(element)
@@ -32,6 +35,7 @@ export function FadeText({
       ref={ref}
       className='fade-truncated-text'
       data-truncated={truncated}
+      data-lines={lines}
       style={{ '--fade-lines': lines } as CSSProperties}
     >
       {children}

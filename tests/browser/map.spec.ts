@@ -1,8 +1,40 @@
+import sharp from 'sharp'
 import { readFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
 import { createAssessment } from '../../lib/assessment/state'
 import { emptyComponent } from '../../lib/assessment/projections'
 import { storageKey } from '../../lib/persistence/storage'
+
+// Measure the actual dashed upper boundary against nearby chart pixels.
+async function rangeContrast(png: Buffer, exportOffset = 0) {
+  const { data, info } = await sharp(png)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true })
+  const luminance = (x: number, y: number) => {
+    const offset = (y * info.width + x) * 4
+    const rgb = [0, 1, 2].map((channel) => {
+      const v = data[offset + channel]! / 255
+      return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4
+    })
+    return rgb[0]! * 0.2126 + rgb[1]! * 0.7152 + rgb[2]! * 0.0722
+  }
+  const scale = info.width / 680
+  const y = Math.round((159.2 + exportOffset) * scale)
+  let best = 1
+  for (let x = Math.round(170 * scale); x < Math.round(500 * scale); x++) {
+    const background = luminance(x, y - Math.ceil(5 * scale))
+    for (let dy = -1; dy <= 1; dy++) {
+      const edge = luminance(x, y + dy)
+      best = Math.max(
+        best,
+        (Math.max(edge, background) + 0.05) /
+          (Math.min(edge, background) + 0.05)
+      )
+    }
+  }
+  return best
+}
 
 async function contrastRatios(page: import('@playwright/test').Page) {
   return page.evaluate(() => {
@@ -131,6 +163,30 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       milestones: [],
       hinges: []
     }
+    if (unplaced === false) {
+      state.answers = [
+        {
+          id: 'accepted-answer-one',
+          promptInstanceId: state.prompts[0]!.id,
+          promptText: state.prompts[0]!.text,
+          text: 'AI could transform science over the next decade. '.repeat(20),
+          substantive: true,
+          hasHorizon: true,
+          hasConviction: false
+        }
+      ]
+      state.result.experiment.milestones = [
+        {
+          id: 'science',
+          label: 'Scientific transformation',
+          evidence: {
+            answerId: 'accepted-answer-one',
+            answerNumber: 1,
+            text: 'over the next decade'
+          }
+        }
+      ]
+    }
     await page.addInitScript(
       ({ key, assessment }) =>
         localStorage.setItem(
@@ -149,6 +205,29 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     await page.goto('/assessment')
     await expect(page.locator('[data-slot="worldview-map"]')).toHaveCount(1)
     const map = page.locator('[data-slot="worldview-map"]').first()
+    if (unplaced === false) {
+      const reference = page.getByRole('link', {
+        name: 'Answer 1',
+        exact: true
+      })
+      await expect(
+        page.locator('#answer-1').getByRole('button', { name: /Read full/ })
+      ).toBeVisible()
+      await reference.click()
+      await expect(page).toHaveURL(/#answer-1$/)
+      await expect(page.locator('#answer-1')).toBeFocused()
+      await expect(page.locator('#answer-1')).toBeInViewport()
+      await expect(page.locator('#answer-1').getByRole('region')).toHaveText(
+        state.answers[0]!.text.trim()
+      )
+      await page
+        .locator('#answer-1')
+        .getByRole('button', { name: /Collapse/ })
+        .click()
+      await reference.click()
+      await expect(page.locator('#answer-1').getByRole('region')).toBeVisible()
+    }
+
     await expect(map).toContainText(
       'Across: your expressed Doom–Bloom outlook.'
     )
@@ -181,7 +260,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     } else {
       await expect(map.getByText('Your view', { exact: true })).toBeVisible()
       const area = map.locator('rect[stroke-dasharray="6 5"]')
-      expect(Number(await area.getAttribute('width'))).toBeGreaterThan(400)
+      expect(Number(await area.getAttribute('width'))).toBeCloseTo(380)
     }
     if (unplaced === false) {
       const bookmark = page.getByRole('link', {
@@ -224,10 +303,23 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       expect(png.readUInt32BE(16)).toBe(1360)
       expect(png.readUInt32BE(20)).toBe(980)
       await downloaded.saveAs(testInfo.outputPath('exported-map.png'))
+      await page.route('**/api/share-card', (route) =>
+        route.fulfill({ status: 500, body: 'Unavailable' })
+      )
+      await page
+        .getByRole('button', { name: 'Download card', exact: true })
+        .click()
+      await expect(
+        page.locator('[data-sonner-toast][data-type=error]')
+      ).toContainText('Card generation failed. Please try again.')
       await context.grantPermissions(['clipboard-read', 'clipboard-write'])
       await map.getByRole('button', { name: 'Map image actions' }).click()
       await page.getByRole('menuitem', { name: 'Copy PNG' }).click()
-      await expect(map.getByRole('status')).toHaveText('Map copied as PNG.')
+      await expect(
+        page
+          .locator('[data-sonner-toast]')
+          .filter({ hasText: 'Map copied as PNG.' })
+      ).toHaveText('Map copied as PNG.')
       expect(
         await page.evaluate(
           async () => (await navigator.clipboard.read())[0]?.types
@@ -245,6 +337,22 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     for (const pair of await contrastRatios(page))
       expect(pair.ratio).toBeGreaterThanOrEqual(4.5)
     await map.screenshot({ path: testInfo.outputPath('map-mobile-dark.png') })
+    if (unplaced === false) {
+      const darkChart = await map.getByRole('img').screenshot()
+      const downloading = page.waitForEvent('download')
+      await map.getByRole('button', { name: 'Map image actions' }).click()
+      await page.getByRole('menuitem', { name: 'Download PNG' }).click()
+      const download = await downloading
+      await download.saveAs(testInfo.outputPath('exported-map-dark.png'))
+      const png = await readFile((await download.path())!)
+      expect
+        .soft(await rangeContrast(darkChart), 'dark chart range boundary')
+        .toBeGreaterThan(2)
+      expect
+        .soft(await rangeContrast(png, 55), 'dark PNG range boundary')
+        .toBeGreaterThan(2)
+    }
+
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth)
     ).toBeLessThanOrEqual(390)
