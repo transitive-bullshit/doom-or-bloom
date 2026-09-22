@@ -27,8 +27,13 @@ export function SocialCard({
   person,
   points
 }: {
-  person?: { name: string; description: string; result: Result }
-  points?: { x: number; y: number }[]
+  person?: {
+    name: string
+    description: string
+    result: Result
+    portrait: string
+  }
+  points?: { x: number; y: number; portrait: string }[]
 }) {
   return (
     <div
@@ -80,6 +85,7 @@ export function SocialCard({
           data={person ? socialCardData(person.result) : undefined}
           pointLabel={person ? 'Simulated' : undefined}
           points={points}
+          portrait={person?.portrait}
         />
         <div
           style={{

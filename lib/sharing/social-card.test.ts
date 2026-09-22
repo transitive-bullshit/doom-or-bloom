@@ -1,3 +1,4 @@
+import { loadSocialPortrait } from './portraits'
 import { readFile } from 'node:fs/promises'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { render } from 'takumi-js'
@@ -11,8 +12,12 @@ const suite: JourneySuite = JSON.parse(
   await readFile('eval/development/live-persona-journeys.json', 'utf8')
 )
 
-test('every public persona has a social map grounded in its saved result', () => {
+test('every public persona has a social map grounded in its saved result', async () => {
   for (const person of people) {
+    const portrait = await loadSocialPortrait(person.avatar)
+    expect(
+      await sharp(Buffer.from(portrait.split(',')[1]!, 'base64')).metadata()
+    ).toMatchObject({ width: expect.any(Number) })
     const result = suite.journeys.find((j) => j.personaId === person.id)?.result
     expect(result).toBeTruthy()
     const data = socialCardData(result!)
@@ -25,9 +30,10 @@ test('every public persona has a social map grounded in its saved result', () =>
       result!.experiment?.transformation.range ?? [0, 1]
     )
     const html = renderToStaticMarkup(
-      SocialCard({ person: { ...person, result: result! } })
+      SocialCard({ person: { ...person, result: result!, portrait } })
     )
     expect(html).toContain(person.name.replaceAll('&', '&amp;'))
+    expect(html).toContain(portrait)
     expect(html).toContain('SIMULATED AI WORLDVIEW')
     expect(html).toContain('not their own assessment')
   }
@@ -35,7 +41,15 @@ test('every public persona has a social map grounded in its saved result', () =>
 
 test('social output is a decodable 1200 × 630 WebP', async () => {
   const bytes = await render(
-    SocialCard({ points: [{ x: 0.2, y: 0.8 }] }),
+    SocialCard({
+      points: [
+        {
+          x: 0.2,
+          y: 0.8,
+          portrait: await loadSocialPortrait(people[0]!.avatar)
+        }
+      ]
+    }),
     socialImageOptions
   )
   expect(await sharp(bytes).metadata()).toMatchObject({

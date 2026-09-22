@@ -10,9 +10,16 @@ const config: NextConfig = {
   distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
   // Persona pages and About read the canonical saved journeys.
   outputFileTracingIncludes: {
-    '/opengraph-image': ['eval/development/live-persona-journeys.json'],
+    '/opengraph-image': [
+      'eval/development/live-persona-journeys.json',
+      'public/personas/*'
+    ],
     '/about': ['eval/development/live-persona-journeys.json'],
-    '/users/*': ['eval/development/live-persona-journeys.json']
+    '/users/*': ['eval/development/live-persona-journeys.json'],
+    '/users/*/opengraph-image': [
+      'eval/development/live-persona-journeys.json',
+      'public/personas/*'
+    ]
   },
   // Takumi loads a platform-specific native addon at runtime.
   serverExternalPackages: ['takumi-js']

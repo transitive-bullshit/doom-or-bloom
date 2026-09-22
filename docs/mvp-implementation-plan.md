@@ -943,3 +943,9 @@ The experiment is an additive `worldview-v2` field (historical `worldview-v1` re
 - [x] Verify rendered metadata and decoded images across every public route, missing-persona 404s, unit tests, types, lint, formatting, production build and image-route deployment traces. Record production evidence and remaining launch follow-ups in [the audit](research/seo-launch-audit-2026-09-22.md).
 
 Checkpoint: local implementation and production audit complete. Deployment and post-deployment social-platform unfurl checks remain a separate task.
+
+### 2026-09-22 — Profile photos in social maps
+
+- [x] Replace social-map dots with the same profile photos used on the webapp, including all plotted people in the default site image and the subject on each persona image. Preserve exact placement, interpretation ranges and simulation labels.
+- [x] Embed checked-in photos for network-independent Takumi rendering, include them in deployment traces, and verify portrait decoding, WebP renders, formatting, lint, types and the production build.
+- [x] Visually review both social-image variants and repeat the PNG/WebP comparison with portraits.

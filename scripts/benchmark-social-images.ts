@@ -1,3 +1,4 @@
+import { loadSocialPortrait } from '../lib/sharing/portraits'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { render } from 'takumi-js'
 import sharp from 'sharp'
@@ -10,14 +11,17 @@ await mkdir(output, { recursive: true })
 const suite: JourneySuite = JSON.parse(
   await readFile('eval/development/live-persona-journeys.json', 'utf8')
 )
-const examples = people.map((person) => ({
-  ...person,
-  result: suite.journeys.find((j) => j.personaId === person.id)!.result!
-}))
-const points = examples.flatMap(({ result }) => {
+const examples = await Promise.all(
+  people.map(async (person) => ({
+    ...person,
+    portrait: await loadSocialPortrait(person.avatar),
+    result: suite.journeys.find((j) => j.personaId === person.id)!.result!
+  }))
+)
+const points = examples.flatMap(({ result, portrait }) => {
   const x = result.horizontal.value
   const y = result.experiment?.transformation.value
-  return x != null && y != null ? [{ x, y }] : []
+  return x != null && y != null ? [{ x, y, portrait }] : []
 })
 const cards = [
   { name: 'site', card: SocialCard({ points }) },

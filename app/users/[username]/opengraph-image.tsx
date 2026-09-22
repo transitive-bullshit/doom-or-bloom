@@ -1,3 +1,4 @@
+import { loadSocialPortrait } from '@/lib/sharing/portraits'
 import { ImageResponse } from 'takumi-js/response'
 import { notFound } from 'next/navigation'
 import { loadExamples } from '@/components/landing/data'
@@ -22,5 +23,10 @@ export default async function Image({
     (person) => person.slug === username
   )
   if (!person) notFound()
-  return new ImageResponse(SocialCard({ person }), socialImageOptions)
+  return new ImageResponse(
+    SocialCard({
+      person: { ...person, portrait: await loadSocialPortrait(person.avatar) }
+    }),
+    socialImageOptions
+  )
 }

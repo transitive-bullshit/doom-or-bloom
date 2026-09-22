@@ -67,3 +67,9 @@ All 47 routes passed the emitted-head metadata assertions in both local developm
 - `NEXT_TEST_DIST_DIR=.next-seo-audit pnpm build` isolates the production build from the existing development server.
 
 Committed evidence: [production metadata](seo-launch-2026-09-22/production-metadata.json), [Lighthouse summaries and exact settings](seo-launch-2026-09-22/lighthouse-summary.json), [format benchmark](seo-launch-2026-09-22/image-benchmark.json). Full temporary Lighthouse JSON reports are under `/tmp/doom-seo-audit/` on the audit machine.
+
+## Profile-photo follow-up
+
+Both card variants now show the same actual profile photos as the webapp at their saved map positions: 30px circular portraits on the default map and a 48px subject portrait on persona maps. Checked-in photos are embedded as data URLs; no external image fetch is required. The deployment trace check verifies that the persona-image server bundle includes the portrait assets. Both variants were visually inspected after rendering.
+
+Repeating the comparison with photos yielded site PNG/WebP sizes of 154,190/68,670 bytes (55.5% smaller), Sam Altman 95,091/50,460 (46.9%), Eliezer Yudkowsky 95,818/52,040 (45.7%), and Marc Andreessen 95,774/52,798 (44.9%). WebP remains the selected format. The original table above records the earlier dot-based cards; [the portrait benchmark](seo-launch-2026-09-22/portrait-image-benchmark.json) records the updated measurements.

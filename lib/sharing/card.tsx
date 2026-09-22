@@ -42,11 +42,13 @@ const score = (value: number | null | undefined) =>
 export function Plot({
   data,
   pointLabel,
+  portrait,
   points = []
 }: {
   data?: CardData
   pointLabel?: string
-  points?: { x: number; y: number }[]
+  portrait?: string
+  points?: { x: number; y: number; portrait?: string }[]
 }) {
   const x = data?.horizontal
   const y = data?.transformation
@@ -128,16 +130,44 @@ export function Plot({
       >
         Bloom
       </text>
-      {points.map(({ x, y }, index) => (
-        <circle
-          key={index}
-          cx={px(x)}
-          cy={py(y)}
-          r='5'
-          fill={colors.surface}
-          stroke={colors.text}
-          strokeWidth='1.5'
-        />
+      {points.map(({ x, y, portrait: photo }, index) => (
+        <g key={index}>
+          {photo ? (
+            <>
+              <defs>
+                <clipPath id={`portrait-${index}`}>
+                  <circle cx={px(x)} cy={py(y)} r='15' />
+                </clipPath>
+              </defs>
+              <image
+                href={photo}
+                x={px(x) - 15}
+                y={py(y) - 15}
+                width='30'
+                height='30'
+                preserveAspectRatio='xMidYMid slice'
+                clipPath={`url(#portrait-${index})`}
+              />
+              <circle
+                cx={px(x)}
+                cy={py(y)}
+                r='15'
+                fill='none'
+                stroke={colors.text}
+                strokeWidth='1.5'
+              />
+            </>
+          ) : (
+            <circle
+              cx={px(x)}
+              cy={py(y)}
+              r='5'
+              fill={colors.surface}
+              stroke={colors.text}
+              strokeWidth='1.5'
+            />
+          )}
+        </g>
       ))}
       {data && (
         <rect
@@ -155,23 +185,52 @@ export function Plot({
       )}
       {point && (
         <g>
-          <circle
-            cx={px(x)}
-            cy={py(y)}
-            r='18'
-            fill={colors.text}
-            fillOpacity='.12'
-          />
-          <circle
-            cx={px(x)}
-            cy={py(y)}
-            r='8'
-            fill={colors.text}
-            stroke={colors.surface}
-            strokeWidth='3'
-          />
+          {portrait ? (
+            <>
+              <defs>
+                <clipPath id='subject-portrait'>
+                  <circle cx={px(x)} cy={py(y)} r='24' />
+                </clipPath>
+              </defs>
+              <image
+                href={portrait}
+                x={px(x) - 24}
+                y={py(y) - 24}
+                width='48'
+                height='48'
+                preserveAspectRatio='xMidYMid slice'
+                clipPath='url(#subject-portrait)'
+              />
+              <circle
+                cx={px(x)}
+                cy={py(y)}
+                r='24'
+                fill='none'
+                stroke={colors.text}
+                strokeWidth='3'
+              />
+            </>
+          ) : (
+            <>
+              <circle
+                cx={px(x)}
+                cy={py(y)}
+                r='18'
+                fill={colors.text}
+                fillOpacity='.12'
+              />
+              <circle
+                cx={px(x)}
+                cy={py(y)}
+                r='8'
+                fill={colors.text}
+                stroke={colors.surface}
+                strokeWidth='3'
+              />
+            </>
+          )}
           <g
-            transform={`translate(${Math.max(left + 52, Math.min(px(1) - 52, px(x)))},${y > 0.9 ? py(y) + 32 : py(y) - 29})`}
+            transform={`translate(${Math.max(left + 52, Math.min(px(1) - 52, px(x)))},${y > 0.9 ? py(y) + (portrait ? 44 : 32) : py(y) - (portrait ? 44 : 29)})`}
           >
             <rect
               x='-46'
