@@ -52,7 +52,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             >
               <Link href='/about'>About & methodology</Link>
               <Link href='/privacy'>Privacy</Link>
-              <span>Experimental · 0.1.0</span>
             </footer>
           </div>
           <Toaster />

@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/metadata'
 import { publicPages } from '@/lib/site'
-import Link from 'next/link'
 import { serverEnv } from '@/lib/server/env'
+import { WorldviewCta } from '@/components/worldview-cta'
 export const metadata = pageMetadata(publicPages[3]!)
 
 export default function Privacy() {
@@ -73,9 +73,10 @@ export default function Privacy() {
         unavailable or cleared. A second tab that changes the assessment pauses
         older tabs to prevent silent overwrites.
       </p>
-      <Link className='underline' href='/assessment'>
-        Return to your assessment
-      </Link>
+
+      <div className='flex flex-wrap justify-center mt-12'>
+        <WorldviewCta />
+      </div>
     </article>
   )
 }

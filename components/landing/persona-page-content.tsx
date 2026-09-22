@@ -120,7 +120,7 @@ export function PersonaPageContent({
         <CardHeader>
           <CardTitle>Where do you land?</CardTitle>
           <CardDescription>
-            Explore your own AI worldview in a few questions.
+            Explore your own AI worldview by answering a few questions.
           </CardDescription>
         </CardHeader>
         <CardFooter>

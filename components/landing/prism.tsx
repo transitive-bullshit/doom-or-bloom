@@ -7,6 +7,13 @@ import Link from 'next/link'
 import { useState, type PointerEvent, type FocusEvent } from 'react'
 import './prism.css'
 import type { VariantProps } from '@/components/landing/shared'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardFooter
+} from '../ui/card'
 
 const featuredOrder = [
   'alignment-maximalist',
@@ -54,6 +61,11 @@ const featuredOrder = [
   'open-frontier-idealist'
 ]
 
+const rank = (id: string) => {
+  const index = featuredOrder.indexOf(id)
+  return index < 0 ? featuredOrder.length : index
+}
+
 export function Prism({ examples }: VariantProps) {
   const [hovered, setHovered] = useState<string | null>(null)
   const [focused, setFocused] = useState<string | null>(null)
@@ -61,10 +73,6 @@ export function Prism({ examples }: VariantProps) {
   const plotted = examples.filter(
     (p) => p.outlook !== null && p.transformation !== null
   )
-  const rank = (id: string) => {
-    const index = featuredOrder.indexOf(id)
-    return index < 0 ? featuredOrder.length : index
-  }
   const legend = [...examples].sort((a, b) => rank(a.id) - rank(b.id))
   const highlightEvents = (id: string) => ({
     onPointerEnter: (event: PointerEvent<HTMLAnchorElement>) => {
@@ -90,9 +98,6 @@ export function Prism({ examples }: VariantProps) {
     >
       <header className='study-heading'>
         <h1>How will AI change our future?</h1>
-        <div className='study-intro'>
-          <WorldviewCta />
-        </div>
       </header>
       <div className='study-axis-top'>Civilizational change</div>
       <div
@@ -139,6 +144,18 @@ export function Prism({ examples }: VariantProps) {
         ))}
       </div>
       <p className='study-note'>Example results based on simulated personas</p>
+
+      <Card className='mx-auto mt-24 w-full max-w-[600px]'>
+        <CardHeader>
+          <CardTitle>Where do you land?</CardTitle>
+          <CardDescription>
+            Explore your own AI worldview by answering a few questions.
+          </CardDescription>
+        </CardHeader>
+        <CardFooter>
+          <WorldviewCta />
+        </CardFooter>
+      </Card>
     </section>
   )
 }

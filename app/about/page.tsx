@@ -2,7 +2,6 @@ import { pageMetadata } from '@/lib/metadata'
 import { publicPages } from '@/lib/site'
 import Link from 'next/link'
 import { WorldviewCta } from '@/components/worldview-cta'
-import { limits } from '@/lib/assessment/schema'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
@@ -27,11 +26,8 @@ export default async function About() {
           and map your own through a few open-ended questions. No specialist
           knowledge or account required.
         </p>
-        <div className='flex flex-wrap items-center gap-x-6 gap-y-4'>
+        <div className='flex flex-wrap justify-center'>
           <WorldviewCta />
-          <Link className='underline underline-offset-4' href='/'>
-            Explore the map
-          </Link>
         </div>
       </header>
 
@@ -62,9 +58,9 @@ export default async function About() {
         </p>
         <p>
           Results become available when enough of your perspective is clear,
-          potentially after one detailed answer. Interviews stop at{' '}
-          {limits.prompts} questions. You can trace interpretations back to your
-          answers and clarify anything that feels wrong.
+          potentially after one detailed answer. Most interviews last between
+          3-5 questions. You can trace interpretations back to your answers and
+          clarify anything that feels wrong.
         </p>
       </section>
 
@@ -74,6 +70,8 @@ export default async function About() {
           <a
             className='underline underline-offset-4'
             href='https://typesafe.ai'
+            rel='noopener noreferrer'
+            target='_blank'
           >
             Jev
           </a>{' '}
@@ -88,47 +86,49 @@ export default async function About() {
           this kind of adaptive interviewing economical. That makes it possible
           to explore tools for clearer thinking at scale.
         </p>
-        {person && assessment?.finalState && (
-          <>
-            <p>
-              These JSON blocks come from{' '}
-              <Link
-                className='underline underline-offset-4'
-                href={`/users/${person.slug}`}
-                prefetch={true}
-              >
-                Elon Musk’s simulated assessment
-              </Link>
-              . Expand fields to inspect them or copy the complete JSON. The
-              result includes our calculations, not just raw Jev output.
-            </p>
-            <div className='grid min-w-0 grid-cols-1 gap-5'>
-              <div className='min-w-0 space-y-2'>
-                <h3 className='text-sm font-medium'>Assessment input</h3>
-                <JsonViewer
-                  label='Elon Musk simulated assessment input'
-                  value={assessment.finalState}
-                  initialExpandedDepth={1}
-                />
-                <p className='text-xs text-muted-foreground'>
-                  The answers and context supplied to Jev.
-                </p>
-              </div>
-              <div className='min-w-0 space-y-2'>
-                <h3 className='text-sm font-medium'>Generated results</h3>
-                <JsonViewer
-                  label='Elon Musk simulated assessment result'
-                  value={person.result}
-                  initialExpandedDepth={1}
-                />
-                <p className='text-xs text-muted-foreground'>
-                  The result our software builds from its judgments.
-                </p>
-              </div>
-            </div>
-          </>
-        )}
       </section>
+
+      {person && assessment?.finalState && (
+        <section className='space-y-4'>
+          <h2 className='text-lg font-medium'>Example using Elon Musk</h2>
+          <p>
+            Here are some example JSON results from{' '}
+            <Link
+              className='underline underline-offset-4'
+              href={`/users/${person.slug}`}
+              prefetch={true}
+            >
+              Elon Musk’s simulated assessment
+            </Link>
+            .
+          </p>
+          <div className='grid min-w-0 grid-cols-1 gap-5'>
+            <div className='min-w-0 space-y-2'>
+              <h3 className='text-sm font-medium'>Assessment input</h3>
+              <JsonViewer
+                label='Elon Musk simulated assessment input'
+                value={assessment.finalState}
+                initialExpandedDepth={1}
+              />
+              <p className='text-xs text-muted-foreground'>
+                The answers and context supplied to Jev for a single simulated
+                assessment.
+              </p>
+            </div>
+            <div className='min-w-0 space-y-2'>
+              <h3 className='text-sm font-medium'>Generated results</h3>
+              <JsonViewer
+                label='Elon Musk simulated assessment result'
+                value={person.result}
+                initialExpandedDepth={1}
+              />
+              <p className='text-xs text-muted-foreground'>
+                The combination of judgments our app uses to infer its results.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className='space-y-3'>
         <h2 className='text-lg font-medium'>Simulated people, real sources</h2>
@@ -149,18 +149,19 @@ export default async function About() {
       <section className='space-y-3'>
         <h2 className='text-lg font-medium'>The map is not the territory</h2>
         <p>
-          The headline map pairs your overall Doom–Bloom outlook with how
+          The featured map pairs your overall Doom–Bloom outlook with how
           radically you expect AI to transform society. Behind it are eight
           dimensions covering capabilities, transition speed, benefits, harms,
           controllability, institutions, human agency, and action. We also
-          consider how you explain your views, including causal clarity,
+          consider how well you explain your views, including causal clarity,
           uncertainty, and willingness to update.
         </p>
         <p>
           Two coordinates cannot capture a whole worldview. Missing evidence
           stays unplaced, and interpretation ranges show uncertainty about how
           to read your answers—not the probability that your beliefs are true. A
-          separate P(doom) estimate is labeled as stated or inferred.
+          separate P(doom) estimate is labeled as either explicitly stated or
+          inferred.
         </p>
         <p>
           This is an experiment, not an intelligence test or a validated
@@ -184,19 +185,19 @@ export default async function About() {
           Optional analytics exclude answer text. Saved persona examples are
           generated material, not visitor transcripts. Read the{' '}
           <Link className='underline underline-offset-4' href='/privacy'>
-            privacy details
-          </Link>
-          .
+            privacy policy
+          </Link>{' '}
+          for more details.
         </p>
       </section>
 
       <section className='space-y-3'>
         <h2 className='text-lg font-medium'>What’s next?</h2>
         <p>
-          A future Socratic mode could challenge assumptions, offer well-sourced
-          counterexamples, and help strengthen your reasoning. This first
-          version focuses on understanding your views without trying to change
-          them.
+          This first version focuses on understanding your views without trying
+          to change them. A future Socratic mode could challenge assumptions,
+          offer well-sourced counterexamples, and help strengthen your
+          reasoning.
         </p>
         <p>
           The goal is better tools for clear thinking that anyone can use.
@@ -205,30 +206,45 @@ export default async function About() {
           <a
             className='underline underline-offset-4'
             href='https://github.com/transitive-bullshit/doom-or-bloom/issues'
+            rel='noopener noreferrer'
+            target='_blank'
           >
-            Share feedback
+            Share feedback on GitHub
           </a>
           .
         </p>
       </section>
 
-      <footer className='border-t pt-6 text-xs text-muted-foreground'>
-        Built by{' '}
-        <a
-          className='underline underline-offset-4'
-          href='https://x.com/transitive_bs'
-        >
-          Travis Fischer
-        </a>
-        .{' '}
-        <a
-          className='underline underline-offset-4'
-          href='https://github.com/transitive-bullshit/doom-or-bloom'
-        >
-          Explore the source and methodology
-        </a>
-        .
+      <footer className='border-t pt-6 text-xs text-muted-foreground flex flex-col gap-2'>
+        <p>
+          Built by{' '}
+          <a
+            className='underline underline-offset-4'
+            href='https://x.com/transitive_bs'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            Travis Fischer
+          </a>
+          .
+        </p>
+        <p>
+          Explore the source on{' '}
+          <a
+            className='underline underline-offset-4'
+            href='https://github.com/transitive-bullshit/doom-or-bloom'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            GitHub
+          </a>
+          .
+        </p>
       </footer>
+
+      <div className='flex flex-wrap justify-center'>
+        <WorldviewCta />
+      </div>
     </article>
   )
 }

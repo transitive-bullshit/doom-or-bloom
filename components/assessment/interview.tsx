@@ -690,6 +690,18 @@ export function Interview({
                     </Field>
                   </FieldGroup>
                 </form>
+                <div className='space-y-2 text-xs leading-relaxed text-muted-foreground'>
+                  <p>
+                    The assessment only takes a few minutes. Results may be
+                    shown after your first answer, or we’ll wrap up
+                    automatically when Jev has enough confidence.
+                  </p>
+                  <p>
+                    Your answers are 100% private. They're sent to Jev for
+                    analysis, but the only place they're stored is locally in
+                    this browser.
+                  </p>
+                </div>
                 {state.answers.length > 0 && (
                   <ReadinessMeter state={state} debug={debugMode} />
                 )}
