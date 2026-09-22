@@ -1,5 +1,9 @@
+import { pageMetadata } from '@/lib/metadata'
+import { publicPages } from '@/lib/site'
 import Link from 'next/link'
 import { serverEnv } from '@/lib/server/env'
+export const metadata = pageMetadata(publicPages[3]!)
+
 export default function Privacy() {
   const { analytics, posthog } = serverEnv()
   return (

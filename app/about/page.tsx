@@ -1,8 +1,12 @@
+import { pageMetadata } from '@/lib/metadata'
+import { publicPages } from '@/lib/site'
 import Link from 'next/link'
 import { WorldviewCta } from '@/components/worldview-cta'
 import { limits } from '@/lib/assessment/schema'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
+
+export const metadata = pageMetadata(publicPages[2]!)
 
 export default async function About() {
   const personaId = 'abundance-risk-taker'

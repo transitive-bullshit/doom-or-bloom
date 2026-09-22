@@ -5,11 +5,12 @@ import path from 'node:path'
 const output = process.env.NEXT_TEST_DIST_DIR || '.next'
 const required = path.resolve('eval/development/live-persona-journeys.json')
 for (const route of [
-  'about',
-  'users/[username]',
-  'prototypes/landing/personas/[id]'
+  'about/page',
+  'users/[username]/page',
+  'prototypes/landing/personas/[id]/page',
+  'users/[username]/opengraph-image/route'
 ]) {
-  const trace = path.join(output, 'server/app', route, 'page.js.nft.json')
+  const trace = path.join(output, 'server/app', `${route}.js.nft.json`)
   const { files } = JSON.parse(await readFile(trace, 'utf8'))
   assert(
     files.some((file) => path.resolve(path.dirname(trace), file) === required),

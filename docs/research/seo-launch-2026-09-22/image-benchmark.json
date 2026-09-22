@@ -1,0 +1,66 @@
+[
+  {
+    "name": "site",
+    "format": "png",
+    "bytes": 91804,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 9.832416999999964
+  },
+  {
+    "name": "site",
+    "format": "webp",
+    "bytes": 46846,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 19.80733299999997
+  },
+  {
+    "name": "sama",
+    "format": "png",
+    "bytes": 90082,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 8.443125000000009
+  },
+  {
+    "name": "sama",
+    "format": "webp",
+    "bytes": 49056,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 18.66020800000001
+  },
+  {
+    "name": "esyudkowsky",
+    "format": "png",
+    "bytes": 91392,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 8.275624999999991
+  },
+  {
+    "name": "esyudkowsky",
+    "format": "webp",
+    "bytes": 50780,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 18.602500000000077
+  },
+  {
+    "name": "pmarca",
+    "format": "png",
+    "bytes": 91305,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 9.068291000000045
+  },
+  {
+    "name": "pmarca",
+    "format": "webp",
+    "bytes": 50610,
+    "width": 1200,
+    "height": 630,
+    "medianMs": 20.880917000000068
+  }
+]

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { siteUrl } from '@/lib/site'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
@@ -11,9 +12,10 @@ import './globals.css'
 import '@/components/worldview/prism-theme.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://doom-or-bloom.com'),
+  metadataBase: new URL(siteUrl),
   title: 'Doom or Bloom',
   description: 'Map your AI worldview, one question at a time.',
+  robots: { index: true, follow: true },
   twitter: { card: 'summary_large_image' }
 }
 export default function RootLayout({ children }: { children: ReactNode }) {

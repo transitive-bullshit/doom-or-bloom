@@ -1,7 +1,26 @@
+import { pageMetadata } from '@/lib/metadata'
+import { people } from '@/components/landing/people'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { PageTransition } from '@/components/page-transition'
 import { notFound } from 'next/navigation'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ username: string }>
+}) {
+  const { username } = await params
+  const person = people.find((person) => person.slug === username)
+  if (!person) notFound()
+  return pageMetadata({
+    path: `/users/${person.slug}`,
+    title: `${person.name}’s AI worldview`,
+    description: `Explore ${person.name}’s simulated AI worldview, map placement, and source-grounded answers. An experimental interpretation, not their own assessment.`,
+    image: `/users/${person.slug}/opengraph-image`,
+    imageAlt: `${person.name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map`
+  })
+}
 
 export default async function Page({
   params

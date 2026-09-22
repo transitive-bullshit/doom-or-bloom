@@ -933,3 +933,13 @@ The experiment is an additive `worldview-v2` field (historical `worldview-v1` re
 - [x] Open persona transcripts by default; add un-underlined answer hash links that reveal and smoothly scroll to the correct answer, with keyboard focus and reduced-motion support.
 - [x] Refine the homepage headline and primary CTA, and shorten the assessment placeholder.
 - [x] Cover answer navigation, repeated activation, keyboard activation, hash reload, dark chart/PNG contrast, and existing assessment behavior with browser regressions; verify TypeScript and lint.
+
+### 2026-09-22 — Production SEO and social-image launch audit
+
+- [x] Audit all 47 public production pages, crawler files and the existing social image; collect mobile Lighthouse baselines for home, assessment, About and a persona.
+- [x] Standardize metadata on the canonical www host; add page-specific titles, descriptions, Open Graph and X cards for main pages and all 43 public personas.
+- [x] Generate named simulated-persona maps with Takumi from saved placements and interpretation ranges; add a site-wide map card, compare PNG/WebP, and select explicit WebP output with image caching.
+- [x] Verify sitemap coverage and permissive API-only robots exclusions; retain llms.txt with updated descriptions and experimental-result caveats.
+- [x] Verify rendered metadata and decoded images across every public route, missing-persona 404s, unit tests, types, lint, formatting, production build and image-route deployment traces. Record production evidence and remaining launch follow-ups in [the audit](research/seo-launch-audit-2026-09-22.md).
+
+Checkpoint: local implementation and production audit complete. Deployment and post-deployment social-platform unfurl checks remain a separate task.

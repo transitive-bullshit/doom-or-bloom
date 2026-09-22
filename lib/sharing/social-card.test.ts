@@ -1,0 +1,47 @@
+import { readFile } from 'node:fs/promises'
+import { renderToStaticMarkup } from 'react-dom/server'
+import { render } from 'takumi-js'
+import sharp from 'sharp'
+import { expect, test } from 'vitest'
+import type { JourneySuite } from '@/lib/journeys/schema'
+import { people } from '@/components/landing/people'
+import { SocialCard, socialCardData, socialImageOptions } from './social-card'
+
+const suite: JourneySuite = JSON.parse(
+  await readFile('eval/development/live-persona-journeys.json', 'utf8')
+)
+
+test('every public persona has a social map grounded in its saved result', () => {
+  for (const person of people) {
+    const result = suite.journeys.find((j) => j.personaId === person.id)?.result
+    expect(result).toBeTruthy()
+    const data = socialCardData(result!)
+    expect(data.horizontal).toEqual(result!.horizontal.value)
+    expect(data.horizontalRange).toEqual(result!.horizontal.range)
+    expect(data.transformation).toEqual(
+      result!.experiment?.transformation.value ?? null
+    )
+    expect(data.transformationRange).toEqual(
+      result!.experiment?.transformation.range ?? [0, 1]
+    )
+    const html = renderToStaticMarkup(
+      SocialCard({ person: { ...person, result: result! } })
+    )
+    expect(html).toContain(person.name.replaceAll('&', '&amp;'))
+    expect(html).toContain('SIMULATED AI WORLDVIEW')
+    expect(html).toContain('not their own assessment')
+  }
+})
+
+test('social output is a decodable 1200 × 630 WebP', async () => {
+  const bytes = await render(
+    SocialCard({ points: [{ x: 0.2, y: 0.8 }] }),
+    socialImageOptions
+  )
+  expect(await sharp(bytes).metadata()).toMatchObject({
+    format: 'webp',
+    width: 1200,
+    height: 630
+  })
+  expect(bytes.length).toBeLessThan(100_000)
+})

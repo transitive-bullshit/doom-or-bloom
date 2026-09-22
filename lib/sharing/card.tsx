@@ -39,7 +39,15 @@ const colors = {
 const score = (value: number | null | undefined) =>
   value == null ? 'Unexplored' : `${Math.round(value * 100)} / 100`
 
-function Plot({ data }: { data?: CardData }) {
+export function Plot({
+  data,
+  pointLabel,
+  points = []
+}: {
+  data?: CardData
+  pointLabel?: string
+  points?: { x: number; y: number }[]
+}) {
   const x = data?.horizontal
   const y = data?.transformation
   const yr = data?.transformationRange ?? [0, 1]
@@ -56,7 +64,7 @@ function Plot({ data }: { data?: CardData }) {
       ? 'Unsettled'
       : data?.transformationInterpretation === 'tentative'
         ? 'Estimate'
-        : 'Your view'
+        : (pointLabel ?? 'Your view')
   return (
     <svg width={690} height={420} viewBox='0 0 690 420'>
       <defs>
@@ -120,6 +128,17 @@ function Plot({ data }: { data?: CardData }) {
       >
         Bloom
       </text>
+      {points.map(({ x, y }, index) => (
+        <circle
+          key={index}
+          cx={px(x)}
+          cy={py(y)}
+          r='5'
+          fill={colors.surface}
+          stroke={colors.text}
+          strokeWidth='1.5'
+        />
+      ))}
       {data && (
         <rect
           x={px(xr[0])}

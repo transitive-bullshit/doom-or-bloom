@@ -12,6 +12,8 @@ export function GET() {
     '',
     'Public persona pages show simulated assessments grounded in public sources, with questions, simulated answers, and source links. These are simulations, not answers submitted by the named people.',
     '',
+    'The assessment and interpretation ranges are experimental, not validated measurements or calibrated probabilities. Map coordinates describe beliefs; they are not predictions of event probability.',
+    '',
     '## Pages',
     '',
     ...publicPages.map(

@@ -53,3 +53,5 @@ Latest full live rerun: [September 22 collection and sourced P(doom) overrides](
 Latest persona additions: [Nate Soares](research/nate-soares-persona-2026-09-22.md) and [Ryan Greenblatt](research/ryan-greenblatt-persona-2026-09-22.md), with [live batch provenance](user-journeys.md#soares-and-greenblatt--september-22-2026).
 
 Latest writer/forecaster additions: [Carlsmith, Alexander, Kokotajlo and Cowen](user-journeys.md#carlsmith-alexander-kokotajlo-and-cowen--september-22-2026), with 46 source records and four new live journeys.
+
+Latest launch-readiness review: [production SEO, social images and Lighthouse audit](research/seo-launch-audit-2026-09-22.md).

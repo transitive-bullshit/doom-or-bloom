@@ -57,3 +57,6 @@ eval/runs/
 # Isolated fixture browser server
 .next-browser/
 .next-analytics/
+
+# Isolated launch-readiness production build
+.next-seo-audit/
