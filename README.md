@@ -1,4 +1,4 @@
-[![The Doom or Bloom featured map: simulated AI worldviews from doom to bloom, and incremental to civilizational change](docs/images/featured-map.png)](https://www.doom-or-bloom.com)
+[![The Doom or Bloom featured map: simulated AI worldviews from doom to bloom, and incremental to civilizational change](docs/images/featured-map.jpg)](https://www.doom-or-bloom.com)
 
 # Doom or Bloom
 
