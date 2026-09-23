@@ -1,6 +1,6 @@
 # Persistent assessments implementation plan
 
-Prepared 2026-09-23. Product decisions are approved; implementation has not started. The latest user decisions are **no Docker and no asynchronous workflows**: bounded assessment operations run in the main POST request. This plan covers local development, with hosted-service setup recorded for later; it does not authorize deployment.
+Prepared 2026-09-23. Product decisions are approved; checkpoint 1 implementation is in progress. The latest user decisions are **no Docker and no asynchronous workflows**: bounded assessment operations run in the main POST request. This plan covers local development, with hosted-service setup recorded for later; it does not authorize deployment.
 
 Read [PERSISTENCE.md](PERSISTENCE.md) for the accepted UX, relational model, ownership, snapshots, synchronous operations, and publication contracts. Use this file for ordered tasks, checks, commits, and blockers. It supersedes the database/account/public-URL exclusions and browser-authoritative architecture of [the original MVP plan](mvp-implementation-plan.md), whose completed checkpoints remain historical evidence.
 
@@ -41,12 +41,12 @@ Commit: `docs: plan durable assessments and optional accounts`.
 
 ### Native PostgreSQL and schema
 
-- [ ] Inspect the running Postgres.app server/version and connectivity without changing existing databases. Create dedicated development and integration-test databases/roles with project-specific names. Document exact creation commands and connection strings using placeholders; never print credentials.
-- [ ] Add compatible pinned `drizzle-orm`, `drizzle-kit`, `pg`, `better-auth`, and required types/adapters. Use one PostgreSQL path locally and with Neon; avoid introducing a separate SQLite implementation.
+- [x] Inspect the running Postgres.app server/version and connectivity without changing existing databases. Create dedicated development and integration-test databases/roles with project-specific names. Document exact creation commands and connection strings using placeholders; never print credentials.
+- [x] Add compatible pinned `drizzle-orm`, `drizzle-kit`, `pg`, `better-auth`, and required types/adapters. Use one PostgreSQL path locally and with Neon; avoid introducing a separate SQLite implementation.
 - [ ] Implement server-only database configuration, connection pooling, env validation, and checked-in schema/migrations for Better Auth and the application tables in PERSISTENCE.
 - [ ] Add documented pnpm commands for migration generation/application, curated persona seeding, and DB integration tests. Prefer migrations over untracked schema push. Apply to a fresh test database twice and show the second migration pass is a no-op.
 - [ ] Verify ownership FKs, snapshot membership/uniqueness, one active operation per assessment, idempotency keys/fingerprints, fork deletion semantics, and persona pointer constraints against real Postgres.
-- [ ] Extend `.env.example` with `DATABASE_URL`, optional direct migration URL, `TEST_DATABASE_URL`, and auth secret/base URL. Reuse the actual Portless origin. Add a native database setup section in CONTRIBUTING; keep secrets out of git.
+- [x] Extend `.env.example` with `DATABASE_URL`, optional direct migration URL, `TEST_DATABASE_URL`, and auth secret/base URL. Reuse the actual Portless origin. Add a native database setup section in CONTRIBUTING; keep secrets out of git.
 
 ### Anonymous sessions
 
@@ -190,3 +190,11 @@ Pause only the dependent work when credentials or external configuration are una
 - Stored `DATABASE_URL` and `DATABASE_MIGRATION_URL` in `.env.neon.local` with file mode 0600 and an explicit git-ignore rule. This file is local to this worktree and is not automatically loaded by Next.js; credentials must not be copied into local development/test configuration. Never commit its contents.
 - Both connections passed a read-only query of database/user identity with `transaction_read_only=on`. No production schema changes, migrations, seeds, or deployment were performed.
 - Neon credential provisioning is complete. Application integration, native local database setup, and hosted configuration remain at their existing unchecked checkpoints.
+
+### 2026-09-23 — database and auth foundation
+
+- Installed locked dependencies and read the installed Next.js route-handler/cookie/auth guides. Pinned Drizzle ORM 0.45.3, Kit 0.31.11, pg 8.23.0, Better Auth and its schema generator 1.7.5.
+- Verified native Postgres.app 17.4 and created dedicated `doom_bloom_dev` and `doom_bloom_test` roles/databases. No existing or production databases changed. Local configuration uses the resolved Portless origin and a generated private secret.
+- Generated Better Auth anonymous tables and added application tables, deferred snapshot membership pointers, insert-only snapshot enforcement, public-result/selected-persona constraints, and one-running-operation uniqueness. Added lazy pooled server access, anonymous auth handlers, and explicit origin validation for browser POSTs.
+- Applied migrations to development and test; repeated test migration succeeded without new work. `pnpm db:test` passed real-Postgres checks for snapshot immutability, owner retention, head membership, public lifecycle, active-operation exclusion, cascading assessment deletion, anonymous session isolation, forged/missing/expired sessions, cookie flags, 365-day expiry, and cross-origin rejection.
+- Checkpoint 1 remains open: repository-level private authorization, broader fork/persona constraints, session renewal verification, and curated seed command are still pending. Participant UI still uses the original browser state until checkpoint 2 integration.

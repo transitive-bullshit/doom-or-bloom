@@ -20,7 +20,34 @@ Development runs through [Portless](https://portless.sh). Open the URL printed b
 pnpm exec portless get doom-or-bloom
 ```
 
-Reuse that origin to retain browser-local progress. There is no database to provision. PNG generation uses Takumi’s native backend, installed with the project dependencies.
+Reuse that origin for browser sessions and set `BETTER_AUTH_URL` to it. Provision native PostgreSQL as described below. PNG generation uses Takumi’s native backend, installed with the project dependencies.
+
+## Native PostgreSQL
+
+Use Postgres.app (verified with PostgreSQL 17.4). No Docker or background worker is needed. With the native server running, create dedicated roles and databases once:
+
+```sh
+/Applications/Postgres.app/Contents/Versions/latest/bin/psql -d postgres
+```
+
+```sql
+CREATE ROLE doom_bloom_dev LOGIN;
+CREATE ROLE doom_bloom_test LOGIN;
+CREATE DATABASE doom_bloom_dev OWNER doom_bloom_dev;
+CREATE DATABASE doom_bloom_test OWNER doom_bloom_test;
+```
+
+These local connections use Postgres.app's local authentication policy. Do not relax authentication on a network-accessible server. Set the URLs in `.env.local` from `.env.example`, generate an auth secret with `openssl rand -base64 48`, and set the Portless origin. Keep `.env.local` private. The ignored `.env.neon.local` is production-only and is never automatically loaded.
+
+```sh
+pnpm db:migrate
+pnpm db:migrate:test
+pnpm db:test
+```
+
+Migrations are checked in under `drizzle/`; repeat application is a no-op. After schema changes run `pnpm db:generate` and review the SQL. Deferred circular pointers, immutable snapshot enforcement, and persona selection triggers live in the custom `0001` migration; preserve them when generating changes. `pnpm db:auth:generate` regenerates the pinned Better Auth schema. Integration tests use only `TEST_DATABASE_URL`, whose database name must end in `_test`, and remove their own records.
+
+Database/auth foundations are available; participant UI migration is still in progress. Anonymous sessions have a 365-day server lifetime, refreshed after a day of activity by Better Auth's session endpoint. Browser cookie policies can shorten access. Anonymous cleanup is disabled; assessments restrict owner deletion. Public page reads must not sign in visitors.
 
 ## Environment variables
 

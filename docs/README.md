@@ -31,7 +31,7 @@ The MVP concentrates on a faithful, correctable worldview snapshot; its local dr
 
 ## Status
 
-**Approved next implementation (2026-09-23):** follow the [persistent assessments implementation plan](persistence-implementation-plan.md), then its separate X-auth checkpoint. It includes native local Postgres (no Docker), Drizzle, anonymous Better Auth, bounded synchronous POST operations, public assessment URLs and Takumi WebP previews. [PERSISTENCE.md](PERSISTENCE.md) supersedes earlier browser-only/no-account restrictions and defines the 30-question inherited-conversation ceiling. Implementation has not started; the existing browser-only behavior and 12-question lifetime cap below describe the current baseline, not the new target.
+**Approved next implementation (2026-09-23):** follow the [persistent assessments implementation plan](persistence-implementation-plan.md), then its separate X-auth checkpoint. It includes native local Postgres (no Docker), Drizzle, anonymous Better Auth, bounded synchronous POST operations, public assessment URLs and Takumi WebP previews. [PERSISTENCE.md](PERSISTENCE.md) supersedes earlier browser-only/no-account restrictions and defines the 30-question inherited-conversation ceiling. Database/auth foundation is in progress; the existing browser-only behavior and 12-question lifetime cap below describe the current baseline, not the new target.
 
 The existing contracts define the MVP implementation baseline. The North Star and open result-design questions guide future revisions without silently changing that baseline. Exact scoring weights, prompt variants, rubric wording, corpus entries, and visual design remain authored assets to create and validate; their governing rules are specified here.
 

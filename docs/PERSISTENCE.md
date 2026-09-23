@@ -1,6 +1,6 @@
 # Persistent assessments — approved design
 
-Status: approved on 2026-09-23; implementation pending. [The implementation plan](persistence-implementation-plan.md) tracks delivery and validation. This document supersedes the browser-only persistence, no-account, destructive-restart, and generic-only sharing restrictions in the original MVP handoff. Those restrictions still describe the running implementation until the corresponding checkpoints land.
+Status: approved on 2026-09-23; database/auth foundation in progress; participant migration pending. [The implementation plan](persistence-implementation-plan.md) tracks delivery and validation. This document supersedes the browser-only persistence, no-account, destructive-restart, and generic-only sharing restrictions in the original MVP handoff. Those restrictions still describe the running implementation until the corresponding checkpoints land.
 
 ## Product behavior
 
