@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
+import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
@@ -83,13 +84,20 @@ export function AssessmentLibrary({
   return (
     <main className='content-column flex flex-col gap-8 py-8'>
       <h1>My assessments</h1>
-      <AccountAccess
-        signedIn={signedIn}
-        profile={profile}
-        enabled={authEnabled}
-        authError={authError}
-      />
-      <AssessmentStart automatic={autoStart} />
+      <div
+        className={cn(
+          'flex flex-col gap-8',
+          signedIn && 'md:flex-row md:items-center md:justify-between'
+        )}
+      >
+        <AccountAccess
+          signedIn={signedIn}
+          profile={profile}
+          enabled={authEnabled}
+          authError={authError}
+        />
+        <AssessmentStart automatic={autoStart} />
+      </div>
       {items.length === 0 && !autoStart && (
         <p>No assessments yet. Start whenever you’re ready.</p>
       )}
