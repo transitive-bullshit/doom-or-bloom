@@ -82,7 +82,7 @@ pnpm check:browser
 pnpm check:persistence
 ```
 
-`pnpm test` covers formatting, lint, types, unit tests, content validation, and unused code. Ordinary checks use fixtures and need no inference credentials. Browser tests use their own Portless hostname and build directory; consult `playwright.config.ts` when troubleshooting a local server collision.
+`pnpm test` covers formatting, lint, types, unit tests, content validation, and unused code. If local development uses fixture mode, build with `ASSESSMENT_PROVIDER=live pnpm build`; production deliberately rejects fixture mode, and building does not run inference. The CI workflow installs native PostgreSQL, applies migrations twice, seeds curated fixtures and runs database/browser persistence checks without containers. Ordinary checks use fixtures and need no inference credentials. Browser tests use their own Portless hostname and build directory; consult `playwright.config.ts` when troubleshooting a local server collision.
 
 Use modern TypeScript without semicolons, oxfmt for formatting, and oxlint for linting. Reuse shadcn/ui primitives. Read the repository’s [agent conventions](AGENTS.md) and the installed Next.js documentation before changing framework behavior.
 

@@ -149,17 +149,3 @@ export async function saveDebugOperation(
     db.close()
   }
 }
-export async function clearDebugOperations(assessmentId: string) {
-  const db = await openDatabase()
-  try {
-    await new Promise<void>((resolve, reject) => {
-      const transaction = db.transaction(storeName, 'readwrite')
-      transaction.objectStore(storeName).delete(assessmentId)
-      transaction.oncomplete = () => resolve()
-      transaction.onerror = () => reject(transaction.error)
-      transaction.onabort = () => reject(transaction.error)
-    })
-  } finally {
-    db.close()
-  }
-}

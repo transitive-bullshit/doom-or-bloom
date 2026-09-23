@@ -34,7 +34,7 @@ const provenanceSchema = z.object({
   originalAssessmentId: z.string().optional(),
   originalRevision: z.number().optional()
 })
-export const historicalPayloadSchema = z.object({
+const historicalPayloadSchema = z.object({
   kind: z.literal('historical_journey_v1'),
   journey: journeySchema,
   provenance: provenanceSchema

@@ -58,7 +58,7 @@ function operationView(op: OperationRow) {
     retryOf: op.retryOf
   }
 }
-export type OperationView = ReturnType<typeof operationView>
+type OperationView = ReturnType<typeof operationView>
 export type OwnedAssessment = {
   assessment: Assessment
   lifecycle: RecordRow['lifecycle']
@@ -74,7 +74,7 @@ export type OperationOutcome = {
   operation: OperationView
   assessment?: Assessment
 }
-export type ExecutionStats = {
+type ExecutionStats = {
   physicalRequestCount: number
   failures: Array<{ stage: string; status: number | null; attempt: number }>
 }

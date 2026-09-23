@@ -1,7 +1,7 @@
 import { currentAssessmentSchema, type Assessment } from '../assessment/schema'
 
 // Deliberate allowlist: adding a private engine field must not publish it.
-export const publicAssessmentSchema = currentAssessmentSchema.pick({
+const publicAssessmentSchema = currentAssessmentSchema.pick({
   schemaVersion: true,
   id: true,
   revision: true,

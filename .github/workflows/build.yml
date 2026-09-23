@@ -22,5 +22,29 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile --strict-peer-dependencies
+      - name: Start native PostgreSQL
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y postgresql
+          sudo systemctl start postgresql
+          sudo -u postgres psql -v ON_ERROR_STOP=1 -c "CREATE ROLE doom_bloom_ci LOGIN PASSWORD 'local-ci-only';"
+          sudo -u postgres createdb -O doom_bloom_ci doom_bloom_ci_test
+          cat > .env.local <<'ENV'
+          DATABASE_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/doom_bloom_ci_test
+          TEST_DATABASE_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/doom_bloom_ci_test
+          BETTER_AUTH_SECRET=disposable-ci-secret-at-least-32-characters
+          BETTER_AUTH_URL=http://doom-or-bloom.localhost:1355
+          ASSESSMENT_PROVIDER=live
+          ENV
+          chmod 600 .env.local
+      - run: pnpm db:migrate:test
+      - run: pnpm db:migrate:test
+      - run: pnpm db:seed --test
+      - run: pnpm db:test
+      - run: pnpm db:test:repository
+      - run: pnpm db:test:lifecycle
+      - run: pnpm db:test:personas
       - run: pnpm test
       - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm check:persistence
