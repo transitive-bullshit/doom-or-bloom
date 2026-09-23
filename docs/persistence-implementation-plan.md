@@ -84,7 +84,7 @@ Update: TYPESAFE, MEASUREMENT, local-debugging, CONTRIBUTING, API/transport docu
 
 ## Checkpoint 3 — participant UX, forks, and sharing
 
-- [x] Implement the main CTA routing table in PERSISTENCE: zero assessments goes directly through creation to `/assessment/<id>`; any existing assessments goes to `/assessments`. Establish session and record without a second click. Serialize simultaneous empty-library starts; reuse request keys on retry. No GET/prefetch creates records.
+- [x] Implement the main CTA routing table in PERSISTENCE: zero assessments goes directly through creation to `/assessments/<id>`; any existing assessments goes to `/assessments`. Establish session and record without a second click. Serialize simultaneous empty-library starts; reuse request keys on retry. No GET/prefetch creates records.
 - [x] Add the owner library with resume/view, New assessment, delete, and public/private management. Use existing UI primitives. Creation preserves prior work; deletion is explicit. Keep `/assessment` links usable as an entry surface.
 - [x] Add owner detail loading and modest pending/error states. Existing submitted text is read-only; preserve keyboard focus, draft recovery, and the current single-page conversation layout.
 - [x] Keep result preview open; Done completes privately; Share completes and publishes. Explain whole-conversation publication in the sharing action. Avoid a lifecycle wizard or mandatory title/account prompt. Serialize finish/share with in-flight processing.
@@ -351,3 +351,11 @@ Pause only the dependent work when credentials or external configuration are una
 | Privacy, docs, tooling and checkpoint commits | Updated canonical docs and visible copy, native PostgreSQL CI configuration, env split and setup/retry instructions; format/lint/types/unit/content/unused checks and production build. |
 
 Remaining work is explicitly outside this local implementation: deploy the app, install Neon schema/seed under separate authorization, set hosted production secrets and request duration, then verify the production OAuth callback and external social crawlers. Hosted CI execution is not claimed; its native-Postgres workflow is checked in and the same local commands passed. Paid persona regeneration and semantic evaluation were not needed or run. Assessment interpretation remains an experimental draft, independent of persistence correctness.
+
+### Owner route and detail navigation follow-up (2026-09-23)
+
+- Owner detail URLs now use `/assessments/<id>` consistently across creation, library links and forks. Singular `/assessment/<id>` URLs redirect to the canonical route. Public URLs remain `/assessments/public/<id>`.
+- Removed the New assessment button from assessment detail; creation remains in My assessments. Updated the existing navigation/recovery browser checks to use that library action.
+- The fixture badge identifies development/test mode with synthetic evaluator output and no Jev calls. This change does not switch the configured provider.
+- Simplified the interview privacy sentence to the user’s requested wording; server retention, operator access and unsubmitted-draft behavior remain documented on Privacy/About.
+- Verification: `pnpm test` passed; production compilation and the updated trace verifier passed; all five persistence browser cases and all affected browser cases passed. The general browser run passed 49 cases; two navigation-wait assertions and a parallel trace-output collision were corrected, then the affected 19-case group passed. Manual browser inspection verified the canonical route, old-link redirect and absent detail creation button.

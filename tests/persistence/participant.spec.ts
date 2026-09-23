@@ -11,7 +11,7 @@ test('first CTA creates directly, draft survives reload, answer is server-saved,
     .getByRole('button', { name: 'Map your own worldview' })
     .first()
     .click()
-  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const url = page.url()
   const id = url.split('/').at(-1)!
   try {
@@ -75,7 +75,7 @@ test('lost successful response resolves with the original request key after refr
 }) => {
   await page.goto('/assessment')
   await page.getByRole('button', { name: 'Map your own worldview' }).click()
-  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   try {
     await page.route(`**/api/assessments/${id}`, async (route) => {
@@ -122,7 +122,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
 }) => {
   await page.goto('/assessment')
   await page.getByRole('button', { name: 'Map your own worldview' }).click()
-  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   let forkId: string | undefined
   const visitor = await context.browser()!.newContext()
@@ -200,7 +200,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await page
       .getByRole('button', { name: 'Continue in a new assessment' })
       .click()
-    await expect(page).not.toHaveURL(new RegExp(`/assessment/${id}$`))
+    await expect(page).not.toHaveURL(new RegExp(`/assessments/${id}$`))
     forkId = page.url().split('/').at(-1)!
     expect(forkId).not.toBe(id)
     const fork = await (

@@ -8,10 +8,10 @@ Keep starting an assessment as fast as it is today. Neither registration nor an 
 
 | Entry/action | Behavior |
 | --- | --- |
-| Main “Map your worldview” CTA; owner has zero assessments | Establish an anonymous session, create one private assessment, navigate directly to `/assessment/<id>` with the first prompt ready. |
+| Main “Map your worldview” CTA; owner has zero assessments | Establish an anonymous session, create one private assessment, navigate directly to `/assessments/<id>` with the first prompt ready. |
 | Same CTA; owner already has any assessments | Navigate to `/assessments`, whether there is one draft, multiple drafts, or only completed assessments. Do not choose a draft for the participant. |
 | “My assessments” | Open the owner's library. An empty library may offer New assessment; the main CTA bypasses it. |
-| Explicit New assessment | Create a new private assessment and navigate to it, preserving existing assessments. |
+| Explicit New assessment from the library | Create a new private assessment and navigate to it, preserving existing assessments. |
 | View my results | Preview the current result; the assessment remains open. |
 | Done | Finish the assessment without requiring publication. |
 | Share | Explain once that the full submitted conversation and inferred results become public; finish and publish atomically. No account requirement. |
@@ -31,7 +31,7 @@ The first interview permits 12 issued prompts. A fork permits up to 12 additiona
 Better Auth supplies anonymous users and persistent sessions in milestone one. X OAuth is the only interactive login provider in milestone two. A provider account and an assessment owner are separate concepts: an anonymous owner has no X account yet.
 
 - Establish anonymous identity lazily when a participant starts, not for every landing-page visitor. Use Better Auth session cookies, with HttpOnly, appropriate SameSite, production Secure, origin protection, and a deliberately configured renewable lifetime. The initial target is 365 days with renewal on activity, subject to the pinned library/browser behavior verified in checkpoint 1. IDs and localStorage data do not confer ownership.
-- `/assessments` lists the current owner's records. `/assessment/<id>` is the canonical owner view. Keep `/assessment` as an entry surface for old links, using the same explicit start behavior without GET creation. Avoid maintaining a second plural owner-detail route.
+- `/assessments` lists the current owner's records. `/assessments/<id>` is the canonical owner view. Keep `/assessment` as an entry surface for old links, using the same explicit start behavior without GET creation. Old singular detail URLs redirect to the plural canonical URL.
 - `/assessments/public/<id>` reads the frozen published assessment, without a session. `/users/<slug>` selects a curated persona's current published simulation. Public reads never create anonymous users.
 - Participant public pages are link-accessible, excluded from sitemaps/directories, and marked `noindex`. Curated persona pages remain indexable. `noindex` is a discoverability preference, not authorization.
 - Private pages, private APIs, operation status, and owner exports authorize every request and use private/no-store responses. Knowing an assessment UUID is insufficient. Server code derives the owner from the session rather than trusting a body parameter.

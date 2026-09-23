@@ -55,8 +55,12 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
     await page.reload()
     await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
     await page
+      .getByRole('link', { name: 'My assessments', exact: true })
+      .click()
+    await page
       .getByRole('button', { name: 'New assessment', exact: true })
       .click()
+    await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
     await expect(page).not.toHaveURL(new RegExp(originalId))
     await expect(
       page.getByText('Updated draft available', { exact: true })
@@ -258,9 +262,11 @@ test('three answers, draft resume, map, correction, downloads and another assess
   await expect(page.getByRole('link', { name: 'Post on X' })).toHaveCount(0)
   expect(outbound).toEqual([])
   const previous = page.url()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
     .getByRole('button', { name: 'New assessment', exact: true })
     .click()
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await expect(page).not.toHaveURL(previous)
   await expect(page.getByRole('heading', { name: root })).toBeVisible()
 })

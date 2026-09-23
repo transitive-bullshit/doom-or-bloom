@@ -20,7 +20,7 @@ export async function startAssessment(page: Page) {
   await page
     .getByRole('button', { name: 'Map your own worldview', exact: true })
     .click()
-  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
 }
 
 /** UI fixture seam: authorization reads and writes still use saved DB state. */
@@ -100,7 +100,7 @@ export async function seedAssessment(
       },
       { id, promptId: assessment.prompts.at(-1)!.id, text: assessment.draft }
     )
-  await page.goto(`/assessment/${id}`)
+  await page.goto(`/assessments/${id}`)
   return id
 }
 

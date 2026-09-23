@@ -9,7 +9,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await startAssessment(page)
   await expect(
     page.getByRole('button', { name: 'New assessment', exact: true })
-  ).toBeVisible()
+  ).toHaveCount(0)
   const answer = page.getByLabel('Your answer', { exact: true })
   const submit = async (text: string) => {
     await answer.fill(text)
@@ -18,7 +18,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await submit('test')
   await expect(
     page.getByRole('button', { name: 'New assessment', exact: true })
-  ).toBeVisible()
+  ).toHaveCount(0)
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   await submit('test again')
   await expect(
@@ -52,14 +52,16 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   ).toHaveCount(0)
   // Recovery-only runs can start another assessment without deleting the first.
   const previousUrl = page.url()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
     .getByRole('button', { name: 'New assessment', exact: true })
     .click()
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
     page.getByRole('button', { name: 'New assessment', exact: true })
-  ).toBeVisible()
+  ).toHaveCount(0)
   await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
     0
   )
@@ -134,14 +136,16 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await expect(page.getByText(/You found the easter egg/)).toBeVisible()
   // Recovery-only runs can start another assessment without deleting the first.
   const previousUrl = page.url()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
     .getByRole('button', { name: 'New assessment', exact: true })
     .click()
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
     page.getByRole('button', { name: 'New assessment', exact: true })
-  ).toBeVisible()
+  ).toHaveCount(0)
   await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
     0
   )

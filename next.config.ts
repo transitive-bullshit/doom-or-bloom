@@ -7,6 +7,15 @@ const config: NextConfig = {
   ]
     .filter((value): value is string => Boolean(value))
     .map((value) => new URL(value).hostname),
+  async redirects() {
+    return [
+      {
+        source: '/assessment/:id',
+        destination: '/assessments/:id',
+        permanent: true
+      }
+    ]
+  },
   async headers() {
     return ['/assessment/:path*', '/assessments/:path*'].map((source) => ({
       source,

@@ -21,7 +21,7 @@ export function WorldviewCta({
         setBusy(true)
         try {
           const { id } = await startAssessment(onlyIfEmpty)
-          router.push(id ? `/assessment/${id}` : '/assessments')
+          router.push(id ? `/assessments/${id}` : '/assessments')
         } catch (err) {
           toast.error(
             err instanceof Error

@@ -95,7 +95,7 @@ The interview begins with **What do you think AI means for our future—and why?
 
 ### Interview
 
-- Keep every issued question and submitted reply in one chronological thread on `/assessment/<id>`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
+- Keep every issued question and submitted reply in one chronological thread on `/assessments/<id>`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
 - Previous answers are read-only. Include a copy button for every submitted reply that copies its complete text, even when collapsed, and reports success or clipboard unavailability without changing the answer. Show short answers fully and a compact exact-text preview for long or multiline answers, with an accessible “Read full answer” / “Show less” disclosure. Full answers expand in the page without an internal answer scrollbar. Preserve complete text in local state; opening or closing a disclosure makes no inference call.
 - Keep the thread available above results and during corrections. Reload resumes the active question and draft with previous turns retained; disclosures can reset closed. Include saved earlier recovery/navigation replies without promoting them into scoring evidence.
 - Cmd+Enter or Ctrl+Enter submits through the same Continue validation; empty/whitespace, over-limit, busy or blocked drafts cannot bypass it. Plain Enter stays a newline; composition and repeated shortcut events do not submit.
@@ -143,7 +143,7 @@ Clarification appends to an open assessment. Completed assessments stay frozen: 
 
 ### Supporting surfaces
 
-- `/` contains the landing map; `/assessment` is a start entry point, `/assessment/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/assessments/public/<id>` shows a published frozen assessment. `/users/[username]` shows a selected public persona simulation.
+- `/` contains the landing map; `/assessment` is a start entry point, `/assessments/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/assessments/public/<id>` shows a published frozen assessment. `/users/[username]` shows a selected public persona simulation.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
 - A concise privacy policy explains server retention, operator access, optional account recovery, whole-conversation publication, browser drafts and pseudonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.

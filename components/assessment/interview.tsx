@@ -16,7 +16,6 @@ import {
 } from '@/lib/assessment/state'
 import type { OwnedAssessment } from '@/lib/assessments/repository'
 import { usePersistentAssessment } from './use-persistent-assessment'
-import { WorldviewCta } from '@/components/worldview-cta'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { api } from '@/lib/assessments/client'
@@ -132,7 +131,7 @@ export function Interview({
         } catch {
           /* Navigation still works. */
         }
-        router.push(`/assessment/${id}`)
+        router.push(`/assessments/${id}`)
       }
     } catch (err) {
       toast.error(
@@ -602,11 +601,8 @@ export function Interview({
                     automatically when Jev has enough confidence.
                   </p>
                   <p>
-                    Submitted answers and results are saved on our server and
-                    sent to Jev for analysis. They are private from other
-                    visitors unless you publish them. We may inspect them to
-                    improve the project and retain them until you delete the
-                    assessment. Unsubmitted typing stays in this browser.
+                    Your answers will remain private unless you choose to
+                    publish them at the end.
                   </p>
                 </div>
                 {state.answers.length > 0 && (
@@ -632,7 +628,6 @@ export function Interview({
           </div>
           <div className='flex flex-col gap-6'>
             <div className='flex items-center justify-between gap-4'>
-              <WorldviewCta onlyIfEmpty={false} label='New assessment' />
               {debugAvailable && (
                 <Button
                   variant='ghost'

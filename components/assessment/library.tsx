@@ -91,7 +91,7 @@ export function AssessmentLibrary({
           >
             <div className='flex flex-col gap-2'>
               <Link
-                href={`/assessment/${item.id}`}
+                href={`/assessments/${item.id}`}
                 className='font-medium underline'
               >
                 {item.title ?? 'Your AI worldview'}
@@ -113,7 +113,7 @@ export function AssessmentLibrary({
             </div>
             <div className='flex gap-3'>
               <Button asChild variant='outline'>
-                <Link href={`/assessment/${item.id}`}>
+                <Link href={`/assessments/${item.id}`}>
                   {item.lifecycle === 'open' ? 'Resume' : 'View'}
                 </Link>
               </Button>

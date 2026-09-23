@@ -126,7 +126,7 @@ try {
   let page = await context.newPage()
   await page.goto(`${origin}/assessment`)
   await page.getByRole('button', { name: 'Map your own worldview' }).click()
-  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   assert.match(id, /^[a-f0-9-]{36}$/)
   const locker = await pool.connect()
@@ -184,7 +184,7 @@ try {
     )
     await start()
     page = await context.newPage()
-    await page.goto(`${origin}/assessment/${id}`)
+    await page.goto(`${origin}/assessments/${id}`)
     await expect(
       page.getByRole('button', { name: 'Retry saved submission' })
     ).toBeVisible()
