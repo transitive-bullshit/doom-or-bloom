@@ -71,7 +71,7 @@ export function AccountAccess({
         )}
         {(signedIn || enabled) && (
           <Button variant='outline' disabled={busy} onClick={() => void act()}>
-            {busy ? 'Please wait…' : signedIn ? 'Sign out' : 'Sign in'}
+            {busy ? 'Please wait…' : signedIn ? 'Sign out' : 'Sign in with X'}
           </Button>
         )}
       </div>

@@ -297,7 +297,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await expect(page).toHaveURL(/\/assessments$/)
     await page.getByRole('link', { name: 'View', exact: true }).click()
     await page
-      .getByRole('button', { name: 'Continue in a new assessment' })
+      .getByRole('button', { name: 'Continue in a forked assessment' })
       .click()
     await expect(page).not.toHaveURL(new RegExp(`/assessments/${id}$`))
     forkId = page.url().split('/').at(-1)!
