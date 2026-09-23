@@ -85,7 +85,7 @@ export function AssessmentTable({
   async function copyPublicLink(id: string) {
     try {
       await navigator.clipboard.writeText(
-        `${window.location.origin}/assessments/public/${id}`
+        `${window.location.origin}/public/assessments/${id}`
       )
       toast.success('Public link copied.')
     } catch {
@@ -129,7 +129,7 @@ export function AssessmentTable({
       cell: ({ row }) =>
         row.original.visibility === 'public' ? (
           <Badge asChild variant='outline'>
-            <Link href={`/assessments/public/${row.original.id}`}>
+            <Link href={`/public/assessments/${row.original.id}`}>
               Published
             </Link>
           </Badge>
@@ -157,7 +157,7 @@ export function AssessmentTable({
               {row.original.visibility === 'public' && (
                 <>
                   <DropdownMenuItem asChild>
-                    <Link href={`/assessments/public/${row.original.id}`}>
+                    <Link href={`/public/assessments/${row.original.id}`}>
                       View public assessment
                     </Link>
                   </DropdownMenuItem>

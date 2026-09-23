@@ -142,7 +142,7 @@ Participants can continue answering on a private assessment. Published assessmen
 
 ### Supporting surfaces
 
-- `/` contains the landing map; `/assessment` is a start entry point, `/assessments/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/assessments/public/<id>` shows a published frozen assessment. `/users/[username]` shows a selected public persona simulation.
+- `/` contains the landing map; `/assessment` is a start entry point, `/assessments/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/public/assessments/<id>` shows a published frozen assessment. `/users/[username]` shows a selected public persona simulation.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
 - A concise privacy policy explains server retention, operator access, optional account recovery, whole-conversation publication, browser drafts and pseudonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.

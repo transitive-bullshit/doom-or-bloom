@@ -18,25 +18,25 @@ test('curated persona routes use the selected database run without a visitor ses
       page.getByRole('heading', { name: new RegExp(persona.name) }).first()
     ).toBeVisible()
     expect(await context.cookies()).toHaveLength(0)
-    const data = await request.get(`/assessments/public/${persona.id}/data`)
+    const data = await request.get(`/public/assessments/${persona.id}/data`)
     expect(data.status()).toBe(200)
     const published = await data.json()
     expect(published.kind).toBe('simulation')
     expect(published.simulation.kind).toBe('historical_journey_v1')
     expect(published.simulation.journey.result).toBeTruthy()
     expect(published.simulation.journey.participantExchanges).toBeUndefined()
-    await page.goto(`/assessments/public/${persona.id}`)
+    await page.goto(`/public/assessments/${persona.id}`)
     await expect(
       page.getByRole('heading', { name: new RegExp(persona.name) }).first()
     ).toBeVisible()
     const image = await request.get(
-      `/assessments/public/${persona.id}/social-image.webp`
+      `/public/assessments/${persona.id}/social-image.webp`
     )
     expect(image.status()).toBe(200)
     expect(image.headers()['content-type']).toContain('image/webp')
     const sitemap = await request.get('/sitemap.xml')
     expect(await sitemap.text()).toContain(`/users/${persona.slug}`)
-    expect(await sitemap.text()).not.toContain('/assessments/public/')
+    expect(await sitemap.text()).not.toContain('/public/assessments/')
     expect(await context.cookies()).toHaveLength(0)
   } finally {
     await pool.end()

@@ -27,10 +27,9 @@ const config: NextConfig = {
   async headers() {
     return [
       '/assessment/:path*',
-      '/assessments',
-      '/assessments/:id',
-      '/assessments/public/:id',
-      '/assessments/public/:id/data'
+      '/assessments/:path*',
+      '/public/assessments/:id',
+      '/public/assessments/:id/data'
     ].map((source) => ({
       source,
       headers: [{ key: 'Cache-Control', value: 'private, no-store' }]
@@ -41,7 +40,7 @@ const config: NextConfig = {
   outputFileTracingIncludes: {
     '/api/share-card': ['public/personas/*'],
     '/users/*/opengraph-image': ['public/personas/*'],
-    '/assessments/public/*/social-image.webp': ['public/personas/*']
+    '/public/assessments/*/social-image.webp': ['public/personas/*']
   },
   // Takumi loads a platform-specific native addon at runtime.
   serverExternalPackages: ['takumi-js']

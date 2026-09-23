@@ -272,7 +272,7 @@ export function Interview({
               {record.visibility === 'public' ? (
                 <>
                   <Button asChild variant='outline'>
-                    <Link href={`/assessments/public/${state.id}`}>
+                    <Link href={`/public/assessments/${state.id}`}>
                       View public assessment
                     </Link>
                   </Button>
@@ -288,7 +288,7 @@ export function Interview({
                     onClick={() => {
                       void navigator.clipboard
                         .writeText(
-                          `${window.location.origin}/assessments/public/${state.id}`
+                          `${window.location.origin}/public/assessments/${state.id}`
                         )
                         .then(() => toast.success('Public link copied.'))
                         .catch(() =>

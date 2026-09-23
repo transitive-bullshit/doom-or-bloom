@@ -354,7 +354,7 @@ Production preparation was subsequently authorized and completed on September 24
 
 ### Owner route and detail navigation follow-up (2026-09-23)
 
-- Owner detail URLs now use `/assessments/<id>` consistently across creation, library links and forks. Singular `/assessment/<id>` URLs redirect to the canonical route. Public URLs remain `/assessments/public/<id>`.
+- Owner detail URLs now use `/assessments/<id>` consistently across creation, library links and forks. Singular `/assessment/<id>` URLs redirect to the canonical route. Public URLs remain `/public/assessments/<id>`.
 - Removed the New assessment button from assessment detail; creation remains in My assessments. Updated the existing navigation/recovery browser checks to use that library action.
 - The fixture badge identifies development/test mode with synthetic evaluator output and no Jev calls. This change does not switch the configured provider.
 - Simplified the interview privacy sentence to the user’s requested wording; server retention, operator access and unsubmitted-draft behavior remain documented on Privacy/About.

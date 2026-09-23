@@ -5,7 +5,7 @@ import type { JourneySuite } from '@/lib/journeys/schema'
 import { people } from '@/components/landing/people'
 import { worldviewValues } from '@/lib/assessment/persona-matches'
 import { resultCardData } from './card-data'
-import { GET as publicCard } from '@/app/assessments/public/[id]/social-image.webp/route'
+import { GET as publicCard } from '@/app/public/assessments/[id]/social-image.webp/route'
 import { POST as downloadedCard } from '@/app/api/share-card/route'
 
 const suite: JourneySuite = JSON.parse(

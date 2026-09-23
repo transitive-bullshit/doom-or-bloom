@@ -211,7 +211,15 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await expect(
       page.getByRole('link', { name: 'View public assessment' })
     ).toBeVisible()
-    const publicURL = `${baseURL}/assessments/public/${id}`
+    const publicURL = `${baseURL}/public/assessments/${id}`
+    for (const suffix of ['', '/data', '/social-image.webp']) {
+      const oldRoute = await visitor.request.get(
+        `${baseURL}/assessments/public/${id}${suffix}`,
+        { maxRedirects: 0 }
+      )
+      expect(oldRoute.status()).toBe(404)
+      expect(oldRoute.headers().location).toBeUndefined()
+    }
     const html = await visitor.request.get(publicURL)
     expect(html.status()).toBe(200)
     // Next dev overrides HTML Cache-Control to no-cache, must-revalidate.
@@ -223,7 +231,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       'index, follow'
     )
     expect(renderedHtml('link[rel="canonical"]').attr('href')).toContain(
-      `/assessments/public/${id}`
+      `/public/assessments/${id}`
     )
     renderedHtml('script').remove()
     expect(renderedHtml('article').text()).toContain(
@@ -231,7 +239,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     )
     expect(renderedHtml('h2').text()).toContain('Full conversation')
     expect(await html.text()).toContain(
-      `/assessments/public/${id}/social-image.webp`
+      `/public/assessments/${id}/social-image.webp`
     )
     const json = await (await visitor.request.get(`${publicURL}/data`)).json()
     expect(json.assessment.answers).toHaveLength(1)
@@ -462,7 +470,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
         name: 'View public assessment',
         exact: true
       })
-    ).toHaveAttribute('href', `/assessments/public/${id}`)
+    ).toHaveAttribute('href', `/public/assessments/${id}`)
     await page.evaluate(() => {
       Object.defineProperty(navigator, 'clipboard', {
         configurable: true,

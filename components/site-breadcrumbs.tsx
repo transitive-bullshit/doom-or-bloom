@@ -26,7 +26,7 @@ const pageLabels: Record<string, string> = {
 
 export function SiteBreadcrumbs() {
   const pathname = usePathname()
-  if (pathname === '/' || pathname.startsWith('/assessments/public/')) {
+  if (pathname === '/' || pathname.startsWith('/public/assessments/')) {
     return null
   }
 
