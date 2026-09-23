@@ -12,7 +12,7 @@ cp .env.example .env.development.local
 pnpm dev
 ```
 
-If `.env.development.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting answers. `pnpm dev` always selects live Jev; synthetic providers are reserved for isolated automated checks. Keep secrets out of commits and screenshots.
+If `.env.development.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting answers. `pnpm dev` first runs `pnpm check:env`, then always selects live Jev; synthetic providers are reserved for isolated automated checks. Startup exits with an error listing missing or invalid variable names before serving requests. All Playwright configs validate the incoming environment before applying test-server overrides, including the dedicated test database. CI explicitly selects fixture mode; local development must have a real Jev key. Keep secrets out of commits and screenshots.
 
 Development runs through [Portless](https://portless.sh). Open the URL printed by `pnpm dev`; the dev command uses an explicit stable name so changing branches does not change the registered X OAuth callback. Isolated test servers use their own names. Resolve the current URL with:
 

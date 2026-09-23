@@ -1,5 +1,8 @@
+import { validateServerEnv } from './lib/server/validate-env'
 import { defineConfig, devices } from '@playwright/test'
 import { portlessUrl } from './tests/portless'
+
+validateServerEnv(process.env, { testDatabase: true })
 
 const baseURL = portlessUrl('browser-tests.doom-or-bloom')
 const database = process.env.TEST_DATABASE_URL

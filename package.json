@@ -8,7 +8,8 @@
   "repository": "https://github.com/transitive-bullshit/doom-or-bloom",
   "type": "module",
   "scripts": {
-    "dev": "ASSESSMENT_PROVIDER=live portless doom-or-bloom next dev --hostname 127.0.0.1",
+    "check:env": "node --env-file=.env.development.local --import tsx scripts/check-env.ts",
+    "dev": "pnpm check:env && ASSESSMENT_PROVIDER=live portless doom-or-bloom next dev --hostname 127.0.0.1",
     "build": "next build --webpack && node scripts/check-production-traces.mjs",
     "start": "next start",
     "test": "run-s test:*",
@@ -35,7 +36,7 @@
     "journeys:mechanical": "node --conditions=react-server --import tsx scripts/generate-mechanical-journeys.ts",
     "journeys:mechanical:check": "pnpm journeys:mechanical --check",
     "journeys:review": "node --conditions=react-server --import tsx scripts/review-journeys.ts",
-    "dev:tailscale": "ASSESSMENT_PROVIDER=live portless doom-or-bloom --tailscale next dev --hostname 127.0.0.1",
+    "dev:tailscale": "pnpm check:env && ASSESSMENT_PROVIDER=live portless doom-or-bloom --tailscale next dev --hostname 127.0.0.1",
     "resources:previews": "tsx scripts/prefetch-resource-previews.ts",
     "test:unused": "knip",
     "db:generate": "node --env-file=.env.development.local node_modules/drizzle-kit/bin.cjs generate",

@@ -1,5 +1,8 @@
+import { validateServerEnv } from './lib/server/validate-env'
 import { defineConfig, devices } from '@playwright/test'
 import { portlessUrl } from './tests/portless'
+
+validateServerEnv(process.env, { testDatabase: true })
 
 const baseURL = portlessUrl('analytics.doom-or-bloom')
 const database = process.env.TEST_DATABASE_URL
@@ -26,7 +29,7 @@ export default defineConfig({
       BETTER_AUTH_URL: baseURL,
       NEXT_TEST_DIST_DIR: '.next-analytics',
       ASSESSMENT_PROVIDER: 'live',
-      TYPESAFE_API_KEY: '',
+      TYPESAFE_API_KEY: 'unused-analytics-test-key',
       NEXT_PUBLIC_ANALYTICS_ENABLED: 'true',
       NEXT_PUBLIC_POSTHOG_KEY: 'phc_synthetic_test_key',
       NEXT_PUBLIC_POSTHOG_HOST: 'https://posthog.invalid',

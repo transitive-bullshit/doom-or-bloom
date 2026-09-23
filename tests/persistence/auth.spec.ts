@@ -20,7 +20,7 @@ test('optional X login is on the library and uses the configured callback and re
   await expect(
     page.getByRole('button', { name: 'New assessment' })
   ).toBeVisible()
-  await page.getByRole('button', { name: 'Keep access with X' }).click()
+  await page.getByRole('button', { name: 'Sign in' }).click()
   await expect(
     page.getByRole('heading', { name: 'Mock X authorization' })
   ).toBeVisible()

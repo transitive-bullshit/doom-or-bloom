@@ -368,3 +368,11 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - User preference: development assessments always use live Jev. Updated the private development env and `pnpm dev`/`dev:tailscale` to select `ASSESSMENT_PROVIDER=live`. Controlled synthetic responses remain confined to automated tests.
 - Use Portless’s explicit app name for normal dev, keeping the registered OAuth origin stable across branch changes. Tests retain isolated named servers.
 - Verification: `pnpm test` passed (254 unit tests); all six persistence browser cases and 14 affected landing/persona browser cases passed. `pnpm build:local` passed, including production trace validation. Manually verified the homepage link opens the existing owner library and confirmed the stable Portless origin.
+
+### Account presentation and eager environment validation (2026-09-23)
+
+- My assessments displays the authenticated profile portrait and name, with an avatar fallback. Sign in/out copy is provider-neutral and the redundant account-linking sentence is removed. Profile identity remains private to the owner library.
+- Diagnosed immediate live-answer 503s: the environment-file split left the existing Jev key in the original checkout, absent from this worktree’s development file. Restored the local key without displaying or committing it. A temporary live assessment successfully saved an answer (HTTP 200, revision 1) and was deleted.
+- Central startup validation rejects missing/invalid database and auth settings, missing live Jev credentials, partial OAuth configuration, malformed booleans, and incomplete enabled analytics settings. Next config and instrumentation enforce validation at server startup; `pnpm dev` checks before launching Next. Playwright validates the incoming local configuration before fixture overrides, including TEST_DATABASE_URL. CI explicitly declares fixture mode. Errors disclose variable names only.
+- Verified missing-key `pnpm dev`, direct Next startup, and E2E preflight all exit 1; the configured auth browser test passes.
+- Final checks: `pnpm test` passed (262 tests), local production build/trace checks passed, and configured development preflight passed.

@@ -1,14 +1,17 @@
 'use client'
 import { useState } from 'react'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { api } from '@/lib/assessments/client'
 
 export function AccountAccess({
   signedIn,
+  profile,
   enabled,
   authError
 }: {
   signedIn: boolean
+  profile: { name: string; image: string | null } | null
   enabled: boolean
   authError: 'claim' | 'signin' | null
 }) {
@@ -47,19 +50,31 @@ export function AccountAccess({
   }
   return (
     <div className='flex flex-col items-start gap-3'>
-      <p className='text-muted-foreground'>
-        {signedIn
-          ? 'Your assessments are linked to your X account. Sign in to recover them in another browser.'
-          : 'Your assessments are saved for this browser. Clearing cookies loses anonymous access.'}
-        {!signedIn &&
-          enabled &&
-          ' Optionally sign in with X to keep access across browsers.'}
-      </p>
-      {(signedIn || enabled) && (
-        <Button variant='outline' disabled={busy} onClick={() => void act()}>
-          {busy ? 'Please wait…' : signedIn ? 'Sign out' : 'Keep access with X'}
-        </Button>
+      {!signedIn && (
+        <p className='text-muted-foreground'>
+          Your assessments are saved for this browser. Clearing cookies loses
+          anonymous access.
+          {enabled && ' Optionally sign in to keep access across browsers.'}
+        </p>
       )}
+      <div className='flex items-center gap-3'>
+        {signedIn && profile && (
+          <>
+            <Avatar size='lg'>
+              <AvatarImage src={profile.image ?? undefined} alt='' />
+              <AvatarFallback>
+                {profile.name.trim().slice(0, 1).toUpperCase() || '?'}
+              </AvatarFallback>
+            </Avatar>
+            <span className='font-medium'>{profile.name}</span>
+          </>
+        )}
+        {(signedIn || enabled) && (
+          <Button variant='outline' disabled={busy} onClick={() => void act()}>
+            {busy ? 'Please wait…' : signedIn ? 'Sign out' : 'Sign in'}
+          </Button>
+        )}
+      </div>
       {error && (
         <p role='alert' className='text-sm text-destructive'>
           {error}

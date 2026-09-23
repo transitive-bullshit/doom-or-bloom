@@ -21,6 +21,11 @@ export default async function Page({
     <AssessmentLibrary
       autoStart={start === '1' && !error}
       signedIn={Boolean(session && !session.user.isAnonymous)}
+      profile={
+        session && !session.user.isAnonymous
+          ? { name: session.user.name, image: session.user.image ?? null }
+          : null
+      }
       authEnabled={Boolean(
         process.env.X_CLIENT_ID && process.env.X_CLIENT_SECRET
       )}

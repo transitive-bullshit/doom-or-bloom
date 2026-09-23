@@ -1,4 +1,9 @@
 import type { NextConfig } from 'next'
+import {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_SERVER
+} from 'next/constants'
+import { validateServerEnv } from './lib/server/validate-env'
 
 const config: NextConfig = {
   allowedDevOrigins: [
@@ -33,4 +38,8 @@ const config: NextConfig = {
   serverExternalPackages: ['takumi-js']
 }
 
-export default config
+export default function nextConfig(phase: string) {
+  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_SERVER)
+    validateServerEnv()
+  return config
+}

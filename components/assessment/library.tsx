@@ -31,6 +31,7 @@ export type LibraryItem = {
 export function AssessmentLibrary({
   items,
   signedIn,
+  profile,
   authEnabled,
   authError,
   autoStart = false
@@ -38,6 +39,7 @@ export function AssessmentLibrary({
   autoStart?: boolean
   items: LibraryItem[]
   signedIn: boolean
+  profile: { name: string; image: string | null } | null
   authEnabled: boolean
   authError: 'claim' | 'signin' | null
 }) {
@@ -78,6 +80,7 @@ export function AssessmentLibrary({
       <h1 className='text-3xl font-semibold'>My assessments</h1>
       <AccountAccess
         signedIn={signedIn}
+        profile={profile}
         enabled={authEnabled}
         authError={authError}
       />

@@ -35,7 +35,7 @@ jobs:
           TEST_DATABASE_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/doom_bloom_ci_test
           BETTER_AUTH_SECRET=disposable-ci-secret-at-least-32-characters
           BETTER_AUTH_URL=http://doom-or-bloom.localhost:1355
-          ASSESSMENT_PROVIDER=live
+          ASSESSMENT_PROVIDER=fixture
           ENV
           chmod 600 .env.development.local
       - run: pnpm db:migrate:test
