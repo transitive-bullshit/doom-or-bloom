@@ -5,6 +5,7 @@ import { toast } from 'sonner'
 import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
 import { AssessmentTable } from './table'
+import { PublishConfirmation } from './publish-confirmation'
 import {
   Dialog,
   DialogContent,
@@ -46,6 +47,7 @@ export function AssessmentLibrary({
   const router = useRouter()
   const [busy, setBusy] = useState<string | null>(null)
   const [deleting, setDeleting] = useState<LibraryItem | null>(null)
+  const [publishing, setPublishing] = useState<LibraryItem | null>(null)
   async function remove(id: string) {
     setBusy(id)
     try {
@@ -62,14 +64,17 @@ export function AssessmentLibrary({
       setBusy(null)
     }
   }
-  async function makePrivate(item: LibraryItem) {
+  async function setVisibility(
+    item: LibraryItem,
+    visibility: 'private' | 'public'
+  ) {
     setBusy(item.id)
     try {
       await api(`/api/assessments/${item.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           expectedRevision: item.revision,
-          visibility: 'private'
+          visibility
         })
       })
       router.refresh()
@@ -105,10 +110,23 @@ export function AssessmentLibrary({
         <AssessmentTable
           items={items}
           busy={busy !== null}
-          onMakePrivate={(item) => void makePrivate(item)}
+          onMakePrivate={(item) => void setVisibility(item, 'private')}
+          onPublish={setPublishing}
           onDelete={setDeleting}
         />
       )}
+      <Dialog
+        open={publishing !== null}
+        onOpenChange={(open) => {
+          if (!open) setPublishing(null)
+        }}
+      >
+        <PublishConfirmation
+          onConfirm={() => {
+            if (publishing) void setVisibility(publishing, 'public')
+          }}
+        />
+      </Dialog>
       <Dialog
         open={deleting !== null}
         onOpenChange={(open) => {

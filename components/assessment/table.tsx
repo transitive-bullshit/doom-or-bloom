@@ -76,10 +76,12 @@ export function AssessmentTable({
   items,
   busy,
   onMakePrivate,
+  onPublish,
   onDelete
 }: {
   items: LibraryItem[]
   busy: boolean
+  onPublish: (item: LibraryItem) => void
   onMakePrivate: (item: LibraryItem) => void
   onDelete: (item: LibraryItem) => void
 }) {
@@ -209,6 +211,12 @@ export function AssessmentTable({
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
             <DropdownMenuGroup>
+              {row.original.visibility === 'private' &&
+                row.original.hasResults && (
+                  <DropdownMenuItem onSelect={() => onPublish(row.original)}>
+                    Publish assessment publicly
+                  </DropdownMenuItem>
+                )}
               {row.original.visibility === 'public' && (
                 <>
                   <DropdownMenuItem asChild>

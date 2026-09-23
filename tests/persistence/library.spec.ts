@@ -83,6 +83,52 @@ test('library sorts by creation date and status and keeps management in row menu
       name: 'Actions for Older assessment'
     })
     await actions.click()
+    await expect(page.getByRole('menuitem').first()).toHaveText(
+      'Publish assessment publicly'
+    )
+    await page
+      .getByRole('menuitem', {
+        name: 'Publish assessment publicly',
+        exact: true
+      })
+      .click()
+    await expect(page.getByRole('dialog')).toContainText(
+      'Anyone with the link can view your answers and results.'
+    )
+    await page
+      .getByRole('button', { name: 'Keep private', exact: true })
+      .click()
+    await expect(
+      table.getByRole('link', { name: 'Published', exact: true })
+    ).toHaveCount(0)
+    await actions.click()
+    await page
+      .getByRole('menuitem', {
+        name: 'Publish assessment publicly',
+        exact: true
+      })
+      .click()
+    await page
+      .getByRole('dialog')
+      .getByRole('button', { name: 'Publish assessment publicly', exact: true })
+      .click()
+    await expect(
+      table.getByRole('link', { name: 'Published', exact: true })
+    ).toHaveAttribute('href', `/public/assessments/${ids[0]}`)
+    await actions.click()
+    await expect(
+      page.getByRole('menuitem', {
+        name: 'Publish assessment publicly',
+        exact: true
+      })
+    ).toHaveCount(0)
+    await page
+      .getByRole('menuitem', { name: 'Make private', exact: true })
+      .click()
+    await expect(
+      table.getByRole('link', { name: 'Published', exact: true })
+    ).toHaveCount(0)
+    await actions.click()
     const pngDownload = page.waitForEvent('download')
     await page
       .getByRole('menuitem', { name: 'Download results image', exact: true })
@@ -147,6 +193,12 @@ test('library sorts by creation date and status and keeps management in row menu
     await table
       .getByRole('button', { name: 'Actions for Newer assessment' })
       .click()
+    await expect(
+      page.getByRole('menuitem', {
+        name: 'Publish assessment publicly',
+        exact: true
+      })
+    ).toHaveCount(0)
     await expect(
       page.getByRole('menuitem', {
         name: 'Download results image',

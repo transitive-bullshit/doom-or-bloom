@@ -19,16 +19,8 @@ import { usePersistentAssessment } from './use-persistent-assessment'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { api, userErrorMessage } from '@/lib/assessments/client'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-  DialogTrigger
-} from '@/components/ui/dialog'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+import { PublishConfirmation } from './publish-confirmation'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
@@ -308,24 +300,9 @@ export function Interview({
                       Publish assessment publicly
                     </Button>
                   </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Publish assessment publicly?</DialogTitle>
-                      <DialogDescription>
-                        Anyone with the link can view your answers and results.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter>
-                      <DialogClose asChild>
-                        <Button variant='outline'>Keep private</Button>
-                      </DialogClose>
-                      <DialogClose asChild>
-                        <Button onClick={() => void visibility('public')}>
-                          Publish assessment publicly
-                        </Button>
-                      </DialogClose>
-                    </DialogFooter>
-                  </DialogContent>
+                  <PublishConfirmation
+                    onConfirm={() => void visibility('public')}
+                  />
                 </Dialog>
               )}
             </div>
