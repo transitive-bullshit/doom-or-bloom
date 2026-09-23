@@ -517,3 +517,9 @@ See [production readiness](production-readiness.md) for configuration boundaries
 - [x] robots.txt excludes private owner routes, APIs, the legacy start entry, and public JSON exports; public HTML and social images remain crawlable.
 - [x] Privacy metadata and llms.txt describe server persistence, anonymous ownership, optional X recovery, immutable snapshots, publication, forks, and seven-day public image caching. Corrected stale route and noindex claims in current docs; historical implementation evidence remains dated.
 - [x] SEO audit discovers current persona paths from the generated sitemap instead of the old authored fixture catalog. Browser checks cover discovery files, private/published assessment exclusion, and privacy metadata.
+
+## Testing policy update — September 24, 2026
+
+- [x] Replace the historical PostgreSQL/build/browser GitHub workflow described above with one core `pnpm test` job. No CI secrets, local env files, proxy, browser, or database setup.
+- [x] Audit test dependencies and prune duplicate browser scenarios and exact cosmetic assertions. Keep fast meaningful unit and native integration coverage.
+- [x] Document required local change/release gates and validation evidence in [testing guidelines](testing.md). Earlier references to CI running database/browser checks are historical; these checks remain local release requirements.

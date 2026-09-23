@@ -64,3 +64,5 @@ Latest persona addition: [Andrew McAfee](research/andrew-mcafee-sources-2026-09-
 Production infrastructure preparation and remaining hosted smoke tests: [production readiness](production-readiness.md).
 
 Crawler discovery includes static public pages and selected curated persona profiles from the database. sitemap.xml and llms.txt do not enumerate participant assessments; llms.txt documents their public URL pattern. See [public routes and caching](PERSISTENCE.md#public-pages-and-social-images).
+
+[Testing guidelines](testing.md) define the lightweight CI budget, test audit, and required local change/release checks.

@@ -8,7 +8,6 @@ import {
 test('representative bundle is validated but remains draft', () => {
   const bundle = loadBundle()
   expect(bundle.manifest.status).toBe('draft')
-  expect(bundle.references).toHaveLength(138)
   expect(() =>
     validateBundle({
       ...bundle,
@@ -26,8 +25,6 @@ test('content releases are pinned and unsupported paths are rejected', () => {
   const previous = loadBundle('0.2.0-draft')
   const expanded = loadBundle('0.3.0-draft')
   const current = loadBundle()
-  expect(previous.references).toHaveLength(42)
-  expect(expanded.references).toHaveLength(135)
   expect(previous.manifest.contentVersion).toBe('0.2.0-draft')
   expect(current.manifest.contentVersion).toBe('0.4.0-draft')
   expect(

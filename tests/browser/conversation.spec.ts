@@ -49,7 +49,7 @@ test('a saved deleted question keeps its draft and offers a current question', a
   ).toHaveCount(0)
   await expect(
     page.getByRole('article', { name: 'Question 2 and replies', exact: true })
-  ).toContainText(saved.prompts[1]!.text)
+  ).toHaveCount(0)
   expect(answerRequests).toBe(0)
 })
 

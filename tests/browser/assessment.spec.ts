@@ -29,50 +29,45 @@ async function submit(page: import('@playwright/test').Page, text: string) {
     page.getByText('Reading the evidence and choosing a useful next step…')
   ).toHaveCount(0)
 }
-for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
-  test(`saved ${contentVersion} assessments preserve their content through results and a new assessment adopts the current draft`, async ({
-    page
-  }) => {
-    const earlier = createAssessment('earlier-browser', 'fixture-v1')
-    earlier.versions.content = contentVersion
-    earlier.draft = 'My earlier unsent answer is intact.'
-    const originalId = await seedAssessment(page, earlier)
-    await expect(
-      page.getByText('Updated draft available', { exact: true })
-    ).toBeVisible()
-    await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
-      earlier.draft
-    )
-    for (let i = 0; i < 3; i++)
-      await submit(page, `Earlier-version synthetic answer ${i}.`)
-    await page.getByRole('button', { name: 'View my results' }).click()
-    await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
-    const saved = await savedAssessment(page)
-    expect(saved.versions.content).toBe(contentVersion)
-    expect(saved.result!.versions.content).toBe(contentVersion)
-    expect(saved.answers[0]!.text).toBe('Earlier-version synthetic answer 0.')
-    await page.reload()
-    await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
-    await page
-      .getByRole('link', { name: 'My assessments', exact: true })
-      .click()
-    await page
-      .getByRole('button', { name: 'Create a new assessment', exact: true })
-      .click()
-    await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
-    await expect(page).not.toHaveURL(new RegExp(originalId))
-    await expect(
-      page.getByText('Updated draft available', { exact: true })
-    ).toHaveCount(0)
-    expect((await savedAssessment(page)).versions.content).toBe(
-      versions.content
-    )
-    const original = await (
-      await page.request.get(`/api/assessments/${originalId}`)
-    ).json()
-    expect(original.assessment.result.versions.content).toBe(contentVersion)
-  })
-}
+test('saved earlier-version assessments preserve their content through results and a new assessment adopts the current draft', async ({
+  page
+}) => {
+  const contentVersion = '0.2.0-draft'
+  const earlier = createAssessment('earlier-browser', 'fixture-v1')
+  earlier.versions.content = contentVersion
+  earlier.draft = 'My earlier unsent answer is intact.'
+  const originalId = await seedAssessment(page, earlier)
+  await expect(
+    page.getByText('Updated draft available', { exact: true })
+  ).toBeVisible()
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+    earlier.draft
+  )
+  for (let i = 0; i < 3; i++)
+    await submit(page, `Earlier-version synthetic answer ${i}.`)
+  await page.getByRole('button', { name: 'View my results' }).click()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  const saved = await savedAssessment(page)
+  expect(saved.versions.content).toBe(contentVersion)
+  expect(saved.result!.versions.content).toBe(contentVersion)
+  expect(saved.answers[0]!.text).toBe('Earlier-version synthetic answer 0.')
+  await page.reload()
+  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
+    .click()
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
+  await expect(page).not.toHaveURL(new RegExp(originalId))
+  await expect(
+    page.getByText('Updated draft available', { exact: true })
+  ).toHaveCount(0)
+  expect((await savedAssessment(page)).versions.content).toBe(versions.content)
+  const original = await (
+    await page.request.get(`/api/assessments/${originalId}`)
+  ).json()
+  expect(original.assessment.result.versions.content).toBe(contentVersion)
+})
 test('long inserted answers remain intact across reload and use a soft submission limit', async ({
   page
 }) => {

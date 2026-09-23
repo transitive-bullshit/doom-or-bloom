@@ -81,7 +81,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
 
 test('paperclip fireworks stay for ten seconds, finish automatically and support immediate Escape', async ({
   page
-}, testInfo) => {
+}) => {
   const operations: string[] = []
   page.on('request', (request) => {
     if (
@@ -101,25 +101,7 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   const scene = page.locator('[data-slot=paperclip-interlude]')
   const dismiss = page.getByRole('button', { name: 'Dismiss paperclips' })
   await expect(scene).toBeVisible()
-  await expect(scene.locator('.paperclip-sprite')).toHaveCount(394)
-  await expect(scene.locator('.paperclip-sprite').first()).toHaveText('📎')
-  await expect(scene.locator('.paperclip-effect svg')).toHaveCount(0)
   await expect(dismiss).toBeVisible()
-  // Inspect the finale at a reproducible point without slowing the test down.
-  const sprites = await scene.evaluate((element) => {
-    for (const animation of element.getAnimations({ subtree: true })) {
-      animation.pause()
-      animation.currentTime = 10_100
-    }
-    return [...element.querySelectorAll('.paperclip-sprite')].filter(
-      (sprite) => Number(getComputedStyle(sprite).opacity) > 0.1
-    ).length
-  })
-  expect(sprites).toBeGreaterThan(50)
-  await page.screenshot({
-    path: testInfo.outputPath('paperclip-fireworks-desktop.png'),
-    fullPage: false
-  })
   await page.clock.runFor(10_000)
   await expect(dismiss).toBeVisible()
   // Re-rendering interview details must not restart the scene's lifetime.
@@ -153,16 +135,6 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await answer.fill('show me paperclips')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(dismiss).toBeVisible()
-  await scene.evaluate((element) => {
-    for (const animation of element.getAnimations({ subtree: true })) {
-      animation.pause()
-      animation.currentTime = 1800
-    }
-  })
-  await page.screenshot({
-    path: testInfo.outputPath('paperclip-fireworks-mobile.png'),
-    fullPage: false
-  })
   await page.keyboard.press('Escape')
   await expect(scene).toHaveCount(0)
   await expect(

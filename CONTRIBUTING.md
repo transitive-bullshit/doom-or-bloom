@@ -12,7 +12,7 @@ cp .env.example .env.development.local
 pnpm dev
 ```
 
-If `.env.development.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting answers. `pnpm dev` first runs `pnpm check:env`, then always selects live Jev; synthetic providers are reserved for isolated automated checks. Startup exits with an error listing missing or invalid variable names before serving requests. All Playwright configs validate the incoming environment before applying test-server overrides, including the dedicated test database. CI explicitly selects fixture mode; local development must have a real Jev key. Keep secrets out of commits and screenshots.
+If `.env.development.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting answers. `pnpm dev` first runs `pnpm check:env`, then always selects live Jev; synthetic providers are reserved for isolated automated checks. Startup exits with an error listing missing or invalid variable names before serving requests. All Playwright configs validate the incoming environment before applying test-server overrides, including the dedicated test database. Local browser suites explicitly select fixture mode after validation; local development must have a real Jev key. Keep secrets out of commits and screenshots.
 
 Development runs through [Portless](https://portless.sh). Open the URL printed by `pnpm dev`; the dev command uses an explicit stable name so changing branches does not change the registered X OAuth callback. Isolated test servers use their own names. Resolve the current URL with:
 
@@ -84,7 +84,7 @@ pnpm check:browser
 pnpm check:persistence
 ```
 
-`pnpm test` covers formatting, lint, types, unit tests, content validation, and unused code. Use `pnpm build:local` and `pnpm start:local` for production-mode checks against local settings. These commands preload development configuration and select the live provider because production rejects fixture mode; building does not run inference. The CI workflow installs native PostgreSQL, applies migrations twice, seeds curated fixtures and runs database/browser persistence checks without containers. Ordinary checks use fixtures and need no inference credentials. Browser tests use their own Portless hostname and build directory; consult `playwright.config.ts` when troubleshooting a local server collision.
+`pnpm test` covers formatting, lint, types, unit tests, content validation, and unused code. Use `pnpm build:local` and `pnpm start:local` for production-mode checks against local settings. These commands preload development configuration and select the live provider because production rejects fixture mode; building does not run inference. GitHub Actions runs only `pnpm test`, without local environment files, PostgreSQL, builds, or browsers. See [testing guidelines and local gates](docs/testing.md) for the required checks when changing persistence, UI, analytics, or release packaging. Ordinary checks use fixtures and need no inference credentials. Browser tests use their own Portless hostname and build directory; consult `playwright.config.ts` when troubleshooting a local server collision.
 
 Use modern TypeScript without semicolons, oxfmt for formatting, and oxlint for linting. Reuse shadcn/ui primitives. Read the repository’s [agent conventions](AGENTS.md) and the installed Next.js documentation before changing framework behavior.
 

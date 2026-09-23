@@ -2,61 +2,25 @@ name: CI
 
 on: [push]
 
+# Browser, database and release checks run locally; see docs/testing.md.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
-    name: Test Node.js ${{ matrix.node-version }}
+    name: Test Node.js 24
     runs-on: ubuntu-latest
-    env:
-      PORTLESS_PORT: '1355'
-      PORTLESS_HTTPS: '0'
-      PORTLESS_STATE_DIR: /tmp/doom-or-bloom-portless-${{ github.run_id }}
-
-    strategy:
-      fail-fast: true
-      matrix:
-        node-version:
-          - 24
-
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-
+          node-version: 24
+          cache: pnpm
       - run: pnpm install --frozen-lockfile --strict-peer-dependencies
-      - name: Start native PostgreSQL
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y postgresql
-          sudo systemctl start postgresql
-          sudo -u postgres psql -v ON_ERROR_STOP=1 -c "CREATE ROLE doom_bloom_ci LOGIN CREATEDB PASSWORD 'local-ci-only';"
-          sudo -u postgres createdb -O doom_bloom_ci doom_bloom_ci_test
-          cat > .env.development.local <<'ENV'
-          DATABASE_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/doom_bloom_ci_test
-          POSTGRES_TEST_ADMIN_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/postgres
-          TEST_DATABASE_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/doom_bloom_ci_test
-          BETTER_AUTH_SECRET=disposable-ci-secret-at-least-32-characters
-          BETTER_AUTH_URL=http://doom-or-bloom.localhost:1355
-          ASSESSMENT_PROVIDER=fixture
-          ENV
-          chmod 600 .env.development.local
-      - run: pnpm db:migrate:test
-      - run: pnpm db:migrate:test
-      - run: pnpm db:seed --test
-      - run: pnpm db:test
-      - run: pnpm db:test:repository
-      - run: pnpm db:test:commit
-      - run: pnpm db:test:lifecycle
-      - run: pnpm db:test:personas
-      - run: pnpm db:test:auth
       - run: pnpm test
-      - run: pnpm build:local
-      - run: pnpm exec playwright install --with-deps chromium
-      - name: Start unprivileged browser-test proxy
-        run: pnpm exec portless proxy start
-      - run: pnpm check:browser
-      - run: pnpm check:analytics
-      - run: pnpm check:persistence
-      - run: pnpm db:test:restart

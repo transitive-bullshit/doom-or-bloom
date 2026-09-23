@@ -7,7 +7,7 @@ test('freezing requires reviewed originals and compatible reviewed snapshots', (
   const bundle = loadBundle()
   const { intake } = loadAuthoringContext(bundle)
   expect(() => validateRequiredSourceReview(bundle, intake)).toThrow(
-    'incorporation/review is incomplete (114 originals)'
+    'incorporation/review is incomplete'
   )
   const source = intake.sources.find((s) => s.referenceIds.length)!
   const reviewed = {
