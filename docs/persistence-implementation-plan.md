@@ -389,3 +389,5 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - Confirmed persona sources and participant resources reuse ResourceList/ResourceBookmark; private and public participant results reuse ResultView, while all result surfaces reuse ExperimentalResults/WorldviewDetails.
 - Moved the owner-only heading stylesheet to a shared AssessmentPage wrapper used by private assessments, public participant/simulation assessments, and persona detail routes. Component text utilities retain precedence over shared defaults.
 - Verification: `pnpm test` and all six persona/assessment interaction browser cases passed.
+
+- Expected transformation now uses the same Card/Header/Title/Content structure and two-column detail grid as Expected capabilities. It stacks on mobile. `pnpm test` and the existing desktop/mobile results interaction check passed.
