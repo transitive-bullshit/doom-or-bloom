@@ -262,7 +262,7 @@ export function Interview({
     <AnswerNavigationProvider
       answerIds={state.answers.map((answer) => answer.id)}
     >
-      <section className='relative mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center px-6 py-10'>
+      <section className='content-column relative flex flex-1 flex-col justify-center py-10'>
         {state.recovery.paperclipActive && (
           <Paperclips dismiss={() => void act({ type: 'dismiss' })} />
         )}

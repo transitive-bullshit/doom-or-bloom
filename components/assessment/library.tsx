@@ -81,7 +81,7 @@ export function AssessmentLibrary({
     }
   }
   return (
-    <main className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'>
+    <main className='content-column flex flex-col gap-8 py-14'>
       <h1>My assessments</h1>
       <AccountAccess
         signedIn={signedIn}

@@ -38,7 +38,7 @@ export default async function Page({
   if (!assessment) notFound()
   return (
     <PageTransition>
-      <AssessmentPage className='mx-auto w-full max-w-6xl px-6 py-10'>
+      <AssessmentPage className='content-column py-10'>
         <PersonaPageContent person={person} assessment={assessment} />
       </AssessmentPage>
     </PageTransition>

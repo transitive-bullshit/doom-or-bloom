@@ -7,7 +7,7 @@ export const metadata = pageMetadata(publicPages[3]!)
 export default function Privacy() {
   const { analytics, posthog } = serverEnv()
   return (
-    <article className='mx-auto w-full max-w-2xl space-y-7 px-6 py-14 text-sm leading-relaxed'>
+    <article className='content-column space-y-7 py-14 text-sm leading-relaxed'>
       <h1>Privacy</h1>
       <p>
         No sign-up is required. A browser session gives you access to your

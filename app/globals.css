@@ -501,3 +501,11 @@
 :where(h1, h2, h3, h4, h5, h6) > button {
   font: inherit;
 }
+
+/* 624px reading column plus 24px gutters on each side. */
+@utility content-column {
+  width: 100%;
+  max-width: 42rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}

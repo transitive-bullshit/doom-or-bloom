@@ -40,7 +40,7 @@ export default async function Page({
     return (
       <AssessmentPage
         as='main'
-        className='mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-14'
+        className='content-column flex flex-col gap-8 py-14'
       >
         <PersonaPageContent
           person={{
@@ -59,7 +59,7 @@ export default async function Page({
   return (
     <AssessmentPage
       as='main'
-      className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'
+      className='content-column flex flex-col gap-8 py-14'
     >
       {saved.publisher ? (
         <ProfileHeader

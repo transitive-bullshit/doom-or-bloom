@@ -37,9 +37,7 @@ export default async function Page({
   return (
     <PageTransition>
       <AssessmentPage>
-        <h1 className='mx-auto w-full max-w-2xl px-6 pt-10'>
-          Map your AI worldview
-        </h1>
+        <h1 className='content-column pt-10'>Map your AI worldview</h1>
         <Interview
           personas={personas}
           initial={initial}

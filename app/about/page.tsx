@@ -16,7 +16,7 @@ export default async function About() {
   ])
   const person = examples.find((example) => example.id === personaId)
   return (
-    <article className='mx-auto w-full max-w-2xl space-y-10 px-6 py-14 text-sm leading-relaxed'>
+    <article className='content-column space-y-10 py-14 text-sm leading-relaxed'>
       <header className='space-y-5'>
         <h1>A clearer conversation about AI futures</h1>
         <p>

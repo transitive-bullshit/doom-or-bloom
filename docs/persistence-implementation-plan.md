@@ -445,3 +445,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 
 - [x] X persona profile links display only @username. Shared experimental results omit the milestone timeline card when no current milestone evidence is available.
 - [x] Verify repository checks and all three persona-detail browser cases, including @tszzl and the absent empty timeline.
+
+### Shared reading-column width (2026-09-24)
+
+- [x] Centralize the 624px reading area in content-column (672px outer width with 24px gutters). Apply it to participant owner/public routes, persona routes, library, About, Privacy, and the assessment entry page.
+- [x] Preserve wide maps/result grids through the shared breakout layout on persona pages.
+- [x] Verify repository checks, five persona/typography browser cases across desktop/mobile, and the public publication flow with an explicit 624px conversation-width assertion.

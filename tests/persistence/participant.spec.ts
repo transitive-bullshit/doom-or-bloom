@@ -268,6 +268,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     const conversation = publicPage.getByRole('region', {
       name: 'Full conversation'
     })
+    expect((await conversation.boundingBox())!.width).toBe(624)
     const expand = conversation.getByRole('button', {
       name: /Read full answer/
     })
