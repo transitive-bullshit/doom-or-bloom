@@ -1,7 +1,14 @@
 import sharp from 'sharp'
 import { unzipSync, strFromU8 } from 'fflate'
 import { people } from '../../components/landing/people'
-import { expect, test } from '@playwright/test'
+import {
+  expect,
+  test,
+  startAssessment,
+  seedAssessment,
+  savedAssessment,
+  mockEvaluation
+} from './fixtures'
 import { readFile } from 'node:fs/promises'
 import {
   createAssessment,
@@ -10,32 +17,27 @@ import {
 } from '../../lib/assessment/state'
 import { storageKey } from '../../lib/persistence/storage'
 import { limits, versions } from '../../lib/assessment/schema'
+const operationUrl = /\/api\/assessments\/[a-f0-9-]+$/
 const root = 'What do you think AI means for our future—and why?'
 async function submit(page: import('@playwright/test').Page, text: string) {
   await page.getByLabel('Your answer', { exact: true }).fill(text)
+  const response = page.waitForResponse(
+    (r) => operationUrl.test(r.url()) && r.request().method() === 'POST'
+  )
   await page.getByRole('button', { name: /^Continue/ }).click()
+  expect((await response).status()).toBe(200)
   await expect(
-    page.getByRole('button', { name: /^Reflecting on your answer/ })
+    page.getByText('Reading the evidence and choosing a useful next step…')
   ).toHaveCount(0)
 }
 for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
-  test(`saved ${contentVersion} assessments preserve their content through results and restart adopts the current draft`, async ({
+  test(`saved ${contentVersion} assessments preserve their content through results and a new assessment adopts the current draft`, async ({
     page
   }) => {
     const earlier = createAssessment('earlier-browser', 'fixture-v1')
     earlier.versions.content = contentVersion
     earlier.draft = 'My earlier unsent answer is intact.'
-    await page.addInitScript(
-      ({ key, assessment }) => {
-        if (!localStorage.getItem(key))
-          localStorage.setItem(
-            key,
-            JSON.stringify({ token: 'earlier-browser-token', assessment })
-          )
-      },
-      { key: storageKey, assessment: earlier }
-    )
-    await page.goto('/assessment')
+    const originalId = await seedAssessment(page, earlier)
     await expect(
       page.getByText('Updated draft available', { exact: true })
     ).toBeVisible()
@@ -46,27 +48,26 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
       await submit(page, `Earlier-version synthetic answer ${i}.`)
     await page.getByRole('button', { name: 'View my results' }).click()
     await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
-    const saved = await page.evaluate(
-      (key) => JSON.parse(localStorage.getItem(key)!).assessment,
-      storageKey
-    )
+    const saved = await savedAssessment(page)
     expect(saved.versions.content).toBe(contentVersion)
-    expect(saved.result.versions.content).toBe(contentVersion)
-    expect(saved.answers[0].text).toBe('Earlier-version synthetic answer 0.')
+    expect(saved.result!.versions.content).toBe(contentVersion)
+    expect(saved.answers[0]!.text).toBe('Earlier-version synthetic answer 0.')
     await page.reload()
     await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
-    await page.getByRole('button', { name: 'Restart', exact: true }).click()
-    await page.getByRole('button', { name: 'Clear & restart' }).click()
+    await page
+      .getByRole('button', { name: 'New assessment', exact: true })
+      .click()
+    await expect(page).not.toHaveURL(new RegExp(originalId))
     await expect(
       page.getByText('Updated draft available', { exact: true })
     ).toHaveCount(0)
-    expect(
-      await page.evaluate(
-        (key) =>
-          JSON.parse(localStorage.getItem(key)!).assessment.versions.content,
-        storageKey
-      )
-    ).toBe(versions.content)
+    expect((await savedAssessment(page)).versions.content).toBe(
+      versions.content
+    )
+    const original = await (
+      await page.request.get(`/api/assessments/${originalId}`)
+    ).json()
+    expect(original.assessment.result.versions.content).toBe(contentVersion)
   })
 }
 test('long inserted answers remain intact across reload and use a soft submission limit', async ({
@@ -74,11 +75,11 @@ test('long inserted answers remain intact across reload and use a soft submissio
 }) => {
   const submitted: string[] = []
   page.on('request', (request) => {
-    if (new URL(request.url()).pathname !== '/api/assessment') return
+    if (!operationUrl.test(request.url()) || request.method() !== 'POST') return
     const operation = request.postDataJSON().operation
     if (operation.type === 'answer') submitted.push(operation.text)
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   const answer = page.getByLabel('Your answer', { exact: true })
   const continueButton = page.getByRole('button', { name: /^Continue/ })
   await expect(page.locator('#answer-length')).toHaveCount(0)
@@ -116,26 +117,23 @@ test('long inserted answers remain intact across reload and use a soft submissio
   await expect(answer).toHaveAttribute('aria-invalid', 'false')
   await expect(page.locator('#answer-limit')).toHaveCount(0)
   await expect(continueButton).toBeEnabled()
-  const response = page.waitForResponse('**/api/assessment')
+  const response = page.waitForResponse(
+    (r) => operationUrl.test(r.url()) && r.request().method() === 'POST'
+  )
   await continueButton.click()
   expect((await response).status()).toBe(200)
   await expect(answer).toHaveValue('')
   expect(submitted).toEqual([accepted])
-  expect(
-    await page.evaluate((key) => {
-      const saved = JSON.parse(localStorage.getItem(key)!)
-      return saved.assessment.answers[0].text
-    }, storageKey)
-  ).toBe(accepted)
+  expect((await savedAssessment(page)).answers[0]!.text).toBe(accepted)
 })
-test('three answers, draft resume, map, correction, downloads and restart', async ({
+test('three answers, draft resume, map, correction, downloads and another assessment', async ({
   page
 }, testInfo) => {
   const outbound: string[] = []
   page.on('request', (r) => {
     if (/posthog|analytics|typesafe\.ai/.test(r.url())) outbound.push(r.url())
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await expect(page.getByRole('heading', { name: root })).toBeVisible()
   await page.getByLabel('Your answer', { exact: true }).fill('Unsent draft')
   await page.reload()
@@ -259,16 +257,18 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   await cardDownload.saveAs(testInfo.outputPath('share-card.png'))
   await expect(page.getByRole('link', { name: 'Post on X' })).toHaveCount(0)
   expect(outbound).toEqual([])
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page.getByRole('button', { name: 'Clear & restart' }).click()
+  const previous = page.url()
+  await page
+    .getByRole('button', { name: 'New assessment', exact: true })
+    .click()
+  await expect(page).not.toHaveURL(previous)
   await expect(page.getByRole('heading', { name: root })).toBeVisible()
 })
 test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', async ({
   page
 }) => {
   let calls = 0
-  await page.route('**/api/assessment', async (route) => {
-    const input = route.request().postDataJSON()
+  await mockEvaluation(page, async (input) => {
     const state =
       input.operation.type === 'answer'
         ? recordDisposition(input.assessment, 'non_answer', 1, input.requestId)
@@ -281,17 +281,15 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
     if (input.operation.type === 'dismiss')
       state.recovery.paperclipActive = false
     state.revision++
-    await route.fulfill({
-      json: {
-        assessmentId: state.id,
-        baseRevision: state.revision - 1,
-        requestId: input.requestId,
-        assessment: state,
-        provider: 'fixture'
-      }
-    })
+    return {
+      assessmentId: state.id,
+      baseRevision: state.revision - 1,
+      requestId: input.requestId,
+      assessment: state,
+      provider: 'fixture'
+    }
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await submit(page, 'nonsense one')
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   await submit(page, 'nonsense two')
@@ -318,119 +316,99 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
   ).toHaveCount(0)
   expect(calls).toBe(4)
 })
-test('two tabs cannot overwrite each other', async ({ page, context }) => {
-  await page.goto('/assessment')
+test('two tabs cannot overwrite committed answers', async ({
+  page,
+  context
+}) => {
+  await startAssessment(page)
   const second = await context.newPage()
-  await second.goto('/assessment')
-  await second.getByLabel('Your answer', { exact: true }).fill('newer draft')
-  await expect(
-    page.getByText('This assessment changed in another tab')
-  ).toBeVisible()
-  await expect(page.getByLabel('Your answer', { exact: true })).toBeDisabled()
-  await page.getByRole('button', { name: 'Reload latest version' }).click()
-  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
-    'newer draft'
+  await second.goto(page.url())
+  await submit(second, 'The saved answer from the second tab.')
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('Stale competing answer.')
+  const rejected = page.waitForResponse(
+    (r) => operationUrl.test(r.url()) && r.status() === 409
   )
+  await page.getByRole('button', { name: /^Continue/ }).click()
+  await rejected
+  await page.getByRole('button', { name: 'Refresh saved progress' }).click()
+  await expect(
+    page.getByRole('article', { name: 'Question 1 and replies' })
+  ).toContainText('The saved answer from the second tab.')
+  const state = await savedAssessment(page)
+  expect(state.answers.map((answer) => answer.text)).toEqual([
+    'The saved answer from the second tab.'
+  ])
 })
-test('restart discards in-flight work; provider failure preserves draft', async ({
+test('an unavailable response preserves the draft and previous saved progress', async ({
   page
 }) => {
-  await page.goto('/assessment')
-  await submit(
-    page,
-    'AI could improve medicine, but the benefits depend on how it is governed.'
+  await startAssessment(page)
+  await submit(page, 'AI could improve medicine with careful governance.')
+  const before = await savedAssessment(page)
+  await page.route(operationUrl, (route) =>
+    route.request().method() === 'POST'
+      ? route.fulfill({
+          status: 503,
+          json: { error: 'Evaluator unavailable.' }
+        })
+      : route.continue()
   )
-  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
-  let release: (() => void) | undefined
-  await page.route('**/api/assessment', async (route) => {
-    await new Promise<void>((resolve) => {
-      release = resolve
-    })
-    await route
-      .fulfill({
-        status: 503,
-        json: {
-          error:
-            'The evaluator is temporarily unavailable. Your answer is saved; please retry.'
-        }
-      })
-      .catch(() => {
-        /* Restart cancels the obsolete browser request. */
-      })
-  })
-  await page.goto('/assessment')
-  await page.getByLabel('Your answer', { exact: true }).fill('surviving draft')
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('preserved on failure')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(
-    page.getByText('Reading the evidence and choosing a useful next step…')
-  ).toBeVisible()
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page.getByRole('button', { name: 'Clear & restart' }).click()
-  release?.()
-  await expect(page.getByRole('heading', { name: root })).toBeVisible()
-  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
-  await page.unroute('**/api/assessment')
-  await page.route('**/api/assessment', (route) =>
-    route.fulfill({
-      status: 503,
-      json: {
-        error:
-          'The evaluator is temporarily unavailable. Your answer is saved; please retry.'
-      }
-    })
-  )
-  await submit(page, 'preserved on failure')
-  await expect(
-    page.locator('[data-sonner-toast][data-type=error]')
-  ).toBeVisible()
-  await expect(
-    page
-      .locator('[data-sonner-toast]')
-      .filter({ hasText: 'Your answer is saved' })
+    page.getByRole('button', { name: 'Check submission', exact: true })
   ).toBeVisible()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
     'preserved on failure'
   )
-  expect(
-    await page.evaluate((key) => {
-      const saved = JSON.parse(localStorage.getItem(key)!)
-      return saved.assessment.attempts.length
-    }, storageKey)
-  ).toBe(0)
+  expect((await savedAssessment(page)).revision).toBe(before.revision)
+  await page.reload()
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+    'preserved on failure'
+  )
 })
-test('corrupt storage offers backup; unavailable storage permits ephemeral use', async ({
-  page,
-  baseURL
+test('legacy corrupt storage is ignored and unavailable draft storage still saves submitted progress', async ({
+  page
 }) => {
   await page.addInitScript(
     (key) => localStorage.setItem(key, '{bad'),
     storageKey
   )
-  await page.goto('/assessment')
-  await expect(
-    page.getByRole('button', { name: 'Download saved backup' })
-  ).toBeVisible()
-  await expect(page.getByLabel('Your answer', { exact: true })).toBeDisabled()
-  const ephemeral = await page
-    .context()
-    .browser()!
-    .newContext({ ignoreHTTPSErrors: true })
-  const other = await ephemeral.newPage()
-  await other.addInitScript(() => {
+  await startAssessment(page)
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeEnabled()
+  await page.addInitScript(() => {
     Object.defineProperty(window, 'localStorage', {
       get: () => {
         throw new Error('unavailable')
       }
     })
   })
-  await other.goto(new URL('/assessment', baseURL!).toString())
+  await page.reload()
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('Server saved answer despite unavailable local storage.')
   await expect(
-    other.getByText(
-      'Browser storage is unavailable. Keep this tab open to preserve progress.'
+    page.getByText(
+      'Unsubmitted typing cannot be saved in this browser. Submitted progress is saved on the server.'
     )
   ).toBeVisible()
-  await expect(other.getByLabel('Your answer', { exact: true })).toBeEnabled()
-  await ephemeral.close()
+  const refreshed = page.waitForResponse(
+    (r) => operationUrl.test(r.url()) && r.request().method() === 'GET'
+  )
+  await page.getByRole('button', { name: 'Refresh saved progress' }).click()
+  await refreshed
+  await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+    'Server saved answer despite unavailable local storage.'
+  )
+  await submit(page, 'Server saved answer despite unavailable local storage.')
+  await page.reload()
+  await expect(
+    page.getByRole('article', { name: 'Question 1 and replies' })
+  ).toContainText('Server saved answer despite unavailable local storage.')
 })
 test('the twelfth prompt finalizes insufficient evidence after a non-answer without issuing another', async ({
   page
@@ -444,15 +422,7 @@ test('the twelfth prompt finalizes insufficient evidence after a non-answer with
       variant: 'original',
       sourceEvidenceIds: []
     })
-  await page.addInitScript(
-    ({ key, snapshot }) =>
-      localStorage.setItem(
-        key,
-        JSON.stringify({ token: 'cap-token', assessment: snapshot })
-      ),
-    { key: storageKey, snapshot: state }
-  )
-  await page.goto('/assessment')
+  await seedAssessment(page, state)
   await expect(page.getByText('Approaching the limit')).toBeVisible()
   await submit(page, 'test')
   await expect(page.getByText('12-prompt cap reached')).toBeVisible()
@@ -463,33 +433,36 @@ test('the twelfth prompt finalizes insufficient evidence after a non-answer with
     page.getByRole('button', { name: 'Continue answering questions' })
   ).toHaveCount(0)
 })
-test('an uncertain transport retry reuses the same request and semantic attempt', async ({
+test('a lost response replays its original key without duplicating the semantic attempt', async ({
   page
 }) => {
   const ids: string[] = []
-  await page.route('**/api/assessment', async (route) => {
-    ids.push(route.request().postDataJSON().requestId)
+  await page.route(operationUrl, async (route) => {
+    if (route.request().method() !== 'POST') return route.continue()
+    ids.push(route.request().postDataJSON().requestKey)
     const response = await route.fetch()
     if (ids.length === 1) await route.abort('failed')
     else await route.fulfill({ response })
   })
-  await page.goto('/assessment')
-  await submit(page, 'Preserved after a lost response.')
-  await expect(
-    page.locator('[data-sonner-toast][data-type=error]')
-  ).toBeVisible()
-  await submit(page, 'Preserved after a lost response.')
+  await startAssessment(page)
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('Preserved after a lost response.')
+  await page.getByRole('button', { name: /^Continue/ }).click()
+  const check = page.getByRole('button', {
+    name: 'Check submission',
+    exact: true
+  })
+  await expect(check).toBeVisible()
+  await check.click()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   expect(ids).toHaveLength(2)
   expect(ids[0]).toBe(ids[1])
-  expect(
-    await page.evaluate((key) => {
-      const saved = JSON.parse(localStorage.getItem(key)!)
-      return saved.assessment.attempts.filter(
-        (attempt: { evaluated: boolean }) => attempt.evaluated
-      ).length
-    }, storageKey)
-  ).toBe(1)
+  const state = await savedAssessment(page)
+  expect(state.attempts.filter((attempt) => attempt.evaluated)).toHaveLength(1)
+  expect(state.answers.map((answer) => answer.text)).toEqual([
+    'Preserved after a lost response.'
+  ])
 })
 
 test('a well-covered first answer offers results while ordinary follow-ups remain the default', async ({
@@ -499,7 +472,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   page.on('request', (request) => {
     if (/typesafe\.ai|posthog/.test(request.url())) requests.push(request.url())
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await expect(
     page.getByRole('meter', { name: 'Evidence readiness' })
   ).toHaveCount(0)
@@ -520,10 +493,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
     page.getByRole('button', { name: 'View my results' })
   ).toBeEnabled()
   await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
-  const state = await page.evaluate(
-    (key) => JSON.parse(localStorage.getItem(key)!).assessment,
-    storageKey
-  )
+  const state = await savedAssessment(page)
   expect(state.answers).toHaveLength(1)
   expect(state.prompts).toHaveLength(2)
   await page.getByRole('button', { name: 'view your results now' }).click()

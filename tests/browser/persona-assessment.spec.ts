@@ -14,7 +14,7 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
   await page.goto('/users/jensenhuang')
-  const ctas = page.getByRole('link', {
+  const ctas = page.getByRole('button', {
     name: 'Map your own worldview',
     exact: true
   })

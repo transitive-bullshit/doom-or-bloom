@@ -44,7 +44,13 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
     const assessment = assessmentSchema.parse(next.assessment)
     const saved = readPending(assessment.id)
     const op = next.operation
-    let draft = readDraft(assessment.id, currentPrompt(assessment).id)
+    const promptId = currentPrompt(assessment).id
+    let draft =
+      readDraft(assessment.id, promptId) ||
+      (state.current.id === assessment.id &&
+      currentPrompt(state.current).id === promptId
+        ? state.current.draft
+        : '')
     if (
       saved &&
       op?.requestKey === saved.requestKey &&
