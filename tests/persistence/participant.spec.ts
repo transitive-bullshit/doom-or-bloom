@@ -275,6 +275,20 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       name: 'Full conversation'
     })
     expect((await conversation.boundingBox())!.width).toBe(720)
+    const repliedPromptIds = new Set([
+      ...json.assessment.answers.map(
+        (answer: { promptInstanceId: string }) => answer.promptInstanceId
+      ),
+      ...json.assessment.interactionHistory.map(
+        (reply: { promptInstanceId: string }) => reply.promptInstanceId
+      )
+    ])
+    expect(json.assessment.prompts.length).toBeGreaterThan(
+      repliedPromptIds.size
+    )
+    await expect(
+      conversation.getByRole('article', { name: /^Question \d+ and replies$/ })
+    ).toHaveCount(repliedPromptIds.size)
     const expand = conversation.getByRole('button', {
       name: /Read full answer/
     })

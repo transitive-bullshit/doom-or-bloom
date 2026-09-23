@@ -12,6 +12,9 @@ export function PublishedResult({
   state: Assessment
   personas: PersonaComparison[]
 }) {
+  const turns = conversationTurns(state).filter(
+    (turn) => turn.replies.length > 0
+  )
   return (
     <AnswerNavigationProvider
       answerIds={state.answers.map((answer) => answer.id)}
@@ -29,7 +32,7 @@ export function PublishedResult({
         aria-labelledby='full-conversation'
       >
         <h2 id='full-conversation'>Full conversation</h2>
-        <ConversationHistory turns={conversationTurns(state)} />
+        <ConversationHistory turns={turns} />
       </section>
     </AnswerNavigationProvider>
   )
