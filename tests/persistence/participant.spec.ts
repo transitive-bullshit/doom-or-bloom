@@ -177,6 +177,13 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     ).json()
 
     await page.reload()
+    const ownerMatches = page
+      .getByRole('region', { name: 'Your closest worldviews' })
+      .getByRole('link', { name: /persona$/ })
+    await expect(ownerMatches).toHaveCount(3)
+    const ownerMatchLinks = await ownerMatches.evaluateAll((links) =>
+      links.map((link) => link.getAttribute('href'))
+    )
     expect(
       await (await page.request.get(`/api/assessments/${id}`)).json()
     ).toEqual(beforeView)
@@ -222,6 +229,15 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(await visitor.cookies()).toHaveLength(0)
     const publicPage = await visitor.newPage()
     await publicPage.goto(publicURL)
+    const publicMatches = publicPage
+      .getByRole('region', { name: 'Your closest worldviews' })
+      .getByRole('link', { name: /persona$/ })
+    await expect(publicMatches).toHaveCount(3)
+    expect(
+      await publicMatches.evaluateAll((links) =>
+        links.map((link) => link.getAttribute('href'))
+      )
+    ).toEqual(ownerMatchLinks)
     await expect(publicPage.getByRole('heading', { level: 1 })).toHaveCSS(
       'font-size',
       '30px'

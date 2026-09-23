@@ -14,7 +14,6 @@ for (const width of [390, 1488]) {
   }) => {
     await page.setViewportSize({ width, height: 1036 })
     for (const path of [
-      '/',
       '/about',
       '/privacy',
       '/assessments',
@@ -36,6 +35,11 @@ for (const width of [390, 1488]) {
         expect(heading.weight, `${path} ${heading.tag}`).toBe('600')
       }
     }
+    await page.goto('/')
+    await expect(page.getByRole('heading', { level: 1 })).toHaveCSS(
+      'font-size',
+      width === 390 ? '36px' : '76px'
+    )
     await startAssessment(page)
     await expect(page.getByRole('heading', { level: 1 })).toHaveCSS(
       'font-size',

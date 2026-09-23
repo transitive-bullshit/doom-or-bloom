@@ -1,4 +1,6 @@
 import 'server-only'
+import { worldviewValues } from '@/lib/assessment/persona-matches'
+import { reportServerError } from '@/lib/server/error-reporting'
 import { cache } from 'react'
 import { getPool } from '@/lib/db'
 import { personaRepository } from '@/lib/personas/repository'
@@ -27,4 +29,20 @@ export const loadExamples = cache(async (featuredOnly = true) => {
         result: simulationPresentation(row.payload).result
       }
     })
+})
+
+/** Identical comparison inputs for private and public participant results. */
+export const loadPersonaComparisons = cache(async () => {
+  try {
+    return (await loadExamples()).map(({ id, name, slug, avatar, result }) => ({
+      id,
+      name,
+      slug,
+      avatar,
+      values: worldviewValues(result)
+    }))
+  } catch (err) {
+    reportServerError('persona_comparisons_unavailable', err, {})
+    return []
+  }
 })

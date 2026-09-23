@@ -435,3 +435,8 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Remove individual heading typography utilities throughout pages, shared components, local tools, and dialog titles. Preserve layout classes and independent non-heading labels; minor result sections use smaller heading levels.
 - [x] Document the shared scale and usage rules in PRODUCT.md; AssessmentPage now owns layout only.
 - [x] Verify 269 unit tests and repository checks, final type checking, 20 landing/persona/interaction/typography browser cases, and public publication flow. Computed sizes agree across desktop/mobile routes; inspected both assessment screenshots.
+
+### Public comparisons and homepage heading follow-up (2026-09-24)
+
+- [x] Reproduced the missing public persona matches: PublishedResult passed an empty comparison list while the private page loaded selected personas. Both routes now use loadPersonaComparisons and the same ranking/rendering components. A browser regression fails before the fix and passes afterward, checking the same three links in the same order.
+- [x] Restore the homepage hero's original fluid desktop size and 36px mobile size as an explicit display-heading exception. Keep the shared h1–h6 scale on other pages and verify both viewport sizes.

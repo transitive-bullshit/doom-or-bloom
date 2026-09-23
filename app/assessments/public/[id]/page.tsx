@@ -1,3 +1,4 @@
+import { loadPersonaComparisons } from '@/components/landing/data'
 import { ProfileHeader } from '@/components/profile-header'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
@@ -54,6 +55,7 @@ export default async function Page({
     )
   }
   const state = saved.assessment
+  const personas = await loadPersonaComparisons()
   return (
     <AssessmentPage
       as='main'
@@ -69,7 +71,10 @@ export default async function Page({
       ) : (
         <h1>Your AI worldview</h1>
       )}
-      <PublishedResult state={{ ...state, draft: '', eventMarkers: [] }} />
+      <PublishedResult
+        state={{ ...state, draft: '', eventMarkers: [] }}
+        personas={personas}
+      />
       <WorldviewCtaCard />
     </AssessmentPage>
   )

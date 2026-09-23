@@ -7,8 +7,7 @@ import { AssessmentError } from '@/lib/assessments/contracts'
 import { PageTransition } from '@/components/page-transition'
 import { Interview } from '@/components/assessment/interview'
 import { loadBundle } from '@/lib/content/loader'
-import { loadExamples } from '@/components/landing/data'
-import { worldviewValues } from '@/lib/assessment/persona-matches'
+import { loadPersonaComparisons } from '@/components/landing/data'
 import { serverEnv } from '@/lib/server/env'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
 export const dynamic = 'force-dynamic'
@@ -34,18 +33,7 @@ export default async function Page({
     })
   const env = serverEnv()
   const bundle = loadBundle(initial.assessment.versions.content)
-  const personas = (
-    await loadExamples().catch((err: unknown) => {
-      console.error('Unable to load persona comparisons', err)
-      return []
-    })
-  ).map(({ id, name, slug, avatar, result }) => ({
-    id,
-    name,
-    slug,
-    avatar,
-    values: worldviewValues(result)
-  }))
+  const personas = await loadPersonaComparisons()
   return (
     <PageTransition>
       <AssessmentPage>
