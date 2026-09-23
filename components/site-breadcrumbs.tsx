@@ -45,7 +45,7 @@ export function SiteBreadcrumbs() {
   label ??= 'Page'
 
   return (
-    <Breadcrumb className='content-column pt-6'>
+    <Breadcrumb className='content-column'>
       <BreadcrumbList>
         {crumbs.map((crumb) => (
           <Fragment key={crumb.href}>

@@ -58,9 +58,7 @@ export function PersonaPageContent({
         <PersonaAnswers assessment={assessment} />
         <section aria-label='Debug info'>
           <Collapsible className='rounded-xl border p-4'>
-            <h3>
-              <DisclosureTrigger>Debug info</DisclosureTrigger>
-            </h3>
+            <DisclosureTrigger>Debug info</DisclosureTrigger>
             <CollapsibleContent className='mt-4 flex min-w-0 flex-col gap-5'>
               <ReasoningJudgments components={person.result.components} />
               <div className='flex min-w-0 flex-col gap-3'>
@@ -123,7 +121,7 @@ function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
               <p className='text-xs text-muted-foreground'>
                 Question {index + 1}
               </p>
-              <h3>{answer.question}</h3>
+              <h3 className='w-full text-pretty'>{answer.question}</h3>
               <div className='rounded-xl bg-muted p-4 text-sm leading-relaxed whitespace-pre-wrap wrap-anywhere'>
                 {answer.answer}
               </div>
