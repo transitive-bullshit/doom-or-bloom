@@ -250,3 +250,5 @@ The global header shows a compact animated “Map your own worldview” CTA for 
 Conversation history shows only questions with submitted replies on both private and public assessments. An unanswered current question appears only while actively answering; viewing results hides it, and continuing the interview restores it without changing the saved assessment history.
 
 Missing routes and unavailable resources use the shared branded 404 page: the Be UI glitch graphic in the worldview palette, “404 · Page not found,” “Looks like you got lost in latent space,” and a Back to home link. Keep the status accessible independently of the decorative animation and respect reduced motion.
+
+Public-facing privacy copy leads with “Your answers and results remain private unless you choose to publish them.” Keep About and README prose brief and focused on the experience. Storage, provider processing, retention, and operator-access details belong on the privacy page; engineering docs remain the technical reference.

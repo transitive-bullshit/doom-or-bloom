@@ -20,7 +20,7 @@ export async function GET() {
     '',
     'The assessment and interpretation ranges are experimental, not validated measurements or calibrated probabilities. Map coordinates describe beliefs; they are not predictions of event probability.',
     '',
-    'Submitted answers and results are persisted in PostgreSQL as immutable snapshots. Assessments are private by default. Anonymous ownership uses a browser session; optional X sign-in makes assessments recoverable across browsers. Unsubmitted typing stays in the browser.',
+    'Your answers and results remain private unless you choose to publish them. No sign-up is required; optional X sign-in lets you recover assessments in another browser. See /privacy for data storage and processing details.',
     '',
     'The start link /assessments?start=1 opens a new draft for a first-time visitor or the existing library. /assessments lists the current owner’s assessments; /assessments/<id> is the private detail route. Drafts are saved only after the first submitted answer. Library statuses are In progress, Ready to publish, and Published. Published assessments are frozen; continuing creates a separate private fork.',
     '',
