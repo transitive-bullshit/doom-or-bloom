@@ -47,7 +47,7 @@ export function AssessmentStart({
             setAttempt((value) => value + 1)
           }}
         >
-          {error ? 'Try again' : 'New assessment'}
+          {error ? 'Try again' : 'Create a new assessment'}
         </ExpandingArrowAction>
       ) : null}
     </div>

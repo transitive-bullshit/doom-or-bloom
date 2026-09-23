@@ -57,7 +57,7 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
       .getByRole('link', { name: 'My assessments', exact: true })
       .click()
     await page
-      .getByRole('button', { name: 'New assessment', exact: true })
+      .getByRole('button', { name: 'Create a new assessment', exact: true })
       .click()
     await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
     await expect(page).not.toHaveURL(new RegExp(originalId))
@@ -208,7 +208,7 @@ test('three answers, draft resume, map, report download and another assessment',
   const previous = page.url()
   await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
-    .getByRole('button', { name: 'New assessment', exact: true })
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await expect(page).not.toHaveURL(previous)

@@ -8,7 +8,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await startAssessment(page)
   await expect(
-    page.getByRole('button', { name: 'New assessment', exact: true })
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
   ).toHaveCount(0)
   const answer = page.getByLabel('Your answer', { exact: true })
   const submit = async (text: string) => {
@@ -17,7 +17,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   }
   await submit('test')
   await expect(
-    page.getByRole('button', { name: 'New assessment', exact: true })
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
   ).toHaveCount(0)
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   await submit('test again')
@@ -54,13 +54,13 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   const previousUrl = page.url()
   await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
-    .getByRole('button', { name: 'New assessment', exact: true })
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
-    page.getByRole('button', { name: 'New assessment', exact: true })
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
   ).toHaveCount(0)
   await expect(
     page.getByText('Choose what to do next', { exact: true })
@@ -138,13 +138,13 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   const previousUrl = page.url()
   await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
-    .getByRole('button', { name: 'New assessment', exact: true })
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
-    page.getByRole('button', { name: 'New assessment', exact: true })
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
   ).toHaveCount(0)
   await expect(
     page.getByText('Choose what to do next', { exact: true })

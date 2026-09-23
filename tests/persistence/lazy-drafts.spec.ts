@@ -11,7 +11,7 @@ test('unsubmitted drafts survive history and reload without database rows; first
   try {
     await page.goto('/assessments')
     await page
-      .getByRole('button', { name: 'New assessment', exact: true })
+      .getByRole('button', { name: 'Create a new assessment', exact: true })
       .click()
     await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
     const url = page.url()

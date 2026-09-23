@@ -508,7 +508,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   await page.getByRole('button', { name: 'Debug off', exact: true }).click()
   await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
-    .getByRole('button', { name: 'New assessment', exact: true })
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await expect(page).not.toHaveURL(new RegExp(assessmentId))

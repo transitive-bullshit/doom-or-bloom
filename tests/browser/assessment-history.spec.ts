@@ -12,7 +12,7 @@ test('New assessment preserves the library entry reached from the homepage', asy
     .click()
   await expect(page).toHaveURL(/\/assessments$/)
   const create = page.getByRole('button', {
-    name: 'New assessment',
+    name: 'Create a new assessment',
     exact: true
   })
   await create.click()

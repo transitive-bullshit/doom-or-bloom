@@ -18,7 +18,7 @@ test('optional X login is on the library and uses the configured callback and re
   })
   await page.goto('/assessments')
   await expect(
-    page.getByRole('button', { name: 'New assessment' })
+    page.getByRole('button', { name: 'Create a new assessment' })
   ).toBeVisible()
   await page.getByRole('button', { name: 'Sign in with X' }).click()
   await expect(
