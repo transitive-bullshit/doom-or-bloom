@@ -37,6 +37,14 @@ export default function Privacy() {
         assessments. Delete an assessment from My assessments to remove its
         server records.
       </p>
+      <h2 className='text-lg font-medium'>Optional account recovery</h2>
+      <p>
+        Where X sign-in is available, you can link this browser’s assessments to
+        your account and recover them in another browser. We store your X
+        account identifier and authentication profile. Signing in does not
+        publish your assessments or add your X identity to their public pages.
+        You can still create and share assessments without signing in.
+      </p>
       <h2 className='text-lg font-medium'>Optional measurement</h2>
       <p>
         Vercel page analytics are {analytics ? 'enabled' : 'disabled'} in this

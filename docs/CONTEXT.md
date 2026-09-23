@@ -91,3 +91,5 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 **Full report**: An optional downloadable artifact containing the expanded profile, coverage, interpretation ranges, supporting evidence, relevant Jev judgments, rubric and content versions, and methodology context. It excludes hidden reasoning and secrets. _Avoid_: Raw API dump, public transcript by default
 
 **Share card**: A participant-controlled visual summary of a result intended for sharing beyond the assessment. _Avoid_: Public transcript
+
+**Anonymous ownership claim**: A transaction that transfers a browser’s assessments to its authenticated account, preserving IDs, snapshots and visibility. It then removes the anonymous owner and revokes its sessions. Failure leaves anonymous access intact. Authentication is optional; public assessments do not expose the account’s X identity.

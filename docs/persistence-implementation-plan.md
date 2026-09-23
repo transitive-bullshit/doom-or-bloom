@@ -135,10 +135,10 @@ Commit: `test: verify persistent assessment lifecycle and recovery` (or smaller 
 
 ## Checkpoint 6 — X login and recovery across browsers
 
-- [ ] Configure Better Auth's X provider behind server-only credentials and a clear optional sign-in entry. Starting, completing, and sharing assessments remain available anonymously.
+- [x] Configure Better Auth's X provider behind server-only credentials and a clear optional sign-in entry. Starting, completing, and sharing assessments remain available anonymously.
 - [ ] Register callback URLs for the actual local Portless origin and later hosted environments. Verify X's current callback restrictions and granted scopes; use an approved reachable dev origin only if necessary. Avoid requesting posting/follower permissions for authentication.
-- [ ] Implement retry-safe ownership transfer from the current anonymous identity to a new or existing authenticated user. Preserve assessment IDs, visibility, snapshots, and provenance. Keep the anonymous identity/data intact if transfer fails, then retire/revoke anonymous sessions after success.
-- [ ] Exercise actual library callback timing/failure behavior with the pinned version. Verify account linking against provider ID/account ID rather than assuming email availability or matching identities by display name.
+- [x] Implement retry-safe ownership transfer from the current anonymous identity to a new or existing authenticated user. Preserve assessment IDs, visibility, snapshots, and provenance. Keep the anonymous identity/data intact if transfer fails, then retire/revoke anonymous sessions after success.
+- [x] Exercise actual library callback timing/failure behavior with the pinned version. Verify account linking against provider ID/account ID rather than assuming email availability or matching identities by display name.
 - [ ] Test interrupted/repeated callbacks, login to an existing account that already owns assessments, sign-out, expired sessions, failed transfer, cross-browser recovery, and concurrent processing during transfer. Login must not expose account identity on previously anonymous public assessments.
 - [ ] Run provider-mocked integration/browser checks without credentials. When the user has configured X, perform one local login smoke check and record the result. Keep that check explicitly pending if setup is unavailable.
 - [ ] Update auth/privacy/recovery copy, MEASUREMENT, PRODUCT, CONTEXT, CONTRIBUTING, env documentation, and this log. Run the relevant integration/build checks before committing completion.
@@ -242,3 +242,10 @@ Pause only the dependent work when credentials or external configuration are una
 - Started the built app locally. Homepage and curated profile returned 200 from native Postgres; public simulation HTML, JSON and WebP each returned 200 with `Cache-Control: private, no-store` and no session cookie. Stopped the temporary production server after verification.
 - CI now installs/starts native PostgreSQL, creates a disposable test database, applies migrations twice, seeds and runs real-Postgres and Chromium persistence checks. Hosted CI execution itself is not yet verified.
 - Still outstanding: remaining failure/race acceptance, disposable database recreation/restart exercise, older browser-suite migration, docs reconciliation and optional X auth. No production migrations, deployment or paid inference.
+
+### 2026-09-23 — optional X authentication and transactional claims
+
+- Added credential-gated X login/sign-out to the library, leaving first-run assessment creation unchanged. Restricted scopes to `users.read tweet.read`; disabled email-based account linking. Added ignored-env setup instructions and requested developer-app configuration for a real login check.
+- Added atomic ownership transfer, namespaced creation keys, anonymous-session revocation and anonymous-owner retirement. Assessment IDs, snapshots and publication remain stable. A failed claim strips prepared destination cookies and redirects to a recoverable library error; the anonymous session remains valid.
+- `pnpm db:test:auth` passes with real Better Auth callbacks and mocked X token/profile responses: new and existing account login, sign-out, fresh-browser recovery, injected transfer rollback, successful retry, revoked old owner access and an operation committing across login. No real X calls or credentials are used by this test.
+- Consumed OAuth callback replay is rejected without duplicate ownership changes. Chromium passed the optional login entry, exact callback/read scopes and recoverable error messages; the four existing persistence cases also passed. `pnpm test` and the production build passed; final focused lint/types passed after adding the browser checks. Live login and expanded expiry/restart acceptance remain open. Canonical docs distinguish implemented provider-mocked behavior from live setup verification.

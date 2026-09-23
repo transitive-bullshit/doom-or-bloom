@@ -48,6 +48,7 @@ pnpm db:test
 pnpm db:test:repository
 pnpm db:test:lifecycle
 pnpm db:test:personas
+pnpm db:test:auth
 ```
 
 Migrations are checked in under `drizzle/`; repeat application is a no-op. After schema changes run `pnpm db:generate` and review the SQL. Deferred circular pointers, immutable snapshot enforcement, and persona selection triggers live in the custom `0001` migration; preserve them when generating changes. `pnpm db:auth:generate` regenerates the pinned Better Auth schema. Integration tests use only `TEST_DATABASE_URL`, whose database name must end in `_test`, and remove their transient records. The persona suite leaves the repeatable curated seed in the test database.
@@ -117,3 +118,13 @@ Other live evaluation commands also incur charges. Use the [evaluation protocol]
 Runtime source matching and external fact-checking are currently paused. Source briefs ground the simulated personas; they do not validate visitor claims. Follow [source guidance](docs/SOURCES.md) for provenance and [authoring guidance](docs/AUTHORING.md) for review/versioning before changing content releases.
 
 Deployment is a separate task from local development.
+
+## Optional X login
+
+Set `X_CLIENT_ID` and `X_CLIENT_SECRET` in ignored `.env.local` for an X OAuth 2.0 **Web App** (confidential client). The library shows “Keep access with X” only when both are configured. Anonymous assessment creation, completion and publication stay available.
+
+Register the exact callback `${BETTER_AUTH_URL}/api/auth/callback/twitter`; the current Portless callback is `http://doom-or-bloom.localhost:1355/api/auth/callback/twitter`. X must accept that URI in its console before a live test. If it rejects the local hostname, coordinate an approved reachable development origin and update the app origin and registered callback together. Do not silently switch hosts and lose the anonymous browser cookie. Hosted callback registration belongs to deployment.
+
+The pinned Better Auth X provider uses `users.read tweet.read`, with its default email/offline scopes disabled. No posting or follower permissions are requested. Provider/account IDs establish identity, and email-based account linking is disabled. See [Better Auth’s X setup](https://better-auth.com/docs/authentication/twitter) and [X OAuth configuration and exact callback matching](https://docs.x.com/fundamentals/authentication/oauth-2-0/authorization-code). Provider access and acceptance of the local callback remain unverified until real credentials are configured.
+
+`pnpm db:test:auth` exercises actual Better Auth handlers with mocked provider HTTP responses and native test Postgres. It covers initial claim, recovery with the same provider identity in a fresh browser, sign-out, merging into an existing account, an injected database transfer failure, retry and concurrent assessment processing. No requests reach X. Live login remains a separate setup-dependent check.

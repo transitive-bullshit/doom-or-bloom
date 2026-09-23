@@ -1,10 +1,10 @@
 # Measurement, Privacy, and Evaluation
 
-> Persistence is now active for participant assessments: anonymous browser sessions own server-saved snapshots and operations. Publication, forks, persona migration, and X login remain tracked in [the implementation plan](persistence-implementation-plan.md). [PERSISTENCE.md](PERSISTENCE.md) defines the full approved target.
+> Persistence is now active for participant assessments: anonymous browser sessions own server-saved snapshots and operations. Publication, forks, database personas and optional X login are implemented; remaining acceptance is tracked in [the implementation plan](persistence-implementation-plan.md). [PERSISTENCE.md](PERSISTENCE.md) defines the full approved target.
 
 ## Privacy posture
 
-- No sign-up is required. Better Auth creates an anonymous owner on explicit start. Server records are retained indefinitely until deletion; clearing cookies loses access without deleting records. Optional account recovery remains pending.
+- No sign-up is required. Better Auth creates an anonymous owner on explicit start. Server records are retained indefinitely until deletion; clearing cookies loses access without deleting records. Optional X recovery is implemented when credentials are configured; the live-provider smoke check remains pending. Signing in transfers anonymous assessments without changing publication or revealing account identity on public pages.
 - PostgreSQL stores submitted replies, rejected interactions, results and bounded failure diagnostics. Operators may inspect private assessments for improvement. Unsubmitted drafts stay in localStorage keyed by assessment and prompt. Browser debug records may contain raw text; keep them separate from analytics and public payloads.
 - Internal `/questions` and `/corpus` tools disable page analytics and make no Jev calls. Explicitly saved editorial feedback is written locally to `content/feedback/` with asset metadata; do not send participant transcripts there automatically.
 - A random assessment identifier links anonymous events across resumed visits and rotates on restart.

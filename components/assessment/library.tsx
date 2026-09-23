@@ -16,6 +16,7 @@ import {
   DialogClose
 } from '@/components/ui/dialog'
 import { WorldviewCta } from '@/components/worldview-cta'
+import { AccountAccess } from './account-access'
 import { api } from '@/lib/assessments/client'
 
 export type LibraryItem = {
@@ -27,7 +28,17 @@ export type LibraryItem = {
   updatedAt: string
   isFork: boolean
 }
-export function AssessmentLibrary({ items }: { items: LibraryItem[] }) {
+export function AssessmentLibrary({
+  items,
+  signedIn,
+  authEnabled,
+  authError
+}: {
+  items: LibraryItem[]
+  signedIn: boolean
+  authEnabled: boolean
+  authError: 'claim' | 'signin' | null
+}) {
   const router = useRouter()
   const [busy, setBusy] = useState<string | null>(null)
   async function remove(id: string) {
@@ -63,10 +74,11 @@ export function AssessmentLibrary({ items }: { items: LibraryItem[] }) {
   return (
     <main className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'>
       <h1 className='text-3xl font-semibold'>My assessments</h1>
-      <p className='text-muted-foreground'>
-        Your saved assessments are available in this browser. Clearing browser
-        cookies loses anonymous access.
-      </p>
+      <AccountAccess
+        signedIn={signedIn}
+        enabled={authEnabled}
+        authError={authError}
+      />
       <WorldviewCta onlyIfEmpty={false} label='New assessment' />
       {items.length === 0 && (
         <p>No assessments yet. Start whenever you’re ready.</p>

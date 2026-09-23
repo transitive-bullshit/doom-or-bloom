@@ -44,6 +44,7 @@ jobs:
       - run: pnpm db:test:repository
       - run: pnpm db:test:lifecycle
       - run: pnpm db:test:personas
+      - run: pnpm db:test:auth
       - run: pnpm test
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium

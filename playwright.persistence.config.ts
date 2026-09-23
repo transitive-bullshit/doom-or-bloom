@@ -19,6 +19,8 @@ export default defineConfig({
       DATABASE_URL: database,
       BETTER_AUTH_URL: baseURL,
       ASSESSMENT_PROVIDER: 'fixture',
+      X_CLIENT_ID: 'browser-fixture-client',
+      X_CLIENT_SECRET: 'browser-fixture-secret',
       NEXT_PUBLIC_ANALYTICS_ENABLED: 'false'
     }
   }

@@ -47,7 +47,8 @@
     "check:persistence": "node --env-file=.env.local node_modules/@playwright/test/cli.js test --config=playwright.persistence.config.ts",
     "db:test:lifecycle": "node --env-file=.env.local --conditions=react-server --import tsx scripts/test-assessment-lifecycle.ts",
     "db:seed": "node --env-file=.env.local --conditions=react-server --import tsx scripts/seed-personas.ts",
-    "db:test:personas": "node --env-file=.env.local --conditions=react-server --import tsx scripts/test-persona-persistence.ts"
+    "db:test:personas": "node --env-file=.env.local --conditions=react-server --import tsx scripts/test-persona-persistence.ts",
+    "db:test:auth": "node --env-file=.env.local --conditions=react-server --import tsx scripts/test-auth-claim.ts"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",

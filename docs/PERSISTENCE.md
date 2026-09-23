@@ -1,6 +1,6 @@
 # Persistent assessments — approved design
 
-Status: approved on 2026-09-23; participant persistence, forks, and publication implemented; curated database personas implemented; integrated acceptance and accounts pending. [The implementation plan](persistence-implementation-plan.md) tracks delivery and validation. This document supersedes the browser-only persistence, no-account, destructive-restart, and generic-only sharing restrictions in the original MVP handoff. The implementation plan records remaining acceptance checks and the separate account work.
+Status: approved on 2026-09-23; participant persistence, forks, and publication implemented; curated database personas implemented; optional X ownership claims implemented; integrated acceptance and live X verification pending. [The implementation plan](persistence-implementation-plan.md) tracks delivery and validation. This document supersedes the browser-only persistence, no-account, destructive-restart, and generic-only sharing restrictions in the original MVP handoff. The implementation plan records remaining acceptance checks and the separate account work.
 
 ## Product behavior
 
@@ -139,3 +139,9 @@ Consult the pinned package APIs before coding; these references informed the des
 - [Better Auth anonymous users](https://better-auth.com/docs/plugins/anonymous), [Drizzle adapter](https://better-auth.com/docs/adapters/drizzle), and [X provider](https://better-auth.com/docs/authentication/twitter). Anonymous linkage requires application-owned assessment transfer and failure tests.
 - [Neon connection URI API](https://api-docs.neon.tech/reference/getconnectionuri) describes pooled/direct connection selection. Use a direct migration connection as a project convention; verify request-handler pooling behavior before hosting.
 - [Takumi v2](https://takumi.kane.tw/docs/upgrade/v2) and the installed `takumi-js` types for WebP output. This repository already renders persona WebP cards.
+
+### Implemented X claim boundary
+
+The pinned anonymous plugin’s `onLinkAccount` runs after Better Auth prepares the new authenticated session. The application locks both owners, transfers participant assessment ownership (namespacing creation keys to avoid cross-owner collisions), revokes old sessions and deletes the anonymous owner in one transaction. Snapshot contents, IDs, publication and in-flight operation authorization remain unchanged. Restrictive owner FKs roll back the entire transfer if any owned data would be left behind.
+
+On transfer failure the hook strips the prepared Set-Cookie headers and redirects to the library with a recoverable error, preserving the browser’s anonymous session. Tests execute the actual pinned callback to verify this timing. Retrying login to an existing provider identity merges assessments into that account. X email-based linking is disabled; only provider/account identity is used. The live X setup check is still pending.
