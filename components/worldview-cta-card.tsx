@@ -12,7 +12,7 @@ export function WorldviewCtaCard({ className }: { className?: string }) {
     >
       <CardTitle className='text-2xl'>Where do you land?</CardTitle>
       <CardDescription>
-        Explore your own AI worldview by answering a few questions.
+        Explore your own AI worldview by answering a few simple questions.
       </CardDescription>
       <WorldviewCta />
     </Card>
