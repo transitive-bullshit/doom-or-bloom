@@ -1,3 +1,4 @@
+import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { pageMetadata } from '@/lib/metadata'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { PageTransition } from '@/components/page-transition'
@@ -37,9 +38,9 @@ export default async function Page({
   if (!assessment) notFound()
   return (
     <PageTransition>
-      <div className='mx-auto w-full max-w-6xl px-6 py-10'>
+      <AssessmentPage className='mx-auto w-full max-w-6xl px-6 py-10'>
         <PersonaPageContent person={person} assessment={assessment} />
-      </div>
+      </AssessmentPage>
     </PageTransition>
   )
 }

@@ -1,3 +1,4 @@
+import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { simulationPresentation } from '@/lib/personas/payload'
 import { loadPublished } from '@/lib/assessments/public-server'
@@ -35,7 +36,10 @@ export default async function Page({
     const presentation = simulationPresentation(saved.simulation)
     const sources = saved.simulation.journey.personaSnapshot?.sources ?? []
     return (
-      <main className='mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-14'>
+      <AssessmentPage
+        as='main'
+        className='mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-14'
+      >
         <PersonaPageContent
           person={{
             ...saved.profile,
@@ -54,12 +58,15 @@ export default async function Page({
         <a href={`/assessments/public/${id}/data`} className='underline'>
           Download shared simulation JSON
         </a>
-      </main>
+      </AssessmentPage>
     )
   }
   const state = saved.assessment
   return (
-    <main className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'>
+    <AssessmentPage
+      as='main'
+      className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'
+    >
       <h1 className='text-3xl font-semibold'>{saved.title}</h1>
       <p className='text-muted-foreground'>
         Shared by the participant. These results interpret the answers below;
@@ -105,6 +112,6 @@ export default async function Page({
         Download shared assessment JSON
       </a>
       <WorldviewCta />
-    </main>
+    </AssessmentPage>
   )
 }

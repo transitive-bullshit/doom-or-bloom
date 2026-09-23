@@ -10,7 +10,7 @@ import { loadBundle } from '@/lib/content/loader'
 import { loadExamples } from '@/components/landing/data'
 import { worldviewValues } from '@/lib/assessment/persona-matches'
 import { serverEnv } from '@/lib/server/env'
-import styles from '../assessment.module.css'
+import { AssessmentPage } from '@/components/assessment/assessment-page'
 export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'Your assessment',
@@ -48,7 +48,7 @@ export default async function Page({
   }))
   return (
     <PageTransition>
-      <div className={styles.page}>
+      <AssessmentPage>
         <h1 className='mx-auto w-full max-w-2xl px-6 pt-10'>
           Map your AI worldview
         </h1>
@@ -77,7 +77,7 @@ export default async function Page({
             bundle.prompts.map((p) => [p.id, p.recoveryVariants])
           )}
         />
-      </div>
+      </AssessmentPage>
     </PageTransition>
   )
 }

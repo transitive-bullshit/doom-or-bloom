@@ -383,3 +383,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - Removed the Done button. Show sharing only in the results view, and reject public visibility through the API while the snapshot is still interviewing, even when an intermediate projection exists.
 - Moved assessment heading defaults into the CSS base layer so component text sizes take precedence. More details uses 18px; lower section/card titles use 16px. Bookmark titles are isolated 14px divs, not headings.
 - Verification: `pnpm test` passed; the publication/fork/revocation browser regression passed with a new assertion that premature publication returns 409. All four interaction browser tests passed; inspected the updated desktop results screenshot.
+
+### Shared detail-page typography (2026-09-23)
+
+- Confirmed persona sources and participant resources reuse ResourceList/ResourceBookmark; private and public participant results reuse ResultView, while all result surfaces reuse ExperimentalResults/WorldviewDetails.
+- Moved the owner-only heading stylesheet to a shared AssessmentPage wrapper used by private assessments, public participant/simulation assessments, and persona detail routes. Component text utilities retain precedence over shared defaults.
+- Verification: `pnpm test` and all six persona/assessment interaction browser cases passed.
