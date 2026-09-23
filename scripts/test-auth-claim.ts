@@ -47,6 +47,7 @@ async function call(path: string, body?: unknown) {
   return response
 }
 const originalFetch = globalThis.fetch
+let providerUsername = 'claim_fixture'
 const providerId = `test-x-${randomUUID()}`
 globalThis.fetch = async (input) => {
   const url = String(input instanceof Request ? input.url : input)
@@ -59,7 +60,11 @@ globalThis.fetch = async (input) => {
     })
   if (url.startsWith('https://api.x.com/2/users/me'))
     return Response.json({
-      data: { id: providerId, name: 'Claim fixture', username: 'claim_fixture' }
+      data: {
+        id: providerId,
+        name: 'Claim fixture',
+        username: providerUsername
+      }
     })
   throw new Error('Unexpected external request in provider-mocked auth test')
 }
@@ -135,6 +140,7 @@ try {
   assert.equal(callback.status, 302)
   const signedIn = await (await call('/get-session')).json()
   assert.ok(signedIn.user && !signedIn.user.isAnonymous)
+  assert.equal(signedIn.user.xUsername, providerUsername)
   identities.add(signedIn.user.id)
   assert.equal((await repo.list(signedIn.user.id)).length, 1)
   assert.equal(
@@ -158,9 +164,19 @@ try {
   await call('/sign-out', {})
   assert.equal(await (await call('/get-session')).json(), null)
   cookies.clear()
+  providerUsername = 'renamed_fixture'
   await login()
   const recovered = await (await call('/get-session')).json()
   assert.equal(recovered.user.id, signedIn.user.id)
+  assert.equal(recovered.user.xUsername, providerUsername)
+  assert.equal(
+    (await call('/update-user', { xUsername: 'forged_handle' })).status,
+    400
+  )
+  assert.equal(
+    (await (await call('/get-session')).json()).user.xUsername,
+    providerUsername
+  )
   assert.equal((await repo.list(recovered.user.id))[0]!.id, assessment.id)
   await call('/sign-out', {})
   const anotherAnonymous = await (await call('/sign-in/anonymous', {})).json()
@@ -228,6 +244,7 @@ try {
   await login()
   const merged = await (await call('/get-session')).json()
   assert.equal(merged.user.id, signedIn.user.id)
+  assert.equal(merged.user.xUsername, providerUsername)
   assert.equal((await repo.list(merged.user.id)).length, 2)
   assert.deepEqual(
     await repo.publicLoad(anotherAssessment.id),

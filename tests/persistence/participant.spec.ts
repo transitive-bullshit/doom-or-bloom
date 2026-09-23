@@ -359,7 +359,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
         [id]
       )
       await profilePool.query(
-        'UPDATE "user" SET is_anonymous=false, name=$2, image=$3 WHERE id=$1',
+        `UPDATE "user" SET is_anonymous=false, name=$2, image=$3, x_username='publisher_test' WHERE id=$1`,
         [
           owner.owner_id,
           'Public publisher',
@@ -390,7 +390,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       attributedPage.getByRole('img', { name: 'Public publisher', exact: true })
     ).toHaveAttribute('src', /avatar_400x400.jpg/)
     await expect(
-      attributedPage.getByRole('link', { name: 'View on X', exact: true })
+      attributedPage.getByRole('link', { name: '@publisher_test', exact: true })
     ).toHaveAttribute('href', 'https://x.com/i/user/123456789')
     await attributedPage.close()
     await page.goto('/assessments')

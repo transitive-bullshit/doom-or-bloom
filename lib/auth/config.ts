@@ -5,6 +5,19 @@ import { drizzle } from 'drizzle-orm/node-postgres'
 import { APIError } from 'better-auth/api'
 import { claimAnonymousAssessments } from './claim'
 
+function assertTrustedXUsername(
+  data: Record<string, unknown>,
+  verifiedXCallback: boolean
+) {
+  // Better Auth applies input:false to provider mappings too. Admit this field
+  // only through the verified X callback, never through account-edit endpoints.
+  if (data.xUsername !== undefined && !verifiedXCallback) {
+    throw new APIError('BAD_REQUEST', {
+      message: 'Your X handle is managed by X sign-in.'
+    })
+  }
+}
+
 // Shared by the pinned schema generator and the server-only runtime.
 export function createAuth(
   database: ReturnType<typeof drizzle>,
@@ -22,6 +35,35 @@ export function createAuth(
     baseURL,
     database: drizzleAdapter(database, { provider: 'pg', schema }),
     account: { accountLinking: { enabled: false } },
+    user: {
+      additionalFields: {
+        xUsername: { type: 'string', required: false }
+      }
+    },
+    databaseHooks: {
+      user: {
+        create: {
+          before: async (user, context) => {
+            assertTrustedXUsername(
+              user,
+              context?.path === '/callback/:id' &&
+                context.params?.id === 'twitter'
+            )
+            return { data: user }
+          }
+        },
+        update: {
+          before: async (user, context) => {
+            assertTrustedXUsername(
+              user,
+              context?.path === '/callback/:id' &&
+                context.params?.id === 'twitter'
+            )
+            return { data: user }
+          }
+        }
+      }
+    },
     socialProviders:
       process.env.X_CLIENT_ID && process.env.X_CLIENT_SECRET
         ? {
@@ -29,6 +71,10 @@ export function createAuth(
               clientId: process.env.X_CLIENT_ID,
               clientSecret: process.env.X_CLIENT_SECRET,
               disableDefaultScope: true,
+              overrideUserInfoOnSignIn: true,
+              mapProfileToUser: (profile) => ({
+                xUsername: profile.data.username
+              }),
               scope: ['users.read', 'tweet.read']
             }
           }

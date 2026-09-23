@@ -479,3 +479,10 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Apply the spent-draft-ID migration to native local development and test Postgres only. Update the persistence/product contracts and browser test persistence seam.
 - [x] Center profile CTAs alongside avatar/name/profile link, above the description. Remove redundant top margin from the shared persona/public header.
 - [x] Verify repository checks and 21 targeted browser cases covering draft storage/history, authorization, lost responses, publication/forks/revocation, interviews/conversations, report downloads, and persona header alignment. Refresh an older report-flow test that still expected the previously removed clarification and standalone social-download controls.
+
+### Publication-time X handles (2026-09-24)
+
+- [x] Save the X provider’s username on initial/returning OAuth sign-in; reject handle writes outside the verified X callback. Better Auth's input:false also filters provider mappings, so database hooks enforce this boundary instead.
+- [x] Freeze the latest known username on explicit publication and render @username while preserving the stable X user-ID profile URL. Older snapshots without handles use Profile; they require sign-in and explicit republication to capture a handle.
+- [x] Apply the user-column migration to native local development/test databases. Verify repository checks, provider-mocked OAuth capture/refresh/spoof rejection, frozen publication attribution, and the publication browser flow.
+- [x] Recheck the reported public assessment's worldview card using server HTML and a fresh browser. Both show Dwarkesh Patel, Dario Amodei, and Roon; the user confirmed it is working. No matching-logic change was needed.

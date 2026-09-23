@@ -12,7 +12,8 @@ export const user = pgTable('user', {
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
-  isAnonymous: boolean('is_anonymous').default(false)
+  isAnonymous: boolean('is_anonymous').default(false),
+  xUsername: text('x_username')
 })
 
 export const session = pgTable(

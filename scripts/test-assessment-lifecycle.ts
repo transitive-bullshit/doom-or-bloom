@@ -78,7 +78,7 @@ try {
   assert.equal(published.publisher, null)
   // Signing in or replaying publication must not reveal an anonymous publisher.
   await pool.query(
-    'UPDATE "user" SET is_anonymous=false, name=$2, image=$3 WHERE id=$1',
+    `UPDATE "user" SET is_anonymous=false, name=$2, image=$3, x_username='publisher_test' WHERE id=$1`,
     [
       owner,
       'Publisher name',
@@ -102,17 +102,22 @@ try {
   if (attributed.kind !== 'participant') throw new Error('Expected participant')
   assert.deepEqual(attributed.publisher, {
     name: 'Publisher name',
+    username: 'publisher_test',
     image: 'https://pbs.twimg.com/profile_images/123/avatar_400x400.jpg',
     profileUrl: 'https://x.com/i/user/123456789'
   })
-  await pool.query('UPDATE "user" SET name=$2 WHERE id=$1', [
-    owner,
-    'Changed name'
-  ])
+  await pool.query(
+    `UPDATE "user" SET name=$2, x_username='changed_handle' WHERE id=$1`,
+    [owner, 'Changed name']
+  )
   const frozen = await repo.publicLoad(id)
   assert.equal(
     frozen.kind === 'participant' && frozen.publisher?.name,
     'Publisher name'
+  )
+  assert.equal(
+    frozen.kind === 'participant' && frozen.publisher?.username,
+    'publisher_test'
   )
   assert.equal('ownerId' in published, false)
   assert.equal('draft' in published.assessment, false)

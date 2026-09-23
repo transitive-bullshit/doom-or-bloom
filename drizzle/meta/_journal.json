@@ -36,6 +36,13 @@
       "when": 1790184668049,
       "tag": "0004_reflective_naoko",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790185209818,
+      "tag": "0005_third_bastion",
+      "breakpoints": true
     }
   ]
 }

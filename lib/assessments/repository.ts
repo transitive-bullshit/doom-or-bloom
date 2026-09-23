@@ -591,7 +591,8 @@ export function assessmentRepository(pool: Pool) {
             .select({
               name: user.name,
               image: user.image,
-              anonymous: user.isAnonymous
+              anonymous: user.isAnonymous,
+              username: user.xUsername
             })
             .from(user)
             .where(eq(user.id, ownerId))
@@ -608,6 +609,7 @@ export function assessmentRepository(pool: Pool) {
               .limit(1)
             publishedProfile = {
               name: publisher.name,
+              username: identity ? publisher.username : null,
               image: profileImageUrl(publisher.image) ?? null,
               profileUrl: identity
                 ? `https://x.com/i/user/${encodeURIComponent(identity.accountId)}`

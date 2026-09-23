@@ -66,7 +66,11 @@ export default async function Page({
           name={saved.publisher.name}
           avatar={saved.publisher.image}
           profileUrl={saved.publisher.profileUrl}
-          profileLabel='View on X'
+          profileLabel={
+            saved.publisher.username
+              ? `@${saved.publisher.username}`
+              : 'Profile'
+          }
         />
       ) : (
         <h1>Your AI worldview</h1>
