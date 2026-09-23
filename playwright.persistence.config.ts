@@ -10,7 +10,7 @@ export default defineConfig({
   use: { baseURL, ...devices['Desktop Chrome'], trace: 'retain-on-failure' },
   webServer: {
     command:
-      'pnpm exec portless run --name persistence-tests.doom-or-bloom next dev --hostname 127.0.0.1',
+      'pnpm db:seed --test && pnpm exec portless run --name persistence-tests.doom-or-bloom next dev --hostname 127.0.0.1',
     url: baseURL,
     reuseExistingServer: false,
     gracefulShutdown: { signal: 'SIGTERM', timeout: 5000 },

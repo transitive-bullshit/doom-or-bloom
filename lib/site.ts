@@ -1,5 +1,3 @@
-import { people } from '@/components/landing/people'
-
 export const siteUrl = 'https://www.doom-or-bloom.com'
 
 export const publicPages = [
@@ -27,8 +25,3 @@ export const publicPages = [
       'How Doom or Bloom handles your answers, browser storage, AI processing, and analytics. No account or hosted transcript database required.'
   }
 ]
-
-export const personaPages = people.map((person) => ({
-  path: `/users/${person.slug}`,
-  title: person.name
-}))

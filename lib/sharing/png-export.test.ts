@@ -2,10 +2,14 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { cardSchema, ShareCard } from './card'
 import { loadSocialPortrait } from './portraits'
 import { people } from '@/components/landing/people'
-import { expect, test } from 'vitest'
+import { expect, test, vi } from 'vitest'
 import sharp from 'sharp'
 import { POST as exportMap } from '@/app/api/map-png/route'
 import { POST as exportCard } from '@/app/api/share-card/route'
+
+vi.mock('@/components/landing/data', () => ({
+  loadExamples: async () => people
+}))
 
 function request(path: string, body: unknown) {
   return new Request(`http://localhost/api/${path}`, {

@@ -14,16 +14,11 @@ const config: NextConfig = {
     }))
   },
   distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
-  // Persona pages and About read the canonical saved journeys.
+  // Results are read from PostgreSQL. Native image rendering still needs portraits.
   outputFileTracingIncludes: {
     '/api/share-card': ['public/personas/*'],
-    '/assessment/*': ['eval/development/live-persona-journeys.json'],
-    '/about': ['eval/development/live-persona-journeys.json'],
-    '/users/*': ['eval/development/live-persona-journeys.json'],
-    '/users/*/opengraph-image': [
-      'eval/development/live-persona-journeys.json',
-      'public/personas/*'
-    ]
+    '/users/*/opengraph-image': ['public/personas/*'],
+    '/assessments/public/*/social-image.webp': ['public/personas/*']
   },
   // Takumi loads a platform-specific native addon at runtime.
   serverExternalPackages: ['takumi-js']

@@ -16,9 +16,11 @@ import {
   assessments,
   assessmentSnapshots,
   assessmentOperations,
+  personas,
   user
 } from '../db/schema'
 import { publicAssessment } from './public'
+import { personaMetadataSchema, simulationPayload } from '../personas/payload'
 import { AssessmentError, type Submission } from './contracts'
 
 export function fingerprint(value: unknown): string {
@@ -551,8 +553,33 @@ export function assessmentRepository(pool: Pool) {
               )
             )
           if (!row?.finalSnapshotId) throw missing()
+          if (row.origin === 'simulation') {
+            const [saved] = await tx
+              .select()
+              .from(assessmentSnapshots)
+              .where(
+                and(
+                  eq(assessmentSnapshots.id, row.finalSnapshotId),
+                  eq(assessmentSnapshots.assessmentId, id)
+                )
+              )
+            const [profile] = await tx
+              .select()
+              .from(personas)
+              .where(eq(personas.id, row.personaId!))
+            if (!saved || !profile) throw missing()
+            return {
+              kind: 'simulation' as const,
+              id: row.id,
+              title: row.title ?? 'Simulated AI worldview',
+              origin: row.origin,
+              profile: personaMetadataSchema.parse(profile.metadata),
+              simulation: simulationPayload.parse(saved.payload)
+            }
+          }
           const state = await snapshot(tx, id, row.finalSnapshotId)
           return {
+            kind: 'participant' as const,
             id: row.id,
             title: row.title ?? 'AI worldview assessment',
             origin: row.origin,

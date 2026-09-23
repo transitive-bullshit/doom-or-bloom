@@ -1,3 +1,5 @@
+import { PersonaPageContent } from '@/components/landing/persona-page-content'
+import { simulationPresentation } from '@/lib/personas/payload'
 import { loadPublished } from '@/lib/assessments/public-server'
 import { pageMetadata } from '@/lib/metadata'
 import { PublishedResult } from '@/components/assessment/published-result'
@@ -29,15 +31,39 @@ export default async function Page({
 }) {
   const { id } = await params
   const saved = await loadPublished(id)
+  if (saved.kind === 'simulation') {
+    const presentation = simulationPresentation(saved.simulation)
+    const sources = saved.simulation.journey.personaSnapshot?.sources ?? []
+    return (
+      <main className='mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-14'>
+        <PersonaPageContent
+          person={{
+            ...saved.profile,
+            result: presentation.result,
+            sources: sources.map(({ title, url }) => ({ title, url })),
+            sourceBriefUpdated: false
+          }}
+          assessment={presentation.assessment}
+        />
+        <details>
+          <summary>Complete recorded simulation</summary>
+          <pre className='max-h-96 overflow-auto text-xs'>
+            {JSON.stringify(saved.simulation, null, 2)}
+          </pre>
+        </details>
+        <a href={`/assessments/public/${id}/data`} className='underline'>
+          Download shared simulation JSON
+        </a>
+      </main>
+    )
+  }
   const state = saved.assessment
   return (
     <main className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'>
       <h1 className='text-3xl font-semibold'>{saved.title}</h1>
       <p className='text-muted-foreground'>
-        {saved.origin === 'simulation'
-          ? 'Simulated assessment.'
-          : 'Shared by the participant.'}{' '}
-        These results interpret the answers below; they are not predictions.
+        Shared by the participant. These results interpret the answers below;
+        they are not predictions.
       </p>
       <PublishedResult state={{ ...state, draft: '', eventMarkers: [] }} />
       <h2 className='text-2xl font-semibold'>Full conversation</h2>

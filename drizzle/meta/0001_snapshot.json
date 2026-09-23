@@ -138,26 +138,18 @@
         "assessment_operations_assessment_id_assessments_id_fk": {
           "name": "assessment_operations_assessment_id_assessments_id_fk",
           "tableFrom": "assessment_operations",
-          "columnsFrom": [
-            "assessment_id"
-          ],
+          "columnsFrom": ["assessment_id"],
           "tableTo": "assessments",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         },
         "assessment_operations_retry_of_assessment_operations_id_fk": {
           "name": "assessment_operations_retry_of_assessment_operations_id_fk",
           "tableFrom": "assessment_operations",
-          "columnsFrom": [
-            "retry_of"
-          ],
+          "columnsFrom": ["retry_of"],
           "tableTo": "assessment_operations",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "set null"
         }
@@ -166,18 +158,12 @@
       "uniqueConstraints": {
         "operation_request_key": {
           "name": "operation_request_key",
-          "columns": [
-            "assessment_id",
-            "request_key"
-          ],
+          "columns": ["assessment_id", "request_key"],
           "nullsNotDistinct": false
         },
         "operation_membership": {
           "name": "operation_membership",
-          "columns": [
-            "assessment_id",
-            "id"
-          ],
+          "columns": ["assessment_id", "id"],
           "nullsNotDistinct": false
         }
       },
@@ -262,13 +248,9 @@
         "assessment_snapshots_assessment_id_assessments_id_fk": {
           "name": "assessment_snapshots_assessment_id_assessments_id_fk",
           "tableFrom": "assessment_snapshots",
-          "columnsFrom": [
-            "assessment_id"
-          ],
+          "columnsFrom": ["assessment_id"],
           "tableTo": "assessments",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -277,18 +259,12 @@
       "uniqueConstraints": {
         "snapshot_revision": {
           "name": "snapshot_revision",
-          "columns": [
-            "assessment_id",
-            "revision"
-          ],
+          "columns": ["assessment_id", "revision"],
           "nullsNotDistinct": false
         },
         "snapshot_membership": {
           "name": "snapshot_membership",
-          "columns": [
-            "assessment_id",
-            "id"
-          ],
+          "columns": ["assessment_id", "id"],
           "nullsNotDistinct": false
         }
       },
@@ -469,39 +445,27 @@
         "assessments_owner_id_user_id_fk": {
           "name": "assessments_owner_id_user_id_fk",
           "tableFrom": "assessments",
-          "columnsFrom": [
-            "owner_id"
-          ],
+          "columnsFrom": ["owner_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "restrict"
         },
         "assessments_persona_id_personas_id_fk": {
           "name": "assessments_persona_id_personas_id_fk",
           "tableFrom": "assessments",
-          "columnsFrom": [
-            "persona_id"
-          ],
+          "columnsFrom": ["persona_id"],
           "tableTo": "personas",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "restrict"
         },
         "assessments_source_assessment_id_assessments_id_fk": {
           "name": "assessments_source_assessment_id_assessments_id_fk",
           "tableFrom": "assessments",
-          "columnsFrom": [
-            "source_assessment_id"
-          ],
+          "columnsFrom": ["source_assessment_id"],
           "tableTo": "assessments",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "set null"
         }
@@ -510,25 +474,17 @@
       "uniqueConstraints": {
         "assessments_seed_key_unique": {
           "name": "assessments_seed_key_unique",
-          "columns": [
-            "seed_key"
-          ],
+          "columns": ["seed_key"],
           "nullsNotDistinct": false
         },
         "assessment_creation_key": {
           "name": "assessment_creation_key",
-          "columns": [
-            "owner_id",
-            "create_request_key"
-          ],
+          "columns": ["owner_id", "create_request_key"],
           "nullsNotDistinct": false
         },
         "assessment_persona_membership": {
           "name": "assessment_persona_membership",
-          "columns": [
-            "id",
-            "persona_id"
-          ],
+          "columns": ["id", "persona_id"],
           "nullsNotDistinct": false
         }
       },
@@ -634,9 +590,7 @@
       "uniqueConstraints": {
         "personas_slug_unique": {
           "name": "personas_slug_unique",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "nullsNotDistinct": false
         }
       },
@@ -749,13 +703,9 @@
         "account_user_id_user_id_fk": {
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
-          "columnsFrom": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -841,13 +791,9 @@
         "session_user_id_user_id_fk": {
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
-          "columnsFrom": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
           "tableTo": "user",
-          "columnsTo": [
-            "id"
-          ],
+          "columnsTo": ["id"],
           "onUpdate": "no action",
           "onDelete": "cascade"
         }
@@ -856,9 +802,7 @@
       "uniqueConstraints": {
         "session_token_unique": {
           "name": "session_token_unique",
-          "columns": [
-            "token"
-          ],
+          "columns": ["token"],
           "nullsNotDistinct": false
         }
       },
@@ -929,9 +873,7 @@
       "uniqueConstraints": {
         "user_email_unique": {
           "name": "user_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "nullsNotDistinct": false
         }
       },

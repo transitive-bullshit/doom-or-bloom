@@ -105,7 +105,12 @@ export const assessmentSnapshots = pgTable(
       .references(() => assessments.id, { onDelete: 'cascade' }),
     revision: integer('revision').notNull(),
     format: text('format', {
-      enum: ['assessment_v1', 'historical_journey_v1']
+      enum: [
+        'assessment_v1',
+        'historical_journey_v1',
+        'simulation_v1',
+        'generation_input_v1'
+      ]
     }).notNull(),
     payload: jsonb('payload').notNull(),
     digest: text('digest').notNull(),

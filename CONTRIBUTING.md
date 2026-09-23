@@ -42,12 +42,15 @@ These local connections use Postgres.app's local authentication policy. Do not r
 ```sh
 pnpm db:migrate
 pnpm db:migrate:test
+pnpm db:seed
+pnpm db:seed --test
 pnpm db:test
 pnpm db:test:repository
 pnpm db:test:lifecycle
+pnpm db:test:personas
 ```
 
-Migrations are checked in under `drizzle/`; repeat application is a no-op. After schema changes run `pnpm db:generate` and review the SQL. Deferred circular pointers, immutable snapshot enforcement, and persona selection triggers live in the custom `0001` migration; preserve them when generating changes. `pnpm db:auth:generate` regenerates the pinned Better Auth schema. Integration tests use only `TEST_DATABASE_URL`, whose database name must end in `_test`, and remove their own records.
+Migrations are checked in under `drizzle/`; repeat application is a no-op. After schema changes run `pnpm db:generate` and review the SQL. Deferred circular pointers, immutable snapshot enforcement, and persona selection triggers live in the custom `0001` migration; preserve them when generating changes. `pnpm db:auth:generate` regenerates the pinned Better Auth schema. Integration tests use only `TEST_DATABASE_URL`, whose database name must end in `_test`, and remove their transient records. The persona suite leaves the repeatable curated seed in the test database.
 
 Participant assessments use database-backed ownership and snapshots. Anonymous sessions have a 365-day server lifetime, refreshed after a day of activity by Better Auth's session endpoint. Browser cookie policies can shorten access. Anonymous cleanup is disabled; assessments restrict owner deletion. Public page reads must not sign in visitors.
 
@@ -98,6 +101,8 @@ Submitted progress lives in PostgreSQL. Only unsubmitted drafts and uncertain re
 
 ## Persona simulations and regression work
 
+`pnpm db:seed` imports only the curated public catalog from the existing recorded fixture, without inference. Repeat imports retain identical assessment IDs and never replace a newer selected run. Homepage, persona pages, comparisons and social images read selected runs from Postgres; seed the local database before browsing them.
+
 `/user-journeys` is the development inspector. Source-grounded persona briefs drive simulated participants through the real engine, preserving answers, projections, and routing decisions for review. Published persona records are generated examples, never collected visitor sessions.
 
 ```sh
@@ -105,7 +110,7 @@ Submitted progress lives in PostgreSQL. Only unsubmitted drafts and uncertain re
 pnpm journeys:mechanical:check
 ```
 
-`pnpm journeys:generate` runs **live OpenAI and Jev inference and costs money**. Review [the journey workflow](docs/user-journeys.md) for persona selection and explicit request/cost bounds before running it. Existing persona cases are development regressions, not a blinded accuracy benchmark.
+`pnpm journeys:generate` runs **live OpenAI and Jev inference and costs money**. Review [the journey workflow](docs/user-journeys.md) for persona selection and explicit request/cost bounds before running it. Live curated generation now saves a private generation record before inference, then atomically publishes its full engine snapshot and selects it on success. Failures retain private diagnostics and the previous selection. Generation is synchronous; no worker retries it. A new run (including an explicit resume) creates a new assessment. Runs that exceed the offline 30-minute commit deadline cannot publish. Existing persona cases are development regressions, not a blinded accuracy benchmark.
 
 Other live evaluation commands also incur charges. Use the [evaluation protocol](docs/evaluation-protocol.md) to agree a small reviewed suite and budget before running them. Do not use live inference for ordinary UI or state-machine checks.
 

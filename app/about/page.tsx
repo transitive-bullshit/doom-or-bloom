@@ -5,6 +5,7 @@ import { WorldviewCta } from '@/components/worldview-cta'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
+export const dynamic = 'force-dynamic'
 export const metadata = pageMetadata(publicPages[2]!)
 
 export default async function About() {

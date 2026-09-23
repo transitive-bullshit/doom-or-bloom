@@ -1,8 +1,13 @@
-import { personaPages, publicPages, siteUrl } from '@/lib/site'
+import { publicPages, siteUrl } from '@/lib/site'
 
-export const dynamic = 'force-static'
+import { loadExamples } from '@/components/landing/data'
+export const dynamic = 'force-dynamic'
 
-export function GET() {
+export async function GET() {
+  const personaPages = (await loadExamples(false)).map((person) => ({
+    path: `/users/${person.slug}`,
+    title: person.name
+  }))
   const text = [
     '# Doom or Bloom',
     '',

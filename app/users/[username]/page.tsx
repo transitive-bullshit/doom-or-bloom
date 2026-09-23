@@ -1,13 +1,10 @@
 import { pageMetadata } from '@/lib/metadata'
-import { people } from '@/components/landing/people'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { PageTransition } from '@/components/page-transition'
 import { notFound } from 'next/navigation'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
-export function generateStaticParams() {
-  return people.map((person) => ({ username: person.slug }))
-}
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params
@@ -15,7 +12,9 @@ export async function generateMetadata({
   params: Promise<{ username: string }>
 }) {
   const { username } = await params
-  const person = people.find((person) => person.slug === username)
+  const person = (await loadExamples(false)).find(
+    (person) => person.slug === username
+  )
   if (!person) notFound()
   return pageMetadata({
     path: `/users/${person.slug}`,
@@ -32,7 +31,7 @@ export default async function Page({
   params: Promise<{ username: string }>
 }) {
   const { username: slug } = await params
-  const person = (await loadExamples()).find((p) => p.slug === slug)
+  const person = (await loadExamples(false)).find((p) => p.slug === slug)
   if (!person) notFound()
   const assessment = await loadPersonaAssessment(person.id)
   if (!assessment) notFound()

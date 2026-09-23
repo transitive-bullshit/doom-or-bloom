@@ -106,13 +106,13 @@ Update: PRODUCT, ASSESSMENT, CONTEXT, MEASUREMENT, README, app copy, sharing/exp
 
 ## Checkpoint 4 — dynamic curated personas
 
-- [ ] Create the noninteractive simulation owner and idempotent persona seed. Derive the public allowlist from the current curated catalog; do not publish all development journeys simply because they share a bundle.
-- [ ] Import existing recorded public journeys under a historical payload format. Preserve exact questions/answers, step results/projection inputs, source snapshots, provenance, original dates, and sourced P(doom) overrides. Do not fabricate a resumable Assessment or rerun paid inference.
-- [ ] Make seed reruns harmless: stable seed keys, input-digest checks, mutable profile/source upserts, and insert-only snapshots. A seed rerun must not revert a newer selected live run.
-- [ ] Update generation to persist full engine snapshots while available, create a new assessment per run, and publish/select only after successful validation. Failures retain diagnostic state and the last successful public selection. Fence late completion of an older run from overwriting a newer selection.
-- [ ] Load homepage, `/users/<slug>`, persona social images, and nearest-persona comparisons from the selected database runs. Preserve source-change disclosures, third-person framing, exact excerpts, and simulated-person labeling.
-- [ ] Replace build-time static/persona assumptions with database-compatible runtime reads where needed. Keep repository-authored briefs/config as generation inputs. Eliminate duplicated runtime sources of truth without deleting historical evaluation evidence.
-- [ ] Test repeated seed, unlisted development journey exclusion, failed generation, retry of the same run, out-of-order generation completion, new selection with old public URL stability, and complete source/override preservation using fixtures.
+- [x] Create the noninteractive simulation owner and idempotent persona seed. Derive the public allowlist from the current curated catalog; do not publish all development journeys simply because they share a bundle.
+- [x] Import existing recorded public journeys under a historical payload format. Preserve exact questions/answers, step results/projection inputs, source snapshots, provenance, original dates, and sourced P(doom) overrides. Do not fabricate a resumable Assessment or rerun paid inference.
+- [x] Make seed reruns harmless: stable seed keys, input-digest checks, mutable profile/source upserts, and insert-only snapshots. A seed rerun must not revert a newer selected live run.
+- [x] Update generation to persist full engine snapshots while available, create a new assessment per run, and publish/select only after successful validation. Failures retain diagnostic state and the last successful public selection. Fence late completion of an older run from overwriting a newer selection.
+- [x] Load homepage, `/users/<slug>`, persona social images, and nearest-persona comparisons from the selected database runs. Preserve source-change disclosures, third-person framing, exact excerpts, and simulated-person labeling.
+- [x] Replace build-time static/persona assumptions with database-compatible runtime reads where needed. Keep repository-authored briefs/config as generation inputs. Eliminate duplicated runtime sources of truth without deleting historical evaluation evidence.
+- [x] Test repeated seed, unlisted development journey exclusion, failed generation, retry of the same run, out-of-order generation completion, new selection with old public URL stability, and complete source/override preservation using fixtures.
 
 Done when: the seeded map and persona pages match existing visible data, public profiles come from Postgres, and fixture regeneration advances their shared selected pointer without modifying historical results.
 
@@ -227,3 +227,10 @@ Pause only the dependent work when credentials or external configuration are una
 - Remaining checkpoint work includes comprehensive failure/race/browser acceptance, rebuilding production mode, and dynamic persona migration. No production writes or paid inference.
 
 - Header audit: Next 16 development deliberately rewrites HTML cache headers to `no-cache, must-revalidate` (`base-server.js`), while image/data handlers retain explicit no-store. Configured `private, no-store` for assessment page routes; production build/start verification must confirm the effective production header. The development browser assertion requires revalidation instead of incorrectly claiming production header proof.
+
+### 2026-09-23 — database-backed curated simulations
+
+- Added repeatable curated-only import under a noninteractive owner. Historical snapshots preserve all public steps, projection inputs, source snapshots and overrides with original per-run provenance. Homepage, persona profiles, comparisons, sitemap and social cards now read selected database runs; production tracing no longer bundles the historical journey JSON.
+- New live generation/resume reserves private input and operation records before inference, captures the full engine result snapshot while available, then atomically publishes/selects successful runs. Failed/expired generations cannot replace the selected result. There is no background execution; an offline run has a 30-minute commit window. Explicit resume/new generation creates another assessment.
+- `pnpm db:test:personas` passed native-Postgres exact import preservation, 44-person allowlist, seed replay, conflicting keys, private failed input retention, full snapshot publication, repeat completion, expiry, older completion ordering and stable old URLs. `pnpm test:types`, `pnpm test:lint`, and all 252 unit tests passed. PNG renderer tests now supply fixture persona metadata at the database-read boundary. No paid inference or production database writes.
+- Chromium passed all four persistence cases, including selected persona SSR, public simulation JSON/WebP, sitemap inclusion of curated profiles only and session-free public reads. Broader integrated acceptance and production build/cache/tracing verification remain pending.

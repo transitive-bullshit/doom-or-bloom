@@ -71,6 +71,8 @@ try {
   await project(id, 12)
   await repo.setVisibility(owner, id, 1, 'public')
   const published = await repo.publicLoad(id)
+  assert.equal(published.kind, 'participant')
+  if (published.kind !== 'participant') throw new Error('Expected participant')
   assert.equal(published.assessment.prompts.length, 12)
   assert.equal('ownerId' in published, false)
   assert.equal('draft' in published.assessment, false)

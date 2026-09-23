@@ -1,4 +1,4 @@
-import { people } from '@/components/landing/people'
+import { loadExamples } from '@/components/landing/data'
 import { loadSocialPortrait } from '@/lib/sharing/portraits'
 import { apiDiagnostics } from '@/lib/server/error-reporting'
 import { ZodError } from 'zod'
@@ -26,6 +26,7 @@ export async function POST(request: Request) {
     if (Number(request.headers.get('content-length')) > 2000)
       throw Object.assign(new LimitError('Invalid card'), { status: 413 })
     const data = cardSchema.parse(await readBoundedJson(request, 2000))
+    const people = data.closestPersonaIds.length ? await loadExamples() : []
     const selected = data.closestPersonaIds.map((id) => {
       const person = people.find((person) => person.id === id)
       if (!person)

@@ -139,12 +139,8 @@
           "name": "assessment_operations_assessment_id_assessments_id_fk",
           "tableFrom": "assessment_operations",
           "tableTo": "assessments",
-          "columnsFrom": [
-            "assessment_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["assessment_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -152,12 +148,8 @@
           "name": "assessment_operations_retry_of_assessment_operations_id_fk",
           "tableFrom": "assessment_operations",
           "tableTo": "assessment_operations",
-          "columnsFrom": [
-            "retry_of"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["retry_of"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -167,18 +159,12 @@
         "operation_request_key": {
           "name": "operation_request_key",
           "nullsNotDistinct": false,
-          "columns": [
-            "assessment_id",
-            "request_key"
-          ]
+          "columns": ["assessment_id", "request_key"]
         },
         "operation_membership": {
           "name": "operation_membership",
           "nullsNotDistinct": false,
-          "columns": [
-            "assessment_id",
-            "id"
-          ]
+          "columns": ["assessment_id", "id"]
         }
       },
       "policies": {},
@@ -263,12 +249,8 @@
           "name": "assessment_snapshots_assessment_id_assessments_id_fk",
           "tableFrom": "assessment_snapshots",
           "tableTo": "assessments",
-          "columnsFrom": [
-            "assessment_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["assessment_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -278,18 +260,12 @@
         "snapshot_revision": {
           "name": "snapshot_revision",
           "nullsNotDistinct": false,
-          "columns": [
-            "assessment_id",
-            "revision"
-          ]
+          "columns": ["assessment_id", "revision"]
         },
         "snapshot_membership": {
           "name": "snapshot_membership",
           "nullsNotDistinct": false,
-          "columns": [
-            "assessment_id",
-            "id"
-          ]
+          "columns": ["assessment_id", "id"]
         }
       },
       "policies": {},
@@ -470,12 +446,8 @@
           "name": "assessments_owner_id_user_id_fk",
           "tableFrom": "assessments",
           "tableTo": "user",
-          "columnsFrom": [
-            "owner_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["owner_id"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "no action"
         },
@@ -483,12 +455,8 @@
           "name": "assessments_persona_id_personas_id_fk",
           "tableFrom": "assessments",
           "tableTo": "personas",
-          "columnsFrom": [
-            "persona_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["persona_id"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "no action"
         },
@@ -496,12 +464,8 @@
           "name": "assessments_source_assessment_id_assessments_id_fk",
           "tableFrom": "assessments",
           "tableTo": "assessments",
-          "columnsFrom": [
-            "source_assessment_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["source_assessment_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -511,25 +475,17 @@
         "assessments_seed_key_unique": {
           "name": "assessments_seed_key_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "seed_key"
-          ]
+          "columns": ["seed_key"]
         },
         "assessment_creation_key": {
           "name": "assessment_creation_key",
           "nullsNotDistinct": false,
-          "columns": [
-            "owner_id",
-            "create_request_key"
-          ]
+          "columns": ["owner_id", "create_request_key"]
         },
         "assessment_persona_membership": {
           "name": "assessment_persona_membership",
           "nullsNotDistinct": false,
-          "columns": [
-            "id",
-            "persona_id"
-          ]
+          "columns": ["id", "persona_id"]
         }
       },
       "policies": {},
@@ -635,9 +591,7 @@
         "personas_slug_unique": {
           "name": "personas_slug_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "slug"
-          ]
+          "columns": ["slug"]
         }
       },
       "policies": {},
@@ -750,12 +704,8 @@
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -842,12 +792,8 @@
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -857,9 +803,7 @@
         "session_token_unique": {
           "name": "session_token_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "token"
-          ]
+          "columns": ["token"]
         }
       },
       "policies": {},
@@ -930,9 +874,7 @@
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
