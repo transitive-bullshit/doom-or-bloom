@@ -43,6 +43,7 @@ These local connections use Postgres.app's local authentication policy. Do not r
 pnpm db:migrate
 pnpm db:migrate:test
 pnpm db:test
+pnpm db:test:repository
 ```
 
 Migrations are checked in under `drizzle/`; repeat application is a no-op. After schema changes run `pnpm db:generate` and review the SQL. Deferred circular pointers, immutable snapshot enforcement, and persona selection triggers live in the custom `0001` migration; preserve them when generating changes. `pnpm db:auth:generate` regenerates the pinned Better Auth schema. Integration tests use only `TEST_DATABASE_URL`, whose database name must end in `_test`, and remove their own records.

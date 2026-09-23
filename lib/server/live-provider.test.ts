@@ -131,32 +131,19 @@ test('large batches retain the exact complete state and aggregate physical usage
   for (const [, init] of fetch.mock.calls)
     expect(requestBody(init).state).toEqual(state)
 })
-test('only an oversized multi-question request splits; one-question overflow terminates', async () => {
-  const { provider, fetch } = mockedProvider(async (_url, init) => {
-    const body = requestBody(init)
-    return Object.keys(body.questions).length > 1
-      ? Response.json({ message: 'Exceeded token limit' }, { status: 400 })
-      : successfulResponse(init)
-  })
-  const result = await provider.evaluate(
-    { original: 'unchanged' },
-    { a: question, b: question }
-  )
-  expect(fetch).toHaveBeenCalledTimes(3)
-  expect(result.attempts).toBe(3)
-  expect(result.usage.input_tokens).toBe(20)
-  fetch.mockImplementation(async () =>
+test('context overflow is permanent and never triggers recursive splitting', async () => {
+  const { provider, fetch } = mockedProvider(async () =>
     Response.json({ message: 'Exceeded token limit' }, { status: 400 })
   )
-  await expect(provider.evaluate({}, { a: question })).rejects.toMatchObject({
-    status: 400
-  })
-  expect(fetch).toHaveBeenCalledTimes(4)
+  await expect(
+    provider.evaluate({ original: 'unchanged' }, { a: question, b: question })
+  ).rejects.toMatchObject({ status: 400 })
+  expect(fetch).toHaveBeenCalledTimes(1)
 })
 test('transient batch retries respect the physical ceiling and remaining operation budget', async () => {
   let calls = 0
   const { provider, fetch } = mockedProvider(async (_url, init) =>
-    ++calls % 3 !== 0
+    ++calls % 2 !== 0
       ? Response.json(
           { message: 'Busy' },
           { status: 429, headers: { 'retry-after-ms': '0' } }
@@ -167,8 +154,10 @@ test('transient batch retries respect the physical ceiling and remaining operati
     Array.from({ length: limits.questions }, (_, i) => [`q${i}`, question])
   )
   const state = { text: 'x'.repeat(100_001) }
-  await expect(provider.evaluate(state, questions)).rejects.toThrow()
-  expect(fetch).toHaveBeenCalledTimes(limits.providerAttempts)
+  await expect(provider.evaluate(state, questions)).resolves.toMatchObject({
+    attempts: 24
+  })
+  expect(fetch).toHaveBeenCalledTimes(24)
   fetch.mockClear()
   await expect(
     provider.evaluate(state, questions, undefined, 2)
@@ -185,7 +174,7 @@ test('an oversized fallback stops without searching for the provider limit', asy
       { a: question, b: question, c: question, d: question }
     )
   ).rejects.toMatchObject({ status: 400 })
-  expect(fetch).toHaveBeenCalledTimes(3)
+  expect(fetch).toHaveBeenCalledTimes(1)
 })
 test('authentication failures are not retried, while transient retries have a physical ceiling', async () => {
   const { provider, fetch } = mockedProvider(async () =>
@@ -204,7 +193,7 @@ test('authentication failures are not retried, while transient retries have a ph
   await expect(provider.evaluate({}, { a: question })).rejects.toMatchObject({
     status: 429
   })
-  expect(fetch).toHaveBeenCalledTimes(4)
+  expect(fetch).toHaveBeenCalledTimes(3)
 })
 test('caller cancellation stops retry backoff without another physical request', async () => {
   const controller = new AbortController()
@@ -289,33 +278,24 @@ test('debug records each physical batch and validated response without adding ca
   )
 })
 
-test('debug identifies an oversized parent and successful child requests without retaining raw errors', async () => {
-  const { provider, fetch } = mockedProvider(async (_url, init) =>
-    Object.keys(requestBody(init).questions).length > 1
-      ? Response.json(
-          { message: 'Exceeded token limit PRIVATE_ERROR_CANARY' },
-          { status: 400 }
-        )
-      : successfulResponse(init)
+test('overflow diagnostics retain status without raw provider errors', async () => {
+  const { provider, fetch } = mockedProvider(async () =>
+    Response.json(
+      { message: 'Exceeded token limit PRIVATE_ERROR_CANARY' },
+      { status: 400 }
+    )
   )
-  const result = await provider.evaluate(
-    { current: 'unchanged' },
-    { a: question, b: question },
-    undefined,
-    limits.providerAttempts,
-    true
-  )
-  expect(fetch).toHaveBeenCalledTimes(3)
-  expect(
-    result.requests?.map((record) => [record.questionIds, record.status])
-  ).toEqual([
-    [['a', 'b'], 400],
-    [['a'], 200],
-    [['b'], 200]
-  ])
-  expect(result.requests![0]!.response).toBeUndefined()
-  expect(result.requests![1]!.response).toBeDefined()
-  expect(JSON.stringify(result.requests)).not.toContain('PRIVATE_ERROR_CANARY')
+  const failure = await provider
+    .evaluate(
+      {},
+      { a: question, b: question },
+      undefined,
+      limits.providerAttempts,
+      true
+    )
+    .catch((err: unknown) => providerFailure('Jev', err))
+  expect(fetch).toHaveBeenCalledTimes(1)
+  expect(JSON.stringify(failure)).not.toContain('PRIVATE_ERROR_CANARY')
 })
 
 test('rounded live score at the tolerance boundary is not rejected by floating point error', async () => {
@@ -383,25 +363,16 @@ test('failed later batch retains validated responses and physical diagnostics wi
     expect(JSON.stringify(failure)).not.toContain(secret)
 })
 
-test('max_tokens_exceeded recovers through two bounded splits without dropping answers', async () => {
-  const state = { answer: 'The complete answer must survive each retry.' }
-  const { provider, fetch } = mockedProvider(async (_url, init) => {
-    const body = requestBody(init)
-    expect(body.state).toEqual(state)
-    return Object.keys(body.questions).length > 1
-      ? Response.json(
-          { detail: { error_type: 'max_tokens_exceeded' } },
-          { status: 400 }
-        )
-      : successfulResponse(init)
+test('a second transient failure ends the whole operation after exactly two calls', async () => {
+  const { provider, fetch } = mockedProvider(async () =>
+    Response.json(
+      { message: 'Busy' },
+      { status: 503, headers: { 'retry-after-ms': '0' } }
+    )
+  )
+  await expect(provider.evaluate({}, { a: question })).rejects.toMatchObject({
+    status: 503,
+    attempts: 2
   })
-  const result = await provider.evaluate(state, {
-    a: question,
-    b: question,
-    c: question,
-    d: question
-  })
-  expect(Object.keys(result.answers).sort()).toEqual(['a', 'b', 'c', 'd'])
-  expect(fetch).toHaveBeenCalledTimes(7)
-  expect(result.attempts).toBe(7)
+  expect(fetch).toHaveBeenCalledTimes(2)
 })
