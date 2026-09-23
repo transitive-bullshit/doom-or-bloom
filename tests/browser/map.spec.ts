@@ -295,7 +295,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
         .click()
       await expect(
         page.locator('[data-sonner-toast][data-type=error]')
-      ).toContainText('Card generation failed. Please try again.')
+      ).toContainText('Couldn’t download the image. Please try again.')
       await context.grantPermissions(['clipboard-read', 'clipboard-write'])
       await map.getByRole('button', { name: 'Map image actions' }).click()
       await page.getByRole('menuitem', { name: 'Copy PNG' }).click()
