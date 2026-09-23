@@ -413,3 +413,11 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Reuse ConversationHistory and its answer disclosures on public participant pages, with shared answer navigation linking results to the conversation.
 - [x] Remove the public introduction, redundant Results heading, review disclosure, full-report download, and raw JSON disclosures/download links. Keep the public data endpoint and image download. Use the centered WorldviewCtaCard below the conversation.
 - [x] Verify public long answers start collapsed, expand/collapse correctly, and fit a mobile viewport. Inspect the desktop screenshot and verify owner-page controls through the existing interaction suite.
+
+### Sharing failure diagnosis and participant error audit (2026-09-23)
+
+- [x] Traced reported Make private failures to Postgres logs at 16:37–16:39 UTC: the obsolete assessment_lifecycle constraint rejected clearing the published snapshot pointer. Migration 0002 removes that constraint. Verified the affected row through a rollback-only repository operation, and verified publish/unpublish through the running local HTTP server with a temporary assessment, deleted afterward.
+- [x] Replace direct server-error rendering with controlled error-code messages at both HTTP and browser boundaries. Expected conflicts retain actionable copy; unknown/network failures use action-specific fallback messages. Cover sharing, deletion, forks, loading, answer submission, and image/report downloads. Authentication already catches failures with fixed copy. Keep technical details in explicit debug tools and server diagnostics.
+- [x] Preserve uncertain-submission recovery on network errors. Never discard the saved submission merely because a normalized network error has status zero.
+- [x] Include SQLSTATE codes in redacted server diagnostics without logging SQL, row contents, or exception messages.
+- [x] Add regressions for raw error-body/network-message leakage, both Make private buttons, safe sharing-failure toasts, and successful retries.

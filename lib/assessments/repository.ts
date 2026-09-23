@@ -42,8 +42,8 @@ type RecordRow = typeof assessments.$inferSelect
 type OperationRow = typeof assessmentOperations.$inferSelect
 const missing = () =>
   new AssessmentError('not_found', 404, 'Assessment not found.')
-const conflict = (message: string) =>
-  new AssessmentError('conflict', 409, message)
+const conflict = (message: string, code = 'conflict') =>
+  new AssessmentError(code, 409, message)
 const expired = (op: OperationRow) =>
   op.status === 'running' && op.deadline.getTime() <= Date.now()
 function operationView(op: OperationRow) {
@@ -353,7 +353,8 @@ export function assessmentRepository(pool: Pool) {
         await assertIdle(tx, row.id)
         if (row.visibility === 'public')
           throw conflict(
-            'This assessment is published. Continue in a new assessment or make it private.'
+            'This assessment is published. Continue in a new assessment or make it private.',
+            'published'
           )
         if (row.revision !== input.expectedRevision)
           throw conflict('This assessment changed. Refresh before submitting.')
@@ -531,7 +532,10 @@ export function assessmentRepository(pool: Pool) {
           (!state.result ||
             state.result.evidenceRevision !== state.evidenceRevision)
         )
-          throw conflict('View your results before sharing.')
+          throw conflict(
+            'View your results before sharing.',
+            'results_required'
+          )
         const changes: Partial<typeof assessments.$inferInsert> = {
           visibility,
           publishedSnapshotId:
@@ -632,7 +636,8 @@ export function assessmentRepository(pool: Pool) {
         )
         if (inherited.prompts.length >= 30)
           throw conflict(
-            'This conversation has reached 30 questions. Start a new assessment.'
+            'This conversation has reached 30 questions. Start a new assessment.',
+            'question_limit'
           )
         const id = randomUUID(),
           snapshotId = randomUUID()

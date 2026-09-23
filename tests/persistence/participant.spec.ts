@@ -282,10 +282,46 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(fork.assessment.promptCeiling).toBe(
       json.assessment.prompts.length + 12
     )
-    await page.request.patch(`/api/assessments/${id}`, {
-      headers,
-      data: { expectedRevision: 2, visibility: 'private' }
+    await page.goto(`/assessments/${id}`)
+    await page.route(`**/api/assessments/${id}`, async (route) => {
+      if (route.request().method() !== 'PATCH') return route.continue()
+      return route.fulfill({
+        status: 503,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          error:
+            'The saved state could not be confirmed. Retry with the same request key.'
+        })
+      })
     })
+    await page
+      .getByRole('button', { name: 'Make private', exact: true })
+      .click()
+    await expect(
+      page.getByText('Couldn’t update sharing. Please try again.', {
+        exact: true
+      })
+    ).toBeVisible()
+    await expect(page.getByText(/same request key/)).toHaveCount(0)
+    await page.unroute(`**/api/assessments/${id}`)
+    await page
+      .getByRole('button', { name: 'Make private', exact: true })
+      .click()
+    await expect(
+      page.getByRole('button', { name: 'Share assessment', exact: true })
+    ).toBeVisible()
+    const republished = await page.request.patch(`/api/assessments/${id}`, {
+      headers,
+      data: { expectedRevision: 2, visibility: 'public' }
+    })
+    expect(republished.status()).toBe(200)
+    await page.goto('/assessments')
+    await page
+      .getByRole('button', { name: 'Make private', exact: true })
+      .click()
+    await expect(
+      page.getByRole('button', { name: 'Make private', exact: true })
+    ).toHaveCount(0)
     expect((await visitor.request.get(`${publicURL}/data`)).status()).toBe(404)
     expect(
       (await visitor.request.get(`${publicURL}/social-image.webp`)).status()

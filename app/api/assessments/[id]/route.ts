@@ -26,7 +26,7 @@ export async function POST(
     const input = submitSchema.parse(await readBoundedJson(request, 32_000))
     if (input.assessmentId !== id)
       return Response.json(
-        { error: 'Assessment ID mismatch.' },
+        { code: 'invalid_input', error: 'Refresh the page and try again.' },
         { status: 400, headers: privateHeaders }
       )
     const result = await repository().submit(

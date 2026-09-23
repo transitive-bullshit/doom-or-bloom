@@ -38,11 +38,11 @@ export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
         downloadBlob(await png, 'doom-or-bloom-map.png')
       }
       toast.success(copy ? 'Map copied as PNG.' : 'Map downloaded as PNG.')
-    } catch (err) {
+    } catch {
       toast.error(
-        err instanceof Error
-          ? err.message
-          : 'Image export failed. Please try again.'
+        copy
+          ? 'Couldn’t copy the image. Try downloading it instead.'
+          : 'Couldn’t download the image. Please try again.'
       )
     } finally {
       setBusy(false)

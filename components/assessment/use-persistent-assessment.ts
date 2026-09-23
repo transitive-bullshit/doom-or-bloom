@@ -11,6 +11,7 @@ import type { Submission } from '@/lib/assessments/contracts'
 import {
   api,
   ApiError,
+  userErrorMessage,
   readDraft,
   readPending,
   writeDraft,
@@ -94,7 +95,10 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
       void api('/api/auth/get-session').catch(() => {})
       void refresh().catch((err) =>
         setNotice(
-          err instanceof Error ? err.message : 'Unable to load saved progress.'
+          userErrorMessage(
+            err,
+            'Couldn’t load your assessment. Please refresh the page.'
+          )
         )
       )
     })
@@ -105,7 +109,7 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
     const timer = setInterval(() => {
       void refresh().catch(() =>
         setNotice(
-          'Connection interrupted. Your operation may still be processing; refresh to confirm.'
+          'Connection interrupted. Your answer may still be processing. Please refresh the page.'
         )
       )
     }, 1500)
@@ -181,11 +185,12 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
       await refresh()
     } catch (err) {
       setNotice(
-        err instanceof Error
-          ? err.message
-          : 'The response was lost. Confirm the submission before continuing.'
+        userErrorMessage(
+          err,
+          'We couldn’t confirm your answer was saved. Check its status before continuing.'
+        )
       )
-      if (err instanceof ApiError && err.status < 500) {
+      if (err instanceof ApiError && err.status >= 400 && err.status < 500) {
         try {
           writePending(null, before.id)
         } catch {

@@ -111,7 +111,7 @@ export function ExperimentalResults({
             )}
             <p className='text-sm text-body-foreground'>
               {!experiment
-                ? 'This saved snapshot has not been evaluated for a numerical catastrophe estimate.'
+                ? 'This assessment has not been evaluated for a numerical catastrophe estimate.'
                 : risk
                   ? risk.source === 'public-statement'
                     ? `Public statement from ${risk.publicStatement?.publishedAt}. This source-backed value replaces the simulated assessment estimate.`
@@ -178,7 +178,7 @@ export function ExperimentalResults({
                 <p className='text-sm text-body-foreground'>
                   {experiment
                     ? 'No milestone timing was established. Dates, “not sure,” “possibly never,” and dependencies can all appear here when expressed.'
-                    : 'Milestone timing has not been evaluated for this saved snapshot.'}
+                    : 'Milestone timing has not been evaluated for this assessment.'}
                 </p>
               )}
               <p className='mt-4 text-xs text-muted-foreground'>
@@ -215,7 +215,7 @@ export function ExperimentalResults({
               <p className='text-sm text-body-foreground'>
                 {experiment
                   ? 'No specific assumption, unresolved question or update condition was selected yet. Missing discussion is not a reasoning weakness.'
-                  : 'Assumptions and update conditions have not been evaluated for this saved snapshot.'}
+                  : 'Assumptions and update conditions have not been evaluated for this assessment.'}
               </p>
             )}
           </CardContent>

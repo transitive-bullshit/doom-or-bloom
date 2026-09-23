@@ -18,7 +18,7 @@ import type { OwnedAssessment } from '@/lib/assessments/repository'
 import { usePersistentAssessment } from './use-persistent-assessment'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { api } from '@/lib/assessments/client'
+import { api, userErrorMessage } from '@/lib/assessments/client'
 import {
   Dialog,
   DialogContent,
@@ -143,9 +143,10 @@ export function Interview({
       }
     } catch (err) {
       toast.error(
-        err instanceof Error
-          ? err.message
-          : 'Unable to continue in a new assessment.'
+        userErrorMessage(
+          err,
+          'Couldn’t create a new assessment. Please try again.'
+        )
       )
     } finally {
       setManaging(false)
@@ -165,7 +166,7 @@ export function Interview({
       await refresh()
     } catch (err) {
       toast.error(
-        err instanceof Error ? err.message : 'Unable to update sharing.'
+        userErrorMessage(err, 'Couldn’t update sharing. Please try again.')
       )
     } finally {
       setManaging(false)

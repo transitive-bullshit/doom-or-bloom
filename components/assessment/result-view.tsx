@@ -130,12 +130,8 @@ export function ResultView({
       downloadBlob(archive, `doom or bloom assessment ${state.id}.zip`)
       toast.success('Full report download started.')
       emitEvent(makeEvent(state, 'full_report_downloaded'))
-    } catch (err) {
-      toast.error(
-        err instanceof Error
-          ? err.message
-          : 'Report download failed. Please try again.'
-      )
+    } catch {
+      toast.error('Couldn’t download the report. Please try again.')
     } finally {
       setReportDownloading(false)
     }
@@ -147,8 +143,8 @@ export function ResultView({
       downloadBlob(await renderCard(), 'doom-or-bloom.png')
       toast.success('Results image download started.')
       emitEvent(makeEvent(state, 'share_card_downloaded'))
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Card download failed')
+    } catch {
+      toast.error('Couldn’t download the image. Please try again.')
     } finally {
       setDownloading(false)
     }

@@ -4,6 +4,7 @@ import { getAuth } from '../auth/server'
 import { hasTrustedOrigin } from '../auth/origin'
 import { LimitError } from '../server/limits'
 import { reportServerError } from '../server/error-reporting'
+import { assessmentErrorMessage } from './error-messages'
 import { AssessmentError } from './contracts'
 
 export const privateHeaders = { 'Cache-Control': 'private, no-store' }
@@ -29,25 +30,27 @@ export async function privateRequest(
   } catch (err) {
     if (err instanceof AssessmentError)
       return Response.json(
-        { code: err.code, error: err.message },
+        { code: err.code, error: assessmentErrorMessage(err.status, err.code) },
         { status: err.status, headers: privateHeaders }
       )
     if (err instanceof ZodError || err instanceof SyntaxError)
       return Response.json(
-        { code: 'invalid_input', error: 'Invalid assessment request.' },
+        {
+          code: 'invalid_input',
+          error: assessmentErrorMessage(400, 'invalid_input')
+        },
         { status: 400, headers: privateHeaders }
       )
     if (err instanceof LimitError)
       return Response.json(
-        { code: 'limited', error: err.message },
+        { code: 'limited', error: assessmentErrorMessage(429, 'limited') },
         { status: 429, headers: privateHeaders }
       )
     reportServerError('assessment_request_failed', err, {})
     return Response.json(
       {
         code: 'unavailable',
-        error:
-          'The saved state could not be confirmed. Retry with the same request key.'
+        error: 'Something went wrong. Please try again.'
       },
       { status: 503, headers: privateHeaders }
     )

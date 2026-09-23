@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/dialog'
 import { AssessmentStart } from './start'
 import { AccountAccess } from './account-access'
-import { api } from '@/lib/assessments/client'
+import { api, userErrorMessage } from '@/lib/assessments/client'
 
 export type LibraryItem = {
   id: string
@@ -51,7 +51,12 @@ export function AssessmentLibrary({
       await api(`/api/assessments/${id}`, { method: 'DELETE' })
       router.refresh()
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Unable to delete.')
+      toast.error(
+        userErrorMessage(
+          err,
+          'Couldn’t delete this assessment. Please try again.'
+        )
+      )
     } finally {
       setBusy(null)
     }
@@ -69,7 +74,7 @@ export function AssessmentLibrary({
       router.refresh()
     } catch (err) {
       toast.error(
-        err instanceof Error ? err.message : 'Unable to update sharing.'
+        userErrorMessage(err, 'Couldn’t update sharing. Please try again.')
       )
     } finally {
       setBusy(null)

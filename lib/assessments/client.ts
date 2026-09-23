@@ -1,4 +1,5 @@
 'use client'
+import { assessmentErrorMessage } from './error-messages'
 import { submitSchema, type Submission } from './contracts'
 
 export class ApiError extends Error {
@@ -18,6 +19,8 @@ export async function api<T>(url: string, init?: RequestInit): Promise<T> {
     ...init,
     cache: 'no-store',
     headers
+  }).catch(() => {
+    throw new ApiError(0, 'Unable to connect. Please try again.')
   })
   const text = await response.text()
   let body
@@ -32,9 +35,15 @@ export async function api<T>(url: string, init?: RequestInit): Promise<T> {
   if (!response.ok && !body?.operation)
     throw new ApiError(
       response.status,
-      body?.error ?? 'Unable to reach your saved assessment.'
+      assessmentErrorMessage(response.status, body?.code)
     )
   return body as T
+}
+
+export function userErrorMessage(error: unknown, fallback: string) {
+  return error instanceof ApiError && error.status >= 400 && error.status < 500
+    ? error.message
+    : fallback
 }
 
 let starting: Promise<{ id: string | null }> | undefined

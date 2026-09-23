@@ -152,3 +152,5 @@ Sharing is offered from the results view. The API requires a current meaningful 
 Private assessment, public assessment (including simulations), and persona detail routes use the shared `AssessmentPage` wrapper and its heading stylesheet. Shared result sections own explicit minor heading sizes. Persona sources and assessment resources both render through `ResourceList` and `ResourceBookmark`; keep bookmark typography inside that component.
 
 Public participant pages reuse the private conversation components, including collapsed long answers and answer navigation. They show the centered worldview CTA card, without an extra Results heading, owner review/report controls, or raw-data disclosures/download links. The authorized public data endpoint remains available.
+
+Participant error messages come from controlled error codes or action-specific fallback copy. Never display raw API, database, provider, or browser exception messages. Detailed diagnostics belong in server logs and explicitly enabled debug tools; network failures retain the original pending submission for recovery.

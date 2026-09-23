@@ -29,7 +29,9 @@ export function errorDetails(
   const systemCode =
     'code' in error &&
     typeof error.code === 'string' &&
-    /^(?:E[A-Z0-9_]{2,40}|UND_ERR_[A-Z_]{1,40})$/.test(error.code)
+    /^(?:E[A-Z0-9_]{2,40}|UND_ERR_[A-Z_]{1,40}|[0-9][0-9A-Z]{4})$/.test(
+      error.code
+    )
       ? error.code
       : undefined
   const code = isContextOverflow(error)
