@@ -62,7 +62,7 @@ globalThis.fetch = async (input) => {
   throw new Error('Unexpected external request in provider-mocked auth test')
 }
 let callbackPath = ''
-async function login() {
+async function beginLogin() {
   const started = await call('/sign-in/social', {
     provider: 'twitter',
     callbackURL: '/assessments'
@@ -75,7 +75,10 @@ async function login() {
     `${origin}/api/auth/callback/twitter`
   )
   callbackPath = `/callback/twitter?state=${encodeURIComponent(authorization.searchParams.get('state')!)}&code=fixture-code`
-  return call(callbackPath)
+  return callbackPath
+}
+async function login() {
+  return call(await beginLogin())
 }
 try {
   const anonymous = await (await call('/sign-in/anonymous', {})).json()
@@ -87,6 +90,13 @@ try {
   )
   assert.ok(assessment.id)
   assessmentIds.push(assessment.id)
+  // Abandoning the provider redirect must leave anonymous ownership intact.
+  await beginLogin()
+  assert.equal(
+    (await (await call('/get-session')).json()).user.id,
+    anonymous.user.id
+  )
+  assert.equal((await repo.list(anonymous.user.id))[0]!.id, assessment.id)
   let release!: () => void
   let entered!: () => void
   const gate = new Promise<void>((resolve) => {
@@ -188,6 +198,16 @@ try {
   const merged = await (await call('/get-session')).json()
   assert.equal(merged.user.id, signedIn.user.id)
   assert.equal((await repo.list(merged.user.id)).length, 2)
+  // An expired authenticated cookie cannot recover records without a new login.
+  await pool.query(
+    "UPDATE session SET expires_at = NOW() - interval '1 minute' WHERE user_id = $1",
+    [merged.user.id]
+  )
+  assert.equal(await (await call('/get-session')).json(), null)
+  await login()
+  const renewed = await (await call('/get-session')).json()
+  assert.equal(renewed.user.id, signedIn.user.id)
+  assert.equal((await repo.list(renewed.user.id)).length, 2)
   console.log(
     'Provider-mocked X callback, anonymous claim, sign-out and cross-browser recovery passed'
   )

@@ -58,9 +58,10 @@ export default function Privacy() {
       </p>
       <p>
         A random per-assessment identifier links events across resumed visits
-        and rotates on restart. This is pseudonymous linkage, not mathematical
-        anonymity. Enabling PostHog requires its project-level IP-data disposal
-        setting. Analytics credentials alone do not enable collection.
+        and changes for each new assessment or fork. This is pseudonymous
+        linkage, not mathematical anonymity. Enabling PostHog requires its
+        project-level IP-data disposal setting. Analytics credentials alone do
+        not enable collection.
       </p>
       <h2 className='text-lg font-medium'>Sharing and clearing</h2>
       <p>
@@ -79,11 +80,13 @@ export default function Privacy() {
         media servers. Your assessment answers are not sent to X.
       </p>
       <p>
-        Card generation sends only map coordinates, interpretation ranges, and
-        single-axis scores to this app’s server. Cards contain no raw answers or
-        assessment identifier and are not persistently hosted. Map images can
-        also be copied or downloaded directly in your browser. A full report
-        contains your usable answers and evidence, so review it before sharing.
+        Downloaded card generation sends only map coordinates, interpretation
+        ranges, and single-axis scores to this app’s server. Cards contain no
+        raw answers or assessment identifier and are not persistently hosted.
+        Public assessment links also serve a social preview image while the
+        assessment is public. Map images can also be copied or downloaded
+        directly in your browser. A full report contains your usable answers and
+        evidence, so review it before sharing.
       </p>
       <p>
         Anonymous progress is tied to your browser session. Optional X sign-in,
