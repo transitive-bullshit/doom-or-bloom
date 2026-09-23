@@ -1,8 +1,8 @@
 # Persistent assessments implementation plan
 
-Prepared 2026-09-23. Product decisions are approved; implementation has not started. The latest user constraint is **no Docker**. This plan covers local development, with hosted-service setup recorded for later; it does not authorize deployment.
+Prepared 2026-09-23. Product decisions are approved; implementation has not started. The latest user decisions are **no Docker and no asynchronous workflows**: bounded assessment operations run in the main POST request. This plan covers local development, with hosted-service setup recorded for later; it does not authorize deployment.
 
-Read [PERSISTENCE.md](PERSISTENCE.md) for the accepted UX, relational model, ownership, snapshots, Workflow execution, and publication contracts. Use this file for ordered tasks, checks, commits, and blockers. It supersedes the database/account/public-URL exclusions and browser-authoritative architecture of [the original MVP plan](mvp-implementation-plan.md), whose completed checkpoints remain historical evidence.
+Read [PERSISTENCE.md](PERSISTENCE.md) for the accepted UX, relational model, ownership, snapshots, synchronous operations, and publication contracts. Use this file for ordered tasks, checks, commits, and blockers. It supersedes the database/account/public-URL exclusions and browser-authoritative architecture of [the original MVP plan](mvp-implementation-plan.md), whose completed checkpoints remain historical evidence.
 
 ## Execution rules
 
@@ -11,7 +11,7 @@ Read [PERSISTENCE.md](PERSISTENCE.md) for the accepted UX, relational model, own
 3. Update affected canonical docs, visible copy, and contributor instructions alongside the feature that changes their truth. The approved target and currently shipped behavior must remain distinguishable during the transition.
 4. Proceed autonomously through routine implementation, local database setup, migration generation/application to dedicated development/test databases, debugging, fixture checks, and commits. Do not wait for approval at each checkpoint. Optional review moments below are opportunities for feedback, not gates.
 5. Ask for help only when an external account/credential or explicit business decision genuinely blocks progress. Continue independent work. Scope changes, destructive changes to an unrelated/existing database, deployment, and unbudgeted paid inference are not implied by this plan.
-6. Follow repository conventions: pnpm, modern TypeScript, no semicolons, oxfmt, oxlint, and shadcn/ui primitives. Before application code changes, install the locked dependencies and read relevant guides in `node_modules/next/dist/docs/`. Before Workflow integration, read version-matched SDK docs and inspect the pinned world adapter's API. This worktree had no `node_modules` when the plan was written.
+6. Follow repository conventions: pnpm, modern TypeScript, no semicolons, oxfmt, oxlint, and shadcn/ui primitives. Before application code changes, install the locked dependencies and read relevant guides in `node_modules/next/dist/docs/`. This worktree had no `node_modules` when the plan was written.
 7. No Docker, Compose, or Testcontainers, including development and this project's integration tests. Use native Postgres.app, or a native PostgreSQL installation if Postgres.app becomes unavailable. Test databases are disposable and distinct from development data.
 
 ## Delivery sequence
@@ -19,8 +19,8 @@ Read [PERSISTENCE.md](PERSISTENCE.md) for the accepted UX, relational model, own
 | Checkpoint | Outcome | Dependency |
 | --- | --- | --- |
 | 0 | Recorded design, execution plan, and documentation pointers | Complete in this documentation change |
-| 1 | Native Postgres, schema, anonymous auth, and a proven Workflow integration | Local tooling only |
-| 2 | Durable submissions, authoritative state, replay-safe processing and recovery | Checkpoint 1 |
+| 1 | Native Postgres, schema, and anonymous auth | Local tooling only |
+| 2 | Synchronous operations, atomic state commits, idempotency and explicit retry | Checkpoint 1 |
 | 3 | One-click first run, assessment library, completion, forks, public pages and WebP previews | Checkpoint 2 |
 | 4 | Database-backed personas and immutable regeneration | Checkpoints 1–3 |
 | 5 | Integrated persistence milestone verified and documented | Checkpoints 1–4 |
@@ -31,22 +31,22 @@ Checkpoints 1–5 are the persistence spike/milestone. Checkpoint 6 is the separ
 ## Checkpoint 0 — agreed design and handoff
 
 - [x] Record the core tables, immutable snapshots, anonymous ownership, first-run shortcut, fork budget, public resource, persona selection, and indefinite retention.
-- [x] Select Workflow SDK for execution and its Postgres World with native Postgres.app for durable local development; document why the default in-memory local queue cannot establish restart recovery.
+- [x] Select native Postgres.app and synchronous POST execution, retaining submitted input/failure status without introducing an asynchronous runtime.
 - [x] Record the task sequence, doc updates, meaningful tests, commit boundaries, optional review moments, and third-party setup needs.
 - [x] Link this plan from the handoff and agent instructions and mark old persistence scope as superseded.
 
 Commit: `docs: plan durable assessments and optional accounts`.
 
-## Checkpoint 1 — local storage, ownership, and Workflow feasibility
+## Checkpoint 1 — local storage and ownership
 
 ### Native PostgreSQL and schema
 
-- [ ] Inspect the running Postgres.app server/version and connectivity without changing existing databases. Create dedicated development, integration-test, and Workflow databases/roles with project-specific names. Document exact creation commands and connection strings using placeholders; never print credentials.
+- [ ] Inspect the running Postgres.app server/version and connectivity without changing existing databases. Create dedicated development and integration-test databases/roles with project-specific names. Document exact creation commands and connection strings using placeholders; never print credentials.
 - [ ] Add compatible pinned `drizzle-orm`, `drizzle-kit`, `pg`, `better-auth`, and required types/adapters. Use one PostgreSQL path locally and with Neon; avoid introducing a separate SQLite implementation.
-- [ ] Implement server-only database configuration, connection pooling, env validation, and checked-in schema/migrations for Better Auth and the application tables in PERSISTENCE. Keep Workflow's own bootstrap/schema under SDK ownership.
+- [ ] Implement server-only database configuration, connection pooling, env validation, and checked-in schema/migrations for Better Auth and the application tables in PERSISTENCE.
 - [ ] Add documented pnpm commands for migration generation/application, curated persona seeding, and DB integration tests. Prefer migrations over untracked schema push. Apply to a fresh test database twice and show the second migration pass is a no-op.
 - [ ] Verify ownership FKs, snapshot membership/uniqueness, one active operation per assessment, idempotency keys/fingerprints, fork deletion semantics, and persona pointer constraints against real Postgres.
-- [ ] Extend `.env.example` with `DATABASE_URL`, optional direct migration URL, `TEST_DATABASE_URL`, auth secret/base URL, and Workflow variables. Reuse the actual Portless origin. Add a native database setup section in CONTRIBUTING; keep secrets out of git.
+- [ ] Extend `.env.example` with `DATABASE_URL`, optional direct migration URL, `TEST_DATABASE_URL`, and auth secret/base URL. Reuse the actual Portless origin. Add a native database setup section in CONTRIBUTING; keep secrets out of git.
 
 ### Anonymous sessions
 
@@ -54,41 +54,33 @@ Commit: `docs: plan durable assessments and optional accounts`.
 - [ ] Add one ownership boundary used by all private reads/mutations. Test separate browser owners, absent/expired cookies, forged IDs, cross-origin writes, and no auth material in serialized assessment state.
 - [ ] Disable unsafe anonymous-user cleanup until assessment transfer is implemented. Owner deletion must not accidentally cascade away indefinitely retained assessments.
 
-### Workflow spike (required technical gate, no human approval required)
+Done when: a fresh native test setup migrates, schema constraints pass, and anonymous owners are isolated. Keep `pnpm dev` as the existing single Portless Next command; no worker or additional runtime is required.
 
-- [ ] Add compatible `workflow` and `@workflow/world-postgres`; wrap the existing Next config with `withWorkflow()` while preserving current configuration. Verify the repository's dev bundler and `next build --webpack` both work; document any necessary supported build adjustment.
-- [ ] Bootstrap Postgres World against its dedicated native database with the installed package's pinned CLI. Start it from Node instrumentation as documented. Keep `pnpm dev` as the single Portless development command; do not add a custom inference-worker daemon.
-- [ ] Validate workflow callback URLs, startup ordering, shutdown, concurrency limits, and hot reload with the actual Portless URL. Confirm internal execution routes cannot become an unauthenticated public inference endpoint.
-- [ ] Use a credential-free workflow with database side effects: start, kill the app mid-step, restart, and demonstrate recovery plus one committed effect. Repeat with the database temporarily unavailable. Test both Turbopack development and the production build path.
-- [ ] Record the installed SDK/world versions, migration/bootstrap process, retry defaults, run inspection/recovery API, idempotent-start support or absence, and Node version compatibility. If the integration genuinely fails, preserve evidence and propose the smallest native alternative; do not silently add Docker or a homegrown queue.
+Suggested commit: `feat: add postgres schema and anonymous ownership`.
 
-Done when: a fresh native test setup migrates, anonymous owners are isolated, and a real Workflow run recovers through the tested failure cases. Application inference is still fixture-based.
+Update: CONTRIBUTING, `.env.example`, PERSISTENCE schema details, TYPESAFE ownership boundary, and this checkpoint log. Optional review: schema/constraint diff; continue when checks pass.
 
-Suggested commits: `feat: add postgres schema and anonymous ownership`; `feat: integrate durable workflow execution locally`.
-
-Update: CONTRIBUTING, `.env.example`, PERSISTENCE execution details, TYPESAFE ownership/execution boundary, and this checkpoint log. Optional review: schema/constraint diff and the recovery evidence; continue when checks pass.
-
-## Checkpoint 2 — authoritative assessment operations
+## Checkpoint 2 — synchronous authoritative assessment operations
 
 - [ ] Extract a small server assessment repository/service around creation, authorized loading, operation submission, completion/publication, and deletion. Keep semantic evaluation in the existing engine.
-- [ ] Replace the full client-supplied state request with ID, expected revision, request key, and typed operation input. Load the authoritative snapshot server-side. Save rejected interactions server-side rather than relying on the old transport's removal of `interactionHistory`.
-- [ ] Save each accepted submission and queued status transactionally before dispatch. Return an operation/status reference after persistence; retain the local draft if acceptance is uncertain or the database is unavailable. Reuse the same request key on uncertain retries.
-- [ ] Implement the operation-to-Workflow dispatch/binding protocol in PERSISTENCE. Prove both failure windows: crash after DB commit but before start, and start succeeds but run-ID recording fails. Duplicate dispatch must not create a second state transition.
-- [ ] Implement the evaluation-and-commit Workflow step with identifier-only arguments/results. Load the pinned base state internally; persist bounded attempt/status information. Commit snapshot, head revision, and operation success atomically.
-- [ ] Keep SDK retries, engine retries, physical request reservations, deadlines, and cancellation consistent. Preserve the current `limits.providerAttempts = 32` as an aggregate operation bound, reconcile older 24-request documentation, and run maximum-history fixtures before changing bounds. Never truncate evidence or silently upgrade pinned inference semantics on recovery.
-- [ ] Add a bounded reconciler shared by local startup, a periodic local trigger, and a one-shot maintenance entry point. Reconcile missing dispatches and terminal runtime failures while leaving healthy workflows alone. Document the hosted scheduler requirement separately.
-- [ ] Add authorized operation status reads. The browser restores pending submitted text and processing status after reload; it polls until completion/failure and ignores stale responses. Browser disconnection cannot erase or cancel accepted work.
-- [ ] Return explicit conflicts for changed request payloads, stale revisions, competing operations, or incompatible versions. Failure preserves the submitted text and prior snapshot; successful retries do not append duplicate turns.
+- [ ] Replace the full client-supplied state request with ID, expected revision, request key, and typed action. Load authoritative state server-side. Persist rejected interactions rather than relying on the old transport's removal of `interactionHistory`.
+- [ ] Save submitted input and `running` status/deadline in a short transaction before inference. Continue executing inside the same POST handler and return the final result/error; do not hand off to a background task. Retain the local draft if acceptance is uncertain or the database is unavailable.
+- [ ] Implement request-key/fingerprint idempotency. An identical replay returns the committed result/failure, or an explicit in-progress response without reevaluating. A changed payload under the same key is a conflict. Serialize concurrent mutations to the same assessment with a short database lock and one-running-operation constraint.
+- [ ] Evaluate the complete operation in memory outside a database transaction. Log a transient Jev failure and retry that call at most once; if it fails again, fail the whole operation. Permanent errors fail immediately. Audit lower-level SDK/engine retry and overflow-splitting behavior to enforce this limit rather than multiplying retry layers.
+- [ ] Keep the current aggregate 32-physical-request cap and bounded operation deadline. Use mocked maximum-history cases to verify batching, cancellation and runtime bounds. Intermediate results must never mutate the committed assessment snapshot.
+- [ ] Commit the new immutable snapshot, head revision, and operation success together. Check the exact operation's running status/deadline, base revision, and assessment existence/lifecycle at commit. If evaluation or commit fails, preserve the old snapshot and store failure information when the database permits it. Resolve an uncertain commit by reading the saved operation before retrying inference.
+- [ ] Support request-driven interruption handling: reads derive an expired running request as interrupted, and the next authorized mutation records that status before accepting replacement work. No startup recovery loop, scheduler, queue, worker, or automatic rerun. A late timed-out handler cannot commit.
+- [ ] Restore submitted text/status on refresh and distinguish success with a lost response from still-running, failed, and interrupted operations. Poll only to resolve an existing uncertain/in-flight request. Explicit Retry uses a new request key linked to the failed attempt after checking ownership and unchanged base revision; keep original-key retries for uncertain network outcomes.
 - [ ] Preserve local unsubmitted drafts per assessment. Remove the old single-assessment authority and migration path for participant browser state; no compatibility with previous completed browser assessments is required.
-- [ ] Ensure mutation retries cannot recreate deleted assessments. Validate cancellation/publication/finalization against operations already in progress.
+- [ ] Verify finish/share/fork cannot race a live operation, and deletion makes a returning handler unable to recreate records. Client cancellation must not cause a false claim that the database rolled back a possibly completed commit.
 
-Required DB/fixture checks: duplicate request and different-input same-key; two competing tabs; missing dispatch; lost start response; process death during evaluation; successful commit before response loss; old generation returning after recovery; persistent failure exhausting retries; deleted assessment returning from inference; stored rejected reply with no scoring effect. Execute these with real Postgres and Workflow plus mocked evaluator calls, not just repository mocks.
+Required DB/fixture checks: repeated POST with the same key; same key/different payload; two competing tabs; one transient provider failure then success; second failure leaving all assessment state unchanged; later-stage failure after an earlier successful call; process death before commit; success before response loss; uncertain commit acknowledgment; explicit retry after interruption; stale timed-out response; deletion during inference; rejected reply with no scoring effect. Run real Postgres with mocked evaluator calls, not only repository mocks.
 
-Done when: an anonymous participant can start, submit, reload during processing, recover after app restart, and see exactly one committed answer/result transition. No live API key is required for this verification.
+Done when: the POST handler returns the complete successful operation or a failure without partial assessment changes. A crash preserves submitted input for an explicit retry after restart, and duplicate requests cannot append duplicate answers. No live API key is needed to verify this.
 
-Suggested commits: `feat: persist assessment operations and immutable snapshots`; `feat: recover interrupted assessment workflows`; `refactor: make server assessments authoritative`.
+Suggested commits: `feat: persist synchronous assessment operations and snapshots`; `refactor: make server assessments authoritative`.
 
-Update: TYPESAFE, MEASUREMENT, local-debugging, CONTRIBUTING, API/transport documentation, and this log. Optional review: show the interrupted-submission recovery, rather than introducing a blocking approval step.
+Update: TYPESAFE, MEASUREMENT, local-debugging, CONTRIBUTING, API/transport documentation, and this log. Optional review: demonstrate failure leaving the prior result intact and an explicit retry succeeding; continue without awaiting approval.
 
 ## Checkpoint 3 — participant UX, forks, and sharing
 
@@ -131,13 +123,13 @@ Update: AUTHORING, user-journeys, PRODUCT, ASSESSMENT comparison behavior, READM
 ## Checkpoint 5 — integrated persistence acceptance
 
 - [ ] Run relevant formatting/lint/type/unit/content checks and the new real-Postgres integration suite. Run `pnpm test` and `pnpm build` once integration is ready; use the existing required project checks and adjust CI for native PostgreSQL without containers.
-- [ ] Run the focused browser suite through `pnpm dev` and its resolved Portless URL. Verify production build/start with database reads and the SDK backend; development success alone is insufficient.
-- [ ] Recreate disposable application and Workflow test databases from documented steps and migrations. Seed twice, restart, and repeat a queued/in-flight recovery test. Never reset the developer's persistent database as a test fixture.
-- [ ] Audit authorization, all public surfaces, raw-text analytics exclusion, HTTP cache behavior, Workflow log payloads, and destructive-action races. Add tests only where they verify actual failure or access boundaries.
+- [ ] Run the focused browser suite through `pnpm dev` and its resolved Portless URL. Verify production build/start with database reads and bounded POST handlers; development success alone is insufficient.
+- [ ] Recreate disposable application test databases from documented steps and migrations. Seed twice, interrupt a POST, restart, and verify saved input plus an explicit retry. Never reset the developer's persistent database as a test fixture.
+- [ ] Audit authorization, all public surfaces, raw-text analytics exclusion, HTTP cache behavior, operation diagnostic payloads, and destructive-action races. Add tests only where they verify actual failure or access boundaries.
 - [ ] Reconcile canonical docs and visible copy: remove implemented transition banners, preserve historical checkpoint notes, replace obsolete one-browser/stateless/no-database claims, and document real commands and env values. Keep X login marked pending until checkpoint 6.
-- [ ] Record actual validation commands/results, known limits, SDK versions, native startup/recovery procedure, and external setup still outstanding. Keep unmet acceptance checks unchecked rather than labeling the spike complete.
+- [ ] Record actual validation commands/results, known limits, native setup and interrupted-request retry procedure, and external setup still outstanding. Keep unmet acceptance checks unchecked rather than labeling the spike complete.
 
-Done when: the persistence milestone meets the approved behavior with recoverable operations, no Docker, no mandatory account, and no documentation claiming behavior that has not shipped.
+Done when: the persistence milestone meets the approved behavior with atomic request-driven operations, no asynchronous runtime, no Docker, no mandatory account, and no documentation claiming behavior that has not shipped.
 
 Commit: `test: verify persistent assessment lifecycle and recovery` (or smaller coherent integration commits).
 
@@ -159,12 +151,10 @@ Suggested commits: `feat: add optional x authentication`; `feat: claim anonymous
 
 | Dependency | When needed | Agent work | User help potentially needed |
 | --- | --- | --- | --- |
-| Native Postgres.app | Checkpoint 1 | Verify the installed server, create dedicated local databases, apply migrations/bootstrap, document connection variables. | Start/authorize the application only if local permissions prevent setup. No Docker and no hosted account required. |
+| Native Postgres.app | Checkpoint 1 | Verify the installed server, create dedicated local databases, apply migrations, document connection variables. | Start/authorize the application only if local permissions prevent setup. No Docker and no hosted account required. |
 | Better Auth | Checkpoint 1 | Integrate the library and generate a local secret; configure local origin/cookies. | None for anonymous auth; no separate Better Auth SaaS account. |
-| Workflow SDK + Postgres World | Checkpoints 1–2 | Install/pin packages, bootstrap local SDK tables, configure Next/Portless, verify restart recovery. | None for local execution. |
 | TypeSafe | Existing runtime | Reuse existing server configuration; use fixture inference for checks. | Existing API key only if a live participant smoke test is desired. |
 | Neon | Hosted follow-up | Prepare compatible migrations/env template and seed process. | Select/create project, region, database/role and provide runtime/migration connection secrets securely. No Neon setup blocks local work. |
-| Vercel Workflows | Hosted follow-up | Prepare managed-backend configuration, env separation and recovery-scheduler requirements. | Project/team access and service/billing setup if not already available. Actual deployment and hosted cost choices remain separate. |
 | X developer application | Checkpoint 6 live verification | Supply exact callback URLs, minimal scope requirements and env names. | Create/configure OAuth application and client ID/secret, authorize a test login. Current provider access requirements must be checked then. |
 | Takumi | Checkpoint 3 | Reuse installed local renderer. | None; no media-hosting account. |
 
@@ -172,16 +162,24 @@ Store supplied secrets in ignored local environment files or the authorized host
 
 ## Review and stop conditions
 
-The schema/recovery demonstration after checkpoints 1–2 and first-run/share walkthrough after checkpoint 3 are useful optional review moments. Post an update with concrete evidence and continue; they are not approval gates. Technical acceptance checks are mandatory.
+The schema/atomic-operation demonstration after checkpoints 1–2 and first-run/share walkthrough after checkpoint 3 are useful optional review moments. Post an update with concrete evidence and continue; they are not approval gates. Technical acceptance checks are mandatory.
 
-Pause only the dependent work when credentials or external configuration are unavailable. Ask before changing approved product semantics, launching a paid regeneration, touching unrelated database contents, or deploying. The Workflow feasibility gate may change implementation details within the accepted design; an actual incompatible backend requires a documented alternative, not silent scope expansion.
+Pause only the dependent work when credentials or external configuration are unavailable. Ask before changing approved product semantics, launching a paid regeneration, touching unrelated database contents, or deploying.
 
 ## Checkpoint log
 
 ### 2026-09-23 — planning baseline
 
 - Agreed: server authority, indefinite retention, whole-assessment opt-in publication, immutable completion, owner-only forks, 30 total prompt ceiling, anonymous Better Auth first, optional X later, dynamic curated personas, and normal Postgres inspection only.
-- Latest additions: main CTA skips the library only for an owner with no assessments; durable pending-operation capture and recovery; local native Postgres; dynamic Takumi WebP public previews; no Docker.
+- Latest additions: main CTA skips the library only for an owner with no assessments; durable submission/failure records with explicit retry; local native Postgres; dynamic Takumi WebP public previews; no Docker.
 - Inspected current browser storage, stateless API, engine/result/cap behavior, persona artifacts/generation, privacy docs, and existing WebP renderer. No application changes, database creation, live inference, or deployment performed during planning.
-- Native `psql` is available from Postgres.app. Local server connectivity remains to be checked in checkpoint 1. Workflow SDK's documented Local World uses an in-memory queue, so the plan selects its official Postgres World for local restart durability and the managed Vercel World for future hosting.
+- Native `psql` is available from Postgres.app. Local server connectivity remains to be checked in checkpoint 1. Local and hosted execution both use ordinary bounded POST handlers; no Workflow service is required.
 - Validation: oxfmt passed on the 14 changed Markdown files using the original checkout’s installed formatter and identical config. `pnpm fix:format` first attempted automatic dependency installation in this dependency-free worktree; network resolution failed, so that attempt was stopped and the existing formatter was reused. Local link resolution and `git diff --check` are checked before the planning commit. No application tests are needed for this documentation-only checkpoint. Subsequent checkpoints must append their own executed commands and outcomes.
+
+### 2026-09-23 — simplify execution to synchronous POSTs
+
+- User removed asynchronous workflows as unnecessary for bounded assessment operations. This supersedes the Workflow selection in planning commit `a5d12a4`.
+- Removed Workflow packages, extra databases, worker/runtime setup, dispatch/outbox logic, automatic crash replay, runtime attempt tables, reconciliation jobs, and hosted Workflow setup from the active plan.
+- Keep a small operation record for submitted input, deadline/status, idempotency, and bounded failures. Retry each transient Jev call once; fail the full assessment operation on a second failure. Only the final assessment snapshot/head update commits atomically; input/failure records intentionally survive.
+- Interrupted requests can be retried explicitly. Their expiration and late-write protection are checked during normal API access, without a scheduler. No application behavior changed in this documentation revision.
+- Validation: documentation formatting, local Markdown links/anchors, removal of active Workflow requirements, and `git diff --check` verified before committing this revision.

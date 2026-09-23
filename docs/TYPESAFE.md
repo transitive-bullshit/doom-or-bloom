@@ -1,6 +1,6 @@
 # TypeSafe / Jev Composition Specification
 
-> Approved persistence transition (2026-09-23), not yet implemented: [PERSISTENCE.md](PERSISTENCE.md#durable-execution-and-idempotency) defines the approved move to server-authoritative snapshots and durable Workflow execution. Jev retains the same semantic role; application code owns idempotency, budgets, recovery and atomic commits. Existing browser-persistence descriptions below are the current implementation baseline; update them as [checkpoints 1–2](persistence-implementation-plan.md) land.
+> Approved persistence transition (2026-09-23), not yet implemented: [PERSISTENCE.md](PERSISTENCE.md#synchronous-execution-and-idempotency) defines the approved move to server-authoritative snapshots and synchronous atomic assessment operations. Jev retains the same semantic role; application code owns idempotency, budgets, recovery and atomic commits. Existing browser-persistence descriptions below are the current implementation baseline; update them as [checkpoints 1–2](persistence-implementation-plan.md) land.
 
 ## Runtime assessments and persona excerpts
 

@@ -1,6 +1,6 @@
 # Local MVP implementation plan
 
-Persistence follow-up (approved 2026-09-23): use [the persistent assessments plan](persistence-implementation-plan.md) and [PERSISTENCE.md](PERSISTENCE.md) for database persistence, server authority, anonymous sessions, Workflow execution, forks, public URLs, personas and optional X login. Its decisions supersede conflicting exclusions and persistence/budget architecture below. This file retains the original MVP execution history; do not apply its initial-repository/baseline-commit instructions to the already implemented app.
+Persistence follow-up (approved 2026-09-23): use [the persistent assessments plan](persistence-implementation-plan.md) and [PERSISTENCE.md](PERSISTENCE.md) for database persistence, server authority, anonymous sessions, synchronous operations, forks, public URLs, personas and optional X login. Its decisions supersede conflicting exclusions and persistence/budget architecture below. This file retains the original MVP execution history; do not apply its initial-repository/baseline-commit instructions to the already implemented app.
 
 Current override (2026-09-18): algorithm 0.4.0 pauses runtime corpus grounding and uses evidence readiness instead of a three-answer minimum. Apply the current contracts in ASSESSMENT/TYPESAFE; older completed checkpoints below are historical, including paid measurements and reference-stage implementation. Corpus authoring/review remains unfinished. Commit these demo changes after static/fixture verification; do not run paid evaluation.
 

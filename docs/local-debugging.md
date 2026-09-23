@@ -1,6 +1,6 @@
 # Local debugging and content inspection
 
-> Approved persistence transition (2026-09-23), not yet implemented: The approved [durable operation design](PERSISTENCE.md#durable-execution-and-idempotency) adds server-side submissions, processing status and bounded failure records through Workflow SDK. Inspect with normal PostgreSQL tools; no new operator dashboard is planned. Until [implementation](persistence-implementation-plan.md), the browser trace workflow below remains current.
+> Approved persistence transition (2026-09-23), not yet implemented: The approved [synchronous operation design](PERSISTENCE.md#synchronous-execution-and-idempotency) adds server-side submissions, processing status and bounded failure records inside bounded POST handlers. Inspect with normal PostgreSQL tools; no new operator dashboard is planned. Until [implementation](persistence-implementation-plan.md), the browser trace workflow below remains current.
 
 The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) documents the current export and per-answer inspection contract. All browser operations capture local traces; the debug toggle controls their visibility.
 

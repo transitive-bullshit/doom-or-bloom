@@ -18,7 +18,7 @@ Keep starting an assessment as fast as it is today. Neither registration nor an 
 | Continue on an open assessment | Continue the existing interview. |
 | Continue on a completed assessment | “Continue in a new assessment” creates a private fork, then continues or asks the selected clarification. |
 | Make private | Remove public access; the completed content remains frozen. |
-| Delete | Delete this assessment and its snapshots, operations, and attempt records. Independent forks remain. |
+| Delete | Delete this assessment and its snapshots, operations, and retained failure diagnostics. Independent forks remain. |
 
 Creation uses an explicit mutation triggered by the CTA, not a side effect of rendering, prefetching, a crawler visit, or a GET. Establish the session before assessment creation; serialize the empty-library check and creation for that owner. Reuse a request key on uncertain retries. Loading and error states retain the CTA's one-click flow.
 
@@ -42,15 +42,14 @@ Better Auth supplies anonymous users and persistent sessions in milestone one. X
 
 ## Relational model
 
-Use PostgreSQL and Drizzle with the normal PostgreSQL driver (`pg`). Local development uses native Postgres.app (already installed), with no Docker, Compose, or Testcontainers. The same application schema and migrations run against local Postgres and later Neon. Workflow SDK handles asynchronous execution; its official Postgres World uses the same local Postgres instance, preferably a separate workflow database to keep SDK-owned migrations isolated. Generate Better Auth's schema for the pinned release, then include it in the checked-in Drizzle migrations.
+Use PostgreSQL and Drizzle with the normal PostgreSQL driver (`pg`). Local development uses native Postgres.app (already installed), with no Docker, Compose, or Testcontainers. The same application schema and migrations run against local Postgres and later Neon. Assessment operations execute synchronously inside the main POST handlers; no asynchronous runtime or additional database is required. Generate Better Auth's schema for the pinned release, then include it in the checked-in Drizzle migrations.
 
 | Table | Required data |
 | --- | --- |
 | Better Auth `user`, `session`, `account`, `verification` | Library-managed identity and authentication, including the anonymous-user marker. Reserve a noninteractive service owner for generated simulations; it has no browser session or OAuth identity. |
 | `assessments` | `id`, `owner_id`, nullable title, `origin` (`participant` or `simulation`), nullable `persona_id`, lifecycle (`open` or `completed`), visibility (`private` or `public`), current/final snapshot pointers, nullable source-assessment/source-snapshot pointers, persistent `is_fork` and inherited prompt count, prompt ceiling, pinned engine/content/rubric/model versions, create request key and fingerprint, timestamps. |
 | `assessment_snapshots` | `id`, `assessment_id`, monotonically increasing revision, payload format/schema version, immutable JSONB payload, payload digest, evidence revision when available, producing operation, creation time. |
-| `assessment_operations` | `id`, `assessment_id`, unique client request key, immutable action/input and fingerprint, base snapshot/revision, pinned execution versions, status, resulting snapshot, dispatch status/generation, canonical workflow run ID, attempt count, aggregate physical-request reservations, bounded last failure category, timestamps. |
-| `assessment_operation_attempts` | Operation, dispatch generation, workflow run/step attempt identity, start/finish times, outcome, bounded diagnostic/stage progress and request-budget usage. Preserve previous failure attempts rather than overwriting the only evidence. |
+| `assessment_operations` | `id`, `assessment_id`, unique client request key, immutable action/input and fingerprint, base snapshot/revision, pinned execution versions, status (`running`, `succeeded`, `failed`, or `interrupted`), resulting snapshot, nullable retry-of operation ID, request deadline, physical-request count, bounded call-failure/diagnostic history, failure category, timestamps. |
 | `personas` | Stable ID/unique slug, name, portrait, presentation metadata, current authored source brief, featured flag, selected assessment pointer, timestamps. |
 
 ```mermaid
@@ -59,7 +58,6 @@ erDiagram
     USER ||--o{ ASSESSMENT : owns
     ASSESSMENT ||--|{ SNAPSHOT : records
     ASSESSMENT ||--o{ OPERATION : receives
-    OPERATION ||--o{ ATTEMPT : executes
     ASSESSMENT o|--o{ ASSESSMENT : forked_from
     PERSONA o|--o{ ASSESSMENT : simulated_subject
 ```
@@ -70,56 +68,43 @@ The lifecycle does not replace the engine's `answering`, `recovery`, `paused`, `
 
 ### Constraints and indexes
 
-- Enforce unique `(assessment_id, revision)`, `(assessment_id, request_key)`, `(operation_id, dispatch_generation, step_attempt_key)`, and `(owner_id, create_request_key)`. Use a unique seed provenance key for imported/generated persona assessments.
+- Enforce unique `(assessment_id, revision)`, `(assessment_id, request_key)`, and `(owner_id, create_request_key)`. Use a unique seed provenance key for imported/generated persona assessments.
 - Compare fingerprints when replaying a key: the same key with a different input is a conflict, not an update. Snapshot writes are insert-only; duplicate insertion can return the existing identical row. An upsert must never overwrite frozen evidence, change input, resurrect a deleted assessment, or transfer ownership implicitly.
-- Permit at most one active content operation per assessment, using a partial unique index over queued/running/retry-wait operations plus transactional validation. Index owner/library ordering and outstanding operation/dispatch status queries. Workflow owns its queue and execution indexes in its own tables.
+- Permit at most one active content operation per assessment, using a partial unique index over `running` operations plus transactional validation. Index owner/library ordering and operation lookup. The request deadline bounds how long an interrupted process can block subsequent mutations; this is concurrency control, not a job queue.
 - Current/final snapshot references must refer to snapshots of the same assessment. A completed assessment has a final snapshot; a public assessment is completed and has a participant-displayable result. Enforce these invariants with appropriate composite foreign keys/checks and transactions.
 - A selected persona assessment belongs to that persona and is a completed public simulation. A simulation is distinct from a featured flag, and a persona is distinct from its service owner.
 - Deleting an assessment cascades to its owned records. Source lineage references on surviving forks become null while `is_fork` and inherited-history markers remain, so deletion does not turn copied history into an apparently independent sample. Restrict deletion of a currently selected persona run until its pointer is cleared or replaced.
 - Reject updates to snapshot payloads through the application repository. Verify this boundary in database integration tests; choose database enforcement or restricted application privileges where feasible without obstructing explicit deletion.
 
-## Durable execution and idempotency
+## Synchronous execution and idempotency
 
-Use Vercel's open-source Workflow SDK, integrated with Next.js through `withWorkflow()`. The application operation is the durable record of submitted intent; Workflow owns execution, queueing, step retries, and replay. Do not build a second custom worker/lease queue alongside it.
+Treat each answer, next-question, or result operation as one bounded unit executed by the main POST request. The request waits for the evaluator and returns success or failure. No Workflow SDK, async job system, worker, queue, outbox, dispatcher, scheduler, or automatic post-restart execution is included.
 
-### Local and hosted runtime choice
-
-| Option | Decision |
-| --- | --- |
-| SDK Local World | Official zero-configuration development default. Persists run history in files but queues work in memory; pending queue entries do not survive restarts. Useful for an initial smoke check, but insufficient for this task's restart acceptance tests. |
-| SDK Postgres World | Selected local runtime. Point it at native Postgres.app; bootstrap the package-managed tables and start the world through Next instrumentation. This supplies persistent queueing without Docker or a custom worker daemon. |
-| Vercel World | Intended hosted execution backend when deployment is separately authorized. Use managed Vercel Workflow; do not deploy Postgres World's long-running poller inside serverless functions. Neon remains the application database. |
-| Handwritten queue or another workflow service | Outside this plan unless the bounded SDK spike demonstrates an actual blocker. Record findings before replacing the selected backend. |
-
-The Postgres World is an official alternative to the SDK's default local setup, selected because durability across restarts is an explicit requirement. Pin mutually compatible SDK/world versions, inspect their bundled docs and installed implementation, and verify their bootstrap/migration API. Upstream docs and package README differ on defaults and maturity labels; the integration gate is actual compatibility and fault testing, not a marketing label.
-
-Retain the existing `pnpm dev` Portless command. Configure the Next wrapper and Node instrumentation to start the SDK's embedded worker once; no separate application worker process is needed. Validate internal workflow HTTP callbacks with Portless's actual hostname/port and SDK base-URL settings. Use the installed SDK CLI only for development diagnostics. Ordinary data inspection continues through normal Postgres tools; no operator dashboard or custom inspection CLI is added.
-
-### Application operation lifecycle
+Atomicity applies to assessment state: all new answers/evidence, routing state, and results become visible together, or the previous snapshot remains unchanged. The submitted input and operation/failure record are deliberately retained separately for recovery and inspection. External Jev calls cannot be rolled back, and a database transaction should not stay open while waiting on them.
 
 ```text
-queued -> running -> succeeded
-             |  |
-             |  +-> retry_wait -> running
-             +----> failed
-queued/running/retry_wait -> cancelled
+POST -> save submitted operation -> evaluate (retry a transient call once)
+                                      |                     |
+                                      v                     v
+                               commit new snapshot     record failure
+                               and return success      keep prior snapshot
 ```
 
-Keep dispatch status separately (`pending`, `started`, or a recoverable dispatch failure). A queued operation is durable even if Workflow has not yet accepted it. Application status must remain correct when a workflow fails abruptly or exhausts SDK retries; reconcile runtime state rather than relying only on a JavaScript catch block.
+1. **Accept:** authenticate and validate action/size/version. In a short transaction, lock the assessment, verify the expected revision and open lifecycle, handle any expired operation, then idempotently insert the immutable input and `running` status with a fixed request deadline. Commit before evaluation. A matching request key returns the saved outcome if terminal, or an explicit in-progress response if the original request is still running. It never starts a second evaluation. Changed input under the same key is a conflict.
+2. **Evaluate:** load the pinned base snapshot/bundle and execute the existing engine inside the same HTTP handler, outside a database transaction. Keep intermediate state in memory. Record bounded diagnostics for a failed Jev call and retry that call at most once when the failure is transient and the deadline/budget permits it. A second failure fails the entire operation. Permanent validation/configuration errors fail immediately. There is no automatic whole-operation retry or persisted stage-resume mechanism.
+3. **Commit:** in one short transaction check that this exact operation is still running, its deadline has not passed, the assessment exists and remains open, and its head revision still matches the base. Insert the immutable snapshot, advance the head, and mark the operation succeeded atomically. Return the committed snapshot. A stale or timed-out handler cannot commit after another request has marked it interrupted or after deletion/completion.
+4. **Fail:** conditionally mark a still-running operation failed with a bounded, safe error record and return an error while leaving the last committed assessment state unchanged. Preserve the submitted text. A final database commit failure also leaves the old snapshot intact; if the database is unavailable, the preexisting running row and deadline identify the interrupted attempt when access returns. If commit success is uncertain because its acknowledgment was lost, reread the operation before reporting a definitive failure or retrying inference; never downgrade a succeeded operation.
+5. **Retry explicitly:** after a failed/interrupted operation, the participant's Retry sends the saved action with a new request key and `retry_of` reference. Verify the source operation belongs to the assessment and the same owner, and that its base revision is still current. Keep the previous attempt's failure record. Uncertain network retries of the original POST reuse the original key to discover whether it committed; they are distinct from an explicit retry after a known failure.
 
-1. **Accept:** authenticate, validate action/size/version, briefly lock the assessment, verify expected revision and open lifecycle, and idempotently insert the operation and submitted text. Commit before dispatching. Return the existing operation on an identical retry, including its saved outcome if complete. The same key with changed input is a conflict.
-2. **Dispatch:** call Workflow `start()` with only the operation ID and dispatch generation. Store its run ID. Database insertion and Workflow dispatch are not one atomic transaction, even if both happen to use the same Postgres server locally; explicitly handle a crash between them.
-3. **Bind:** the workflow's first database step atomically binds the operation/generation to one canonical run. If `start()` succeeded but its response/run-ID write was lost, that first step can finish the binding. Duplicate workflow starts for the same generation become harmless no-ops before inference. Use a supported SDK idempotent-start mechanism if the pinned release provides one, but do not assume it exists or remove database safeguards.
-4. **Process:** the first implementation uses one evaluation-and-commit step around the existing engine. It loads the immutable base snapshot and pinned bundle, records attempt/progress status, evaluates outside a database transaction, then commits. Pass IDs into and out of the step; load sensitive state inside it rather than duplicating transcripts into Workflow input/output logs. A replay after successful commit returns the recorded snapshot ID without reevaluating. Stage-level checkpointing can follow later; this spike does not restructure the whole inference pipeline.
-5. **Commit:** in one transaction verify the canonical run/generation, expected base revision, assessment existence and open lifecycle. Insert the immutable snapshot, advance the assessment, and mark operation/attempt success. A duplicate result, cancelled run, superseded generation, or action against a deleted assessment cannot overwrite/recreate state.
-6. **Recover:** a bounded reconciler finds operations whose dispatch did not complete, and compares nonterminal operations with their recorded Workflow runs. Redispatch missing work; let live/retrying workflows continue. If a run is terminally failed or truly missing, record the outcome and issue a new generation only under bounded retry rules. Never infer death merely from a long-running step's age. Generation checks prevent an old run from committing after replacement.
-7. **Bound:** persist aggregate inference-request reservations before provider calls, including SDK retries. Keep reservations when actual cost is uncertain. The current code sets `limits.providerAttempts` to 32 in `lib/assessment/schema.ts`; preserve and test that aggregate bound across retries, updating older 24-request documentation. Use SDK retry/fatal-error conventions without multiplying unbounded application and SDK retry loops. Owner Retry is allowed only while the base revision is current, no competing operation is active, and budgets permit it.
+A server crash does not cause automatic resumption. Owner reads show the committed snapshot and retained submission; a running operation beyond its deadline is displayed as interrupted. On the next authorized mutation, a short transaction marks the expired operation interrupted before accepting any replacement. A read may derive that status from the deadline without performing a mutation. No sweeper or background process is needed. At most one active content operation is accepted at a time; competing tabs receive an explicit busy/conflict response.
 
-Reconciliation runs at local application startup and periodically while the local server is running; share the same bounded function with a one-shot maintenance entry point. Hosted deployment must schedule it through an authenticated scheduler/cron or an equivalent durable mechanism. This is a small bridge for database-to-Workflow dispatch, not a second inference worker. The hosted trigger is a deployment prerequisite; merely installing Workflow does not repair a crash before `start()`.
+A disconnected browser may miss a success response or the handler may be cancelled; do not depend on it continuing after disconnect. On reload, fetch the saved operation/state to distinguish committed, still-running, failed, and interrupted outcomes. Only poll status when resolving an existing in-flight/uncertain request, not as the primary submission protocol. Preserve a local draft until server acceptance is known.
 
-Delivery is at least once, with at most one committed state transition per operation. A crash after provider success but before database commit can repeat inference; do not claim exactly-once provider execution or billing. Cancellation is best effort for external calls but definitive for subsequent database writes. Browser disconnects do not cancel accepted work.
+Use the current bounded operation deadline (120 seconds in the baseline) and an abort signal for all provider calls. Ensure the eventual hosting request-duration setting accommodates it; deployment remains separate. The current aggregate physical-request cap is 32 (`limits.providerAttempts` in `lib/assessment/schema.ts`). One logical operation can contain multiple batches; preserve the aggregate cap while enforcing at most one retry per failed call. Audit SDK/transport and engine retry layers so they do not multiply retries or let oversized-batch fallback silently exceed the newly approved retry policy. Maximum-history fixtures must validate any required batching changes; never drop evidence to fit a retry.
 
-Finish/share/fork serialize against active content operations. Their default response while processing is to wait/show the outstanding operation, not freeze a stale result. Deletion invalidates further commits and requests cancellation of related Workflow runs. Keep Workflow payloads to identifiers and safe status values, scrub errors, and account for SDK logs in retention/deletion documentation. A publish/private toggle uses explicit desired state, not a retry-sensitive inversion.
+A failed call or interrupted operation may already have incurred provider cost. An explicit retry can repeat earlier successful calls because the whole uncommitted operation runs again. This is an accepted simplicity tradeoff, not exactly-once inference or billing.
+
+Finish/share/fork serialize against a live operation and do not freeze a stale result while it is processing. Deletion removes its records; the final commit requires their continued existence and cannot recreate them. A publish/private change specifies the desired value rather than applying a retry-sensitive toggle. Ordinary Postgres tooling suffices for inspection.
 
 ## Forks and historical results
 
@@ -150,8 +135,7 @@ Initially serve public participant HTML, metadata, and image responses without s
 Consult the pinned package APIs before coding; these references informed the design on 2026-09-23.
 
 - [PostgreSQL INSERT / ON CONFLICT](https://www.postgresql.org/docs/current/sql-insert.html) for idempotent insertion and [SELECT locking](https://www.postgresql.org/docs/current/sql-select.html#SQL-FOR-UPDATE-SHARE) for short application transactions. Immutable writes and optimistic concurrency remain application responsibilities.
-- [Workflow Next.js setup](https://vercel.com/academy/workflow-foundations/set-up-the-pizza-tracker), [Local World limitations](https://workflow-sdk.dev/worlds/local), [Postgres World setup](https://workflow-sdk.dev/worlds/postgres), and [managed Vercel Workflows](https://vercel.com/docs/workflows). Workflow supplies execution; the database-to-runtime dispatch gap still needs application reconciliation.
 - [Drizzle PostgreSQL](https://orm.drizzle.team/docs/get-started/postgresql-new) for the PostgreSQL driver and migration workflow. Pin compatible stable versions rather than copying an RC install command from a moving guide.
 - [Better Auth anonymous users](https://better-auth.com/docs/plugins/anonymous), [Drizzle adapter](https://better-auth.com/docs/adapters/drizzle), and [X provider](https://better-auth.com/docs/authentication/twitter). Anonymous linkage requires application-owned assessment transfer and failure tests.
-- [Neon connection URI API](https://api-docs.neon.tech/reference/getconnectionuri) describes pooled/direct connection selection. Use a direct migration connection as a project convention; verify chosen runtime/worker pooling behavior before hosting.
+- [Neon connection URI API](https://api-docs.neon.tech/reference/getconnectionuri) describes pooled/direct connection selection. Use a direct migration connection as a project convention; verify request-handler pooling behavior before hosting.
 - [Takumi v2](https://takumi.kane.tw/docs/upgrade/v2) and the installed `takumi-js` types for WebP output. This repository already renders persona WebP cards.
