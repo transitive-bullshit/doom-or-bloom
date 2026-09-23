@@ -59,3 +59,27 @@ test('social output is a decodable 1200 × 630 WebP', async () => {
   })
   expect(bytes.length).toBeLessThan(100_000)
 })
+
+test('participant cards support long titles and unknown coordinates without simulated labeling', async () => {
+  const result = structuredClone(suite.journeys.find((j) => j.result)!.result!)
+  result.horizontal.value = null
+  if (result.experiment) result.experiment.transformation.value = null
+  const card = SocialCard({
+    assessment: {
+      title:
+        'A carefully considered perspective on the future of artificial intelligence across many possible futures',
+      result
+    }
+  })
+  const html = renderToStaticMarkup(card)
+  expect(html).toContain('AI WORLDVIEW ASSESSMENT')
+  expect(html).toContain('Still unplaced')
+  expect(html).not.toContain('SIMULATED')
+  const bytes = await render(card, socialImageOptions)
+  expect(await sharp(bytes).metadata()).toMatchObject({
+    format: 'webp',
+    width: 1200,
+    height: 630
+  })
+  await sharp(bytes).toFile('/tmp/persistence-unplaced-card.webp')
+})

@@ -4,6 +4,7 @@ import {
   closestPersonas,
   type PersonaComparison
 } from '@/lib/assessment/persona-matches'
+import { atCap, promptLimit } from '@/lib/assessment/state'
 import { useRef, useState } from 'react'
 import { mapPng } from '@/lib/sharing/map-png'
 import { ExpandingArrowAction } from '@/components/motion/expanding-arrow-button'
@@ -32,12 +33,16 @@ export function ResultView({
   state,
   act,
   busy,
+  completed = false,
+  readOnly = false,
   operations = []
 }: {
   personas: PersonaComparison[]
   state: Assessment
   act: (operation: Operation) => void
   busy: boolean
+  completed?: boolean
+  readOnly?: boolean
   operations?: SavedDebugOperation[]
 }) {
   const [downloading, setDownloading] = useState(false)
@@ -167,9 +172,9 @@ export function ResultView({
             {result.insufficient && (
               <Badge variant='secondary'>Insufficient evidence</Badge>
             )}
-            {result.capped && (
+            {result.capped && atCap(state) && (
               <Badge variant='outline'>
-                {limits.prompts}-prompt cap reached
+                {promptLimit(state)}-prompt cap reached
               </Badge>
             )}
           </div>
@@ -250,7 +255,9 @@ export function ResultView({
       )}
       <Collapsible>
         <CollapsibleTrigger asChild>
-          <Button variant='outline'>Review & clarify my results</Button>
+          <Button variant='outline'>
+            {readOnly ? 'Review the results' : 'Review & clarify my results'}
+          </Button>
         </CollapsibleTrigger>
         <CollapsibleContent className='mt-4 flex flex-col gap-5'>
           {result.components.map((c) => (
@@ -268,9 +275,11 @@ export function ResultView({
                   />
                 </div>
               ))}
-              {c.claim !== null &&
+              {!readOnly &&
+                c.claim !== null &&
                 (c.value !== null || c.evidenceIds.length > 0) &&
-                state.prompts.length < limits.prompts &&
+                state.prompts.length <
+                  (completed ? limits.maxPrompts : promptLimit(state)) &&
                 (vectorIds.includes(c.vector as VectorId) ||
                   c.vector === 'catastrophic_risk') && (
                   <Button
@@ -357,16 +366,21 @@ export function ResultView({
             )}
             {reportDownloading ? 'Preparing report…' : 'Download full report'}
           </Button>
-          {!result.capped && (
-            <Button
-              type='button'
-              disabled={busy || reportDownloading}
-              variant='outline'
-              onClick={() => act({ type: 'continue' })}
-            >
-              Continue answering questions
-            </Button>
-          )}
+          {!readOnly &&
+            (completed
+              ? state.prompts.length < limits.maxPrompts
+              : !atCap(state)) && (
+              <Button
+                type='button'
+                disabled={busy || reportDownloading}
+                variant='outline'
+                onClick={() => act({ type: 'continue' })}
+              >
+                {completed
+                  ? 'Continue in a new assessment'
+                  : 'Continue answering questions'}
+              </Button>
+            )}
         </div>
       </div>
     </div>

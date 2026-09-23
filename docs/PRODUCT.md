@@ -1,6 +1,6 @@
 # Product Contract
 
-> Persistence transition (2026-09-23): The approved persistent-assessment product contract is in [PERSISTENCE.md](PERSISTENCE.md#product-behavior): one-click first run, an assessment library, immutable completion/forks, full opt-in publication and optional account recovery. Its persistence, sharing, routing and budget rules supersede conflicting original-MVP restrictions below. Server-saved participant assessments, anonymous ownership, direct first-run creation, a library and completion are implemented. Forks, publication, persona migration and sign-in remain in [the implementation checkpoints](persistence-implementation-plan.md).
+> Persistence transition (2026-09-23): The approved persistent-assessment product contract is in [PERSISTENCE.md](PERSISTENCE.md#product-behavior): one-click first run, an assessment library, immutable completion/forks, full opt-in publication and optional account recovery. Its persistence, sharing, routing and budget rules supersede conflicting original-MVP restrictions below. Server-saved participant assessments, anonymous ownership, direct first-run creation, a library and completion are implemented. Forks and publication are also implemented. Persona migration and sign-in remain in [the implementation checkpoints](persistence-implementation-plan.md).
 
 ## Runtime assessments and persona excerpts
 
@@ -139,7 +139,7 @@ Optional actions:
 - Copy or download the featured map as a PNG.
 - Restart and clear the local assessment.
 
-Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, force a final result and disable further clarification until restart.
+Clarification appends to an open assessment. Completed assessments stay frozen: continuing or correcting creates a private fork. New assessments permit 12 prompts; forks permit up to 12 additional prompts with a hard ceiling of 30 inherited prompts. Warn two prompts before the applicable ceiling. At the ceiling, show an honest final result, even if evidence is insufficient.
 
 ### Supporting surfaces
 

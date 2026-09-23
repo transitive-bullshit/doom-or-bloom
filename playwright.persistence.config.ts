@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 import { portlessUrl } from './tests/portless'
-const baseURL = portlessUrl('persistence.doom-or-bloom')
+const baseURL = portlessUrl('persistence-tests.doom-or-bloom')
 const database = process.env.TEST_DATABASE_URL
 if (!database || !new URL(database).pathname.endsWith('_test'))
   throw new Error('Set TEST_DATABASE_URL to a dedicated _test database')
@@ -10,7 +10,7 @@ export default defineConfig({
   use: { baseURL, ...devices['Desktop Chrome'], trace: 'retain-on-failure' },
   webServer: {
     command:
-      'pnpm exec portless run --name persistence.doom-or-bloom next dev --hostname 127.0.0.1',
+      'pnpm exec portless run --name persistence-tests.doom-or-bloom next dev --hostname 127.0.0.1',
     url: baseURL,
     reuseExistingServer: false,
     gracefulShutdown: { signal: 'SIGTERM', timeout: 5000 },

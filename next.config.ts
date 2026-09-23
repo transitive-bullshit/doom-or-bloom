@@ -7,11 +7,17 @@ const config: NextConfig = {
   ]
     .filter((value): value is string => Boolean(value))
     .map((value) => new URL(value).hostname),
+  async headers() {
+    return ['/assessment/:path*', '/assessments/:path*'].map((source) => ({
+      source,
+      headers: [{ key: 'Cache-Control', value: 'private, no-store' }]
+    }))
+  },
   distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
   // Persona pages and About read the canonical saved journeys.
   outputFileTracingIncludes: {
     '/api/share-card': ['public/personas/*'],
-    '/assessment': ['eval/development/live-persona-journeys.json'],
+    '/assessment/*': ['eval/development/live-persona-journeys.json'],
     '/about': ['eval/development/live-persona-journeys.json'],
     '/users/*': ['eval/development/live-persona-journeys.json'],
     '/users/*/opengraph-image': [

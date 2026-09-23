@@ -50,7 +50,7 @@ This is an experimental model, not a forecast of what will happen or a measure o
 
 Assessments now use native PostgreSQL locally, with anonymous browser sessions and server-authoritative snapshots. No sign-up is required. Submitted replies (including rejected replies), results, and bounded failure diagnostics are retained until deletion; operators may inspect them to improve the project. Unsubmitted typing stays in the browser. Clearing cookies loses anonymous access but does not delete server records.
 
-[The implementation plan](docs/persistence-implementation-plan.md) tracks remaining full-assessment publication, forks, database-backed personas, and optional sign-in. These later features are not yet available. TypeSafe’s data policies apply to Jev processing.
+You can complete an assessment, publish its full conversation and inferred results, make it private again, or continue in an independent private fork. Shared pages and WebP previews check current visibility. External sites may retain previously fetched previews. [The implementation plan](docs/persistence-implementation-plan.md) tracks remaining database-backed personas, optional sign-in, and integrated acceptance. TypeSafe’s data policies apply to Jev processing.
 
 Optional analytics exclude answer text. Debug traces, when enabled, also stay in your browser. The checked-in persona data is generated development material, not visitor transcripts. [Privacy details](https://www.doom-or-bloom.com/privacy).
 

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { loadDebugOperations } from '@/lib/debug/trace-storage'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import type { DebugTrace } from '@/lib/assessment/schema'
@@ -8,11 +8,28 @@ import {
   supportedContentVersions,
   versions
 } from '@/lib/assessment/schema'
-import { canSubmit, currentPrompt, eligible } from '@/lib/assessment/state'
+import {
+  canSubmit,
+  currentPrompt,
+  eligible,
+  promptLimit
+} from '@/lib/assessment/state'
 import type { OwnedAssessment } from '@/lib/assessments/repository'
 import { usePersistentAssessment } from './use-persistent-assessment'
 import { WorldviewCta } from '@/components/worldview-cta'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { api } from '@/lib/assessments/client'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  DialogTrigger
+} from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
@@ -63,8 +80,90 @@ export function Interview({
     { reask: string; clarification: string; exhausted: string }
   >
 }) {
-  const { record, state, busy, notice, uncertain, persist, act, refresh } =
-    usePersistentAssessment(initial)
+  const {
+    record,
+    state,
+    busy,
+    notice,
+    uncertain,
+    persist,
+    act: submit,
+    refresh
+  } = usePersistentAssessment(initial)
+  const router = useRouter()
+  const [managing, setManaging] = useState(false)
+  const forkKey = useRef<string | null>(null)
+  async function act(
+    operation: import('@/lib/assessment/schema').Operation,
+    retry = false
+  ) {
+    if (record.lifecycle !== 'completed') return submit(operation, retry)
+    if (managing || busy) return
+    setManaging(true)
+    try {
+      const storageKey = `doom-or-bloom:fork:${state.id}`
+      forkKey.current ??= crypto.randomUUID()
+      try {
+        forkKey.current = localStorage.getItem(storageKey) ?? forkKey.current
+        localStorage.setItem(storageKey, forkKey.current)
+      } catch {
+        /* In-memory key remains stable. */
+      }
+      const { id } = await api<{ id: string }>(
+        `/api/assessments/${state.id}/fork`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ requestKey: forkKey.current })
+        }
+      )
+      try {
+        await api(`/api/assessments/${id}`, {
+          method: 'POST',
+          body: JSON.stringify({
+            assessmentId: id,
+            expectedRevision: 0,
+            requestKey: `${forkKey.current}:continue`,
+            operation
+          })
+        })
+      } finally {
+        try {
+          localStorage.removeItem(storageKey)
+        } catch {
+          /* Navigation still works. */
+        }
+        router.push(`/assessment/${id}`)
+      }
+    } catch (err) {
+      toast.error(
+        err instanceof Error
+          ? err.message
+          : 'Unable to continue in a new assessment.'
+      )
+    } finally {
+      setManaging(false)
+    }
+  }
+  async function visibility(value: 'private' | 'public') {
+    if (busy || managing) return
+    setManaging(true)
+    try {
+      await api(`/api/assessments/${state.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          expectedRevision: state.revision,
+          visibility: value
+        })
+      })
+      await refresh()
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : 'Unable to update sharing.'
+      )
+    } finally {
+      setManaging(false)
+    }
+  }
   const conflict = false
   const [debugMode, setDebugMode] = useState(false)
   useEffect(() => {
@@ -160,6 +259,75 @@ export function Interview({
           <Link href='/assessments' className='text-sm underline'>
             My assessments
           </Link>
+          {state.result && (
+            <div className='flex flex-wrap items-center gap-3'>
+              {record.visibility === 'public' ? (
+                <>
+                  <Button asChild variant='outline'>
+                    <Link href={`/assessments/public/${state.id}`}>
+                      View public assessment
+                    </Link>
+                  </Button>
+                  <Button
+                    variant='outline'
+                    disabled={busy || managing}
+                    onClick={() => void visibility('private')}
+                  >
+                    Make private
+                  </Button>
+                  <Button
+                    variant='ghost'
+                    onClick={() => {
+                      void navigator.clipboard
+                        .writeText(
+                          `${window.location.origin}/assessments/public/${state.id}`
+                        )
+                        .then(() => toast.success('Public link copied.'))
+                        .catch(() =>
+                          toast.error(
+                            'Unable to copy. Open the public assessment to copy its URL.'
+                          )
+                        )
+                    }}
+                  >
+                    Copy public link
+                  </Button>
+                </>
+              ) : (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button disabled={busy || managing || Boolean(uncertain)}>
+                      Share assessment
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Publish your full assessment?</DialogTitle>
+                      <DialogDescription>
+                        Your questions, submitted replies, and inferred results
+                        will be visible to anyone with the link. Publishing
+                        completes this assessment. You can make it private
+                        later, but social networks may retain previews they
+                        already fetched. To add answers afterward, continue in a
+                        new assessment.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant='outline'>Keep private</Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Button onClick={() => void visibility('public')}>
+                          Publish assessment
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              )}
+            </div>
+          )}
+
           {uncertain && !busy && (
             <Alert>
               <AlertTitle>Confirm your last submission</AlertTitle>
@@ -258,7 +426,8 @@ export function Interview({
                 personas={personas}
                 state={state}
                 act={(op) => void act(op)}
-                busy={busy || conflict || record.lifecycle === 'completed'}
+                busy={busy || managing || conflict}
+                completed={record.lifecycle === 'completed'}
                 operations={debugOperations}
               />
             ) : (
@@ -266,7 +435,7 @@ export function Interview({
                 <div>
                   {state.answers.length > 0 && (
                     <p className='mb-5 text-xs text-muted-foreground'>
-                      {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · question ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
+                      {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · question ${p.ordinal}${p.ordinal >= promptLimit(state) - 2 ? ` of ${promptLimit(state)}` : ''}`}
                     </p>
                   )}
                   <h2 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
@@ -285,12 +454,12 @@ export function Interview({
                     </AlertDescription>
                   </Alert>
                 )}
-                {p.ordinal >= limits.warning && (
+                {p.ordinal >= promptLimit(state) - 2 && (
                   <Alert>
                     <AlertTitle>Approaching the limit</AlertTitle>
                     <AlertDescription>
-                      This assessment ends at {limits.prompts} prompts. You can
-                      restart afterward.
+                      This assessment ends at {promptLimit(state)} prompts. You
+                      can restart afterward.
                     </AlertDescription>
                   </Alert>
                 )}
@@ -409,7 +578,7 @@ export function Interview({
                               Try again
                             </Button>
                           )}
-                        {state.prompts.length < limits.prompts &&
+                        {state.prompts.length < promptLimit(state) &&
                           (paused ||
                             state.status === 'recovery' ||
                             unavailableQuestion) && (

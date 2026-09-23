@@ -254,13 +254,7 @@ export function Plot({
         </g>
       )}
       {data && !point && (
-        <text
-          x='355'
-          y='188'
-          textAnchor='middle'
-          fill={colors.text}
-          fontSize='20'
-        >
+        <text x='355' y='188' textAnchor='middle' fill='#25392b' fontSize='20'>
           Still unplaced
         </text>
       )}

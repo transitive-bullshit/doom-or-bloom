@@ -10,7 +10,7 @@ import {
   type AssessmentResponse,
   type DebugTrace
 } from '../assessment/schema'
-import { createAssessment } from '../assessment/state'
+import { createAssessment, forkAssessment } from '../assessment/state'
 import { restoreLocalInteraction } from '../assessment/transport'
 import {
   assessments,
@@ -18,6 +18,7 @@ import {
   assessmentOperations,
   user
 } from '../db/schema'
+import { publicAssessment } from './public'
 import { AssessmentError, type Submission } from './contracts'
 
 export function fingerprint(value: unknown): string {
@@ -260,6 +261,7 @@ export function assessmentRepository(pool: Pool) {
         .select({
           id: assessments.id,
           title: assessments.title,
+          revision: assessments.revision,
           lifecycle: assessments.lifecycle,
           visibility: assessments.visibility,
           updatedAt: assessments.updatedAt,
@@ -533,6 +535,103 @@ export function assessmentRepository(pool: Pool) {
           changes.finalSnapshotId = row.currentSnapshotId
         }
         await tx.update(assessments).set(changes).where(eq(assessments.id, id))
+      })
+    },
+    async publicLoad(id: string) {
+      return db.transaction(
+        async (tx) => {
+          const [row] = await tx
+            .select()
+            .from(assessments)
+            .where(
+              and(
+                eq(assessments.id, id),
+                eq(assessments.visibility, 'public'),
+                eq(assessments.lifecycle, 'completed')
+              )
+            )
+          if (!row?.finalSnapshotId) throw missing()
+          const state = await snapshot(tx, id, row.finalSnapshotId)
+          return {
+            id: row.id,
+            title: row.title ?? 'AI worldview assessment',
+            origin: row.origin,
+            isFork: row.isFork,
+            inheritedPromptCount: row.inheritedPromptCount,
+            assessment: publicAssessment(state)
+          }
+        },
+        { isolationLevel: 'repeatable read', accessMode: 'read only' }
+      )
+    },
+    async fork(ownerId: string, sourceId: string, requestKey: string) {
+      return db.transaction(async (tx) => {
+        const [owner] = await tx
+          .select({ id: user.id })
+          .from(user)
+          .where(eq(user.id, ownerId))
+          .for('update')
+        if (!owner) throw missing()
+        const source = await owned(tx, ownerId, sourceId, true)
+        await assertIdle(tx, sourceId)
+        if (
+          source.origin !== 'participant' ||
+          source.lifecycle !== 'completed' ||
+          !source.finalSnapshotId
+        )
+          throw conflict(
+            'Only your completed assessment can be continued in a new assessment.'
+          )
+        const digest = fingerprint({
+          sourceId,
+          snapshot: source.finalSnapshotId
+        })
+        const [prior] = await tx
+          .select()
+          .from(assessments)
+          .where(
+            and(
+              eq(assessments.ownerId, ownerId),
+              eq(assessments.createRequestKey, requestKey)
+            )
+          )
+        if (prior) {
+          if (prior.createFingerprint !== digest)
+            throw conflict('Creation key already used for different input.')
+          return { id: prior.id }
+        }
+        const inherited = await snapshot(tx, sourceId, source.finalSnapshotId)
+        if (inherited.prompts.length >= 30)
+          throw conflict(
+            'This conversation has reached 30 questions. Start a new assessment.'
+          )
+        const id = randomUUID(),
+          snapshotId = randomUUID()
+        const state = forkAssessment(inherited, id)
+        await tx.insert(assessments).values({
+          id,
+          ownerId,
+          currentSnapshotId: snapshotId,
+          versions: source.versions,
+          createRequestKey: requestKey,
+          createFingerprint: digest,
+          isFork: true,
+          sourceAssessmentId: sourceId,
+          sourceSnapshotId: source.finalSnapshotId,
+          inheritedPromptCount: inherited.prompts.length,
+          promptCeiling: state.promptCeiling
+        })
+        await tx.insert(assessmentSnapshots).values({
+          id: snapshotId,
+          assessmentId: id,
+          revision: 0,
+          format: 'assessment_v1',
+          payload: state,
+          digest: fingerprint(state),
+          evidenceRevision: state.evidenceRevision,
+          hasResult: state.result !== null
+        })
+        return { id }
       })
     },
     async remove(ownerId: string, id: string) {

@@ -26,8 +26,10 @@ export function socialCardData(result: Result): CardData {
 
 export function SocialCard({
   person,
+  assessment,
   points
 }: {
+  assessment?: { title: string; result: Result }
   person?: {
     name: string
     description: string
@@ -36,6 +38,10 @@ export function SocialCard({
   }
   points?: { x: number; y: number; portrait: string }[]
 }) {
+  const title = person
+    ? `${person.name}’s AI worldview`
+    : (assessment?.title ?? 'How will AI change our future?')
+  const displayTitle = title.length > 64 ? `${title.slice(0, 61)}…` : title
   return (
     <div
       style={{
@@ -59,20 +65,26 @@ export function SocialCard({
       >
         <span>DOOM OR BLOOM</span>
         <span>
-          {person ? 'SIMULATED AI WORLDVIEW' : 'THE AI WORLDVIEW MAP'}
+          {person
+            ? 'SIMULATED AI WORLDVIEW'
+            : assessment
+              ? 'AI WORLDVIEW ASSESSMENT'
+              : 'THE AI WORLDVIEW MAP'}
         </span>
       </div>
       <div
         style={{
-          fontSize: 48,
+          fontSize: title.length > 44 ? 32 : 48,
           fontWeight: 700,
           letterSpacing: -1.5,
-          marginTop: 20
+          marginTop: 20,
+          lineClamp: 1,
+          height: 58,
+          flexShrink: 0,
+          overflow: 'hidden'
         }}
       >
-        {person
-          ? `${person.name}’s AI worldview`
-          : 'How will AI change our future?'}
+        {displayTitle}
       </div>
       <div
         style={{
@@ -83,8 +95,16 @@ export function SocialCard({
         }}
       >
         <Plot
-          data={person ? socialCardData(person.result) : undefined}
-          pointLabel={person ? 'Simulated' : undefined}
+          data={
+            person
+              ? socialCardData(person.result)
+              : assessment
+                ? socialCardData(assessment.result)
+                : undefined
+          }
+          pointLabel={
+            person ? 'Simulated' : assessment ? 'Assessment' : undefined
+          }
           points={points}
           portrait={person?.portrait}
         />
@@ -97,12 +117,18 @@ export function SocialCard({
           }}
         >
           <div style={{ fontSize: 27, lineHeight: 1.3, fontWeight: 600 }}>
-            {person ? person.description : 'Where do you land?'}
+            {person
+              ? person.description
+              : assessment
+                ? 'One perspective on our AI future'
+                : 'Where do you land?'}
           </div>
           <div style={{ fontSize: 20, lineHeight: 1.45, color: '#b5bbc5' }}>
             {person
               ? 'Based on public sources. A simulation, not their own assessment.'
-              : 'Explore the map. Then map your AI worldview, one question at a time.'}
+              : assessment
+                ? 'A participant’s answers and inferred results. An experimental interpretation, not a prediction.'
+                : 'Explore the map. Then map your AI worldview, one question at a time.'}
           </div>
         </div>
       </div>
@@ -124,7 +150,9 @@ export function SocialCard({
                   'unsettled'
                 ? 'Point: center of unresolved range · Dashed area: interpretation range'
                 : 'Point: estimated placement · Dashed area: interpretation range'
-            : 'Public perspectives. Many possible futures.'}
+            : assessment
+              ? 'Dashed area: interpretation range'
+              : 'Public perspectives. Many possible futures.'}
         </span>
         <span>doom-or-bloom.com</span>
       </div>

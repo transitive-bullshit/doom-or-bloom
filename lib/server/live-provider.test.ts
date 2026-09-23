@@ -376,3 +376,23 @@ test('a second transient failure ends the whole operation after exactly two call
   })
   expect(fetch).toHaveBeenCalledTimes(2)
 })
+
+test('maximum fork history preserves all thirty multibyte answers across planned batches', async () => {
+  const state = {
+    answers: Array.from({ length: limits.maxPrompts }, (_, i) => ({
+      id: `answer-${i}`,
+      text: '漢'.repeat(limits.answerChars)
+    }))
+  }
+  const { provider, fetch } = mockedProvider(async (_url, init) => {
+    expect(requestBody(init).state).toEqual(state)
+    return successfulResponse(init)
+  })
+  const questions = Object.fromEntries(
+    Array.from({ length: limits.questions }, (_, i) => [`q${i}`, question])
+  )
+  const result = await provider.evaluate(state, questions)
+  expect(fetch).toHaveBeenCalledTimes(12)
+  expect(result.attempts).toBeLessThanOrEqual(limits.providerAttempts)
+  expect(Object.keys(result.answers)).toHaveLength(limits.questions)
+})

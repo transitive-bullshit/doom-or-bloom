@@ -33,7 +33,7 @@ export default async function Page({
       throw err
     })
   const env = serverEnv()
-  const bundle = loadBundle()
+  const bundle = loadBundle(initial.assessment.versions.content)
   const personas = (
     await loadExamples().catch((err: unknown) => {
       console.error('Unable to load persona comparisons', err)

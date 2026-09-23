@@ -1,6 +1,6 @@
 # TypeSafe / Jev Composition Specification
 
-> Approved persistence transition (2026-09-23), not yet implemented: [PERSISTENCE.md](PERSISTENCE.md#synchronous-execution-and-idempotency) defines the approved move to server-authoritative snapshots and synchronous atomic assessment operations. Jev retains the same semantic role; application code owns idempotency, budgets, recovery and atomic commits. Existing browser-persistence descriptions below are the current implementation baseline; update them as [checkpoints 1–2](persistence-implementation-plan.md) land.
+> Participant APIs now use server-authoritative snapshots and synchronous atomic operations. [PERSISTENCE.md](PERSISTENCE.md#synchronous-execution-and-idempotency) defines the contract. Jev retains the same semantic role; application code owns idempotency, budgets, recovery and atomic commits. Remaining acceptance checks are tracked in [the implementation plan](persistence-implementation-plan.md).
 
 ## Runtime assessments and persona excerpts
 
@@ -66,7 +66,7 @@ Storage schema remains v2. Decode legacy v1 saves into whole-answer support with
 
 ## Failure bounds and paid evaluation
 
-Bounds: 12 lifetime participant prompts, warning at 10; 20,000 characters per submitted reply; 96 independent questions per stage; 32 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate interpretation, shared-profile, optional tension-selection and routing requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
+Bounds: 12 initial participant prompts; forks add up to 12 with an absolute inherited ceiling of 30 and warning two prompts before the current ceiling; 20,000 characters per submitted reply; 96 independent questions per stage; 32 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate interpretation, shared-profile, optional tension-selection and routing requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
 
 All stages share a 120-second operation deadline; stages have a 45-second deadline and physical attempts 15 seconds. Large inputs use eight-question batches with complete participant evidence. Batches are planned before evaluation. A context overflow fails the operation without recursive splitting. Each transient physical call has at most one retry; permanent errors fail immediately. Preserve drafts, validate responses, retry transient failures with bounded backoff, reject stale responses and keep credentials server-side. The cumulative transcript may still exceed provider context; never silently discard evidence.
 

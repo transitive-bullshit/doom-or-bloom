@@ -44,7 +44,8 @@
     "db:auth:generate": "node --env-file=.env.local node_modules/auth/dist/index.mjs generate --config auth.schema.config.ts --output lib/db/auth-schema.ts --yes",
     "db:test": "node --env-file=.env.local --import tsx scripts/test-db.ts",
     "db:test:repository": "node --env-file=.env.local --conditions=react-server --import tsx scripts/test-assessment-repository.ts",
-    "check:persistence": "node --env-file=.env.local node_modules/@playwright/test/cli.js test --config=playwright.persistence.config.ts"
+    "check:persistence": "node --env-file=.env.local node_modules/@playwright/test/cli.js test --config=playwright.persistence.config.ts",
+    "db:test:lifecycle": "node --env-file=.env.local --conditions=react-server --import tsx scripts/test-assessment-lifecycle.ts"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",

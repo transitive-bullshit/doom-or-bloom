@@ -114,3 +114,122 @@ test('lost successful response resolves with the original request key after refr
     })
   }
 })
+
+test('publish, fork, and revoke preserve independent assessments and deny public images', async ({
+  page,
+  context,
+  baseURL
+}) => {
+  await page.goto('/assessment')
+  await page.getByRole('button', { name: 'Map your own worldview' }).click()
+  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
+  const id = page.url().split('/').at(-1)!
+  let forkId: string | undefined
+  const visitor = await context.browser()!.newContext()
+  const headers = { origin: baseURL! }
+  try {
+    await page
+      .getByRole('textbox', { name: 'Your answer' })
+      .fill(
+        'AI could greatly improve medicine if governance keeps pace with increasingly powerful systems.'
+      )
+    await page.getByRole('button', { name: 'Continue', exact: true }).click()
+    await expect
+      .poll(
+        async () =>
+          (await (await page.request.get(`/api/assessments/${id}`)).json())
+            .assessment.revision
+      )
+      .toBe(1)
+    const projected = await page.request.post(`/api/assessments/${id}`, {
+      headers,
+      data: {
+        assessmentId: id,
+        expectedRevision: 1,
+        requestKey: crypto.randomUUID(),
+        operation: { type: 'project' }
+      }
+    })
+    expect(projected.status()).toBe(200)
+    await page.reload()
+    await page
+      .getByRole('button', { name: 'Share assessment', exact: true })
+      .click()
+    await expect(page.getByRole('dialog')).toContainText('submitted replies')
+    await page
+      .getByRole('button', { name: 'Publish assessment', exact: true })
+      .click()
+    await expect(
+      page.getByRole('link', { name: 'View public assessment' })
+    ).toBeVisible()
+    const publicURL = `${baseURL}/assessments/public/${id}`
+    const html = await visitor.request.get(publicURL)
+    expect(html.status()).toBe(200)
+    // Next dev overrides HTML Cache-Control to no-cache, must-revalidate.
+    // Production private/no-store headers are verified in build/start acceptance.
+    expect(html.headers()['cache-control']).toMatch(/no-store|no-cache/)
+    expect(await html.text()).toContain('AI could greatly improve medicine')
+    expect(await html.text()).toContain('noindex')
+    expect(await html.text()).toContain(
+      `/assessments/public/${id}/social-image.webp`
+    )
+    const json = await (await visitor.request.get(`${publicURL}/data`)).json()
+    expect(json.assessment.answers).toHaveLength(1)
+    expect(json.ownerId).toBeUndefined()
+    expect(json.assessment.draft).toBeUndefined()
+    expect(json.operation).toBeUndefined()
+    const image = await visitor.request.get(`${publicURL}/social-image.webp`)
+    expect(image.status()).toBe(200)
+    expect(image.headers()['content-type']).toContain('image/webp')
+    expect(image.headers()['cache-control']).toContain('no-store')
+    const bytes = await image.body()
+    expect(bytes.toString('ascii', 0, 4)).toBe('RIFF')
+    expect(bytes.toString('ascii', 8, 12)).toBe('WEBP')
+    const sharp = (await import('sharp')).default
+    const metadata = await sharp(bytes).metadata()
+    expect([metadata.width, metadata.height]).toEqual([1200, 630])
+    await sharp(bytes).toFile('/tmp/persistence-public-card.webp')
+    expect(await visitor.cookies()).toHaveLength(0)
+    await page.goto('/')
+    await page
+      .getByRole('button', { name: 'Map your own worldview' })
+      .first()
+      .click()
+    await expect(page).toHaveURL(/\/assessments$/)
+    await page.getByRole('link', { name: 'View', exact: true }).click()
+    await page
+      .getByRole('button', { name: 'Continue in a new assessment' })
+      .click()
+    await expect(page).not.toHaveURL(new RegExp(`/assessment/${id}$`))
+    forkId = page.url().split('/').at(-1)!
+    expect(forkId).not.toBe(id)
+    const fork = await (
+      await page.request.get(`/api/assessments/${forkId}`)
+    ).json()
+    expect(fork.visibility).toBe('private')
+    expect(fork.assessment.answers).toHaveLength(1)
+    expect(fork.assessment.promptCeiling).toBe(
+      json.assessment.prompts.length + 12
+    )
+    await page.request.patch(`/api/assessments/${id}`, {
+      headers,
+      data: { expectedRevision: 2, visibility: 'private' }
+    })
+    expect((await visitor.request.get(`${publicURL}/data`)).status()).toBe(404)
+    expect(
+      (await visitor.request.get(`${publicURL}/social-image.webp`)).status()
+    ).toBe(404)
+    const denied = await visitor.request.get(publicURL)
+    expect(await denied.text()).not.toContain(
+      'AI could greatly improve medicine'
+    )
+    await page.request.delete(`/api/assessments/${id}`, { headers })
+    expect(
+      (await page.request.get(`/api/assessments/${forkId}`)).status()
+    ).toBe(200)
+  } finally {
+    for (const savedId of [id, forkId].filter(Boolean))
+      await page.request.delete(`/api/assessments/${savedId}`, { headers })
+    await visitor.close()
+  }
+})

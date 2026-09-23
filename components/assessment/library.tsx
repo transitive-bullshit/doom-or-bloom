@@ -20,6 +20,7 @@ import { api } from '@/lib/assessments/client'
 
 export type LibraryItem = {
   id: string
+  revision: number
   title: string | null
   lifecycle: 'open' | 'completed'
   visibility: 'private' | 'public'
@@ -36,6 +37,25 @@ export function AssessmentLibrary({ items }: { items: LibraryItem[] }) {
       router.refresh()
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Unable to delete.')
+    } finally {
+      setBusy(null)
+    }
+  }
+  async function makePrivate(item: LibraryItem) {
+    setBusy(item.id)
+    try {
+      await api(`/api/assessments/${item.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          expectedRevision: item.revision,
+          visibility: 'private'
+        })
+      })
+      router.refresh()
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : 'Unable to update sharing.'
+      )
     } finally {
       setBusy(null)
     }
@@ -85,6 +105,15 @@ export function AssessmentLibrary({ items }: { items: LibraryItem[] }) {
                   {item.lifecycle === 'open' ? 'Resume' : 'View'}
                 </Link>
               </Button>
+              {item.visibility === 'public' && (
+                <Button
+                  variant='outline'
+                  disabled={busy !== null}
+                  onClick={() => void makePrivate(item)}
+                >
+                  Make private
+                </Button>
+              )}
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant='ghost' disabled={busy !== null}>

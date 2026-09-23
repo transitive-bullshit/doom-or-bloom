@@ -25,6 +25,7 @@ import {
 } from '@/lib/assessment/schema'
 import {
   acceptAnswer,
+  promptLimit,
   atCap,
   canSubmit,
   currentPrompt,
@@ -127,6 +128,8 @@ function clarificationText(label: string, claim: string | null) {
   return `Our read of ${label.toLowerCase()} was: “${claim}” What would you change about that interpretation?`
 }
 function validateSnapshot(state: Assessment, bundle: Bundle) {
+  if (state.prompts.length > promptLimit(state))
+    throw new Error('Question ceiling exceeded')
   if (
     state.versions.content !== bundle.manifest.contentVersion ||
     state.versions.rubric !== bundle.manifest.rubricVersion ||
