@@ -25,7 +25,7 @@ export function ResourceList<T extends Resource>({
       {bookmarks.length > 0 && (
         <div
           data-resource-layout='list'
-          className='mx-auto flex w-full max-w-[624px] flex-col gap-4'
+          className='mx-auto flex w-full max-w-[var(--content-width)] flex-col gap-4'
         >
           {bookmarks.map(({ resource }) => (
             <ResourceBookmark
@@ -37,7 +37,14 @@ export function ResourceList<T extends Resource>({
         </div>
       )}
       {tweets.length > 0 && (
-        <div data-resource-layout='masonry' className='resource-masonry'>
+        <div
+          data-resource-layout='masonry'
+          className={
+            tweets.length > 1
+              ? 'resource-masonry resource-masonry-wide'
+              : 'resource-masonry'
+          }
+        >
           {tweets.map(({ resource, tweetId }) => {
             const open = onOpen ? () => onOpen(resource) : undefined
             return (

@@ -457,3 +457,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Remove the Review & clarify my results disclosure, its per-claim correction actions, and the reference-snapshot panel it contained. Keep result insights, supporting answers, resources, downloads, and Continue answering questions.
 - [x] Update the current product contract while retaining historical clarification data and engine compatibility.
 - [x] Verify repository checks and all four interaction browser tests, including absent correction controls and successful continued answering.
+
+### Wider content and tweet masonry (2026-09-24)
+
+- [x] Increase the shared reading area from 624px to 700px (748px including gutters). Bookmarks and CTA cards use the same content-width token.
+- [x] Let multi-tweet masonry break out to a centered 1152px maximum with two desktop columns. Single tweets and mobile layouts remain within the reading column.
+- [x] Verify repository checks, six bookmark/tweet/typography browser cases, and the public publication flow. Assert desktop masonry is wider than its 700px parent, centered, and within its cap; mobile has no horizontal overflow.

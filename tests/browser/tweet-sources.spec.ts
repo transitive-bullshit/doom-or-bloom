@@ -50,6 +50,16 @@ test('persona bookmarks precede a separate themed tweet masonry', async ({
   const layout = sources.locator('[data-resource-layout=masonry]')
   await expect(layout).toHaveAttribute('data-resource-layout', 'masonry')
   await expect(layout).toHaveCSS('column-count', '2')
+  const masonryBox = (await layout.boundingBox())!
+  const sourceBox = (await sources.boundingBox())!
+  expect(sourceBox.width).toBe(700)
+  expect(masonryBox.width).toBeGreaterThan(sourceBox.width)
+  expect(masonryBox.width).toBeLessThanOrEqual(1152)
+  expect(
+    Math.abs(
+      masonryBox.x + masonryBox.width / 2 - (sourceBox.x + sourceBox.width / 2)
+    )
+  ).toBeLessThan(1)
   const bookmarks = sources.locator('[data-resource-layout=list]')
   await expect(bookmarks.locator('.resource-tweet')).toHaveCount(0)
   expect(
