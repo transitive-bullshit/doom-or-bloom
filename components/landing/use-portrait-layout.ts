@@ -41,7 +41,7 @@ export function usePortraitLayout(points: Point[]) {
         if (initialLayout) node.style.transition = 'none'
         node.style.left = '0px'
         node.style.top = '0px'
-        node.style.transform = `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`
+        node.style.transform = `translate(${position.x}px, ${position.y}px) translate(-50%, -50%) scale(var(--portrait-scale, 1))`
         const labelShift =
           Math.max(75, Math.min(chartSize.width - 75, position.x)) - position.x
         labels[i]?.style.setProperty('--label-shift', `${labelShift}px`)
