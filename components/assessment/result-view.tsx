@@ -222,25 +222,27 @@ export function ResultView({
           />
         </section>
       )}
-      <Separator className='my-6' />
-      <div className='flex flex-col items-center gap-4'>
-        {downloadAction}
-        {!readOnly && (
-          <div className='flex flex-wrap justify-center gap-3'>
-            <Button
-              type='button'
-              disabled={busy || reportDownloading || downloading}
-              aria-busy={reportDownloading}
-              variant='outline'
-              onClick={() => void report()}
-            >
-              {reportDownloading && (
-                <Spinner data-icon='inline-start' aria-hidden='true' />
-              )}
-              {reportDownloading ? 'Preparing report…' : 'Download full report'}
-            </Button>
-            {!readOnly &&
-              (published
+      {!readOnly && (
+        <>
+          <Separator className='my-6' />
+          <div className='flex flex-col items-center gap-4'>
+            {downloadAction}
+            <div className='flex flex-wrap justify-center gap-3'>
+              <Button
+                type='button'
+                disabled={busy || reportDownloading || downloading}
+                aria-busy={reportDownloading}
+                variant='outline'
+                onClick={() => void report()}
+              >
+                {reportDownloading && (
+                  <Spinner data-icon='inline-start' aria-hidden='true' />
+                )}
+                {reportDownloading
+                  ? 'Preparing report…'
+                  : 'Download full report'}
+              </Button>
+              {(published
                 ? state.prompts.length < limits.maxPrompts
                 : !atCap(state)) && (
                 <Button
@@ -254,9 +256,10 @@ export function ResultView({
                     : 'Continue answering questions'}
                 </Button>
               )}
+            </div>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   )
 }
