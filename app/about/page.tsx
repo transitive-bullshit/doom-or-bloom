@@ -18,7 +18,7 @@ export default async function About() {
   ])
   const person = examples.find((example) => example.id === personaId)
   return (
-    <article className='content-column space-y-10 py-14 text-sm leading-relaxed'>
+    <article className='content-column space-y-10 py-14 text-base leading-relaxed'>
       <header className='space-y-5'>
         <h1>A clearer conversation about AI futures</h1>
         <p>
@@ -218,7 +218,7 @@ export default async function About() {
         </p>
       </section>
 
-      <footer className='border-t pt-6 text-xs text-muted-foreground flex flex-col gap-2'>
+      <footer className='border-t pt-6 text-base text-muted-foreground flex flex-col gap-2'>
         <p>
           Built by{' '}
           <a

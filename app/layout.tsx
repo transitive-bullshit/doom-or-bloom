@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </main>
             <footer
               style={{ viewTransitionName: 'site-footer' }}
-              className='flex flex-wrap justify-center gap-5 px-6 py-6 text-xs text-muted-foreground'
+              className='flex flex-wrap justify-center gap-5 px-6 py-6 text-base text-muted-foreground'
             >
               <Link href='/about'>About & methodology</Link>
               <Link href='/privacy'>Privacy</Link>

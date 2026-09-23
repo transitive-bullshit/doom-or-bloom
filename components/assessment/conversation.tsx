@@ -130,7 +130,7 @@ export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
         <Bubble variant='secondary' align='end'>
           <BubbleContent
             tabIndex={0}
-            className='answer-bubble relative min-h-12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
+            className='answer-bubble relative min-h-12 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
           >
             <CopyAnswer
               text={reply.text}

@@ -122,7 +122,7 @@ function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
                 Question {index + 1}
               </p>
               <h3 className='w-full text-pretty'>{answer.question}</h3>
-              <div className='rounded-xl bg-muted p-4 text-sm leading-relaxed whitespace-pre-wrap wrap-anywhere'>
+              <div className='rounded-xl bg-muted p-4 text-base leading-relaxed whitespace-pre-wrap wrap-anywhere'>
                 {answer.answer}
               </div>
             </article>

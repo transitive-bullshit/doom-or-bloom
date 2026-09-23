@@ -7,7 +7,7 @@ export const metadata = pageMetadata(publicPages[2]!)
 export default function Privacy() {
   const { analytics, posthog } = serverEnv()
   return (
-    <article className='content-column space-y-7 py-14 text-sm leading-relaxed'>
+    <article className='content-column space-y-7 py-14 text-base leading-relaxed'>
       <h1>Privacy</h1>
       <p>
         Your answers and results are private by default. You can choose to

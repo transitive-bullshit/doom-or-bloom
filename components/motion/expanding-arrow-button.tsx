@@ -173,8 +173,15 @@ export function ExpandingArrowLink({
       data-expanded={active}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onFocus={() => setFocused(true)}
+      onFocus={(event) =>
+        setFocused(event.currentTarget.matches(':focus-visible'))
+      }
       onBlur={() => setFocused(false)}
+      onNavigate={() => {
+        // Shared layouts preserve this link through navigation and redirects.
+        setHovered(false)
+        setFocused(false)
+      }}
       whileTap={{ scale: reduce ? 1 : 0.97 }}
       transition={SPRING_PRESS}
       className={cn(

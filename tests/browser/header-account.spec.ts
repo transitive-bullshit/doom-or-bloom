@@ -1,5 +1,44 @@
 import { expect, test } from '@playwright/test'
 
+test('header CTA collapses after starting an assessment and leaving it', async ({
+  page
+}) => {
+  await page.goto('/about')
+  const cta = page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'Map your own worldview' })
+  await cta.hover()
+  await expect(cta).toHaveAttribute('data-expanded', 'true')
+  await cta.click()
+  await expect(page).toHaveURL(/\/assessments\/[^/?]+$/)
+  await page.mouse.move(0, 400)
+  await expect(cta).toHaveAttribute('data-expanded', 'false')
+  await cta.hover()
+  await expect(cta).toHaveAttribute('data-expanded', 'true')
+  await page.mouse.move(0, 400)
+  await expect(cta).toHaveAttribute('data-expanded', 'false')
+})
+
+test('header CTA supports keyboard focus and resets on keyboard navigation', async ({
+  page
+}) => {
+  await page.goto('/about')
+  const cta = page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'Map your own worldview' })
+  await page.keyboard.press('Tab')
+  await cta.focus()
+  await expect(cta).toHaveAttribute('data-expanded', 'true')
+  await page.keyboard.press('Tab')
+  await expect(cta).toHaveAttribute('data-expanded', 'false')
+  await page.keyboard.press('Shift+Tab')
+  await expect(cta).toBeFocused()
+  await expect(cta).toHaveAttribute('data-expanded', 'true')
+  await page.keyboard.press('Enter')
+  await expect(page).toHaveURL(/\/assessments\/[^/?]+$/)
+  await expect(cta).toHaveAttribute('data-expanded', 'false')
+})
+
 test('anonymous header CTA is desktop-only without mobile overflow', async ({
   page
 }) => {
