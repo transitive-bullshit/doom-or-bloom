@@ -37,7 +37,7 @@ CREATE DATABASE doom_bloom_dev OWNER doom_bloom_dev;
 CREATE DATABASE doom_bloom_test OWNER doom_bloom_test;
 ```
 
-These local connections use Postgres.app's local authentication policy. Do not relax authentication on a network-accessible server. Set the URLs in `.env.local` from `.env.example`, generate an auth secret with `openssl rand -base64 48`, and set the Portless origin. Keep `.env.local` private. The ignored `.env.neon.local` is production-only and is never automatically loaded.
+These local connections use Postgres.app's local authentication policy. Do not relax authentication on a network-accessible server. Set the URLs in `.env.local` from `.env.example`, generate an auth secret with `openssl rand -base64 48`, and set the Portless origin. Keep `.env.local` private. Store production Neon connections in the same ignored `.env.local` as `NEON_DATABASE_URL` and `NEON_DATABASE_MIGRATION_URL`. These names are not used by the application or migration scripts; map them explicitly to the deployment environment only during authorized production work. Keep local `DATABASE_URL` and `TEST_DATABASE_URL` pointing to Postgres.app.
 
 ```sh
 pnpm db:migrate
