@@ -41,30 +41,23 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   ).toContainText('Human influence')
   await page
     .getByRole('link', { name: 'Map your own worldview' })
-    .first()
+    .last()
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const savedUrl = page.url()
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.fill('A draft that should survive navigation.')
   await page.getByRole('link', { name: 'Doom or Bloom', exact: true }).click()
-  await page.getByRole('link', { name: 'Map your own worldview' }).click()
-  await expect(page).toHaveURL(/\/assessments$/)
-  await page
-    .getByRole('link', { name: 'Your AI worldview', exact: true })
-    .click()
+  await expect(page).toHaveURL(/\/$/)
+  await page.goBack()
   await expect(page).toHaveURL(savedUrl)
   await expect(answer).toHaveValue('A draft that should survive navigation.')
-  await page.goBack()
-  await expect(
-    page.getByRole('heading', { name: 'My assessments' })
-  ).toBeVisible()
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
-  const cta = page.getByRole('link', { name: 'Map your own worldview' })
+  const cta = page.getByRole('link', { name: 'Map your own worldview' }).last()
   await cta.scrollIntoViewIfNeeded()
   await expect(cta).toBeInViewport()
 })
@@ -382,10 +375,12 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
       hydrationErrors.push(message.text())
   })
   await page.goto('/')
-  const cta = page.getByRole('link', {
-    name: 'Map your own worldview',
-    exact: true
-  })
+  const cta = page
+    .getByRole('link', {
+      name: 'Map your own worldview',
+      exact: true
+    })
+    .last()
   await expect(cta).toHaveAttribute('data-slot', 'primary-cta')
   await expect(cta).toHaveAttribute('data-expanded', 'false')
   const initial = await cta.boundingBox()
@@ -414,7 +409,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
     .first()
     .screenshot({ path: testInfo.outputPath('cta-dark-mobile.png') })
   await userCtas.last().click()
-  await expect(page).toHaveURL(/\/assessments$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   expect(hydrationErrors).toEqual([])
 })
 

@@ -10,6 +10,7 @@ test('first CTA creates directly, draft survives reload, answer is server-saved,
   expect(await context.cookies()).toHaveLength(0)
   await page
     .getByRole('link', { name: 'Map your own worldview' })
+    .last()
     .first()
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
@@ -48,6 +49,7 @@ test('first CTA creates directly, draft survives reload, answer is server-saved,
     await page.goto('/')
     await page
       .getByRole('link', { name: 'Map your own worldview' })
+      .last()
       .first()
       .click()
     await expect(page).toHaveURL(/\/assessments$/)
@@ -75,7 +77,10 @@ test('lost successful response resolves with the original request key after refr
   baseURL
 }) => {
   await page.goto('/assessment')
-  await page.getByRole('link', { name: 'Map your own worldview' }).click()
+  await page
+    .getByRole('link', { name: 'Map your own worldview' })
+    .last()
+    .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   try {
@@ -122,7 +127,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
   baseURL
 }) => {
   await page.goto('/assessment')
-  await page.getByRole('link', { name: 'Map your own worldview' }).click()
+  await page
+    .getByRole('link', { name: 'Map your own worldview' })
+    .last()
+    .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   let forkId: string | undefined
@@ -312,6 +320,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await page.goto('/')
     await page
       .getByRole('link', { name: 'Map your own worldview' })
+      .last()
       .first()
       .click()
     await expect(page).toHaveURL(/\/assessments$/)

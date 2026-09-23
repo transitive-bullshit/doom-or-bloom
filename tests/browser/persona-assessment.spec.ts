@@ -21,13 +21,9 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
   await expect(ctas).toHaveCount(2)
   const header = page.locator('main header')
   await expect(header).toHaveCSS('margin-top', '0px')
-  const identity = await header.locator(':scope > div > div').boundingBox()
-  const heading = await header.getByRole('heading', { level: 1 }).boundingBox()
-  const cta = await ctas.first().boundingBox()
-  expect(cta!.x).toBeGreaterThan(heading!.x + heading!.width)
-  expect(
-    Math.abs(cta!.y + cta!.height / 2 - (identity!.y + identity!.height / 2))
-  ).toBeLessThan(2)
+  await expect(
+    header.getByRole('link', { name: 'Map your own worldview' })
+  ).toHaveCount(0)
   const reasoning = page
     .getByRole('region', {
       name: 'Debug info',
@@ -98,11 +94,6 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
   await expect(reasoning).toContainText('completeParticipantEvidence')
   await page.setViewportSize({ width: 390, height: 844 })
   const mobileHeader = await header.boundingBox()
-  const mobileCta = await ctas.first().boundingBox()
-  const mobileHeading = await header
-    .getByRole('heading', { level: 1 })
-    .boundingBox()
-  expect(mobileCta!.y).toBeGreaterThan(mobileHeading!.y + mobileHeading!.height)
   expect(mobileHeader!.width).toBeLessThan(390)
   expect(
     await page.evaluate(

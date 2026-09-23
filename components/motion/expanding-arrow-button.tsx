@@ -33,12 +33,14 @@ function ArrowContent({
   active,
   reduce,
   accentClassName,
+  compact = false,
   labelClassName,
   children
 }: {
   active: boolean
   reduce: boolean
   accentClassName?: string
+  compact?: boolean
   labelClassName?: string
   children: ReactNode
 }) {
@@ -51,7 +53,7 @@ function ArrowContent({
         aria-hidden='true'
         transition={layoutTransition}
         style={{
-          width: active ? 'calc(100% - 8px)' : 40,
+          width: active ? 'calc(100% - 8px)' : compact ? 28 : 40,
           borderRadius: 9999
         }}
         className={cn(
@@ -99,7 +101,8 @@ function ArrowContent({
         transition={{ duration: reduce ? 0 : 0.12, ease: EASE_OUT }}
         className={cn(
           'relative z-0 ml-14 mr-4 text-sm font-medium tracking-tight',
-          labelClassName ?? 'whitespace-nowrap'
+          labelClassName ?? 'whitespace-nowrap',
+          compact && 'ml-10 mr-3'
         )}
       >
         {children}
@@ -151,9 +154,11 @@ export function ExpandingArrowAction({
 
 export function ExpandingArrowLink({
   href,
-  children
+  children,
+  size = 'default'
 }: {
   href: string
+  size?: 'default' | 'sm'
   children: ReactNode
 }) {
   const reduce = useReducedMotion()
@@ -172,9 +177,13 @@ export function ExpandingArrowLink({
       onBlur={() => setFocused(false)}
       whileTap={{ scale: reduce ? 1 : 0.97 }}
       transition={SPRING_PRESS}
-      className='relative inline-flex h-12 w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'
+      className={cn(
+        'relative inline-flex w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        size === 'sm' ? 'h-9' : 'h-12'
+      )}
     >
       <ArrowContent
+        compact={size === 'sm'}
         active={active}
         reduce={Boolean(reduce)}
         labelClassName='min-w-0 whitespace-normal text-left leading-tight'

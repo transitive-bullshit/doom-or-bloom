@@ -19,6 +19,7 @@ export async function startAssessment(page: Page) {
   await page.goto('/assessment')
   await page
     .getByRole('link', { name: 'Map your own worldview', exact: true })
+    .last()
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
 }

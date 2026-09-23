@@ -8,6 +8,7 @@ test('New assessment preserves the library entry reached from the homepage', asy
   await page.goto('/')
   await page
     .getByRole('link', { name: 'Map your own worldview', exact: true })
+    .last()
     .first()
     .click()
   await expect(page).toHaveURL(/\/assessments$/)

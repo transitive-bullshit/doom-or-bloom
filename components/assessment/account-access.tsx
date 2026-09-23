@@ -27,23 +27,18 @@ export function AccountAccess({
     setBusy(true)
     setError(null)
     try {
-      if (signedIn) {
-        await api('/api/auth/sign-out', { method: 'POST', body: '{}' })
-        window.location.assign('/assessments')
-      } else {
-        const result = await api<{ url: string }>('/api/auth/sign-in/social', {
-          method: 'POST',
-          body: JSON.stringify({
-            provider: 'twitter',
-            callbackURL: '/assessments',
-            errorCallbackURL: '/assessments?authError=signin'
-          })
+      const result = await api<{ url: string }>('/api/auth/sign-in/social', {
+        method: 'POST',
+        body: JSON.stringify({
+          provider: 'twitter',
+          callbackURL: '/assessments',
+          errorCallbackURL: '/assessments?authError=signin'
         })
-        window.location.assign(result.url)
-      }
+      })
+      window.location.assign(result.url)
     } catch {
       setError(
-        'Unable to sign in or out right now. Your saved assessments are unchanged.'
+        'Unable to sign in right now. Your saved assessments are unchanged.'
       )
       setBusy(false)
     }
@@ -67,14 +62,14 @@ export function AccountAccess({
             <span className='font-medium'>{profile.name}</span>
           </>
         )}
-        {(signedIn || enabled) && (
+        {!signedIn && enabled && (
           <Button
             variant='outline'
             className='shrink-0'
             disabled={busy}
             onClick={() => void act()}
           >
-            {busy ? 'Please wait…' : signedIn ? 'Sign out' : 'Sign in with X'}
+            {busy ? 'Please wait…' : 'Sign in with X'}
           </Button>
         )}
       </div>

@@ -1,5 +1,4 @@
 import { ProfileHeader } from '@/components/profile-header'
-import { WorldviewCta } from '@/components/worldview-cta'
 
 export function PersonaHeader({
   person
@@ -24,8 +23,6 @@ export function PersonaHeader({
           : person.profileLabel
       }
       description={person.description}
-    >
-      <WorldviewCta />
-    </ProfileHeader>
+    />
   )
 }

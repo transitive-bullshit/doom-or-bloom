@@ -2,13 +2,14 @@
 import { useTheme } from 'next-themes'
 import { play } from 'cuelume'
 import { Moon, Sun } from 'lucide-react'
+import { HeaderAccount } from '@/components/header-account'
 import { Button } from '@/components/ui/button'
 export function SiteActions() {
   const { resolvedTheme, setTheme } = useTheme()
   return (
     <nav
-      className='flex items-center'
-      aria-label='Project links and appearance'
+      className='flex max-w-full flex-wrap items-center justify-end gap-1'
+      aria-label='Site navigation'
     >
       <Button variant='ghost' size='icon' asChild>
         <a
@@ -46,6 +47,9 @@ export function SiteActions() {
         <Sun className='dark:hidden' />
         <Moon className='hidden dark:block' />
       </Button>
+      <div className='ml-2 flex items-center'>
+        <HeaderAccount />
+      </div>
     </nav>
   )
 }
