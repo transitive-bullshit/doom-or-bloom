@@ -21,6 +21,7 @@ for (const route of [
 for (const portraitRoute of [
   'users/[username]/opengraph-image',
   'api/share-card',
+  'api/assessments/[id]/results-image',
   'public/assessments/[id]/social-image.webp'
 ]) {
   const portraitTrace = path.join(

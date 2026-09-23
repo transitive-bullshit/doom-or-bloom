@@ -1,4 +1,6 @@
 import { Pool } from 'pg'
+import { readFile } from 'node:fs/promises'
+import { unzipSync } from 'fflate'
 import { test, expect } from '@playwright/test'
 
 test('library sorts by creation date and status and keeps management in row menus', async ({
@@ -77,6 +79,81 @@ test('library sorts by creation date and status and keeps management in row menu
     await expect(
       table.getByRole('button', { name: 'Delete', exact: true })
     ).toHaveCount(0)
+    const actions = table.getByRole('button', {
+      name: 'Actions for Older assessment'
+    })
+    await actions.click()
+    const pngDownload = page.waitForEvent('download')
+    await page
+      .getByRole('menuitem', { name: 'Download results image', exact: true })
+      .click()
+    const png = await readFile((await (await pngDownload).path())!)
+    expect(png.subarray(1, 4).toString()).toBe('PNG')
+    await expect(actions).toBeEnabled()
+    await page.evaluate(() =>
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: {
+          write: async (items: ClipboardItem[]) => {
+            const blob = await items[0]!.getType('image/png')
+            document.documentElement.dataset.copiedImage = String(blob.size)
+          }
+        }
+      })
+    )
+    await actions.click()
+    await page
+      .getByRole('menuitem', { name: 'Copy results image', exact: true })
+      .click()
+    await expect(
+      page.getByText('Results image copied.', { exact: true })
+    ).toBeVisible()
+    expect(
+      Number(
+        await page.evaluate(() => document.documentElement.dataset.copiedImage)
+      )
+    ).toBeGreaterThan(1000)
+    await actions.click()
+    const reportDownload = page.waitForEvent('download')
+    await page
+      .getByRole('menuitem', { name: 'Download full report', exact: true })
+      .click()
+    const zip = unzipSync(
+      await readFile((await (await reportDownload).path())!)
+    )
+    expect(Object.keys(zip).sort()).toEqual([
+      'assessment.md',
+      'diagnostics.json',
+      'interview.md',
+      'results.png',
+      'worldview-map.png'
+    ])
+    expect(
+      Buffer.from(zip['worldview-map.png']!.subarray(1, 4)).toString()
+    ).toBe('PNG')
+    await expect(actions).toBeEnabled()
+    const other = await page.context().browser()!.newContext()
+    try {
+      expect(
+        (
+          await other.request.get(
+            `${baseURL}/api/assessments/${ids[0]}/results-image`
+          )
+        ).status()
+      ).toBe(401)
+    } finally {
+      await other.close()
+    }
+    await table
+      .getByRole('button', { name: 'Actions for Newer assessment' })
+      .click()
+    await expect(
+      page.getByRole('menuitem', {
+        name: 'Download results image',
+        exact: true
+      })
+    ).toHaveCount(0)
+    await page.keyboard.press('Escape')
     await table
       .getByRole('button', { name: 'Actions for Older assessment' })
       .click()

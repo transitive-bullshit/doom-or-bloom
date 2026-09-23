@@ -38,6 +38,7 @@ const config: NextConfig = {
   distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
   // Results are read from PostgreSQL. Native image rendering still needs portraits.
   outputFileTracingIncludes: {
+    '/api/assessments/*/results-image': ['public/personas/*'],
     '/api/share-card': ['public/personas/*'],
     '/users/*/opengraph-image': ['public/personas/*'],
     '/public/assessments/*/social-image.webp': ['public/personas/*']

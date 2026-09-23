@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { toast } from 'sonner'
+import { downloadBlob } from '@/lib/sharing/report'
 import { ArrowDown, ArrowUp, ArrowUpDown, MoreHorizontal } from 'lucide-react'
 import {
   createColumnHelper,
@@ -82,6 +83,60 @@ export function AssessmentTable({
   onMakePrivate: (item: LibraryItem) => void
   onDelete: (item: LibraryItem) => void
 }) {
+  const [exporting, setExporting] = useState(false)
+  async function exportResults(
+    id: string,
+    action: 'download' | 'copy' | 'report'
+  ) {
+    if (busy || exporting) return
+    setExporting(true)
+    try {
+      if (
+        action === 'copy' &&
+        (!navigator.clipboard?.write || typeof ClipboardItem === 'undefined')
+      ) {
+        throw new Error('Image copying unavailable')
+      }
+      const image = fetch(`/api/assessments/${id}/results-image`, {
+        cache: 'no-store'
+      }).then((response) => {
+        if (!response.ok) throw new Error('Image unavailable')
+        return response.blob()
+      })
+      // Attach a rejection handler immediately, including if clipboard access is denied.
+      void image.catch(() => {})
+      if (action === 'copy') {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': image })
+        ])
+      } else if (action === 'report') {
+        const { savedReport } = await import('@/lib/sharing/saved-report')
+        downloadBlob(
+          await savedReport(id, image),
+          `doom or bloom assessment ${id}.zip`
+        )
+      } else {
+        downloadBlob(await image, 'doom-or-bloom.png')
+      }
+      toast.success(
+        action === 'copy'
+          ? 'Results image copied.'
+          : action === 'report'
+            ? 'Full report download started.'
+            : 'Results image download started.'
+      )
+    } catch {
+      toast.error(
+        action === 'copy'
+          ? 'Couldn’t copy the image. Try downloading it instead.'
+          : action === 'report'
+            ? 'Couldn’t download the report. Please try again.'
+            : 'Couldn’t download the image. Please try again.'
+      )
+    } finally {
+      setExporting(false)
+    }
+  }
   async function copyPublicLink(id: string) {
     try {
       await navigator.clipboard.writeText(
@@ -146,7 +201,7 @@ export function AssessmentTable({
             <Button
               variant='ghost'
               size='icon'
-              disabled={busy}
+              disabled={busy || exporting}
               aria-label={`Actions for ${row.original.title ?? 'Your AI worldview'}`}
             >
               <MoreHorizontal aria-hidden />
@@ -170,6 +225,30 @@ export function AssessmentTable({
                     onSelect={() => onMakePrivate(row.original)}
                   >
                     Make private
+                  </DropdownMenuItem>
+                </>
+              )}
+              {(row.original.hasResults ||
+                row.original.visibility === 'public') && (
+                <>
+                  <DropdownMenuItem
+                    onSelect={() =>
+                      void exportResults(row.original.id, 'download')
+                    }
+                  >
+                    Download results image
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onSelect={() => void exportResults(row.original.id, 'copy')}
+                  >
+                    Copy results image
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onSelect={() =>
+                      void exportResults(row.original.id, 'report')
+                    }
+                  >
+                    Download full report
                   </DropdownMenuItem>
                 </>
               )}
