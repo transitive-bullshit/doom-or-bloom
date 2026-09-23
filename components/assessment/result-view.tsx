@@ -270,14 +270,14 @@ function ResultDisclosure({
 }) {
   return (
     <Collapsible>
-      <h5>
+      <h6>
         <CollapsibleTrigger asChild>
           <Button variant='ghost' className='group w-full justify-between'>
             {title}
             <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
           </Button>
         </CollapsibleTrigger>
-      </h5>
+      </h6>
       <CollapsibleContent className='mt-3 flex flex-col gap-3'>
         {children}
       </CollapsibleContent>
