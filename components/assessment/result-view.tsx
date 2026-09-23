@@ -186,7 +186,7 @@ export function ResultView({
         layout='breakout'
         riskCompanion={<ClosestPersonas result={result} personas={personas} />}
       />
-      <ResultDisclosure title='Insights'>
+      <ResultDisclosure title='Additional insights'>
         <div className='grid gap-3 sm:grid-cols-2'>
           {result.fingerprint.map((c) => (
             <div key={c.vector} className='rounded-lg border p-4'>
