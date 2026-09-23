@@ -19,7 +19,16 @@ export async function api<T>(url: string, init?: RequestInit): Promise<T> {
     cache: 'no-store',
     headers
   })
-  const body = response.status === 204 ? undefined : await response.json()
+  const text = await response.text()
+  let body
+  try {
+    body = text ? JSON.parse(text) : null
+  } catch {
+    throw new ApiError(
+      response.status,
+      'Unable to reach your saved assessment. Please try again.'
+    )
+  }
   if (!response.ok && !body?.operation)
     throw new ApiError(
       response.status,

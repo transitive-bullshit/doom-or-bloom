@@ -8,8 +8,8 @@ Keep starting an assessment as fast as it is today. Neither registration nor an 
 
 | Entry/action | Behavior |
 | --- | --- |
-| Main “Map your worldview” CTA; owner has zero assessments | Establish an anonymous session, create one private assessment, navigate directly to `/assessments/<id>` with the first prompt ready. |
-| Same CTA; owner already has any assessments | Navigate to `/assessments`, whether there is one draft, multiple drafts, or only completed assessments. Do not choose a draft for the participant. |
+| Main “Map your worldview” CTA; owner has zero assessments | Follow a normal link to the assessment entry; on arrival establish an anonymous session, create one private assessment and replace the URL with `/assessments/<id>` with the first prompt ready. |
+| Same CTA; owner already has any assessments | Follow the link to `/assessments`, whether there is one draft, multiple drafts, or only completed assessments. Do not choose a draft for the participant. |
 | “My assessments” | Open the owner's library. An empty library may offer New assessment; the main CTA bypasses it. |
 | Explicit New assessment from the library | Create a new private assessment and navigate to it, preserving existing assessments. |
 | View my results | Preview the current result; the assessment remains open. |

@@ -125,7 +125,7 @@ try {
   const context = await browser.newContext()
   let page = await context.newPage()
   await page.goto(`${origin}/assessment`)
-  await page.getByRole('button', { name: 'Map your own worldview' }).click()
+  await page.getByRole('link', { name: 'Map your own worldview' }).click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   assert.match(id, /^[a-f0-9-]{36}$/)

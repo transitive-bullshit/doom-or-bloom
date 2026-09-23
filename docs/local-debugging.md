@@ -4,7 +4,7 @@
 
 The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) documents the current export and per-answer inspection contract. All browser operations capture local traces; the debug toggle controls their visibility.
 
-Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom`). The usual local address is `http://doom-or-bloom.localhost:1355/`; use the printed address if configuration differs.
+Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom --no-worktree`). The usual local address is `http://doom-or-bloom.localhost:1355/`; use the printed address if configuration differs.
 
 ## Jev exchanges
 

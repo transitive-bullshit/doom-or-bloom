@@ -18,7 +18,7 @@ export const test = base.extend({
 export async function startAssessment(page: Page) {
   await page.goto('/assessment')
   await page
-    .getByRole('button', { name: 'Map your own worldview', exact: true })
+    .getByRole('link', { name: 'Map your own worldview', exact: true })
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
 }

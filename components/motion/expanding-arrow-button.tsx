@@ -6,6 +6,9 @@ import { useState, type ReactNode } from 'react'
 import { EASE_OUT, SPRING_LAYOUT, SPRING_PRESS } from '@/lib/ease'
 import { useHoverCapable } from '@/lib/hooks/use-hover-capable'
 import { cn } from 'cn'
+import Link from 'next/link'
+
+const MotionLink = motion.create(Link)
 
 const ARROW_OPACITY = [1, 0.78, 0.54, 0.32, 0.16] as const
 
@@ -143,5 +146,41 @@ export function ExpandingArrowAction({
         {children}
       </ArrowContent>
     </motion.button>
+  )
+}
+
+export function ExpandingArrowLink({
+  href,
+  children
+}: {
+  href: string
+  children: ReactNode
+}) {
+  const reduce = useReducedMotion()
+  const canHover = useHoverCapable()
+  const [hovered, setHovered] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const active = (canHover && hovered) || focused
+  return (
+    <MotionLink
+      href={href}
+      data-slot='primary-cta'
+      data-expanded={active}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      whileTap={{ scale: reduce ? 1 : 0.97 }}
+      transition={SPRING_PRESS}
+      className='relative inline-flex h-12 w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'
+    >
+      <ArrowContent
+        active={active}
+        reduce={Boolean(reduce)}
+        labelClassName='min-w-0 whitespace-normal text-left leading-tight'
+      >
+        {children}
+      </ArrowContent>
+    </MotionLink>
   )
 }

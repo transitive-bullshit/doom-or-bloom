@@ -40,7 +40,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
     page.getByRole('region', { name: 'More details' })
   ).toContainText('Human influence')
   await page
-    .getByRole('button', { name: 'Map your own worldview' })
+    .getByRole('link', { name: 'Map your own worldview' })
     .first()
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
@@ -48,7 +48,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.fill('A draft that should survive navigation.')
   await page.getByRole('link', { name: 'Doom or Bloom', exact: true }).click()
-  await page.getByRole('button', { name: 'Map your own worldview' }).click()
+  await page.getByRole('link', { name: 'Map your own worldview' }).click()
   await expect(page).toHaveURL(/\/assessments$/)
   await page
     .getByRole('link', { name: 'Your AI worldview', exact: true })
@@ -64,7 +64,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
-  const cta = page.getByRole('button', { name: 'Map your own worldview' })
+  const cta = page.getByRole('link', { name: 'Map your own worldview' })
   await cta.scrollIntoViewIfNeeded()
   await expect(cta).toBeInViewport()
 })
@@ -382,7 +382,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
       hydrationErrors.push(message.text())
   })
   await page.goto('/')
-  const cta = page.getByRole('button', {
+  const cta = page.getByRole('link', {
     name: 'Map your own worldview',
     exact: true
   })
@@ -403,7 +403,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
   await page.emulateMedia({ reducedMotion: 'reduce', colorScheme: 'dark' })
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/users/esyudkowsky')
-  const userCtas = page.getByRole('button', {
+  const userCtas = page.getByRole('link', {
     name: 'Map your own worldview',
     exact: true
   })

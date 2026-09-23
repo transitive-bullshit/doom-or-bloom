@@ -8,7 +8,7 @@ test('first CTA creates directly, draft survives reload, answer is server-saved,
   await page.goto('/')
   expect(await context.cookies()).toHaveLength(0)
   await page
-    .getByRole('button', { name: 'Map your own worldview' })
+    .getByRole('link', { name: 'Map your own worldview' })
     .first()
     .click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
@@ -46,7 +46,7 @@ test('first CTA creates directly, draft survives reload, answer is server-saved,
     ).toBeVisible()
     await page.goto('/')
     await page
-      .getByRole('button', { name: 'Map your own worldview' })
+      .getByRole('link', { name: 'Map your own worldview' })
       .first()
       .click()
     await expect(page).toHaveURL(/\/assessments$/)
@@ -74,7 +74,7 @@ test('lost successful response resolves with the original request key after refr
   baseURL
 }) => {
   await page.goto('/assessment')
-  await page.getByRole('button', { name: 'Map your own worldview' }).click()
+  await page.getByRole('link', { name: 'Map your own worldview' }).click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   try {
@@ -121,7 +121,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
   baseURL
 }) => {
   await page.goto('/assessment')
-  await page.getByRole('button', { name: 'Map your own worldview' }).click()
+  await page.getByRole('link', { name: 'Map your own worldview' }).click()
   await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   const id = page.url().split('/').at(-1)!
   let forkId: string | undefined
@@ -192,7 +192,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(await visitor.cookies()).toHaveLength(0)
     await page.goto('/')
     await page
-      .getByRole('button', { name: 'Map your own worldview' })
+      .getByRole('link', { name: 'Map your own worldview' })
       .first()
       .click()
     await expect(page).toHaveURL(/\/assessments$/)
@@ -232,4 +232,16 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       await page.request.delete(`/api/assessments/${savedId}`, { headers })
     await visitor.close()
   }
+})
+
+test('homepage navigation survives an empty auth API response', async ({
+  page
+}) => {
+  await page.route('**/api/auth/get-session', (route) =>
+    route.fulfill({ status: 503, body: '' })
+  )
+  await page.goto('/')
+  await page.locator('[data-slot="primary-cta"]').first().click()
+  await expect(page).toHaveURL(/\/assessments(?:\?start=1|\/[a-f0-9-]+)?$/)
+  await expect(page.getByText(/Unexpected end of JSON input/)).toHaveCount(0)
 })

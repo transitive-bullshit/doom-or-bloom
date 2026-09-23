@@ -12,12 +12,12 @@ cp .env.example .env.development.local
 pnpm dev
 ```
 
-If `.env.development.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting live answers, or choose fixture mode below. Keep secrets out of commits and screenshots.
+If `.env.development.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting answers. `pnpm dev` always selects live Jev; synthetic providers are reserved for isolated automated checks. Keep secrets out of commits and screenshots.
 
-Development runs through [Portless](https://portless.sh). Open the URL printed by `pnpm dev`; linked worktrees may receive a hostname prefix. Resolve the current URL with:
+Development runs through [Portless](https://portless.sh). Open the URL printed by `pnpm dev`; the dev command uses an explicit stable name so changing branches does not change the registered X OAuth callback. Isolated test servers use their own names. Resolve the current URL with:
 
 ```sh
-pnpm exec portless get doom-or-bloom
+pnpm exec portless get doom-or-bloom --no-worktree
 ```
 
 Reuse that origin for browser sessions and set `BETTER_AUTH_URL` to it. Provision native PostgreSQL as described below. PNG generation uses Takumi’s native backend, installed with the project dependencies.
@@ -64,7 +64,7 @@ Participant assessments use database-backed ownership and snapshots. Anonymous s
 | --- | --- |
 | `TYPESAFE_API_KEY` | Server-only key required for live Jev assessments. |
 | `TYPESAFE_MODEL` | Model override; defaults to `jev-1.13.0`. |
-| `ASSESSMENT_PROVIDER` | `live` by default; `fixture` uses synthetic judgments without inference calls, in development/tests only. |
+| `ASSESSMENT_PROVIDER` | `live` by default; `fixture` uses synthetic judgments without inference calls, for isolated automated tests only. |
 | `NEXT_PUBLIC_ASSESSMENT_DEBUG` | Enables assessment debugging; set to `true` to inspect recorded requests, responses, and routing decisions. |
 | `OPENAI_API_KEY` | Only needed for generating live simulated persona answers. Visitor assessments do not use OpenAI. |
 | `NEXT_PUBLIC_ANALYTICS_ENABLED` | Optional analytics, off by default and disabled in fixture mode. |

@@ -32,7 +32,7 @@ If multiple agents are assigned later, use the ownership boundaries in section 1
 ### Confirmed
 
 - Use Next.js App Router, modern TypeScript, pnpm, oxfmt, oxlint, and the existing CI skeleton.
-- Local development URLs use Portless. Start the app with `pnpm dev`, resolve its URL with `pnpm exec portless get doom-or-bloom`, and reuse the user's existing proxy configuration. Browser checks also use named routes; linked worktrees retain Portless's branch prefix.
+- Local development URLs use Portless. Start the app with `pnpm dev`, resolve its URL with `pnpm exec portless get doom-or-bloom --no-worktree`, and reuse the user's existing proxy configuration. Browser checks also use named routes; linked worktrees retain Portless's branch prefix.
 - Use shadcn/ui for recurring controls and next-themes for light/dark mode. Preserve the existing neutral `new-york` configuration unless deliberately changed.
 - Keep all issued questions and submitted replies in one page-scroll thread, including earlier recovery/navigation replies stored locally. Use bounded answer disclosures, one active composer and read-only previous turns. Do not add an internal transcript scrollbar or inference on disclosure actions.
 - Include an explicit debug-mode boolean that reveals clearly labeled Jev and control-flow details in the local UI, without changing assessment behavior.

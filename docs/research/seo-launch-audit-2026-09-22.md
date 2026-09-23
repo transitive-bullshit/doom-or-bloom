@@ -61,7 +61,7 @@ All 47 routes passed the emitted-head metadata assertions in both local developm
 
 - `node --import tsx scripts/audit-seo.ts` captures the production baseline without assertions.
 - `node --import tsx scripts/audit-seo.ts https://www.doom-or-bloom.com /tmp/doom-seo-audit/after-deploy.json --check` verifies deployed changes.
-- For local development, use `pnpm dev` and `pnpm exec portless get doom-or-bloom`, then pass that URL and an output path to the same script with `--check`.
+- For local development, use `pnpm dev` and `pnpm exec portless get doom-or-bloom --no-worktree`, then pass that URL and an output path to the same script with `--check`.
 - `node --import tsx scripts/benchmark-social-images.ts` regenerates the comparison images and benchmark in `/tmp/doom-seo-audit/images`.
 - `pnpm dlx lighthouse https://www.doom-or-bloom.com/ --chrome-flags='--headless' --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=/tmp/doom-seo-audit/home.json --quiet`; repeat for other paths, sequentially.
 - `NEXT_TEST_DIST_DIR=.next-seo-audit pnpm build` isolates the production build from the existing development server.

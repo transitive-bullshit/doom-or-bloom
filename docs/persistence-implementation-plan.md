@@ -359,3 +359,12 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - The fixture badge identifies development/test mode with synthetic evaluator output and no Jev calls. This change does not switch the configured provider.
 - Simplified the interview privacy sentence to the user’s requested wording; server retention, operator access and unsubmitted-draft behavior remain documented on Privacy/About.
 - Verification: `pnpm test` passed; production compilation and the updated trace verifier passed; all five persistence browser cases and all affected browser cases passed. The general browser run passed 49 cases; two navigation-wait assertions and a parallel trace-output collision were corrected, then the affected 19-case group passed. Manual browser inspection verified the canonical route, old-link redirect and absent detail creation button.
+
+### Reliable CTA navigation and live development (2026-09-23)
+
+- Reproduced the homepage remaining in place when `/api/auth/get-session` returned an empty body: the CTA awaited auth/creation before navigating, and the API helper parsed every non-204 response as JSON. The regression and focused client tests failed before the fix.
+- The homepage and other Map your own worldview CTAs are now real links to `/assessments?start=1`. Returning owners are redirected to their library; for empty libraries, a mounted destination component creates the assessment once, with an inline retry on setup failure. Prefetch and server GET rendering never create records. New assessment remains an explicit library action.
+- Empty successful session responses represent no session; empty or non-JSON error responses produce a safe API error rather than leaking JSON parse exceptions.
+- User preference: development assessments always use live Jev. Updated the private development env and `pnpm dev`/`dev:tailscale` to select `ASSESSMENT_PROVIDER=live`. Controlled synthetic responses remain confined to automated tests.
+- Use Portless’s explicit app name for normal dev, keeping the registered OAuth origin stable across branch changes. Tests retain isolated named servers.
+- Verification: `pnpm test` passed (254 unit tests); all six persistence browser cases and 14 affected landing/persona browser cases passed. `pnpm build:local` passed, including production trace validation. Manually verified the homepage link opens the existing owner library and confirmed the stable Portless origin.

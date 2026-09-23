@@ -1,4 +1,5 @@
 import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { getAuth } from '@/lib/auth/server'
 import { repository } from '@/lib/assessments/server'
 import { AssessmentLibrary } from '@/components/assessment/library'
@@ -10,13 +11,15 @@ export const metadata = {
 export default async function Page({
   searchParams
 }: {
-  searchParams: Promise<{ authError?: string }>
+  searchParams: Promise<{ authError?: string; start?: string }>
 }) {
   const session = await getAuth().api.getSession({ headers: await headers() })
-  const error = (await searchParams).authError
+  const { authError: error, start } = await searchParams
   const items = session ? await repository().list(session.user.id) : []
+  if (start === '1' && items.length > 0) redirect('/assessments')
   return (
     <AssessmentLibrary
+      autoStart={start === '1' && !error}
       signedIn={Boolean(session && !session.user.isAnonymous)}
       authEnabled={Boolean(
         process.env.X_CLIENT_ID && process.env.X_CLIENT_SECRET

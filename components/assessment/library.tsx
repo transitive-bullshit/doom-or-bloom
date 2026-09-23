@@ -15,7 +15,7 @@ import {
   DialogFooter,
   DialogClose
 } from '@/components/ui/dialog'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { AssessmentStart } from './start'
 import { AccountAccess } from './account-access'
 import { api } from '@/lib/assessments/client'
 
@@ -32,8 +32,10 @@ export function AssessmentLibrary({
   items,
   signedIn,
   authEnabled,
-  authError
+  authError,
+  autoStart = false
 }: {
+  autoStart?: boolean
   items: LibraryItem[]
   signedIn: boolean
   authEnabled: boolean
@@ -79,8 +81,8 @@ export function AssessmentLibrary({
         enabled={authEnabled}
         authError={authError}
       />
-      <WorldviewCta onlyIfEmpty={false} label='New assessment' />
-      {items.length === 0 && (
+      <AssessmentStart automatic={autoStart} />
+      {items.length === 0 && !autoStart && (
         <p>No assessments yet. Start whenever you’re ready.</p>
       )}
       <ul className='flex flex-col gap-6'>
