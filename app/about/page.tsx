@@ -243,6 +243,17 @@ export default async function About() {
           </a>
           .
         </p>
+        <p>
+          Related:{' '}
+          <a
+            className='underline underline-offset-4'
+            href='https://cultural-alignment.com'
+            target='_blank'
+          >
+            Cultural Alignment
+          </a>
+          .
+        </p>
       </footer>
 
       <WorldviewCtaCard />
