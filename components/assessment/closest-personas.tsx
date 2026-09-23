@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 import {
   Card,
   CardHeader,
@@ -30,9 +29,8 @@ export function ClosestPersonas({
           <h2 id='closest-personas-title'>Your closest worldviews</h2>
         </CardTitle>
         <CardDescription>
-          Explore the pre-built personas closest to your views across
-          capabilities, risks, benefits, control, institutions, agency and
-          policy.
+          Explore the thought leaders whose simulated personas are closest to
+          your views across capabilities, risks, upside, control, and policy.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -59,16 +57,7 @@ export function ClosestPersonas({
                       {index + 1}
                     </span>
                   </div>
-                  <div className='flex flex-col gap-1'>
-                    <span className='font-medium'>{person.name}</span>
-                    <span className='text-xs text-muted-foreground'>
-                      {person.dimensions} shared dimensions
-                    </span>
-                  </div>
-                  <span className='mt-auto flex items-center gap-1 text-sm'>
-                    View persona{' '}
-                    <ArrowUpRight aria-hidden='true' className='size-4' />
-                  </span>
+                  <span className='font-medium'>{person.name}</span>
                 </Link>
               </li>
             ))}
@@ -83,10 +72,8 @@ export function ClosestPersonas({
       </CardContent>
       <CardFooter>
         <p className='text-xs text-muted-foreground'>
-          Ranked by distance across shared worldview dimensions, with equal
-          weight for each. Unanswered dimensions and reasoning scores are
-          excluded. These are simulated views, not the real people’s own
-          assessment results. Matches may change as you clarify your answers.
+          Matches reflect simulated views based on recent sources and may change
+          over time.
         </p>
       </CardFooter>
     </Card>
