@@ -37,7 +37,7 @@ CREATE DATABASE doom_bloom_dev OWNER doom_bloom_dev;
 CREATE DATABASE doom_bloom_test OWNER doom_bloom_test;
 ```
 
-These local connections use Postgres.app's local authentication policy. Do not relax authentication on a network-accessible server. Set the URLs in `.env.local` from `.env.example`, generate an auth secret with `openssl rand -base64 48`, and set the Portless origin. Keep `.env.local` private. Store production Neon connections in the same ignored `.env.local` as `NEON_DATABASE_URL` and `NEON_DATABASE_MIGRATION_URL`. These names are not used by the application or migration scripts; map them explicitly to the deployment environment only during authorized production work. Keep local `DATABASE_URL` and `TEST_DATABASE_URL` pointing to Postgres.app.
+These local connections use Postgres.app's local authentication policy. Do not relax authentication on a network-accessible server. Set the URLs in `.env.local` from `.env.example`, generate an auth secret with `openssl rand -base64 48`, and set the Portless origin. Keep `.env.local` private. Store production Neon connections in ignored `.env.production` as `DATABASE_URL` and `DATABASE_MIGRATION_URL`. Keep development `DATABASE_URL` and `TEST_DATABASE_URL` in `.env.local` pointing to Postgres.app.
 
 ```sh
 pnpm db:migrate
@@ -140,4 +140,6 @@ For an actual interrupted submission, reopen its assessment, wait until the proc
 
 The browser regression suite now loads `.env.local`, requires `TEST_DATABASE_URL`, and seeds its dedicated native test database before starting `browser-tests.doom-or-bloom` through Portless. Migrated tests use the real saved-assessment API; specialized rendering fixtures commit synthetic evaluator responses through the repository in a server-conditioned subprocess so refreshes read the same immutable database state. These helpers are test-only. Auth/recovery acceptance uses the separate real-route persistence suite. The remaining older browser fixtures are still being migrated; consult the checkpoint log before treating the entire broad browser suite as passing.
 
-Keep production X OAuth credentials separate from the development app: reserve `PRODUCTION_X_CLIENT_ID` and `PRODUCTION_X_CLIENT_SECRET` in `.env.local` for storage, and map them to the host's `X_CLIENT_ID` / `X_CLIENT_SECRET` only during production setup. The production callback is `https://doom-or-bloom.com/api/auth/callback/twitter`. These reserved variables do not enable production login in the local app.
+Use the same `X_CLIENT_ID` and `X_CLIENT_SECRET` names in ignored `.env.production` for the production X app. The production callback is `https://doom-or-bloom.com/api/auth/callback/twitter`. Development credentials remain in `.env.local`.
+
+Next.js gives `.env.local` precedence over `.env.production`, even for a production build. Local production-build checks therefore continue using local values. For a real deployment, set production values in the host environment (which takes precedence over files), or run without the development `.env.local`. Migration commands currently load `.env.local` explicitly; production migrations are a separate, explicitly targeted task.
