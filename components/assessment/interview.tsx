@@ -568,10 +568,6 @@ export function Interview({
                 <div className='space-y-2 text-xs leading-relaxed text-muted-foreground'>
                   <p>The assessment only takes a few minutes.</p>
                   <p>
-                    Results may be shown after your first answer, or we’ll wrap
-                    up automatically when Jev has enough confidence.
-                  </p>
-                  <p>
                     Your answers remain private unless you choose to publish
                     them at the end.
                   </p>
