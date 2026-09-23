@@ -1,12 +1,13 @@
+import { startAssessment, mockEvaluation } from './fixtures'
 import { unzipSync, strFromU8 } from 'fflate'
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 
 test('every accepted answer has a collapsed historical result; debug-off runs still export a complete trace', async ({
   page
 }, testInfo) => {
-  await page.route('**/api/assessment', async (route) => {
+  await mockEvaluation(page, async (input) => {
     const response = JSON.parse(
       execFileSync(
         process.execPath,
@@ -16,12 +17,12 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
           'tsx',
           'tests/browser/diagnostic-engine.ts'
         ],
-        { input: route.request().postData()!, encoding: 'utf8' }
+        { input: JSON.stringify(input), encoding: 'utf8' }
       )
     )
-    await route.fulfill({ json: response })
+    return response
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await expect(
     page.getByRole('button', { name: /^Debug (on|off)$/ })
   ).toBeVisible()

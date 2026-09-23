@@ -1,14 +1,15 @@
-import { expect, test } from '@playwright/test'
+import { startAssessment } from './fixtures'
+import { expect, test } from './fixtures'
 
 // Uses actual application control flow with exact local phrases, never paid inference.
 test('test replies reliably trigger paperclips and an explicit request works once per assessment', async ({
   page
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
-  ).toHaveCount(0)
+    page.getByRole('button', { name: 'New assessment', exact: true })
+  ).toBeVisible()
   const answer = page.getByLabel('Your answer', { exact: true })
   const submit = async (text: string) => {
     await answer.fill(text)
@@ -16,7 +17,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   }
   await submit('test')
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
+    page.getByRole('button', { name: 'New assessment', exact: true })
   ).toBeVisible()
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   await submit('test again')
@@ -49,15 +50,16 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
   ).toHaveCount(0)
-  // Recovery-only runs must be restartable without an accepted answer.
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  // Recovery-only runs can start another assessment without deleting the first.
+  const previousUrl = page.url()
   await page
-    .getByRole('button', { name: 'Clear & restart', exact: true })
+    .getByRole('button', { name: 'New assessment', exact: true })
     .click()
+  await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
-  ).toHaveCount(0)
+    page.getByRole('button', { name: 'New assessment', exact: true })
+  ).toBeVisible()
   await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
     0
   )
@@ -80,12 +82,15 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
 }, testInfo) => {
   const operations: string[] = []
   page.on('request', (request) => {
-    if (request.url().endsWith('/api/assessment'))
+    if (
+      /\/api\/assessments\/[a-f0-9-]+$/.test(new URL(request.url()).pathname) &&
+      request.method() === 'POST'
+    )
       operations.push(request.postDataJSON().operation.type)
   })
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.setViewportSize({ width: 1440, height: 1000 })
-  await page.goto('/assessment')
+  await startAssessment(page)
   const answer = page.getByLabel('Your answer', { exact: true })
   await expect(answer).toBeVisible()
   await page.clock.install()
@@ -126,18 +131,17 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   ).toBeVisible()
   expect(operations).toEqual(['answer', 'dismiss'])
   await expect(answer).toBeEnabled()
-  await expect(
-    page.getByText(/Now give the question an earnest answer/)
-  ).toBeVisible()
-  // Recovery-only runs must be restartable without an accepted answer.
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  await expect(page.getByText(/You found the easter egg/)).toBeVisible()
+  // Recovery-only runs can start another assessment without deleting the first.
+  const previousUrl = page.url()
   await page
-    .getByRole('button', { name: 'Clear & restart', exact: true })
+    .getByRole('button', { name: 'New assessment', exact: true })
     .click()
+  await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
-  ).toHaveCount(0)
+    page.getByRole('button', { name: 'New assessment', exact: true })
+  ).toBeVisible()
   await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
     0
   )

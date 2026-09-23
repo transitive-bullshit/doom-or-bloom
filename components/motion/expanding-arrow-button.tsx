@@ -127,7 +127,7 @@ export function ExpandingArrowAction({
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
-      whileTap={reduce || disabled ? undefined : { scale: 0.97 }}
+      whileTap={disabled ? undefined : { scale: reduce ? 1 : 0.97 }}
       transition={SPRING_PRESS}
       className={cn(
         'relative inline-flex h-12 w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none',

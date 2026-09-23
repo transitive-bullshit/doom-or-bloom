@@ -259,3 +259,12 @@ Pause only the dependent work when credentials or external configuration are una
 - Checked off the corresponding schema/ownership/idempotency/recovery/UX items based on the existing tests and these additional results. Remaining acceptance includes migration of older browser tests, some auth expiry cases and final docs consistency. Live X verification still awaits external setup.
 
 - Final checkpoint checks: `pnpm test` passed all formatting, lint, types, 252 unit tests, content validation and unused-code checks. The typed commit-fault harness passed again after lint cleanup.
+
+### 2026-09-23 — browser regression migration, first batch
+
+- Updated keyboard shortcuts, paperclip recovery, landing navigation/CTA behavior, bookmark layout, first-answer results and diagnostic-report browser tests to use saved assessments. New-assessment tests preserve previous work rather than expect destructive restart. Returning homepage CTAs now verify the library path before resuming the exact saved assessment.
+- Added native-test-DB browser configuration and per-session record cleanup. Synthetic rendering tests read authenticated saved state, run their fixture engine, and commit through the repository; reload/report assertions therefore use persisted snapshots. Fixture engine parsing now includes complete saved interaction history.
+- Fixed a reduced-motion hydration mismatch in the new CTA: tap handling stays present with neutral scale under reduced motion. Chromium verified CTA keyboard/hover behavior and no hydration errors. Updated stale layout/copy expectations against current component source (624px bookmarks and 30px persona-map headings).
+- All 19 tests across these six migrated spec files passed across focused runs, including complete diagnostic ZIP export and historical result recovery. No paid calls. Remaining older assessment/conversation/debug/interaction/map fixtures still need migration; this is not a claim that the entire broad browser suite passes.
+
+- Standard verification: formatting, lint, types, all 252 unit tests and content validation passed. The unused-code check passed after registering all browser/analytics entry points without executing environment-dependent configuration.

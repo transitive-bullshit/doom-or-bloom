@@ -1,5 +1,5 @@
 import { personaIdentity } from '../../lib/journeys/persona-identity'
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 
 test('landing portraits use tooltips and link to results; assessment drafts survive a trip home', async ({
   page
@@ -40,25 +40,31 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
     page.getByRole('region', { name: 'More details' })
   ).toContainText('Human influence')
   await page
-    .getByRole('link', { name: 'Map your own worldview' })
+    .getByRole('button', { name: 'Map your own worldview' })
     .first()
     .click()
-  await expect(page).toHaveURL(/\/assessment$/)
+  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
+  const savedUrl = page.url()
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.fill('A draft that should survive navigation.')
   await page.getByRole('link', { name: 'Doom or Bloom', exact: true }).click()
-  await page.getByRole('link', { name: 'Map your own worldview' }).click()
+  await page.getByRole('button', { name: 'Map your own worldview' }).click()
+  await expect(page).toHaveURL(/\/assessments$/)
+  await page
+    .getByRole('link', { name: 'Your AI worldview', exact: true })
+    .click()
+  await expect(page).toHaveURL(savedUrl)
   await expect(answer).toHaveValue('A draft that should survive navigation.')
   await page.goBack()
   await expect(
-    page.getByRole('heading', { name: 'How will AI change our future?' })
+    page.getByRole('heading', { name: 'My assessments' })
   ).toBeVisible()
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
-  const cta = page.getByRole('link', { name: 'Map your own worldview' })
+  const cta = page.getByRole('button', { name: 'Map your own worldview' })
   await cta.scrollIntoViewIfNeeded()
   await expect(cta).toBeInViewport()
 })
@@ -114,7 +120,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
   await expect(map.locator('.map-stat')).toHaveCount(0)
   await expect(map.getByRole('heading', { level: 2 })).toHaveCSS(
     'font-size',
-    '36px'
+    '30px'
   )
   const portrait = map.locator('[data-persona-marker]')
   const summary = (await portrait.getAttribute('aria-label'))!.replace(
@@ -376,7 +382,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
       hydrationErrors.push(message.text())
   })
   await page.goto('/')
-  const cta = page.getByRole('link', {
+  const cta = page.getByRole('button', {
     name: 'Map your own worldview',
     exact: true
   })
@@ -393,11 +399,11 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
   await cta.focus()
   await expect(cta).toHaveAttribute('data-expanded', 'true')
   await page.keyboard.press('Enter')
-  await expect(page).toHaveURL(/\/assessment$/)
+  await expect(page).toHaveURL(/\/assessment\/[a-f0-9-]+$/)
   await page.emulateMedia({ reducedMotion: 'reduce', colorScheme: 'dark' })
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/users/esyudkowsky')
-  const userCtas = page.getByRole('link', {
+  const userCtas = page.getByRole('button', {
     name: 'Map your own worldview',
     exact: true
   })
@@ -408,7 +414,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
     .first()
     .screenshot({ path: testInfo.outputPath('cta-dark-mobile.png') })
   await userCtas.last().click()
-  await expect(page).toHaveURL(/\/assessment$/)
+  await expect(page).toHaveURL(/\/assessments$/)
   expect(hydrationErrors).toEqual([])
 })
 

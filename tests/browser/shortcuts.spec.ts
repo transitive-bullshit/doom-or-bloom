@@ -1,46 +1,20 @@
-import { expect, test } from '@playwright/test'
-import {
-  acceptAnswer,
-  currentPrompt,
-  issuePrompt
-} from '../../lib/assessment/state'
-
+import { startAssessment } from './fixtures'
+import { expect, test } from './fixtures'
 test('Cmd/Ctrl+Enter submits through the normal guards; Enter and composition remain native', async ({
   page
 }) => {
   let submitted: string[] = []
-  await page.route('**/api/assessment', async (route) => {
-    const input = route.request().postDataJSON()
-    submitted.push(input.operation.text)
-    const prompt = currentPrompt(input.assessment)
-    let state = acceptAnswer(input.assessment, {
-      id: `${prompt.id}:a`,
-      promptInstanceId: prompt.id,
-      promptText: prompt.text,
-      text: input.operation.text,
-      substantive: true,
-      hasHorizon: false,
-      hasConviction: false
-    })
-    state = issuePrompt(state, {
-      promptId: 'timeline.general',
-      text: 'When do you expect these changes?',
-      family: 'timeline',
-      variant: 'original',
-      sourceEvidenceIds: []
-    })
-    state.revision++
-    await route.fulfill({
-      json: {
-        assessmentId: state.id,
-        baseRevision: input.assessment.revision,
-        requestId: input.requestId,
-        assessment: state,
-        provider: 'fixture'
-      }
-    })
+  page.on('request', (request) => {
+    if (
+      /\/api\/assessments\/[a-f0-9-]+$/.test(new URL(request.url()).pathname) &&
+      request.method() === 'POST'
+    ) {
+      const input = request.postDataJSON()
+      if (input.operation.type === 'answer')
+        submitted.push(input.operation.text)
+    }
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.press('Meta+Enter')
   await answer.fill('   ')

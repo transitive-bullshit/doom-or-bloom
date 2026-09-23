@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { runAssessment } from '../../lib/server/engine'
-import { requestSchema } from '../../lib/assessment/schema'
+import { requestSchema, assessmentSchema } from '../../lib/assessment/schema'
 import { loadBundle } from '../../lib/content/loader'
 import { createFixtureProvider } from '../../lib/server/provider'
 import type { Provider } from '../../lib/server/provider'
@@ -16,7 +16,9 @@ const provider: Provider = {
     return result
   }
 }
-const input = requestSchema.parse(JSON.parse(readFileSync(0, 'utf8')))
+const input = requestSchema
+  .extend({ assessment: assessmentSchema })
+  .parse(JSON.parse(readFileSync(0, 'utf8')))
 console.log(
   JSON.stringify(
     await runAssessment(

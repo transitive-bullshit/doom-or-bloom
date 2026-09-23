@@ -1,14 +1,15 @@
-import { expect, test } from '@playwright/test'
+import { startAssessment, mockEvaluation } from './fixtures'
+import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 
-test('bookmarks are centered at 600px and fade only overflowing title and description lines', async ({
+test('bookmarks are centered at 624px and fade only overflowing title and description lines', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
   await page.goto('/users/noahpinion')
   const list = page.locator('[data-resource-layout="list"]')
-  await expect(list).toHaveCSS('max-width', '600px')
+  await expect(list).toHaveCSS('max-width', '624px')
   const desktop = await list.evaluate((element) => {
     const box = element.getBoundingClientRect()
     const parent = element.parentElement!.getBoundingClientRect()
@@ -18,7 +19,7 @@ test('bookmarks are centered at 600px and fade only overflowing title and descri
       parentCenter: parent.x + parent.width / 2
     }
   })
-  expect(desktop.width).toBe(600)
+  expect(desktop.width).toBe(624)
   expect(Math.abs(desktop.center - desktop.parentCenter)).toBeLessThan(1)
   await page.setViewportSize({ width: 390, height: 844 })
   const text = list.locator('.fade-truncated-text')
@@ -56,7 +57,7 @@ test('assessment bookmarks use the same two-line title and single three-line fad
   )!
   const title =
     'An intentionally long article title about artificial intelligence, human agency, institutions, scientific progress, and the decisions that will shape our future'
-  await page.route('**/api/assessment', async (route) => {
+  await mockEvaluation(page, async (input) => {
     const response = JSON.parse(
       execFileSync(
         process.execPath,
@@ -66,7 +67,7 @@ test('assessment bookmarks use the same two-line title and single three-line fad
           'tsx',
           'tests/browser/early-engine.ts'
         ],
-        { input: route.request().postData()!, encoding: 'utf8' }
+        { input: JSON.stringify(input), encoding: 'utf8' }
       )
     )
     response.assessment.result.resources = [
@@ -80,10 +81,10 @@ test('assessment bookmarks use the same two-line title and single three-line fad
           'Which assumptions in this article would change your view of how AI affects our future?'
       }
     ]
-    await route.fulfill({ json: response })
+    return response
   })
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await page
     .getByLabel('Your answer', { exact: true })
     .fill(
