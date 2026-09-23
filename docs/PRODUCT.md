@@ -1,5 +1,7 @@
 # Product Contract
 
+> Approved persistence transition (2026-09-23), not yet implemented: The approved persistent-assessment product contract is in [PERSISTENCE.md](PERSISTENCE.md#product-behavior): one-click first run, an assessment library, immutable completion/forks, full opt-in publication and optional account recovery. Its persistence, sharing, routing and budget rules supersede conflicting original-MVP restrictions below. The browser-only implementation remains the current baseline until the [implementation checkpoints](persistence-implementation-plan.md) land.
+
 ## Runtime assessments and persona excerpts
 
 End-user assessments use complete answers and whole-answer support only. They do not generate excerpt pools, select or verify passages, extract stated percentages, or issue quoted tension-pair clarifications. The server defaults to runtime mode; only the pre-built persona runner opts into excerpt processing. Existing historical records remain readable.

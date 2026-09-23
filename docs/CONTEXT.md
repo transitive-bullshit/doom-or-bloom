@@ -2,15 +2,29 @@
 
 _Map your AI worldview, one question at a time._
 
-Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectations about advanced AI and the reasoning they demonstrate in their answers. Its working domain is **doom-or-bloom.com**, purchased by Travis. Its fixed root prompt is: **“What do you think AI means for our future—and why?”** This glossary records the agreed product semantics; precise scoring rules remain to be authored and validated.
+Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectations about advanced AI and the reasoning they demonstrate in their answers. Its working domain is **doom-or-bloom.com**, purchased by Travis. Its fixed root prompt is: **“What do you think AI means for our future—and why?”** This glossary includes the approved [persistent-assessment vocabulary](PERSISTENCE.md); the [implementation plan](persistence-implementation-plan.md) records delivery status. It records agreed product semantics; precise scoring rules remain to be authored and validated.
 
 ## Language
 
 **Participant**: The person answering the assessment about their own AI worldview. _Avoid_: Patient, subject, account
 
-**Assessment**: A bounded sequence of participant answers and authored follow-ups culminating in a result, normally taking 6–8 prompts but offering a provisional result when evidence readiness supports it, potentially after one detailed reply. Participants can resume, continue or clarify within the lifetime prompt budget; restarting creates a new assessment and identifier. _Avoid_: Chat, session when referring to the assessment itself
+**Assessment**: A bounded sequence of participant answers and authored follow-ups culminating in a result, normally taking 6–8 prompts but offering a provisional result when evidence readiness supports it, potentially after one detailed reply. Participants can resume an open assessment or continue a completed assessment through an independent fork, within the applicable prompt budget; a fresh assessment starts a new conversation. _Avoid_: Chat, session when referring to the assessment itself
 
-**Assessment identifier**: A random identifier used to connect the anonymous events of one assessment across visits. It contains no participant identity and rotates when the participant restarts. _Avoid_: User ID, account ID, anonymous person
+**Assessment identifier**: A stable identifier for one assessment across visits, publication, and ownership recovery. It is separate from participant identity and does not grant access to private content. _Avoid_: User ID, account ID, anonymous person
+
+**Assessment owner**: The identity entitled to manage an assessment, initially anonymous and optionally recoverable through sign-in. Ownership is separate from the person a simulation represents. _Avoid_: Persona, public viewer
+
+**Assessment snapshot**: An immutable record of an assessment at a particular point, keeping its conversation, evidence, and inferred result together. _Avoid_: Live profile, independent result
+
+**Completed assessment**: An assessment whose conversation and inferred results are frozen, whether private or published. _Avoid_: Merely viewing provisional results
+
+**Assessment fork**: A new private assessment that inherits a completed assessment’s conversation and permits additional answers or corrections without changing the original. _Avoid_: Editing the original, independent new evidence when referring to inherited answers
+
+**Published assessment**: A completed assessment whose full conversation and inferred results are available to other visitors by public link. _Avoid_: Private share, anonymous aggregate
+
+**Persona**: A curated representation of a public perspective used as the subject of simulated assessments. It is distinct from a real participant, authenticated owner, or endorsement. _Avoid_: Registered account of the represented person
+
+**Simulated assessment**: An assessment answered by a simulation from a recorded persona/source brief, with provenance distinct from participant-submitted assessments. _Avoid_: The represented person’s own answers
 
 **Prompt**: An authored question or scenario presented to the participant, optionally using predefined variants or evidence from earlier answers. _Avoid_: Question when it is unclear whether the participant or evaluator is being asked
 
@@ -60,7 +74,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Evidence readiness**: An experimental summary of supported dimension coverage and interpretation confidence, used to offer a provisional result without a fixed reply-count minimum. It describes the evidence available for this assessment, separately from reasoning quality, participant conviction and forecast accuracy. _Avoid_: Probability that we understand the person, scientific confidence, quality score
 
-**Clarification**: An optional continuation initiated when a participant disputes an inferred claim or result component. It elicits natural-language correction and recomputes the evidence ledger and projections; it does not permit direct score editing and becomes unavailable at the 12-prompt cap. _Avoid_: Dragging a result to a preferred coordinate
+**Clarification**: An optional continuation initiated when a participant disputes an inferred claim or result component. It elicits natural-language correction and recomputes the evidence ledger and projections; it does not permit direct score or historical answer editing and remains subject to the applicable prompt budget. _Avoid_: Dragging a result to a preferred coordinate
 
 **Procedural neutrality**: The commitment to apply the same evidentiary and reasoning standards across optimistic, pessimistic, moderate, and unconventional positions while publishing methodology, simplifications, content versions, and known biases. It does not claim that editorial choices are value-free. _Avoid_: Viewpoint-free assessment, forced balance
 

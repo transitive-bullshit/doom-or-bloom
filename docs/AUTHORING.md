@@ -1,5 +1,7 @@
 # Authoring and Content Specification
 
+> Approved persistence transition (2026-09-23), not yet implemented: The approved [persona persistence design](PERSISTENCE.md#personas-and-seeding) keeps authored briefs/configuration in the repository and serves profiles/selected immutable simulation runs from Postgres. Historical imports preserve only actually recorded data; new generation saves full snapshots. This is pending [checkpoint 4](persistence-implementation-plan.md#checkpoint-4--dynamic-curated-personas); existing file-based procedures below describe the current implementation.
+
 ## Authored runtime assets
 
 The live application uses versioned, reviewed assets rather than runtime prose generation:

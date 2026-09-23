@@ -1,5 +1,7 @@
 # Measurement, Privacy, and Evaluation
 
+> Approved persistence transition (2026-09-23), not yet implemented: The approved [persistence design](PERSISTENCE.md#product-behavior) supersedes the no-database/no-account policy below: submitted interactions and results are retained indefinitely unless deleted, private from other visitors but available for operator review; publication shares the full frozen assessment. Raw text remains excluded from analytics. The existing browser-only implementation remains in place until [the persistence checkpoints](persistence-implementation-plan.md) update storage and visible privacy copy together.
+
 ## Privacy posture
 
 - No account, email, hosted assessment database, or cross-device profile.

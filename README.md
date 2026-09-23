@@ -48,6 +48,8 @@ This is an experimental model, not a forecast of what will happen or a measure o
 
 ## Privacy
 
+The following describes the current browser-only implementation. The approved next phase is [persistent assessments](docs/persistence-implementation-plan.md), including server storage, explicit full-assessment publication, and optional sign-in. Those features are planned, not yet implemented.
+
 No accounts. No persistent answer database. Your answers, drafts, and results stay in browser storage so you can return later. Submitted answers pass through our server to Jev for evaluation; a temporary server retry cache expires after two minutes. TypeSafe’s own data policies apply to its processing.
 
 Optional analytics exclude answer text. Debug traces, when enabled, also stay in your browser. The checked-in persona data is generated development material, not visitor transcripts. [Privacy details](https://www.doom-or-bloom.com/privacy).

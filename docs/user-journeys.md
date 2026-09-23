@@ -1,5 +1,7 @@
 # Current diagnostic additions
 
+> Approved persistence transition (2026-09-23), not yet implemented: The approved [persona persistence design](PERSISTENCE.md#personas-and-seeding) replaces runtime file selection with a persona-to-selected-assessment relation, retaining immutable prior runs and actual source provenance. Seeding existing curated public records requires no paid inference. Until [checkpoint 4](persistence-implementation-plan.md#checkpoint-4--dynamic-curated-personas), the file-based workflows below remain the implementation baseline.
+
 The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) adds an exact real-user transcript replay to the 30 generated personas, preserves routing recommendations at each fixed prefix, and separates expressed outlook from net-impact forecasts. The current suite has 31 journeys.
 
 # User Journeys: live stress-test participants

@@ -1,5 +1,7 @@
 # TypeSafe / Jev Composition Specification
 
+> Approved persistence transition (2026-09-23), not yet implemented: [PERSISTENCE.md](PERSISTENCE.md#durable-execution-and-idempotency) defines the approved move to server-authoritative snapshots and durable Workflow execution. Jev retains the same semantic role; application code owns idempotency, budgets, recovery and atomic commits. Existing browser-persistence descriptions below are the current implementation baseline; update them as [checkpoints 1–2](persistence-implementation-plan.md) land.
+
 ## Runtime assessments and persona excerpts
 
 End-user assessments use complete answers and whole-answer support only. They do not generate excerpt pools, select or verify passages, extract stated percentages, or issue quoted tension-pair clarifications. The server defaults to runtime mode; only the pre-built persona runner opts into excerpt processing. Existing historical records remain readable.

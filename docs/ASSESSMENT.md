@@ -1,5 +1,7 @@
 # Assessment Methodology
 
+> Approved persistence transition (2026-09-23), not yet implemented: [PERSISTENCE.md](PERSISTENCE.md#product-behavior) defines the approved next lifecycle and budget: 12 initial prompts, up to 12 additional prompts per fork, and 30 total including inherited history. Completed content freezes; corrections continue in a private fork. Readiness and scoring semantics below remain unchanged. The current code still uses a 12-prompt lifetime cap; update it and this document together in [checkpoint 3](persistence-implementation-plan.md#checkpoint-3--participant-ux-forks-and-sharing).
+
 ## Runtime assessments and persona excerpts
 
 End-user assessments use complete answers and whole-answer support only. They do not generate excerpt pools, select or verify passages, extract stated percentages, or issue quoted tension-pair clarifications. The server defaults to runtime mode; only the pre-built persona runner opts into excerpt processing. Existing historical records remain readable.

@@ -20,6 +20,7 @@ The MVP concentrates on a faithful, correctable worldview snapshot; its local dr
 6. [CONTEXT.md](./CONTEXT.md) — canonical domain glossary.
 7. [SOURCES.md](./SOURCES.md) — required source library, recency, genre and corpus review.
 8. [JOURNEYS.md](./JOURNEYS.md) — argument maps, risk/concept terminology and development conversations.
+9. [PERSISTENCE.md](./PERSISTENCE.md) — approved persistent-assessment design: ownership, immutable snapshots, durable operations, publication, forks and persona runs.
 
 ## Locked language
 
@@ -29,6 +30,8 @@ The MVP concentrates on a faithful, correctable worldview snapshot; its local dr
 - **Root prompt:** What do you think AI means for our future—and why?
 
 ## Status
+
+**Approved next implementation (2026-09-23):** follow the [persistent assessments implementation plan](persistence-implementation-plan.md), then its separate X-auth checkpoint. It includes native local Postgres (no Docker), Drizzle, anonymous Better Auth, Workflow SDK with Postgres World locally, public assessment URLs and Takumi WebP previews. [PERSISTENCE.md](PERSISTENCE.md) supersedes earlier browser-only/no-account restrictions and defines the 30-question inherited-conversation ceiling. Implementation has not started; the existing browser-only behavior and 12-question lifetime cap below describe the current baseline, not the new target.
 
 The existing contracts define the MVP implementation baseline. The North Star and open result-design questions guide future revisions without silently changing that baseline. Exact scoring weights, prompt variants, rubric wording, corpus entries, and visual design remain authored assets to create and validate; their governing rules are specified here.
 

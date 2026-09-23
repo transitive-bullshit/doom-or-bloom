@@ -1,5 +1,7 @@
 # Local debugging and content inspection
 
+> Approved persistence transition (2026-09-23), not yet implemented: The approved [durable operation design](PERSISTENCE.md#durable-execution-and-idempotency) adds server-side submissions, processing status and bounded failure records through Workflow SDK. Inspect with normal PostgreSQL tools; no new operator dashboard is planned. Until [implementation](persistence-implementation-plan.md), the browser trace workflow below remains current.
+
 The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) documents the current export and per-answer inspection contract. All browser operations capture local traces; the debug toggle controls their visibility.
 
 Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom`). The usual local address is `http://doom-or-bloom.localhost:1355/`; use the printed address if configuration differs.
