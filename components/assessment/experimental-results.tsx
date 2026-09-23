@@ -149,38 +149,30 @@ export function ExperimentalResults({
           </CardContent>
         </Card>
         {riskCompanion}
-        {excerpts && (
+        {excerpts && Boolean(experiment?.milestones.length) && (
           <Card>
             <CardHeader>
               <CardTitle>{framing.owner} milestone timeline</CardTitle>
             </CardHeader>
             <CardContent>
-              {experiment?.milestones.length ? (
-                <ol className='flex flex-col gap-5 border-l-2 pl-5'>
-                  {experiment.milestones.map((milestone) => (
-                    <li
-                      key={milestone.id}
-                      className='relative flex flex-col gap-2'
-                    >
-                      <span
-                        aria-hidden='true'
-                        className='absolute top-1 -left-[1.7rem] size-3 rounded-full border-2 border-background bg-primary'
-                      />
-                      <p className='text-sm font-semibold'>{milestone.label}</p>
-                      <p className='text-sm whitespace-pre-wrap text-body-foreground'>
-                        {milestone.evidence.text}
-                      </p>
-                      <AnswerLink number={milestone.evidence.answerNumber} />
-                    </li>
-                  ))}
-                </ol>
-              ) : (
-                <p className='text-sm text-body-foreground'>
-                  {experiment
-                    ? 'No milestone timing was established. Dates, “not sure,” “possibly never,” and dependencies can all appear here when expressed.'
-                    : 'Milestone timing has not been evaluated for this assessment.'}
-                </p>
-              )}
+              <ol className='flex flex-col gap-5 border-l-2 pl-5'>
+                {experiment?.milestones.map((milestone) => (
+                  <li
+                    key={milestone.id}
+                    className='relative flex flex-col gap-2'
+                  >
+                    <span
+                      aria-hidden='true'
+                      className='absolute top-1 -left-[1.7rem] size-3 rounded-full border-2 border-background bg-primary'
+                    />
+                    <p className='text-sm font-semibold'>{milestone.label}</p>
+                    <p className='text-sm whitespace-pre-wrap text-body-foreground'>
+                      {milestone.evidence.text}
+                    </p>
+                    <AnswerLink number={milestone.evidence.answerNumber} />
+                  </li>
+                ))}
+              </ol>
               <p className='mt-4 text-xs text-muted-foreground'>
                 Grouped by milestone, not spaced or ordered by inferred dates.
                 AGI and superhuman AI retain {framing.possessive} definitions.

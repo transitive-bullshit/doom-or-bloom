@@ -134,3 +134,18 @@ test('JSON field tooltips anchor to their text on wide screens', async ({
   await page.keyboard.press('Enter')
   await expect(row).toHaveAttribute('aria-expanded', 'true')
 })
+
+test('persona profile labels use the handle and empty milestone timelines are omitted', async ({
+  page
+}) => {
+  await page.goto('/users/tszzl')
+  await expect(
+    page
+      .locator('main header')
+      .getByRole('link', { name: '@tszzl', exact: true })
+  ).toBeVisible()
+  await expect(page.getByText(/milestone timeline$/)).toHaveCount(0)
+  await expect(
+    page.getByText(/No milestone timing was established/)
+  ).toHaveCount(0)
+})

@@ -440,3 +440,8 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 
 - [x] Reproduced the missing public persona matches: PublishedResult passed an empty comparison list while the private page loaded selected personas. Both routes now use loadPersonaComparisons and the same ranking/rendering components. A browser regression fails before the fix and passes afterward, checking the same three links in the same order.
 - [x] Restore the homepage hero's original fluid desktop size and 36px mobile size as an explicit display-heading exception. Keep the shared h1–h6 scale on other pages and verify both viewport sizes.
+
+### Persona profile and timeline polish (2026-09-24)
+
+- [x] X persona profile links display only @username. Shared experimental results omit the milestone timeline card when no current milestone evidence is available.
+- [x] Verify repository checks and all three persona-detail browser cases, including @tszzl and the absent empty timeline.
