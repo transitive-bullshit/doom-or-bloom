@@ -21,9 +21,21 @@ export default async function About() {
         <h1>A clearer conversation about AI futures</h1>
         <p>
           What do you expect from AI, why do you expect it, and what could
-          change your mind? Doom or Bloom helps you explore the range of views
-          and map your own through a few open-ended questions. No specialist
-          knowledge or account required.
+          change your mind?
+        </p>
+        <p>
+          Doom or Bloom helps you explore the range of views on AI and map your
+          own thoughts through a few open-ended questions. No specialist
+          knowledge or account required. All free and{' '}
+          <a
+            className='underline underline-offset-4'
+            href='https://github.com/transitive-bullshit/doom-or-bloom'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            open source
+          </a>
+          .
         </p>
       </header>
 
@@ -43,18 +55,19 @@ export default async function About() {
       </section>
 
       <section className='space-y-3'>
-        <h2>An interview that follows your thinking</h2>
+        <h2>A new type of dynamic interview</h2>
         <p>
-          Start with what you think AI means for our future—and why. The engine
-          looks for gaps or uncertainty in your answer, then chooses the
-          prepared question most likely to clarify your worldview with the least
-          repetition and effort.
+          All interviews start with: "what you think AI means for our future—and
+          why?" The engine then looks for gaps or uncertainty in your answers,
+          and chooses from a pool of curated questions the one most likely to
+          clarify your worldview with the least repetition and effort.
         </p>
         <p>
-          Results become available when enough of your perspective is clear,
-          potentially after one detailed answer. Most interviews last between
-          3-5 questions. You can trace interpretations back to your answers and
-          clarify anything that feels wrong.
+          Results become available when our engine has gathered enough evidence
+          to confidently place you. This can happen as early as after one
+          detailed answer, though most interviews last between 3-5 questions.
+          You can also trace interpretations back to your answers and clarify
+          anything that feels wrong.
         </p>
       </section>
 
@@ -154,8 +167,8 @@ export default async function About() {
           Two coordinates cannot capture a whole worldview. Missing evidence
           stays unplaced, and interpretation ranges show uncertainty about how
           to read your answers—not the probability that your beliefs are true. A
-          separate P(doom) estimate is labeled as either explicitly stated or
-          inferred.
+          separate <span className='font-bold'>P(doom)</span> estimate is
+          labeled as either explicitly stated or inferred.
         </p>
         <p>
           This is an experiment, not an intelligence test or a validated
@@ -175,7 +188,7 @@ export default async function About() {
           <Link className='underline underline-offset-4' href='/privacy'>
             privacy policy
           </Link>{' '}
-          for details.
+          for more details.
         </p>
       </section>
 
