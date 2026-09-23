@@ -254,7 +254,7 @@ export function ResultView({
           <CollapsibleContent className='mt-4 flex flex-col gap-5'>
             {result.components.map((c) => (
               <section key={c.vector} className='rounded-lg border p-4'>
-                <h3 className='text-sm font-medium'>{c.label}</h3>
+                <h5>{c.label}</h5>
                 <p className='mt-2 text-sm'>{c.claim ?? 'Unassessed'}</p>
                 {supportingAnswers(c.evidenceIds).map((answer) => (
                   <div
@@ -299,9 +299,7 @@ export function ResultView({
             ))}
             {result.sources.length > 0 && (
               <section className='rounded-lg border p-4'>
-                <h3 className='text-sm font-medium'>
-                  Reference snapshots used
-                </h3>
+                <h5>Reference snapshots used</h5>
                 <p className='mt-2 text-xs text-muted-foreground'>
                   These authored sources inform interpretation; recognition
                   alone does not establish understanding.
@@ -332,7 +330,7 @@ export function ResultView({
       )}
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>
-          <h2 className='text-base font-medium'>Resources you might enjoy</h2>
+          <h5>Resources you might enjoy</h5>
           <ResourceList
             resources={result.resources}
             onOpen={(resource) =>
@@ -393,14 +391,14 @@ function ResultDisclosure({
 }) {
   return (
     <Collapsible>
-      <h2 className='text-base'>
+      <h5>
         <CollapsibleTrigger asChild>
           <Button variant='ghost' className='group w-full justify-between'>
             {title}
             <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
           </Button>
         </CollapsibleTrigger>
-      </h2>
+      </h5>
       <CollapsibleContent className='mt-3 flex flex-col gap-3'>
         {children}
       </CollapsibleContent>

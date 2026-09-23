@@ -171,7 +171,7 @@ export function ConversationHistory({
         <MessageContent>
           <Bubble variant='ghost'>
             <BubbleContent>
-              <h4 className='text-lg leading-snug font-semibold tracking-tight whitespace-pre-wrap wrap-anywhere'>
+              <h4 className='whitespace-pre-wrap wrap-anywhere'>
                 {turn.question}
               </h4>
             </BubbleContent>

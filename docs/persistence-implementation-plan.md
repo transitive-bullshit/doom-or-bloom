@@ -428,3 +428,10 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Extract ProfileHeader from the persona header and reuse its visual layout for attributed public participant pages. Anonymous pages use “Your AI worldview”; the centered CTA card remains below the conversation.
 - [x] Add migration 0003 to local development/test databases. Leave existing publications unattributed because publication-time authentication was not recorded; no production migration or identity backfill.
 - [x] Update privacy copy and domain/persistence docs. Verify the anonymous-to-authenticated publication boundary, frozen profile data, higher-resolution image URL, and profile link through repository and browser tests.
+
+### Global heading scale (2026-09-24)
+
+- [x] Replace assessment-specific and landing-page heading scales with global h1–h6 styles: 30/24/20/18/16/14px, weight 600, line-height 1.4, and balanced wrapping across breakpoints.
+- [x] Remove individual heading typography utilities throughout pages, shared components, local tools, and dialog titles. Preserve layout classes and independent non-heading labels; minor result sections use smaller heading levels.
+- [x] Document the shared scale and usage rules in PRODUCT.md; AssessmentPage now owns layout only.
+- [x] Verify 269 unit tests and repository checks, final type checking, 20 landing/persona/interaction/typography browser cases, and public publication flow. Computed sizes agree across desktop/mobile routes; inspected both assessment screenshots.

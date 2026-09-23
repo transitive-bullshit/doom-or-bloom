@@ -8,7 +8,7 @@ export default function Privacy() {
   const { analytics, posthog } = serverEnv()
   return (
     <article className='mx-auto w-full max-w-2xl space-y-7 px-6 py-14 text-sm leading-relaxed'>
-      <h1 className='text-3xl font-semibold tracking-tight'>Privacy</h1>
+      <h1>Privacy</h1>
       <p>
         No sign-up is required. A browser session gives you access to your
         private assessments. Submitted answers, rejected replies, results, and
@@ -16,7 +16,7 @@ export default function Privacy() {
         delete the assessment. Unsubmitted typing stays in this browser. We may
         inspect saved assessments to improve the project.
       </p>
-      <h2 className='text-lg font-medium'>Where answers go</h2>
+      <h2>Where answers go</h2>
       <p>
         For real assessments, your submitted answers and relevant prior usable
         answers travel through this app’s server to TypeSafe for Jev evaluation,
@@ -37,7 +37,7 @@ export default function Privacy() {
         assessments. Delete an assessment from My assessments to remove its
         server records.
       </p>
-      <h2 className='text-lg font-medium'>Optional account recovery</h2>
+      <h2>Optional account recovery</h2>
       <p>
         Where X sign-in is available, you can link this browser’s assessments to
         your account and recover them in another browser. We store your X
@@ -45,7 +45,7 @@ export default function Privacy() {
         publish your assessments or add your X identity to their public pages.
         You can still create and share assessments without signing in.
       </p>
-      <h2 className='text-lg font-medium'>Optional measurement</h2>
+      <h2>Optional measurement</h2>
       <p>
         Vercel page analytics are {analytics ? 'enabled' : 'disabled'} in this
         build. PostHog assessment analytics are{' '}
@@ -63,7 +63,7 @@ export default function Privacy() {
         project-level IP-data disposal setting. Analytics credentials alone do
         not enable collection.
       </p>
-      <h2 className='text-lg font-medium'>Sharing and clearing</h2>
+      <h2>Sharing and clearing</h2>
       <p>
         Publishing makes your full submitted conversation and inferred results
         available to anyone with the link. Public pages are excluded from search

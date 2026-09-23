@@ -20,7 +20,7 @@ export function ReviewHeader({
   return (
     <header className='space-y-4'>
       <Badge variant='outline'>Internal · local development only</Badge>
-      <h1 className='text-3xl font-semibold tracking-tight'>{title}</h1>
+      <h1>{title}</h1>
       <p className='max-w-3xl text-sm text-muted-foreground'>{description}</p>
       <div className='flex flex-wrap items-center gap-2'>
         <Button asChild variant='outline' size='sm'>

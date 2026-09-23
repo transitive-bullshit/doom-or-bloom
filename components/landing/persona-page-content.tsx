@@ -56,9 +56,7 @@ export function PersonaPageContent({
         aria-label='Simulated Assessment'
         className='mt-10 flex flex-col gap-4'
       >
-        <h2 className='text-xl font-semibold tracking-tight'>
-          Simulated Assessment
-        </h2>
+        <h2>Simulated Assessment</h2>
         <PersonaAnswers assessment={assessment} />
         <section aria-label='Debug info'>
           <Collapsible className='rounded-xl border p-4'>
@@ -76,7 +74,7 @@ export function PersonaPageContent({
             <CollapsibleContent className='mt-4 flex min-w-0 flex-col gap-5'>
               <ReasoningJudgments components={person.result.components} />
               <div className='flex min-w-0 flex-col gap-3'>
-                <h3 className='font-medium'>Assessment state</h3>
+                <h3>Assessment state</h3>
                 <p className='text-sm text-muted-foreground'>
                   The simulated answers, supporting evidence, and dimension
                   definitions supplied to Jev for the final assessment.
@@ -93,7 +91,7 @@ export function PersonaPageContent({
                 )}
               </div>
               <div className='flex min-w-0 flex-col gap-3'>
-                <h3 className='font-medium'>Generated results</h3>
+                <h3>Generated results</h3>
                 <p className='text-sm text-muted-foreground'>
                   The resulting map coordinates, scores, uncertainty ranges, and
                   findings, including any sourced P(doom) override.
@@ -138,7 +136,7 @@ function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
               <p className='text-xs text-muted-foreground'>
                 Question {index + 1}
               </p>
-              <h3 className='text-lg font-semibold'>{answer.question}</h3>
+              <h3>{answer.question}</h3>
               <div className='rounded-xl bg-muted p-4 text-sm leading-relaxed whitespace-pre-wrap wrap-anywhere'>
                 {answer.answer}
               </div>

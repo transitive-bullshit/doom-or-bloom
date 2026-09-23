@@ -45,7 +45,7 @@ export function WorldviewDetails({
       aria-label={framing.detailsTitle}
       className='mt-5 flex flex-col gap-4'
     >
-      <h2 className='text-lg font-semibold'>{framing.detailsTitle}</h2>
+      <h4>{framing.detailsTitle}</h4>
       {impacts.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-4'>
           {impacts.map((component) => (

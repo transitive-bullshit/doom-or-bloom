@@ -45,9 +45,7 @@ export function ProfileHeader({
               portrait
             ))}
           <div className='min-w-0'>
-            <h1 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-              {name}
-            </h1>
+            <h1>{name}</h1>
             {profileUrl && (
               <a
                 href={profileUrl}

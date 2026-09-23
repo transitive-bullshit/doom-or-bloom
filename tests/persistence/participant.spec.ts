@@ -222,6 +222,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(await visitor.cookies()).toHaveLength(0)
     const publicPage = await visitor.newPage()
     await publicPage.goto(publicURL)
+    await expect(publicPage.getByRole('heading', { level: 1 })).toHaveCSS(
+      'font-size',
+      '30px'
+    )
     await expect(
       publicPage.getByRole('heading', {
         name: 'Your AI worldview',

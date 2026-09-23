@@ -418,9 +418,7 @@ export function Interview({
                       {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · question ${p.ordinal}${p.ordinal >= promptLimit(state) - 2 ? ` of ${promptLimit(state)}` : ''}`}
                     </p>
                   )}
-                  <h2 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
-                    {p.text}
-                  </h2>
+                  <h2>{p.text}</h2>
                 </div>
                 <ConversationReplies turn={currentTurn} />
                 {unavailableQuestion && (

@@ -67,7 +67,7 @@ export default async function Page({
           profileLabel='View on X'
         />
       ) : (
-        <h1 className='text-3xl font-semibold'>Your AI worldview</h1>
+        <h1>Your AI worldview</h1>
       )}
       <PublishedResult state={{ ...state, draft: '', eventMarkers: [] }} />
       <WorldviewCtaCard />

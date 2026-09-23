@@ -120,7 +120,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
   await expect(map.locator('.map-stat')).toHaveCount(0)
   await expect(map.getByRole('heading', { level: 2 })).toHaveCSS(
     'font-size',
-    '30px'
+    '24px'
   )
   const portrait = map.locator('[data-persona-marker]')
   const summary = (await portrait.getAttribute('aria-label'))!.replace(

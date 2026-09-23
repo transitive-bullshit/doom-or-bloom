@@ -82,7 +82,7 @@ export function AssessmentLibrary({
   }
   return (
     <main className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'>
-      <h1 className='text-3xl font-semibold'>My assessments</h1>
+      <h1>My assessments</h1>
       <AccountAccess
         signedIn={signedIn}
         profile={profile}

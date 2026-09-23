@@ -240,7 +240,7 @@ export function ExperimentalResults({
               aria-label='Reasoning judgments'
               className='flex flex-col gap-3'
             >
-              <h3 className='font-medium'>Reasoning judgments to inspect</h3>
+              <h3>Reasoning judgments to inspect</h3>
               <ReasoningJudgments components={result.components} />
             </section>
           )))}

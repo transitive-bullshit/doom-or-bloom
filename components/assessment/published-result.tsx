@@ -21,9 +21,7 @@ export function PublishedResult({ state }: { state: Assessment }) {
         className='flex flex-col gap-6'
         aria-labelledby='full-conversation'
       >
-        <h2 id='full-conversation' className='text-2xl font-semibold'>
-          Full conversation
-        </h2>
+        <h2 id='full-conversation'>Full conversation</h2>
         <ConversationHistory turns={conversationTurns(state)} />
       </section>
     </AnswerNavigationProvider>

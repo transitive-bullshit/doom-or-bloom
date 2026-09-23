@@ -323,7 +323,7 @@ function Step({
             {step.trace?.stages.length ? (
               step.trace.stages.map((stage, index) => (
                 <section key={index} className='flex min-w-0 flex-col gap-3'>
-                  <h3 className='font-medium'>
+                  <h3>
                     {stage.name} ·{' '}
                     {mode === 'live' ? 'recorded Jev' : 'synthetic'}
                   </h3>
@@ -639,9 +639,7 @@ export function JourneysInspector({
             aria-label='Journey timeline'
             className='flex flex-col gap-5'
           >
-            <h2 className='text-xl font-semibold'>
-              The conversation and decisions
-            </h2>
+            <h2>The conversation and decisions</h2>
             <ol className='flex min-w-0 flex-col gap-5'>
               {questionSteps(journey).map((step) => (
                 <Step
@@ -655,7 +653,7 @@ export function JourneysInspector({
             </ol>
           </section>
           <section aria-label='Journey result' className='flex flex-col gap-5'>
-            <h2 className='text-xl font-semibold'>Result of this run</h2>
+            <h2>Result of this run</h2>
             {journey.result ? (
               <>
                 <ExperimentalResults

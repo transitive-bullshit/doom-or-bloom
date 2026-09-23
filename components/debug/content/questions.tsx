@@ -46,7 +46,7 @@ export function QuestionsInspector({
         {prompts.length} catalog entries · {families.length} families
       </p>
       <section className='space-y-4 rounded-xl border p-4 sm:p-6'>
-        <h2 className='font-medium'>Relationship map</h2>
+        <h2>Relationship map</h2>
         <ToggleGroup
           type='single'
           value={relation}
@@ -86,7 +86,7 @@ export function QuestionsInspector({
         />
       </section>
       <section className='space-y-4'>
-        <h2 className='font-medium'>Question list</h2>
+        <h2>Question list</h2>
         <FieldGroup className='grid gap-4 sm:grid-cols-2'>
           <Field>
             <FieldLabel htmlFor='question-search'>
@@ -150,7 +150,7 @@ export function QuestionsInspector({
         aria-label={`Question details ${selectedId}`}
       >
         <p className='font-mono text-xs text-muted-foreground'>{selectedId}</p>
-        <h2 className='text-xl font-semibold'>{selected.text}</h2>
+        <h2>{selected.text}</h2>
         <MetadataList
           rows={[
             { label: 'Family', value: selected.family },
