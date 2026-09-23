@@ -1,7 +1,5 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, startAssessment, savedAssessment } from './fixtures'
 import type { Locator, Page } from '@playwright/test'
-import { recordDisposition } from '../../lib/assessment/state'
-import { storageKey } from '../../lib/persistence/storage'
 
 async function tabTo(page: Page, target: Locator) {
   const limit =
@@ -30,7 +28,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
-  await page.goto('/assessment')
+  await startAssessment(page)
   await expect(page.locator('h1')).toHaveText('Map your AI worldview')
   await expect(page.locator('h2')).toBeVisible()
   await expect(page.locator('h2')).not.toBeFocused()
@@ -49,7 +47,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
     await page.keyboard.insertText(
       'AI could improve medicine, but delivery takes time. I am uncertain about long-term control.'
     )
-    await page.keyboard.press('Tab')
+    await tabTo(page, page.getByRole('button', { name: /^Continue/ }))
     await expect(page.getByRole('button', { name: /^Continue/ })).toBeFocused()
     await page.keyboard.press('Enter')
     await expect(answer).toHaveValue('')
@@ -59,6 +57,15 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   await tabTo(page, view)
   await page.keyboard.press('Enter')
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  for (const name of ['Additional insights', 'A few things that stood out']) {
+    const disclosure = page.getByRole('button', { name, exact: true })
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
+    await disclosure.click()
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'true')
+    await disclosure.click()
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
+  }
+
   await expect(
     page.getByRole('img', { name: /^Doom–Bloom:/ }).first()
   ).toHaveAttribute('aria-label', /not event probabilities/)
@@ -87,13 +94,16 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
     path: testInfo.outputPath('desktop-result.png'),
     fullPage: true
   })
-  const restart = page.getByRole('button', { name: 'Restart', exact: true })
-  await tabTo(page, restart)
+  const share = page.getByRole('button', {
+    name: 'Publish assessment',
+    exact: true
+  })
+  await tabTo(page, share)
   await page.keyboard.press('Enter')
   await expect(page.getByRole('dialog')).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(page.getByRole('dialog')).toHaveCount(0)
-  await expect(restart).toBeFocused()
+  await expect(share).toBeFocused()
   expect(errors).toEqual([])
 })
 
@@ -101,34 +111,13 @@ test('reduced-motion paperclips are reachable and dismissible by keyboard', asyn
   page
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  let providerCalls = 0
-  await page.route('**/api/assessment', async (route) => {
-    const input = route.request().postDataJSON()
-    const state =
-      input.operation.type === 'answer'
-        ? recordDisposition(input.assessment, 'non_answer', 1, input.requestId)
-        : input.assessment
-    providerCalls += input.operation.type === 'answer' ? 1 : 0
-    if (input.operation.type === 'dismiss')
-      state.recovery.paperclipActive = false
-    state.revision++
-    await route.fulfill({
-      json: {
-        assessmentId: state.id,
-        baseRevision: state.revision - 1,
-        requestId: input.requestId,
-        assessment: state,
-        provider: 'fixture'
-      }
-    })
-  })
-  await page.goto('/assessment')
+  await startAssessment(page)
   for (let i = 0; i < 2; i++) {
-    await page.getByLabel('Your answer', { exact: true }).fill('off-topic')
+    await page.getByLabel('Your answer', { exact: true }).fill('test')
     await page.getByRole('button', { name: /^Continue/ }).click()
-    await expect(
-      page.getByRole('button', { name: /^Reflecting on your answer/ })
-    ).toHaveCount(0)
+    await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+      ''
+    )
   }
   await expect(page.locator('.paperclip-effect')).toHaveCSS(
     'animation-name',
@@ -138,80 +127,56 @@ test('reduced-motion paperclips are reachable and dismissible by keyboard', asyn
   await tabTo(page, dismiss)
   await page.keyboard.press('Enter')
   await expect(dismiss).toHaveCount(0)
-  expect(providerCalls).toBe(2)
 })
 
 test('recovery counters survive a tab conflict and reload without a new allowance', async ({
   page,
   context
 }) => {
-  let providerCalls = 0
-  await context.route('**/api/assessment', async (route) => {
-    const input = route.request().postDataJSON()
-    const state =
-      input.operation.type === 'answer'
-        ? recordDisposition(input.assessment, 'non_answer', 1, input.requestId)
-        : input.assessment
-    providerCalls += input.operation.type === 'answer' ? 1 : 0
-    if (input.operation.type === 'retry') {
-      state.status = 'recovery'
-      state.recovery.paperclipActive = false
-    }
-    state.revision++
-    await route.fulfill({
-      json: {
-        assessmentId: state.id,
-        baseRevision: state.revision - 1,
-        requestId: input.requestId,
-        assessment: state,
-        provider: 'fixture'
-      }
-    })
-  })
-  await page.goto('/assessment')
-  await page
-    .getByLabel('Your answer', { exact: true })
-    .fill('unrelated first answer')
+  await startAssessment(page)
+  await page.getByLabel('Your answer', { exact: true }).fill('test')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   const second = await context.newPage()
-  await second.goto('/assessment')
-  await second
-    .getByLabel('Your answer', { exact: true })
-    .fill('unrelated second answer')
+  await second.goto(page.url())
+  await second.getByLabel('Your answer', { exact: true }).fill('test')
   await second.getByRole('button', { name: /^Continue/ }).click()
   await expect(
     second.getByText('We’ve made some paperclips.', { exact: true })
   ).toBeVisible()
-  await expect(
-    page.getByText('This assessment changed in another tab')
-  ).toBeVisible()
-  await second.reload()
-  await expect(
-    second.getByRole('button', { name: 'Dismiss paperclips' })
-  ).toHaveCount(0)
-  await page.getByRole('button', { name: 'Reload latest version' }).click()
-  expect(
-    await page.evaluate((key) => {
-      const saved = JSON.parse(localStorage.getItem(key)!)
-      return saved.assessment.recovery.evaluated
-    }, storageKey)
-  ).toBe(2)
-  await page.getByRole('button', { name: 'Try again', exact: true }).click()
-  await page
-    .getByLabel('Your answer', { exact: true })
-    .fill('unrelated third answer')
+  await page.getByLabel('Your answer', { exact: true }).fill('stale answer')
+  const rejected = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'POST' && response.status() === 409
+  )
   await page.getByRole('button', { name: /^Continue/ }).click()
+  await rejected
+  await page.getByRole('button', { name: 'Refresh saved progress' }).click()
+  await expect(
+    page.getByText('We’ve made some paperclips.', { exact: true })
+  ).toBeVisible()
+  expect((await savedAssessment(page)).recovery.evaluated).toBe(1)
+  await second.reload()
+  expect((await savedAssessment(second)).recovery.evaluated).toBe(1)
+  for (const evaluated of [2, 3]) {
+    await page.getByLabel('Your answer', { exact: true }).fill('test')
+    await page.getByRole('button', { name: /^Continue/ }).click()
+    await expect
+      .poll(async () => (await savedAssessment(page)).recovery.evaluated)
+      .toBe(evaluated)
+  }
+  await expect(
+    page.getByText('Choose what to do next', { exact: true })
+  ).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Try again', exact: true })
   ).toHaveCount(0)
-  expect(providerCalls).toBe(3)
 })
 
-test('catastrophic-risk correction quotes that claim in the interface', async ({
+test('results omit review and clarification while retaining continued answers', async ({
   page
 }) => {
-  await page.goto('/assessment')
+  await startAssessment(page)
   for (let i = 0; i < 3; i++) {
     await page
       .getByLabel('Your answer', { exact: true })
@@ -223,20 +188,25 @@ test('catastrophic-risk correction quotes that claim in the interface', async ({
       ''
     )
   }
+  const pendingQuestion = await page.locator('h2').innerText()
   await page.getByRole('button', { name: 'View my results' }).click()
+  await expect(
+    page.getByRole('heading', { name: 'Results', exact: true })
+  ).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: pendingQuestion, exact: true })
+  ).toHaveCount(0)
+  await expect(
+    page.getByRole('button', { name: 'Review & clarify my results' })
+  ).toHaveCount(0)
+  await expect(
+    page.getByRole('button', { name: 'That’s not quite my view' })
+  ).toHaveCount(0)
   await page
-    .getByRole('button', { name: 'Inspect evidence & clarify my view' })
+    .getByRole('button', { name: 'Continue answering questions' })
     .click()
-  const section = page
-    .locator('section')
-    .filter({
-      has: page.getByRole('heading', { name: 'Catastrophic risk', exact: true })
-    })
-    .last()
-  const claim = await section.locator('p').first().textContent()
-  await section
-    .getByRole('button', { name: 'That’s not quite my view' })
-    .click()
-  await expect(page.locator('h2')).toContainText('catastrophic risk')
-  await expect(page.locator('h2')).toContainText(claim!)
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: pendingQuestion, exact: true })
+  ).toBeVisible()
 })

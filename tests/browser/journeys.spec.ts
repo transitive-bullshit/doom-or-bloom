@@ -9,7 +9,8 @@ test('latest live personas expose results and decisions without rerun controls',
   let inference = 0
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
-  await page.route('**/api/assessment', (route) => {
+  await page.route(/\/api\/assessments\/[a-f0-9-]+$/, (route) => {
+    if (route.request().method() !== 'POST') return route.continue()
     inference++
     return route.abort()
   })
@@ -242,7 +243,8 @@ test('answer selector moves the map and every experimental view without inferenc
   page
 }) => {
   let inference = 0
-  await page.route('**/api/assessment', (route) => {
+  await page.route(/\/api\/assessments\/[a-f0-9-]+$/, (route) => {
+    if (route.request().method() !== 'POST') return route.continue()
     inference++
     return route.abort()
   })

@@ -70,7 +70,7 @@ export function CorpusInspector({
         publications
       </p>
       <section className='space-y-4 rounded-xl border p-4 sm:p-6'>
-        <h2 className='font-medium'>Selected snapshot’s relationship map</h2>
+        <h2>Selected snapshot’s relationship map</h2>
         <p className='max-w-4xl text-sm text-muted-foreground'>
           Arrows distinguish associated entities from authored related entries.
           Related reports can describe the same event; links do not establish
@@ -90,7 +90,7 @@ export function CorpusInspector({
         />
       </section>
       <section className='space-y-4'>
-        <h2 className='font-medium'>Snapshot list</h2>
+        <h2>Snapshot list</h2>
         <FieldGroup>
           <Field>
             <FieldLabel htmlFor='corpus-search'>
@@ -165,7 +165,7 @@ export function CorpusInspector({
         <p className='font-mono text-xs text-muted-foreground wrap-anywhere'>
           {selectedId}
         </p>
-        <h2 className='text-xl font-semibold'>{selected.title}</h2>
+        <h2>{selected.title}</h2>
         <MetadataList
           rows={[
             { label: 'Kind', value: selected.kind },
@@ -184,7 +184,7 @@ export function CorpusInspector({
             { label: 'Content version', value: selected.content_version }
           ]}
         />
-        <h3 className='text-sm font-medium'>Primary source links</h3>
+        <h3>Primary source links</h3>
         <ul className='space-y-2 text-sm'>
           {selected.sources.map((source) => (
             <li key={source.url} className='wrap-anywhere'>
@@ -203,9 +203,7 @@ export function CorpusInspector({
             </li>
           ))}
         </ul>
-        <h3 className='text-sm font-medium'>
-          Selected relationships ({edges.length})
-        </h3>
+        <h3>Selected relationships ({edges.length})</h3>
         <div className='flex flex-wrap gap-2'>
           {edges.map((edge) => {
             const other = edge.source === selectedId ? edge.target : edge.source

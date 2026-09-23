@@ -1,9 +1,15 @@
-import { ExpandingArrowButton } from '@/components/motion/expanding-arrow-button'
+import { ExpandingArrowLink } from '@/components/motion/expanding-arrow-button'
 
-export function WorldviewCta() {
+export function WorldviewCta({
+  label = 'Map your own worldview',
+  size = 'default'
+}: {
+  size?: 'default' | 'sm'
+  label?: string
+}) {
   return (
-    <ExpandingArrowButton href='/assessment'>
-      Map your own worldview
-    </ExpandingArrowButton>
+    <ExpandingArrowLink href='/assessments?start=1' size={size}>
+      {label}
+    </ExpandingArrowLink>
   )
 }

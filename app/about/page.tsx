@@ -1,11 +1,12 @@
 import { pageMetadata } from '@/lib/metadata'
 import { publicPages } from '@/lib/site'
 import Link from 'next/link'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
-export const metadata = pageMetadata(publicPages[2]!)
+export const dynamic = 'force-dynamic'
+export const metadata = pageMetadata(publicPages[1]!)
 
 export default async function About() {
   const personaId = 'abundance-risk-taker'
@@ -15,24 +16,31 @@ export default async function About() {
   ])
   const person = examples.find((example) => example.id === personaId)
   return (
-    <article className='mx-auto w-full max-w-2xl space-y-10 px-6 py-14 text-sm leading-relaxed'>
+    <article className='content-column space-y-10 py-14 text-sm leading-relaxed'>
       <header className='space-y-5'>
-        <h1 className='text-3xl font-semibold tracking-tight text-balance'>
-          A clearer conversation about AI futures
-        </h1>
+        <h1>A clearer conversation about AI futures</h1>
         <p>
           What do you expect from AI, why do you expect it, and what could
-          change your mind? Doom or Bloom helps you explore the range of views
-          and map your own through a few open-ended questions. No specialist
-          knowledge or account required.
+          change your mind?
         </p>
-        <div className='flex flex-wrap justify-center'>
-          <WorldviewCta />
-        </div>
+        <p>
+          Doom or Bloom helps you explore the range of views on AI and map your
+          own thoughts through a few open-ended questions. No specialist
+          knowledge or account required. All free and{' '}
+          <a
+            className='underline underline-offset-4'
+            href='https://github.com/transitive-bullshit/doom-or-bloom'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            open source
+          </a>
+          .
+        </p>
       </header>
 
       <section className='space-y-3'>
-        <h2 className='text-lg font-medium'>Why build this?</h2>
+        <h2>Why build this?</h2>
         <p>
           AI’s potential upsides and risks deserve careful, grounded discussion.
           As capabilities advance and decisions become more consequential, we
@@ -47,25 +55,24 @@ export default async function About() {
       </section>
 
       <section className='space-y-3'>
-        <h2 className='text-lg font-medium'>
-          An interview that follows your thinking
-        </h2>
+        <h2>A new type of dynamic interview</h2>
         <p>
-          Start with what you think AI means for our future—and why. The engine
-          looks for gaps or uncertainty in your answer, then chooses the
-          prepared question most likely to clarify your worldview with the least
-          repetition and effort.
+          All interviews start with: "what you think AI means for our future—and
+          why?" The engine then looks for gaps or uncertainty in your answers,
+          and chooses from a pool of curated questions the one most likely to
+          clarify your worldview with the least repetition and effort.
         </p>
         <p>
-          Results become available when enough of your perspective is clear,
-          potentially after one detailed answer. Most interviews last between
-          3-5 questions. You can trace interpretations back to your answers and
-          clarify anything that feels wrong.
+          Results become available when our engine has gathered enough evidence
+          to confidently place you. This can happen as early as after one
+          detailed answer, though most interviews last between 3-5 questions.
+          You can also trace interpretations back to your answers and clarify
+          anything that feels wrong.
         </p>
       </section>
 
       <section className='space-y-4'>
-        <h2 className='text-lg font-medium'>Powered by TypeSafe’s Jev</h2>
+        <h2>Powered by TypeSafe’s Jev</h2>
         <p>
           <a
             className='underline underline-offset-4'
@@ -90,7 +97,7 @@ export default async function About() {
 
       {person && assessment?.finalState && (
         <section className='space-y-4'>
-          <h2 className='text-lg font-medium'>Example using Elon Musk</h2>
+          <h2>Example using Elon Musk</h2>
           <p>
             Here are some example JSON results from{' '}
             <Link
@@ -104,7 +111,7 @@ export default async function About() {
           </p>
           <div className='grid min-w-0 grid-cols-1 gap-5'>
             <div className='min-w-0 space-y-2'>
-              <h3 className='text-sm font-medium'>Assessment input</h3>
+              <h3>Assessment input</h3>
               <JsonViewer
                 label='Elon Musk simulated assessment input'
                 value={assessment.finalState}
@@ -116,7 +123,7 @@ export default async function About() {
               </p>
             </div>
             <div className='min-w-0 space-y-2'>
-              <h3 className='text-sm font-medium'>Generated results</h3>
+              <h3>Generated results</h3>
               <JsonViewer
                 label='Elon Musk simulated assessment result'
                 value={person.result}
@@ -131,7 +138,7 @@ export default async function About() {
       )}
 
       <section className='space-y-3'>
-        <h2 className='text-lg font-medium'>Simulated people, real sources</h2>
+        <h2>Simulated people, real sources</h2>
         <p>
           The featured personas are simulations grounded in linked public
           statements, essays, and interviews. A separate model answers the same
@@ -147,7 +154,7 @@ export default async function About() {
       </section>
 
       <section className='space-y-3'>
-        <h2 className='text-lg font-medium'>The map is not the territory</h2>
+        <h2>The map is not the territory</h2>
         <p>
           The featured map pairs your overall Doom–Bloom outlook with how
           radically you expect AI to transform society. Behind it are eight
@@ -160,8 +167,8 @@ export default async function About() {
           Two coordinates cannot capture a whole worldview. Missing evidence
           stays unplaced, and interpretation ranges show uncertainty about how
           to read your answers—not the probability that your beliefs are true. A
-          separate P(doom) estimate is labeled as either explicitly stated or
-          inferred.
+          separate <span className='font-bold'>P(doom)</span> estimate is
+          labeled as either explicitly stated or inferred.
         </p>
         <p>
           This is an experiment, not an intelligence test or a validated
@@ -173,17 +180,11 @@ export default async function About() {
       </section>
 
       <section className='space-y-3'>
-        <h2 className='text-lg font-medium'>Your answers stay yours</h2>
+        <h2>Your answers stay yours</h2>
         <p>
-          No accounts and no persistent answer database. Your browser saves your
-          answers, drafts, and results so you can return later. Submitted
-          answers pass through our server to Jev for evaluation; a temporary
-          retry cache expires after two minutes. TypeSafe’s own data policies
-          apply to its processing.
-        </p>
-        <p>
-          Optional analytics exclude answer text. Saved persona examples are
-          generated material, not visitor transcripts. Read the{' '}
+          Your answers and results are private by default. You can choose to
+          publish them if you want to share them. No sign-up is required. Read
+          the{' '}
           <Link className='underline underline-offset-4' href='/privacy'>
             privacy policy
           </Link>{' '}
@@ -192,7 +193,7 @@ export default async function About() {
       </section>
 
       <section className='space-y-3'>
-        <h2 className='text-lg font-medium'>What’s next?</h2>
+        <h2>What’s next?</h2>
         <p>
           This first version focuses on understanding your views without trying
           to change them. A future Socratic mode could challenge assumptions,
@@ -242,9 +243,7 @@ export default async function About() {
         </p>
       </footer>
 
-      <div className='flex flex-wrap justify-center'>
-        <WorldviewCta />
-      </div>
+      <WorldviewCtaCard />
     </article>
   )
 }

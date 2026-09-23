@@ -1,11 +1,10 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, seedAssessment, savedAssessment } from './fixtures'
 import {
   acceptAnswer,
   createAssessment,
   currentPrompt,
   issuePrompt
 } from '../../lib/assessment/state'
-import { storageKey } from '../../lib/persistence/storage'
 
 test('a saved deleted question keeps its draft and offers a current question', async ({
   page
@@ -18,25 +17,16 @@ test('a saved deleted question keeps its draft and offers a current question', a
     sourceEvidenceIds: []
   })
   saved.draft = 'My complete draft survives deleting this question.'
-  await page.addInitScript(
-    ({ key, assessment }) => {
-      if (!localStorage.getItem(key))
-        localStorage.setItem(
-          key,
-          JSON.stringify({ token: 'deleted-token', assessment })
-        )
-    },
-    { key: storageKey, assessment: saved }
-  )
   let answerRequests = 0
   page.on('request', (request) => {
     if (
-      request.url().endsWith('/api/assessment') &&
+      /\/api\/assessments\/[a-f0-9-]+$/.test(new URL(request.url()).pathname) &&
+      request.method() === 'POST' &&
       request.postDataJSON()?.operation.type === 'answer'
     )
       answerRequests++
   })
-  await page.goto('/assessment')
+  await seedAssessment(page, saved)
   await expect(
     page.getByText('This question is no longer available', { exact: true })
   ).toBeVisible()
@@ -59,11 +49,11 @@ test('a saved deleted question keeps its draft and offers a current question', a
   ).toHaveCount(0)
   await expect(
     page.getByRole('article', { name: 'Question 2 and replies', exact: true })
-  ).toContainText(saved.prompts[1]!.text)
+  ).toHaveCount(0)
   expect(answerRequests).toBe(0)
 })
 
-test('the full conversation uses page scrolling, bounded answer disclosure and local resume', async ({
+test('the full conversation uses page scrolling, bounded answer disclosure and saved resume', async ({
   page
 }) => {
   const longAnswer =
@@ -126,21 +116,14 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
       }
     })
   })
-  await page.route('**/api/**', (route) => {
-    apiCalls++
-    return route.abort()
+  const id = await seedAssessment(page, state)
+  page.on('request', (request) => {
+    if (
+      /\/api\/assessments\/[a-f0-9-]+$/.test(new URL(request.url()).pathname) &&
+      request.method() === 'POST'
+    )
+      apiCalls++
   })
-  await page.addInitScript(
-    ({ key, snapshot }) => {
-      if (!localStorage.getItem(key))
-        localStorage.setItem(
-          key,
-          JSON.stringify({ token: 'conversation-token', assessment: snapshot })
-        )
-    },
-    { key: storageKey, snapshot: state }
-  )
-  await page.goto('/assessment')
   await expect(page.getByRole('heading', { level: 2 })).toHaveText(
     'What would change your view?'
   )
@@ -272,13 +255,7 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
     state.draft
   )
-  expect(
-    await page.evaluate(
-      (key) =>
-        JSON.parse(localStorage.getItem(key)!).assessment.answers[0].text,
-      storageKey
-    )
-  ).toBe(longAnswer)
+  expect((await savedAssessment(page)).answers[0]!.text).toBe(longAnswer)
   const answer = page.getByLabel('Your answer', { exact: true })
   const beforeDraft = await page.evaluate(
     () => document.documentElement.scrollHeight
@@ -313,8 +290,16 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
       )
   ).toBe(false)
   expect(apiCalls).toBe(0)
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page.getByRole('button', { name: 'Clear & restart' }).click()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
+    .click()
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
+  await expect(page).not.toHaveURL(new RegExp(id))
+  expect(
+    (await (await page.request.get(`/api/assessments/${id}`)).json()).assessment
+      .answers[0].text
+  ).toBe(longAnswer)
   await expect(page.getByRole('article')).toHaveCount(0)
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   expect(apiCalls).toBe(0)

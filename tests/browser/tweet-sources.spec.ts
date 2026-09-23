@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, startAssessment, mockEvaluation } from './fixtures'
 import { execFileSync } from 'node:child_process'
 import type { Tweet } from 'react-tweet/api'
 
@@ -50,6 +50,16 @@ test('persona bookmarks precede a separate themed tweet masonry', async ({
   const layout = sources.locator('[data-resource-layout=masonry]')
   await expect(layout).toHaveAttribute('data-resource-layout', 'masonry')
   await expect(layout).toHaveCSS('column-count', '2')
+  const masonryBox = (await layout.boundingBox())!
+  const sourceBox = (await sources.boundingBox())!
+  expect(sourceBox.width).toBe(720)
+  expect(masonryBox.width).toBeGreaterThan(sourceBox.width)
+  expect(masonryBox.width).toBeLessThanOrEqual(1152)
+  expect(
+    Math.abs(
+      masonryBox.x + masonryBox.width / 2 - (sourceBox.x + sourceBox.width / 2)
+    )
+  ).toBeLessThan(1)
   const bookmarks = sources.locator('[data-resource-layout=list]')
   await expect(bookmarks.locator('.resource-tweet')).toHaveCount(0)
   expect(
@@ -87,7 +97,7 @@ test('assessment resources embed tweets and keep a bookmark when a post cannot l
         : { status: 502, json: { data: null } }
     )
   })
-  await page.route('**/api/assessment', async (route) => {
+  await mockEvaluation(page, async (input) => {
     const response = JSON.parse(
       execFileSync(
         process.execPath,
@@ -97,7 +107,7 @@ test('assessment resources embed tweets and keep a bookmark when a post cannot l
           'tsx',
           'tests/browser/early-engine.ts'
         ],
-        { input: route.request().postData()!, encoding: 'utf8' }
+        { input: JSON.stringify(input), encoding: 'utf8' }
       )
     )
     response.assessment.result.resources = [
@@ -121,9 +131,9 @@ test('assessment resources embed tweets and keep a bookmark when a post cannot l
       purpose: 'Test source',
       effort: 'Short read'
     }))
-    await route.fulfill({ json: response })
+    return response
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await page
     .getByLabel('Your answer', { exact: true })
     .fill(

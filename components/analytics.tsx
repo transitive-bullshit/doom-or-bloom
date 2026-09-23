@@ -4,7 +4,11 @@ import { Analytics } from '@vercel/analytics/next'
 import { stripUrl } from '@/lib/analytics/events'
 export function SiteAnalytics({ enabled }: { enabled: boolean }) {
   const path = usePathname()
-  if (!enabled || ['/questions', '/corpus', '/user-journeys'].includes(path))
+  if (
+    !enabled ||
+    path.startsWith('/assessment') ||
+    ['/questions', '/corpus', '/user-journeys'].includes(path)
+  )
     return null
   return (
     <Analytics
@@ -14,9 +18,10 @@ export function SiteAnalytics({ enabled }: { enabled: boolean }) {
         // The script can remain installed after client navigation away from the interview.
         const internal =
           url &&
-          ['/questions', '/corpus', '/user-journeys'].includes(
-            new URL(url).pathname
-          )
+          (new URL(url).pathname.startsWith('/assessment') ||
+            ['/questions', '/corpus', '/user-journeys'].includes(
+              new URL(url).pathname
+            ))
         return url && !internal && event.type === 'pageview'
           ? { type: 'pageview', url }
           : null

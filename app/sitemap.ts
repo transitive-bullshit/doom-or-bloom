@@ -1,7 +1,13 @@
+import { loadExamples } from '@/components/landing/data'
 import type { MetadataRoute } from 'next'
-import { personaPages, publicPages, siteUrl } from '@/lib/site'
+import { publicPages, siteUrl } from '@/lib/site'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = 'force-dynamic'
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const people = await loadExamples(false)
+  const personaPages = people.map((person) => ({
+    path: `/users/${person.slug}`
+  }))
   return [...publicPages, ...personaPages].map(({ path }) => ({
     url: `${siteUrl}${path}`
   }))

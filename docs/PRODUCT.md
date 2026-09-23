@@ -1,10 +1,12 @@
 # Product Contract
 
+> Persistent assessments (2026-09-23): The approved persistent-assessment product contract is in [PERSISTENCE.md](PERSISTENCE.md#product-behavior): one-click first run, an assessment library, immutable completion/forks, full opt-in publication and optional account recovery. Its persistence, sharing, routing and budget rules supersede conflicting original-MVP restrictions below. Server-saved participant assessments, anonymous ownership, direct first-run creation, a library and completion are implemented. Forks and publication are also implemented. Database personas and optional X sign-in are implemented; local X login/claim/recovery and acceptance checks are recorded in [the implementation checkpoints](persistence-implementation-plan.md).
+
 ## Runtime assessments and persona excerpts
 
 End-user assessments use complete answers and whole-answer support only. They do not generate excerpt pools, select or verify passages, extract stated percentages, or issue quoted tension-pair clarifications. The server defaults to runtime mode; only the pre-built persona runner opts into excerpt processing. Existing historical records remain readable.
 
-The worldview map, human influence, transformation, reasoning scores, inferred P(doom), fingerprints, findings, whole-answer references, correction controls, resources and downloads remain available. Runtime results hide the detailed milestone timeline, outlook hinges and excerpt-backed reasoning judgments; the correction disclosure is “Review & clarify my results.” Persona views retain excerpt-based cards. Excerpt and quote-verification behavior described below applies only to personas.
+The worldview map, human influence, transformation, reasoning scores, inferred P(doom), fingerprints, findings, whole-answer references, resources and downloads remain available. Runtime results hide the detailed milestone timeline, outlook hinges and excerpt-backed reasoning judgments; the review/clarification disclosure and claim-specific correction actions are currently removed from the participant UI. Persona views retain excerpt-based cards. Excerpt and quote-verification behavior described below applies only to personas.
 
 ## Purpose
 
@@ -87,15 +89,15 @@ The default participant is a curious, technologically engaged adult. No AI-safet
 
 Avoid decorative arrow glyphs or link arrow icons throughout the UI.
 
-The landing page at `/` leads with “How will AI change our future?” and the Prism persona map, with the assessment CTA centered beneath the headline. All placed personas use portraits at their exact coordinates, with overlap allowed. Hovering or keyboard-focusing a portrait or an entry in the people grid shows its name and dims other map portraits. Doom and Bloom flank the horizontal midpoint axis; transformation endpoints sit above and below the rectangle. The color field fills exactly the coordinate bounds. The gradient colors and vibrancy remain identical in light and dark mode because they belong to the chart; the grid and chart boundary also keep the same colors across themes, while text and surrounding UI follow the app theme. A portrait links to `/users/[username]`, showing the saved simulated result. “Map your own worldview” opens `/assessment` with a short page crossfade that respects reduced motion.
+The landing page at `/` leads with “How will AI change our future?” and the Prism persona map, with the assessment CTA centered beneath the headline. All placed personas use portraits at their exact coordinates, with overlap allowed. Hovering or keyboard-focusing a portrait or an entry in the people grid shows its name and dims other map portraits. Pointer hover scales the entire linked marker (portrait, ring, and label) to 1.08 at its fixed map position; pressing eases it to 1.04, or 0.98 on touch. Pointer feedback uses a 100ms transition with the shared ease-out token; keyboard focus and reduced-motion mode do not scale. Doom and Bloom flank the horizontal midpoint axis; transformation endpoints sit above and below the rectangle. The color field fills exactly the coordinate bounds. The gradient colors and vibrancy remain identical in light and dark mode because they belong to the chart; the grid and chart boundary also keep the same colors across themes, while text and surrounding UI follow the app theme. A portrait links to `/users/[username]`, showing the saved simulated result. “Map your own worldview” opens `/assessments?start=1`, reserving a draft URL for first-time visitors or showing the existing library with a short page crossfade that respects reduced motion.
 
-The interview begins with **What do you think AI means for our future—and why?** Existing local answers and drafts resume at `/assessment`.
+The interview begins with **What do you think AI means for our future—and why?** Saved answers and results resume from the server at `/assessments/<id>`; unsubmitted typing stays in that browser. The `/assessment` route is only a legacy start page.
 
 ### Interview
 
-- Keep every issued question and submitted reply in one chronological thread on `/assessment`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
+- Keep every issued question and submitted reply in one chronological thread on `/assessments/<id>`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
 - Previous answers are read-only. Include a copy button for every submitted reply that copies its complete text, even when collapsed, and reports success or clipboard unavailability without changing the answer. Show short answers fully and a compact exact-text preview for long or multiline answers, with an accessible “Read full answer” / “Show less” disclosure. Full answers expand in the page without an internal answer scrollbar. Preserve complete text in local state; opening or closing a disclosure makes no inference call.
-- Keep the thread available above results and during corrections. Reload resumes the active question and draft with previous turns retained; disclosures can reset closed. Include local earlier recovery/navigation replies without promoting them into scoring evidence.
+- Keep the thread available above results and during corrections. Reload resumes the active question and draft with previous turns retained; disclosures can reset closed. Include saved earlier recovery/navigation replies without promoting them into scoring evidence.
 - Cmd+Enter or Ctrl+Enter submits through the same Continue validation; empty/whitespace, over-limit, busy or blocked drafts cannot bypass it. Plain Enter stays a newline; composition and repeated shortcut events do not submit.
 - Leave focus to normal browser/user interaction; do not automatically focus the prompt, result or answer field on mount or after a stage transition.
 - Use a light, playful, candid voice.
@@ -131,19 +133,18 @@ Optional actions:
 
 - Continue answering to sharpen provisional regions.
 - Supporting answers use bounded disclosure and whole-answer provenance; no selected-passage attribution is required for MVP.
-- Select “That’s not quite my view,” identify a disputed inferred claim, and clarify in natural language.
 - Download a full report.
 - Download a personalized share card.
 - Copy or download the featured map as a PNG.
 - Restart and clear the local assessment.
 
-Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, force a final result and disable further clarification until restart.
+Participants can continue answering on a private assessment. Published assessments stay frozen: continuing creates a private fork. Claim-specific review/clarification is not currently offered; historical clarification records remain readable. New assessments permit 12 prompts; forks permit up to 12 additional prompts with a hard ceiling of 30 inherited prompts. Warn two prompts before the applicable ceiling. At the ceiling, show an honest final result, even if evidence is insufficient.
 
 ### Supporting surfaces
 
-- `/` contains the landing map; `/assessment` contains interview and result states; `/users/[username]` shows a saved public persona result.
+- `/` contains the landing map; `/assessment` is a start entry point, `/assessments/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/public/assessments/<id>` shows a published frozen assessment. `/users/[username]` shows a selected public persona simulation.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
-- A concise privacy policy explains local persistence and anonymous analytics.
+- A concise privacy policy explains server retention, operator access, optional account recovery, whole-conversation publication, browser drafts and pseudonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.
 - The provocative name intentionally primes risk and upside; document this accepted framing bias. Preserve mixed, uncertain, and low-transformation positions throughout assessment and results.
 - Header: GitHub, X, and light/dark theme icon buttons.
@@ -151,16 +152,18 @@ Clarification reopens the same assessment. Warn at 10 lifetime prompts. At 12, f
 
 ## Persistence
 
-- One assessment per browser, stored locally.
-- Resume automatically across visits.
-- Restart discards the current local assessment and rotates the anonymous assessment identifier.
-- No accounts, cross-device synchronization, session history, or hosted assessment database.
-- Assessment, content, rubric, and model versions travel with the local record.
+- Anonymous browser sessions can own multiple server-saved assessments. No sign-up is required.
+- The first CTA creates an assessment directly when the library is empty; returning participants go to their library.
+- Submitted replies and results are retained indefinitely until deletion; unsubmitted drafts remain in the browser.
+- New assessments preserve previous records. Published assessments are frozen; continuing creates a separate private fork.
+- Optional X sign-in transfers the browser’s assessments to a recoverable account without publishing them or revealing account identity on public pages. Clearing anonymous cookies loses access without deleting records.
+- Assessment, content, rubric, and model versions remain pinned in immutable snapshots.
 
 ## Sharing
 
-- Generate the card on demand with Takumi; persistent image storage is unnecessary.
-- MVP uses a generic social link preview. A personalized preview would require a public URL payload and is deliberately excluded.
+- Publish the complete frozen conversation and inferred results at an explicit public URL. Default visibility is private.
+- Public HTML, JSON downloads and personalized Takumi WebP previews check current visibility and avoid shared caches. Making a resource private or deleting it cannot remove previews already cached by external sites.
+- Render cards on demand; persistent image storage is unnecessary. Persona cards remain labeled as simulations.
 - Offer “Download card” and per-map PNG copy/download actions. Omit text-only X posting intents.
 - Native file sharing is an optional enhancement when the browser supports sharing files.
 
@@ -216,10 +219,34 @@ Prefer a tentative map point with an honest interpretation range over withholdin
 
 ### Result presentation and exports
 
-Per-answer result disclosures start closed and expand beyond the interview column on desktop, while fitting the mobile viewport. The featured result map offers a small actions menu for copying or downloading a PNG; the PNG includes a subject title, axis endpoint labels and a range legend, and preserves the theme-aware UI colors and the theme-independent vivid gradient. The server-rendered share card uses the same Prism SVG field with fixed dark surrounding UI and the same vivid gradient. The downloaded summary card uses the same transformation map and separate single-axis dimensions. Resources use compact bookmark cards with locally prefetched social images and favicons; a publisher icon is the fallback when no social image is available. Refresh these assets with `pnpm exec tsx scripts/prefetch-resource-previews.ts`.
+Per-answer result disclosures start closed and expand beyond the interview column on desktop, while fitting the mobile viewport. The featured result map offers a small actions menu for copying or downloading a PNG; the PNG includes a subject title, axis endpoint labels and a range legend, and preserves the theme-aware UI colors and the theme-independent vivid gradient. The server-rendered share card uses the same Prism SVG field with fixed dark surrounding UI and the same vivid gradient. Public assessment social-image.webp previews and downloaded social-sharing PNGs use the same result-data builder and ShareCard renderer, including the transformation map, P(doom), closest-persona portraits, and result date. WebP previews are 1200×630; PNG downloads are 2400×1260. Simulated assessment previews retain a simulation label. Resources use compact bookmark cards with locally prefetched social images and favicons; a publisher icon is the fallback when no social image is available. Refresh these assets with `pnpm exec tsx scripts/prefetch-resource-previews.ts`.
 
 Individual X/Twitter source posts use `react-tweet` embeds in both persona sources and assessment resources, with a bookmark fallback when a post is unavailable. Regular bookmarks always appear first in a single-column list. Tweets follow in a separate masonry layout capped at two columns on desktop and one column on mobile. Tweet data is fetched through the app's cacheable `/api/tweet` endpoint, while tweet media loads from X.
 
 Persona results share the personal assessment components with a presentation-only subject: name, portrait and possessive pronoun. Persona map markers and PNG exports use the portrait; headings and explanatory text use third person. Exact answer excerpts are never rewritten. Personal results retain second-person framing. Public persona pages show the current source brief, labeled when it differs from the saved simulation’s source snapshot. The journey inspector retains the sources actually used for that run.
 
 Public persona pages place the header and assessment CTA before the results. The header CTA sits to the right on wider screens and below the persona information on narrow screens. Results lead with the map, highlighted cards, and More details, followed by a Simulated Assessment section with two closed disclosures: questions and simulated answers, then Debug info containing reasoning judgments, the recorded final projection input, and the generated result in the shared JSON viewer. Sources and a closing assessment CTA card complete the page. Local, prototype, and portable-site persona pages share this composition.
+
+### Site-wide heading typography
+
+Use the global heading styles in `app/globals.css` on every route, including landing pages, assessment owner/public pages, personas, informational pages, and local tools. At the default root size, h1–h6 are 30, 24, 20, 18, 16, and 14px respectively, with weight 600, line-height 1.4, and balanced wrapping. The scale stays consistent across breakpoints. The homepage hero is an explicit display-heading exception: its original 40–76px fluid scale (36px on mobile), weight 500, and tight tracking/leading are preserved in prism.css. Choose heading levels for page/section hierarchy; do not add local text-size, weight, leading, or tracking overrides. Heading classes may control layout, spacing, alignment, and color. Component labels such as bookmark titles remain independent non-heading elements.
+
+### Reading column
+
+The shared site header is centered with a 1152px maximum outer width and 24px horizontal padding. It fills narrower viewports while keeping desktop navigation inset.
+
+Use the shared `content-column` utility for assessment, public assessment, persona, library, and informational page content. It provides a 720px reading area inside a 768px wrapper with 24px side gutters, shrinking to fit narrow screens. Do not introduce independent page-width limits. Multi-column tweet masonry uses a centered breakout up to 1152px, returning to one column on mobile. Maps and result grids may use the shared breakout layout; their wider visualization area does not change the reading column.
+
+Assessment visibility uses “publish” terminology: “Publish assessment,” “Published,” “Ready to publish,” and “Make private.” Reserve “share” for distributing a link or downloading an image for social sharing, not changing assessment visibility.
+
+Use shared shadcn breadcrumbs as the first page-content element, before the first h1, on all routes except the homepage and public assessment pages. Assessment details link back to My assessments; persona details show the handle. Do not duplicate these with ad hoc back links. Published assessments offer “Fork & continue answering” to start an independently editable assessment.
+
+New assessment URLs begin as browser-backed drafts: keep them out of the library and assessment tables until the first answer is submitted. Reload and Back/Forward preserve unsubmitted typing. Failed first-answer processing remains recoverable once submitted. Public assessment and persona pages use 24px top padding. ProfileHeader has no outer margins; the containing page provides a single 32px gap below it. On desktop the CTA centers beside the identity row, with the description below.
+
+Plain section disclosures use the shared DisclosureTrigger: align the label with its content column, extend the padded hit area 12px into each gutter, and allow long labels to wrap. Reuse this for assessment insights and persona answer/debug sections.
+
+The global header shows a compact animated “Map your own worldview” CTA for signed-out visitors, including anonymous browser sessions. Signed-in participants instead see their avatar with a shadcn account menu containing My assessments and Log out. The library retains sign-in access but no separate sign-out button. Persona identity headers have no CTA; their closing CTA remains.
+
+Conversation history shows only questions with submitted replies on both private and public assessments. An unanswered current question appears only while actively answering; viewing results hides it, and continuing the interview restores it without changing the saved assessment history.
+
+Missing routes and unavailable resources use the shared branded 404 page: the Be UI glitch graphic in the worldview palette, “404 · Page not found,” “Looks like you got lost in latent space,” and a Back to home link. Keep the status accessible independently of the decorative animation and respect reduced motion.

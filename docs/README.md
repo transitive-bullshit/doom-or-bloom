@@ -20,6 +20,7 @@ The MVP concentrates on a faithful, correctable worldview snapshot; its local dr
 6. [CONTEXT.md](./CONTEXT.md) — canonical domain glossary.
 7. [SOURCES.md](./SOURCES.md) — required source library, recency, genre and corpus review.
 8. [JOURNEYS.md](./JOURNEYS.md) — argument maps, risk/concept terminology and development conversations.
+9. [PERSISTENCE.md](./PERSISTENCE.md) — approved persistent-assessment design: ownership, immutable snapshots, durable operations, publication, forks and persona runs.
 
 ## Locked language
 
@@ -30,9 +31,11 @@ The MVP concentrates on a faithful, correctable worldview snapshot; its local dr
 
 ## Status
 
+**Implemented persistence (2026-09-23):** see the [persistent assessments implementation plan](persistence-implementation-plan.md), including its separate X-auth checkpoint. It includes native local Postgres (no Docker), Drizzle, anonymous Better Auth, bounded synchronous POST operations, public assessment URLs and Takumi WebP previews. [PERSISTENCE.md](PERSISTENCE.md) supersedes earlier browser-only/no-account restrictions and defines the 30-question inherited-conversation ceiling. Participant persistence, anonymous ownership, the library, and refresh recovery are implemented. Forks, opt-in publication and WebP previews are implemented. Dynamic personas now read selected database runs; optional X login and anonymous ownership transfer are implemented behind credentials, with provider-mocked integration checks and real local X login/claim/recovery verified. Final acceptance evidence is recorded in the plan. New assessments allow 12 prompts, forks up to 12 more, and inherited conversations at most 30; older browser-only notes below are historical.
+
 The existing contracts define the MVP implementation baseline. The North Star and open result-design questions guide future revisions without silently changing that baseline. Exact scoring weights, prompt variants, rubric wording, corpus entries, and visual design remain authored assets to create and validate; their governing rules are specified here.
 
-The local app is implemented with labeled draft assets; it is not yet a validated assessment. Required-source coverage, balanced reviewed content and reviewed semantic evaluation remain incomplete. The earlier 300-entry count is now a coverage guide; source quality and the required library take precedence. The local bound is 12 lifetime prompts with a warning at 10, superseding the original 50-prompt proposal. Paid pressure testing is out of scope; existing measurements are historical development evidence.
+The local app is implemented with labeled draft assets; it is not yet a validated assessment. Required-source coverage, balanced reviewed content and reviewed semantic evaluation remain incomplete. The earlier 300-entry count is now a coverage guide; source quality and the required library take precedence. The initial bound is 12 prompts with a warning at 10; forks add up to 12 more and stop at 30 total, superseding the original 50-prompt proposal. Paid pressure testing is out of scope; existing measurements are historical development evidence.
 
 The [revised editorial packet](current-context-review-packet.md) records approved authoring direction and demo priority. New assessments use the `0.4.0-draft` bundle with 138 references and 14 recommendations; saved `0.2.0-draft` and `0.3.0-draft` assessments retain their earlier 42- and 135-reference corpora. The [coverage index](research/source-coverage-2026-09-17.md) links all required originals, current copies, authoring scopes and remaining gaps. Individual factual/semantic review remains open. Source intake records scoped research for all required URLs; access and corpus review gates remain open.
 
@@ -44,7 +47,7 @@ The working name deliberately emphasizes the provocative Doom/Bloom contrast. Th
 
 [User Journeys](user-journeys.md) covers the development-only `/user-journeys` inspector, live OpenAI participants answering the actual Jev-driven interview, recorded decisions/results and separate free mechanical regressions. Normal `pnpm journeys:generate` uses live OpenAI and Jev; `pnpm journeys:mechanical:check` runs the isolated mocked engine cases. Forty-six deliberately divergent stress-test personas live in `lib/journeys/catalog.ts` and the six `lib/journeys/*public-personas.ts` source briefs; GPT-5.6 Sol answers from dated source summaries and voice guidance, with live Jev snapshots after each eligible answer. New timelines contain answers only; canned replies and injected judgments live only under `lib/journeys/mechanical/`. Occasional live development runs are authorized; the [current question and routing review](prompt-quality-review.md) records the active catalog, diagnosed issues and repeatable review loop.
 
-Current local demo uses algorithm `0.5.0`: runtime corpus grounding is paused, dimension meanings are explicit, and evidence readiness replaces the three-answer minimum. One sufficiently covered answer may unlock a provisional result; the meter is an experimental coverage heuristic. Corpus assets/review gates remain offline, and the featured map pairs outlook with expected transformation and interpretation ranges. Human influence and the reasoning composite are separate single axes alongside expected upside and harm. The landing map is at `/`, with the interview at `/assessment` and saved persona results at `/users/[username]`. Tentative and unsettled map points retain their interpretation ranges. See [assessment readiness](ASSESSMENT.md#question-budget-and-readiness) and [current Jev workflow](TYPESAFE.md#current-local-workflow--algorithm-050).
+Current local demo uses algorithm `0.6.1`: runtime corpus grounding is paused, dimension meanings are explicit, and evidence readiness replaces the three-answer minimum. One sufficiently covered answer may unlock a provisional result; the meter is an experimental coverage heuristic. Corpus assets/review gates remain offline, and the featured map pairs outlook with expected transformation and interpretation ranges. Human influence and the reasoning composite are separate single axes alongside expected upside and harm. The landing map is at `/`, with the library at `/assessments`, owner interviews at `/assessments/<id>`, published results at `/public/assessments/<id>`, and curated persona results at `/users/[username]`. Tentative and unsettled map points retain their interpretation ranges. See [assessment readiness](ASSESSMENT.md#question-budget-and-readiness) and [current Jev workflow](TYPESAFE.md#current-local-workflow--algorithm-050).
 
 Latest persona/source work: [September 21 refresh and verification](research/persona-refresh-summary-2026-09-21.md).
 
@@ -57,3 +60,9 @@ Latest writer/forecaster additions: [Carlsmith, Alexander, Kokotajlo and Cowen](
 Latest launch-readiness review: [production SEO, social images and Lighthouse audit](research/seo-launch-audit-2026-09-22.md).
 
 Latest persona addition: [Andrew McAfee](research/andrew-mcafee-sources-2026-09-23.md), with seven dated sources and a speaker-scoped debate transcript.
+
+Production infrastructure preparation and remaining hosted smoke tests: [production readiness](production-readiness.md).
+
+Crawler discovery includes static public pages and selected curated persona profiles from the database. sitemap.xml and llms.txt do not enumerate participant assessments; llms.txt documents their public URL pattern. See [public routes and caching](PERSISTENCE.md#public-pages-and-social-images).
+
+[Testing guidelines](testing.md) define the lightweight CI budget, test audit, and required local change/release checks.

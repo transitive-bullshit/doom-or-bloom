@@ -39,7 +39,9 @@ yarn-error.log*
 .env.build
 .env.development.local
 .env.test.local
+.env.production
 .env.production.local
+.env.neon.local
 
 # vercel
 .vercel
@@ -60,3 +62,7 @@ eval/runs/
 
 # Isolated launch-readiness production build
 .next-seo-audit/
+
+.next-persistence/
+
+.next-recovery/

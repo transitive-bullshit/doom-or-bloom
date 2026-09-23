@@ -1,12 +1,14 @@
 # Measurement, Privacy, and Evaluation
 
+> Persistence is now active for participant assessments: anonymous browser sessions own server-saved snapshots and operations. Publication, forks, database personas and optional X login are implemented; remaining acceptance is tracked in [the implementation plan](persistence-implementation-plan.md). [PERSISTENCE.md](PERSISTENCE.md) defines the full approved target.
+
 ## Privacy posture
 
-- No account, email, hosted assessment database, or cross-device profile.
-- One local assessment record per browser. When debug mode records an operation, retain its allowlisted Jev request/response diagnostics separately in browser IndexedDB, including answer text in shared state. Restore history on refresh; clear it on restart. No diagnostics enter analytics, reports or remote persistence.
-- Internal `/questions` and `/corpus` tools disable page analytics and make no Jev calls. Explicitly saved editorial feedback is written locally to `content/feedback/` with asset metadata; do not send participant transcripts there automatically.
-- A random assessment identifier links anonymous events across resumed visits and rotates on restart.
-- Do not send raw answers, answer excerpts, full reports, query strings, or free-form clarification text to analytics.
+- No sign-up is required. Better Auth creates an anonymous owner on explicit start. Server records are retained indefinitely until deletion; clearing cookies loses access without deleting records. Optional X recovery is implemented when credentials are configured; local login, anonymous claim and sign-out/recovery were verified on 2026-09-23. Signing in transfers anonymous assessments without changing publication or revealing account identity on public pages.
+- PostgreSQL stores submitted replies, rejected interactions, results and bounded failure diagnostics. Operators may inspect private assessments for improvement. Unsubmitted drafts stay in localStorage keyed by assessment and prompt. Browser debug records may contain raw text; keep them separate from analytics and public payloads.
+- Internal `/questions` and `/corpus` tools disable page analytics and make no Jev calls. Participant transcripts are not sent to editorial tools.
+- A random assessment identifier links anonymous events across resumed visits and changes when a new assessment or fork is created.
+- Do not send raw answers, answer excerpts, full reports, private assessment URLs, query strings, or free-form clarification text to analytics.
 - Do not enable session replay, heatmaps, autocapture, automatic exception payloads, or person profiles for MVP.
 - Configure PostHog's project-level IP-data disposal; the deprecated client `ip: false` option is not sufficient.
 - Explain accurately that this is pseudonymous per-assessment event linkage, not mathematical anonymity.
@@ -29,13 +31,13 @@ Production distributions cannot establish classifier correctness.
 | `assessment_paused` | Recovery or an explicit stop paused the interview; not assessment completion. |
 | `paperclip_interlude_shown` | The one-time paperclip recovery state was displayed. |
 | `question_routed` | The next authored prompt was selected. |
-| `results_unlocked` | Three-answer minimum and result eligibility reached. |
+| `results_unlocked` | Readiness and result eligibility reached. |
 | `results_viewed` | A result was rendered to the participant. |
-| `assessment_completed` | Participant accepted or stopped at a result. |
+| `assessment_completed` | Assessment reached completed state or an eligible capped result. |
 | `clarification_started` | Participant disputed an inferred claim. |
 | `result_recomputed` | Clarification produced a new result. |
-| `assessment_capped` | Twelve-prompt hard cap forced finalization. |
-| `assessment_restarted` | Local assessment cleared and identifier rotated. |
+| `assessment_capped` | The assessment’s prompt budget forced finalization (12 initially, up to 12 more per fork, 30 total). |
+| `assessment_restarted` | Legacy event name; no longer emitted. Creating an assessment preserves previous records. |
 | `resource_opened` | Curated resource link opened. |
 | `full_report_downloaded` | Expanded report downloaded. |
 | `share_card_downloaded` | Personalized card downloaded. |
@@ -82,7 +84,7 @@ These are research directions, not new telemetry requirements or claims of valid
 ### Engagement
 
 - Root-answer submission.
-- Three-answer result completion.
+- Readiness-based result completion.
 - Voluntary continuation depth.
 - Clarification and recomputation.
 - Resource openings, report downloads, and sharing intent.

@@ -28,9 +28,9 @@ export function ResourceBookmark({
     >
       <div className='flex min-w-0 flex-1 flex-col justify-between gap-3 p-4'>
         <div>
-          <h3 className='text-sm leading-snug font-medium'>
+          <div className='text-sm leading-snug font-medium'>
             <FadeText lines={2}>{resource.title}</FadeText>
-          </h3>
+          </div>
           {description && (
             <p className='mt-2 text-xs leading-relaxed text-body-foreground'>
               <FadeText lines={3}>{description}</FadeText>

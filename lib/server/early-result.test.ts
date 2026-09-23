@@ -95,7 +95,7 @@ test('an incomplete short account is not stopped solely because no candidate cle
     loadBundle()
   )
   expect(response.assessment.status).toBe('answering')
-  expect(response.assessment.result?.insufficient).toBe(true)
+  expect(response.assessment.result).toBeNull()
 })
 
 test('an independent pair check can reject a preliminary tension signal', async () => {
@@ -372,7 +372,11 @@ test.each([
       true
     )
     expect(first.assessment.result?.horizontal.value).toBe(
-      position === 'tentative' ? 0.75 : null
+      position === 'not_expressed'
+        ? undefined
+        : position === 'tentative'
+          ? 0.75
+          : null
     )
     expect(first.assessment.status).toBe(status)
     expect(first.assessment.prompts).toHaveLength(count)

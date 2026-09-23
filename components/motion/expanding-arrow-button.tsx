@@ -1,29 +1,12 @@
 'use client'
 // beui.dev/components/motion/expanding-arrow-button
 
-import Link from 'next/link'
-
 import { motion, useReducedMotion, type HTMLMotionProps } from 'motion/react'
-import {
-  forwardRef,
-  useState,
-  type FocusEvent,
-  type MouseEvent,
-  type ReactNode
-} from 'react'
+import { useState, type ReactNode } from 'react'
 import { EASE_OUT, SPRING_LAYOUT, SPRING_PRESS } from '@/lib/ease'
 import { useHoverCapable } from '@/lib/hooks/use-hover-capable'
 import { cn } from 'cn'
-
-export interface ExpandingArrowButtonProps extends Omit<
-  HTMLMotionProps<'a'>,
-  'children'
-> {
-  children: ReactNode
-  href: string
-  accentClassName?: string
-  labelClassName?: string
-}
+import Link from 'next/link'
 
 const MotionLink = motion.create(Link)
 
@@ -46,90 +29,18 @@ function DottedChevron({ className }: { className?: string }) {
   )
 }
 
-export const ExpandingArrowButton = forwardRef<
-  HTMLAnchorElement,
-  ExpandingArrowButtonProps
->(function ExpandingArrowButton(
-  {
-    children,
-    className,
-    accentClassName,
-    labelClassName,
-    onMouseEnter,
-    onMouseLeave,
-    onFocus,
-    onBlur,
-    ...rest
-  },
-  ref
-) {
-  const reduce = useReducedMotion()
-  const canHover = useHoverCapable()
-  const [hovered, setHovered] = useState(false)
-  const [focused, setFocused] = useState(false)
-  const active = (canHover && hovered) || focused
-
-  const handleMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
-    setHovered(true)
-    onMouseEnter?.(event)
-  }
-
-  const handleMouseLeave = (event: MouseEvent<HTMLAnchorElement>) => {
-    setHovered(false)
-    onMouseLeave?.(event)
-  }
-
-  const handleFocus = (event: FocusEvent<HTMLAnchorElement>) => {
-    setFocused(true)
-    onFocus?.(event)
-  }
-
-  const handleBlur = (event: FocusEvent<HTMLAnchorElement>) => {
-    setFocused(false)
-    onBlur?.(event)
-  }
-
-  return (
-    <MotionLink
-      ref={ref}
-      tabIndex={0}
-      data-slot='primary-cta'
-      data-expanded={active}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      whileTap={reduce ? undefined : { scale: 0.97 }}
-      transition={SPRING_PRESS}
-      className={cn(
-        'relative inline-flex h-12 w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none',
-        'outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-        className
-      )}
-      {...rest}
-    >
-      <ArrowContent
-        active={active}
-        reduce={Boolean(reduce)}
-        accentClassName={accentClassName}
-        labelClassName={labelClassName}
-      >
-        {children}
-      </ArrowContent>
-    </MotionLink>
-  )
-})
-
 function ArrowContent({
   active,
   reduce,
   accentClassName,
+  compact = false,
   labelClassName,
   children
 }: {
   active: boolean
   reduce: boolean
   accentClassName?: string
+  compact?: boolean
   labelClassName?: string
   children: ReactNode
 }) {
@@ -142,7 +53,7 @@ function ArrowContent({
         aria-hidden='true'
         transition={layoutTransition}
         style={{
-          width: active ? 'calc(100% - 8px)' : 40,
+          width: active ? 'calc(100% - 8px)' : compact ? 28 : 40,
           borderRadius: 9999
         }}
         className={cn(
@@ -190,7 +101,8 @@ function ArrowContent({
         transition={{ duration: reduce ? 0 : 0.12, ease: EASE_OUT }}
         className={cn(
           'relative z-0 ml-14 mr-4 text-sm font-medium tracking-tight',
-          labelClassName ?? 'whitespace-nowrap'
+          labelClassName ?? 'whitespace-nowrap',
+          compact && 'ml-10 mr-3'
         )}
       >
         {children}
@@ -221,7 +133,7 @@ export function ExpandingArrowAction({
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
-      whileTap={reduce || disabled ? undefined : { scale: 0.97 }}
+      whileTap={disabled ? undefined : { scale: reduce ? 1 : 0.97 }}
       transition={SPRING_PRESS}
       className={cn(
         'relative inline-flex h-12 w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none',
@@ -237,5 +149,47 @@ export function ExpandingArrowAction({
         {children}
       </ArrowContent>
     </motion.button>
+  )
+}
+
+export function ExpandingArrowLink({
+  href,
+  children,
+  size = 'default'
+}: {
+  href: string
+  size?: 'default' | 'sm'
+  children: ReactNode
+}) {
+  const reduce = useReducedMotion()
+  const canHover = useHoverCapable()
+  const [hovered, setHovered] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const active = (canHover && hovered) || focused
+  return (
+    <MotionLink
+      href={href}
+      data-slot='primary-cta'
+      data-expanded={active}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      whileTap={{ scale: reduce ? 1 : 0.97 }}
+      transition={SPRING_PRESS}
+      className={cn(
+        'relative inline-flex w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+        size === 'sm' ? 'h-9' : 'h-12'
+      )}
+    >
+      <ArrowContent
+        compact={size === 'sm'}
+        active={active}
+        reduce={Boolean(reduce)}
+        labelClassName='min-w-0 whitespace-normal text-left leading-tight'
+      >
+        {children}
+      </ArrowContent>
+    </MotionLink>
   )
 }

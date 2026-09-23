@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import { siteUrl } from '@/lib/site'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Agentation } from 'agentation'
+import { DevelopmentFeedback } from '@/components/development-feedback'
 
 import type { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
+import { SiteBreadcrumbs } from '@/components/site-breadcrumbs'
 import { SiteActions } from '@/components/site-actions'
 import { SiteAnalytics } from '@/components/analytics'
 import { serverEnv } from '@/lib/server/env'
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className='flex min-h-dvh flex-col'>
             <header
               style={{ viewTransitionName: 'site-header' }}
-              className='flex items-center justify-between px-6 py-5'
+              className='mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-5'
             >
               <Link
                 href='/'
@@ -48,7 +49,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               </Link>
               <SiteActions />
             </header>
-            <main className='flex flex-1 flex-col'>{children}</main>
+            <main className='flex flex-1 flex-col'>
+              <SiteBreadcrumbs />
+              {children}
+            </main>
             <footer
               style={{ viewTransitionName: 'site-footer' }}
               className='flex flex-wrap justify-center gap-5 px-6 py-6 text-xs text-muted-foreground'
@@ -59,12 +63,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
           <Toaster />
           <SiteAnalytics enabled={serverEnv().analytics} />
-          {process.env.NODE_ENV === 'development' && (
-            <Agentation
-              appName='Doom or Bloom'
-              endpoint='http://localhost:4747'
-            />
-          )}
+          {process.env.NODE_ENV === 'development' && <DevelopmentFeedback />}
         </ThemeProvider>
       </body>
     </html>

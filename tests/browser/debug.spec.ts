@@ -1,6 +1,5 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, startAssessment, mockEvaluation } from './fixtures'
 import type { Page } from '@playwright/test'
-import { storageKey } from '../../lib/persistence/storage'
 import type { ModelAnswer } from '../../lib/assessment/schema'
 
 test('unavailable debug storage reports failure without losing assessment progress', async ({
@@ -18,7 +17,7 @@ test('unavailable debug storage reports failure without losing assessment progre
       }
     })
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await page
     .getByLabel('Your answer', { exact: true })
     .fill('AI could improve medicine, with uncertain risks.')
@@ -29,7 +28,7 @@ test('unavailable debug storage reports failure without losing assessment progre
     .click()
   await expect(
     page.getByText(
-      'Debug details could not be saved in this browser. Your assessment progress is still saved separately.',
+      'Your assessment is saved, but browser debug details could not be saved.',
       { exact: true }
     )
   ).toBeVisible()
@@ -42,9 +41,7 @@ test('unavailable debug storage reports failure without losing assessment progre
 
 async function savedOperationCount(page: Page, assessmentId?: string) {
   return page.evaluate(
-    async ({ key, assessmentId }) => {
-      const id =
-        assessmentId ?? JSON.parse(localStorage.getItem(key)!).assessment.id
+    async (id) => {
       return new Promise<number>((resolve, reject) => {
         const open = indexedDB.open('doom-or-bloom:debug:v1', 1)
         open.onsuccess = () => {
@@ -65,7 +62,7 @@ async function savedOperationCount(page: Page, assessmentId?: string) {
         open.onerror = () => reject(open.error)
       })
     },
-    { key: storageKey, assessmentId }
+    assessmentId ?? new URL(page.url()).pathname.split('/').at(-1)!
   )
 }
 import {
@@ -127,9 +124,10 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
       }
     })
   })
-  await page.route('**/api/assessment', async (route) => {
+  await mockEvaluation(page, async (input) => {
     requests++
-    const input = route.request().postDataJSON()
+    if (input.operation.type !== 'answer')
+      throw new Error('Expected fixture answer')
     const prompt = currentPrompt(input.assessment)
     const answerId = `${prompt.id}:a`
     const stage: DebugStage = {
@@ -183,35 +181,33 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
       sourceEvidenceIds: []
     })
     assessment.revision++
-    await route.fulfill({
-      json: {
-        assessmentId: assessment.id,
-        baseRevision: input.assessment.revision,
-        requestId: input.requestId,
-        assessment,
-        provider: 'live',
-        ...(input.debug
-          ? {
-              debug: {
-                requestId: input.requestId,
-                baseRevision: input.assessment.revision,
-                stages: [stage],
-                decisions: [
-                  {
-                    action: 'prompt issued',
-                    detail: { id: 'timeline.general', deterministic: false }
-                  }
-                ],
-                elapsedMs: 14
-              }
+    return {
+      assessmentId: assessment.id,
+      baseRevision: input.assessment.revision,
+      requestId: input.requestId,
+      assessment,
+      provider: 'live',
+      ...(input.debug
+        ? {
+            debug: {
+              requestId: input.requestId,
+              baseRevision: input.assessment.revision,
+              stages: [stage],
+              decisions: [
+                {
+                  action: 'prompt issued',
+                  detail: { id: 'timeline.general', deterministic: false }
+                }
+              ],
+              elapsedMs: 14
             }
-          : {})
-      }
-    })
+          }
+        : {})
+    }
   })
   await page.setViewportSize({ width: 1440, height: 960 })
   await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await page.getByLabel('Your answer', { exact: true }).fill(text)
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
@@ -258,7 +254,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     name: 'Expand $.answers.weak',
     exact: true
   })
-  await weakJudgment.hover()
+  await weakJudgment.locator('[data-json-token="key"]').hover()
   await expect(page.getByRole('tooltip')).toHaveText(
     'Judge relevance using current.answer.'
   )
@@ -508,15 +504,15 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   await expect.poll(() => savedOperationCount(page)).toBe(3)
-  const assessmentId = await page.evaluate(
-    (key) => JSON.parse(localStorage.getItem(key)!).assessment.id,
-    storageKey
-  )
+  const assessmentId = new URL(page.url()).pathname.split('/').at(-1)!
   await page.getByRole('button', { name: 'Debug off', exact: true }).click()
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
-    .getByRole('button', { name: 'Clear & restart', exact: true })
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
-  await expect.poll(() => savedOperationCount(page, assessmentId)).toBe(0)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
+  await expect(page).not.toHaveURL(new RegExp(assessmentId))
+  await expect.poll(() => savedOperationCount(page, assessmentId)).toBe(3)
+  await expect.poll(() => savedOperationCount(page)).toBe(0)
   expect(requests).toBe(3)
 })

@@ -4,7 +4,7 @@
 
 **How will AI change our future?** Explore the range of views, then map your own through a few open-ended questions. No jargon, account, or predetermined camp required.
 
-[**Explore the map →**](https://www.doom-or-bloom.com) · [**Map your own worldview →**](https://www.doom-or-bloom.com/assessment)
+[**Explore the map →**](https://www.doom-or-bloom.com) · [**Map your own worldview →**](https://www.doom-or-bloom.com/assessments?start=1)
 
 ## Why build this?
 
@@ -48,9 +48,7 @@ This is an experimental model, not a forecast of what will happen or a measure o
 
 ## Privacy
 
-No accounts. No persistent answer database. Your answers, drafts, and results stay in browser storage so you can return later. Submitted answers pass through our server to Jev for evaluation; a temporary server retry cache expires after two minutes. TypeSafe’s own data policies apply to its processing.
-
-Optional analytics exclude answer text. Debug traces, when enabled, also stay in your browser. The checked-in persona data is generated development material, not visitor transcripts. [Privacy details](https://www.doom-or-bloom.com/privacy).
+Your answers and results are private by default. You can choose to publish them if you want to share them. No sign-up is required. [Privacy details](https://www.doom-or-bloom.com/privacy).
 
 ## Run locally
 
@@ -58,8 +56,8 @@ Requires **Node.js 24+**, **pnpm**, and a **TypeSafe API key** for live assessme
 
 ```sh
 pnpm install
-cp .env.example .env.local
-# Set TYPESAFE_API_KEY in .env.local
+cp .env.example .env.development.local
+# Set TYPESAFE_API_KEY in .env.development.local
 pnpm dev
 ```
 

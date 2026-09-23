@@ -1,4 +1,4 @@
-import { isContextOverflow, reportServerError } from './error-reporting'
+import { reportServerError } from './error-reporting'
 import 'server-only'
 import { TypeSafeClient } from '@typesafe-ai/sdk'
 import type { EntryType, Questions } from '@typesafe-ai/sdk'
@@ -77,7 +77,7 @@ export function createLiveProvider(model: string): Provider {
     ) => {
       if (!process.env.TYPESAFE_API_KEY?.trim())
         throw new Error(
-          'Add TYPESAFE_API_KEY to .env.local to run real assessments'
+          'Add TYPESAFE_API_KEY to .env.development.local to run real assessments'
         )
       if (
         Object.keys(questions).length === 0 ||
@@ -97,7 +97,7 @@ export function createLiveProvider(model: string): Provider {
         logLevel: 'off',
         timeout: 15_000,
         retry: {
-          maxRetries: 2,
+          maxRetries: 1,
           httpStatuses: new Set([429, 529, 502, 503, 504]),
           backoffMaxMs: 2000,
           maxRetryAfterMs: 5000
@@ -122,6 +122,16 @@ export function createLiveProvider(model: string): Provider {
           try {
             const response = await fetch(url, { ...init, cache: 'no-store' })
             if (diagnostic) diagnostic.status = response.status
+            if (!response.ok)
+              reportServerError(
+                'jev_call_failed',
+                new Error('Provider HTTP failure'),
+                {
+                  ...diagnosticContext,
+                  status: response.status,
+                  attempt: attempts
+                }
+              )
             return response
           } finally {
             if (diagnostic)
@@ -157,8 +167,7 @@ export function createLiveProvider(model: string): Provider {
       if (pending.length) batches.push(pending)
       const results: Evaluation[] = []
       const evaluateBatch = async (
-        part: Array<[string, Question]>,
-        splitDepth = 0
+        part: Array<[string, Question]>
       ): Promise<void> => {
         boundedSignal.throwIfAborted()
         batchQuestionIds = part.map(([id]) => id)
@@ -194,33 +203,16 @@ export function createLiveProvider(model: string): Provider {
             }
           results.push(result)
         } catch (err) {
-          reportServerError(
-            'jev_batch_failed',
-            err,
-            {
-              ...diagnosticContext,
-              model,
-              attempts,
-              splitDepth,
-              stateBytes: Buffer.byteLength(JSON.stringify(state)),
-              questionCount: part.length,
-              questionBytes: Buffer.byteLength(
-                JSON.stringify(Object.fromEntries(part))
-              ),
-              retrying:
-                isContextOverflow(err) && part.length > 1 && splitDepth < 2
-            },
-            isContextOverflow(err) && part.length > 1 && splitDepth < 2
-              ? 'warn'
-              : 'error'
-          )
-          // A smaller question batch retains the complete state. Never retry an
-          // unchanged oversized request or trim participant/source evidence.
-          if (isContextOverflow(err) && part.length > 1 && splitDepth < 2) {
-            const middle = Math.ceil(part.length / 2)
-            await evaluateBatch(part.slice(0, middle), splitDepth + 1)
-            await evaluateBatch(part.slice(middle), splitDepth + 1)
-          } else throw err
+          reportServerError('jev_batch_failed', err, {
+            ...diagnosticContext,
+            model,
+            attempts,
+            stateBytes: Buffer.byteLength(JSON.stringify(state)),
+            questionCount: part.length
+          })
+          // Batches are planned before calling Jev. A permanent overflow fails
+          // the operation; recursively splitting it would add another retry layer.
+          throw err
         }
       }
       try {

@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { ProfileHeader } from '@/components/profile-header'
 
 export function PersonaHeader({
   person
@@ -13,59 +12,17 @@ export function PersonaHeader({
     description: string
   }
 }) {
-  const profileUrl = person.xUrl ?? person.profileUrl
-  const profileLabel = person.xUrl
-    ? `@${person.xUrl.split('/').at(-1)} on X`
-    : (person.profileLabel ?? 'Profile')
-  const portrait = person.avatar && (
-    <Image
-      src={person.avatar}
-      alt={person.name}
-      width={80}
-      height={80}
-      className='image-outline size-16 rounded-full object-cover sm:size-20'
-      unoptimized
-    />
-  )
   return (
-    <header className='my-8 flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between'>
-      <div className='min-w-0'>
-        <div className='flex items-center gap-4'>
-          {portrait &&
-            (profileUrl ? (
-              <a
-                href={profileUrl}
-                target='_blank'
-                rel='noreferrer'
-                aria-label={`${person.name}: ${profileLabel}`}
-                className='shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
-              >
-                {portrait}
-              </a>
-            ) : (
-              portrait
-            ))}
-          <div className='min-w-0'>
-            <h1 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-              {person.name}
-            </h1>
-            {profileUrl && (
-              <a
-                href={profileUrl}
-                target='_blank'
-                rel='noreferrer'
-                className='mt-2 inline-block text-sm text-muted-foreground underline underline-offset-4'
-              >
-                {profileLabel}
-              </a>
-            )}
-          </div>
-        </div>
-        <p className='mt-4 max-w-xl text-body-foreground'>
-          {person.description}
-        </p>
-      </div>
-      <WorldviewCta />
-    </header>
+    <ProfileHeader
+      name={person.name}
+      avatar={person.avatar}
+      profileUrl={person.xUrl ?? person.profileUrl}
+      profileLabel={
+        person.xUrl
+          ? `x.com/${person.xUrl.split('/').at(-1)}`
+          : person.profileLabel
+      }
+      description={person.description}
+    />
   )
 }

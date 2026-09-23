@@ -25,6 +25,7 @@ import {
 } from '@/lib/assessment/schema'
 import {
   acceptAnswer,
+  promptLimit,
   atCap,
   canSubmit,
   currentPrompt,
@@ -35,8 +36,6 @@ import {
 } from '@/lib/assessment/state'
 import {
   candidatePrompts,
-  needsOverallOutlookQuestion,
-  missingMapQuestion,
   rankCandidates,
   worthwhileCandidates,
   followUpNoveltyThreshold
@@ -127,6 +126,8 @@ function clarificationText(label: string, claim: string | null) {
   return `Our read of ${label.toLowerCase()} was: “${claim}” What would you change about that interpretation?`
 }
 function validateSnapshot(state: Assessment, bundle: Bundle) {
+  if (state.prompts.length > promptLimit(state))
+    throw new Error('Question ceiling exceeded')
   if (
     state.versions.content !== bundle.manifest.contentVersion ||
     state.versions.rubric !== bundle.manifest.rubricVersion ||
@@ -509,15 +510,6 @@ export async function runAssessment(
         })
       }
     }
-    // One interpretation per evidence revision feeds both selection and display.
-    if (
-      state.answers.length > 0 &&
-      state.result?.evidenceRevision !== state.evidenceRevision
-    ) {
-      const status = state.status
-      await project(false, true)
-      state.status = status
-    }
     if (tensionPrompt) {
       state = issuePrompt(state, tensionPrompt)
       return true
@@ -552,44 +544,17 @@ export async function runAssessment(
         Math.floor((limits.questions - 2) / (state.unresolved.length ? 6 : 4))
       )
     if (!eligibleCandidates.length) return false
-    const mapQuestion = !deterministic ? missingMapQuestion(state) : null
-    const mapCandidate = candidates.find(
-      (candidate) => candidate.prompt.id === mapQuestion && !candidate.reason
-    )
-    if (mapCandidate) {
-      state = issuePrompt(state, promptDisplay(mapCandidate.prompt))
-      trace.decisions.push({
-        action: 'elicit unexplored map axis before automatic completion',
-        detail: {
-          id: mapCandidate.prompt.id,
-          experiment: state.result?.experiment
-        }
-      })
-      return true
-    }
-    const overall = candidates.find(
-      (candidate) =>
-        candidate.prompt.id === 'impact.overall' && !candidate.reason
-    )
-    if (!deterministic && overall && needsOverallOutlookQuestion(state)) {
-      state = issuePrompt(state, promptDisplay(overall.prompt))
-      trace.decisions.push({
-        action:
-          'elicit missing overall expectation before automatic completion',
-        detail: {
-          id: overall.prompt.id,
-          distribution: state.result?.horizontal.distribution
-        }
-      })
-      return true
-    }
     let selected: Prompt
     if (deterministic || state.answers.length === 0)
       selected =
         eligibleCandidates.find((c) => c.prompt.family === 'concretization')
           ?.prompt ?? eligibleCandidates[0]!.prompt
     else {
-      const questions: StageQuestions = {}
+      const facets = facetQuestions()
+      const questions: StageQuestions = {
+        'facet:overall_outlook': facets['facet:overall_outlook']!,
+        central_basis: facets.central_basis
+      }
       for (const { prompt } of eligibleCandidates) {
         questions[`${prompt.id}:gap`] = {
           type: 'choice',
@@ -638,23 +603,6 @@ export async function runAssessment(
         evidenceSupportMeaning:
           'Per dimension: confidence (0–1) that usable evidence expresses the participant’s view; contribution discounts unresolved meaning. This is not forecast certainty or reasoning quality. A gap only matters if the candidate can elicit genuinely new information.',
         evidenceSupport: evidenceReadiness(state).dimensions,
-        centralBasis:
-          state.judgments.find(
-            (judgment) =>
-              judgment.stage === 'project' &&
-              judgment.questionId === 'central_basis'
-          )?.answer ?? null,
-        interpretedProfile:
-          state.result?.evidenceRevision === state.evidenceRevision
-            ? state.result.components.map(
-                ({ vector, value, claim, distribution }) => ({
-                  vector,
-                  value,
-                  distribution,
-                  claim
-                })
-              )
-            : null,
         unresolved: state.unresolved,
         familiarity: state.familiarity.level,
         calibrationGaps: {
@@ -672,24 +620,32 @@ export async function runAssessment(
       const evaluation = await evaluate('C: route', input, questions)
       addJudgments(
         'route',
-        currentPrompt(state).id,
+        `route:${state.evidenceRevision}`,
         questions,
         evaluation.answers,
         evaluation.model
       )
+      const overallPosition = evaluation.answers['facet:overall_outlook']
+      const overall = eligibleCandidates.find(
+        ({ prompt }) => prompt.id === 'impact.overall'
+      )
+      if (
+        !explore &&
+        overall &&
+        !state.prompts.some((prompt) => prompt.promptId === 'impact.overall') &&
+        overallPosition?.type === 'choice' &&
+        (overallPosition.probabilities.not_expressed ?? 0) >= 0.35 &&
+        (overallPosition.probabilities.explicitly_unknown ?? 0) < 0.5
+      ) {
+        state = issuePrompt(state, promptDisplay(overall.prompt))
+        return true
+      }
       const ranking = rankCandidates(
         state,
         bundle.prompts,
         {
           ...evaluation.answers,
-          ...Object.fromEntries(
-            state.judgments
-              .filter((judgment) => judgment.stage === 'project')
-              .map((judgment) => [
-                `outlook:${judgment.questionId}`,
-                judgment.answer
-              ])
-          )
+          'outlook:central_basis': evaluation.answers.central_basis!
         },
         bundle.rubric
       )
@@ -773,8 +729,8 @@ export async function runAssessment(
     })
     return true
   }
-  const project = async (capped = false, inspection = false) => {
-    if (!eligible(state) && !capped && !inspection)
+  const project = async (capped = false) => {
+    if (!eligible(state) && !capped)
       throw new Error(
         'More supported coverage is needed to offer a provisional result'
       )
@@ -785,7 +741,7 @@ export async function runAssessment(
     }
     let components: Component[] = []
     let experiment: ReturnType<typeof buildWorldviewExperiment> | undefined
-    if (eligible(state) || inspection) {
+    if (eligible(state)) {
       const scores = rubricQuestions(
         bundle.rubric,
         'completeParticipantEvidence; prior typed judgments are interpretations, not independent evidence'
@@ -1347,7 +1303,7 @@ export async function runAssessment(
       else if (p.target && eligible(state)) await project()
       else if (!(await route())) {
         if (eligible(state)) await project()
-        else state.status = 'paused'
+        else state.status = 'recovery'
       }
     } else {
       trace.decisions.push({
@@ -1368,7 +1324,7 @@ export async function runAssessment(
       if (!(await route(false, true))) await project()
     } else {
       state.status =
-        state.recovery.evaluated >= limits.recovery ? 'paused' : 'answering'
+        state.recovery.evaluated >= limits.recovery ? 'recovery' : 'answering'
     }
   } else if (op.type === 'clarify') {
     if (!state.result || atCap(state))
@@ -1404,13 +1360,10 @@ export async function runAssessment(
     state.recovery.paperclipActive = false
   } else if (op.type === 'dismiss') state.recovery.paperclipActive = false
   else if (op.type === 'stop') {
-    state.status = 'paused'
+    state.status = 'recovery'
     state.recovery.reason = 'stopped'
     state.recovery.clearMisses = 0
     state.recovery.paperclipActive = false
-  } else if (op.type === 'complete') {
-    if (!state.result) throw new Error('View a result before completing')
-    state.status = atCap(state) ? 'capped' : 'completed'
   }
   if (
     request.operation.type === 'answer' &&

@@ -453,12 +453,26 @@ test('result evidence sends only selected experiment candidates and preserves th
   }
   const text =
     'AI could transform medicine. Independent evaluations could reveal control failures. I would update if safeguards worked reliably. Powerful systems may cause irreversible harm.'
-  await runAssessment(
+  const answered = await runAssessment(
     {
       debug: false,
       requestId: 'compact-evidence',
       assessment: createAssessment('compact-evidence'),
       operation: { type: 'answer', text }
+    },
+    provider,
+    loadBundle(),
+    false,
+    undefined,
+    undefined,
+    'persona'
+  )
+  await runAssessment(
+    {
+      assessment: answered.assessment,
+      requestId: 'compact-project',
+      debug: false,
+      operation: { type: 'project' }
     },
     provider,
     loadBundle(),
@@ -503,7 +517,7 @@ test('runtime keeps full answers and core results without generating excerpt req
       return fixture.evaluate(...args)
     }
   }
-  const response = await runAssessment(
+  const answered = await runAssessment(
     {
       requestId: 'runtime-without-excerpts',
       assessment: createAssessment('runtime-without-excerpts'),
@@ -514,11 +528,21 @@ test('runtime keeps full answers and core results without generating excerpt req
     loadBundle(),
     true
   )
+  expect(answered.assessment.result).toBeNull()
+  const response = await runAssessment(
+    {
+      assessment: answered.assessment,
+      requestId: 'runtime-project',
+      debug: true,
+      operation: { type: 'project' }
+    },
+    provider,
+    loadBundle(),
+    true
+  )
   expect(stages).toEqual(['projection'])
   expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
-    'A: interpret',
-    'D: projection',
-    'C: route'
+    'D: projection'
   ])
   const result = response.assessment.result!
   expect(result.experiment!.milestones).toEqual([])

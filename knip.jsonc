@@ -1,7 +1,21 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   // Standalone development tools and subprocess fixtures are entry points.
-  "entry": ["scripts/*.ts", "tests/browser/*-engine.ts"],
+  "entry": [
+    "scripts/*.ts",
+    "tests/browser/*-engine.ts",
+    "tests/browser/*.spec.ts",
+    "playwright.config.ts",
+    "playwright.analytics.config.ts",
+    "tests/analytics/*.spec.ts",
+    "tests/browser/persist-engine-response.ts",
+    "tests/browser/seed-assessment.ts",
+    "auth.schema.config.ts",
+    "playwright.persistence.config.ts",
+    "tests/persistence/*.spec.ts"
+  ],
+  // Analyze browser entries without executing environment-dependent configs.
+  "playwright": false,
   // Keep the reusable UI primitive APIs while still checking their dependencies.
   "ignoreIssues": {
     "components/ui/**": ["exports", "types"]

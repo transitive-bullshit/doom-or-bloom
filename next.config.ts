@@ -1,26 +1,54 @@
 import type { NextConfig } from 'next'
+import {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_SERVER
+} from 'next/constants'
+import { validateServerEnv } from './lib/server/validate-env'
 
 const config: NextConfig = {
+  images: {
+    remotePatterns: [new URL('https://pbs.twimg.com/profile_images/**')]
+  },
   allowedDevOrigins: [
     process.env.PORTLESS_TAILSCALE_URL,
     process.env.DEV_TUNNEL_URL
   ]
     .filter((value): value is string => Boolean(value))
     .map((value) => new URL(value).hostname),
-  distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
-  // Persona pages and About read the canonical saved journeys.
-  outputFileTracingIncludes: {
-    '/api/share-card': ['public/personas/*'],
-    '/assessment': ['eval/development/live-persona-journeys.json'],
-    '/about': ['eval/development/live-persona-journeys.json'],
-    '/users/*': ['eval/development/live-persona-journeys.json'],
-    '/users/*/opengraph-image': [
-      'eval/development/live-persona-journeys.json',
-      'public/personas/*'
+  async redirects() {
+    return [
+      {
+        source: '/assessment/:id',
+        destination: '/assessments/:id',
+        permanent: true
+      }
     ]
+  },
+  async headers() {
+    return [
+      '/assessment/:path*',
+      '/assessments/:path*',
+      '/public/assessments/:id',
+      '/public/assessments/:id/data'
+    ].map((source) => ({
+      source,
+      headers: [{ key: 'Cache-Control', value: 'private, no-store' }]
+    }))
+  },
+  distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
+  // Results are read from PostgreSQL. Native image rendering still needs portraits.
+  outputFileTracingIncludes: {
+    '/api/assessments/*/results-image': ['public/personas/*'],
+    '/api/share-card': ['public/personas/*'],
+    '/users/*/opengraph-image': ['public/personas/*'],
+    '/public/assessments/*/social-image.webp': ['public/personas/*']
   },
   // Takumi loads a platform-specific native addon at runtime.
   serverExternalPackages: ['takumi-js']
 }
 
-export default config
+export default function nextConfig(phase: string) {
+  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_SERVER)
+    validateServerEnv()
+  return config
+}

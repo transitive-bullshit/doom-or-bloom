@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { expect, test, vi } from 'vitest'
 import { runAssessment } from './engine'
 import { createFixtureProvider, fixtureAnswer } from './provider'
 import type { Provider } from './provider'
@@ -73,12 +73,19 @@ test('experimental placements consume a dependent evidence check and preserve bo
       return result
     }
   }
-  const response = await run(
+  const answered = await run(
     createAssessment('experimental-verification'),
     {
       type: 'answer',
       text: 'Human action can redirect the AI trajectory. Cooperation can prevent catastrophe.'
     },
+    provider,
+    true,
+    'persona'
+  )
+  const response = await run(
+    answered.assessment,
+    { type: 'project' },
     provider,
     true,
     'persona'
@@ -255,13 +262,14 @@ test('three-answer path, reusable results and debug parity', async () => {
   )
   expect(reused.debug?.stages).toHaveLength(0)
   expect(reused.assessment.result).toEqual(historical.result)
-  expect(reused.assessment.versions.assessment).toBe('0.6.0')
+  expect(reused.assessment.versions.assessment).toBe('0.6.1')
   const request = {
     requestId: 'same',
     assessment: state,
     operation: { type: 'project' as const },
     debug: false
   }
+  vi.useFakeTimers({ toFake: ['Date'] })
   const a = await runAssessment(
     request,
     createFixtureProvider(),
@@ -276,6 +284,7 @@ test('three-answer path, reusable results and debug parity', async () => {
   )
   expect(a.assessment).toEqual(b.assessment)
   expect(a.debug).toBeUndefined()
+  vi.useRealTimers()
 })
 test('nonsense short circuits all later stages and preserves scores', async () => {
   const provider = nonAnswerProvider()
@@ -380,12 +389,11 @@ test('dependent stages share the remaining physical request budget', async () =>
   )
   expect(budgets).toEqual([
     limits.providerAttempts,
-    limits.providerAttempts - 12,
-    limits.providerAttempts - 16
+    limits.providerAttempts - 12
   ])
   expect(
     result.debug?.stages.reduce((sum, stage) => sum + stage.attempts, 0)
-  ).toBe(20)
+  ).toBe(16)
   expect(result.assessment.answers).toHaveLength(1)
 })
 test('repeated ambiguity exhausts neutrally, successful retry resumes', async () => {
@@ -398,7 +406,7 @@ test('repeated ambiguity exhausts neutrally, successful retry resumes', async ()
         nonAnswerProvider('needs_clarification')
       )
     ).assessment
-  expect(state.status).toBe('paused')
+  expect(state.status).toBe('recovery')
   expect(state.recovery.paperclipShown).toBe(false)
   const skipped = (await run(state, { type: 'skip' })).assessment
   expect(skipped.prompts).toHaveLength(2)
@@ -538,8 +546,8 @@ test('shared text occurs once per stage and judgments use answer-level support w
     createFixtureProvider(),
     true
   )
-  expect(projected.debug!.stages).toHaveLength(0)
-  const stage = result.debug!.stages.find(
+  expect(projected.debug!.stages).toHaveLength(1)
+  const stage = projected.debug!.stages.find(
     (stage) => stage.name === 'D: projection'
   )!
   expect(Object.keys(stage.questions)).toHaveLength(52)
@@ -566,7 +574,6 @@ test('one well-covered answer unlocks results and sends explicit dimension defin
   expect(eligible(response.assessment)).toBe(true)
   expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
     'A: interpret',
-    'D: projection',
     'C: route'
   ])
   const bundle = loadBundle()
@@ -595,7 +602,7 @@ test('one well-covered answer unlocks results and sends explicit dimension defin
   expect(projected.assessment.result?.insufficient).toBe(false)
   for (const dimension of bundle.rubric.dimensions) {
     expect(
-      response.debug!.stages.find((stage) => stage.name === 'D: projection')!
+      projected.debug!.stages.find((stage) => stage.name === 'D: projection')!
         .questions[`${dimension.id}:score`]!.instructions
     ).toContain(dimension.meaning)
   }
@@ -643,24 +650,22 @@ test('failed operations expose completed stages and failed input without seriali
     }
   }
   const { AssessmentFailure } = await import('./assessment-failure')
+  const answered = await run(createAssessment('failed-trace'), {
+    type: 'answer',
+    text: 'A meaningful answer about future benefits and uncertain control.'
+  })
   const failure = await run(
-    createAssessment('failed-trace'),
-    {
-      type: 'answer',
-      text: 'A meaningful answer about future benefits and uncertain control.'
-    },
+    answered.assessment,
+    { type: 'project' },
     provider,
     true
   ).catch((err: unknown) => err)
   expect(failure).toBeInstanceOf(AssessmentFailure)
   if (!(failure instanceof AssessmentFailure))
     throw new Error('Expected a diagnostic failure')
-  expect(failure.trace.stages.map((s) => s.name)).toEqual([
-    'A: interpret',
-    'D: projection'
-  ])
-  expect(failure.trace.stages[1]!.answers).toEqual({})
-  expect(failure.trace.stages[1]!.state).toHaveProperty(
+  expect(failure.trace.stages.map((s) => s.name)).toEqual(['D: projection'])
+  expect(failure.trace.stages[0]!.answers).toEqual({})
+  expect(failure.trace.stages[0]!.state).toHaveProperty(
     'completeParticipantEvidence'
   )
   expect(JSON.stringify(failure.trace)).not.toContain('SECRET_TRANSPORT_BODY')

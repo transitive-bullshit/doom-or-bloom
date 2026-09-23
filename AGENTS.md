@@ -1,7 +1,7 @@
 ## Conventions
 
 - use `pnpm`
-- Local development: use `pnpm dev` and the Portless URL it prints; `pnpm exec portless get doom-or-bloom` resolves it.
+- Local development: use `pnpm dev` and the Portless URL it prints; `pnpm exec portless get doom-or-bloom --no-worktree` resolves it.
 - use modern typescript
 - no semicolons
 - oxfmt for formatting (`pnpm fix:format`)
@@ -10,7 +10,8 @@
 ## Project context
 
 - Start with [docs/README.md](docs/README.md) for the handoff index and locked product language.
-- Implementing the MVP: follow [docs/mvp-implementation-plan.md](docs/mvp-implementation-plan.md); mark completed tasks `[x]` and commit at its checkpoints.
+- Persistence, anonymous ownership, synchronous assessment operations, public assessments, personas, or X login: follow [docs/persistence-implementation-plan.md](docs/persistence-implementation-plan.md) and [docs/PERSISTENCE.md](docs/PERSISTENCE.md); mark verified tasks `[x]` and commit at checkpoints. Use native local Postgres; no Docker.
+- Implementing the original MVP: follow [docs/mvp-implementation-plan.md](docs/mvp-implementation-plan.md); mark completed tasks `[x]` and commit at its checkpoints.
 - Product scope or UI: [docs/PRODUCT.md](docs/PRODUCT.md). Use shadcn/ui for recurring primitives.
 - Profiles, routing, answer recovery, readiness, or projections: [docs/ASSESSMENT.md](docs/ASSESSMENT.md).
 - Jev integration or inference boundaries: [docs/TYPESAFE.md](docs/TYPESAFE.md).

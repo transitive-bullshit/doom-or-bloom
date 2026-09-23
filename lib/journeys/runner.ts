@@ -169,6 +169,9 @@ export async function runPersona(
   let earlyResult = false
   const answerSnapshots = !mechanical
   let latestResult = resume?.result ?? null
+  let latestResultAssessment = resume?.finalAssessment
+    ? structuredClone(resume.finalAssessment)
+    : null
   async function step(
     operation: Operation,
     reply?: { text: string; key: string },
@@ -225,6 +228,7 @@ export async function runPersona(
       recorded.resultState = projectionInput(previous, bundle)
       delete recorded.resultUnavailable
       latestResult = response.assessment.result
+      latestResultAssessment = structuredClone(response.assessment)
       if (recorded.trace && response.debug) {
         recorded.trace.stages.push(...response.debug.stages)
         recorded.trace.decisions.push(...response.debug.decisions)
@@ -294,6 +298,7 @@ export async function runPersona(
       if (state.result?.evidenceRevision === state.evidenceRevision) {
         recorded.result = state.result
         latestResult = state.result
+        latestResultAssessment = structuredClone(state)
       } else if (readiness.ready) {
         recorded.resultUnavailable =
           'Projection did not complete; inspect the saved failure.'
@@ -316,7 +321,13 @@ export async function runPersona(
       stopped = 'saved operation resumed'
     } else {
       for (const text of prelude) await step({ type: 'answer', text })
-      if (prelude.length && state.status === 'paused')
+      if (
+        prelude.length &&
+        state.status === 'recovery' &&
+        ['exhausted', 'stopped', 'navigation'].includes(
+          state.recovery.reason ?? ''
+        )
+      )
         await step({ type: 'retry' })
       for (let i = 0; i < (fixed ? fixed.length : turns); i++) {
         if (fixed) {
@@ -412,7 +423,12 @@ export async function runPersona(
           const reply = mechanical.reply(prompt)
           await step({ type: 'answer', text: reply.text }, reply)
         }
-        if (state.status === 'paused') {
+        if (
+          state.status === 'recovery' &&
+          ['exhausted', 'stopped', 'navigation'].includes(
+            state.recovery.reason ?? ''
+          )
+        ) {
           stopped = 'paused for recovery or unavailable evidence'
           break
         }
@@ -464,7 +480,12 @@ export async function runPersona(
         await step({ type: 'project' })
       else if (!(answerSnapshots ? latestResult : state.result))
         stopped =
-          state.status === 'paused' ? stopped : 'more supported coverage needed'
+          state.status === 'recovery' &&
+          ['exhausted', 'stopped', 'navigation'].includes(
+            state.recovery.reason ?? ''
+          )
+            ? stopped
+            : 'more supported coverage needed'
     }
   } catch (err) {
     // Transport bodies may contain credentials: save completed steps only and a
@@ -507,6 +528,16 @@ export async function runPersona(
       if (recorded.result)
         recorded.result = applyPublicPdoom(recorded.result, statement)!
   }
+  if (live) {
+    const final = answerSnapshots ? latestResultAssessment : state
+    if (final && journey.result)
+      journey.finalAssessment = {
+        ...structuredClone(final),
+        result: structuredClone(journey.result),
+        draft: '',
+        eventMarkers: []
+      }
+  }
   return journey
 }
 
@@ -518,6 +549,7 @@ export async function runJourneySuite({
   participant,
   budgetReport,
   costReport,
+  onStart,
   onJourney
 }: {
   id: string
@@ -527,7 +559,17 @@ export async function runJourneySuite({
   participant?: Participant
   budgetReport?: () => JourneySuite['requestBudget']
   costReport?: () => JourneySuite['cost']
-  onJourney?: (journey: Journey) => void
+  onStart?: (
+    persona: Persona,
+    provenance: {
+      runId: string
+      createdAt: string
+      inputHash: string
+      engineHash: string
+      contentHash: string
+    }
+  ) => Promise<void>
+  onJourney?: (journey: Journey) => void | Promise<void>
 }) {
   if (live?.kind !== 'live' || !participant)
     throw new Error(
@@ -541,7 +583,9 @@ export async function runJourneySuite({
     : allPersonas
   if (!selected.length) throw new Error('Unknown persona')
   const journeys: Journey[] = []
+  const createdAt = new Date().toISOString()
   for (const persona of selected) {
+    await onStart?.(persona, { runId: id, createdAt, ...hashes })
     const journey = await runPersona(
       persona,
       bundle,
@@ -550,13 +594,13 @@ export async function runJourneySuite({
       persona.id === fixedUserPersona.id ? undefined : participant
     )
     journeys.push(journey)
-    onJourney?.(journey)
+    await onJourney?.(journey)
     if (journey.error && journey.accepted === 0) break
   }
   const suite: JourneySuite = {
     schemaVersion: 1,
     id,
-    createdAt: new Date().toISOString(),
+    createdAt,
     mode: 'live',
     authoring: 'OpenAI participant with live Jev assessment',
     versions: {

@@ -11,6 +11,7 @@ export function createAssessment(
     id,
     revision: 0,
     evidenceRevision: 0,
+    promptCeiling: limits.prompts,
     versions: { ...versions, model },
     status: 'answering',
     prompts: [
@@ -53,8 +54,30 @@ export function currentPrompt(state: Assessment) {
 export function eligible(state: Assessment) {
   return evidenceReadiness(state).ready
 }
+export function promptLimit(state: Pick<Assessment, 'promptCeiling'>) {
+  return state.promptCeiling ?? limits.prompts
+}
 export function atCap(state: Assessment) {
-  return state.prompts.length >= limits.prompts
+  return state.prompts.length >= promptLimit(state)
+}
+export function forkAssessment(source: Assessment, id: string): Assessment {
+  if (source.prompts.length >= limits.maxPrompts)
+    throw new Error(
+      'This conversation has reached 30 questions. Start a new assessment.'
+    )
+  return {
+    ...structuredClone(source),
+    id,
+    revision: 0,
+    draft: '',
+    eventMarkers: [],
+    promptCeiling: Math.min(
+      source.prompts.length + limits.prompts,
+      limits.maxPrompts
+    ),
+    status: 'results',
+    recovery: { ...source.recovery, paperclipActive: false }
+  }
 }
 export function hasAnswered(state: Assessment) {
   return state.answers.some(
@@ -118,7 +141,7 @@ export function recordDisposition(
     disposition === 'usable'
       ? 'answering'
       : evaluated >= limits.recovery || disposition === 'navigation'
-        ? 'paused'
+        ? 'recovery'
         : 'recovery'
   return {
     ...state,
@@ -155,6 +178,7 @@ export function acceptAnswer(state: Assessment, answer: Answer): Assessment {
   return {
     ...state,
     answers: [...state.answers, answer],
+    result: null,
     evidenceRevision: state.evidenceRevision + 1,
     draft: '',
     recovery: {

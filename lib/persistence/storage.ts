@@ -21,7 +21,7 @@ export function loadAssessment(storage: StorageLike): Loaded {
       if (typeof data.token !== 'string') return { kind: 'invalid', raw }
       // Older paperclip interludes paused an otherwise answerable question.
       if (
-        assessment.status === 'paused' &&
+        assessment.status === 'recovery' &&
         assessment.recovery.paperclipShown &&
         assessment.recovery.reason === 'non_answer' &&
         assessment.recovery.evaluated < 3

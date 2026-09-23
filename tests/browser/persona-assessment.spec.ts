@@ -20,9 +20,10 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
   })
   await expect(ctas).toHaveCount(2)
   const header = page.locator('main header')
-  const heading = await header.getByRole('heading', { level: 1 }).boundingBox()
-  const cta = await ctas.first().boundingBox()
-  expect(cta!.x).toBeGreaterThan(heading!.x + heading!.width)
+  await expect(header).toHaveCSS('margin-top', '0px')
+  await expect(
+    header.getByRole('link', { name: 'Map your own worldview' })
+  ).toHaveCount(0)
   const reasoning = page
     .getByRole('region', {
       name: 'Debug info',
@@ -93,11 +94,6 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
   await expect(reasoning).toContainText('completeParticipantEvidence')
   await page.setViewportSize({ width: 390, height: 844 })
   const mobileHeader = await header.boundingBox()
-  const mobileCta = await ctas.first().boundingBox()
-  const mobileHeading = await header
-    .getByRole('heading', { level: 1 })
-    .boundingBox()
-  expect(mobileCta!.y).toBeGreaterThan(mobileHeading!.y + mobileHeading!.height)
   expect(mobileHeader!.width).toBeLessThan(390)
   expect(
     await page.evaluate(
@@ -133,4 +129,19 @@ test('JSON field tooltips anchor to their text on wide screens', async ({
   await expect(page.getByRole('tooltip')).toHaveCount(0)
   await page.keyboard.press('Enter')
   await expect(row).toHaveAttribute('aria-expanded', 'true')
+})
+
+test('persona profile labels use the handle and empty milestone timelines are omitted', async ({
+  page
+}) => {
+  await page.goto('/users/tszzl')
+  await expect(
+    page
+      .locator('main header')
+      .getByRole('link', { name: 'x.com/tszzl', exact: true })
+  ).toBeVisible()
+  await expect(page.getByText(/milestone timeline$/)).toHaveCount(0)
+  await expect(
+    page.getByText(/No milestone timing was established/)
+  ).toHaveCount(0)
 })

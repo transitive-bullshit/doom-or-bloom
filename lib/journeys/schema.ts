@@ -177,6 +177,7 @@ const failedOperationSchema = z.strictObject({
 export type FailedOperation = z.infer<typeof failedOperationSchema>
 
 export const journeySchema = z.strictObject({
+  finalAssessment: assessmentSchema.optional(),
   personaId: z.string(),
   personaSnapshot: z
     .union([mechanicalCaseSchema, recordedBackgroundSchema])

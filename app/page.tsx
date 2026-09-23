@@ -5,6 +5,7 @@ import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
 import '@/components/landing/landing.css'
 
+export const dynamic = 'force-dynamic'
 export const metadata = pageMetadata(publicPages[0]!)
 
 export default async function Page() {

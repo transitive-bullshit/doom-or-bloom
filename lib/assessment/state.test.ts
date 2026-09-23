@@ -112,3 +112,25 @@ describe('bounded assessment', () => {
     ).toBe(false)
   })
 })
+
+test('forks append budgets without rewriting inherited prompts or attempts', async () => {
+  const { forkAssessment, promptLimit } = await import('./state')
+  let source = createAssessment('source')
+  for (let i = 1; i < 12; i++) source = issuePrompt(source, next)
+  const inherited = structuredClone(source)
+  let fork = forkAssessment(source, 'fork')
+  expect(promptLimit(fork)).toBe(24)
+  expect(fork.prompts).toEqual(source.prompts)
+  for (let i = 12; i < 24; i++) fork = issuePrompt(fork, next)
+  expect(atCap(fork)).toBe(true)
+  const second = forkAssessment(fork, 'second')
+  expect(promptLimit(second)).toBe(30)
+  let full = second
+  for (let i = 24; i < 30; i++) full = issuePrompt(full, next)
+  expect(() => issuePrompt(full, next)).toThrow()
+  expect(() => forkAssessment(full, 'too-many')).toThrow(/30/)
+  expect(source).toEqual(inherited)
+  expect(
+    promptLimit(forkAssessment(createAssessment('early'), 'early-fork'))
+  ).toBe(13)
+})

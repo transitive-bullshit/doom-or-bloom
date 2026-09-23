@@ -1,0 +1,1 @@
+ALTER TABLE "assessments" ADD COLUMN "published_profile" jsonb;

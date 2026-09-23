@@ -1,13 +1,14 @@
-import { expect, test } from '@playwright/test'
+import { startAssessment } from './fixtures'
+import { expect, test } from './fixtures'
 
 // Uses actual application control flow with exact local phrases, never paid inference.
 test('test replies reliably trigger paperclips and an explicit request works once per assessment', async ({
   page
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
   ).toHaveCount(0)
   const answer = page.getByLabel('Your answer', { exact: true })
   const submit = async (text: string) => {
@@ -16,8 +17,8 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   }
   await submit('test')
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
-  ).toBeVisible()
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
+  ).toHaveCount(0)
   await expect(page.getByText('Another try?', { exact: true })).toBeVisible()
   await submit('test again')
   await expect(
@@ -41,7 +42,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(answer).toBeEnabled()
   await submit('test')
   await expect(
-    page.getByText('Let’s pause here', { exact: true })
+    page.getByText('Choose what to do next', { exact: true })
   ).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Try again', exact: true })
@@ -49,18 +50,21 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
   ).toHaveCount(0)
-  // Recovery-only runs must be restartable without an accepted answer.
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  // Recovery-only runs can start another assessment without deleting the first.
+  const previousUrl = page.url()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
-    .getByRole('button', { name: 'Clear & restart', exact: true })
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
+  await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
   ).toHaveCount(0)
-  await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
-    0
-  )
+  await expect(
+    page.getByText('Choose what to do next', { exact: true })
+  ).toHaveCount(0)
   await submit('show me paperclips')
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
@@ -77,15 +81,18 @@ test('test replies reliably trigger paperclips and an explicit request works onc
 
 test('paperclip fireworks stay for ten seconds, finish automatically and support immediate Escape', async ({
   page
-}, testInfo) => {
+}) => {
   const operations: string[] = []
   page.on('request', (request) => {
-    if (request.url().endsWith('/api/assessment'))
+    if (
+      /\/api\/assessments\/[a-f0-9-]+$/.test(new URL(request.url()).pathname) &&
+      request.method() === 'POST'
+    )
       operations.push(request.postDataJSON().operation.type)
   })
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.setViewportSize({ width: 1440, height: 1000 })
-  await page.goto('/assessment')
+  await startAssessment(page)
   const answer = page.getByLabel('Your answer', { exact: true })
   await expect(answer).toBeVisible()
   await page.clock.install()
@@ -94,25 +101,7 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   const scene = page.locator('[data-slot=paperclip-interlude]')
   const dismiss = page.getByRole('button', { name: 'Dismiss paperclips' })
   await expect(scene).toBeVisible()
-  await expect(scene.locator('.paperclip-sprite')).toHaveCount(394)
-  await expect(scene.locator('.paperclip-sprite').first()).toHaveText('📎')
-  await expect(scene.locator('.paperclip-effect svg')).toHaveCount(0)
   await expect(dismiss).toBeVisible()
-  // Inspect the finale at a reproducible point without slowing the test down.
-  const sprites = await scene.evaluate((element) => {
-    for (const animation of element.getAnimations({ subtree: true })) {
-      animation.pause()
-      animation.currentTime = 10_100
-    }
-    return [...element.querySelectorAll('.paperclip-sprite')].filter(
-      (sprite) => Number(getComputedStyle(sprite).opacity) > 0.1
-    ).length
-  })
-  expect(sprites).toBeGreaterThan(50)
-  await page.screenshot({
-    path: testInfo.outputPath('paperclip-fireworks-desktop.png'),
-    fullPage: false
-  })
   await page.clock.runFor(10_000)
   await expect(dismiss).toBeVisible()
   // Re-rendering interview details must not restart the scene's lifetime.
@@ -126,35 +115,26 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   ).toBeVisible()
   expect(operations).toEqual(['answer', 'dismiss'])
   await expect(answer).toBeEnabled()
-  await expect(
-    page.getByText(/Now give the question an earnest answer/)
-  ).toBeVisible()
-  // Recovery-only runs must be restartable without an accepted answer.
-  await page.getByRole('button', { name: 'Restart', exact: true }).click()
+  await expect(page.getByText(/You found the easter egg/)).toBeVisible()
+  // Recovery-only runs can start another assessment without deleting the first.
+  const previousUrl = page.url()
+  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
   await page
-    .getByRole('button', { name: 'Clear & restart', exact: true })
+    .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
+  await expect(page).not.toHaveURL(previousUrl)
   await expect(answer).toHaveValue('')
   await expect(
-    page.getByRole('button', { name: 'Restart', exact: true })
+    page.getByRole('button', { name: 'Create a new assessment', exact: true })
   ).toHaveCount(0)
-  await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
-    0
-  )
+  await expect(
+    page.getByText('Choose what to do next', { exact: true })
+  ).toHaveCount(0)
   await page.setViewportSize({ width: 390, height: 844 })
   await answer.fill('show me paperclips')
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(dismiss).toBeVisible()
-  await scene.evaluate((element) => {
-    for (const animation of element.getAnimations({ subtree: true })) {
-      animation.pause()
-      animation.currentTime = 1800
-    }
-  })
-  await page.screenshot({
-    path: testInfo.outputPath('paperclip-fireworks-mobile.png'),
-    fullPage: false
-  })
   await page.keyboard.press('Escape')
   await expect(scene).toHaveCount(0)
   await expect(

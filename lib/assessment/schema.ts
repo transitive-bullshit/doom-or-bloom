@@ -24,6 +24,7 @@ export const vectorSchema = z.enum(vectorIds)
 export type VectorId = z.infer<typeof vectorSchema>
 export const limits = {
   prompts: 12,
+  maxPrompts: 30,
   warning: 10,
   recovery: 3,
   answerChars: 20_000,
@@ -42,7 +43,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.6.0',
+  assessment: '0.6.1',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -57,6 +58,7 @@ export const supportedAssessmentVersions = [
   '0.3.0',
   '0.4.0',
   '0.5.0',
+  '0.6.0',
   versions.assessment
 ]
 export const rootPrompt = 'What do you think AI means for our future—and why?'
@@ -126,7 +128,7 @@ export const promptInstanceSchema = z.strictObject({
   promptId: z.string().max(120),
   text: z.string().max(2000),
   family: z.string().max(80),
-  ordinal: z.number().int().min(1).max(limits.prompts),
+  ordinal: z.number().int().min(1).max(limits.maxPrompts),
   variant: z.string().max(80),
   quotedClaims: z
     .array(z.strictObject({ answerId: z.string(), text: z.string().max(360) }))
@@ -349,18 +351,20 @@ export const currentAssessmentSchema = z.strictObject({
   id: z.string().max(120),
   revision: z.number().int().min(0),
   evidenceRevision: z.number().int().min(0),
+  promptCeiling: z.number().int().min(1).max(limits.maxPrompts).optional(),
   versions: versionsSchema,
-  status: z.enum([
-    'answering',
-    'recovery',
-    'paused',
-    'results',
-    'completed',
-    'capped'
-  ]),
-  prompts: z.array(promptInstanceSchema).min(1).max(limits.prompts),
-  answers: z.array(answerSchema).max(limits.prompts),
-  attempts: z.array(attemptSchema).max(limits.prompts * limits.recovery),
+  status: z.preprocess(
+    (value) =>
+      value === 'completed'
+        ? 'results'
+        : value === 'paused'
+          ? 'recovery'
+          : value,
+    z.enum(['answering', 'recovery', 'results', 'capped'])
+  ),
+  prompts: z.array(promptInstanceSchema).min(1).max(limits.maxPrompts),
+  answers: z.array(answerSchema).max(limits.maxPrompts),
+  attempts: z.array(attemptSchema).max(limits.maxPrompts * limits.recovery),
   interactionHistory: z
     .array(
       z.strictObject({
@@ -372,10 +376,10 @@ export const currentAssessmentSchema = z.strictObject({
     )
     .default([]),
   judgments: z.array(judgmentSchema).max(5000),
-  evidence: z.array(evidenceSchema).max(limits.prompts * vectorIds.length),
+  evidence: z.array(evidenceSchema).max(limits.maxPrompts * vectorIds.length),
   referenceClaims: z
     .array(referenceClaimSchema)
-    .max(limits.prompts * limits.resolvedReferences)
+    .max(limits.maxPrompts * limits.resolvedReferences)
     .default([]),
   familiarity: z
     .strictObject({
@@ -451,13 +455,13 @@ const legacyAssessmentSchema = currentAssessmentSchema
           context: z.strictObject(legacyContext).optional()
         })
       )
-      .max(limits.prompts),
+      .max(limits.maxPrompts),
     evidence: z
       .array(evidenceSchema.extend({ spanId: z.string(), ...legacyContext }))
-      .max(limits.prompts * vectorIds.length),
+      .max(limits.maxPrompts * vectorIds.length),
     referenceClaims: z
       .array(referenceClaimSchema.extend({ spanId: z.string() }))
-      .max(limits.prompts * limits.resolvedReferences)
+      .max(limits.maxPrompts * limits.resolvedReferences)
       .default([])
   })
   .transform((old): Assessment => {
@@ -515,8 +519,7 @@ export const operationSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('skip') }),
   z.strictObject({ type: z.literal('retry') }),
   z.strictObject({ type: z.literal('dismiss') }),
-  z.strictObject({ type: z.literal('stop') }),
-  z.strictObject({ type: z.literal('complete') })
+  z.strictObject({ type: z.literal('stop') })
 ])
 export type Operation = z.infer<typeof operationSchema>
 export const requestSchema = z.strictObject({

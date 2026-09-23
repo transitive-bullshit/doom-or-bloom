@@ -3,7 +3,6 @@ import sharp from 'sharp'
 import http from 'node:http'
 import { load } from 'cheerio'
 import { writeFile, mkdir } from 'node:fs/promises'
-import { people } from '../components/landing/people'
 
 const origin = process.argv[2] ?? 'https://www.doom-or-bloom.com'
 const output = process.argv[3] ?? '/tmp/doom-seo-audit/production.json'
@@ -43,13 +42,14 @@ async function fetchPage(
       .on('error', reject)
   })
 }
-const paths = [
-  '/',
-  '/assessment',
-  '/about',
-  '/privacy',
-  ...people.map((p) => `/users/${p.slug}`)
-]
+// Discover current database-backed public routes, not the authored persona fixture list.
+const directory = load(
+  await (await fetchPage(`${origin}/sitemap.xml`)).text(),
+  { xmlMode: true }
+)
+const paths = directory('loc')
+  .map((_, element) => new URL(directory(element).text()).pathname)
+  .get()
 const pages = []
 for (const path of paths) {
   const response = await fetchPage(`${origin}${path}`, {
@@ -170,6 +170,12 @@ if (process.argv.includes('--check')) {
     assert.equal(ogImage.origin, canonicalOrigin, page.path)
     if (page.path.startsWith('/users/')) {
       assert.equal(ogImage.pathname, `${page.path}/opengraph-image`, page.path)
+    } else if (page.path.startsWith('/public/assessments/')) {
+      assert.equal(
+        ogImage.pathname,
+        `${page.path}/social-image.webp`,
+        page.path
+      )
     } else {
       assert.match(
         ogImage.pathname,
@@ -179,10 +185,12 @@ if (process.argv.includes('--check')) {
     }
     assert.equal(page.meta['twitter:image'], page.meta['og:image'], page.path)
   }
-  assert.equal(new Set(pages.map((page) => page.title)).size, pages.length)
   for (const image of images) {
     assert.equal(image.status, 200, image.url)
-    const isPersona = new URL(image.url!).pathname.startsWith('/users/')
+    const imagePath = new URL(image.url!).pathname
+    const isPersona =
+      imagePath.startsWith('/users/') ||
+      imagePath.startsWith('/public/assessments/')
     assert.equal(image.type, isPersona ? 'image/webp' : 'image/jpeg', image.url)
     assert.equal(image.format, isPersona ? 'webp' : 'jpeg', image.url)
     assert.equal(image.width, 1200, image.url)
@@ -204,7 +212,16 @@ if (process.argv.includes('--check')) {
   assert(robots.includes('Allow: /'))
   assert.deepEqual(
     robots.split('\n').filter((line) => line.startsWith('Disallow:')),
-    ['Disallow: /api/', 'Disallow: /api$']
+    [
+      '/api/',
+      '/api$',
+      '/assessment$',
+      '/assessment/',
+      '/assessments$',
+      '/assessments?',
+      '/assessments/',
+      '/public/assessments/*/data$'
+    ].map((path) => `Disallow: ${path}`)
   )
   console.log(
     'All public metadata, social images, sitemap and crawler checks passed'

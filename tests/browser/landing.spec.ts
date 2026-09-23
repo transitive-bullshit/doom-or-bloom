@@ -1,5 +1,4 @@
-import { personaIdentity } from '../../lib/journeys/persona-identity'
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 
 test('landing portraits use tooltips and link to results; assessment drafts survive a trip home', async ({
   page
@@ -41,24 +40,23 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   ).toContainText('Human influence')
   await page
     .getByRole('link', { name: 'Map your own worldview' })
-    .first()
+    .last()
     .click()
-  await expect(page).toHaveURL(/\/assessment$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
+  const savedUrl = page.url()
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.fill('A draft that should survive navigation.')
   await page.getByRole('link', { name: 'Doom or Bloom', exact: true }).click()
-  await page.getByRole('link', { name: 'Map your own worldview' }).click()
-  await expect(answer).toHaveValue('A draft that should survive navigation.')
+  await expect(page).toHaveURL(/\/$/)
   await page.goBack()
-  await expect(
-    page.getByRole('heading', { name: 'How will AI change our future?' })
-  ).toBeVisible()
+  await expect(page).toHaveURL(savedUrl)
+  await expect(answer).toHaveValue('A draft that should survive navigation.')
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
-  const cta = page.getByRole('link', { name: 'Map your own worldview' })
+  const cta = page.getByRole('link', { name: 'Map your own worldview' }).last()
   await cta.scrollIntoViewIfNeeded()
   await expect(cta).toBeInViewport()
 })
@@ -114,7 +112,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
   await expect(map.locator('.map-stat')).toHaveCount(0)
   await expect(map.getByRole('heading', { level: 2 })).toHaveCSS(
     'font-size',
-    '36px'
+    '24px'
   )
   const portrait = map.locator('[data-persona-marker]')
   const summary = (await portrait.getAttribute('aria-label'))!.replace(
@@ -153,131 +151,6 @@ test('persona probability uses a dated public statement with its outcome and sou
   ).toBeVisible()
   await expect(page.getByText(/Public statement from 2026-08-28/)).toBeVisible()
   await expect(page.getByText(/Separately states 30%/)).toBeVisible()
-})
-
-test('new safety researchers have live results, portraits and grounded sources', async ({
-  page
-}) => {
-  for (const person of [
-    {
-      id: 'superintelligence-stop-advocate',
-      name: 'Nate Soares',
-      video: 'https://www.youtube.com/watch?v=98syxABbUPk',
-      avatar: 'soares'
-    },
-    {
-      id: 'empirical-control-researcher',
-      name: 'Ryan Greenblatt',
-      video: 'https://www.youtube.com/watch?v=-RXD4bTuFTo',
-      avatar: 'greenblatt'
-    }
-  ]) {
-    await page.goto(`/users/${personaIdentity(person.id).slug}`)
-    await expect(
-      page.getByRole('heading', { level: 1, name: person.name })
-    ).toBeVisible()
-    await expect(page.locator('[data-persona-marker] image')).toHaveAttribute(
-      'href',
-      `/personas/${person.avatar}.jpg`
-    )
-    await expect(
-      page
-        .getByRole('region', { name: 'Sources', exact: true })
-        .locator(`a[href="${person.video}"]`)
-    ).toBeVisible()
-    await expect(
-      page.getByRole('button', { name: /View questions and simulated answers/ })
-    ).toHaveAttribute('aria-expanded', 'true')
-    await expect(
-      page
-        .getByRole('region', { name: 'Simulated Assessment', exact: true })
-        .locator('article')
-        .first()
-    ).toBeVisible()
-  }
-  await expect(page.getByText('35–40%', { exact: true })).toBeVisible()
-  await expect(
-    page.getByText('AI takeover; not an extinction-only forecast', {
-      exact: true
-    })
-  ).toBeVisible()
-  await page.goto('/')
-  await expect(
-    page.locator('a.study-point[href="/users/so8res"]')
-  ).toBeVisible()
-  await expect(
-    page.locator('a.study-point[href="/users/ryangreenblatt"]')
-  ).toBeVisible()
-})
-
-test('new worldview writers have live journeys and source-grounded persona pages', async ({
-  page
-}) => {
-  const people = [
-    {
-      id: 'alignment-philosopher',
-      name: 'Joe Carlsmith',
-      avatar: 'carlsmith',
-      source:
-        'https://joecarlsmith.com/2026/03/19/on-restraining-ai-development-for-the-sake-of-safety/'
-    },
-    {
-      id: 'rationalist-safety-advocate',
-      name: 'Scott Alexander',
-      avatar: 'alexander',
-      source: 'https://www.astralcodexten.com/p/my-ai-opinions'
-    },
-    {
-      id: 'takeoff-forecaster',
-      name: 'Daniel Kokotajlo',
-      avatar: 'kokotajlo',
-      source: 'https://ai-2040.com'
-    },
-    {
-      id: 'institutional-growth-optimist',
-      name: 'Tyler Cowen',
-      avatar: 'cowen',
-      source: 'https://tylercowen.com/human-life-in-a-post-agi-world-talk/'
-    }
-  ]
-  for (const person of people) {
-    await page.goto(`/users/${personaIdentity(person.id).slug}`)
-    await expect(
-      page.getByRole('heading', { level: 1, name: person.name })
-    ).toBeVisible()
-    await expect(page.locator('[data-persona-marker] image')).toHaveAttribute(
-      'href',
-      `/personas/${person.avatar}.jpg`
-    )
-    await expect(
-      page
-        .getByRole('region', { name: 'Sources', exact: true })
-        .locator(`a[href="${person.source}"]`)
-    ).toBeVisible()
-    await expect(
-      page.getByRole('button', { name: /View questions and simulated answers/ })
-    ).toHaveAttribute('aria-expanded', 'true')
-    await expect(
-      page
-        .getByRole('region', { name: 'Simulated Assessment', exact: true })
-        .locator('article')
-        .first()
-    ).toBeVisible()
-    if (person.avatar === 'alexander') {
-      await expect(
-        page.getByText('Scott Alexander’s stated P(doom)', { exact: true })
-      ).toBeVisible()
-      await expect(page.getByText('20%', { exact: true })).toBeVisible()
-    }
-  }
-  await page.goto('/')
-  for (const person of people) {
-    await expect(
-      page.locator(
-        `a.study-point[href="/users/${personaIdentity(person.id).slug}"]`
-      )
-    ).toBeVisible()
-  }
 })
 
 test('persona answer references reopen the transcript and navigate to the exact answer', async ({
@@ -376,10 +249,12 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
       hydrationErrors.push(message.text())
   })
   await page.goto('/')
-  const cta = page.getByRole('link', {
-    name: 'Map your own worldview',
-    exact: true
-  })
+  const cta = page
+    .getByRole('link', {
+      name: 'Map your own worldview',
+      exact: true
+    })
+    .last()
   await expect(cta).toHaveAttribute('data-slot', 'primary-cta')
   await expect(cta).toHaveAttribute('data-expanded', 'false')
   const initial = await cta.boundingBox()
@@ -393,7 +268,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
   await cta.focus()
   await expect(cta).toHaveAttribute('data-expanded', 'true')
   await page.keyboard.press('Enter')
-  await expect(page).toHaveURL(/\/assessment$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   await page.emulateMedia({ reducedMotion: 'reduce', colorScheme: 'dark' })
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/users/esyudkowsky')
@@ -408,7 +283,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
     .first()
     .screenshot({ path: testInfo.outputPath('cta-dark-mobile.png') })
   await userCtas.last().click()
-  await expect(page).toHaveURL(/\/assessment$/)
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
   expect(hydrationErrors).toEqual([])
 })
 

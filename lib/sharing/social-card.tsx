@@ -1,3 +1,4 @@
+import { resultCardData } from './card-data'
 import type { Result } from '@/lib/assessment/schema'
 import { Plot, type CardData } from './card'
 
@@ -10,18 +11,7 @@ export const socialImageOptions = {
 } as const
 
 export function socialCardData(result: Result): CardData {
-  return {
-    closestPersonaIds: [],
-    horizontal: result.horizontal.value,
-    horizontalRange: result.horizontal.range,
-    vertical: result.vertical.value,
-    verticalRange: result.vertical.range,
-    transformation: result.experiment?.transformation.value ?? null,
-    transformationRange: result.experiment?.transformation.range ?? [0, 1],
-    transformationInterpretation:
-      result.experiment?.transformation.interpretation,
-    provisional: result.provisional
-  }
+  return resultCardData(result)
 }
 
 export function SocialCard({
@@ -36,6 +26,10 @@ export function SocialCard({
   }
   points?: { x: number; y: number; portrait: string }[]
 }) {
+  const title = person
+    ? `${person.name}’s AI worldview`
+    : 'How will AI change our future?'
+  const displayTitle = title.length > 64 ? `${title.slice(0, 61)}…` : title
   return (
     <div
       style={{
@@ -64,15 +58,17 @@ export function SocialCard({
       </div>
       <div
         style={{
-          fontSize: 48,
+          fontSize: title.length > 44 ? 32 : 48,
           fontWeight: 700,
           letterSpacing: -1.5,
-          marginTop: 20
+          marginTop: 20,
+          lineClamp: 1,
+          height: 58,
+          flexShrink: 0,
+          overflow: 'hidden'
         }}
       >
-        {person
-          ? `${person.name}’s AI worldview`
-          : 'How will AI change our future?'}
+        {displayTitle}
       </div>
       <div
         style={{

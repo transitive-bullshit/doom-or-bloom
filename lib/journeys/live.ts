@@ -12,6 +12,7 @@ import { fixedUserPersona } from './fixed'
 import { personas } from './catalog'
 import { loadBundle } from '@/lib/content/loader'
 import { suiteSchema } from './schema'
+import { generationHooks } from '../personas/generation-hooks'
 
 export async function runLiveJourneys({
   personaId,
@@ -45,6 +46,7 @@ export async function runLiveJourneys({
     budget,
     maxRequests: (personaId ? 1 : personas.length) * turns
   })
+  const persistence = generationHooks()
   const suite = await runJourneySuite({
     id: `${Date.now()}-${randomUUID()}`,
     personaId,
@@ -53,7 +55,11 @@ export async function runLiveJourneys({
     participant,
     budgetReport: paid.report,
     costReport: budget.report,
-    onJourney
+    onStart: (persona, provenance) => persistence.onStart(persona, provenance),
+    onJourney: async (journey) => {
+      await persistence.onJourney(journey)
+      onJourney?.(journey)
+    }
   })
   await projectJourneyStore().save(suite)
   return suite
@@ -95,6 +101,10 @@ export async function resumeLiveJourney({
     maxRequests,
     24
   )
+  const id = `${Date.now()}-${randomUUID()}`
+  const createdAt = new Date().toISOString()
+  const persistence = generationHooks()
+  await persistence.onStart(persona, { runId: id, createdAt, ...hashes })
   const journey = await runPersona(
     persona,
     bundle,
@@ -104,10 +114,11 @@ export async function resumeLiveJourney({
     source.exerciseResults,
     previous
   )
+  await persistence.onJourney(journey)
   const suite = suiteSchema.parse({
     ...source,
-    id: `${Date.now()}-${randomUUID()}`,
-    createdAt: new Date().toISOString(),
+    id,
+    createdAt,
     ...hashes,
     resumedFrom: { runId, personaId },
     journeys: [journey],

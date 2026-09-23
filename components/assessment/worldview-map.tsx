@@ -55,9 +55,7 @@ export function Map({
       )}
     >
       <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
-        <h2 className='col-start-2 text-center text-2xl leading-snug font-semibold tracking-tight text-balance sm:text-3xl'>
-          {definition.question}
-        </h2>
+        <h2 className='col-start-2 text-center'>{definition.question}</h2>
         <div className='col-start-3 justify-self-end'>
           <MapActions svg={svg} />
         </div>

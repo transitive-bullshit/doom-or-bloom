@@ -1,5 +1,7 @@
 # Local MVP implementation plan
 
+Persistence follow-up (approved 2026-09-23): use [the persistent assessments plan](persistence-implementation-plan.md) and [PERSISTENCE.md](PERSISTENCE.md) for database persistence, server authority, anonymous sessions, synchronous operations, forks, public URLs, personas and optional X login. Its decisions supersede conflicting exclusions and persistence/budget architecture below. This file retains the original MVP execution history; do not apply its initial-repository/baseline-commit instructions to the already implemented app.
+
 Current override (2026-09-18): algorithm 0.4.0 pauses runtime corpus grounding and uses evidence readiness instead of a three-answer minimum. Apply the current contracts in ASSESSMENT/TYPESAFE; older completed checkpoints below are historical, including paid measurements and reference-stage implementation. Corpus authoring/review remains unfinished. Commit these demo changes after static/fixture verification; do not run paid evaluation.
 
 Status: implementation in progress; see checkboxes and checkpoint log for evidence. Prepared 2026-09-17 after reading all seven handoff documents and inspecting the repository and installed Next.js guides.
@@ -30,7 +32,7 @@ If multiple agents are assigned later, use the ownership boundaries in section 1
 ### Confirmed
 
 - Use Next.js App Router, modern TypeScript, pnpm, oxfmt, oxlint, and the existing CI skeleton.
-- Local development URLs use Portless. Start the app with `pnpm dev`, resolve its URL with `pnpm exec portless get doom-or-bloom`, and reuse the user's existing proxy configuration. Browser checks also use named routes; linked worktrees retain Portless's branch prefix.
+- Local development URLs use Portless. Start the app with `pnpm dev`, resolve its URL with `pnpm exec portless get doom-or-bloom --no-worktree`, and reuse the user's existing proxy configuration. Browser checks also use named routes; linked worktrees retain Portless's branch prefix.
 - Use shadcn/ui for recurring controls and next-themes for light/dark mode. Preserve the existing neutral `new-york` configuration unless deliberately changed.
 - Keep all issued questions and submitted replies in one page-scroll thread, including earlier recovery/navigation replies stored locally. Use bounded answer disclosures, one active composer and read-only previous turns. Do not add an internal transcript scrollbar or inference on disclosure actions.
 - Include an explicit debug-mode boolean that reveals clearly labeled Jev and control-flow details in the local UI, without changing assessment behavior.

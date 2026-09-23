@@ -1,5 +1,7 @@
 # Assessment Methodology
 
+> Persistent participant assessments now support completion, private forks and opt-in publication. [PERSISTENCE.md](PERSISTENCE.md#product-behavior) defines the lifecycle. A new assessment has 12 prompts; a fork adds up to 12, with 30 total across inherited history. Readiness and scoring semantics remain unchanged.
+
 ## Runtime assessments and persona excerpts
 
 End-user assessments use complete answers and whole-answer support only. They do not generate excerpt pools, select or verify passages, extract stated percentages, or issue quoted tension-pair clarifications. The server defaults to runtime mode; only the pre-built persona runner opts into excerpt processing. Existing historical records remain readable.
@@ -94,8 +96,8 @@ MVP weights are authored configuration and must be evaluated, not presented as i
 - Typical assessment: 6–8 prompts.
 - The participant may request results once eligible.
 - Results can be provisional; weak evidence widens interpretation ranges and marks components as unassessed.
-- Clarification after results reopens the assessment.
-- Warn at 10 lifetime prompts; hard stop at 12.
+- Clarification appends to an open assessment. After completion, it creates a separate private fork from the final snapshot.
+- New assessments stop at 12 issued prompts. Forks use `min(inherited prompts + 12, 30)`; warn two prompts before that ceiling. Skips and clarification prompts count; recovery attempts on the same prompt do not. At 30, start a fresh assessment.
 - A response that is empty, purely navigational, or not an answer does not add assessment evidence but still needs abuse/cost controls in implementation.
 
 Readiness depends on relevant coverage and interpretation, never agreement, sophistication, moderation or a high reasoning score. The visible **Evidence readiness** meter is an experimental development heuristic, not a calibrated probability of forecast accuracy.
@@ -129,9 +131,9 @@ Recovery policy for MVP:
 2. After two consecutive clear misses, offer the paperclip interlude defined in [PRODUCT.md](PRODUCT.md#answer-recovery-and-paperclip-interlude). This is a playful UI state, not an inference that the participant “doesn't care.” Show it at most once per assessment, persisting that marker across reloads.
 3. Permit at most **two recovery submissions after the original submission per prompt instance**: three successfully evaluated submissions in total. The once-per-assessment submission that reveals the paperclip interlude does not consume this budget. Keep the answer field enabled, acknowledge the easter egg, and invite an earnest answer; dismissing or finishing the animation preserves that acknowledgement. Further non-answers use the remaining attempts without replaying the interlude. At exhaustion, pause with options to try a different authored question, view an eligible result, stop, or restart. Repeated ambiguity uses the same bound but pauses neutrally without paperclips.
 4. Re-showing/rephrasing the same elicitation goal is the same prompt instance; preserve the displayed variant with each attempt. The fixed root wording stays intact, with recovery guidance beneath it. Choosing a different question issues a new prompt and consumes the lifetime budget; its selection uses prior usable evidence or a deterministic authored fallback, never the nonsense reply.
-5. A usable answer ends recovery and clears the consecutive-miss streak. Rejected attempts never add coverage, lower Epistemic Quality, or become factual evidence in later judgments. Preserve them separately as local interaction history for conversation review/recovery/debugging, explicitly excluded from scoring context. Retain submitted replies rather than evicting older ones at an arbitrary history count; browser storage quota/unavailability uses the existing preservation notice. Unsubmitted drafts remain editable rather than become a transcript turn.
+5. A usable answer ends recovery and clears the consecutive-miss streak. Rejected attempts never add coverage, lower Epistemic Quality, or become factual evidence in later judgments. Preserve them separately in server snapshot interaction history for conversation review/recovery/debugging, explicitly excluded from scoring context. Retain submitted replies rather than evicting older ones at an arbitrary history count; failed operations retain submitted text without changing the last committed snapshot. Unsubmitted drafts remain editable rather than become a transcript turn.
 
-Provider retries are distinct from recovery submissions and must be idempotent with respect to counters. Navigation and validation failures remain subject to request/rate limits but do not consume semantic recovery attempts. The lifetime cap takes precedence over recovery: after processing prompt 12, finalize from usable evidence, with an insufficient-evidence state if necessary. Before result eligibility, stopping preserves a paused assessment and creates no invented placement. The paperclip interlude is never a substitute assessment result.
+Provider retries are distinct from recovery submissions and must be idempotent with respect to counters. Navigation and validation failures remain subject to request/rate limits but do not consume semantic recovery attempts. The lifetime cap takes precedence over recovery: after processing the assessment’s final allowed prompt, finalize from usable evidence, with an insufficient-evidence state if necessary. Before result eligibility, stopping preserves a paused assessment and creates no invented placement. The paperclip interlude is never a substitute assessment result.
 
 ## Reference handling — paused for the local demo
 

@@ -1,12 +1,13 @@
+import { startAssessment, mockEvaluation } from './fixtures'
 import { unzipSync, strFromU8 } from 'fflate'
-import { expect, test } from '@playwright/test'
+import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 
-test('every accepted answer has a collapsed historical result; debug-off runs still export a complete trace', async ({
+test('answer diagnostics preserve traces without generating intermediate results', async ({
   page
 }, testInfo) => {
-  await page.route('**/api/assessment', async (route) => {
+  await mockEvaluation(page, async (input) => {
     const response = JSON.parse(
       execFileSync(
         process.execPath,
@@ -16,17 +17,18 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
           'tsx',
           'tests/browser/diagnostic-engine.ts'
         ],
-        { input: route.request().postData()!, encoding: 'utf8' }
+        { input: JSON.stringify(input), encoding: 'utf8' }
       )
     )
-    await route.fulfill({ json: response })
+    return response
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await expect(
     page.getByRole('button', { name: /^Debug (on|off)$/ })
   ).toBeVisible()
   const debugOn = page.getByRole('button', { name: 'Debug on', exact: true })
-  if (await debugOn.count()) await debugOn.click()
+  await expect(debugOn).toBeVisible()
+  await debugOn.click()
   await page
     .getByLabel('Your answer', { exact: true })
     .fill(
@@ -55,7 +57,7 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
   await disclosure.click()
   await expect(
-    first.locator('[data-slot="worldview-map"]').first()
+    first.getByText(/No results were generated for this answer/)
   ).toBeVisible()
   const expanded = first.locator('.result-breakout')
   const desktopSize = await expanded.boundingBox()
@@ -76,13 +78,8 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
     page.getByRole('button', { name: 'Results after this answer', exact: true })
   ).toHaveCount(2)
   await page.reload()
-  await expect(
-    page.getByRole('button', { name: /^Debug (on|off)$/ })
-  ).toBeVisible()
-  if (
-    await page.getByRole('button', { name: 'Debug off', exact: true }).count()
-  )
-    await page.getByRole('button', { name: 'Debug off', exact: true }).click()
+  // Wait for the saved preference to hydrate rather than toggling the initial off state.
+  await expect(debugOn).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Results after this answer', exact: true })
   ).toHaveCount(2)
@@ -108,13 +105,14 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   expect(data.diagnosticTrace.completeness).toBe('complete')
   const operations = data.diagnosticTrace.operations
   expect(operations).toHaveLength(3)
-  expect(operations[0].assessment.result.evidenceRevision).toBe(1)
-  expect(operations[1].assessment.result.evidenceRevision).toBe(2)
+  expect(operations[0].assessment.result).toBeNull()
+  expect(operations[1].assessment.result).toBeNull()
+  expect(operations[2].assessment.result.evidenceRevision).toBe(2)
   expect(
     operations[0].trace.stages.some(
       (s: { name: string }) => s.name === 'D: projection'
     )
-  ).toBe(true)
+  ).toBe(false)
   expect(
     operations[0].trace.decisions.some(
       (d: { action: string }) =>

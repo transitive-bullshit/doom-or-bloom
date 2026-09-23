@@ -141,7 +141,7 @@ try {
     type: 'answer',
     text: 'Purple waffles dance with moon cheese.'
   })
-  if (recovery.status === 'paused')
+  if (recovery.status === 'recovery')
     recovery = await step(recovery, { type: 'retry' })
   recovery = await step(recovery, {
     type: 'answer',

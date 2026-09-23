@@ -51,7 +51,11 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
             )
           throw new Error(`Unscripted interpret judgment ${id}`)
         }
-        if (state.candidates) {
+        if (
+          state.candidates &&
+          id !== 'central_basis' &&
+          !id.startsWith('facet:')
+        ) {
           if (id.startsWith('outlook:')) {
             const vector = id.split(':')[1]!
             return pick(

@@ -18,7 +18,7 @@ export function PersonaSources({
       className='mt-10 flex flex-col gap-4'
     >
       <div>
-        <h2 className='text-xl font-semibold tracking-tight'>Sources</h2>
+        <h2>Sources</h2>
         <p className='mt-2 text-sm text-muted-foreground'>
           {sourceBriefUpdated
             ? 'Sources for this persona’s current brief.'

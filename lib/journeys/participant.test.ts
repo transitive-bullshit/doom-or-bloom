@@ -107,9 +107,9 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
   ).toHaveLength(2)
   expect(journey.steps[0]!.trace!.stages.map((stage) => stage.name)).toEqual([
     'A: interpret',
+    'C: route',
     'D: projection',
-    'D: result evidence',
-    'C: route'
+    'D: result evidence'
   ])
   expect(journey.result).toEqual(journey.steps[1]!.result)
   expect(journey.participantExchanges).toHaveLength(2)
@@ -248,9 +248,9 @@ test('a failed shared interpretation resumes the saved answer without generating
     },
     participant
   )
-  expect(journey.accepted).toBe(0)
-  expect(journey.steps).toHaveLength(0)
-  expect(journey.failedOperation?.operation.type).toBe('answer')
+  expect(journey.accepted).toBe(1)
+  expect(journey.steps).toHaveLength(1)
+  expect(journey.failedOperation?.operation.type).toBe('project')
   const resumed = await runPersona(
     personas[0]!,
     loadBundle(),

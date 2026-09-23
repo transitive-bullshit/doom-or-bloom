@@ -37,8 +37,8 @@ export function AnswerResult({
           </>
         ) : (
           <p className='text-sm text-muted-foreground'>
-            No result snapshot was recorded for this answer. Older runs cannot
-            reconstruct the original result from the final state.
+            No results were generated for this answer. Its saved state and
+            inference trace are available below.
           </p>
         )}
         {open && operation && (

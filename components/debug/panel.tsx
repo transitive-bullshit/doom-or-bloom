@@ -106,7 +106,7 @@ const StageView = memo(function StageView({
                   key={exchange.attempt}
                   className='flex min-w-0 flex-col gap-3'
                 >
-                  <h4 className='text-sm font-medium'>
+                  <h4>
                     Physical request {exchange.attempt} ·{' '}
                     {exchange.status === null
                       ? 'No HTTP response'
@@ -122,9 +122,7 @@ const StageView = memo(function StageView({
                     data-slot='debug-exchange'
                   >
                     <div className='min-w-0 space-y-3'>
-                      <h5 className='text-sm font-medium'>
-                        Request sent to Jev
-                      </h5>
+                      <h5>Request sent to Jev</h5>
                       <JsonViewer
                         value={exchange.body}
                         dimensions={dimensions}
@@ -133,9 +131,7 @@ const StageView = memo(function StageView({
                       />
                     </div>
                     <div className='min-w-0 space-y-3'>
-                      <h5 className='text-sm font-medium'>
-                        Validated Jev response
-                      </h5>
+                      <h5>Validated Jev response</h5>
                       {exchange.response ? (
                         <JsonViewer
                           value={exchange.response}
@@ -159,7 +155,7 @@ const StageView = memo(function StageView({
                 data-slot='debug-exchange'
               >
                 <div className='min-w-0 space-y-3'>
-                  <h4 className='text-sm font-medium'>
+                  <h4>
                     {fixture
                       ? 'Fixture input'
                       : 'Stage input before SDK batching'}
@@ -177,7 +173,7 @@ const StageView = memo(function StageView({
                   />
                 </div>
                 <div className='min-w-0 space-y-3'>
-                  <h4 className='text-sm font-medium'>
+                  <h4>
                     {fixture
                       ? 'Synthetic fixture response'
                       : 'Merged validated stage response'}
@@ -322,9 +318,7 @@ export function DebugPanel({
                 </FieldGroup>
               )}
               <section className='flex min-w-0 flex-col gap-4'>
-                <h3 className='font-medium'>
-                  Recorded operation: inputs and responses
-                </h3>
+                <h3>Recorded operation: inputs and responses</h3>
                 {trace ? (
                   <>
                     <p className='text-xs text-muted-foreground'>
@@ -355,7 +349,7 @@ export function DebugPanel({
               </section>
               {trace && (
                 <section className='space-y-3'>
-                  <h3 className='font-medium'>Local control-flow decisions</h3>
+                  <h3>Local control-flow decisions</h3>
                   <p className='text-sm text-muted-foreground'>
                     Calculated by application code after interpreting the
                     responses. This is not a Jev response.
@@ -368,7 +362,7 @@ export function DebugPanel({
                 </section>
               )}
               <section className='space-y-3'>
-                <h3 className='font-medium'>Saved assessment state</h3>
+                <h3>Saved assessment state</h3>
                 <p className='text-sm text-muted-foreground'>
                   Local counters, coverage, answer-level support and stored
                   judgments. This object is not sent wholesale to Jev.

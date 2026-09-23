@@ -45,13 +45,7 @@ export function WorldviewDetails({
       aria-label={framing.detailsTitle}
       className='mt-5 flex flex-col gap-4'
     >
-      <h2 className='font-semibold'>{framing.detailsTitle}</h2>
-      {!subject && transformationClaim && (
-        <div className='flex flex-col gap-2'>
-          <h3 className='text-sm font-medium'>Expected transformation</h3>
-          <p className='text-sm text-body-foreground'>{transformationClaim}</p>
-        </div>
-      )}
+      <h4>{framing.detailsTitle}</h4>
       {impacts.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-4'>
           {impacts.map((component) => (
@@ -60,7 +54,7 @@ export function WorldviewDetails({
               className='row-span-5 grid grid-rows-subgrid gap-3'
             >
               <CardHeader className='block'>
-                <CardTitle>{component.label}</CardTitle>
+                <CardTitle className='text-base'>{component.label}</CardTitle>
               </CardHeader>
               <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
                 <p className='text-sm text-body-foreground'>
@@ -103,12 +97,26 @@ export function WorldviewDetails({
           ))}
         </div>
       )}
-      {positions.length > 0 && (
+      {(positions.length > 0 || (!subject && transformationClaim)) && (
         <div className='grid gap-3 sm:grid-cols-2'>
+          {!subject && transformationClaim && (
+            <Card className='row-span-2 grid grid-rows-subgrid'>
+              <CardHeader className='block'>
+                <CardTitle className='text-base'>
+                  Expected transformation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className='text-sm text-body-foreground'>
+                  {transformationClaim}
+                </p>
+              </CardContent>
+            </Card>
+          )}
           {positions.map(({ facet, component }) => (
             <Card key={facet.id} className='row-span-2 grid grid-rows-subgrid'>
               <CardHeader className='block'>
-                <CardTitle>{facet.label}</CardTitle>
+                <CardTitle className='text-base'>{facet.label}</CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col gap-2'>
                 {facet.levels.map((level) => (

@@ -21,6 +21,7 @@
   text-align: center;
   margin-bottom: 36px;
 }
+/* Deliberate display-heading exception to the shared document heading scale. */
 .study-heading h1 {
   font-size: clamp(40px, 5.2vw, 76px);
   font-weight: 500;
@@ -222,15 +223,21 @@
     text-align: center;
   }
 }
-/* Only pointer hover gets motion; focus and touch remain immediate. */
+/* Scale the link, including its ring and label, without moving its map position. */
+@media (prefers-reduced-motion: no-preference) {
+  .map-study:not(:has(:focus-visible)) .study-point:active {
+    --portrait-scale: 0.98;
+  }
+}
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .map-study:not(:has(:focus-visible)) .study-point img {
+  .map-study:not(:has(:focus-visible)) .study-chart .study-point {
     transition: transform 100ms var(--ease-out);
   }
-  .map-study:not(:has(:focus-visible))
-    .study-point[data-highlighted='true']
-    img {
-    transform: scale(1.08);
+  .map-study:not(:has(:focus-visible)) .study-point[data-highlighted='true'] {
+    --portrait-scale: 1.08;
+  }
+  .map-study:not(:has(:focus-visible)) .study-point:active {
+    --portrait-scale: 1.04;
   }
 }
 

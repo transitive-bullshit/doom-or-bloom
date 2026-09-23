@@ -1,4 +1,5 @@
-import { expect, test } from '@playwright/test'
+import { startAssessment, mockEvaluation } from './fixtures'
+import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
 
 // The browser uses the real engine with explicit mocked judgments in a
@@ -7,8 +8,7 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
   page
 }, testInfo) => {
   const operations: string[] = []
-  await page.route('**/api/assessment', async (route) => {
-    const input = route.request().postDataJSON()
+  await mockEvaluation(page, async (input) => {
     operations.push(input.operation.type)
     const response = JSON.parse(
       execFileSync(
@@ -22,9 +22,9 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
         { input: JSON.stringify(input), encoding: 'utf8' }
       )
     )
-    await route.fulfill({ json: response })
+    return response
   })
-  await page.goto('/assessment')
+  await startAssessment(page)
   await page
     .getByLabel('Your answer', { exact: true })
     .fill(

@@ -1,44 +1,48 @@
 import 'server-only'
-import { people } from './people'
-import { readFile } from 'node:fs/promises'
-import path from 'node:path'
+import { worldviewValues } from '@/lib/assessment/persona-matches'
+import { reportServerError } from '@/lib/server/error-reporting'
 import { cache } from 'react'
-import { resultSchema } from '@/lib/assessment/schema'
-import { personas } from '@/lib/journeys/catalog'
-import type { JourneySuite } from '@/lib/journeys/schema'
-import { personaAssessment } from '@/lib/journeys/persona-assessment'
+import { getPool } from '@/lib/db'
+import { personaRepository } from '@/lib/personas/repository'
+import { simulationPresentation } from '@/lib/personas/payload'
+import { personaProfileSchema } from '@/lib/journeys/catalog'
 
-const loadSuite = cache(
-  async () =>
-    JSON.parse(
-      await readFile(
-        path.join(process.cwd(), 'eval/development/live-persona-journeys.json'),
-        'utf8'
-      )
-    ) as JourneySuite
-)
-
+const loadSelected = cache(() => personaRepository(getPool()).selected())
 export const loadPersonaAssessment = cache(async (id: string) => {
-  const journey = (await loadSuite()).journeys.find(
-    (journey) => journey.personaId === id
-  )
-  return journey ? personaAssessment(journey) : null
+  const row = (await loadSelected()).find((row) => row.metadata.id === id)
+  return row ? simulationPresentation(row.payload).assessment : null
+})
+export const loadExamples = cache(async (featuredOnly = true) => {
+  return (await loadSelected())
+    .filter((row) => !featuredOnly || row.persona.featured)
+    .map((row) => {
+      const { order: _order, ...metadata } = row.metadata
+      const brief = personaProfileSchema.parse(row.persona.sourceBrief)
+      const recordedSources = row.payload.journey.personaSnapshot?.sources ?? []
+      const sources = brief.sources ?? recordedSources
+      return {
+        ...metadata,
+        assessmentId: row.assessmentId,
+        sources: sources.map(({ title, url }) => ({ title, url })),
+        sourceBriefUpdated:
+          JSON.stringify(sources) !== JSON.stringify(recordedSources),
+        result: simulationPresentation(row.payload).result
+      }
+    })
 })
 
-export const loadExamples = cache(async () => {
-  const suite = await loadSuite()
-  return people.map((person) => {
-    const journey = suite.journeys.find((j) => j.personaId === person.id)
-    const recordedSources = journey?.personaSnapshot?.sources ?? []
-    const sources =
-      personas.find((persona) => persona.id === person.id)?.sources ??
-      recordedSources
-    return {
-      ...person,
-      sources: sources.map(({ title, url }) => ({ title, url })),
-      sourceBriefUpdated:
-        JSON.stringify(sources) !== JSON.stringify(recordedSources),
-      result: resultSchema.parse(journey?.result)
-    }
-  })
+/** Identical comparison inputs for private and public participant results. */
+export const loadPersonaComparisons = cache(async () => {
+  try {
+    return (await loadExamples()).map(({ id, name, slug, avatar, result }) => ({
+      id,
+      name,
+      slug,
+      avatar,
+      values: worldviewValues(result)
+    }))
+  } catch (err) {
+    reportServerError('persona_comparisons_unavailable', err, {})
+    return []
+  }
 })
