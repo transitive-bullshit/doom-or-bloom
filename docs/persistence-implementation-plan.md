@@ -154,7 +154,7 @@ Suggested commits: `feat: add optional x authentication`; `feat: claim anonymous
 | Native Postgres.app | Checkpoint 1 | Verify the installed server, create dedicated local databases, apply migrations, document connection variables. | Start/authorize the application only if local permissions prevent setup. No Docker and no hosted account required. |
 | Better Auth | Checkpoint 1 | Integrate the library and generate a local secret; configure local origin/cookies. | None for anonymous auth; no separate Better Auth SaaS account. |
 | TypeSafe | Existing runtime | Reuse existing server configuration; use fixture inference for checks. | Existing API key only if a live participant smoke test is desired. |
-| Neon | Provisioned; hosted wiring remains separate | Production project `jolly-dew-73357244`, branch `production`, database `neondb`. Pooled runtime and direct migration credentials are saved in ignored `.env.production.local` as `DATABASE_URL` and `DATABASE_MIGRATION_URL` and verified read-only. Use explicitly only for authorized production work. | No further credential setup needed in this worktree. Hosted environment configuration and migrations remain pending; local work continues against Postgres.app. |
+| Neon | Prepared; application deployment pending | Production project `jolly-dew-73357244`, branch `production`, database `neondb`. Pooled runtime and direct migration credentials are saved in ignored `.env.production.local` as `DATABASE_URL` and `DATABASE_MIGRATION_URL` and verified read-only. Use explicitly only for authorized production work. | No further credential setup needed in this worktree. Production variables, migrations and 44 persona imports are complete; see production-readiness.md. Local development continues against Postgres.app. |
 | X developer application | Provisioned and locally verified | Development app `33462727` and production app `33462739` have their respective callback URLs and confidential Web App configuration. Local login, claim and recovery passed with `users.read tweet.read`. | User supplied both credential pairs and authorized the development app. Production login awaits the separately authorized deployment. |
 | Takumi | Checkpoint 3 | Reuse installed local renderer. | None; no media-hosting account. |
 
@@ -350,7 +350,7 @@ Pause only the dependent work when credentials or external configuration are una
 | Optional X recovery and private account identity | Actual Better Auth callback integration tests and real local X claim/sign-out/relogin; unchanged public response tested across ownership transfer. |
 | Privacy, docs, tooling and checkpoint commits | Updated canonical docs and visible copy, native PostgreSQL CI configuration, env split and setup/retry instructions; format/lint/types/unit/content/unused checks and production build. |
 
-Remaining work is explicitly outside this local implementation: deploy the app, install Neon schema/seed under separate authorization, set hosted production secrets and request duration, then verify the production OAuth callback and external social crawlers. Hosted CI execution is not claimed; its native-Postgres workflow is checked in and the same local commands passed. Paid persona regeneration and semantic evaluation were not needed or run. Assessment interpretation remains an experimental draft, independent of persistence correctness.
+Production preparation was subsequently authorized and completed on September 24: Neon schema/seed and hosted production secrets are installed, and request-duration configuration is verified. Remaining work is to deploy the app, then verify the production OAuth callback and external social crawlers; see [production readiness](production-readiness.md). Hosted CI execution is not claimed; its native-Postgres workflow is checked in and the same local commands passed. Paid persona regeneration and semantic evaluation were not needed or run. Assessment interpretation remains an experimental draft, independent of persistence correctness.
 
 ### Owner route and detail navigation follow-up (2026-09-23)
 
@@ -492,3 +492,15 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Share result-to-card data preparation and the full ShareCard rendering/portrait-loading path between public WebP previews and downloaded PNGs. Remove the obsolete separate participant preview template.
 - [x] Keep WebP previews at 1200×630 and PNG downloads at 2400×1260. Preserve current-publication checks, revocation, no-store/noindex headers, and simulation labeling.
 - [x] Verify repository checks (270 unit tests), including actual endpoint image parity within compression/rasterization tolerance, unknown coordinates, and matching portraits. Visually inspect the shared template and verify the publication/fork/revocation browser flow.
+
+### Production infrastructure preparation (2026-09-24)
+
+The user explicitly authorized preparing production Vercel and Neon, superseding the earlier local-only boundary for infrastructure. Application deployment is still separate.
+
+- [x] Inspect the existing Vercel project and canonical domain; preserve existing Jev/analytics configuration and production branch.
+- [x] Install production-only pooled database URL, auth origin, independently generated auth secret, and supplied production X credentials. Keep direct migration access local and preview environments separate.
+- [x] Apply migrations 0000–0005 to the previously empty Neon database and import all 44 curated persona assessments without inference.
+- [x] Refresh repository, commit-recovery, lifecycle and provider-mocked account checks; all seven persistence browser cases and the local production build pass.
+- [ ] Deploy the reviewed application and run the [production smoke checklist](production-readiness.md#remaining-after-deployment), including real X authorization and external social crawlers.
+
+See [production readiness](production-readiness.md) for configuration boundaries and verification details. No production application deployment was triggered.

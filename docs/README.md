@@ -60,3 +60,5 @@ Latest writer/forecaster additions: [Carlsmith, Alexander, Kokotajlo and Cowen](
 Latest launch-readiness review: [production SEO, social images and Lighthouse audit](research/seo-launch-audit-2026-09-22.md).
 
 Latest persona addition: [Andrew McAfee](research/andrew-mcafee-sources-2026-09-23.md), with seven dated sources and a speaker-scoped debate transcript.
+
+Production infrastructure preparation and remaining hosted smoke tests: [production readiness](production-readiness.md).
