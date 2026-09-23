@@ -274,9 +274,6 @@ export function Map({
           yet know.
         </p>
       )}
-      {!subject && y.claim && (
-        <p className='map-muted mb-3 text-sm'>{y.claim}</p>
-      )}
       <figcaption className='map-muted mt-4 flex items-end justify-between gap-4 text-xs leading-5 sm:text-sm'>
         <div className='flex min-w-0 flex-col gap-3'>
           <div className='flex flex-wrap gap-x-6 gap-y-2'>

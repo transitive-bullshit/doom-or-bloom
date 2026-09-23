@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { WorldviewCta } from '@/components/worldview-cta'
 import { FadeText } from '@/components/assessment/fade-text'
 import Link from 'next/link'
-import { useState, type PointerEvent, type FocusEvent } from 'react'
+import { useMemo, useState, type PointerEvent, type FocusEvent } from 'react'
 import './prism.css'
+import { usePortraitLayout } from './use-portrait-layout'
 import type { VariantProps } from '@/components/landing/shared'
 import {
   Card,
@@ -73,9 +74,14 @@ export function Prism({ examples }: VariantProps) {
   const [hovered, setHovered] = useState<string | null>(null)
   const [focused, setFocused] = useState<string | null>(null)
   const highlighted = hovered ?? focused
-  const plotted = examples
-    .filter((p) => p.outlook !== null && p.transformation !== null)
-    .sort((a, b) => a.outlook! - b.outlook!)
+  const plotted = useMemo(
+    () =>
+      examples
+        .filter((p) => p.outlook !== null && p.transformation !== null)
+        .sort((a, b) => a.outlook! - b.outlook!),
+    [examples]
+  )
+  const chartRef = usePortraitLayout(plotted)
   const portraitsReady = plotted.every((p) => portraits[p.avatar])
   const settlePortrait = (src: string, status: 'loaded' | 'failed') => {
     setPortraits((current) =>
@@ -111,6 +117,7 @@ export function Prism({ examples }: VariantProps) {
       <div className='study-axis-top'>Civilizational change</div>
       <div
         className='study-chart'
+        ref={chartRef}
         data-portraits-ready={portraitsReady}
         role='group'
         aria-label='AI outlook and scale of transformation. Open a portrait to explore their simulated worldview.'

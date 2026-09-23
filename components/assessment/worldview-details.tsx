@@ -8,11 +8,13 @@ export function WorldviewDetails({
   components,
   reasoning,
   influence,
+  transformationClaim,
   subject
 }: {
   components: Component[]
   reasoning: Component
   influence: Component
+  transformationClaim?: string | null
   subject?: ResultSubject
 }) {
   const framing = resultFraming(subject)
@@ -44,6 +46,12 @@ export function WorldviewDetails({
       className='mt-5 flex flex-col gap-4'
     >
       <h2 className='font-semibold'>{framing.detailsTitle}</h2>
+      {!subject && transformationClaim && (
+        <div className='flex flex-col gap-2'>
+          <h3 className='text-sm font-medium'>Expected transformation</h3>
+          <p className='text-sm text-body-foreground'>{transformationClaim}</p>
+        </div>
+      )}
       {impacts.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-4'>
           {impacts.map((component) => (

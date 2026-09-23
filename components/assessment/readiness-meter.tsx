@@ -11,10 +11,14 @@ import { Button } from '@/components/ui/button'
 
 export function ReadinessMeter({
   state,
-  debug
+  debug,
+  disabled,
+  onViewResults
 }: {
   state: Assessment
   debug: boolean
+  disabled: boolean
+  onViewResults: () => void
 }) {
   const readiness = evidenceReadiness(state)
   const percentage = Math.round(readiness.value)
@@ -54,9 +58,23 @@ export function ReadinessMeter({
         />
       </div>
       <p className='mt-3 text-xs leading-relaxed text-muted-foreground'>
-        {readiness.ready
-          ? 'You can view a first result now, or keep answering to refine it.'
-          : `A first result is available once your central outlook and its basis are clear, or broad evidence coverage reaches ${readiness.threshold}%. One answer can be enough.`}
+        {readiness.ready ? (
+          <>
+            You can{' '}
+            <Button
+              type='button'
+              variant='link'
+              className='h-auto p-0 text-xs underline'
+              disabled={disabled}
+              onClick={onViewResults}
+            >
+              view your results now
+            </Button>
+            , or keep answering to refine it.
+          </>
+        ) : (
+          `A first result is available once your central outlook and its basis are clear, or broad evidence coverage reaches ${readiness.threshold}%. One answer can be enough.`
+        )}
       </p>
       {debug && (
         <Collapsible className='mt-2'>

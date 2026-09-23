@@ -54,7 +54,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
     await expect(answer).toHaveValue('')
     await expect(page.locator('h1')).toBeVisible()
   }
-  const view = page.getByRole('button', { name: 'View my result' })
+  const view = page.getByRole('button', { name: 'View my results' })
   await tabTo(page, view)
   await page.keyboard.press('Enter')
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
@@ -222,7 +222,7 @@ test('catastrophic-risk correction quotes that claim in the interface', async ({
       ''
     )
   }
-  await page.getByRole('button', { name: 'View my result' }).click()
+  await page.getByRole('button', { name: 'View my results' }).click()
   await page
     .getByRole('button', { name: 'Inspect evidence & clarify my view' })
     .click()

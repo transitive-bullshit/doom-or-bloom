@@ -514,7 +514,7 @@ export function Interview({
                 <div>
                   {state.answers.length > 0 && (
                     <p className='mb-5 text-xs text-muted-foreground'>
-                      {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · prompt ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
+                      {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · question ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
                     </p>
                   )}
                   <h1 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
@@ -632,6 +632,16 @@ export function Interview({
                     </Field>
                     <Field>
                       <div className='flex flex-wrap gap-3'>
+                        {eligible(state) && (
+                          <Button
+                            type='button'
+                            disabled={busy || conflict}
+                            variant='ghost'
+                            onClick={() => void act({ type: 'project' })}
+                          >
+                            View my results
+                          </Button>
+                        )}
                         {paused &&
                           state.recovery.evaluated < limits.recovery && (
                             <Button
@@ -642,9 +652,23 @@ export function Interview({
                               Try again
                             </Button>
                           )}
+                        {state.prompts.length < limits.prompts &&
+                          (paused ||
+                            state.status === 'recovery' ||
+                            unavailableQuestion) && (
+                            <Button
+                              type='button'
+                              disabled={busy || conflict}
+                              variant='outline'
+                              onClick={() => void act({ type: 'skip' })}
+                            >
+                              Try a different question
+                            </Button>
+                          )}
                         {!paused && (
                           <Button
                             type='submit'
+                            className='ml-auto'
                             aria-keyshortcuts='Meta+Enter Control+Enter'
                             disabled={
                               !allowed || answerTooLong || !state.draft.trim()
@@ -659,29 +683,6 @@ export function Interview({
                             {busy ? 'Reflecting on your answer' : 'Continue'}
                           </Button>
                         )}
-                        {eligible(state) && (
-                          <Button
-                            type='button'
-                            disabled={busy || conflict}
-                            variant='outline'
-                            onClick={() => void act({ type: 'project' })}
-                          >
-                            View my result
-                          </Button>
-                        )}
-                        {state.prompts.length < limits.prompts &&
-                          (paused ||
-                            state.status === 'recovery' ||
-                            unavailableQuestion) && (
-                            <Button
-                              type='button'
-                              disabled={busy || conflict}
-                              variant='outline'
-                              onClick={() => void act({ type: 'skip' })}
-                            >
-                              Try a different question
-                            </Button>
-                          )}
                       </div>
                     </Field>
                   </FieldGroup>
@@ -699,7 +700,12 @@ export function Interview({
                   </p>
                 </div>
                 {state.answers.length > 0 && (
-                  <ReadinessMeter state={state} debug={debugMode} />
+                  <ReadinessMeter
+                    state={state}
+                    debug={debugMode}
+                    disabled={busy || conflict}
+                    onViewResults={() => void act({ type: 'project' })}
+                  />
                 )}
                 {busy && (
                   <p className='text-sm text-muted-foreground' role='status'>

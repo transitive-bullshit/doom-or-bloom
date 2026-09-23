@@ -263,7 +263,7 @@
   gap: 7px;
   min-width: 0;
   min-height: 34px;
-  padding: 1px 4px;
+  padding: 10px 10px;
   font-size: 12px;
 }
 .landing-map-legend .fade-truncated-text {
@@ -462,14 +462,20 @@
     margin: 38px 12px 56px;
   }
   .landing-map-legend {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    justify-content: center;
+    column-gap: 18px;
     padding-top: 7px;
   }
   .landing-map-legend a {
-    min-height: 33px;
-    padding: 0.5px 2px;
-    font-size: 12px;
-    gap: 4px;
+    min-height: 40px;
+    padding: 12px 16px;
+    font-size: 16px;
+    gap: 9px;
+  }
+  .landing-map-legend .landing-legend-avatar {
+    width: 28px;
+    height: 28px;
   }
   .landing-map-note {
     font-size: 9px;

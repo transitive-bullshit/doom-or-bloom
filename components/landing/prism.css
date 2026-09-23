@@ -81,7 +81,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 500;
 }
 .study-doom {
@@ -160,6 +160,7 @@
   }
   .map-study {
     padding: 26px 12px;
+    overflow-x: clip;
   }
   .study-heading {
     padding: 0 12px;
@@ -173,7 +174,22 @@
   }
   .study-chart {
     height: 310px;
-    margin: 0 48px;
+    margin: 0;
+  }
+  .study-axis-top {
+    margin-bottom: 28px;
+  }
+  .study-axis-bottom {
+    margin-top: 28px;
+  }
+  .study-axis-top,
+  .study-axis-bottom {
+    width: fit-content;
+    margin-inline: auto;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--study-surface);
+    box-shadow: 0 1px 4px var(--study-shadow);
   }
   .study-point {
     width: 30px;
@@ -181,15 +197,26 @@
   }
   .study-doom,
   .study-bloom {
-    font-size: 10px;
+    font-size: 13px;
+    z-index: 11;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--study-surface);
+    box-shadow: 0 1px 4px var(--study-shadow);
+    pointer-events: none;
   }
   .study-doom {
-    right: calc(100% + 19px);
+    right: auto;
+    left: calc(50% - 50vw);
+    border-radius: 0 999px 999px 0;
   }
   .study-bloom {
-    left: calc(100% + 19px);
+    left: auto;
+    right: calc(50% - 50vw);
+    border-radius: 999px 0 0 999px;
   }
   .study-point span {
+    left: calc(50% + var(--label-shift, 0px));
     max-width: 150px;
     white-space: normal;
     text-align: center;
@@ -197,21 +224,24 @@
 }
 /* Only pointer hover gets motion; focus and touch remain immediate. */
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .map-study:not(:has(:focus-visible)) .study-point {
-    transition: transform 80ms cubic-bezier(0.23, 1, 0.32, 1);
+  .map-study:not(:has(:focus-visible)) .study-point img {
+    transition: transform 100ms var(--ease-out);
   }
-  .map-study:not(:has(:focus-visible)) .study-point[data-highlighted='true'] {
-    transform: translate(-50%, -50%) scale(1.08);
-    transition-duration: 100ms;
+  .map-study:not(:has(:focus-visible))
+    .study-point[data-highlighted='true']
+    img {
+    transform: scale(1.08);
   }
 }
 
 /* Wait for every portrait to decode before revealing them together. */
+.study-chart:not([data-layout-ready='true']) .study-portrait,
 .study-chart[data-portraits-ready='false'] .study-portrait,
 .study-chart .study-portrait[data-portrait-failed='true'] {
   visibility: hidden;
 }
-.study-chart[data-portraits-ready='true'] .study-portrait {
+.study-chart[data-layout-ready='true'][data-portraits-ready='true']
+  .study-portrait {
   animation: portrait-enter 250ms var(--ease-out) backwards;
 }
 /* Interaction always takes priority over the decorative entrance. */
@@ -221,11 +251,9 @@
 @keyframes portrait-enter {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
   }
 }
 @keyframes portrait-fade {
@@ -237,8 +265,15 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .study-chart[data-portraits-ready='true'] .study-portrait {
+  .study-chart[data-layout-ready='true'][data-portraits-ready='true']
+    .study-portrait {
     animation-name: portrait-fade;
     animation-duration: 150ms;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-chart[data-layout-ready='true'] .study-portrait {
+    transition: transform 250ms var(--ease-out);
   }
 }

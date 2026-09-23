@@ -14,18 +14,30 @@ it('matches the selected curve and preserves its endpoints and crossover', () =>
     expect(sharpen(i / 1000)).toBeGreaterThan(sharpen((i - 1) / 1000))
 })
 
-it('recenters the saved personal range instead of stretching its endpoints', () => {
-  const mean = 0.45918367346938777
-  const bounds = recenterPdoomBounds(mean, [0.15, 0.85], sharpen(mean))
-  expect(bounds[0]).toBe(0)
-  expect(bounds[1]).toBeCloseTo(0.6704462484117768)
-})
+it.each([
+  [0.1, 0.08, 0.13, 0.003688145247419009, 0.010977216091135635],
+  [0.9, 0.87, 0.92, 0.9629785969084423, 0.9873246135552913],
+  [0.5, 0.49, 0.52, 0.3318, 0.3864]
+])(
+  'scales asymmetric spread using the local slope at %s',
+  (p, low, high, expectedLow, expectedHigh) => {
+    const bounds = recenterPdoomBounds(p, [low, high], sharpen(p))
+    expect(bounds[0]).toBeCloseTo(expectedLow)
+    expect(bounds[1]).toBeCloseTo(expectedHigh)
+    const numericalSlope = (sharpen(p + 1e-6) - sharpen(p - 1e-6)) / 2e-6
+    expect((bounds[1] - bounds[0]) / (high - low)).toBeCloseTo(numericalSlope)
+    expect((sharpen(p) - bounds[0]) / (bounds[1] - sharpen(p))).toBeCloseTo(
+      (p - low) / (high - p)
+    )
+  }
+)
 
-it('preserves asymmetric offsets when unclipped and clips at the upper boundary', () => {
-  const asymmetric = recenterPdoomBounds(0.5, [0.4, 0.7], 0.35)
-  expect(asymmetric[0]).toBeCloseTo(0.25)
-  expect(asymmetric[1]).toBeCloseTo(0.55)
-  expect(recenterPdoomBounds(0.9, [0.7, 1], 0.98)[1]).toBe(1)
-  expect(recenterPdoomBounds(0.65, [0.3, 0.9], 0.65)).toEqual([0.3, 0.9])
-  expect(recenterPdoomBounds(0.4, [0.4, 0.4], 0.2)).toEqual([0.2, 0.2])
+it('clips expanded ranges and handles endpoints and zero-width ranges', () => {
+  expect(recenterPdoomBounds(0.5, [0, 1], sharpen(0.5))).toEqual([0, 1])
+  expect(recenterPdoomBounds(0, [0, 0.1], 0)).toEqual([0, 0])
+  expect(recenterPdoomBounds(1, [0.9, 1], 1)).toEqual([1, 1])
+  expect(recenterPdoomBounds(0.4, [0.4, 0.4], sharpen(0.4))).toEqual([
+    sharpen(0.4),
+    sharpen(0.4)
+  ])
 })

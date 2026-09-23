@@ -41,7 +41,7 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
     )
     for (let i = 0; i < 3; i++)
       await submit(page, `Earlier-version synthetic answer ${i}.`)
-    await page.getByRole('button', { name: 'View my result' }).click()
+    await page.getByRole('button', { name: 'View my results' }).click()
     await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
     const saved = await page.evaluate(
       (key) => JSON.parse(localStorage.getItem(key)!).assessment,
@@ -141,7 +141,7 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   )
   for (let i = 0; i < 3; i++)
     await submit(page, `Relevant synthetic answer ${i}.`)
-  await page.getByRole('button', { name: 'View my result' }).click()
+  await page.getByRole('button', { name: 'View my results' }).click()
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(
     page.getByRole('article', { name: 'Question 1 and replies', exact: true })
@@ -238,7 +238,7 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
     page.getByRole('button', { name: 'Try again', exact: true })
   ).toHaveCount(0)
   await expect(
-    page.getByRole('button', { name: 'View my result' })
+    page.getByRole('button', { name: 'View my results' })
   ).toHaveCount(0)
   expect(calls).toBe(4)
 })
@@ -428,7 +428,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
     page.getByRole('meter', { name: 'Evidence readiness' })
   ).toHaveCount(0)
   await expect(
-    page.getByRole('button', { name: 'View my result' })
+    page.getByRole('button', { name: 'View my results' })
   ).toHaveCount(0)
   // Fixture judgments represent comprehensive coverage; this does not test live semantics.
   await submit(
@@ -441,7 +441,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
     page.getByRole('meter', { name: 'Evidence readiness' })
   ).toHaveAttribute('aria-valuenow', '100')
   await expect(
-    page.getByRole('button', { name: 'View my result' })
+    page.getByRole('button', { name: 'View my results' })
   ).toBeEnabled()
   await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
   const state = await page.evaluate(
@@ -450,7 +450,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   )
   expect(state.answers).toHaveLength(1)
   expect(state.prompts).toHaveLength(2)
-  await page.getByRole('button', { name: 'View my result' }).click()
+  await page.getByRole('button', { name: 'view your results now' }).click()
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await expect(
     page.locator('[data-slot="worldview-map"]').first()

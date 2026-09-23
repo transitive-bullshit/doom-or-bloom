@@ -90,7 +90,7 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
     .all())
     await expect(button).toHaveAttribute('aria-expanded', 'false')
   await page
-    .getByRole('button', { name: 'View my result', exact: true })
+    .getByRole('button', { name: 'View my results', exact: true })
     .click()
   await page.getByRole('button', { name: 'Debug on', exact: true }).click()
   await expect(

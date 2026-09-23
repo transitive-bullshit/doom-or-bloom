@@ -194,7 +194,10 @@ it('interprets the recorded alarmist wording even when there is no percentage to
   expect(result.pdoom).toMatchObject({
     source: 'inferred',
     estimate: sharpen(0.935),
-    bounds: [0.9 + (sharpen(0.935) - 0.935), 1],
+    bounds: [
+      expect.closeTo(0.986027266386615),
+      expect.closeTo(0.9961818193693166)
+    ],
     text: 'On the present course, AI means extinction.'
   })
 })
@@ -222,7 +225,7 @@ it('does not infer a number when no relevant worldview evidence is identified', 
   expect(result.pdoom).toBeNull()
 })
 
-it('infers an indirect low estimate with a wider range from a benign worldview', () => {
+it('infers a low estimate with an interpolated central range and no contextual padding', () => {
   const result = assess(
     input(
       'AI will bring abundance. I expect engineers to solve problems as they arise.'
@@ -234,7 +237,8 @@ it('infers an indirect low estimate with a wider range from a benign worldview',
     }
   )
   expect(result.pdoom?.estimate).toBeCloseTo(sharpen(0.065))
-  expect(result.pdoom?.bounds).toEqual([0, 0.25 + (sharpen(0.065) - 0.065)])
+  expect(result.pdoom?.bounds?.[0]).toBeCloseTo(0.001104666468598042)
+  expect(result.pdoom?.bounds?.[1]).toBeCloseTo(0.004086434501168073)
   expect(result.pdoom?.basis).toBe('contextual')
   expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
 })
@@ -273,7 +277,7 @@ it('combines probability bands rather than mistaking model confidence for P(doom
     'fixture-v1'
   )
   expect(result.pdoom?.estimate).toBeCloseTo(sharpen(0.881))
-  expect(result.pdoom?.bounds?.[0]).toBeCloseTo(0.7862270268923062)
+  expect(result.pdoom?.bounds?.[0]).toBeCloseTo(0.9333629362558623)
   expect(result.pdoom?.bounds?.[1]).toBe(1)
   answers['experiment:pdoom:evidence:verified'] = { type: 'noul', noul: 0.1 }
   const withoutQuote = buildWorldviewExperiment(
@@ -381,8 +385,8 @@ it.each([
         'experiment:pdoom:basis': 'direct'
       }
     )
-    expect(result.version).toBe('worldview-v6')
-    expect(result.pdoom?.adjustment?.method).toBe('shifted-sharpening-v2')
+    expect(result.version).toBe('worldview-v7')
+    expect(result.pdoom?.adjustment?.method).toBe('shifted-sharpening-v3')
     expect(result.pdoom?.adjustment?.rawEstimate).toBeCloseTo(midpoint)
     expect(result.pdoom?.estimate).toBeCloseTo(sharpen(midpoint))
     expect(result.pdoom?.bounds?.[0]).toBeLessThanOrEqual(
@@ -394,3 +398,42 @@ it.each([
     expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
   }
 )
+
+it('keeps unknown-mass padding while treating direct and contextual ranges equally', () => {
+  const source = input(
+    'AI could cause catastrophe, but I expect it is unlikely.'
+  )
+  const candidates = experimentCandidates(source)
+  for (const basis of ['direct', 'contextual']) {
+    for (const mass of [1, 0.8]) {
+      const result = buildWorldviewExperiment(
+        source,
+        candidates,
+        {
+          'experiment:pdoom:band': {
+            type: 'choice',
+            choice: 'unlikely',
+            confidence: mass,
+            probabilities: { unlikely: mass, not_expressed: 1 - mass }
+          },
+          'experiment:pdoom:basis': {
+            type: 'choice',
+            choice: basis,
+            confidence: 1,
+            probabilities: { [basis]: 1 }
+          }
+        },
+        1,
+        'fixture-v1'
+      )
+      expect(result.pdoom?.estimate).toBeCloseTo(sharpen(0.2))
+      expect(result.pdoom?.adjustment?.rawBounds[0]).toBeCloseTo(
+        mass === 1 ? 0.15 : 0
+      )
+      expect(result.pdoom?.adjustment?.rawBounds[1]).toBeCloseTo(
+        mass === 1 ? 0.25 : 0.45
+      )
+      expect(worldviewExperimentSchema.safeParse(result).success).toBe(true)
+    }
+  }
+})

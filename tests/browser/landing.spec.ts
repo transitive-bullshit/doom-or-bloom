@@ -58,9 +58,9 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
-  await expect(
-    page.getByRole('link', { name: 'Map your own worldview' })
-  ).toBeInViewport()
+  const cta = page.getByRole('link', { name: 'Map your own worldview' })
+  await cta.scrollIntoViewIfNeeded()
+  await expect(cta).toBeInViewport()
 })
 
 test('featured portraits stay square and inside their circular frames', async ({
@@ -408,4 +408,88 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
   await userCtas.last().click()
   await expect(page).toHaveURL(/\/assessment$/)
   expect(hydrationErrors).toEqual([])
+})
+
+test('featured map lays out before reveal and fills mobile width with page-edge labels', async ({
+  page
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/')
+  const chart = page.locator('.study-chart')
+  await expect(chart).toHaveAttribute('data-layout-ready', 'true')
+  await expect(chart).toHaveAttribute('data-portraits-ready', 'true')
+  await expect(chart).toHaveCSS('margin-left', '0px')
+  const checkBounds = async () => {
+    const bounds = await chart.boundingBox()
+    const doom = await chart.locator('.study-doom').boundingBox()
+    const bloom = await chart.locator('.study-bloom').boundingBox()
+    expect(doom!.x).toBeCloseTo(0)
+    expect(bloom!.x + bloom!.width).toBeCloseTo(390)
+    for (const selector of ['.study-portrait']) {
+      for (const box of await chart.locator(selector).evaluateAll((nodes) =>
+        nodes.map((node) => {
+          const rect = node.getBoundingClientRect()
+          return { left: rect.left, right: rect.right, width: rect.width }
+        })
+      )) {
+        const allowance = selector === '.study-portrait' ? box.width / 2 : 0
+        expect(box.left).toBeGreaterThanOrEqual(bounds!.x - allowance - 0.5)
+        expect(box.right).toBeLessThanOrEqual(
+          bounds!.x + bounds!.width + allowance + 0.5
+        )
+      }
+    }
+  }
+  await checkBounds()
+  const portrait = chart.locator('.study-portrait').first()
+  const initial = await portrait.getAttribute('style')
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await expect(portrait).not.toHaveAttribute('style', initial!)
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect(portrait).toHaveAttribute('style', initial!)
+  await checkBounds()
+})
+
+test('hovering a featured portrait keeps its map position and tooltip anchor stable', async ({
+  page
+}) => {
+  await page.goto('/')
+  const portrait = page.locator('.study-portrait').last()
+  await expect(portrait).toBeVisible()
+  await portrait.evaluate(async (node) => {
+    await Promise.all(
+      node.getAnimations().map((animation) => animation.finished)
+    )
+  })
+  const before = await portrait.boundingBox()
+  await page.mouse.move(
+    before!.x + before!.width / 2,
+    before!.y + before!.height / 2
+  )
+  const drift = await portrait.evaluate(
+    async (node, origin) => {
+      let maximum = 0
+      const start = performance.now()
+      await new Promise<void>((resolve) => {
+        const sample = () => {
+          const rect = node.getBoundingClientRect()
+          maximum = Math.max(
+            maximum,
+            Math.hypot(
+              rect.x + rect.width / 2 - origin.x,
+              rect.y + rect.height / 2 - origin.y
+            )
+          )
+          if (performance.now() - start < 350) requestAnimationFrame(sample)
+          else resolve()
+        }
+        requestAnimationFrame(sample)
+      })
+      return maximum
+    },
+    { x: before!.x + before!.width / 2, y: before!.y + before!.height / 2 }
+  )
+  expect(drift).toBeLessThan(0.5)
+  await expect(portrait.locator('span')).toHaveCSS('opacity', '1')
 })

@@ -9,7 +9,7 @@ import type {
 } from './schema'
 import { emptyComponent, quantile } from './projections'
 
-export const experimentVersion = 'worldview-v6' as const
+export const experimentVersion = 'worldview-v7' as const
 
 // Authored event-probability bands. Jev weights interpretations of the participant’s belief.
 // Its category confidence is never itself used as the catastrophe probability.
@@ -528,18 +528,23 @@ export function buildWorldviewExperiment(
           0
         ) / mass
       : 0
-  const endpoint = (target: number, side: 0 | 1) => {
+  const endpoint = (target: number) => {
     let cumulative = 0
     for (const band of supportedBands) {
-      cumulative += band.mass / mass
-      if (cumulative >= target) return band.bounds[side]
+      const weight = band.mass / mass
+      if (weight > 0 && cumulative + weight >= target) {
+        // Uniform interpolation within the authored band is a display heuristic.
+        const fraction = (target - cumulative) / weight
+        return band.bounds[0] + fraction * (band.bounds[1] - band.bounds[0])
+      }
+      cumulative += weight
     }
     return 1
   }
-  const padding = Math.max(1 - mass, basis === 'contextual' ? 0.15 : 0)
+  const padding = Math.max(0, 1 - mass)
   const rawBounds: [number, number] = [
-    Math.max(0, Math.min(rawEstimate, endpoint(0.1, 0)) - padding),
-    Math.min(1, Math.max(rawEstimate, endpoint(0.9, 1)) + padding)
+    Math.max(0, Math.min(rawEstimate, endpoint(0.25)) - padding),
+    Math.min(1, Math.max(rawEstimate, endpoint(0.75)) + padding)
   ]
   const estimate = sharpenInferredPdoom(rawEstimate)
   const bounds = recenterPdoomBounds(rawEstimate, rawBounds, estimate)
@@ -560,7 +565,7 @@ export function buildWorldviewExperiment(
           estimate,
           bounds,
           adjustment: {
-            method: 'shifted-sharpening-v2' as const,
+            method: 'shifted-sharpening-v3' as const,
             rawEstimate,
             rawBounds,
             bandProbabilities: distribution

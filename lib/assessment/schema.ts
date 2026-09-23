@@ -232,7 +232,8 @@ export const worldviewExperimentSchema = z.strictObject({
     'worldview-v3',
     'worldview-v4',
     'worldview-v5',
-    'worldview-v6'
+    'worldview-v6',
+    'worldview-v7'
   ]),
   model: z.string(),
   generatedAt: z.string(),
@@ -259,7 +260,11 @@ export const worldviewExperimentSchema = z.strictObject({
         .optional(),
       adjustment: z
         .strictObject({
-          method: z.enum(['shifted-sharpening-v1', 'shifted-sharpening-v2']),
+          method: z.enum([
+            'shifted-sharpening-v1',
+            'shifted-sharpening-v2',
+            'shifted-sharpening-v3'
+          ]),
           rawEstimate: probability,
           rawBounds: z.tuple([probability, probability]),
           bandProbabilities: z.record(z.string(), probability)

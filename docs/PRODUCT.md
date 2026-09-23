@@ -198,6 +198,8 @@ Development-only `/questions` and `/corpus` display built-in assets, relationshi
 
 Display a compact Evidence readiness meter while interviewing, including the provisional-result threshold. Explain that it reflects supported coverage rather than forecast accuracy, quality or answer length; debug disclosure gives the experimental formula. See [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness).
 
+The home-page featured map separates portrait boxes with more than 25% overlap using three bounded visual passes (at most 6px per pass from ideal coordinates, with portrait centers constrained to the chart so at least half remains inside each axis). Layout restarts from the recorded coordinates on each resize; these display offsets never change assessment data. Portrait preload includes the initial layout. Mobile horizontal labels sit in foreground pills hanging off the full-width chart, anchored to the page’s left and right edges.
+
 The Doom–Bloom map is the result’s hero: the same Prism color field and midpoint axes as the landing page, focused on one participant point or persona portrait, with a visible interpretation area and axes explained beside the map. Result maps retain a chart title, position/range legend, unknown states and optional earlier-answer markers. The full rectangle represents the coordinate range; there is no inset plotting area. The map shows expressed outlook horizontally and expected societal transformation vertically. Human influence is a separate single-axis output. Show the composition/weights and unknowns explicitly. No point is invented when either axis is unplaced. Use native page scrolling and fit the chart at mobile/desktop widths in both themes.
 
 ### Local comparison workflow
