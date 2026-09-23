@@ -1,3 +1,4 @@
+import { ProfileHeader } from '@/components/profile-header'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { simulationPresentation } from '@/lib/personas/payload'
@@ -58,7 +59,16 @@ export default async function Page({
       as='main'
       className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'
     >
-      <h1 className='text-3xl font-semibold'>{saved.title}</h1>
+      {saved.publisher ? (
+        <ProfileHeader
+          name={saved.publisher.name}
+          avatar={saved.publisher.image}
+          profileUrl={saved.publisher.profileUrl}
+          profileLabel='View on X'
+        />
+      ) : (
+        <h1 className='text-3xl font-semibold'>Your AI worldview</h1>
+      )}
       <PublishedResult state={{ ...state, draft: '', eventMarkers: [] }} />
       <WorldviewCtaCard />
     </AssessmentPage>

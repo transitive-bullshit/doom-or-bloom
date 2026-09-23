@@ -421,3 +421,10 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Preserve uncertain-submission recovery on network errors. Never discard the saved submission merely because a normalized network error has status zero.
 - [x] Include SQLSTATE codes in redacted server diagnostics without logging SQL, row contents, or exception messages.
 - [x] Add regressions for raw error-body/network-message leakage, both Make private buttons, safe sharing-failure toasts, and successful retries.
+
+### Public publisher headers (2026-09-24)
+
+- [x] Capture the signed-in publisher’s display name, high-resolution profile photo, and X profile link on explicit publication. Keep anonymous publications anonymous across login and repeated publish requests. Clear attribution on unpublish; republication captures the current profile.
+- [x] Extract ProfileHeader from the persona header and reuse its visual layout for attributed public participant pages. Anonymous pages use “Your AI worldview”; the centered CTA card remains below the conversation.
+- [x] Add migration 0003 to local development/test databases. Leave existing publications unattributed because publication-time authentication was not recorded; no production migration or identity backfill.
+- [x] Update privacy copy and domain/persistence docs. Verify the anonymous-to-authenticated publication boundary, frozen profile data, higher-resolution image URL, and profile link through repository and browser tests.

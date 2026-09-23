@@ -13,6 +13,7 @@ import {
   check,
   type AnyPgColumn
 } from 'drizzle-orm/pg-core'
+import type { Publisher } from '../assessments/publisher'
 import { user } from './auth-schema'
 
 export * from './auth-schema'
@@ -53,6 +54,7 @@ export const assessments = pgTable(
     revision: integer('revision').notNull().default(0),
     currentSnapshotId: uuid('current_snapshot_id').notNull(),
     publishedSnapshotId: uuid('final_snapshot_id'),
+    publishedProfile: jsonb('published_profile').$type<Publisher>(),
     sourceAssessmentId: uuid('source_assessment_id').references(
       (): AnyPgColumn => assessments.id,
       { onDelete: 'set null' }

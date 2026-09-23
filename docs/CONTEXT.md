@@ -92,4 +92,4 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Share card**: A participant-controlled visual summary of a result intended for sharing beyond the assessment. _Avoid_: Public transcript
 
-**Anonymous ownership claim**: A transaction that transfers a browser’s assessments to its authenticated account, preserving IDs, snapshots and visibility. It then removes the anonymous owner and revokes its sessions. Failure leaves anonymous access intact. Authentication is optional; public assessments do not expose the account’s X identity.
+**Anonymous ownership claim**: A transaction that transfers a browser’s assessments to its authenticated account, preserving IDs, snapshots and visibility. It then removes the anonymous owner and revokes its sessions. Failure leaves anonymous access intact. Authentication is optional; anonymous publications stay anonymous after sign-in. Explicit publication while signed in captures a public name, portrait, and profile link.

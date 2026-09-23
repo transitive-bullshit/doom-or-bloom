@@ -17,8 +17,11 @@ import {
   assessmentSnapshots,
   assessmentOperations,
   personas,
-  user
+  user,
+  account
 } from '../db/schema'
+import { publisherSchema, type Publisher } from './publisher'
+import { profileImageUrl } from '../auth/profile-image'
 import { publicAssessment } from './public'
 import { personaMetadataSchema, simulationPayload } from '../personas/payload'
 import { AssessmentError, type Submission } from './contracts'
@@ -526,6 +529,8 @@ export function assessmentRepository(pool: Pool) {
         await assertIdle(tx, id)
         if (row.revision !== expectedRevision)
           throw conflict('This assessment changed. Refresh before sharing.')
+        // Repeating publication must not attach a profile to an anonymous publication.
+        if (row.visibility === visibility) return
         const state = await snapshot(tx, id, row.currentSnapshotId)
         if (
           visibility === 'public' &&
@@ -536,8 +541,39 @@ export function assessmentRepository(pool: Pool) {
             'View your results before sharing.',
             'results_required'
           )
+        let publishedProfile: Publisher | null = null
+        if (visibility === 'public') {
+          const [publisher] = await tx
+            .select({
+              name: user.name,
+              image: user.image,
+              anonymous: user.isAnonymous
+            })
+            .from(user)
+            .where(eq(user.id, ownerId))
+          if (publisher && !publisher.anonymous) {
+            const [identity] = await tx
+              .select({ accountId: account.accountId })
+              .from(account)
+              .where(
+                and(
+                  eq(account.userId, ownerId),
+                  eq(account.providerId, 'twitter')
+                )
+              )
+              .limit(1)
+            publishedProfile = {
+              name: publisher.name,
+              image: profileImageUrl(publisher.image) ?? null,
+              profileUrl: identity
+                ? `https://x.com/i/user/${encodeURIComponent(identity.accountId)}`
+                : null
+            }
+          }
+        }
         const changes: Partial<typeof assessments.$inferInsert> = {
           visibility,
+          publishedProfile,
           publishedSnapshotId:
             visibility === 'public' ? row.currentSnapshotId : null,
           updatedAt: new Date()
@@ -583,7 +619,10 @@ export function assessmentRepository(pool: Pool) {
           return {
             kind: 'participant' as const,
             id: row.id,
-            title: row.title ?? 'AI worldview assessment',
+            title: row.title ?? 'Your AI worldview',
+            publisher: row.publishedProfile
+              ? publisherSchema.parse(row.publishedProfile)
+              : null,
             origin: row.origin,
             isFork: row.isFork,
             inheritedPromptCount: row.inheritedPromptCount,

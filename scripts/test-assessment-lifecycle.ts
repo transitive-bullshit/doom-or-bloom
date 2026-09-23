@@ -63,6 +63,7 @@ try {
       'INSERT INTO "user" (id,name,email) VALUES ($1,\'Lifecycle test\',$2)',
       [id, `${id}@test.invalid`]
     )
+  await pool.query('UPDATE "user" SET is_anonymous=true WHERE id=$1', [owner])
   const created = await repo.create(owner, randomUUID(), versions.model)
   const id = created.id!
   ids.push(id)
@@ -74,6 +75,45 @@ try {
   assert.equal(published.kind, 'participant')
   if (published.kind !== 'participant') throw new Error('Expected participant')
   assert.equal(published.assessment.prompts.length, 12)
+  assert.equal(published.publisher, null)
+  // Signing in or replaying publication must not reveal an anonymous publisher.
+  await pool.query(
+    'UPDATE "user" SET is_anonymous=false, name=$2, image=$3 WHERE id=$1',
+    [
+      owner,
+      'Publisher name',
+      'https://pbs.twimg.com/profile_images/123/avatar_normal.jpg'
+    ]
+  )
+  await pool.query(
+    'INSERT INTO account (id, account_id, provider_id, user_id, updated_at) VALUES ($1,$2,$3,$4,now())',
+    [randomUUID(), '123456789', 'twitter', owner]
+  )
+  await repo.setVisibility(owner, id, 1, 'public')
+  const stillAnonymous = await repo.publicLoad(id)
+  assert.equal(
+    stillAnonymous.kind === 'participant' && stillAnonymous.publisher,
+    null
+  )
+  await repo.setVisibility(owner, id, 1, 'private')
+  await repo.setVisibility(owner, id, 1, 'public')
+  const attributed = await repo.publicLoad(id)
+  assert.equal(attributed.kind, 'participant')
+  if (attributed.kind !== 'participant') throw new Error('Expected participant')
+  assert.deepEqual(attributed.publisher, {
+    name: 'Publisher name',
+    image: 'https://pbs.twimg.com/profile_images/123/avatar_400x400.jpg',
+    profileUrl: 'https://x.com/i/user/123456789'
+  })
+  await pool.query('UPDATE "user" SET name=$2 WHERE id=$1', [
+    owner,
+    'Changed name'
+  ])
+  const frozen = await repo.publicLoad(id)
+  assert.equal(
+    frozen.kind === 'participant' && frozen.publisher?.name,
+    'Publisher name'
+  )
   assert.equal('ownerId' in published, false)
   assert.equal('draft' in published.assessment, false)
   const key = randomUUID()
@@ -120,7 +160,7 @@ try {
   })
   assert.ok(!JSON.stringify(leaked).includes('PRIVATE_'))
   console.log(
-    'PASS: 12 → 24 → 30 budgets, owner-only completed forks, idempotent creation, independent history/lineage after deletion, publication/revocation and public field allowlist'
+    'PASS: 12 → 24 → 30 budgets, owner-only published forks, idempotent creation, independent history/lineage after deletion, publication/revocation, publication-time attribution, and public field allowlist'
   )
 } finally {
   await pool.query('DELETE FROM assessments WHERE id=ANY($1::uuid[])', [ids])

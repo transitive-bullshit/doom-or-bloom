@@ -1,3 +1,4 @@
+import { Pool } from 'pg'
 import { test, expect } from '@playwright/test'
 
 test('first CTA creates directly, draft survives reload, answer is server-saved, returning CTA opens library', async ({
@@ -222,6 +223,12 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     const publicPage = await visitor.newPage()
     await publicPage.goto(publicURL)
     await expect(
+      publicPage.getByRole('heading', {
+        name: 'Your AI worldview',
+        exact: true
+      })
+    ).toBeVisible()
+    await expect(
       publicPage.getByRole('heading', { name: 'Results', exact: true })
     ).toHaveCount(0)
     await expect(
@@ -310,11 +317,52 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await expect(
       page.getByRole('button', { name: 'Share assessment', exact: true })
     ).toBeVisible()
+    // Simulate a now-authenticated owner before explicit republication.
+    const databaseUrl = process.env.TEST_DATABASE_URL!
+    expect(new URL(databaseUrl).pathname.endsWith('_test')).toBe(true)
+    const profilePool = new Pool({ connectionString: databaseUrl })
+    try {
+      const {
+        rows: [owner]
+      } = await profilePool.query(
+        'SELECT owner_id FROM assessments WHERE id=$1',
+        [id]
+      )
+      await profilePool.query(
+        'UPDATE "user" SET is_anonymous=false, name=$2, image=$3 WHERE id=$1',
+        [
+          owner.owner_id,
+          'Public publisher',
+          'https://pbs.twimg.com/profile_images/123/avatar_normal.jpg'
+        ]
+      )
+      await profilePool.query(
+        'INSERT INTO account (id, account_id, provider_id, user_id, updated_at) VALUES ($1,$2,$3,$4,now())',
+        [crypto.randomUUID(), '123456789', 'twitter', owner.owner_id]
+      )
+    } finally {
+      await profilePool.end()
+    }
     const republished = await page.request.patch(`/api/assessments/${id}`, {
       headers,
       data: { expectedRevision: 2, visibility: 'public' }
     })
     expect(republished.status()).toBe(200)
+    const attributedPage = await visitor.newPage()
+    await attributedPage.goto(publicURL)
+    await expect(
+      attributedPage.getByRole('heading', {
+        name: 'Public publisher',
+        exact: true
+      })
+    ).toBeVisible()
+    await expect(
+      attributedPage.getByRole('img', { name: 'Public publisher', exact: true })
+    ).toHaveAttribute('src', /avatar_400x400.jpg/)
+    await expect(
+      attributedPage.getByRole('link', { name: 'View on X', exact: true })
+    ).toHaveAttribute('href', 'https://x.com/i/user/123456789')
+    await attributedPage.close()
     await page.goto('/assessments')
     await page
       .getByRole('button', { name: 'Make private', exact: true })
