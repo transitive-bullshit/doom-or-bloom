@@ -58,3 +58,56 @@ export async function mockEvaluation(
     await route.fulfill({ json })
   })
 }
+
+export async function seedAssessment(
+  page: Page,
+  assessment: import('../../lib/assessment/schema').Assessment
+) {
+  await page.goto('/assessment')
+  const origin = new URL(page.url()).origin
+  let session = await (await page.request.get('/api/auth/get-session')).json()
+  if (!session?.user) {
+    const response = await page.request.post('/api/auth/sign-in/anonymous', {
+      headers: { origin },
+      data: {}
+    })
+    expect(response.ok()).toBe(true)
+    session = await response.json()
+  }
+  const { execFileSync } = await import('node:child_process')
+  const { id } = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        '--conditions=react-server',
+        '--import',
+        'tsx',
+        'tests/browser/seed-assessment.ts'
+      ],
+      {
+        input: JSON.stringify({ ownerId: session.user.id, assessment }),
+        encoding: 'utf8'
+      }
+    )
+  ) as { id: string }
+  if (assessment.draft)
+    await page.evaluate(
+      ({ id, promptId, text }) => {
+        localStorage.setItem(
+          `doom-or-bloom:draft:${id}`,
+          JSON.stringify({ promptId, text })
+        )
+      },
+      { id, promptId: assessment.prompts.at(-1)!.id, text: assessment.draft }
+    )
+  await page.goto(`/assessment/${id}`)
+  return id
+}
+
+export async function savedAssessment(page: Page) {
+  const id = new URL(page.url()).pathname.split('/').at(-1)!
+  const response = await page.request.get(`/api/assessments/${id}`)
+  expect(response.ok()).toBe(true)
+  return (await response.json())
+    .assessment as import('../../lib/assessment/schema').Assessment
+}

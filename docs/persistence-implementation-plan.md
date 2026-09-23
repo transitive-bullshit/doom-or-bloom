@@ -268,3 +268,9 @@ Pause only the dependent work when credentials or external configuration are una
 - All 19 tests across these six migrated spec files passed across focused runs, including complete diagnostic ZIP export and historical result recovery. No paid calls. Remaining older assessment/conversation/debug/interaction/map fixtures still need migration; this is not a claim that the entire broad browser suite passes.
 
 - Standard verification: formatting, lint, types, all 252 unit tests and content validation passed. The unused-code check passed after registering all browser/analytics entry points without executing environment-dependent configuration.
+
+### 2026-09-23 — saved conversation and debug browser regressions
+
+- Migrated conversation and debug fixtures to owned database assessments, with a native test-database-only seed helper. Conversation disclosure/copying does not submit inference; creating a new assessment preserves the previous transcript and its browser debug records.
+- All four conversation/debug cases passed across focused runs. Verified reload recovery with unavailable IndexedDB, recorded exchange navigation, JSON help by key hover and keyboard focus, mobile layout and saved debug history. Updated the storage warning assertion to the current server-persistence copy.
+- Formatting, TypeScript, lint, unused-code and diff checks passed. Remaining broad-browser migration and live X verification remain pending. Neon credentials remain ignored and separate from local test configuration; no production writes.
