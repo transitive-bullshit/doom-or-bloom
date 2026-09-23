@@ -1,14 +1,14 @@
 # Measurement, Privacy, and Evaluation
 
-> Approved persistence transition (2026-09-23), not yet implemented: The approved [persistence design](PERSISTENCE.md#product-behavior) supersedes the no-database/no-account policy below: submitted interactions and results are retained indefinitely unless deleted, private from other visitors but available for operator review; publication shares the full frozen assessment. Raw text remains excluded from analytics. The existing browser-only implementation remains in place until [the persistence checkpoints](persistence-implementation-plan.md) update storage and visible privacy copy together.
+> Persistence is now active for participant assessments: anonymous browser sessions own server-saved snapshots and operations. Publication, forks, persona migration, and X login remain tracked in [the implementation plan](persistence-implementation-plan.md). [PERSISTENCE.md](PERSISTENCE.md) defines the full approved target.
 
 ## Privacy posture
 
-- No account, email, hosted assessment database, or cross-device profile.
-- One local assessment record per browser. When debug mode records an operation, retain its allowlisted Jev request/response diagnostics separately in browser IndexedDB, including answer text in shared state. Restore history on refresh; clear it on restart. No diagnostics enter analytics, reports or remote persistence.
+- No sign-up is required. Better Auth creates an anonymous owner on explicit start. Server records are retained indefinitely until deletion; clearing cookies loses access without deleting records. Optional account recovery remains pending.
+- PostgreSQL stores submitted replies, rejected interactions, results and bounded failure diagnostics. Operators may inspect private assessments for improvement. Unsubmitted drafts stay in localStorage keyed by assessment and prompt. Browser debug records may contain raw text; keep them separate from analytics and public payloads.
 - Internal `/questions` and `/corpus` tools disable page analytics and make no Jev calls. Explicitly saved editorial feedback is written locally to `content/feedback/` with asset metadata; do not send participant transcripts there automatically.
 - A random assessment identifier links anonymous events across resumed visits and rotates on restart.
-- Do not send raw answers, answer excerpts, full reports, query strings, or free-form clarification text to analytics.
+- Do not send raw answers, answer excerpts, full reports, private assessment URLs, query strings, or free-form clarification text to analytics.
 - Do not enable session replay, heatmaps, autocapture, automatic exception payloads, or person profiles for MVP.
 - Configure PostHog's project-level IP-data disposal; the deprecated client `ip: false` option is not sufficient.
 - Explain accurately that this is pseudonymous per-assessment event linkage, not mathematical anonymity.

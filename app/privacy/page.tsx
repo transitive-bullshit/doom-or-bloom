@@ -10,10 +10,11 @@ export default function Privacy() {
     <article className='mx-auto w-full max-w-2xl space-y-7 px-6 py-14 text-sm leading-relaxed'>
       <h1 className='text-3xl font-semibold tracking-tight'>Privacy</h1>
       <p>
-        No account, email, or hosted assessment database is required. Your
-        browser stores one assessment, its draft, and its result locally.
-        Restart clears that record and creates a new random assessment
-        identifier. Downloads stay under your control.
+        No sign-up is required. A browser session gives you access to your
+        private assessments. Submitted answers, rejected replies, results, and
+        bounded failure records are saved on our server indefinitely unless you
+        delete the assessment. Unsubmitted typing stays in this browser. We may
+        inspect saved assessments to improve the project.
       </p>
       <h2 className='text-lg font-medium'>Where answers go</h2>
       <p>
@@ -25,19 +26,16 @@ export default function Privacy() {
         <a className='underline' href='https://typesafe.ai'>
           TypeSafe
         </a>{' '}
-        for its current terms. Server-side assessment storage is temporary
-        request deduplication, expiring after two minutes; there is no
-        transcript database.
+        for its current terms. The assessment database is separate from
+        TypeSafe’s processing.
       </p>
       <p>
-        Rejected answers are excluded from later scoring context and reports.
-        Clearly marked local debugging details can include your submitted text
-        and typed judgments. When debug mode is enabled, completed operation
-        requests and responses are saved separately in this browser and survive
-        refresh. Restart clears that assessment's debug history. They are
-        excluded from reports and analytics. Do not share screenshots of those
-        details if they contain private information. Avoid entering sensitive
-        personal information.
+        Rejected replies are retained as conversation history but excluded from
+        scoring evidence. Operational diagnostics stay private. Browser debug
+        records may also contain submitted text and judgments; avoid sharing
+        them inadvertently. Creating a new assessment preserves previous
+        assessments. Delete an assessment from My assessments to remove its
+        server records.
       </p>
       <h2 className='text-lg font-medium'>Optional measurement</h2>
       <p>
@@ -45,9 +43,10 @@ export default function Privacy() {
         build. PostHog assessment analytics are{' '}
         {posthog ? 'enabled' : 'disabled'}. When enabled, Vercel measures page
         traffic and PostHog receives explicit assessment events. We exclude
-        answer text, excerpts, full reports, free-form clarification, and URL
-        query strings or hashes. Session replay, heatmaps, autocapture,
-        automatic exception collection, and person profiles are disabled.
+        answer text, excerpts, full reports, private assessment URLs, free-form
+        clarification, and URL query strings or hashes. Session replay,
+        heatmaps, autocapture, automatic exception collection, and person
+        profiles are disabled.
       </p>
       <p>
         A random per-assessment identifier links events across resumed visits
@@ -69,9 +68,11 @@ export default function Privacy() {
         contains your usable answers and evidence, so review it before sharing.
       </p>
       <p>
-        Local progress does not sync across devices. Browser storage can be
-        unavailable or cleared. A second tab that changes the assessment pauses
-        older tabs to prevent silent overwrites.
+        Saved progress is tied to your browser session until optional sign-in is
+        available. Clearing or expiring cookies loses anonymous access but does
+        not delete the server records. Unsubmitted drafts do not sync across
+        devices. Concurrent submissions are checked against the saved revision
+        to prevent silent overwrites.
       </p>
 
       <div className='flex flex-wrap justify-center mt-12'>

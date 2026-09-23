@@ -61,3 +61,5 @@ eval/runs/
 
 # Isolated launch-readiness production build
 .next-seo-audit/
+
+.next-persistence/

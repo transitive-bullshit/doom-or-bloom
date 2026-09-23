@@ -175,11 +175,11 @@ export default async function About() {
       <section className='space-y-3'>
         <h2 className='text-lg font-medium'>Your answers stay yours</h2>
         <p>
-          No accounts and no persistent answer database. Your browser saves your
-          answers, drafts, and results so you can return later. Submitted
-          answers pass through our server to Jev for evaluation; a temporary
-          retry cache expires after two minutes. TypeSafe’s own data policies
-          apply to its processing.
+          No sign-up is required. Submitted answers and results are saved on our
+          server, private from other visitors. We may inspect assessments to
+          improve the project and retain them until you delete them. Unsubmitted
+          typing stays in this browser. Jev evaluates submitted answers under
+          TypeSafe’s data policies.
         </p>
         <p>
           Optional analytics exclude answer text. Saved persona examples are

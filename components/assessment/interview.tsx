@@ -1,36 +1,18 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
-import {
-  clearDebugOperations,
-  loadDebugOperations,
-  saveDebugOperation
-} from '@/lib/debug/trace-storage'
+import { useEffect, useState } from 'react'
+import { loadDebugOperations } from '@/lib/debug/trace-storage'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
-import type {
-  Assessment,
-  AssessmentResponse,
-  DebugTrace,
-  Operation
-} from '@/lib/assessment/schema'
+import type { DebugTrace } from '@/lib/assessment/schema'
 import {
-  assessmentSchema,
   limits,
   supportedContentVersions,
   versions
 } from '@/lib/assessment/schema'
-import {
-  canSubmit,
-  createAssessment,
-  currentPrompt,
-  eligible,
-  matchesResponse
-} from '@/lib/assessment/state'
-import {
-  loadAssessment,
-  saveAssessment,
-  StorageConflict,
-  storageKey
-} from '@/lib/persistence/storage'
+import { canSubmit, currentPrompt, eligible } from '@/lib/assessment/state'
+import type { OwnedAssessment } from '@/lib/assessments/repository'
+import { usePersistentAssessment } from './use-persistent-assessment'
+import { WorldviewCta } from '@/components/worldview-cta'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
@@ -43,16 +25,6 @@ import {
 } from '@/components/ui/field'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose
-} from '@/components/ui/dialog'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import { ReadinessMeter } from './readiness-meter'
 import { toast } from 'sonner'
@@ -62,20 +34,14 @@ import { ResultView } from './result-view'
 import { Paperclips } from './paperclips'
 import { ConversationHistory, ConversationReplies } from './conversation'
 import { conversationTurns } from '@/lib/assessment/conversation'
-import { downloadBlob } from '@/lib/sharing/report'
-import { configureAnalytics, emitEvent } from '@/lib/analytics/client'
-import { makeEvent, transitionEvents } from '@/lib/analytics/events'
+import { configureAnalytics } from '@/lib/analytics/client'
 import type { Catalog } from '@/lib/analytics/events'
-import {
-  restoreLocalInteraction,
-  serverSnapshot
-} from '@/lib/assessment/transport'
 
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
 
 export function Interview({
   personas,
-  model,
+  initial,
   debugDefault,
   debugAvailable,
   recoveryCopy,
@@ -85,7 +51,7 @@ export function Interview({
   dimensions
 }: {
   personas: PersonaComparison[]
-  model: string
+  initial: OwnedAssessment
   debugDefault: boolean
   debugAvailable: boolean
   analyticsEnabled: boolean
@@ -97,10 +63,9 @@ export function Interview({
     { reask: string; clarification: string; exhausted: string }
   >
 }) {
-  const [state, setState] = useState<Assessment | null>(null)
-  const [busy, setBusy] = useState(false)
-  const [notice, setNotice] = useState('')
-  const [conflict, setConflict] = useState(false)
+  const { record, state, busy, notice, uncertain, persist, act, refresh } =
+    usePersistentAssessment(initial)
+  const conflict = false
   const [debugMode, setDebugMode] = useState(false)
   useEffect(() => {
     let disposed = false
@@ -133,95 +98,10 @@ export function Interview({
     []
   )
   const [debugStorageNotice, setDebugStorageNotice] = useState('')
-  const [rawBackup, setRawBackup] = useState<string>()
-  const [fixture, setFixture] = useState(fixtureMode)
-  const current = useRef<Assessment | null>(null)
-  const token = useRef<string | null>(null)
-  const writable = useRef(true)
-  const pending = useRef<{ id: string; controller: AbortController } | null>(
-    null
-  )
-  const uncertain = useRef<{ id: string; key: string; body: string } | null>(
-    null
-  )
-  const setCurrent = (value: Assessment) => {
-    current.current = value
-    setState(value)
-  }
-  const persist = (value: Assessment) => {
-    if (writable.current) {
-      try {
-        token.current = saveAssessment(
-          localStorage,
-          value,
-          token.current,
-          crypto.randomUUID()
-        )
-      } catch (err) {
-        if (err instanceof StorageConflict) {
-          setConflict(true)
-          pending.current?.controller.abort()
-          throw err
-        }
-        writable.current = false
-        setNotice(
-          'Browser storage is unavailable. Keep this tab open; progress cannot resume after closing it.'
-        )
-      }
-    }
-    setCurrent(value)
-  }
+  const fixture = fixtureMode
   useEffect(() => {
     configureAnalytics(analyticsCatalog, analyticsEnabled)
   }, [analyticsCatalog, analyticsEnabled])
-  useEffect(() => {
-    let disposed = false
-    queueMicrotask(() => {
-      if (disposed) return
-      let loaded
-      try {
-        loaded = loadAssessment(localStorage)
-      } catch {
-        loaded = { kind: 'unavailable' as const }
-      }
-      if (loaded.kind === 'valid') {
-        token.current = loaded.token
-        current.current = loaded.assessment
-        setState(loaded.assessment)
-      } else {
-        if (loaded.kind === 'invalid') {
-          setRawBackup(loaded.raw)
-          writable.current = false
-          setNotice(
-            'The saved assessment could not be read. Download a backup or restart to clear it.'
-          )
-        }
-        if (loaded.kind === 'unavailable') {
-          writable.current = false
-          setNotice(
-            'Browser storage is unavailable. Keep this tab open to preserve progress.'
-          )
-        }
-        const initial = createAssessment(crypto.randomUUID(), model)
-        persist(initial)
-      }
-    })
-    const changed = (event: StorageEvent) => {
-      if (event.key !== storageKey) return
-      const latest = loadAssessment(localStorage)
-      if (latest.kind === 'valid' && latest.token === token.current) return
-      setConflict(true)
-      pending.current?.controller.abort()
-      pending.current = null
-      setBusy(false)
-    }
-    window.addEventListener('storage', changed)
-    return () => {
-      disposed = true
-      window.removeEventListener('storage', changed)
-      pending.current?.controller.abort()
-    }
-  }, [model])
   useEffect(() => {
     if (!state?.id) return
     let disposed = false
@@ -250,184 +130,7 @@ export function Interview({
     return () => {
       disposed = true
     }
-  }, [state?.id])
-  async function act(operation: Operation) {
-    if (!current.current || pending.current || conflict || rawBackup) return
-    const snapshot = current.current
-    const payload = {
-      assessment: serverSnapshot(snapshot),
-      operation,
-      debug: true
-    }
-    const key = JSON.stringify(payload)
-    const id =
-      uncertain.current?.key === key
-        ? uncertain.current.id
-        : crypto.randomUUID()
-    const requestBody =
-      uncertain.current?.key === key
-        ? uncertain.current.body
-        : JSON.stringify({ requestId: id, ...payload })
-    uncertain.current = { id, key, body: requestBody }
-    const controller = new AbortController()
-    pending.current = { id, controller }
-    setBusy(true)
-    try {
-      persist(snapshot)
-      const response = await fetch('/api/assessment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        signal: controller.signal,
-        body: requestBody
-      })
-      if (!response.ok) uncertain.current = null
-      const body = (await response.json()) as AssessmentResponse & {
-        error?: string
-      }
-      if (!response.ok) {
-        const failed: SavedDebugOperation = {
-          trace: body.debug ?? {
-            requestId: id,
-            baseRevision: snapshot.revision,
-            stages: [],
-            decisions: [
-              {
-                action:
-                  'request rejected before a diagnostic trace was returned',
-                detail: { status: response.status }
-              }
-            ],
-            elapsedMs: 0
-          },
-          provider: fixture ? 'fixture' : 'live',
-          createdAt: new Date().toISOString(),
-          operation,
-          error: body.error || 'Request failed'
-        }
-        try {
-          setDebugOperations(await saveDebugOperation(snapshot.id, failed))
-        } catch {
-          setDebugOperations((present) => [...present, failed])
-          setDebugStorageNotice(
-            'The failed-step trace is available for this visit but could not be saved.'
-          )
-        }
-        setTrace(failed.trace)
-        throw new Error(
-          body.error || 'The evaluator is unavailable. Your answer is saved.'
-        )
-      }
-      if (
-        !current.current ||
-        !matchesResponse(current.current, body, pending.current?.id ?? '')
-      )
-        return
-      const next = restoreLocalInteraction(
-        snapshot,
-        assessmentSchema.parse(body.assessment),
-        operation,
-        id
-      )
-      let recorded: SavedDebugOperation[] | undefined
-      let debugNotice = ''
-      const operationTrace: SavedDebugOperation | undefined = body.debug
-        ? {
-            trace: body.debug,
-            provider: body.provider,
-            createdAt: new Date().toISOString(),
-            operation,
-            assessment: { ...next, draft: '', interactionHistory: [] }
-          }
-        : undefined
-      if (operationTrace) {
-        try {
-          recorded = await saveDebugOperation(next.id, operationTrace)
-        } catch {
-          debugNotice =
-            'Debug details could not be saved in this browser. Your assessment progress is still saved separately.'
-        }
-      }
-      // Restart/tab conflicts can occur while the debug transaction is finishing.
-      if (
-        !current.current ||
-        !matchesResponse(current.current, body, pending.current?.id ?? '')
-      ) {
-        if (operationTrace && current.current?.id !== next.id)
-          void clearDebugOperations(next.id).catch(() =>
-            setDebugStorageNotice(
-              'The previous debug history could not be cleared.'
-            )
-          )
-        return
-      }
-      uncertain.current = null
-      const events = transitionEvents(snapshot, next, operation, id)
-      persist(next)
-      events.forEach(emitEvent)
-      if (operationTrace) {
-        setTrace(operationTrace.trace)
-        setDebugOperations(
-          (present) =>
-            recorded ??
-            [
-              ...present.filter(
-                (entry) =>
-                  entry.trace.requestId !== operationTrace.trace.requestId
-              ),
-              operationTrace
-            ].slice(-64)
-        )
-        setDebugStorageNotice(debugNotice)
-      }
-      setFixture(body.provider === 'fixture')
-    } catch (err) {
-      if (!controller.signal.aborted)
-        toast.error(
-          err instanceof Error
-            ? err.message
-            : 'Something went wrong. Your answer is saved.'
-        )
-    } finally {
-      if (pending.current?.id === id) {
-        pending.current = null
-        setBusy(false)
-      }
-    }
-  }
-  function restart() {
-    const previousId = current.current?.id
-    if (previousId)
-      void clearDebugOperations(previousId).catch(() =>
-        setDebugStorageNotice(
-          'The previous debug history could not be cleared.'
-        )
-      )
-    setDebugOperations([])
-    setDebugStorageNotice('')
-    if (current.current)
-      emitEvent(makeEvent(current.current, 'assessment_restarted'))
-    pending.current?.controller.abort()
-    pending.current = null
-    uncertain.current = null
-    setBusy(false)
-    setTrace(undefined)
-    setRawBackup(undefined)
-    setConflict(false)
-    try {
-      localStorage.removeItem(storageKey)
-      token.current = null
-      writable.current = true
-    } catch {
-      writable.current = false
-    }
-    persist(createAssessment(crypto.randomUUID(), model))
-  }
-  if (!state)
-    return (
-      <section className='mx-auto w-full max-w-2xl px-6 py-20' role='status'>
-        Opening your assessment…
-      </section>
-    )
+  }, [state?.id, state.revision])
   const p = currentPrompt(state)
   const showResult =
     state.result && ['results', 'completed', 'capped'].includes(state.status)
@@ -435,7 +138,12 @@ export function Interview({
   const unavailableQuestion = !recoveryCopy[p.promptId]
   const paused = state.status === 'paused'
   const allowed =
-    canSubmit(state) && !unavailableQuestion && !busy && !conflict && !rawBackup
+    record.lifecycle === 'open' &&
+    !uncertain &&
+    canSubmit(state) &&
+    !unavailableQuestion &&
+    !busy &&
+    !conflict
   const excessCharacters = Math.max(0, state.draft.length - limits.answerChars)
   const answerTooLong = excessCharacters > 0
   const turns = conversationTurns(state)
@@ -449,10 +157,62 @@ export function Interview({
           <Paperclips dismiss={() => void act({ type: 'dismiss' })} />
         )}
         <div className='relative flex flex-col gap-8'>
+          <Link href='/assessments' className='text-sm underline'>
+            My assessments
+          </Link>
+          {uncertain && !busy && (
+            <Alert>
+              <AlertTitle>Confirm your last submission</AlertTitle>
+              <AlertDescription>
+                Your response may have been saved.{' '}
+                <Button
+                  variant='outline'
+                  onClick={() => void act(uncertain.operation)}
+                >
+                  Check submission
+                </Button>
+              </AlertDescription>
+            </Alert>
+          )}
+          {record.operation &&
+            ['failed', 'interrupted'].includes(record.operation.status) &&
+            record.operation.baseRevision === state.revision &&
+            !uncertain && (
+              <Alert>
+                <AlertTitle>This step did not finish</AlertTitle>
+                <AlertDescription>
+                  Your previous results are unchanged.{' '}
+                  <Button
+                    disabled={busy}
+                    onClick={() => void act(record.operation!.action, true)}
+                  >
+                    Retry saved submission
+                  </Button>
+                </AlertDescription>
+              </Alert>
+            )}
+          {record.lifecycle === 'completed' && (
+            <Badge variant='outline'>Completed assessment</Badge>
+          )}
+          {record.lifecycle === 'open' && state.result && (
+            <Button
+              disabled={busy || Boolean(uncertain)}
+              variant='outline'
+              onClick={() => void act({ type: 'complete' })}
+            >
+              Done
+            </Button>
+          )}
+          {notice && (
+            <Button variant='ghost' onClick={() => void refresh()}>
+              Refresh saved progress
+            </Button>
+          )}
+
           <div className='flex flex-col gap-6'>
             {notice && (
               <Alert>
-                <AlertTitle>Local progress</AlertTitle>
+                <AlertTitle>Saved progress</AlertTitle>
                 <AlertDescription>{notice}</AlertDescription>
               </Alert>
             )}
@@ -468,19 +228,6 @@ export function Interview({
                   </AlertDescription>
                 </Alert>
               )}
-            {rawBackup && (
-              <Button
-                variant='outline'
-                onClick={() =>
-                  downloadBlob(
-                    new Blob([rawBackup], { type: 'application/json' }),
-                    'doom-or-bloom-backup.json'
-                  )
-                }
-              >
-                Download saved backup
-              </Button>
-            )}
             {conflict && (
               <Alert>
                 <AlertTitle>This assessment changed in another tab</AlertTitle>
@@ -511,7 +258,7 @@ export function Interview({
                 personas={personas}
                 state={state}
                 act={(op) => void act(op)}
-                busy={busy || conflict}
+                busy={busy || conflict || record.lifecycle === 'completed'}
                 operations={debugOperations}
               />
             ) : (
@@ -702,9 +449,11 @@ export function Interview({
                     automatically when Jev has enough confidence.
                   </p>
                   <p>
-                    Your answers are 100% private. They're sent to Jev for
-                    analysis, but the only place they're stored is locally in
-                    this browser.
+                    Submitted answers and results are saved on our server and
+                    sent to Jev for analysis. They are private from other
+                    visitors unless you publish them. We may inspect them to
+                    improve the project and retain them until you delete the
+                    assessment. Unsubmitted typing stays in this browser.
                   </p>
                 </div>
                 {state.answers.length > 0 && (
@@ -730,34 +479,7 @@ export function Interview({
           </div>
           <div className='flex flex-col gap-6'>
             <div className='flex items-center justify-between gap-4'>
-              {(state.answers.length > 0 || state.attempts.length > 0) && (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant='ghost' size='sm'>
-                      Restart
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Start a new assessment?</DialogTitle>
-                      <DialogDescription>
-                        This clears the current local assessment. Download your
-                        report first if you want to keep it.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter>
-                      <DialogClose asChild>
-                        <Button variant='outline'>Keep this assessment</Button>
-                      </DialogClose>
-                      <DialogClose asChild>
-                        <Button variant='destructive' onClick={restart}>
-                          Clear & restart
-                        </Button>
-                      </DialogClose>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-              )}
+              <WorldviewCta onlyIfEmpty={false} label='New assessment' />
               {debugAvailable && (
                 <Button
                   variant='ghost'

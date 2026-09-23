@@ -1,5 +1,4 @@
 import { beforeEach, afterEach, expect, test, vi } from 'vitest'
-import { APIError } from '@typesafe-ai/sdk'
 import { z } from 'zod'
 import { POST as assess } from '@/app/api/assessment/route'
 import { GET as tweet } from '@/app/api/tweet/route'
@@ -10,7 +9,6 @@ import { POST as card } from '@/app/api/share-card/route'
 import { runAssessment } from './engine'
 import { getTweet } from 'react-tweet/api'
 import { render } from 'takumi-js'
-import { createAssessment } from '@/lib/assessment/state'
 
 vi.mock('@/lib/debug/local-access', () => ({
   localDebugAvailable: () => true,
@@ -41,16 +39,6 @@ function request(path: string, body: unknown) {
     body: JSON.stringify(body)
   })
 }
-function assessmentRequest() {
-  const id = crypto.randomUUID()
-  const { interactionHistory: _history, ...assessment } = createAssessment(id)
-  return request('assessment', {
-    assessment,
-    requestId: id,
-    debug: false,
-    operation: { type: 'answer', text: 'PRIVATE_ANSWER' }
-  })
-}
 function failure(response: Response, phase: string) {
   const raw = vi.mocked(console.error).mock.calls.at(-1)![0] as string
   expect(raw).not.toContain('PRIVATE_')
@@ -65,51 +53,10 @@ function failure(response: Response, phase: string) {
   return JSON.parse(raw)
 }
 
-test('assessment provider failure logs correlation and payload metadata even with debug disabled', async () => {
-  vi.mocked(runAssessment).mockRejectedValueOnce(
-    new APIError(
-      400,
-      {
-        detail: { error_type: 'max_tokens_exceeded' },
-        input: 'PRIVATE_ANSWER'
-      },
-      new Headers({ 'x-typesafe-request-id': 'provider-123' })
-    )
-  )
-  const response = await assess(assessmentRequest())
-  expect(response.status).toBe(503)
-  const record = failure(response, 'evaluate')
-  expect(record).toMatchObject({
-    operation: 'answer',
-    answerCount: 0,
-    error: {
-      code: 'max_tokens_exceeded',
-      providerRequestId: 'provider-123',
-      status: 400
-    }
-  })
-  expect(vi.mocked(runAssessment).mock.calls.at(-1)![5]).toBe(record.requestId)
-  expect(await response.text()).not.toContain('PRIVATE_')
-})
-
-test('invalid evaluator output is a logged server error, not an invalid-input response', async () => {
-  vi.mocked(runAssessment).mockResolvedValueOnce({ assessment: {} } as never)
-  const response = await assess(assessmentRequest())
-  expect(response.status).toBe(500)
-  expect(failure(response, 'validate_output').error.code).toBe(
-    'validation_failed'
-  )
-})
-
-test('invalid user input is a warning and never reaches the evaluator', async () => {
-  const response = await assess(
-    request('assessment', { secret: 'PRIVATE_ANSWER' })
-  )
-  expect(response.status).toBe(400)
-  expect(console.error).not.toHaveBeenCalled()
-  const raw = vi.mocked(console.warn).mock.calls[0]![0] as string
-  expect(raw).not.toContain('PRIVATE_')
-  expect(JSON.parse(raw)).toMatchObject({ phase: 'parse_input', status: 400 })
+test('retired client-authoritative assessment API cannot run inference', async () => {
+  const response = await assess()
+  expect(response.status).toBe(410)
+  expect(runAssessment).not.toHaveBeenCalled()
 })
 
 test('tweet network failures log the underlying system code', async () => {

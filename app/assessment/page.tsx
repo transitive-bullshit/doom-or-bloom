@@ -1,61 +1,15 @@
-import { pageMetadata } from '@/lib/metadata'
-import { publicPages } from '@/lib/site'
-import { PageTransition } from '@/components/page-transition'
-import { Interview } from '@/components/assessment/interview'
-import { loadBundle } from '@/lib/content/loader'
-import { loadExamples } from '@/components/landing/data'
-import { worldviewValues } from '@/lib/assessment/persona-matches'
-import { serverEnv } from '@/lib/server/env'
-import styles from './assessment.module.css'
-export const metadata = pageMetadata(publicPages[1]!)
-
-export default async function Page() {
-  const env = serverEnv()
-  const bundle = loadBundle()
-  const personas = (
-    await loadExamples().catch((err: unknown) => {
-      console.error('Unable to load persona comparisons', err)
-      return []
-    })
-  ).map(({ id, name, slug, avatar, result }) => ({
-    id,
-    name,
-    slug,
-    avatar,
-    values: worldviewValues(result)
-  }))
+import { WorldviewCta } from '@/components/worldview-cta'
+import Link from 'next/link'
+export const metadata = { title: 'Map your AI worldview' }
+export default function Page() {
   return (
-    <PageTransition>
-      <div className={styles.page}>
-        <h1 className='mx-auto w-full max-w-2xl px-6 pt-10'>
-          Map your AI worldview
-        </h1>
-        <Interview
-          personas={personas}
-          model={env.provider === 'fixture' ? 'fixture-v1' : env.model}
-          fixtureMode={env.provider === 'fixture'}
-          debugDefault={env.debug}
-          debugAvailable={env.debug}
-          analyticsEnabled={env.posthog}
-          analyticsCatalog={{
-            prompts: Object.fromEntries(
-              bundle.prompts.map((p) => [p.id, p.family])
-            ),
-            resources: bundle.resources.map((r) => r.id)
-          }}
-          dimensions={[
-            ...bundle.rubric.dimensions.map(({ id, label, meaning }) => ({
-              id,
-              label,
-              meaning
-            })),
-            { id: 'catastrophic_risk', ...bundle.rubric.catastrophicRisk }
-          ]}
-          recoveryCopy={Object.fromEntries(
-            bundle.prompts.map((p) => [p.id, p.recoveryVariants])
-          )}
-        />
-      </div>
-    </PageTransition>
+    <main className='mx-auto flex max-w-2xl flex-col gap-6 px-6 py-16'>
+      <h1 className='text-3xl font-semibold'>Map your AI worldview</h1>
+      <p>A few questions to explore your perspective. No account required.</p>
+      <WorldviewCta />
+      <Link href='/assessments' className='text-sm underline'>
+        My assessments
+      </Link>
+    </main>
   )
 }

@@ -48,7 +48,7 @@ pnpm db:test:repository
 
 Migrations are checked in under `drizzle/`; repeat application is a no-op. After schema changes run `pnpm db:generate` and review the SQL. Deferred circular pointers, immutable snapshot enforcement, and persona selection triggers live in the custom `0001` migration; preserve them when generating changes. `pnpm db:auth:generate` regenerates the pinned Better Auth schema. Integration tests use only `TEST_DATABASE_URL`, whose database name must end in `_test`, and remove their own records.
 
-Database/auth foundations are available; participant UI migration is still in progress. Anonymous sessions have a 365-day server lifetime, refreshed after a day of activity by Better Auth's session endpoint. Browser cookie policies can shorten access. Anonymous cleanup is disabled; assessments restrict owner deletion. Public page reads must not sign in visitors.
+Participant assessments use database-backed ownership and snapshots. Anonymous sessions have a 365-day server lifetime, refreshed after a day of activity by Better Auth's session endpoint. Browser cookie policies can shorten access. Anonymous cleanup is disabled; assessments restrict owner deletion. Public page reads must not sign in visitors.
 
 ## Environment variables
 
@@ -75,6 +75,7 @@ pnpm test
 pnpm build
 pnpm exec playwright install chromium
 pnpm check:browser
+pnpm check:persistence
 ```
 
 `pnpm test` covers formatting, lint, types, unit tests, content validation, and unused code. Ordinary checks use fixtures and need no inference credentials. Browser tests use their own Portless hostname and build directory; consult `playwright.config.ts` when troubleshooting a local server collision.
@@ -92,7 +93,7 @@ Start with the [handoff index](docs/README.md). The most useful deeper reference
 
 Keep participant questions and result prose authored. Missing evidence must not become a low score, and a model’s interpretation confidence must not become a forecast probability. Changes to persisted data should preserve answers, drafts, and their original version metadata.
 
-Assessment progress lives in localStorage. Enabled debug traces live separately in IndexedDB, survive refresh, and clear for that assessment on restart. They can contain complete answers; use generated examples for bug reports and screenshots.
+Submitted progress lives in PostgreSQL. Only unsubmitted drafts and uncertain request keys live in localStorage, separately per assessment. Historical browser debug traces live separately in IndexedDB. They can contain complete answers; use generated examples for bug reports and screenshots.
 
 ## Persona simulations and regression work
 

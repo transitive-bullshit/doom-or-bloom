@@ -7,7 +7,8 @@ import {
   assessmentSchema,
   operationSchema,
   type Assessment,
-  type AssessmentResponse
+  type AssessmentResponse,
+  type DebugTrace
 } from '../assessment/schema'
 import { createAssessment } from '../assessment/state'
 import { restoreLocalInteraction } from '../assessment/transport'
@@ -65,6 +66,8 @@ export type OwnedAssessment = {
   operation: OperationView | null
 }
 export type OperationOutcome = {
+  debug?: DebugTrace
+  provider?: 'live' | 'fixture'
   operation: OperationView
   assessment?: Assessment
 }
@@ -457,7 +460,12 @@ export function assessmentRepository(pool: Pool) {
             })
             .where(eq(assessmentOperations.id, op.id))
             .returning()
-          return outcome(tx, done!)
+          const result = await outcome(tx, done!)
+          if (response.debug) {
+            result.debug = response.debug
+            result.provider = response.provider
+          }
+          return result
         })
       } catch (err) {
         // This read also resolves a COMMIT whose acknowledgment was lost. Never
