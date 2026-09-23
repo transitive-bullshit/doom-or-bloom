@@ -457,6 +457,38 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       })
       .getByRole('button', { name: 'Actions for Your AI worldview #1' })
       .click()
+    await expect(
+      page.getByRole('menuitem', {
+        name: 'View public assessment',
+        exact: true
+      })
+    ).toHaveAttribute('href', `/assessments/public/${id}`)
+    await page.evaluate(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: {
+          writeText: async (text: string) => {
+            document.documentElement.dataset.copiedLink = text
+          }
+        }
+      })
+    })
+    await page
+      .getByRole('menuitem', { name: 'Copy public link', exact: true })
+      .click()
+    await expect(
+      page.getByText('Public link copied.', { exact: true })
+    ).toBeVisible()
+    expect(
+      await page.evaluate(() => document.documentElement.dataset.copiedLink)
+    ).toBe(publicURL)
+    await page
+      .getByRole('row')
+      .filter({
+        has: page.getByRole('link', { name: 'Published', exact: true })
+      })
+      .getByRole('button', { name: 'Actions for Your AI worldview #1' })
+      .click()
     await page
       .getByRole('menuitem', { name: 'Make private', exact: true })
       .click()

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { ArrowDown, ArrowUp, ArrowUpDown, MoreHorizontal } from 'lucide-react'
 import {
   createColumnHelper,
@@ -81,6 +82,16 @@ export function AssessmentTable({
   onMakePrivate: (item: LibraryItem) => void
   onDelete: (item: LibraryItem) => void
 }) {
+  async function copyPublicLink(id: string) {
+    try {
+      await navigator.clipboard.writeText(
+        `${window.location.origin}/assessments/public/${id}`
+      )
+      toast.success('Public link copied.')
+    } catch {
+      toast.error('Unable to copy. Open the public assessment to copy its URL.')
+    }
+  }
   const [sorting, setSorting] = useState<SortingState>([
     { id: 'createdAt', desc: true }
   ])
@@ -144,9 +155,23 @@ export function AssessmentTable({
           <DropdownMenuContent align='end'>
             <DropdownMenuGroup>
               {row.original.visibility === 'public' && (
-                <DropdownMenuItem onSelect={() => onMakePrivate(row.original)}>
-                  Make private
-                </DropdownMenuItem>
+                <>
+                  <DropdownMenuItem asChild>
+                    <Link href={`/assessments/public/${row.original.id}`}>
+                      View public assessment
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onSelect={() => void copyPublicLink(row.original.id)}
+                  >
+                    Copy public link
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onSelect={() => onMakePrivate(row.original)}
+                  >
+                    Make private
+                  </DropdownMenuItem>
+                </>
               )}
               <DropdownMenuItem
                 variant='destructive'
