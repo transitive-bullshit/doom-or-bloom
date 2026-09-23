@@ -6,6 +6,7 @@ import { simulationPresentation } from '@/lib/personas/payload'
 import { loadPublished } from '@/lib/assessments/public-server'
 import { pageMetadata } from '@/lib/metadata'
 import { PublishedResult } from '@/components/assessment/published-result'
+import { Separator } from '@/components/ui/separator'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 export const dynamic = 'force-dynamic'
 export async function generateMetadata({
@@ -76,6 +77,7 @@ export default async function Page({
         state={{ ...state, draft: '', eventMarkers: [] }}
         personas={personas}
       />
+      <Separator className='my-12' />
       <WorldviewCtaCard />
     </AssessmentPage>
   )
