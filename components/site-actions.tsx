@@ -13,6 +13,8 @@ export function SiteActions() {
       <Button variant='ghost' size='icon' asChild>
         <a
           href='https://github.com/transitive-bullshit/doom-or-bloom'
+          target='_blank'
+          rel='noopener noreferrer'
           aria-label='Project on GitHub'
         >
           <svg viewBox='0 0 16 16' fill='currentColor' aria-hidden='true'>
@@ -21,7 +23,12 @@ export function SiteActions() {
         </a>
       </Button>
       <Button variant='ghost' size='icon' asChild>
-        <a href='https://x.com/transitive_bs' aria-label='Travis on X'>
+        <a
+          href='https://x.com/transitive_bs'
+          target='_blank'
+          rel='noopener noreferrer'
+          aria-label='Travis on X'
+        >
           <span className='text-base' aria-hidden='true'>
             𝕏
           </span>
