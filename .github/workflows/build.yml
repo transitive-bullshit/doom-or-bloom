@@ -50,5 +50,7 @@ jobs:
       - run: pnpm test
       - run: pnpm build:local
       - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm check:browser
+      - run: pnpm check:analytics
       - run: pnpm check:persistence
       - run: pnpm db:test:restart

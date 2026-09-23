@@ -6,6 +6,7 @@
     "tests/browser/*-engine.ts",
     "tests/browser/*.spec.ts",
     "playwright.config.ts",
+    "playwright.analytics.config.ts",
     "tests/analytics/*.spec.ts",
     "tests/browser/persist-engine-response.ts",
     "tests/browser/seed-assessment.ts",

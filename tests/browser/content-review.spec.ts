@@ -7,7 +7,8 @@ test('local question and corpus inspectors expose relationships without feedback
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
   let inferenceRequests = 0
-  await page.route('**/api/assessment', (route) => {
+  await page.route(/\/api\/assessments\/[a-f0-9-]+$/, (route) => {
+    if (route.request().method() !== 'POST') return route.continue()
     inferenceRequests++
     return route.abort()
   })
