@@ -22,7 +22,7 @@ for (const width of [390, 1488]) {
       await page.goto(path)
       const column = page.locator('.content-column').first()
       expect((await column.boundingBox())!.width, path).toBe(
-        Math.min(width, 748)
+        Math.min(width, 768)
       )
       const headings = await page
         .locator('main :is(h1,h2,h3,h4,h5,h6)')
@@ -47,7 +47,7 @@ for (const width of [390, 1488]) {
     await startAssessment(page)
     expect(
       (await page.locator('section.content-column').boundingBox())!.width
-    ).toBe(Math.min(width, 748))
+    ).toBe(Math.min(width, 768))
     await expect(page.getByRole('heading', { level: 1 })).toHaveCSS(
       'font-size',
       '30px'

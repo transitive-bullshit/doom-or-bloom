@@ -7,6 +7,7 @@ import { DevelopmentFeedback } from '@/components/development-feedback'
 import type { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
+import { SiteBreadcrumbs } from '@/components/site-breadcrumbs'
 import { SiteActions } from '@/components/site-actions'
 import { SiteAnalytics } from '@/components/analytics'
 import { serverEnv } from '@/lib/server/env'
@@ -48,7 +49,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               </Link>
               <SiteActions />
             </header>
-            <main className='flex flex-1 flex-col'>{children}</main>
+            <main className='flex flex-1 flex-col'>
+              <SiteBreadcrumbs />
+              {children}
+            </main>
             <footer
               style={{ viewTransitionName: 'site-footer' }}
               className='flex flex-wrap justify-center gap-5 px-6 py-6 text-xs text-muted-foreground'

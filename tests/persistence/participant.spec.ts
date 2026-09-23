@@ -232,6 +232,9 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(await visitor.cookies()).toHaveLength(0)
     const publicPage = await visitor.newPage()
     await publicPage.goto(publicURL)
+    await expect(
+      publicPage.getByRole('navigation', { name: 'breadcrumb' })
+    ).toHaveCount(0)
     const publicMatches = publicPage
       .getByRole('region', { name: 'Your closest worldviews' })
       .getByRole('link', { name: /persona$/ })
@@ -271,7 +274,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     const conversation = publicPage.getByRole('region', {
       name: 'Full conversation'
     })
-    expect((await conversation.boundingBox())!.width).toBe(700)
+    expect((await conversation.boundingBox())!.width).toBe(720)
     const expand = conversation.getByRole('button', {
       name: /Read full answer/
     })
@@ -300,7 +303,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await expect(page).toHaveURL(/\/assessments$/)
     await page.getByRole('link', { name: 'View', exact: true }).click()
     await page
-      .getByRole('button', { name: 'Continue in a forked assessment' })
+      .getByRole('button', { name: 'Fork & continue answering' })
       .click()
     await expect(page).not.toHaveURL(new RegExp(`/assessments/${id}$`))
     forkId = page.url().split('/').at(-1)!

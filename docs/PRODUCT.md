@@ -233,6 +233,8 @@ Use the global heading styles in `app/globals.css` on every route, including lan
 
 ### Reading column
 
-Use the shared `content-column` utility for assessment, public assessment, persona, library, and informational page content. It provides a 700px reading area inside a 748px wrapper with 24px side gutters, shrinking to fit narrow screens. Do not introduce independent page-width limits. Multi-column tweet masonry uses a centered breakout up to 1152px, returning to one column on mobile. Maps and result grids may use the shared breakout layout; their wider visualization area does not change the reading column.
+Use the shared `content-column` utility for assessment, public assessment, persona, library, and informational page content. It provides a 720px reading area inside a 768px wrapper with 24px side gutters, shrinking to fit narrow screens. Do not introduce independent page-width limits. Multi-column tweet masonry uses a centered breakout up to 1152px, returning to one column on mobile. Maps and result grids may use the shared breakout layout; their wider visualization area does not change the reading column.
 
 Assessment visibility uses “publish” terminology: “Publish assessment publicly,” “Published,” “Ready to publish,” and “Make private.” Reserve “share” for distributing a link or downloading an image for social sharing, not changing assessment visibility.
+
+Use shared shadcn breadcrumbs as the first page-content element, before the first h1, on all routes except the homepage and public assessment pages. Assessment details link back to My assessments; persona details show the handle. Do not duplicate these with ad hoc back links. Published assessments offer “Fork & continue answering” to start an independently editable assessment.

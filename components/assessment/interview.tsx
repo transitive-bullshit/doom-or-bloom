@@ -267,9 +267,6 @@ export function Interview({
           <Paperclips dismiss={() => void act({ type: 'dismiss' })} />
         )}
         <div className='relative flex flex-col gap-8'>
-          <Link href='/assessments' className='text-sm underline'>
-            My assessments
-          </Link>
           {showResult && (
             <div className='flex flex-wrap items-center gap-3'>
               {record.visibility === 'public' ? (

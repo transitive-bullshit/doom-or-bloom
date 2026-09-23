@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --content-width: 43.75rem;
+  --content-width: 45rem;
   --background: oklch(0.985 0.002 90);
   --foreground: oklch(0.2 0.01 90);
   --card: oklch(1 0 0);
@@ -507,7 +507,7 @@
   font: inherit;
 }
 
-/* 700px reading column plus 24px gutters on each side. */
+/* 720px reading column plus 24px gutters on each side. */
 @utility content-column {
   width: 100%;
   max-width: calc(var(--content-width) + 3rem);

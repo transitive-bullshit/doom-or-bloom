@@ -32,9 +32,6 @@ export function ReviewHeader({
         <Button asChild variant='outline' size='sm'>
           <Link href='/user-journeys'>User Journeys</Link>
         </Button>
-        <Button asChild variant='ghost' size='sm'>
-          <Link href='/assessment'>Return to assessment</Link>
-        </Button>
         <span className='text-xs text-muted-foreground'>{contentVersion}</span>
       </div>
     </header>

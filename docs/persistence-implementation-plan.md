@@ -463,3 +463,10 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Increase the shared reading area from 624px to 700px (748px including gutters). Bookmarks and CTA cards use the same content-width token.
 - [x] Let multi-tweet masonry break out to a centered 1152px maximum with two desktop columns. Single tweets and mobile layouts remain within the reading column.
 - [x] Verify repository checks, six bookmark/tweet/typography browser cases, and the public publication flow. Assert desktop masonry is wider than its 700px parent, centered, and within its cap; mobile has no horizontal overflow.
+
+### Shared breadcrumbs and 720px reading column (2026-09-24)
+
+- [x] Add shared shadcn breadcrumbs before page content on all routes except the homepage and public assessments. Replace redundant back links; assessment details link to My assessments.
+- [x] Rename the published-result fork action to “Fork & continue answering.”
+- [x] Increase the shared reading area to 720px (768px including gutters), preserving wide tweet masonry and result breakouts.
+- [x] Verify repository checks, seven browser cases for breadcrumbs/typography/bookmarks/tweets, and the publication/fork/revoke flow. Confirm public pages omit breadcrumbs and inspect desktop assessment layout.

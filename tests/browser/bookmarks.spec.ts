@@ -3,13 +3,13 @@ import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 
-test('bookmarks are centered at 700px and fade only overflowing title and description lines', async ({
+test('bookmarks are centered at 720px and fade only overflowing title and description lines', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
   await page.goto('/users/noahpinion')
   const list = page.locator('[data-resource-layout="list"]')
-  await expect(list).toHaveCSS('max-width', '700px')
+  await expect(list).toHaveCSS('max-width', '720px')
   const desktop = await list.evaluate((element) => {
     const box = element.getBoundingClientRect()
     const parent = element.parentElement!.getBoundingClientRect()
@@ -19,7 +19,7 @@ test('bookmarks are centered at 700px and fade only overflowing title and descri
       parentCenter: parent.x + parent.width / 2
     }
   })
-  expect(desktop.width).toBe(700)
+  expect(desktop.width).toBe(720)
   expect(Math.abs(desktop.center - desktop.parentCenter)).toBeLessThan(1)
   await page.setViewportSize({ width: 390, height: 844 })
   const text = list.locator('.fade-truncated-text')

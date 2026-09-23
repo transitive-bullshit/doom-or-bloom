@@ -289,7 +289,7 @@ export function ResultView({
                   onClick={() => act({ type: 'continue' })}
                 >
                   {published
-                    ? 'Continue in a forked assessment'
+                    ? 'Fork & continue answering'
                     : 'Continue answering questions'}
                 </Button>
               )}

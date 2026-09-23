@@ -52,7 +52,7 @@ test('persona bookmarks precede a separate themed tweet masonry', async ({
   await expect(layout).toHaveCSS('column-count', '2')
   const masonryBox = (await layout.boundingBox())!
   const sourceBox = (await sources.boundingBox())!
-  expect(sourceBox.width).toBe(700)
+  expect(sourceBox.width).toBe(720)
   expect(masonryBox.width).toBeGreaterThan(sourceBox.width)
   expect(masonryBox.width).toBeLessThanOrEqual(1152)
   expect(
