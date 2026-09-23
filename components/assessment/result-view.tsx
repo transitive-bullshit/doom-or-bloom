@@ -218,7 +218,7 @@ export function ResultView({
       </div>
       {result.findings.length > 0 && (
         <section className='flex flex-col gap-3'>
-          <h2 className='font-medium'>A few things that stood out</h2>
+          <h2 className='text-base font-medium'>A few things that stood out</h2>
           {result.findings.map((f) => (
             <Collapsible key={f.id} className='rounded-lg border p-4'>
               <p className='text-sm'>{f.text}</p>
@@ -337,7 +337,7 @@ export function ResultView({
       </Collapsible>
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>
-          <h2 className='font-medium'>Resources you might enjoy</h2>
+          <h2 className='text-base font-medium'>Resources you might enjoy</h2>
           <ResourceList
             resources={result.resources}
             onOpen={(resource) =>

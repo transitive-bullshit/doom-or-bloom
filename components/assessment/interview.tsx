@@ -256,7 +256,7 @@ export function Interview({
           <Link href='/assessments' className='text-sm underline'>
             My assessments
           </Link>
-          {state.result && (
+          {showResult && (
             <div className='flex flex-wrap items-center gap-3'>
               {record.visibility === 'public' ? (
                 <>
@@ -358,15 +358,6 @@ export function Interview({
             )}
           {record.lifecycle === 'completed' && (
             <Badge variant='outline'>Completed assessment</Badge>
-          )}
-          {record.lifecycle === 'open' && state.result && (
-            <Button
-              disabled={busy || Boolean(uncertain)}
-              variant='outline'
-              onClick={() => void act({ type: 'complete' })}
-            >
-              Done
-            </Button>
           )}
           {notice && (
             <Button variant='ghost' onClick={() => void refresh()}>

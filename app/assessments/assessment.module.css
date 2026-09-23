@@ -4,47 +4,50 @@
   flex-direction: column;
 }
 
-/* Keep the interview, results, and expanded history on one heading scale. */
-.page :where(h1, h2, h3, h4, h5, h6, [data-slot='card-title']) {
-  font-weight: 600;
-  line-height: 1.4;
-  text-wrap: balance;
-}
+/* Component text utilities can override the page’s default heading scale. */
+@layer base {
+  /* Keep the interview, results, and expanded history on one heading scale. */
+  .page :where(h1, h2, h3, h4, h5, h6, [data-slot='card-title']) {
+    font-weight: 600;
+    line-height: 1.4;
+    text-wrap: balance;
+  }
 
-.page h1 {
-  font-size: 2.25rem;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-}
-
-.page h2 {
-  font-size: 1.5rem;
-  letter-spacing: -0.025em;
-}
-
-.page :is(h3, [data-slot='card-title']) {
-  font-size: 1.25rem;
-  letter-spacing: -0.015em;
-}
-
-.page h4 {
-  font-size: 1.125rem;
-}
-
-.page :is(h5, h6) {
-  font-size: 1rem;
-}
-
-@media (min-width: 40rem) {
   .page h1 {
-    font-size: 3rem;
+    font-size: 2.25rem;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
 
   .page h2 {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
   }
 
-  .page :is(h3, [data-slot='card-title']) {
-    font-size: 1.5rem;
+  .page h3 {
+    font-size: 1.25rem;
+    letter-spacing: -0.015em;
+  }
+
+  .page h4 {
+    font-size: 1.125rem;
+  }
+
+  .page :is(h5, h6) {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 40rem) {
+    .page h1 {
+      font-size: 3rem;
+    }
+
+    .page h2 {
+      font-size: 1.875rem;
+    }
+
+    .page h3 {
+      font-size: 1.5rem;
+    }
   }
 }

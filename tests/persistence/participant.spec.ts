@@ -141,6 +141,17 @@ test('publish, fork, and revoke preserve independent assessments and deny public
             .assessment.revision
       )
       .toBe(1)
+    await expect(
+      page.getByRole('button', { name: 'Share assessment', exact: true })
+    ).toHaveCount(0)
+    await expect(
+      page.getByRole('button', { name: 'Done', exact: true })
+    ).toHaveCount(0)
+    const prematureShare = await page.request.patch(`/api/assessments/${id}`, {
+      headers,
+      data: { expectedRevision: 1, visibility: 'public' }
+    })
+    expect(prematureShare.status()).toBe(409)
     const projected = await page.request.post(`/api/assessments/${id}`, {
       headers,
       data: {

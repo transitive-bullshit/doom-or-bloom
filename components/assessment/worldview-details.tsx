@@ -45,7 +45,7 @@ export function WorldviewDetails({
       aria-label={framing.detailsTitle}
       className='mt-5 flex flex-col gap-4'
     >
-      <h2 className='font-semibold'>{framing.detailsTitle}</h2>
+      <h2 className='text-lg font-semibold'>{framing.detailsTitle}</h2>
       {!subject && transformationClaim && (
         <div className='flex flex-col gap-2'>
           <h3 className='text-sm font-medium'>Expected transformation</h3>
@@ -60,7 +60,7 @@ export function WorldviewDetails({
               className='row-span-5 grid grid-rows-subgrid gap-3'
             >
               <CardHeader className='block'>
-                <CardTitle>{component.label}</CardTitle>
+                <CardTitle className='text-base'>{component.label}</CardTitle>
               </CardHeader>
               <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
                 <p className='text-sm text-body-foreground'>
@@ -108,7 +108,7 @@ export function WorldviewDetails({
           {positions.map(({ facet, component }) => (
             <Card key={facet.id} className='row-span-2 grid grid-rows-subgrid'>
               <CardHeader className='block'>
-                <CardTitle>{facet.label}</CardTitle>
+                <CardTitle className='text-base'>{facet.label}</CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col gap-2'>
                 {facet.levels.map((level) => (

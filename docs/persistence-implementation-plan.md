@@ -377,3 +377,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - Verified missing-key `pnpm dev`, direct Next startup, and E2E preflight all exit 1; the configured auth browser test passes.
 - Final checks: `pnpm test` passed (262 tests), local production build/trace checks passed, and configured development preflight passed.
 - Avatar follow-up: upgrade X thumbnail URLs to their 400×400 profile variant when rendering the owner library; preserve other provider URLs. Allow only HTTPS `pbs.twimg.com/profile_images/**` in Next image remote patterns. Verified the authenticated profile’s larger image returns HTTP 200 at 400×400; `pnpm test` passed.
+
+### Results presentation and sharing follow-up (2026-09-23)
+
+- Removed the Done button. Show sharing only in the results view, and reject public visibility through the API while the snapshot is still interviewing, even when an intermediate projection exists.
+- Moved assessment heading defaults into the CSS base layer so component text sizes take precedence. More details uses 18px; lower section/card titles use 16px. Bookmark titles are isolated 14px divs, not headings.
+- Verification: `pnpm test` passed; the publication/fork/revocation browser regression passed with a new assertion that premature publication returns 409. All four interaction browser tests passed; inspected the updated desktop results screenshot.

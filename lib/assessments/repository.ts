@@ -526,7 +526,11 @@ export function assessmentRepository(pool: Pool) {
         if (row.revision !== expectedRevision)
           throw conflict('This assessment changed. Refresh before sharing.')
         const state = await snapshot(tx, id, row.currentSnapshotId)
-        if (visibility === 'public' && !state.result)
+        if (
+          visibility === 'public' &&
+          (!state.result ||
+            !['results', 'completed', 'capped'].includes(state.status))
+        )
           throw conflict('View your results before sharing.')
         const changes: Partial<typeof assessments.$inferInsert> = {
           visibility,
