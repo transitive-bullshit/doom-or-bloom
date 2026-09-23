@@ -1,5 +1,6 @@
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { profileImageUrl } from '@/lib/auth/profile-image'
 import { getAuth } from '@/lib/auth/server'
 import { repository } from '@/lib/assessments/server'
 import { AssessmentLibrary } from '@/components/assessment/library'
@@ -23,7 +24,10 @@ export default async function Page({
       signedIn={Boolean(session && !session.user.isAnonymous)}
       profile={
         session && !session.user.isAnonymous
-          ? { name: session.user.name, image: session.user.image ?? null }
+          ? {
+              name: session.user.name,
+              image: profileImageUrl(session.user.image)
+            }
           : null
       }
       authEnabled={Boolean(
