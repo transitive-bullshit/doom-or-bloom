@@ -45,7 +45,9 @@ export function PersonaPageContent({
     <AnswerNavigationProvider
       answerIds={assessment.answers.map((answer) => answer.id)}
     >
-      <PersonaHeader person={person} />
+      <div className='mb-8'>
+        <PersonaHeader person={person} />
+      </div>
       <ExperimentalResults
         layout='breakout'
         excerpts

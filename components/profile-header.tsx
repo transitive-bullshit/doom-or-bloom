@@ -27,7 +27,7 @@ export function ProfileHeader({
     />
   )
   return (
-    <header className='mb-8'>
+    <header>
       <div className='flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between'>
         <div className='flex min-w-0 items-center gap-4'>
           {portrait &&

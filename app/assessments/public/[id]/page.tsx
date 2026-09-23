@@ -38,10 +38,7 @@ export default async function Page({
     const presentation = simulationPresentation(saved.simulation)
     const sources = saved.simulation.journey.personaSnapshot?.sources ?? []
     return (
-      <AssessmentPage
-        as='main'
-        className='content-column flex flex-col gap-8 py-14'
-      >
+      <AssessmentPage as='main' className='content-column pt-6 pb-14'>
         <PersonaPageContent
           person={{
             ...saved.profile,
@@ -59,7 +56,7 @@ export default async function Page({
   return (
     <AssessmentPage
       as='main'
-      className='content-column flex flex-col gap-8 py-14'
+      className='content-column flex flex-col gap-8 pt-6 pb-14'
     >
       {saved.publisher ? (
         <ProfileHeader
