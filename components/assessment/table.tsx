@@ -229,11 +229,6 @@ export function AssessmentTable({
                   >
                     Copy link to public assessment
                   </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onSelect={() => onMakePrivate(row.original)}
-                  >
-                    Make private
-                  </DropdownMenuItem>
                 </>
               )}
               {(row.original.hasResults ||
@@ -259,6 +254,11 @@ export function AssessmentTable({
                     Download full report
                   </DropdownMenuItem>
                 </>
+              )}
+              {row.original.visibility === 'public' && (
+                <DropdownMenuItem onSelect={() => onMakePrivate(row.original)}>
+                  Make private
+                </DropdownMenuItem>
               )}
               <DropdownMenuItem
                 variant='destructive'
