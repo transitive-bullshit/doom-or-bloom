@@ -173,7 +173,7 @@ test('recovery counters survive a tab conflict and reload without a new allowanc
   ).toHaveCount(0)
 })
 
-test('catastrophic-risk correction quotes that claim in the interface', async ({
+test('results omit review and clarification while retaining continued answers', async ({
   page
 }) => {
   await startAssessment(page)
@@ -189,21 +189,14 @@ test('catastrophic-risk correction quotes that claim in the interface', async ({
     )
   }
   await page.getByRole('button', { name: 'View my results' }).click()
+  await expect(
+    page.getByRole('button', { name: 'Review & clarify my results' })
+  ).toHaveCount(0)
+  await expect(
+    page.getByRole('button', { name: 'That’s not quite my view' })
+  ).toHaveCount(0)
   await page
-    .getByRole('button', { name: 'Review & clarify my results' })
+    .getByRole('button', { name: 'Continue answering questions' })
     .click()
-  const section = page
-    .locator('section')
-    .filter({
-      has: page.getByRole('heading', { name: 'Catastrophic risk', exact: true })
-    })
-    .last()
-  const claim = await section.locator('p').first().textContent()
-  await section
-    .getByRole('button', { name: 'That’s not quite my view' })
-    .click()
-  const clarification = page.getByRole('heading', {
-    name: /catastrophic risk/i
-  })
-  await expect(clarification).toContainText(claim!)
+  await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
 })

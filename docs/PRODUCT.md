@@ -6,7 +6,7 @@
 
 End-user assessments use complete answers and whole-answer support only. They do not generate excerpt pools, select or verify passages, extract stated percentages, or issue quoted tension-pair clarifications. The server defaults to runtime mode; only the pre-built persona runner opts into excerpt processing. Existing historical records remain readable.
 
-The worldview map, human influence, transformation, reasoning scores, inferred P(doom), fingerprints, findings, whole-answer references, correction controls, resources and downloads remain available. Runtime results hide the detailed milestone timeline, outlook hinges and excerpt-backed reasoning judgments; the correction disclosure is “Review & clarify my results.” Persona views retain excerpt-based cards. Excerpt and quote-verification behavior described below applies only to personas.
+The worldview map, human influence, transformation, reasoning scores, inferred P(doom), fingerprints, findings, whole-answer references, resources and downloads remain available. Runtime results hide the detailed milestone timeline, outlook hinges and excerpt-backed reasoning judgments; the review/clarification disclosure and claim-specific correction actions are currently removed from the participant UI. Persona views retain excerpt-based cards. Excerpt and quote-verification behavior described below applies only to personas.
 
 ## Purpose
 
@@ -133,13 +133,12 @@ Optional actions:
 
 - Continue answering to sharpen provisional regions.
 - Supporting answers use bounded disclosure and whole-answer provenance; no selected-passage attribution is required for MVP.
-- Select “That’s not quite my view,” identify a disputed inferred claim, and clarify in natural language.
 - Download a full report.
 - Download a personalized share card.
 - Copy or download the featured map as a PNG.
 - Restart and clear the local assessment.
 
-Clarification appends to an open assessment. Completed assessments stay frozen: continuing or correcting creates a private fork. New assessments permit 12 prompts; forks permit up to 12 additional prompts with a hard ceiling of 30 inherited prompts. Warn two prompts before the applicable ceiling. At the ceiling, show an honest final result, even if evidence is insufficient.
+Participants can continue answering on a private assessment. Published assessments stay frozen: continuing creates a private fork. Claim-specific review/clarification is not currently offered; historical clarification records remain readable. New assessments permit 12 prompts; forks permit up to 12 additional prompts with a hard ceiling of 30 inherited prompts. Warn two prompts before the applicable ceiling. At the ceiling, show an honest final result, even if evidence is insufficient.
 
 ### Supporting surfaces
 
@@ -156,7 +155,7 @@ Clarification appends to an open assessment. Completed assessments stay frozen: 
 - Anonymous browser sessions can own multiple server-saved assessments. No sign-up is required.
 - The first CTA creates an assessment directly when the library is empty; returning participants go to their library.
 - Submitted replies and results are retained indefinitely until deletion; unsubmitted drafts remain in the browser.
-- New assessments preserve previous records. Completed assessments are frozen; continuing or clarifying creates a separate private fork.
+- New assessments preserve previous records. Published assessments are frozen; continuing creates a separate private fork.
 - Optional X sign-in transfers the browser’s assessments to a recoverable account without publishing them or revealing account identity on public pages. Clearing anonymous cookies loses access without deleting records.
 - Assessment, content, rubric, and model versions remain pinned in immutable snapshots.
 

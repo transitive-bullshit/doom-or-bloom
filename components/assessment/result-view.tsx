@@ -13,8 +13,8 @@ import { ExpandingArrowAction } from '@/components/motion/expanding-arrow-button
 import { Spinner } from '@/components/ui/spinner'
 import { Separator } from '@/components/ui/separator'
 import { toast } from 'sonner'
-import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
-import { limits, vectorIds } from '@/lib/assessment/schema'
+import type { Assessment, Operation } from '@/lib/assessment/schema'
+import { limits } from '@/lib/assessment/schema'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import { ResourceList } from './resource-list'
 import { ExperimentalResults } from './experimental-results'
@@ -245,88 +245,6 @@ export function ResultView({
             </Collapsible>
           ))}
         </ResultDisclosure>
-      )}
-      {!readOnly && (
-        <Collapsible>
-          <CollapsibleTrigger asChild>
-            <Button variant='outline'>Review & clarify my results</Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent className='mt-4 flex flex-col gap-5'>
-            {result.components.map((c) => (
-              <section key={c.vector} className='rounded-lg border p-4'>
-                <h5>{c.label}</h5>
-                <p className='mt-2 text-sm'>{c.claim ?? 'Unassessed'}</p>
-                {supportingAnswers(c.evidenceIds).map((answer) => (
-                  <div
-                    key={answer.id}
-                    className='mt-3 border-l-2 pl-3 text-sm text-body-foreground'
-                  >
-                    <AnswerDisclosure
-                      text={answer.text}
-                      label={`Supporting answer ${state.answers.indexOf(answer) + 1}`}
-                    />
-                  </div>
-                ))}
-                {!readOnly &&
-                  c.claim !== null &&
-                  (c.value !== null || c.evidenceIds.length > 0) &&
-                  state.prompts.length <
-                    (published ? limits.maxPrompts : promptLimit(state)) &&
-                  (vectorIds.includes(c.vector as VectorId) ||
-                    c.vector === 'catastrophic_risk') && (
-                    <Button
-                      variant='ghost'
-                      className='mt-3'
-                      disabled={busy}
-                      onClick={() =>
-                        act({
-                          type: 'clarify',
-                          vector:
-                            c.vector === 'catastrophic_risk'
-                              ? 'risk_landscape'
-                              : (c.vector as VectorId),
-                          claim:
-                            c.vector === 'catastrophic_risk'
-                              ? 'catastrophic_risk'
-                              : undefined
-                        })
-                      }
-                    >
-                      That’s not quite my view
-                    </Button>
-                  )}
-              </section>
-            ))}
-            {result.sources.length > 0 && (
-              <section className='rounded-lg border p-4'>
-                <h5>Reference snapshots used</h5>
-                <p className='mt-2 text-xs text-muted-foreground'>
-                  These authored sources inform interpretation; recognition
-                  alone does not establish understanding.
-                </p>
-                {result.sources.map((source) => (
-                  <div key={source.id} className='mt-3'>
-                    <p className='text-sm'>
-                      {source.title} · {source.status}
-                    </p>
-                    {source.urls.map((url, i) => (
-                      <a
-                        key={url}
-                        href={url}
-                        target='_blank'
-                        rel='noreferrer'
-                        aria-label={`${source.title} — source ${i + 1} (${new URL(url).hostname})`}
-                        className='mr-3 text-xs underline'
-                      >
-                        {source.title} — source {i + 1}
-                      </a>
-                    ))}
-                  </div>
-                ))}
-              </section>
-            )}
-          </CollapsibleContent>
-        </Collapsible>
       )}
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>

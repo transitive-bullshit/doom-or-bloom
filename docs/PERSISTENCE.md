@@ -15,7 +15,7 @@ Keep starting an assessment as fast as it is today. Neither registration nor an 
 | View my results | Generate results if needed; displaying an existing result is read-only. |
 | Share | Explain once that the full submitted conversation and inferred results become public; publish the current result snapshot atomically. No account requirement. |
 | Continue on a private assessment | Continue the existing interview. |
-| Continue on a published assessment | “Continue in a new assessment” creates a private fork, then continues or asks the selected clarification. |
+| Continue on a published assessment | “Continue in a new assessment” creates a private fork, then continues answering. |
 | Make private | Remove public access and allow additional answers on the same private assessment. |
 | Delete | Delete this assessment and its snapshots, operations, and retained failure diagnostics. Independent forks remain. |
 

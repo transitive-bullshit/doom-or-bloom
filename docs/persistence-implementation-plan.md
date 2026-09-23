@@ -451,3 +451,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Centralize the 624px reading area in content-column (672px outer width with 24px gutters). Apply it to participant owner/public routes, persona routes, library, About, Privacy, and the assessment entry page.
 - [x] Preserve wide maps/result grids through the shared breakout layout on persona pages.
 - [x] Verify repository checks, five persona/typography browser cases across desktop/mobile, and the public publication flow with an explicit 624px conversation-width assertion.
+
+### Remove participant review/clarification UI (2026-09-24)
+
+- [x] Remove the Review & clarify my results disclosure, its per-claim correction actions, and the reference-snapshot panel it contained. Keep result insights, supporting answers, resources, downloads, and Continue answering questions.
+- [x] Update the current product contract while retaining historical clarification data and engine compatibility.
+- [x] Verify repository checks and all four interaction browser tests, including absent correction controls and successful continued answering.
