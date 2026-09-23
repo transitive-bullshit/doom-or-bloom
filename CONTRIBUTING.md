@@ -78,13 +78,13 @@ Analytics being enabled permits Vercel page analytics independently of PostHog. 
 ```sh
 pnpm fix
 pnpm test
-pnpm build
+pnpm build:local
 pnpm exec playwright install chromium
 pnpm check:browser
 pnpm check:persistence
 ```
 
-`pnpm test` covers formatting, lint, types, unit tests, content validation, and unused code. If local development uses fixture mode, build with `ASSESSMENT_PROVIDER=live pnpm build`; production deliberately rejects fixture mode, and building does not run inference. The CI workflow installs native PostgreSQL, applies migrations twice, seeds curated fixtures and runs database/browser persistence checks without containers. Ordinary checks use fixtures and need no inference credentials. Browser tests use their own Portless hostname and build directory; consult `playwright.config.ts` when troubleshooting a local server collision.
+`pnpm test` covers formatting, lint, types, unit tests, content validation, and unused code. Use `pnpm build:local` and `pnpm start:local` for production-mode checks against local settings. These commands preload development configuration and select the live provider because production rejects fixture mode; building does not run inference. The CI workflow installs native PostgreSQL, applies migrations twice, seeds curated fixtures and runs database/browser persistence checks without containers. Ordinary checks use fixtures and need no inference credentials. Browser tests use their own Portless hostname and build directory; consult `playwright.config.ts` when troubleshooting a local server collision.
 
 Use modern TypeScript without semicolons, oxfmt for formatting, and oxlint for linting. Reuse shadcn/ui primitives. Read the repository’s [agent conventions](AGENTS.md) and the installed Next.js documentation before changing framework behavior.
 
@@ -126,9 +126,9 @@ Set `X_CLIENT_ID` and `X_CLIENT_SECRET` in ignored `.env.development.local` for 
 
 Register the exact callback `${BETTER_AUTH_URL}/api/auth/callback/twitter`; the current Portless callback is `http://doom-or-bloom.localhost:1355/api/auth/callback/twitter`. X must accept that URI in its console before a live test. If it rejects the local hostname, coordinate an approved reachable development origin and update the app origin and registered callback together. Do not silently switch hosts and lose the anonymous browser cookie. Hosted callback registration belongs to deployment.
 
-The pinned Better Auth X provider uses `users.read tweet.read`, with its default email/offline scopes disabled. No posting or follower permissions are requested. Provider/account IDs establish identity, and email-based account linking is disabled. See [Better Auth’s X setup](https://better-auth.com/docs/authentication/twitter) and [X OAuth configuration and exact callback matching](https://docs.x.com/fundamentals/authentication/oauth-2-0/authorization-code). Provider access and acceptance of the local callback remain unverified until real credentials are configured.
+The pinned Better Auth X provider uses `users.read tweet.read`, with its default email/offline scopes disabled. No posting or follower permissions are requested. Provider/account IDs establish identity, and email-based account linking is disabled. See [Better Auth’s X setup](https://better-auth.com/docs/authentication/twitter) and [X OAuth configuration and exact callback matching](https://docs.x.com/fundamentals/authentication/oauth-2-0/authorization-code). Provider access and the exact local Portless callback were verified with real development credentials on 2026-09-23.
 
-`pnpm db:test:auth` exercises actual Better Auth handlers with mocked provider HTTP responses and native test Postgres. It covers initial claim, recovery with the same provider identity in a fresh browser, sign-out, merging into an existing account, an injected database transfer failure, retry and concurrent assessment processing. No requests reach X. Live login remains a separate setup-dependent check.
+`pnpm db:test:auth` exercises actual Better Auth handlers with mocked provider HTTP responses and native test Postgres. It covers initial claim, recovery with the same provider identity in a fresh browser, sign-out, merging into an existing account, an injected database transfer failure, retry and concurrent assessment processing. No requests reach X. A real local X login and anonymous assessment claim were verified on 2026-09-23. The mocked check also covers expired sessions, abandoned redirects and unchanged public content after claiming.
 
 ## Crash and uncertain-commit checks
 
@@ -145,3 +145,7 @@ Use the same `X_CLIENT_ID` and `X_CLIENT_SECRET` names in ignored `.env.producti
 Next.js selects `.env.development.local` for `pnpm dev`, and `.env.production.local` for `pnpm build` / `pnpm start`. Host environment values take precedence over files. Both files are ignored and use identical variable names. Avoid a shared `.env.local` for environment-specific values.
 
 Use `pnpm build:local` and `pnpm start:local` to check production mode against local Postgres and development OAuth. These explicitly preload development configuration; both commands select the live provider configuration; building does not run paid inference. Ordinary `pnpm build` / `pnpm start` can use Neon from the production file and are not the local acceptance commands. Migration and test scripts explicitly load `.env.development.local`; production migrations remain separately authorized work.
+
+### Environment precedence during OAuth troubleshooting
+
+Shell environment variables override Next.js env files and Node’s `--env-file`. Compare configuration by parsing the env file directly when diagnosing a mismatch; merely starting Node with `--env-file` can still show an inherited value. If an old exported X client ID overrides the development file, restart this app with `env -u X_CLIENT_ID pnpm dev` (or unset that variable in the launching shell). Do not copy production credentials into the development file to compensate. The local verification on 2026-09-23 caught and resolved exactly this inherited-variable mismatch.

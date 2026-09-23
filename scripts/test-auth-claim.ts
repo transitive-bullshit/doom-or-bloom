@@ -6,6 +6,8 @@ import { createAuth } from '../lib/auth/config'
 import * as schema from '../lib/db/auth-schema'
 import { databaseUrl } from '../lib/db/config'
 import { assessmentRepository } from '../lib/assessments/repository'
+import { baseResult } from '../lib/assessment/projections'
+import { loadBundle } from '../lib/content/loader'
 
 const connectionString = databaseUrl(process.env.TEST_DATABASE_URL)
 assert.ok(new URL(connectionString).pathname.endsWith('_test'))
@@ -170,6 +172,35 @@ try {
   )
   assert.ok(anotherAssessment.id)
   assessmentIds.push(anotherAssessment.id)
+  await repo.submit(
+    anotherAnonymous.user.id,
+    {
+      assessmentId: anotherAssessment.id,
+      expectedRevision: 0,
+      requestKey: randomUUID(),
+      operation: { type: 'project' },
+      debug: false
+    },
+    async (state, input) => ({
+      assessmentId: state.id,
+      baseRevision: state.revision,
+      requestId: input.requestKey,
+      provider: 'fixture',
+      assessment: {
+        ...state,
+        revision: state.revision + 1,
+        status: 'results',
+        result: baseResult(state, [], loadBundle().rubric, false)
+      }
+    })
+  )
+  await repo.setVisibility(
+    anotherAnonymous.user.id,
+    anotherAssessment.id,
+    1,
+    'public'
+  )
+  const publicBeforeClaim = await repo.publicLoad(anotherAssessment.id)
   await pool.query(
     `CREATE FUNCTION ${faultName}() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF OLD.owner_id = '${anotherAnonymous.user.id}' THEN RAISE EXCEPTION 'Injected claim failure'; END IF; RETURN NEW; END $$`
   )
@@ -198,6 +229,14 @@ try {
   const merged = await (await call('/get-session')).json()
   assert.equal(merged.user.id, signedIn.user.id)
   assert.equal((await repo.list(merged.user.id)).length, 2)
+  assert.deepEqual(
+    await repo.publicLoad(anotherAssessment.id),
+    publicBeforeClaim
+  )
+  assert.equal(
+    (await repo.load(merged.user.id, anotherAssessment.id)).visibility,
+    'public'
+  )
   // An expired authenticated cookie cannot recover records without a new login.
   await pool.query(
     "UPDATE session SET expires_at = NOW() - interval '1 minute' WHERE user_id = $1",

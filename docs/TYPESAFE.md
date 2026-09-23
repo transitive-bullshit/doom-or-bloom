@@ -56,7 +56,7 @@ Keep corpus assets, source provenance, curated reading recommendations and `/cor
 
 ## Debugging
 
-Capture exchanges only with both server and operation debug enabled. Record each physical request’s exact batch IDs, model, shared state and validated response, omitting credentials, headers and raw errors. Persist successful operations in browser IndexedDB separately from progress: up to 64 recent whole operations, evicted toward a 32 MB target without truncating retained bodies. Refresh restores history; restart clears that assessment’s history. Failure displays a notice while preserving progress. Failed operations currently lack a completed trace.
+Capture exchanges only with both server and operation debug enabled. Record each physical request’s exact batch IDs, model, shared state and validated response, omitting credentials, headers and raw errors. Persist successful operations in browser IndexedDB separately from progress: up to 64 recent whole operations, evicted toward a 32 MB target without truncating retained bodies. Refresh restores history; new assessments use separate history without clearing the original. Failure displays a notice while preserving progress. Failed operations may return available stage diagnostics; they do not create a committed assessment revision.
 
 Show requests/responses side by side on desktop, stacked on smaller screens, with native page scrolling. JSON uses syntax colors, accessible folds, depth 2+ initially folded and exact copy. Default/High first/Low first sorts `answers` by Choice/Score confidence or Noul probability; stable ties and missing/nonfinite values last. Copy preserves original payload/order.
 

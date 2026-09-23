@@ -1,6 +1,6 @@
 # Product Contract
 
-> Persistence transition (2026-09-23): The approved persistent-assessment product contract is in [PERSISTENCE.md](PERSISTENCE.md#product-behavior): one-click first run, an assessment library, immutable completion/forks, full opt-in publication and optional account recovery. Its persistence, sharing, routing and budget rules supersede conflicting original-MVP restrictions below. Server-saved participant assessments, anonymous ownership, direct first-run creation, a library and completion are implemented. Forks and publication are also implemented. Database personas and optional X sign-in are implemented; live X verification and remaining acceptance checks are tracked in [the implementation checkpoints](persistence-implementation-plan.md).
+> Persistent assessments (2026-09-23): The approved persistent-assessment product contract is in [PERSISTENCE.md](PERSISTENCE.md#product-behavior): one-click first run, an assessment library, immutable completion/forks, full opt-in publication and optional account recovery. Its persistence, sharing, routing and budget rules supersede conflicting original-MVP restrictions below. Server-saved participant assessments, anonymous ownership, direct first-run creation, a library and completion are implemented. Forks and publication are also implemented. Database personas and optional X sign-in are implemented; local X login/claim/recovery and acceptance checks are recorded in [the implementation checkpoints](persistence-implementation-plan.md).
 
 ## Runtime assessments and persona excerpts
 
@@ -95,9 +95,9 @@ The interview begins with **What do you think AI means for our future—and why?
 
 ### Interview
 
-- Keep every issued question and submitted reply in one chronological thread on `/assessment`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
+- Keep every issued question and submitted reply in one chronological thread on `/assessment/<id>`, with one active answer field. Use the browser's page scrollbar; the transcript has no separately scrollable viewport.
 - Previous answers are read-only. Include a copy button for every submitted reply that copies its complete text, even when collapsed, and reports success or clipboard unavailability without changing the answer. Show short answers fully and a compact exact-text preview for long or multiline answers, with an accessible “Read full answer” / “Show less” disclosure. Full answers expand in the page without an internal answer scrollbar. Preserve complete text in local state; opening or closing a disclosure makes no inference call.
-- Keep the thread available above results and during corrections. Reload resumes the active question and draft with previous turns retained; disclosures can reset closed. Include local earlier recovery/navigation replies without promoting them into scoring evidence.
+- Keep the thread available above results and during corrections. Reload resumes the active question and draft with previous turns retained; disclosures can reset closed. Include saved earlier recovery/navigation replies without promoting them into scoring evidence.
 - Cmd+Enter or Ctrl+Enter submits through the same Continue validation; empty/whitespace, over-limit, busy or blocked drafts cannot bypass it. Plain Enter stays a newline; composition and repeated shortcut events do not submit.
 - Leave focus to normal browser/user interaction; do not automatically focus the prompt, result or answer field on mount or after a stage transition.
 - Use a light, playful, candid voice.
@@ -143,9 +143,9 @@ Clarification appends to an open assessment. Completed assessments stay frozen: 
 
 ### Supporting surfaces
 
-- `/` contains the landing map; `/assessment` contains interview and result states; `/users/[username]` shows a saved public persona result.
+- `/` contains the landing map; `/assessment` is a start entry point, `/assessment/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/assessments/public/<id>` shows a published frozen assessment. `/users/[username]` shows a selected public persona simulation.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
-- A concise privacy policy explains local persistence and anonymous analytics.
+- A concise privacy policy explains server retention, operator access, optional account recovery, whole-conversation publication, browser drafts and pseudonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.
 - The provocative name intentionally primes risk and upside; document this accepted framing bias. Preserve mixed, uncertain, and low-transformation positions throughout assessment and results.
 - Header: GitHub, X, and light/dark theme icon buttons.
@@ -153,16 +153,18 @@ Clarification appends to an open assessment. Completed assessments stay frozen: 
 
 ## Persistence
 
-- One assessment per browser, stored locally.
-- Resume automatically across visits.
-- Restart discards the current local assessment and rotates the anonymous assessment identifier.
-- No accounts, cross-device synchronization, session history, or hosted assessment database.
-- Assessment, content, rubric, and model versions travel with the local record.
+- Anonymous browser sessions can own multiple server-saved assessments. No sign-up is required.
+- The first CTA creates an assessment directly when the library is empty; returning participants go to their library.
+- Submitted replies and results are retained indefinitely until deletion; unsubmitted drafts remain in the browser.
+- New assessments preserve previous records. Completed assessments are frozen; continuing or clarifying creates a separate private fork.
+- Optional X sign-in transfers the browser’s assessments to a recoverable account without publishing them or revealing account identity on public pages. Clearing anonymous cookies loses access without deleting records.
+- Assessment, content, rubric, and model versions remain pinned in immutable snapshots.
 
 ## Sharing
 
-- Generate the card on demand with Takumi; persistent image storage is unnecessary.
-- MVP uses a generic social link preview. A personalized preview would require a public URL payload and is deliberately excluded.
+- Publish the complete frozen conversation and inferred results at an explicit public URL. Default visibility is private.
+- Public HTML, JSON downloads and personalized Takumi WebP previews check current visibility and avoid shared caches. Making a resource private or deleting it cannot remove previews already cached by external sites.
+- Render cards on demand; persistent image storage is unnecessary. Persona cards remain labeled as simulations.
 - Offer “Download card” and per-map PNG copy/download actions. Omit text-only X posting intents.
 - Native file sharing is an optional enhancement when the browser supports sharing files.
 

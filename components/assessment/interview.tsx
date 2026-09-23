@@ -164,7 +164,6 @@ export function Interview({
       setManaging(false)
     }
   }
-  const conflict = false
   const [debugMode, setDebugMode] = useState(false)
   useEffect(() => {
     let disposed = false
@@ -241,8 +240,7 @@ export function Interview({
     !uncertain &&
     canSubmit(state) &&
     !unavailableQuestion &&
-    !busy &&
-    !conflict
+    !busy
   const excessCharacters = Math.max(0, state.draft.length - limits.answerChars)
   const answerTooLong = excessCharacters > 0
   const turns = conversationTurns(state)
@@ -391,25 +389,11 @@ export function Interview({
                 <Alert>
                   <AlertTitle>Updated draft available</AlertTitle>
                   <AlertDescription>
-                    Your saved assessment will keep its earlier version. Restart
-                    to try the updated draft.
+                    Your saved assessment will keep its earlier version. Start a
+                    new assessment to try the updated draft.
                   </AlertDescription>
                 </Alert>
               )}
-            {conflict && (
-              <Alert>
-                <AlertTitle>This assessment changed in another tab</AlertTitle>
-                <AlertDescription>
-                  Reload the latest version before continuing.
-                  <Button
-                    variant='outline'
-                    onClick={() => window.location.reload()}
-                  >
-                    Reload latest version
-                  </Button>
-                </AlertDescription>
-              </Alert>
-            )}
             {fixture && (
               <Badge variant='outline'>
                 Fixture mode · synthetic judgments
@@ -426,7 +410,7 @@ export function Interview({
                 personas={personas}
                 state={state}
                 act={(op) => void act(op)}
-                busy={busy || managing || conflict}
+                busy={busy || managing}
                 completed={record.lifecycle === 'completed'}
                 operations={debugOperations}
               />
@@ -561,7 +545,7 @@ export function Interview({
                         {eligible(state) && (
                           <Button
                             type='button'
-                            disabled={busy || conflict}
+                            disabled={busy}
                             variant='ghost'
                             onClick={() => void act({ type: 'project' })}
                           >
@@ -572,7 +556,7 @@ export function Interview({
                           state.recovery.evaluated < limits.recovery && (
                             <Button
                               type='button'
-                              disabled={busy || conflict}
+                              disabled={busy}
                               onClick={() => void act({ type: 'retry' })}
                             >
                               Try again
@@ -584,7 +568,7 @@ export function Interview({
                             unavailableQuestion) && (
                             <Button
                               type='button'
-                              disabled={busy || conflict}
+                              disabled={busy}
                               variant='outline'
                               onClick={() => void act({ type: 'skip' })}
                             >
@@ -629,7 +613,7 @@ export function Interview({
                   <ReadinessMeter
                     state={state}
                     debug={debugMode}
-                    disabled={busy || conflict}
+                    disabled={busy}
                     onViewResults={() => void act({ type: 'project' })}
                   />
                 )}

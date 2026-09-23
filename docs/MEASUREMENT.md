@@ -4,7 +4,7 @@
 
 ## Privacy posture
 
-- No sign-up is required. Better Auth creates an anonymous owner on explicit start. Server records are retained indefinitely until deletion; clearing cookies loses access without deleting records. Optional X recovery is implemented when credentials are configured; the live-provider smoke check remains pending. Signing in transfers anonymous assessments without changing publication or revealing account identity on public pages.
+- No sign-up is required. Better Auth creates an anonymous owner on explicit start. Server records are retained indefinitely until deletion; clearing cookies loses access without deleting records. Optional X recovery is implemented when credentials are configured; local login, anonymous claim and sign-out/recovery were verified on 2026-09-23. Signing in transfers anonymous assessments without changing publication or revealing account identity on public pages.
 - PostgreSQL stores submitted replies, rejected interactions, results and bounded failure diagnostics. Operators may inspect private assessments for improvement. Unsubmitted drafts stay in localStorage keyed by assessment and prompt. Browser debug records may contain raw text; keep them separate from analytics and public payloads.
 - Internal `/questions` and `/corpus` tools disable page analytics and make no Jev calls. Participant transcripts are not sent to editorial tools.
 - A random assessment identifier links anonymous events across resumed visits and changes when a new assessment or fork is created.
