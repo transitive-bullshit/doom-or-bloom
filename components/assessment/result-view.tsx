@@ -174,7 +174,7 @@ export function ResultView({
             )}
           </div>
         )}
-        <h1 className='text-3xl font-semibold tracking-tight'>Results</h1>
+        <h2>Results</h2>
         <p className='mt-3 text-sm text-body-foreground'>
           {result.reason === 'Some interpretations still need clarification.'
             ? null

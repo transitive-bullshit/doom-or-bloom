@@ -5,7 +5,7 @@ import {
   AnswerTarget,
   useAnswerDisclosure
 } from '@/components/assessment/answer-navigation'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { ChevronDownIcon } from 'lucide-react'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
@@ -13,13 +13,7 @@ import { ExperimentalResults } from '@/components/assessment/experimental-result
 import { ReasoningJudgments } from '@/components/assessment/reasoning-judgments'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter
-} from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -117,17 +111,8 @@ export function PersonaPageContent({
         sources={person.sources ?? []}
         sourceBriefUpdated={person.sourceBriefUpdated}
       />
-      <Card className='mx-auto mt-10 w-full max-w-[624px]'>
-        <CardHeader>
-          <CardTitle>Where do you land?</CardTitle>
-          <CardDescription>
-            Explore your own AI worldview by answering a few questions.
-          </CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <WorldviewCta />
-        </CardFooter>
-      </Card>
+      <Separator className='my-20' />
+      <WorldviewCtaCard />
     </AnswerNavigationProvider>
   )
 }

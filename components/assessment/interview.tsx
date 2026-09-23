@@ -558,7 +558,7 @@ export function Interview({
                     </AlertTitle>
                     <AlertDescription>
                       {state.recovery.reason === 'paperclips'
-                        ? 'You found the easter egg! Now give the question an earnest answer so we can map your worldview.'
+                        ? "You found the easter egg! Now let's get back to business..."
                         : state.recovery.reason === 'exhausted'
                           ? guidance.exhausted
                           : state.recovery.reason === 'needs_clarification'

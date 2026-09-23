@@ -26,7 +26,7 @@ export function ClosestPersonas({
     <Card role='region' aria-labelledby='closest-personas-title'>
       <CardHeader>
         <CardTitle>
-          <h2 id='closest-personas-title'>Your closest worldviews</h2>
+          <h3 id='closest-personas-title'>Your closest worldviews</h3>
         </CardTitle>
         <CardDescription>
           Explore the thought leaders whose simulated personas are closest to

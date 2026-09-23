@@ -54,11 +54,11 @@ export function Map({
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
     >
-      <div className='flex items-start justify-between gap-4'>
-        <h3 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
+      <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
+        <h2 className='col-start-2 text-center text-2xl leading-snug font-semibold tracking-tight text-balance sm:text-3xl'>
           {definition.question}
-        </h3>
-        <div className='shrink-0'>
+        </h2>
+        <div className='col-start-3 justify-self-end'>
           <MapActions svg={svg} />
         </div>
       </div>

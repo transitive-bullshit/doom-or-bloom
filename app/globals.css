@@ -342,6 +342,8 @@
   --resource-gap: 1.5rem;
   columns: 1;
   column-gap: var(--resource-gap);
+  /* Item margins separate cards, but should not add trailing section space. */
+  margin-bottom: calc(-1 * var(--resource-gap));
 }
 .resource-masonry > .resource-item {
   break-inside: avoid;

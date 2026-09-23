@@ -1,20 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { FadeText } from '@/components/assessment/fade-text'
 import Link from 'next/link'
 import { useMemo, useState, type PointerEvent, type FocusEvent } from 'react'
 import './prism.css'
 import { usePortraitLayout } from './use-portrait-layout'
 import type { VariantProps } from '@/components/landing/shared'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter
-} from '../ui/card'
 
 const featuredOrder = [
   'alignment-maximalist',
@@ -174,17 +167,7 @@ export function Prism({ examples }: VariantProps) {
       </div>
       <p className='study-note'>Example results based on simulated personas</p>
 
-      <Card className='mx-auto mt-24 w-full max-w-[624px]'>
-        <CardHeader>
-          <CardTitle>Where do you land?</CardTitle>
-          <CardDescription>
-            Explore your own AI worldview by answering a few questions.
-          </CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <WorldviewCta />
-        </CardFooter>
-      </Card>
+      <WorldviewCtaCard className='mt-24' />
     </section>
   )
 }
