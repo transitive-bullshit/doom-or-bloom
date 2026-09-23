@@ -107,13 +107,17 @@ export function AssessmentLibrary({
                 {item.title ?? 'Your AI worldview'}
               </Link>
               <div className='flex gap-2'>
-                <Badge variant='outline'>
-                  {item.visibility === 'public'
-                    ? 'Published'
-                    : item.hasResults
-                      ? 'Ready to publish'
-                      : 'In progress'}
-                </Badge>
+                {item.visibility === 'public' ? (
+                  <Badge asChild variant='outline'>
+                    <Link href={`/assessments/public/${item.id}`}>
+                      Published
+                    </Link>
+                  </Badge>
+                ) : (
+                  <Badge variant='outline'>
+                    {item.hasResults ? 'Ready to publish' : 'In progress'}
+                  </Badge>
+                )}
               </div>
               <time
                 className='text-sm text-muted-foreground'
