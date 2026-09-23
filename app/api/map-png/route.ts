@@ -1,3 +1,4 @@
+import { resultMapExport } from '@/lib/sharing/map-layout'
 import { render } from 'takumi-js'
 import { z, ZodError } from 'zod'
 import { apiDiagnostics } from '@/lib/server/error-reporting'
@@ -50,7 +51,7 @@ export async function POST(request: Request) {
       {
         type: 'image',
         src: `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`,
-        style: { width: 1360, height: 900 }
+        style: resultMapExport
       },
       {
         devicePixelRatio: 2,

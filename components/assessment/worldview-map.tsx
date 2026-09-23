@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { PrismField } from '@/components/worldview/prism-field'
 import { MapActions } from './map-actions'
+import { resultMapLayout } from '@/lib/sharing/map-layout'
 import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
@@ -30,7 +31,7 @@ export function Map({
     if (!element) return
     const observer = new ResizeObserver(([entry]) => {
       if (entry && entry.contentRect.width > 0) {
-        setLabelScale(Math.min(2.2, Math.max(1, 680 / entry.contentRect.width)))
+        setLabelScale(Math.min(1.7, Math.max(1, 680 / entry.contentRect.width)))
       }
     })
     observer.observe(element)
@@ -39,7 +40,7 @@ export function Map({
   const definition = experimentalAxes[axis]
   const framing = resultFraming(subject)
   const id = useId().replaceAll(':', '')
-  const plot = { left: 90, top: 52, width: 500, height: 268 }
+  const plot = { left: 76, top: 40, width: 528, height: 268 }
   const px = (value: number) => plot.left + value * plot.width
   const py = (value: number) => plot.top + (1 - value) * plot.height
   const point = x.value !== null && y.value !== null
@@ -48,7 +49,7 @@ export function Map({
     <figure
       data-slot='worldview-map'
       className={cn(
-        'worldview-map prism-theme rounded-2xl border border-border p-5 shadow-sm sm:p-8',
+        'worldview-map prism-theme flex flex-col gap-4 rounded-2xl border border-border p-4 shadow-sm sm:gap-5 sm:p-6',
         layout === 'breakout' &&
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
@@ -63,10 +64,10 @@ export function Map({
       </div>
       <svg
         ref={svg}
-        viewBox='0 0 680 395'
+        viewBox={`0 0 ${resultMapLayout.width} ${resultMapLayout.height}`}
         role='img'
         aria-label={description}
-        className='mt-1 w-full'
+        className='block w-full'
         style={{ '--map-label-scale': labelScale } as CSSProperties}
       >
         <defs>
@@ -89,7 +90,8 @@ export function Map({
         <text
           className='prism-axis-label'
           x='340'
-          y='31'
+          y='16'
+          dominantBaseline='middle'
           textAnchor='middle'
           fill='var(--map-muted)'
           fontSize='12'
@@ -99,7 +101,8 @@ export function Map({
         <text
           className='prism-axis-label'
           x='340'
-          y='352'
+          y='332'
+          dominantBaseline='middle'
           textAnchor='middle'
           fill='var(--map-muted)'
           fontSize='12'
@@ -108,7 +111,7 @@ export function Map({
         </text>
         <text
           className='prism-pole'
-          x='46'
+          x='36'
           y={py(0.5)}
           dominantBaseline='middle'
           textAnchor='middle'
@@ -119,7 +122,7 @@ export function Map({
         </text>
         <text
           className='prism-pole'
-          x='634'
+          x='644'
           y={py(0.5)}
           dominantBaseline='middle'
           textAnchor='middle'
@@ -206,7 +209,7 @@ export function Map({
                   strokeWidth='3'
                 />
                 <g
-                  transform={`translate(${Math.max(120, Math.min(580, px(x.value!)))},${y.value! > 0.85 ? py(y.value!) + 36 : py(y.value!) - 29})`}
+                  transform={`translate(${Math.max(plot.left + 46, Math.min(plot.left + plot.width - 46, px(x.value!)))},${y.value! > 0.85 ? py(y.value!) + 36 : py(y.value!) - 29})`}
                 >
                   <rect
                     x='-46'
@@ -239,16 +242,16 @@ export function Map({
         {!point && (
           <g className='map-axis-caption'>
             <rect
-              x='204'
-              y='154'
+              x='194'
+              y='148.5'
               width='292'
               height='51'
               rx='10'
               fill='var(--map-surface)'
             />
             <text
-              x='350'
-              y='175'
+              x='340'
+              y='169.5'
               textAnchor='middle'
               fill='var(--map-text)'
               fontSize='15'
@@ -257,8 +260,8 @@ export function Map({
               Some dimensions are still unplaced
             </text>
             <text
-              x='350'
-              y='193'
+              x='340'
+              y='187.5'
               textAnchor='middle'
               fill='var(--map-muted)'
               fontSize='12'
@@ -269,13 +272,13 @@ export function Map({
         )}
       </svg>
       {!point && (
-        <p className='map-muted mb-3 text-sm'>
+        <p className='map-mobile-captions map-muted text-sm'>
           Some dimensions are still unplaced. Open regions show what we don’t
           yet know.
         </p>
       )}
-      <figcaption className='map-muted mt-4 flex items-end justify-between gap-4 text-xs leading-5 sm:text-sm'>
-        <div className='flex min-w-0 flex-col gap-3'>
+      <figcaption className='map-muted text-xs leading-5 sm:text-sm'>
+        <div className='flex min-w-0 flex-col gap-2'>
           <div className='flex flex-wrap gap-x-6 gap-y-2'>
             <span className='inline-flex items-center gap-2'>
               <span

@@ -20,7 +20,7 @@ test('Takumi exports graph and card layouts at twice their logical dimensions', 
   expect(map.status).toBe(200)
   expect(
     await sharp(Buffer.from(await map.arrayBuffer())).metadata()
-  ).toMatchObject({ width: 2720, height: 1800, format: 'png' })
+  ).toMatchObject({ width: 2720, height: 1612, format: 'png' })
   const card = await exportCard(
     request('share-card', {
       horizontal: 0.5,

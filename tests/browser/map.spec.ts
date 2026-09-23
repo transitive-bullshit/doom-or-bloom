@@ -20,7 +20,7 @@ async function rangeContrast(png: Buffer, exportOffset = 0) {
     return rgb[0]! * 0.2126 + rgb[1]! * 0.7152 + rgb[2]! * 0.0722
   }
   const scale = info.width / 680
-  const y = Math.round((159.2 + exportOffset) * scale)
+  const y = Math.round((147.2 + exportOffset) * scale)
   let best = 1
   for (let x = Math.round(170 * scale); x < Math.round(500 * scale); x++) {
     const background = luminance(x, y - Math.ceil(5 * scale))
@@ -245,7 +245,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
     } else {
       await expect(map.getByText('Your view', { exact: true })).toBeVisible()
       const area = map.locator('rect[stroke-dasharray="6 5"]')
-      expect(Number(await area.getAttribute('width'))).toBeCloseTo(380)
+      expect(Number(await area.getAttribute('width'))).toBeCloseTo(401.28)
     }
     if (unplaced === false) {
       const bookmark = page.getByRole('link', {
@@ -286,7 +286,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       const png = await readFile((await downloaded.path())!)
       expect(png.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a')
       expect(png.readUInt32BE(16)).toBe(2720)
-      expect(png.readUInt32BE(20)).toBe(1800)
+      expect(png.readUInt32BE(20)).toBe(1612)
       await downloaded.saveAs(testInfo.outputPath('exported-map.png'))
       await page.route('**/api/share-card', (route) =>
         route.fulfill({ status: 500, body: 'Unavailable' })

@@ -1,3 +1,5 @@
+import { resultMapExport, resultMapLayout } from './map-layout'
+
 const svgNamespace = 'http://www.w3.org/2000/svg'
 
 /** Prepare the visible plot for Takumi, resolving theme tokens before leaving the DOM. */
@@ -76,17 +78,21 @@ export async function mapPng(svg: SVGSVGElement): Promise<Blob> {
     })
   )
   clone.setAttribute('xmlns', svgNamespace)
-  clone.setAttribute('viewBox', '0 0 680 450')
-  clone.setAttribute('width', '1360')
-  clone.setAttribute('height', '900')
+  const exportHeight = svg.viewBox.baseVal.height + resultMapLayout.exportHeader
+  clone.setAttribute('viewBox', `0 0 680 ${exportHeight}`)
+  clone.setAttribute('width', String(resultMapExport.width))
+  clone.setAttribute('height', String(exportHeight * 2))
   const surface = theme.getPropertyValue('--map-surface').trim() || '#f7f6f2'
   const foreground = theme.getPropertyValue('--map-text').trim() || '#22252a'
   const group = document.createElementNS(svgNamespace, 'g')
-  group.setAttribute('transform', 'translate(0 55)')
+  group.setAttribute(
+    'transform',
+    `translate(0 ${resultMapLayout.exportHeader})`
+  )
   while (clone.firstChild) group.appendChild(clone.firstChild)
   const background = document.createElementNS(svgNamespace, 'rect')
   background.setAttribute('width', '680')
-  background.setAttribute('height', '450')
+  background.setAttribute('height', String(exportHeight))
   background.setAttribute('fill', color(surface))
   clone.append(background, group)
   const label = (text: string, y: number, size: number, fill: string) => {
