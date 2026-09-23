@@ -501,9 +501,11 @@ The user explicitly authorized preparing production Vercel and Neon, superseding
 - [x] Install production-only pooled database URL, auth origin, independently generated auth secret, and supplied production X credentials. Keep direct migration access local and preview environments separate.
 - [x] Apply migrations 0000–0005 to the previously empty Neon database and import all 44 curated persona assessments without inference.
 - [x] Refresh repository, commit-recovery, lifecycle and provider-mocked account checks; all seven persistence browser cases and the local production build pass.
-- [ ] Deploy the reviewed application and run the [production smoke checklist](production-readiness.md#remaining-after-deployment), including real X authorization and external social crawlers.
+- [x] Deploy the reviewed application after PR #2 merged and run the [production smoke checklist](production-readiness.md#remaining-after-deployment). Real X authorization, live assessments, anonymous claim, publication/revocation, cross-browser access and an external WebP preview fetch passed. Hosted deletion is deferred by the user's request to retain QA records; the full hosted deadline boundary remains untested.
 
 See [production readiness](production-readiness.md) for configuration boundaries and verification details. No production application deployment was triggered.
+
+Post-merge follow-up (September 24): the paragraph above describes infrastructure preparation only. Production now serves the merged app. Corrected X app `33462739`'s bare-domain callback to the canonical `https://www.doom-or-bloom.com/api/auth/callback/twitter`, resolving the reproduced pre-callback authorization error. Account-holder consent and returning login passed. The new workspace passed all documented local release gates; hosted smoke evidence and explicit remaining limits are recorded in production readiness.
 
 ### Public SEO and image caching — September 24, 2026
 
