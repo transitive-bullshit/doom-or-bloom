@@ -566,10 +566,10 @@ export function Interview({
                   </FieldGroup>
                 </form>
                 <div className='space-y-2 text-xs leading-relaxed text-muted-foreground'>
+                  <p>The assessment only takes a few minutes.</p>
                   <p>
-                    The assessment only takes a few minutes. Results may be
-                    shown after your first answer, or we’ll wrap up
-                    automatically when Jev has enough confidence.
+                    Results may be shown after your first answer, or we’ll wrap
+                    up automatically when Jev has enough confidence.
                   </p>
                   <p>
                     Your answers will remain private unless you choose to
