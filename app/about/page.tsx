@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/metadata'
 import { publicPages } from '@/lib/site'
 import Link from 'next/link'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
@@ -25,9 +25,6 @@ export default async function About() {
           and map your own through a few open-ended questions. No specialist
           knowledge or account required.
         </p>
-        <div className='flex flex-wrap justify-center'>
-          <WorldviewCta />
-        </div>
       </header>
 
       <section className='space-y-3'>
@@ -239,9 +236,7 @@ export default async function About() {
         </p>
       </footer>
 
-      <div className='flex flex-wrap justify-center'>
-        <WorldviewCta />
-      </div>
+      <WorldviewCtaCard />
     </article>
   )
 }
