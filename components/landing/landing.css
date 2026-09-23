@@ -133,7 +133,7 @@
   background: var(--map-doom);
 }
 .landing-dot.middle {
-  background: #9cabb3;
+  background: var(--map-muted);
 }
 .landing-map-first {
   display: grid;
@@ -166,7 +166,7 @@
   font-weight: 500;
 }
 .landing-map-tag {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--map-muted);
   white-space: nowrap;
   padding-top: 2px;
@@ -205,7 +205,7 @@
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--map-muted);
 }
 .landing-map-top {
@@ -243,12 +243,13 @@
   font-weight: 600;
   z-index: 1;
   background: var(--map-bloom);
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--map-text);
 }
 .landing-map-point:hover,
 .landing-map-point:focus-visible {
   z-index: 2;
-  outline: 1px solid var(--map-muted);
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
 }
 .landing-map-legend {
   display: grid;
@@ -262,16 +263,41 @@
   align-items: center;
   gap: 7px;
   min-width: 0;
-  min-height: 34px;
+  min-height: 44px;
   padding: 10px 10px;
+  border-radius: 6px;
   font-size: 12px;
+  transition: transform 150ms var(--ease-out);
+}
+.landing-map-legend a:focus-visible {
+  background: var(--muted);
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.landing-map-legend a:active {
+  background: var(--muted);
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .landing-map-legend a:hover {
+    background: var(--muted);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-start,
+  .landing-map-legend a {
+    transition: none;
+  }
+  .landing-map-legend a:active {
+    transform: none;
+  }
 }
 .landing-map-legend .fade-truncated-text {
   min-width: 0;
   flex: 1;
 }
 .landing-map-note {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--map-muted);
   margin-top: 10px;
 }
@@ -322,7 +348,7 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--foreground);
   background: color-mix(in oklch, var(--map-bloom) 24%, var(--card));
 }
@@ -357,7 +383,7 @@
   font-weight: 500;
 }
 .landing-person-credit span {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted-foreground);
 }
 .landing-people-bottom {
@@ -414,7 +440,7 @@
     font-size: 43px;
   }
   .landing-eyebrow {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 22px;
   }
   .landing-description {
@@ -468,7 +494,7 @@
     padding-top: 7px;
   }
   .landing-map-legend a {
-    min-height: 40px;
+    min-height: 44px;
     padding: 12px 16px;
     font-size: 16px;
     gap: 9px;
@@ -478,7 +504,7 @@
     height: 28px;
   }
   .landing-map-note {
-    font-size: 9px;
+    font-size: 12px;
     margin-top: 5px;
   }
   .landing-people-intro {
@@ -527,10 +553,10 @@
     gap: 4px 8px;
   }
   .landing-person-credit strong {
-    font-size: 11px;
+    font-size: 12px;
   }
   .landing-person-credit span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .landing-people-bottom {
     margin-top: 22px;
