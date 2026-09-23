@@ -220,6 +220,13 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       expect(oldRoute.status()).toBe(404)
       expect(oldRoute.headers().location).toBeUndefined()
     }
+    for (const directory of ['/sitemap.xml', '/llms.txt']) {
+      const listing = await visitor.request.get(directory)
+      expect(await listing.text()).not.toContain(`/public/assessments/${id}`)
+      expect(await listing.text()).not.toContain(
+        `https://www.doom-or-bloom.com/assessments/${id}</loc>`
+      )
+    }
     const html = await visitor.request.get(publicURL)
     expect(html.status()).toBe(200)
     // Next dev overrides HTML Cache-Control to no-cache, must-revalidate.
@@ -510,6 +517,11 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(
       (await visitor.request.get(`${publicURL}/social-image.webp`)).status()
     ).toBe(404)
+    for (const directory of ['/sitemap.xml', '/llms.txt']) {
+      expect(await (await visitor.request.get(directory)).text()).not.toContain(
+        `/public/assessments/${id}`
+      )
+    }
     const denied = await visitor.request.get(publicURL)
     expect(await denied.text()).not.toContain(
       'AI could greatly improve medicine'

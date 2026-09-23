@@ -6,7 +6,7 @@ import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
 export const dynamic = 'force-dynamic'
-export const metadata = pageMetadata(publicPages[2]!)
+export const metadata = pageMetadata(publicPages[1]!)
 
 export default async function About() {
   const personaId = 'abundance-risk-taker'

@@ -4,7 +4,8 @@ import { publicPages, siteUrl } from '@/lib/site'
 
 export const dynamic = 'force-dynamic'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const personaPages = (await loadExamples(false)).map((person) => ({
+  const people = await loadExamples(false)
+  const personaPages = people.map((person) => ({
     path: `/users/${person.slug}`
   }))
   return [...publicPages, ...personaPages].map(({ path }) => ({

@@ -510,3 +510,10 @@ See [production readiness](production-readiness.md) for configuration boundaries
 - [x] Public assessments use indexable canonical/Open Graph/Twitter metadata; full answers and result disclosures are present in server-rendered HTML. Hydration supplies interactions. Private pages remain noindex.
 - [x] Public participant and persona Takumi previews use seven-day browser/CDN caching. Cached image access for up to seven days after revocation is explicitly accepted; origin visibility checks and uncached HTML/JSON remain in place. This supersedes the initial no-store/noindex preview policy recorded above. Private PNG POST downloads and error responses stay uncached.
 - [x] Remove the blanket private cache header from image routes and update privacy copy to match indexing and caching behavior.
+
+### Discovery and metadata synchronization — September 24, 2026
+
+- [x] sitemap.xml and llms.txt enumerate only static public pages and selected curated persona profiles. Participant assessments remain indexable by public link but are not listed in either directory.
+- [x] robots.txt excludes private owner routes, APIs, the legacy start entry, and public JSON exports; public HTML and social images remain crawlable.
+- [x] Privacy metadata and llms.txt describe server persistence, anonymous ownership, optional X recovery, immutable snapshots, publication, forks, and seven-day public image caching. Corrected stale route and noindex claims in current docs; historical implementation evidence remains dated.
+- [x] SEO audit discovers current persona paths from the generated sitemap instead of the old authored fixture catalog. Browser checks cover discovery files, private/published assessment exclusion, and privacy metadata.

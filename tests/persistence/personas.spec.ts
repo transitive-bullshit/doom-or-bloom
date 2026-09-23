@@ -36,7 +36,35 @@ test('curated persona routes use the selected database run without a visitor ses
     expect(image.headers()['content-type']).toContain('image/webp')
     const sitemap = await request.get('/sitemap.xml')
     expect(await sitemap.text()).toContain(`/users/${persona.slug}`)
-    expect(await sitemap.text()).not.toContain('/public/assessments/')
+    expect(await sitemap.text()).not.toContain(
+      `/public/assessments/${persona.id}`
+    )
+    const sitemapText = await sitemap.text()
+    expect(sitemapText).not.toContain('/assessment</loc>')
+    expect(sitemapText).not.toContain('/assessments/')
+    expect(sitemapText).toContain('https://www.doom-or-bloom.com/about')
+    expect(sitemapText).toContain('https://www.doom-or-bloom.com/privacy')
+    const robots = await (await request.get('/robots.txt')).text()
+    expect(robots).toContain('Disallow: /assessments/')
+    expect(robots).toContain('Disallow: /api/')
+    expect(robots).toContain(
+      'Sitemap: https://www.doom-or-bloom.com/sitemap.xml'
+    )
+    expect(robots).not.toContain('Disallow: /public/\n')
+    const llms = await (await request.get('/llms.txt')).text()
+    expect(llms).toContain(`/users/${persona.slug}`)
+    expect(llms).toContain('/public/assessments/<id>')
+    expect(llms).toContain('immutable snapshots')
+    expect(llms).toContain('optional X sign-in')
+    expect(llms).not.toContain(
+      'No account or hosted transcript database required'
+    )
+    await page.goto('/privacy')
+    await expect(page).toHaveTitle('Privacy | Doom or Bloom')
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      'content',
+      /stores assessments/
+    )
     expect(await context.cookies()).toHaveLength(0)
   } finally {
     await pool.end()

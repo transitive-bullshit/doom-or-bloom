@@ -1,5 +1,8 @@
 import { WorldviewCta } from '@/components/worldview-cta'
-export const metadata = { title: 'Map your AI worldview' }
+export const metadata = {
+  title: 'Map your AI worldview',
+  robots: { index: false, follow: true }
+}
 export default function Page() {
   return (
     <main className='content-column flex flex-col gap-6 py-16'>

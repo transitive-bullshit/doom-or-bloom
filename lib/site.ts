@@ -8,11 +8,6 @@ export const publicPages = [
       'Map your AI worldview, one question at a time. Explore how public figures think AI could change our future, then discover where you land.'
   },
   {
-    path: '/assessment',
-    title: 'Map your AI worldview',
-    description: 'Map your AI worldview through a few open-ended questions.'
-  },
-  {
     path: '/about',
     title: 'About',
     description:
@@ -22,6 +17,6 @@ export const publicPages = [
     path: '/privacy',
     title: 'Privacy',
     description:
-      'How Doom or Bloom handles your answers, browser storage, AI processing, and analytics. No account or hosted transcript database required.'
+      'How Doom or Bloom stores assessments, protects private answers, handles optional sign-in, and publishes results and social previews.'
   }
 ]

@@ -2,7 +2,7 @@ import { pageMetadata } from '@/lib/metadata'
 import { publicPages } from '@/lib/site'
 import { serverEnv } from '@/lib/server/env'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
-export const metadata = pageMetadata(publicPages[3]!)
+export const metadata = pageMetadata(publicPages[2]!)
 
 export default function Privacy() {
   const { analytics, posthog } = serverEnv()
