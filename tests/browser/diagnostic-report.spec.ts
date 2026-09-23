@@ -27,7 +27,8 @@ test('answer diagnostics preserve traces without generating intermediate results
     page.getByRole('button', { name: /^Debug (on|off)$/ })
   ).toBeVisible()
   const debugOn = page.getByRole('button', { name: 'Debug on', exact: true })
-  if (await debugOn.count()) await debugOn.click()
+  await expect(debugOn).toBeVisible()
+  await debugOn.click()
   await page
     .getByLabel('Your answer', { exact: true })
     .fill(
@@ -77,13 +78,8 @@ test('answer diagnostics preserve traces without generating intermediate results
     page.getByRole('button', { name: 'Results after this answer', exact: true })
   ).toHaveCount(2)
   await page.reload()
-  await expect(
-    page.getByRole('button', { name: /^Debug (on|off)$/ })
-  ).toBeVisible()
-  if (
-    await page.getByRole('button', { name: 'Debug off', exact: true }).count()
-  )
-    await page.getByRole('button', { name: 'Debug off', exact: true }).click()
+  // Wait for the saved preference to hydrate rather than toggling the initial off state.
+  await expect(debugOn).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Results after this answer', exact: true })
   ).toHaveCount(2)
