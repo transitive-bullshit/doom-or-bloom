@@ -42,7 +42,7 @@ export function HeaderAccount() {
         <Button
           variant='ghost'
           size='icon'
-          className='rounded-full'
+          className='rounded-full select-none'
           aria-label='Account menu'
           disabled={busy}
         >
