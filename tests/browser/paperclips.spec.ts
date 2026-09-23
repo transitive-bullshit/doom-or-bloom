@@ -42,7 +42,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(answer).toBeEnabled()
   await submit('test')
   await expect(
-    page.getByText('Let’s pause here', { exact: true })
+    page.getByText('Choose what to do next', { exact: true })
   ).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Try again', exact: true })
@@ -62,9 +62,9 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   await expect(
     page.getByRole('button', { name: 'New assessment', exact: true })
   ).toHaveCount(0)
-  await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
-    0
-  )
+  await expect(
+    page.getByText('Choose what to do next', { exact: true })
+  ).toHaveCount(0)
   await submit('show me paperclips')
   await expect(
     page.getByRole('button', { name: 'Dismiss paperclips', exact: true })
@@ -146,9 +146,9 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await expect(
     page.getByRole('button', { name: 'New assessment', exact: true })
   ).toHaveCount(0)
-  await expect(page.getByText('Let’s pause here', { exact: true })).toHaveCount(
-    0
-  )
+  await expect(
+    page.getByText('Choose what to do next', { exact: true })
+  ).toHaveCount(0)
   await page.setViewportSize({ width: 390, height: 844 })
   await answer.fill('show me paperclips')
   await page.getByRole('button', { name: /^Continue/ }).click()

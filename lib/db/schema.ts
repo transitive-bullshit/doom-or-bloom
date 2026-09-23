@@ -47,15 +47,12 @@ export const assessments = pgTable(
     personaId: uuid('persona_id').references(() => personas.id, {
       onDelete: 'restrict'
     }),
-    lifecycle: text('lifecycle', { enum: ['open', 'completed'] })
-      .notNull()
-      .default('open'),
     visibility: text('visibility', { enum: ['private', 'public'] })
       .notNull()
       .default('private'),
     revision: integer('revision').notNull().default(0),
     currentSnapshotId: uuid('current_snapshot_id').notNull(),
-    finalSnapshotId: uuid('final_snapshot_id'),
+    publishedSnapshotId: uuid('final_snapshot_id'),
     sourceAssessmentId: uuid('source_assessment_id').references(
       (): AnyPgColumn => assessments.id,
       { onDelete: 'set null' }
@@ -78,12 +75,8 @@ export const assessments = pgTable(
     unique('assessment_persona_membership').on(t.id, t.personaId),
     index('assessment_owner_library').on(t.ownerId, t.updatedAt),
     check(
-      'assessment_lifecycle',
-      sql`${t.lifecycle} in ('open', 'completed') and ((${t.lifecycle} = 'completed') = (${t.finalSnapshotId} is not null))`
-    ),
-    check(
       'assessment_visibility',
-      sql`${t.visibility} in ('private', 'public') and (${t.visibility} = 'private' or ${t.lifecycle} = 'completed')`
+      sql`${t.visibility} in ('private', 'public') and ((${t.visibility} = 'public') = (${t.publishedSnapshotId} is not null))`
     ),
     check(
       'assessment_origin',

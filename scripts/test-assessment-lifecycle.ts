@@ -66,7 +66,7 @@ try {
   const created = await repo.create(owner, randomUUID(), versions.model)
   const id = created.id!
   ids.push(id)
-  await assert.rejects(repo.fork(owner, id, randomUUID()), /completed/)
+  await assert.rejects(repo.fork(owner, id, randomUUID()), /published/)
   await assert.rejects(repo.publicLoad(id), /not found/)
   await project(id, 12)
   await repo.setVisibility(owner, id, 1, 'public')
@@ -83,7 +83,6 @@ try {
   assert.deepEqual(await repo.fork(owner, id, key), fork)
   const first = await repo.load(owner, fork.id)
   assert.equal(promptLimit(first.assessment), 24)
-  assert.equal(first.lifecycle, 'open')
   assert.equal(first.visibility, 'private')
   assert.equal(first.inheritedPromptCount, 12)
   assert.deepEqual(first.assessment.prompts, published.assessment.prompts)

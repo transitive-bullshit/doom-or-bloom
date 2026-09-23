@@ -15,6 +15,13 @@
       "when": 1790166165889,
       "tag": "0001_snapshot_constraints",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790181254476,
+      "tag": "0002_tearful_kronos",
+      "breakpoints": true
     }
   ]
 }

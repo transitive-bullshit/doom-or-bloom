@@ -141,7 +141,7 @@ export function recordDisposition(
     disposition === 'usable'
       ? 'answering'
       : evaluated >= limits.recovery || disposition === 'navigation'
-        ? 'paused'
+        ? 'recovery'
         : 'recovery'
   return {
     ...state,
@@ -178,6 +178,7 @@ export function acceptAnswer(state: Assessment, answer: Answer): Assessment {
   return {
     ...state,
     answers: [...state.answers, answer],
+    result: null,
     evidenceRevision: state.evidenceRevision + 1,
     draft: '',
     recovery: {

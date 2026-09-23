@@ -4,7 +4,7 @@ import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 
-test('every accepted answer has a collapsed historical result; debug-off runs still export a complete trace', async ({
+test('answer diagnostics preserve traces without generating intermediate results', async ({
   page
 }, testInfo) => {
   await mockEvaluation(page, async (input) => {
@@ -56,7 +56,7 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
   await disclosure.click()
   await expect(
-    first.locator('[data-slot="worldview-map"]').first()
+    first.getByText(/No results were generated for this answer/)
   ).toBeVisible()
   const expanded = first.locator('.result-breakout')
   const desktopSize = await expanded.boundingBox()
@@ -109,13 +109,14 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
   expect(data.diagnosticTrace.completeness).toBe('complete')
   const operations = data.diagnosticTrace.operations
   expect(operations).toHaveLength(3)
-  expect(operations[0].assessment.result.evidenceRevision).toBe(1)
-  expect(operations[1].assessment.result.evidenceRevision).toBe(2)
+  expect(operations[0].assessment.result).toBeNull()
+  expect(operations[1].assessment.result).toBeNull()
+  expect(operations[2].assessment.result.evidenceRevision).toBe(2)
   expect(
     operations[0].trace.stages.some(
       (s: { name: string }) => s.name === 'D: projection'
     )
-  ).toBe(true)
+  ).toBe(false)
   expect(
     operations[0].trace.decisions.some(
       (d: { action: string }) =>

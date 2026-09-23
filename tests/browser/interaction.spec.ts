@@ -166,7 +166,7 @@ test('recovery counters survive a tab conflict and reload without a new allowanc
       .toBe(evaluated)
   }
   await expect(
-    page.getByText('Let’s pause here', { exact: true })
+    page.getByText('Choose what to do next', { exact: true })
   ).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Try again', exact: true })

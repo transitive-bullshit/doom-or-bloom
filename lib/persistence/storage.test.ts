@@ -189,7 +189,7 @@ test('legacy sessions migrate to answer-level support without losing drafts, ver
 test('legacy paperclip pauses resume with an editable answer and acknowledgement', () => {
   const storage = memory()
   const state = createAssessment('legacy-paperclips')
-  state.status = 'paused'
+  state.status = 'recovery'
   state.recovery = {
     evaluated: 2,
     clearMisses: 2,

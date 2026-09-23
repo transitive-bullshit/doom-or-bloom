@@ -23,7 +23,7 @@ export type LibraryItem = {
   id: string
   revision: number
   title: string | null
-  lifecycle: 'open' | 'completed'
+  hasResults: boolean
   visibility: 'private' | 'public'
   updatedAt: string
   isFork: boolean
@@ -103,10 +103,11 @@ export function AssessmentLibrary({
               </Link>
               <div className='flex gap-2'>
                 <Badge variant='outline'>
-                  {item.lifecycle === 'open' ? 'In progress' : 'Completed'}
-                </Badge>
-                <Badge variant='outline'>
-                  {item.visibility === 'public' ? 'Public' : 'Private'}
+                  {item.visibility === 'public'
+                    ? 'Published'
+                    : item.hasResults
+                      ? 'Ready to publish'
+                      : 'In progress'}
                 </Badge>
               </div>
               <time
@@ -119,7 +120,7 @@ export function AssessmentLibrary({
             <div className='flex gap-3'>
               <Button asChild variant='outline'>
                 <Link href={`/assessments/${item.id}`}>
-                  {item.lifecycle === 'open' ? 'Resume' : 'View'}
+                  {item.hasResults ? 'View' : 'Resume'}
                 </Link>
               </Button>
               {item.visibility === 'public' && (

@@ -61,7 +61,6 @@ function operationView(op: OperationRow) {
 type OperationView = ReturnType<typeof operationView>
 export type OwnedAssessment = {
   assessment: Assessment
-  lifecycle: RecordRow['lifecycle']
   visibility: RecordRow['visibility']
   isFork: boolean
   inheritedPromptCount: number
@@ -117,7 +116,9 @@ export function assessmentRepository(pool: Pool) {
         )
       )
     if (!row || row.format !== 'assessment_v1') throw missing()
-    return assessmentSchema.parse(row.payload)
+    const state = assessmentSchema.parse(row.payload)
+    if (!row.hasResult) state.result = null
+    return state
   }
   async function interruptExpired(tx: Transaction, id: string) {
     await tx
@@ -263,13 +264,17 @@ export function assessmentRepository(pool: Pool) {
         .select({
           id: assessments.id,
           title: assessments.title,
+          hasResults: assessmentSnapshots.hasResult,
           revision: assessments.revision,
-          lifecycle: assessments.lifecycle,
           visibility: assessments.visibility,
           updatedAt: assessments.updatedAt,
           isFork: assessments.isFork
         })
         .from(assessments)
+        .innerJoin(
+          assessmentSnapshots,
+          eq(assessmentSnapshots.id, assessments.currentSnapshotId)
+        )
         .where(eq(assessments.ownerId, ownerId))
         .orderBy(desc(assessments.updatedAt))
     },
@@ -288,7 +293,6 @@ export function assessmentRepository(pool: Pool) {
             .limit(1)
           return {
             assessment: await snapshot(tx, id, row.currentSnapshotId),
-            lifecycle: row.lifecycle,
             visibility: row.visibility,
             isFork: row.isFork,
             inheritedPromptCount: row.inheritedPromptCount,
@@ -347,9 +351,9 @@ export function assessmentRepository(pool: Pool) {
           return { replay: await outcome(tx, prior) }
         }
         await assertIdle(tx, row.id)
-        if (row.lifecycle !== 'open')
+        if (row.visibility === 'public')
           throw conflict(
-            'This assessment is complete. Continue in a new assessment.'
+            'This assessment is published. Continue in a new assessment or make it private.'
           )
         if (row.revision !== input.expectedRevision)
           throw conflict('This assessment changed. Refresh before submitting.')
@@ -434,7 +438,7 @@ export function assessmentRepository(pool: Pool) {
             current.status !== 'running' ||
             expired(current) ||
             row.revision !== op.baseRevision ||
-            row.lifecycle !== 'open'
+            row.visibility === 'public'
           )
             throw conflict(
               'This operation is no longer current. Refresh to see the saved state.'
@@ -444,10 +448,6 @@ export function assessmentRepository(pool: Pool) {
             revision: next.revision,
             currentSnapshotId: snapshotId,
             updatedAt: new Date()
-          }
-          if (input.operation.type === 'complete') {
-            changes.lifecycle = 'completed'
-            changes.finalSnapshotId = snapshotId
           }
           await tx
             .update(assessments)
@@ -529,16 +529,14 @@ export function assessmentRepository(pool: Pool) {
         if (
           visibility === 'public' &&
           (!state.result ||
-            !['results', 'completed', 'capped'].includes(state.status))
+            state.result.evidenceRevision !== state.evidenceRevision)
         )
           throw conflict('View your results before sharing.')
         const changes: Partial<typeof assessments.$inferInsert> = {
           visibility,
+          publishedSnapshotId:
+            visibility === 'public' ? row.currentSnapshotId : null,
           updatedAt: new Date()
-        }
-        if (visibility === 'public') {
-          changes.lifecycle = 'completed'
-          changes.finalSnapshotId = row.currentSnapshotId
         }
         await tx.update(assessments).set(changes).where(eq(assessments.id, id))
       })
@@ -550,20 +548,16 @@ export function assessmentRepository(pool: Pool) {
             .select()
             .from(assessments)
             .where(
-              and(
-                eq(assessments.id, id),
-                eq(assessments.visibility, 'public'),
-                eq(assessments.lifecycle, 'completed')
-              )
+              and(eq(assessments.id, id), eq(assessments.visibility, 'public'))
             )
-          if (!row?.finalSnapshotId) throw missing()
+          if (!row?.publishedSnapshotId) throw missing()
           if (row.origin === 'simulation') {
             const [saved] = await tx
               .select()
               .from(assessmentSnapshots)
               .where(
                 and(
-                  eq(assessmentSnapshots.id, row.finalSnapshotId),
+                  eq(assessmentSnapshots.id, row.publishedSnapshotId),
                   eq(assessmentSnapshots.assessmentId, id)
                 )
               )
@@ -581,7 +575,7 @@ export function assessmentRepository(pool: Pool) {
               simulation: simulationPayload.parse(saved.payload)
             }
           }
-          const state = await snapshot(tx, id, row.finalSnapshotId)
+          const state = await snapshot(tx, id, row.publishedSnapshotId)
           return {
             kind: 'participant' as const,
             id: row.id,
@@ -607,15 +601,15 @@ export function assessmentRepository(pool: Pool) {
         await assertIdle(tx, sourceId)
         if (
           source.origin !== 'participant' ||
-          source.lifecycle !== 'completed' ||
-          !source.finalSnapshotId
+          source.visibility !== 'public' ||
+          !source.publishedSnapshotId
         )
           throw conflict(
-            'Only your completed assessment can be continued in a new assessment.'
+            'Only your published assessment can be continued in a new assessment.'
           )
         const digest = fingerprint({
           sourceId,
-          snapshot: source.finalSnapshotId
+          snapshot: source.publishedSnapshotId
         })
         const [prior] = await tx
           .select()
@@ -631,7 +625,11 @@ export function assessmentRepository(pool: Pool) {
             throw conflict('Creation key already used for different input.')
           return { id: prior.id }
         }
-        const inherited = await snapshot(tx, sourceId, source.finalSnapshotId)
+        const inherited = await snapshot(
+          tx,
+          sourceId,
+          source.publishedSnapshotId
+        )
         if (inherited.prompts.length >= 30)
           throw conflict(
             'This conversation has reached 30 questions. Start a new assessment.'
@@ -648,7 +646,7 @@ export function assessmentRepository(pool: Pool) {
           createFingerprint: digest,
           isFork: true,
           sourceAssessmentId: sourceId,
-          sourceSnapshotId: source.finalSnapshotId,
+          sourceSnapshotId: source.publishedSnapshotId,
           inheritedPromptCount: inherited.prompts.length,
           promptCeiling: state.promptCeiling
         })

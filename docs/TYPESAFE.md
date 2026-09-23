@@ -14,7 +14,7 @@ Jev performs narrow semantic judgments over participant evidence and authored de
 
 Independent questions in a batch cannot consume one another’s outputs. Later stages receive earlier results only through code. Question IDs are application bookkeeping: supply the actual dimension meaning in instructions/criteria or named shared state. Never equate a category probability with the participant’s event probability, or interpretation confidence with forecast correctness.
 
-## Current local workflow — algorithm 0.5.0
+## Current local workflow — algorithm 0.6.1
 
 ### A. Interpret the reply
 
@@ -36,9 +36,9 @@ Code enumerates eligible authored candidates. Shared `dimensionDefinitions` maps
 
 Jev independently judges coverage gain, ambiguity resolution, tension testing and projection usefulness. Code combines them with authored weights, effort/repetition penalties and a stable ID tie-break. An independent Noul judges consequential novelty. The experimental threshold is 0.6 with positive utility. A clearly missing central basis gives the existing grounding question a one-point bonus and a 0.5 threshold, recorded per candidate. When eligible and no worthwhile candidate or uninvestigated issue remains, show results automatically; explicit Continue still explores. Jev never invents a question.
 
-### D. Shared profile, before routing and on result requests
+### D. Results on demand or automatic routing completion
 
-Supply the complete accepted transcript once, active whole-answer support, dimension definitions, correction scopes, coverage, unresolved ambiguity/tension and versions. Prior interpretations are not independent evidence. Evaluate 47 independent output judgments: status/score for 15 dimensions, directional position for eight worldview dimensions, three catastrophic-risk judgments, five scoped facets (overall outlook, capability ceiling, development pace, deployment policy and access policy), and a central-basis Noul. Routing consumes this same interpretation, instead of repeating its two outlook-position judgments. Code normalizes the direct overall-outlook distribution; it no longer averages benefit/harm coordinates.
+Supply the complete accepted transcript once, active whole-answer support, dimension definitions, correction scopes, coverage, unresolved ambiguity/tension and versions. Prior interpretations are not independent evidence. Evaluate 47 independent output judgments: status/score for 15 dimensions, directional position for eight worldview dimensions, three catastrophic-risk judgments, five scoped facets (overall outlook, capability ceiling, development pace, deployment policy and access policy), and a central-basis Noul. Routing does not construct this result. It evaluates only the overall-outlook and central-basis judgments needed for readiness alongside candidate selection. Result generation runs on explicit request, automatic routing completion, or the prompt cap; debug mode does not generate extra results. Code normalizes the direct overall-outlook distribution; it no longer averages benefit/harm coordinates.
 
 Consume scores only on supported branches. Explicit unknowns remain unplaced. Code normalizes authored scales, calculates the map and interpretation ranges, chooses conservative authored findings and curated resources, and retains whole-answer provenance. Reuse a result when its evidence revision is unchanged, including historical results with their original version.
 
@@ -66,7 +66,7 @@ Storage schema remains v2. Decode legacy v1 saves into whole-answer support with
 
 ## Failure bounds and paid evaluation
 
-Bounds: 12 initial participant prompts; forks add up to 12 with an absolute inherited ceiling of 30 and warning two prompts before the current ceiling; 20,000 characters per submitted reply; 96 independent questions per stage; 32 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate interpretation, shared-profile, optional tension-selection and routing requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
+Bounds: 12 initial participant prompts; forks add up to 12 with an absolute inherited ceiling of 30 and warning two prompts before the current ceiling; 20,000 characters per submitted reply; 96 independent questions per stage; 32 physical requests per operation including retries. Large-input interpretation can require five batches and routing twelve; the operation ceiling must accommodate interpretation, optional result generation, optional tension-selection and routing requests plus bounded retry capacity. A regression exercises the actual SDK batching with mocked transport and full multibyte history. Drafts retain all text; over-limit guidance blocks submission without truncation. The input counter appears only above the limit.
 
 All stages share a 120-second operation deadline; stages have a 45-second deadline and physical attempts 15 seconds. Large inputs use eight-question batches with complete participant evidence. Batches are planned before evaluation. A context overflow fails the operation without recursive splitting. Each transient physical call has at most one retry; permanent errors fail immediately. Preserve drafts, validate responses, retry transient failures with bounded backoff, reject stale responses and keep credentials server-side. The cumulative transcript may still exceed provider context; never silently discard evidence.
 

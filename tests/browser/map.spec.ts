@@ -214,6 +214,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       /12 to 88 horizontally, 20 to 60 vertically/
     )
     if (unplaced === 'outlook') {
+      await page.getByRole('button', { name: 'Insights', exact: true }).click()
       await expect(
         page.getByText('Expected harm', { exact: true })
       ).toBeVisible()

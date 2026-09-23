@@ -8,7 +8,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Participant**: The person answering the assessment about their own AI worldview. _Avoid_: Patient, subject, account
 
-**Assessment**: A bounded sequence of participant answers and authored follow-ups culminating in a result, normally taking 6–8 prompts but offering a provisional result when evidence readiness supports it, potentially after one detailed reply. Participants can resume an open assessment or continue a completed assessment through an independent fork, within the applicable prompt budget; a fresh assessment starts a new conversation. _Avoid_: Chat, session when referring to the assessment itself
+**Assessment**: A bounded sequence of participant answers and authored follow-ups culminating in a result, normally taking 6–8 prompts but offering a provisional result when evidence readiness supports it, potentially after one detailed reply. Participants can resume a private assessment or continue a published assessment through an independent fork, within the applicable prompt budget; a fresh assessment starts a new conversation. _Avoid_: Chat, session when referring to the assessment itself
 
 **Assessment identifier**: A stable identifier for one assessment across visits, publication, and ownership recovery. It is separate from participant identity and does not grant access to private content. _Avoid_: User ID, account ID, anonymous person
 
@@ -16,11 +16,11 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Assessment snapshot**: An immutable record of an assessment at a particular point, keeping its conversation, evidence, and inferred result together. _Avoid_: Live profile, independent result
 
-**Completed assessment**: An assessment whose conversation and inferred results are frozen, whether private or published. _Avoid_: Merely viewing provisional results
+**Assessment status**: The owner-facing status derived from visibility and current results: In progress, Ready to publish, or Published. It is separate from interview recovery and operation processing. There is no explicit completion step; private assessments remain editable through additional answers. Published content is frozen while public; unpublishing permits further answers on the same assessment.
 
-**Assessment fork**: A new private assessment that inherits a completed assessment’s conversation and permits additional answers or corrections without changing the original. _Avoid_: Editing the original, independent new evidence when referring to inherited answers
+**Assessment fork**: A new private assessment that inherits a published assessment’s conversation and permits additional answers or corrections without changing the original. _Avoid_: Editing the original, independent new evidence when referring to inherited answers
 
-**Published assessment**: A completed assessment whose full conversation and inferred results are available to other visitors by public link. _Avoid_: Private share, anonymous aggregate
+**Published assessment**: An assessment with results whose full conversation and inferred results are available to other visitors by public link. _Avoid_: Private share, anonymous aggregate
 
 **Persona**: A curated representation of a public perspective used as the subject of simulated assessments. It is distinct from a real participant, authenticated owner, or endorsement. _Avoid_: Registered account of the represented person
 

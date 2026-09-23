@@ -12,7 +12,7 @@ export function PublishedResult({ state }: { state: Assessment }) {
         personas={[]}
         act={() => {}}
         busy={false}
-        completed
+        published
         readOnly
       />
     </AnswerNavigationProvider>

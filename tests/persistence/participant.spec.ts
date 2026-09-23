@@ -162,7 +162,20 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       }
     })
     expect(projected.status()).toBe(200)
+    const readyLibrary = await (
+      await page.request.get('/api/assessments')
+    ).json()
+    expect(
+      readyLibrary.find((item: { id: string }) => item.id === id)
+    ).toMatchObject({ hasResults: true, visibility: 'private' })
+    const beforeView = await (
+      await page.request.get(`/api/assessments/${id}`)
+    ).json()
+
     await page.reload()
+    expect(
+      await (await page.request.get(`/api/assessments/${id}`)).json()
+    ).toEqual(beforeView)
     await page
       .getByRole('button', { name: 'Share assessment', exact: true })
       .click()
@@ -234,6 +247,30 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(await denied.text()).not.toContain(
       'AI could greatly improve medicine'
     )
+    const continued = await page.request.post(`/api/assessments/${id}`, {
+      headers,
+      data: {
+        assessmentId: id,
+        expectedRevision: 2,
+        requestKey: crypto.randomUUID(),
+        operation: { type: 'continue' }
+      }
+    })
+    expect(continued.status()).toBe(200)
+    expect((await continued.json()).assessment.id).toBe(id)
+    const beforeSavedResults = await (
+      await page.request.get(`/api/assessments/${id}`)
+    ).json()
+    await page.goto(`/assessments/${id}`)
+    await page
+      .getByRole('button', { name: 'View my results', exact: true })
+      .click()
+    await expect(
+      page.getByRole('button', { name: 'Share assessment', exact: true })
+    ).toBeVisible()
+    expect(
+      await (await page.request.get(`/api/assessments/${id}`)).json()
+    ).toEqual(beforeSavedResults)
     await page.request.delete(`/api/assessments/${id}`, { headers })
     expect(
       (await page.request.get(`/api/assessments/${forkId}`)).status()

@@ -182,17 +182,13 @@ export function transitionEvents(
       prompt_id: currentPrompt(next).promptId,
       prompt_family: currentPrompt(next).family
     })
-  if (next.status === 'paused' && previous.status !== 'paused')
-    add('assessment_paused', requestId, {
-      pause_reason: next.recovery.reason ?? 'no_candidates'
-    })
   if (!previous.recovery.paperclipShown && next.recovery.paperclipShown)
     add('paperclip_interlude_shown', 'once')
   if (operation.type === 'clarify')
     add('clarification_started', String(next.prompts.length), {
       vector: operation.vector
     })
-  if (next.result && ['results', 'completed', 'capped'].includes(next.status)) {
+  if (next.result && ['results', 'capped'].includes(next.status)) {
     add('results_viewed', String(next.result.evidenceRevision), {
       provisional: next.result.provisional
     })
@@ -208,10 +204,7 @@ export function transitionEvents(
   }
   if (next.status === 'capped')
     add('assessment_capped', 'once', { completion_reason: 'cap' })
-  if (
-    next.status === 'completed' ||
-    (next.status === 'capped' && eligible(next))
-  )
+  if (next.status === 'results' || (next.status === 'capped' && eligible(next)))
     add('assessment_completed', 'once', {
       completion_reason: next.status === 'capped' ? 'cap' : 'voluntary'
     })

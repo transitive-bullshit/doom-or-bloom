@@ -35,7 +35,7 @@ export function ResultView({
   state,
   act,
   busy,
-  completed = false,
+  published = false,
   readOnly = false,
   operations = []
 }: {
@@ -43,7 +43,7 @@ export function ResultView({
   state: Assessment
   act: (operation: Operation) => void
   busy: boolean
-  completed?: boolean
+  published?: boolean
   readOnly?: boolean
   operations?: SavedDebugOperation[]
 }) {
@@ -274,7 +274,7 @@ export function ResultView({
                 c.claim !== null &&
                 (c.value !== null || c.evidenceIds.length > 0) &&
                 state.prompts.length <
-                  (completed ? limits.maxPrompts : promptLimit(state)) &&
+                  (published ? limits.maxPrompts : promptLimit(state)) &&
                 (vectorIds.includes(c.vector as VectorId) ||
                   c.vector === 'catastrophic_risk') && (
                   <Button
@@ -362,7 +362,7 @@ export function ResultView({
             {reportDownloading ? 'Preparing report…' : 'Download full report'}
           </Button>
           {!readOnly &&
-            (completed
+            (published
               ? state.prompts.length < limits.maxPrompts
               : !atCap(state)) && (
               <Button
@@ -371,7 +371,7 @@ export function ResultView({
                 variant='outline'
                 onClick={() => act({ type: 'continue' })}
               >
-                {completed
+                {published
                   ? 'Continue in a new assessment'
                   : 'Continue answering questions'}
               </Button>

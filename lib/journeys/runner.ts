@@ -321,7 +321,13 @@ export async function runPersona(
       stopped = 'saved operation resumed'
     } else {
       for (const text of prelude) await step({ type: 'answer', text })
-      if (prelude.length && state.status === 'paused')
+      if (
+        prelude.length &&
+        state.status === 'recovery' &&
+        ['exhausted', 'stopped', 'navigation'].includes(
+          state.recovery.reason ?? ''
+        )
+      )
         await step({ type: 'retry' })
       for (let i = 0; i < (fixed ? fixed.length : turns); i++) {
         if (fixed) {
@@ -417,7 +423,12 @@ export async function runPersona(
           const reply = mechanical.reply(prompt)
           await step({ type: 'answer', text: reply.text }, reply)
         }
-        if (state.status === 'paused') {
+        if (
+          state.status === 'recovery' &&
+          ['exhausted', 'stopped', 'navigation'].includes(
+            state.recovery.reason ?? ''
+          )
+        ) {
           stopped = 'paused for recovery or unavailable evidence'
           break
         }
@@ -469,7 +480,12 @@ export async function runPersona(
         await step({ type: 'project' })
       else if (!(answerSnapshots ? latestResult : state.result))
         stopped =
-          state.status === 'paused' ? stopped : 'more supported coverage needed'
+          state.status === 'recovery' &&
+          ['exhausted', 'stopped', 'navigation'].includes(
+            state.recovery.reason ?? ''
+          )
+            ? stopped
+            : 'more supported coverage needed'
     }
   } catch (err) {
     // Transport bodies may contain credentials: save completed steps only and a

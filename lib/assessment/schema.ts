@@ -43,7 +43,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.6.0',
+  assessment: '0.6.1',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -58,6 +58,7 @@ export const supportedAssessmentVersions = [
   '0.3.0',
   '0.4.0',
   '0.5.0',
+  '0.6.0',
   versions.assessment
 ]
 export const rootPrompt = 'What do you think AI means for our future—and why?'
@@ -352,14 +353,15 @@ export const currentAssessmentSchema = z.strictObject({
   evidenceRevision: z.number().int().min(0),
   promptCeiling: z.number().int().min(1).max(limits.maxPrompts).optional(),
   versions: versionsSchema,
-  status: z.enum([
-    'answering',
-    'recovery',
-    'paused',
-    'results',
-    'completed',
-    'capped'
-  ]),
+  status: z.preprocess(
+    (value) =>
+      value === 'completed'
+        ? 'results'
+        : value === 'paused'
+          ? 'recovery'
+          : value,
+    z.enum(['answering', 'recovery', 'results', 'capped'])
+  ),
   prompts: z.array(promptInstanceSchema).min(1).max(limits.maxPrompts),
   answers: z.array(answerSchema).max(limits.maxPrompts),
   attempts: z.array(attemptSchema).max(limits.maxPrompts * limits.recovery),
@@ -517,8 +519,7 @@ export const operationSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('skip') }),
   z.strictObject({ type: z.literal('retry') }),
   z.strictObject({ type: z.literal('dismiss') }),
-  z.strictObject({ type: z.literal('stop') }),
-  z.strictObject({ type: z.literal('complete') })
+  z.strictObject({ type: z.literal('stop') })
 ])
 export type Operation = z.infer<typeof operationSchema>
 export const requestSchema = z.strictObject({

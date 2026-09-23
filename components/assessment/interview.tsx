@@ -91,12 +91,20 @@ export function Interview({
   } = usePersistentAssessment(initial)
   const router = useRouter()
   const [managing, setManaging] = useState(false)
+  const [previewRevision, setPreviewRevision] = useState<number | null>(null)
   const forkKey = useRef<string | null>(null)
   async function act(
     operation: import('@/lib/assessment/schema').Operation,
     retry = false
   ) {
-    if (record.lifecycle !== 'completed') return submit(operation, retry)
+    if (
+      operation.type === 'project' &&
+      state.result?.evidenceRevision === state.evidenceRevision
+    ) {
+      setPreviewRevision(state.revision)
+      return
+    }
+    if (record.visibility !== 'public') return submit(operation, retry)
     if (managing || busy) return
     setManaging(true)
     try {
@@ -230,12 +238,17 @@ export function Interview({
   }, [state?.id, state.revision])
   const p = currentPrompt(state)
   const showResult =
-    state.result && ['results', 'completed', 'capped'].includes(state.status)
+    state.result &&
+    (previewRevision === state.revision ||
+      record.visibility === 'public' ||
+      ['results', 'capped'].includes(state.status))
   const guidance = recoveryCopy[p.promptId] ?? recoveryCopy.root!
   const unavailableQuestion = !recoveryCopy[p.promptId]
-  const paused = state.status === 'paused'
+  const needsAction = ['exhausted', 'navigation', 'stopped'].includes(
+    state.recovery.reason ?? ''
+  )
   const allowed =
-    record.lifecycle === 'open' &&
+    record.visibility === 'private' &&
     !uncertain &&
     canSubmit(state) &&
     !unavailableQuestion &&
@@ -303,10 +316,10 @@ export function Interview({
                       <DialogDescription>
                         Your questions, submitted replies, and inferred results
                         will be visible to anyone with the link. Publishing
-                        completes this assessment. You can make it private
+                        makes this assessment public. You can make it private
                         later, but social networks may retain previews they
-                        already fetched. To add answers afterward, continue in a
-                        new assessment.
+                        already fetched. To add answers while it is public,
+                        continue in a new assessment.
                       </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
@@ -356,9 +369,6 @@ export function Interview({
                 </AlertDescription>
               </Alert>
             )}
-          {record.lifecycle === 'completed' && (
-            <Badge variant='outline'>Completed assessment</Badge>
-          )}
           {notice && (
             <Button variant='ghost' onClick={() => void refresh()}>
               Refresh saved progress
@@ -401,7 +411,7 @@ export function Interview({
                 state={state}
                 act={(op) => void act(op)}
                 busy={busy || managing}
-                completed={record.lifecycle === 'completed'}
+                published={record.visibility === 'public'}
                 operations={debugOperations}
               />
             ) : (
@@ -437,13 +447,13 @@ export function Interview({
                     </AlertDescription>
                   </Alert>
                 )}
-                {(state.status === 'recovery' || paused) && (
+                {(state.status === 'recovery' || needsAction) && (
                   <Alert>
                     <AlertTitle>
                       {state.recovery.reason === 'paperclips'
                         ? 'We’ve made some paperclips.'
-                        : paused
-                          ? 'Let’s pause here'
+                        : needsAction
+                          ? 'Choose what to do next'
                           : 'Another try?'}
                     </AlertTitle>
                     <AlertDescription>
@@ -542,7 +552,7 @@ export function Interview({
                             View my results
                           </Button>
                         )}
-                        {paused &&
+                        {needsAction &&
                           state.recovery.evaluated < limits.recovery && (
                             <Button
                               type='button'
@@ -553,7 +563,7 @@ export function Interview({
                             </Button>
                           )}
                         {state.prompts.length < promptLimit(state) &&
-                          (paused ||
+                          (needsAction ||
                             state.status === 'recovery' ||
                             unavailableQuestion) && (
                             <Button
@@ -565,7 +575,7 @@ export function Interview({
                               Try a different question
                             </Button>
                           )}
-                        {!paused && (
+                        {!needsAction && (
                           <Button
                             type='submit'
                             className='ml-auto'

@@ -127,7 +127,7 @@ try {
   await assert.rejects(
     repo.submit(
       owner,
-      submission(id, 1, { operation: { type: 'complete' } }),
+      submission(id, 1, { operation: { type: 'project' } }),
       evaluate
     ),
     /still processing/

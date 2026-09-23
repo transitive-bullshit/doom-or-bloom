@@ -146,7 +146,9 @@ test('an understood unknown can qualify provisionally without becoming a forecas
       bundle,
       1
     )
-    expect(first.result?.insufficient).toBe(id === 'worried-novice')
+    expect(first.result?.insufficient).toBe(
+      id === 'worried-novice' ? undefined : false
+    )
     expect(first.finalReadiness.ready).toBe(id === 'open-uncertainty')
     expect(first.finalReadiness.value).toBeLessThan(55)
     const j = await runPersona(
@@ -156,7 +158,8 @@ test('an understood unknown can qualify provisionally without becoming a forecas
     expect(j.accepted).toBe(5)
     expect(j.steps.some((s) => s.paperclips)).toBe(false)
     expect(
-      j.result?.components.find((c) => c.vector === 'catastrophic_risk')?.value
+      j.result?.components.find((c) => c.vector === 'catastrophic_risk')
+        ?.value ?? null
     ).toBeNull()
   }
   const unknown = await runPersona(
@@ -274,18 +277,17 @@ for (const failureStage of ['interpret', 'route', 'project'] as const)
     expect(failed.failedOperation).toBeDefined()
     expect(JSON.stringify(failed)).not.toContain('private transport body')
     const checkpoint = failed.failedOperation!
-    expect(checkpoint.assessment.answers).toHaveLength(0)
-    expect(checkpoint.completedStages.map((s) => s.name)).toEqual(
-      failureStage === 'route'
-        ? ['A: interpret', 'D: projection']
-        : failureStage === 'project'
-          ? ['A: interpret']
-          : []
+    expect(checkpoint.assessment.answers).toHaveLength(
+      failureStage === 'project' ? 1 : 0
     )
-    expect(checkpoint.operation).toEqual({
-      type: 'answer',
-      text: personas[0]!.opening
-    })
+    expect(checkpoint.completedStages.map((s) => s.name)).toEqual(
+      failureStage === 'route' ? ['A: interpret'] : []
+    )
+    expect(checkpoint.operation).toEqual(
+      failureStage === 'project'
+        ? { type: 'project' }
+        : { type: 'answer', text: personas[0]!.opening }
+    )
     const original = structuredClone(failed)
     const failedAgain = journeySchema.parse(
       await runPersona(
@@ -330,7 +332,7 @@ for (const failureStage of ['interpret', 'route', 'project'] as const)
     ).rejects.toThrow('saved failed operation')
   })
 
-test('failure refreshing a result preserves the previous result through retry', async () => {
+test('failure generating a new result preserves saved answers through retry', async () => {
   const fixture = createFixtureProvider()
   let projections = 0
   const healthy: Provider = {
@@ -359,7 +361,7 @@ test('failure refreshing a result preserves the previous result through retry', 
     true
   )
   expect(failed.failureStage).toBe('project')
-  expect(failed.result).not.toBeNull()
+  expect(failed.result).toBeNull()
   expect(failed.failedOperation?.assessment.result).toEqual(failed.result)
   const previous = structuredClone(failed)
   const resumed = await runPersona(
@@ -372,9 +374,9 @@ test('failure refreshing a result preserves the previous result through retry', 
     failed
   )
   expect(resumed.error).toBeNull()
-  expect(resumed.accepted).toBe(failed.accepted + 1)
+  expect(resumed.accepted).toBe(failed.accepted)
   expect(resumed.result?.evidenceRevision).toBe(
-    failed.failedOperation!.assessment.evidenceRevision + 1
+    failed.failedOperation!.assessment.evidenceRevision
   )
   expect(resumed.steps.slice(0, -1)).toEqual(failed.steps)
   expect(failed).toEqual(previous)

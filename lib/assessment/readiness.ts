@@ -70,11 +70,13 @@ export function evidenceReadiness(state: Assessment) {
       ) && dimension.contribution > 0
   )
   // A focused account need not cover most of the entire taxonomy. Use only
-  // current-revision shared judgments, and keep coverage itself unchanged.
+  // current-revision routing judgments (or historical result judgments), and keep coverage itself unchanged.
   const currentProfile = state.judgments.filter(
     (judgment) =>
-      judgment.stage === 'project' &&
-      judgment.answerId === `result:${state.evidenceRevision}`
+      (judgment.stage === 'route' &&
+        judgment.answerId === `route:${state.evidenceRevision}`) ||
+      (judgment.stage === 'project' &&
+        judgment.answerId === `result:${state.evidenceRevision}`)
   )
   const outlook = currentProfile.find(
     (judgment) => judgment.questionId === 'facet:overall_outlook'

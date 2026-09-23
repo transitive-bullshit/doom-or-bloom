@@ -99,10 +99,9 @@ export function personaRepository(pool: Pool) {
             personaId,
             origin: 'simulation',
             title: `${metadata.name}’s simulated AI worldview`,
-            lifecycle: 'completed',
             visibility: 'public',
             currentSnapshotId: snapshotId,
-            finalSnapshotId: snapshotId,
+            publishedSnapshotId: snapshotId,
             versions: payload.journey.result!.versions,
             createRequestKey: seedKey,
             createFingerprint: digest,
@@ -157,12 +156,11 @@ export function personaRepository(pool: Pool) {
         )
         .innerJoin(
           assessmentSnapshots,
-          eq(assessmentSnapshots.id, assessments.finalSnapshotId)
+          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
         )
         .where(
           and(
             eq(assessments.visibility, 'public'),
-            eq(assessments.lifecycle, 'completed'),
             eq(assessments.origin, 'simulation')
           )
         )

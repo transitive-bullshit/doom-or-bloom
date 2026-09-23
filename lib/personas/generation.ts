@@ -187,8 +187,7 @@ export function personaGeneration(pool: Pool) {
           .set({
             revision: 1,
             currentSnapshotId: snapshotId,
-            finalSnapshotId: snapshotId,
-            lifecycle: 'completed',
+            publishedSnapshotId: snapshotId,
             visibility: 'public',
             updatedAt: new Date()
           })

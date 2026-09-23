@@ -97,7 +97,7 @@ test('assessment bookmarks use the same two-line title and single three-line fad
   await expect(bookmark.locator('p')).toHaveText(preview.description!)
   await expect(bookmark.locator('.fade-truncated-text')).toHaveCount(2)
   for (const [selector, lines] of [
-    ['h3 span', 2],
+    ['.fade-truncated-text[data-lines="2"]', 2],
     ['p span', 3]
   ] as const) {
     const text = bookmark.locator(selector)

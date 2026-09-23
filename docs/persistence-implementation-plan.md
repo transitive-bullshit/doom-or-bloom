@@ -397,3 +397,13 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - Removed the explanatory subtitle under Results and the standalone image-download action between the visualization and details. The existing footer actions remain.
 - Grouped the fingerprint grid under Insights and findings under A few things that stood out. Both use the same reusable disclosure, closed by default, with accessible buttons and expanded state. Private and public results share the implementation.
 - Verification: `pnpm test` passed; all 17 matching assessment/persona/interaction browser cases passed, including default-closed disclosures, toggling, and footer image/report downloads.
+
+### Simplified assessment status and on-demand results (2026-09-23)
+
+- [x] Derive library status from current meaningful results and visibility: In progress, Ready to publish, Published. Remove the open/completed lifecycle and completion operation. Keep interview/recovery mechanics separate; normalize historical completed/paused snapshot values on read.
+- [x] Generate full results only for explicit requests, automatic results decisions, clarification results, or the question cap. Routing uses targeted overall-outlook and central-basis judgments alongside candidate selection, without constructing results. Debug mode records actual inference only. Offline persona generation explicitly requests its journey snapshots.
+- [x] Invalidate results when new accepted evidence arrives. Viewing pages or reopening saved results performs no assessment mutation. Private assessments with current results remain publishable regardless of interview display mode.
+- [x] Freeze public assessment content. Continuing publicly shared content creates a private fork; unpublishing permits edits to the original. Preserve public URL revocation and independent fork ownership.
+- [x] Migrate local development and test databases, remove lifecycle constraints, and update pointer/persona constraints. Exclude legacy background projections from readiness metadata without rewriting snapshot payloads. Production migration remains a deployment task.
+- [x] Update domain, persistence, inference, debugging, and journey docs. Bump the algorithm to 0.6.1 and regenerate the mechanical journey baseline for changed routing.
+- [x] Verify: 262 unit tests plus formatting, lint, types, content, and unused-code checks; local production build; lifecycle, repository, commit, and persona database suites; six persistence browser cases, then four participant cases after adding saved-result read-only coverage. The full 52-case browser run exposed five stale assertions; all affected files passed on rerun (12 cases). A temporary live Jev assessment saved an answer without creating results and was deleted.
