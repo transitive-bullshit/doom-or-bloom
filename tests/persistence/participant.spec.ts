@@ -179,7 +179,9 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await page
       .getByRole('button', { name: 'Share assessment', exact: true })
       .click()
-    await expect(page.getByRole('dialog')).toContainText('submitted replies')
+    await expect(page.getByRole('dialog')).toContainText(
+      'Anyone with the link can view your answers and results.'
+    )
     await page
       .getByRole('button', { name: 'Publish assessment', exact: true })
       .click()

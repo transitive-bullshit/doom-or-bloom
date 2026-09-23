@@ -314,12 +314,7 @@ export function Interview({
                     <DialogHeader>
                       <DialogTitle>Publish your full assessment?</DialogTitle>
                       <DialogDescription>
-                        Your questions, submitted replies, and inferred results
-                        will be visible to anyone with the link. Publishing
-                        makes this assessment public. You can make it private
-                        later, but social networks may retain previews they
-                        already fetched. To add answers while it is public,
-                        continue in a new assessment.
+                        Anyone with the link can view your answers and results.
                       </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
