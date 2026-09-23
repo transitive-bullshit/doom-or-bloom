@@ -93,7 +93,7 @@ test('library sorts by creation date and status and keeps management in row menu
       })
       .click()
     await expect(page.getByRole('dialog')).toContainText(
-      'Anyone with the link can view your answers and results.'
+      'Anyone with the link will be able to view your answers and results.'
     )
     await page
       .getByRole('button', { name: 'Keep private', exact: true })

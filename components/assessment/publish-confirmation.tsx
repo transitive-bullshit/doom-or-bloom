@@ -16,7 +16,7 @@ export function PublishConfirmation({ onConfirm }: { onConfirm: () => void }) {
       <DialogHeader>
         <DialogTitle>Publish assessment publicly?</DialogTitle>
         <DialogDescription>
-          Anyone with the link can view your answers and results.
+          Anyone with the link will be able to view your answers and results.
         </DialogDescription>
       </DialogHeader>
       <DialogFooter>

@@ -203,7 +203,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .getByRole('button', { name: 'Publish assessment', exact: true })
       .click()
     await expect(page.getByRole('dialog')).toContainText(
-      'Anyone with the link can view your answers and results.'
+      'Anyone with the link will be able to view your answers and results.'
     )
     await page
       .getByRole('button', { name: 'Publish assessment', exact: true })
