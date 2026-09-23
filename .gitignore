@@ -63,3 +63,5 @@ eval/runs/
 .next-seo-audit/
 
 .next-persistence/
+
+.next-recovery/

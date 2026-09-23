@@ -124,6 +124,15 @@ try {
     repo.setVisibility(owner, id, 1, 'public'),
     /still processing/
   )
+  await assert.rejects(
+    repo.submit(
+      owner,
+      submission(id, 1, { operation: { type: 'complete' } }),
+      evaluate
+    ),
+    /still processing/
+  )
+  await assert.rejects(repo.fork(owner, id, randomUUID()), /still processing/)
   blocked.release()
   await pending
   assert.equal((await repo.load(owner, id)).assessment.revision, 2)

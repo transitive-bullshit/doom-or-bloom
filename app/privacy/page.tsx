@@ -86,11 +86,12 @@ export default function Privacy() {
         contains your usable answers and evidence, so review it before sharing.
       </p>
       <p>
-        Saved progress is tied to your browser session until optional sign-in is
-        available. Clearing or expiring cookies loses anonymous access but does
-        not delete the server records. Unsubmitted drafts do not sync across
-        devices. Concurrent submissions are checked against the saved revision
-        to prevent silent overwrites.
+        Anonymous progress is tied to your browser session. Optional X sign-in,
+        where available, lets you recover linked assessments in another browser.
+        Clearing or expiring cookies loses anonymous access but does not delete
+        the server records. Unsubmitted drafts do not sync across devices.
+        Concurrent submissions are checked against the saved revision to prevent
+        silent overwrites.
       </p>
 
       <div className='flex flex-wrap justify-center mt-12'>

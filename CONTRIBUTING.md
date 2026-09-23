@@ -46,6 +46,7 @@ pnpm db:seed
 pnpm db:seed --test
 pnpm db:test
 pnpm db:test:repository
+pnpm db:test:commit
 pnpm db:test:lifecycle
 pnpm db:test:personas
 pnpm db:test:auth
@@ -128,3 +129,11 @@ Register the exact callback `${BETTER_AUTH_URL}/api/auth/callback/twitter`; the 
 The pinned Better Auth X provider uses `users.read tweet.read`, with its default email/offline scopes disabled. No posting or follower permissions are requested. Provider/account IDs establish identity, and email-based account linking is disabled. See [Better Auth’s X setup](https://better-auth.com/docs/authentication/twitter) and [X OAuth configuration and exact callback matching](https://docs.x.com/fundamentals/authentication/oauth-2-0/authorization-code). Provider access and acceptance of the local callback remain unverified until real credentials are configured.
 
 `pnpm db:test:auth` exercises actual Better Auth handlers with mocked provider HTTP responses and native test Postgres. It covers initial claim, recovery with the same provider identity in a fresh browser, sign-out, merging into an existing account, an injected database transfer failure, retry and concurrent assessment processing. No requests reach X. Live login remains a separate setup-dependent check.
+
+## Crash and uncertain-commit checks
+
+`pnpm db:test:commit` injects driver failures immediately before and after real PostgreSQL COMMIT. It verifies rollback, saved success after a lost acknowledgment, acceptance uncertainty and explicit retry without duplicate evaluation.
+
+`pnpm db:test:restart` requires Chromium (`pnpm exec playwright install chromium`) and native local PostgreSQL database-creation permission. It defaults to the current local role on `postgresql://localhost:5432/postgres`; optionally supply `POSTGRES_TEST_ADMIN_URL` for a local admin/test role with CREATEDB. The script rejects non-local hosts, creates a uniquely named `doom_bloom_recovery_*_test` database, applies migrations twice, seeds twice and launches a separate Portless development server. It kills only that server’s observed process tree while a real POST is blocked before snapshot commit, then reopens the assessment after restart and retries the saved submission in Chromium. It accelerates the stopped request’s deadline to avoid a two-minute sleep. The disposable database is dropped afterward; normal development/test databases are not reset.
+
+For an actual interrupted submission, reopen its assessment, wait until the processing deadline has passed, then choose **Retry saved submission**. The prior committed snapshot remains authoritative. A lost response may already represent success, so use **Check submission** or refresh before creating a new request. No worker or restart-time automatic inference runs.
