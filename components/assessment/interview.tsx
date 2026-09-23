@@ -394,7 +394,9 @@ export function Interview({
             )}
           </div>
           <ConversationHistory
-            turns={showResult ? turns : turns.slice(0, -1)}
+            turns={(showResult ? turns : turns.slice(0, -1)).filter(
+              (turn) => turn.replies.length > 0
+            )}
             operations={debugMode ? debugOperations : undefined}
           />
           <div className='flex flex-col gap-6'>

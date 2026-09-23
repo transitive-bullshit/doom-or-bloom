@@ -246,3 +246,5 @@ New assessment URLs begin as browser-backed drafts: keep them out of the library
 Plain section disclosures use the shared DisclosureTrigger: align the label with its content column, extend the padded hit area 12px into each gutter, and allow long labels to wrap. Reuse this for assessment insights and persona answer/debug sections.
 
 The global header shows a compact animated “Map your own worldview” CTA for signed-out visitors, including anonymous browser sessions. Signed-in participants instead see their avatar with a shadcn account menu containing My assessments and Log out. The library retains sign-in access but no separate sign-out button. Persona identity headers have no CTA; their closing CTA remains.
+
+Conversation history shows only questions with submitted replies on both private and public assessments. An unanswered current question appears only while actively answering; viewing results hides it, and continuing the interview restores it without changing the saved assessment history.

@@ -188,7 +188,14 @@ test('results omit review and clarification while retaining continued answers', 
       ''
     )
   }
+  const pendingQuestion = await page.locator('h2').innerText()
   await page.getByRole('button', { name: 'View my results' }).click()
+  await expect(
+    page.getByRole('heading', { name: 'Results', exact: true })
+  ).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: pendingQuestion, exact: true })
+  ).toHaveCount(0)
   await expect(
     page.getByRole('button', { name: 'Review & clarify my results' })
   ).toHaveCount(0)
@@ -199,4 +206,7 @@ test('results omit review and clarification while retaining continued answers', 
     .getByRole('button', { name: 'Continue answering questions' })
     .click()
   await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: pendingQuestion, exact: true })
+  ).toBeVisible()
 })
