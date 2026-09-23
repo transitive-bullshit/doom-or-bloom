@@ -3,15 +3,30 @@ import { publicPages } from '@/lib/site'
 import { PageTransition } from '@/components/page-transition'
 import { Interview } from '@/components/assessment/interview'
 import { loadBundle } from '@/lib/content/loader'
+import { loadExamples } from '@/components/landing/data'
+import { worldviewValues } from '@/lib/assessment/persona-matches'
 import { serverEnv } from '@/lib/server/env'
 export const metadata = pageMetadata(publicPages[1]!)
 
-export default function Page() {
+export default async function Page() {
   const env = serverEnv()
   const bundle = loadBundle()
+  const personas = (
+    await loadExamples().catch((err: unknown) => {
+      console.error('Unable to load persona comparisons', err)
+      return []
+    })
+  ).map(({ id, name, slug, avatar, result }) => ({
+    id,
+    name,
+    slug,
+    avatar,
+    values: worldviewValues(result)
+  }))
   return (
     <PageTransition>
       <Interview
+        personas={personas}
         model={env.provider === 'fixture' ? 'fixture-v1' : env.model}
         fixtureMode={env.provider === 'fixture'}
         debugDefault={env.debug}

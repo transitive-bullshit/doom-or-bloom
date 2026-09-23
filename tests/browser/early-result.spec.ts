@@ -38,6 +38,31 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
   await page
     .getByRole('region', { name: 'More of your worldview' })
     .screenshot({ path: testInfo.outputPath('worldview-details.png') })
+  const matches = page.getByRole('region', { name: 'Your closest worldviews' })
+  await expect(matches.getByRole('link')).toHaveCount(3)
+  await expect(matches.getByRole('img')).toHaveCount(3)
+  const firstMatch = matches.getByRole('link').first()
+  await expect(firstMatch).toHaveAttribute('href', /^\/users\//)
+  await firstMatch.focus()
+  await expect(firstMatch).toBeFocused()
+  await matches.screenshot({
+    path: testInfo.outputPath('closest-personas.png')
+  })
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect(matches).toBeVisible()
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth
+    )
+  ).toBe(true)
+  await matches.screenshot({
+    path: testInfo.outputPath('closest-personas-mobile.png')
+  })
+  const destination = await firstMatch.getAttribute('href')
+  const personaPage = await page.context().newPage()
+  await personaPage.goto(destination!)
+  await expect(personaPage.getByRole('heading', { level: 1 })).toBeVisible()
+  await personaPage.close()
   expect(operations).toEqual(['answer'])
   await page
     .getByRole('button', { name: 'Continue answering questions' })

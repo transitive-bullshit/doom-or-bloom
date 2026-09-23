@@ -5,6 +5,7 @@ import path from 'node:path'
 const output = process.env.NEXT_TEST_DIST_DIR || '.next'
 const required = path.resolve('eval/development/live-persona-journeys.json')
 for (const route of [
+  'assessment/page',
   'about/page',
   'users/[username]/page',
   'prototypes/landing/personas/[id]/page',

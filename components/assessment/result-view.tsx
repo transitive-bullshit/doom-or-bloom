@@ -1,4 +1,8 @@
 'use client'
+import { ClosestPersonas } from './closest-personas'
+import type { PersonaComparison } from '@/lib/assessment/persona-matches'
+import { useState } from 'react'
+import { Spinner } from '@/components/ui/spinner'
 import { toast } from 'sonner'
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
@@ -18,16 +22,19 @@ import { emitEvent } from '@/lib/analytics/client'
 import { makeEvent } from '@/lib/analytics/events'
 
 export function ResultView({
+  personas,
   state,
   act,
   busy,
   operations = []
 }: {
+  personas: PersonaComparison[]
   state: Assessment
   act: (operation: Operation) => void
   busy: boolean
   operations?: SavedDebugOperation[]
 }) {
+  const [downloading, setDownloading] = useState(false)
   const result = state.result!
   const supportingAnswers = (evidenceIds: string[]) => {
     const ids = new Set(
@@ -43,9 +50,12 @@ export function ResultView({
       new Blob([markdown], { type: 'text/markdown' }),
       'doom-or-bloom-report.md'
     )
+    toast.success('Your report is ready to download.')
     emitEvent(makeEvent(state, 'full_report_downloaded'))
   }
   const card = async () => {
+    if (downloading) return
+    setDownloading(true)
     try {
       const response = await fetch('/api/share-card', {
         method: 'POST',
@@ -93,6 +103,8 @@ export function ResultView({
       emitEvent(makeEvent(state, 'share_card_downloaded'))
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Card download failed')
+    } finally {
+      setDownloading(false)
     }
   }
   return (
@@ -118,6 +130,7 @@ export function ResultView({
         </p>
       </div>
       <ExperimentalResults result={result} layout='breakout' />
+      <ClosestPersonas result={result} personas={personas} />
       <div className='grid gap-3 sm:grid-cols-2'>
         {result.fingerprint.map((c) => (
           <div key={c.vector} className='rounded-lg border p-4'>
@@ -243,9 +256,10 @@ export function ResultView({
                       href={url}
                       target='_blank'
                       rel='noreferrer'
+                      aria-label={`${source.title} — source ${i + 1} (${new URL(url).hostname})`}
                       className='mr-3 text-xs underline'
                     >
-                      Primary source {i + 1}
+                      {source.title} — source {i + 1}
                     </a>
                   ))}
                 </div>
@@ -270,14 +284,27 @@ export function ResultView({
         </section>
       )}
       <div className='flex flex-wrap gap-3'>
-        <Button disabled={busy} onClick={() => void card()}>
-          Download card
+        <Button
+          type='button'
+          disabled={busy || downloading}
+          onClick={() => void card()}
+        >
+          {downloading && (
+            <Spinner data-icon='inline-start' aria-hidden='true' />
+          )}
+          {downloading ? 'Preparing card…' : 'Download card'}
         </Button>
-        <Button disabled={busy} variant='outline' onClick={report}>
+        <Button
+          type='button'
+          disabled={busy}
+          variant='outline'
+          onClick={report}
+        >
           Download full report
         </Button>
         {!result.capped && (
           <Button
+            type='button'
             disabled={busy}
             variant='outline'
             onClick={() => act({ type: 'continue' })}

@@ -71,7 +71,10 @@ import {
   serverSnapshot
 } from '@/lib/assessment/transport'
 
+import type { PersonaComparison } from '@/lib/assessment/persona-matches'
+
 export function Interview({
+  personas,
   model,
   debugDefault,
   debugAvailable,
@@ -81,6 +84,7 @@ export function Interview({
   fixtureMode,
   dimensions
 }: {
+  personas: PersonaComparison[]
   model: string
   debugDefault: boolean
   debugAvailable: boolean
@@ -504,6 +508,7 @@ export function Interview({
           <div className='flex flex-col gap-6'>
             {showResult ? (
               <ResultView
+                personas={personas}
                 state={state}
                 act={(op) => void act(op)}
                 busy={busy || conflict}
@@ -569,7 +574,11 @@ export function Interview({
                 <form
                   onSubmit={(event) => {
                     event.preventDefault()
-                    if (allowed && !answerTooLong && state.draft.trim())
+                    if (!state.draft.trim()) {
+                      toast.error('Enter an answer before continuing.')
+                      return
+                    }
+                    if (allowed && !answerTooLong)
                       void act({ type: 'answer', text: state.draft.trim() })
                   }}
                 >
@@ -583,6 +592,7 @@ export function Interview({
                       </FieldLabel>
                       <Textarea
                         id='answer'
+                        required
                         value={state.draft}
                         placeholder='A few sentences is plenty. Using speech-to-text is encouraged.'
                         disabled={!allowed}
@@ -670,9 +680,7 @@ export function Interview({
                             type='submit'
                             className='ml-auto'
                             aria-keyshortcuts='Meta+Enter Control+Enter'
-                            disabled={
-                              !allowed || answerTooLong || !state.draft.trim()
-                            }
+                            disabled={!allowed || answerTooLong}
                           >
                             {busy && (
                               <Spinner
@@ -742,7 +750,9 @@ export function Interview({
                         <Button variant='outline'>Keep this assessment</Button>
                       </DialogClose>
                       <DialogClose asChild>
-                        <Button onClick={restart}>Restart & clear</Button>
+                        <Button variant='destructive' onClick={restart}>
+                          Restart & clear
+                        </Button>
                       </DialogClose>
                     </DialogFooter>
                   </DialogContent>

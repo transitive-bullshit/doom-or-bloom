@@ -949,3 +949,13 @@ Checkpoint: local implementation and production audit complete. Deployment and p
 - [x] Replace social-map dots with the same profile photos used on the webapp, including all plotted people in the default site image and the subject on each persona image. Preserve exact placement, interpretation ranges and simulation labels.
 - [x] Embed checked-in photos for network-independent Takumi rendering, include them in deployment traces, and verify portrait decoding, WebP renders, formatting, lint, types and the production build.
 - [x] Visually review both social-image variants and repeat the PNG/WebP comparison with portraits.
+
+### 2026-09-23 — Closest persona results
+
+- [x] Add a personal-results card with up to three ranked saved personas, photos, names and detail-page links.
+- [x] Compare all eight worldview basis vectors with normalized equal-weight distance, minimum shared coverage and explicit unknown handling; keep map placement and reasoning scores separate.
+- [x] Verify matching/coverage/tie regressions, type checking, lint, and desktop/mobile browser coverage including keyboard focus, portraits and persona navigation. Apply Rams accessibility and feedback fixes; preserve assessment availability on persona-data failure.
+- [x] Full `pnpm test` passed (250 unit tests, content validation, format, lint, types and unused-code checks); `pnpm build` passed including canonical persona-data deployment trace verification for the assessment route.
+- Broader browser check: 11/12 assessment/keyboard regressions passed. The storage-disabled case crashes in the untouched development Agentation overlay (`app/layout.tsx:62`) before the assessment can render; recorded as an unrelated development-tool limitation.
+- Rams quick reviews and final review completed (94/100). Source-link context and button semantics were fixed and verified. The remaining report-spinner suggestion is inapplicable to synchronous local report serialization; an immediate success toast supplies completion feedback instead.
+- Final quick-review false positives: Radix `CollapsibleTrigger asChild` supplies `aria-expanded`; the source `aria-label` adds hostname context to visible title/index text, and punctuation does not make it inaccessible. No manual ARIA state or duplicated disclosure state was added.
