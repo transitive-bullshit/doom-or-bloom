@@ -6,31 +6,76 @@
 
 [**Explore the map →**](https://www.doom-or-bloom.com) · [**Map your own worldview →**](https://www.doom-or-bloom.com/assessments?start=1)
 
+## Why build this?
+
+AI’s potential upsides and risks deserve more than slogans. As capabilities advance and decisions become more consequential, we need accessible tools for grounded, truth-seeking discussion across very different views.
+
+I built this to explore the field’s voices and help people untangle conflicting intuitions. It has already sharpened my own views. The aim is to represent yours faithfully, with as little editorial steering as possible.
+
 ## An interview that follows your thinking
 
-Start with **“What do you think AI means for our future—and why?”** Each follow-up helps clarify your perspective. Results may be ready after one detailed answer; most interviews take just a few questions.
+Start with **“What do you think AI means for our future—and why?”** The engine interprets your answer, identifies what remains unclear, and selects the authored follow-up most likely to add useful information with the least repetition and effort.
 
-See where you land, compare nearby worldviews, and explore the answers behind your results. The aim is to understand your views without trying to change them.
+Results unlock with enough supported coverage, potentially after one detailed answer; most interviews last between 3-5 questions. Your results link back to your answers, preserving uncertainty and salient excerpts used as evidence.
+
+## Powered by TypeSafe’s Jev
+
+[Jev](https://docs.typesafe.ai/introduction) is the core inference component. It evaluates many small, typed questions against shared context: **Choice** for categories, **Score** for rubric levels, and **Noul** for probability judgments.
+
+We use those judgments to interpret answers, compare candidate follow-ups, and build a worldview profile. TypeScript owns the routing rules, stopping conditions, calculations, and presentation. Questions and result prose are authored; Jev supplies structured judgments.
+
+Batching judgments over shared state and reusing unchanged results keeps inference economical. Adaptive interviewing is a compelling fit: many narrow decisions, composed into an accessible experience at scale.
+
+| State supplied to Jev | Result assembled from its judgments |
+| --- | --- |
+| [![Folded projection input from Jensen Huang’s simulated assessment](docs/images/jev-state.png)](docs/images/jev-state.png) | [![Folded application result powering Jensen Huang’s simulated worldview map](docs/images/jev-result.png)](docs/images/jev-result.png) |
+
+Recorded simulated assessment; the result includes application calculations, not just raw Jev output. [Inference architecture](docs/TYPESAFE.md).
 
 ## Simulated people, real sources
 
-Featured personas are simulations grounded in linked public statements, essays, and interviews—not those people’s actual answers or endorsements.
+The featured personas are simulations grounded in linked public statements, essays, and interviews. A separate model answers the actual interview questions from those source briefs; the normal assessment engine evaluates the answers without being given a target position.
+
+These journeys help refine Jev rubrics and routing logic and catch regressions. They are useful development cases—not statements made by those people, endorsements, or independently validated assessments. [Explore the persona workflow](docs/user-journeys.md).
 
 ## The map is not the territory
 
-The map pairs your **Doom–Bloom outlook × expected transformation**. Two coordinates cannot capture a whole worldview. Interpretation ranges reflect uncertainty about your answers, not the probability that your beliefs are true.
+We model eight worldview dimensions: capabilities and timelines, transition speed, benefits, harms, controllability, institutions, human agency, and action. Seven additional dimensions describe the reasoning expressed in the answers, from causal clarity to willingness to update.
 
-This is an experiment, not a validated forecast or an intelligence test. Mixed views and uncertainty belong here. [About the project](https://www.doom-or-bloom.com/about).
+Jev interprets these against explicit definitions. Code turns the supported judgments into a profile; the headline map shows **overall outlook × expected transformation**, with further views available below it. Two coordinates cannot capture a whole worldview.
 
-## Private unless you publish
+This is an experimental model, not a forecast of what will happen or a measure of someone’s intelligence. Interpretation confidence is not the probability that a belief is true. Participant answers are not independently fact-checked, and the rubric and readiness thresholds still need broader validation. [Read the methodology](docs/ASSESSMENT.md).
 
-Your answers and results remain private unless you choose to publish them. No sign-up is required. [Privacy policy](https://www.doom-or-bloom.com/privacy).
+## Privacy
 
-## Contribute
+Your answers and results are private by default. You can choose to publish them if you want to share them. No sign-up is required. [Privacy details](https://www.doom-or-bloom.com/privacy).
 
-Feedback is welcome—especially where an interpretation feels wrong or a question misses the point. [Share feedback](https://github.com/transitive-bullshit/doom-or-bloom/issues).
+## Run locally
 
-For local setup and checks, see [CONTRIBUTING.md](CONTRIBUTING.md). For architecture and methodology, see [the docs](docs/README.md).
+Requires **Node.js 24+**, **pnpm**, and a **TypeSafe API key** for live assessments.
+
+```sh
+pnpm install
+cp .env.example .env.development.local
+# Set TYPESAFE_API_KEY in .env.development.local
+pnpm dev
+```
+
+Open the Portless URL printed by the server. For keyless UI development, set `ASSESSMENT_PROVIDER=fixture`. See [CONTRIBUTING.md](CONTRIBUTING.md) for environment variables, checks, and persona tooling.
+
+Built with **Next.js, React, TypeScript, the TypeSafe SDK, Tailwind CSS, and shadcn/ui**. The main places to explore:
+
+- [`lib/server/engine.ts`](lib/server/engine.ts): adaptive interview orchestration.
+- [`lib/assessment/`](lib/assessment/): state, readiness, and projections.
+- [`content/`](content/): authored questions, rubrics, and source material.
+- [`lib/journeys/`](lib/journeys/): persona simulations and regression workflows.
+- [`app/`](app/) and [`components/`](components/): pages, maps, and inspection UI.
+
+## What’s next?
+
+A future Socratic mode could challenge assumptions, introduce well-sourced counterexamples, and help strengthen your reasoning. This MVP first focuses on understanding your views without trying to change them.
+
+The goal is clear-thinking tools that need no specialist background. Feedback from across the AI-futures spectrum is welcome—especially where an interpretation feels wrong or a question misses the point. [Share feedback](https://github.com/transitive-bullshit/doom-or-bloom/issues).
 
 ## License
 

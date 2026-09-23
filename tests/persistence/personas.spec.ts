@@ -54,7 +54,7 @@ test('curated persona routes use the selected database run without a visitor ses
     const llms = await (await request.get('/llms.txt')).text()
     expect(llms).toContain(`/users/${persona.slug}`)
     expect(llms).toContain('/public/assessments/<id>')
-    expect(llms).toContain('private unless you choose to publish')
+    expect(llms).toContain('immutable snapshots')
     expect(llms).toContain('optional X sign-in')
     expect(llms).not.toContain(
       'No account or hosted transcript database required'
