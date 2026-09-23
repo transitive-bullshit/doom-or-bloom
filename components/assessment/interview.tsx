@@ -572,8 +572,8 @@ export function Interview({
                     up automatically when Jev has enough confidence.
                   </p>
                   <p>
-                    Your answers will remain private unless you choose to
-                    publish them at the end.
+                    Your answers remain private unless you choose to publish
+                    them at the end.
                   </p>
                 </div>
                 {state.answers.length > 0 && (
