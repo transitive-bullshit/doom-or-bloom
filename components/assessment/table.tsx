@@ -219,7 +219,7 @@ export function AssessmentTable({
                   <DropdownMenuItem
                     onSelect={() => void copyPublicLink(row.original.id)}
                   >
-                    Copy public link
+                    Copy link to public assessment
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onSelect={() => onMakePrivate(row.original)}

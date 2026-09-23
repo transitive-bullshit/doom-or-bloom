@@ -482,7 +482,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       })
     })
     await page
-      .getByRole('menuitem', { name: 'Copy public link', exact: true })
+      .getByRole('menuitem', {
+        name: 'Copy link to public assessment',
+        exact: true
+      })
       .click()
     await expect(
       page.getByText('Public link copied.', { exact: true })
