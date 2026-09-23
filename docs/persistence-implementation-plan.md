@@ -504,3 +504,9 @@ The user explicitly authorized preparing production Vercel and Neon, superseding
 - [ ] Deploy the reviewed application and run the [production smoke checklist](production-readiness.md#remaining-after-deployment), including real X authorization and external social crawlers.
 
 See [production readiness](production-readiness.md) for configuration boundaries and verification details. No production application deployment was triggered.
+
+### Public SEO and image caching — September 24, 2026
+
+- [x] Public assessments use indexable canonical/Open Graph/Twitter metadata; full answers and result disclosures are present in server-rendered HTML. Hydration supplies interactions. Private pages remain noindex.
+- [x] Public participant and persona Takumi previews use seven-day browser/CDN caching. Cached image access for up to seven days after revocation is explicitly accepted; origin visibility checks and uncached HTML/JSON remain in place. This supersedes the initial no-store/noindex preview policy recorded above. Private PNG POST downloads and error responses stay uncached.
+- [x] Remove the blanket private cache header from image routes and update privacy copy to match indexing and caching behavior.

@@ -89,7 +89,10 @@ export function AssessmentTable({
       header: 'Assessment',
       enableSorting: false,
       cell: ({ row }) => (
-        <Link className='font-medium' href={`/assessments/${row.original.id}`}>
+        <Link
+          className='flex min-h-13 w-full items-center px-2 py-3 font-medium'
+          href={`/assessments/${row.original.id}`}
+        >
           {row.original.title ?? 'Your AI worldview'}
         </Link>
       )
@@ -196,7 +199,9 @@ export function AssessmentTable({
                 <TableCell
                   key={cell.id}
                   className={
-                    cell.column.id === 'title' ? 'whitespace-normal' : undefined
+                    cell.column.id === 'title'
+                      ? 'h-px p-0 whitespace-normal [&>a]:h-full'
+                      : undefined
                   }
                 >
                   <table.FlexRender cell={cell} />

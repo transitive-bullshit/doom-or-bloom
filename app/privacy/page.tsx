@@ -66,16 +66,15 @@ export default function Privacy() {
       <h2>Publishing and deleting</h2>
       <p>
         Publishing makes your full submitted conversation and inferred results
-        available to anyone with the link. Public pages are excluded from search
-        indexing and site directories. If you publish while signed in, your
-        profile name, photo, and profile link are included. Anonymous
-        publications stay anonymous unless you make them private and publish
-        again while signed in. Operational failure records remain private.
-        Making an assessment private or deleting it removes access to its page,
-        data download and social image, but external sites may retain previews
-        already fetched. Continuing a published assessment creates a separate
-        private copy; changing or deleting the original does not change that
-        copy.
+        available to anyone and allows search engines to index the public page.
+        If you publish while signed in, your profile name, photo, and profile
+        link are included. Anonymous publications stay anonymous unless you make
+        them private and publish again while signed in. Operational failure
+        records remain private. Making an assessment private or deleting it
+        removes access to its page, and data. Cached social images can remain
+        available for up to seven days, and external sites may retain previews
+        longer. Continuing a published assessment creates a separate private
+        copy; changing or deleting the original does not change that copy.
       </p>
       <p>
         Source cards may embed public X posts. Post text is fetched through this

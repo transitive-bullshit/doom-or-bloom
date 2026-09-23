@@ -19,13 +19,22 @@ export async function generateMetadata({
   return {
     ...pageMetadata({
       path: `/assessments/public/${id}`,
-      title: saved.title,
+      title:
+        saved.kind === 'simulation'
+          ? `${saved.profile.name}’s AI worldview`
+          : saved.publisher
+            ? `${saved.publisher.name}’s AI worldview`
+            : saved.title,
       description:
-        'A published assessment: the participant’s full conversation and inferred AI worldview.',
+        'Explore this AI worldview: expectations, risks, closest perspectives, and the answers behind the assessment.',
       image: `/assessments/public/${id}/social-image.webp`,
       imageAlt: 'AI worldview assessment with interpretation ranges'
     }),
-    robots: { index: false, follow: false }
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { 'max-image-preview': 'large' }
+    }
   }
 }
 export default async function Page({

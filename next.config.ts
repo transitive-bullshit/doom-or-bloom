@@ -25,7 +25,13 @@ const config: NextConfig = {
     ]
   },
   async headers() {
-    return ['/assessment/:path*', '/assessments/:path*'].map((source) => ({
+    return [
+      '/assessment/:path*',
+      '/assessments',
+      '/assessments/:id',
+      '/assessments/public/:id',
+      '/assessments/public/:id/data'
+    ].map((source) => ({
       source,
       headers: [{ key: 'Cache-Control', value: 'private, no-store' }]
     }))

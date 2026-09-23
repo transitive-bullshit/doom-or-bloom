@@ -53,6 +53,12 @@ test('library sorts by creation date and status and keeps management in row menu
     const table = page.getByRole('table', { name: 'My assessments' })
     const names = table.locator('tbody tr td:first-child')
     await expect(names).toHaveText(['Newer assessment', 'Older assessment'])
+    const cellBox = await names.first().boundingBox()
+    const linkBox = await names.first().getByRole('link').boundingBox()
+    expect(linkBox!.width).toBeCloseTo(cellBox!.width, 0)
+    // The collapsed table border occupies one pixel outside the link.
+    expect(Math.abs(linkBox!.height - cellBox!.height)).toBeLessThanOrEqual(1)
+
     await expect(
       table.getByRole('columnheader', { name: 'Date created' })
     ).toHaveAttribute('aria-sort', 'descending')

@@ -1,4 +1,5 @@
 import { Pool } from 'pg'
+import { load } from 'cheerio'
 import { test, expect } from '@playwright/test'
 
 test('first CTA creates directly, draft survives reload, answer is server-saved, returning CTA opens library', async ({
@@ -217,7 +218,18 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     // Production private/no-store headers are verified in build/start acceptance.
     expect(html.headers()['cache-control']).toMatch(/no-store|no-cache/)
     expect(await html.text()).toContain('AI could greatly improve medicine')
-    expect(await html.text()).toContain('noindex')
+    const renderedHtml = load(await html.text())
+    expect(renderedHtml('meta[name="robots"]').attr('content')).toBe(
+      'index, follow'
+    )
+    expect(renderedHtml('link[rel="canonical"]').attr('href')).toContain(
+      `/assessments/public/${id}`
+    )
+    renderedHtml('script').remove()
+    expect(renderedHtml('article').text()).toContain(
+      beforeView.assessment.answers[0].text
+    )
+    expect(renderedHtml('h2').text()).toContain('Full conversation')
     expect(await html.text()).toContain(
       `/assessments/public/${id}/social-image.webp`
     )
@@ -229,10 +241,26 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     const image = await visitor.request.get(`${publicURL}/social-image.webp`)
     expect(image.status()).toBe(200)
     expect(image.headers()['content-type']).toContain('image/webp')
-    expect(image.headers()['cache-control']).toContain('no-store')
+    expect(image.headers()['cache-control']).toBe(
+      'public, max-age=604800, s-maxage=604800, must-revalidate'
+    )
     const bytes = await image.body()
     expect(bytes.toString('ascii', 0, 4)).toBe('RIFF')
     expect(bytes.toString('ascii', 8, 12)).toBe('WEBP')
+    const personaHtml = load(
+      await (await visitor.request.get('/users/tszzl')).text()
+    )
+    const personaImageUrl = new URL(
+      personaHtml('meta[property="og:image"]').attr('content')!
+    )
+    const personaImage = await visitor.request.get(
+      personaImageUrl.pathname + personaImageUrl.search
+    )
+    expect(personaImage.status()).toBe(200)
+    expect(personaImage.headers()['cache-control']).toBe(
+      'public, max-age=604800, s-maxage=604800, must-revalidate'
+    )
+
     const sharp = (await import('sharp')).default
     const metadata = await sharp(bytes).metadata()
     expect([metadata.width, metadata.height]).toEqual([1200, 630])

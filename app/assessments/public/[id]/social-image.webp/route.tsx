@@ -1,3 +1,4 @@
+import { publicImageCacheHeaders } from '@/lib/sharing/image-cache'
 import { loadPersonaComparisons } from '@/components/landing/data'
 import { loadPublished } from '@/lib/assessments/public-server'
 import { resultCardData } from '@/lib/sharing/card-data'
@@ -25,8 +26,7 @@ export async function GET(
   return new Response(new Uint8Array(bytes), {
     headers: {
       'Content-Type': 'image/webp',
-      'Cache-Control': 'private, no-store',
-      'X-Robots-Tag': 'noindex'
+      ...publicImageCacheHeaders
     }
   })
 }

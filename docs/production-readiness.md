@@ -35,7 +35,7 @@ Real development X authorization, anonymous assessment claim, sign-out, and subs
 - [ ] Complete one live Jev assessment: first answer persists, refresh restores it, results generate, and status becomes ready to publish.
 - [ ] Sign in through the production X application with an existing anonymous assessment; verify same-URL ownership transfer, avatar menu, logout, and recovery from another browser.
 - [ ] Publish, open without a session, inspect captured identity/date and comparisons, then fork, make private and delete. Check anonymous denial after revocation for HTML, JSON and WebP.
-- [ ] Check effective production no-store/noindex headers and function duration behavior, including a dropped browser connection and recovery without duplicate answers.
+- [ ] Check effective production private-page no-store/noindex headers, public-page indexable metadata, and seven-day public image cache headers and function duration behavior, including a dropped browser connection and recovery without duplicate answers.
 - [ ] Verify external social crawlers can fetch the generated WebP preview. Previously cached third-party previews cannot be revoked.
 - [ ] Inspect production logs for unexpected configuration/provider/database errors after this smoke pass.
 

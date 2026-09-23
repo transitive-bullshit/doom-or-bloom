@@ -276,7 +276,10 @@ function ResultDisclosure({
       <h6>
         <DisclosureTrigger>{title}</DisclosureTrigger>
       </h6>
-      <CollapsibleContent className='mt-3 flex flex-col gap-3'>
+      <CollapsibleContent
+        forceMount
+        className='mt-3 flex flex-col gap-3 data-[state=closed]:hidden'
+      >
         {children}
       </CollapsibleContent>
     </Collapsible>

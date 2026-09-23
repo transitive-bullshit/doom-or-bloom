@@ -1,3 +1,4 @@
+import { publicImageCacheHeaders } from '@/lib/sharing/image-cache'
 import { loadSocialPortrait } from '@/lib/sharing/portraits'
 import { ImageResponse } from 'takumi-js/response'
 import { notFound } from 'next/navigation'
@@ -25,6 +26,6 @@ export default async function Image({
     SocialCard({
       person: { ...person, portrait: await loadSocialPortrait(person.avatar) }
     }),
-    socialImageOptions
+    { ...socialImageOptions, headers: publicImageCacheHeaders }
   )
 }

@@ -45,9 +45,7 @@ export function AnswerDisclosure({
         </Button>
       </CollapsibleTrigger>
       {!open && (
-        <p className='line-clamp-4 whitespace-pre-wrap wrap-anywhere'>
-          {text.slice(0, 360).trimEnd()}…
-        </p>
+        <p className='line-clamp-4 whitespace-pre-wrap wrap-anywhere'>{text}</p>
       )}
       <CollapsibleContent>
         <div

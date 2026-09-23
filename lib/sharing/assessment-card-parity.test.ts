@@ -42,8 +42,11 @@ test('public WebP and downloaded PNG render the same assessment composition', as
   )
   expect(preview.status).toBe(200)
   expect(download.status).toBe(200)
-  expect(preview.headers.get('Cache-Control')).toBe('private, no-store')
-  expect(preview.headers.get('X-Robots-Tag')).toBe('noindex')
+  expect(preview.headers.get('Cache-Control')).toBe(
+    'public, max-age=604800, s-maxage=604800, must-revalidate'
+  )
+  expect(preview.headers.get('X-Robots-Tag')).toBeNull()
+  expect(download.headers.get('Cache-Control')).toBe('no-store')
   const webp = Buffer.from(await preview.arrayBuffer())
   const png = Buffer.from(await download.arrayBuffer())
   expect(await sharp(webp).metadata()).toMatchObject({
