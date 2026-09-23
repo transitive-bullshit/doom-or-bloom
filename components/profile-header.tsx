@@ -27,9 +27,9 @@ export function ProfileHeader({
     />
   )
   return (
-    <header className='my-8 flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between'>
-      <div className='min-w-0'>
-        <div className='flex items-center gap-4'>
+    <header className='mb-8'>
+      <div className='flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between'>
+        <div className='flex min-w-0 items-center gap-4'>
           {portrait &&
             (profileUrl ? (
               <a
@@ -58,11 +58,11 @@ export function ProfileHeader({
             )}
           </div>
         </div>
-        {description && (
-          <p className='mt-4 max-w-xl text-body-foreground'>{description}</p>
-        )}
+        {children}
       </div>
-      {children}
+      {description && (
+        <p className='mt-4 max-w-xl text-body-foreground'>{description}</p>
+      )}
     </header>
   )
 }

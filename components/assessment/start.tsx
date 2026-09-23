@@ -18,7 +18,11 @@ export function AssessmentStart({
     let active = true
     void startAssessment(automatic)
       .then(({ id }) => {
-        if (active) router.replace(id ? `/assessments/${id}` : '/assessments')
+        if (active) {
+          const href = id ? `/assessments/${id}` : '/assessments'
+          if (automatic) router.replace(href)
+          else router.push(href)
+        }
       })
       .catch(() => {
         if (active) {

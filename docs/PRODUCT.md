@@ -238,3 +238,5 @@ Use the shared `content-column` utility for assessment, public assessment, perso
 Assessment visibility uses “publish” terminology: “Publish assessment publicly,” “Published,” “Ready to publish,” and “Make private.” Reserve “share” for distributing a link or downloading an image for social sharing, not changing assessment visibility.
 
 Use shared shadcn breadcrumbs as the first page-content element, before the first h1, on all routes except the homepage and public assessment pages. Assessment details link back to My assessments; persona details show the handle. Do not duplicate these with ad hoc back links. Published assessments offer “Fork & continue answering” to start an independently editable assessment.
+
+New assessment URLs begin as browser-backed drafts: keep them out of the library and assessment tables until the first answer is submitted. Reload and Back/Forward preserve unsubmitted typing. Failed first-answer processing remains recoverable once submitted. Persona and attributed public headers use bottom spacing only; on desktop the CTA centers beside the identity row, with the description below.

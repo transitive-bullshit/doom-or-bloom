@@ -42,6 +42,9 @@ export async function mockEvaluation(
       operation: submission.operation,
       debug: submission.debug
     })
+    const session = await (
+      await page.request.get('/api/auth/get-session')
+    ).json()
     const { execFileSync } = await import('node:child_process')
     const json = JSON.parse(
       execFileSync(
@@ -52,7 +55,15 @@ export async function mockEvaluation(
           'tsx',
           'tests/browser/persist-engine-response.ts'
         ],
-        { input: JSON.stringify({ submission, response }), encoding: 'utf8' }
+        {
+          input: JSON.stringify({
+            submission,
+            response,
+            ownerId: session.user.id,
+            draft: saved.unsaved ? saved.assessment : undefined
+          }),
+          encoding: 'utf8'
+        }
       )
     )
     await route.fulfill({ json })

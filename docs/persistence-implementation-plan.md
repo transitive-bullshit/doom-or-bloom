@@ -470,3 +470,12 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Rename the published-result fork action to “Fork & continue answering.”
 - [x] Increase the shared reading area to 720px (768px including gutters), preserving wide tweet masonry and result breakouts.
 - [x] Verify repository checks, seven browser cases for breadcrumbs/typography/bookmarks/tweets, and the publication/fork/revoke flow. Confirm public pages omit breadcrumbs and inspect desktop assessment layout.
+
+### Lazy assessment drafts and profile header spacing (2026-09-24)
+
+- [x] Reserve stable owner-bound draft URLs using signed, path-scoped browser cookies without inserting assessment, snapshot, operation, or reservation rows. Keep unsubmitted drafts out of the library.
+- [x] Persist the assessment, initial snapshot, spent UUID marker, and first submitted operation in one transaction. Preserve synchronous processing/retry semantics; prevent old tickets from resurrecting deleted records.
+- [x] Preserve local typing and the same URL across reload and Back/Forward; explicit library creation pushes browser history. Keep first-run entry as a replacement navigation.
+- [x] Apply the spent-draft-ID migration to native local development and test Postgres only. Update the persistence/product contracts and browser test persistence seam.
+- [x] Center profile CTAs alongside avatar/name/profile link, above the description. Remove redundant top margin from the shared persona/public header.
+- [x] Verify repository checks and 21 targeted browser cases covering draft storage/history, authorization, lost responses, publication/forks/revocation, interviews/conversations, report downloads, and persona header alignment. Refresh an older report-flow test that still expected the previously removed clarification and standalone social-download controls.

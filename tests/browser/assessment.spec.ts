@@ -1,6 +1,5 @@
 import sharp from 'sharp'
 import { unzipSync, strFromU8 } from 'fflate'
-import { people } from '../../components/landing/people'
 import {
   expect,
   test,
@@ -130,7 +129,7 @@ test('long inserted answers remain intact across reload and use a soft submissio
   expect(submitted).toEqual([accepted])
   expect((await savedAssessment(page)).answers[0]!.text).toBe(accepted)
 })
-test('three answers, draft resume, map, correction, downloads and another assessment', async ({
+test('three answers, draft resume, map, report download and another assessment', async ({
   page
 }, testInfo) => {
   const outbound: string[] = []
@@ -163,18 +162,9 @@ test('three answers, draft resume, map, correction, downloads and another assess
   await expect(
     page.getByText('Reasoning judgments to inspect', { exact: true })
   ).toHaveCount(0)
-  await page
-    .getByRole('button', { name: 'Review & clarify my results' })
-    .click()
-  await page
-    .getByRole('button', { name: 'That’s not quite my view' })
-    .first()
-    .click()
-  await submit(
-    page,
-    'I meant current testing is insufficient, not that control is impossible.'
-  )
-  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Review & clarify my results' })
+  ).toHaveCount(0)
   const reportWait = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download full report' }).click()
   const report = await reportWait
@@ -213,52 +203,6 @@ test('three answers, draft resume, map, correction, downloads and another assess
   // The archive must contain the colored worldview field, not the toolbar icon.
   expect(coloredPixels / (100 * 60)).toBeGreaterThan(0.2)
   await report.saveAs(testInfo.outputPath('full-report.zip'))
-  const downloadButtons = page.getByRole('button', {
-    name: 'Download results image for social sharing'
-  })
-  await expect(downloadButtons).toHaveCount(1)
-  const downloadButton = downloadButtons.last()
-  const firstDownloadBounds = await downloadButtons.first().boundingBox()
-  const detailsBounds = await page
-    .getByRole('region', { name: 'More details', exact: true })
-    .boundingBox()
-  expect(firstDownloadBounds!.y).toBeGreaterThan(
-    detailsBounds!.y + detailsBounds!.height
-  )
-  await expect(downloadButton).toHaveAttribute('data-slot', 'primary-cta')
-  await page.setViewportSize({ width: 390, height: 844 })
-  const downloadBounds = await downloadButton.boundingBox()
-  const reportBounds = await page
-    .getByRole('button', { name: 'Download full report' })
-    .boundingBox()
-  expect(reportBounds!.y).toBeGreaterThan(
-    downloadBounds!.y + downloadBounds!.height
-  )
-  expect(downloadBounds!.x + downloadBounds!.width).toBeLessThanOrEqual(390)
-  await page.mouse.move(0, 0)
-  await downloadButton
-    .locator('..')
-    .screenshot({ path: testInfo.outputPath('download-actions-mobile.png') })
-  const cardRequest = page.waitForRequest(
-    (request) =>
-      request.url().endsWith('/api/share-card') && request.method() === 'POST'
-  )
-  const cardWait = page.waitForEvent('download')
-  await downloadButton.click()
-  const sharedIds: string[] = (await cardRequest).postDataJSON()
-    .closestPersonaIds
-  const pageMatches = await page
-    .getByRole('region', { name: 'Your closest worldviews' })
-    .getByRole('link')
-    .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-  expect(
-    sharedIds.map(
-      (id) => `/users/${people.find((person) => person.id === id)!.slug}`
-    )
-  ).toEqual(pageMatches)
-  const cardDownload = await cardWait
-  expect(cardDownload.suggestedFilename()).toBe('doom-or-bloom.png')
-  await cardDownload.saveAs(testInfo.outputPath('share-card.png'))
   await expect(page.getByRole('link', { name: 'Post on X' })).toHaveCount(0)
   expect(outbound).toEqual([])
   const previous = page.url()

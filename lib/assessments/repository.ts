@@ -18,7 +18,8 @@ import {
   assessmentOperations,
   personas,
   user,
-  account
+  account,
+  usedAssessmentDrafts
 } from '../db/schema'
 import { publisherSchema, type Publisher } from './publisher'
 import { profileImageUrl } from '../auth/profile-image'
@@ -69,6 +70,7 @@ export type OwnedAssessment = {
   inheritedPromptCount: number
   promptCeiling: number
   operation: OperationView | null
+  unsaved?: boolean
 }
 export type OperationOutcome = {
   debug?: DebugTrace
@@ -262,6 +264,13 @@ export function assessmentRepository(pool: Pool) {
         return { id }
       })
     },
+    async draftWasUsed(id: string) {
+      const [row] = await db
+        .select()
+        .from(usedAssessmentDrafts)
+        .where(eq(usedAssessmentDrafts.id, id))
+      return Boolean(row)
+    },
     async list(ownerId: string) {
       return db
         .select({
@@ -328,7 +337,8 @@ export function assessmentRepository(pool: Pool) {
       ownerId: string,
       input: Submission,
       evaluate: Evaluator,
-      signal?: AbortSignal
+      signal?: AbortSignal,
+      draft?: Assessment
     ): Promise<OperationOutcome> {
       const digest = fingerprint({
         expectedRevision: input.expectedRevision,
@@ -336,6 +346,40 @@ export function assessmentRepository(pool: Pool) {
         retryOf: input.retryOf ?? null
       })
       const accepted = await db.transaction(async (tx) => {
+        if (draft) {
+          if (
+            draft.id !== input.assessmentId ||
+            input.expectedRevision !== 0 ||
+            input.operation.type !== 'answer'
+          )
+            throw conflict('Submit an answer to start this assessment.')
+          const [reserved] = await tx
+            .insert(usedAssessmentDrafts)
+            .values({ id: draft.id })
+            .onConflictDoNothing()
+            .returning()
+          if (reserved) {
+            const snapshotId = randomUUID()
+            await tx.insert(assessments).values({
+              id: draft.id,
+              ownerId,
+              currentSnapshotId: snapshotId,
+              versions: draft.versions,
+              createRequestKey: `draft:${draft.id}`,
+              createFingerprint: fingerprint(draft)
+            })
+            await tx.insert(assessmentSnapshots).values({
+              id: snapshotId,
+              assessmentId: draft.id,
+              revision: 0,
+              format: 'assessment_v1',
+              payload: draft,
+              digest: fingerprint(draft),
+              evidenceRevision: 0,
+              hasResult: false
+            })
+          }
+        }
         const row = await owned(tx, ownerId, input.assessmentId, true)
         const [prior] = await tx
           .select()

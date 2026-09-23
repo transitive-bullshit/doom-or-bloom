@@ -163,3 +163,9 @@ export const assessmentOperations = pgTable(
     )
   ]
 )
+
+// A spent draft ID survives deletion so a signed browser ticket cannot recreate it.
+// Contains no assessment content or owner data. Nothing is inserted on draft opening.
+export const usedAssessmentDrafts = pgTable('used_assessment_drafts', {
+  id: uuid('id').primaryKey()
+})

@@ -17,15 +17,12 @@ try {
   const submission = submitSchema.parse(input.submission)
   const response = input.response as AssessmentResponse
   response.assessment = assessmentSchema.parse(response.assessment)
-  const owner = await pool.query(
-    'SELECT owner_id FROM assessments WHERE id=$1',
-    [submission.assessmentId]
-  )
-  assert.equal(owner.rows.length, 1)
   const outcome = await assessmentRepository(pool).submit(
-    owner.rows[0].owner_id,
+    input.ownerId,
     submission,
-    async () => response
+    async () => response,
+    undefined,
+    input.draft ? assessmentSchema.parse(input.draft) : undefined
   )
   assert.equal(outcome.operation.status, 'succeeded')
   process.stdout.write(JSON.stringify(outcome))

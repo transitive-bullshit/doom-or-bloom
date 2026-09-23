@@ -1,8 +1,8 @@
-import { headers } from 'next/headers'
+import { headers, cookies } from 'next/headers'
 import { notFound, redirect } from 'next/navigation'
 import { z } from 'zod'
 import { getAuth } from '@/lib/auth/server'
-import { repository } from '@/lib/assessments/server'
+import { loadAssessmentOrDraft, draftCookie } from '@/lib/assessments/drafts'
 import { AssessmentError } from '@/lib/assessments/contracts'
 import { PageTransition } from '@/components/page-transition'
 import { Interview } from '@/components/assessment/interview'
@@ -25,12 +25,14 @@ export default async function Page({
   if (!id.success) notFound()
   const session = await getAuth().api.getSession({ headers: await headers() })
   if (!session) redirect('/assessments')
-  const initial = await repository()
-    .load(session.user.id, id.data)
-    .catch((err: unknown) => {
-      if (err instanceof AssessmentError && err.status === 404) notFound()
-      throw err
-    })
+  const initial = await loadAssessmentOrDraft(
+    session.user.id,
+    id.data,
+    (await cookies()).get(draftCookie)?.value
+  ).catch((err: unknown) => {
+    if (err instanceof AssessmentError && err.status === 404) notFound()
+    throw err
+  })
   const env = serverEnv()
   const bundle = loadBundle(initial.assessment.versions.content)
   const personas = await loadPersonaComparisons()

@@ -1,3 +1,10 @@
+import { cookies } from 'next/headers'
+import {
+  loadAssessmentOrDraft,
+  draftCookie,
+  draftApiCookie,
+  draftCookieOptions
+} from '@/lib/assessments/drafts'
 import { z } from 'zod'
 import { privateHeaders, privateRequest } from '@/lib/assessments/http'
 import { submitSchema } from '@/lib/assessments/contracts'
@@ -12,9 +19,16 @@ export async function GET(
 ) {
   return privateRequest(request, async (owner) => {
     const id = z.uuid().parse((await context.params).id)
-    return Response.json(await repository().load(owner, id), {
-      headers: privateHeaders
-    })
+    return Response.json(
+      await loadAssessmentOrDraft(
+        owner,
+        id,
+        (await cookies()).get(draftApiCookie)?.value
+      ),
+      {
+        headers: privateHeaders
+      }
+    )
   })
 }
 export async function POST(
@@ -29,12 +43,27 @@ export async function POST(
         { code: 'invalid_input', error: 'Refresh the page and try again.' },
         { status: 400, headers: privateHeaders }
       )
+    const initial = await loadAssessmentOrDraft(
+      owner,
+      id,
+      (await cookies()).get(draftApiCookie)?.value
+    )
     const result = await repository().submit(
       owner,
       input,
       evaluateAssessment,
-      request.signal
+      request.signal,
+      initial.unsaved ? initial.assessment : undefined
     )
+    if (initial.unsaved) {
+      const cookieStore = await cookies()
+      cookieStore.set(draftCookie, '', { ...draftCookieOptions(id), maxAge: 0 })
+      cookieStore.set(draftApiCookie, '', {
+        ...draftCookieOptions(id),
+        path: `/api/assessments/${id}`,
+        maxAge: 0
+      })
+    }
     return Response.json(result, {
       status:
         result.operation.status === 'running'

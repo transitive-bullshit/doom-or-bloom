@@ -20,9 +20,14 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
   })
   await expect(ctas).toHaveCount(2)
   const header = page.locator('main header')
+  await expect(header).toHaveCSS('margin-top', '0px')
+  const identity = await header.locator(':scope > div > div').boundingBox()
   const heading = await header.getByRole('heading', { level: 1 }).boundingBox()
   const cta = await ctas.first().boundingBox()
   expect(cta!.x).toBeGreaterThan(heading!.x + heading!.width)
+  expect(
+    Math.abs(cta!.y + cta!.height / 2 - (identity!.y + identity!.height / 2))
+  ).toBeLessThan(2)
   const reasoning = page
     .getByRole('region', {
       name: 'Debug info',

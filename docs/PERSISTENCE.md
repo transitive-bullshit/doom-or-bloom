@@ -8,18 +8,20 @@ Keep starting an assessment as fast as it is today. Neither registration nor an 
 
 | Entry/action | Behavior |
 | --- | --- |
-| Main “Map your worldview” CTA; owner has zero assessments | Follow a normal link to the assessment entry; on arrival establish an anonymous session, create one private assessment and replace the URL with `/assessments/<id>` with the first prompt ready. |
+| Main “Map your worldview” CTA; owner has zero assessments | Follow a normal link to the assessment entry; on arrival establish an anonymous session, reserve a browser-backed draft and replace the URL with `/assessments/<id>` with the first prompt ready. |
 | Same CTA; owner already has any assessments | Follow the link to `/assessments`, whether there is one draft, multiple drafts, or only assessments with results. Do not choose a draft for the participant. |
 | “My assessments” | Open the owner's library. An empty library may offer New assessment; the main CTA bypasses it. |
-| Explicit New assessment from the library | Create a new private assessment and navigate to it, preserving existing assessments. |
+| Explicit New assessment from the library | Reserve a new browser-backed draft URL and navigate to it, preserving existing assessments. |
 | View my results | Generate results if needed; displaying an existing result is read-only. |
 | Share | Explain once that the full submitted conversation and inferred results become public; publish the current result snapshot atomically. No account requirement. |
 | Continue on a private assessment | Continue the existing interview. |
-| Continue on a published assessment | “Continue in a new assessment” creates a private fork, then continues answering. |
+| Continue on a published assessment | “Fork & continue answering” creates a private fork, then continues answering. |
 | Make private | Remove public access and allow additional answers on the same private assessment. |
 | Delete | Delete this assessment and its snapshots, operations, and retained failure diagnostics. Independent forks remain. |
 
-Creation uses an explicit mutation triggered by the CTA, not a side effect of rendering, prefetching, a crawler visit, or a GET. Establish the session before assessment creation; serialize the empty-library check and creation for that owner. Reuse a request key on uncertain retries. Loading and error states retain the CTA's one-click flow.
+Starting uses an explicit POST triggered by the CTA, not a side effect of rendering, prefetching, a crawler visit, or a GET. Establish the session first, then issue a signed, owner-bound browser draft ticket and stable UUID without inserting an assessment, snapshot, operation, or reservation row. Reuse a request key on uncertain retries. Draft tickets are HttpOnly cookies scoped separately to the owner page and its API, with a one-year maximum lifetime; clearing browser credentials loses unsubmitted drafts. Back/Forward and reload preserve the URL and local typing. Explicit New assessment pushes a history entry; the first-run shortcut replaces its entry page. Unsaved drafts never appear in the library or change the returning-visitor CTA behavior.
+
+The first submitted answer atomically creates the assessment, initial snapshot, and durable operation before inference. Failed processing remains recoverable using the ordinary operation retry flow. Forks already contain submitted history and are persisted immediately. A minimal `used_assessment_drafts` table retains only spent UUIDs, inserted at first submission, so deleting an assessment cannot allow an old signed ticket to recreate it. Tickets alone never authorize a different owner. Anonymous ownership claims transfer persisted assessments; unsubmitted browser drafts remain tied to their original identity. Loading and error states retain the CTA's one-click flow.
 
 The public/private distinction is separate from operator access. Submitted answers, rejected replies, results, and bounded failure information are retained indefinitely unless the assessment is deleted. Operators may inspect private assessments to improve the product. Explain this before the first submission and in privacy documentation. Unsubmitted typing stays local, keyed by assessment; it is not uploaded for analysis.
 

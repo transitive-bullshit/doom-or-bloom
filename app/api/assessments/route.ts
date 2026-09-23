@@ -1,3 +1,10 @@
+import { cookies } from 'next/headers'
+import {
+  reserveDraft,
+  draftCookie,
+  draftApiCookie,
+  draftCookieOptions
+} from '@/lib/assessments/drafts'
 import { z } from 'zod'
 import { privateHeaders, privateRequest } from '@/lib/assessments/http'
 import { repository } from '@/lib/assessments/server'
@@ -18,14 +25,16 @@ export async function POST(request: Request) {
         onlyIfEmpty: z.boolean().default(false)
       })
       .parse(await readBoundedJson(request, 2048))
-    return Response.json(
-      await repository().create(
-        owner,
-        input.requestKey,
-        serverEnv().model,
-        input.onlyIfEmpty
-      ),
-      { headers: privateHeaders }
-    )
+    if (input.onlyIfEmpty && (await repository().list(owner)).length) {
+      return Response.json({ id: null }, { headers: privateHeaders })
+    }
+    const draft = reserveDraft(owner, input.requestKey, serverEnv().model)
+    const cookieStore = await cookies()
+    cookieStore.set(draftCookie, draft.ticket, draftCookieOptions(draft.id))
+    cookieStore.set(draftApiCookie, draft.ticket, {
+      ...draftCookieOptions(draft.id),
+      path: `/api/assessments/${draft.id}`
+    })
+    return Response.json({ id: draft.id }, { headers: privateHeaders })
   })
 }
