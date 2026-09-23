@@ -1,9 +1,8 @@
 import sharp from 'sharp'
 import { readFile } from 'node:fs/promises'
-import { expect, test } from '@playwright/test'
+import { expect, test, seedAssessment } from './fixtures'
 import { createAssessment } from '../../lib/assessment/state'
 import { emptyComponent } from '../../lib/assessment/projections'
-import { storageKey } from '../../lib/persistence/storage'
 
 // Measure the actual dashed upper boundary against nearby chart pixels.
 async function rangeContrast(png: Buffer, exportOffset = 0) {
@@ -187,22 +186,15 @@ for (const unplaced of [false, true, 'outlook'] as const) {
         }
       ]
     }
-    await page.addInitScript(
-      ({ key, assessment }) =>
-        localStorage.setItem(
-          key,
-          JSON.stringify({ token: 'map-fixture-token', assessment })
-        ),
-      { key: storageKey, assessment: state }
-    )
     let inferenceCalls = 0
-    await page.route('**/api/assessment', async (route) => {
+    await page.route(/\/api\/assessments\/[a-f0-9-]+$/, async (route) => {
+      if (route.request().method() !== 'POST') return route.continue()
       inferenceCalls++
       await route.abort()
     })
     await page.setViewportSize({ width: 1365, height: 960 })
     await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
-    await page.goto('/assessment')
+    await seedAssessment(page, state)
     await expect(page.locator('[data-slot="worldview-map"]')).toHaveCount(1)
     const map = page.locator('[data-slot="worldview-map"]').first()
     if (unplaced === false) {
@@ -277,7 +269,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
         .locator('xpath=../..')
       await expect(risk.locator('[data-slot=axis-point]')).toHaveAttribute(
         'style',
-        /left: 18%/
+        /left:\s*18%/
       )
       const downloading = page.waitForEvent('download')
       await map.getByRole('button', { name: 'Map image actions' }).click()
