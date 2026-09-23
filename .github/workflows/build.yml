@@ -29,7 +29,7 @@ jobs:
           sudo systemctl start postgresql
           sudo -u postgres psql -v ON_ERROR_STOP=1 -c "CREATE ROLE doom_bloom_ci LOGIN CREATEDB PASSWORD 'local-ci-only';"
           sudo -u postgres createdb -O doom_bloom_ci doom_bloom_ci_test
-          cat > .env.local <<'ENV'
+          cat > .env.development.local <<'ENV'
           DATABASE_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/doom_bloom_ci_test
           POSTGRES_TEST_ADMIN_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/postgres
           TEST_DATABASE_URL=postgresql://doom_bloom_ci:local-ci-only@localhost:5432/doom_bloom_ci_test
@@ -37,7 +37,7 @@ jobs:
           BETTER_AUTH_URL=http://doom-or-bloom.localhost:1355
           ASSESSMENT_PROVIDER=live
           ENV
-          chmod 600 .env.local
+          chmod 600 .env.development.local
       - run: pnpm db:migrate:test
       - run: pnpm db:migrate:test
       - run: pnpm db:seed --test
@@ -48,7 +48,7 @@ jobs:
       - run: pnpm db:test:personas
       - run: pnpm db:test:auth
       - run: pnpm test
-      - run: pnpm build
+      - run: pnpm build:local
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm check:persistence
       - run: pnpm db:test:restart

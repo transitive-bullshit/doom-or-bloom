@@ -41,8 +41,8 @@ Other work remains: broader approved questions, two terse personas and simulatio
 
 ## Running focused experiments
 
-- `pnpm exec node --env-file=.env.local --conditions=react-server --import tsx scripts/experiment-routing.ts --allow-paid --max-requests=8`
-- `pnpm exec node --env-file=.env.local --conditions=react-server --import tsx scripts/experiment-openings.ts --allow-paid --max-requests=24`
+- `pnpm exec node --env-file=.env.development.local --conditions=react-server --import tsx scripts/experiment-routing.ts --allow-paid --max-requests=8`
+- `pnpm exec node --env-file=.env.development.local --conditions=react-server --import tsx scripts/experiment-openings.ts --allow-paid --max-requests=24`
 - Add `--persona=dogmatic-doomer` to the opening replay for that case only.
 
 Each command uses saved evidence, real Jev, and a shared physical-request bound. Reports overwrite fixed files under ignored `eval/runs/`; they do not create historical journey entries or replace the live suite. Routing replay diagnoses recorded candidate sets, so cannot evaluate newly added questions. Opening replay exercises the current full engine. Neither substitutes target scores for persona answers.

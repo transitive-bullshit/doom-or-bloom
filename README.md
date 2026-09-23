@@ -60,8 +60,8 @@ Requires **Node.js 24+**, **pnpm**, and a **TypeSafe API key** for live assessme
 
 ```sh
 pnpm install
-cp .env.example .env.local
-# Set TYPESAFE_API_KEY in .env.local
+cp .env.example .env.development.local
+# Set TYPESAFE_API_KEY in .env.development.local
 pnpm dev
 ```
 

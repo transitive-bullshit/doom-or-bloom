@@ -8,11 +8,11 @@ Use Node.js 24 or newer and the pnpm version pinned in `package.json`.
 
 ```sh
 pnpm install --frozen-lockfile
-cp .env.example .env.local
+cp .env.example .env.development.local
 pnpm dev
 ```
 
-If `.env.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting live answers, or choose fixture mode below. Keep secrets out of commits and screenshots.
+If `.env.development.local` already exists, edit it rather than overwriting credentials. Set `TYPESAFE_API_KEY` before submitting live answers, or choose fixture mode below. Keep secrets out of commits and screenshots.
 
 Development runs through [Portless](https://portless.sh). Open the URL printed by `pnpm dev`; linked worktrees may receive a hostname prefix. Resolve the current URL with:
 
@@ -37,7 +37,7 @@ CREATE DATABASE doom_bloom_dev OWNER doom_bloom_dev;
 CREATE DATABASE doom_bloom_test OWNER doom_bloom_test;
 ```
 
-These local connections use Postgres.app's local authentication policy. Do not relax authentication on a network-accessible server. Set the URLs in `.env.local` from `.env.example`, generate an auth secret with `openssl rand -base64 48`, and set the Portless origin. Keep `.env.local` private. Store production Neon connections in ignored `.env.production` as `DATABASE_URL` and `DATABASE_MIGRATION_URL`. Keep development `DATABASE_URL` and `TEST_DATABASE_URL` in `.env.local` pointing to Postgres.app.
+These local connections use Postgres.app's local authentication policy. Do not relax authentication on a network-accessible server. Set the URLs in `.env.development.local` from `.env.example`, generate an auth secret with `openssl rand -base64 48`, and set the Portless origin. Keep `.env.development.local` private. Store production Neon connections in ignored `.env.production.local` as `DATABASE_URL` and `DATABASE_MIGRATION_URL`. Keep development `DATABASE_URL` and `TEST_DATABASE_URL` in `.env.development.local` pointing to Postgres.app.
 
 ```sh
 pnpm db:migrate
@@ -122,7 +122,7 @@ Deployment is a separate task from local development.
 
 ## Optional X login
 
-Set `X_CLIENT_ID` and `X_CLIENT_SECRET` in ignored `.env.local` for an X OAuth 2.0 **Web App** (confidential client). The library shows “Keep access with X” only when both are configured. Anonymous assessment creation, completion and publication stay available.
+Set `X_CLIENT_ID` and `X_CLIENT_SECRET` in ignored `.env.development.local` for an X OAuth 2.0 **Web App** (confidential client). The library shows “Keep access with X” only when both are configured. Anonymous assessment creation, completion and publication stay available.
 
 Register the exact callback `${BETTER_AUTH_URL}/api/auth/callback/twitter`; the current Portless callback is `http://doom-or-bloom.localhost:1355/api/auth/callback/twitter`. X must accept that URI in its console before a live test. If it rejects the local hostname, coordinate an approved reachable development origin and update the app origin and registered callback together. Do not silently switch hosts and lose the anonymous browser cookie. Hosted callback registration belongs to deployment.
 
@@ -138,8 +138,10 @@ The pinned Better Auth X provider uses `users.read tweet.read`, with its default
 
 For an actual interrupted submission, reopen its assessment, wait until the processing deadline has passed, then choose **Retry saved submission**. The prior committed snapshot remains authoritative. A lost response may already represent success, so use **Check submission** or refresh before creating a new request. No worker or restart-time automatic inference runs.
 
-The browser regression suite now loads `.env.local`, requires `TEST_DATABASE_URL`, and seeds its dedicated native test database before starting `browser-tests.doom-or-bloom` through Portless. Migrated tests use the real saved-assessment API; specialized rendering fixtures commit synthetic evaluator responses through the repository in a server-conditioned subprocess so refreshes read the same immutable database state. These helpers are test-only. Auth/recovery acceptance uses the separate real-route persistence suite. The remaining older browser fixtures are still being migrated; consult the checkpoint log before treating the entire broad browser suite as passing.
+The browser regression suite now loads `.env.development.local`, requires `TEST_DATABASE_URL`, and seeds its dedicated native test database before starting `browser-tests.doom-or-bloom` through Portless. Migrated tests use the real saved-assessment API; specialized rendering fixtures commit synthetic evaluator responses through the repository in a server-conditioned subprocess so refreshes read the same immutable database state. These helpers are test-only. Auth/recovery acceptance uses the separate real-route persistence suite. The remaining older browser fixtures are still being migrated; consult the checkpoint log before treating the entire broad browser suite as passing.
 
-Use the same `X_CLIENT_ID` and `X_CLIENT_SECRET` names in ignored `.env.production` for the production X app. The production callback is `https://doom-or-bloom.com/api/auth/callback/twitter`. Development credentials remain in `.env.local`.
+Use the same `X_CLIENT_ID` and `X_CLIENT_SECRET` names in ignored `.env.production.local` for the production X app. The production callback is `https://doom-or-bloom.com/api/auth/callback/twitter`. Development credentials remain in `.env.development.local`.
 
-Next.js gives `.env.local` precedence over `.env.production`, even for a production build. Local production-build checks therefore continue using local values. For a real deployment, set production values in the host environment (which takes precedence over files), or run without the development `.env.local`. Migration commands currently load `.env.local` explicitly; production migrations are a separate, explicitly targeted task.
+Next.js selects `.env.development.local` for `pnpm dev`, and `.env.production.local` for `pnpm build` / `pnpm start`. Host environment values take precedence over files. Both files are ignored and use identical variable names. Avoid a shared `.env.local` for environment-specific values.
+
+Use `pnpm build:local` and `pnpm start:local` to check production mode against local Postgres and development OAuth. These explicitly preload development configuration; the build command selects the live provider configuration without running paid inference. Ordinary `pnpm build` / `pnpm start` can use Neon from the production file and are not the local acceptance commands. Migration and test scripts explicitly load `.env.development.local`; production migrations remain separately authorized work.

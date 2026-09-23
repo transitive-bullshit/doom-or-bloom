@@ -77,7 +77,7 @@ export function createLiveProvider(model: string): Provider {
     ) => {
       if (!process.env.TYPESAFE_API_KEY?.trim())
         throw new Error(
-          'Add TYPESAFE_API_KEY to .env.local to run real assessments'
+          'Add TYPESAFE_API_KEY to .env.development.local to run real assessments'
         )
       if (
         Object.keys(questions).length === 0 ||

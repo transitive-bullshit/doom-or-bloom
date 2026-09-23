@@ -30,7 +30,8 @@ if (resumeId && (!personaId || args.some((a) => a.startsWith('--turns='))))
     'Resume requires --persona and retries exactly the saved operation'
   )
 async function main() {
-  if (existsSync('.env.local')) process.loadEnvFile('.env.local')
+  if (existsSync('.env.development.local'))
+    process.loadEnvFile('.env.development.local')
   const maxRequestsArg = args.find((a) => a.startsWith('--max-requests='))
   const maxCostArg = args.find((a) => a.startsWith('--max-cost='))
   if (resumeId) {
