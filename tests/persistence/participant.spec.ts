@@ -257,7 +257,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect(image.status()).toBe(200)
     expect(image.headers()['content-type']).toContain('image/webp')
     expect(image.headers()['cache-control']).toBe(
-      'public, max-age=604800, s-maxage=604800, must-revalidate'
+      'public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400'
     )
     const bytes = await image.body()
     expect(bytes.toString('ascii', 0, 4)).toBe('RIFF')
@@ -273,7 +273,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     )
     expect(personaImage.status()).toBe(200)
     expect(personaImage.headers()['cache-control']).toBe(
-      'public, max-age=604800, s-maxage=604800, must-revalidate'
+      'public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400'
     )
 
     const sharp = (await import('sharp')).default

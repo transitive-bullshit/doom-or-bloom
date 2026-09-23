@@ -76,7 +76,7 @@ export default function Privacy() {
         them private and publish again while signed in. Operational failure
         records remain private. Making an assessment private or deleting it
         removes access to its page and data. Cached social images can remain
-        available for up to seven days, and external sites may retain previews
+        available for up to eight days, and external sites may retain previews
         longer. Continuing a published assessment creates a separate private
         copy; changing or deleting the original does not change that copy.
       </p>

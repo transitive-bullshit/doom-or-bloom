@@ -24,7 +24,7 @@ export async function GET() {
     '',
     'The start link /assessments?start=1 opens a new draft for a first-time visitor or the existing library. /assessments lists the current owner’s assessments; /assessments/<id> is the private detail route. Drafts are saved only after the first submitted answer. Library statuses are In progress, Ready to publish, and Published. Published assessments are frozen; continuing creates a separate private fork.',
     '',
-    'Publishing exposes the answers and inferred results at /public/assessments/<id>. These pages are server-rendered and indexable. The /data subroute provides the published resource, and /social-image.webp provides a 1200×630 preview. Unpublishing removes the page and data; cached public images may remain for seven days, and third-party copies may persist longer. Public access is checked independently of the URL prefix.',
+    'Publishing exposes the answers and inferred results at /public/assessments/<id>. These pages are server-rendered and indexable. The /data subroute provides the published resource, and /social-image.webp provides a 1200×630 preview. Unpublishing removes the page and data; cached public images may remain for up to eight days (seven days fresh plus one day of stale-while-revalidate), and third-party copies may persist longer. Public access is checked independently of the URL prefix.',
     '',
     '## Pages',
     '',

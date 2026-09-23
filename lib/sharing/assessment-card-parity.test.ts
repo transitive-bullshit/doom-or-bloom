@@ -43,7 +43,7 @@ test('public WebP and downloaded PNG render the same assessment composition', as
   expect(preview.status).toBe(200)
   expect(download.status).toBe(200)
   expect(preview.headers.get('Cache-Control')).toBe(
-    'public, max-age=604800, s-maxage=604800, must-revalidate'
+    'public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400'
   )
   expect(preview.headers.get('X-Robots-Tag')).toBeNull()
   expect(download.headers.get('Cache-Control')).toBe('no-store')
