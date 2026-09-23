@@ -486,3 +486,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Freeze the latest known username on explicit publication and render @username while preserving the stable X user-ID profile URL. Older snapshots without handles use Profile; they require sign-in and explicit republication to capture a handle.
 - [x] Apply the user-column migration to native local development/test databases. Verify repository checks, provider-mocked OAuth capture/refresh/spoof rejection, frozen publication attribution, and the publication browser flow.
 - [x] Recheck the reported public assessment's worldview card using server HTML and a fresh browser. Both show Dwarkesh Patel, Dario Amodei, and Roon; the user confirmed it is working. No matching-logic change was needed.
+
+### Unified assessment social images (2026-09-24)
+
+- [x] Share result-to-card data preparation and the full ShareCard rendering/portrait-loading path between public WebP previews and downloaded PNGs. Remove the obsolete separate participant preview template.
+- [x] Keep WebP previews at 1200×630 and PNG downloads at 2400×1260. Preserve current-publication checks, revocation, no-store/noindex headers, and simulation labeling.
+- [x] Verify repository checks (270 unit tests), including actual endpoint image parity within compression/rasterization tolerance, unknown coordinates, and matching portraits. Visually inspect the shared template and verify the publication/fork/revocation browser flow.

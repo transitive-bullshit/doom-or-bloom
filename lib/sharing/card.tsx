@@ -265,10 +265,14 @@ export function Plot({
 export function ShareCard({
   data,
   date,
-  matches = []
+  matches = [],
+  title,
+  simulated = false
 }: {
   data?: CardData
   date?: string
+  title?: string
+  simulated?: boolean
   matches?: { id: string; name: string; portrait: string }[]
 }) {
   return (
@@ -295,7 +299,7 @@ export function ShareCard({
           alignItems: 'center'
         }}
       >
-        {data ? 'My AI Worldview' : 'Where do you land?'}
+        {title ?? (data ? 'My AI Worldview' : 'Where do you land?')}
       </div>
       <div
         style={{
@@ -393,7 +397,7 @@ export function ShareCard({
       >
         <span style={{ flex: 1 }}>
           {data
-            ? 'Dashed area: interpretation range'
+            ? `${simulated ? 'Simulated worldview · ' : ''}Dashed area: interpretation range`
             : 'Map your AI worldview, one question at a time.'}
         </span>
         {date && <span>{date}</span>}

@@ -1,3 +1,6 @@
+import { ShareCard } from './card'
+import { resultCardData } from './card-data'
+import { renderShareCard } from './render-card'
 import { loadSocialPortrait } from './portraits'
 import { readFile } from 'node:fs/promises'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -60,22 +63,17 @@ test('social output is a decodable 1200 × 630 WebP', async () => {
   expect(bytes.length).toBeLessThan(100_000)
 })
 
-test('participant cards support long titles and unknown coordinates without simulated labeling', async () => {
+test('participant cards support unknown coordinates without simulated labeling', async () => {
   const result = structuredClone(suite.journeys.find((j) => j.result)!.result!)
   result.horizontal.value = null
   if (result.experiment) result.experiment.transformation.value = null
-  const card = SocialCard({
-    assessment: {
-      title:
-        'A carefully considered perspective on the future of artificial intelligence across many possible futures',
-      result
-    }
-  })
+  const data = resultCardData(result)
+  const card = ShareCard({ data })
   const html = renderToStaticMarkup(card)
-  expect(html).toContain('AI WORLDVIEW ASSESSMENT')
+  expect(html).toContain('My AI Worldview')
   expect(html).toContain('Still unplaced')
   expect(html).not.toContain('SIMULATED')
-  const bytes = await render(card, socialImageOptions)
+  const bytes = await renderShareCard(data, { format: 'webp' })
   expect(await sharp(bytes).metadata()).toMatchObject({
     format: 'webp',
     width: 1200,

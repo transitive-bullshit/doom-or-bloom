@@ -1,7 +1,7 @@
-import { loadSocialPortrait } from '@/lib/sharing/portraits'
-import { ImageResponse } from 'takumi-js/response'
+import { loadPersonaComparisons } from '@/components/landing/data'
 import { loadPublished } from '@/lib/assessments/public-server'
-import { SocialCard, socialImageOptions } from '@/lib/sharing/social-card'
+import { resultCardData } from '@/lib/sharing/card-data'
+import { renderShareCard } from '@/lib/sharing/render-card'
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export async function GET(
@@ -9,21 +9,24 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const saved = await loadPublished((await params).id)
-  const card =
+  const result =
     saved.kind === 'simulation'
-      ? SocialCard({
-          person: {
-            name: saved.profile.name,
-            description: saved.profile.description,
-            result: saved.simulation.journey.result!,
-            portrait: await loadSocialPortrait(saved.profile.avatar)
-          }
-        })
-      : SocialCard({
-          assessment: { title: saved.title, result: saved.assessment.result! }
-        })
-  const response = new ImageResponse(card, socialImageOptions)
-  response.headers.set('Cache-Control', 'private, no-store')
-  response.headers.set('X-Robots-Tag', 'noindex')
-  return response
+      ? saved.simulation.journey.result!
+      : saved.assessment.result!
+  const data = resultCardData(result, await loadPersonaComparisons())
+  const bytes = await renderShareCard(data, {
+    format: 'webp',
+    title:
+      saved.kind === 'simulation'
+        ? `${saved.profile.name}’s AI worldview`.slice(0, 64)
+        : undefined,
+    simulated: saved.kind === 'simulation'
+  })
+  return new Response(new Uint8Array(bytes), {
+    headers: {
+      'Content-Type': 'image/webp',
+      'Cache-Control': 'private, no-store',
+      'X-Robots-Tag': 'noindex'
+    }
+  })
 }
