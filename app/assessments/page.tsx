@@ -36,7 +36,8 @@ export default async function Page({
       authError={error === 'claim' ? 'claim' : error ? 'signin' : null}
       items={items.map((item) => ({
         ...item,
-        updatedAt: item.updatedAt.toISOString()
+        updatedAt: item.updatedAt.toISOString(),
+        createdAt: item.createdAt.toISOString()
       }))}
     />
   )

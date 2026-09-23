@@ -1,14 +1,12 @@
 'use client'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
+import { AssessmentTable } from './table'
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -26,6 +24,7 @@ export type LibraryItem = {
   title: string | null
   hasResults: boolean
   visibility: 'private' | 'public'
+  createdAt: string
   updatedAt: string
   isFork: boolean
 }
@@ -46,6 +45,7 @@ export function AssessmentLibrary({
 }) {
   const router = useRouter()
   const [busy, setBusy] = useState<string | null>(null)
+  const [deleting, setDeleting] = useState<LibraryItem | null>(null)
   async function remove(id: string) {
     setBusy(id)
     try {
@@ -101,87 +101,44 @@ export function AssessmentLibrary({
       {items.length === 0 && !autoStart && (
         <p>No assessments yet. Start whenever you’re ready.</p>
       )}
-      <ul className='flex flex-col gap-6'>
-        {items.map((item) => (
-          <li
-            key={item.id}
-            className='flex flex-wrap items-center justify-between gap-4 rounded-lg border p-5'
-          >
-            <div className='flex flex-col gap-2'>
-              <Link
-                href={`/assessments/${item.id}`}
-                className='font-medium underline'
+      {items.length > 0 && (
+        <AssessmentTable
+          items={items}
+          busy={busy !== null}
+          onMakePrivate={(item) => void makePrivate(item)}
+          onDelete={setDeleting}
+        />
+      )}
+      <Dialog
+        open={deleting !== null}
+        onOpenChange={(open) => {
+          if (!open) setDeleting(null)
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete this assessment?</DialogTitle>
+            <DialogDescription>
+              This deletes the assessment, results, and saved submissions.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant='outline'>Keep it</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button
+                variant='destructive'
+                onClick={() => {
+                  if (deleting) void remove(deleting.id)
+                }}
               >
-                {item.title ?? 'Your AI worldview'}
-              </Link>
-              <div className='flex gap-2'>
-                {item.visibility === 'public' ? (
-                  <Badge asChild variant='outline'>
-                    <Link href={`/assessments/public/${item.id}`}>
-                      Published
-                    </Link>
-                  </Badge>
-                ) : (
-                  <Badge variant='outline'>
-                    {item.hasResults ? 'Ready to publish' : 'In progress'}
-                  </Badge>
-                )}
-              </div>
-              <time
-                className='text-sm text-muted-foreground'
-                dateTime={item.updatedAt}
-              >
-                Saved {new Date(item.updatedAt).toISOString().slice(0, 10)}
-              </time>
-            </div>
-            <div className='flex gap-3'>
-              <Button asChild variant='outline'>
-                <Link href={`/assessments/${item.id}`}>
-                  {item.hasResults ? 'View' : 'Resume'}
-                </Link>
+                Delete assessment
               </Button>
-              {item.visibility === 'public' && (
-                <Button
-                  variant='outline'
-                  disabled={busy !== null}
-                  onClick={() => void makePrivate(item)}
-                >
-                  Make private
-                </Button>
-              )}
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant='ghost' disabled={busy !== null}>
-                    Delete
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Delete this assessment?</DialogTitle>
-                    <DialogDescription>
-                      This deletes the assessment, results, and saved
-                      submissions.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <DialogFooter>
-                    <DialogClose asChild>
-                      <Button variant='outline'>Keep it</Button>
-                    </DialogClose>
-                    <DialogClose asChild>
-                      <Button
-                        variant='destructive'
-                        onClick={() => void remove(item.id)}
-                      >
-                        Delete assessment
-                      </Button>
-                    </DialogClose>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-            </div>
-          </li>
-        ))}
-      </ul>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </main>
   )
 }

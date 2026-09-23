@@ -279,6 +279,7 @@ export function assessmentRepository(pool: Pool) {
           hasResults: assessmentSnapshots.hasResult,
           revision: assessments.revision,
           visibility: assessments.visibility,
+          createdAt: assessments.createdAt,
           updatedAt: assessments.updatedAt,
           isFork: assessments.isFork
         })
@@ -288,7 +289,7 @@ export function assessmentRepository(pool: Pool) {
           eq(assessmentSnapshots.id, assessments.currentSnapshotId)
         )
         .where(eq(assessments.ownerId, ownerId))
-        .orderBy(desc(assessments.updatedAt))
+        .orderBy(desc(assessments.createdAt))
     },
     async load(ownerId: string, id: string): Promise<OwnedAssessment> {
       return db.transaction(

@@ -54,7 +54,7 @@ test('first CTA creates directly, draft survives reload, answer is server-saved,
       .click()
     await expect(page).toHaveURL(/\/assessments$/)
     await expect(
-      page.getByRole('link', { name: 'Resume', exact: true })
+      page.getByRole('link', { name: 'Your AI worldview', exact: true })
     ).toHaveCount(1)
     const other = await context.browser()!.newContext()
     try {
@@ -324,7 +324,9 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .first()
       .click()
     await expect(page).toHaveURL(/\/assessments$/)
-    await page.getByRole('link', { name: 'View', exact: true }).click()
+    await page
+      .getByRole('link', { name: 'Your AI worldview', exact: true })
+      .click()
     await page
       .getByRole('button', { name: 'Fork & continue answering' })
       .click()
@@ -421,10 +423,17 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await attributedPage.close()
     await page.goto('/assessments')
     await page
-      .getByRole('button', { name: 'Make private', exact: true })
+      .getByRole('row')
+      .filter({
+        has: page.getByRole('link', { name: 'Published', exact: true })
+      })
+      .getByRole('button', { name: 'Actions for Your AI worldview' })
+      .click()
+    await page
+      .getByRole('menuitem', { name: 'Make private', exact: true })
       .click()
     await expect(
-      page.getByRole('button', { name: 'Make private', exact: true })
+      page.getByRole('link', { name: 'Published', exact: true })
     ).toHaveCount(0)
     expect((await visitor.request.get(`${publicURL}/data`)).status()).toBe(404)
     expect(
