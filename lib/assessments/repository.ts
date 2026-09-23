@@ -665,6 +665,8 @@ export function assessmentRepository(pool: Pool) {
           return {
             kind: 'participant' as const,
             id: row.id,
+            // Public assessments are immutable; their last update is publication.
+            publishedAt: row.updatedAt.toISOString(),
             title: row.title ?? 'Your AI worldview',
             publisher: row.publishedProfile
               ? publisherSchema.parse(row.publishedProfile)

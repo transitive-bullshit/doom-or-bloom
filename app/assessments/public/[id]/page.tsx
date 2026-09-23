@@ -53,6 +53,12 @@ export default async function Page({
     )
   }
   const state = saved.assessment
+  const publicationDate = new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(saved.publishedAt))
   const personas = await loadPersonaComparisons()
   return (
     <AssessmentPage
@@ -63,6 +69,7 @@ export default async function Page({
         <ProfileHeader
           name={saved.publisher.name}
           avatar={saved.publisher.image}
+          description={`Their AI worldview, mapped ${publicationDate}.`}
           profileUrl={saved.publisher.profileUrl}
           profileLabel={
             saved.publisher.username
