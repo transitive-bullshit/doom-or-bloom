@@ -57,3 +57,7 @@ For saved-assessment requests, use the assessment ID and request key to inspect 
 The new persistence endpoints retain operation input/status/deadline, physical request count, and bounded status/stage diagnostics in PostgreSQL. Inspect `assessment_operations` with normal Postgres tools. Failed attempts do not change `assessment_snapshots` or the head revision. Repeating the same request key reads its outcome; retrying a known failed/interrupted attempt uses a new key and `retryOf`. The interview now uses these endpoints. Browser-only unsubmitted drafts are keyed by assessment and prompt; refresh loads committed snapshots and saved submission status.
 
 The optional development feedback widget is omitted when browser localStorage cannot be read. Assessment submission still uses the server; unsent typing remains in memory until the tab closes when draft storage is unavailable.
+
+## CI browser environment
+
+GitHub Actions creates `.env.development.local` with disposable native-Postgres credentials and a fixture provider; it does not need developer secrets. Browser suites retain their environment validation. CI sets `PORTLESS_PORT=1355`, `PORTLESS_HTTPS=0`, and a runner-temporary `PORTLESS_STATE_DIR`, then explicitly starts the proxy. This avoids Portless's privileged HTTPS default and interactive sudo/certificate setup on clean runners. Local development keeps its existing Portless settings.

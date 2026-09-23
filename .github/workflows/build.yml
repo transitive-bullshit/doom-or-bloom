@@ -6,6 +6,10 @@ jobs:
   test:
     name: Test Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
+    env:
+      PORTLESS_PORT: '1355'
+      PORTLESS_HTTPS: '0'
+      PORTLESS_STATE_DIR: ${{ runner.temp }}/doom-or-bloom-portless
 
     strategy:
       fail-fast: true
@@ -50,6 +54,8 @@ jobs:
       - run: pnpm test
       - run: pnpm build:local
       - run: pnpm exec playwright install --with-deps chromium
+      - name: Start unprivileged browser-test proxy
+        run: pnpm exec portless proxy start
       - run: pnpm check:browser
       - run: pnpm check:analytics
       - run: pnpm check:persistence
