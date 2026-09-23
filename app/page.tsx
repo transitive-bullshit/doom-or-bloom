@@ -5,7 +5,9 @@ import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
 import '@/components/landing/landing.css'
 
-export const dynamic = 'force-dynamic'
+// Only public persona data belongs in this shared page cache.
+export const dynamic = 'error'
+export const revalidate = 86400
 export const metadata = pageMetadata(publicPages[0]!)
 
 export default async function Page() {

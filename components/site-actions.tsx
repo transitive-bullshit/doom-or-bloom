@@ -47,9 +47,7 @@ export function SiteActions() {
         <Sun className='dark:hidden' />
         <Moon className='hidden dark:block' />
       </Button>
-      <div className='ml-2 flex items-center'>
-        <HeaderAccount />
-      </div>
+      <HeaderAccount />
     </nav>
   )
 }

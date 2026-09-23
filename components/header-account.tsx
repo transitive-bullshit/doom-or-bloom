@@ -34,15 +34,21 @@ export function HeaderAccount() {
       setBusy(false)
     }
   }
-  if (isPending) return <div className='size-9' aria-hidden='true' />
-  if (!user || user.isAnonymous) return <WorldviewCta size='sm' />
+  if (isPending)
+    return <div className='hidden size-9 sm:ml-2 sm:block' aria-hidden='true' />
+  if (!user || user.isAnonymous)
+    return (
+      <div className='hidden sm:ml-2 sm:block'>
+        <WorldviewCta size='sm' />
+      </div>
+    )
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant='ghost'
           size='icon'
-          className='rounded-full select-none'
+          className='ml-2 rounded-full select-none'
           aria-label='Account menu'
           disabled={busy}
         >

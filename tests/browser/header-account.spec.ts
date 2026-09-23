@@ -1,21 +1,29 @@
 import { expect, test } from '@playwright/test'
 
-test('anonymous visitors see a compact header CTA on every page without mobile overflow', async ({
+test('anonymous header CTA is desktop-only without mobile overflow', async ({
   page
 }) => {
   await page.route('**/api/auth/get-session**', (route) =>
     route.fulfill({ json: null })
   )
-  for (const [width, path] of [
-    [1488, '/'],
-    [320, '/assessments']
+  for (const [width, path, visible] of [
+    [1488, '/', true],
+    [640, '/about', true],
+    [639, '/about', false],
+    [390, '/users/tszzl', false],
+    [320, '/assessments', false]
   ] as const) {
     await page.setViewportSize({ width, height: 900 })
     await page.goto(path)
     const cta = page
       .getByRole('navigation', { name: 'Site navigation' })
-      .getByRole('link', { name: 'Map your own worldview' })
-    await expect(cta).toBeVisible()
+      .getByRole('link', {
+        name: 'Map your own worldview',
+        includeHidden: true
+      })
+    await expect(cta).toHaveCount(1)
+    if (visible) await expect(cta).toBeVisible()
+    else await expect(cta).toBeHidden()
     await expect(cta).toHaveAttribute('href', '/assessments?start=1')
     expect(
       await page.evaluate(

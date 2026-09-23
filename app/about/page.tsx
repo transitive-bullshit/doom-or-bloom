@@ -5,7 +5,9 @@ import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
-export const dynamic = 'force-dynamic'
+// The example assessment is public persona data, refreshed with the page.
+export const dynamic = 'error'
+export const revalidate = 86400
 export const metadata = pageMetadata(publicPages[1]!)
 
 export default async function About() {

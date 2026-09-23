@@ -5,7 +5,14 @@ import { PageTransition } from '@/components/page-transition'
 import { notFound } from 'next/navigation'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'error'
+export const dynamicParams = true
+export const revalidate = 86400
+
+// Generate public profiles on first visit, including personas added after build.
+export function generateStaticParams() {
+  return []
+}
 
 export async function generateMetadata({
   params
