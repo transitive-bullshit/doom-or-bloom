@@ -14,7 +14,7 @@
   background: var(--study-surface);
   max-width: 1320px;
   margin: auto;
-  padding: 44px 54px 26px;
+  padding: 44px 54px 0;
   border-radius: 4px;
 }
 .study-heading {
@@ -151,7 +151,7 @@
     padding: 16px 16px 100px;
   }
   .map-study {
-    padding: 28px 20px;
+    padding: 28px 20px 0;
   }
 }
 @media (max-width: 520px) {
@@ -159,7 +159,7 @@
     padding: 8px 0 100px;
   }
   .map-study {
-    padding: 26px 12px;
+    padding: 26px 12px 0;
     overflow-x: clip;
   }
   .study-heading {
