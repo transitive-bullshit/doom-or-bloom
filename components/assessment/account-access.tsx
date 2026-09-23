@@ -50,14 +50,12 @@ export function AccountAccess({
   }
   return (
     <div className='flex flex-col items-start gap-3'>
-      {!signedIn && (
-        <p className='text-muted-foreground'>
-          Your assessments are saved for this browser. Clearing cookies loses
-          anonymous access.
-          {enabled && ' Optionally sign in to keep access across browsers.'}
-        </p>
-      )}
-      <div className='flex items-center gap-3'>
+      <div className='flex w-full items-center gap-3'>
+        {!signedIn && (
+          <p className='text-muted-foreground'>
+            Your assessments are saved for this browser.
+          </p>
+        )}
         {signedIn && profile && (
           <>
             <Avatar size='lg'>
@@ -70,7 +68,12 @@ export function AccountAccess({
           </>
         )}
         {(signedIn || enabled) && (
-          <Button variant='outline' disabled={busy} onClick={() => void act()}>
+          <Button
+            variant='outline'
+            className='shrink-0'
+            disabled={busy}
+            onClick={() => void act()}
+          >
             {busy ? 'Please wait…' : signedIn ? 'Sign out' : 'Sign in with X'}
           </Button>
         )}
