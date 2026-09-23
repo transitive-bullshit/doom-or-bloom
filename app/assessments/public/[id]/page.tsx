@@ -69,7 +69,7 @@ export default async function Page({
         <ProfileHeader
           name={saved.publisher.name}
           avatar={saved.publisher.image}
-          description={`A map of this user's AI worldview as of ${publicationDate}.`}
+          description={`A map of your AI worldview as of ${publicationDate}.`}
           profileUrl={saved.publisher.profileUrl}
           profileLabel={
             saved.publisher.username
