@@ -146,7 +146,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       )
       .toBe(1)
     await expect(
-      page.getByRole('button', { name: 'Share assessment', exact: true })
+      page.getByRole('button', {
+        name: 'Publish assessment publicly',
+        exact: true
+      })
     ).toHaveCount(0)
     await expect(
       page.getByRole('button', { name: 'Done', exact: true })
@@ -188,13 +191,13 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       await (await page.request.get(`/api/assessments/${id}`)).json()
     ).toEqual(beforeView)
     await page
-      .getByRole('button', { name: 'Share assessment', exact: true })
+      .getByRole('button', { name: 'Publish assessment publicly', exact: true })
       .click()
     await expect(page.getByRole('dialog')).toContainText(
       'Anyone with the link can view your answers and results.'
     )
     await page
-      .getByRole('button', { name: 'Publish assessment', exact: true })
+      .getByRole('button', { name: 'Publish assessment publicly', exact: true })
       .click()
     await expect(
       page.getByRole('link', { name: 'View public assessment' })
@@ -326,7 +329,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .getByRole('button', { name: 'Make private', exact: true })
       .click()
     await expect(
-      page.getByText('Couldn’t update sharing. Please try again.', {
+      page.getByText('Couldn’t change visibility. Please try again.', {
         exact: true
       })
     ).toBeVisible()
@@ -336,7 +339,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .getByRole('button', { name: 'Make private', exact: true })
       .click()
     await expect(
-      page.getByRole('button', { name: 'Share assessment', exact: true })
+      page.getByRole('button', {
+        name: 'Publish assessment publicly',
+        exact: true
+      })
     ).toBeVisible()
     // Simulate a now-authenticated owner before explicit republication.
     const databaseUrl = process.env.TEST_DATABASE_URL!
@@ -418,7 +424,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .getByRole('button', { name: 'View my results', exact: true })
       .click()
     await expect(
-      page.getByRole('button', { name: 'Share assessment', exact: true })
+      page.getByRole('button', {
+        name: 'Publish assessment publicly',
+        exact: true
+      })
     ).toBeVisible()
     expect(
       await (await page.request.get(`/api/assessments/${id}`)).json()

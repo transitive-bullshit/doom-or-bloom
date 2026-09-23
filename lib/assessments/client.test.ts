@@ -63,6 +63,6 @@ test('known errors use controlled copy rather than a server-supplied message', a
     )
   )
   await expect(api('/api/assessments/example')).rejects.toThrow(
-    'View your results before sharing.'
+    'View your results before publishing.'
   )
 })

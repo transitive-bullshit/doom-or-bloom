@@ -8,7 +8,7 @@ const messages: Record<string, string> = {
   busy: 'Your answer is still being processed. Please wait a moment.',
   published:
     'Make this assessment private or continue in a new assessment to add answers.',
-  results_required: 'View your results before sharing.',
+  results_required: 'View your results before publishing.',
   question_limit:
     'This assessment has reached its question limit. Start a new assessment.',
   limited: 'Please wait a moment and try again.'

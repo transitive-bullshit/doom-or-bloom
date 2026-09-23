@@ -63,7 +63,7 @@ export default function Privacy() {
         project-level IP-data disposal setting. Analytics credentials alone do
         not enable collection.
       </p>
-      <h2>Sharing and clearing</h2>
+      <h2>Publishing and deleting</h2>
       <p>
         Publishing makes your full submitted conversation and inferred results
         available to anyone with the link. Public pages are excluded from search

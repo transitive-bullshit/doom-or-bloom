@@ -528,7 +528,7 @@ export function assessmentRepository(pool: Pool) {
         const row = await owned(tx, ownerId, id, true)
         await assertIdle(tx, id)
         if (row.revision !== expectedRevision)
-          throw conflict('This assessment changed. Refresh before sharing.')
+          throw conflict('This assessment changed. Refresh before publishing.')
         // Repeating publication must not attach a profile to an anonymous publication.
         if (row.visibility === visibility) return
         const state = await snapshot(tx, id, row.currentSnapshotId)
@@ -538,7 +538,7 @@ export function assessmentRepository(pool: Pool) {
             state.result.evidenceRevision !== state.evidenceRevision)
         )
           throw conflict(
-            'View your results before sharing.',
+            'View your results before publishing.',
             'results_required'
           )
         let publishedProfile: Publisher | null = null

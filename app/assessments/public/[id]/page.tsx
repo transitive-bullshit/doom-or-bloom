@@ -20,7 +20,7 @@ export async function generateMetadata({
       path: `/assessments/public/${id}`,
       title: saved.title,
       description:
-        'A shared assessment: the participant’s full conversation and inferred AI worldview.',
+        'A published assessment: the participant’s full conversation and inferred AI worldview.',
       image: `/assessments/public/${id}/social-image.webp`,
       imageAlt: 'AI worldview assessment with interpretation ranges'
     }),

@@ -74,7 +74,7 @@ export function AssessmentLibrary({
       router.refresh()
     } catch (err) {
       toast.error(
-        userErrorMessage(err, 'Couldn’t update sharing. Please try again.')
+        userErrorMessage(err, 'Couldn’t change visibility. Please try again.')
       )
     } finally {
       setBusy(null)

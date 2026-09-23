@@ -166,7 +166,7 @@ export function Interview({
       await refresh()
     } catch (err) {
       toast.error(
-        userErrorMessage(err, 'Couldn’t update sharing. Please try again.')
+        userErrorMessage(err, 'Couldn’t change visibility. Please try again.')
       )
     } finally {
       setManaging(false)
@@ -308,12 +308,12 @@ export function Interview({
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button disabled={busy || managing || Boolean(uncertain)}>
-                      Share assessment
+                      Publish assessment publicly
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>Publish your full assessment?</DialogTitle>
+                      <DialogTitle>Publish assessment publicly?</DialogTitle>
                       <DialogDescription>
                         Anyone with the link can view your answers and results.
                       </DialogDescription>
@@ -324,7 +324,7 @@ export function Interview({
                       </DialogClose>
                       <DialogClose asChild>
                         <Button onClick={() => void visibility('public')}>
-                          Publish assessment
+                          Publish assessment publicly
                         </Button>
                       </DialogClose>
                     </DialogFooter>

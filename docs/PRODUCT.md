@@ -234,3 +234,5 @@ Use the global heading styles in `app/globals.css` on every route, including lan
 ### Reading column
 
 Use the shared `content-column` utility for assessment, public assessment, persona, library, and informational page content. It provides a 624px reading area inside a 672px wrapper with 24px side gutters, shrinking to fit narrow screens. Do not introduce independent page-width limits. Maps and result grids may use the shared breakout layout; their wider visualization area does not change the reading column.
+
+Assessment visibility uses “publish” terminology: “Publish assessment publicly,” “Published,” “Ready to publish,” and “Make private.” Reserve “share” for distributing a link or downloading an image for social sharing, not changing assessment visibility.
