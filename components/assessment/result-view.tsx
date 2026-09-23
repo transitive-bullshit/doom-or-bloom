@@ -1,4 +1,6 @@
 'use client'
+import { ChevronDownIcon } from 'lucide-react'
+import type { ReactNode } from 'react'
 import { ClosestPersonas } from './closest-personas'
 import {
   closestPersonas,
@@ -180,45 +182,38 @@ export function ResultView({
           </div>
         )}
         <h2>Results</h2>
-        <p className='mt-3 text-sm text-body-foreground'>
-          {result.reason === 'Some interpretations still need clarification.'
-            ? null
-            : result.reason}
-        </p>
       </div>
       <ExperimentalResults
         result={result}
         layout='breakout'
-        beforeDetails={
-          <div className='mt-5 flex justify-center'>{downloadAction}</div>
-        }
         riskCompanion={<ClosestPersonas result={result} personas={personas} />}
       />
-      <div className='grid gap-3 sm:grid-cols-2'>
-        {result.fingerprint.map((c) => (
-          <div key={c.vector} className='rounded-lg border p-4'>
-            <p className='text-sm font-medium'>{c.label}</p>
-            <p className='mt-2 text-sm text-body-foreground'>
-              {c.claim ?? 'Still unexplored'}
-            </p>
-            {c.vector === 'timeline' &&
-              supportingAnswers(c.evidenceIds).map((answer) => (
-                <div
-                  key={answer.id}
-                  className='mt-3 text-sm text-body-foreground'
-                >
-                  <AnswerDisclosure
-                    text={answer.text}
-                    label={`Timeline answer ${state.answers.indexOf(answer) + 1}`}
-                  />
-                </div>
-              ))}
-          </div>
-        ))}
-      </div>
+      <ResultDisclosure title='Insights'>
+        <div className='grid gap-3 sm:grid-cols-2'>
+          {result.fingerprint.map((c) => (
+            <div key={c.vector} className='rounded-lg border p-4'>
+              <p className='text-sm font-medium'>{c.label}</p>
+              <p className='mt-2 text-sm text-body-foreground'>
+                {c.claim ?? 'Still unexplored'}
+              </p>
+              {c.vector === 'timeline' &&
+                supportingAnswers(c.evidenceIds).map((answer) => (
+                  <div
+                    key={answer.id}
+                    className='mt-3 text-sm text-body-foreground'
+                  >
+                    <AnswerDisclosure
+                      text={answer.text}
+                      label={`Timeline answer ${state.answers.indexOf(answer) + 1}`}
+                    />
+                  </div>
+                ))}
+            </div>
+          ))}
+        </div>
+      </ResultDisclosure>
       {result.findings.length > 0 && (
-        <section className='flex flex-col gap-3'>
-          <h2 className='text-base font-medium'>A few things that stood out</h2>
+        <ResultDisclosure title='A few things that stood out'>
           {result.findings.map((f) => (
             <Collapsible key={f.id} className='rounded-lg border p-4'>
               <p className='text-sm'>{f.text}</p>
@@ -251,7 +246,7 @@ export function ResultView({
               </CollapsibleContent>
             </Collapsible>
           ))}
-        </section>
+        </ResultDisclosure>
       )}
       <Collapsible>
         <CollapsibleTrigger asChild>
@@ -384,5 +379,29 @@ export function ResultView({
         </div>
       </div>
     </div>
+  )
+}
+
+function ResultDisclosure({
+  title,
+  children
+}: {
+  title: string
+  children: ReactNode
+}) {
+  return (
+    <Collapsible>
+      <h2 className='text-base'>
+        <CollapsibleTrigger asChild>
+          <Button variant='ghost' className='group w-full justify-between'>
+            {title}
+            <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
+          </Button>
+        </CollapsibleTrigger>
+      </h2>
+      <CollapsibleContent className='mt-3 flex flex-col gap-3'>
+        {children}
+      </CollapsibleContent>
+    </Collapsible>
   )
 }

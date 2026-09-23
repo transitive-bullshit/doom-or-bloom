@@ -57,6 +57,15 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   await tabTo(page, view)
   await page.keyboard.press('Enter')
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  for (const name of ['Insights', 'A few things that stood out']) {
+    const disclosure = page.getByRole('button', { name, exact: true })
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
+    await disclosure.click()
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'true')
+    await disclosure.click()
+    await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
+  }
+
   await expect(
     page.getByRole('img', { name: /^Doom–Bloom:/ }).first()
   ).toHaveAttribute('aria-label', /not event probabilities/)

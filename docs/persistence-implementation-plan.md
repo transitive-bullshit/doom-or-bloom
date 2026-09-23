@@ -391,3 +391,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - Verification: `pnpm test` and all six persona/assessment interaction browser cases passed.
 
 - Expected transformation now uses the same Card/Header/Title/Content structure and two-column detail grid as Expected capabilities. It stacks on mobile. `pnpm test` and the existing desktop/mobile results interaction check passed.
+
+### Results disclosures (2026-09-23)
+
+- Removed the explanatory subtitle under Results and the standalone image-download action between the visualization and details. The existing footer actions remain.
+- Grouped the fingerprint grid under Insights and findings under A few things that stood out. Both use the same reusable disclosure, closed by default, with accessible buttons and expanded state. Private and public results share the implementation.
+- Verification: `pnpm test` passed; all 17 matching assessment/persona/interaction browser cases passed, including default-closed disclosures, toggling, and footer image/report downloads.

@@ -216,14 +216,14 @@ test('three answers, draft resume, map, correction, downloads and another assess
   const downloadButtons = page.getByRole('button', {
     name: 'Download results image for social sharing'
   })
-  await expect(downloadButtons).toHaveCount(2)
+  await expect(downloadButtons).toHaveCount(1)
   const downloadButton = downloadButtons.last()
   const firstDownloadBounds = await downloadButtons.first().boundingBox()
   const detailsBounds = await page
     .getByRole('region', { name: 'More details', exact: true })
     .boundingBox()
-  expect(firstDownloadBounds!.y + firstDownloadBounds!.height).toBeLessThan(
-    detailsBounds!.y
+  expect(firstDownloadBounds!.y).toBeGreaterThan(
+    detailsBounds!.y + detailsBounds!.height
   )
   await expect(downloadButton).toHaveAttribute('data-slot', 'primary-cta')
   await page.setViewportSize({ width: 390, height: 844 })

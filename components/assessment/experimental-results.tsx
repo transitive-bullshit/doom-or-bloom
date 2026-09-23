@@ -26,7 +26,6 @@ export function ExperimentalResults({
   excerpts = false,
   reasoningDetails,
   riskCompanion,
-  beforeDetails,
   subject
 }: {
   result: Result
@@ -35,7 +34,6 @@ export function ExperimentalResults({
   layout?: 'contained' | 'breakout'
   reasoningDetails?: ReactNode
   riskCompanion?: ReactNode
-  beforeDetails?: ReactNode
   subject?: ResultSubject
 }) {
   const experiment =
@@ -223,7 +221,6 @@ export function ExperimentalResults({
           </CardContent>
         </Card>
       )}
-      {beforeDetails}
       <WorldviewDetails
         subject={subject}
         transformationClaim={experiment?.transformation.claim}
