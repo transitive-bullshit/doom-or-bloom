@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/metadata'
 import { publicPages } from '@/lib/site'
 import { serverEnv } from '@/lib/server/env'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 export const metadata = pageMetadata(publicPages[3]!)
 
 export default function Privacy() {
@@ -100,9 +100,7 @@ export default function Privacy() {
         silent overwrites.
       </p>
 
-      <div className='flex flex-wrap justify-center mt-12'>
-        <WorldviewCta />
-      </div>
+      <WorldviewCtaCard className='mt-12' />
     </article>
   )
 }
