@@ -145,6 +145,23 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'The growing gap in understanding AI capability',
+        url: 'https://x.com/karpathy/status/2042334451611693415',
+        publishedAt: '2026-04-09',
+        summary:
+          'Karpathy distinguishes impressions formed from older free chat models from professional use of current frontier agents. He describes dramatic but uneven gains in programming, mathematics and research, driven by verifiable reinforcement-learning rewards and commercial priorities. Reliable codebase work and vulnerability exploitation can coexist with basic conversational failures; this is not a claim of uniform capability across every domain.'
+      },
+      {
+        title: 'Reuters: Karpathy supports coordinated frontier pacing',
+        url: 'https://www.reuters.com/business/what-amodei-altman-musk-have-said-about-ai-risks-stoking-doom-fears-2026-09-21/',
+        publishedAt: '2026-09-21',
+        speaker: 'Andrej Karpathy',
+        quote:
+          'I love this and really hope we can come together as an industry and make it happen.',
+        summary:
+          'Reuters reports Karpathy sharing a screenshot of Amodei’s frontier-pacing essay. His quote supports industry coordination on frontier development, without establishing a personal catastrophe probability, a specific pause duration or agreement with every detail of the proposal. Quote verified in the Reuters syndication on Investing.com.'
+      },
+      {
         title:
           'Sequoia Ascent 2026: agentic engineering and jagged intelligence',
         url: 'https://karpathy.bearblog.dev/sequoia-ascent-2026/',
