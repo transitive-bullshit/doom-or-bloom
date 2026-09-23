@@ -291,5 +291,5 @@ Pause only the dependent work when credentials or external configuration are una
 ### 2026-09-23 — X developer apps and consolidated local environment
 
 - Created development X app `33462727` and saved confidential Web App authentication with read-only permissions, no email request, and callback `http://doom-or-bloom.localhost:1355/api/auth/callback/twitter`. User saved the OAuth 2.0 credentials in `.env.local`; live login verification remains pending.
-- Created production X app `33462739` under the same Test / Pay Per Use project with Production environment. Production authentication configuration remains in progress; no deployment performed.
+- Created production X app `33462739` under the same Test / Pay Per Use project with Production environment. Production confidential Web App authentication is saved with read-only permissions, no email request, and callback `https://doom-or-bloom.com/api/auth/callback/twitter`. The one-time OAuth 2.0 secret dialog is left open for the user to save; no deployment performed.
 - At user request, moved Neon connections into `.env.local` as `NEON_DATABASE_URL` and `NEON_DATABASE_MIGRATION_URL`, verified the values were preserved without printing them, and removed `.env.neon.local`. Local database variables are unchanged, and the consolidated file retains mode 0600. This supersedes the earlier separate-file setup.
