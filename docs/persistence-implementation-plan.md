@@ -154,7 +154,7 @@ Suggested commits: `feat: add optional x authentication`; `feat: claim anonymous
 | Native Postgres.app | Checkpoint 1 | Verify the installed server, create dedicated local databases, apply migrations, document connection variables. | Start/authorize the application only if local permissions prevent setup. No Docker and no hosted account required. |
 | Better Auth | Checkpoint 1 | Integrate the library and generate a local secret; configure local origin/cookies. | None for anonymous auth; no separate Better Auth SaaS account. |
 | TypeSafe | Existing runtime | Reuse existing server configuration; use fixture inference for checks. | Existing API key only if a live participant smoke test is desired. |
-| Neon | Hosted follow-up | Prepare compatible migrations/env template and seed process. | Select/create project, region, database/role and provide runtime/migration connection secrets securely. No Neon setup blocks local work. |
+| Neon | Provisioned; hosted wiring remains separate | Production project `jolly-dew-73357244`, branch `production`, database `neondb`. Pooled runtime and direct migration credentials are saved in ignored `.env.neon.local` in this worktree and verified read-only. Load explicitly only for authorized production work. | No further credential setup needed in this worktree. Hosted environment configuration and migrations remain pending; local work continues against Postgres.app. |
 | X developer application | Checkpoint 6 live verification | Supply exact callback URLs, minimal scope requirements and env names. | Create/configure OAuth application and client ID/secret, authorize a test login. Current provider access requirements must be checked then. |
 | Takumi | Checkpoint 3 | Reuse installed local renderer. | None; no media-hosting account. |
 
@@ -183,3 +183,10 @@ Pause only the dependent work when credentials or external configuration are una
 - Keep a small operation record for submitted input, deadline/status, idempotency, and bounded failures. Retry each transient Jev call once; fail the full assessment operation on a second failure. Only the final assessment snapshot/head update commits atomically; input/failure records intentionally survive.
 - Interrupted requests can be retried explicitly. Their expiration and late-write protection are checked during normal API access, without a scheduler. No application behavior changed in this documentation revision.
 - Validation: documentation formatting, local Markdown links/anchors, removal of active Workflow requirements, and `git diff --check` verified before committing this revision.
+
+### 2026-09-23 — production Neon credentials available
+
+- User provisioned Neon project `jolly-dew-73357244` (`doom-or-bloom`), branch `production`, database `neondb`, role `neondb_owner`. Retrieved the pooled and direct connections from the supplied authenticated console.
+- Stored `DATABASE_URL` and `DATABASE_MIGRATION_URL` in `.env.neon.local` with file mode 0600 and an explicit git-ignore rule. This file is local to this worktree and is not automatically loaded by Next.js; credentials must not be copied into local development/test configuration. Never commit its contents.
+- Both connections passed a read-only query of database/user identity with `transaction_read_only=on`. No production schema changes, migrations, seeds, or deployment were performed.
+- Neon credential provisioning is complete. Application integration, native local database setup, and hosted configuration remain at their existing unchecked checkpoints.

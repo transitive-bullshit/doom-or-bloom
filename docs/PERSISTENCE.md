@@ -42,7 +42,7 @@ Better Auth supplies anonymous users and persistent sessions in milestone one. X
 
 ## Relational model
 
-Use PostgreSQL and Drizzle with the normal PostgreSQL driver (`pg`). Local development uses native Postgres.app (already installed), with no Docker, Compose, or Testcontainers. The same application schema and migrations run against local Postgres and later Neon. Assessment operations execute synchronously inside the main POST handlers; no asynchronous runtime or additional database is required. Generate Better Auth's schema for the pinned release, then include it in the checked-in Drizzle migrations.
+Use PostgreSQL and Drizzle with the normal PostgreSQL driver (`pg`). Local development uses native Postgres.app (already installed), with no Docker, Compose, or Testcontainers. The same application schema and migrations run against local Postgres and later Neon. Assessment operations execute synchronously inside the main POST handlers; no asynchronous runtime or additional database is required. Generate Better Auth's schema for the pinned release, then include it in the checked-in Drizzle migrations. Production Neon credentials are kept in ignored `.env.neon.local`, loaded explicitly only for authorized production work. Local development, fixture tests, and local production-build checks use dedicated local database configuration; Next.js must not automatically load production database credentials.
 
 | Table | Required data |
 | --- | --- |
