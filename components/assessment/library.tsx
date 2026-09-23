@@ -152,8 +152,7 @@ export function AssessmentLibrary({
                     <DialogTitle>Delete this assessment?</DialogTitle>
                     <DialogDescription>
                       This deletes the assessment, results, and saved
-                      submissions. Separate assessments created from it are
-                      kept.
+                      submissions.
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter>
