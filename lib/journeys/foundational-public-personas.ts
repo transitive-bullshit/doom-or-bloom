@@ -145,6 +145,12 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'US Job Market Visualizer',
+        url: 'https://karpathy.ai/jobs/',
+        summary:
+          'Interactive exploration of 342 BLS occupations covering 143 million US jobs, with layers for employment outlook, pay, education and digital AI exposure. Its customizable LLM scoring pipeline illustrates uneven exposure across digital and physical work. Exposure scores are rough estimates of occupational change, not predictions of job disappearance; they omit demand responses, regulatory barriers and preferences for human workers. The project explicitly describes itself as a development tool rather than a rigorous economic publication.'
+      },
+      {
         title: 'The growing gap in understanding AI capability',
         url: 'https://x.com/karpathy/status/2042334451611693415',
         publishedAt: '2026-04-09',
