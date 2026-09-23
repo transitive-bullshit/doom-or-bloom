@@ -404,7 +404,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       attributedPage.getByRole('img', { name: 'Public publisher', exact: true })
     ).toHaveAttribute('src', /avatar_400x400.jpg/)
     await expect(
-      attributedPage.getByRole('link', { name: '@publisher_test', exact: true })
+      attributedPage.getByRole('link', {
+        name: 'x.com/publisher_test',
+        exact: true
+      })
     ).toHaveAttribute('href', 'https://x.com/i/user/123456789')
     await attributedPage.close()
     await page.goto('/assessments')

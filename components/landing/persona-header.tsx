@@ -19,7 +19,9 @@ export function PersonaHeader({
       avatar={person.avatar}
       profileUrl={person.xUrl ?? person.profileUrl}
       profileLabel={
-        person.xUrl ? `@${person.xUrl.split('/').at(-1)}` : person.profileLabel
+        person.xUrl
+          ? `x.com/${person.xUrl.split('/').at(-1)}`
+          : person.profileLabel
       }
       description={person.description}
     >

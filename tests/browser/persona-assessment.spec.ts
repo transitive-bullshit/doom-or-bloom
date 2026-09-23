@@ -147,7 +147,7 @@ test('persona profile labels use the handle and empty milestone timelines are om
   await expect(
     page
       .locator('main header')
-      .getByRole('link', { name: '@tszzl', exact: true })
+      .getByRole('link', { name: 'x.com/tszzl', exact: true })
   ).toBeVisible()
   await expect(page.getByText(/milestone timeline$/)).toHaveCount(0)
   await expect(

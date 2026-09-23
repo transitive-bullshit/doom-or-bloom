@@ -66,7 +66,7 @@ export default async function Page({
           profileUrl={saved.publisher.profileUrl}
           profileLabel={
             saved.publisher.username
-              ? `@${saved.publisher.username}`
+              ? `x.com/${saved.publisher.username}`
               : 'Profile'
           }
         />
