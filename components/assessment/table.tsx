@@ -214,7 +214,7 @@ export function AssessmentTable({
               {row.original.visibility === 'private' &&
                 row.original.hasResults && (
                   <DropdownMenuItem onSelect={() => onPublish(row.original)}>
-                    Publish assessment publicly
+                    Publish assessment
                   </DropdownMenuItem>
                 )}
               {row.original.visibility === 'public' && (

@@ -297,7 +297,7 @@ export function Interview({
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button disabled={busy || managing || Boolean(uncertain)}>
-                      Publish assessment publicly
+                      Publish assessment
                     </Button>
                   </DialogTrigger>
                   <PublishConfirmation

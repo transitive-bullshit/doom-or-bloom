@@ -156,7 +156,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .toBe(1)
     await expect(
       page.getByRole('button', {
-        name: 'Publish assessment publicly',
+        name: 'Publish assessment',
         exact: true
       })
     ).toHaveCount(0)
@@ -200,13 +200,13 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       await (await page.request.get(`/api/assessments/${id}`)).json()
     ).toEqual(beforeView)
     await page
-      .getByRole('button', { name: 'Publish assessment publicly', exact: true })
+      .getByRole('button', { name: 'Publish assessment', exact: true })
       .click()
     await expect(page.getByRole('dialog')).toContainText(
       'Anyone with the link can view your answers and results.'
     )
     await page
-      .getByRole('button', { name: 'Publish assessment publicly', exact: true })
+      .getByRole('button', { name: 'Publish assessment', exact: true })
       .click()
     await expect(
       page.getByRole('link', { name: 'View public assessment' })
@@ -404,7 +404,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .click()
     await expect(
       page.getByRole('button', {
-        name: 'Publish assessment publicly',
+        name: 'Publish assessment',
         exact: true
       })
     ).toBeVisible()
@@ -534,7 +534,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       .click()
     await expect(
       page.getByRole('button', {
-        name: 'Publish assessment publicly',
+        name: 'Publish assessment',
         exact: true
       })
     ).toBeVisible()

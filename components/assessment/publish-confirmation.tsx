@@ -24,7 +24,7 @@ export function PublishConfirmation({ onConfirm }: { onConfirm: () => void }) {
           <Button variant='outline'>Keep private</Button>
         </DialogClose>
         <DialogClose asChild>
-          <Button onClick={onConfirm}>Publish assessment publicly</Button>
+          <Button onClick={onConfirm}>Publish assessment</Button>
         </DialogClose>
       </DialogFooter>
     </DialogContent>

@@ -84,11 +84,11 @@ test('library sorts by creation date and status and keeps management in row menu
     })
     await actions.click()
     await expect(page.getByRole('menuitem').first()).toHaveText(
-      'Publish assessment publicly'
+      'Publish assessment'
     )
     await page
       .getByRole('menuitem', {
-        name: 'Publish assessment publicly',
+        name: 'Publish assessment',
         exact: true
       })
       .click()
@@ -104,13 +104,13 @@ test('library sorts by creation date and status and keeps management in row menu
     await actions.click()
     await page
       .getByRole('menuitem', {
-        name: 'Publish assessment publicly',
+        name: 'Publish assessment',
         exact: true
       })
       .click()
     await page
       .getByRole('dialog')
-      .getByRole('button', { name: 'Publish assessment publicly', exact: true })
+      .getByRole('button', { name: 'Publish assessment', exact: true })
       .click()
     await expect(
       table.getByRole('link', { name: 'Published', exact: true })
@@ -118,7 +118,7 @@ test('library sorts by creation date and status and keeps management in row menu
     await actions.click()
     await expect(
       page.getByRole('menuitem', {
-        name: 'Publish assessment publicly',
+        name: 'Publish assessment',
         exact: true
       })
     ).toHaveCount(0)
@@ -195,7 +195,7 @@ test('library sorts by creation date and status and keeps management in row menu
       .click()
     await expect(
       page.getByRole('menuitem', {
-        name: 'Publish assessment publicly',
+        name: 'Publish assessment',
         exact: true
       })
     ).toHaveCount(0)

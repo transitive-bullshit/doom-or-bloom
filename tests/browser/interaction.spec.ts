@@ -95,7 +95,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
     fullPage: true
   })
   const share = page.getByRole('button', {
-    name: 'Publish assessment publicly',
+    name: 'Publish assessment',
     exact: true
   })
   await tabTo(page, share)
