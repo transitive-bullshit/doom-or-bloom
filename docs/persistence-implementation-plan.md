@@ -123,7 +123,7 @@ Update: AUTHORING, user-journeys, PRODUCT, ASSESSMENT comparison behavior, READM
 ## Checkpoint 5 — integrated persistence acceptance
 
 - [ ] Run relevant formatting/lint/type/unit/content checks and the new real-Postgres integration suite. Run `pnpm test` and `pnpm build` once integration is ready; use the existing required project checks and adjust CI for native PostgreSQL without containers.
-- [ ] Run the focused browser suite through `pnpm dev` and its resolved Portless URL. Verify production build/start with database reads and bounded POST handlers; development success alone is insufficient.
+- [x] Run the focused browser suite through `pnpm dev` and its resolved Portless URL. Verify production build/start with database reads and bounded POST handlers; development success alone is insufficient.
 - [x] Recreate disposable application test databases from documented steps and migrations. Seed twice, interrupt a POST, restart, and verify saved input plus an explicit retry. Never reset the developer's persistent database as a test fixture.
 - [ ] Audit authorization, all public surfaces, raw-text analytics exclusion, HTTP cache behavior, operation diagnostic payloads, and destructive-action races. Add tests only where they verify actual failure or access boundaries.
 - [ ] Reconcile canonical docs and visible copy: remove implemented transition banners, preserve historical checkpoint notes, replace obsolete one-browser/stateless/no-database claims, and document real commands and env values. Keep X login marked pending until checkpoint 6.
@@ -311,3 +311,10 @@ Pause only the dependent work when credentials or external configuration are una
 - All three analytics checks passed against a dedicated native database with the real PostHog SDK transport intercepted: raw answers, canaries and private assessment paths are absent; reload does not duplicate the start event; editorial pages send no analytics/inference; missing live provider configuration retains input without a committed semantic attempt. The known localhost feedback companion is mocked separately from third-party traffic.
 - Rechecked all 15 provider-boundary cases: one transient retry, permanent overflow without recursive splitting, physical budget, cancellation/deadline, thirty multibyte answers and sanitized diagnostics. Checked off corresponding bounded-operation requirements after reviewing the shared engine budget and HTTP-failure logging.
 - Standard checks passed formatting, lint, types, all 252 unit tests and content validation. The unused-code check passed after registering the analytics config entry for its explicit Node invocation. CI now includes the broad browser and analytics suites; hosted execution remains unverified.
+
+### 2026-09-23 — unified browser and production-mode acceptance
+
+- `pnpm check:browser` passed all 52 cases together. `pnpm build:local` passed production compilation and persona bundle/portrait tracing.
+- Fixed the local Next launcher after build workers rejected Node CLI `--env-file` in inherited `NODE_OPTIONS`: load the file in a parent process and spawn Next with clean exec arguments. Both local build/start commands select live-provider configuration because fixture mode is intentionally forbidden in production.
+- Started the production build locally against Postgres.app, then verified anonymous sign-in, creation, owned reads, a synchronous exact-placeholder POST with no paid inference, identical-key replay without a new revision, private/no-store HTML and API headers, and unauthenticated denial. Deleted the smoke assessment and stopped the temporary server. No Neon connection or deployment.
+- Removed the obsolete AUTHORING banner claiming persona database persistence was unimplemented. Launcher formatting, lint and unused-code checks passed. Final canonical-copy/auth acceptance and actual X login remain open.

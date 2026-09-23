@@ -51,8 +51,8 @@
     "db:test:auth": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-auth-claim.ts",
     "db:test:commit": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-commit.ts",
     "db:test:restart": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-restart.ts",
-    "build:local": "ASSESSMENT_PROVIDER=live node --env-file=.env.development.local node_modules/next/dist/bin/next build --webpack && node scripts/check-production-traces.mjs",
-    "start:local": "node --env-file=.env.development.local node_modules/next/dist/bin/next start"
+    "build:local": "node scripts/next-local.mjs build --webpack && node scripts/check-production-traces.mjs",
+    "start:local": "node scripts/next-local.mjs start"
   },
   "dependencies": {
     "@typesafe-ai/sdk": "^0.6.0",
