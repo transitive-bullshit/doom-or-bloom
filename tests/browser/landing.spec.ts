@@ -306,7 +306,7 @@ test('persona answer references reopen the transcript and navigate to the exact 
   await expect(page.locator(hash)).toBeFocused()
 })
 
-test('people legend has contiguous links and fades overflowing full names', async ({
+test('people legend preserves responsive spacing and fades overflowing full names', async ({
   page
 }, testInfo) => {
   await page.goto('/')
@@ -316,7 +316,9 @@ test('people legend has contiguous links and fades overflowing full names', asyn
   ).toBeVisible()
   for (const width of [1365, 390]) {
     await page.setViewportSize({ width, height: 960 })
-    await expect(legend).toHaveCSS('gap', '0px')
+    const columnGap = width === 390 ? 18 : 0
+    await expect(legend).toHaveCSS('row-gap', '0px')
+    await expect(legend).toHaveCSS('column-gap', `${columnGap}px`)
     const links = await legend.locator('a').evaluateAll((links) =>
       links.map((link) => {
         const rect = link.getBoundingClientRect()
@@ -325,7 +327,7 @@ test('people legend has contiguous links and fades overflowing full names', asyn
     )
     const first = links[0]!
     const nextRow = links.find((link) => link.y > first.y + 1)!
-    expect(links[1]!.x).toBeCloseTo(first.right, 1)
+    expect(links[1]!.x).toBeCloseTo(first.right + columnGap, 1)
     expect(nextRow.y).toBeCloseTo(first.bottom, 1)
     if (width === 390) {
       // Enlarged text exercises real overflow without relying on today's name lengths.

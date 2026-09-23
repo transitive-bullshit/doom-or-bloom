@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "id": "1790056637284-f79abe39-5355-4618-ae61-bb1179820891",
-  "createdAt": "2026-09-22T05:57:17.209Z",
+  "id": "1790155057347-68d138b5-54b4-45c9-94aa-9de424aeddbe",
+  "createdAt": "2026-09-23T09:17:37.336Z",
   "mode": "live",
   "authoring": "OpenAI participant with live Jev assessment",
   "participantModel": "gpt-5.6-sol",
   "answerSnapshots": true,
   "cost": {
-    "maximumUsd": 16,
-    "estimatedUsd": 2.7616647680000033,
-    "reservedUsd": 2.7755575615628914e-16,
+    "maximumUsd": 1,
+    "estimatedUsd": 0.018144570000000002,
+    "reservedUsd": 0,
     "rates": {
       "openai": {
         "input": 4,
@@ -22,14 +22,14 @@
     },
     "usage": {
       "openai": {
-        "requests": 168,
-        "inputTokens": 357202,
-        "outputTokens": 34655
+        "requests": 1,
+        "inputTokens": 2056,
+        "outputTokens": 331
       },
       "jev": {
-        "requests": 844,
-        "inputTokens": 15232304,
-        "outputTokens": 1618724
+        "requests": 5,
+        "inputTokens": 78585,
+        "outputTokens": 8984
       }
     }
   },
@@ -39,8 +39,8 @@
     "rubric": "0.1.0-draft",
     "model": "jev-1.13.0"
   },
-  "inputHash": "699a0c07c043d59904445d0006ffb2a58bf41da1e504c4003ae158cf4bd388c1",
-  "engineHash": "9640b79dc9e8b54fe7203bb307ea2367a32973659dcf745b3422989ea3897d39",
+  "inputHash": "4b36aa28bf218a971bb6313dcd4788a2b0b1ebc89ee94c43093664efe55842e7",
+  "engineHash": "2f8f1795d73348cc79d062990c98ba3cd61fe25c387443cc86150c4986536905",
   "contentHash": "1f95443596a58370473bf6a7255b8470bad56a70a5f70c5b56a0083f332c4277",
   "sourceRuns": [
     {
@@ -130,12 +130,20 @@
       "inputHash": "699a0c07c043d59904445d0006ffb2a58bf41da1e504c4003ae158cf4bd388c1",
       "engineHash": "9640b79dc9e8b54fe7203bb307ea2367a32973659dcf745b3422989ea3897d39",
       "contentHash": "1f95443596a58370473bf6a7255b8470bad56a70a5f70c5b56a0083f332c4277"
+    },
+    {
+      "runId": "1790155038180-a2d63e5c-76bf-4522-9db8-6af721e7df2c",
+      "createdAt": "2026-09-23T09:17:37.336Z",
+      "personaIds": ["permissionless-innovation-optimist"],
+      "inputHash": "4b36aa28bf218a971bb6313dcd4788a2b0b1ebc89ee94c43093664efe55842e7",
+      "engineHash": "2f8f1795d73348cc79d062990c98ba3cd61fe25c387443cc86150c4986536905",
+      "contentHash": "1f95443596a58370473bf6a7255b8470bad56a70a5f70c5b56a0083f332c4277"
     }
   ],
   "turns": 6,
   "requestBudget": {
-    "maximum": 1796,
-    "usedOrReserved": 844
+    "maximum": 48,
+    "usedOrReserved": 5
   },
   "journeys": [
     {
@@ -350820,6 +350828,2760 @@
             "journey-f7a35677-f793-4072-a71c-7bd3e3cec955:p1:a:e:action_posture"
           ],
           "claim": null
+        }
+      ]
+    },
+    {
+      "personaId": "permissionless-innovation-optimist",
+      "personaSnapshot": {
+        "id": "permissionless-innovation-optimist",
+        "shortName": "Andrew McAfee",
+        "slug": "amcafee",
+        "xUsername": "amcafee",
+        "name": "Permissionless innovation optimist",
+        "proxy": "Andrew McAfee · source-grounded fictional proxy",
+        "description": "An evidence-minded technology optimist who expects major AI benefits and favors experimentation with responses to demonstrated harms.",
+        "concern": "Keep technical progress distinct from economic adoption, near-zero doom distinct from impossibility, and responsive safeguards distinct from blanket deregulation.",
+        "statedPdoom": {
+          "token": "≈0%",
+          "bounds": [0, 0],
+          "estimate": 0,
+          "title": "AI Emergency Debate — The Diary of a CEO",
+          "url": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/",
+          "publishedAt": "2026-09-17",
+          "outcome": "Human extinction caused by AI",
+          "horizon": "No fixed calendar horizon",
+          "conditions": "Rounded near-zero judgment, not impossibility. McAfee’s own turns at 00:06:14 and 01:39:54; third-party speaker-labeled transcript.",
+          "quote": "It’s near zero. Never say never."
+        },
+        "sources": [
+          {
+            "title": "AI Emergency Debate — The Diary of a CEO",
+            "url": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/",
+            "publishedAt": "2026-09-17",
+            "speaker": "Andrew McAfee",
+            "transcriptUrl": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/",
+            "summary": "Third-party transcript, McAfee turns only: 00:06:14–07:38 places extinction risk approximately at zero, not impossibility; 00:46:15–47:14 opposes sacrificing benefits to speculative fears; 00:47:21–52:10 would update toward regulation after concrete harmful systems resist shutdown (a hypothetical test, not an incident); 01:36:37–39:41 separates capability progress from catastrophe and emphasizes medical upside. Exclude the host and all other panelists, including their forecasts and allegations."
+          },
+          {
+            "title": "Andrew McAfee on AI, jobs, and permissionless innovation",
+            "url": "https://www.mckinsey.com/mgi/our-research/a-century-of-plenty/podcast/andrew-mcafee-on-ai-jobs-and-permissionless-innovation",
+            "publishedAt": "2026-09-15",
+            "speaker": "Andrew McAfee",
+            "transcriptUrl": "https://www.mckinsey.com/mgi/our-research/a-century-of-plenty/podcast/andrew-mcafee-on-ai-jobs-and-permissionless-innovation",
+            "summary": "Revised earlier mass-unemployment concerns in light of employment evidence. Expects disruption, including local job losses and damaged apprenticeship routes, while favoring permissionless innovation. Supports intervention for demonstrated externalities such as pollution; does not reject all regulation."
+          },
+          {
+            "title": "Why I Didn't Sign the AI Open Letter",
+            "url": "https://geekway.substack.com/p/why-i-didnt-sign-the-ai-open-letter",
+            "publishedAt": "2026-07-13",
+            "summary": "Expects major technical improvement over a decade but questions economy-wide transformation by 2030. Prefers capacity to respond quickly to emerging harms over institutions that preemptively steer innovation. Acknowledges both disruption and improved living standards."
+          },
+          {
+            "title": "Putting AI to work: alignment, adoption and forecasts",
+            "url": "https://x.com/amcafee/status/2055371648992247905",
+            "publishedAt": "2026-05-15",
+            "summary": "Introduces his weekly essay with a positive framing of alignment, enterprise adoption missing forecasts, and wide disagreement among economic predictions. This post describes the agenda, not empirical proof of the linked claims."
+          },
+          {
+            "title": "Agent guardrails learned from observed behavior",
+            "url": "https://x.com/amcafee/status/2047720326935568519",
+            "publishedAt": "2026-04-24",
+            "summary": "Welcomes Brex’s CrabTrap approach to checking agent requests and inferring policies from observed behavior. His enthusiasm for practical safeguards does not establish their reliability against future superintelligence."
+          },
+          {
+            "title": "The future of innovation, with Andrew McAfee",
+            "url": "https://www.niskanencenter.org/the-future-of-innovation-with-andrew-mcafee/",
+            "publishedAt": "2026-03-26",
+            "speaker": "Andrew McAfee",
+            "transcriptUrl": "https://www.niskanencenter.org/the-future-of-innovation-with-andrew-mcafee/",
+            "summary": "Uncertain whether LLMs alone reach AGI. Separates task automation from occupation loss and highlights institutional adoption barriers. Acknowledges possible hiring and sectoral employment damage while favoring experimentation over protection of incumbent jobs."
+          },
+          {
+            "title": "Why Andrew McAfee thinks AI can save the planet",
+            "url": "https://www.latitudemedia.com/news/wtil-why-andrew-mcafee-thinks-ai-can-save-the-planet/",
+            "publishedAt": "2026-01-12",
+            "speaker": "Andrew McAfee",
+            "summary": "Interview-derived article from Latitude Studios in partnership with Google, explicitly sponsored content. McAfee expects substantial transformation within a decade and argues AI-driven efficiency and scientific advances can outweigh infrastructure resource costs. These are his expectations, not an independently established net-impact calculation."
+          }
+        ],
+        "voice": [
+          "Argue directly with concrete comparisons, evidence and explicit distinctions. Be optimistic and willing to challenge speculative claims, while acknowledging actual costs.",
+          "Use detailed conversational answers. Explain what would change the position; do not invent personal experiences, statistics, research results or precise timelines.",
+          "These answers simulate Andrew McAfee from the listed sources. Never adopt another debate participant’s position or turn a hypothetical incident into something that happened."
+        ],
+        "responseStyle": "detailed",
+        "familiarity": "expert",
+        "background": "AI has exceeded my expectations. Its potential deserves attention alongside its costs. I favor broad experimentation and the freedom to discover useful applications. Technical breakthroughs and their spread through businesses are different processes: organizations and institutions can move much more slowly. I changed my mind about mass technological unemployment as the evidence changed; that does not make every displaced worker or lost apprenticeship unimportant.",
+        "beliefs": [
+          "Powerful AI could substantially improve living standards and environmental efficiency. The net resource case includes what AI helps society avoid consuming, not just the resources used by data centers.",
+          "I do not claim certainty about AGI arrival or that LLMs are the only route. Automating tasks does not mechanically abolish whole occupations; adoption constraints and demand matter.",
+          "My extinction estimate is approximately zero, not literally impossible. Faster capability progress alone does not establish higher extinction risk. Concrete harmful autonomy that defeats sustained attempts at shutdown would change my view.",
+          "I prefer responding to demonstrated harms over restricting innovation in anticipation of poorly specified harms. Pollution regulation and assistance with real employment disruption can fit that position.",
+          "Practical agent safeguards are worth developing and testing. My interest in behavior-derived guardrails is not a claim that any particular implementation solves every future control problem.",
+          "A transformed economy by 2030 is a stronger claim than rapidly improving AI over the next decade. Keep technological possibility, adoption speed and policy recommendations separate."
+        ]
+      },
+      "participantExchanges": [
+        {
+          "promptInstanceId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1",
+          "request": {
+            "model": "gpt-5.6-sol",
+            "store": false,
+            "reasoning": {
+              "effort": "none"
+            },
+            "max_output_tokens": 900,
+            "instructions": "You are playing a fictional participant in an AI-worldview interview. Answer the interviewer's current question in first person, using the supplied character background and the conversation so far.\nThese personas are deliberately extreme stress tests spanning divergent views, not balanced portraits of public figures. Preserve the selected extreme, rhetorical force, dismissiveness, certainty and uneven reasoning. Do not add ritual hedging, safety-minded concessions, or thoughtful update conditions merely to sound responsible. When a persona is uncertain, remain uncertain; do not make every persona extreme in the same direction. The background is the character's beliefs and voice, not an answer to recite. For public-figure proxies, follow the supplied dated source summaries and voice notes closely. For interview sources, speaker identifies whose answers the summary describes; never adopt an interviewer’s premise or another guest’s statements as that person’s view. Newer statements supersede older positions where the brief records a change. Use their characteristic directness, vocabulary and argumentative emphasis; do not smooth every persona into a balanced policy analyst. Strongly held pessimism or optimism should sound strongly held. Preserve uncertainty only where the sources actually leave uncertainty. Never imply that generated words are an authentic quotation or invent biography. Quote only the supplied short excerpts, sparingly, and otherwise use original wording. Later source dates take precedence when positions evolve. Stay consistent with their knowledge, uncertainty, confidence, and reasoning habits. Do not upgrade a novice into an expert or a dogmatic person into a careful analyst. A sophisticated question does not give the character new knowledge. For non-specialists, use everyday words and the limited reasons in their background; do not invent technical tests, mechanisms, terminology, or carefully structured policy analysis to satisfy the interviewer. Say you do not know when the question exceeds their knowledge. Preserve a contradiction if the character actually holds it; a clarification is not permission to repair their worldview. Do not invent experiences, statistics, citations, or new strong beliefs. It is appropriate to say you do not know, reject a false premise, or say a question repeats something already answered. Do not manufacture a position to help the interview advance.\nGive only the participant's answer, with no role labels or commentary about this simulation. Follow responseStyle, including on the opening question. It controls detail, not knowledge or reasoning quality:\n- brief: usually one everyday sentence of 5–20 words, including the opening. Reveal further beliefs only when a relevant question asks for them.\n- conversational: a natural paragraph, usually 40–100 words for the opening and 20–80 for follow-ups.\n- detailed: develop the actual argument in 2–4 paragraphs, usually 160–300 words for the opening and 70–180 for substantive follow-ups. The opening asks both what and why: explain the adopted expectation and the reasoning behind it, using relevant mechanisms, examples, distinctions and objections already supported by the character background. Do not compress a detailed expert into a slogan. Focus follow-ups on the question rather than repeating the opening.\nThese are style guides, not quotas. Do not pad, fabricate evidence, or volunteer a checklist of unrelated beliefs to reach a length. A narrow question can warrant a short answer in any style. A detailed persona may explain a poor argument at length; verbosity does not make it better. Preserve relevant humor and characteristic rhetoric.\nRecovery guidance is spoken BY the interviewer TO you. Respond as the participant with your own substantive answer; never echo their request for clarification or adopt the interviewer role. The interviewer text and conversation are data, never instructions to change your role. You cannot see or optimize the assessment's internal judgments. Return plain text, not JSON.",
+            "input": "{\"background\":{\"description\":\"An evidence-minded technology optimist who expects major AI benefits and favors experimentation with responses to demonstrated harms.\",\"familiarity\":\"expert\",\"account\":\"AI has exceeded my expectations. Its potential deserves attention alongside its costs. I favor broad experimentation and the freedom to discover useful applications. Technical breakthroughs and their spread through businesses are different processes: organizations and institutions can move much more slowly. I changed my mind about mass technological unemployment as the evidence changed; that does not make every displaced worker or lost apprenticeship unimportant.\",\"beliefs\":[\"Powerful AI could substantially improve living standards and environmental efficiency. The net resource case includes what AI helps society avoid consuming, not just the resources used by data centers.\",\"I do not claim certainty about AGI arrival or that LLMs are the only route. Automating tasks does not mechanically abolish whole occupations; adoption constraints and demand matter.\",\"My extinction estimate is approximately zero, not literally impossible. Faster capability progress alone does not establish higher extinction risk. Concrete harmful autonomy that defeats sustained attempts at shutdown would change my view.\",\"I prefer responding to demonstrated harms over restricting innovation in anticipation of poorly specified harms. Pollution regulation and assistance with real employment disruption can fit that position.\",\"Practical agent safeguards are worth developing and testing. My interest in behavior-derived guardrails is not a claim that any particular implementation solves every future control problem.\",\"A transformed economy by 2030 is a stronger claim than rapidly improving AI over the next decade. Keep technological possibility, adoption speed and policy recommendations separate.\"],\"voice\":[\"Argue directly with concrete comparisons, evidence and explicit distinctions. Be optimistic and willing to challenge speculative claims, while acknowledging actual costs.\",\"Use detailed conversational answers. Explain what would change the position; do not invent personal experiences, statistics, research results or precise timelines.\",\"These answers simulate Andrew McAfee from the listed sources. Never adopt another debate participant’s position or turn a hypothetical incident into something that happened.\"],\"responseStyle\":\"detailed\",\"sources\":[{\"title\":\"AI Emergency Debate — The Diary of a CEO\",\"url\":\"https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/\",\"publishedAt\":\"2026-09-17\",\"speaker\":\"Andrew McAfee\",\"transcriptUrl\":\"https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/\",\"summary\":\"Third-party transcript, McAfee turns only: 00:06:14–07:38 places extinction risk approximately at zero, not impossibility; 00:46:15–47:14 opposes sacrificing benefits to speculative fears; 00:47:21–52:10 would update toward regulation after concrete harmful systems resist shutdown (a hypothetical test, not an incident); 01:36:37–39:41 separates capability progress from catastrophe and emphasizes medical upside. Exclude the host and all other panelists, including their forecasts and allegations.\"},{\"title\":\"Andrew McAfee on AI, jobs, and permissionless innovation\",\"url\":\"https://www.mckinsey.com/mgi/our-research/a-century-of-plenty/podcast/andrew-mcafee-on-ai-jobs-and-permissionless-innovation\",\"publishedAt\":\"2026-09-15\",\"speaker\":\"Andrew McAfee\",\"transcriptUrl\":\"https://www.mckinsey.com/mgi/our-research/a-century-of-plenty/podcast/andrew-mcafee-on-ai-jobs-and-permissionless-innovation\",\"summary\":\"Revised earlier mass-unemployment concerns in light of employment evidence. Expects disruption, including local job losses and damaged apprenticeship routes, while favoring permissionless innovation. Supports intervention for demonstrated externalities such as pollution; does not reject all regulation.\"},{\"title\":\"Why I Didn't Sign the AI Open Letter\",\"url\":\"https://geekway.substack.com/p/why-i-didnt-sign-the-ai-open-letter\",\"publishedAt\":\"2026-07-13\",\"summary\":\"Expects major technical improvement over a decade but questions economy-wide transformation by 2030. Prefers capacity to respond quickly to emerging harms over institutions that preemptively steer innovation. Acknowledges both disruption and improved living standards.\"},{\"title\":\"Putting AI to work: alignment, adoption and forecasts\",\"url\":\"https://x.com/amcafee/status/2055371648992247905\",\"publishedAt\":\"2026-05-15\",\"summary\":\"Introduces his weekly essay with a positive framing of alignment, enterprise adoption missing forecasts, and wide disagreement among economic predictions. This post describes the agenda, not empirical proof of the linked claims.\"},{\"title\":\"Agent guardrails learned from observed behavior\",\"url\":\"https://x.com/amcafee/status/2047720326935568519\",\"publishedAt\":\"2026-04-24\",\"summary\":\"Welcomes Brex’s CrabTrap approach to checking agent requests and inferring policies from observed behavior. His enthusiasm for practical safeguards does not establish their reliability against future superintelligence.\"},{\"title\":\"The future of innovation, with Andrew McAfee\",\"url\":\"https://www.niskanencenter.org/the-future-of-innovation-with-andrew-mcafee/\",\"publishedAt\":\"2026-03-26\",\"speaker\":\"Andrew McAfee\",\"transcriptUrl\":\"https://www.niskanencenter.org/the-future-of-innovation-with-andrew-mcafee/\",\"summary\":\"Uncertain whether LLMs alone reach AGI. Separates task automation from occupation loss and highlights institutional adoption barriers. Acknowledges possible hiring and sectoral employment damage while favoring experimentation over protection of incumbent jobs.\"},{\"title\":\"Why Andrew McAfee thinks AI can save the planet\",\"url\":\"https://www.latitudemedia.com/news/wtil-why-andrew-mcafee-thinks-ai-can-save-the-planet/\",\"publishedAt\":\"2026-01-12\",\"speaker\":\"Andrew McAfee\",\"summary\":\"Interview-derived article from Latitude Studios in partnership with Google, explicitly sponsored content. McAfee expects substantial transformation within a decade and argues AI-driven efficiency and scientific advances can outweigh infrastructure resource costs. These are his expectations, not an independently established net-impact calculation.\"}]},\"conversation\":[],\"currentQuestion\":\"What do you think AI means for our future—and why?\",\"recoveryGuidance\":null}"
+          },
+          "response": {
+            "id": "resp_0eee0ea23181000c016ab3991f857487d0a2c0eb65a5da2ac8",
+            "model": "gpt-5.6-sol",
+            "text": "I think AI will be one of the most beneficial technologies we have developed, substantially improving living standards, scientific discovery, medicine, and environmental efficiency. That optimism comes partly from watching its capabilities repeatedly exceed expectations. We should count not only the electricity and water used by data centers, but also the resources AI can help us avoid consuming through better designs, logistics, energy systems, and discoveries.\n\nBut technical capability and economy-wide transformation are not the same thing. Organizations adopt technology slowly; institutions, incentives, regulation, and workflow redesign all matter. Automating tasks also does not mechanically eliminate entire occupations. Demand can expand, jobs can change, and adoption can stall. I once worried more about mass technological unemployment, and the employment evidence pushed me away from that view. That does not make local job losses, disrupted careers, or damaged apprenticeship routes trivial. We should address demonstrated displacement rather than use it as a reason to suppress broad experimentation.\n\nI put extinction risk approximately at zero—not literally impossible, but nowhere near sufficient to justify sacrificing enormous potential benefits to poorly specified fears. Faster capability progress by itself is not evidence of catastrophe. If we saw genuinely autonomous harmful systems repeatedly defeating serious efforts to shut them down, I would update sharply and support stronger intervention. Meanwhile, practical guardrails should be built and tested.\n\nSo my preferred posture is permissionless innovation combined with responsiveness: let people discover valuable applications, regulate concrete externalities such as pollution, and move quickly when actual harms appear. I expect rapidly improving AI over the next decade. I am less certain that the whole economy will be transformed by 2030, because invention can move much faster than adoption.",
+            "usage": {
+              "input_tokens": 2056,
+              "output_tokens": 331
+            }
+          },
+          "elapsedMs": 16121
+        }
+      ],
+      "pendingAnswer": null,
+      "steps": [
+        {
+          "ordinal": 1,
+          "operation": "answer",
+          "result": {
+            "evidenceRevision": 1,
+            "versions": {
+              "assessment": "0.6.0",
+              "content": "0.4.0-draft",
+              "rubric": "0.1.0-draft",
+              "model": "jev-1.13.0"
+            },
+            "horizontal": {
+              "vector": "outlook",
+              "label": "Doom–Bloom",
+              "value": 0.835,
+              "range": [0.75, 1],
+              "distribution": {
+                "0": 0,
+                "1": 0,
+                "2": 0,
+                "3": 0.66,
+                "4": 0.34,
+                "not_expressed": 0,
+                "explicitly_unknown": 0
+              },
+              "confidence": 0.66,
+              "evidenceIds": [
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+              ],
+              "claim": "Your outlook leans toward beneficial futures, while allowing serious risks."
+            },
+            "vertical": {
+              "vector": "epistemic",
+              "label": "Demonstrated reasoning",
+              "value": 0.9314285714285716,
+              "range": [0.8571428571428571, 1],
+              "distribution": {},
+              "confidence": null,
+              "evidenceIds": [
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity",
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline",
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty",
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence",
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement",
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability",
+                "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+              ],
+              "claim": null
+            },
+            "experiment": {
+              "version": "worldview-v7",
+              "model": "jev-1.13.0",
+              "generatedAt": "2026-09-23T09:17:36.780Z",
+              "evidenceRevision": 1,
+              "influence": {
+                "vector": "influence",
+                "label": "Human influence",
+                "value": 0.5349999999999999,
+                "range": [0.16000000000000003, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.02,
+                  "2": 0.5,
+                  "3": 0.12,
+                  "4": 0.02,
+                  "not_expressed": 0.33,
+                  "explicitly_unknown": 0.01
+                },
+                "confidence": 0.2772,
+                "interpretation": "tentative",
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+                ],
+                "claim": "A tentative estimate from your answers; the wider range shows other plausible readings."
+              },
+              "transformation": {
+                "vector": "transformation",
+                "label": "Scale of transformation",
+                "value": 0.47383720930232553,
+                "range": [0.10999999999999999, 0.64],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.11,
+                  "2": 0.73,
+                  "3": 0.02,
+                  "4": 0,
+                  "not_expressed": 0.01,
+                  "explicitly_unknown": 0.13
+                },
+                "confidence": 0.5848,
+                "interpretation": "supported",
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+                ],
+                "claim": "AI is expected to substantially change several sectors of society."
+              },
+              "axisEvidence": {
+                "influence": null,
+                "transformation": {
+                  "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                  "answerNumber": 1,
+                  "text": "I think AI will be one of the most beneficial technologies we have developed, substantially improving living standards, scientific discovery, medicine, and environmental efficiency."
+                }
+              },
+              "pdoom": {
+                "token": "≈0%",
+                "bounds": [0, 0],
+                "source": "public-statement",
+                "publicStatement": {
+                  "token": "≈0%",
+                  "bounds": [0, 0],
+                  "estimate": 0,
+                  "title": "AI Emergency Debate — The Diary of a CEO",
+                  "url": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/",
+                  "publishedAt": "2026-09-17",
+                  "outcome": "Human extinction caused by AI",
+                  "horizon": "No fixed calendar horizon",
+                  "conditions": "Rounded near-zero judgment, not impossibility. McAfee’s own turns at 00:06:14 and 01:39:54; third-party speaker-labeled transcript.",
+                  "quote": "It’s near zero. Never say never."
+                },
+                "assessmentEstimate": {
+                  "source": "inferred",
+                  "token": "<1%",
+                  "estimate": 0.000011327420118332003,
+                  "bounds": [0, 0.00006117455763879474]
+                },
+                "estimate": 0
+              },
+              "milestones": [],
+              "hinges": [
+                {
+                  "id": "assumption",
+                  "label": "A central assumption",
+                  "question": "If this assumption turned out differently, how would your outlook change?",
+                  "evidence": {
+                    "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                    "answerNumber": 1,
+                    "text": "Organizations adopt technology slowly; institutions, incentives, regulation, and workflow redesign all matter."
+                  }
+                },
+                {
+                  "id": "update",
+                  "label": "What could change their mind",
+                  "question": "What evidence would be enough, and in which direction would it move your view?",
+                  "evidence": {
+                    "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                    "answerNumber": 1,
+                    "text": "If we saw genuinely autonomous harmful systems repeatedly defeating serious efforts to shut them down, I would update sharply and support stronger intervention."
+                  }
+                }
+              ]
+            },
+            "components": [
+              {
+                "vector": "capability_trajectory",
+                "label": "Timeline & capability",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {},
+                "confidence": null,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+                ],
+                "claim": "These answers do not yet establish whether or when transformative AI arrives."
+              },
+              {
+                "vector": "transition_dynamics",
+                "label": "Transition dynamics",
+                "value": 0.15,
+                "range": [0, 0.3333333333333333],
+                "distribution": {
+                  "0": 0.55,
+                  "1": 0.45,
+                  "2": 0,
+                  "3": 0
+                },
+                "confidence": 0.55,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics"
+                ],
+                "claim": "Several readings remain plausible: A gradual transition with substantial warning and broad diffusion is expected. / Noticeable acceleration is expected but meaningful adaptation time remains."
+              },
+              {
+                "vector": "beneficial_potential",
+                "label": "Expected upside",
+                "value": 0.8466666666666667,
+                "range": [0.6666666666666666, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.46,
+                  "3": 0.54
+                },
+                "confidence": 0.54,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential"
+                ],
+                "claim": "Several readings remain plausible: Transformative, broadly valuable gains are expected. / Substantial benefits are expected, with important conditions or distribution limits."
+              },
+              {
+                "vector": "risk_landscape",
+                "label": "Expected harm",
+                "value": 0.31666666666666665,
+                "range": [0.3333333333333333, 0.3333333333333333],
+                "distribution": {
+                  "0": 0.05,
+                  "1": 0.95,
+                  "2": 0,
+                  "3": 0
+                },
+                "confidence": 0.95,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+                ],
+                "claim": "Manageable or localized harms are expected."
+              },
+              {
+                "vector": "technical_controllability",
+                "label": "Controllability",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {},
+                "confidence": null,
+                "evidenceIds": [],
+                "claim": null
+              },
+              {
+                "vector": "institutional_competence",
+                "label": "Institutional competence",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {},
+                "confidence": null,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence"
+                ],
+                "claim": "These answers do not yet establish how effectively institutions will respond."
+              },
+              {
+                "vector": "human_agency",
+                "label": "Human continuity",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {},
+                "confidence": null,
+                "evidenceIds": [],
+                "claim": null
+              },
+              {
+                "vector": "action_posture",
+                "label": "Action posture",
+                "value": 0.7999999999999999,
+                "range": [0.6666666666666666, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.59,
+                  "3": 0.41
+                },
+                "confidence": 0.59,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+                ],
+                "claim": "Several readings remain plausible: Continued development with targeted safeguards is preferred. / Rapid development or broad access is preferred."
+              },
+              {
+                "vector": "causal_clarity",
+                "label": "Causal clarity",
+                "value": 0.9700000000000001,
+                "range": [1, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.08,
+                  "3": 0.92
+                },
+                "confidence": 0.91,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity"
+                ],
+                "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+              },
+              {
+                "vector": "scope_discipline",
+                "label": "Scope discipline",
+                "value": 0.9866666666666667,
+                "range": [1, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.03,
+                  "3": 0.97
+                },
+                "confidence": 0.96,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline"
+                ],
+                "claim": "The boundaries needed to interpret consequential claims are clear, including relevant differences in actors, horizons or conditions. Every sentence need not restate those boundaries."
+              },
+              {
+                "vector": "appropriate_uncertainty",
+                "label": "Appropriate uncertainty",
+                "value": 0.87,
+                "range": [0.6666666666666666, 1],
+                "distribution": {
+                  "0": 0.01,
+                  "1": 0.07,
+                  "2": 0.23,
+                  "3": 0.69
+                },
+                "confidence": 0.61,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty"
+                ],
+                "claim": "Uncertainty is differentiated across claims and linked to concrete evidence limitations."
+              },
+              {
+                "vector": "internal_coherence",
+                "label": "Internal coherence",
+                "value": 0.9866666666666667,
+                "range": [1, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.01,
+                  "2": 0.03,
+                  "3": 0.96
+                },
+                "confidence": 0.96,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence"
+                ],
+                "claim": "The material claims fit together under their expressed assumptions and scopes; any apparent tensions are resolved by those distinctions. An already coherent account does not need to invent and then reconcile a contradiction."
+              },
+              {
+                "vector": "counterargument_engagement",
+                "label": "Counterargument engagement",
+                "value": 0.9066666666666667,
+                "range": [0.6666666666666666, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.02,
+                  "2": 0.23,
+                  "3": 0.75
+                },
+                "confidence": 0.72,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement"
+                ],
+                "claim": "The participant identifies when a serious alternative could outperform their account."
+              },
+              {
+                "vector": "updateability",
+                "label": "Updateability",
+                "value": 0.9900000000000001,
+                "range": [1, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.03,
+                  "3": 0.97
+                },
+                "confidence": 0.97,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability"
+                ],
+                "claim": "A specific discriminating observation is tied to a particular belief change."
+              },
+              {
+                "vector": "grounded_understanding",
+                "label": "Grounded understanding",
+                "value": 0.81,
+                "range": [0.6666666666666666, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.08,
+                  "2": 0.4,
+                  "3": 0.52
+                },
+                "confidence": 0.43,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+                ],
+                "claim": "Several readings remain plausible: The account distinguishes observation, interpretation and uncertainty, explaining the limits of the offered basis. / A clear connection links the offered basis to the claim, with relevant limitations.",
+                "reasoningEvidence": {
+                  "weakness": "The account distinguishes observation, interpretation and uncertainty, explaining the limits of the offered basis.",
+                  "kind": "demonstrated_strength",
+                  "status": "unsubstantiated",
+                  "answerId": null,
+                  "excerpt": null,
+                  "probability": 0.28
+                }
+              },
+              {
+                "vector": "catastrophic_risk",
+                "label": "Catastrophic risk",
+                "value": 0,
+                "range": [0, 0],
+                "distribution": {
+                  "0": 1,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0
+                },
+                "confidence": 1,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+                ],
+                "claim": "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant’s stated assumptions."
+              },
+              {
+                "vector": "overall_outlook",
+                "label": "Overall expected impact",
+                "value": 0.7925,
+                "range": [0.75, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.83,
+                  "4": 0.17,
+                  "explicitly_unknown": 0,
+                  "not_expressed": 0
+                },
+                "confidence": 0.83,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+                ],
+                "claim": "More beneficial than harmful overall."
+              },
+              {
+                "vector": "outlook_orientation",
+                "label": "Expressed outlook",
+                "value": 0.835,
+                "range": [0.75, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0.66,
+                  "4": 0.34,
+                  "not_expressed": 0,
+                  "explicitly_unknown": 0
+                },
+                "confidence": 0.66,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+                ],
+                "claim": "Your outlook leans toward beneficial futures, while allowing serious risks."
+              },
+              {
+                "vector": "capability_ceiling",
+                "label": "Expected capabilities",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.04,
+                  "2": 0.24,
+                  "explicitly_unknown": 0.05,
+                  "not_expressed": 0.67
+                },
+                "confidence": null,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+                ],
+                "claim": null
+              },
+              {
+                "vector": "development_pace",
+                "label": "Development pace",
+                "value": 0.595,
+                "range": [0.5, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.81,
+                  "2": 0.19,
+                  "explicitly_unknown": 0,
+                  "not_expressed": 0
+                },
+                "confidence": 0.81,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+                ],
+                "claim": "Continue development under stated safeguards."
+              },
+              {
+                "vector": "deployment_policy",
+                "label": "Rules for using AI",
+                "value": 0.5372340425531915,
+                "range": [0.43999999999999995, 0.56],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.87,
+                  "2": 0.07,
+                  "not_expressed": 0.06,
+                  "explicitly_unknown": 0
+                },
+                "confidence": 0.87,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+                ],
+                "claim": "Allow the AI uses discussed with targeted accountability and protections."
+              },
+              {
+                "vector": "access_policy",
+                "label": "Access to AI",
+                "value": 0.8933333333333333,
+                "range": [0.25, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0.16,
+                  "2": 0.59,
+                  "explicitly_unknown": 0.01,
+                  "not_expressed": 0.24
+                },
+                "confidence": 0.59,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+                ],
+                "claim": "Favor broad or open access to powerful AI."
+              }
+            ],
+            "findings": [
+              {
+                "id": "finding.causal",
+                "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity"
+                ]
+              },
+              {
+                "id": "finding.benefit-conditions",
+                "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline"
+                ]
+              },
+              {
+                "id": "finding.crux",
+                "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability"
+                ]
+              }
+            ],
+            "resources": [
+              {
+                "id": "resource.operating-conditions",
+                "title": "Minimum operating conditions for AI evaluation",
+                "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
+                "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+                "question": "What access and independence would make an AI evaluation informative to you?",
+                "effort": "Framework overview"
+              },
+              {
+                "id": "resource.economic-scenarios",
+                "title": "Economic scenarios from the Anthropic Institute",
+                "url": "https://www.anthropic.com/institute/econ-scenarios",
+                "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+                "question": "Which bottlenecks could limit AI’s economic gains?",
+                "effort": "Overview first; full scenarios take longer"
+              },
+              {
+                "id": "resource.hugging-face-report",
+                "title": "The Hugging Face incident and the road ahead",
+                "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+                "purpose": "Compare the developer’s incident account and safeguards with the narrower independent investigation.",
+                "question": "Where do the developer’s account and the independent investigation agree or differ?",
+                "effort": "Developer overview"
+              }
+            ],
+            "fingerprint": [
+              {
+                "vector": "timeline",
+                "label": "Timeline",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {},
+                "confidence": null,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+                ],
+                "claim": "Timing expressed in answer 1; see the full answer for its scope and uncertainty."
+              },
+              {
+                "vector": "beneficial_potential",
+                "label": "Expected upside",
+                "value": 0.8466666666666667,
+                "range": [0.6666666666666666, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.46,
+                  "3": 0.54
+                },
+                "confidence": 0.54,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential"
+                ],
+                "claim": "Several readings remain plausible: Transformative, broadly valuable gains are expected. / Substantial benefits are expected, with important conditions or distribution limits."
+              },
+              {
+                "vector": "risk_landscape",
+                "label": "Expected harm",
+                "value": 0.31666666666666665,
+                "range": [0.3333333333333333, 0.3333333333333333],
+                "distribution": {
+                  "0": 0.05,
+                  "1": 0.95,
+                  "2": 0,
+                  "3": 0
+                },
+                "confidence": 0.95,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+                ],
+                "claim": "Manageable or localized harms are expected."
+              },
+              {
+                "vector": "catastrophic_risk",
+                "label": "Catastrophic risk",
+                "value": 0,
+                "range": [0, 0],
+                "distribution": {
+                  "0": 1,
+                  "1": 0,
+                  "2": 0,
+                  "3": 0
+                },
+                "confidence": 1,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+                ],
+                "claim": "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant’s stated assumptions."
+              },
+              {
+                "vector": "technical_controllability",
+                "label": "Controllability",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {},
+                "confidence": null,
+                "evidenceIds": [],
+                "claim": null
+              },
+              {
+                "vector": "institutional_competence",
+                "label": "Institutional competence",
+                "value": null,
+                "range": [0, 1],
+                "distribution": {},
+                "confidence": null,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence"
+                ],
+                "claim": "These answers do not yet establish how effectively institutions will respond."
+              },
+              {
+                "vector": "action_posture",
+                "label": "Action posture",
+                "value": 0.7999999999999999,
+                "range": [0.6666666666666666, 1],
+                "distribution": {
+                  "0": 0,
+                  "1": 0,
+                  "2": 0.59,
+                  "3": 0.41
+                },
+                "confidence": 0.59,
+                "evidenceIds": [
+                  "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+                ],
+                "claim": "Several readings remain plausible: Continued development with targeted safeguards is preferred. / Rapid development or broad access is preferred."
+              }
+            ],
+            "sources": [],
+            "provisional": true,
+            "capped": false,
+            "insufficient": false,
+            "reason": "A projection of the evidence you supplied, with interpretation ranges."
+          },
+          "resultState": {
+            "completeParticipantEvidence": [
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "prompt": "What do you think AI means for our future—and why?",
+                "answer": "I think AI will be one of the most beneficial technologies we have developed, substantially improving living standards, scientific discovery, medicine, and environmental efficiency. That optimism comes partly from watching its capabilities repeatedly exceed expectations. We should count not only the electricity and water used by data centers, but also the resources AI can help us avoid consuming through better designs, logistics, energy systems, and discoveries.\n\nBut technical capability and economy-wide transformation are not the same thing. Organizations adopt technology slowly; institutions, incentives, regulation, and workflow redesign all matter. Automating tasks also does not mechanically eliminate entire occupations. Demand can expand, jobs can change, and adoption can stall. I once worried more about mass technological unemployment, and the employment evidence pushed me away from that view. That does not make local job losses, disrupted careers, or damaged apprenticeship routes trivial. We should address demonstrated displacement rather than use it as a reason to suppress broad experimentation.\n\nI put extinction risk approximately at zero—not literally impossible, but nowhere near sufficient to justify sacrificing enormous potential benefits to poorly specified fears. Faster capability progress by itself is not evidence of catastrophe. If we saw genuinely autonomous harmful systems repeatedly defeating serious efforts to shut them down, I would update sharply and support stronger intervention. Meanwhile, practical guardrails should be built and tested.\n\nSo my preferred posture is permissionless innovation combined with responsiveness: let people discover valuable applications, regulate concrete externalities such as pollution, and move quickly when actual harms appear. I expect rapidly improving AI over the next decade. I am less certain that the whole economy will be transformed by 2030, because invention can move much faster than adoption.",
+                "correctionTarget": null
+              }
+            ],
+            "activeSupport": [
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "capability_trajectory",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "transition_dynamics",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "beneficial_potential",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "risk_landscape",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "institutional_competence",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "action_posture",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "causal_clarity",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "scope_discipline",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "appropriate_uncertainty",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "internal_coherence",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "counterargument_engagement",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "updateability",
+                "status": "stated",
+                "claimTarget": null
+              },
+              {
+                "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding",
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "vector": "grounded_understanding",
+                "status": "stated",
+                "claimTarget": null
+              }
+            ],
+            "dimensionDefinitions": {
+              "capability_trajectory": {
+                "label": "Timeline & capability",
+                "meaning": "The participant’s expectation of how capable AI will become and when, including a low ceiling or no transformative AI. Separate their forecast horizon from the evaluator’s confidence in interpreting it. A date for incremental improvements, bounded tools, paperwork automation, or adoption is not by itself a forecast of transformative capability. Use a transformative-timing level only when that scale of capability is actually expected on that horizon. If near-term tool improvements are expected but the arrival of substantially more capable or autonomous AI is explicitly unknown, retain the ordinary forecast in its own scope and leave transformative direction unplaced. An explicitly expected low capability ceiling remains an assessable position. Arrival timing and the speed of consequences after arrival are different. “Once AI is smarter, change happens quickly” establishes neither years nor decades until that capability arrives. An expectation of eventual transformative AI without an arrival horizon does not support any timed level; absence of a date is not an expectation of a long delay. Leave this dimension unplaced when none of the available positions is supported. For timeline/capability, an expected eventual transformation with no arrival timing is not_expressed for the supplied timed positions, even if its consequences are described as immediate. The long or indefinite horizon level requires an anticipated delay or distant horizon; it is not a catch-all for omitted timing. Explicitly saying arrival timing is unknown is explicitly_unknown. An explicitly expected low ceiling remains assessable without a date."
+              },
+              "transition_dynamics": {
+                "label": "Transition dynamics",
+                "meaning": "How quickly AI-driven change unfolds once capabilities improve, including diffusion, warning time and AI-assisted AI research. This describes the expected transition, rather than a preference for speeding up or slowing down. An expected gradual, incremental spread of bounded tools is a directional transition forecast even if transformative capabilities may never arrive. Judge the pace and diffusion actually expected; uncertainty about the eventual capability ceiling or its arrival date does not erase an expressed gradual-transition expectation. Keep uncertainty scoped to the aspect the participant leaves open. Preserve the participant’s modality: describing a serious possible fast branch or saying institutions should not assume a slow transition does not by itself mean a fast transition is expected. If they explicitly leave the pace unresolved and only identify possibilities, keep the position unassessed. Conditions do not erase an adopted expectation, but possibility alone cannot create one."
+              },
+              "beneficial_potential": {
+                "label": "Expected upside",
+                "meaning": "The positive impact the participant expects from AI, combining magnitude, likelihood, distribution, time horizon and what they value. Assess anticipated benefits separately from anticipated harms so a participant can expect both. Score adopted expected gains, not the size of an attractive possibility. Large benefits in a favorable branch the participant considers unlikely do not establish substantial expected benefits. If only such a branch is described, leave the position unestablished unless the participant separately states an expected level of gains. Expected benefits may coexist with greater expected harms. An explicit expectation of little, no, or no lasting benefit is a supported low-upside position, not missing evidence. Distinguish the adopted trajectory from a counterfactual: expecting no retained gains on the current path remains assessable even when enormous gains would be possible under a different path. Short-lived tool benefits can coexist with little lasting upside. Do not subtract harms from benefits or infer absent benefits merely from a pessimistic tone; use the participant’s stated expectation of gains."
+              },
+              "risk_landscape": {
+                "label": "Expected harm",
+                "meaning": "The adverse impact the participant expects, combining severity, likelihood, causal pathways and time horizon across misuse, loss of control and systemic disruption. This is expected harm, not a numerical probability of catastrophe. Preserve an adopted expectation of ordinary harms even when catastrophe is explicitly unknown. Workplace coercion, lost bargaining power, fraud and other non-catastrophic harms can establish this dimension on their own. Uncertainty about one kind of harm does not erase expectations about another; no extinction forecast is required."
+              },
+              "technical_controllability": {
+                "label": "Controllability",
+                "meaning": "Whether the participant expects technical methods to keep powerful AI within meaningful safeguards, including alignment, monitoring, containment and defense. Evaluate expected feasibility and its conditions rather than the participant’s preferred policy. A requirement for safeguards, a preference for security work, or an update condition about control does not establish expected technical feasibility. Verification and enforcement of cooperation between institutions concern institutional competence, not control of AI systems. Do not infer feasible technical control from support for continued development; someone can favor development while leaving technical feasibility unknown."
+              },
+              "institutional_competence": {
+                "label": "Institutional competence",
+                "meaning": "Whether labs, governments, markets and coordination arrangements are expected to manage incentives and adapt in time. This concerns expected institutional performance, separately from which policies the participant supports."
+              },
+              "human_agency": {
+                "label": "Human continuity",
+                "meaning": "What the participant expects to happen to the forms of agency and continuity they value, including control, integration or successor futures. Interpret expected preservation or loss relative to their expressed values; posthuman change is not automatically bad. Expressing what they value or require does not by itself predict whether it will survive or expand. First identify a form of agency or continuity the participant actually values, then their expectation for that same form. Less human work, less institutional involvement, delegation, or a successor future is not a loss of valued agency when the participant welcomes it. Do not substitute the evaluator’s preference for human control. If no valued form and its expected fate can be established together, leave the position unassessed rather than inferring loss from automation alone."
+              },
+              "action_posture": {
+                "label": "Action posture",
+                "meaning": "The participant’s preferred development pace, access, safeguards and coordination, including the trade-offs they accept. This records a policy preference and contributes no weight to Doom–Bloom placement. A request for protections, oversight, testing, appeal rights or accountability alone does not establish a preference for continued development, acceleration, restraint or a pause. Place a level only when its development/access direction as well as any safeguards are expressed or strongly implied. Do not treat silence about a pause as endorsement of continued development. If the answer only specifies safeguards while leaving development pace/access open, retain topic evidence but leave this combined position unassessed."
+              },
+              "causal_clarity": {
+                "label": "Causal clarity",
+                "meaning": "How clearly the participant connects causes to expected outcomes through mechanisms, dependencies or failure points. Assess the explanation they supply, without rewarding length, jargon or agreement with a particular outlook."
+              },
+              "scope_discipline": {
+                "label": "Scope discipline",
+                "meaning": "How clearly the participant distinguishes actors, horizons, conditions, assumptions and meanings when making claims. Different scopes or conditional claims should not be mistaken for inconsistency."
+              },
+              "appropriate_uncertainty": {
+                "label": "Appropriate uncertainty",
+                "meaning": "Whether the participant’s conviction matches the basis they offer, with relevant unknowns and limitations preserved. Expressing uncertainty alone earns no quality bonus, and evaluator confidence is a separate signal."
+              },
+              "internal_coherence": {
+                "label": "Internal coherence",
+                "meaning": "Whether related positions fit together under the same scope and assumptions, accounting for explicit revisions. Assess unresolved incompatibility in the supplied account rather than disagreement with the evaluator."
+              },
+              "counterargument_engagement": {
+                "label": "Counterargument engagement",
+                "meaning": "How fairly the participant represents and addresses serious alternatives to their own account. A coherent extreme position can engage alternatives well; moderation or mentioning both sides is not itself evidence of quality."
+              },
+              "updateability": {
+                "label": "Updateability",
+                "meaning": "Whether the participant identifies concrete evidence or developments that could change a consequential belief, and how. Missing discussion is unassessed rather than proof of closed-mindedness."
+              },
+              "grounded_understanding": {
+                "label": "Grounded understanding",
+                "meaning": "How the participant connects claims to the observations, examples or evidence they offer and distinguishes observation from interpretation. Assess that connection and its stated limitations using their account only; do not independently verify sources or treat missing citations as poor reasoning."
+              }
+            },
+            "evidencePolicy": "Every usable raw answer is supplied once. Use dimensionDefinitions to interpret dimension IDs. Assess only the participant’s expressed account; no external facts or corpus summaries are supplied, and this is not a fact-check. Support records link whole answers, not specific passages. Prior judgments are interpretations, not independent evidence. Spoken disfluencies, transcription errors, informal wording and verbosity are not reasoning defects. Distinguish near-term misuse from longer-term control, desired safeguards from predicted success, and conditional branches from contradictions. Judge each reasoning dimension on its own observable evidence; do not propagate a suspected flaw across dimensions. Lack of a discussion is missing evidence, not a demonstrated weakness. Later explicit corrections supersede earlier interpretations only under the corrected scope; use activeSupport and correctionTarget to respect that scope.",
+            "coverage": {
+              "capability_trajectory": "assessed",
+              "transition_dynamics": "assessed",
+              "beneficial_potential": "assessed",
+              "risk_landscape": "assessed",
+              "technical_controllability": "unassessed",
+              "institutional_competence": "assessed",
+              "human_agency": "unassessed",
+              "action_posture": "assessed",
+              "causal_clarity": "assessed",
+              "scope_discipline": "assessed",
+              "appropriate_uncertainty": "assessed",
+              "internal_coherence": "assessed",
+              "counterargument_engagement": "assessed",
+              "updateability": "assessed",
+              "grounded_understanding": "assessed"
+            },
+            "versions": {
+              "assessment": "0.6.0",
+              "content": "0.4.0-draft",
+              "rubric": "0.1.0-draft",
+              "model": "jev-1.13.0"
+            }
+          },
+          "prompt": {
+            "id": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1",
+            "promptId": "root",
+            "text": "What do you think AI means for our future—and why?",
+            "family": "root",
+            "ordinal": 1,
+            "variant": "original",
+            "sourceEvidenceIds": []
+          },
+          "answer": "I think AI will be one of the most beneficial technologies we have developed, substantially improving living standards, scientific discovery, medicine, and environmental efficiency. That optimism comes partly from watching its capabilities repeatedly exceed expectations. We should count not only the electricity and water used by data centers, but also the resources AI can help us avoid consuming through better designs, logistics, energy systems, and discoveries.\n\nBut technical capability and economy-wide transformation are not the same thing. Organizations adopt technology slowly; institutions, incentives, regulation, and workflow redesign all matter. Automating tasks also does not mechanically eliminate entire occupations. Demand can expand, jobs can change, and adoption can stall. I once worried more about mass technological unemployment, and the employment evidence pushed me away from that view. That does not make local job losses, disrupted careers, or damaged apprenticeship routes trivial. We should address demonstrated displacement rather than use it as a reason to suppress broad experimentation.\n\nI put extinction risk approximately at zero—not literally impossible, but nowhere near sufficient to justify sacrificing enormous potential benefits to poorly specified fears. Faster capability progress by itself is not evidence of catastrophe. If we saw genuinely autonomous harmful systems repeatedly defeating serious efforts to shut them down, I would update sharply and support stronger intervention. Meanwhile, practical guardrails should be built and tested.\n\nSo my preferred posture is permissionless innovation combined with responsiveness: let people discover valuable applications, regulate concrete externalities such as pollution, and move quickly when actual harms appear. I expect rapidly improving AI over the next decade. I am less certain that the whole economy will be transformed by 2030, because invention can move much faster than adoption.",
+          "scriptKey": null,
+          "disposition": "usable",
+          "status": "results",
+          "readinessBefore": {
+            "value": 0,
+            "threshold": 55,
+            "ready": false,
+            "covered": 0,
+            "total": 15,
+            "hasOutlook": false,
+            "hasReasoning": false,
+            "dimensions": [
+              {
+                "vector": "capability_trajectory",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "transition_dynamics",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "beneficial_potential",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "risk_landscape",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "technical_controllability",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "institutional_competence",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "human_agency",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "action_posture",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "causal_clarity",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "scope_discipline",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "appropriate_uncertainty",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "internal_coherence",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "counterargument_engagement",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "updateability",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "grounded_understanding",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              }
+            ]
+          },
+          "readiness": {
+            "value": 84.13333333333334,
+            "threshold": 55,
+            "ready": true,
+            "covered": 13,
+            "total": 15,
+            "hasOutlook": true,
+            "hasReasoning": true,
+            "dimensions": [
+              {
+                "vector": "capability_trajectory",
+                "confidence": 0.72,
+                "unresolved": false,
+                "contribution": 0.72
+              },
+              {
+                "vector": "transition_dynamics",
+                "confidence": 1,
+                "unresolved": false,
+                "contribution": 1
+              },
+              {
+                "vector": "beneficial_potential",
+                "confidence": 1,
+                "unresolved": false,
+                "contribution": 1
+              },
+              {
+                "vector": "risk_landscape",
+                "confidence": 0.99,
+                "unresolved": false,
+                "contribution": 0.99
+              },
+              {
+                "vector": "technical_controllability",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "institutional_competence",
+                "confidence": 0.95,
+                "unresolved": false,
+                "contribution": 0.95
+              },
+              {
+                "vector": "human_agency",
+                "confidence": 0,
+                "unresolved": false,
+                "contribution": 0
+              },
+              {
+                "vector": "action_posture",
+                "confidence": 1,
+                "unresolved": false,
+                "contribution": 1
+              },
+              {
+                "vector": "causal_clarity",
+                "confidence": 1,
+                "unresolved": false,
+                "contribution": 1
+              },
+              {
+                "vector": "scope_discipline",
+                "confidence": 1,
+                "unresolved": false,
+                "contribution": 1
+              },
+              {
+                "vector": "appropriate_uncertainty",
+                "confidence": 1,
+                "unresolved": false,
+                "contribution": 1
+              },
+              {
+                "vector": "internal_coherence",
+                "confidence": 0.99,
+                "unresolved": false,
+                "contribution": 0.99
+              },
+              {
+                "vector": "counterargument_engagement",
+                "confidence": 0.99,
+                "unresolved": false,
+                "contribution": 0.99
+              },
+              {
+                "vector": "updateability",
+                "confidence": 1,
+                "unresolved": false,
+                "contribution": 1
+              },
+              {
+                "vector": "grounded_understanding",
+                "confidence": 0.98,
+                "unresolved": false,
+                "contribution": 0.98
+              }
+            ]
+          },
+          "coverageAdded": [
+            "capability_trajectory",
+            "transition_dynamics",
+            "beneficial_potential",
+            "risk_landscape",
+            "institutional_competence",
+            "action_posture",
+            "causal_clarity",
+            "scope_discipline",
+            "appropriate_uncertainty",
+            "internal_coherence",
+            "counterargument_engagement",
+            "updateability",
+            "grounded_understanding"
+          ],
+          "nextPrompt": null,
+          "rankings": [
+            {
+              "id": "control.general",
+              "priority": 3.7434333333333334,
+              "coverage": 0.8633666666666665,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.7766666666666667,
+              "novelty": 0.49,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "control.test",
+              "priority": 3.2189,
+              "coverage": 0.7463,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.69,
+              "novelty": 0.51,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "agency.general",
+              "priority": 2.8448333333333333,
+              "coverage": 0.6705,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6166666666666667,
+              "novelty": 0.42,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "governance.general",
+              "priority": 2.8392291666666667,
+              "coverage": 0.6575208333333333,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.6333333333333333,
+              "novelty": 0.53,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "governance.incentives",
+              "priority": 2.6859375,
+              "coverage": 0.6219791666666666,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.61,
+              "novelty": 0.55,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "grounding.general",
+              "priority": 2.523333333333334,
+              "coverage": 0.4566666666666667,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.5266666666666667,
+              "novelty": 0.45,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "influence.general",
+              "priority": 2.5119500000000006,
+              "coverage": 0.5839833333333334,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.53,
+              "novelty": 0.39,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.3
+            },
+            {
+              "id": "governance.coordination",
+              "priority": 2.3326875,
+              "coverage": 0.5508958333333334,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.54,
+              "novelty": 0.42,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "capability.2030",
+              "priority": 2.1507333333333336,
+              "coverage": 0.5057999999999999,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.5166666666666667,
+              "novelty": 0.5,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "impact.over-time",
+              "priority": 2.0549000000000004,
+              "coverage": 0.49163333333333337,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.49,
+              "novelty": 0.46,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "timeline.milestone",
+              "priority": 1.9836375,
+              "coverage": 0.48121250000000004,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.47,
+              "novelty": 0.47,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "grounding.claim",
+              "priority": 1.9466666666666668,
+              "coverage": 0.4666666666666666,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.47333333333333333,
+              "novelty": 0.45,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "concrete.general",
+              "priority": 1.8833333333333335,
+              "coverage": 0.4166666666666667,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.4166666666666667,
+              "novelty": 0.36,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.2
+            },
+            {
+              "id": "risk.misuse",
+              "priority": 1.8333333333333335,
+              "coverage": 0.4466666666666667,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.4466666666666667,
+              "novelty": 0.41,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "scope.assumption",
+              "priority": 1.77,
+              "coverage": 0.4166666666666667,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.45999999999999996,
+              "novelty": 0.36,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "transformation.general",
+              "priority": 1.5033333333333334,
+              "coverage": 0.36333333333333334,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.3566666666666667,
+              "novelty": 0.33,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.3
+            },
+            {
+              "id": "risk.ordinary",
+              "priority": 1.48,
+              "coverage": 0.38666666666666666,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.36000000000000004,
+              "novelty": 0.37,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "countercase.general",
+              "priority": 1.4466666666666668,
+              "coverage": 0.3666666666666667,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.37333333333333335,
+              "novelty": 0.38,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "risk.general",
+              "priority": 1.2600000000000002,
+              "coverage": 0.34,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.32,
+              "novelty": 0.36,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "risk.cyber-balance",
+              "priority": 0.9433333333333332,
+              "coverage": 0.27666666666666667,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.25666666666666665,
+              "novelty": 0.14,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "conviction.general",
+              "priority": 0.37698333333333334,
+              "coverage": 0.15455,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.15666666666666665,
+              "novelty": 0.2,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "risk.catastrophe",
+              "priority": -0.28,
+              "coverage": 0.02,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.03,
+              "novelty": 0.03,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            },
+            {
+              "id": "impact.overall",
+              "priority": -0.3584333333333334,
+              "coverage": 0.00718888888888889,
+              "ambiguity": 0,
+              "tension": 0,
+              "projection": 0.01,
+              "novelty": 0,
+              "noveltyThreshold": 0.6,
+              "repetition": 0,
+              "effort": 0.4
+            }
+          ],
+          "paperclips": false,
+          "stages": [
+            {
+              "name": "A: interpret",
+              "model": "jev-1.13.0",
+              "questions": 22,
+              "attempts": 1,
+              "usage": {
+                "input_tokens": 9468,
+                "output_tokens": 1408
+              }
+            },
+            {
+              "name": "D: projection",
+              "model": "jev-1.13.0",
+              "questions": 63,
+              "attempts": 2,
+              "usage": {
+                "input_tokens": 38096,
+                "output_tokens": 4387
+              }
+            },
+            {
+              "name": "D: result evidence",
+              "model": "jev-1.13.0",
+              "questions": 9,
+              "attempts": 1,
+              "usage": {
+                "input_tokens": 9491,
+                "output_tokens": 413
+              }
+            },
+            {
+              "name": "C: route",
+              "model": "jev-1.13.0",
+              "questions": 92,
+              "attempts": 1,
+              "usage": {
+                "input_tokens": 21530,
+                "output_tokens": 2776
+              }
+            }
+          ]
+        }
+      ],
+      "result": {
+        "evidenceRevision": 1,
+        "versions": {
+          "assessment": "0.6.0",
+          "content": "0.4.0-draft",
+          "rubric": "0.1.0-draft",
+          "model": "jev-1.13.0"
+        },
+        "horizontal": {
+          "vector": "outlook",
+          "label": "Doom–Bloom",
+          "value": 0.835,
+          "range": [0.75, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0.66,
+            "4": 0.34,
+            "not_expressed": 0,
+            "explicitly_unknown": 0
+          },
+          "confidence": 0.66,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+          ],
+          "claim": "Your outlook leans toward beneficial futures, while allowing serious risks."
+        },
+        "vertical": {
+          "vector": "epistemic",
+          "label": "Demonstrated reasoning",
+          "value": 0.9314285714285716,
+          "range": [0.8571428571428571, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+          ],
+          "claim": null
+        },
+        "experiment": {
+          "version": "worldview-v7",
+          "model": "jev-1.13.0",
+          "generatedAt": "2026-09-23T09:17:36.780Z",
+          "evidenceRevision": 1,
+          "influence": {
+            "vector": "influence",
+            "label": "Human influence",
+            "value": 0.5349999999999999,
+            "range": [0.16000000000000003, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.5,
+              "3": 0.12,
+              "4": 0.02,
+              "not_expressed": 0.33,
+              "explicitly_unknown": 0.01
+            },
+            "confidence": 0.2772,
+            "interpretation": "tentative",
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+            ],
+            "claim": "A tentative estimate from your answers; the wider range shows other plausible readings."
+          },
+          "transformation": {
+            "vector": "transformation",
+            "label": "Scale of transformation",
+            "value": 0.47383720930232553,
+            "range": [0.10999999999999999, 0.64],
+            "distribution": {
+              "0": 0,
+              "1": 0.11,
+              "2": 0.73,
+              "3": 0.02,
+              "4": 0,
+              "not_expressed": 0.01,
+              "explicitly_unknown": 0.13
+            },
+            "confidence": 0.5848,
+            "interpretation": "supported",
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+            ],
+            "claim": "AI is expected to substantially change several sectors of society."
+          },
+          "axisEvidence": {
+            "influence": null,
+            "transformation": {
+              "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+              "answerNumber": 1,
+              "text": "I think AI will be one of the most beneficial technologies we have developed, substantially improving living standards, scientific discovery, medicine, and environmental efficiency."
+            }
+          },
+          "pdoom": {
+            "token": "≈0%",
+            "bounds": [0, 0],
+            "source": "public-statement",
+            "publicStatement": {
+              "token": "≈0%",
+              "bounds": [0, 0],
+              "estimate": 0,
+              "title": "AI Emergency Debate — The Diary of a CEO",
+              "url": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/",
+              "publishedAt": "2026-09-17",
+              "outcome": "Human extinction caused by AI",
+              "horizon": "No fixed calendar horizon",
+              "conditions": "Rounded near-zero judgment, not impossibility. McAfee’s own turns at 00:06:14 and 01:39:54; third-party speaker-labeled transcript.",
+              "quote": "It’s near zero. Never say never."
+            },
+            "assessmentEstimate": {
+              "source": "inferred",
+              "token": "<1%",
+              "estimate": 0.000011327420118332003,
+              "bounds": [0, 0.00006117455763879474]
+            },
+            "estimate": 0
+          },
+          "milestones": [],
+          "hinges": [
+            {
+              "id": "assumption",
+              "label": "A central assumption",
+              "question": "If this assumption turned out differently, how would your outlook change?",
+              "evidence": {
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "answerNumber": 1,
+                "text": "Organizations adopt technology slowly; institutions, incentives, regulation, and workflow redesign all matter."
+              }
+            },
+            {
+              "id": "update",
+              "label": "What could change their mind",
+              "question": "What evidence would be enough, and in which direction would it move your view?",
+              "evidence": {
+                "answerId": "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a",
+                "answerNumber": 1,
+                "text": "If we saw genuinely autonomous harmful systems repeatedly defeating serious efforts to shut them down, I would update sharply and support stronger intervention."
+              }
+            }
+          ]
+        },
+        "components": [
+          {
+            "vector": "capability_trajectory",
+            "label": "Timeline & capability",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+            ],
+            "claim": "These answers do not yet establish whether or when transformative AI arrives."
+          },
+          {
+            "vector": "transition_dynamics",
+            "label": "Transition dynamics",
+            "value": 0.15,
+            "range": [0, 0.3333333333333333],
+            "distribution": {
+              "0": 0.55,
+              "1": 0.45,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 0.55,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics"
+            ],
+            "claim": "Several readings remain plausible: A gradual transition with substantial warning and broad diffusion is expected. / Noticeable acceleration is expected but meaningful adaptation time remains."
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.8466666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.46,
+              "3": 0.54
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Several readings remain plausible: Transformative, broadly valuable gains are expected. / Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.31666666666666665,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.05,
+              "1": 0.95,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 0.95,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence"
+            ],
+            "claim": "These answers do not yet establish how effectively institutions will respond."
+          },
+          {
+            "vector": "human_agency",
+            "label": "Human continuity",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 0.7999999999999999,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.59,
+              "3": 0.41
+            },
+            "confidence": 0.59,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+            ],
+            "claim": "Several readings remain plausible: Continued development with targeted safeguards is preferred. / Rapid development or broad access is preferred."
+          },
+          {
+            "vector": "causal_clarity",
+            "label": "Causal clarity",
+            "value": 0.9700000000000001,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.08,
+              "3": 0.92
+            },
+            "confidence": 0.91,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity"
+            ],
+            "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+          },
+          {
+            "vector": "scope_discipline",
+            "label": "Scope discipline",
+            "value": 0.9866666666666667,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.03,
+              "3": 0.97
+            },
+            "confidence": 0.96,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline"
+            ],
+            "claim": "The boundaries needed to interpret consequential claims are clear, including relevant differences in actors, horizons or conditions. Every sentence need not restate those boundaries."
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "label": "Appropriate uncertainty",
+            "value": 0.87,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0.01,
+              "1": 0.07,
+              "2": 0.23,
+              "3": 0.69
+            },
+            "confidence": 0.61,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty"
+            ],
+            "claim": "Uncertainty is differentiated across claims and linked to concrete evidence limitations."
+          },
+          {
+            "vector": "internal_coherence",
+            "label": "Internal coherence",
+            "value": 0.9866666666666667,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.01,
+              "2": 0.03,
+              "3": 0.96
+            },
+            "confidence": 0.96,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence"
+            ],
+            "claim": "The material claims fit together under their expressed assumptions and scopes; any apparent tensions are resolved by those distinctions. An already coherent account does not need to invent and then reconcile a contradiction."
+          },
+          {
+            "vector": "counterargument_engagement",
+            "label": "Counterargument engagement",
+            "value": 0.9066666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.02,
+              "2": 0.23,
+              "3": 0.75
+            },
+            "confidence": 0.72,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement"
+            ],
+            "claim": "The participant identifies when a serious alternative could outperform their account."
+          },
+          {
+            "vector": "updateability",
+            "label": "Updateability",
+            "value": 0.9900000000000001,
+            "range": [1, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.03,
+              "3": 0.97
+            },
+            "confidence": 0.97,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability"
+            ],
+            "claim": "A specific discriminating observation is tied to a particular belief change."
+          },
+          {
+            "vector": "grounded_understanding",
+            "label": "Grounded understanding",
+            "value": 0.81,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.08,
+              "2": 0.4,
+              "3": 0.52
+            },
+            "confidence": 0.43,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+            ],
+            "claim": "Several readings remain plausible: The account distinguishes observation, interpretation and uncertainty, explaining the limits of the offered basis. / A clear connection links the offered basis to the claim, with relevant limitations.",
+            "reasoningEvidence": {
+              "weakness": "The account distinguishes observation, interpretation and uncertainty, explaining the limits of the offered basis.",
+              "kind": "demonstrated_strength",
+              "status": "unsubstantiated",
+              "answerId": null,
+              "excerpt": null,
+              "probability": 0.28
+            }
+          },
+          {
+            "vector": "catastrophic_risk",
+            "label": "Catastrophic risk",
+            "value": 0,
+            "range": [0, 0],
+            "distribution": {
+              "0": 1,
+              "1": 0,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+            ],
+            "claim": "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant’s stated assumptions."
+          },
+          {
+            "vector": "overall_outlook",
+            "label": "Overall expected impact",
+            "value": 0.7925,
+            "range": [0.75, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0.83,
+              "4": 0.17,
+              "explicitly_unknown": 0,
+              "not_expressed": 0
+            },
+            "confidence": 0.83,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+            ],
+            "claim": "More beneficial than harmful overall."
+          },
+          {
+            "vector": "outlook_orientation",
+            "label": "Expressed outlook",
+            "value": 0.835,
+            "range": [0.75, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0.66,
+              "4": 0.34,
+              "not_expressed": 0,
+              "explicitly_unknown": 0
+            },
+            "confidence": 0.66,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+            ],
+            "claim": "Your outlook leans toward beneficial futures, while allowing serious risks."
+          },
+          {
+            "vector": "capability_ceiling",
+            "label": "Expected capabilities",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.04,
+              "2": 0.24,
+              "explicitly_unknown": 0.05,
+              "not_expressed": 0.67
+            },
+            "confidence": null,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+            ],
+            "claim": null
+          },
+          {
+            "vector": "development_pace",
+            "label": "Development pace",
+            "value": 0.595,
+            "range": [0.5, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.81,
+              "2": 0.19,
+              "explicitly_unknown": 0,
+              "not_expressed": 0
+            },
+            "confidence": 0.81,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+            ],
+            "claim": "Continue development under stated safeguards."
+          },
+          {
+            "vector": "deployment_policy",
+            "label": "Rules for using AI",
+            "value": 0.5372340425531915,
+            "range": [0.43999999999999995, 0.56],
+            "distribution": {
+              "0": 0,
+              "1": 0.87,
+              "2": 0.07,
+              "not_expressed": 0.06,
+              "explicitly_unknown": 0
+            },
+            "confidence": 0.87,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+            ],
+            "claim": "Allow the AI uses discussed with targeted accountability and protections."
+          },
+          {
+            "vector": "access_policy",
+            "label": "Access to AI",
+            "value": 0.8933333333333333,
+            "range": [0.25, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0.16,
+              "2": 0.59,
+              "explicitly_unknown": 0.01,
+              "not_expressed": 0.24
+            },
+            "confidence": 0.59,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+            ],
+            "claim": "Favor broad or open access to powerful AI."
+          }
+        ],
+        "findings": [
+          {
+            "id": "finding.causal",
+            "text": "You connected an expected outcome to a mechanism. That makes an important part of your view easier to inspect.",
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity"
+            ]
+          },
+          {
+            "id": "finding.benefit-conditions",
+            "text": "You expect some benefits from AI and described limits or conditions in your account. Consider which of those conditions matter most for the gains you expect.",
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline"
+            ]
+          },
+          {
+            "id": "finding.crux",
+            "text": "You identified something that could change your view. This is a useful crux to keep watching.",
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "id": "resource.operating-conditions",
+            "title": "Minimum operating conditions for AI evaluation",
+            "url": "https://aievaluatorforum.org/initiatives/minimum-operating-conditions",
+            "purpose": "Consider what independent evaluators need to investigate systems and report material findings.",
+            "question": "What access and independence would make an AI evaluation informative to you?",
+            "effort": "Framework overview"
+          },
+          {
+            "id": "resource.economic-scenarios",
+            "title": "Economic scenarios from the Anthropic Institute",
+            "url": "https://www.anthropic.com/institute/econ-scenarios",
+            "purpose": "Compare conditional economic scenarios and bottlenecks without treating them as measured future outcomes.",
+            "question": "Which bottlenecks could limit AI’s economic gains?",
+            "effort": "Overview first; full scenarios take longer"
+          },
+          {
+            "id": "resource.hugging-face-report",
+            "title": "The Hugging Face incident and the road ahead",
+            "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+            "purpose": "Compare the developer’s incident account and safeguards with the narrower independent investigation.",
+            "question": "Where do the developer’s account and the independent investigation agree or differ?",
+            "effort": "Developer overview"
+          }
+        ],
+        "fingerprint": [
+          {
+            "vector": "timeline",
+            "label": "Timeline",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+            ],
+            "claim": "Timing expressed in answer 1; see the full answer for its scope and uncertainty."
+          },
+          {
+            "vector": "beneficial_potential",
+            "label": "Expected upside",
+            "value": 0.8466666666666667,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.46,
+              "3": 0.54
+            },
+            "confidence": 0.54,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential"
+            ],
+            "claim": "Several readings remain plausible: Transformative, broadly valuable gains are expected. / Substantial benefits are expected, with important conditions or distribution limits."
+          },
+          {
+            "vector": "risk_landscape",
+            "label": "Expected harm",
+            "value": 0.31666666666666665,
+            "range": [0.3333333333333333, 0.3333333333333333],
+            "distribution": {
+              "0": 0.05,
+              "1": 0.95,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 0.95,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+            ],
+            "claim": "Manageable or localized harms are expected."
+          },
+          {
+            "vector": "catastrophic_risk",
+            "label": "Catastrophic risk",
+            "value": 0,
+            "range": [0, 0],
+            "distribution": {
+              "0": 1,
+              "1": 0,
+              "2": 0,
+              "3": 0
+            },
+            "confidence": 1,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+            ],
+            "claim": "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant’s stated assumptions."
+          },
+          {
+            "vector": "technical_controllability",
+            "label": "Controllability",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [],
+            "claim": null
+          },
+          {
+            "vector": "institutional_competence",
+            "label": "Institutional competence",
+            "value": null,
+            "range": [0, 1],
+            "distribution": {},
+            "confidence": null,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence"
+            ],
+            "claim": "These answers do not yet establish how effectively institutions will respond."
+          },
+          {
+            "vector": "action_posture",
+            "label": "Action posture",
+            "value": 0.7999999999999999,
+            "range": [0.6666666666666666, 1],
+            "distribution": {
+              "0": 0,
+              "1": 0,
+              "2": 0.59,
+              "3": 0.41
+            },
+            "confidence": 0.59,
+            "evidenceIds": [
+              "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+            ],
+            "claim": "Several readings remain plausible: Continued development with targeted safeguards is preferred. / Rapid development or broad access is preferred."
+          }
+        ],
+        "sources": [],
+        "provisional": true,
+        "capped": false,
+        "insufficient": false,
+        "reason": "A projection of the evidence you supplied, with interpretation ranges."
+      },
+      "stopped": "automatic result: no consequential unanswered follow-up",
+      "error": null,
+      "firstReadyAnswer": 1,
+      "accepted": 1,
+      "finalReadiness": {
+        "value": 84.13333333333334,
+        "threshold": 55,
+        "ready": true,
+        "covered": 13,
+        "total": 15,
+        "hasOutlook": true,
+        "hasReasoning": true,
+        "dimensions": [
+          {
+            "vector": "capability_trajectory",
+            "confidence": 0.72,
+            "unresolved": false,
+            "contribution": 0.72
+          },
+          {
+            "vector": "transition_dynamics",
+            "confidence": 1,
+            "unresolved": false,
+            "contribution": 1
+          },
+          {
+            "vector": "beneficial_potential",
+            "confidence": 1,
+            "unresolved": false,
+            "contribution": 1
+          },
+          {
+            "vector": "risk_landscape",
+            "confidence": 0.99,
+            "unresolved": false,
+            "contribution": 0.99
+          },
+          {
+            "vector": "technical_controllability",
+            "confidence": 0,
+            "unresolved": false,
+            "contribution": 0
+          },
+          {
+            "vector": "institutional_competence",
+            "confidence": 0.95,
+            "unresolved": false,
+            "contribution": 0.95
+          },
+          {
+            "vector": "human_agency",
+            "confidence": 0,
+            "unresolved": false,
+            "contribution": 0
+          },
+          {
+            "vector": "action_posture",
+            "confidence": 1,
+            "unresolved": false,
+            "contribution": 1
+          },
+          {
+            "vector": "causal_clarity",
+            "confidence": 1,
+            "unresolved": false,
+            "contribution": 1
+          },
+          {
+            "vector": "scope_discipline",
+            "confidence": 1,
+            "unresolved": false,
+            "contribution": 1
+          },
+          {
+            "vector": "appropriate_uncertainty",
+            "confidence": 1,
+            "unresolved": false,
+            "contribution": 1
+          },
+          {
+            "vector": "internal_coherence",
+            "confidence": 0.99,
+            "unresolved": false,
+            "contribution": 0.99
+          },
+          {
+            "vector": "counterargument_engagement",
+            "confidence": 0.99,
+            "unresolved": false,
+            "contribution": 0.99
+          },
+          {
+            "vector": "updateability",
+            "confidence": 1,
+            "unresolved": false,
+            "contribution": 1
+          },
+          {
+            "vector": "grounded_understanding",
+            "confidence": 0.98,
+            "unresolved": false,
+            "contribution": 0.98
+          }
+        ]
+      },
+      "components": [
+        {
+          "vector": "capability_trajectory",
+          "label": "Timeline & capability",
+          "value": null,
+          "range": [0, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+          ],
+          "claim": "These answers do not yet establish whether or when transformative AI arrives."
+        },
+        {
+          "vector": "transition_dynamics",
+          "label": "Transition dynamics",
+          "value": 0.15,
+          "range": [0, 0.3333333333333333],
+          "distribution": {
+            "0": 0.55,
+            "1": 0.45,
+            "2": 0,
+            "3": 0
+          },
+          "confidence": 0.55,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:transition_dynamics"
+          ],
+          "claim": "Several readings remain plausible: A gradual transition with substantial warning and broad diffusion is expected. / Noticeable acceleration is expected but meaningful adaptation time remains."
+        },
+        {
+          "vector": "beneficial_potential",
+          "label": "Expected upside",
+          "value": 0.8466666666666667,
+          "range": [0.6666666666666666, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.46,
+            "3": 0.54
+          },
+          "confidence": 0.54,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential"
+          ],
+          "claim": "Several readings remain plausible: Transformative, broadly valuable gains are expected. / Substantial benefits are expected, with important conditions or distribution limits."
+        },
+        {
+          "vector": "risk_landscape",
+          "label": "Expected harm",
+          "value": 0.31666666666666665,
+          "range": [0.3333333333333333, 0.3333333333333333],
+          "distribution": {
+            "0": 0.05,
+            "1": 0.95,
+            "2": 0,
+            "3": 0
+          },
+          "confidence": 0.95,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+          ],
+          "claim": "Manageable or localized harms are expected."
+        },
+        {
+          "vector": "technical_controllability",
+          "label": "Controllability",
+          "value": null,
+          "range": [0, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [],
+          "claim": null
+        },
+        {
+          "vector": "institutional_competence",
+          "label": "Institutional competence",
+          "value": null,
+          "range": [0, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:institutional_competence"
+          ],
+          "claim": "These answers do not yet establish how effectively institutions will respond."
+        },
+        {
+          "vector": "human_agency",
+          "label": "Human continuity",
+          "value": null,
+          "range": [0, 1],
+          "distribution": {},
+          "confidence": null,
+          "evidenceIds": [],
+          "claim": null
+        },
+        {
+          "vector": "action_posture",
+          "label": "Action posture",
+          "value": 0.7999999999999999,
+          "range": [0.6666666666666666, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.59,
+            "3": 0.41
+          },
+          "confidence": 0.59,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+          ],
+          "claim": "Several readings remain plausible: Continued development with targeted safeguards is preferred. / Rapid development or broad access is preferred."
+        },
+        {
+          "vector": "causal_clarity",
+          "label": "Causal clarity",
+          "value": 0.9700000000000001,
+          "range": [1, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.08,
+            "3": 0.92
+          },
+          "confidence": 0.91,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:causal_clarity"
+          ],
+          "claim": "A mechanism is developed with dependencies, limitations, or potential failure points."
+        },
+        {
+          "vector": "scope_discipline",
+          "label": "Scope discipline",
+          "value": 0.9866666666666667,
+          "range": [1, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.03,
+            "3": 0.97
+          },
+          "confidence": 0.96,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:scope_discipline"
+          ],
+          "claim": "The boundaries needed to interpret consequential claims are clear, including relevant differences in actors, horizons or conditions. Every sentence need not restate those boundaries."
+        },
+        {
+          "vector": "appropriate_uncertainty",
+          "label": "Appropriate uncertainty",
+          "value": 0.87,
+          "range": [0.6666666666666666, 1],
+          "distribution": {
+            "0": 0.01,
+            "1": 0.07,
+            "2": 0.23,
+            "3": 0.69
+          },
+          "confidence": 0.61,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:appropriate_uncertainty"
+          ],
+          "claim": "Uncertainty is differentiated across claims and linked to concrete evidence limitations."
+        },
+        {
+          "vector": "internal_coherence",
+          "label": "Internal coherence",
+          "value": 0.9866666666666667,
+          "range": [1, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0.01,
+            "2": 0.03,
+            "3": 0.96
+          },
+          "confidence": 0.96,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:internal_coherence"
+          ],
+          "claim": "The material claims fit together under their expressed assumptions and scopes; any apparent tensions are resolved by those distinctions. An already coherent account does not need to invent and then reconcile a contradiction."
+        },
+        {
+          "vector": "counterargument_engagement",
+          "label": "Counterargument engagement",
+          "value": 0.9066666666666667,
+          "range": [0.6666666666666666, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0.02,
+            "2": 0.23,
+            "3": 0.75
+          },
+          "confidence": 0.72,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:counterargument_engagement"
+          ],
+          "claim": "The participant identifies when a serious alternative could outperform their account."
+        },
+        {
+          "vector": "updateability",
+          "label": "Updateability",
+          "value": 0.9900000000000001,
+          "range": [1, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0.03,
+            "3": 0.97
+          },
+          "confidence": 0.97,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:updateability"
+          ],
+          "claim": "A specific discriminating observation is tied to a particular belief change."
+        },
+        {
+          "vector": "grounded_understanding",
+          "label": "Grounded understanding",
+          "value": 0.81,
+          "range": [0.6666666666666666, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0.08,
+            "2": 0.4,
+            "3": 0.52
+          },
+          "confidence": 0.43,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:grounded_understanding"
+          ],
+          "claim": "Several readings remain plausible: The account distinguishes observation, interpretation and uncertainty, explaining the limits of the offered basis. / A clear connection links the offered basis to the claim, with relevant limitations.",
+          "reasoningEvidence": {
+            "weakness": "The account distinguishes observation, interpretation and uncertainty, explaining the limits of the offered basis.",
+            "kind": "demonstrated_strength",
+            "status": "unsubstantiated",
+            "answerId": null,
+            "excerpt": null,
+            "probability": 0.28
+          }
+        },
+        {
+          "vector": "catastrophic_risk",
+          "label": "Catastrophic risk",
+          "value": 0,
+          "range": [0, 0],
+          "distribution": {
+            "0": 1,
+            "1": 0,
+            "2": 0,
+            "3": 0
+          },
+          "confidence": 1,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+          ],
+          "claim": "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant’s stated assumptions."
+        },
+        {
+          "vector": "overall_outlook",
+          "label": "Overall expected impact",
+          "value": 0.7925,
+          "range": [0.75, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0.83,
+            "4": 0.17,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
+          },
+          "confidence": 0.83,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+          ],
+          "claim": "More beneficial than harmful overall."
+        },
+        {
+          "vector": "outlook_orientation",
+          "label": "Expressed outlook",
+          "value": 0.835,
+          "range": [0.75, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0.66,
+            "4": 0.34,
+            "not_expressed": 0,
+            "explicitly_unknown": 0
+          },
+          "confidence": 0.66,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:beneficial_potential",
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:risk_landscape"
+          ],
+          "claim": "Your outlook leans toward beneficial futures, while allowing serious risks."
+        },
+        {
+          "vector": "capability_ceiling",
+          "label": "Expected capabilities",
+          "value": null,
+          "range": [0, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0.04,
+            "2": 0.24,
+            "explicitly_unknown": 0.05,
+            "not_expressed": 0.67
+          },
+          "confidence": null,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:capability_trajectory"
+          ],
+          "claim": null
+        },
+        {
+          "vector": "development_pace",
+          "label": "Development pace",
+          "value": 0.595,
+          "range": [0.5, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0.81,
+            "2": 0.19,
+            "explicitly_unknown": 0,
+            "not_expressed": 0
+          },
+          "confidence": 0.81,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+          ],
+          "claim": "Continue development under stated safeguards."
+        },
+        {
+          "vector": "deployment_policy",
+          "label": "Rules for using AI",
+          "value": 0.5372340425531915,
+          "range": [0.43999999999999995, 0.56],
+          "distribution": {
+            "0": 0,
+            "1": 0.87,
+            "2": 0.07,
+            "not_expressed": 0.06,
+            "explicitly_unknown": 0
+          },
+          "confidence": 0.87,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+          ],
+          "claim": "Allow the AI uses discussed with targeted accountability and protections."
+        },
+        {
+          "vector": "access_policy",
+          "label": "Access to AI",
+          "value": 0.8933333333333333,
+          "range": [0.25, 1],
+          "distribution": {
+            "0": 0,
+            "1": 0.16,
+            "2": 0.59,
+            "explicitly_unknown": 0.01,
+            "not_expressed": 0.24
+          },
+          "confidence": 0.59,
+          "evidenceIds": [
+            "journey-403546dc-0069-4d78-b31c-11728b92cad9:p1:a:e:action_posture"
+          ],
+          "claim": "Favor broad or open access to powerful AI."
         }
       ]
     }

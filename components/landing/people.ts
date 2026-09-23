@@ -2,6 +2,18 @@ import { personaIdentity } from '@/lib/journeys/persona-identity'
 
 const profiles = [
   {
+    id: 'permissionless-innovation-optimist',
+    name: 'Andrew McAfee',
+    possessivePronoun: 'his',
+    xUrl: 'https://x.com/amcafee',
+    avatar: '/personas/mcafee.jpg',
+    initials: 'AM',
+    stance: 'Let innovation flourish. Respond to real harms.',
+    description:
+      'Expects major AI benefits, favors practical safeguards, and distinguishes rapid progress from slower economic adoption.',
+    tone: 'bloom'
+  },
+  {
     id: 'alignment-philosopher',
     name: 'Joe Carlsmith',
     possessivePronoun: 'his',

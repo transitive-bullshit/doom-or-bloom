@@ -2,6 +2,11 @@ const publicPersonaIdentities: Record<
   string,
   { slug: string; xUsername: string | null; shortName: string }
 > = {
+  'permissionless-innovation-optimist': {
+    shortName: 'Andrew McAfee',
+    slug: 'amcafee',
+    xUsername: 'amcafee'
+  },
   'alignment-philosopher': {
     shortName: 'Joe Carlsmith',
     slug: 'jkcarlsmith',

@@ -64,3 +64,7 @@ Additional writers and forecasters, verified via X users API on 2026-09-22:
 - Scott Alexander: https://x.com/slatestarcodex — https://pbs.twimg.com/profile_images/378800000009065862/83d72de47e2a2470c482bc75406b42a7_400x400.png, stored as `alexander.jpg`.
 - Daniel Kokotajlo: https://x.com/DKokotajlo — https://pbs.twimg.com/profile_images/1797990060878356480/G2zm1i8G_400x400.jpg, stored as `kokotajlo.jpg`.
 - Tyler Cowen: https://x.com/tylercowen — https://pbs.twimg.com/profile_images/1483290763056320512/oILN7yPo_400x400.jpg, stored as `cowen.jpg`.
+
+Andrew McAfee, verified on 2026-09-23:
+
+- Official MIT biography: https://ide.mit.edu/people/andrew-mcafee/ — https://ide.mit.edu/wp-content/uploads/2019/03/andy_0.jpg, stored as `mcafee.jpg`. His current X avatar is a book cover, so the biography supplies his portrait.

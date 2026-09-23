@@ -11,6 +11,7 @@ import { civicPublicPersonas } from './civic-public-personas'
 import { safetyResearcherPersonas } from './safety-researcher-personas'
 import { worldviewWriterPersonas } from './worldview-writer-personas'
 import { noahPublicPersona } from './noah-public-persona'
+import { mcafeePublicPersona } from './mcafee-public-persona'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
@@ -57,6 +58,7 @@ const narrativePersonas: Persona[] = [
   ...socialPublicPersonas,
   ...civicPublicPersonas,
   noahPublicPersona,
+  mcafeePublicPersona,
   ...safetyResearcherPersonas,
   ...worldviewWriterPersonas,
   {

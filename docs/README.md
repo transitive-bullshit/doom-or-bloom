@@ -55,3 +55,5 @@ Latest persona additions: [Nate Soares](research/nate-soares-persona-2026-09-22.
 Latest writer/forecaster additions: [Carlsmith, Alexander, Kokotajlo and Cowen](user-journeys.md#carlsmith-alexander-kokotajlo-and-cowen--september-22-2026), with 46 source records and four new live journeys.
 
 Latest launch-readiness review: [production SEO, social images and Lighthouse audit](research/seo-launch-audit-2026-09-22.md).
+
+Latest persona addition: [Andrew McAfee](research/andrew-mcafee-sources-2026-09-23.md), with seven dated sources and a speaker-scoped debate transcript.

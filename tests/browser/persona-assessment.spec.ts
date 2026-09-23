@@ -9,11 +9,11 @@ const journey = suite.journeys.find(
   (journey) => journey.personaId === 'anti-doomer'
 )!
 
-test('persona page orders results, collapsed inspection, sources and closing CTA', async ({
+test('persona page orders results, answers, collapsed debug info, sources and closing CTA', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
-  await page.goto('/users/jensen-huang')
+  await page.goto('/users/jensenhuang')
   const ctas = page.getByRole('link', {
     name: 'Map your own worldview',
     exact: true
@@ -44,6 +44,10 @@ test('persona page orders results, collapsed inspection, sources and closing CTA
   const assessmentToggle = assessment.getByRole('button', {
     name: /View questions and simulated answers/
   })
+  const answers = journey.steps.filter((step) => step.answer !== null)
+  await expect(assessmentToggle).toHaveAttribute('aria-expanded', 'true')
+  await expect(assessment.locator('article')).toHaveCount(answers.length)
+  await assessmentToggle.click()
   await expect(assessmentToggle).toHaveAttribute('aria-expanded', 'false')
   await expect(assessment.locator('article')).toHaveCount(0)
   const positions = await Promise.all(
@@ -59,7 +63,6 @@ test('persona page orders results, collapsed inspection, sources and closing CTA
   for (let i = 1; i < positions.length; i++)
     expect(positions[i]!.y).toBeGreaterThan(positions[i - 1]!.y)
   await assessmentToggle.click()
-  const answers = journey.steps.filter((step) => step.answer !== null)
   await expect(assessment.locator('article')).toHaveCount(answers.length)
   for (const [index, answer] of answers.entries()) {
     const article = assessment.locator('article').nth(index)
@@ -107,7 +110,7 @@ test('JSON field tooltips anchor to their text on wide screens', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1800, height: 1000 })
-  await page.goto('/users/jensen-huang')
+  await page.goto('/users/jensenhuang')
   await page.getByRole('button', { name: 'Debug info', exact: true }).click()
   const result = page.getByRole('region', {
     name: 'Final generated result',

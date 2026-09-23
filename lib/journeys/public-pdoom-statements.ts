@@ -6,6 +6,19 @@ export const publicPdoomStatements: Record<
   string,
   z.infer<typeof publicProbabilityStatementSchema>
 > = {
+  'permissionless-innovation-optimist': {
+    token: '≈0%',
+    bounds: [0, 0],
+    estimate: 0,
+    title: 'AI Emergency Debate — The Diary of a CEO',
+    url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
+    publishedAt: '2026-09-17',
+    outcome: 'Human extinction caused by AI',
+    horizon: 'No fixed calendar horizon',
+    conditions:
+      'Rounded near-zero judgment, not impossibility. McAfee’s own turns at 00:06:14 and 01:39:54; third-party speaker-labeled transcript.',
+    quote: 'It’s near zero. Never say never.'
+  },
   'rationalist-safety-advocate': {
     token: '20%',
     bounds: [0.2, 0.2],

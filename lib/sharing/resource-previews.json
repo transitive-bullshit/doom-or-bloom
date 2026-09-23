@@ -2425,5 +2425,46 @@
     "image": "/resource-previews/8318fb83dbaa-image.webp",
     "imageKind": "screenshot",
     "imageSource": "https://marginalrevolution.com/marginalrevolution/2023/11/my-summary-views-on-ai-existential-risk.html"
+  },
+  "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/": {
+    "source": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/",
+    "fetchedAt": "2026-09-23T09:19:20.864Z",
+    "description": null,
+    "image": "/resource-previews/d37f671c5910-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://singjupost.com/wp-content/uploads/2026/09/DOAC-AI-Emergency-Debate-ft.-Ed-Zitron-Andrew-McAfee-Nate-Soares-Roman-Yampolskiy.jpg",
+    "icon": "/resource-previews/d37f671c5910-icon.webp"
+  },
+  "https://www.mckinsey.com/mgi/our-research/a-century-of-plenty/podcast/andrew-mcafee-on-ai-jobs-and-permissionless-innovation": {
+    "source": "https://www.mckinsey.com/mgi/our-research/a-century-of-plenty/podcast/andrew-mcafee-on-ai-jobs-and-permissionless-innovation",
+    "fetchedAt": "2026-09-23T09:19:22.283Z",
+    "icon": "/resource-previews/9947710f365f-icon.webp"
+  },
+  "https://geekway.substack.com/p/why-i-didnt-sign-the-ai-open-letter": {
+    "source": "https://geekway.substack.com/p/why-i-didnt-sign-the-ai-open-letter",
+    "fetchedAt": "2026-09-23T09:19:23.731Z",
+    "description": "Instead, I edited it.",
+    "image": "/resource-previews/fec27521d127-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!8PA1!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fgeekway.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D743022232%26version%3D9",
+    "icon": "/resource-previews/fec27521d127-icon.webp"
+  },
+  "https://www.niskanencenter.org/the-future-of-innovation-with-andrew-mcafee/": {
+    "source": "https://www.niskanencenter.org/the-future-of-innovation-with-andrew-mcafee/",
+    "fetchedAt": "2026-09-23T09:19:25.296Z",
+    "description": "Brink Lindsey welcomes Andrew McAfee to discuss the current state and future prospects of technological and economic dynamism.",
+    "image": "/resource-previews/b9458570dd7e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.niskanencenter.org/wp-content/uploads/2024/04/shutterstock_2087420848-scaled.jpg",
+    "icon": "/resource-previews/b9458570dd7e-icon.webp"
+  },
+  "https://www.latitudemedia.com/news/wtil-why-andrew-mcafee-thinks-ai-can-save-the-planet/": {
+    "source": "https://www.latitudemedia.com/news/wtil-why-andrew-mcafee-thinks-ai-can-save-the-planet/",
+    "fetchedAt": "2026-09-23T09:19:26.434Z",
+    "description": "The renowned researcher and author makes his case in a brand new season of Where the Internet Lives.",
+    "image": "/resource-previews/95fc658a40ed-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.latitudemedia.com/wp-content/uploads/2026/01/Latitude-1920px-32-Image-2026-01-12T100840.512.jpg",
+    "icon": "/resource-previews/95fc658a40ed-icon.webp"
   }
 }
