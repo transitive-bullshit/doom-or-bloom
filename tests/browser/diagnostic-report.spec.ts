@@ -1,3 +1,4 @@
+import { unzipSync, strFromU8 } from 'fflate'
 import { expect, test } from '@playwright/test'
 import { execFileSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
@@ -101,8 +102,8 @@ test('every accepted answer has a collapsed historical result; debug-off runs st
     .getByRole('button', { name: 'Download full report', exact: true })
     .click()
   const downloaded = await downloading
-  const markdown = await readFile((await downloaded.path())!, 'utf8')
-  const data = JSON.parse(/```json\n([\s\S]*?)\n```/.exec(markdown)![1]!)
+  const files = unzipSync(await readFile((await downloaded.path())!))
+  const data = JSON.parse(strFromU8(files['diagnostics.json']!))
   expect(data.reportVersion).toBe(2)
   expect(data.diagnosticTrace.completeness).toBe('complete')
   const operations = data.diagnosticTrace.operations

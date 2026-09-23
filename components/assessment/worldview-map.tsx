@@ -55,15 +55,16 @@ export function Map({
       )}
     >
       <div className='flex items-start justify-between gap-4'>
-        <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
+        <h3 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
           {definition.question}
-        </h2>
+        </h3>
         <div className='shrink-0'>
           <MapActions svg={svg} />
         </div>
       </div>
       <svg
         ref={svg}
+        data-slot='worldview-map-svg'
         viewBox={`0 0 ${resultMapLayout.width} ${resultMapLayout.height}`}
         role='img'
         aria-label={description}

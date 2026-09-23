@@ -68,7 +68,6 @@ export const ExpandingArrowButton = forwardRef<
   const [hovered, setHovered] = useState(false)
   const [focused, setFocused] = useState(false)
   const active = (canHover && hovered) || focused
-  const layoutTransition = reduce ? { duration: 0 } : SPRING_LAYOUT
 
   const handleMouseEnter = (event: MouseEvent<HTMLAnchorElement>) => {
     setHovered(true)
@@ -109,6 +108,35 @@ export const ExpandingArrowButton = forwardRef<
       )}
       {...rest}
     >
+      <ArrowContent
+        active={active}
+        reduce={Boolean(reduce)}
+        accentClassName={accentClassName}
+        labelClassName={labelClassName}
+      >
+        {children}
+      </ArrowContent>
+    </MotionLink>
+  )
+})
+
+function ArrowContent({
+  active,
+  reduce,
+  accentClassName,
+  labelClassName,
+  children
+}: {
+  active: boolean
+  reduce: boolean
+  accentClassName?: string
+  labelClassName?: string
+  children: ReactNode
+}) {
+  const layoutTransition = reduce ? { duration: 0 } : SPRING_LAYOUT
+  return (
+    <>
+      {' '}
       <motion.span
         layout='size'
         aria-hidden='true'
@@ -154,7 +182,6 @@ export const ExpandingArrowButton = forwardRef<
           ))}
         </span>
       </motion.span>
-
       <motion.span
         animate={{
           opacity: active ? 0 : 1,
@@ -162,12 +189,53 @@ export const ExpandingArrowButton = forwardRef<
         }}
         transition={{ duration: reduce ? 0 : 0.12, ease: EASE_OUT }}
         className={cn(
-          'relative z-0 ml-14 mr-4 whitespace-nowrap text-sm font-medium tracking-tight',
-          labelClassName
+          'relative z-0 ml-14 mr-4 text-sm font-medium tracking-tight',
+          labelClassName ?? 'whitespace-nowrap'
         )}
       >
         {children}
       </motion.span>
-    </MotionLink>
+    </>
   )
-})
+}
+
+export function ExpandingArrowAction({
+  children,
+  disabled,
+  className,
+  ...props
+}: Omit<HTMLMotionProps<'button'>, 'children'> & { children: ReactNode }) {
+  const reduce = useReducedMotion()
+  const canHover = useHoverCapable()
+  const [hovered, setHovered] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const active = !disabled && ((canHover && hovered) || focused)
+  return (
+    <motion.button
+      {...props}
+      type='button'
+      disabled={disabled}
+      data-slot='primary-cta'
+      data-expanded={active}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
+      whileTap={reduce || disabled ? undefined : { scale: 0.97 }}
+      transition={SPRING_PRESS}
+      className={cn(
+        'relative inline-flex h-12 w-fit max-w-full shrink-0 items-center overflow-hidden rounded-full bg-primary p-1 text-primary-foreground select-none',
+        'outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50',
+        className
+      )}
+    >
+      <ArrowContent
+        active={active}
+        reduce={Boolean(reduce)}
+        labelClassName='min-w-0 whitespace-normal text-left leading-tight'
+      >
+        {children}
+      </ArrowContent>
+    </motion.button>
+  )
+}

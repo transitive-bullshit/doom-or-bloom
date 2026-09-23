@@ -1,3 +1,6 @@
+import sharp from 'sharp'
+import { unzipSync, strFromU8 } from 'fflate'
+import { people } from '../../components/landing/people'
 import { expect, test } from '@playwright/test'
 import { readFile } from 'node:fs/promises'
 import {
@@ -53,7 +56,7 @@ for (const contentVersion of ['0.2.0-draft', '0.3.0-draft']) {
     await page.reload()
     await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
     await page.getByRole('button', { name: 'Restart', exact: true }).click()
-    await page.getByRole('button', { name: 'Restart & clear' }).click()
+    await page.getByRole('button', { name: 'Clear & restart' }).click()
     await expect(
       page.getByText('Updated draft available', { exact: true })
     ).toHaveCount(0)
@@ -127,7 +130,7 @@ test('long inserted answers remain intact across reload and use a soft submissio
 })
 test('three answers, draft resume, map, correction, downloads and restart', async ({
   page
-}) => {
+}, testInfo) => {
   const outbound: string[] = []
   page.on('request', (r) => {
     if (/posthog|analytics|typesafe\.ai/.test(r.url())) outbound.push(r.url())
@@ -173,18 +176,91 @@ test('three answers, draft resume, map, correction, downloads and restart', asyn
   const reportWait = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download full report' }).click()
   const report = await reportWait
-  expect(report.suggestedFilename()).toBe('doom-or-bloom-report.md')
-  const contents = await readFile((await report.path())!, 'utf8')
-  expect(contents).toContain('## Evidence and typed judgments')
-  expect(contents).toContain('Relevant synthetic answer 0.')
-  expect(contents).toContain(versions.assessment)
+  const files = unzipSync(await readFile((await report.path())!))
+  expect(Object.keys(files).sort()).toEqual([
+    'assessment.md',
+    'diagnostics.json',
+    'interview.md',
+    'results.png',
+    'worldview-map.png'
+  ])
+  const diagnostics = JSON.parse(strFromU8(files['diagnostics.json']!))
+  expect(report.suggestedFilename()).toBe(
+    `doom or bloom assessment ${diagnostics.assessmentId}.zip`
+  )
+  expect(strFromU8(files['interview.md']!)).toContain(
+    'Relevant synthetic answer 0.'
+  )
+  expect(strFromU8(files['assessment.md']!)).toContain('## Profile')
+  expect(strFromU8(files['assessment.md']!)).not.toContain('```json')
+  expect(diagnostics.versions.assessment).toBe(versions.assessment)
+  for (const name of ['results.png', 'worldview-map.png'])
+    expect(Buffer.from(files[name]!).subarray(0, 8).toString('hex')).toBe(
+      '89504e470d0a1a0a'
+    )
+  const mapPixels = await sharp(files['worldview-map.png']!)
+    .resize(100, 60)
+    .removeAlpha()
+    .raw()
+    .toBuffer()
+  let coloredPixels = 0
+  for (let i = 0; i < mapPixels.length; i += 3) {
+    const channels = [mapPixels[i]!, mapPixels[i + 1]!, mapPixels[i + 2]!]
+    if (Math.max(...channels) - Math.min(...channels) > 30) coloredPixels++
+  }
+  // The archive must contain the colored worldview field, not the toolbar icon.
+  expect(coloredPixels / (100 * 60)).toBeGreaterThan(0.2)
+  await report.saveAs(testInfo.outputPath('full-report.zip'))
+  const downloadButtons = page.getByRole('button', {
+    name: 'Download results image for social sharing'
+  })
+  await expect(downloadButtons).toHaveCount(2)
+  const downloadButton = downloadButtons.last()
+  const firstDownloadBounds = await downloadButtons.first().boundingBox()
+  const detailsBounds = await page
+    .getByRole('region', { name: 'More details', exact: true })
+    .boundingBox()
+  expect(firstDownloadBounds!.y + firstDownloadBounds!.height).toBeLessThan(
+    detailsBounds!.y
+  )
+  await expect(downloadButton).toHaveAttribute('data-slot', 'primary-cta')
+  await page.setViewportSize({ width: 390, height: 844 })
+  const downloadBounds = await downloadButton.boundingBox()
+  const reportBounds = await page
+    .getByRole('button', { name: 'Download full report' })
+    .boundingBox()
+  expect(reportBounds!.y).toBeGreaterThan(
+    downloadBounds!.y + downloadBounds!.height
+  )
+  expect(downloadBounds!.x + downloadBounds!.width).toBeLessThanOrEqual(390)
+  await page.mouse.move(0, 0)
+  await downloadButton
+    .locator('..')
+    .screenshot({ path: testInfo.outputPath('download-actions-mobile.png') })
+  const cardRequest = page.waitForRequest(
+    (request) =>
+      request.url().endsWith('/api/share-card') && request.method() === 'POST'
+  )
   const cardWait = page.waitForEvent('download')
-  await page.getByRole('button', { name: 'Download card' }).click()
-  expect((await cardWait).suggestedFilename()).toBe('doom-or-bloom.png')
+  await downloadButton.click()
+  const sharedIds: string[] = (await cardRequest).postDataJSON()
+    .closestPersonaIds
+  const pageMatches = await page
+    .getByRole('region', { name: 'Your closest worldviews' })
+    .getByRole('link')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
+  expect(
+    sharedIds.map(
+      (id) => `/users/${people.find((person) => person.id === id)!.slug}`
+    )
+  ).toEqual(pageMatches)
+  const cardDownload = await cardWait
+  expect(cardDownload.suggestedFilename()).toBe('doom-or-bloom.png')
+  await cardDownload.saveAs(testInfo.outputPath('share-card.png'))
   await expect(page.getByRole('link', { name: 'Post on X' })).toHaveCount(0)
   expect(outbound).toEqual([])
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page.getByRole('button', { name: 'Restart & clear' }).click()
+  await page.getByRole('button', { name: 'Clear & restart' }).click()
   await expect(page.getByRole('heading', { name: root })).toBeVisible()
 })
 test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', async ({
@@ -289,7 +365,7 @@ test('restart discards in-flight work; provider failure preserves draft', async 
     page.getByText('Reading the evidence and choosing a useful next step…')
   ).toBeVisible()
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page.getByRole('button', { name: 'Restart & clear' }).click()
+  await page.getByRole('button', { name: 'Clear & restart' }).click()
   release?.()
   await expect(page.getByRole('heading', { name: root })).toBeVisible()
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')

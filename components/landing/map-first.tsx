@@ -11,7 +11,7 @@ export function MapFirst(props: VariantProps) {
           <br /> you <span className='landing-soft'>land?</span>
         </h1>
         <p className='landing-description'>
-          Map your AI worldview in only a few questions.
+          Map your AI worldview, and see how it compares with others.
         </p>
         <StartLink />
         <p className='landing-hint'>

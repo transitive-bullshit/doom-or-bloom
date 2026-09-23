@@ -117,7 +117,7 @@ export function PersonaPageContent({
         sources={person.sources ?? []}
         sourceBriefUpdated={person.sourceBriefUpdated}
       />
-      <Card className='mx-auto mt-10 w-full max-w-[600px]'>
+      <Card className='mx-auto mt-10 w-full max-w-[624px]'>
         <CardHeader>
           <CardTitle>Where do you land?</CardTitle>
           <CardDescription>

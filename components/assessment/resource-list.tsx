@@ -25,7 +25,7 @@ export function ResourceList<T extends Resource>({
       {bookmarks.length > 0 && (
         <div
           data-resource-layout='list'
-          className='mx-auto flex w-full max-w-[600px] flex-col gap-4'
+          className='mx-auto flex w-full max-w-[624px] flex-col gap-4'
         >
           {bookmarks.map(({ resource }) => (
             <ResourceBookmark

@@ -102,11 +102,12 @@ export async function mapPng(svg: SVGSVGElement): Promise<Blob> {
     node.setAttribute('y', String(y))
     node.setAttribute('font-family', 'sans-serif')
     node.setAttribute('font-size', String(size))
+    node.setAttribute('font-weight', '500')
     node.setAttribute('fill', color(fill))
     node.textContent = text
     clone.appendChild(node)
   }
-  label('How will AI change the world?', 34, 21, foreground)
+  label('How will AI change the world?', 34, 22, foreground)
   const serialized = new XMLSerializer()
     .serializeToString(clone)
     .replace(/var\((--[\w-]+)\)/g, (_, token: string) =>

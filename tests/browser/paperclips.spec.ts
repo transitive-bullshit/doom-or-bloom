@@ -52,7 +52,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   // Recovery-only runs must be restartable without an accepted answer.
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
   await page
-    .getByRole('button', { name: 'Restart & clear', exact: true })
+    .getByRole('button', { name: 'Clear & restart', exact: true })
     .click()
   await expect(answer).toHaveValue('')
   await expect(
@@ -132,7 +132,7 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   // Recovery-only runs must be restartable without an accepted answer.
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
   await page
-    .getByRole('button', { name: 'Restart & clear', exact: true })
+    .getByRole('button', { name: 'Clear & restart', exact: true })
     .click()
   await expect(answer).toHaveValue('')
   await expect(

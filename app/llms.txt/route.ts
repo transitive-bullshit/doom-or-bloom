@@ -6,7 +6,7 @@ export function GET() {
   const text = [
     '# Doom or Bloom',
     '',
-    '> Map your AI worldview in a few questions. Explore expected benefits, harms, and how much AI could change the world.',
+    '> Map your AI worldview, and see how it compares with others. Explore expected benefits, harms, and how much AI could change the world.',
     '',
     'The assessment adapts to your answers and produces a worldview map, estimated P(doom), and details about your views and demonstrated reasoning.',
     '',

@@ -31,8 +31,9 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
   await page.goto('/assessment')
-  await expect(page.locator('h1')).toBeVisible()
-  await expect(page.locator('h1')).not.toBeFocused()
+  await expect(page.locator('h1')).toHaveText('Map your AI worldview')
+  await expect(page.locator('h2')).toBeVisible()
+  await expect(page.locator('h2')).not.toBeFocused()
   await expect(
     page.getByLabel('Your answer', { exact: true })
   ).not.toBeFocused()
@@ -52,7 +53,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
     await expect(page.getByRole('button', { name: /^Continue/ })).toBeFocused()
     await page.keyboard.press('Enter')
     await expect(answer).toHaveValue('')
-    await expect(page.locator('h1')).toBeVisible()
+    await expect(page.locator('h2')).toBeVisible()
   }
   const view = page.getByRole('button', { name: 'View my results' })
   await tabTo(page, view)
@@ -236,6 +237,6 @@ test('catastrophic-risk correction quotes that claim in the interface', async ({
   await section
     .getByRole('button', { name: 'That’s not quite my view' })
     .click()
-  await expect(page.locator('h1')).toContainText('catastrophic risk')
-  await expect(page.locator('h1')).toContainText(claim!)
+  await expect(page.locator('h2')).toContainText('catastrophic risk')
+  await expect(page.locator('h2')).toContainText(claim!)
 })

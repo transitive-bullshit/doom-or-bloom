@@ -1,8 +1,14 @@
 'use client'
 import { ClosestPersonas } from './closest-personas'
-import type { PersonaComparison } from '@/lib/assessment/persona-matches'
-import { useState } from 'react'
+import {
+  closestPersonas,
+  type PersonaComparison
+} from '@/lib/assessment/persona-matches'
+import { useRef, useState } from 'react'
+import { mapPng } from '@/lib/sharing/map-png'
+import { ExpandingArrowAction } from '@/components/motion/expanding-arrow-button'
 import { Spinner } from '@/components/ui/spinner'
+import { Separator } from '@/components/ui/separator'
 import { toast } from 'sonner'
 import type { Assessment, Operation, VectorId } from '@/lib/assessment/schema'
 import { limits, vectorIds } from '@/lib/assessment/schema'
@@ -35,6 +41,8 @@ export function ResultView({
   operations?: SavedDebugOperation[]
 }) {
   const [downloading, setDownloading] = useState(false)
+  const [reportDownloading, setReportDownloading] = useState(false)
+  const resultsRoot = useRef<HTMLDivElement>(null)
   const result = state.result!
   const supportingAnswers = (evidenceIds: string[]) => {
     const ids = new Set(
@@ -44,62 +52,93 @@ export function ResultView({
     )
     return state.answers.filter((answer) => ids.has(answer.id))
   }
-  const report = () => {
-    const { markdown } = serializeReport(state, operations)
-    downloadBlob(
-      new Blob([markdown], { type: 'text/markdown' }),
-      'doom-or-bloom-report.md'
+  const renderCard = async () => {
+    const response = await fetch('/api/share-card', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        horizontal: result.horizontal.value,
+        vertical: result.vertical.value,
+        horizontalRange: result.horizontal.range,
+        verticalRange: result.vertical.range,
+        influence: result.experiment?.influence.value ?? null,
+        transformation: result.experiment?.transformation.value ?? null,
+        influenceRange: result.experiment?.influence.range ?? [0, 1],
+        transformationRange: result.experiment?.transformation.range ?? [0, 1],
+        influenceInterpretation: result.experiment?.influence.interpretation,
+        transformationInterpretation:
+          result.experiment?.transformation.interpretation,
+        upside:
+          result.components.find((c) => c.vector === 'beneficial_potential')
+            ?.value ?? null,
+        harm:
+          result.components.find((c) => c.vector === 'risk_landscape')?.value ??
+          null,
+        upsideRange: result.components.find(
+          (c) => c.vector === 'beneficial_potential'
+        )?.range,
+        harmRange: result.components.find((c) => c.vector === 'risk_landscape')
+          ?.range,
+        pdoom:
+          result.experiment?.pdoom?.estimate ??
+          (result.experiment?.pdoom?.bounds
+            ? (result.experiment.pdoom.bounds[0] +
+                result.experiment.pdoom.bounds[1]) /
+              2
+            : null),
+        pdoomRange: result.experiment?.pdoom?.bounds,
+        pdoomToken: result.experiment?.pdoom?.token,
+        generatedAt: result.experiment?.generatedAt,
+        closestPersonaIds: closestPersonas(result, personas).map(
+          ({ id }) => id
+        ),
+        provisional: result.provisional
+      })
+    })
+    if (!response.ok)
+      throw new Error('Card generation failed. Please try again.')
+    return response.blob()
+  }
+  const report = async () => {
+    if (reportDownloading || downloading) return
+    const svg = resultsRoot.current?.querySelector<SVGSVGElement>(
+      '[data-slot="worldview-map-svg"]'
     )
-    toast.success('Your report is ready to download.')
-    emitEvent(makeEvent(state, 'full_report_downloaded'))
+    if (!svg) {
+      toast.error('The results map is not ready. Please try again.')
+      return
+    }
+    setReportDownloading(true)
+    try {
+      const [resultsImage, mapImage, { createReportZip }] = await Promise.all([
+        renderCard(),
+        mapPng(svg),
+        import('@/lib/sharing/report-zip')
+      ])
+      const archive = await createReportZip(
+        serializeReport(state, operations),
+        resultsImage,
+        mapImage
+      )
+      downloadBlob(archive, `doom or bloom assessment ${state.id}.zip`)
+      toast.success('Full report download started.')
+      emitEvent(makeEvent(state, 'full_report_downloaded'))
+    } catch (err) {
+      toast.error(
+        err instanceof Error
+          ? err.message
+          : 'Report download failed. Please try again.'
+      )
+    } finally {
+      setReportDownloading(false)
+    }
   }
   const card = async () => {
-    if (downloading) return
+    if (downloading || reportDownloading) return
     setDownloading(true)
     try {
-      const response = await fetch('/api/share-card', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          horizontal: result.horizontal.value,
-          vertical: result.vertical.value,
-          horizontalRange: result.horizontal.range,
-          verticalRange: result.vertical.range,
-          influence: result.experiment?.influence.value ?? null,
-          transformation: result.experiment?.transformation.value ?? null,
-          influenceRange: result.experiment?.influence.range ?? [0, 1],
-          transformationRange: result.experiment?.transformation.range ?? [
-            0, 1
-          ],
-          influenceInterpretation: result.experiment?.influence.interpretation,
-          transformationInterpretation:
-            result.experiment?.transformation.interpretation,
-          upside:
-            result.components.find((c) => c.vector === 'beneficial_potential')
-              ?.value ?? null,
-          harm:
-            result.components.find((c) => c.vector === 'risk_landscape')
-              ?.value ?? null,
-          upsideRange: result.components.find(
-            (c) => c.vector === 'beneficial_potential'
-          )?.range,
-          harmRange: result.components.find(
-            (c) => c.vector === 'risk_landscape'
-          )?.range,
-          pdoom:
-            result.experiment?.pdoom?.estimate ??
-            (result.experiment?.pdoom?.bounds
-              ? (result.experiment.pdoom.bounds[0] +
-                  result.experiment.pdoom.bounds[1]) /
-                2
-              : null),
-          pdoomRange: result.experiment?.pdoom?.bounds,
-          provisional: result.provisional
-        })
-      })
-      if (!response.ok)
-        throw new Error('Card generation failed. Please try again.')
-      downloadBlob(await response.blob(), 'doom-or-bloom.png')
+      downloadBlob(await renderCard(), 'doom-or-bloom.png')
+      toast.success('Results image download started.')
       emitEvent(makeEvent(state, 'share_card_downloaded'))
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Card download failed')
@@ -107,8 +146,21 @@ export function ResultView({
       setDownloading(false)
     }
   }
+  const downloadAction = (
+    <ExpandingArrowAction
+      type='button'
+      disabled={busy || downloading || reportDownloading}
+      aria-busy={downloading}
+      onClick={() => void card()}
+    >
+      {downloading && <Spinner data-icon='inline-start' aria-hidden='true' />}
+      {downloading
+        ? 'Preparing card…'
+        : 'Download results image for social sharing'}
+    </ExpandingArrowAction>
+  )
   return (
-    <div className='flex flex-col gap-6'>
+    <div ref={resultsRoot} className='flex flex-col gap-6'>
       <div>
         {(result.insufficient || result.capped) && (
           <div className='mb-3 flex gap-2'>
@@ -132,6 +184,9 @@ export function ResultView({
       <ExperimentalResults
         result={result}
         layout='breakout'
+        beforeDetails={
+          <div className='mt-5 flex justify-center'>{downloadAction}</div>
+        }
         riskCompanion={<ClosestPersonas result={result} personas={personas} />}
       />
       <div className='grid gap-3 sm:grid-cols-2'>
@@ -286,35 +341,33 @@ export function ResultView({
           />
         </section>
       )}
-      <div className='flex flex-wrap gap-3'>
-        <Button
-          type='button'
-          disabled={busy || downloading}
-          onClick={() => void card()}
-        >
-          {downloading && (
-            <Spinner data-icon='inline-start' aria-hidden='true' />
-          )}
-          {downloading ? 'Preparing card…' : 'Download card'}
-        </Button>
-        <Button
-          type='button'
-          disabled={busy}
-          variant='outline'
-          onClick={report}
-        >
-          Download full report
-        </Button>
-        {!result.capped && (
+      <Separator className='my-6' />
+      <div className='flex flex-col items-center gap-4'>
+        {downloadAction}
+        <div className='flex flex-wrap justify-center gap-3'>
           <Button
             type='button'
-            disabled={busy}
+            disabled={busy || reportDownloading || downloading}
+            aria-busy={reportDownloading}
             variant='outline'
-            onClick={() => act({ type: 'continue' })}
+            onClick={() => void report()}
           >
-            Continue answering questions
+            {reportDownloading && (
+              <Spinner data-icon='inline-start' aria-hidden='true' />
+            )}
+            {reportDownloading ? 'Preparing report…' : 'Download full report'}
           </Button>
-        )}
+          {!result.capped && (
+            <Button
+              type='button'
+              disabled={busy || reportDownloading}
+              variant='outline'
+              onClick={() => act({ type: 'continue' })}
+            >
+              Continue answering questions
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   )

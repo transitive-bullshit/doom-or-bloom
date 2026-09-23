@@ -522,9 +522,9 @@ export function Interview({
                       {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · question ${p.ordinal}${p.ordinal >= limits.warning ? ` of ${limits.prompts}` : ''}`}
                     </p>
                   )}
-                  <h1 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
+                  <h2 className='text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
                     {p.text}
-                  </h1>
+                  </h2>
                 </div>
                 <ConversationReplies turn={currentTurn} />
                 {unavailableQuestion && (
@@ -751,7 +751,7 @@ export function Interview({
                       </DialogClose>
                       <DialogClose asChild>
                         <Button variant='destructive' onClick={restart}>
-                          Restart & clear
+                          Clear & restart
                         </Button>
                       </DialogClose>
                     </DialogFooter>

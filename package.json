@@ -45,6 +45,7 @@
     "class-variance-authority": "^0.7.1",
     "cn": "^0.3.2",
     "cuelume": "^0.2.2",
+    "fflate": "^0.8.3",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.47.0",
     "motion": "^13.4.0",

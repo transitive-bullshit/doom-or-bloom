@@ -16,10 +16,11 @@ import '@/components/worldview/prism-theme.css'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Doom or Bloom',
-  description: 'Map your AI worldview, one question at a time.',
+  description: 'Map your AI worldview, and see how it compares with others.',
   robots: { index: true, follow: true },
   twitter: { card: 'summary_large_image' }
 }
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>

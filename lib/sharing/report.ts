@@ -59,8 +59,18 @@ export function serializeReport(
     value === null
       ? 'Unplaced'
       : `${Math.round(value * 100)} / 100 (interpretation coordinate)`
+  const interview = [
+    '# Interview',
+    '',
+    ...state.answers.flatMap((answer, index) => [
+      `## Question ${index + 1}) ${answer.promptText}`,
+      '',
+      answer.text,
+      ''
+    ])
+  ].join('\n')
   const markdown = [
-    `# Doom or Bloom — full report`,
+    `# Doom or Bloom — assessment`,
     '',
     'Experimental interpretation of the expectations and reasoning expressed in your answers. P(doom) describes your stated or inferred belief, not an independent prediction of AI catastrophe.',
     '',
@@ -137,16 +147,6 @@ export function serializeReport(
       c.claim ?? 'Unassessed; no supported position is invented.',
       ''
     ]),
-    '## Complete usable answers',
-    '',
-    ...state.answers.flatMap((answer) => [
-      `### ${answer.id}`,
-      '',
-      answer.promptText,
-      '',
-      `> ${answer.text.replaceAll('\n', '\n> ')}`,
-      ''
-    ]),
     '## Findings',
     '',
     ...result.findings.flatMap((f) => [
@@ -171,20 +171,12 @@ export function serializeReport(
       ...s.urls.map((url, i) => `[Primary source ${i + 1}](${url})`),
       ''
     ]),
-    '## Evidence and typed judgments',
-    '',
-    'The structured appendix preserves questions and answers, route decisions, complete recorded Jev inputs and typed outputs, per-step assessment snapshots, timing, usage and provenance. Submitted recovery attempts may appear in the diagnostic trace. Unsubmitted drafts, credentials and hidden reasoning are excluded. Check diagnosticTrace.completeness before assuming a historical operation was recorded.',
-    '',
-    '```json',
-    JSON.stringify(data, null, 2),
-    '```',
-    '',
     '## Methodology',
     '',
     'The horizontal projection summarizes expressed outlook from concern to hope. A mixed, conditional or undecided orientation can be understood and placed without inventing a net-impact forecast. The separately recorded overall expected impact can remain explicitly unknown. The middle orientation is not a forecast that benefits and harms cancel. Development pace, deployment rules and access preferences are separate and have no map weight. The vertical map projection interprets expected scale of societal transformation. Human influence over AI outcomes and demonstrated reasoning are shown on separate single axes and preserved with its components in the structured evidence. Unsettled map points mark the center of an unresolved range, not moderate beliefs. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
     ''
   ].join('\n')
-  return { markdown, json: JSON.stringify(data, null, 2) }
+  return { markdown, interview, json: JSON.stringify(data, null, 2) }
 }
 
 export function downloadBlob(blob: Blob, filename: string) {

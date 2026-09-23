@@ -20,7 +20,7 @@ export function resultFraming(subject?: ResultSubject) {
       }
       return questions[hinge.id] ?? hinge.question
     },
-    detailsTitle: subject ? 'More details' : 'More of your worldview',
+    detailsTitle: 'More details',
     resultsLabel: subject
       ? `${subject.name}’s simulated worldview results`
       : 'Your worldview results'

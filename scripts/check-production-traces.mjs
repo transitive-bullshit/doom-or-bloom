@@ -18,22 +18,27 @@ for (const route of [
     `${route}: canonical persona journeys are missing from the server bundle`
   )
 }
-const portraitTrace = path.join(
-  output,
-  'server/app/users/[username]/opengraph-image/route.js.nft.json'
-)
-const { files: portraitFiles } = JSON.parse(
-  await readFile(portraitTrace, 'utf8')
-)
-const bundled = new Set(
-  portraitFiles.map((file) => path.resolve(path.dirname(portraitTrace), file))
-)
-for (const file of await readdir('public/personas')) {
-  if (!/\.(jpg|png|webp)$/.test(file)) continue
-  assert(
-    bundled.has(path.resolve('public/personas', file)),
-    `Social image bundle is missing portrait ${file}`
+for (const portraitRoute of [
+  'users/[username]/opengraph-image',
+  'api/share-card'
+]) {
+  const portraitTrace = path.join(
+    output,
+    `server/app/${portraitRoute}/route.js.nft.json`
   )
+  const { files: portraitFiles } = JSON.parse(
+    await readFile(portraitTrace, 'utf8')
+  )
+  const bundled = new Set(
+    portraitFiles.map((file) => path.resolve(path.dirname(portraitTrace), file))
+  )
+  for (const file of await readdir('public/personas')) {
+    if (!/\.(jpg|png|webp)$/.test(file)) continue
+    assert(
+      bundled.has(path.resolve('public/personas', file)),
+      `Social image bundle is missing portrait ${file}`
+    )
+  }
 }
 await access(required)
 console.log(

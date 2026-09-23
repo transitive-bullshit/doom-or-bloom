@@ -174,7 +174,7 @@ export function Prism({ examples }: VariantProps) {
       </div>
       <p className='study-note'>Example results based on simulated personas</p>
 
-      <Card className='mx-auto mt-24 w-full max-w-[600px]'>
+      <Card className='mx-auto mt-24 w-full max-w-[624px]'>
         <CardHeader>
           <CardTitle>Where do you land?</CardTitle>
           <CardDescription>

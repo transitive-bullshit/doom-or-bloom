@@ -32,11 +32,9 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
     )
   await page.getByRole('button', { name: /^Continue/ }).click()
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
-  await expect(
-    page.getByRole('region', { name: 'More of your worldview' })
-  ).toBeVisible()
+  await expect(page.getByRole('region', { name: 'More details' })).toBeVisible()
   await page
-    .getByRole('region', { name: 'More of your worldview' })
+    .getByRole('region', { name: 'More details' })
     .screenshot({ path: testInfo.outputPath('worldview-details.png') })
   const matches = page.getByRole('region', { name: 'Your closest worldviews' })
   await expect(matches.getByRole('link')).toHaveCount(3)

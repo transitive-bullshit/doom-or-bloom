@@ -23,6 +23,9 @@ export const cardSchema = z.strictObject({
   harmRange: range.optional(),
   pdoom: coordinate.nullable().optional(),
   pdoomRange: range.optional(),
+  pdoomToken: z.string().max(120).optional(),
+  generatedAt: z.iso.datetime({ offset: true }).optional(),
+  closestPersonaIds: z.array(z.string().max(100)).max(3).default([]),
   provisional: z.boolean()
 })
 export type CardData = z.infer<typeof cardSchema>
@@ -36,8 +39,6 @@ const colors = {
   bloom: '#48d779',
   grid: '#4c4c45'
 }
-const score = (value: number | null | undefined) =>
-  value == null ? 'Unexplored' : `${Math.round(value * 100)} / 100`
 
 export function Plot({
   data,
@@ -267,78 +268,15 @@ export function Plot({
   )
 }
 
-function SingleAxis({
-  label,
-  value,
-  range = [0, 1],
-  probability = false
+export function ShareCard({
+  data,
+  date,
+  matches = []
 }: {
-  label: string
-  value: number | null | undefined
-  range?: [number, number]
-  probability?: boolean
+  data?: CardData
+  date?: string
+  matches?: { id: string; name: string; portrait: string }[]
 }) {
-  const width = 310
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          fontSize: 16
-        }}
-      >
-        <span style={{ color: colors.muted }}>{label}</span>
-        <span style={{ fontWeight: 600 }}>
-          {probability && value != null
-            ? `${Math.round(value * 100)}%`
-            : score(value)}
-        </span>
-      </div>
-      <div
-        style={{
-          position: 'relative',
-          height: 6,
-          width,
-          backgroundColor: colors.grid,
-          borderRadius: 3
-        }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            left: range[0] * width,
-            width: Math.max(2, (range[1] - range[0]) * width),
-            height: 6,
-            borderRadius: 3,
-            backgroundColor: colors.muted
-          }}
-        />
-        {value != null && (
-          <div
-            style={{
-              position: 'absolute',
-              left: value * width - 6,
-              top: -3,
-              width: 12,
-              height: 12,
-              borderRadius: 6,
-              backgroundColor: colors.text,
-              border: `2px solid ${colors.surface}`
-            }}
-          />
-        )}
-      </div>
-      {probability && (
-        <div style={{ fontSize: 12, color: colors.muted }}>
-          Estimated range: {range.map((v) => Math.round(v * 100)).join('–')}%
-        </div>
-      )}
-    </div>
-  )
-}
-
-export function ShareCard({ data }: { data?: CardData }) {
   return (
     <div
       style={{
@@ -354,55 +292,22 @@ export function ShareCard({ data }: { data?: CardData }) {
     >
       <div
         style={{
+          fontSize: 38,
+          fontWeight: 700,
+          letterSpacing: -1,
+          height: 70,
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: 82
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-          <div style={{ fontSize: 13, letterSpacing: 2, color: colors.muted }}>
-            DOOM OR BLOOM
-          </div>
-          <div style={{ fontSize: 34, fontWeight: 700, letterSpacing: -1 }}>
-            {data ? 'My AI worldview' : 'Where do you land?'}
-          </div>
-        </div>
-        {data && (
-          <div style={{ display: 'flex', gap: 12 }}>
-            {(
-              [
-                ['Outlook', data.horizontal],
-                ['Scale of transformation', data.transformation]
-              ] as const
-            ).map(([label, value]) => (
-              <div
-                key={label}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 6,
-                  padding: '12px 18px',
-                  borderRadius: 8,
-                  backgroundColor: '#1e222b'
-                }}
-              >
-                <span style={{ color: colors.muted, fontSize: 13 }}>
-                  {label}
-                </span>
-                <span style={{ fontSize: 18, fontWeight: 600 }}>
-                  {score(value)}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
+        {data ? 'My AI Worldview' : 'Where do you land?'}
       </div>
       <div
         style={{
           display: 'flex',
-          alignItems: 'center',
-          gap: 46,
+          alignItems: 'flex-start',
+          gap: 36,
           marginTop: 12
         }}
       >
@@ -411,55 +316,75 @@ export function ShareCard({ data }: { data?: CardData }) {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            width: 310,
-            gap: 27
+            width: 350,
+            paddingTop: 16,
+            gap: 24
           }}
         >
           {data ? (
             <>
-              <div style={{ fontSize: 19, fontWeight: 600 }}>
-                More of my worldview
-              </div>
-              <SingleAxis
-                label='Expected upside'
-                value={data.upside}
-                range={data.upsideRange}
-              />
-              <SingleAxis
-                label='Expected harm'
-                value={data.harm}
-                range={data.harmRange}
-              />
-              <SingleAxis
-                label='Demonstrated reasoning'
-                value={data.vertical}
-                range={data.verticalRange}
-              />
-              <SingleAxis
-                label='Human influence'
-                value={data.influence}
-                range={data.influenceRange}
-              />
-              {data.pdoom != null && (
-                <SingleAxis
-                  label='Estimated P(doom)'
-                  value={data.pdoom}
-                  range={data.pdoomRange ?? [data.pdoom, data.pdoom]}
-                  probability
-                />
-              )}
-            </>
-          ) : (
-            <>
-              <div style={{ fontSize: 29, fontWeight: 600, lineHeight: 1.2 }}>
-                What do you think AI means for our future?
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                <div style={{ color: colors.muted, fontSize: 18 }}>
+                  P(doom) estimate
+                </div>
+                <div
+                  style={{
+                    fontSize: data.pdoom == null ? 30 : 52,
+                    fontWeight: 700,
+                    letterSpacing: -1
+                  }}
+                >
+                  {data.pdoomToken?.replaceAll('≈', '~').replaceAll('–', '-') ??
+                    (data.pdoom == null
+                      ? 'Not estimated'
+                      : `~${Math.round(data.pdoom * 100)}%`)}
+                </div>
               </div>
               <div
-                style={{ fontSize: 19, color: colors.muted, lineHeight: 1.5 }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 16,
+                  borderTop: `1px solid ${colors.grid}`,
+                  paddingTop: 20
+                }}
               >
-                Map your AI worldview, one question at a time.
+                <div style={{ fontSize: 18, fontWeight: 600 }}>
+                  My closest worldviews
+                </div>
+                {matches.length ? (
+                  matches.map((person) => (
+                    <div
+                      key={person.id}
+                      style={{ display: 'flex', alignItems: 'center', gap: 14 }}
+                    >
+                      <img
+                        src={person.portrait}
+                        alt=''
+                        width={54}
+                        height={54}
+                        style={{
+                          borderRadius: 27,
+                          objectFit: 'cover',
+                          border: '2px solid #4c4c45'
+                        }}
+                      />
+                      <div style={{ fontSize: 20, fontWeight: 600, flex: 1 }}>
+                        {person.name}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div style={{ fontSize: 16, color: colors.muted }}>
+                    Not enough shared evidence yet.
+                  </div>
+                )}
               </div>
             </>
+          ) : (
+            <div style={{ fontSize: 29, fontWeight: 600, lineHeight: 1.3 }}>
+              What do you think AI means for our future?
+            </div>
           )}
         </div>
       </div>
@@ -467,21 +392,18 @@ export function ShareCard({ data }: { data?: CardData }) {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          marginTop: 16,
+          marginTop: 'auto',
           fontSize: 13,
           color: colors.muted
         }}
       >
-        <span>
+        <span style={{ flex: 1 }}>
           {data
-            ? data.horizontal == null || data.transformation == null
-              ? 'No placement yet · Dashed area: interpretation range'
-              : data.transformationInterpretation === 'unsettled'
-                ? 'Point: center of unresolved range · Dashed area: interpretation range'
-                : 'Point: estimated position · Dashed area: interpretation range'
-            : 'Coordinates describe beliefs, not event probabilities.'}
+            ? 'Dashed area: interpretation range'
+            : 'Map your AI worldview, one question at a time.'}
         </span>
-        <span>doom-or-bloom.com</span>
+        {date && <span>{date}</span>}
+        <span style={{ flex: 1, textAlign: 'right' }}>doom-or-bloom.com</span>
       </div>
     </div>
   )

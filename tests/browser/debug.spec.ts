@@ -515,7 +515,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   await page.getByRole('button', { name: 'Debug off', exact: true }).click()
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
   await page
-    .getByRole('button', { name: 'Restart & clear', exact: true })
+    .getByRole('button', { name: 'Clear & restart', exact: true })
     .click()
   await expect.poll(() => savedOperationCount(page, assessmentId)).toBe(0)
   expect(requests).toBe(3)

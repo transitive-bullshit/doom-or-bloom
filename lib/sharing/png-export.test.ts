@@ -1,3 +1,7 @@
+import { renderToStaticMarkup } from 'react-dom/server'
+import { cardSchema, ShareCard } from './card'
+import { loadSocialPortrait } from './portraits'
+import { people } from '@/components/landing/people'
 import { expect, test } from 'vitest'
 import sharp from 'sharp'
 import { POST as exportMap } from '@/app/api/map-png/route'
@@ -27,7 +31,8 @@ test('Takumi exports graph and card layouts at twice their logical dimensions', 
       vertical: 0.5,
       horizontalRange: [0, 1],
       verticalRange: [0, 1],
-      provisional: true
+      provisional: true,
+      closestPersonaIds: people.slice(0, 3).map(({ id }) => id)
     })
   )
   expect(card.status).toBe(200)
@@ -42,4 +47,49 @@ test('graph export rejects remote image references and external entities', async
     '<svg><!ENTITY test SYSTEM "file:///private"></svg>'
   ])
     expect((await exportMap(request('map-png', { svg }))).status).toBe(400)
+})
+
+test('share card shows real matched portraits and only the requested metrics', async () => {
+  const matches = await Promise.all(
+    people.slice(0, 3).map(async ({ id, name, avatar }) => ({
+      id,
+      name,
+      portrait: await loadSocialPortrait(avatar)
+    }))
+  )
+  const data = cardSchema.parse({
+    horizontal: 0.5,
+    vertical: 0.5,
+    horizontalRange: [0.3, 0.7],
+    verticalRange: [0.3, 0.7],
+    transformation: 0.6,
+    provisional: false,
+    pdoom: 0.18,
+    pdoomToken: '≈18%'
+  })
+  const html = renderToStaticMarkup(ShareCard({ data, matches }))
+  for (const person of matches) {
+    expect(html).toContain(person.name)
+    expect(html).toContain(person.portrait)
+  }
+  expect(html).toContain('My AI Worldview')
+  expect(html).toContain('P(doom) estimate')
+  expect(html).toContain('~18%')
+  for (const removed of [
+    'DOOM OR BLOOM',
+    'More of my worldview',
+    'Demonstrated reasoning',
+    'Human influence',
+    'Expected upside',
+    'Expected harm',
+    'Estimated range:'
+  ])
+    expect(html).not.toContain(removed)
+  expect(
+    (
+      await exportCard(
+        request('share-card', { ...data, closestPersonaIds: ['../../secret'] })
+      )
+    ).status
+  ).toBe(400)
 })

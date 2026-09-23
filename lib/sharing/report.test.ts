@@ -36,13 +36,15 @@ test('expanded reports preserve usable evidence while excluding local rejected t
     false
   )
   const report = serializeReport(state)
-  for (const artifact of [report.markdown, report.json]) {
+  for (const artifact of [report.interview, report.json]) {
     expect(artifact).toContain(text)
     expect(artifact).not.toContain('PRIVATE_DRAFT_CANARY')
     expect(artifact).not.toContain('PRIVATE_REJECTED_CANARY')
     expect(artifact).not.toContain('interactionHistory')
   }
-  expect(report.markdown).toContain('Complete usable answers')
+  expect(report.interview).toContain(`## Question 1) ${state.prompts[0]!.text}`)
+  expect(report.markdown).not.toContain('```json')
+  expect(report.markdown).not.toContain(text)
   expect(JSON.parse(report.json).versions).toEqual(state.versions)
 })
 

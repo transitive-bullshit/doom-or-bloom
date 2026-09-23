@@ -141,7 +141,7 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
     { key: storageKey, snapshot: state }
   )
   await page.goto('/assessment')
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+  await expect(page.getByRole('heading', { level: 2 })).toHaveText(
     'What would change your view?'
   )
   const firstTurn = page.getByRole('article', {
@@ -314,7 +314,7 @@ test('the full conversation uses page scrolling, bounded answer disclosure and l
   ).toBe(false)
   expect(apiCalls).toBe(0)
   await page.getByRole('button', { name: 'Restart', exact: true }).click()
-  await page.getByRole('button', { name: 'Restart & clear' }).click()
+  await page.getByRole('button', { name: 'Clear & restart' }).click()
   await expect(page.getByRole('article')).toHaveCount(0)
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   expect(apiCalls).toBe(0)

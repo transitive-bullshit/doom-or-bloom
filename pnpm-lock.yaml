@@ -181,6 +181,9 @@ importers:
       cuelume:
         specifier: ^0.2.2
         version: 0.2.2
+      fflate:
+        specifier: ^0.8.3
+        version: 0.8.3
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -2581,6 +2584,9 @@ packages:
 
   fflate@0.4.9:
     resolution: {integrity: sha512-zdxgIEddhfsyCaWpJ2SdXEP8ZMrKJ6+5jl4OupODcywU0IhRk6gdXuVGcPICyfx2H97hVK7xmJtRLPjkxAX8Vw==}
+
+  fflate@0.8.3:
+    resolution: {integrity: sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA==}
 
   formatly@0.7.1:
     resolution: {integrity: sha512-ESuCEJE0SGgabl9q+zABI8LhJDmF+8nhpuqDzuM48HfJ9QTD5o6PqFJDFZY7w6f8xsh5lixuj5nJsQNvYOWvKQ==}
@@ -5150,6 +5156,8 @@ snapshots:
       picomatch: 4.0.7
 
   fflate@0.4.9: {}
+
+  fflate@0.8.3: {}
 
   formatly@0.7.1:
     dependencies:

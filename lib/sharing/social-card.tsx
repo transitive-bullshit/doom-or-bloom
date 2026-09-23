@@ -11,6 +11,7 @@ export const socialImageOptions = {
 
 export function socialCardData(result: Result): CardData {
   return {
+    closestPersonaIds: [],
     horizontal: result.horizontal.value,
     horizontalRange: result.horizontal.range,
     vertical: result.vertical.value,

@@ -25,6 +25,9 @@ export default async function Page() {
   }))
   return (
     <PageTransition>
+      <h1 className='mx-auto w-full max-w-2xl px-6 pt-10 text-3xl leading-tight font-semibold tracking-tight text-balance sm:text-4xl'>
+        Map your AI worldview
+      </h1>
       <Interview
         personas={personas}
         model={env.provider === 'fixture' ? 'fixture-v1' : env.model}

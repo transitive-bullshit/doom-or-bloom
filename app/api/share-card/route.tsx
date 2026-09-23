@@ -1,3 +1,5 @@
+import { people } from '@/components/landing/people'
+import { loadSocialPortrait } from '@/lib/sharing/portraits'
 import { apiDiagnostics } from '@/lib/server/error-reporting'
 import { ZodError } from 'zod'
 import { render } from 'takumi-js'
@@ -24,9 +26,22 @@ export async function POST(request: Request) {
     if (Number(request.headers.get('content-length')) > 2000)
       throw Object.assign(new LimitError('Invalid card'), { status: 413 })
     const data = cardSchema.parse(await readBoundedJson(request, 2000))
+    const selected = data.closestPersonaIds.map((id) => {
+      const person = people.find((person) => person.id === id)
+      if (!person)
+        throw Object.assign(new LimitError('Unknown persona'), { status: 400 })
+      return person
+    })
     inputValidated = true
     diagnostics.setPhase('render_card')
-    const bytes = await render(cardLayout(data), {
+    const matches = await Promise.all(
+      selected.map(async ({ id, name, avatar }) => ({
+        id,
+        name,
+        portrait: await loadSocialPortrait(avatar)
+      }))
+    )
+    const bytes = await render(cardLayout(data, matches), {
       devicePixelRatio: 2,
       format: 'png',
       emoji: 'from-font',
@@ -56,10 +71,24 @@ export async function POST(request: Request) {
   }
 }
 
-function cardLayout(data: Parameters<typeof ShareCard>[0]['data']) {
+function cardLayout(
+  data: Parameters<typeof ShareCard>[0]['data'],
+  matches: Parameters<typeof ShareCard>[0]['matches']
+) {
   return (
     <div style={{ width: 1200, height: 630, display: 'flex' }}>
-      {ShareCard({ data })}
+      {ShareCard({
+        data,
+        matches,
+        date: data?.generatedAt
+          ? new Intl.DateTimeFormat('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+              timeZone: 'UTC'
+            }).format(new Date(data.generatedAt))
+          : undefined
+      })}
     </div>
   )
 }

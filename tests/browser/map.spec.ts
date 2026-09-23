@@ -292,7 +292,11 @@ for (const unplaced of [false, true, 'outlook'] as const) {
         route.fulfill({ status: 500, body: 'Unavailable' })
       )
       await page
-        .getByRole('button', { name: 'Download card', exact: true })
+        .getByRole('button', {
+          name: 'Download results image for social sharing',
+          exact: true
+        })
+        .last()
         .click()
       await expect(
         page.locator('[data-sonner-toast][data-type=error]')
