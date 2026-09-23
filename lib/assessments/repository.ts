@@ -1,6 +1,6 @@
 import 'server-only'
 import { createHash, randomUUID } from 'node:crypto'
-import { and, desc, eq, lte } from 'drizzle-orm'
+import { and, count, desc, eq, lte } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import type { Pool } from 'pg'
 import {
@@ -92,6 +92,13 @@ export type Evaluator = (
 export function assessmentRepository(pool: Pool) {
   const db = drizzle(pool)
   type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]
+  async function nextTitle(tx: Transaction, ownerId: string) {
+    const [row] = await tx
+      .select({ total: count() })
+      .from(assessments)
+      .where(eq(assessments.ownerId, ownerId))
+    return `Your AI worldview #${row!.total + 1}`
+  }
   async function owned(
     tx: typeof db | Transaction,
     ownerId: string,
@@ -246,6 +253,7 @@ export function assessmentRepository(pool: Pool) {
         await tx.insert(assessments).values({
           id,
           ownerId,
+          title: await nextTitle(tx, ownerId),
           currentSnapshotId: snapshotId,
           versions: state.versions,
           createRequestKey: requestKey,
@@ -272,7 +280,7 @@ export function assessmentRepository(pool: Pool) {
       return Boolean(row)
     },
     async list(ownerId: string) {
-      return db
+      const rows = await db
         .select({
           id: assessments.id,
           title: assessments.title,
@@ -290,6 +298,10 @@ export function assessmentRepository(pool: Pool) {
         )
         .where(eq(assessments.ownerId, ownerId))
         .orderBy(desc(assessments.createdAt))
+      return rows.map((row, index) => ({
+        ...row,
+        title: row.title ?? `Your AI worldview #${rows.length - index}`
+      }))
     },
     async load(ownerId: string, id: string): Promise<OwnedAssessment> {
       return db.transaction(
@@ -364,6 +376,7 @@ export function assessmentRepository(pool: Pool) {
             await tx.insert(assessments).values({
               id: draft.id,
               ownerId,
+              title: await nextTitle(tx, ownerId),
               currentSnapshotId: snapshotId,
               versions: draft.versions,
               createRequestKey: `draft:${draft.id}`,
@@ -668,7 +681,7 @@ export function assessmentRepository(pool: Pool) {
             id: row.id,
             // Public assessments are immutable; their last update is publication.
             publishedAt: row.updatedAt.toISOString(),
-            title: row.title ?? 'Your AI worldview',
+            title: 'Your AI worldview',
             publisher: row.publishedProfile
               ? publisherSchema.parse(row.publishedProfile)
               : null,
@@ -733,6 +746,7 @@ export function assessmentRepository(pool: Pool) {
         await tx.insert(assessments).values({
           id,
           ownerId,
+          title: await nextTitle(tx, ownerId),
           currentSnapshotId: snapshotId,
           versions: source.versions,
           createRequestKey: requestKey,

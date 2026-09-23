@@ -65,6 +65,8 @@ erDiagram
 
 Snapshots contain the typed question/answer history, rejected interaction history, evidence, judgments, recovery/routing state, and result together. A result is an interpretation of that snapshot's evidence, not an independently mutable row. SQL columns index ownership, visibility, provenance, versions, and ordering; JSONB holds the richer engine state. Keep browser drafts, session secrets, operational diagnostics, and transport bookkeeping outside the published snapshot payload. Failed uncommitted submissions remain in private operations rather than being presented as evaluated answers.
 
+Each newly saved participant assessment or fork gets a library-only name, `Your AI worldview #N`, using the owner’s current assessment count plus one. Existing unnamed rows use their creation-order position in the library. Deletion, concurrent creation, and account merges do not require special numbering rules.
+
 The library uses a shadcn data table with separate sortable creation-date and status columns, defaulting to newest created first. Assessment titles open the private detail page; Published badges open the public page. Management actions live in each row’s dropdown, with confirmation before deletion. There is no pagination, filtering, selection, or column chooser.
 
 The library derives three statuses: **In progress** (private without results), **Ready to publish** (private with results for the current evidence), and **Published** (public). There is no open/completed lifecycle or completion operation. The engine separately records `answering`, `recovery`, `results`, or `capped`; exhausted recovery is contextual feedback, not a paused assessment. Request processing is a separate operation state. Reading any page never mutates the snapshot.

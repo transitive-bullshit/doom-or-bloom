@@ -29,6 +29,12 @@ test('library sorts by creation date and status and keeps management in row menu
               .assessment.revision
         )
         .toBe(1)
+      const savedItems = await (
+        await page.request.get('/api/assessments')
+      ).json()
+      expect(
+        savedItems.find((item: { id: string }) => item.id === id).title
+      ).toBe(`Your AI worldview #${ids.length}`)
       await pool.query(
         'UPDATE assessments SET title=$1, created_at=$2, updated_at=$3 WHERE id=$4',
         [

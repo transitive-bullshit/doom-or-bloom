@@ -76,6 +76,7 @@ try {
   ids.push(id)
   assert.equal(firstRun.filter((r) => r.id).length, 1)
   assert.equal((await repo.list(owner)).length, 1)
+  assert.equal((await repo.list(owner))[0]!.title, 'Your AI worldview #1')
   assert.equal((await repo.list(stranger)).length, 0)
   await assert.rejects(repo.load(stranger, id), /not found/)
   await assert.rejects(repo.remove(stranger, id), /not found/)
