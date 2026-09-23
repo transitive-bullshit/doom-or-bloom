@@ -129,8 +129,11 @@ export function ResultView({
             : result.reason}
         </p>
       </div>
-      <ExperimentalResults result={result} layout='breakout' />
-      <ClosestPersonas result={result} personas={personas} />
+      <ExperimentalResults
+        result={result}
+        layout='breakout'
+        riskCompanion={<ClosestPersonas result={result} personas={personas} />}
+      />
       <div className='grid gap-3 sm:grid-cols-2'>
         {result.fingerprint.map((c) => (
           <div key={c.vector} className='rounded-lg border p-4'>
@@ -270,7 +273,7 @@ export function ResultView({
       </Collapsible>
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>
-          <h2 className='font-medium'>Sources you might enjoy</h2>
+          <h2 className='font-medium'>Resources you might enjoy</h2>
           <ResourceList
             resources={result.resources}
             onOpen={(resource) =>

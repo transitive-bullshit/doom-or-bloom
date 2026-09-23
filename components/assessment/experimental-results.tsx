@@ -25,6 +25,7 @@ export function ExperimentalResults({
   layout = 'contained',
   excerpts = false,
   reasoningDetails,
+  riskCompanion,
   subject
 }: {
   result: Result
@@ -32,6 +33,7 @@ export function ExperimentalResults({
   history?: Array<{ label: string; result: Result }>
   layout?: 'contained' | 'breakout'
   reasoningDetails?: ReactNode
+  riskCompanion?: ReactNode
   subject?: ResultSubject
 }) {
   const experiment =
@@ -78,7 +80,9 @@ export function ExperimentalResults({
       </div>
       <div
         className={
-          excerpts ? 'grid min-w-0 gap-5 lg:grid-cols-2' : 'grid min-w-0 gap-5'
+          excerpts || riskCompanion
+            ? 'grid min-w-0 gap-5 lg:grid-cols-2'
+            : 'grid min-w-0 gap-5'
         }
       >
         <Card>
@@ -144,6 +148,7 @@ export function ExperimentalResults({
             )}
           </CardContent>
         </Card>
+        {riskCompanion}
         {excerpts && (
           <Card>
             <CardHeader>
