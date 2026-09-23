@@ -1,5 +1,5 @@
 'use client'
-import { ChevronDownIcon } from 'lucide-react'
+import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import type { ReactNode } from 'react'
 import { ClosestPersonas } from './closest-personas'
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
@@ -271,12 +271,7 @@ function ResultDisclosure({
   return (
     <Collapsible>
       <h6>
-        <CollapsibleTrigger asChild>
-          <Button variant='ghost' className='group w-full justify-between'>
-            {title}
-            <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
-          </Button>
-        </CollapsibleTrigger>
+        <DisclosureTrigger>{title}</DisclosureTrigger>
       </h6>
       <CollapsibleContent className='mt-3 flex flex-col gap-3'>
         {children}

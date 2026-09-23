@@ -6,19 +6,14 @@ import {
   useAnswerDisclosure
 } from '@/components/assessment/answer-navigation'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
-import { ChevronDownIcon } from 'lucide-react'
+import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
 import { ExperimentalResults } from '@/components/assessment/experimental-results'
 import { ReasoningJudgments } from '@/components/assessment/reasoning-judgments'
 import { JsonViewer } from '@/components/debug/json-viewer'
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent
-} from '@/components/ui/collapsible'
+import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 import type { Result } from '@/lib/assessment/schema'
 import type { Example } from './shared'
 import type { PersonaAssessment } from '@/lib/journeys/persona-assessment'
@@ -64,15 +59,7 @@ export function PersonaPageContent({
         <section aria-label='Debug info'>
           <Collapsible className='rounded-xl border p-4'>
             <h3>
-              <CollapsibleTrigger asChild>
-                <Button
-                  variant='ghost'
-                  className='group w-full justify-between'
-                >
-                  Debug info
-                  <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
-                </Button>
-              </CollapsibleTrigger>
+              <DisclosureTrigger>Debug info</DisclosureTrigger>
             </h3>
             <CollapsibleContent className='mt-4 flex min-w-0 flex-col gap-5'>
               <ReasoningJudgments components={person.result.components} />
@@ -126,12 +113,9 @@ function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
       onOpenChange={setOpen}
       className='rounded-xl border p-4'
     >
-      <CollapsibleTrigger asChild>
-        <Button variant='ghost' className='group w-full justify-between'>
-          View questions and simulated answers ({assessment.answers.length})
-          <ChevronDownIcon className='group-data-[state=open]:rotate-180' />
-        </Button>
-      </CollapsibleTrigger>
+      <DisclosureTrigger>
+        View questions and simulated answers ({assessment.answers.length})
+      </DisclosureTrigger>
       <CollapsibleContent className='mt-6 flex flex-col gap-8'>
         {assessment.answers.map((answer, index) => (
           <AnswerTarget key={`${answer.id}-${index}`} number={index + 1}>
