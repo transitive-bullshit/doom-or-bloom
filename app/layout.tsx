@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { siteUrl } from '@/lib/site'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Agentation } from 'agentation'
+
 import type { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
@@ -56,6 +58,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
           <Toaster />
           <SiteAnalytics enabled={serverEnv().analytics} />
+          {process.env.NODE_ENV === 'development' && (
+            <Agentation
+              appName='Doom or Bloom'
+              endpoint='http://localhost:4747'
+            />
+          )}
         </ThemeProvider>
       </body>
     </html>
