@@ -131,7 +131,10 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await page
       .getByRole('textbox', { name: 'Your answer' })
       .fill(
-        'AI could greatly improve medicine if governance keeps pace with increasingly powerful systems.'
+        'AI could greatly improve medicine if governance keeps pace with increasingly powerful systems. ' +
+          'I would look for independent evidence that benefits reach people broadly and that safety measures hold up as capabilities grow. '.repeat(
+            4
+          )
       )
     await page.getByRole('button', { name: 'Continue', exact: true }).click()
     await expect
@@ -216,6 +219,48 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     expect([metadata.width, metadata.height]).toEqual([1200, 630])
     await sharp(bytes).toFile('/tmp/persistence-public-card.webp')
     expect(await visitor.cookies()).toHaveLength(0)
+    const publicPage = await visitor.newPage()
+    await publicPage.goto(publicURL)
+    await expect(
+      publicPage.getByRole('heading', { name: 'Results', exact: true })
+    ).toHaveCount(0)
+    await expect(
+      publicPage.getByRole('button', {
+        name: /Download full report|Review the results/
+      })
+    ).toHaveCount(0)
+    await expect(
+      publicPage.getByText('Complete inferred assessment data')
+    ).toHaveCount(0)
+    await expect(
+      publicPage.getByRole('link', { name: /Download shared/ })
+    ).toHaveCount(0)
+    await expect(
+      publicPage.getByText('Where do you land?', { exact: true })
+    ).toBeVisible()
+    const conversation = publicPage.getByRole('region', {
+      name: 'Full conversation'
+    })
+    const expand = conversation.getByRole('button', {
+      name: /Read full answer/
+    })
+    await expect(expand).toHaveAttribute('aria-expanded', 'false')
+    await expand.click()
+    await expect(
+      conversation.getByRole('region', { name: 'Answer 1 to question 1' })
+    ).toHaveText(json.assessment.answers[0].text)
+    await conversation.getByRole('button', { name: /Collapse answer/ }).click()
+    await expect(expand).toHaveAttribute('aria-expanded', 'false')
+    await publicPage.screenshot({
+      path: '/tmp/public-assessment-desktop.png',
+      fullPage: true
+    })
+    await publicPage.setViewportSize({ width: 390, height: 844 })
+    expect(
+      await publicPage.evaluate(() => document.documentElement.scrollWidth)
+    ).toBeLessThanOrEqual(390)
+    await publicPage.close()
+
     await page.goto('/')
     await page
       .getByRole('link', { name: 'Map your own worldview' })

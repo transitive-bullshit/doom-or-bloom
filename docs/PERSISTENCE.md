@@ -150,3 +150,5 @@ On transfer failure the hook strips the prepared Set-Cookie headers and redirect
 Sharing is offered from the results view. The API requires a current meaningful result, independently of the interview display mode. There is no Done button. Historical background projections are excluded from result readiness during migration; immutable snapshot payloads remain unchanged.
 
 Private assessment, public assessment (including simulations), and persona detail routes use the shared `AssessmentPage` wrapper and its heading stylesheet. Shared result sections own explicit minor heading sizes. Persona sources and assessment resources both render through `ResourceList` and `ResourceBookmark`; keep bookmark typography inside that component.
+
+Public participant pages reuse the private conversation components, including collapsed long answers and answer navigation. They show the centered worldview CTA card, without an extra Results heading, owner review/report controls, or raw-data disclosures/download links. The authorized public data endpoint remains available.

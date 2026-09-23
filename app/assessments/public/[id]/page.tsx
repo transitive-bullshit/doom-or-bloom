@@ -4,7 +4,7 @@ import { simulationPresentation } from '@/lib/personas/payload'
 import { loadPublished } from '@/lib/assessments/public-server'
 import { pageMetadata } from '@/lib/metadata'
 import { PublishedResult } from '@/components/assessment/published-result'
-import { WorldviewCta } from '@/components/worldview-cta'
+import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 export const dynamic = 'force-dynamic'
 export async function generateMetadata({
   params
@@ -49,15 +49,6 @@ export default async function Page({
           }}
           assessment={presentation.assessment}
         />
-        <details>
-          <summary>Complete recorded simulation</summary>
-          <pre className='max-h-96 overflow-auto text-xs'>
-            {JSON.stringify(saved.simulation, null, 2)}
-          </pre>
-        </details>
-        <a href={`/assessments/public/${id}/data`} className='underline'>
-          Download shared simulation JSON
-        </a>
       </AssessmentPage>
     )
   }
@@ -68,50 +59,8 @@ export default async function Page({
       className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-6 py-14'
     >
       <h1 className='text-3xl font-semibold'>{saved.title}</h1>
-      <p className='text-muted-foreground'>
-        Shared by the participant. These results interpret the answers below;
-        they are not predictions.
-      </p>
       <PublishedResult state={{ ...state, draft: '', eventMarkers: [] }} />
-      <h2 className='text-2xl font-semibold'>Full conversation</h2>
-      <ol className='flex flex-col gap-6'>
-        {state.prompts.map((prompt) => (
-          <li key={prompt.id} className='flex flex-col gap-3'>
-            <h3 className='font-semibold'>
-              {prompt.ordinal}. {prompt.text}
-            </h3>
-            {state.interactionHistory
-              .filter((reply) => reply.promptInstanceId === prompt.id)
-              .map((reply) => (
-                <div key={reply.requestId}>
-                  <p className='whitespace-pre-wrap'>{reply.text}</p>
-                  <p className='text-sm text-muted-foreground'>
-                    Not used as scoring evidence
-                  </p>
-                </div>
-              ))}
-            {state.answers
-              .filter((answer) => answer.promptInstanceId === prompt.id)
-              .map((answer) => (
-                <p key={answer.id} className='whitespace-pre-wrap'>
-                  {answer.text}
-                </p>
-              ))}
-          </li>
-        ))}
-      </ol>
-      <details>
-        <summary className='cursor-pointer'>
-          Complete inferred assessment data
-        </summary>
-        <pre className='mt-4 max-h-96 overflow-auto rounded-lg border p-4 text-xs'>
-          {JSON.stringify(state, null, 2)}
-        </pre>
-      </details>
-      <a className='underline' href={`/assessments/public/${id}/data`}>
-        Download shared assessment JSON
-      </a>
-      <WorldviewCta />
+      <WorldviewCtaCard />
     </AssessmentPage>
   )
 }

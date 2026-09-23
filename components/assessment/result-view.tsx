@@ -168,21 +168,23 @@ export function ResultView({
   )
   return (
     <div ref={resultsRoot} className='flex flex-col gap-6'>
-      <div>
-        {(result.insufficient || result.capped) && (
-          <div className='mb-3 flex gap-2'>
-            {result.insufficient && (
-              <Badge variant='secondary'>Insufficient evidence</Badge>
-            )}
-            {result.capped && atCap(state) && (
-              <Badge variant='outline'>
-                {promptLimit(state)}-prompt cap reached
-              </Badge>
-            )}
-          </div>
-        )}
-        <h2>Results</h2>
-      </div>
+      {(!readOnly || result.insufficient || result.capped) && (
+        <div>
+          {(result.insufficient || result.capped) && (
+            <div className='mb-3 flex gap-2'>
+              {result.insufficient && (
+                <Badge variant='secondary'>Insufficient evidence</Badge>
+              )}
+              {result.capped && atCap(state) && (
+                <Badge variant='outline'>
+                  {promptLimit(state)}-prompt cap reached
+                </Badge>
+              )}
+            </div>
+          )}
+          {!readOnly && <h2>Results</h2>}
+        </div>
+      )}
       <ExperimentalResults
         result={result}
         layout='breakout'
@@ -248,88 +250,90 @@ export function ResultView({
           ))}
         </ResultDisclosure>
       )}
-      <Collapsible>
-        <CollapsibleTrigger asChild>
-          <Button variant='outline'>
-            {readOnly ? 'Review the results' : 'Review & clarify my results'}
-          </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent className='mt-4 flex flex-col gap-5'>
-          {result.components.map((c) => (
-            <section key={c.vector} className='rounded-lg border p-4'>
-              <h3 className='text-sm font-medium'>{c.label}</h3>
-              <p className='mt-2 text-sm'>{c.claim ?? 'Unassessed'}</p>
-              {supportingAnswers(c.evidenceIds).map((answer) => (
-                <div
-                  key={answer.id}
-                  className='mt-3 border-l-2 pl-3 text-sm text-body-foreground'
-                >
-                  <AnswerDisclosure
-                    text={answer.text}
-                    label={`Supporting answer ${state.answers.indexOf(answer) + 1}`}
-                  />
-                </div>
-              ))}
-              {!readOnly &&
-                c.claim !== null &&
-                (c.value !== null || c.evidenceIds.length > 0) &&
-                state.prompts.length <
-                  (published ? limits.maxPrompts : promptLimit(state)) &&
-                (vectorIds.includes(c.vector as VectorId) ||
-                  c.vector === 'catastrophic_risk') && (
-                  <Button
-                    variant='ghost'
-                    className='mt-3'
-                    disabled={busy}
-                    onClick={() =>
-                      act({
-                        type: 'clarify',
-                        vector:
-                          c.vector === 'catastrophic_risk'
-                            ? 'risk_landscape'
-                            : (c.vector as VectorId),
-                        claim:
-                          c.vector === 'catastrophic_risk'
-                            ? 'catastrophic_risk'
-                            : undefined
-                      })
-                    }
+      {!readOnly && (
+        <Collapsible>
+          <CollapsibleTrigger asChild>
+            <Button variant='outline'>Review & clarify my results</Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className='mt-4 flex flex-col gap-5'>
+            {result.components.map((c) => (
+              <section key={c.vector} className='rounded-lg border p-4'>
+                <h3 className='text-sm font-medium'>{c.label}</h3>
+                <p className='mt-2 text-sm'>{c.claim ?? 'Unassessed'}</p>
+                {supportingAnswers(c.evidenceIds).map((answer) => (
+                  <div
+                    key={answer.id}
+                    className='mt-3 border-l-2 pl-3 text-sm text-body-foreground'
                   >
-                    That’s not quite my view
-                  </Button>
-                )}
-            </section>
-          ))}
-          {result.sources.length > 0 && (
-            <section className='rounded-lg border p-4'>
-              <h3 className='text-sm font-medium'>Reference snapshots used</h3>
-              <p className='mt-2 text-xs text-muted-foreground'>
-                These authored sources inform interpretation; recognition alone
-                does not establish understanding.
-              </p>
-              {result.sources.map((source) => (
-                <div key={source.id} className='mt-3'>
-                  <p className='text-sm'>
-                    {source.title} · {source.status}
-                  </p>
-                  {source.urls.map((url, i) => (
-                    <a
-                      key={url}
-                      href={url}
-                      target='_blank'
-                      rel='noreferrer'
-                      aria-label={`${source.title} — source ${i + 1} (${new URL(url).hostname})`}
-                      className='mr-3 text-xs underline'
+                    <AnswerDisclosure
+                      text={answer.text}
+                      label={`Supporting answer ${state.answers.indexOf(answer) + 1}`}
+                    />
+                  </div>
+                ))}
+                {!readOnly &&
+                  c.claim !== null &&
+                  (c.value !== null || c.evidenceIds.length > 0) &&
+                  state.prompts.length <
+                    (published ? limits.maxPrompts : promptLimit(state)) &&
+                  (vectorIds.includes(c.vector as VectorId) ||
+                    c.vector === 'catastrophic_risk') && (
+                    <Button
+                      variant='ghost'
+                      className='mt-3'
+                      disabled={busy}
+                      onClick={() =>
+                        act({
+                          type: 'clarify',
+                          vector:
+                            c.vector === 'catastrophic_risk'
+                              ? 'risk_landscape'
+                              : (c.vector as VectorId),
+                          claim:
+                            c.vector === 'catastrophic_risk'
+                              ? 'catastrophic_risk'
+                              : undefined
+                        })
+                      }
                     >
-                      {source.title} — source {i + 1}
-                    </a>
-                  ))}
-                </div>
-              ))}
-            </section>
-          )}
-        </CollapsibleContent>
-      </Collapsible>
+                      That’s not quite my view
+                    </Button>
+                  )}
+              </section>
+            ))}
+            {result.sources.length > 0 && (
+              <section className='rounded-lg border p-4'>
+                <h3 className='text-sm font-medium'>
+                  Reference snapshots used
+                </h3>
+                <p className='mt-2 text-xs text-muted-foreground'>
+                  These authored sources inform interpretation; recognition
+                  alone does not establish understanding.
+                </p>
+                {result.sources.map((source) => (
+                  <div key={source.id} className='mt-3'>
+                    <p className='text-sm'>
+                      {source.title} · {source.status}
+                    </p>
+                    {source.urls.map((url, i) => (
+                      <a
+                        key={url}
+                        href={url}
+                        target='_blank'
+                        rel='noreferrer'
+                        aria-label={`${source.title} — source ${i + 1} (${new URL(url).hostname})`}
+                        className='mr-3 text-xs underline'
+                      >
+                        {source.title} — source {i + 1}
+                      </a>
+                    ))}
+                  </div>
+                ))}
+              </section>
+            )}
+          </CollapsibleContent>
+        </Collapsible>
+      )}
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>
           <h2 className='text-base font-medium'>Resources you might enjoy</h2>
@@ -348,35 +352,37 @@ export function ResultView({
       <Separator className='my-6' />
       <div className='flex flex-col items-center gap-4'>
         {downloadAction}
-        <div className='flex flex-wrap justify-center gap-3'>
-          <Button
-            type='button'
-            disabled={busy || reportDownloading || downloading}
-            aria-busy={reportDownloading}
-            variant='outline'
-            onClick={() => void report()}
-          >
-            {reportDownloading && (
-              <Spinner data-icon='inline-start' aria-hidden='true' />
-            )}
-            {reportDownloading ? 'Preparing report…' : 'Download full report'}
-          </Button>
-          {!readOnly &&
-            (published
-              ? state.prompts.length < limits.maxPrompts
-              : !atCap(state)) && (
-              <Button
-                type='button'
-                disabled={busy || reportDownloading}
-                variant='outline'
-                onClick={() => act({ type: 'continue' })}
-              >
-                {published
-                  ? 'Continue in a new assessment'
-                  : 'Continue answering questions'}
-              </Button>
-            )}
-        </div>
+        {!readOnly && (
+          <div className='flex flex-wrap justify-center gap-3'>
+            <Button
+              type='button'
+              disabled={busy || reportDownloading || downloading}
+              aria-busy={reportDownloading}
+              variant='outline'
+              onClick={() => void report()}
+            >
+              {reportDownloading && (
+                <Spinner data-icon='inline-start' aria-hidden='true' />
+              )}
+              {reportDownloading ? 'Preparing report…' : 'Download full report'}
+            </Button>
+            {!readOnly &&
+              (published
+                ? state.prompts.length < limits.maxPrompts
+                : !atCap(state)) && (
+                <Button
+                  type='button'
+                  disabled={busy || reportDownloading}
+                  variant='outline'
+                  onClick={() => act({ type: 'continue' })}
+                >
+                  {published
+                    ? 'Continue in a new assessment'
+                    : 'Continue answering questions'}
+                </Button>
+              )}
+          </div>
+        )}
       </div>
     </div>
   )

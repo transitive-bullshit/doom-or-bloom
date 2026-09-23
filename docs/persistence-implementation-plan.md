@@ -407,3 +407,9 @@ Remaining work is explicitly outside this local implementation: deploy the app, 
 - [x] Migrate local development and test databases, remove lifecycle constraints, and update pointer/persona constraints. Exclude legacy background projections from readiness metadata without rewriting snapshot payloads. Production migration remains a deployment task.
 - [x] Update domain, persistence, inference, debugging, and journey docs. Bump the algorithm to 0.6.1 and regenerate the mechanical journey baseline for changed routing.
 - [x] Verify: 262 unit tests plus formatting, lint, types, content, and unused-code checks; local production build; lifecycle, repository, commit, and persona database suites; six persistence browser cases, then four participant cases after adding saved-result read-only coverage. The full 52-case browser run exposed five stale assertions; all affected files passed on rerun (12 cases). A temporary live Jev assessment saved an answer without creating results and was deleted.
+
+### Public assessment presentation (2026-09-23)
+
+- [x] Reuse ConversationHistory and its answer disclosures on public participant pages, with shared answer navigation linking results to the conversation.
+- [x] Remove the public introduction, redundant Results heading, review disclosure, full-report download, and raw JSON disclosures/download links. Keep the public data endpoint and image download. Use the centered WorldviewCtaCard below the conversation.
+- [x] Verify public long answers start collapsed, expand/collapse correctly, and fit a mobile viewport. Inspect the desktop screenshot and verify owner-page controls through the existing interaction suite.
