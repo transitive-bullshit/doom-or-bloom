@@ -61,7 +61,7 @@ export function ProfileHeader({
         {children}
       </div>
       {description && (
-        <p className='mt-4 max-w-xl text-body-foreground'>{description}</p>
+        <p className='mt-4 text-body-foreground'>{description}</p>
       )}
     </header>
   )
