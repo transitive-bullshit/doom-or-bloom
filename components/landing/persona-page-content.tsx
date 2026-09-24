@@ -57,7 +57,7 @@ export function PersonaPageContent({
         <h2>Simulated Assessment</h2>
         <PersonaAnswers assessment={assessment} />
         <section aria-label='Debug info'>
-          <Collapsible className='rounded-xl border p-4'>
+          <Collapsible>
             <DisclosureTrigger>Debug info</DisclosureTrigger>
             <CollapsibleContent className='mt-4 flex min-w-0 flex-col gap-5'>
               <ReasoningJudgments components={person.result.components} />
@@ -106,11 +106,7 @@ export function PersonaPageContent({
 function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
   const [open, setOpen] = useAnswerDisclosure(true)
   return (
-    <Collapsible
-      open={open}
-      onOpenChange={setOpen}
-      className='rounded-xl border p-4'
-    >
+    <Collapsible open={open} onOpenChange={setOpen}>
       <DisclosureTrigger>
         View questions and simulated answers ({assessment.answers.length})
       </DisclosureTrigger>
