@@ -2,7 +2,7 @@
 
 # Doom or Bloom
 
-**How will AI change our future?** Explore the range of views, then map your own through a few open-ended questions. No jargon, account, or predetermined camp required.
+**How will AI change our future?** Explore the range of views on AI, then map your own thoughts through a few open-ended questions. No specialist knowledge or account required. All free and open source.
 
 [**Explore the map →**](https://www.doom-or-bloom.com) · [**Map your own worldview →**](https://www.doom-or-bloom.com/assessments?start=1)
 
@@ -12,11 +12,11 @@ AI’s potential upsides and risks deserve more than slogans. As capabilities ad
 
 I built this to explore the field’s voices and help people untangle conflicting intuitions. It has already sharpened my own views. The aim is to represent yours faithfully, with as little editorial steering as possible.
 
-## An interview that follows your thinking
+## A new type of dynamic interview
 
-Start with **“What do you think AI means for our future—and why?”** The engine interprets your answer, identifies what remains unclear, and selects the authored follow-up most likely to add useful information with the least repetition and effort.
+All interviews start with **“What do you think AI means for our future—and why?”** The engine then looks for gaps or uncertainty in your answers, and chooses from a pool of curated questions the one most likely to clarify your worldview with the least repetition and effort.
 
-Results unlock with enough supported coverage, potentially after one detailed answer; most interviews last between 3-5 questions. Your results link back to your answers, preserving uncertainty and salient excerpts used as evidence.
+Results become available when our engine has gathered enough evidence to confidently place you. This can happen as early as after one detailed answer, though most interviews last between 3-5 questions. You can also trace interpretations back to your answers and clarify anything that feels wrong.
 
 ## Powered by TypeSafe’s Jev
 
