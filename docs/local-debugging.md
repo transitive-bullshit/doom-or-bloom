@@ -6,6 +6,8 @@ The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) documents the curren
 
 Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom --no-worktree`). The usual local address is `http://doom-or-bloom.localhost:1355/`; use the printed address if configuration differs.
 
+`pnpm dev` and `pnpm dev:tailscale` load `.env.development.local` before validation and startup. Values defined there override inherited shell/editor variables, including X credentials and the auth callback origin. Other inherited variables (such as Portless settings) remain available. Restart after changing this file. Production startup is unchanged.
+
 ## Jev exchanges
 
 Enable **Debug on** to inspect any recorded step. Trace capture is independent of this visibility toggle. Open **Jev / assessment debugging details** to inspect the selected operation. Requests are actual shared state plus that physical batch's questions; responses are validated typed outputs. Current operations use A (interpret), C (route) and D (result generation on request or automatic completion, followed by rubric evidence selection where needed). Corpus grounding is paused; old B1/B2 exchanges remain labeled historical. Each stage explains its purpose. Local routing/projection decisions and the current saved assessment are separate views. Fixture exchanges are explicitly synthetic. Debugging does not expose hidden model reasoning.

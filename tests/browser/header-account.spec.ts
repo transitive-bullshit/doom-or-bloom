@@ -134,7 +134,7 @@ test('account menu supports keyboard navigation and logout errors then success',
   ).toBeVisible()
 })
 
-test('anonymous navigation keeps a direct library link and stays still while the session loads', async ({
+test('anonymous navigation stays still while the session loads', async ({
   page
 }) => {
   let finishSession!: () => void
@@ -155,18 +155,17 @@ test('anonymous navigation keeps a direct library link and stays still while the
   })
   const cta = navigation.getByRole('link', { name: 'Map your own worldview' })
   await expect(cta).toBeVisible()
-  const position = await library.boundingBox()
+  await expect(library).toHaveCount(0)
+  const position = await cta.boundingBox()
   const sessionResponse = page.waitForResponse((response) =>
     response.url().includes('/api/auth/get-session')
   )
   finishSession()
   await sessionResponse
   await expect(cta).toBeVisible()
-  expect((await library.boundingBox())!.x).toBeCloseTo(position!.x, 1)
+  expect((await cta.boundingBox())!.x).toBeCloseTo(position!.x, 1)
   await page.setViewportSize({ width: 390, height: 844 })
-  await library.click()
-  await expect(page).toHaveURL(/\/assessments$/)
-  await expect(library).toHaveAttribute('aria-current', 'page')
+  await expect(library).toHaveCount(0)
   expect(position).not.toBeNull()
   expect(errors).toEqual([])
 })

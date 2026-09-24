@@ -8,6 +8,7 @@ import type { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { SiteBreadcrumbs } from '@/components/site-breadcrumbs'
+import { SiteSocialLinks } from '@/components/site-social-links'
 import { SiteActions } from '@/components/site-actions'
 import { SiteAnalytics } from '@/components/analytics'
 import { serverEnv } from '@/lib/server/env'
@@ -61,21 +62,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <Link href='/about'>About & methodology</Link>
                 <Link href='/privacy'>Privacy</Link>
               </div>
-              <div className='flex flex-wrap justify-center gap-5 text-sm'>
-                <a
-                  href='https://github.com/transitive-bullshit/doom-or-bloom'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  GitHub
-                </a>
-                <a
-                  href='https://x.com/transitive_bs'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Travis on X
-                </a>
+              <div className='flex items-center justify-center gap-1'>
+                <SiteSocialLinks />
               </div>
             </footer>
           </div>
