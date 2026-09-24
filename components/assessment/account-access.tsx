@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { cn } from 'cn'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { api } from '@/lib/assessments/client'
@@ -45,7 +46,14 @@ export function AccountAccess({
   }
   return (
     <div className='flex flex-col items-start gap-3'>
-      <div className='flex w-full items-center gap-3'>
+      <div
+        className={cn(
+          'flex w-full gap-3',
+          signedIn
+            ? 'items-center'
+            : 'flex-col items-start sm:flex-row sm:items-center'
+        )}
+      >
         {!signedIn && (
           <p className='text-muted-foreground'>
             Your assessments are saved for this browser.

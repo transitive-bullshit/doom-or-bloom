@@ -179,7 +179,7 @@ test('persona answer references reopen the transcript and navigate to the exact 
   await expect(page.locator(hash)).toBeFocused()
 })
 
-test('people legend preserves responsive spacing and fades overflowing full names', async ({
+test('people legend keeps full names readable across responsive sizes and larger text', async ({
   page
 }, testInfo) => {
   await page.goto('/')
@@ -187,31 +187,28 @@ test('people legend preserves responsive spacing and fades overflowing full name
   await expect(
     legend.getByRole('link', { name: 'Eliezer Yudkowsky', exact: true })
   ).toBeVisible()
-  for (const width of [1365, 390]) {
+  for (const width of [1365, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 960 })
-    const columnGap = width === 390 ? 18 : 0
-    await expect(legend).toHaveCSS('row-gap', '0px')
-    await expect(legend).toHaveCSS('column-gap', `${columnGap}px`)
-    const links = await legend.locator('a').evaluateAll((links) =>
-      links.map((link) => {
-        const rect = link.getBoundingClientRect()
-        return { x: rect.x, y: rect.y, right: rect.right, bottom: rect.bottom }
-      })
-    )
-    const first = links[0]!
-    const nextRow = links.find((link) => link.y > first.y + 1)!
-    expect(links[1]!.x).toBeCloseTo(first.right + columnGap, 1)
-    expect(nextRow.y).toBeCloseTo(first.bottom, 1)
-    if (width === 390) {
-      // Enlarged text exercises real overflow without relying on today's name lengths.
+    if (width === 320) {
       await page.addStyleTag({
-        content: '.landing-map-legend a { font-size: 20px; }'
+        content: '.map-study .landing-map-legend a { font-size: 20px; }'
       })
-      const overflowing = legend.locator('[data-truncated=true]').first()
-      await expect(overflowing).toBeVisible()
-      await expect(overflowing).not.toHaveCSS('mask-image', 'none')
-      await expect(overflowing).toHaveCSS('white-space', 'nowrap')
     }
+    const clipped = await legend
+      .locator('.study-person-name')
+      .evaluateAll((names) =>
+        names
+          .filter(
+            (name) =>
+              name.scrollWidth > name.clientWidth ||
+              name.scrollHeight > name.clientHeight
+          )
+          .map((name) => name.textContent)
+      )
+    expect(clipped).toEqual([])
+    await expect
+      .poll(() => page.evaluate(() => document.documentElement.scrollWidth))
+      .toBeLessThanOrEqual(width)
     await legend.screenshot({
       path: testInfo.outputPath(`people-legend-${width}.png`)
     })
@@ -276,7 +273,8 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
     name: 'Map your own worldview',
     exact: true
   })
-  await expect(userCtas).toHaveCount(2)
+  // The shared anonymous header action is intentionally hidden on phones.
+  await expect(userCtas).toHaveCount(1)
   for (const link of await userCtas.all())
     await expect(link).toHaveAttribute('data-slot', 'primary-cta')
   await userCtas

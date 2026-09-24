@@ -346,6 +346,21 @@
   opacity: 1;
   pointer-events: auto;
 }
+/* Touch has no hover: keep the answer action visible and outside the text. */
+@media (hover: none), (pointer: coarse) {
+  .answer-copy {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .copy-answer-button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
 .copy-answer-button {
   transition-property: color, background-color, border-color, box-shadow, scale;
 }

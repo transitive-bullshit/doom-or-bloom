@@ -506,7 +506,10 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   await expect.poll(() => savedOperationCount(page)).toBe(3)
   const assessmentId = new URL(page.url()).pathname.split('/').at(-1)!
   await page.getByRole('button', { name: 'Debug off', exact: true }).click()
-  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'My assessments', exact: true })
+    .click()
   await page
     .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()

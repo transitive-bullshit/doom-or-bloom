@@ -132,16 +132,16 @@ export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
             tabIndex={0}
             className='answer-bubble relative min-h-12 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
           >
-            <CopyAnswer
-              text={reply.text}
-              label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
-            />
             <AnswerDisclosure
               answerNumber={
                 reply.earlier
                   ? undefined
                   : (navigation?.answerIds.indexOf(reply.id) ?? -1) + 1
               }
+              text={reply.text}
+              label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
+            />
+            <CopyAnswer
               text={reply.text}
               label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
             />

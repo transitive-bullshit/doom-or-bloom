@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { cn } from 'cn'
 import { toast } from 'sonner'
 import { downloadBlob } from '@/lib/sharing/report'
 import { ArrowDown, ArrowUp, ArrowUpDown, MoreHorizontal } from 'lucide-react'
@@ -40,6 +41,13 @@ const features = tableFeatures({
   sortFns: { text: sortFn_text }
 })
 const helper = createColumnHelper<typeof features, LibraryItem>()
+
+function createdDate(item: LibraryItem) {
+  return new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'medium',
+    timeZone: 'UTC'
+  }).format(new Date(item.createdAt))
+}
 
 function status(item: LibraryItem) {
   return item.visibility === 'public'
@@ -158,10 +166,21 @@ export function AssessmentTable({
       enableSorting: false,
       cell: ({ row }) => (
         <Link
-          className='flex min-h-13 w-full items-center px-2 py-3 font-medium'
+          className='flex min-h-13 w-full flex-col items-start justify-center gap-2 px-3 py-3 font-medium sm:flex-row sm:items-center sm:justify-start sm:px-2'
           href={`/assessments/${row.original.id}`}
         >
-          {row.original.title ?? 'Your AI worldview'}
+          <span className='wrap-anywhere'>
+            {row.original.title ?? 'Your AI worldview'}
+          </span>
+          <span className='flex flex-wrap items-center gap-2 sm:hidden'>
+            <time
+              dateTime={row.original.createdAt}
+              className='text-xs font-normal text-muted-foreground'
+            >
+              {createdDate(row.original)}
+            </time>
+            <Badge variant='outline'>{status(row.original)}</Badge>
+          </span>
         </Link>
       )
     }),
@@ -172,10 +191,7 @@ export function AssessmentTable({
       sortFn: 'text',
       cell: ({ row }) => (
         <time dateTime={row.original.createdAt}>
-          {new Intl.DateTimeFormat('en-US', {
-            dateStyle: 'medium',
-            timeZone: 'UTC'
-          }).format(new Date(row.original.createdAt))}
+          {createdDate(row.original)}
         </time>
       )
     }),
@@ -282,47 +298,67 @@ export function AssessmentTable({
     enableMultiSort: false
   })
   return (
-    <div className='min-w-0 rounded-md border'>
-      <Table aria-label='My assessments'>
-        <TableHeader>
-          {table.getHeaderGroups().map((group) => (
-            <TableRow key={group.id}>
-              {group.headers.map((header) => (
-                <TableHead
-                  key={header.id}
-                  aria-sort={
-                    header.column.getIsSorted() === 'asc'
-                      ? 'ascending'
-                      : header.column.getIsSorted() === 'desc'
-                        ? 'descending'
-                        : undefined
-                  }
-                >
-                  <table.FlexRender header={header} />
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id}>
-              {row.getAllCells().map((cell) => (
-                <TableCell
-                  key={cell.id}
-                  className={
-                    cell.column.id === 'title'
-                      ? 'h-px p-0 whitespace-normal [&>a]:h-full'
-                      : undefined
-                  }
-                >
-                  <table.FlexRender cell={cell} />
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <div className='flex min-w-0 flex-col gap-2'>
+      <div
+        className='flex flex-wrap items-center gap-3 sm:hidden'
+        aria-label='Sort assessments'
+      >
+        <span className='text-sm text-muted-foreground'>Sort by</span>
+        <SortHeader column={table.getColumn('createdAt')!}>
+          Date created
+        </SortHeader>
+        <SortHeader column={table.getColumn('status')!}>Status</SortHeader>
+      </div>
+      <div className='min-w-0 rounded-md border'>
+        <Table aria-label='My assessments'>
+          <TableHeader>
+            {table.getHeaderGroups().map((group) => (
+              <TableRow key={group.id}>
+                {group.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    className={cn(
+                      (header.column.id === 'createdAt' ||
+                        header.column.id === 'status') &&
+                        'hidden sm:table-cell',
+                      header.column.id === 'actions' && 'w-13'
+                    )}
+                    aria-sort={
+                      header.column.getIsSorted() === 'asc'
+                        ? 'ascending'
+                        : header.column.getIsSorted() === 'desc'
+                          ? 'descending'
+                          : undefined
+                    }
+                  >
+                    <table.FlexRender header={header} />
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.map((row) => (
+              <TableRow key={row.id}>
+                {row.getAllCells().map((cell) => (
+                  <TableCell
+                    key={cell.id}
+                    className={cn(
+                      cell.column.id === 'title' &&
+                        'h-px p-0 whitespace-normal [&>a]:h-full',
+                      (cell.column.id === 'createdAt' ||
+                        cell.column.id === 'status') &&
+                        'hidden sm:table-cell'
+                    )}
+                  >
+                    <table.FlexRender cell={cell} />
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   )
 }

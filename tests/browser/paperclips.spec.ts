@@ -52,7 +52,10 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   ).toHaveCount(0)
   // Recovery-only runs can start another assessment without deleting the first.
   const previousUrl = page.url()
-  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'My assessments', exact: true })
+    .click()
   await page
     .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
@@ -118,7 +121,10 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await expect(page.getByText(/You found the easter egg/)).toBeVisible()
   // Recovery-only runs can start another assessment without deleting the first.
   const previousUrl = page.url()
-  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'My assessments', exact: true })
+    .click()
   await page
     .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()

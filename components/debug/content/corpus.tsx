@@ -69,7 +69,7 @@ export function CorpusInspector({
         }{' '}
         publications
       </p>
-      <section className='space-y-4 rounded-xl border p-4 sm:p-6'>
+      <section className='hidden flex-col gap-4 rounded-xl border p-6 sm:flex'>
         <h2>Selected snapshot’s relationship map</h2>
         <p className='max-w-4xl text-sm text-muted-foreground'>
           Arrows distinguish associated entities from authored related entries.

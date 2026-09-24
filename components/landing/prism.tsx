@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
+import { WorldviewCta } from '@/components/worldview-cta'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
-import { FadeText } from '@/components/assessment/fade-text'
 import Link from 'next/link'
 import { useMemo, useState, type PointerEvent, type FocusEvent } from 'react'
 import './prism.css'
@@ -106,6 +106,9 @@ export function Prism({ examples }: VariantProps) {
     >
       <header className='study-heading'>
         <h1>How will AI change our future?</h1>
+        <div className='mt-6 sm:hidden'>
+          <WorldviewCta />
+        </div>
       </header>
       <div className='study-axis-top'>Civilizational change</div>
       <div
@@ -161,7 +164,7 @@ export function Prism({ examples }: VariantProps) {
               loading='eager'
               unoptimized
             />
-            <FadeText lines={1}>{p.name}</FadeText>
+            <span className='study-person-name'>{p.name}</span>
           </Link>
         ))}
       </div>

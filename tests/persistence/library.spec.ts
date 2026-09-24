@@ -60,7 +60,10 @@ test('library sorts by creation date and status and keeps management in row menu
     await page.goto('/assessments')
     const table = page.getByRole('table', { name: 'My assessments' })
     const names = table.locator('tbody tr td:first-child')
-    await expect(names).toHaveText(['Newer assessment', 'Older assessment'])
+    await expect(names.locator('a > span:first-child')).toHaveText([
+      'Newer assessment',
+      'Older assessment'
+    ])
     const cellBox = await names.first().boundingBox()
     const linkBox = await names.first().getByRole('link').boundingBox()
     expect(linkBox!.width).toBeCloseTo(cellBox!.width, 0)
@@ -71,11 +74,20 @@ test('library sorts by creation date and status and keeps management in row menu
       table.getByRole('columnheader', { name: 'Date created' })
     ).toHaveAttribute('aria-sort', 'descending')
     await table.getByRole('button', { name: 'Date created' }).click()
-    await expect(names).toHaveText(['Older assessment', 'Newer assessment'])
+    await expect(names.locator('a > span:first-child')).toHaveText([
+      'Older assessment',
+      'Newer assessment'
+    ])
     await table.getByRole('button', { name: 'Status', exact: true }).click()
-    await expect(names).toHaveText(['Newer assessment', 'Older assessment'])
+    await expect(names.locator('a > span:first-child')).toHaveText([
+      'Newer assessment',
+      'Older assessment'
+    ])
     await table.getByRole('button', { name: 'Status', exact: true }).click()
-    await expect(names).toHaveText(['Older assessment', 'Newer assessment'])
+    await expect(names.locator('a > span:first-child')).toHaveText([
+      'Older assessment',
+      'Newer assessment'
+    ])
     await expect(
       table.getByRole('button', { name: 'Delete', exact: true })
     ).toHaveCount(0)
@@ -223,7 +235,9 @@ test('library sorts by creation date and status and keeps management in row menu
     await page
       .getByRole('button', { name: 'Delete assessment', exact: true })
       .click()
-    await expect(names).toHaveText(['Newer assessment'])
+    await expect(names.locator('a > span:first-child')).toHaveText([
+      'Newer assessment'
+    ])
     await table.getByRole('link', { name: 'Newer assessment' }).click()
     await expect(page).toHaveURL(new RegExp(`/assessments/${ids[1]}$`))
   } finally {

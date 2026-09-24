@@ -290,7 +290,10 @@ test('the full conversation uses page scrolling, bounded answer disclosure and s
       )
   ).toBe(false)
   expect(apiCalls).toBe(0)
-  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'My assessments', exact: true })
+    .click()
   await page
     .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
@@ -303,4 +306,63 @@ test('the full conversation uses page scrolling, bounded answer disclosure and s
   await expect(page.getByRole('article')).toHaveCount(0)
   await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')
   expect(apiCalls).toBe(0)
+})
+
+test.describe('touch conversation actions', () => {
+  test.use({
+    hasTouch: true,
+    isMobile: true,
+    viewport: { width: 390, height: 844 }
+  })
+  test('copy is visible without hover and does not cover the answer', async ({
+    page
+  }) => {
+    let state = createAssessment('touch-copy', 'fixture-v1')
+    const prompt = currentPrompt(state)
+    const text =
+      'AI could improve medicine, but control and oversight remain uncertain.'
+    state = acceptAnswer(state, {
+      id: `${prompt.id}:a`,
+      promptInstanceId: prompt.id,
+      promptText: prompt.text,
+      text,
+      hasHorizon: false,
+      hasConviction: false,
+      substantive: true
+    })
+    state = issuePrompt(state, {
+      promptId: 'timeline.general',
+      text: 'When might these changes arrive?',
+      family: 'timeline',
+      variant: 'original',
+      sourceEvidenceIds: []
+    })
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        value: {
+          writeText: async (value: string) => {
+            ;(window as unknown as { copiedAnswer: string }).copiedAnswer =
+              value
+          }
+        }
+      })
+    })
+    await seedAssessment(page, state)
+    const copy = page.getByRole('button', {
+      name: 'Copy answer 1 to question 1',
+      exact: true
+    })
+    await expect(copy.locator('..')).toHaveCSS('opacity', '1')
+    const answer = page.getByText(text, { exact: true })
+    const answerBox = await answer.boundingBox()
+    const copyBox = await copy.boundingBox()
+    expect(copyBox!.y).toBeGreaterThanOrEqual(answerBox!.y + answerBox!.height)
+    await copy.tap()
+    await expect(copy).toHaveAttribute('data-copy-state', 'copied')
+    expect(
+      await page.evaluate(
+        () => (window as unknown as { copiedAnswer: string }).copiedAnswer
+      )
+    ).toBe(text)
+  })
 })

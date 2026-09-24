@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className='flex min-h-dvh flex-col'>
             <header
               style={{ viewTransitionName: 'site-header' }}
-              className='mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-5'
+              className='mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-5 sm:gap-3 sm:px-6'
             >
               <Link
                 href='/'
@@ -55,10 +55,28 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </main>
             <footer
               style={{ viewTransitionName: 'site-footer' }}
-              className='flex flex-wrap justify-center gap-5 px-6 py-6 text-base text-muted-foreground'
+              className='flex flex-col items-center gap-3 px-6 py-6 text-base text-muted-foreground'
             >
-              <Link href='/about'>About & methodology</Link>
-              <Link href='/privacy'>Privacy</Link>
+              <div className='flex flex-wrap justify-center gap-x-5 gap-y-2'>
+                <Link href='/about'>About & methodology</Link>
+                <Link href='/privacy'>Privacy</Link>
+              </div>
+              <div className='flex flex-wrap justify-center gap-5 text-sm'>
+                <a
+                  href='https://github.com/transitive-bullshit/doom-or-bloom'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  GitHub
+                </a>
+                <a
+                  href='https://x.com/transitive_bs'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Travis on X
+                </a>
+              </div>
             </footer>
           </div>
           <Toaster />

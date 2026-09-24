@@ -87,7 +87,7 @@ export function AssessmentLibrary({
     }
   }
   return (
-    <main className='content-column flex flex-col gap-8 py-8'>
+    <div className='content-column flex flex-col gap-8 py-8'>
       <h1>My assessments</h1>
       <div
         className={cn(
@@ -157,6 +157,6 @@ export function AssessmentLibrary({
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </main>
+    </div>
   )
 }
