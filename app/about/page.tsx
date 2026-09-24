@@ -229,7 +229,16 @@ export default async function About() {
           >
             Travis Fischer
           </a>
-          .
+        </p>
+        <p>
+          Related:{' '}
+          <a
+            className='underline underline-offset-4'
+            href='https://cultural-alignment.com'
+            target='_blank'
+          >
+            Cultural Alignment
+          </a>
         </p>
         <p>
           Explore the source on{' '}
@@ -241,18 +250,6 @@ export default async function About() {
           >
             GitHub
           </a>
-          .
-        </p>
-        <p>
-          Related:{' '}
-          <a
-            className='underline underline-offset-4'
-            href='https://cultural-alignment.com'
-            target='_blank'
-          >
-            Cultural Alignment
-          </a>
-          .
         </p>
       </footer>
 
