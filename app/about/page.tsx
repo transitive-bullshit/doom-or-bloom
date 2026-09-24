@@ -218,7 +218,7 @@ export default async function About() {
         </p>
       </section>
 
-      <footer className='border-t pt-6 text-base text-muted-foreground flex flex-col gap-2'>
+      <footer className='border-t pt-8 text-base text-muted-foreground flex flex-col gap-2'>
         <p>
           Built by{' '}
           <a
