@@ -4,6 +4,7 @@ import { anonymous } from 'better-auth/plugins'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { APIError } from 'better-auth/api'
 import { claimAnonymousAssessments } from './claim'
+import { authUrls } from './urls'
 
 function assertTrustedXUsername(
   data: Record<string, unknown>,
@@ -24,8 +25,8 @@ export function createAuth(
   schema?: Record<string, unknown>
 ) {
   const secret = process.env.BETTER_AUTH_SECRET
-  const baseURL = process.env.BETTER_AUTH_URL
-  if (!secret || secret.length < 32 || !baseURL) {
+  const { baseURL, origins } = authUrls()
+  if (!secret || secret.length < 32) {
     throw new Error(
       'Set BETTER_AUTH_SECRET (at least 32 characters) and BETTER_AUTH_URL'
     )
@@ -33,6 +34,7 @@ export function createAuth(
   return betterAuth({
     secret,
     baseURL,
+    trustedOrigins: origins,
     database: drizzleAdapter(database, { provider: 'pg', schema }),
     account: { accountLinking: { enabled: false } },
     user: {
@@ -100,7 +102,10 @@ export function createAuth(
             context.responseHeaders?.delete('set-cookie')
             context.responseHeaders?.set(
               'location',
-              new URL('/assessments?authError=claim', baseURL).toString()
+              new URL(
+                '/assessments?authError=claim',
+                ctx.context.baseURL
+              ).toString()
             )
             throw new APIError('FOUND', {
               message:

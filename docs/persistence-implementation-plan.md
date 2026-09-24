@@ -541,3 +541,14 @@ Validation on base `06a7953` with this checkpoint's changes: `pnpm test` passed 
 - [x] Update existing rendered-image and publication/revocation header assertions. `pnpm test` passes all 270 tests plus format/lint/types/content/unused-code checks. `pnpm check:persistence` passes all 8 browser cases, including successful image headers and origin image denial after revocation.
 
 Validation on base `4d10d12` with this checkpoint’s changes: the core and persistence checks above passed, and `pnpm build:local` passed production compilation and trace/portrait checks. No deployment or production mutation was performed.
+
+## Preview environment isolation (September 24, 2026)
+
+The user authorized a separate Neon database and Vercel Preview configuration. Preview X OAuth is intentionally out of scope; production and local X authentication retain their existing configuration.
+
+- [x] Create a fresh `doom-or-bloom-preview` Neon project and migrate its `doom_bloom_preview` database without copying production accounts or assessments.
+- [x] Configure Preview-only pooled/direct database connections and a unique auth secret in Vercel.
+- [x] Resolve preview authentication origins from exact Vercel deployment and branch hostnames; preserve explicit production/local auth origins and reject unrelated origins.
+- [ ] Seed curated persona simulations and verify the deployed preview's anonymous assessment flow.
+
+Core validation: `pnpm test` passed (56 files / 280 unit cases, formatting, lint, types, content validation, and Knip). Hosted verification is recorded below when complete.
