@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               className='flex flex-col items-center gap-3 px-6 py-6 text-base text-muted-foreground'
             >
               <div className='flex flex-wrap justify-center gap-x-5 gap-y-2'>
-                <Link href='/about'>About & methodology</Link>
+                <Link href='/about'>About</Link>
                 <Link href='/privacy'>Privacy</Link>
               </div>
               <div className='flex items-center justify-center gap-1'>
