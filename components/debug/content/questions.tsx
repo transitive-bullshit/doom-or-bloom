@@ -45,7 +45,7 @@ export function QuestionsInspector({
       <p className='text-sm text-muted-foreground'>
         {prompts.length} catalog entries · {families.length} families
       </p>
-      <section className='space-y-4 rounded-xl border p-4 sm:p-6'>
+      <section className='hidden flex-col gap-4 rounded-xl border p-6 sm:flex'>
         <h2>Relationship map</h2>
         <ToggleGroup
           type='single'

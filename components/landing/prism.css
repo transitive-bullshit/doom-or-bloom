@@ -25,7 +25,7 @@
 .study-heading h1 {
   font-size: clamp(40px, 5.2vw, 76px);
   font-weight: 500;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.04em;
   line-height: 1.04;
   text-wrap: balance;
 }
@@ -137,9 +137,14 @@
   outline: 2px solid var(--ring);
   outline-offset: 4px;
 }
-.study-legend {
+.map-study .study-legend {
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
   margin: 32px 0 0;
   border-top-color: var(--border);
+}
+.study-person-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .study-note {
   text-align: center;
@@ -191,6 +196,14 @@
     border-radius: 999px;
     background: var(--study-surface);
     box-shadow: 0 1px 4px var(--study-shadow);
+  }
+  .map-study .study-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 8px;
+  }
+  .map-study .study-legend a {
+    padding: 10px 4px;
+    font-size: 14px;
   }
   .study-point {
     width: 30px;

@@ -9,6 +9,20 @@ const valid = {
   ASSESSMENT_PROVIDER: 'live'
 }
 
+test('Vercel previews derive auth URLs from deployment metadata', () => {
+  expect(() =>
+    validateServerEnv({
+      ...valid,
+      BETTER_AUTH_URL: '',
+      VERCEL_ENV: 'preview',
+      VERCEL_URL: 'preview-app.vercel.app'
+    })
+  ).not.toThrow()
+  expect(() => validateServerEnv({ ...valid, VERCEL_ENV: 'preview' })).toThrow(
+    'VERCEL_URL'
+  )
+})
+
 test.each([
   'DATABASE_URL',
   'BETTER_AUTH_URL',

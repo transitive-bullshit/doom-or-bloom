@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { authUrls } from '../auth/urls'
 
 const nonempty = z.string().trim().min(1)
 const httpUrl = z.url().refine((value) => /^https?:/.test(value))
@@ -14,7 +15,15 @@ export function validateServerEnv(
     if (!schema.safeParse(env[name]).success) errors.push(name)
   }
   check('DATABASE_URL', postgresUrl)
-  check('BETTER_AUTH_URL', httpUrl)
+  try {
+    authUrls(env)
+  } catch {
+    errors.push(
+      env.VERCEL_ENV === 'preview'
+        ? 'VERCEL_URL / VERCEL_BRANCH_URL'
+        : 'BETTER_AUTH_URL'
+    )
+  }
   check('BETTER_AUTH_SECRET', z.string().trim().min(32))
   const provider = env.ASSESSMENT_PROVIDER || 'live'
   if (!['live', 'fixture'].includes(provider))

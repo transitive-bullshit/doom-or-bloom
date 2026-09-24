@@ -7,6 +7,8 @@ import type { ResultSubject } from '@/lib/sharing/result-subject'
 import { ChevronDown } from 'lucide-react'
 import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
+import { Field, FieldLabel } from '@/components/ui/field'
+import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -429,9 +431,23 @@ export function JourneysInspector({
         description={`${personas.length} test journeys include generated personas and an exact real-user transcript. Inspect questions, answers, routing decisions and evidence readiness; inspect the latest generated paths.`}
         contentVersion={contentVersion}
       />
+      <Field className='lg:hidden [&>[data-slot=native-select-wrapper]]:w-full'>
+        <FieldLabel htmlFor='journey-persona'>Test journey</FieldLabel>
+        <NativeSelect
+          id='journey-persona'
+          value={personaId}
+          onChange={(event) => setPersonaId(event.target.value)}
+        >
+          {personas.map((p) => (
+            <NativeSelectOption key={p.id} value={p.id}>
+              {p.name} — {p.proxy.split(' · ')[0]}
+            </NativeSelectOption>
+          ))}
+        </NativeSelect>
+      </Field>
       <section
         aria-label='Test journeys'
-        className='grid gap-2 sm:grid-cols-2 lg:grid-cols-5'
+        className='hidden gap-2 lg:grid lg:grid-cols-5'
       >
         {personas.map((p) => (
           <Button

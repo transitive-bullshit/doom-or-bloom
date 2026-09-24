@@ -53,7 +53,10 @@ test('saved earlier-version assessments preserve their content through results a
   expect(saved.answers[0]!.text).toBe('Earlier-version synthetic answer 0.')
   await page.reload()
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
-  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'My assessments', exact: true })
+    .click()
   await page
     .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()
@@ -201,7 +204,10 @@ test('three answers, draft resume, map, report download and another assessment',
   await expect(page.getByRole('link', { name: 'Post on X' })).toHaveCount(0)
   expect(outbound).toEqual([])
   const previous = page.url()
-  await page.getByRole('link', { name: 'My assessments', exact: true }).click()
+  await page
+    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('link', { name: 'My assessments', exact: true })
+    .click()
   await page
     .getByRole('button', { name: 'Create a new assessment', exact: true })
     .click()

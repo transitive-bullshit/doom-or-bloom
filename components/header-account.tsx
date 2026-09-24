@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useSyncExternalStore } from 'react'
 import { LogOutIcon, ListIcon } from 'lucide-react'
 import { toast } from 'sonner'
 import { authClient } from '@/lib/auth/client'
@@ -20,7 +20,17 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
+// Match the server's public navigation until this client has hydrated.
+const subscribeToHydration = () => () => {}
+const clientSnapshot = () => true
+const serverSnapshot = () => false
+
 export function HeaderAccount() {
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    clientSnapshot,
+    serverSnapshot
+  )
   const { data: session, isPending } = authClient.useSession()
   const [busy, setBusy] = useState(false)
   const user = session?.user
@@ -34,9 +44,7 @@ export function HeaderAccount() {
       setBusy(false)
     }
   }
-  if (isPending)
-    return <div className='hidden size-9 sm:ml-2 sm:block' aria-hidden='true' />
-  if (!user || user.isAnonymous)
+  if (!hydrated || isPending || !user || user.isAnonymous)
     return (
       <div className='hidden sm:ml-2 sm:block'>
         <WorldviewCta size='sm' />

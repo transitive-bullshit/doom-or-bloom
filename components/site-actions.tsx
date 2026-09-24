@@ -1,17 +1,26 @@
 'use client'
 import { useTheme } from 'next-themes'
 import { play } from 'cuelume'
-import { Moon, Sun } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Moon, Sun, ListIcon } from 'lucide-react'
 import { HeaderAccount } from '@/components/header-account'
 import { Button } from '@/components/ui/button'
 export function SiteActions() {
   const { resolvedTheme, setTheme } = useTheme()
+  const pathname = usePathname()
+  const inLibrary = pathname.startsWith('/assessments')
   return (
     <nav
       className='flex max-w-full flex-wrap items-center justify-end gap-1'
       aria-label='Site navigation'
     >
-      <Button variant='ghost' size='icon' asChild>
+      <Button
+        variant='ghost'
+        size='icon'
+        className='hidden lg:inline-flex'
+        asChild
+      >
         <a
           href='https://github.com/transitive-bullshit/doom-or-bloom'
           target='_blank'
@@ -23,7 +32,12 @@ export function SiteActions() {
           </svg>
         </a>
       </Button>
-      <Button variant='ghost' size='icon' asChild>
+      <Button
+        variant='ghost'
+        size='icon'
+        className='hidden lg:inline-flex'
+        asChild
+      >
         <a
           href='https://x.com/transitive_bs'
           target='_blank'
@@ -36,8 +50,23 @@ export function SiteActions() {
         </a>
       </Button>
       <Button
+        variant={inLibrary ? 'secondary' : 'ghost'}
+        size='icon'
+        className='size-11 md:w-auto md:px-3'
+        asChild
+      >
+        <Link
+          href='/assessments'
+          aria-current={pathname === '/assessments' ? 'page' : undefined}
+        >
+          <ListIcon data-icon='inline-start' />
+          <span className='sr-only md:not-sr-only'>My assessments</span>
+        </Link>
+      </Button>
+      <Button
         variant='ghost'
         size='icon'
+        className='size-11'
         aria-label='Toggle light or dark theme'
         onClick={() => {
           setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')

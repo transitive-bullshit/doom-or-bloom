@@ -28,11 +28,13 @@ export function PublishedResult({
         readOnly
       />
       <section
-        className='flex flex-col gap-6'
+        className='flex flex-col gap-4'
         aria-labelledby='full-conversation'
       >
         <h2 id='full-conversation'>Full conversation</h2>
-        <ConversationHistory turns={turns} />
+        <div className='flex flex-col gap-8'>
+          <ConversationHistory turns={turns} />
+        </div>
       </section>
     </AnswerNavigationProvider>
   )

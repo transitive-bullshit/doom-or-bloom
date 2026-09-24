@@ -120,20 +120,41 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
 }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/user-journeys')
-  await page.getByRole('button', { name: /Worried novice/ }).click()
+  await page
+    .getByRole('combobox', { name: 'Test journey' })
+    .selectOption(
+      (await page
+        .getByRole('option')
+        .filter({ hasText: 'Worried novice' })
+        .getAttribute('value')) as string
+    )
   await expect(page.getByRole('region', { name: 'Run summary' })).toContainText(
     /[1-5] accepted answers/
   )
   await expect(
     page.getByRole('region', { name: 'Journey result' })
   ).toContainText('Result of this run')
-  await page.getByRole('button', { name: /Open-ended uncertainty/ }).click()
+  await page
+    .getByRole('combobox', { name: 'Test journey' })
+    .selectOption(
+      (await page
+        .getByRole('option')
+        .filter({ hasText: 'Open-ended uncertainty' })
+        .getAttribute('value')) as string
+    )
   const uncertainFirst = page.locator('[data-slot=journey-step]').first()
   await uncertainFirst
     .getByRole('button', { name: 'Result after this answer', exact: true })
     .click()
   await expect(uncertainFirst).toContainText('mixed, conditional or undecided')
-  await page.getByRole('button', { name: /Playful recovery/ }).click()
+  await page
+    .getByRole('combobox', { name: 'Test journey' })
+    .selectOption(
+      (await page
+        .getByRole('option')
+        .filter({ hasText: 'Playful recovery' })
+        .getAttribute('value')) as string
+    )
   await expect(
     page.getByRole('region', { name: 'Journey timeline' })
   ).toContainText('Paperclips triggered')
@@ -343,7 +364,12 @@ test('completed uncertain personas keep visible map points and a separate reason
     'Brief job worrier',
     'Open-ended uncertainty'
   ]) {
-    await page.getByRole('button', { name: new RegExp(name) }).click()
+    const selector = page.getByRole('combobox', { name: 'Test journey' })
+    const value = await selector
+      .getByRole('option')
+      .filter({ hasText: name })
+      .getAttribute('value')
+    await selector.selectOption(value!)
     const result = page.getByRole('region', { name: 'Journey result' })
     const maps = result.locator('[data-slot=worldview-map]')
     await expect(maps).toHaveCount(1)
