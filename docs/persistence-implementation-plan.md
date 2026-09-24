@@ -549,6 +549,8 @@ The user authorized a separate Neon database and Vercel Preview configuration. P
 - [x] Create a fresh `doom-or-bloom-preview` Neon project and migrate its `doom_bloom_preview` database without copying production accounts or assessments.
 - [x] Configure Preview-only pooled/direct database connections and a unique auth secret in Vercel.
 - [x] Resolve preview authentication origins from exact Vercel deployment and branch hostnames; preserve explicit production/local auth origins and reject unrelated origins.
-- [ ] Seed curated persona simulations and verify the deployed preview's anonymous assessment flow.
+- [x] Seed 44 curated persona simulations and verify the deployed preview's anonymous assessment flow.
 
-Core validation: `pnpm test` passed (56 files / 280 unit cases, formatting, lint, types, content validation, and Knip). Hosted verification is recorded below when complete.
+Core validation: `pnpm test` passed (56 files / 280 unit cases, formatting, lint, types, content validation, and Knip). Five account-header browser scenarios and the provider-mocked X callback, anonymous claim, sign-out and cross-browser recovery also passed.
+
+Hosted verification on preview deployment `dpl_5fFAFEx3RSSFuTKEc45GSambbVHh` (commit `b7aa820`): Vercel build and GitHub CI passed; homepage, About, persona detail and library returned 200. Anonymous sign-in worked on both deployment and branch URLs; an unrelated origin returned 403. A synthetic live answer was saved, reloaded and found in the library, then deleted (204), followed by sign-out. Smoke-test users and temporary local credential files were removed. Preview X OAuth remains intentionally unconfigured; production infrastructure was not modified.
