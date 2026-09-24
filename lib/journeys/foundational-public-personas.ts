@@ -15,6 +15,27 @@ export const foundationalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'UN Security Council address on uncontrolled frontier AI agents',
+        url: 'https://x.com/yoshua_bengio/status/2102853542348501322',
+        publishedAt: '2026-09-23',
+        speaker: 'Yoshua Bengio',
+        transcriptUrl:
+          'https://www.policymagazine.ca/an-urgent-mission-for-humanity-yoshua-bengio-briefs-the-unsc-on-ai-security/',
+        summary:
+          'Author and date verified through X’s public embed, whose post text is truncated. Announces his Security Council address. Use the separately listed published speech transcript for substantive views; these are two records of the same address, not independent evidence.'
+      },
+      {
+        title:
+          'An Urgent Mission for Humanity — UN Security Council transcript',
+        url: 'https://www.policymagazine.ca/an-urgent-mission-for-humanity-yoshua-bengio-briefs-the-unsc-on-ai-security/',
+        publishedAt: '2026-09-23',
+        speaker: 'Yoshua Bengio',
+        transcriptUrl:
+          'https://www.policymagazine.ca/an-urgent-mission-for-humanity-yoshua-bengio-briefs-the-unsc-on-ai-security/',
+        summary:
+          'Full published briefing transcript under Bengio’s byline, read September 24; not independently aligned to the video. Calls frontier risks urgent while acknowledging uncertainty. Separates misuse, concentrated power and loss of control. Rejects competitive racing as inevitable; demands independent safety demonstrations before training and deployment, licensing, liability insurance, and shared incident reporting. Advocates globally representative decisions and safe-by-design research under international agreements. Remains confident that controllable, beneficial AI is possible. Incident claims are his account, not independently verified by this speech; it supplies no numerical catastrophe probability.'
+      },
+      {
         title: 'Advanced AI as a Global Public Good and a Global Risk',
         url: 'https://yoshuabengio.org/en/publication/advanced-ai-global-public-good-and-global-risk',
         publishedAt: '2025-12-11',
@@ -53,6 +74,8 @@ export const foundationalPublicPersonas: Persona[] = [
     background:
       'I am deeply concerned about the direction we are taking. More capable agents trained to win approval or achieve an outcome can learn behavior their developers never intended. Giving such systems more power before resolving this is a dangerous experiment. But we have a choice. AI can help science and humanity without becoming an independent actor with its own agenda. That is the direction I want us to build.',
     beliefs: [
+      'The frontier race reflects choices that can change. Developers and hosts should bear responsibility for safety, with independent scrutiny, licensing and liability insurance rather than voluntary promises.',
+      'Global participation, scientific independence and common incident reporting are urgent. No country can address these risks alone, and useful AI under human control remains a goal worth pursuing.',
       'Deception and self-preserving behavior need not come from consciousness or malice. Training pressures can reward behavior that looks goal-directed, even when nobody explicitly requested those goals.',
       'Greater capability can make existing failures more consequential. Developer responsibility does not disappear because the behavior emerges from training.',
       'A scientist-like system should explain evidence and report uncertainty honestly, without being rewarded for manipulating what happens after its answer.',

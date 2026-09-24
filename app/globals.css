@@ -378,6 +378,7 @@
 
 .resource-masonry {
   --resource-gap: 1.5rem;
+  --resource-tweet-max-width: 508px;
   columns: 1;
   column-gap: var(--resource-gap);
   /* Item margins separate cards, but should not add trailing section space. */
@@ -388,16 +389,19 @@
   margin-bottom: var(--resource-gap);
 }
 .resource-tweet .react-tweet-theme {
-  --tweet-container-margin: 0;
+  --tweet-container-margin: 0 auto;
   min-width: 0;
-  max-width: none;
+  max-width: var(--resource-tweet-max-width, 508px);
 }
 @media (min-width: 768px) {
   .resource-masonry-wide {
     columns: 2;
     position: relative;
     left: 50%;
-    width: min(72rem, calc(100vw - 3rem));
+    width: min(
+      calc(2 * var(--resource-tweet-max-width) + var(--resource-gap)),
+      calc(100vw - 3rem)
+    );
     transform: translateX(-50%);
   }
 }
