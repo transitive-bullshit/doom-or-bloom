@@ -150,7 +150,7 @@ export function QuestionsInspector({
         aria-label={`Question details ${selectedId}`}
       >
         <p className='font-mono text-xs text-muted-foreground'>{selectedId}</p>
-        <h2>{selected.text}</h2>
+        <h2 className='text-pretty'>{selected.text}</h2>
         <MetadataList
           rows={[
             { label: 'Family', value: selected.family },
