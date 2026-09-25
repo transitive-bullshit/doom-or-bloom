@@ -68,3 +68,5 @@ Crawler discovery includes static public pages and selected curated persona prof
 [Testing guidelines](testing.md) define the lightweight CI budget, test audit, and required local change/release checks.
 
 Current simulated-user expansion: [Independent 100 research and generation](research/independent-simulated-users-2026-09-25.md). `/users` provides the full map and searchable directory; `/` continues to show only featured simulated users.
+
+Deeper follow-up research for all 97 additions: [source review and coverage](research/independent-deepening-summary-2026-09-25.md).

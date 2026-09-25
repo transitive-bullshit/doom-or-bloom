@@ -1,5 +1,7 @@
 # Independent 100 simulated users
 
+This records the initial source pass and generated runs. The [deeper source review](independent-deepening-summary-2026-09-25.md) supersedes the initial briefs; it preserves these generated results and their original source snapshots.
+
 Source list: [The Independent 100](https://independent.prose.md/), inspected September 25, 2026. The [exact account/portrait manifest](independent-100-accounts-2026-09-25.json) records the 99 numbered entries. The unnumbered nomination contact is excluded.
 
 ## Identity and research

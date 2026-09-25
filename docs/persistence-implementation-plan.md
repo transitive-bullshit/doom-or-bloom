@@ -565,3 +565,11 @@ Hosted verification on preview deployment `dpl_5fFAFEx3RSSFuTKEc45GSambbVHh` (co
 - [x] Verify catalog integrity, persistence, filtering, mobile layout and production packaging; record generation evidence and commit the checkpoint.
 
 Checkpoint evidence: [Independent 100 research and generation record](research/independent-simulated-users-2026-09-25.md). All 97 new users have generated results; the original 55 journeys are unchanged. Core tests (283), 12 landing/navigation browser cases, persona database and browser checks, and the local production build passed.
+
+## Independent simulated-user source deepening — September 25, 2026
+
+- [x] Research all 97 new users in two independent batches (49 and 48), prioritizing inspected first-person essays, interviews and substantive original posts over profiles and indexes.
+- [x] Expand dated source summaries and revise beliefs, background and evidence limitations; preserve identity, featured status and all existing immutable simulation runs.
+- [x] Audit source coverage, attribution and access scope; integrate the briefs, synchronize local profile metadata, validate and commit the checkpoint.
+
+Checkpoint evidence: [Deeper source review](research/independent-deepening-summary-2026-09-25.md). All 97 briefs revised, with 235 → 708 source records and 473 newly inspected URLs. Core tests (283), persona database checks and the persona browser check passed. Local profile metadata is synchronized; selected results and featured flags are unchanged.
