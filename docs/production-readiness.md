@@ -84,3 +84,11 @@ Updated the production X app's callback to the exact canonical `www` URL. The ac
 - [x] Import and verify the same 141 personas in the separate Neon preview project, `doom-or-bloom-preview` (`jolly-frog-41412992`, branch `main`, database `doom_bloom_preview`): 97 additions, seven updated simulations and 44 featured. All six migrations were already applied. Every payload, metadata record and source brief matched the local export; previous simulation snapshots and account/operation tables were unchanged, with zero participant assessments. The user-approved temporary database credential and transfer key were deleted after verification.
 
 Production and preview data preparation are complete before merge. The new directory, portrait assets and presentation changes still require deploying this PR. Generated simulations are intentionally ignored by Git: merging or deploying alone does not seed them into another database. Do not copy the local participant database; import only curated persona profiles and their selected simulation results through the persona repository, preserving published historical snapshots and generation ordering.
+
+## Joscha Bach and Vittorio import — September 26, 2026
+
+- [x] Import only the two locally validated `simulation_v1` payloads through the persona repository, without inference or schema changes. Production now has 143 selected profiles, retaining 44 featured users. Both additions are unfeatured.
+- [x] Verify metadata, source briefs and complete selected payload fingerprints against the local exports; repeat publication with the same keys to verify idempotency.
+- [x] Confirm checksums of all 141 prior profile rows, 163 prior assessment rows and 199 prior immutable snapshot rows are unchanged. No participant or authentication data was imported.
+
+Selected production assessments: Joscha Bach (`plinz`) `2858e363-047e-42cc-af79-935549b82704`; Vittorio (`iterintellectus`) `60be698f-765b-4b32-ba45-21dbb79f3cac`. Private verification artifacts remain under ignored `work/research/bach-vittorio/`. The Git deployment supplies portraits/source artwork and rebuilds the directory after this data import. Preview database was outside this requested production import.

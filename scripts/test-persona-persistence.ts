@@ -29,8 +29,14 @@ try {
     new Set(selected.map((row) => row.metadata.id)),
     new Set(people.map((person) => person.id))
   )
-  assert.equal(selected.filter((row) => row.persona.featured).length, 44)
-  assert.equal(selected.filter((row) => !row.persona.featured).length, 97)
+  assert.equal(
+    selected.filter((row) => row.persona.featured).length,
+    people.filter((person) => person.featured).length
+  )
+  assert.equal(
+    selected.filter((row) => !row.persona.featured).length,
+    people.filter((person) => !person.featured).length
+  )
   assert.deepEqual(
     await repo.selectedSlugs(),
     selected

@@ -42,6 +42,8 @@ test('Independent 100 preserves original users and keeps new simulations off the
     const brief = personas.find((entry) => entry.id === person.id)!
     expect(brief.sources.length).toBeGreaterThan(0)
   }
-  expect(people.filter((person) => !person.featured)).toHaveLength(97)
+  expect(
+    people.filter((person) => person.id.startsWith('independent-'))
+  ).toHaveLength(97)
   expect(people.filter((person) => person.featured)).toHaveLength(44)
 })

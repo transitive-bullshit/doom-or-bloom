@@ -72,3 +72,6 @@ Andrew McAfee, verified on 2026-09-23:
 ## Independent 100 — September 25, 2026
 
 The 97 `independent-<handle>.jpg` portraits are copied from the corresponding `https://independent.prose.md/img/<original-case-handle>.jpg` URLs on the [user-supplied directory](https://independent.prose.md/), accessed September 25, 2026. Exact original URLs are recorded in `docs/research/independent-100-accounts-2026-09-25.json`. Portraits identify the listed public accounts; they do not imply participation or endorsement. Existing Scott Alexander and Eliezer Yudkowsky fixtures and portraits are retained. The wildcard nomination contact is not one of the 99 ranked accounts.
+
+- `bach.jpg`: Joscha Bach’s public [X profile](https://x.com/Plinz), [portrait](https://pbs.twimg.com/profile_images/1924626291078389760/CXMHFvej_400x400.jpg), inspected September 26, 2026.
+- `vittorio.jpg`: Vittorio’s public [X profile](https://x.com/IterIntellectus), [portrait](https://pbs.twimg.com/profile_images/2009602429478633472/8lMkYuep_400x400.jpg), inspected September 26, 2026.

@@ -76,3 +76,5 @@ Latest bookmark and interview review: [local preview coverage and source correct
 Latest local simulation refresh: [source-driven regeneration of 103 affected users](research/source-regeneration-2026-09-25.md).
 
 Latest new-cohort audit: [historical evidence, answer fidelity and 44 corrected simulations](research/historical-persona-audit-2026-09-25.md).
+
+New simulated-user research: [Joscha Bach](research/joscha-bach-persona-2026-09-26.md) and [Vittorio](research/vittorio-persona-2026-09-26.md), with local generation and verification recorded in the persistence checkpoint log.

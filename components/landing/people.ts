@@ -597,5 +597,37 @@ export const people = [
     description: person.description,
     tone: 'middle' as const,
     featured: person.featured ?? false
-  }))
+  })),
+  {
+    id: 'joscha-bach',
+    name: 'Joscha Bach',
+    shortName: 'Joscha Bach',
+    slug: 'plinz',
+    xUsername: 'plinz',
+    xUrl: 'https://x.com/Plinz',
+    avatar: '/personas/bach.jpg',
+    initials: 'JB',
+    possessivePronoun: 'his' as const,
+    stance: 'Build intelligence that helps us understand and shape the future.',
+    description:
+      'Expects profound transformation, favors broadly accessible AI, and questions fixed-goal accounts of superintelligence.',
+    tone: 'bloom' as const,
+    featured: false
+  },
+  {
+    id: 'vittorio',
+    name: 'Vittorio',
+    shortName: 'Vittorio',
+    slug: 'iterintellectus',
+    xUsername: 'iterintellectus',
+    xUrl: 'https://x.com/IterIntellectus',
+    avatar: '/personas/vittorio.jpg',
+    initials: 'V',
+    possessivePronoun: 'his' as const,
+    stance: 'Make intelligence abundant and human life more fulfilling.',
+    description:
+      'Favors rapid AI and biological progress while worrying about lost apprenticeships and dependence on automation.',
+    tone: 'bloom' as const,
+    featured: false
+  }
 ]

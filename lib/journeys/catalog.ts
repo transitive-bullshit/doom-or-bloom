@@ -12,6 +12,8 @@ import { safetyResearcherPersonas } from './safety-researcher-personas'
 import { worldviewWriterPersonas } from './worldview-writer-personas'
 import { noahPublicPersona } from './noah-public-persona'
 import { mcafeePublicPersona } from './mcafee-public-persona'
+import { bachPublicPersona } from './bach-public-persona'
+import { vittorioPublicPersona } from './vittorio-public-persona'
 import { independentPersonas } from './independent-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
@@ -61,6 +63,8 @@ const narrativePersonas: Persona[] = [
   ...civicPublicPersonas,
   noahPublicPersona,
   mcafeePublicPersona,
+  bachPublicPersona,
+  vittorioPublicPersona,
   ...safetyResearcherPersonas,
   ...worldviewWriterPersonas,
   ...independentPersonas,
