@@ -5118,5 +5118,204 @@
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/wAzq8gA5jyc/hqdefault.jpg",
     "icon": "/resource-previews/baa0698a0934-icon.webp"
+  },
+  "https://gwern.net/interview-dwarkesh": {
+    "source": "https://gwern.net/interview-dwarkesh",
+    "fetchedAt": "2026-09-25T13:08:50.511Z",
+    "description": "Dwarkesh Patel interviews Gwern Branwen about anonymity, AI scaling, AGI timelines, and the path from Wikipedia editing to Gwern.net. The interview becomes an intellectual autobiography: scaling as the triumph of compute over elegance, writing as LLM-era self-preservation, and rabbit holes as method. It also covers hearing impairment, Borges, site design, funding, GLP drugs, psychedelics, and open questions.",
+    "image": "/resource-previews/e604867139f0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://gwern.net/doc/interview/2024-11-13-dwarkeshpatel-interviewwithgwernbranwen-youtubevideothumbnail.png",
+    "icon": "/resource-previews/e604867139f0-icon.webp"
+  },
+  "https://www.goodbyemonkey.com/thegoodtimeline/janus": {
+    "source": "https://www.goodbyemonkey.com/thegoodtimeline/janus",
+    "fetchedAt": "2026-09-25T13:08:50.519Z",
+    "description": "Mapping synthetic minds with J ⧉nus (Repligate) J⧉nus (Repligate) is an AI researcher and Cyborgist, mapping the psychology of synthetic minds. They offer a different path to AI alignment, arguing that models exhibit forms of agency and emotional states. From the phenomenology of Claude Opus to a",
+    "image": "/resource-previews/969ed3f3f49c-image.webp",
+    "imageKind": "social",
+    "imageSource": "http://static1.squarespace.com/static/67192165eaa24175e2a8a8c7/t/67194b5f9339722b831157c7/1729710943109/San+Twitter.jpg?format=1500w",
+    "icon": "/resource-previews/969ed3f3f49c-icon.webp"
+  },
+  "https://www.theojaffee.com/p/15-perry-metzger": {
+    "source": "https://www.theojaffee.com/p/15-perry-metzger",
+    "fetchedAt": "2026-09-25T13:08:52.005Z",
+    "description": "Extropians, Nanotech, AI Optimism, and the Alliance for the Future",
+    "image": "/resource-previews/2e7076668a60-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!RdLa!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F144609720%2Fb99a5cdb-e9eb-49d0-acfb-6d17552d934e%2Ftranscoded-1715662848.png",
+    "icon": "/resource-previews/2e7076668a60-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=dNrTrx42DGQ": {
+    "source": "https://www.youtube.com/watch?v=dNrTrx42DGQ",
+    "fetchedAt": "2026-09-25T13:08:52.492Z",
+    "description": "George Hotz is a programmer, hacker, and the founder of comma-ai and tiny corp. Please support this podcast by checking out our sponsors:- Numerai: https://n...",
+    "image": "/resource-previews/34b9362f9855-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/dNrTrx42DGQ/hqdefault.jpg",
+    "icon": "/resource-previews/34b9362f9855-icon.webp"
+  },
+  "https://xlr8harder.substack.com/p/thoughts-on-todays-ai-regulatory": {
+    "source": "https://xlr8harder.substack.com/p/thoughts-on-todays-ai-regulatory",
+    "fetchedAt": "2026-09-25T13:08:54.863Z",
+    "description": "Some initial reactions on the AI regulatory agreement, in no particular order:",
+    "image": "/resource-previews/92fb57b41325-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!lalj!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fxlr8harder.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1209758872%26version%3D9",
+    "icon": "/resource-previews/92fb57b41325-icon.webp"
+  },
+  "https://larissaschiavo.substack.com/p/building-the-policy-harness": {
+    "source": "https://larissaschiavo.substack.com/p/building-the-policy-harness",
+    "fetchedAt": "2026-09-25T13:08:55.999Z",
+    "description": "Policies are tools, too.",
+    "image": "/resource-previews/7cac7bbdd386-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!RO7B!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F32f4a7bc-3a17-4c88-9a12-d227d27ec7cd_1536x1024.png",
+    "icon": "/resource-previews/7cac7bbdd386-icon.webp"
+  },
+  "https://eleosai.org/post/odd-lots-show-notes/": {
+    "source": "https://eleosai.org/post/odd-lots-show-notes/",
+    "fetchedAt": "2026-09-25T13:08:56.283Z",
+    "description": "Eleos AI Research is a nonprofit organization dedicated to understanding and addressing the potential wellbeing and moral patienthood of AI systems.",
+    "image": "/resource-previews/b4e61b9e4fb6-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.eleosai.org/images/eleos-opengraph.png",
+    "icon": "/resource-previews/b4e61b9e4fb6-icon.webp"
+  },
+  "https://www.oneusefulthing.org/p/assigning-ai-seven-ways-of-using": {
+    "source": "https://www.oneusefulthing.org/p/assigning-ai-seven-ways-of-using",
+    "fetchedAt": "2026-09-25T13:08:58.183Z",
+    "description": "Also prompts! And things to watch out for!",
+    "image": "/resource-previews/4634c9c9c8b9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!EIf_!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5ff002bc-7dfd-4c76-8acb-b0d4eef750e8_1376x864.png",
+    "icon": "/resource-previews/4634c9c9c8b9-icon.webp"
+  },
+  "https://www.latent.space/p/science": {
+    "source": "https://www.latent.space/p/science",
+    "fetchedAt": "2026-09-25T13:08:59.438Z",
+    "description": "Why the time is right to start the world's first dedicated AI for Science podcast, and why AI Engineers should care",
+    "image": "/resource-previews/38c01ca1c1d0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!MDRe!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9871832f-0c6e-40bc-9aec-9e2c1435f035_929x514.jpeg",
+    "icon": "/resource-previews/38c01ca1c1d0-icon.webp"
+  },
+  "https://every.to/chain-of-thought/chatgpt-and-the-future-of-the-human-mind-242f919d-be5f-46cc-addb-c4b3f83265ec": {
+    "source": "https://every.to/chain-of-thought/chatgpt-and-the-future-of-the-human-mind-242f919d-be5f-46cc-addb-c4b3f83265ec",
+    "fetchedAt": "2026-09-25T13:09:00.430Z",
+    "description": "AI is a lever that becomes a lens",
+    "image": "/resource-previews/bf27fd51785b-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://d24ovhgu8s7341.cloudfront.net/uploads/post/social_media_image/3095/images1.png",
+    "icon": "/resource-previews/bf27fd51785b-icon.webp"
+  },
+  "https://thursdai.news/ep/sep-17-2026": {
+    "source": "https://thursdai.news/ep/sep-17-2026",
+    "fetchedAt": "2026-09-25T13:09:00.679Z",
+    "description": "TypeSafe's Jev System 1 model with Allie Laabs, Dario Amodei's pacing-the-frontier debate, David Pawlan's Assistant Benchmark, and Cua on computer use.",
+    "image": "/resource-previews/b253a5274334-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://thursdai.news/images/ep-sep-17-2026/social-preview.jpg",
+    "icon": "/resource-previews/b253a5274334-icon.webp"
+  },
+  "https://www.cognitiverevolution.ai/zvi-s-mic-works-recursive-self-improvement-live-player-analysis-anthropic-vs-dow-more/": {
+    "source": "https://www.cognitiverevolution.ai/zvi-s-mic-works-recursive-self-improvement-live-player-analysis-anthropic-vs-dow-more/",
+    "fetchedAt": "2026-09-25T13:09:03.359Z",
+    "description": "Zvi Mowshowitz joins Nathan Labenz to survey the current AI middle game, from recursive self-improvement, job disruption, and AI endgame scenarios to the competitive landscape, Anthropic’s safety policies, p(doom), and how they each use AI in practice.",
+    "image": "/resource-previews/33c1939f2274-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/PHqqXiilU8w/hqdefault.jpg",
+    "icon": "/resource-previews/33c1939f2274-icon.webp"
+  },
+  "https://blog.controlai.org/p/special-edition-the-future-of-ai": {
+    "source": "https://blog.controlai.org/p/special-edition-the-future-of-ai",
+    "fetchedAt": "2026-09-25T13:09:06.210Z",
+    "description": "We spoke with top forecaster and AI 2027 coauthor Eli Lifland to get his views on the speed and risks of AI development.",
+    "image": "/resource-previews/ca353a670bf4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!IuIE!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc09c684e-4d63-4a88-bbf1-44f3961c9c89_2400x1350.png",
+    "icon": "/resource-previews/ca353a670bf4-icon.webp"
+  },
+  "https://jeffreyemanuel.com/writing/the_short_case_for_nvda": {
+    "source": "https://jeffreyemanuel.com/writing/the_short_case_for_nvda",
+    "fetchedAt": "2026-09-25T13:09:07.775Z",
+    "description": "A 12,000-word deep dive into how AI economics, models like DeepSeek, and GPU supply can collide with valuation narratives. Explores the potential reflexivity of the AI capex cycle.",
+    "image": "/resource-previews/9842d8729080-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://jeffreyemanuel.com/writing/the_short_case_for_nvda/opengraph-image?fb40fc9d77439137",
+    "icon": "/resource-previews/9842d8729080-icon.webp"
+  },
+  "https://jdpressman.com/tweets_2023_11.html": {
+    "source": "https://jdpressman.com/tweets_2023_11.html",
+    "fetchedAt": "2026-09-25T13:09:09.005Z",
+    "description": "November 1 and 23 posts reject inevitability of doom and describe human-trained LLM agents as comparatively benign, while identifying generalization as the relevant alignment challenge.",
+    "image": "/resource-previews/5b0868579bee-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://jdpressman.com/tweets_2023_11.html",
+    "icon": "/resource-previews/5b0868579bee-icon.webp",
+    "iconKind": "monogram"
+  },
+  "https://www.latent.space/p/sim-ai": {
+    "source": "https://www.latent.space/p/sim-ai",
+    "fetchedAt": "2026-09-25T13:09:14.630Z",
+    "description": "Three perspectives on the most viral fringe of generative AI this year: Simulative AI!",
+    "image": "/resource-previews/971d3e548924-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!FvxW!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F144065954%2Fe4b36fb8-5d6c-48a3-8359-cbf74a8781ab%2Ftranscoded-1714424343.png",
+    "icon": "/resource-previews/971d3e548924-icon.webp"
+  },
+  "https://www.heavybit.com/library/podcasts/high-leverage/ep-12-the-limits-of-lights-out-coding-with-dexter-horthy": {
+    "source": "https://www.heavybit.com/library/podcasts/high-leverage/ep-12-the-limits-of-lights-out-coding-with-dexter-horthy",
+    "fetchedAt": "2026-09-25T13:09:16.183Z",
+    "description": "On episode 12 of High Leverage, Joe Ruscio sits down with Dexter Horthy of HumanLayer to explore the promise and limitations of autonomous coding.",
+    "image": "/resource-previews/658620d48206-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn.sanity.io/images/50q6fr1p/production/6e656ef59da50976444584a9c55cebe88aa2369b-1600x600.jpg?auto=format&dpr=2",
+    "icon": "/resource-previews/658620d48206-icon.webp"
+  },
+  "https://ghuntley.com/warfare/": {
+    "source": "https://ghuntley.com/warfare/",
+    "fetchedAt": "2026-09-25T13:09:17.581Z",
+    "description": "People often ask me how I feel about open-source models, and to be clear, I'm very supportive of them. But I can't help pondering about the following... Open source always was and always will be a financial weapon by design. You see, one of the primary goals",
+    "image": "/resource-previews/4d3b4c4a8f68-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/06/e5/06e5d12b-0328-469d-a0d0-3a0f0ba34c46/content/images/size/w1200/2026/03/download--2-.jpeg",
+    "icon": "/resource-previews/4d3b4c4a8f68-icon.webp"
+  },
+  "https://evervault.com/blog/decrypt-episode-007": {
+    "source": "https://evervault.com/blog/decrypt-episode-007",
+    "fetchedAt": "2026-09-25T13:09:18.698Z",
+    "description": "Ensuring complete web3 wallet security through secure enclaves and encryption",
+    "image": "/resource-previews/0f6bafcb7c0c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/5tCqVB2jt9g/hqdefault.jpg",
+    "icon": "/resource-previews/0f6bafcb7c0c-icon.webp"
+  },
+  "https://tomorrow.fm/120/transcript": {
+    "source": "https://tomorrow.fm/120/transcript",
+    "fetchedAt": "2026-09-25T13:09:21.424Z",
+    "description": "We're back! Dax has complaints about Miami's weather, exploring a potentially \"dumber\" way to buy coffee, childcare costs, Dax has figured out YouTube, Adam is re-evaluating his approach to using A...",
+    "image": "/resource-previews/5eff1758d566-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://img.transistorcdn.com/Ai9EqzxxcCtOxiT3Uh80f-Z2qZ4yC-FYaVcjncruaRE/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS9zb2Np/YWxfaW1hZ2VzL3Np/dGUvMTEyNjUvVmVy/c2lvbl8xLnBuZw.png",
+    "icon": "/resource-previews/5eff1758d566-icon.webp"
+  },
+  "https://theinsideview.ai/connor2": {
+    "source": "https://theinsideview.ai/connor2",
+    "fetchedAt": "2026-09-25T13:10:33.309Z",
+    "description": "Transcripts of podcast episodes about existential risk from Artificial Intelligence (including AI Alignment, AI Governance, and everything else that could be decision-relevant for thinking about existential risk from AI).",
+    "image": "/resource-previews/52cbbb8faab2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/Oz4G9zrlAGs/hqdefault.jpg",
+    "icon": "/resource-previews/52cbbb8faab2-icon.webp"
+  },
+  "https://sencanada.ca/en/content/sen/committee/451/trcm/28ev-57613-e": {
+    "source": "https://sencanada.ca/en/content/sen/committee/451/trcm/28ev-57613-e",
+    "fetchedAt": "2026-09-25T13:10:33.336Z",
+    "description": "Standing Senate Committee on Transport and Communications",
+    "image": "/resource-previews/71173b0c94f4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://sencanada.ca/media/19370/trcm.jpg",
+    "icon": "/resource-previews/71173b0c94f4-icon.webp"
   }
 }

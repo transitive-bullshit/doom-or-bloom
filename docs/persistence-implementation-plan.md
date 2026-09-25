@@ -610,3 +610,12 @@ Evidence: [source-driven regeneration report](research/source-regeneration-2026-
 - [x] Validate all 288 unit tests, formatting, lint, types, content, unused-code checks, and persona database import/idempotence without the aggregate file.
 
 Generated data lives under `work/journeys/`; the migration command preserves its input and compares every imported record. Public database results are unchanged. Extensive audit and recovery artifacts remain local and ignored.
+
+## Historical evidence and answer fidelity — September 25, 2026
+
+- [x] Review the 97 new users for historical source gaps and answer/brief mismatches; distinguish bounded coverage from exhaustive verification.
+- [x] Integrate 44 material brief corrections, inspect attribution and conditional forecasts, and cache all new non-tweet source previews.
+- [x] Regenerate the 44 corrected users locally without target scores; make one focused additional correction for unsupported personal-agnosticism phrasing.
+- [x] Verify immutable snapshots, unaffected selections, featured flags and local records; validate tests and provenance checks.
+
+Evidence and before/after examples: [historical audit report](research/historical-persona-audit-2026-09-25.md). Detailed research and generated results remain under ignored `work/`.
