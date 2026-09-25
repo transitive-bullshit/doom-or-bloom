@@ -1272,7 +1272,7 @@ export const independentFirstPersonas: Persona[] = [
   },
   {
     id: 'independent-dhh',
-    shortName: 'David Heinemeier Hansson',
+    shortName: 'DHH',
     featured: false,
     slug: 'dhh',
     xUsername: 'dhh',

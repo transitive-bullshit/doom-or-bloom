@@ -368,7 +368,7 @@ export function Prism({
               unoptimized
             />
             <span className='study-person-name'>
-              {p.name}
+              {p.shortName}
               {directory && directoryValue(p, sort) && (
                 <span className='directory-metric'>
                   {directoryValue(p, sort)}
