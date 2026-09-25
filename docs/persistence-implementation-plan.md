@@ -660,3 +660,13 @@ Validation on `c45337ea` plus this checkpoint's dirty tree:
 - `pnpm check:persistence`: all eight passed in 52.0s.
 
 All mutation tests used synthetic records in native local test Postgres. No paid inference, production data mutation, or manual deployment was performed. Hosted cache propagation remains a deployment smoke check.
+
+## Optimized profile and account portraits — September 25, 2026
+
+- [x] Use Next image optimization for profile-map SVG portraits and the signed-in site-header avatar, preserving account initials on image failure.
+- [x] Retain native SVG clipping and original-resolution portraits in downloaded map PNGs; keep social-card rendering independent of browser image optimization.
+- [x] Verify browser rendering, map downloads, social-image regressions, and production prerendering; commit the checkpoint.
+
+Validation on `8d02b10d` plus this checkpoint's dirty tree: `pnpm build:local` passed, preserving 141 pregenerated profiles and both locally published assessments. `pnpm test` passed all 297 cases and core checks, including native social WebP/PNG rendering and public/download parity. The four map browser scenarios passed, including an optimized portrait response, exact original portrait bytes embedded in the export, a decodable 2720×1612 PNG, and existing clipboard/unknown-placement cases. Desktop/mobile map screenshots and the downloaded PNG were visually inspected.
+
+`pnpm check:browser tests/browser/header-account.spec.ts tests/browser/map.spec.ts` initially passed eight cases in 29.1s; the account-avatar check expected a relative URL while Next normalized it to an absolute URL on the same origin. Corrected the test to verify the optimizer path, same origin, and Twitter source. `pnpm check:browser tests/browser/header-account.spec.ts --grep 'account menu'` then passed in 12.6s, covering image loading, failed-image initials, keyboard navigation, and logout recovery. No inference or production data changes.

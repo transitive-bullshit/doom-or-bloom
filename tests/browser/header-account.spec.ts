@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { readFile } from 'node:fs/promises'
 
 test('header CTA collapses after starting an assessment and leaving it', async ({
   page
@@ -77,6 +78,17 @@ test('account menu supports keyboard navigation and logout errors then success',
 }) => {
   let signedIn = true
   let failLogout = true
+  let image =
+    'https://pbs.twimg.com/profile_images/header-test/avatar_normal.jpg'
+  const portrait = await readFile('public/personas/karpathy.jpg')
+  await page.route('**/_next/image?**', (route) => {
+    const source = new URL(route.request().url()).searchParams.get('url')
+    if (!source?.includes('/profile_images/header-test/'))
+      return route.continue()
+    return source.endsWith('/avatar_400x400.jpg')
+      ? route.fulfill({ contentType: 'image/jpeg', body: portrait })
+      : route.fulfill({ status: 404, body: 'Missing avatar' })
+  })
   await page.route('**/api/auth/get-session**', (route) =>
     route.fulfill({
       json: signedIn
@@ -91,7 +103,7 @@ test('account menu supports keyboard navigation and logout errors then success',
               name: 'Header Test',
               email: 'header@example.com',
               isAnonymous: false,
-              image: null
+              image
             }
           }
         : null
@@ -106,6 +118,29 @@ test('account menu supports keyboard navigation and logout errors then success',
   await page.goto('/users/tszzl')
   const trigger = page.getByRole('button', { name: 'Account menu' })
   await expect(trigger).toBeVisible()
+  const avatar = trigger.locator('img')
+  await expect(avatar).toHaveAttribute('src', /\/_next\/image\?/)
+  const avatarUrl = new URL((await avatar.getAttribute('src'))!, page.url())
+  expect(avatarUrl.origin).toBe(new URL(page.url()).origin)
+  expect(avatarUrl.searchParams.get('url')).toBe(
+    'https://pbs.twimg.com/profile_images/header-test/avatar_400x400.jpg'
+  )
+  await expect
+    .poll(() =>
+      avatar.evaluate((node) => (node as HTMLImageElement).naturalWidth)
+    )
+    .toBeGreaterThan(0)
+  image = 'https://pbs.twimg.com/profile_images/header-test/missing_normal.jpg'
+  const failedAvatar = page.waitForResponse(
+    (response) =>
+      new URL(response.url()).searchParams
+        .get('url')
+        ?.endsWith('/header-test/missing_400x400.jpg') === true
+  )
+  await page.reload()
+  expect((await failedAvatar).status()).toBe(404)
+  await expect(trigger.locator('img')).toHaveCount(0)
+  await expect(trigger.locator('[data-slot="avatar-fallback"]')).toHaveText('H')
   await trigger.focus()
   await page.keyboard.press('Enter')
   await expect(

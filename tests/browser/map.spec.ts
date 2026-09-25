@@ -4,6 +4,46 @@ import { expect, test, seedAssessment } from './fixtures'
 import { createAssessment } from '../../lib/assessment/state'
 import { emptyComponent } from '../../lib/assessment/projections'
 
+test('persona map optimizes its portrait and embeds it in PNG exports', async ({
+  page
+}, testInfo) => {
+  await page.goto('/users/tszzl')
+  const map = page.locator('[data-slot="worldview-map"]').first()
+  const portrait = map.locator('[data-persona-marker] image')
+  await expect(portrait).toHaveAttribute('href', /^\/_next\/image\?/)
+  const source = new URL((await portrait.getAttribute('href'))!, page.url())
+  expect(source.searchParams.get('url')).toMatch(/^\/personas\//)
+  const response = await page.request.get(source.toString())
+  expect(response.ok()).toBe(true)
+  const optimized = await sharp(await response.body()).metadata()
+  expect(optimized.width).toBeLessThanOrEqual(
+    Number(source.searchParams.get('w'))
+  )
+
+  const exporting = page.waitForRequest('**/api/map-png')
+  const downloading = page.waitForEvent('download')
+  await map.getByRole('button', { name: 'Map image actions' }).click()
+  await page.getByRole('menuitem', { name: 'Download PNG' }).click()
+  const svg = (await exporting).postDataJSON().svg as string
+  const embedded = svg.match(/href="data:image\/[^;]+;base64,([^"]+)"/)
+  expect(embedded).not.toBeNull()
+  // Export embeds the full source portrait, not the small optimized marker.
+  const original = await page.request.get(source.searchParams.get('url')!)
+  expect(Buffer.from(embedded![1]!, 'base64')).toEqual(await original.body())
+  expect(svg).not.toContain('data-export-src')
+  const download = await downloading
+  const png = await readFile((await download.path())!)
+  expect(await sharp(png).metadata()).toMatchObject({
+    format: 'png',
+    width: 2720,
+    height: 1612
+  })
+  await download.saveAs(testInfo.outputPath('optimized-portrait-map.png'))
+  await map.screenshot({ path: testInfo.outputPath('portrait-desktop.png') })
+  await page.setViewportSize({ width: 390, height: 844 })
+  await map.screenshot({ path: testInfo.outputPath('portrait-mobile.png') })
+})
+
 // Measure the actual dashed upper boundary against nearby chart pixels.
 async function rangeContrast(png: Buffer, exportOffset = 0) {
   const { data, info } = await sharp(png)

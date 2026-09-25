@@ -61,7 +61,12 @@ export async function mapPng(svg: SVGSVGElement): Promise<Blob> {
   // so a persona's marker survives copying or downloading the map as a PNG.
   await Promise.all(
     [...clone.querySelectorAll('image')].map(async (portrait) => {
-      const href = portrait.getAttribute('href')
+      // The displayed portrait is optimized for the small on-screen marker.
+      // Use the original for our larger PNG so exports keep their resolution.
+      const href =
+        portrait.getAttribute('data-export-src') ??
+        portrait.getAttribute('href')
+      portrait.removeAttribute('data-export-src')
       if (!href || href.startsWith('data:')) return
       const response = await fetch(href)
       if (!response.ok)

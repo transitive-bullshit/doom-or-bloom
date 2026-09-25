@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useSyncExternalStore } from 'react'
 import { LogOutIcon, ListIcon } from 'lucide-react'
 import { toast } from 'sonner'
@@ -8,7 +9,7 @@ import { authClient } from '@/lib/auth/client'
 import { profileImageUrl } from '@/lib/auth/profile-image'
 import { api } from '@/lib/assessments/client'
 import { WorldviewCta } from '@/components/worldview-cta'
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -33,7 +34,9 @@ export function HeaderAccount() {
   )
   const { data: session, isPending } = authClient.useSession()
   const [busy, setBusy] = useState(false)
+  const [failedImage, setFailedImage] = useState<string | null>(null)
   const user = session?.user
+  const image = profileImageUrl(user?.image)
   async function signOut() {
     setBusy(true)
     try {
@@ -61,13 +64,20 @@ export function HeaderAccount() {
           disabled={busy}
         >
           <Avatar>
-            <AvatarImage
-              src={profileImageUrl(user.image) ?? undefined}
-              alt=''
-            />
             <AvatarFallback>
               {user.name.trim().slice(0, 1).toUpperCase() || '?'}
             </AvatarFallback>
+            {image && image !== failedImage && (
+              <Image
+                key={image}
+                src={image}
+                alt=''
+                width={32}
+                height={32}
+                className='absolute inset-0 size-full object-cover'
+                onError={() => setFailedImage(image)}
+              />
+            )}
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

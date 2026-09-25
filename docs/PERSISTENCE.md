@@ -182,6 +182,8 @@ X OAuth stores the provider-returned username in a non-client-editable user fiel
 
 Public assessment WebP previews use the same `resultCardData` and `renderShareCard` path as downloaded social-sharing PNGs. Both show the map, P(doom), closest-persona portraits, and result date; only encoding and pixel density differ for participant images. Public image origin requests check current publication before rendering; successful previews carry seven-day public freshness plus a one-day stale-while-revalidate allowance. Cached copies may outlive revocation by up to eight days. Owner-only PNG exports remain private/no-store.
 
+Browser map portraits use `getImageProps` from `next/image` for resized URLs while retaining native SVG clipping. The SVG records the original portrait source separately; PNG export embeds those original bytes before sending the SVG to Takumi, preserving export resolution. Social cards continue to load original portraits through their own renderer. The site-header account avatar uses Next's `Image` with an initials fallback on failure; local paths and the existing `https://pbs.twimg.com/profile_images/**` allowlist cover these image sources.
+
 ### Vercel Preview isolation
 
 Vercel Preview deployments use the separate Neon project `doom-or-bloom-preview` (`jolly-frog-41412992`), branch `main`, database `doom_bloom_preview`. This is a fresh database migrated from `drizzle/` and seeded with the repository's curated persona simulations; production accounts and participant answers are not copied. Preview deployments share this preview database with each other, not with production. Use the pooled `DATABASE_URL` for the app and the direct `DATABASE_MIGRATION_URL` for explicit preview migrations. Preview has its own `BETTER_AUTH_SECRET`.
