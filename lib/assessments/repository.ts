@@ -1,6 +1,6 @@
 import 'server-only'
 import { createHash, randomUUID } from 'node:crypto'
-import { and, count, desc, eq, lte } from 'drizzle-orm'
+import { and, count, desc, eq, isNotNull, lte } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import type { Pool } from 'pg'
 import {
@@ -640,6 +640,18 @@ export function assessmentRepository(pool: Pool) {
         }
         await tx.update(assessments).set(changes).where(eq(assessments.id, id))
       })
+    },
+    async publishedParticipantPaths() {
+      return db
+        .select({ id: assessments.id })
+        .from(assessments)
+        .where(
+          and(
+            eq(assessments.origin, 'participant'),
+            eq(assessments.visibility, 'public'),
+            isNotNull(assessments.publishedSnapshotId)
+          )
+        )
     },
     async publicLoad(id: string) {
       return db.transaction(

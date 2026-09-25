@@ -28,7 +28,6 @@ const config: NextConfig = {
     return [
       '/assessment/:path*',
       '/assessments/:path*',
-      '/public/assessments/:id',
       '/public/assessments/:id/data'
     ].map((source) => ({
       source,

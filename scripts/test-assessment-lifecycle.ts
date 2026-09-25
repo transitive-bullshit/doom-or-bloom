@@ -69,8 +69,14 @@ try {
   ids.push(id)
   await assert.rejects(repo.fork(owner, id, randomUUID()), /published/)
   await assert.rejects(repo.publicLoad(id), /not found/)
+  assert(
+    !(await repo.publishedParticipantPaths()).some((path) => path.id === id)
+  )
   await project(id, 12)
   await repo.setVisibility(owner, id, 1, 'public')
+  assert(
+    (await repo.publishedParticipantPaths()).some((path) => path.id === id)
+  )
   const published = await repo.publicLoad(id)
   assert.equal(published.kind, 'participant')
   if (published.kind !== 'participant') throw new Error('Expected participant')
@@ -134,6 +140,9 @@ try {
   assert.deepEqual(first.assessment.result, published.assessment.result)
   await repo.setVisibility(owner, id, 1, 'private')
   await assert.rejects(repo.publicLoad(id), /not found/)
+  assert(
+    !(await repo.publishedParticipantPaths()).some((path) => path.id === id)
+  )
   assert.equal((await repo.load(owner, fork.id)).assessment.prompts.length, 12)
   await repo.remove(owner, id)
   const lineage = (

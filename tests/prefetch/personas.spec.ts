@@ -1,6 +1,32 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
 
+test('build-time public shares serve cached HTML and RSC with the database unavailable', async ({
+  request
+}) => {
+  const manifest = JSON.parse(
+    await readFile('.next/prerender-manifest.json', 'utf8')
+  )
+  const paths = Object.keys(manifest.routes).filter((path) =>
+    path.startsWith('/public/assessments/')
+  )
+  test.skip(
+    paths.length === 0,
+    'No public participant assessments at build time'
+  )
+  for (const path of paths) {
+    expect(manifest.routes[path].initialRevalidateSeconds).toBe(172800)
+    for (const headers of [{}, { RSC: '1' }] as Record<string, string>[]) {
+      const response = await request.get(path, { headers })
+      expect(response.status(), path).toBe(200)
+      expect(response.headers()['x-nextjs-cache'], path).toBe('HIT')
+      expect(response.headers()['cache-control'], path).toContain(
+        's-maxage=172800'
+      )
+    }
+  }
+})
+
 test('every built profile serves initial HTML and RSC without a database', async ({
   request
 }) => {

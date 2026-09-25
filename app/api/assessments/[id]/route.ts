@@ -10,6 +10,7 @@ import { privateHeaders, privateRequest } from '@/lib/assessments/http'
 import { submitSchema } from '@/lib/assessments/contracts'
 import { repository, evaluateAssessment } from '@/lib/assessments/server'
 import { readBoundedJson } from '@/lib/server/limits'
+import { refreshPublicAssessment } from '@/lib/assessments/public-cache'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 150
@@ -93,6 +94,7 @@ export async function PATCH(
       input.expectedRevision,
       input.visibility
     )
+    refreshPublicAssessment(id, input.visibility === 'public')
     return Response.json(await repository().load(owner, id), {
       headers: privateHeaders
     })
@@ -103,7 +105,9 @@ export async function DELETE(
   context: RouteContext<'/api/assessments/[id]'>
 ) {
   return privateRequest(request, async (owner) => {
-    await repository().remove(owner, z.uuid().parse((await context.params).id))
+    const id = z.uuid().parse((await context.params).id)
+    await repository().remove(owner, id)
+    refreshPublicAssessment(id, false)
     return new Response(null, { status: 204, headers: privateHeaders })
   })
 }

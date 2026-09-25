@@ -26,6 +26,7 @@
     "eval:smoke": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/smoke-jev.ts",
     "check:browser": "node --env-file=.env.development.local node_modules/@playwright/test/cli.js test",
     "check:prefetch": "node --env-file=.env.development.local node_modules/@playwright/test/cli.js test --config=playwright.prefetch.config.ts",
+    "check:public-cache": "node --env-file=.env.development.local node_modules/@playwright/test/cli.js test --config=playwright.public-cache.config.ts",
     "eval:engine": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/evaluate-engine.ts",
     "journeys:generate": "node --conditions=react-server --import tsx scripts/generate-journeys.ts --allow-paid",
     "journeys:live": "pnpm journeys:generate",

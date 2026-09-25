@@ -230,7 +230,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     const html = await visitor.request.get(publicURL)
     expect(html.status()).toBe(200)
     // Next dev overrides HTML Cache-Control to no-cache, must-revalidate.
-    // Production private/no-store headers are verified in build/start acceptance.
+    // Production caching and immediate revocation are covered by check:public-cache.
     expect(html.headers()['cache-control']).toMatch(/no-store|no-cache/)
     expect(await html.text()).toContain('AI could greatly improve medicine')
     const renderedHtml = load(await html.text())

@@ -16,6 +16,14 @@ const profilePaths = new Set(
     (match) => match[1]
   )
 )
+const publicAssessmentPaths = Object.keys(manifest.routes).filter((route) =>
+  route.startsWith('/public/assessments/')
+)
+assert.equal(
+  manifest.dynamicRoutes['/public/assessments/[id]'].fallback,
+  null,
+  'Newly published assessments must support on-demand generation'
+)
 assert(
   profilePaths.size > 0,
   'Build must contain the selected simulated-user catalog'
@@ -30,7 +38,8 @@ for (const route of [
   '/users',
   '/sitemap.xml',
   '/llms.txt',
-  ...profilePaths
+  ...profilePaths,
+  ...publicAssessmentPaths
 ]) {
   assert.equal(
     manifest.routes[route]?.initialRevalidateSeconds,
@@ -51,7 +60,7 @@ for (const route of profilePaths) {
   )
 }
 console.log(
-  `Verified ${profilePaths.size} pregenerated simulated profiles with server-rendered results and answers`
+  `Verified ${profilePaths.size} pregenerated simulated profiles with server-rendered results and answers, and ${publicAssessmentPaths.length} cached public assessments`
 )
 const required = path.resolve('eval/development/live-persona-journeys.json')
 for (const route of [

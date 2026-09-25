@@ -8,7 +8,17 @@ import { pageMetadata } from '@/lib/metadata'
 import { PublishedResult } from '@/components/assessment/published-result'
 import { Separator } from '@/components/ui/separator'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
-export const dynamic = 'force-dynamic'
+import { repository } from '@/lib/assessments/server'
+
+export const dynamic = 'force-static'
+export const dynamicParams = true
+export const revalidate = 172800
+
+// Only explicitly published participant snapshots are enumerated. New shares
+// are warmed at publication; historical simulation URLs can render on demand.
+export function generateStaticParams() {
+  return repository().publishedParticipantPaths()
+}
 export async function generateMetadata({
   params
 }: {

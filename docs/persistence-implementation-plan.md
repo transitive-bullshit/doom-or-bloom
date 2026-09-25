@@ -640,3 +640,23 @@ Validation on `203c2c4a` plus this checkpoint's working diff:
 - `pnpm check:persistence tests/persistence/personas.spec.ts`: one passed in 13.5s, including public simulation rendering, metadata/discovery, images and anonymous-session behavior.
 
 The ignored local journey fixtures were absent; the 141 public fixtures were restored from the dedicated local test database after verifying exact public payload/provenance round trips. No inference or production data mutation was performed. Production deployment and hosted post-change latency measurement remain separate work. Prefetch cancellation is bounded by the public Next Link API: queued work is removed, while already-started requests can finish and remain cached.
+
+## Public participant assessment caching — September 25, 2026
+
+- [x] Pregenerate every currently published participant assessment at build time and cache its complete HTML/RSC for 48 hours. Keep new publications and historical simulation URLs available through on-demand generation.
+- [x] Expire cached pages and cached 404s after authorized publication, unpublication, and deletion. Warm new publications after the API response, without owner cookies or inference.
+- [x] Keep private pages and public JSON uncached; preserve publication-time attribution, public serialization, and omission of participant IDs from discovery lists.
+- [x] Verify production warmup, cache reuse without Postgres, immediate revocation, and the existing persistence lifecycle; record the checkpoint.
+
+Previous public participant pages used `force-dynamic` plus `private, no-store`, so every view read Postgres. The public page now uses Next's full-route cache with `revalidate = 172800`. Publication/deletion handlers invalidate its literal path after the transaction commits. A best-effort `after()` fetch warms newly public pages through the trusted configured application origin; failed warming leaves on-demand generation available. Ordinary 48-hour refresh uses stale-while-revalidate, while explicit invalidation forces the next page request to check visibility before returning content. Browser copies already downloaded cannot be recalled. Public JSON still checks visibility on every request, and existing social-image caching is unchanged.
+
+Validation on `c45337ea` plus this checkpoint's dirty tree:
+
+- `pnpm test`: 297 tests across 61 files; formatting, lint, types, content validation, and unused-code checks passed.
+- `pnpm build:local`: passed, pregenerating both local public participant assessments alongside all 141 selected profiles. The production manifest/trace guard verifies 48-hour intervals and on-demand support for new shares.
+- `pnpm check:public-cache`: one passed in 3.3s. A synthetic private assessment first returned HTML/RSC/JSON 404s. Publishing generated its page without a visitor GET; subsequent HTML/RSC returned cache HITs. Unauthorized mutations were denied. Unpublishing and deletion returned 404 immediately, including cached React payloads; republishing invalidated the negative cache. The initial test harness run lacked a JSON sign-in body (415); adding the required empty body resolved it.
+- `pnpm check:prefetch`: five passed in 7.6s with Postgres deliberately unreachable, including HTML/RSC cache HITs for both built public shares and all 141 profiles. Existing map intent, navigation cache reuse, keyboard, and Save-Data checks passed.
+- `pnpm db:test:lifecycle`: passed, including public-only build enumeration, revocation, ownership, forks, and publication-time attribution.
+- `pnpm check:persistence`: all eight passed in 52.0s.
+
+All mutation tests used synthetic records in native local test Postgres. No paid inference, production data mutation, or manual deployment was performed. Hosted cache propagation remains a deployment smoke check.
