@@ -199,9 +199,3 @@ Authored presentation fixtures supply `featured` explicitly. Both profile import
 ## Local generated simulation files
 
 Generated interviews and assessment snapshots are untracked local data under `work/journeys/`, stored per user with atomic run manifests. Authored source briefs remain versioned. PostgreSQL remains the public profile store. See [local journey storage and regeneration](user-journeys.md) for importing existing results and generating fresh ones.
-
-## Persona query payloads and lookup indexes
-
-List views and participant comparisons select persona metadata, current and recorded source lists, and the selected run's result directly in SQL. They never fetch the full interview, intermediate projections, or duplicated assessment state. Featured-only reads filter `personas.featured` in SQL. Single-profile pages continue to read their complete selected snapshot; full catalog reads are reserved for offline import and verification. Results, ordering, and the current-versus-recorded source distinction remain identical for historical and live simulation formats. This query projection does not alter immutable snapshots or introduce a separate cache to invalidate.
-
-The owner-library index matches `(owner_id, created_at)`. Account identity lookup uses `(provider_id, account_id)` without adding a new uniqueness constraint. Source-assessment, source-snapshot, and operation-retry indexes support foreign-key cleanup on deletion. Keep the account lookup index when regenerating Better Auth's schema. Migration `0006_sloppy_maginty` adds these indexes and replaces the old library ordering index; it requires an explicit migration in each hosted environment before release. It uses ordinary transactional index creation, so schedule its application with consideration for write locks on larger hosted tables.

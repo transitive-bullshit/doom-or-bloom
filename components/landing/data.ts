@@ -7,20 +7,12 @@ import { personaRepository } from '@/lib/personas/repository'
 import { simulationPresentation } from '@/lib/personas/payload'
 import { personaProfileSchema } from '@/lib/journeys/catalog'
 
-const loadSummaries = cache((featuredOnly: boolean) =>
-  personaRepository(getPool()).selectedSummaries(featuredOnly)
-)
+const loadSelected = cache(() => personaRepository(getPool()).selected())
 export const loadPersona = cache(async (slug: string) => {
   const row = await personaRepository(getPool()).selectedBySlug(slug)
   return row
     ? {
-        person: exampleFromSummary({
-          metadata: row.metadata,
-          assessmentId: row.assessmentId,
-          sources: personaProfileSchema.parse(row.persona.sourceBrief).sources,
-          recordedSources: row.payload.journey.personaSnapshot?.sources ?? [],
-          result: row.payload.journey.result!
-        }),
+        person: exampleFromRow(row),
         assessment: simulationPresentation(row.payload).assessment
       }
     : null
@@ -28,32 +20,35 @@ export const loadPersona = cache(async (slug: string) => {
 export const loadPersonaPaths = () =>
   personaRepository(getPool()).selectedSlugs()
 export const loadPersonaAssessment = cache(async (id: string) => {
-  const row = (await loadSummaries(false)).find((row) => row.metadata.id === id)
-  return row
-    ? ((await loadPersona(row.metadata.slug))?.assessment ?? null)
-    : null
+  const row = (await loadSelected()).find((row) => row.metadata.id === id)
+  return row ? simulationPresentation(row.payload).assessment : null
 })
 export const loadExamples = cache(async (featuredOnly = true) => {
-  return (await loadSummaries(featuredOnly)).map(exampleFromSummary)
+  return (await loadSelected())
+    .filter((row) => !featuredOnly || row.persona.featured)
+    .map(exampleFromRow)
 })
 
-function exampleFromSummary(
+function exampleFromRow(
   row: Awaited<
-    ReturnType<ReturnType<typeof personaRepository>['selectedSummaries']>
+    ReturnType<ReturnType<typeof personaRepository>['selected']>
   >[number]
 ) {
   const { order: _order, ...metadata } = row.metadata
+  const brief = personaProfileSchema.parse(row.persona.sourceBrief)
+  const recordedSources = row.payload.journey.personaSnapshot?.sources ?? []
+  const sources = brief.sources ?? recordedSources
   return {
     ...metadata,
     assessmentId: row.assessmentId,
-    sources: row.sources.map(({ title, url, summary }) => ({
+    sources: sources.map(({ title, url, summary }) => ({
       title,
       url,
       summary
     })),
     sourceBriefUpdated:
-      JSON.stringify(row.sources) !== JSON.stringify(row.recordedSources),
-    result: row.result
+      JSON.stringify(sources) !== JSON.stringify(recordedSources),
+    result: simulationPresentation(row.payload).result
   }
 }
 

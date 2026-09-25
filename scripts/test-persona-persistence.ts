@@ -9,7 +9,6 @@ import { createAssessment } from '../lib/assessment/state'
 import { seedPersonas } from '../lib/personas/seed'
 import { personaRepository } from '../lib/personas/repository'
 import { historicalPayload } from '../lib/personas/payload'
-import { personaProfileSchema } from '../lib/journeys/catalog'
 import { suiteSchema } from '../lib/journeys/schema'
 import { assessmentRepository } from '../lib/assessments/repository'
 
@@ -17,21 +16,6 @@ const connectionString = databaseUrl(process.env.TEST_DATABASE_URL)
 assert.ok(new URL(connectionString).pathname.endsWith('_test'))
 const pool = new Pool({ connectionString })
 const repo = personaRepository(pool)
-async function verifySummaries() {
-  const full = await repo.selected()
-  const expected = full.map((row) => ({
-    assessmentId: row.assessmentId,
-    metadata: row.metadata,
-    sources: personaProfileSchema.parse(row.persona.sourceBrief).sources,
-    recordedSources: row.payload.journey.personaSnapshot?.sources ?? [],
-    result: row.payload.journey.result
-  }))
-  assert.deepEqual(await repo.selectedSummaries(), expected)
-  assert.deepEqual(
-    await repo.selectedSummaries(true),
-    expected.filter((_, index) => full[index]!.persona.featured)
-  )
-}
 let testPersona: string | undefined
 try {
   const first = await seedPersonas(pool)
@@ -87,7 +71,6 @@ try {
       original.steps.map(({ trace: _trace, ...step }) => step)
     )
   }
-  await verifySummaries()
   const source = selected[0]!
   const testId = `persona-test-${randomUUID()}`
   testPersona = await repo.upsertProfile(
@@ -187,29 +170,6 @@ try {
         generated.finalAssessment
       )
   }
-  // A newly edited brief must not change the sources frozen in the run.
-  const revisedBrief = personaProfileSchema.parse(source.persona.sourceBrief)
-  revisedBrief.sources = [
-    { title: 'Updated source', url: 'https://example.com/updated' }
-  ]
-  await repo.upsertProfile(
-    { ...source.metadata, id: testId, slug: testId, featured: false },
-    revisedBrief
-  )
-  await verifySummaries()
-  const summary = (await repo.selectedSummaries()).find(
-    (row) => row.assessmentId === run.id
-  )!
-  assert.deepEqual(summary.sources, revisedBrief.sources)
-  assert.deepEqual(
-    summary.recordedSources,
-    generated.personaSnapshot?.sources ?? []
-  )
-  assert.ok(
-    !(await repo.selectedSummaries(true)).some(
-      (row) => row.assessmentId === run.id
-    )
-  )
   const olderProvenance = {
     ...provenance,
     runId: `${testId}-older-live`,
