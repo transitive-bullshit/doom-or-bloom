@@ -27,7 +27,7 @@ export function pageMetadata({
       height: image ? 630 : defaultSocialImage.height,
       alt: image
         ? imageAlt
-        : 'Doom or Bloom — Map your AI worldview. A flowering plant intertwined with copper circuits.',
+        : 'Doom or Bloom — AI worldview map with simulated-user portraits, from doom to bloom and incremental to civilizational change.',
       type: image ? imageType : 'image/jpeg'
     }
   ]
