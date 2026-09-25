@@ -75,7 +75,9 @@ export const assessments = pgTable(
   (t) => [
     unique('assessment_creation_key').on(t.ownerId, t.createRequestKey),
     unique('assessment_persona_membership').on(t.id, t.personaId),
-    index('assessment_owner_library').on(t.ownerId, t.updatedAt),
+    index('assessment_owner_library').on(t.ownerId, t.createdAt),
+    index('assessment_source_assessment').on(t.sourceAssessmentId),
+    index('assessment_source_snapshot').on(t.sourceSnapshotId),
     check(
       'assessment_visibility',
       sql`${t.visibility} in ('private', 'public') and ((${t.visibility} = 'public') = (${t.publishedSnapshotId} is not null))`
@@ -152,6 +154,7 @@ export const assessmentOperations = pgTable(
     updatedAt: time('updated_at')
   },
   (t) => [
+    index('operation_retry_of').on(t.retryOf),
     unique('operation_request_key').on(t.assessmentId, t.requestKey),
     unique('operation_membership').on(t.assessmentId, t.id),
     uniqueIndex('one_running_operation')
