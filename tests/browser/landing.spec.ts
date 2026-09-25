@@ -179,14 +179,12 @@ test('persona answer references reopen the transcript and navigate to the exact 
   await expect(page.locator(hash)).toBeFocused()
 })
 
-test('people legend keeps full names readable across responsive sizes and larger text', async ({
+test('people legend keeps display names readable across responsive sizes and larger text', async ({
   page
 }, testInfo) => {
   await page.goto('/')
   const legend = page.locator('.landing-map-legend')
-  await expect(
-    legend.getByRole('link', { name: 'Eliezer Yudkowsky', exact: true })
-  ).toBeVisible()
+  await expect(legend.locator('a[href="/users/esyudkowsky"]')).toBeVisible()
   for (const width of [1365, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 960 })
     if (width === 320) {

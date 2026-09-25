@@ -8,7 +8,9 @@ import { useSyncExternalStore, useMemo, useState } from 'react'
 import './prism.css'
 import { usePortraitHighlight } from './use-portrait-highlight'
 import { usePortraitLayout } from './use-portrait-layout'
-import type { VariantProps } from '@/components/landing/shared'
+import { usePersonaPrefetch } from './use-persona-prefetch'
+import { PersonaLink } from './persona-link'
+import type { MapExample } from '@/components/landing/shared'
 import { NativeSelect } from '@/components/ui/native-select'
 import {
   compareUsers,
@@ -113,7 +115,10 @@ function parsePreferences(raw: string | null): DirectoryPreferences {
 export function Prism({
   examples,
   directory = false
-}: VariantProps & { directory?: boolean }) {
+}: {
+  examples: MapExample[]
+  directory?: boolean
+}) {
   const storedPreferences = useSyncExternalStore(
     subscribePreferences,
     readPreferences,
@@ -148,6 +153,7 @@ export function Prism({
   )
   const chartRef = usePortraitLayout(plotted)
   const highlightRef = usePortraitHighlight(plotted)
+  const prefetch = usePersonaPrefetch(highlightRef)
   const portraitsReady = plotted.every((p) => portraits[p.avatar])
   const settlePortrait = (src: string, status: 'loaded' | 'failed') => {
     setPortraits((current) =>
@@ -201,8 +207,10 @@ export function Prism({
         <span className='study-doom'>Doom</span>
         <span className='study-bloom'>Bloom</span>
         {plotted.map((p) => (
-          <Link
+          <PersonaLink
             key={p.id}
+            intent={prefetch}
+            prefetchKey={`map:${p.slug}`}
             href={`/users/${p.slug}`}
             className='study-point study-portrait'
             style={{
@@ -224,7 +232,7 @@ export function Prism({
               onError={() => settlePortrait(p.avatar, 'failed')}
             />
             <span>{p.name}</span>
-          </Link>
+          </PersonaLink>
         ))}
       </div>
       <div className='study-axis-bottom'>Incremental change</div>
@@ -336,7 +344,13 @@ export function Prism({
         data-directory={directory}
       >
         {legend.map((p) => (
-          <Link key={p.id} href={`/users/${p.slug}`} data-person-id={p.id}>
+          <PersonaLink
+            key={p.id}
+            intent={prefetch}
+            prefetchKey={`legend:${p.slug}`}
+            href={`/users/${p.slug}`}
+            data-person-id={p.id}
+          >
             <Image
               className='landing-legend-avatar'
               src={p.avatar}
@@ -352,7 +366,7 @@ export function Prism({
                 </span>
               )}
             </span>
-          </Link>
+          </PersonaLink>
         ))}
       </div>
       {directory && legend.length === 0 && (

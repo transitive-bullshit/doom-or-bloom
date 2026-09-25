@@ -7,7 +7,7 @@ import { PageTransition } from '@/components/page-transition'
 import '@/components/landing/landing.css'
 
 export const dynamic = 'error'
-export const revalidate = 86400
+export const revalidate = 172800
 export const metadata = pageMetadata({
   path: '/users',
   title: 'Simulated users',
@@ -16,28 +16,34 @@ export const metadata = pageMetadata({
 })
 
 export default async function Page() {
-  const examples = (await loadExamples(false)).map(({ result, ...person }) => ({
-    ...person,
-    outlook: result.horizontal.value,
-    transformation: result.experiment?.transformation.value ?? null,
-    followers:
-      (followerSnapshot.accounts as Record<string, { followers: number }>)[
-        person.xUrl ? new URL(person.xUrl).pathname.slice(1).toLowerCase() : ''
-      ]?.followers ?? null,
-    followersCapturedAt: followerSnapshot.capturedAt,
-    reasoning: result.vertical.value,
-    upside:
-      result.components.find(
-        (component) => component.vector === 'beneficial_potential'
-      )?.value ?? null,
-    harm:
-      result.components.find(
-        (component) => component.vector === 'risk_landscape'
-      )?.value ?? null,
-    influence: result.experiment?.influence.value ?? null,
-    pdoom: directoryPdoom(result),
-    pdoomLabel: result.experiment?.pdoom?.token
-  }))
+  const examples = (await loadExamples(false)).map(
+    ({ result, id, slug, name, shortName, avatar, xUrl }) => ({
+      id,
+      slug,
+      name,
+      shortName,
+      avatar,
+      outlook: result.horizontal.value,
+      transformation: result.experiment?.transformation.value ?? null,
+      followers:
+        (followerSnapshot.accounts as Record<string, { followers: number }>)[
+          xUrl ? new URL(xUrl).pathname.slice(1).toLowerCase() : ''
+        ]?.followers ?? null,
+      followersCapturedAt: followerSnapshot.capturedAt,
+      reasoning: result.vertical.value,
+      upside:
+        result.components.find(
+          (component) => component.vector === 'beneficial_potential'
+        )?.value ?? null,
+      harm:
+        result.components.find(
+          (component) => component.vector === 'risk_landscape'
+        )?.value ?? null,
+      influence: result.experiment?.influence.value ?? null,
+      pdoom: directoryPdoom(result),
+      pdoomLabel: result.experiment?.pdoom?.token
+    })
+  )
   return (
     <PageTransition>
       <div className='map-lab-stage'>

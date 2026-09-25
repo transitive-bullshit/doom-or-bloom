@@ -3,6 +3,56 @@ import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 
 const output = process.env.NEXT_TEST_DIST_DIR || '.next'
+const manifest = JSON.parse(
+  await readFile(path.join(output, 'prerender-manifest.json'), 'utf8')
+)
+const directory = await readFile(
+  path.join(output, 'server/app/users.html'),
+  'utf8'
+)
+const profilePaths = new Set(
+  Array.from(
+    directory.matchAll(/href="(\/users\/[^"?#]+)"/g),
+    (match) => match[1]
+  )
+)
+assert(
+  profilePaths.size > 0,
+  'Build must contain the selected simulated-user catalog'
+)
+assert.equal(
+  manifest.dynamicRoutes['/users/[username]'].fallback,
+  null,
+  'New post-build profiles must remain reachable from the revalidated directory'
+)
+for (const route of [
+  '/',
+  '/users',
+  '/sitemap.xml',
+  '/llms.txt',
+  ...profilePaths
+]) {
+  assert.equal(
+    manifest.routes[route]?.initialRevalidateSeconds,
+    172800,
+    `${route}: must be pregenerated with a 48-hour revalidation interval`
+  )
+}
+for (const route of profilePaths) {
+  const html = await readFile(
+    path.join(output, 'server/app', `${route.slice(1)}.html`),
+    'utf8'
+  )
+  assert(
+    html.includes('Simulated Assessment') &&
+      html.includes('data-slot="worldview-map"') &&
+      html.includes('id="answer-1"'),
+    `${route}: results and answers must be rendered into the initial HTML`
+  )
+}
+console.log(
+  `Verified ${profilePaths.size} pregenerated simulated profiles with server-rendered results and answers`
+)
 const required = path.resolve('eval/development/live-persona-journeys.json')
 for (const route of [
   'assessments/[id]/page',

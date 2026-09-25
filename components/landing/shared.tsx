@@ -41,6 +41,24 @@ export type Example = {
   sources?: Array<{ title: string; url: string; summary?: string }>
 }
 export type VariantProps = { examples: Example[]; variant?: number }
+export type MapExample = Pick<
+  Example,
+  | 'id'
+  | 'slug'
+  | 'name'
+  | 'shortName'
+  | 'avatar'
+  | 'outlook'
+  | 'transformation'
+  | 'followers'
+  | 'followersCapturedAt'
+  | 'pdoom'
+  | 'pdoomLabel'
+  | 'reasoning'
+  | 'upside'
+  | 'harm'
+  | 'influence'
+>
 export const resultHref = (slug: string, variant?: number) =>
   variant
     ? `/prototypes/landing/personas/${slug}?v=${variant}`

@@ -3,15 +3,17 @@ import { pageMetadata } from '@/lib/metadata'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { PageTransition } from '@/components/page-transition'
 import { notFound } from 'next/navigation'
-import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
+import { loadPersona, loadPersonaPaths } from '@/components/landing/data'
 
-export const dynamic = 'error'
+export const dynamic = 'force-static'
 export const dynamicParams = true
-export const revalidate = 86400
+export const revalidate = 172800
 
-// Generate public profiles on first visit, including personas added after build.
+// Publish the entire selected catalog with the build, including unfeatured users.
+// Existing paths serve cached content during 48-hour background revalidation.
+// New post-build slugs can render on demand so refreshed directory links work.
 export function generateStaticParams() {
-  return []
+  return loadPersonaPaths()
 }
 
 export async function generateMetadata({
@@ -20,10 +22,9 @@ export async function generateMetadata({
   params: Promise<{ username: string }>
 }) {
   const { username } = await params
-  const person = (await loadExamples(false)).find(
-    (person) => person.slug === username
-  )
-  if (!person) notFound()
+  const profile = await loadPersona(username)
+  if (!profile) notFound()
+  const { person } = profile
   return pageMetadata({
     path: `/users/${person.slug}`,
     title: `${person.name}’s AI worldview`,
@@ -39,10 +40,9 @@ export default async function Page({
   params: Promise<{ username: string }>
 }) {
   const { username: slug } = await params
-  const person = (await loadExamples(false)).find((p) => p.slug === slug)
-  if (!person) notFound()
-  const assessment = await loadPersonaAssessment(person.id)
-  if (!assessment) notFound()
+  const profile = await loadPersona(slug)
+  if (!profile) notFound()
+  const { person, assessment } = profile
   return (
     <PageTransition>
       <AssessmentPage className='content-column pt-6 pb-10'>

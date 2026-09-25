@@ -2,7 +2,7 @@ import { publicImageCacheHeaders } from '@/lib/sharing/image-cache'
 import { loadSocialPortrait } from '@/lib/sharing/portraits'
 import { ImageResponse } from 'takumi-js/response'
 import { notFound } from 'next/navigation'
-import { loadExamples } from '@/components/landing/data'
+import { loadPersona } from '@/components/landing/data'
 import { SocialCard, socialImageOptions } from '@/lib/sharing/social-card'
 
 export const runtime = 'nodejs'
@@ -18,10 +18,9 @@ export default async function Image({
   params: Promise<{ username: string }>
 }) {
   const { username } = await params
-  const person = (await loadExamples(false)).find(
-    (person) => person.slug === username
-  )
-  if (!person) notFound()
+  const profile = await loadPersona(username)
+  if (!profile) notFound()
+  const { person } = profile
   return new ImageResponse(
     SocialCard({
       person: { ...person, portrait: await loadSocialPortrait(person.avatar) }

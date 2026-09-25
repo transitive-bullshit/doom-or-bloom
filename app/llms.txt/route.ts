@@ -1,7 +1,8 @@
 import { publicPages, siteUrl } from '@/lib/site'
 
 import { loadExamples } from '@/components/landing/data'
-export const dynamic = 'force-dynamic'
+export const dynamic = 'error'
+export const revalidate = 172800
 
 export async function GET() {
   const people = await loadExamples(false)
@@ -41,8 +42,7 @@ export async function GET() {
 
   return new Response(text, {
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'no-store'
+      'Content-Type': 'text/plain; charset=utf-8'
     }
   })
 }

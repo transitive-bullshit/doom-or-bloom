@@ -40,6 +40,7 @@ Use native PostgreSQL and the dedicated `TEST_DATABASE_URL` ending in `_test`; n
 | Interrupted operations or restart recovery | `pnpm db:test:commit`, `pnpm db:test:restart` |
 | Analytics or privacy boundaries | `pnpm check:analytics` |
 | Packaging, Next config, assets, server routes | `pnpm build:local` (includes production trace/asset checks) |
+| Simulated-profile static rendering or map prefetching | `pnpm build:local` then `pnpm check:prefetch`; production-only prefetch checks run with an unreachable database |
 | Release | All above database commands, full `pnpm check:browser`, `pnpm check:persistence`, `pnpm check:analytics`, `pnpm db:test:restart`, and `pnpm build:local` |
 
 Run suites sequentially: browser suites share the test database, and build/typegen can conflict over generated Next types. Do not add retries to hide deterministic failures. Preserve traces for failed browser scenarios and record unresolved failures explicitly. Paid Jev/OpenAI evaluations require their own agreed scope and budget; they are not routine test or release requirements.

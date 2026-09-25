@@ -12,6 +12,8 @@
     "tests/browser/seed-assessment.ts",
     "auth.schema.config.ts",
     "playwright.persistence.config.ts",
+    "playwright.prefetch.config.ts",
+    "tests/prefetch/*.spec.ts",
     "tests/persistence/*.spec.ts"
   ],
   // Analyze browser entries without executing environment-dependent configs.

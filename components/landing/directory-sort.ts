@@ -1,4 +1,4 @@
-import type { Example } from './shared'
+import type { MapExample } from './shared'
 import type { Result } from '@/lib/assessment/schema'
 
 /** A quoted approximate percentage is sortable without inventing a range. */
@@ -29,8 +29,8 @@ export const directorySorts = {
 } as const
 export type DirectorySort = keyof typeof directorySorts
 export function compareUsers(
-  a: Example,
-  b: Example,
+  a: MapExample,
+  b: MapExample,
   key: DirectorySort,
   direction: 'asc' | 'desc'
 ) {
@@ -43,7 +43,7 @@ export function compareUsers(
   if (right === null) return -1
   return (direction === 'asc' ? left - right : right - left) || byName
 }
-export function directoryValue(person: Example, key: DirectorySort) {
+export function directoryValue(person: MapExample, key: DirectorySort) {
   if (key === 'name') return null
   if (key === 'pdoom' && person.pdoomLabel) return person.pdoomLabel
   const value = person[key]

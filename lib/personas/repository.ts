@@ -15,7 +15,62 @@ import {
 export const simulationOwnerId = 'doom-or-bloom-simulations'
 export function personaRepository(pool: Pool) {
   const db = drizzle(pool)
+  const selectedQuery = () =>
+    db
+      .select({
+        persona: personas,
+        payload: assessmentSnapshots.payload,
+        assessmentId: assessments.id
+      })
+      .from(personas)
+      .innerJoin(
+        assessments,
+        and(
+          eq(assessments.id, personas.selectedAssessmentId),
+          eq(assessments.personaId, personas.id)
+        )
+      )
+      .innerJoin(
+        assessmentSnapshots,
+        eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
+      )
+  const publicSimulation = and(
+    eq(assessments.visibility, 'public'),
+    eq(assessments.origin, 'simulation')
+  )
+  const parseSelected = (
+    row: Awaited<ReturnType<typeof selectedQuery>>[number]
+  ) => ({
+    ...row,
+    metadata: personaMetadataSchema.parse(row.persona.metadata),
+    payload: simulationPayload.parse(row.payload)
+  })
   return {
+    async selectedBySlug(slug: string) {
+      const [row] = await selectedQuery().where(
+        and(publicSimulation, eq(personas.slug, slug))
+      )
+      return row ? parseSelected(row) : null
+    },
+    async selectedSlugs() {
+      // Enumerate build paths without downloading every interview snapshot.
+      return db
+        .select({ username: personas.slug })
+        .from(personas)
+        .innerJoin(
+          assessments,
+          and(
+            eq(assessments.id, personas.selectedAssessmentId),
+            eq(assessments.personaId, personas.id)
+          )
+        )
+        .innerJoin(
+          assessmentSnapshots,
+          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
+        )
+        .where(publicSimulation)
+        .orderBy(asc(personas.slug))
+    },
     async upsertProfile(metadata: PersonaMetadata, sourceBrief: unknown) {
       return db.transaction(async (tx) => {
         await tx
@@ -140,37 +195,11 @@ export function personaRepository(pool: Pool) {
       })
     },
     async selected() {
-      const rows = await db
-        .select({
-          persona: personas,
-          payload: assessmentSnapshots.payload,
-          assessmentId: assessments.id
-        })
-        .from(personas)
-        .innerJoin(
-          assessments,
-          and(
-            eq(assessments.id, personas.selectedAssessmentId),
-            eq(assessments.personaId, personas.id)
-          )
-        )
-        .innerJoin(
-          assessmentSnapshots,
-          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
-        )
-        .where(
-          and(
-            eq(assessments.visibility, 'public'),
-            eq(assessments.origin, 'simulation')
-          )
-        )
+      const rows = await selectedQuery()
+        .where(publicSimulation)
         .orderBy(asc(personas.slug))
       return rows
-        .map((row) => ({
-          ...row,
-          metadata: personaMetadataSchema.parse(row.persona.metadata),
-          payload: simulationPayload.parse(row.payload)
-        }))
+        .map(parseSelected)
         .sort((a, b) => a.metadata.order - b.metadata.order)
     }
   }

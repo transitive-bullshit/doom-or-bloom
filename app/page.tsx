@@ -7,15 +7,21 @@ import '@/components/landing/landing.css'
 
 // Only public persona data belongs in this shared page cache.
 export const dynamic = 'error'
-export const revalidate = 86400
+export const revalidate = 172800
 export const metadata = pageMetadata(publicPages[0]!)
 
 export default async function Page() {
-  const examples = (await loadExamples()).map(({ result, ...person }) => ({
-    ...person,
-    outlook: result.horizontal.value,
-    transformation: result.experiment?.transformation.value ?? null
-  }))
+  const examples = (await loadExamples()).map(
+    ({ result, id, slug, name, shortName, avatar }) => ({
+      id,
+      slug,
+      name,
+      shortName,
+      avatar,
+      outlook: result.horizontal.value,
+      transformation: result.experiment?.transformation.value ?? null
+    })
+  )
   return (
     <PageTransition>
       <div className='map-lab-stage'>

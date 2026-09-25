@@ -31,6 +31,19 @@ try {
   )
   assert.equal(selected.filter((row) => row.persona.featured).length, 44)
   assert.equal(selected.filter((row) => !row.persona.featured).length, 97)
+  assert.deepEqual(
+    await repo.selectedSlugs(),
+    selected
+      .map((row) => ({ username: row.persona.slug }))
+      .sort((a, b) => a.username.localeCompare(b.username))
+  )
+  for (const row of [
+    selected[0]!,
+    selected.find((row) => !row.persona.featured)!
+  ]) {
+    assert.deepEqual(await repo.selectedBySlug(row.persona.slug), row)
+  }
+  assert.equal(await repo.selectedBySlug('no-such-simulated-user'), null)
   for (const row of selected) {
     assert.equal(
       row.persona.featured,

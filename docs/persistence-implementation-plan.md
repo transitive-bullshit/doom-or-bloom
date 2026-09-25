@@ -619,3 +619,24 @@ Generated data lives under `work/journeys/`; the migration command preserves its
 - [x] Verify immutable snapshots, unaffected selections, featured flags and local records; validate tests and provenance checks.
 
 Evidence and before/after examples: [historical audit report](research/historical-persona-audit-2026-09-25.md). Detailed research and generated results remain under ignored `work/`.
+
+## Static simulated profiles and map prefetch — September 25, 2026
+
+- [x] Confirm the cold-profile bottleneck: empty static params, blocking fallback, and a catalog-wide database read for one profile.
+- [x] Generate all 141 selected public profiles at build time; cache the map, directory, discovery lists, and profiles with a 48-hour ISR interval. Allow post-build additions to render on demand so refreshed directory links remain valid.
+- [x] Deduplicate metadata/page reads and query only the requested profile during generation; trim map props to fields the map actually uses.
+- [x] Verify up to three proximity-ranked prefetch candidates, dwell/rate limits, cancellation of obsolete queued work, keyboard/touch priority, and constrained-network behavior.
+- [x] Verify production HTML/RSC with Postgres unreachable, browser navigation and persona persistence; complete core checks and commit the checkpoint.
+
+Initial evidence: a public production request for `/users/simonw` returned a Vercel cache MISS with 4.236s TTFB (4.262s total). The original local build manifest had no pregenerated profiles and a blocking dynamic fallback. This is one cold-request observation, not a benchmark distribution. The revised build generated all 141 profiles in its static generation phase and verifies each profile contains rendered results and answer text. Existing profiles refresh in the background after 48 hours. New post-build slugs can render on demand; seed/select before deploying to pregenerate their first visit too. Participant publication and header session behavior remain independently dynamic.
+
+Validation on `203c2c4a` plus this checkpoint's working diff:
+
+- `pnpm test`: passed 297 tests in 61 Vitest files (3.90s Vitest in the final run), plus formatting, lint, types, content, and unused-code checks. Focused intent tests and types/lint were also rerun after the keyboard/pointer handoff change.
+- `pnpm build:local`: passed. The manifest records 141 pregenerated profiles and 172800-second revalidation for profiles, map, directory, sitemap and llms.txt. Static generation took 4.0s in the final build.
+- `pnpm check:prefetch`: four passed in 8.1s with an unreachable database. Every built profile served both HTML and RSC with cache HITs. Idle viewport links and passing pointer intent issued no profile fetches; proximity issued at most three distinct profile prefetches. The measured prefetched click took 149ms to visible results with zero additional profile requests. This is a local browser observation, not a production latency prediction. Keyboard-to-pointer priority and Save-Data suppression passed.
+- `pnpm check:browser tests/browser/landing.spec.ts tests/browser/persona-assessment.spec.ts`: 13 passed initially; one stale full-name locator failed against the pre-existing abbreviated catalog labels. After switching that locator to its stable profile URL, the responsive legend check passed separately (6.5s including setup). All 14 affected scenarios are covered; no product labels were changed.
+- `pnpm db:test:personas`: passed exact import, provenance, selection ordering, targeted featured/unfeatured reads, and slug enumeration (elapsed time not recorded).
+- `pnpm check:persistence tests/persistence/personas.spec.ts`: one passed in 13.5s, including public simulation rendering, metadata/discovery, images and anonymous-session behavior.
+
+The ignored local journey fixtures were absent; the 141 public fixtures were restored from the dedicated local test database after verifying exact public payload/provenance round trips. No inference or production data mutation was performed. Production deployment and hosted post-change latency measurement remain separate work. Prefetch cancellation is bounded by the public Next Link API: queued work is removed, while already-started requests can finish and remain cached.
