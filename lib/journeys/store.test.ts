@@ -36,6 +36,12 @@ test('recorded live journeys work on a fresh checkout and local traces take prec
     expect(await store.read(recorded.id)).toEqual(recorded)
     const local = { ...recorded, turns: recorded.turns === 5 ? 6 : 5 }
     await store.save(local)
+    expect(
+      await readFile(
+        path.join(root, 'eval/runs/journeys', local.id, 'suite.json'),
+        'utf8'
+      )
+    ).toBe(JSON.stringify(local) + '\n')
     expect(await store.read(recorded.id)).toEqual(local)
     expect((await store.list()).map((run) => run.id)).toEqual([recorded.id])
     await writeFile(

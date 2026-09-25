@@ -592,3 +592,12 @@ Validation: `pnpm test` passed (284 tests plus formatting, lint, types, content 
 - [x] Deepen Robert Miles and swyx with verified videos and speaker-attributed interviews; audit the 97-user batch for missing foundational/interview evidence.
 
 Checkpoint details: [bookmark and source review](research/bookmark-and-source-review-2026-09-25.md). Current brief changes do not rewrite saved simulation answers, scores or provenance.
+
+## Source-driven local regeneration — September 25, 2026
+
+- [x] Compare selected immutable input snapshots against current authored briefs and select only materially changed users.
+- [x] Regenerate all 103 affected users with live participant answers and Jev assessment; preserve historical snapshots and all 38 unaffected selected users.
+- [x] Recover the third batch's successful database results after diagnostic-file serialization exceeded its bound; retain exact provenance and document unavailable usage/transport records.
+- [x] Verify source snapshot equality, result publication, 44 unchanged featured flags and 49 untouched development records; run core and persona persistence checks and commit the checkpoint.
+
+Evidence: [source-driven regeneration report](research/source-regeneration-2026-09-25.md) and its per-user/batch JSON ledger.

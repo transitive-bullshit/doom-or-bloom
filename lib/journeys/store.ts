@@ -116,7 +116,9 @@ export function createJourneyStore(root: string) {
     const temporary = path.join(directory, `.pending-${randomUUID()}`)
     await mkdir(temporary, { recursive: true })
     try {
-      const serialized = JSON.stringify(suite, null, 2) + '\n'
+      // Local diagnostic traces repeat large provider payloads; whitespace alone
+      // can exceed the artifact bound. Preserve all fields without pretty-printing.
+      const serialized = JSON.stringify(suite) + '\n'
       if (Buffer.byteLength(serialized) > 256_000_000)
         throw new Error('Journey artifact exceeds write bound')
       await writeFile(path.join(temporary, 'suite.json'), serialized, {

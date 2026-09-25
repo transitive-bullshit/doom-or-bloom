@@ -207,3 +207,9 @@ The 99 numbered accounts at <https://independent.prose.md/> yield 97 new simulat
 The user-facing term is simulated user. Internal persona identifiers are retained for compatibility. Research gaps remain explicit: a builder's technical work does not establish their personal extinction probability, policy agenda or timelines. The participant prompt now distinguishes source-grounded public simulations from fictional extreme stress-test users. Only the new users are generated for this addition; saved original interviews remain unchanged.
 
 An explicit `--turns=12` permits an offline simulation to reach the same twelve-question ceiling as a new participant assessment. The default remains five turns. This permits honest capped results with unknown dimensions when sparse evidence never unlocks an earlier result; it does not bypass readiness or invent views. Supply a sufficient explicit request budget for longer runs.
+
+## Source-driven refresh — September 25, 2026
+
+Regenerated all 103 selected users whose recorded source/voice/belief inputs differed from the current catalog: all 97 additions and six original users. All succeeded and are selected locally; 38 unaffected public users and 11 development-only journeys are preserved. Earlier immutable database runs remain unchanged. [The regeneration report](research/source-regeneration-2026-09-25.md) records source matching, batch recovery, usage limitations and result deltas.
+
+Local full diagnostic artifacts now use compact JSON serialization to avoid spending the 256 MB artifact bound on indentation. Fields and read/write limits are unchanged; the checked-in trace-free fixture remains formatted.
