@@ -56,7 +56,12 @@
     "db:test:restart": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-restart.ts",
     "build:local": "node scripts/next-local.mjs build --webpack && node scripts/check-production-traces.mjs",
     "start:local": "node scripts/next-local.mjs start",
-    "journeys:migrate": "node --conditions=react-server --import tsx scripts/migrate-local-journeys.ts"
+    "journeys:migrate": "node --conditions=react-server --import tsx scripts/migrate-local-journeys.ts",
+    "admin:local": "pnpm dev --admin=local",
+    "admin:production": "pnpm dev --admin=production",
+    "db:studio": "pnpm db:studio:local",
+    "db:studio:local": "node --import tsx scripts/studio.ts local",
+    "db:studio:production": "node --import tsx scripts/studio.ts production"
   },
   "dependencies": {
     "@tanstack/react-table": "^9.2.4",

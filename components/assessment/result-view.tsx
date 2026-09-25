@@ -35,6 +35,7 @@ export function ResultView({
   busy,
   published = false,
   readOnly = false,
+  layout = 'breakout',
   operations = []
 }: {
   personas: PersonaComparison[]
@@ -43,6 +44,7 @@ export function ResultView({
   busy: boolean
   published?: boolean
   readOnly?: boolean
+  layout?: 'contained' | 'breakout'
   operations?: SavedDebugOperation[]
 }) {
   const [downloading, setDownloading] = useState(false)
@@ -144,7 +146,7 @@ export function ResultView({
       )}
       <ExperimentalResults
         result={result}
-        layout='breakout'
+        layout={layout}
         riskCompanion={<ClosestPersonas result={result} personas={personas} />}
       />
       <ResultDisclosure title='Additional insights'>

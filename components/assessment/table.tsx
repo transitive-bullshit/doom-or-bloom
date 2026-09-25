@@ -85,8 +85,12 @@ export function AssessmentTable({
   busy,
   onMakePrivate,
   onPublish,
-  onDelete
+  onDelete,
+  readOnly = false,
+  hrefPrefix = '/assessments'
 }: {
+  readOnly?: boolean
+  hrefPrefix?: string
   items: LibraryItem[]
   busy: boolean
   onPublish: (item: LibraryItem) => void
@@ -167,7 +171,7 @@ export function AssessmentTable({
       cell: ({ row }) => (
         <Link
           className='flex min-h-13 w-full flex-col items-start justify-center gap-2 px-3 py-3 font-medium sm:flex-row sm:items-center sm:justify-start sm:px-2'
-          href={`/assessments/${row.original.id}`}
+          href={`${hrefPrefix}/${row.original.id}`}
         >
           <span className='wrap-anywhere'>
             {row.original.title ?? 'Your AI worldview'}
@@ -200,7 +204,7 @@ export function AssessmentTable({
       header: ({ column }) => <SortHeader column={column}>Status</SortHeader>,
       sortFn: 'text',
       cell: ({ row }) =>
-        row.original.visibility === 'public' ? (
+        row.original.visibility === 'public' && !readOnly ? (
           <Badge asChild variant='outline'>
             <Link href={`/public/assessments/${row.original.id}`}>
               Published
@@ -291,7 +295,9 @@ export function AssessmentTable({
   const table = useTable({
     features,
     data: items,
-    columns,
+    columns: readOnly
+      ? columns.filter((column) => column.id !== 'actions')
+      : columns,
     state: { sorting },
     onSortingChange: setSorting,
     getRowId: (item) => item.id,

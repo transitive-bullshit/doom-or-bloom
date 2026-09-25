@@ -72,3 +72,6 @@ eval/runs/
 
 # Legacy generated simulation collection (import into work/journeys instead)
 /eval/development/live-persona-journeys.json
+
+# Isolated local-only admin development server
+.next-admin/

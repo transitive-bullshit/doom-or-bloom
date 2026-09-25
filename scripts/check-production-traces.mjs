@@ -110,3 +110,16 @@ for (const portraitRoute of [
 console.log(
   'Production persona bundles read PostgreSQL and include required social portraits'
 )
+
+const routes = JSON.parse(
+  await readFile(path.join(output, 'routes-manifest.json'), 'utf8')
+)
+assert(
+  routes.rewrites.beforeFiles.some(
+    (entry) =>
+      entry.source === '/admin/:path*' &&
+      entry.destination === '/internal-unavailable'
+  ),
+  'Every production artifact must block admin routes before filesystem routing'
+)
+console.log('Production routing blocks all local admin paths')

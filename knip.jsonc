@@ -12,6 +12,7 @@
     "tests/browser/persist-engine-response.ts",
     "tests/browser/seed-assessment.ts",
     "auth.schema.config.ts",
+    "drizzle.studio.config.ts",
     "playwright.persistence.config.ts",
     "playwright.prefetch.config.ts",
     "tests/prefetch/*.spec.ts",

@@ -28,6 +28,9 @@ export default defineConfig({
     env: {
       NEXT_TEST_DIST_DIR: '.next-browser',
       DATABASE_URL: database,
+      ADMIN_ENABLED: 'true',
+      ADMIN_DATABASE_URL: database,
+      ADMIN_DATABASE_TARGET: 'local',
       BETTER_AUTH_URL: baseURL,
       ASSESSMENT_PROVIDER: 'fixture',
       NEXT_PUBLIC_ASSESSMENT_DEBUG: 'true',

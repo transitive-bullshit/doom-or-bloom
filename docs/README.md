@@ -80,3 +80,5 @@ Latest new-cohort audit: [historical evidence, answer fidelity and 44 corrected 
 New simulated-user research: [Joscha Bach](research/joscha-bach-persona-2026-09-26.md) and [Vittorio](research/vittorio-persona-2026-09-26.md), with local generation and verification recorded in the persistence checkpoint log.
 
 Latest interview refresh: [Mark Zuckerberg’s September 24 Joanna Stern interview](research/zuckerberg-interview-2026-09-26.md), with primary-caption grounding and local before/after results.
+
+[Local admin dashboard and Drizzle Studio](admin.md) cover read-only production/local inspection, metric semantics, participant previews, and development-only isolation.

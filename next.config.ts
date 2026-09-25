@@ -3,6 +3,7 @@ import {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_SERVER
 } from 'next/constants'
+import { adminEnvironmentAllowed } from './lib/admin/access'
 import { validateServerEnv } from './lib/server/validate-env'
 
 const config: NextConfig = {
@@ -27,6 +28,7 @@ const config: NextConfig = {
   },
   async headers() {
     return [
+      '/admin/:path*',
       '/assessment/:path*',
       '/assessments/:path*',
       '/public/assessments/:id/data'
@@ -50,5 +52,19 @@ const config: NextConfig = {
 export default function nextConfig(phase: string) {
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_SERVER)
     validateServerEnv()
-  return config
+  const admin =
+    phase === PHASE_DEVELOPMENT_SERVER && adminEnvironmentAllowed(process.env)
+  return {
+    ...config,
+    env: { LOCAL_ADMIN_BUILD: admin ? 'true' : 'false' },
+    async rewrites() {
+      return {
+        beforeFiles: admin
+          ? []
+          : [{ source: '/admin/:path*', destination: '/internal-unavailable' }],
+        afterFiles: [],
+        fallback: []
+      }
+    }
+  }
 }

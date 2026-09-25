@@ -7,6 +7,7 @@ export function SiteAnalytics({ enabled }: { enabled: boolean }) {
   if (
     !enabled ||
     path.startsWith('/assessment') ||
+    path.startsWith('/admin') ||
     ['/questions', '/corpus', '/user-journeys'].includes(path)
   )
     return null
@@ -19,6 +20,7 @@ export function SiteAnalytics({ enabled }: { enabled: boolean }) {
         const internal =
           url &&
           (new URL(url).pathname.startsWith('/assessment') ||
+            new URL(url).pathname.startsWith('/admin') ||
             ['/questions', '/corpus', '/user-journeys'].includes(
               new URL(url).pathname
             ))
