@@ -7,12 +7,14 @@ export function pageMetadata({
   title,
   description,
   image,
+  imageType = 'image/webp',
   imageAlt = 'Doom or Bloom — explore the AI worldview map'
 }: {
   path: string
   title: string
   description: string
   image?: string
+  imageType?: 'image/png' | 'image/jpeg' | 'image/webp'
   imageAlt?: string
 }): Metadata {
   const fullTitle =
@@ -26,7 +28,7 @@ export function pageMetadata({
       alt: image
         ? imageAlt
         : 'Doom or Bloom — Map your AI worldview. A flowering plant intertwined with copper circuits.',
-      type: image ? 'image/webp' : 'image/jpeg'
+      type: image ? imageType : 'image/jpeg'
     }
   ]
   const openGraph: NonNullable<Metadata['openGraph']> = {

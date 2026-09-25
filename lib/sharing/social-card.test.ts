@@ -44,7 +44,7 @@ test('every public persona portrait renders with a representative saved result',
   }
 })
 
-test('social output is a decodable 1200 × 630 WebP', async () => {
+test('profile social output is a decodable 1200 × 630 PNG', async () => {
   const bytes = await render(
     SocialCard({
       points: [
@@ -58,11 +58,11 @@ test('social output is a decodable 1200 × 630 WebP', async () => {
     socialImageOptions
   )
   expect(await sharp(bytes).metadata()).toMatchObject({
-    format: 'webp',
+    format: 'png',
     width: 1200,
     height: 630
   })
-  expect(bytes.length).toBeLessThan(100_000)
+  expect(bytes.length).toBeLessThan(1_000_000)
 })
 
 test('participant cards support unknown coordinates without simulated labeling', async () => {

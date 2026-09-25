@@ -5,8 +5,7 @@ import { Plot, type CardData } from './card'
 export const socialImageOptions = {
   width: 1200,
   height: 630,
-  format: 'webp',
-  quality: 90,
+  format: 'png',
   emoji: 'from-font'
 } as const
 

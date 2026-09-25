@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'
 export const alt =
   'Simulated AI worldview: Doom–Bloom and scale of transformation, with interpretation range'
 export const size = { width: 1200, height: 630 }
-export const contentType = 'image/webp'
+export const contentType = 'image/png'
 
 export default async function Image({
   params
