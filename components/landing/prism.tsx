@@ -320,15 +320,6 @@ export function Prism({
               </p>
               <p
                 className='directory-count text-muted-foreground'
-                data-active={sort === 'pdoom'}
-                aria-hidden={sort !== 'pdoom'}
-              >
-                Sorted by estimate, or range midpoint. Outcomes and horizons
-                differ; see each result for context. Missing estimates appear
-                last.
-              </p>
-              <p
-                className='directory-count text-muted-foreground'
                 data-active={sort !== 'followers' && sort !== 'pdoom'}
                 aria-hidden={sort === 'followers' || sort === 'pdoom'}
               >
