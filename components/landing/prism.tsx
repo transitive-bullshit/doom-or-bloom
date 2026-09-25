@@ -219,7 +219,6 @@ export function Prism({
               width={40}
               height={40}
               loading='eager'
-              unoptimized
               // Next Image fires onLoad after decoding, including cached images.
               onLoad={() => settlePortrait(p.avatar, 'loaded')}
               onError={() => settlePortrait(p.avatar, 'failed')}
@@ -344,8 +343,6 @@ export function Prism({
               alt=''
               width={20}
               height={20}
-              loading='eager'
-              unoptimized
             />
             <span className='study-person-name'>
               {p.shortName}

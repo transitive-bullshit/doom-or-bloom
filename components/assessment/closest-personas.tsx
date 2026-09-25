@@ -50,7 +50,6 @@ export function ClosestPersonas({
                       width={56}
                       height={56}
                       className='image-outline size-14 rounded-full object-cover'
-                      unoptimized
                     />
                     <span className='text-sm text-muted-foreground'>
                       <span className='sr-only'>Rank </span>

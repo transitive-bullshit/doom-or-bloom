@@ -209,13 +209,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                     } as CSSProperties
                   }
                 >
-                  <Image
-                    src={p.avatar}
-                    width={40}
-                    height={40}
-                    alt=''
-                    unoptimized
-                  />
+                  <Image src={p.avatar} width={40} height={40} alt='' />
                 </Link>
               </TooltipTrigger>
               <TooltipContent sideOffset={0} className='pointer-events-none'>
@@ -240,7 +234,6 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                 width={20}
                 height={20}
                 alt=''
-                unoptimized
               />
               <FadeText lines={1}>{p.name}</FadeText>
             </Link>

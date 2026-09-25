@@ -23,7 +23,6 @@ export function ProfileHeader({
       width={80}
       height={80}
       className='image-outline size-16 rounded-full object-cover sm:size-20'
-      unoptimized
     />
   )
   return (
