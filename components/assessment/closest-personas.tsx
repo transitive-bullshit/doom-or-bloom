@@ -29,7 +29,7 @@ export function ClosestPersonas({
           <h3 id='closest-personas-title'>Your closest worldviews</h3>
         </CardTitle>
         <CardDescription>
-          Explore the thought leaders whose simulated personas are closest to
+          Explore the thought leaders whose simulated worldviews are closest to
           your views across capabilities, risks, upside, control, and policy.
         </CardDescription>
       </CardHeader>

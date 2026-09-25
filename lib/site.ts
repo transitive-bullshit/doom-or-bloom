@@ -18,5 +18,11 @@ export const publicPages = [
     title: 'Privacy',
     description:
       'How Doom or Bloom stores assessments, protects private answers, handles optional accounts, and publishes results publicly.'
+  },
+  {
+    path: '/users',
+    title: 'Simulated users',
+    description:
+      'Explore all simulated users and search their source-grounded AI worldviews by name or handle.'
   }
 ]

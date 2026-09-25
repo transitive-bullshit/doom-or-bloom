@@ -1,8 +1,10 @@
 import { personaIdentity } from '@/lib/journeys/persona-identity'
+import { independentPersonas } from '@/lib/journeys/independent-personas'
 
 const profiles = [
   {
     id: 'permissionless-innovation-optimist',
+    featured: true,
     name: 'Andrew McAfee',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/amcafee',
@@ -15,6 +17,7 @@ const profiles = [
   },
   {
     id: 'alignment-philosopher',
+    featured: true,
     name: 'Joe Carlsmith',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/jkcarlsmith',
@@ -27,6 +30,7 @@ const profiles = [
   },
   {
     id: 'rationalist-safety-advocate',
+    featured: true,
     name: 'Scott Alexander',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/slatestarcodex',
@@ -39,6 +43,7 @@ const profiles = [
   },
   {
     id: 'takeoff-forecaster',
+    featured: true,
     name: 'Daniel Kokotajlo',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DKokotajlo',
@@ -51,6 +56,7 @@ const profiles = [
   },
   {
     id: 'institutional-growth-optimist',
+    featured: true,
     name: 'Tyler Cowen',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/tylercowen',
@@ -63,6 +69,7 @@ const profiles = [
   },
   {
     id: 'superintelligence-stop-advocate',
+    featured: true,
     name: 'Nate Soares',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/So8res',
@@ -75,6 +82,7 @@ const profiles = [
   },
   {
     id: 'empirical-control-researcher',
+    featured: true,
     name: 'Ryan Greenblatt',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/RyanGreenblatt',
@@ -87,6 +95,7 @@ const profiles = [
   },
   {
     id: 'biosecurity-abundance-optimist',
+    featured: true,
     name: 'Noah Smith',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/Noahpinion',
@@ -99,6 +108,7 @@ const profiles = [
   },
   {
     id: 'control-alarmist',
+    featured: true,
     name: 'Eliezer Yudkowsky',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/ESYudkowsky',
@@ -110,6 +120,7 @@ const profiles = [
   },
   {
     id: 'cautious-builder',
+    featured: true,
     name: 'Sam Altman',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/sama',
@@ -121,6 +132,7 @@ const profiles = [
   },
   {
     id: 'abundance-advocate',
+    featured: true,
     name: 'Marc Andreessen',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/pmarca',
@@ -132,6 +144,7 @@ const profiles = [
   },
   {
     id: 'empirical-skeptic',
+    featured: true,
     name: 'Gary Marcus',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/GaryMarcus',
@@ -143,6 +156,7 @@ const profiles = [
   },
   {
     id: 'practical-optimist',
+    featured: true,
     name: 'Andrew Ng',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/AndrewYNg',
@@ -155,6 +169,7 @@ const profiles = [
   },
   {
     id: 'world-model-optimist',
+    featured: true,
     name: 'Yann LeCun',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/ylecun',
@@ -167,6 +182,7 @@ const profiles = [
   },
   {
     id: 'concerned-pioneer',
+    featured: true,
     name: 'Geoffrey Hinton',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/geoffreyhinton',
@@ -179,6 +195,7 @@ const profiles = [
   },
   {
     id: 'bubble-critic',
+    featured: true,
     name: 'Ed Zitron',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/edzitron',
@@ -191,6 +208,7 @@ const profiles = [
   },
   {
     id: 'democratic-moratorium',
+    featured: true,
     name: 'Bernie Sanders',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/SenSanders',
@@ -203,6 +221,7 @@ const profiles = [
   },
   {
     id: 'competitive-decentralist',
+    featured: true,
     name: 'David Sacks',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DavidSacks',
@@ -215,6 +234,7 @@ const profiles = [
   },
   {
     id: 'scientific-steward',
+    featured: true,
     name: 'Demis Hassabis',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/demishassabis',
@@ -227,6 +247,7 @@ const profiles = [
   },
   {
     id: 'coordinated-scaler',
+    featured: true,
     name: 'Sholto Douglas',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/_sholtodouglas',
@@ -239,6 +260,7 @@ const profiles = [
   },
   {
     id: 'alignment-maximalist',
+    featured: true,
     name: 'Roon',
     possessivePronoun: 'their',
     xUrl: 'https://x.com/tszzl',
@@ -251,6 +273,7 @@ const profiles = [
   },
   {
     id: 'efficient-intelligence-builder',
+    featured: true,
     name: 'Noam Shazeer',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/NoamShazeer',
@@ -263,6 +286,7 @@ const profiles = [
   },
   {
     id: 'reasoning-frontier-builder',
+    featured: true,
     name: 'Noam Brown',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/polynoamial',
@@ -275,6 +299,7 @@ const profiles = [
   },
   {
     id: 'learning-bottleneck-investigator',
+    featured: true,
     name: 'Dwarkesh Patel',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/dwarkesh_sp',
@@ -287,6 +312,7 @@ const profiles = [
   },
   {
     id: 'frontier-pacer',
+    featured: true,
     name: 'Dario Amodei',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DarioAmodei',
@@ -299,6 +325,7 @@ const profiles = [
   },
   {
     id: 'abundance-risk-taker',
+    featured: true,
     name: 'Elon Musk',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/elonmusk',
@@ -311,6 +338,7 @@ const profiles = [
   },
   {
     id: 'open-science-realist',
+    featured: true,
     name: 'Nathan Lambert',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/natolambert',
@@ -323,6 +351,7 @@ const profiles = [
   },
   {
     id: 'scientist-ai-advocate',
+    featured: true,
     name: 'Yoshua Bengio',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/Yoshua_Bengio',
@@ -334,6 +363,7 @@ const profiles = [
   },
   {
     id: 'safe-superintelligence-researcher',
+    featured: true,
     name: 'Ilya Sutskever',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/ilyasut',
@@ -346,6 +376,7 @@ const profiles = [
   },
   {
     id: 'hands-on-agent-builder',
+    featured: true,
     name: 'Andrej Karpathy',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/karpathy',
@@ -358,6 +389,7 @@ const profiles = [
   },
   {
     id: 'human-centered-spatial-builder',
+    featured: true,
     name: 'Fei-Fei Li',
     possessivePronoun: 'her',
     xUrl: 'https://x.com/drfeifei',
@@ -370,6 +402,7 @@ const profiles = [
   },
   {
     id: 'digital-succession-optimist',
+    featured: true,
     name: 'Richard Sutton',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/RichardSSutton',
@@ -382,6 +415,7 @@ const profiles = [
   },
   {
     id: 'community-ai-critic',
+    featured: true,
     name: 'Timnit Gebru',
     possessivePronoun: 'her',
     xUrl: 'https://x.com/timnitGebru',
@@ -394,6 +428,7 @@ const profiles = [
   },
   {
     id: 'normal-technology-realist',
+    featured: true,
     name: 'Arvind Narayanan',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/random_walker',
@@ -406,6 +441,7 @@ const profiles = [
   },
   {
     id: 'pro-worker-economist',
+    featured: true,
     name: 'Daron Acemoglu',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/DAcemogluMIT',
@@ -418,6 +454,7 @@ const profiles = [
   },
   {
     id: 'personal-superintelligence-builder',
+    featured: true,
     name: 'Mark Zuckerberg',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/finkd',
@@ -430,6 +467,7 @@ const profiles = [
   },
   {
     id: 'provable-control-advocate',
+    featured: true,
     name: 'Stuart Russell',
     possessivePronoun: 'his',
     xUrl: null,
@@ -444,6 +482,7 @@ const profiles = [
   },
   {
     id: 'language-hype-critic',
+    featured: true,
     name: 'Emily M. Bender',
     possessivePronoun: 'her',
     xUrl: 'https://x.com/emilymbender',
@@ -455,6 +494,7 @@ const profiles = [
   },
   {
     id: 'tool-ai-moratorium',
+    featured: true,
     name: 'Max Tegmark',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/tegmark',
@@ -467,6 +507,7 @@ const profiles = [
   },
   {
     id: 'open-frontier-idealist',
+    featured: true,
     name: 'Liang Wenfeng',
     possessivePronoun: 'his',
     xUrl: null,
@@ -481,6 +522,7 @@ const profiles = [
   },
   {
     id: 'democratic-ai-steward',
+    featured: true,
     name: 'Barack Obama',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/BarackObama',
@@ -493,6 +535,7 @@ const profiles = [
   },
   {
     id: 'america-first-ai-booster',
+    featured: true,
     name: 'Donald Trump',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/realDonaldTrump',
@@ -505,6 +548,7 @@ const profiles = [
   },
   {
     id: 'equitable-ai-philanthropist',
+    featured: true,
     name: 'Bill Gates',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/BillGates',
@@ -517,6 +561,7 @@ const profiles = [
   },
   {
     id: 'anti-doomer',
+    featured: true,
     name: 'Jensen Huang',
     possessivePronoun: 'his',
     xUrl: 'https://x.com/JensenHuang',
@@ -529,7 +574,28 @@ const profiles = [
   }
 ] as const
 
-export const people = profiles.map((person) => ({
-  ...person,
-  ...personaIdentity(person.id)
-}))
+export const people = [
+  ...profiles.map((person) => ({
+    ...person,
+    ...personaIdentity(person.id)
+  })),
+  ...independentPersonas.map((person) => ({
+    id: person.id,
+    name: person.name,
+    shortName: person.shortName ?? person.name,
+    slug: person.slug!,
+    xUsername: person.xUsername!,
+    xUrl: `https://x.com/${person.xUsername}`,
+    avatar: `/personas/independent-${person.xUsername}.jpg`,
+    initials: person.name
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part[0])
+      .join(''),
+    possessivePronoun: 'their' as const,
+    stance: 'A simulated worldview grounded in public sources.',
+    description: person.description,
+    tone: 'middle' as const,
+    featured: person.featured ?? false
+  }))
+]

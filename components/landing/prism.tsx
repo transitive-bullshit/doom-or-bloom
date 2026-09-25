@@ -8,6 +8,7 @@ import { useMemo, useState, type PointerEvent, type FocusEvent } from 'react'
 import './prism.css'
 import { usePortraitLayout } from './use-portrait-layout'
 import type { VariantProps } from '@/components/landing/shared'
+import { Input } from '@/components/ui/input'
 
 const featuredOrder = [
   'alignment-maximalist',
@@ -60,7 +61,11 @@ const rank = (id: string) => {
   return index < 0 ? featuredOrder.length : index
 }
 
-export function Prism({ examples }: VariantProps) {
+export function Prism({
+  examples,
+  directory = false
+}: VariantProps & { directory?: boolean }) {
+  const [query, setQuery] = useState('')
   const [portraits, setPortraits] = useState<
     Record<string, 'loaded' | 'failed'>
   >({})
@@ -81,7 +86,18 @@ export function Prism({ examples }: VariantProps) {
       current[src] === status ? current : { ...current, [src]: status }
     )
   }
-  const legend = [...examples].sort((a, b) => rank(a.id) - rank(b.id))
+  const search = query.trim().toLowerCase().replace(/^@/, '')
+  const legend = [...examples]
+    .filter(
+      (person) =>
+        !directory ||
+        `${person.name} ${person.shortName} ${person.slug}`
+          .toLowerCase()
+          .includes(search)
+    )
+    .sort((a, b) =>
+      directory ? a.name.localeCompare(b.name) : rank(a.id) - rank(b.id)
+    )
   const highlightEvents = (id: string) => ({
     onPointerEnter: (event: PointerEvent<HTMLAnchorElement>) => {
       if (
@@ -105,7 +121,11 @@ export function Prism({ examples }: VariantProps) {
       data-highlighting={highlighted !== null}
     >
       <header className='study-heading'>
-        <h1>How will AI change our future?</h1>
+        <h1>
+          {directory
+            ? 'Explore simulated users'
+            : 'How will AI change our future?'}
+        </h1>
         <div className='mt-6 sm:hidden'>
           <WorldviewCta />
         </div>
@@ -152,7 +172,23 @@ export function Prism({ examples }: VariantProps) {
         ))}
       </div>
       <div className='study-axis-bottom'>Incremental change</div>
-      <div className='landing-map-legend study-legend'>
+      {directory && (
+        <div className='mx-auto mt-8 flex w-full max-w-sm flex-col gap-2 text-left'>
+          <label htmlFor='user-search'>Find a simulated user</label>
+          <Input
+            id='user-search'
+            type='search'
+            placeholder='Search names or @handles'
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            aria-controls='simulated-users'
+          />
+          <p className='text-sm text-muted-foreground' role='status'>
+            {legend.length} of {examples.length} simulated users
+          </p>
+        </div>
+      )}
+      <div id='simulated-users' className='landing-map-legend study-legend'>
         {legend.map((p) => (
           <Link key={p.id} href={`/users/${p.slug}`} {...highlightEvents(p.id)}>
             <Image
@@ -168,7 +204,25 @@ export function Prism({ examples }: VariantProps) {
           </Link>
         ))}
       </div>
-      <p className='study-note'>Example results based on simulated personas</p>
+      {directory && legend.length === 0 && (
+        <p className='study-note'>
+          No users match “{query}”. Try another name or handle.
+        </p>
+      )}
+      <p className='study-note'>Example results based on simulated users</p>
+      {directory && plotted.length < examples.length && (
+        <p className='study-note'>
+          {examples.length - plotted.length} users have insufficient evidence
+          for a map position. Their results are available in the grid.
+        </p>
+      )}
+      {!directory && (
+        <p className='study-note'>
+          <Link href='/users' className='underline underline-offset-4'>
+            Explore all simulated users
+          </Link>
+        </p>
+      )}
 
       <WorldviewCtaCard className='mt-24' />
     </section>

@@ -250,3 +250,9 @@ The global header shows a compact animated “Map your own worldview” CTA for 
 Conversation history shows only questions with submitted replies on both private and public assessments. An unanswered current question appears only while actively answering; viewing results hides it, and continuing the interview restores it without changing the saved assessment history.
 
 Missing routes and unavailable resources use the shared branded 404 page: the Be UI glitch graphic in the worldview palette, “404 · Page not found,” “Looks like you got lost in latent space,” and a Back to home link. Keep the status accessible independently of the decorative animation and respect reduced motion.
+
+### Simulated users directory
+
+Public people represented by generated answers are **simulated users**. They did not take the assessment or endorse its interpretation. Keep the simulation label on their results and link the source brief. Existing internal `persona` type, table, and fixture names remain compatibility identifiers.
+
+`/` contains only featured simulated users. `/users` reuses the same map for all selected, published simulated-user results, with a search field below the map that filters the people grid immediately by name or X handle. Searching leaves the complete map visible. Users without enough evidence for a map position remain available in the grid. Each fixture has an explicit `featured` boolean in its presentation metadata, used by both seeding and live generation. The Independent 100 additions start unfeatured; existing duplicates retain their original fixtures, selected results and featured status.

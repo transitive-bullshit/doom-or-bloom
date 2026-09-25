@@ -36,7 +36,9 @@ test('every public persona has a social map grounded in its saved result', async
       SocialCard({ person: { ...person, result: result!, portrait } })
     )
     expect(html).toContain(person.name.replaceAll('&', '&amp;'))
-    expect(html).toContain(portrait)
+    const placed = data.horizontal !== null && data.transformation !== null
+    expect(html.includes(portrait)).toBe(placed)
+    expect(html.includes('Still unplaced')).toBe(!placed)
     expect(html).toContain('SIMULATED AI WORLDVIEW')
     expect(html).toContain('not their own assessment')
   }

@@ -239,7 +239,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
           ))}
         </div>
         <p className='landing-map-note'>
-          Example results based on simulated personas
+          Example results based on simulated users
         </p>
       </div>
     </TooltipProvider>

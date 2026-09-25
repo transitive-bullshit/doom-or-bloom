@@ -226,19 +226,19 @@ export const suiteSchema = z.strictObject({
       z.strictObject({
         runId: z.string(),
         createdAt: z.string(),
-        personaIds: z.array(z.string()).max(64),
+        personaIds: z.array(z.string()).max(256),
         inputHash: z.string(),
         engineHash: z.string(),
         contentHash: z.string()
       })
     )
-    .max(64)
+    .max(256)
     .optional(),
-  turns: z.number().int().min(1).max(6),
+  turns: z.number().int().min(1).max(12),
   requestBudget: z
     .strictObject({ maximum: z.number(), usedOrReserved: z.number() })
     .nullable(),
-  journeys: z.array(journeySchema).max(64)
+  journeys: z.array(journeySchema).max(256)
 })
 export type JourneySuite = z.infer<typeof suiteSchema>
 export type RunIndex = Pick<

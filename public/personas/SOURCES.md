@@ -68,3 +68,7 @@ Additional writers and forecasters, verified via X users API on 2026-09-22:
 Andrew McAfee, verified on 2026-09-23:
 
 - Official MIT biography: https://ide.mit.edu/people/andrew-mcafee/ — https://ide.mit.edu/wp-content/uploads/2019/03/andy_0.jpg, stored as `mcafee.jpg`. His current X avatar is a book cover, so the biography supplies his portrait.
+
+## Independent 100 — September 25, 2026
+
+The 97 `independent-<handle>.jpg` portraits are copied from the corresponding `https://independent.prose.md/img/<original-case-handle>.jpg` URLs on the [user-supplied directory](https://independent.prose.md/), accessed September 25, 2026. Exact original URLs are recorded in `docs/research/independent-100-accounts-2026-09-25.json`. Portraits identify the listed public accounts; they do not imply participation or endorsement. Existing Scott Alexander and Eliezer Yudkowsky fixtures and portraits are retained. The wildcard nomination contact is not one of the 99 ranked accounts.

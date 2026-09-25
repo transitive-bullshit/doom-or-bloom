@@ -10,11 +10,22 @@ import { suiteSchema } from './schema'
 test('recorded live journeys work on a fresh checkout and local traces take precedence', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'doom-recorded-journeys-'))
   try {
-    const serialized = await readFile(
+    const source = await readFile(
       'eval/development/live-persona-journeys.json',
       'utf8'
     )
-    const recorded = suiteSchema.parse(JSON.parse(serialized))
+    const full = suiteSchema.parse(JSON.parse(source))
+    // Store behavior needs representative real records, not repeated 90 MB copies
+    // of every interview. Catalog completeness is checked separately.
+    const recorded = { ...full, journeys: full.journeys.slice(0, 2) }
+    const ids = new Set(recorded.journeys.map((journey) => journey.personaId))
+    recorded.sourceRuns = recorded.sourceRuns
+      ?.map((run) => ({
+        ...run,
+        personaIds: run.personaIds.filter((id) => ids.has(id))
+      }))
+      .filter((run) => run.personaIds.length)
+    const serialized = JSON.stringify(recorded)
     await mkdir(path.join(root, 'eval/development'), { recursive: true })
     await writeFile(
       path.join(root, 'eval/development/live-persona-journeys.json'),

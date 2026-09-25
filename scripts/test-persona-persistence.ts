@@ -31,7 +31,13 @@ try {
     new Set(selected.map((row) => row.metadata.id)),
     new Set(people.map((person) => person.id))
   )
+  assert.equal(selected.filter((row) => row.persona.featured).length, 44)
+  assert.equal(selected.filter((row) => !row.persona.featured).length, 97)
   for (const row of selected) {
+    assert.equal(
+      row.persona.featured,
+      people.find((person) => person.id === row.metadata.id)!.featured
+    )
     const original = suite.journeys.find(
       (journey) => journey.personaId === row.metadata.id
     )!

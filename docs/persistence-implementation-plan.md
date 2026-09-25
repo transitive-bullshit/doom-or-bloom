@@ -554,3 +554,14 @@ The user authorized a separate Neon database and Vercel Preview configuration. P
 Core validation: `pnpm test` passed (56 files / 280 unit cases, formatting, lint, types, content validation, and Knip). Five account-header browser scenarios and the provider-mocked X callback, anonymous claim, sign-out and cross-browser recovery also passed.
 
 Hosted verification on preview deployment `dpl_5fFAFEx3RSSFuTKEc45GSambbVHh` (commit `b7aa820`): Vercel build and GitHub CI passed; homepage, About, persona detail and library returned 200. Anonymous sign-in worked on both deployment and branch URLs; an unrelated origin returned 403. A synthetic live answer was saved, reloaded and found in the library, then deleted (204), followed by sign-out. Smoke-test users and temporary local credential files were removed. Preview X OAuth remains intentionally unconfigured; production infrastructure was not modified.
+
+## Independent 100 simulated users — September 25, 2026
+
+- [x] Verify the 99 ranked accounts, preserving Scott Alexander and Yudkowsky's alternate-account duplicate.
+- [x] Add 97 source-grounded simulated-user fixtures with local portraits, explicit source limitations and `featured: false`; preserve the 44 original featured profiles.
+- [x] Honor authored featured status in database imports and live generation.
+- [x] Add `/users` with the shared full map and live name/handle filtering below the map; adopt simulated-user presentation terminology.
+- [x] Generate only the new users with live OpenAI answers and Jev assessments, preserving previous interviews and original provenance.
+- [x] Verify catalog integrity, persistence, filtering, mobile layout and production packaging; record generation evidence and commit the checkpoint.
+
+Checkpoint evidence: [Independent 100 research and generation record](research/independent-simulated-users-2026-09-25.md). All 97 new users have generated results; the original 55 journeys are unchanged. Core tests (283), 12 landing/navigation browser cases, persona database and browser checks, and the local production build passed.

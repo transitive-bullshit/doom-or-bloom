@@ -13,43 +13,67 @@ import { personas } from './catalog'
 import { loadBundle } from '@/lib/content/loader'
 import { suiteSchema } from './schema'
 import { generationHooks } from '../personas/generation-hooks'
+import { mergeJourneySuites } from './merge'
 
 export async function runLiveJourneys({
   personaId,
+  personaIds,
   turns = 5,
   maxRequests,
   maxCost,
   onJourney
 }: {
   personaId?: string
+  personaIds?: string[]
   turns?: number
   maxRequests?: number
   maxCost?: number
   onJourney?: (journey: Journey) => void
 } = {}) {
+  if (personaId && personaIds) throw new Error('Choose one selection option')
+  if (
+    personaIds &&
+    (!personaIds.length ||
+      new Set(personaIds).size !== personaIds.length ||
+      personaIds.some((id) => !personas.some((person) => person.id === id)))
+  )
+    throw new Error('Unknown or repeated simulated user')
   if (
     personaId &&
     ![...personas, fixedUserPersona].some((p) => p.id === personaId)
   )
     throw new Error('Unknown persona')
-  if (!Number.isInteger(turns) || turns < 1 || turns > 6)
-    throw new Error('Journey turn bound is 1–6')
+  if (!Number.isInteger(turns) || turns < 1 || turns > 12)
+    throw new Error('Journey turn bound is 1–12')
   if (!process.env.TYPESAFE_API_KEY?.trim())
     throw new Error('Missing TYPESAFE_API_KEY')
   const budget = liveJourneyBudget(maxCost ?? (personaId ? 2 : 5))
   const paid = budgetedProvider(
     meterJev(createLiveProvider(versions.model), budget),
-    maxRequests ?? (personaId ? 24 : (personas.length + 1) * 20),
-    (personas.length + 1) * 24
+    maxRequests ??
+      Math.min(
+        1536,
+        (personaIds?.length ?? (personaId ? 1 : personas.length + 1)) * 24
+      ),
+    1536
   )
   const participant = createOpenAIParticipant({
     budget,
-    maxRequests: (personaId ? 1 : personas.length) * turns
+    maxRequests:
+      (personaIds?.length ?? (personaId ? 1 : personas.length)) * turns
   })
   const persistence = generationHooks()
+  const store = projectJourneyStore()
+  const previousIndex =
+    personaId || personaIds
+      ? (await store.list()).find((run) => run.mode === 'live')
+      : undefined
+  const previous = previousIndex ? await store.read(previousIndex.id) : null
   const suite = await runJourneySuite({
     id: `${Date.now()}-${randomUUID()}`,
     personaId,
+    personaIds,
+    concurrency: personaIds ? 4 : 1,
     turns,
     live: paid.provider,
     participant,
@@ -61,7 +85,7 @@ export async function runLiveJourneys({
       onJourney?.(journey)
     }
   })
-  await projectJourneyStore().save(suite)
+  await store.save(mergeJourneySuites(previous, suite))
   return suite
 }
 
@@ -117,6 +141,7 @@ export async function resumeLiveJourney({
   await persistence.onJourney(journey)
   const suite = suiteSchema.parse({
     ...source,
+    sourceRuns: undefined,
     id,
     createdAt,
     ...hashes,
@@ -125,6 +150,6 @@ export async function resumeLiveJourney({
     requestBudget: paid.report(),
     cost: budget.report()
   })
-  await store.save(suite)
+  await store.save(mergeJourneySuites(source, suite))
   return suite
 }

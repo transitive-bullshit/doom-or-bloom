@@ -25,7 +25,7 @@ const indexSchema = suiteSchema
     requestBudget: true,
     journeys: true
   })
-  .extend({ personaIds: z.array(z.string()).max(64) })
+  .extend({ personaIds: z.array(z.string()).max(256) })
 
 export function createJourneyStore(root: string) {
   const directory = path.join(root, 'eval/runs/journeys')
@@ -87,7 +87,7 @@ export function createJourneyStore(root: string) {
     const runs = await Promise.all(
       directories.map(async (id) => {
         const file = path.join(directory, id, 'index.json')
-        if ((await stat(file)).size > 40_000)
+        if ((await stat(file)).size > 160_000)
           throw new Error('Journey index exceeds read bound')
         const record = indexSchema.parse(
           JSON.parse(await readFile(file, 'utf8'))

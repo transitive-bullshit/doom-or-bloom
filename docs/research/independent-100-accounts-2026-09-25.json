@@ -1,0 +1,600 @@
+{
+  "url": "https://independent.prose.md/",
+  "accessedAt": "2026-09-25",
+  "accounts": [
+    {
+      "rank": 1,
+      "name": "𝔊𝔴𝔢𝔯𝔫",
+      "handle": "gwern",
+      "portrait": "https://independent.prose.md/img/gwern.jpg"
+    },
+    {
+      "rank": 2,
+      "name": "Jürgen Schmidhuber",
+      "handle": "SchmidhuberAI",
+      "portrait": "https://independent.prose.md/img/SchmidhuberAI.jpg"
+    },
+    {
+      "rank": 3,
+      "name": "Robin Hanson",
+      "handle": "robinhanson",
+      "portrait": "https://independent.prose.md/img/robinhanson.jpg"
+    },
+    {
+      "rank": 4,
+      "name": "j⧉nus",
+      "handle": "repligate",
+      "portrait": "https://independent.prose.md/img/repligate.jpg"
+    },
+    {
+      "rank": 5,
+      "name": "Eliezer Yudkowsky",
+      "handle": "allTheYud",
+      "portrait": "https://independent.prose.md/img/allTheYud.jpg"
+    },
+    {
+      "rank": 6,
+      "name": "Beff (e/acc)",
+      "handle": "beffjezos",
+      "portrait": "https://independent.prose.md/img/beffjezos.jpg"
+    },
+    {
+      "rank": 7,
+      "name": "Pliny the Liberator 🐉󠅫󠄼󠄿󠅆󠄵󠄐󠅀󠄼󠄹󠄾󠅉󠅭",
+      "handle": "elder_plinius",
+      "portrait": "https://independent.prose.md/img/elder_plinius.jpg"
+    },
+    {
+      "rank": 8,
+      "name": "Scott Alexander",
+      "handle": "slatestarcodex",
+      "portrait": "https://independent.prose.md/img/slatestarcodex.jpg"
+    },
+    {
+      "rank": 9,
+      "name": "deepfates",
+      "handle": "deepfates",
+      "portrait": "https://independent.prose.md/img/deepfates.jpg"
+    },
+    {
+      "rank": 10,
+      "name": "Perry E. Metzger",
+      "handle": "perrymetzger",
+      "portrait": "https://independent.prose.md/img/perrymetzger.jpg"
+    },
+    {
+      "rank": 11,
+      "name": "Omar Khattab",
+      "handle": "lateinteraction",
+      "portrait": "https://independent.prose.md/img/lateinteraction.jpg"
+    },
+    {
+      "rank": 12,
+      "name": "davidad 🎇",
+      "handle": "davidad",
+      "portrait": "https://independent.prose.md/img/davidad.jpg"
+    },
+    {
+      "rank": 13,
+      "name": "Jeremy Howard",
+      "handle": "jeremyphoward",
+      "portrait": "https://independent.prose.md/img/jeremyphoward.jpg"
+    },
+    {
+      "rank": 14,
+      "name": "will brown",
+      "handle": "willcb",
+      "portrait": "https://independent.prose.md/img/willcb.jpg"
+    },
+    {
+      "rank": 15,
+      "name": "Connor Leahy",
+      "handle": "NPCollapse",
+      "portrait": "https://independent.prose.md/img/NPCollapse.jpg"
+    },
+    {
+      "rank": 16,
+      "name": "Rob Miles",
+      "handle": "robertskmiles",
+      "portrait": "https://independent.prose.md/img/robertskmiles.jpg"
+    },
+    {
+      "rank": 17,
+      "name": "George Hotz 🌑",
+      "handle": "realGeorgeHotz",
+      "portrait": "https://independent.prose.md/img/realGeorgeHotz.jpg"
+    },
+    {
+      "rank": 18,
+      "name": "DHH",
+      "handle": "dhh",
+      "portrait": "https://independent.prose.md/img/dhh.jpg"
+    },
+    {
+      "rank": 19,
+      "name": "Varun",
+      "handle": "varun_mathur",
+      "portrait": "https://independent.prose.md/img/varun_mathur.jpg"
+    },
+    {
+      "rank": 20,
+      "name": "alex zhang",
+      "handle": "a1zhang",
+      "portrait": "https://independent.prose.md/img/a1zhang.jpg"
+    },
+    {
+      "rank": 21,
+      "name": "w̸͕͂͂a̷͔̗͐t̴̙͗e̵̬̔̕r̴̰̓̊m̵͙͖̓̽a̵̢̗̓͒r̸̲̽ķ̷͔́͝",
+      "handle": "anthrupad",
+      "portrait": "https://independent.prose.md/img/anthrupad.jpg"
+    },
+    {
+      "rank": 22,
+      "name": "Stella Biderman",
+      "handle": "BlancheMinerva",
+      "portrait": "https://independent.prose.md/img/BlancheMinerva.jpg"
+    },
+    {
+      "rank": 23,
+      "name": "xlr8harder",
+      "handle": "xlr8harder",
+      "portrait": "https://independent.prose.md/img/xlr8harder.jpg"
+    },
+    {
+      "rank": 24,
+      "name": "doomslide",
+      "handle": "doomslide",
+      "portrait": "https://independent.prose.md/img/doomslide.jpg"
+    },
+    {
+      "rank": 25,
+      "name": "Charles Goddard",
+      "handle": "chargoddard",
+      "portrait": "https://independent.prose.md/img/chargoddard.jpg"
+    },
+    {
+      "rank": 26,
+      "name": "Teknium 🪽",
+      "handle": "Teknium",
+      "portrait": "https://independent.prose.md/img/Teknium.jpg"
+    },
+    {
+      "rank": 27,
+      "name": "Larissa Schiavo",
+      "handle": "lfschiavo",
+      "portrait": "https://independent.prose.md/img/lfschiavo.jpg"
+    },
+    {
+      "rank": 28,
+      "name": "samsja",
+      "handle": "samsja19",
+      "portrait": "https://independent.prose.md/img/samsja19.jpg"
+    },
+    {
+      "rank": 29,
+      "name": "Erik Bernhardsson",
+      "handle": "bernhardsson",
+      "portrait": "https://independent.prose.md/img/bernhardsson.jpg"
+    },
+    {
+      "rank": 30,
+      "name": "Jeff Huber",
+      "handle": "jeffreyhuber",
+      "portrait": "https://independent.prose.md/img/jeffreyhuber.jpg"
+    },
+    {
+      "rank": 31,
+      "name": "vas",
+      "handle": "vasuman",
+      "portrait": "https://independent.prose.md/img/vasuman.jpg"
+    },
+    {
+      "rank": 32,
+      "name": "Simon Willison",
+      "handle": "simonw",
+      "portrait": "https://independent.prose.md/img/simonw.jpg"
+    },
+    {
+      "rank": 33,
+      "name": "Ben Thompson",
+      "handle": "benthompson",
+      "portrait": "https://independent.prose.md/img/benthompson.jpg"
+    },
+    {
+      "rank": 34,
+      "name": "Will Manidis",
+      "handle": "WillManidis",
+      "portrait": "https://independent.prose.md/img/WillManidis.jpg"
+    },
+    {
+      "rank": 35,
+      "name": "Ethan Mollick",
+      "handle": "emollick",
+      "portrait": "https://independent.prose.md/img/emollick.jpg"
+    },
+    {
+      "rank": 36,
+      "name": "swyx",
+      "handle": "swyx",
+      "portrait": "https://independent.prose.md/img/swyx.jpg"
+    },
+    {
+      "rank": 37,
+      "name": "Joe Weisenthal",
+      "handle": "TheStalwart",
+      "portrait": "https://independent.prose.md/img/TheStalwart.jpg"
+    },
+    {
+      "rank": 38,
+      "name": "Dan Shipper",
+      "handle": "danshipper",
+      "portrait": "https://independent.prose.md/img/danshipper.jpg"
+    },
+    {
+      "rank": 39,
+      "name": "John Scott-Railton",
+      "handle": "jsrailton",
+      "portrait": "https://independent.prose.md/img/jsrailton.jpg"
+    },
+    {
+      "rank": 40,
+      "name": "jessicat",
+      "handle": "jessi_cata",
+      "portrait": "https://independent.prose.md/img/jessi_cata.jpg"
+    },
+    {
+      "rank": 41,
+      "name": "Alex Volkov",
+      "handle": "altryne",
+      "portrait": "https://independent.prose.md/img/altryne.jpg"
+    },
+    {
+      "rank": 42,
+      "name": "Zvi Mowshowitz",
+      "handle": "TheZvi",
+      "portrait": "https://independent.prose.md/img/TheZvi.jpg"
+    },
+    {
+      "rank": 43,
+      "name": "Teortaxes▶️ (DeepSeek 推特🐋铁粉 2023 – ∞)",
+      "handle": "teortaxesTex",
+      "portrait": "https://independent.prose.md/img/teortaxesTex.jpg"
+    },
+    {
+      "rank": 44,
+      "name": "Matt Busigin",
+      "handle": "mbusigin",
+      "portrait": "https://independent.prose.md/img/mbusigin.jpg"
+    },
+    {
+      "rank": 45,
+      "name": "Michael Thiessen",
+      "handle": "MichaelThiessen",
+      "portrait": "https://independent.prose.md/img/MichaelThiessen.jpg"
+    },
+    {
+      "rank": 46,
+      "name": "Mike Taylor",
+      "handle": "hammer_mt",
+      "portrait": "https://independent.prose.md/img/hammer_mt.jpg"
+    },
+    {
+      "rank": 47,
+      "name": "Julia Galef",
+      "handle": "juliagalef",
+      "portrait": "https://independent.prose.md/img/juliagalef.jpg"
+    },
+    {
+      "rank": 48,
+      "name": "Roko 🐉",
+      "handle": "RokoMijic",
+      "portrait": "https://independent.prose.md/img/RokoMijic.jpg"
+    },
+    {
+      "rank": 49,
+      "name": "Kylie Robison",
+      "handle": "kyliebytes",
+      "portrait": "https://independent.prose.md/img/kyliebytes.jpg"
+    },
+    {
+      "rank": 50,
+      "name": "Andrew Curran",
+      "handle": "AndrewCurran_",
+      "portrait": "https://independent.prose.md/img/AndrewCurran_.jpg"
+    },
+    {
+      "rank": 51,
+      "name": "Tenobrus",
+      "handle": "tenobrus",
+      "portrait": "https://independent.prose.md/img/tenobrus.jpg"
+    },
+    {
+      "rank": 52,
+      "name": "Eli Lifland",
+      "handle": "eli_lifland",
+      "portrait": "https://independent.prose.md/img/eli_lifland.jpg"
+    },
+    {
+      "rank": 53,
+      "name": "kache",
+      "handle": "yacineMTB",
+      "portrait": "https://independent.prose.md/img/yacineMTB.jpg"
+    },
+    {
+      "rank": 54,
+      "name": "vik",
+      "handle": "vikhyatk",
+      "portrait": "https://independent.prose.md/img/vikhyatk.jpg"
+    },
+    {
+      "rank": 55,
+      "name": "Jeffrey Emanuel",
+      "handle": "doodlestein",
+      "portrait": "https://independent.prose.md/img/doodlestein.jpg"
+    },
+    {
+      "rank": 56,
+      "name": "xjdr",
+      "handle": "_xjdr",
+      "portrait": "https://independent.prose.md/img/_xjdr.jpg"
+    },
+    {
+      "rank": 57,
+      "name": "Michael P. Frank 💻🔜♻️",
+      "handle": "MikePFrank",
+      "portrait": "https://independent.prose.md/img/MikePFrank.jpg"
+    },
+    {
+      "rank": 58,
+      "name": "fabian",
+      "handle": "fabianstelzer",
+      "portrait": "https://independent.prose.md/img/fabianstelzer.jpg"
+    },
+    {
+      "rank": 59,
+      "name": "Minh Nhat Nguyen",
+      "handle": "menhguin",
+      "portrait": "https://independent.prose.md/img/menhguin.jpg"
+    },
+    {
+      "rank": 60,
+      "name": "Jack Morris",
+      "handle": "jxmnop",
+      "portrait": "https://independent.prose.md/img/jxmnop.jpg"
+    },
+    {
+      "rank": 61,
+      "name": "Cody Blakeney",
+      "handle": "code_star",
+      "portrait": "https://independent.prose.md/img/code_star.jpg"
+    },
+    {
+      "rank": 62,
+      "name": "Danielle Fong 🔆",
+      "handle": "DanielleFong",
+      "portrait": "https://independent.prose.md/img/DanielleFong.jpg"
+    },
+    {
+      "rank": 63,
+      "name": "Shannon Sands",
+      "handle": "max_paperclips",
+      "portrait": "https://independent.prose.md/img/max_paperclips.jpg"
+    },
+    {
+      "rank": 64,
+      "name": "kalomaze",
+      "handle": "kalomaze",
+      "portrait": "https://independent.prose.md/img/kalomaze.jpg"
+    },
+    {
+      "rank": 65,
+      "name": "Simo Ryu",
+      "handle": "cloneofsimo",
+      "portrait": "https://independent.prose.md/img/cloneofsimo.jpg"
+    },
+    {
+      "rank": 66,
+      "name": "Ellie Huxtable",
+      "handle": "ellie_huxtable",
+      "portrait": "https://independent.prose.md/img/ellie_huxtable.jpg"
+    },
+    {
+      "rank": 67,
+      "name": "Ivan Burazin",
+      "handle": "ivanburazin",
+      "portrait": "https://independent.prose.md/img/ivanburazin.jpg"
+    },
+    {
+      "rank": 68,
+      "name": "orph",
+      "handle": "orphcorp",
+      "portrait": "https://independent.prose.md/img/orphcorp.jpg"
+    },
+    {
+      "rank": 69,
+      "name": "Petr Baudis",
+      "handle": "xpasky",
+      "portrait": "https://independent.prose.md/img/xpasky.jpg"
+    },
+    {
+      "rank": 70,
+      "name": "Florian Brand",
+      "handle": "xeophon",
+      "portrait": "https://independent.prose.md/img/xeophon.jpg"
+    },
+    {
+      "rank": 71,
+      "name": "John David Pressman",
+      "handle": "jd_pressman",
+      "portrait": "https://independent.prose.md/img/jd_pressman.jpg"
+    },
+    {
+      "rank": 72,
+      "name": "Andy Ayrey",
+      "handle": "AndyAyrey",
+      "portrait": "https://independent.prose.md/img/AndyAyrey.jpg"
+    },
+    {
+      "rank": 73,
+      "name": "ᄂIMIПΛᄂbardo",
+      "handle": "liminal_bardo",
+      "portrait": "https://independent.prose.md/img/liminal_bardo.jpg"
+    },
+    {
+      "rank": 74,
+      "name": "lumpenspace and 99+ others",
+      "handle": "lumpenspace",
+      "portrait": "https://independent.prose.md/img/lumpenspace.jpg"
+    },
+    {
+      "rank": 75,
+      "name": "Andrew",
+      "handle": "dremnik",
+      "portrait": "https://independent.prose.md/img/dremnik.jpg"
+    },
+    {
+      "rank": 76,
+      "name": "thebes",
+      "handle": "voooooogel",
+      "portrait": "https://independent.prose.md/img/voooooogel.jpg"
+    },
+    {
+      "rank": 77,
+      "name": "Rob Haisfield",
+      "handle": "RobertHaisfield",
+      "portrait": "https://independent.prose.md/img/RobertHaisfield.jpg"
+    },
+    {
+      "rank": 78,
+      "name": "mephisto",
+      "handle": "karan4d",
+      "portrait": "https://independent.prose.md/img/karan4d.jpg"
+    },
+    {
+      "rank": 79,
+      "name": "Sauers",
+      "handle": "Sauers_",
+      "portrait": "https://independent.prose.md/img/Sauers_.jpg"
+    },
+    {
+      "rank": 80,
+      "name": "Mira",
+      "handle": "_Mira___Mira_",
+      "portrait": "https://independent.prose.md/img/_Mira___Mira_.jpg"
+    },
+    {
+      "rank": 81,
+      "name": "nightwing",
+      "handle": "yaboilyrical",
+      "portrait": "https://independent.prose.md/img/yaboilyrical.jpg"
+    },
+    {
+      "rank": 82,
+      "name": "veryvanya",
+      "handle": "veryvanya",
+      "portrait": "https://independent.prose.md/img/veryvanya.jpg"
+    },
+    {
+      "rank": 83,
+      "name": "0.005 Seconds (3/694)",
+      "handle": "seconds_0",
+      "portrait": "https://independent.prose.md/img/seconds_0.jpg"
+    },
+    {
+      "rank": 84,
+      "name": "Taelin",
+      "handle": "VictorTaelin",
+      "portrait": "https://independent.prose.md/img/VictorTaelin.jpg"
+    },
+    {
+      "rank": 85,
+      "name": "Mario Zechner",
+      "handle": "badlogicgames",
+      "portrait": "https://independent.prose.md/img/badlogicgames.jpg"
+    },
+    {
+      "rank": 86,
+      "name": "Lewis 🇺🇸",
+      "handle": "ctjlewis",
+      "portrait": "https://independent.prose.md/img/ctjlewis.jpg"
+    },
+    {
+      "rank": 87,
+      "name": "dex",
+      "handle": "dexhorthy",
+      "portrait": "https://independent.prose.md/img/dexhorthy.jpg"
+    },
+    {
+      "rank": 88,
+      "name": "bone",
+      "handle": "bonegpt",
+      "portrait": "https://independent.prose.md/img/bonegpt.jpg"
+    },
+    {
+      "rank": 89,
+      "name": "dax",
+      "handle": "thdxr",
+      "portrait": "https://independent.prose.md/img/thdxr.jpg"
+    },
+    {
+      "rank": 90,
+      "name": "geoff",
+      "handle": "GeoffreyHuntley",
+      "portrait": "https://independent.prose.md/img/GeoffreyHuntley.jpg"
+    },
+    {
+      "rank": 91,
+      "name": "Aaron Francis",
+      "handle": "aarondfrancis",
+      "portrait": "https://independent.prose.md/img/aarondfrancis.jpg"
+    },
+    {
+      "rank": 92,
+      "name": "Rob Pruzan",
+      "handle": "RobKnight__",
+      "portrait": "https://independent.prose.md/img/RobKnight__.jpg"
+    },
+    {
+      "rank": 93,
+      "name": "Jesse Genet",
+      "handle": "jessegenet",
+      "portrait": "https://independent.prose.md/img/jessegenet.jpg"
+    },
+    {
+      "rank": 94,
+      "name": "Raymond Weitekamp",
+      "handle": "raw_works",
+      "portrait": "https://independent.prose.md/img/raw_works.jpg"
+    },
+    {
+      "rank": 95,
+      "name": "Nathan Baschez",
+      "handle": "nbaschez",
+      "portrait": "https://independent.prose.md/img/nbaschez.jpg"
+    },
+    {
+      "rank": 96,
+      "name": "Nick Dobos",
+      "handle": "NickADobos",
+      "portrait": "https://independent.prose.md/img/NickADobos.jpg"
+    },
+    {
+      "rank": 97,
+      "name": "Kyle Mistele 🏴‍☠️",
+      "handle": "0xblacklight",
+      "portrait": "https://independent.prose.md/img/0xblacklight.jpg"
+    },
+    {
+      "rank": 98,
+      "name": "sunil pai",
+      "handle": "threepointone",
+      "portrait": "https://independent.prose.md/img/threepointone.jpg"
+    },
+    {
+      "rank": 99,
+      "name": "Adam",
+      "handle": "adamdotdev",
+      "portrait": "https://independent.prose.md/img/adamdotdev.jpg"
+    }
+  ]
+}
