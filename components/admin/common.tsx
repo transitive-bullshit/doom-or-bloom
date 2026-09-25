@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+import { AdminDate, AdminTimeZone } from './local-time'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -33,7 +35,7 @@ export function AdminHeading({
   description
 }: {
   title: string
-  description: string
+  description: ReactNode
 }) {
   return (
     <div className='flex flex-col gap-2'>
@@ -187,13 +189,6 @@ export function AdminPagination({
     </div>
   )
 }
-export function adminDate(value: string | Date) {
-  return new Intl.DateTimeFormat('en', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-    timeZone: 'UTC'
-  }).format(new Date(value))
-}
 export function ownerLabel(row: {
   owner_id: string
   name: string
@@ -216,7 +211,9 @@ export function AdminAssessmentTable({ rows }: { rows: AdminAssessmentRow[] }) {
           <TableHead>User</TableHead>
           <TableHead>State</TableHead>
           <TableHead>Answers</TableHead>
-          <TableHead>Updated (UTC)</TableHead>
+          <TableHead>
+            Updated · <AdminTimeZone />
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -270,7 +267,9 @@ export function AdminAssessmentTable({ rows }: { rows: AdminAssessmentRow[] }) {
                 / {row.prompts} prompts
               </span>
             </TableCell>
-            <TableCell>{adminDate(row.updated_at)}</TableCell>
+            <TableCell>
+              <AdminDate value={new Date(row.updated_at)} />
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

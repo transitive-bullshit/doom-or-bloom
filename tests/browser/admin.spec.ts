@@ -49,7 +49,11 @@ test('local admin filters real saved states and previews private results without
       )
     ).rows
     // No owner cookies in this inspector; admin reads do not impersonate.
-    const inspector = await browser.newContext({ baseURL })
+    const inspector = await browser.newContext({
+      baseURL,
+      locale: 'en-GB',
+      timezoneId: 'Asia/Bangkok'
+    })
     const admin = await inspector.newPage()
     const mutations: string[] = []
     admin.on('request', (request) => {
@@ -77,6 +81,16 @@ test('local admin filters real saved states and previews private results without
       await expect(
         admin.getByText('Completed', { exact: true }).first()
       ).toBeVisible()
+      await expect(
+        admin.getByRole('columnheader', { name: 'Updated · Asia/Bangkok' })
+      ).toBeVisible()
+      await expect(admin.locator('tbody time').first()).toHaveText(
+        new Intl.DateTimeFormat('en-GB', {
+          dateStyle: 'medium',
+          timeStyle: 'short',
+          timeZone: 'Asia/Bangkok'
+        }).format(before[0].updated_at)
+      )
       await admin.screenshot({ path: '/tmp/admin-desktop.png', fullPage: true })
       await admin.goto(`/admin/assessments?q=${id}&state=completed`)
       await expect(admin.locator('tbody tr')).toHaveCount(1)
@@ -84,6 +98,12 @@ test('local admin filters real saved states and previews private results without
         .getByRole('link', { name: 'Your AI worldview #1', exact: true })
         .click()
       await expect(admin.locator('[data-slot=worldview-map]')).toBeVisible()
+      await admin
+        .getByText('Assessment metadata & recent operations', { exact: true })
+        .click()
+      await expect(
+        admin.getByRole('columnheader', { name: 'Time · Asia/Bangkok' })
+      ).toBeVisible()
       await admin.getByRole('tab', { name: 'Questions & answers' }).click()
       await expect(admin.getByText(answer, { exact: true })).toBeVisible()
       await expect(
@@ -91,10 +111,21 @@ test('local admin filters real saved states and previews private results without
       ).toHaveCount(0)
       await admin.getByRole('tab', { name: 'Results', exact: true }).click()
       await admin.screenshot({ path: '/tmp/admin-result.png', fullPage: true })
+      await admin.goto(`/admin/users?q=${id}`)
+      await expect(
+        admin.getByRole('columnheader', {
+          name: 'Last activity · Asia/Bangkok'
+        })
+      ).toBeVisible()
       await admin.goto(`/admin/users/${owner}`)
       await admin.getByRole('tab', { name: 'Participant library' }).click()
       await expect(
         admin.getByRole('table', { name: 'My assessments' })
+      ).toBeVisible()
+      await expect(
+        admin.getByRole('columnheader', {
+          name: /Date created · Asia\/Bangkok/
+        })
       ).toBeVisible()
       await expect(
         admin.getByRole('button', { name: /^Actions for/ })

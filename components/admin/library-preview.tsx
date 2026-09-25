@@ -1,4 +1,5 @@
 'use client'
+import { AdminDate, AdminTimeZone } from './local-time'
 import { AssessmentTable } from '@/components/assessment/table'
 import type { LibraryItem } from '@/components/assessment/library'
 export function AdminLibraryPreview({ items }: { items: LibraryItem[] }) {
@@ -10,6 +11,14 @@ export function AdminLibraryPreview({ items }: { items: LibraryItem[] }) {
         admin; account and editing actions are omitted.
       </p>
       <AssessmentTable
+        datePresentation={{
+          heading: (
+            <>
+              Date created · <AdminTimeZone />
+            </>
+          ),
+          render: (value) => <AdminDate value={value} />
+        }}
         items={items}
         busy={false}
         onMakePrivate={() => {}}

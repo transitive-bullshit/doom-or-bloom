@@ -1,3 +1,4 @@
+import { AdminDate } from '@/components/admin/local-time'
 import { notFound } from 'next/navigation'
 import { requireLocalAdmin } from '@/lib/admin/guard'
 import { adminFilters, type AdminSearch } from '@/lib/admin/filters'
@@ -7,7 +8,6 @@ import {
   AdminFiltersForm,
   AdminAssessmentTable,
   AdminPagination,
-  adminDate,
   ownerLabel
 } from '@/components/admin/common'
 import { AdminLibraryPreview } from '@/components/admin/library-preview'
@@ -30,7 +30,12 @@ export default async function Page({
     <>
       <AdminHeading
         title={ownerLabel({ ...user, owner_id: id })}
-        description={`Identity created ${adminDate(user.created_at)} UTC`}
+        description={
+          <>
+            Identity created{' '}
+            <AdminDate value={new Date(user.created_at)} showZone />
+          </>
+        }
       />
       <details className='text-sm'>
         <summary className='cursor-pointer'>Identity details</summary>

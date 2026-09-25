@@ -1,3 +1,4 @@
+import { AdminDate, AdminTimeZone } from '@/components/admin/local-time'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { requireLocalAdmin } from '@/lib/admin/guard'
@@ -6,7 +7,7 @@ import {
   assessmentStatus,
   adminComparisons
 } from '@/lib/admin/queries'
-import { AdminHeading, adminDate, ownerLabel } from '@/components/admin/common'
+import { AdminHeading, ownerLabel } from '@/components/admin/common'
 import { AdminAssessmentPreview } from '@/components/admin/assessment-preview'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -64,8 +65,8 @@ export default async function Page({
         <Badge variant='outline'>{row.visibility}</Badge>
         <Badge variant='outline'>{row.origin}</Badge>
         <span className='text-sm text-muted-foreground'>
-          {row.answers} accepted answers · Updated {adminDate(row.updated_at)}{' '}
-          UTC
+          {row.answers} accepted answers · Updated{' '}
+          <AdminDate value={new Date(row.updated_at)} showZone />
         </span>
       </div>
       {row.visibility === 'public' && (
@@ -116,7 +117,9 @@ export default async function Page({
             <dt>Owner ID</dt>
             <dd className='break-all'>{row.owner_id}</dd>
             <dt>Started</dt>
-            <dd>{adminDate(row.created_at)} UTC</dd>
+            <dd>
+              <AdminDate value={new Date(row.created_at)} showZone />
+            </dd>
             <dt>Engine state</dt>
             <dd>{state?.status ?? row.engine_status}</dd>
             <dt>Fork</dt>
@@ -157,7 +160,9 @@ export default async function Page({
                 <TableHead>Action</TableHead>
                 <TableHead>State</TableHead>
                 <TableHead>Failure</TableHead>
-                <TableHead>Time (UTC)</TableHead>
+                <TableHead>
+                  Time · <AdminTimeZone />
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -178,7 +183,9 @@ export default async function Page({
                   </TableCell>
                   <TableCell>{op.status}</TableCell>
                   <TableCell>{op.failure_category || '—'}</TableCell>
-                  <TableCell>{adminDate(op.created_at)}</TableCell>
+                  <TableCell>
+                    <AdminDate value={new Date(op.created_at)} />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { cn } from 'cn'
 import { toast } from 'sonner'
 import { downloadBlob } from '@/lib/sharing/report'
@@ -62,7 +62,7 @@ function SortHeader<TValue>({
   children
 }: {
   column: Column<typeof features, LibraryItem, TValue>
-  children: string
+  children: ReactNode
 }) {
   const sorted = column.getIsSorted()
   const Icon =
@@ -87,8 +87,13 @@ export function AssessmentTable({
   onPublish,
   onDelete,
   readOnly = false,
-  hrefPrefix = '/assessments'
+  hrefPrefix = '/assessments',
+  datePresentation
 }: {
+  datePresentation?: {
+    heading: ReactNode
+    render: (value: string) => ReactNode
+  }
   readOnly?: boolean
   hrefPrefix?: string
   items: LibraryItem[]
@@ -97,6 +102,12 @@ export function AssessmentTable({
   onMakePrivate: (item: LibraryItem) => void
   onDelete: (item: LibraryItem) => void
 }) {
+  const date = (item: LibraryItem) =>
+    datePresentation ? (
+      datePresentation.render(item.createdAt)
+    ) : (
+      <time dateTime={item.createdAt}>{createdDate(item)}</time>
+    )
   const [exporting, setExporting] = useState(false)
   async function exportResults(
     id: string,
@@ -177,12 +188,9 @@ export function AssessmentTable({
             {row.original.title ?? 'Your AI worldview'}
           </span>
           <span className='flex flex-wrap items-center gap-2 sm:hidden'>
-            <time
-              dateTime={row.original.createdAt}
-              className='text-xs font-normal text-muted-foreground'
-            >
-              {createdDate(row.original)}
-            </time>
+            <span className='text-xs font-normal text-muted-foreground'>
+              {date(row.original)}
+            </span>
             <Badge variant='outline'>{status(row.original)}</Badge>
           </span>
         </Link>
@@ -190,14 +198,12 @@ export function AssessmentTable({
     }),
     helper.accessor('createdAt', {
       header: ({ column }) => (
-        <SortHeader column={column}>Date created</SortHeader>
+        <SortHeader column={column}>
+          {datePresentation?.heading ?? 'Date created'}
+        </SortHeader>
       ),
       sortFn: 'text',
-      cell: ({ row }) => (
-        <time dateTime={row.original.createdAt}>
-          {createdDate(row.original)}
-        </time>
-      )
+      cell: ({ row }) => date(row.original)
     }),
     helper.accessor(status, {
       id: 'status',
@@ -311,7 +317,7 @@ export function AssessmentTable({
       >
         <span className='text-sm text-muted-foreground'>Sort by</span>
         <SortHeader column={table.getColumn('createdAt')!}>
-          Date created
+          {datePresentation?.heading ?? 'Date created'}
         </SortHeader>
         <SortHeader column={table.getColumn('status')!}>Status</SortHeader>
       </div>

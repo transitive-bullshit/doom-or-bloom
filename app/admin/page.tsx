@@ -100,7 +100,8 @@ export default async function Page({
           include inherited answers in forks. Completed means a current saved
           result exists; it does not prove the user viewed it. Anonymous IDs
           identify browser identities, not unique people; after sign-in,
-          ownership may transfer. All displayed dates use UTC.
+          ownership may transfer. Dates and times use your browser’s locale and
+          timezone, shown in each date column’s header.
         </p>
       </details>
     </>

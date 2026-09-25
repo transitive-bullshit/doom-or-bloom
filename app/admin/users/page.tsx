@@ -1,3 +1,4 @@
+import { AdminDate, AdminTimeZone } from '@/components/admin/local-time'
 import Link from 'next/link'
 import { requireLocalAdmin } from '@/lib/admin/guard'
 import { adminFilters, type AdminSearch } from '@/lib/admin/filters'
@@ -7,7 +8,6 @@ import {
   AdminFiltersForm,
   AdminPagination,
   AdminEmpty,
-  adminDate,
   ownerLabel
 } from '@/components/admin/common'
 import {
@@ -44,7 +44,9 @@ export default async function Page({
               <TableHead>Identity</TableHead>
               <TableHead>Assessments</TableHead>
               <TableHead>Completed</TableHead>
-              <TableHead>Last activity (UTC)</TableHead>
+              <TableHead>
+                Last activity · <AdminTimeZone />
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -66,7 +68,9 @@ export default async function Page({
                 </TableCell>
                 <TableCell>{row.assessments}</TableCell>
                 <TableCell>{row.completed}</TableCell>
-                <TableCell>{adminDate(row.last_activity)}</TableCell>
+                <TableCell>
+                  <AdminDate value={new Date(row.last_activity)} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
