@@ -387,8 +387,9 @@ const missing = [...unique.values()]
     if (failures[url]) gap.error = failures[url]
     return gap
   })
+await mkdir('work/research', { recursive: true })
 await writeFile(
-  'docs/research/resource-preview-gaps.json',
+  'work/research/resource-preview-gaps.json',
   JSON.stringify(missing, null, 2) + '\n'
 )
 console.log(

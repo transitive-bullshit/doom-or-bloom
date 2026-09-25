@@ -22,9 +22,9 @@ Current source briefs are authoring inputs. Existing generated interviews, resul
 
 All **97** briefs were revised. Total source records increased **235 → 708** (696 distinct URLs), with **473 newly inspected source URLs** and 11 refreshed existing records. There are 429 X post records and 480 records dated 2026. Source count ranges from 4 to 13; 95 users have at least six. Charles Goddard and Julia Galef have four each with explicit limitations. Galef's available evidence chiefly supports her reasoning approach and historical treatment of AI disagreements, not a current detailed AI platform.
 
-- [Per-user coverage table](independent-deepening-coverage-2026-09-25.md)
-- [Batch A: 49 users](independent-deepened-batch-a-2026-09-25.md), with [machine-readable evidence](independent-deepened-evidence-a-2026-09-25.json)
-- [Batch B: 48 users](independent-deepened-batch-b-2026-09-25.md), with [machine-readable evidence](independent-deepened-evidence-b-2026-09-25.json)
+- Per-user coverage table (local `work/research/independent-deepening-coverage-2026-09-25.md`)
+- Batch A: 49 users (local `work/research/independent-deepened-batch-a-2026-09-25.md`), with machine-readable evidence (local `work/research/independent-deepened-evidence-a-2026-09-25.json`)
+- Batch B: 48 users (local `work/research/independent-deepened-batch-b-2026-09-25.md`), with machine-readable evidence (local `work/research/independent-deepened-evidence-b-2026-09-25.json`)
 
 The canonical source briefs are in `lib/journeys/independent-{first,middle,last}-personas.ts`. Their beliefs, background, voice constraints and concerns were revised alongside source summaries. Identities, source attribution, duplicate-account handling and featured status are preserved. The original generated journey fixture is unchanged; this pass does not regenerate answers or results.
 

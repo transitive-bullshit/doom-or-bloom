@@ -30,7 +30,7 @@ All **103** affected users have successful new selected results using current so
 
 These are observed model outputs, not real-person quotations or desired coordinates. Doom–Bloom and P(doom) are distinct projections. Miles's new estimate still comes from the simulated answers and current inference transform; his source's broad 10–90% discussion was not converted into a precise public override. The existing routing and P(doom) algorithm were not changed during this rerun.
 
-[Machine-readable results and batch provenance](source-regeneration-results-2026-09-25.json) record previous/new assessment IDs and all source counts. Three batches retained aggregate usage reports totaling an estimated **$2.9619** (196 participant requests and 896 Jev requests). This excludes the recovered third batch and any in-flight requests at interruption, so it is not a complete billed total. Each batch remained bounded by its configured $5 ceiling; no complete cost total is manufactured.
+Machine-readable results and batch provenance (local `work/research/source-regeneration-results-2026-09-25.json`) record previous/new assessment IDs and all source counts. Three batches retained aggregate usage reports totaling an estimated **$2.9619** (196 participant requests and 896 Jev requests). This excludes the recovered third batch and any in-flight requests at interruption, so it is not a complete billed total. Each batch remained bounded by its configured $5 ceiling; no complete cost total is manufactured.
 
 The previous four batch IDs and new immutable simulation URLs remain associated with their original inputs. No production database or deployment was changed.
 

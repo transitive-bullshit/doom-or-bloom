@@ -10,9 +10,9 @@ There are **97 additions**. Scott Alexander (`slatestarcodex`) retains the origi
 
 Research packets and source-scoped claims:
 
-- [Accounts 1–34](independent-first-2026-09-25.md): 32 additions after the two duplicates.
-- [Accounts 35–67](independent-middle-2026-09-25.md): 33 additions.
-- [Accounts 68–99](independent-last-2026-09-25.md): 32 additions.
+- Accounts 1–34 (local `work/research/independent-first-2026-09-25.md`): 32 additions after the two duplicates.
+- Accounts 35–67 (local `work/research/independent-middle-2026-09-25.md`): 33 additions.
+- Accounts 68–99 (local `work/research/independent-last-2026-09-25.md`): 32 additions.
 
 The new briefs contain 235 source records (223 distinct URLs), including 42 original X posts and 74 records dated 2026. Each has at least two source records; a profile, index, or directory link establishes identity or context, not necessarily a substantive position. Records distinguish inspected text from unavailable articles, institutional work from individual statements, hosts from guests, and coauthored research from personal forecasts. Public X website failures were supplemented with authenticated read-only X API retrieval, including long-form post bodies where available.
 
