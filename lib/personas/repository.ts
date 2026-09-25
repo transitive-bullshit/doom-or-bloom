@@ -1,6 +1,8 @@
 import 'server-only'
 import { randomUUID } from 'node:crypto'
-import { and, asc, eq } from 'drizzle-orm'
+import { and, asc, eq, sql } from 'drizzle-orm'
+import { resultSchema } from '../assessment/schema'
+import { personaProfileSchema } from '../journeys/catalog'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import type { Pool } from 'pg'
 import { assessments, assessmentSnapshots, personas, user } from '../db/schema'
@@ -194,6 +196,50 @@ export function personaRepository(pool: Pool) {
         return id
       })
     },
+    // List views need the result and source comparison, never interview history.
+    async selectedSummaries(featuredOnly = false) {
+      const rows = await db
+        .select({
+          metadata: personas.metadata,
+          sources: sql<unknown>`${personas.sourceBrief}->'sources'`,
+          recordedSources: sql<unknown>`coalesce(${assessmentSnapshots.payload} #> '{journey,personaSnapshot,sources}', '[]'::jsonb)`,
+          result: sql<unknown>`${assessmentSnapshots.payload} #> '{journey,result}'`,
+          assessmentId: assessments.id
+        })
+        .from(personas)
+        .innerJoin(
+          assessments,
+          and(
+            eq(assessments.id, personas.selectedAssessmentId),
+            eq(assessments.personaId, personas.id)
+          )
+        )
+        .innerJoin(
+          assessmentSnapshots,
+          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
+        )
+        .where(
+          and(
+            publicSimulation,
+            featuredOnly ? eq(personas.featured, true) : undefined
+          )
+        )
+        .orderBy(asc(personas.slug))
+      return rows
+        .map((row) => ({
+          assessmentId: row.assessmentId,
+          metadata: personaMetadataSchema.parse(row.metadata),
+          sources: personaProfileSchema
+            .pick({ sources: true })
+            .parse({ sources: row.sources }).sources,
+          recordedSources: personaProfileSchema
+            .pick({ sources: true })
+            .parse({ sources: row.recordedSources }).sources,
+          result: resultSchema.parse(row.result)
+        }))
+        .sort((a, b) => a.metadata.order - b.metadata.order)
+    },
+    // Full catalog reads are reserved for offline import/verification tools.
     async selected() {
       const rows = await selectedQuery()
         .where(publicSimulation)

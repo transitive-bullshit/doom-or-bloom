@@ -92,3 +92,11 @@ Production and preview data preparation are complete before merge. The new direc
 - [x] Confirm checksums of all 141 prior profile rows, 163 prior assessment rows and 199 prior immutable snapshot rows are unchanged. No participant or authentication data was imported.
 
 Selected production assessments: Joscha Bach (`plinz`) `2858e363-047e-42cc-af79-935549b82704`; Vittorio (`iterintellectus`) `60be698f-765b-4b32-ba45-21dbb79f3cac`. Private verification artifacts remain under ignored `work/research/bach-vittorio/`. The Git deployment supplies portraits/source artwork and rebuilds the directory after this data import. Preview database was outside this requested production import.
+
+## Zuckerberg refresh and three-persona verification — September 26, 2026
+
+- [x] Import Zuckerberg’s validated local interview refresh through the committed persona repository, using an isolated archive of `f7af979c` to exclude unrelated uncommitted database schema/query changes. No migration or inference calls were made.
+- [x] Verify full selected payload, metadata and source-brief fingerprints for all three requested profiles against the local exports: Joscha Bach (`plinz`, 19 sources), Vittorio (`iterintellectus`, 12 sources), and Mark Zuckerberg (`finkd`, six sources). Bach and Vittorio already matched; only Zuckerberg required a new selected simulation.
+- [x] Preserve the 142 other persona records and all 2,242 pre-existing immutable snapshots. All pre-existing simulation assessments were unchanged. The initial broad checksum assertion detected concurrent participant activity; read-only follow-up attributed all 17 changed prior assessment rows to participant origin, with no modified historical snapshots. No participant records were imported.
+
+Zuckerberg’s selected production assessment is `73b511c2-aa63-4bfd-87d0-98bcee3d2bf5`, from run `1790365048936-78ba4f68-8e99-4485-92a7-16ebd5435c96`. His prior published simulation remains intact. Production retains 143 profiles; the Bach and Vittorio assessment IDs above are unchanged. Private checksum and verification artifacts are under ignored `work/research/zuckerberg/`. The subsequent Git push deploys the committed source/artwork changes and rebuilds public pages using the imported result.
