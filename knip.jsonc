@@ -4,6 +4,7 @@
   "entry": [
     "scripts/*.ts",
     "tests/browser/*-engine.ts",
+    "tests/fixtures/journey-browser-data.ts",
     "tests/browser/*.spec.ts",
     "playwright.config.ts",
     "playwright.analytics.config.ts",

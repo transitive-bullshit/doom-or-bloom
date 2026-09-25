@@ -1,7 +1,52 @@
 import { expect, test } from '@playwright/test'
 import { createAssessment } from '../../lib/assessment/state'
+import type { Component } from '../../lib/assessment/schema'
+import { execFileSync } from 'node:child_process'
+import {
+  suiteSchema,
+  runIndex,
+  type JourneySuite
+} from '../../lib/journeys/schema'
+import { readFileSync } from 'node:fs'
+const fixedUserAnswers = JSON.parse(
+  readFileSync('lib/journeys/fixed-user-answers.json', 'utf8')
+) as Array<{ question: string; answer: string }>
 
-test('latest live personas expose results and decisions without rerun controls', async ({
+let suite: JourneySuite
+test.beforeAll(() => {
+  suite = suiteSchema.parse(
+    JSON.parse(
+      execFileSync(
+        process.execPath,
+        [
+          '--conditions=react-server',
+          '--import',
+          'tsx',
+          'tests/fixtures/journey-browser-data.ts'
+        ],
+        { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024, timeout: 10_000 }
+      )
+    )
+  )
+})
+
+function savedJourney(url: string) {
+  const personaId = new URL(url).searchParams.get('persona')
+  return {
+    run: runIndex(suite),
+    journey: structuredClone(
+      suite.journeys.find((journey) => journey.personaId === personaId) ?? null
+    )
+  }
+}
+
+test.beforeEach(async ({ page }) => {
+  await page.route('**/api/user-journeys?*', async (route) => {
+    await route.fulfill({ json: savedJourney(route.request().url()) })
+  })
+})
+
+test('saved persona snapshots expose results and decisions without rerun controls', async ({
   page,
   request,
   baseURL
@@ -189,8 +234,8 @@ test('failed operation diagnostics remain readable on mobile', async ({
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.route('**/api/user-journeys?*', async (route) => {
-    const response = await route.fetch()
-    const payload = await response.json()
+    const payload = savedJourney(route.request().url())
+    if (!payload.journey) throw new Error('Missing journey browser fixture')
     payload.run.mode = 'live'
     delete payload.journey.personaSnapshot
     payload.journey.error = 'Jev: provider or transport failure (HTTP 401).'
@@ -214,7 +259,7 @@ test('failed operation diagnostics remain readable on mobile', async ({
         }
       ]
     }
-    await route.fulfill({ response, json: payload })
+    await route.fulfill({ json: payload })
   })
   await page.goto('/user-journeys')
   await page
@@ -243,6 +288,13 @@ test('the real-user fixed regression is selectable and exposes all four original
     '4 accepted answers'
   )
   await expect(page.locator('[data-slot=journey-step]')).toHaveCount(4)
+  for (const [index, original] of fixedUserAnswers.entries()) {
+    const step = page.locator('[data-slot=journey-step]').nth(index)
+    const expand = step.getByRole('button', { name: 'Read full answer' })
+    if (await expand.count()) await expand.click()
+    await expect(step).toContainText(original.question)
+    await expect(step).toContainText(original.answer)
+  }
   await expect(
     page.getByRole('button', { name: 'Result after this answer', exact: true })
   ).toHaveCount(4)
@@ -270,12 +322,12 @@ test('answer selector moves the map and every experimental view without inferenc
     return route.abort()
   })
   await page.route('**/api/user-journeys?*', async (route) => {
-    const response = await route.fetch()
-    const payload = await response.json()
+    const payload = savedJourney(route.request().url())
+    if (!payload.journey) throw new Error('Missing journey browser fixture')
     for (const [index, step] of payload.journey.steps.entries()) {
       if (!step.result) continue
       const value = index === 0 ? 0.1 : 0.9
-      const component = {
+      const component: Component = {
         vector: 'influence',
         label: 'Human influence',
         value,
@@ -314,7 +366,7 @@ test('answer selector moves the map and every experimental view without inferenc
         ]
       }
     }
-    await route.fulfill({ response, json: payload })
+    await route.fulfill({ json: payload })
   })
   await page.goto('/user-journeys')
   const explorer = page.getByRole('region', { name: 'Worldview progression' })
