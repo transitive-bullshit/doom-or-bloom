@@ -345,7 +345,7 @@
   visibility: hidden;
 }
 .map-study .study-legend[data-directory='true'] a {
-  padding-block: 4px;
+  padding-block: 6px;
 }
 .study-legend[data-directory='true'] .directory-metric {
   line-height: 1.5;

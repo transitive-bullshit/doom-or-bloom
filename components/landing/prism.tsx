@@ -4,14 +4,9 @@ import Image from 'next/image'
 import { WorldviewCta } from '@/components/worldview-cta'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import Link from 'next/link'
-import {
-  useSyncExternalStore,
-  useMemo,
-  useState,
-  type PointerEvent,
-  type FocusEvent
-} from 'react'
+import { useSyncExternalStore, useMemo, useState } from 'react'
 import './prism.css'
+import { usePortraitHighlight } from './use-portrait-highlight'
 import { usePortraitLayout } from './use-portrait-layout'
 import type { VariantProps } from '@/components/landing/shared'
 import { NativeSelect } from '@/components/ui/native-select'
@@ -69,10 +64,8 @@ const featuredOrder = [
   'open-frontier-idealist'
 ]
 
-const rank = (id: string) => {
-  const index = featuredOrder.indexOf(id)
-  return index < 0 ? featuredOrder.length : index
-}
+const featuredRanks = new Map(featuredOrder.map((id, index) => [id, index]))
+const rank = (id: string) => featuredRanks.get(id) ?? featuredOrder.length
 
 const directoryPreferencesKey = 'doom-or-bloom:directory-sort:v1'
 
@@ -146,9 +139,6 @@ export function Prism({
   const [portraits, setPortraits] = useState<
     Record<string, 'loaded' | 'failed'>
   >({})
-  const [hovered, setHovered] = useState<string | null>(null)
-  const [focused, setFocused] = useState<string | null>(null)
-  const highlighted = hovered ?? focused
   const plotted = useMemo(
     () =>
       examples
@@ -157,6 +147,7 @@ export function Prism({
     [examples]
   )
   const chartRef = usePortraitLayout(plotted)
+  const highlightRef = usePortraitHighlight(plotted)
   const portraitsReady = plotted.every((p) => portraits[p.avatar])
   const settlePortrait = (src: string, status: 'loaded' | 'failed') => {
     setPortraits((current) =>
@@ -164,38 +155,28 @@ export function Prism({
     )
   }
   const search = query.trim().toLowerCase().replace(/^@/, '')
-  const legend = [...examples]
-    .filter(
-      (person) =>
-        !directory ||
-        `${person.name} ${person.shortName} ${person.slug}`
-          .toLowerCase()
-          .includes(search)
-    )
-    .sort((a, b) =>
-      directory ? compareUsers(a, b, sort, direction) : rank(a.id) - rank(b.id)
-    )
-  const highlightEvents = (id: string) => ({
-    onPointerEnter: (event: PointerEvent<HTMLAnchorElement>) => {
-      if (
-        event.pointerType !== 'touch' &&
-        window.matchMedia('(hover: hover) and (pointer: fine)').matches
-      )
-        setHovered(id)
-    },
-    onPointerLeave: () => setHovered(null),
-    onFocus: (event: FocusEvent<HTMLAnchorElement>) => {
-      if (event.currentTarget.matches(':focus-visible')) {
-        setHovered(null)
-        setFocused(id)
-      }
-    },
-    onBlur: () => setFocused(null)
-  })
+  const legend = useMemo(
+    () =>
+      [...examples]
+        .filter(
+          (person) =>
+            !directory ||
+            `${person.name} ${person.shortName} ${person.slug}`
+              .toLowerCase()
+              .includes(search)
+        )
+        .sort((a, b) =>
+          directory
+            ? compareUsers(a, b, sort, direction)
+            : rank(a.id) - rank(b.id)
+        ),
+    [examples, directory, search, sort, direction]
+  )
   return (
     <section
       className='map-study study-prism prism-theme'
-      data-highlighting={highlighted !== null}
+      ref={highlightRef}
+      data-highlighting='false'
     >
       <header className='study-heading'>
         <h1>
@@ -228,10 +209,9 @@ export function Prism({
               left: `${p.outlook! * 100}%`,
               top: `${(1 - p.transformation!) * 100}%`
             }}
-            data-highlighted={p.id === highlighted}
+            data-person-id={p.id}
             data-portrait-failed={portraits[p.avatar] === 'failed'}
             aria-label={`View ${p.name} results`}
-            {...highlightEvents(p.id)}
           >
             <Image
               src={p.avatar}
@@ -357,7 +337,7 @@ export function Prism({
         data-directory={directory}
       >
         {legend.map((p) => (
-          <Link key={p.id} href={`/users/${p.slug}`} {...highlightEvents(p.id)}>
+          <Link key={p.id} href={`/users/${p.slug}`} data-person-id={p.id}>
             <Image
               className='landing-legend-avatar'
               src={p.avatar}
