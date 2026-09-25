@@ -5416,5 +5416,14 @@
     "image": "/resource-previews/8b500d9fe9fb-image.webp",
     "imageKind": "title-card",
     "imageSource": "https://bach.ai/why-ai-wont-be-just-a-bit-smarter-than-humans/"
+  },
+  "https://www.youtube.com/watch?v=2cg56uF4hlc": {
+    "source": "https://www.youtube.com/watch?v=2cg56uF4hlc",
+    "fetchedAt": "2026-09-25T19:35:56.899Z",
+    "description": "Meta has new audio-only Ray-Ban glasses, new VR glasses that no longer look like a nerd helmet and a new voice-and-video mode for its Muse AI agent. I sat do...",
+    "image": "/resource-previews/9c4f84c260ea-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/2cg56uF4hlc/hqdefault.jpg",
+    "icon": "/resource-previews/9c4f84c260ea-icon.webp"
   }
 }

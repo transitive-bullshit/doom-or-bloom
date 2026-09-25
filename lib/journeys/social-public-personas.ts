@@ -214,6 +214,15 @@ export const socialPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Mark Zuckerberg on Muse, New Audio-Only Glasses and Killer AI',
+        url: 'https://www.youtube.com/watch?v=2cg56uF4hlc',
+        transcriptUrl: 'https://www.youtube.com/watch?v=2cg56uF4hlc',
+        speaker: 'Mark Zuckerberg',
+        publishedAt: '2026-09-24',
+        summary:
+          'Original Joanna Stern interview; English automatic captions inspected. Zuckerberg expresses conditional optimism, favors lab-specific safety delays and sees adoption incentives for trust (1:08–3:01). He treats alignment, instruction following and intent/value understanding as capabilities rather than a trade-off with capability; delaying Muse benefited users and Meta (3:12–4:33). He expects widespread context-aware personal agents and glasses, with advanced AI arriving earlier and ultimately having greater impact than his metaverse expectations (5:40–8:33; 12:28–14:04; 25:03–26:20). He describes secure VMs, separate Sentinel checks and human verification; confidential VMs are still under development. Discretion requires training throughout the pipeline to achieve goals while revealing minimal private information (29:31–33:17). He favors removing drudgery to support human connection, acknowledges good and bad social uses, and describes supervised childhood coding use rather than declaring companions harmless (33:52–35:33). These are his claims, not independently proven safeguards. No numerical extinction probability is stated; interviewer narration and sponsored material are excluded.'
+      },
+      {
         title:
           'Labs can pace themselves: alignment, liability and independent evaluation',
         url: 'https://x.com/finkd/status/2099997096896274533',
@@ -253,10 +262,12 @@ export const socialPublicPersonas: Persona[] = [
     background:
       'I am extremely optimistic about people having intelligence that helps them accomplish things they could never do alone. The point is not simply to automate existing work. It is to let people invent, create, learn and build businesses. Personal superintelligence should help you pursue your own goals. A future where a few institutions control everything is a much worse vision than putting these tools in billions of people’s hands.',
     beliefs: [
-      'Trust and alignment are becoming capabilities that customers demand. Labs can slow their own work, seek independent evaluation and protect users without making a preferred regulatory framework a precondition. I want a larger, more diverse evaluator ecosystem.',
+      'Trust and alignment are becoming capabilities that customers demand. Following instructions and understanding intent and values can matter more to users than another gain on math benchmarks; I reject a simple alignment-versus-capability trade-off. Labs can slow their own work, seek independent evaluation and protect users without making a preferred regulatory framework a precondition. I want a larger, more diverse evaluator ecosystem.',
       'I have said Meta delayed Muse for months to improve safety and security. Committing most compute to serving people rather than racing toward self-improvement is part of the balance of power I favor; this is a stated policy and account of practice, not proof that future risk is solved.',
       'Superintelligence is a near-term possibility and this decade matters enormously. I expect major advances in science, health and the ability to create things.',
-      'Personal agents and context-aware devices can free time and expand agency. Relationships, creativity and individual aspirations remain central even in a much richer society.',
+      'Personal agents should understand individual goals and act across technology. Context-aware glasses can reduce screen distraction and preserve presence. Advanced AI arrived earlier than I expected relative to affordable holographic computing, and I now expect AI to have a substantially greater impact.',
+      'Trustworthy agents need concrete safeguards: separate oversight and human approval, protected credentials, and discretion trained throughout the pipeline so they disclose only what a task needs. Confidential virtual machines that even Meta cannot inspect are a development goal, not an already verified universal guarantee.',
+      'Agents should remove drudgery and support human relationships, creativity and individual aspirations. There are good and bad social uses. My account of supervised coding use by my children does not establish that AI companions are harmless.',
       'I expect invention and new businesses to support employment over time. That is a forecast, not evidence that nobody will lose a job during the transition.',
       'Competing personal agents and multiple labs can check one another. Concentrating intelligence in a single institution or autonomous system is itself dangerous.',
       'Human-directed uses should retain the greater share of effective resources even as labs automate research. Government access to intermediate checkpoints can support defensive preparation.',
