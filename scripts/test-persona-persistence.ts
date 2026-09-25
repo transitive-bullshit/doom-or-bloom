@@ -1,6 +1,6 @@
+import { createLocalJourneyStore } from '../lib/journeys/local-store'
 import assert from 'node:assert/strict'
 import { randomUUID } from 'node:crypto'
-import { readFile } from 'node:fs/promises'
 import { Pool } from 'pg'
 import { people } from '../components/landing/people'
 import { databaseUrl } from '../lib/db/config'
@@ -22,9 +22,7 @@ try {
   assert.equal(first.length, people.length)
   assert.deepEqual(await seedPersonas(pool), first)
   const suite = suiteSchema.parse(
-    JSON.parse(
-      await readFile('eval/development/live-persona-journeys.json', 'utf8')
-    )
+    await createLocalJourneyStore(process.cwd()).latest()
   )
   const selected = await repo.selected()
   assert.deepEqual(

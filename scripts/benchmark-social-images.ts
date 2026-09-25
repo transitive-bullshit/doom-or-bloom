@@ -1,5 +1,6 @@
+import { createLocalJourneyStore } from '../lib/journeys/local-store'
 import { loadSocialPortrait } from '../lib/sharing/portraits'
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { render } from 'takumi-js'
 import sharp from 'sharp'
 import { people } from '../components/landing/people'
@@ -8,9 +9,9 @@ import type { JourneySuite } from '../lib/journeys/schema'
 
 const output = '/tmp/doom-seo-audit/images'
 await mkdir(output, { recursive: true })
-const suite: JourneySuite = JSON.parse(
-  await readFile('eval/development/live-persona-journeys.json', 'utf8')
-)
+const suite: JourneySuite = await createLocalJourneyStore(
+  process.cwd()
+).latest()
 const examples = await Promise.all(
   people.map(async (person) => ({
     ...person,

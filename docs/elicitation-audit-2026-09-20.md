@@ -14,7 +14,7 @@ Keep the fixed root. Do not add a mandatory second question or require everyone 
 
 Inspected all 30 active prompts, all 65 substantive answers across 13 current live personas, their per-answer projections and raw Jev traces, the routing and projection code, participant-generation instructions, and participant-facing question/result components.
 
-Current suite: `1789842382623-af760513-2ea5-48da-8b14-4d8e063995ec`, created September 19 at 18:33 UTC / September 20 local time. Tracked artifact: [live-persona-journeys.json](../eval/development/live-persona-journeys.json). Full traces are in the matching ignored local run directory. No inference was run for this audit.
+Current suite: `1789842382623-af760513-2ea5-48da-8b14-4d8e063995ec`, created September 19 at 18:33 UTC / September 20 local time. The original aggregate artifact has since been moved to ignored local storage; current results use `work/journeys/`. Full traces are in the matching ignored local run directory. No inference was run for this audit.
 
 These are development observations, not estimates of real-user prevalence or proof that a proposed alternative question would win. No counterfactual answers were generated. The proposals below need branch comparisons.
 

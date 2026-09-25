@@ -4,7 +4,7 @@ import { suiteSchema, type JourneySuite } from './schema'
 import { mergeJourneySuites } from './merge'
 
 const recorded: JourneySuite = JSON.parse(
-  readFileSync('eval/development/live-persona-journeys.json', 'utf8')
+  readFileSync('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
 )
 
 test('scoped generation retains other answers and their original provenance', () => {

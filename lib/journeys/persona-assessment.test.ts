@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs'
 import type { JourneySuite } from './schema'
 
 const suite: JourneySuite = JSON.parse(
-  readFileSync('eval/development/live-persona-journeys.json', 'utf8')
+  readFileSync('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
 )
 
 test('public inspection preserves Q&A and only uses input from the final result revision', () => {

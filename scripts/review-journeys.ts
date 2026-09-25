@@ -1,13 +1,12 @@
-import { readFile, writeFile } from 'node:fs/promises'
+import { createLocalJourneyStore } from '../lib/journeys/local-store'
+import { writeFile } from 'node:fs/promises'
 import { loadBundle } from '../lib/content/loader'
 import { suiteSchema } from '../lib/journeys/schema'
 
 // Read-only review of observed journeys. Flags are inspection prompts, not
 // semantic judgments or counterfactual estimates of better answers.
 const suite = suiteSchema.parse(
-  JSON.parse(
-    await readFile('eval/development/live-persona-journeys.json', 'utf8')
-  )
+  await createLocalJourneyStore(process.cwd()).latest()
 )
 const bundle = loadBundle()
 const usage = new Map<string, number>()

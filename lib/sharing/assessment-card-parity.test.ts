@@ -9,7 +9,7 @@ import { GET as publicCard } from '@/app/public/assessments/[id]/social-image.we
 import { POST as downloadedCard } from '@/app/api/share-card/route'
 
 const suite: JourneySuite = JSON.parse(
-  await readFile('eval/development/live-persona-journeys.json', 'utf8')
+  await readFile('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
 )
 const result = suite.journeys.find(
   (journey) => journey.result?.experiment?.pdoom

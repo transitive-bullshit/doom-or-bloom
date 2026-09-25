@@ -13,7 +13,6 @@ import { personas } from './catalog'
 import { loadBundle } from '@/lib/content/loader'
 import { suiteSchema } from './schema'
 import { generationHooks } from '../personas/generation-hooks'
-import { mergeJourneySuites } from './merge'
 
 export async function runLiveJourneys({
   personaId,
@@ -64,11 +63,6 @@ export async function runLiveJourneys({
   })
   const persistence = generationHooks()
   const store = projectJourneyStore()
-  const previousIndex =
-    personaId || personaIds
-      ? (await store.list()).find((run) => run.mode === 'live')
-      : undefined
-  const previous = previousIndex ? await store.read(previousIndex.id) : null
   const suite = await runJourneySuite({
     id: `${Date.now()}-${randomUUID()}`,
     personaId,
@@ -85,7 +79,7 @@ export async function runLiveJourneys({
       onJourney?.(journey)
     }
   })
-  await store.save(mergeJourneySuites(previous, suite))
+  await store.save(suite)
   return suite
 }
 
@@ -101,7 +95,7 @@ export async function resumeLiveJourney({
   maxCost?: number
 }) {
   const store = projectJourneyStore()
-  const source = await store.read(runId)
+  const source = await store.read(runId, personaId)
   const previous = source.journeys.find((j) => j.personaId === personaId)
   const persona = personas.find((p) => p.id === personaId)
   if (source.mode !== 'live' || !previous?.failedOperation || !persona)
@@ -150,6 +144,6 @@ export async function resumeLiveJourney({
     requestBudget: paid.report(),
     cost: budget.report()
   })
-  await store.save(mergeJourneySuites(source, suite))
+  await store.save(suite)
   return suite
 }

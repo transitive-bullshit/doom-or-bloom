@@ -1,4 +1,5 @@
-import { readFile, writeFile } from 'node:fs/promises'
+import { createLocalJourneyStore } from '../lib/journeys/local-store'
+import { writeFile } from 'node:fs/promises'
 import { loadBundle } from '../lib/content/loader'
 import { suiteSchema } from '../lib/journeys/schema'
 import { personas } from '../lib/journeys/catalog'
@@ -17,9 +18,7 @@ async function main() {
   )
   const participant = createOpenAIParticipant({ budget, maxRequests: 4 })
   const suite = suiteSchema.parse(
-    JSON.parse(
-      await readFile('eval/development/live-persona-journeys.json', 'utf8')
-    )
+    await createLocalJourneyStore(process.cwd()).latest()
   )
   const bundle = loadBundle()
   const observations = []

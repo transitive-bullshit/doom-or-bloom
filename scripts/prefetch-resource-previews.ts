@@ -1,3 +1,4 @@
+import { createLocalJourneyStore } from '../lib/journeys/local-store'
 import {
   mkdir,
   readFile,
@@ -53,12 +54,12 @@ const resources: Array<{
 }> = JSON.parse(
   await readFile('content/releases/0.4.0-draft/resources.json', 'utf8')
 )
-const suite = JSON.parse(
-  await readFile('eval/development/live-persona-journeys.json', 'utf8')
-)
-for (const journey of suite.journeys) {
+const localStore = createLocalJourneyStore(process.cwd())
+const live = (await localStore.list()).find((run) => run.mode === 'live')
+for (const personaId of live?.personaIds ?? []) {
+  const journey = (await localStore.read(live!.id, personaId)).journeys[0]!
   resources.push(
-    ...journey.result.resources,
+    ...(journey.result?.resources ?? []),
     ...(journey.personaSnapshot?.sources ?? [])
   )
 }

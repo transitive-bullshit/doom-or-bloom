@@ -601,3 +601,12 @@ Checkpoint details: [bookmark and source review](research/bookmark-and-source-re
 - [x] Verify source snapshot equality, result publication, 44 unchanged featured flags and 49 untouched development records; run core and persona persistence checks and commit the checkpoint.
 
 Evidence: [source-driven regeneration report](research/source-regeneration-2026-09-25.md) and its per-user/batch JSON ledger.
+
+## Individual local simulation storage — September 25, 2026
+
+- [x] Preserve and verify all 152 existing journeys in ignored local per-user files, with original collection backup.
+- [x] Store immutable per-user records with small atomic run manifests; scoped saves and inspector/seeder reads operate independently.
+- [x] Replace the tracked generated collection with a two-user test sample; migrate CLI consumers and document regeneration/import.
+- [x] Validate all 288 unit tests, formatting, lint, types, content, unused-code checks, and persona database import/idempotence without the aggregate file.
+
+Generated data lives under `work/journeys/`; the migration command preserves its input and compares every imported record. Public database results are unchanged. Extensive audit and recovery artifacts remain local and ignored.
