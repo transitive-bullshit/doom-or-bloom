@@ -128,15 +128,31 @@ export function previewImages(html: string, baseUrl: string) {
     .map(({ url, kind }) => ({ url, kind }))
 }
 
-export function previewIcon(html: string, baseUrl: string) {
+export function previewIcons(html: string, baseUrl: string) {
   const $ = load(html)
-  const icon =
-    $(
-      'link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]'
+  const values = $(
+    'link[rel="apple-touch-icon"], link[rel="icon"], link[rel="shortcut icon"]'
+  )
+    .toArray()
+    .map((node) => $(node).attr('href'))
+    .filter((value): value is string => Boolean(value))
+  // PNG/SVG touch icons decode reliably; ICO is not supported by every image runtime.
+  values.sort(
+    (a, b) =>
+      Number(/\.ico(?:[?#]|$)/i.test(a)) - Number(/\.ico(?:[?#]|$)/i.test(b))
+  )
+  return [
+    ...new Set(
+      [...values, '/apple-touch-icon.png', '/favicon.ico'].flatMap((value) => {
+        try {
+          const url = new URL(value, baseUrl)
+          return ['https:', 'http:'].includes(url.protocol) ? [url.href] : []
+        } catch {
+          return []
+        }
+      })
     )
-      .first()
-      .attr('href') ?? '/favicon.ico'
-  return new URL(icon, baseUrl).href
+  ]
 }
 
 export function previewDocument(html: string, baseUrl: string) {
@@ -167,6 +183,37 @@ export function previewDescription(html: string): string | null {
       ?.replace(/\s+/g, ' ')
       .trim()
     if (description) return description
+  }
+  return null
+}
+
+/** YouTube's publisher oEmbed endpoint supplies a thumbnail without watch-page JS. */
+export function youtubeOembedUrl(source: string) {
+  const url = new URL(source)
+  const host = url.hostname.replace(/^www\./, '').replace(/^m\./, '')
+  const id =
+    host === 'youtu.be'
+      ? url.pathname.slice(1)
+      : host === 'youtube.com'
+        ? (url.searchParams.get('v') ??
+          url.pathname.match(/^\/(?:shorts|embed|live)\/([\w-]+)/)?.[1])
+        : null
+  if (!id || !/^[\w-]{11}$/.test(id)) return null
+  return `https://www.youtube.com/oembed?${new URLSearchParams({ url: `https://www.youtube.com/watch?v=${id}`, format: 'json' })}`
+}
+
+/** Embedded episode videos often carry the only article-specific preview. */
+export function embeddedYoutubeOembedUrl(html: string, baseUrl: string) {
+  const $ = load(html)
+  for (const element of $('iframe[src]').toArray()) {
+    try {
+      const endpoint = youtubeOembedUrl(
+        new URL($(element).attr('src')!, baseUrl).href
+      )
+      if (endpoint) return endpoint
+    } catch {
+      /* Ignore malformed embeds. */
+    }
   }
   return null
 }

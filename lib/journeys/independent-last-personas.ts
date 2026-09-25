@@ -445,12 +445,6 @@ export const independentLastPersonas: Persona[] = [
           'Author describes setting context, stepping back, and preserving model-generated visual work.'
       },
       {
-        title: 'Independent 100 directory',
-        url: 'https://independent.prose.md',
-        summary:
-          'Confirms public handle and display identity; no further worldview evidence.'
-      },
-      {
         title: 'Dissenting agents against groupthink',
         url: 'https://x.com/liminal_bardo/status/2093491613226139661',
         publishedAt: '2026-08-29',
@@ -1239,11 +1233,6 @@ export const independentLastPersonas: Persona[] = [
           'Publishes a Flux PS1-style model and links the author’s GitHub.'
       },
       {
-        title: 'Independent 100 directory',
-        url: 'https://independent.prose.md',
-        summary: 'Lists an optimistic bio; not sufficient to quantify beliefs.'
-      },
-      {
         title: 'Roadmap toward autonomous decentralized AI communities',
         url: 'https://x.com/veryvanya/status/2091615137207902403',
         publishedAt: '2026-08-23',
@@ -1814,11 +1803,6 @@ export const independentLastPersonas: Persona[] = [
     concern:
       'The incident post records Raad’s interpretation of reports, not a fresh forensic finding. His alignment-solved and personal-AGI posts are jokes. Product claims reflect a founder’s perspective.',
     sources: [
-      {
-        title: 'Independent 100 directory',
-        url: 'https://independent.prose.md',
-        summary: 'Identifies Dax as building OpenCode at Anomaly.'
-      },
       {
         title: 'OpenCode',
         url: 'https://opencode.ai/',

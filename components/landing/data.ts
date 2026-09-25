@@ -23,7 +23,11 @@ export const loadExamples = cache(async (featuredOnly = true) => {
       return {
         ...metadata,
         assessmentId: row.assessmentId,
-        sources: sources.map(({ title, url }) => ({ title, url })),
+        sources: sources.map(({ title, url, summary }) => ({
+          title,
+          url,
+          summary
+        })),
         sourceBriefUpdated:
           JSON.stringify(sources) !== JSON.stringify(recordedSources),
         result: simulationPresentation(row.payload).result

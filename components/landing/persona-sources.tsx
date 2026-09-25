@@ -4,7 +4,7 @@ export function PersonaSources({
   sources,
   sourceBriefUpdated = false
 }: {
-  sources: Array<{ title: string; url: string }>
+  sources: Array<{ title: string; url: string; summary?: string }>
   sourceBriefUpdated?: boolean
 }) {
   if (!sources.length) return null

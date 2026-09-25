@@ -13,13 +13,19 @@ import { createHash } from 'node:crypto'
 import path from 'node:path'
 import pMap from 'p-map'
 import sharp from 'sharp'
+import {
+  bookmarkTitleCard,
+  bookmarkSiteMark
+} from '../lib/authoring/bookmark-title-card'
 import { personas } from '../lib/journeys/catalog'
 import { tweetIdFromUrl } from '../lib/sharing/tweet-url'
 import {
   previewImages,
-  previewIcon,
+  previewIcons,
   previewDocument,
-  previewDescription
+  previewDescription,
+  youtubeOembedUrl,
+  embeddedYoutubeOembedUrl
 } from '../lib/authoring/preview-images'
 
 type Preview = {
@@ -28,7 +34,8 @@ type Preview = {
   icon?: string
   fetchedAt: string
   source: string
-  imageKind?: 'social' | 'article' | 'screenshot' | 'document'
+  imageKind?: 'social' | 'article' | 'screenshot' | 'document' | 'title-card'
+  iconKind?: 'publisher' | 'monogram'
   imageSource?: string
 }
 const argument = (name: string) =>
@@ -38,7 +45,12 @@ const argument = (name: string) =>
 const captureDirectory = argument('captures')
 const only = argument('url')
 const refresh = process.argv.includes('--refresh')
-const resources: Array<{ url: string; title?: string }> = JSON.parse(
+const resources: Array<{
+  url: string
+  title?: string
+  summary?: string
+  question?: string
+}> = JSON.parse(
   await readFile('content/releases/0.4.0-draft/resources.json', 'utf8')
 )
 const suite = JSON.parse(
@@ -64,7 +76,10 @@ const overrides: Record<
 )
 const unique = new Map(
   resources
-    .filter(({ url }) => !tweetIdFromUrl(url))
+    .filter(
+      ({ url }) =>
+        !tweetIdFromUrl(url) && new URL(url).hostname !== 'independent.prose.md'
+    )
     .map((resource) => [resource.url, resource])
 )
 const urls = only ? [only] : [...unique.keys()]
@@ -188,6 +203,9 @@ const entries = await pMap(
       source: url,
       fetchedAt: previous[url]?.fetchedAt ?? new Date().toISOString()
     }
+    if (!entry.description)
+      entry.description =
+        unique.get(url)?.summary || unique.get(url)?.question || null
     if (entry.image && !entry.image.endsWith('.webp')) {
       try {
         const old = entry.image
@@ -204,6 +222,11 @@ const entries = await pMap(
       !refresh
     )
       return [url, entry] as const
+    if (entry.imageKind === 'title-card') delete entry.image
+    if (entry.iconKind === 'monogram') {
+      delete entry.icon
+      delete entry.iconKind
+    }
     entry.fetchedAt = new Date().toISOString()
     let html = ''
     let baseUrl = url
@@ -233,7 +256,30 @@ const entries = await pMap(
         path.join(captureDirectory, `${key}.html`),
         'utf8'
       ).catch(() => html)
-    if (html) entry.description = previewDescription(html)
+    if (html) entry.description = previewDescription(html) || entry.description
+    // Watch pages can be consent shells; oEmbed gives the actual publisher thumbnail.
+    const oembed =
+      youtubeOembedUrl(url) ?? embeddedYoutubeOembedUrl(html, baseUrl)
+    if (oembed && (!entry.image || refresh)) {
+      try {
+        const response = await request(oembed)
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        const video = (await response.json()) as { thumbnail_url?: string }
+        if (
+          video.thumbnail_url &&
+          new URL(video.thumbnail_url).hostname.endsWith('.ytimg.com')
+        ) {
+          entry.image = await saveImage(
+            (await bytes(video.thumbnail_url)).data,
+            key
+          )
+          entry.imageKind = 'social'
+          entry.imageSource = video.thumbnail_url
+        }
+      } catch {
+        // Retain ordinary publisher metadata and reviewed-capture fallbacks.
+      }
+    }
     if (!entry.image || refresh) {
       const candidates = overrides[url]?.preferScreenshot
         ? []
@@ -277,7 +323,7 @@ const entries = await pMap(
     }
     if (!entry.icon) {
       for (const iconUrl of [
-        previewIcon(html, baseUrl),
+        ...previewIcons(html, baseUrl),
         `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=128`
       ]) {
         try {
@@ -288,10 +334,32 @@ const entries = await pMap(
         }
       }
     }
-    console.log(`${entry.image ? 'preview' : 'missing'} ${url}`)
+    if (!entry.description)
+      entry.description =
+        unique.get(url)?.summary || unique.get(url)?.question || null
+    if (!entry.image) {
+      entry.image = await saveImage(
+        Buffer.from(
+          bookmarkTitleCard(
+            unique.get(url)?.title ?? new URL(url).hostname,
+            url
+          )
+        ),
+        key
+      )
+      entry.imageKind = 'title-card'
+      entry.imageSource = url
+    }
+    if (!entry.icon) {
+      entry.icon = await writeIcon(Buffer.from(bookmarkSiteMark(url)), key)
+      entry.iconKind = 'monogram'
+    }
+    console.log(
+      `${entry.imageKind === 'title-card' ? 'title-card' : 'preview'} ${url}`
+    )
     return [url, entry] as const
   },
-  { concurrency: 4 }
+  { concurrency: Number(argument('concurrency') ?? 4) }
 )
 const combined = { ...previous, ...Object.fromEntries(entries) }
 await writeFile(

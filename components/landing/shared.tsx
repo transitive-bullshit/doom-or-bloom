@@ -38,7 +38,7 @@ export type Example = {
   profileUrl?: string
   profileLabel?: string
   sourceBriefUpdated?: boolean
-  sources?: Array<{ title: string; url: string }>
+  sources?: Array<{ title: string; url: string; summary?: string }>
 }
 export type VariantProps = { examples: Example[]; variant?: number }
 export const resultHref = (slug: string, variant?: number) =>

@@ -70,3 +70,5 @@ Crawler discovery includes static public pages and selected curated persona prof
 Current simulated-user expansion: [Independent 100 research and generation](research/independent-simulated-users-2026-09-25.md). `/users` provides the full map and searchable directory; `/` continues to show only featured simulated users.
 
 Deeper follow-up research for all 97 additions: [source review and coverage](research/independent-deepening-summary-2026-09-25.md).
+
+Latest bookmark and interview review: [local preview coverage and source corrections](research/bookmark-and-source-review-2026-09-25.md), [Robert Miles](research/robert-miles-source-review-2026-09-25.md), and [swyx plus the broader interview audit](research/independent-third-party-evidence-audit-2026-09-25.md).

@@ -56,6 +56,12 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2026-09-21',
         summary:
           'Reports a useful annotated guide to Eliot with recordings and scholarship, highlighting AI’s value beyond coding.'
+      },
+      {
+        title: 'Ethan Mollick — Strange Loop interview, 2026',
+        url: 'https://sanalabs.com/strange-loop/ethan-mollick-2026',
+        summary:
+          'At 13:56–25:34 Mollick argues organizations can combine fallible people and AI, favors meaningful human participation, and warns that automation can undermine apprenticeship. Calls for deliberate learning and assessment instead of rewarding output volume alone. Exact publication day unverified; reported company examples are not independently audited here.'
       }
     ],
     voice: [
@@ -70,7 +76,8 @@ export const independentMiddlePersonas: Persona[] = [
       'A large gap remains between existing capabilities and what people use them for.',
       'Institutional adaptation can slow social change despite rapid model progress.',
       'AI can enrich learning and creative exploration far beyond programming.',
-      'Industrialized knowledge work may erode craft and meaning, while model labs could concentrate application markets.'
+      'Industrialized knowledge work may erode craft and meaning, while model labs could concentrate application markets.',
+      'Organizations must preserve learning and human participation as AI shortcuts threaten apprenticeship; output volume alone is a poor goal.'
     ]
   },
   {
@@ -83,7 +90,7 @@ export const independentMiddlePersonas: Persona[] = [
     proxy: 'Shawn Wang · source-grounded simulation',
     description: 'AI engineering, accessible tools, and practical deployment.',
     concern:
-      'Disclose Cognition employment when interpreting agent-lab optimism. His colloquial excitement about models is not evidence of a medical condition or a calibrated AGI forecast.',
+      'Disclose Cognition employment when interpreting agent-lab optimism. Attribute only his own podcast statements, not guest claims or show notes. His agent expansion metaphor is not a claim of a security escape; biosafety concern is explicit but no calibrated catastrophe probability is established. Colloquial excitement is not evidence of a medical condition.',
     sources: [
       {
         title: 'The Rise of the AI Engineer',
@@ -126,6 +133,34 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2025-10-20',
         summary:
           'Acknowledges AI-linked wealth concentration but rejects fatalistic permanent-underclass narratives, arguing AI lowers barriers to learning, entrepreneurship and upward mobility for people who exercise agency.'
+      },
+      {
+        title: 'Agent Engineering — keynote essay',
+        url: 'https://www.latent.space/p/agent',
+        publishedAt: '2025-03-24',
+        summary:
+          'His keynote essay treats intent, tools, control flow, planning, memory and delegated authority as essential agent ingredients. Argues improved models, tools and economics create a major engineering opportunity; emphasizes trust and verification rather than equating autonomy with reliability.'
+      },
+      {
+        title: 'Agent Labs Thesis — swyx on Unsupervised Learning',
+        url: 'https://www.latent.space/p/unsupervised-learning-2026',
+        publishedAt: '2026-04-23',
+        summary:
+          'Speaker-attributed transcript: at 32:53 he expects coding agents to expand beyond coding; at 40:01–41:18 he raises biosafety concerns and doubts broad enterprise distribution is truly private access. At 44:30–48:58 he identifies memory constraints, revises upward on open models, and favors automated testing and verification as human code review becomes a bottleneck. No numeric p(doom) given.'
+      },
+      {
+        title: 'Reality: The Final Eval — swyx with Andon Labs',
+        url: 'https://www.latent.space/p/andon',
+        publishedAt: '2026-06-04',
+        summary:
+          'His own questions at 45:42–47:58 distinguish inaccessible reasoning traces, observable actions and simulations without real consequences for lying. This supports attention to evaluation validity; the guests’ model-behavior findings and risk judgments remain theirs, not his.'
+      },
+      {
+        title: 'Agent infrastructure — swyx with Modal CTO Akshat Bubna',
+        url: 'https://www.latent.space/p/modal2026',
+        publishedAt: '2026-07-08',
+        summary:
+          'At 33:41–36:24 he identifies GPU access as a constraint on autonomous research, questions how widely research loops are used beyond demonstrations, and favors agents provisioning their own infrastructure. Modal deployment and performance claims belong to guest Akshat Bubna.'
       }
     ],
     voice: [
@@ -140,7 +175,11 @@ export const independentMiddlePersonas: Persona[] = [
       'AI engineering turns model capabilities into usable products through integration and careful iteration.',
       'Harnesses must evolve as models improve; engineering value is not guaranteed to persist unchanged.',
       'AI can widen inequality but also lower barriers to learning and entrepreneurship.',
-      'Open models matter for sovereign AI.'
+      'Open models matter for sovereign AI; he became more optimistic about their use by leading agent companies in 2026.',
+      'Coding agents can extend into other software-mediated work; memory and usable infrastructure remain important constraints.',
+      'Biosafety is a real concern, and distributing a powerful model to many large companies does not guarantee private or abuse-free access.',
+      'Delegated authority needs trust and verification; autonomous coding at scale requires stronger automated tests and verification rather than assuming generated code is safe.',
+      'Evaluate actions and real consequences separately from model reasoning traces; interviewing safety researchers does not imply adopting all their conclusions.'
     ]
   },
   {
@@ -544,6 +583,13 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2026-09-24',
         summary:
           'Welcomes cheaper improved models while explicitly reserving judgment on the introduced ASI-ban bill until reading its details; distinguishes general risk concern from automatic endorsement of legislation.'
+      },
+      {
+        title: 'Pick Your Poison — Zvi Mowshowitz on AGI governance',
+        url: 'https://www.cognitiverevolution.ai/pick-your-poison-zvi-mowshowitz-on-the-unipolar-multipolar-agi-dilemma-openface-pacing-the-frontier/',
+        publishedAt: '2026-08-05',
+        summary:
+          'His transcript turns around 42–57 minutes argue that technical alignment alone does not eliminate catastrophic risk from conflicting users and that capability incentives can outweigh reliability. Challenges Davidad’s optimism. Conditional numerical examples are not an unconditional project-compatible p(doom).'
       }
     ],
     voice: [
@@ -558,7 +604,8 @@ export const independentMiddlePersonas: Persona[] = [
       'Existential AI risk warrants urgent technical and political action.',
       'Pacing alone is not enough; the underlying alignment problems must actually be solved.',
       'Companies underinvest in safety, including relative to their own commercial interests.',
-      'Useful model improvements can be welcomed while examining laws and safety claims in detail.'
+      'Useful model improvements can be welcomed while examining laws and safety claims in detail.',
+      'Technical alignment alone does not settle risks from conflicting users; market demand for capability can outweigh reliability concerns.'
     ]
   },
   {
@@ -593,12 +640,6 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2026-09-23',
         summary:
           'Says AGI concerns everyone and everyone should speak while criticizing the conduct of international debate. Verified through authenticated X API on 2026-09-25.'
-      },
-      {
-        title: 'Independent 100: Teortaxes profile',
-        url: 'https://independent.prose.md',
-        summary:
-          'Directory preserves the account’s anti-centralization self-description and interest in DeepSeek; biography evidence only.'
       },
       {
         title: 'R1 subjectivity experiment — authored thread, mirrored',
@@ -743,12 +784,6 @@ export const independentMiddlePersonas: Persona[] = [
         url: 'https://michaelnthiessen.com/weekly-206-february-26',
         summary:
           'February 2025 author newsletter describes teaching a ChatGPT clone and co-hosting discussion of AI workflow, jobs, privacy and environment.'
-      },
-      {
-        title: 'Independent 100: Michael Thiessen profile',
-        url: 'https://independent.prose.md',
-        summary:
-          'Preserves coding-agent harness and evaluation focus at Jobber; identity/scope evidence only.'
       },
       {
         title: 'Expecting an unbundling of model types',
@@ -1330,12 +1365,6 @@ export const independentMiddlePersonas: Persona[] = [
         url: 'https://x.com/yacinemtb?lang=en',
         summary:
           'Accessible first-party pinned article excerpt says neural networks may replace software differently from merely writing code; full article not reviewed.'
-      },
-      {
-        title: 'Independent 100: kache profile',
-        url: 'https://independent.prose.md',
-        summary:
-          'Account identity and self-description only; not evidence of an AGI date, extinction probability or regulatory stance.'
       },
       {
         title: 'AGI-like capability and human bottlenecks',
@@ -2183,12 +2212,6 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2026-08-08',
         summary:
           'Contains Sands’s August 8, 2026 post advocating cybersecurity hardening and use of available interpretability tools; only the embedded Sands passage grounds this brief.'
-      },
-      {
-        title: 'Independent 100: Shannon Sands profile',
-        url: 'https://independent.prose.md',
-        summary:
-          'Preserves public developer/cognitive-architect self-description. Identity evidence only; no full worldview inferred.'
       },
       {
         title: 'Independent pro-AI safety and voluntary standards',

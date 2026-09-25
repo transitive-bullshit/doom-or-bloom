@@ -5,7 +5,12 @@ import { tweetIdFromUrl } from '@/lib/sharing/tweet-url'
 import { ResourceBookmark } from './resource-bookmark'
 
 const ResourceTweet = lazy(() => import('./resource-tweet'))
-type Resource = { title: string; url: string; question?: string }
+type Resource = {
+  title: string
+  url: string
+  question?: string
+  summary?: string
+}
 
 export function ResourceList<T extends Resource>({
   resources,

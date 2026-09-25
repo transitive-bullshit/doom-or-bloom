@@ -583,3 +583,12 @@ Checkpoint evidence: [Deeper source review](research/independent-deepening-summa
 Follower snapshot: `lib/personas/x-followers.json`. Refresh with `pnpm exec tsx scripts/refresh-x-followers.ts`, using an authenticated local `xurl` installation (`my-app`, OAuth2). Two read-only batched X user lookups captured public follower counts on September 25. Counts are public account metadata, separate from immutable simulation evidence; page loads do not call X. Updated snapshots ship with the app. Accounts without a linked X profile remain unavailable, never zero.
 
 Validation: `pnpm test` passed (284 tests plus formatting, lint, types, content and unused-code checks); all 11 `tests/browser/landing.spec.ts` cases passed, including directory sorting/filtering and mobile overflow; `pnpm build:local` passed with production trace checks. Existing generated results and featured membership are unchanged.
+
+## Bookmark assets and deeper interview evidence — September 25, 2026
+
+- [x] Preprocess source bookmark thumbnails and icons locally, including direct and embedded YouTube videos; add deterministic title-card/site-mark fallbacks and a completeness regression check.
+- [x] Preserve authored source summaries in profile bookmark descriptions.
+- [x] Remove all 12 Independent 100 discovery-directory entries from current briefs and sync current local metadata while preserving frozen results.
+- [x] Deepen Robert Miles and swyx with verified videos and speaker-attributed interviews; audit the 97-user batch for missing foundational/interview evidence.
+
+Checkpoint details: [bookmark and source review](research/bookmark-and-source-review-2026-09-25.md). Current brief changes do not rewrite saved simulation answers, scores or provenance.

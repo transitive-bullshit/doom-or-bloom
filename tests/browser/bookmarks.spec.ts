@@ -30,3 +30,37 @@ test('bookmarks fade overflowing text without overflowing the mobile viewport', 
   const box = await list.boundingBox()
   expect(box!.width).toBeLessThan(390)
 })
+
+test('simulated-user source bookmarks render local images, icons and authored descriptions', async ({
+  page
+}) => {
+  await page.goto('/users/robertskmiles')
+  const sources = page.locator('#sources [data-resource-layout="list"]')
+  const video = sources.locator(
+    'a[href="https://www.youtube.com/watch?v=pYXy-A4siMw"]'
+  )
+  await video.scrollIntoViewIfNeeded()
+  await expect(video.locator('.bookmark-image img')).toHaveAttribute(
+    'src',
+    /^\/resource-previews\/.+\.webp$/
+  )
+  await expect(video.locator('p')).not.toBeEmpty()
+  await expect(video.locator('img')).toHaveCount(2)
+  await expect
+    .poll(() =>
+      video
+        .locator('img')
+        .evaluateAll((images) =>
+          images.every(
+            (image) =>
+              (image as HTMLImageElement).complete &&
+              (image as HTMLImageElement).naturalWidth > 0
+          )
+        )
+    )
+    .toBe(true)
+  await page.goto('/users/thdxr')
+  await expect(
+    page.locator('#sources a[href*="independent.prose.md"]')
+  ).toHaveCount(0)
+})
