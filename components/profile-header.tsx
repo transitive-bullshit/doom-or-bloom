@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { ProfilePortrait } from '@/components/profile-portrait'
 import type { ReactNode } from 'react'
 
 export function ProfileHeader({
@@ -17,13 +17,7 @@ export function ProfileHeader({
   children?: ReactNode
 }) {
   const portrait = avatar && (
-    <Image
-      src={avatar}
-      alt={name}
-      width={80}
-      height={80}
-      className='image-outline size-16 rounded-full object-cover sm:size-20'
-    />
+    <ProfilePortrait key={avatar} src={avatar} alt={name} />
   )
   return (
     <header>
