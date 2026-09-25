@@ -227,7 +227,14 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                     } as CSSProperties
                   }
                 >
-                  <Image src={p.avatar} width={40} height={40} alt='' />
+                  <Image
+                    src={p.avatar}
+                    width={40}
+                    height={40}
+                    sizes={`${diameter}px`}
+                    quality={90}
+                    alt=''
+                  />
                 </Link>
               </TooltipTrigger>
               <TooltipContent sideOffset={0} className='pointer-events-none'>
@@ -249,8 +256,10 @@ export function PreviewMap({ examples, variant }: VariantProps) {
               <Image
                 className='landing-legend-avatar'
                 src={p.avatar}
-                width={20}
-                height={20}
+                width={30}
+                height={30}
+                sizes='(max-width: 640px) 42px, 30px'
+                quality={90}
                 alt=''
               />
               <FadeText lines={1}>{p.name}</FadeText>

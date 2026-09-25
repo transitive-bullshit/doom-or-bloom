@@ -226,6 +226,8 @@ export function Prism({
               alt=''
               width={40}
               height={40}
+              sizes='(max-width: 520px) 30px, 40px'
+              quality={90}
               loading='eager'
               // Next Image fires onLoad after decoding, including cached images.
               onLoad={() => settlePortrait(p.avatar, 'loaded')}
@@ -346,8 +348,10 @@ export function Prism({
               className='landing-legend-avatar'
               src={p.avatar}
               alt=''
-              width={20}
-              height={20}
+              width={30}
+              height={30}
+              sizes='(max-width: 640px) 42px, 30px'
+              quality={90}
             />
             <span className='study-person-name'>
               {p.shortName}

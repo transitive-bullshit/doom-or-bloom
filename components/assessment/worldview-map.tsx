@@ -45,11 +45,17 @@ export function Map({
   const py = (value: number) => plot.top + (1 - value) * plot.height
   const point = x.value !== null && y.value !== null
   // Keep a native SVG image for clipping and PNG export, using Next's resized
-  // 2x source because SVG images cannot select from an HTML srcSet.
+  // 192px source for high-density screens and responsive SVG scaling: SVG
+  // images cannot select from an HTML srcSet.
   const portrait =
     subject?.avatar && point
-      ? getImageProps({ src: subject.avatar, alt: '', width: 40, height: 40 })
-          .props.src
+      ? getImageProps({
+          src: subject.avatar,
+          alt: '',
+          width: 96,
+          height: 96,
+          quality: 90
+        }).props.src
       : undefined
   const description = `Doom–Bloom: ${x.value === null ? 'unplaced' : Math.round(x.value * 100) + ' out of 100'}. ${definition.label}: ${y.value === null ? 'unplaced' : Math.round(y.value * 100) + ' out of 100'}. Interpretation ranges: ${x.range.map((v) => Math.round(v * 100)).join(' to ')} horizontally, ${y.range.map((v) => Math.round(v * 100)).join(' to ')} vertically. These are interpretation coordinates, not event probabilities.`
   return (
@@ -298,6 +304,8 @@ export function Map({
                     alt=''
                     width={16}
                     height={16}
+                    sizes='16px'
+                    quality={90}
                     className='size-4 rounded-full border border-white object-cover'
                   />
                 ) : (

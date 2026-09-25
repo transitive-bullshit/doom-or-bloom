@@ -7,6 +7,7 @@ import { validateServerEnv } from './lib/server/validate-env'
 
 const config: NextConfig = {
   images: {
+    qualities: [75, 90],
     remotePatterns: [new URL('https://pbs.twimg.com/profile_images/**')]
   },
   allowedDevOrigins: [
