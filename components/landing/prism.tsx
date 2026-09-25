@@ -200,9 +200,11 @@ export function Prism({
               <NativeSelect
                 id='user-sort'
                 value={sort}
-                onChange={(event) =>
-                  setSort(event.target.value as DirectorySort)
-                }
+                onChange={(event) => {
+                  const nextSort = event.target.value as DirectorySort
+                  setSort(nextSort)
+                  setDirection(nextSort === 'followers' ? 'desc' : 'asc')
+                }}
                 aria-controls='simulated-users'
               >
                 {Object.entries(directorySorts).map(([key, label]) => (
@@ -225,10 +227,18 @@ export function Prism({
                 aria-controls='simulated-users'
               >
                 <option value='asc'>
-                  {sort === 'name' ? 'A–Z' : 'Low to high'}
+                  {sort === 'name'
+                    ? 'A–Z'
+                    : sort === 'outlook'
+                      ? 'Doom first'
+                      : 'Low to high'}
                 </option>
                 <option value='desc'>
-                  {sort === 'name' ? 'Z–A' : 'High to low'}
+                  {sort === 'name'
+                    ? 'Z–A'
+                    : sort === 'outlook'
+                      ? 'Bloom first'
+                      : 'High to low'}
                 </option>
               </NativeSelect>
             </div>
