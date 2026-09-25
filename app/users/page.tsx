@@ -1,6 +1,7 @@
 import followerSnapshot from '@/lib/personas/x-followers.json'
 import { pageMetadata } from '@/lib/metadata'
 import { loadExamples } from '@/components/landing/data'
+import { directoryPdoom } from '@/components/landing/directory-sort'
 import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
 import '@/components/landing/landing.css'
@@ -34,13 +35,7 @@ export default async function Page() {
         (component) => component.vector === 'risk_landscape'
       )?.value ?? null,
     influence: result.experiment?.influence.value ?? null,
-    pdoom:
-      result.experiment?.pdoom?.estimate ??
-      (result.experiment?.pdoom?.bounds
-        ? (result.experiment.pdoom.bounds[0] +
-            result.experiment.pdoom.bounds[1]) /
-          2
-        : null),
+    pdoom: directoryPdoom(result),
     pdoomLabel: result.experiment?.pdoom?.token
   }))
   return (

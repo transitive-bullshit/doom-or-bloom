@@ -1,4 +1,20 @@
 import type { Example } from './shared'
+import type { Result } from '@/lib/assessment/schema'
+
+/** A quoted approximate percentage is sortable without inventing a range. */
+export function directoryPdoom(result: Result) {
+  const risk = result.experiment?.pdoom
+  if (risk?.estimate != null) return risk.estimate
+  if (risk?.bounds) return (risk.bounds[0] + risk.bounds[1]) / 2
+  if (risk?.source !== 'stated' && risk?.source !== 'public-statement')
+    return null
+  const match = risk.token?.match(
+    /^(?:(?:about|around|roughly|approximately|~|≈)\s*)?(\d+(?:\.\d+)?)\s*(?:%|percent)$/iu
+  )
+  if (!match) return null
+  const percentage = Number(match[1])
+  return percentage <= 100 ? percentage / 100 : null
+}
 
 export const directorySorts = {
   name: 'Name',
@@ -29,6 +45,7 @@ export function compareUsers(
 }
 export function directoryValue(person: Example, key: DirectorySort) {
   if (key === 'name') return null
+  if (key === 'pdoom' && person.pdoomLabel) return person.pdoomLabel
   const value = person[key]
   if (value == null) return 'Not available'
   if (key === 'followers') return `${value.toLocaleString('en-US')} followers`
