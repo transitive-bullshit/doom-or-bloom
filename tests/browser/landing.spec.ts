@@ -385,6 +385,23 @@ test('all-users directory filters names and handles without filtering the full m
     'true'
   )
   const mapCount = await page.locator('.study-point').count()
+  const names = page.locator('.study-legend .study-person-name')
+  const alphabetical = await names.allTextContents()
+  await page.getByLabel('Order', { exact: true }).selectOption('desc')
+  await expect(names.first()).toHaveText(alphabetical.at(-1)!)
+  await page.getByLabel('Sort by', { exact: true }).selectOption('followers')
+  await expect(page.locator('.directory-metric').first()).toContainText(
+    'followers'
+  )
+  const followerValues = await page
+    .locator('.directory-metric')
+    .allTextContents()
+  const counts = followerValues
+    .filter((value) => value !== 'Not available')
+    .map((value) => Number(value.replace(/[^0-9]/g, '')))
+  expect(counts).toEqual([...counts].sort((a, b) => b - a))
+  await page.getByLabel('Sort by', { exact: true }).selectOption('reasoning')
+  await expect(page.locator('.directory-metric').first()).toContainText('/ 100')
   const search = page.getByLabel('Find a simulated user')
   await search.fill('@SIMONW')
   await expect(page.locator('.study-legend a')).toHaveCount(1)

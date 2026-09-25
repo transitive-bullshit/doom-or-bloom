@@ -26,6 +26,14 @@ export type Example = {
   outlook: number | null
   transformation: number | null
   avatar: string
+  followers?: number | null
+  followersCapturedAt?: string
+  pdoom?: number | null
+  pdoomLabel?: string
+  reasoning?: number | null
+  upside?: number | null
+  harm?: number | null
+  influence?: number | null
   xUrl?: string | null
   profileUrl?: string
   profileLabel?: string

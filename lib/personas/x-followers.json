@@ -1,0 +1,562 @@
+{
+  "capturedAt": "2026-09-25T10:53:48.171Z",
+  "accounts": {
+    "amcafee": {
+      "id": "15008449",
+      "followers": 80162
+    },
+    "jkcarlsmith": {
+      "id": "1349950428",
+      "followers": 13358
+    },
+    "slatestarcodex": {
+      "id": "1526643050",
+      "followers": 168421
+    },
+    "dkokotajlo": {
+      "id": "1726760827452350464",
+      "followers": 52404
+    },
+    "tylercowen": {
+      "id": "8496762",
+      "followers": 419292
+    },
+    "so8res": {
+      "id": "245375936",
+      "followers": 20306
+    },
+    "ryangreenblatt": {
+      "id": "1705245484628226048",
+      "followers": 21938
+    },
+    "noahpinion": {
+      "id": "281877818",
+      "followers": 934037
+    },
+    "esyudkowsky": {
+      "id": "2595244026",
+      "followers": 240449
+    },
+    "sama": {
+      "id": "1605",
+      "followers": 6279901
+    },
+    "pmarca": {
+      "id": "5943622",
+      "followers": 6489842
+    },
+    "garymarcus": {
+      "id": "232294292",
+      "followers": 244671
+    },
+    "andrewyng": {
+      "id": "216939636",
+      "followers": 1895873
+    },
+    "ylecun": {
+      "id": "48008938",
+      "followers": 1311399
+    },
+    "geoffreyhinton": {
+      "id": "1084212657761148928",
+      "followers": 657888
+    },
+    "edzitron": {
+      "id": "18359716",
+      "followers": 153069
+    },
+    "sensanders": {
+      "id": "29442313",
+      "followers": 11569014
+    },
+    "davidsacks": {
+      "id": "1137701",
+      "followers": 1753792
+    },
+    "demishassabis": {
+      "id": "1482581556",
+      "followers": 1889516
+    },
+    "_sholtodouglas": {
+      "id": "968053955845484545",
+      "followers": 61327
+    },
+    "tszzl": {
+      "id": "1460283925",
+      "followers": 495685
+    },
+    "noamshazeer": {
+      "id": "1489362865215528961",
+      "followers": 84721
+    },
+    "polynoamial": {
+      "id": "825088493764407298",
+      "followers": 175161
+    },
+    "dwarkesh_sp": {
+      "id": "1209960539390201864",
+      "followers": 278452
+    },
+    "darioamodei": {
+      "id": "874126509245476864",
+      "followers": 820996
+    },
+    "elonmusk": {
+      "id": "44196397",
+      "followers": 241680205
+    },
+    "natolambert": {
+      "id": "2939913921",
+      "followers": 102118
+    },
+    "yoshua_bengio": {
+      "id": "1831398480700428289",
+      "followers": 52873
+    },
+    "ilyasut": {
+      "id": "1720046887",
+      "followers": 908131
+    },
+    "karpathy": {
+      "id": "33836629",
+      "followers": 4215963
+    },
+    "drfeifei": {
+      "id": "130745589",
+      "followers": 1059681
+    },
+    "richardssutton": {
+      "id": "206026629",
+      "followers": 70959
+    },
+    "timnitgebru": {
+      "id": "359831209",
+      "followers": 172359
+    },
+    "random_walker": {
+      "id": "10834752",
+      "followers": 131407
+    },
+    "dacemoglumit": {
+      "id": "1651688262187069444",
+      "followers": 379949
+    },
+    "finkd": {
+      "id": "20749410",
+      "followers": 2439001
+    },
+    "emilymbender": {
+      "id": "172179385",
+      "followers": 56285
+    },
+    "tegmark": {
+      "id": "2530947115",
+      "followers": 156129
+    },
+    "barackobama": {
+      "id": "813286",
+      "followers": 118987493
+    },
+    "realdonaldtrump": {
+      "id": "25073877",
+      "followers": 111853229
+    },
+    "billgates": {
+      "id": "50393960",
+      "followers": 65153788
+    },
+    "jensenhuang": {
+      "id": "2070631956824698880",
+      "followers": 1092104
+    },
+    "gwern": {
+      "id": "17664709",
+      "followers": 106883
+    },
+    "schmidhuberai": {
+      "id": "1163786515144724485",
+      "followers": 220242
+    },
+    "robinhanson": {
+      "id": "7748752",
+      "followers": 126828
+    },
+    "repligate": {
+      "id": "1359981346119155719",
+      "followers": 69116
+    },
+    "beffjezos": {
+      "id": "1556550048862928898",
+      "followers": 284541
+    },
+    "elder_plinius": {
+      "id": "1656536425087500288",
+      "followers": 241616
+    },
+    "deepfates": {
+      "id": "3315205122",
+      "followers": 64973
+    },
+    "perrymetzger": {
+      "id": "127100323",
+      "followers": 19746
+    },
+    "lateinteraction": {
+      "id": "1605274291569799168",
+      "followers": 38525
+    },
+    "davidad": {
+      "id": "15484497",
+      "followers": 23378
+    },
+    "jeremyphoward": {
+      "id": "175282603",
+      "followers": 329181
+    },
+    "willcb": {
+      "id": "3064259332",
+      "followers": 51066
+    },
+    "npcollapse": {
+      "id": "1082202896261963776",
+      "followers": 31653
+    },
+    "robertskmiles": {
+      "id": "133152680",
+      "followers": 65911
+    },
+    "realgeorgehotz": {
+      "id": "771970414155182081",
+      "followers": 303374
+    },
+    "dhh": {
+      "id": "14561327",
+      "followers": 892197
+    },
+    "varun_mathur": {
+      "id": "17323179",
+      "followers": 35779
+    },
+    "a1zhang": {
+      "id": "4593727300",
+      "followers": 38070
+    },
+    "anthrupad": {
+      "id": "1445452517689552909",
+      "followers": 16943
+    },
+    "blancheminerva": {
+      "id": "1125849026308575239",
+      "followers": 19064
+    },
+    "xlr8harder": {
+      "id": "1684958423043944449",
+      "followers": 14414
+    },
+    "doomslide": {
+      "id": "1745791297841963008",
+      "followers": 13896
+    },
+    "chargoddard": {
+      "id": "24101247",
+      "followers": 1571
+    },
+    "teknium": {
+      "id": "1365020011123773442",
+      "followers": 129824
+    },
+    "lfschiavo": {
+      "id": "1350226874",
+      "followers": 5078
+    },
+    "samsja19": {
+      "id": "1241357619400491008",
+      "followers": 9016
+    },
+    "bernhardsson": {
+      "id": "1191207924",
+      "followers": 58214
+    },
+    "jeffreyhuber": {
+      "id": "15728306",
+      "followers": 12962
+    },
+    "vasuman": {
+      "id": "1268982340090355712",
+      "followers": 100967
+    },
+    "simonw": {
+      "id": "12497",
+      "followers": 225874
+    },
+    "benthompson": {
+      "id": "40273",
+      "followers": 284183
+    },
+    "willmanidis": {
+      "id": "779497280651071488",
+      "followers": 141500
+    },
+    "emollick": {
+      "id": "39125788",
+      "followers": 391284
+    },
+    "swyx": {
+      "id": "33521530",
+      "followers": 194326
+    },
+    "thestalwart": {
+      "id": "14096763",
+      "followers": 449645
+    },
+    "danshipper": {
+      "id": "19829693",
+      "followers": 141176
+    },
+    "jsrailton": {
+      "id": "243032876",
+      "followers": 165680
+    },
+    "jessi_cata": {
+      "id": "361354984",
+      "followers": 7839
+    },
+    "altryne": {
+      "id": "5721582",
+      "followers": 42923
+    },
+    "thezvi": {
+      "id": "37547071",
+      "followers": 43820
+    },
+    "teortaxestex": {
+      "id": "192201556",
+      "followers": 76685
+    },
+    "mbusigin": {
+      "id": "19111917",
+      "followers": 18171
+    },
+    "michaelthiessen": {
+      "id": "221255671",
+      "followers": 21261
+    },
+    "hammer_mt": {
+      "id": "21192157",
+      "followers": 10851
+    },
+    "juliagalef": {
+      "id": "18691746",
+      "followers": 109287
+    },
+    "rokomijic": {
+      "id": "1270449309402759171",
+      "followers": 26884
+    },
+    "kyliebytes": {
+      "id": "253350725",
+      "followers": 52212
+    },
+    "andrewcurran_": {
+      "id": "1538525334781370368",
+      "followers": 99276
+    },
+    "tenobrus": {
+      "id": "884616503898910722",
+      "followers": 37155
+    },
+    "eli_lifland": {
+      "id": "1231977067824074752",
+      "followers": 9757
+    },
+    "yacinemtb": {
+      "id": "1173552893003255808",
+      "followers": 404743
+    },
+    "vikhyatk": {
+      "id": "17406365",
+      "followers": 29398
+    },
+    "doodlestein": {
+      "id": "29239591",
+      "followers": 50236
+    },
+    "_xjdr": {
+      "id": "1731404872871006208",
+      "followers": 29350
+    },
+    "mikepfrank": {
+      "id": "14129103",
+      "followers": 9316
+    },
+    "fabianstelzer": {
+      "id": "5483052",
+      "followers": 44274
+    },
+    "menhguin": {
+      "id": "969181169408385025",
+      "followers": 16076
+    },
+    "jxmnop": {
+      "id": "783098774130401280",
+      "followers": 53675
+    },
+    "code_star": {
+      "id": "354571530",
+      "followers": 7706
+    },
+    "daniellefong": {
+      "id": "13232322",
+      "followers": 63948
+    },
+    "max_paperclips": {
+      "id": "1629406731163021313",
+      "followers": 14682
+    },
+    "kalomaze": {
+      "id": "1319397157913436163",
+      "followers": 24965
+    },
+    "cloneofsimo": {
+      "id": "1529156127006392320",
+      "followers": 17930
+    },
+    "ellie_huxtable": {
+      "id": "1065295107782582272",
+      "followers": 8372
+    },
+    "ivanburazin": {
+      "id": "19487774",
+      "followers": 19001
+    },
+    "orphcorp": {
+      "id": "36713795",
+      "followers": 20433
+    },
+    "xpasky": {
+      "id": "16054299",
+      "followers": 4376
+    },
+    "xeophon": {
+      "id": "3382720905",
+      "followers": 17649
+    },
+    "jd_pressman": {
+      "id": "829108178059096064",
+      "followers": 10370
+    },
+    "andyayrey": {
+      "id": "20006785",
+      "followers": 110200
+    },
+    "liminal_bardo": {
+      "id": "1788494862003683328",
+      "followers": 9785
+    },
+    "lumpenspace": {
+      "id": "1423560972959199235",
+      "followers": 24316
+    },
+    "dremnik": {
+      "id": "1981453275582099456",
+      "followers": 19060
+    },
+    "voooooogel": {
+      "id": "281798056",
+      "followers": 22408
+    },
+    "roberthaisfield": {
+      "id": "350969975",
+      "followers": 9748
+    },
+    "karan4d": {
+      "id": "1307891177572782080",
+      "followers": 25971
+    },
+    "sauers_": {
+      "id": "1763797553513103360",
+      "followers": 15209
+    },
+    "_mira___mira_": {
+      "id": "1627273261032812546",
+      "followers": 11557
+    },
+    "yaboilyrical": {
+      "id": "759997030739476480",
+      "followers": 2085
+    },
+    "veryvanya": {
+      "id": "1614308799220695045",
+      "followers": 4275
+    },
+    "seconds_0": {
+      "id": "1221152606652813313",
+      "followers": 20277
+    },
+    "victortaelin": {
+      "id": "272239060",
+      "followers": 83917
+    },
+    "badlogicgames": {
+      "id": "189876762",
+      "followers": 73551
+    },
+    "ctjlewis": {
+      "id": "1204841211909038080",
+      "followers": 48023
+    },
+    "dexhorthy": {
+      "id": "820679805259550720",
+      "followers": 41511
+    },
+    "bonegpt": {
+      "id": "1644739974028316672",
+      "followers": 61618
+    },
+    "thdxr": {
+      "id": "2870102861",
+      "followers": 173251
+    },
+    "geoffreyhuntley": {
+      "id": "14961859",
+      "followers": 86776
+    },
+    "aarondfrancis": {
+      "id": "20963591",
+      "followers": 63499
+    },
+    "robknight__": {
+      "id": "1034919736365211649",
+      "followers": 7275
+    },
+    "jessegenet": {
+      "id": "99886636",
+      "followers": 62150
+    },
+    "raw_works": {
+      "id": "2229107533",
+      "followers": 2908
+    },
+    "nbaschez": {
+      "id": "17424947",
+      "followers": 50227
+    },
+    "nickadobos": {
+      "id": "856753502",
+      "followers": 54658
+    },
+    "0xblacklight": {
+      "id": "1137142384536489984",
+      "followers": 7981
+    },
+    "threepointone": {
+      "id": "1593171",
+      "followers": 59162
+    },
+    "adamdotdev": {
+      "id": "9840502",
+      "followers": 44165
+    }
+  },
+  "missing": []
+}

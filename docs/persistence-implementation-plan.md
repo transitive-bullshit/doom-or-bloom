@@ -573,3 +573,13 @@ Checkpoint evidence: [Independent 100 research and generation record](research/i
 - [x] Audit source coverage, attribution and access scope; integrate the briefs, synchronize local profile metadata, validate and commit the checkpoint.
 
 Checkpoint evidence: [Deeper source review](research/independent-deepening-summary-2026-09-25.md). All 97 briefs revised, with 235 → 708 source records and 473 newly inspected URLs. Core tests (283), persona database checks and the persona browser check passed. Local profile metadata is synchronized; selected results and featured flags are unchanged.
+
+## Simulated-user directory sorting — September 25, 2026
+
+- [x] Capture dated X follower counts for all 139 linked accounts, retaining X account IDs and unavailable handles in a checked-in metadata snapshot.
+- [x] Add ascending/descending sorting for name (default A–Z), followers, Doom–Bloom, civilizational change, P(doom), demonstrated reasoning, expected upside/harm and human influence. Missing values remain last; P(doom) uses the displayed estimate or range midpoint.
+- [x] Show the selected metric, retain live search and the complete map, reduce the count text, remove outer map top padding and reduce bottom padding across breakpoints.
+
+Follower snapshot: `lib/personas/x-followers.json`. Refresh with `pnpm exec tsx scripts/refresh-x-followers.ts`, using an authenticated local `xurl` installation (`my-app`, OAuth2). Two read-only batched X user lookups captured public follower counts on September 25. Counts are public account metadata, separate from immutable simulation evidence; page loads do not call X. Updated snapshots ship with the app. Accounts without a linked X profile remain unavailable, never zero.
+
+Validation: `pnpm test` passed (284 tests plus formatting, lint, types, content and unused-code checks); all 11 `tests/browser/landing.spec.ts` cases passed, including directory sorting/filtering and mobile overflow; `pnpm build:local` passed with production trace checks. Existing generated results and featured membership are unchanged.

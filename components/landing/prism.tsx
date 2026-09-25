@@ -8,6 +8,13 @@ import { useMemo, useState, type PointerEvent, type FocusEvent } from 'react'
 import './prism.css'
 import { usePortraitLayout } from './use-portrait-layout'
 import type { VariantProps } from '@/components/landing/shared'
+import { NativeSelect } from '@/components/ui/native-select'
+import {
+  compareUsers,
+  directorySorts,
+  directoryValue,
+  type DirectorySort
+} from './directory-sort'
 import { Input } from '@/components/ui/input'
 
 const featuredOrder = [
@@ -65,6 +72,8 @@ export function Prism({
   examples,
   directory = false
 }: VariantProps & { directory?: boolean }) {
+  const [sort, setSort] = useState<DirectorySort>('name')
+  const [direction, setDirection] = useState<'asc' | 'desc'>('asc')
   const [query, setQuery] = useState('')
   const [portraits, setPortraits] = useState<
     Record<string, 'loaded' | 'failed'>
@@ -96,7 +105,7 @@ export function Prism({
           .includes(search)
     )
     .sort((a, b) =>
-      directory ? a.name.localeCompare(b.name) : rank(a.id) - rank(b.id)
+      directory ? compareUsers(a, b, sort, direction) : rank(a.id) - rank(b.id)
     )
   const highlightEvents = (id: string) => ({
     onPointerEnter: (event: PointerEvent<HTMLAnchorElement>) => {
@@ -183,9 +192,68 @@ export function Prism({
             onChange={(event) => setQuery(event.target.value)}
             aria-controls='simulated-users'
           />
-          <p className='text-sm text-muted-foreground' role='status'>
+          <div className='flex flex-wrap gap-3'>
+            <div className='flex flex-col gap-1'>
+              <label htmlFor='user-sort' className='text-xs'>
+                Sort by
+              </label>
+              <NativeSelect
+                id='user-sort'
+                value={sort}
+                onChange={(event) =>
+                  setSort(event.target.value as DirectorySort)
+                }
+                aria-controls='simulated-users'
+              >
+                {Object.entries(directorySorts).map(([key, label]) => (
+                  <option key={key} value={key}>
+                    {label}
+                  </option>
+                ))}
+              </NativeSelect>
+            </div>
+            <div className='flex flex-col gap-1'>
+              <label htmlFor='user-sort-direction' className='text-xs'>
+                Order
+              </label>
+              <NativeSelect
+                id='user-sort-direction'
+                value={direction}
+                onChange={(event) =>
+                  setDirection(event.target.value as 'asc' | 'desc')
+                }
+                aria-controls='simulated-users'
+              >
+                <option value='asc'>
+                  {sort === 'name' ? 'A–Z' : 'Low to high'}
+                </option>
+                <option value='desc'>
+                  {sort === 'name' ? 'Z–A' : 'High to low'}
+                </option>
+              </NativeSelect>
+            </div>
+          </div>
+          <p className='directory-count text-muted-foreground' role='status'>
             {legend.length} of {examples.length} simulated users
           </p>
+          {sort === 'followers' && (
+            <p className='directory-count text-muted-foreground'>
+              X counts captured {examples[0]?.followersCapturedAt?.slice(0, 10)}
+              . Unavailable counts appear last.
+            </p>
+          )}
+          {sort === 'pdoom' && (
+            <p className='directory-count text-muted-foreground'>
+              Sorted by estimate, or range midpoint. Outcomes and horizons
+              differ; see each result for context. Missing estimates appear
+              last.
+            </p>
+          )}
+          {sort !== 'name' && sort !== 'followers' && (
+            <p className='directory-count text-muted-foreground'>
+              Scores describe simulated answers. Missing scores appear last.
+            </p>
+          )}
         </div>
       )}
       <div id='simulated-users' className='landing-map-legend study-legend'>
@@ -200,7 +268,14 @@ export function Prism({
               loading='eager'
               unoptimized
             />
-            <span className='study-person-name'>{p.name}</span>
+            <span className='study-person-name'>
+              {p.name}
+              {directory && sort !== 'name' && (
+                <span className='directory-metric'>
+                  {directoryValue(p, sort)}
+                </span>
+              )}
+            </span>
           </Link>
         ))}
       </div>
