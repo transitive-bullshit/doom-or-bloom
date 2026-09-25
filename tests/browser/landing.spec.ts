@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures'
+import { people } from '../../components/landing/people'
 
 test('landing portraits use tooltips and link to results; assessment drafts survive a trip home', async ({
   page
@@ -25,7 +26,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   ).toBeVisible()
   const marker = page.locator('[data-persona-marker="Eliezer Yudkowsky"]')
   await expect(marker.locator('image')).toHaveAttribute(
-    'href',
+    'data-export-src',
     '/personas/yudkowsky.jpg'
   )
   await expect(page.getByText('Your view', { exact: true })).toHaveCount(0)
@@ -106,7 +107,7 @@ test('persona framing uses her/their and exports the portrait in the map', async
   ).toBeVisible()
   const map = page.locator('[data-slot=worldview-map]')
   await expect(map.locator('[data-persona-marker] image')).toHaveAttribute(
-    'href',
+    'data-export-src',
     '/personas/li.jpg'
   )
   await expect(map.locator('.map-stat')).toHaveCount(0)
@@ -371,13 +372,15 @@ test('all-users directory filters names and handles without filtering the full m
   page
 }) => {
   await page.goto('/')
-  await expect(page.locator('.study-legend a')).toHaveCount(44)
+  await expect(page.locator('.study-legend a')).toHaveCount(
+    people.filter((person) => person.featured).length
+  )
   await expect(
     page.getByRole('link', { name: 'View Simon Willison results' })
   ).toHaveCount(0)
   await page.getByRole('link', { name: 'Explore all simulated users' }).click()
   await expect(page).toHaveURL(/\/users$/)
-  await expect(page.locator('.study-legend a')).toHaveCount(141)
+  await expect(page.locator('.study-legend a')).toHaveCount(people.length)
   await expect(page.locator('.study-chart')).toHaveAttribute(
     'data-layout-ready',
     'true'

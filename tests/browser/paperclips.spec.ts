@@ -53,7 +53,7 @@ test('test replies reliably trigger paperclips and an explicit request works onc
   // Recovery-only runs can start another assessment without deleting the first.
   const previousUrl = page.url()
   await page
-    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('navigation', { name: 'breadcrumb' })
     .getByRole('link', { name: 'My assessments', exact: true })
     .click()
   await page
@@ -122,7 +122,7 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   // Recovery-only runs can start another assessment without deleting the first.
   const previousUrl = page.url()
   await page
-    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('navigation', { name: 'breadcrumb' })
     .getByRole('link', { name: 'My assessments', exact: true })
     .click()
   await page

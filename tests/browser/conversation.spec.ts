@@ -291,7 +291,7 @@ test('the full conversation uses page scrolling, bounded answer disclosure and s
   ).toBe(false)
   expect(apiCalls).toBe(0)
   await page
-    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('navigation', { name: 'breadcrumb' })
     .getByRole('link', { name: 'My assessments', exact: true })
     .click()
   await page

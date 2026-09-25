@@ -507,7 +507,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   const assessmentId = new URL(page.url()).pathname.split('/').at(-1)!
   await page.getByRole('button', { name: 'Debug off', exact: true }).click()
   await page
-    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('navigation', { name: 'breadcrumb' })
     .getByRole('link', { name: 'My assessments', exact: true })
     .click()
   await page

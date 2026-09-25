@@ -54,7 +54,7 @@ test('saved earlier-version assessments preserve their content through results a
   await page.reload()
   await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
   await page
-    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('navigation', { name: 'breadcrumb' })
     .getByRole('link', { name: 'My assessments', exact: true })
     .click()
   await page
@@ -205,7 +205,7 @@ test('three answers, draft resume, map, report download and another assessment',
   expect(outbound).toEqual([])
   const previous = page.url()
   await page
-    .getByRole('navigation', { name: 'Site navigation' })
+    .getByRole('navigation', { name: 'breadcrumb' })
     .getByRole('link', { name: 'My assessments', exact: true })
     .click()
   await page
