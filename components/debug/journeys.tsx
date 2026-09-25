@@ -428,7 +428,7 @@ export function JourneysInspector({
     <article className='mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-8 px-4 py-10 sm:px-8'>
       <ReviewHeader
         title='User Journeys'
-        description={`${personas.length} test journeys include generated personas and an exact real-user transcript. Inspect questions, answers, routing decisions and evidence readiness; inspect the latest generated paths.`}
+        description={`${personas.length} test journeys include simulated users and an exact real-user transcript. Inspect questions, answers, routing decisions and evidence readiness; inspect the latest generated paths.`}
         contentVersion={contentVersion}
       />
       <Field className='lg:hidden [&>[data-slot=native-select-wrapper]]:w-full'>
@@ -507,7 +507,7 @@ export function JourneysInspector({
         <Alert>
           <AlertTitle>This run did not include {persona.name}</AlertTitle>
           <AlertDescription>
-            The latest saved run does not include this persona.
+            The latest saved run does not include this simulated user.
           </AlertDescription>
         </Alert>
       )}
@@ -597,7 +597,7 @@ export function JourneysInspector({
                 />
               </Disclosure>
             )}
-            <Disclosure label='Run provenance and persona'>
+            <Disclosure label='Run provenance and simulated user'>
               <JsonViewer label='Run provenance' value={current.run} />
               <JsonViewer
                 label={

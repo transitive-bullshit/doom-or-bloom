@@ -1,9 +1,9 @@
+import { createLocalJourneyStore } from '../../lib/journeys/local-store'
 import { expect, test } from '@playwright/test'
-import { readFileSync } from 'node:fs'
 import type { JourneySuite } from '../../lib/journeys/schema'
-const suite = JSON.parse(
-  readFileSync('eval/development/live-persona-journeys.json', 'utf8')
-) as JourneySuite
+const suite = (await createLocalJourneyStore(
+  process.cwd()
+).latest()) as JourneySuite
 
 const journey = suite.journeys.find(
   (journey) => journey.personaId === 'anti-doomer'

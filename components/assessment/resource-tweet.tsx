@@ -10,7 +10,7 @@ export default function ResourceTweet({
   onOpen
 }: {
   id: string
-  resource: { title: string; url: string; question?: string }
+  resource: { title: string; url: string; question?: string; summary?: string }
   onOpen?: () => void
 }) {
   const { data, isLoading } = useTweet(id, `/api/tweet?id=${id}`)

@@ -7,16 +7,22 @@ export function ResourceBookmark({
   resource,
   onOpen
 }: {
-  resource: { title: string; url: string; question?: string }
+  resource: { title: string; url: string; question?: string; summary?: string }
   onOpen?: () => void
 }) {
   const preview = (
     previews as Record<
       string,
-      { image?: string; icon?: string; description?: string | null }
+      {
+        image?: string
+        icon?: string
+        description?: string | null
+        imageKind?: string
+      }
     >
   )[resource.url]
-  const description = preview?.description || resource.question
+  const description =
+    resource.summary || preview?.description || resource.question
   const hostname = new URL(resource.url).hostname.replace(/^www\./, '')
   return (
     <a
@@ -61,7 +67,11 @@ export function ResourceBookmark({
             fill
             unoptimized
             className={
-              preview.image ? 'object-cover' : 'bg-muted p-8 object-contain'
+              preview.image
+                ? preview.imageKind === 'title-card'
+                  ? 'bg-muted object-contain'
+                  : 'object-cover'
+                : 'bg-muted p-8 object-contain'
             }
           />
         </div>

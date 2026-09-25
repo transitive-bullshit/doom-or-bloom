@@ -12,11 +12,13 @@ import { safetyResearcherPersonas } from './safety-researcher-personas'
 import { worldviewWriterPersonas } from './worldview-writer-personas'
 import { noahPublicPersona } from './noah-public-persona'
 import { mcafeePublicPersona } from './mcafee-public-persona'
+import { independentPersonas } from './independent-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
   id: z.string().regex(/^[a-z][a-z0-9-]+$/),
   shortName: z.string().optional(),
+  featured: z.boolean().optional(),
   slug: z
     .string()
     .regex(/^[a-z0-9_-]+$/)
@@ -61,6 +63,7 @@ const narrativePersonas: Persona[] = [
   mcafeePublicPersona,
   ...safetyResearcherPersonas,
   ...worldviewWriterPersonas,
+  ...independentPersonas,
   {
     id: 'worried-novice',
     voice: [
@@ -319,7 +322,13 @@ const narrativePersonas: Persona[] = [
 export const personas: Persona[] = z.array(personaSchema).parse(
   narrativePersonas.map((persona) => ({
     ...persona,
-    ...personaIdentity(persona.id),
+    ...(persona.slug
+      ? {
+          slug: persona.slug,
+          xUsername: persona.xUsername,
+          shortName: persona.shortName
+        }
+      : personaIdentity(persona.id)),
     statedPdoom: publicPdoomStatements[persona.id]
   }))
 )

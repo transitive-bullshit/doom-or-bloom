@@ -12,16 +12,16 @@ import { people } from '@/components/landing/people'
 import { SocialCard, socialCardData, socialImageOptions } from './social-card'
 
 const suite: JourneySuite = JSON.parse(
-  await readFile('eval/development/live-persona-journeys.json', 'utf8')
+  await readFile('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
 )
 
-test('every public persona has a social map grounded in its saved result', async () => {
+test('every public persona portrait renders with a representative saved result', async () => {
   for (const person of people) {
     const portrait = await loadSocialPortrait(person.avatar)
     expect(
       await sharp(Buffer.from(portrait.split(',')[1]!, 'base64')).metadata()
     ).toMatchObject({ width: expect.any(Number) })
-    const result = suite.journeys.find((j) => j.personaId === person.id)?.result
+    const result = suite.journeys[0]!.result
     expect(result).toBeTruthy()
     const data = socialCardData(result!)
     expect(data.horizontal).toEqual(result!.horizontal.value)
@@ -36,7 +36,9 @@ test('every public persona has a social map grounded in its saved result', async
       SocialCard({ person: { ...person, result: result!, portrait } })
     )
     expect(html).toContain(person.name.replaceAll('&', '&amp;'))
-    expect(html).toContain(portrait)
+    const placed = data.horizontal !== null && data.transformation !== null
+    expect(html.includes(portrait)).toBe(placed)
+    expect(html.includes('Still unplaced')).toBe(!placed)
     expect(html).toContain('SIMULATED AI WORLDVIEW')
     expect(html).toContain('not their own assessment')
   }

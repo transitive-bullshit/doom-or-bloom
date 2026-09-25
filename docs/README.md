@@ -66,3 +66,13 @@ Production infrastructure preparation and remaining hosted smoke tests: [product
 Crawler discovery includes static public pages and selected curated persona profiles from the database. sitemap.xml and llms.txt do not enumerate participant assessments; llms.txt documents their public URL pattern. See [public routes and caching](PERSISTENCE.md#public-pages-and-social-images).
 
 [Testing guidelines](testing.md) define the lightweight CI budget, test audit, and required local change/release checks.
+
+Current simulated-user expansion: [Independent 100 research and generation](research/independent-simulated-users-2026-09-25.md). `/users` provides the full map and searchable directory; `/` continues to show only featured simulated users.
+
+Deeper follow-up research for all 97 additions: [source review and coverage](research/independent-deepening-summary-2026-09-25.md).
+
+Latest bookmark and interview review: [local preview coverage and source corrections](research/bookmark-and-source-review-2026-09-25.md), [Robert Miles](research/robert-miles-source-review-2026-09-25.md), and [swyx plus the broader interview audit](research/independent-third-party-evidence-audit-2026-09-25.md).
+
+Latest local simulation refresh: [source-driven regeneration of 103 affected users](research/source-regeneration-2026-09-25.md).
+
+Latest new-cohort audit: [historical evidence, answer fidelity and 44 corrected simulations](research/historical-persona-audit-2026-09-25.md).

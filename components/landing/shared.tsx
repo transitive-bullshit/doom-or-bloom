@@ -26,11 +26,19 @@ export type Example = {
   outlook: number | null
   transformation: number | null
   avatar: string
+  followers?: number | null
+  followersCapturedAt?: string
+  pdoom?: number | null
+  pdoomLabel?: string
+  reasoning?: number | null
+  upside?: number | null
+  harm?: number | null
+  influence?: number | null
   xUrl?: string | null
   profileUrl?: string
   profileLabel?: string
   sourceBriefUpdated?: boolean
-  sources?: Array<{ title: string; url: string }>
+  sources?: Array<{ title: string; url: string; summary?: string }>
 }
 export type VariantProps = { examples: Example[]; variant?: number }
 export const resultHref = (slug: string, variant?: number) =>
@@ -201,13 +209,7 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                     } as CSSProperties
                   }
                 >
-                  <Image
-                    src={p.avatar}
-                    width={40}
-                    height={40}
-                    alt=''
-                    unoptimized
-                  />
+                  <Image src={p.avatar} width={40} height={40} alt='' />
                 </Link>
               </TooltipTrigger>
               <TooltipContent sideOffset={0} className='pointer-events-none'>
@@ -232,14 +234,13 @@ export function PreviewMap({ examples, variant }: VariantProps) {
                 width={20}
                 height={20}
                 alt=''
-                unoptimized
               />
               <FadeText lines={1}>{p.name}</FadeText>
             </Link>
           ))}
         </div>
         <p className='landing-map-note'>
-          Example results based on simulated personas
+          Example results based on simulated users
         </p>
       </div>
     </TooltipProvider>

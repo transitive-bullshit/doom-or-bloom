@@ -15,7 +15,7 @@ test('replayed experiments attach only to the same run, answer state and evidenc
   try {
     const source = suiteSchema.parse(
       JSON.parse(
-        await readFile('eval/development/live-persona-journeys.json', 'utf8')
+        await readFile('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
       )
     )
     const journey = source.journeys[0]!

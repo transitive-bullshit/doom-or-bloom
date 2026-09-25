@@ -1,5 +1,11 @@
 import { expect, test } from 'vitest'
-import { previewImages, previewDescription } from './preview-images'
+import {
+  previewImages,
+  previewDescription,
+  embeddedYoutubeOembedUrl,
+  previewIcons,
+  youtubeOembedUrl
+} from './preview-images'
 
 test('social metadata wins; structured article and responsive hero images survive missing metadata', () => {
   const html = `<meta name="twitter:image" content="/social.jpg">
@@ -40,4 +46,38 @@ test('descriptions prefer HTML metadata, decode entities and fall back to social
     )
   ).toBe('Social')
   expect(previewDescription('<p>No metadata</p>')).toBeNull()
+})
+
+test('YouTube preview lookup accepts video URL variants but not unrelated hosts or channels', () => {
+  const expected = youtubeOembedUrl(
+    'https://www.youtube.com/watch?v=pYXy-A4siMw'
+  )
+  expect(expected).toContain('https://www.youtube.com/oembed?')
+  expect(youtubeOembedUrl('https://youtu.be/pYXy-A4siMw?t=12')).toBe(expected)
+  expect(youtubeOembedUrl('https://m.youtube.com/shorts/pYXy-A4siMw')).toBe(
+    expected
+  )
+  expect(
+    youtubeOembedUrl('https://youtube.com.evil.test/watch?v=pYXy-A4siMw')
+  ).toBeNull()
+  expect(youtubeOembedUrl('https://youtube.com/@RobertMilesAI')).toBeNull()
+})
+
+test('embedded YouTube episodes supply publisher thumbnails and touch icons precede ICO files', () => {
+  expect(
+    embeddedYoutubeOembedUrl(
+      '<iframe src="https://www.youtube.com/embed/DyZye1GZtfk"></iframe>',
+      'https://theinsideview.ai/rob'
+    )
+  ).toBe(youtubeOembedUrl('https://youtu.be/DyZye1GZtfk'))
+  expect(
+    previewIcons(
+      '<link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/touch.png">',
+      'https://example.com/story'
+    )
+  ).toEqual([
+    'https://example.com/touch.png',
+    'https://example.com/favicon.ico',
+    'https://example.com/apple-touch-icon.png'
+  ])
 })

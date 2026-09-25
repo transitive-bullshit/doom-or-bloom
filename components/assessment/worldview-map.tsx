@@ -290,7 +290,6 @@ export function Map({
                     alt=''
                     width={16}
                     height={16}
-                    unoptimized
                     className='size-4 rounded-full border border-white object-cover'
                   />
                 ) : (

@@ -1,4 +1,5 @@
 import 'server-only'
+import pMap from 'p-map'
 import { createHash, randomUUID } from 'node:crypto'
 import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
@@ -85,8 +86,8 @@ export async function runPersona(
   resume?: Journey,
   mechanical?: MechanicalJourney
 ): Promise<Journey> {
-  if (!Number.isInteger(turns) || turns < 1 || turns > 6)
-    throw new Error('Journey turn bound is 1–6')
+  if (!Number.isInteger(turns) || turns < 1 || turns > 12)
+    throw new Error('Journey turn bound is 1–12')
   if (participant && live?.kind !== 'live')
     throw new Error(
       'Generated participants require the live assessment provider'
@@ -544,6 +545,8 @@ export async function runPersona(
 export async function runJourneySuite({
   id,
   personaId,
+  personaIds,
+  concurrency = 1,
   turns = 5,
   live,
   participant,
@@ -554,6 +557,8 @@ export async function runJourneySuite({
 }: {
   id: string
   personaId?: string
+  personaIds?: string[]
+  concurrency?: number
   turns?: number
   live?: Provider
   participant?: Participant
@@ -578,25 +583,31 @@ export async function runJourneySuite({
   const bundle = loadBundle()
   const hashes = journeyHashes(bundle, { personas, fixedUserAnswers })
   const allPersonas = [...personas, fixedUserPersona]
-  const selected = personaId
-    ? allPersonas.filter((p) => p.id === personaId)
-    : allPersonas
+  const selected = personaIds
+    ? allPersonas.filter((p) => personaIds.includes(p.id))
+    : personaId
+      ? allPersonas.filter((p) => p.id === personaId)
+      : allPersonas
   if (!selected.length) throw new Error('Unknown persona')
-  const journeys: Journey[] = []
+  if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 4)
+    throw new Error('Journey concurrency must be between one and four')
   const createdAt = new Date().toISOString()
-  for (const persona of selected) {
-    await onStart?.(persona, { runId: id, createdAt, ...hashes })
-    const journey = await runPersona(
-      persona,
-      bundle,
-      turns,
-      live,
-      persona.id === fixedUserPersona.id ? undefined : participant
-    )
-    journeys.push(journey)
-    await onJourney?.(journey)
-    if (journey.error && journey.accepted === 0) break
-  }
+  const journeys = await pMap(
+    selected,
+    async (persona) => {
+      await onStart?.(persona, { runId: id, createdAt, ...hashes })
+      const journey = await runPersona(
+        persona,
+        bundle,
+        turns,
+        live,
+        persona.id === fixedUserPersona.id ? undefined : participant
+      )
+      await onJourney?.(journey)
+      return journey
+    },
+    { concurrency }
+  )
   const suite: JourneySuite = {
     schemaVersion: 1,
     id,

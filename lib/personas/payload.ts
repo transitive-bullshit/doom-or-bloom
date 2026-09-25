@@ -12,6 +12,7 @@ export const personaMetadataSchema = z.object({
   slug: z.string(),
   name: z.string(),
   shortName: z.string(),
+  featured: z.boolean().default(true),
   possessivePronoun: z.enum(['his', 'her', 'their']).optional(),
   avatar: z.string(),
   initials: z.string(),

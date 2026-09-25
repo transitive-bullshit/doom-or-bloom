@@ -142,7 +142,7 @@ export default async function About() {
       <section className='space-y-3'>
         <h2>Simulated people, real sources</h2>
         <p>
-          The featured personas are simulations grounded in linked public
+          The featured users are simulations grounded in linked public
           statements, essays, and interviews. A separate model answers the same
           questions from those sources; our assessment engine evaluates the
           answers without a target map position.

@@ -1,5 +1,5 @@
 .map-lab-stage {
-  padding: 32px 5vw 110px;
+  padding: 0 5vw 80px;
 }
 .map-study {
   --study-ink: var(--prism-text);
@@ -154,7 +154,7 @@
 }
 @media (max-width: 900px) {
   .map-lab-stage {
-    padding: 16px 16px 100px;
+    padding: 0 16px 72px;
   }
   .map-study {
     padding: 28px 20px 0;
@@ -162,7 +162,7 @@
 }
 @media (max-width: 520px) {
   .map-lab-stage {
-    padding: 8px 0 100px;
+    padding: 0 0 64px;
   }
   .map-study {
     padding: 26px 12px 0;
@@ -295,5 +295,67 @@
 @media (prefers-reduced-motion: no-preference) {
   .study-chart[data-layout-ready='true'] .study-portrait {
     transition: transform 250ms var(--ease-out);
+  }
+}
+
+.map-study .directory-count {
+  font-size: 11px;
+  line-height: 1.5;
+}
+.directory-metric {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--study-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Intrinsic help-text sizing reserves the same space for every sort choice. */
+.directory-controls-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  gap: 12px;
+}
+.directory-selects {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 12px;
+  min-width: 0;
+}
+.directory-selects > div {
+  min-width: 0;
+}
+.directory-selects [data-slot='native-select-wrapper'] {
+  width: 100%;
+}
+.directory-summary {
+  display: grid;
+  gap: 8px 16px;
+  align-items: start;
+}
+.directory-help {
+  display: grid;
+  min-width: 0;
+}
+.directory-help > p {
+  grid-area: 1 / 1;
+}
+.directory-help > [data-active='false'] {
+  visibility: hidden;
+}
+.map-study .study-legend[data-directory='true'] a {
+  padding-block: 6px;
+}
+.study-legend[data-directory='true'] .directory-metric {
+  line-height: 1.5;
+  white-space: nowrap;
+}
+@media (min-width: 800px) {
+  .directory-summary {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .directory-controls-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }

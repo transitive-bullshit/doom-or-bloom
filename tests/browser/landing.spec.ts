@@ -368,3 +368,54 @@ test('hovering a featured portrait keeps its map position and tooltip anchor sta
   expect(drift).toBeLessThan(0.5)
   await expect(portrait.locator('span')).toHaveCSS('opacity', '1')
 })
+
+test('all-users directory filters names and handles without filtering the full map', async ({
+  page
+}) => {
+  await page.goto('/')
+  await expect(page.locator('.study-legend a')).toHaveCount(44)
+  await expect(
+    page.getByRole('link', { name: 'View Simon Willison results' })
+  ).toHaveCount(0)
+  await page.getByRole('link', { name: 'Explore all simulated users' }).click()
+  await expect(page).toHaveURL(/\/users$/)
+  await expect(page.locator('.study-legend a')).toHaveCount(141)
+  await expect(page.locator('.study-chart')).toHaveAttribute(
+    'data-layout-ready',
+    'true'
+  )
+  const mapCount = await page.locator('.study-point').count()
+  const names = page.locator('.study-legend .study-person-name')
+  const alphabetical = await names.allTextContents()
+  await page.getByLabel('Order', { exact: true }).selectOption('desc')
+  await expect(names.first()).toHaveText(alphabetical.at(-1)!)
+  await page.getByLabel('Sort by', { exact: true }).selectOption('followers')
+  await expect(page.locator('.directory-metric').first()).toContainText(
+    'followers'
+  )
+  const followerValues = await page
+    .locator('.directory-metric')
+    .allTextContents()
+  const counts = followerValues
+    .filter((value) => value !== 'Not available')
+    .map((value) => Number(value.replace(/[^0-9]/g, '')))
+  expect(counts).toEqual([...counts].sort((a, b) => b - a))
+  await page.getByLabel('Sort by', { exact: true }).selectOption('reasoning')
+  await expect(page.locator('.directory-metric').first()).toContainText('/ 100')
+  const search = page.getByLabel('Find a simulated user')
+  await search.fill('@SIMONW')
+  await expect(page.locator('.study-legend a')).toHaveCount(1)
+  await expect(page.locator('.study-legend a')).toContainText('Simon Willison')
+  await expect(page.locator('.study-point')).toHaveCount(mapCount)
+  await search.fill('no such simulated user')
+  await expect(page.getByText(/No users match/)).toBeVisible()
+  await search.fill('Simon Willison')
+  await page.locator('.study-legend a').click()
+  await expect(page).toHaveURL(/\/users\/simonw$/)
+  await expect(page.locator('[data-slot=worldview-map]')).toHaveCount(1)
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/users')
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth)
+  ).toBeLessThanOrEqual(390)
+})

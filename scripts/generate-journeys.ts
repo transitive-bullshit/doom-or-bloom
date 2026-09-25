@@ -2,10 +2,11 @@ import { existsSync } from 'node:fs'
 import { runLiveJourneys, resumeLiveJourney } from '../lib/journeys/live'
 import { fixedUserPersona } from '../lib/journeys/fixed'
 import { personas } from '../lib/journeys/catalog'
+import { independentPersonas } from '../lib/journeys/independent-personas'
 
 const args = process.argv.slice(2)
 const allowed =
-  /^(--resume=[0-9]{13}-[a-f0-9-]{36}|--persona=[a-z][a-z0-9-]+|--turns=[1-6]|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid)$/
+  /^(--resume=[0-9]{13}-[a-f0-9-]{36}|--persona=[a-z][a-z0-9-]+|--group=independent|--turns=(?:[1-9]|1[0-2])|--max-requests=\d+|--max-cost=\d+(?:\.\d+)?|--live|--allow-paid)$/
 if (
   args.some((a) => !allowed.test(a)) ||
   new Set(args.map((a) => a.split('=')[0])).size !== args.length
@@ -16,6 +17,12 @@ if (
 if (!args.includes('--allow-paid'))
   throw new Error('Live runs require --allow-paid')
 const personaId = args.find((a) => a.startsWith('--persona='))?.split('=')[1]
+const independent = args.includes('--group=independent')
+if (
+  independent &&
+  (personaId || args.some((arg) => arg.startsWith('--resume=')))
+)
+  throw new Error('Choose --group or a single-user operation')
 const resumeId = args.find((a) => a.startsWith('--resume='))?.split('=')[1]
 const turns = Number(
   args.find((a) => a.startsWith('--turns='))?.split('=')[1] ?? 5
@@ -54,6 +61,9 @@ async function main() {
   }
   const suite = await runLiveJourneys({
     personaId,
+    personaIds: independent
+      ? independentPersonas.map((person) => person.id)
+      : undefined,
     turns,
     maxRequests: maxRequestsArg
       ? Number(maxRequestsArg.split('=')[1])

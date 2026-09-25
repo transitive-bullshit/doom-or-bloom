@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { access, readFile, readdir } from 'node:fs/promises'
+import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 
 const output = process.env.NEXT_TEST_DIST_DIR || '.next'
@@ -14,7 +14,13 @@ for (const route of [
   const trace = path.join(output, 'server/app', `${route}.js.nft.json`)
   const { files } = JSON.parse(await readFile(trace, 'utf8'))
   assert(
-    !files.some((file) => path.resolve(path.dirname(trace), file) === required),
+    !files.some(
+      (file) =>
+        path.resolve(path.dirname(trace), file) === required ||
+        path
+          .resolve(path.dirname(trace), file)
+          .startsWith(path.resolve('work/journeys') + path.sep)
+    ),
     `${route}: runtime bundle must read personas from PostgreSQL, not canonical fixture JSON`
   )
 }
@@ -42,7 +48,6 @@ for (const portraitRoute of [
     )
   }
 }
-await access(required)
 console.log(
   'Production persona bundles read PostgreSQL and include required social portraits'
 )

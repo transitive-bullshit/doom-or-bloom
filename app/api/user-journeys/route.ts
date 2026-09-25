@@ -30,7 +30,10 @@ export async function GET(request: Request) {
   try {
     diagnostics.setPhase('read_saved_run')
     const store = projectJourneyStore()
-    const suite = await store.read(url.searchParams.get('run') ?? 'baseline')
+    const suite = await store.read(
+      url.searchParams.get('run') ?? 'baseline',
+      personaId!
+    )
     return Response.json(
       {
         run: runIndex(suite),

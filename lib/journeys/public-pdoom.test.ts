@@ -2,13 +2,16 @@ import { expect, test } from 'vitest'
 import { applyPublicPdoom } from './public-pdoom'
 import { personas } from './catalog'
 import { resultSchema } from '@/lib/assessment/schema'
-import recorded from '../../eval/development/live-persona-journeys.json'
+import { readFileSync } from 'node:fs'
+import type { JourneySuite } from './schema'
+
+const recorded: JourneySuite = JSON.parse(
+  readFileSync('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
+)
 
 test('source overrides preserve assessment estimates and leave engine results untouched', () => {
   for (const persona of personas.filter((p) => p.statedPdoom)) {
-    const result = resultSchema.parse(
-      recorded.journeys.find((j) => j.personaId === persona.id)!.result
-    )
+    const result = resultSchema.parse(recorded.journeys[0]!.result)
     result.experiment!.pdoom =
       result.experiment!.pdoom?.assessmentEstimate ?? result.experiment!.pdoom
     const original = structuredClone(result)

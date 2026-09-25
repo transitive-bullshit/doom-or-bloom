@@ -1,97 +1,111 @@
 import { expect, test } from 'vitest'
-import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises'
+import { mkdtemp, readFile, writeFile, rm, stat } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { randomUUID } from 'node:crypto'
 import path from 'node:path'
-import { runMechanicalSuite } from './mechanical/runner'
 import { createJourneyStore } from './store'
+import { createLocalJourneyStore } from './local-store'
 import { suiteSchema } from './schema'
 
-test('recorded live journeys work on a fresh checkout and local traces take precedence', async () => {
-  const root = await mkdtemp(path.join(tmpdir(), 'doom-recorded-journeys-'))
+const sample = suiteSchema.parse(
+  JSON.parse(
+    await readFile('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
+  )
+)
+const id = () => `${Date.now()}-${randomUUID()}`
+
+test('fresh checkout has no generated results and explains regeneration', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'doom-empty-'))
   try {
-    const serialized = await readFile(
-      'eval/development/live-persona-journeys.json',
-      'utf8'
+    expect(await createJourneyStore(root).list()).toEqual([])
+    await expect(createLocalJourneyStore(root).latest()).rejects.toThrow(
+      'pnpm journeys:generate'
     )
-    const recorded = suiteSchema.parse(JSON.parse(serialized))
-    await mkdir(path.join(root, 'eval/development'), { recursive: true })
-    await writeFile(
-      path.join(root, 'eval/development/live-persona-journeys.json'),
-      serialized
-    )
-    const store = createJourneyStore(root)
-    expect((await store.list()).map((run) => run.id)).toEqual([recorded.id])
-    expect(await store.read(recorded.id)).toEqual(recorded)
-    const local = { ...recorded, turns: recorded.turns === 5 ? 6 : 5 }
-    await store.save(local)
-    expect(await store.read(recorded.id)).toEqual(local)
-    expect((await store.list()).map((run) => run.id)).toEqual([recorded.id])
-    await writeFile(
-      path.join(root, 'eval/runs/journeys', recorded.id, 'suite.json'),
-      'broken'
-    )
-    await expect(store.read(recorded.id)).rejects.toThrow()
-    await expect(store.read(`${Date.now()}-${randomUUID()}`)).rejects.toThrow()
   } finally {
     await rm(root, { recursive: true, force: true })
   }
 })
 
-test('concurrent saves keep only the latest local run and reject paths, overwrite and corrupted artifacts', async () => {
-  const root = await mkdtemp(path.join(tmpdir(), 'doom-journey-store-'))
+test('individual reads and partial saves preserve other files and original provenance', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'doom-individual-'))
   try {
     const store = createJourneyStore(root)
-    const a = await runMechanicalSuite({
-      id: `${Date.now()}-${randomUUID()}`,
-      personaId: 'control-alarmist',
-      turns: 1
-    })
-    const b = { ...a, id: `${Date.now()}-${randomUUID()}` }
-    await Promise.all([store.save(a), store.save(b)])
-    expect((await store.list()).map((r) => r.id).sort()).toEqual([b.id])
-    await expect(store.read(a.id)).rejects.toThrow()
-    expect((await store.read(b.id)).journeys[0]!.firstReadyAnswer).toBe(1)
-    await expect(store.read('../../.env.local')).rejects.toThrow()
-    await expect(store.save(b)).rejects.toThrow()
-    const file = path.join(root, 'eval/runs/journeys', b.id, 'suite.json')
-    await writeFile(file, 'broken json')
-    await expect(store.read(b.id)).rejects.toThrow()
-    expect(await readFile(file, 'utf8')).toBe('broken json')
-  } finally {
-    await rm(root, { recursive: true, force: true })
-  }
-})
-
-test('64-person collections retain generation provenance through storage', async () => {
-  const root = await mkdtemp(path.join(tmpdir(), 'doom-expanded-journeys-'))
-  try {
-    const suite = await runMechanicalSuite({
-      id: `${Date.now()}-${randomUUID()}`,
-      personaId: 'control-alarmist',
-      turns: 1
-    })
-    const expanded = {
-      ...suite,
-      sourceRuns: [
-        {
-          runId: suite.id,
-          createdAt: suite.createdAt,
-          personaIds: Array.from({ length: 64 }, (_, i) => `storage-case-${i}`),
-          inputHash: suite.inputHash,
-          engineHash: suite.engineHash,
-          contentHash: suite.contentHash
-        }
-      ],
-      journeys: Array.from({ length: 64 }, (_, index) => ({
-        ...suite.journeys[0]!,
-        personaId: `storage-case-${index}`
-      }))
+    const original = { ...sample, id: id(), sourceRuns: undefined }
+    await store.save(original)
+    expect(await store.read(original.id)).toEqual(original)
+    const manifestFile = path.join(
+      root,
+      'work/journeys/runs',
+      `${original.id}.json`
+    )
+    const manifest = JSON.parse(await readFile(manifestFile, 'utf8'))
+    const other = manifest.records[1]
+    const otherFile = path.join(
+      root,
+      'work/journeys/users',
+      other.personaId,
+      `${other.hash}.json`
+    )
+    const before = await stat(otherFile)
+    const updated = {
+      ...original,
+      id: id(),
+      journeys: [{ ...original.journeys[0]!, stopped: 'New interview' }]
     }
+    await store.save(updated)
+    const selected = await store.read(
+      updated.id,
+      updated.journeys[0]!.personaId
+    )
+    expect(selected.journeys).toEqual(updated.journeys)
+    const collection = await store.read(updated.id)
+    expect(collection.journeys).toHaveLength(2)
+    expect(
+      collection.sourceRuns!.find((r) =>
+        r.personaIds.includes(other.personaId)
+      )!.runId
+    ).toBe(original.id)
+    expect((await stat(otherFile)).mtimeMs).toBe(before.mtimeMs)
+    expect(await store.read(original.id)).toEqual(original)
+    // Reading one user and listing metadata must not open a different user's file.
+    await writeFile(otherFile, 'broken')
+    expect(
+      (await store.read(updated.id, updated.journeys[0]!.personaId)).journeys
+    ).toEqual(updated.journeys)
+    expect((await store.list())[0]!.personaIds).toHaveLength(2)
+    await expect(store.read(updated.id)).rejects.toThrow()
+    await expect(store.read('../../.env.local')).rejects.toThrow()
+    await expect(store.read(updated.id, '../escape')).rejects.toThrow()
+  } finally {
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
+test('concurrent partial saves retain both users and failed writes leave selection intact', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'doom-concurrent-'))
+  try {
     const store = createJourneyStore(root)
-    await store.save(expanded)
-    expect((await store.list())[0]!.personaIds).toHaveLength(64)
-    expect(await store.read(expanded.id)).toEqual(expanded)
+    const a = {
+      ...sample,
+      sourceRuns: undefined,
+      id: id(),
+      journeys: [sample.journeys[0]!]
+    }
+    const b = {
+      ...sample,
+      sourceRuns: undefined,
+      id: id(),
+      journeys: [sample.journeys[1]!]
+    }
+    await Promise.all([store.save(a), store.save(b)])
+    expect((await store.read(b.id)).journeys).toHaveLength(2)
+    const invalid = {
+      ...a,
+      id: id(),
+      journeys: [{ ...a.journeys[0]!, personaId: '../escape' }]
+    }
+    await expect(store.save(invalid)).rejects.toThrow()
+    expect((await store.list())[0]!.id).toBe(b.id)
   } finally {
     await rm(root, { recursive: true, force: true })
   }

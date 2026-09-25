@@ -69,3 +69,6 @@ eval/runs/
 
 # Isolated design-audit preview
 .next-design-audit/
+
+# Legacy generated simulation collection (import into work/journeys instead)
+/eval/development/live-persona-journeys.json

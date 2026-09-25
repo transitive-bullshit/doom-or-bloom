@@ -554,3 +554,68 @@ The user authorized a separate Neon database and Vercel Preview configuration. P
 Core validation: `pnpm test` passed (56 files / 280 unit cases, formatting, lint, types, content validation, and Knip). Five account-header browser scenarios and the provider-mocked X callback, anonymous claim, sign-out and cross-browser recovery also passed.
 
 Hosted verification on preview deployment `dpl_5fFAFEx3RSSFuTKEc45GSambbVHh` (commit `b7aa820`): Vercel build and GitHub CI passed; homepage, About, persona detail and library returned 200. Anonymous sign-in worked on both deployment and branch URLs; an unrelated origin returned 403. A synthetic live answer was saved, reloaded and found in the library, then deleted (204), followed by sign-out. Smoke-test users and temporary local credential files were removed. Preview X OAuth remains intentionally unconfigured; production infrastructure was not modified.
+
+## Independent 100 simulated users — September 25, 2026
+
+- [x] Verify the 99 ranked accounts, preserving Scott Alexander and Yudkowsky's alternate-account duplicate.
+- [x] Add 97 source-grounded simulated-user fixtures with local portraits, explicit source limitations and `featured: false`; preserve the 44 original featured profiles.
+- [x] Honor authored featured status in database imports and live generation.
+- [x] Add `/users` with the shared full map and live name/handle filtering below the map; adopt simulated-user presentation terminology.
+- [x] Generate only the new users with live OpenAI answers and Jev assessments, preserving previous interviews and original provenance.
+- [x] Verify catalog integrity, persistence, filtering, mobile layout and production packaging; record generation evidence and commit the checkpoint.
+
+Checkpoint evidence: [Independent 100 research and generation record](research/independent-simulated-users-2026-09-25.md). All 97 new users have generated results; the original 55 journeys are unchanged. Core tests (283), 12 landing/navigation browser cases, persona database and browser checks, and the local production build passed.
+
+## Independent simulated-user source deepening — September 25, 2026
+
+- [x] Research all 97 new users in two independent batches (49 and 48), prioritizing inspected first-person essays, interviews and substantive original posts over profiles and indexes.
+- [x] Expand dated source summaries and revise beliefs, background and evidence limitations; preserve identity, featured status and all existing immutable simulation runs.
+- [x] Audit source coverage, attribution and access scope; integrate the briefs, synchronize local profile metadata, validate and commit the checkpoint.
+
+Checkpoint evidence: [Deeper source review](research/independent-deepening-summary-2026-09-25.md). All 97 briefs revised, with 235 → 708 source records and 473 newly inspected URLs. Core tests (283), persona database checks and the persona browser check passed. Local profile metadata is synchronized; selected results and featured flags are unchanged.
+
+## Simulated-user directory sorting — September 25, 2026
+
+- [x] Capture dated X follower counts for all 139 linked accounts, retaining X account IDs and unavailable handles in a checked-in metadata snapshot.
+- [x] Add ascending/descending sorting for name (default A–Z), followers, Doom–Bloom, civilizational change, P(doom), demonstrated reasoning, expected upside/harm and human influence. Missing values remain last; P(doom) uses the displayed estimate or range midpoint.
+- [x] Show the selected metric, retain live search and the complete map, reduce the count text, remove outer map top padding and reduce bottom padding across breakpoints.
+
+Follower snapshot: `lib/personas/x-followers.json`. Refresh with `pnpm exec tsx scripts/refresh-x-followers.ts`, using an authenticated local `xurl` installation (`my-app`, OAuth2). Two read-only batched X user lookups captured public follower counts on September 25. Counts are public account metadata, separate from immutable simulation evidence; page loads do not call X. Updated snapshots ship with the app. Accounts without a linked X profile remain unavailable, never zero.
+
+Validation: `pnpm test` passed (284 tests plus formatting, lint, types, content and unused-code checks); all 11 `tests/browser/landing.spec.ts` cases passed, including directory sorting/filtering and mobile overflow; `pnpm build:local` passed with production trace checks. Existing generated results and featured membership are unchanged.
+
+## Bookmark assets and deeper interview evidence — September 25, 2026
+
+- [x] Preprocess source bookmark thumbnails and icons locally, including direct and embedded YouTube videos; add deterministic title-card/site-mark fallbacks and a completeness regression check.
+- [x] Preserve authored source summaries in profile bookmark descriptions.
+- [x] Remove all 12 Independent 100 discovery-directory entries from current briefs and sync current local metadata while preserving frozen results.
+- [x] Deepen Robert Miles and swyx with verified videos and speaker-attributed interviews; audit the 97-user batch for missing foundational/interview evidence.
+
+Checkpoint details: [bookmark and source review](research/bookmark-and-source-review-2026-09-25.md). Current brief changes do not rewrite saved simulation answers, scores or provenance.
+
+## Source-driven local regeneration — September 25, 2026
+
+- [x] Compare selected immutable input snapshots against current authored briefs and select only materially changed users.
+- [x] Regenerate all 103 affected users with live participant answers and Jev assessment; preserve historical snapshots and all 38 unaffected selected users.
+- [x] Recover the third batch's successful database results after diagnostic-file serialization exceeded its bound; retain exact provenance and document unavailable usage/transport records.
+- [x] Verify source snapshot equality, result publication, 44 unchanged featured flags and 49 untouched development records; run core and persona persistence checks and commit the checkpoint.
+
+Evidence: [source-driven regeneration report](research/source-regeneration-2026-09-25.md) and its per-user/batch JSON ledger.
+
+## Individual local simulation storage — September 25, 2026
+
+- [x] Preserve and verify all 152 existing journeys in ignored local per-user files, with original collection backup.
+- [x] Store immutable per-user records with small atomic run manifests; scoped saves and inspector/seeder reads operate independently.
+- [x] Replace the tracked generated collection with a two-user test sample; migrate CLI consumers and document regeneration/import.
+- [x] Validate all 288 unit tests, formatting, lint, types, content, unused-code checks, and persona database import/idempotence without the aggregate file.
+
+Generated data lives under `work/journeys/`; the migration command preserves its input and compares every imported record. Public database results are unchanged. Extensive audit and recovery artifacts remain local and ignored.
+
+## Historical evidence and answer fidelity — September 25, 2026
+
+- [x] Review the 97 new users for historical source gaps and answer/brief mismatches; distinguish bounded coverage from exhaustive verification.
+- [x] Integrate 44 material brief corrections, inspect attribution and conditional forecasts, and cache all new non-tweet source previews.
+- [x] Regenerate the 44 corrected users locally without target scores; make one focused additional correction for unsupported personal-agnosticism phrasing.
+- [x] Verify immutable snapshots, unaffected selections, featured flags and local records; validate tests and provenance checks.
+
+Evidence and before/after examples: [historical audit report](research/historical-persona-audit-2026-09-25.md). Detailed research and generated results remain under ignored `work/`.

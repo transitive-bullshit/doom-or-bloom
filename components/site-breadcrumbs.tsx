@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/breadcrumb'
 
 const pageLabels: Record<string, string> = {
+  '/users': 'Simulated users',
   '/about': 'About',
   '/privacy': 'Privacy',
   '/assessments': 'My assessments',
@@ -36,6 +37,7 @@ export function SiteBreadcrumbs() {
     crumbs.push({ href: '/assessments', label: 'My assessments' })
     label ??= 'Assessment'
   } else if (pathname.startsWith('/users/')) {
+    crumbs.push({ href: '/users', label: 'Simulated users' })
     label = `@${pathname.split('/')[2]}`
   } else if (pathname.startsWith('/prototypes/landing/personas/')) {
     crumbs.push({ href: '/prototypes/landing', label: 'Landing preview' })

@@ -181,3 +181,11 @@ Vercel Preview deployments use the separate Neon project `doom-or-bloom-preview`
 Preview authentication derives its exact allowed HTTPS origins from Vercel's `VERCEL_URL` and optional `VERCEL_BRANCH_URL`; do not set Preview `BETTER_AUTH_URL` to the production domain. Production and local development continue to use their explicit `BETTER_AUTH_URL`. Request-provided origins or forwarded hosts cannot add hosts to the preview allowlist.
 
 X OAuth is intentionally not configured for Preview. Production and local development retain their own X credentials and callback URLs. Anonymous creation, persistence, and sharing remain available in previews. Schema changes must be migrated against the preview database before redeploying; deployment builds do not run migrations automatically.
+
+### Simulated-user directory (September 25, 2026)
+
+Authored presentation fixtures supply `featured` explicitly. Both profile imports and live generation persist that value; they must never unconditionally promote all profiles to featured. Historical metadata without the field defaults to true for compatibility with the original curated collection. `/users` reads all selected public simulations, while `/` and participant comparisons read only featured simulations. New unfeatured simulations retain the same detail, export, and source provenance behavior. `/users` uses the same 24-hour ISR policy as `/`.
+
+## Local generated simulation files
+
+Generated interviews and assessment snapshots are untracked local data under `work/journeys/`, stored per user with atomic run manifests. Authored source briefs remain versioned. PostgreSQL remains the public profile store. See [local journey storage and regeneration](user-journeys.md) for importing existing results and generating fresh ones.

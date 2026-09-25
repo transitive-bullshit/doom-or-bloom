@@ -1,4 +1,5 @@
-import { readFile, writeFile } from 'node:fs/promises'
+import { createLocalJourneyStore } from '../lib/journeys/local-store'
+import { writeFile } from 'node:fs/promises'
 import { loadBundle } from '../lib/content/loader'
 import { suiteSchema } from '../lib/journeys/schema'
 import { createLiveProvider } from '../lib/server/live-provider'
@@ -16,9 +17,7 @@ async function main() {
     )
   )
   const suite = suiteSchema.parse(
-    JSON.parse(
-      await readFile('eval/development/live-persona-journeys.json', 'utf8')
-    )
+    await createLocalJourneyStore(process.cwd()).latest()
   )
   const bundle = loadBundle()
   const observations = []

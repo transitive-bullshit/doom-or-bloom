@@ -16,6 +16,8 @@
   ],
   // Analyze browser entries without executing environment-dependent configs.
   "playwright": false,
+  // Authenticated, externally installed read-only X CLI used by the refresh tool.
+  "ignoreBinaries": ["xurl"],
   // Keep the reusable UI primitive APIs while still checking their dependencies.
   "ignoreIssues": {
     "components/ui/**": ["exports", "types"]

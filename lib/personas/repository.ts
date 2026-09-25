@@ -35,7 +35,7 @@ export function personaRepository(pool: Pool) {
             portrait: metadata.avatar,
             metadata,
             sourceBrief,
-            featured: true
+            featured: metadata.featured
           })
           .onConflictDoUpdate({
             target: personas.slug,
@@ -44,7 +44,7 @@ export function personaRepository(pool: Pool) {
               portrait: metadata.avatar,
               metadata,
               sourceBrief,
-              featured: true,
+              featured: metadata.featured,
               updatedAt: new Date()
             }
           })

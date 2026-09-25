@@ -1,3 +1,4 @@
+import { createLocalJourneyStore } from '../lib/journeys/local-store'
 import { mkdir, readFile, writeFile, rename } from 'node:fs/promises'
 import {
   experimentCandidates,
@@ -43,9 +44,7 @@ const paid = budgetedProvider(
   1536
 )
 const suite = suiteSchema.parse(
-  JSON.parse(
-    await readFile('eval/development/live-persona-journeys.json', 'utf8')
-  )
+  await createLocalJourneyStore(process.cwd()).latest()
 )
 const file = 'eval/development/worldview-experiments.json'
 const previous = await readFile(file, 'utf8')
@@ -194,9 +193,7 @@ if (publish) {
     }
   }
   suiteSchema.parse(suite)
-  const bundle = 'eval/development/live-persona-journeys.json'
-  await writeFile(`${bundle}.tmp`, JSON.stringify(suite, null, 2) + '\n')
-  await rename(`${bundle}.tmp`, bundle)
+  await createLocalJourneyStore(process.cwd()).save(suite)
   console.log(`Published ${suite.journeys.length} refreshed persona journeys`)
 }
 console.log(

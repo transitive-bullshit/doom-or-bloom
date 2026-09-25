@@ -6,6 +6,7 @@ test('shared breadcrumbs precede page content and navigate back to the library',
   for (const [path, label] of [
     ['/about', 'About'],
     ['/privacy', 'Privacy'],
+    ['/users', 'Simulated users'],
     ['/assessments', 'My assessments'],
     ['/users/jensenhuang', '@jensenhuang'],
     ['/questions', 'Questions'],

@@ -4,7 +4,7 @@ export function PersonaSources({
   sources,
   sourceBriefUpdated = false
 }: {
-  sources: Array<{ title: string; url: string }>
+  sources: Array<{ title: string; url: string; summary?: string }>
   sourceBriefUpdated?: boolean
 }) {
   if (!sources.length) return null
@@ -21,8 +21,8 @@ export function PersonaSources({
         <h2>Sources</h2>
         <p className='mt-2 text-sm text-muted-foreground'>
           {sourceBriefUpdated
-            ? 'Sources for this persona’s current brief.'
-            : 'Articles, interviews, and writings used to ground this simulated persona.'}
+            ? 'Sources for this simulated user’s current brief.'
+            : 'Articles, interviews, and writings used to ground this simulated user.'}
         </p>
       </div>
       <ResourceList resources={uniqueSources} />

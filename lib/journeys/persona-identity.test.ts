@@ -24,3 +24,24 @@ test('public persona navigation uses unique lowercase X usernames or named fallb
     'realdonaldtrump'
   )
 })
+
+test('Independent 100 preserves original users and keeps new simulations off the featured map', async () => {
+  const { default: directory } =
+    await import('../../docs/research/independent-100-accounts-2026-09-25.json')
+  const aliases: Record<string, string> = { alltheyud: 'esyudkowsky' }
+  for (const account of directory.accounts) {
+    const handle = account.handle.toLowerCase()
+    const matching = people.filter(
+      (person) => person.xUsername === (aliases[handle] ?? handle)
+    )
+    expect(matching).toHaveLength(1)
+    const person = matching[0]!
+    const original = handle === 'alltheyud' || handle === 'slatestarcodex'
+    expect(person.featured).toBe(original)
+    expect(person.id.startsWith('independent-')).toBe(!original)
+    const brief = personas.find((entry) => entry.id === person.id)!
+    expect(brief.sources.length).toBeGreaterThan(0)
+  }
+  expect(people.filter((person) => !person.featured)).toHaveLength(97)
+  expect(people.filter((person) => person.featured)).toHaveLength(44)
+})
