@@ -344,8 +344,8 @@
 .directory-help > [data-active='false'] {
   visibility: hidden;
 }
-.study-legend[data-directory='true'] {
-  grid-auto-rows: 1fr;
+.map-study .study-legend[data-directory='true'] a {
+  padding-block: 4px;
 }
 .study-legend[data-directory='true'] .directory-metric {
   line-height: 1.5;
@@ -358,10 +358,4 @@
   .directory-controls-row {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
-}
-
-/* Reserve the metric line without rendering an empty metric element. */
-.study-legend[data-directory='true']
-  .study-person-name:not(:has(.directory-metric)) {
-  padding-block-end: 16.5px;
 }
