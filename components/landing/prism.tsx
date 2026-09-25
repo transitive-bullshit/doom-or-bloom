@@ -250,8 +250,8 @@ export function Prism({
       </div>
       <div className='study-axis-bottom'>Incremental change</div>
       {directory && (
-        <div className='mx-auto mt-8 flex w-full max-w-3xl flex-col gap-2 text-left'>
-          <div className='flex flex-col gap-3 md:flex-row md:items-end'>
+        <div className='directory-controls mt-8 flex w-full flex-col gap-2 text-left'>
+          <div className='directory-controls-row'>
             <div className='flex min-w-0 flex-1 flex-col gap-1'>
               <label htmlFor='user-search'>Find a simulated user</label>
               <Input
@@ -263,7 +263,7 @@ export function Prism({
                 aria-controls='simulated-users'
               />
             </div>
-            <div className='flex flex-wrap gap-3'>
+            <div className='directory-selects'>
               <div className='flex flex-col gap-1'>
                 <label htmlFor='user-sort' className='text-xs'>
                   Sort by
@@ -317,30 +317,45 @@ export function Prism({
               </div>
             </div>
           </div>
-          <p className='directory-count text-muted-foreground' role='status'>
-            {legend.length} of {examples.length} simulated users
-          </p>
-          {sort === 'followers' && (
-            <p className='directory-count text-muted-foreground'>
-              X counts captured {examples[0]?.followersCapturedAt?.slice(0, 10)}
-              . Unavailable counts appear last.
+          <div className='directory-summary'>
+            <p className='directory-count text-muted-foreground' role='status'>
+              {legend.length} of {examples.length} simulated users
             </p>
-          )}
-          {sort === 'pdoom' && (
-            <p className='directory-count text-muted-foreground'>
-              Sorted by estimate, or range midpoint. Outcomes and horizons
-              differ; see each result for context. Missing estimates appear
-              last.
-            </p>
-          )}
-          {sort !== 'name' && sort !== 'followers' && (
-            <p className='directory-count text-muted-foreground'>
-              Scores describe simulated answers. Missing scores appear last.
-            </p>
-          )}
+            <div className='directory-help'>
+              <p
+                className='directory-count text-muted-foreground'
+                data-active={sort === 'followers'}
+                aria-hidden={sort !== 'followers'}
+              >
+                X counts captured{' '}
+                {examples[0]?.followersCapturedAt?.slice(0, 10)}. Unavailable
+                counts appear last.
+              </p>
+              <p
+                className='directory-count text-muted-foreground'
+                data-active={sort === 'pdoom'}
+                aria-hidden={sort !== 'pdoom'}
+              >
+                Sorted by estimate, or range midpoint. Outcomes and horizons
+                differ; see each result for context. Missing estimates appear
+                last.
+              </p>
+              <p
+                className='directory-count text-muted-foreground'
+                data-active={sort !== 'followers' && sort !== 'pdoom'}
+                aria-hidden={sort === 'followers' || sort === 'pdoom'}
+              >
+                Scores describe simulated answers. Missing scores appear last.
+              </p>
+            </div>
+          </div>
         </div>
       )}
-      <div id='simulated-users' className='landing-map-legend study-legend'>
+      <div
+        id='simulated-users'
+        className='landing-map-legend study-legend'
+        data-directory={directory}
+      >
         {legend.map((p) => (
           <Link key={p.id} href={`/users/${p.slug}`} {...highlightEvents(p.id)}>
             <Image
@@ -354,7 +369,7 @@ export function Prism({
             />
             <span className='study-person-name'>
               {p.name}
-              {directory && sort !== 'name' && (
+              {directory && directoryValue(p, sort) && (
                 <span className='directory-metric'>
                   {directoryValue(p, sort)}
                 </span>

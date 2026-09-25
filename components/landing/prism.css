@@ -309,3 +309,59 @@
   color: var(--study-muted);
   font-variant-numeric: tabular-nums;
 }
+
+/* Intrinsic help-text sizing reserves the same space for every sort choice. */
+.directory-controls-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  gap: 12px;
+}
+.directory-selects {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 12px;
+  min-width: 0;
+}
+.directory-selects > div {
+  min-width: 0;
+}
+.directory-selects [data-slot='native-select-wrapper'] {
+  width: 100%;
+}
+.directory-summary {
+  display: grid;
+  gap: 8px 16px;
+  align-items: start;
+}
+.directory-help {
+  display: grid;
+  min-width: 0;
+}
+.directory-help > p {
+  grid-area: 1 / 1;
+}
+.directory-help > [data-active='false'] {
+  visibility: hidden;
+}
+.study-legend[data-directory='true'] {
+  grid-auto-rows: 1fr;
+}
+.study-legend[data-directory='true'] .directory-metric {
+  line-height: 1.5;
+  white-space: nowrap;
+}
+@media (min-width: 800px) {
+  .directory-summary {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .directory-controls-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* Reserve the metric line without rendering an empty metric element. */
+.study-legend[data-directory='true']
+  .study-person-name:not(:has(.directory-metric)) {
+  padding-block-end: 16.5px;
+}
