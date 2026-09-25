@@ -4,7 +4,13 @@ import Image from 'next/image'
 import { WorldviewCta } from '@/components/worldview-cta'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import Link from 'next/link'
-import { useMemo, useState, type PointerEvent, type FocusEvent } from 'react'
+import {
+  useSyncExternalStore,
+  useMemo,
+  useState,
+  type PointerEvent,
+  type FocusEvent
+} from 'react'
 import './prism.css'
 import { usePortraitLayout } from './use-portrait-layout'
 import type { VariantProps } from '@/components/landing/shared'
@@ -68,12 +74,74 @@ const rank = (id: string) => {
   return index < 0 ? featuredOrder.length : index
 }
 
+const directoryPreferencesKey = 'doom-or-bloom:directory-sort:v1'
+
+type DirectoryPreferences = { sort: DirectorySort; direction: 'asc' | 'desc' }
+const defaultDirectoryPreferences: DirectoryPreferences = {
+  sort: 'name',
+  direction: 'asc'
+}
+const subscribePreferences = (notify: () => void) => {
+  window.addEventListener('storage', notify)
+  return () => window.removeEventListener('storage', notify)
+}
+const readPreferences = () => {
+  try {
+    return localStorage.getItem(directoryPreferencesKey)
+  } catch {
+    return null
+  }
+}
+const serverPreferences = () => null
+function parsePreferences(raw: string | null): DirectoryPreferences {
+  try {
+    const saved = JSON.parse(raw ?? 'null')
+    if (
+      saved &&
+      typeof saved.sort === 'string' &&
+      Object.hasOwn(directorySorts, saved.sort)
+    ) {
+      return {
+        sort: saved.sort as DirectorySort,
+        direction:
+          saved.direction === 'asc' || saved.direction === 'desc'
+            ? saved.direction
+            : saved.sort === 'followers'
+              ? 'desc'
+              : 'asc'
+      }
+    }
+  } catch {
+    /* Ignore stale or malformed browser preferences. */
+  }
+  return defaultDirectoryPreferences
+}
+
 export function Prism({
   examples,
   directory = false
 }: VariantProps & { directory?: boolean }) {
-  const [sort, setSort] = useState<DirectorySort>('name')
-  const [direction, setDirection] = useState<'asc' | 'desc'>('asc')
+  const storedPreferences = useSyncExternalStore(
+    subscribePreferences,
+    readPreferences,
+    serverPreferences
+  )
+  const [selection, setSelection] = useState<DirectoryPreferences | null>(null)
+  const { sort, direction } = selection ?? parsePreferences(storedPreferences)
+  const selectOrder = (
+    nextSort: DirectorySort,
+    nextDirection: 'asc' | 'desc'
+  ) => {
+    setSelection({ sort: nextSort, direction: nextDirection })
+    try {
+      localStorage.setItem(
+        directoryPreferencesKey,
+        JSON.stringify({ sort: nextSort, direction: nextDirection })
+      )
+    } catch {
+      // Sorting still works when the browser disallows persistence.
+    }
+  }
   const [query, setQuery] = useState('')
   const [portraits, setPortraits] = useState<
     Record<string, 'loaded' | 'failed'>
@@ -182,65 +250,71 @@ export function Prism({
       </div>
       <div className='study-axis-bottom'>Incremental change</div>
       {directory && (
-        <div className='mx-auto mt-8 flex w-full max-w-sm flex-col gap-2 text-left'>
-          <label htmlFor='user-search'>Find a simulated user</label>
-          <Input
-            id='user-search'
-            type='search'
-            placeholder='Search names or @handles'
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            aria-controls='simulated-users'
-          />
-          <div className='flex flex-wrap gap-3'>
-            <div className='flex flex-col gap-1'>
-              <label htmlFor='user-sort' className='text-xs'>
-                Sort by
-              </label>
-              <NativeSelect
-                id='user-sort'
-                value={sort}
-                onChange={(event) => {
-                  const nextSort = event.target.value as DirectorySort
-                  setSort(nextSort)
-                  setDirection(nextSort === 'followers' ? 'desc' : 'asc')
-                }}
+        <div className='mx-auto mt-8 flex w-full max-w-3xl flex-col gap-2 text-left'>
+          <div className='flex flex-col gap-3 md:flex-row md:items-end'>
+            <div className='flex min-w-0 flex-1 flex-col gap-1'>
+              <label htmlFor='user-search'>Find a simulated user</label>
+              <Input
+                id='user-search'
+                type='search'
+                placeholder='Search names or @handles'
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
                 aria-controls='simulated-users'
-              >
-                {Object.entries(directorySorts).map(([key, label]) => (
-                  <option key={key} value={key}>
-                    {label}
-                  </option>
-                ))}
-              </NativeSelect>
+              />
             </div>
-            <div className='flex flex-col gap-1'>
-              <label htmlFor='user-sort-direction' className='text-xs'>
-                Order
-              </label>
-              <NativeSelect
-                id='user-sort-direction'
-                value={direction}
-                onChange={(event) =>
-                  setDirection(event.target.value as 'asc' | 'desc')
-                }
-                aria-controls='simulated-users'
-              >
-                <option value='asc'>
-                  {sort === 'name'
-                    ? 'A–Z'
-                    : sort === 'outlook'
-                      ? 'Doom first'
-                      : 'Low to high'}
-                </option>
-                <option value='desc'>
-                  {sort === 'name'
-                    ? 'Z–A'
-                    : sort === 'outlook'
-                      ? 'Bloom first'
-                      : 'High to low'}
-                </option>
-              </NativeSelect>
+            <div className='flex flex-wrap gap-3'>
+              <div className='flex flex-col gap-1'>
+                <label htmlFor='user-sort' className='text-xs'>
+                  Sort by
+                </label>
+                <NativeSelect
+                  id='user-sort'
+                  value={sort}
+                  onChange={(event) => {
+                    const nextSort = event.target.value as DirectorySort
+                    selectOrder(
+                      nextSort,
+                      nextSort === 'followers' ? 'desc' : 'asc'
+                    )
+                  }}
+                  aria-controls='simulated-users'
+                >
+                  {Object.entries(directorySorts).map(([key, label]) => (
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
+                </NativeSelect>
+              </div>
+              <div className='flex flex-col gap-1'>
+                <label htmlFor='user-sort-direction' className='text-xs'>
+                  Order
+                </label>
+                <NativeSelect
+                  id='user-sort-direction'
+                  value={direction}
+                  onChange={(event) =>
+                    selectOrder(sort, event.target.value as 'asc' | 'desc')
+                  }
+                  aria-controls='simulated-users'
+                >
+                  <option value='asc'>
+                    {sort === 'name'
+                      ? 'A–Z'
+                      : sort === 'outlook'
+                        ? 'Doom first'
+                        : 'Low to high'}
+                  </option>
+                  <option value='desc'>
+                    {sort === 'name'
+                      ? 'Z–A'
+                      : sort === 'outlook'
+                        ? 'Bloom first'
+                        : 'High to low'}
+                  </option>
+                </NativeSelect>
+              </div>
             </div>
           </div>
           <p className='directory-count text-muted-foreground' role='status'>
