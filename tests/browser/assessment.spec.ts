@@ -1,4 +1,6 @@
 import sharp from 'sharp'
+import { Pool } from 'pg'
+import { randomUUID } from 'node:crypto'
 import { unzipSync, strFromU8 } from 'fflate'
 import {
   expect,
@@ -18,6 +20,73 @@ import { storageKey } from '../../lib/persistence/storage'
 import { limits, versions } from '../../lib/assessment/schema'
 const operationUrl = /\/api\/assessments\/[a-f0-9-]+$/
 const root = 'What do you think AI means for our future—and why?'
+
+test('provider rejection explains the failure across reload and keeps the saved reply retryable', async ({
+  page
+}) => {
+  const id = await seedAssessment(
+    page,
+    createAssessment(randomUUID(), versions.model)
+  )
+  const endpoint = `/api/assessments/${id}`
+  const pool = new Pool({ connectionString: process.env.TEST_DATABASE_URL })
+  try {
+    await page.route(`**${endpoint}`, async (route) => {
+      if (route.request().method() !== 'POST') return route.continue()
+      const input = route.request().postDataJSON()
+      // Persist the same bounded failure record as the production incident;
+      // exercise the real owner serializer and reload, without paid inference.
+      await pool.query(
+        `insert into assessment_operations
+          (assessment_id, request_key, fingerprint, action, base_snapshot_id,
+           base_revision, versions, status, deadline, physical_request_count,
+           diagnostics, failure_category)
+         select id, $2, $2, $3, current_snapshot_id, revision, versions,
+           'failed', now() + interval '2 minutes', 1, $4, 'evaluation_failed'
+         from assessments where id = $1`,
+        [
+          id,
+          input.requestKey,
+          JSON.stringify(input.operation),
+          JSON.stringify([
+            { stage: 'A: interpret', status: 403, attempt: 1 },
+            { category: 'evaluation_failed' }
+          ])
+        ]
+      )
+      const saved = await (await page.request.get(endpoint)).json()
+      await route.fulfill({ json: { operation: saved.operation } })
+    })
+    const reply = 'AI could improve medicine with careful governance.'
+    await submit(page, reply)
+    const message = page.getByText(
+      /Our AI provider, TypeSafe \(Jev\), rejected this request/
+    )
+    await expect(message).toHaveCount(1)
+    await expect(message).toBeVisible()
+    expect((await savedAssessment(page)).revision).toBe(0)
+    await page.reload()
+    await expect(message).toBeVisible()
+    await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+      reply
+    )
+    await page.setViewportSize({ width: 390, height: 844 })
+    await expect(message).toBeVisible()
+    await page.screenshot({
+      path: '/tmp/provider-rejection-mobile.png',
+      fullPage: true
+    })
+    await page.unroute(`**${endpoint}`)
+    await page.getByRole('button', { name: 'Retry saved submission' }).click()
+    await expect(message).toHaveCount(0)
+    await expect
+      .poll(async () => (await savedAssessment(page)).revision)
+      .toBe(1)
+  } finally {
+    await pool.end()
+  }
+})
+
 async function submit(page: import('@playwright/test').Page, text: string) {
   await page.getByLabel('Your answer', { exact: true }).fill(text)
   const response = page.waitForResponse(

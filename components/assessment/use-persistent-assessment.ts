@@ -178,10 +178,9 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
             emitEvent
           )
         }
-      } else
-        setNotice(
-          'This step did not complete. Your previous results are unchanged and your submission is saved. Retry when ready.'
-        )
+      }
+      // Terminal failures are explained by the persistent operation alert,
+      // including after reload. Keep notices for connection/storage problems.
       await refresh()
     } catch (err) {
       setNotice(

@@ -26,6 +26,7 @@ import { profileImageUrl } from '../auth/profile-image'
 import { publicAssessment } from './public'
 import { personaMetadataSchema, simulationPayload } from '../personas/payload'
 import { AssessmentError, type Submission } from './contracts'
+import { operationFailureCategory } from './operation-failure'
 
 export function fingerprint(value: unknown): string {
   const canonical = (v: unknown): unknown =>
@@ -58,7 +59,10 @@ function operationView(op: OperationRow) {
     baseRevision: op.baseRevision,
     status: expired(op) ? ('interrupted' as const) : op.status,
     deadline: op.deadline.toISOString(),
-    failureCategory: op.failureCategory,
+    failureCategory: operationFailureCategory(
+      op.failureCategory,
+      op.diagnostics
+    ),
     retryOf: op.retryOf
   }
 }

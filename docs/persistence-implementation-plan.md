@@ -747,3 +747,11 @@ Next 16's development renderer overrides configured cache-control with `no-cache
 - [x] Verify URL credentials and other connection options survive normalization, validate the resulting TLS configuration through the installed pg driver without connecting, and run core checks.
 
 Validation on `0160625b` plus this checkpoint's working tree: `pnpm test` passed formatting, lint, types, 314 tests across 65 files, content validation, and unused-code analysis. The SSL regression cases use synthetic URLs and do not connect to production. No schema, authentication behavior, or repository transaction changes; browser/database lifecycle suites and production build were not rerun for this connection-string normalization. Deployment and Vercel environment changes remain separate; the reported production warning is not claimed resolved until deployment.
+
+## Participant explanation for provider rejections — September 26, 2026
+
+- [x] Derive a safe owner-facing `provider_rejected` category from existing `evaluation_failed` diagnostics ending in HTTP 403, including historical failures without production writes.
+- [x] Explain the TypeSafe (Jev) rejection in the persistent retry alert, confirm the saved submission, and avoid duplicate generic notices. Preserve neutral copy for unclassified failures.
+- [x] Verify the production-shaped failure record through the real owner API, desktop/mobile presentation, reload with restored text, and successful explicit retry using local fixtures.
+
+Validation on `6b68802a` plus this checkpoint's working tree: `pnpm test` passed formatting, lint, types, 321 tests across 66 files, content validation, and unused-code analysis. `pnpm check:browser tests/browser/assessment.spec.ts` passed all 11 cases in 43.0 seconds; the initial sandboxed launch could not access native test Postgres, and the authorized rerun passed. Reviewed the mobile error screenshot. No schema, repository transaction, auth, retry protocol, or provider behavior changes; unrelated lifecycle/restart suites and production build were not rerun. No paid inference, production writes, or deployment. Console usage inspection did not reveal request-level error logs, so the cause of the upstream HTTP 403 remains unconfirmed.

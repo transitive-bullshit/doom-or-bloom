@@ -19,6 +19,7 @@ import { usePersistentAssessment } from './use-persistent-assessment'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { api, userErrorMessage } from '@/lib/assessments/client'
+import { operationFailureMessage } from '@/lib/assessments/operation-failure'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { PublishConfirmation } from './publish-confirmation'
 import { Button } from '@/components/ui/button'
@@ -329,7 +330,7 @@ export function Interview({
               <Alert>
                 <AlertTitle>This step did not finish</AlertTitle>
                 <AlertDescription>
-                  Your previous results are unchanged.{' '}
+                  {operationFailureMessage(record.operation.failureCategory)}{' '}
                   <Button
                     disabled={busy}
                     onClick={() => void act(record.operation!.action, true)}
