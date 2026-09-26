@@ -22,6 +22,7 @@ pnpm render                        # full render → out/doom-or-bloom-launch.mp
 node scripts/render.mjs --from 1200 --to 1500 --out out/clip.mp4   # render a frame range
 ./scripts/encode-web.sh out/doom-or-bloom-launch-web.mp4           # lighter social/web encode from the last render
 ./scripts/sheets.sh out/doom-or-bloom-launch.mp4                   # contact sheets for review
+node scripts/vertical.mjs                                          # 9:16 cut for TikTok, Reels and Shorts
 ```
 
 Rendering needs a GPU-backed Chromium: the Playwright build launches with ANGLE on Metal. It also needs `ffmpeg` on the path. The preview server serves portraits straight from the app's `public/personas`.

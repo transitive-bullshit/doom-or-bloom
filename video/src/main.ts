@@ -2,6 +2,7 @@ import { loadAssets } from './engine/assets'
 import { defaultFx, Post } from './engine/post'
 import { DURATION, FPS, FRAMES, H, W } from './engine/timing'
 import { drawFrame } from './timeline'
+import { renderVerticalOverlay } from './vertical'
 
 // The capture scripts drive rendering through these globals.
 const host = window as unknown as {
@@ -9,6 +10,7 @@ const host = window as unknown as {
   renderFrame: (frame: number, samples?: number) => number
   FRAMES: number
   FPS: number
+  renderVerticalOverlay: typeof renderVerticalOverlay
 }
 
 const out = document.getElementById('out') as HTMLCanvasElement
@@ -64,6 +66,7 @@ function renderFrame(frame: number, samplesOverride?: number) {
 host.renderFrame = renderFrame
 host.FRAMES = FRAMES
 host.FPS = FPS
+host.renderVerticalOverlay = renderVerticalOverlay
 host.__ready = loadAssets()
 
 // Real-time preview: `index.html?preview` plays with audio and a scrubber.
