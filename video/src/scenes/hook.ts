@@ -259,7 +259,7 @@ export function drawHook(ctx: Ctx, s: S) {
     [17, 'GO']
   ] as [number, string][])
     if (b >= at) label = l
-  if (label && b < 19.5) {
+  if (label && b < 19.5 && !s.clean) {
     text(ctx, label, 96, 112, {
       family: 'mono',
       size: 26,
