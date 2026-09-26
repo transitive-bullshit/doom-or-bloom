@@ -11,9 +11,9 @@ export type PersonaComparison = {
 }
 
 /** Only directional worldview components; never map or reasoning scores. */
-export function worldviewValues(
-  result: Pick<Result, 'components'>
-): WorldviewValues {
+export function worldviewValues(result: {
+  components: Pick<Result['components'][number], 'vector' | 'value'>[]
+}): WorldviewValues {
   return Object.fromEntries(
     worldviewIds.flatMap((id) => {
       const value = result.components.find(

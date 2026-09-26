@@ -1,6 +1,6 @@
 import 'server-only'
 import { render } from 'takumi-js'
-import { loadExamples } from '@/components/landing/data'
+import { loadPersonaComparisons } from '@/components/landing/data'
 import { LimitError } from '@/lib/server/limits'
 import { ShareCard, type CardData } from './card'
 import { loadSocialPortrait } from './portraits'
@@ -10,7 +10,9 @@ export async function renderShareCard(
   data: CardData,
   options: { format: 'png' | 'webp'; title?: string; simulated?: boolean }
 ) {
-  const people = data.closestPersonaIds.length ? await loadExamples() : []
+  const people = data.closestPersonaIds.length
+    ? await loadPersonaComparisons()
+    : []
   const selected = data.closestPersonaIds.map((id) => {
     const person = people.find((person) => person.id === id)
     if (!person)

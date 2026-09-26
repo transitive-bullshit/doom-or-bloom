@@ -4,7 +4,6 @@ import { z } from 'zod'
 import { assessmentSchema } from '../assessment/schema'
 import { simulationPayload } from '../personas/payload'
 import { personaRepository } from '../personas/repository'
-import { worldviewValues } from '../assessment/persona-matches'
 import { adminDatabase } from './database'
 import type { AdminFilters } from './filters'
 
@@ -200,12 +199,5 @@ export async function inspectAssessment(id: string, published = false) {
 }
 export async function adminComparisons() {
   const db = await adminDatabase()
-  const rows = await personaRepository(db.$client).selectedSummaries(true)
-  return rows.map(({ metadata, result }) => ({
-    id: metadata.id,
-    name: metadata.name,
-    slug: metadata.slug,
-    avatar: metadata.avatar,
-    values: worldviewValues(result)
-  }))
+  return personaRepository(db.$client).selectedComparisons()
 }

@@ -9,7 +9,7 @@ import { POST as exportMap } from '@/app/api/map-png/route'
 import { POST as exportCard } from '@/app/api/share-card/route'
 
 vi.mock('@/components/landing/data', () => ({
-  loadExamples: async () => people
+  loadPersonaComparisons: async () => people
 }))
 
 function request(path: string, body: unknown) {
