@@ -6,11 +6,13 @@ import {
   hit,
   inExpo,
   inOutCubic,
+  inOutSine,
   inQuart,
   lerp,
   outBack,
   outCubic,
   outExpo,
+  outQuart,
   ramp,
   shake
 } from '../engine/ease'
@@ -114,16 +116,33 @@ export function drawHook(ctx: Ctx, s: S) {
     cy = lerp(L.cBloom.y, WIDE.y, p)
     zoom = lerp(1.5 + drift * 0.06, WIDE.zoom + push * 0.04, p)
   } else {
-    // Keep the dot on screen: animate its screen position, derive the camera.
-    const z0 = WIDE.zoom + 0.04
-    zoom = lerp(z0, 72, ramp(b, 17.5, 18, inExpo))
-    const s0x = s.W / 2 + (L.dot.x - WIDE.x) * z0
-    const s0y = s.H / 2 + (L.dot.y - WIDE.y) * z0
-    const m = ramp(b, 17.5, 17.92, outCubic)
-    const sx = lerp(s0x, s.W / 2, m)
-    const sy = lerp(s0y, s.H / 2, m)
-    cx = dot.x - (sx - s.W / 2) / zoom
-    cy = dot.y - (sy - s.H / 2) / zoom
+    // Linger on the whole question through the band's downbeat, creeping in,
+    // then dive into the "?" dot so the cut lands on the horn entry (beat 20).
+    const hold = (bb: number) => {
+      const c = ramp(bb, 17.5, 19.55, inOutSine)
+      return {
+        x: lerp(WIDE.x, WIDE.x + 36, c),
+        y: lerp(WIDE.y, WIDE.y + 20, c),
+        zoom: WIDE.zoom + 0.04 + c * 0.1
+      }
+    }
+    if (b < 19.5) {
+      const h = hold(b)
+      cx = h.x
+      cy = h.y
+      zoom = h.zoom
+    } else {
+      // Keep the dot on screen: animate its screen position, derive the camera.
+      const h = hold(19.5)
+      zoom = lerp(h.zoom, 72, ramp(b, 19.5, 20, inExpo))
+      const s0x = s.W / 2 + (L.dot.x - h.x) * h.zoom
+      const s0y = s.H / 2 + (L.dot.y - h.y) * h.zoom
+      const m = ramp(b, 19.5, 19.92, outCubic)
+      const sx = lerp(s0x, s.W / 2, m)
+      const sy = lerp(s0y, s.H / 2, m)
+      cx = dot.x - (sx - s.W / 2) / zoom
+      cy = dot.y - (sy - s.H / 2) / zoom
+    }
   }
   const sh = [14, 15, 16, 17].reduce(
     (acc, at) => {
@@ -161,7 +180,8 @@ export function drawHook(ctx: Ctx, s: S) {
   ctx.save()
   applyCamera(ctx, s, { x: cx, y: cy, zoom, rot: sh.r, ox: sh.x, oy: sh.y })
 
-  const pop = (at: number) => 1 + 0.07 * hit(b, at, 0.35)
+  const down = 1 + 0.045 * hit(b, 18, 0.45)
+  const pop = (at: number) => (1 + 0.07 * hit(b, at, 0.35)) * down
   const scaled = (c: { x: number; y: number }, k: number, fn: () => void) => {
     ctx.save()
     ctx.translate(c.x, c.y)
@@ -209,9 +229,22 @@ export function drawHook(ctx: Ctx, s: S) {
     })
     const squash = 1 + 0.25 * hit(b, 17.5, 0.2)
     const dp = ramp(b, 17, 17.14, outBack(2.2))
+    const beat = 1 + 0.35 * hit(b, 18, 0.3) + 0.2 * hit(b, 19, 0.3)
+    for (const at of [18, 18.14]) {
+      const rp = ramp(b, at, at + 1.3, outQuart)
+      if (rp <= 0 || rp >= 1) continue
+      ctx.save()
+      ctx.globalAlpha = (1 - rp) * 0.55
+      ctx.lineWidth = lerp(10, 1.5, rp)
+      ctx.strokeStyle = at === 18 ? C.paper : C.mint
+      ctx.beginPath()
+      ctx.arc(dot.x, dot.y, lerp(QDOT.r * 1.4, 1100, rp), 0, Math.PI * 2)
+      ctx.stroke()
+      ctx.restore()
+    }
     ctx.save()
     ctx.translate(dot.x, dot.y)
-    ctx.scale(dp * squash, dp / squash)
+    ctx.scale(dp * squash * beat, (dp / squash) * beat)
     circle(ctx, 0, 0, QDOT.r, C.paper)
     ctx.restore()
   }
@@ -226,7 +259,7 @@ export function drawHook(ctx: Ctx, s: S) {
     [17, 'GO']
   ] as [number, string][])
     if (b >= at) label = l
-  if (label && b < 17.55) {
+  if (label && b < 19.5) {
     text(ctx, label, 96, 112, {
       family: 'mono',
       size: 26,
@@ -247,20 +280,26 @@ export function drawHook(ctx: Ctx, s: S) {
   // Post: impacts, whip blur, and the zoom into the dot.
   const fx = s.fx
   fx.bg = [0.055, 0.055, 0.047]
-  fx.bloom = 0.2 * (1 - ramp(b, 17.7, 17.95))
+  fx.bloom = (0.2 + 0.22 * hit(b, 18, 0.5)) * (1 - ramp(b, 19.7, 19.95))
   fx.bloomThreshold = 0.7
-  fx.vignette = 0.32 * (1 - ramp(b, 17.75, 17.98))
+  fx.vignette = 0.32 * (1 - ramp(b, 19.75, 19.98))
   fx.ca =
     0.8 +
     14 * hit(b, 14, 0.3) +
-    7 * (hit(b, 15, 0.25) + hit(b, 16, 0.25) + hit(b, 17, 0.25))
+    7 * (hit(b, 15, 0.25) + hit(b, 16, 0.25) + hit(b, 17, 0.25)) +
+    9 * hit(b, 18, 0.35)
   const whipping =
     (b > 14.76 && b < 15.03) ||
     (b > 15.76 && b < 16.03) ||
     (b > 16.76 && b < 17.03)
-  fx.samples = whipping || b > 17.55 ? 56 : b > 13.8 && b < 14.03 ? 40 : 12
-  if (b > 17.55) {
-    fx.zoomBlur = Math.sin(ramp(b, 17.6, 18) * Math.PI) * 0.16
+  fx.samples =
+    whipping || b > 19.5
+      ? 56
+      : (b > 13.8 && b < 14.03) || (b > 17.45 && b < 17.85)
+        ? 40
+        : 12
+  if (b > 19.55) {
+    fx.zoomBlur = Math.sin(ramp(b, 19.6, 20) * Math.PI) * 0.16
     fx.zoomCenter = [0.5, 0.5]
   }
 }

@@ -589,10 +589,14 @@ const drawCard = (c: Ctx, b: number) => {
   c.restore()
 }
 
-const captions: [number, string, string, string][] = [
-  [62, 'One open', 'question', 'No quizzes, no multiple choice'],
-  [66, 'In your', 'own words', 'Type it, or just talk'],
-  [70, 'It adapts', 'to you', 'A few questions, a few minutes']
+const captions: [number, string[], string][] = [
+  [
+    62,
+    ['Just answer', 'simple', 'questions'],
+    'No quizzes, no multiple choice'
+  ],
+  [66, ['In your', 'own words'], 'Type it, or just talk'],
+  [70, ['It adapts', 'to you'], 'A few questions, a few minutes']
 ]
 
 const chips: [number, string, string][] = [
@@ -610,21 +614,27 @@ export function drawInterview(ctx: Ctx, s: S) {
   softGlow(ctx, 1320, 560, 760, C.peach, 0.28)
   softGlow(ctx, 1500, 380, 520, C.mint, 0.25)
   // Caption column.
-  for (const [at, l1, l2, sub] of captions) {
+  for (const [at, lines, sub] of captions) {
     const out = ramp(b, at + 3.75, at + 4, inOutCubic)
     if (b < at - 0.05 || out >= 1) continue
     ctx.save()
     ctx.globalAlpha = 1 - out
     ctx.translate(-out * 60, 0)
-    const st: TextStyle = {
+    // Fit the column beside the card, capped at the caption size.
+    const base: TextStyle = {
       size: 112,
       weight: 800,
       tracking: -0.045,
       color: C.ink
     }
-    rise(ctx, b, at, l1, 130, 470, st)
-    rise(ctx, b, at + 0.25, l2, 130, 590, st)
-    rise(ctx, b, at + 0.6, sub, 134, 675, {
+    const widest = Math.max(...lines.map((l) => measure(ctx, l, base)))
+    const st: TextStyle = { ...base, size: 112 * Math.min(1, 590 / widest) }
+    const lh = st.size * 1.07
+    const y0 = 470 - ((lines.length - 2) * lh) / 2
+    lines.forEach((l, i) =>
+      rise(ctx, b, at + i * 0.25, l, 130, y0 + i * lh, st)
+    )
+    rise(ctx, b, at + 0.6, sub, 134, y0 + (lines.length - 1) * lh + 85, {
       size: 34,
       weight: 500,
       tracking: -0.01,

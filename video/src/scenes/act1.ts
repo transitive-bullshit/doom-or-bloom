@@ -60,119 +60,90 @@ const riseWord = (
   return w
 }
 
-// ── B1 · "AI will change everything" → everything blooms ────────────────
+// ── B1 · "AI will change everything" → the things it will change bloom around it ──
 export function drawStakes(ctx: Ctx, s: S) {
   const b = s.b
   fill(ctx, C.paper, s.W, s.H)
-  const push = ramp(b, 18, 22, outCubic)
-  const sh = shake(b, 21, 10, 0.3)
+  const push = ramp(b, 20, 24, outCubic)
+  const sh = shake(b, 22.5, 8, 0.3)
   ctx.save()
   applyCamera(ctx, s, {
     x: 960,
     y: 540,
-    zoom: 1.0 + push * 0.06,
+    zoom: 1.0 + push * 0.04,
     ox: sh.x,
     oy: sh.y
   })
 
-  const size = 170
-  const st = { size, weight: 800, tracking: -0.045, color: C.ink }
-  const headOut = ramp(b, 20.9, 21.12, inOutCubic)
+  // The headline stays put and gathers into the center as the words bloom.
+  const gather = ramp(b, 22.45, 22.9, inOutCubic)
+  const k = lerp(1, 0.6, gather)
+  ctx.save()
+  ctx.translate(960, 548)
+  ctx.scale(k, k)
+  ctx.translate(-960, -548)
+  const st = { size: 170, weight: 800, tracking: -0.045, color: C.ink }
   const line1W = measure(ctx, 'AI will change', st)
   let x = (s.W - line1W) / 2
-  ctx.save()
-  ctx.globalAlpha = 1 - headOut
-  ctx.translate(0, -headOut * 140)
   for (const [at, w] of [
-    [18, 'AI'],
-    [18.5, 'will'],
-    [19, 'change']
+    [20, 'AI'],
+    [20.5, 'will'],
+    [21, 'change']
   ] as [number, string][]) {
-    const k = 1 + 0.05 * hit(b, at, 0.25)
+    const kk = 1 + 0.05 * hit(b, at, 0.25)
     ctx.save()
     ctx.translate(x, 470)
-    ctx.scale(k, k)
+    ctx.scale(kk, kk)
     riseWord(ctx, b, at, w, 0, 0, st)
     ctx.restore()
     x += measure(ctx, w + ' ', st)
   }
-  ctx.restore()
-
-  // "everything" in the Prism gradient; it gathers, then bursts into a flower.
   const est = { ...st, size: 200, weight: 900 }
   const everyW = measure(ctx, 'everything', est)
   const ex = (s.W - everyW) / 2
-  const ey = 690
-  const gatherK = ramp(b, 20.7, 21, inQuad)
-  if (b >= 19.98 && b < 21.08) {
-    const k =
-      (1 + 0.06 * hit(b, 20, 0.3)) *
-      (1 + gatherK * 0.1) *
-      (1 - ramp(b, 21, 21.08, inQuad) * 0.9)
+  const kk = 1 + 0.06 * hit(b, 22, 0.3)
+  ctx.translate(s.W / 2, 620)
+  ctx.scale(kk, kk)
+  ctx.translate(-s.W / 2, -620)
+  riseWord(ctx, b, 22, 'everything', ex, 690, {
+    ...est,
+    color: prismGradient(ctx, ex, 0, ex + everyW, 0)
+  })
+  ctx.restore()
+
+  // Everything AI will change, blooming outward around the headline.
+  const golden = Math.PI * (3 - Math.sqrt(5))
+  const n = everything.length
+  for (let i = 0; i < n; i++) {
+    const at = 22.5 + i * 0.012
+    const p = ramp(b, at, at + 0.4, outBack(1.4))
+    if (p <= 0) continue
+    const ang = i * golden + 0.35 + (b - 22.5) * 0.035
+    const f = Math.sqrt((i + 0.5) / n)
+    const rx = lerp(445, 820, f)
+    const ry = lerp(210, 430, f)
+    const tx = 960 + Math.cos(ang) * rx
+    const ty = 552 + Math.sin(ang) * ry
+    const kind = i % 3
+    const size = 27 + 13 * rand(i * 5.3)
     ctx.save()
-    ctx.translate(s.W / 2, ey - 70)
-    ctx.scale(k, k)
-    ctx.translate(-s.W / 2, -(ey - 70))
-    riseWord(ctx, b, 20, 'everything', ex, ey, {
-      ...est,
-      color: prismGradient(ctx, ex, 0, ex + everyW, 0)
+    ctx.translate(lerp(960, tx, p), lerp(552, ty, p))
+    ctx.rotate(randRange(i * 9.1, -0.06, 0.06))
+    text(ctx, everything[i]!, 0, 0, {
+      family: kind === 2 ? 'serif' : 'sans',
+      italic: kind === 2,
+      size: kind === 2 ? size * 1.2 : size,
+      weight: kind === 2 ? 400 : 750,
+      tracking: -0.02,
+      color:
+        kind === 1
+          ? C.ink
+          : mixHex(prismAt(clamp((tx - 140) / 1640)), C.ink, 0.4),
+      align: 'center',
+      baseline: 'middle',
+      alpha: clamp(p * 1.5) * (1 - ramp(b, 23.9, 24))
     })
     ctx.restore()
-  }
-  if (b >= 21) {
-    const cx = s.W / 2
-    const cy = 560
-    const spin = (b - 21) * 0.1
-    const golden = Math.PI * (3 - Math.sqrt(5))
-    const n = everything.length
-    for (let i = 0; i < n; i++) {
-      const word = everything[i]!
-      const at = 21 + i * 0.011
-      const p = ramp(b, at, at + 0.42, outBack(1.5))
-      if (p <= 0) continue
-      const ang = i * golden + spin
-      const r = (74 + 60 * Math.sqrt(i + 1)) * p
-      const px = cx + Math.cos(ang) * r * 1.28
-      const py = cy + Math.sin(ang) * r
-      const a = ((ang % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2)
-      const flip = a > Math.PI / 2 && a < (Math.PI * 3) / 2
-      const kind = i % 4
-      const sz = 22 + 28 * (i / n)
-      const color =
-        kind === 1 ? C.ink : mixHex(prismAt(a / (Math.PI * 2)), C.ink, 0.38)
-      ctx.save()
-      ctx.translate(px, py)
-      ctx.rotate(flip ? ang + Math.PI : ang)
-      text(ctx, word, 0, 0, {
-        family: kind === 2 ? 'mono' : kind === 3 ? 'serif' : 'sans',
-        italic: kind === 3,
-        size: kind === 3 ? sz * 1.15 : sz,
-        weight: kind === 2 ? 500 : kind === 3 ? 400 : 800,
-        tracking: kind === 2 ? 0.02 : -0.02,
-        color,
-        align: flip ? 'right' : 'left',
-        baseline: 'middle',
-        alpha: clamp(p * 1.5) * (1 - ramp(b, 21.9, 22))
-      })
-      ctx.restore()
-    }
-    // …including you.
-    const yp = ramp(b, 21.45, 21.75, outBack(2))
-    if (yp > 0) {
-      ctx.save()
-      ctx.translate(cx, cy)
-      ctx.scale(yp, yp)
-      text(ctx, 'you', 0, 0, {
-        family: 'serif',
-        italic: true,
-        size: 96,
-        weight: 400,
-        color: C.ink,
-        align: 'center',
-        baseline: 'middle'
-      })
-      ctx.restore()
-    }
   }
   ctx.restore()
 
@@ -180,13 +151,14 @@ export function drawStakes(ctx: Ctx, s: S) {
   fx.bg = hexToRgb01(C.paper)
   fx.bloom = 0.05
   fx.vignette = 0.12
-  fx.ca = 0.4 + 6 * hit(b, 21, 0.3)
-  fx.samples = b > 20.95 && b < 21.5 ? 24 : 10
+  fx.ca = 0.4 + 5 * hit(b, 22, 0.3) + 5 * hit(b, 22.5, 0.3)
+  fx.samples = b > 22.4 && b < 23.1 ? 24 : 10
 }
 
 // ── B2 · "Years happen in weeks" ─────────────────────────────────────────
 export function drawWeeks(ctx: Ctx, s: S) {
-  const b = s.b
+  // Choreographed on beats 22–26; it now plays one bar later, on 24–28.
+  const b = s.b - 2
   fill(ctx, C.ink, s.W, s.H)
   const cols = 52
   const rows = 7
@@ -328,25 +300,26 @@ export function drawWeeks(ctx: Ctx, s: S) {
   fx.samples = 10
 }
 
-// ── B3 · "Some see doom / Some see bloom" ─────────────────────────────────
+// ── B3 · "Some see doom / Some see bloom": equal time, then side by side ──
 const panel = (
   ctx: Ctx,
   s: S,
   b: number,
   at: number,
-  x: number,
-  w: number,
+  layout: { x: number; w: number },
+  clip: { x: number; w: number },
   bg: string,
   word: string,
   slugs: string[]
 ) => {
+  if (clip.w <= 0) return
   ctx.save()
   ctx.beginPath()
-  ctx.rect(x, 0, w, s.H)
+  ctx.rect(clip.x, 0, clip.w, s.H)
   ctx.clip()
   ctx.fillStyle = bg
-  ctx.fillRect(x, 0, w, s.H)
-  const cx = x + w / 2
+  ctx.fillRect(clip.x, 0, clip.w, s.H)
+  const cx = layout.x + layout.w / 2
   text(ctx, 'Some see', cx, 330, {
     size: 64,
     weight: 700,
@@ -370,7 +343,7 @@ const panel = (
   // Faces pop on sixteenth notes.
   const d = 150
   const n = slugs.length
-  const spread = Math.min(w - 190, 980)
+  const spread = Math.min(layout.w - 190, 980)
   for (let i = 0; i < n; i++) {
     const t0 = at + 0.5 + i * 0.25
     const p = ramp(b, t0, t0 + 0.4, outBack(2.4))
@@ -384,25 +357,68 @@ const panel = (
 
 export function drawDivide(ctx: Ctx, s: S) {
   const b = s.b
-  fill(ctx, C.ink, s.W, s.H)
-  // Coral wipes across the whole frame; mint later pushes it to the left half.
-  const wipe = ramp(b, 26, 26.18, outQuart)
-  const push = ramp(b, 27.9, 28.12, inOutQuart)
-  const leftW = lerp(s.W, s.W / 2, push)
-  panel(ctx, s, b, 26, 0, leftW * wipe, C.coral, 'doom', doomSide)
-  if (b >= 27.9)
-    panel(ctx, s, b, 28, leftW, s.W - leftW, C.mint, 'bloom', bloomSide)
+  const W = s.W
+  fill(ctx, C.ink, W, s.H)
+  // Doom gets the frame (28), then bloom gets the frame (30), then the two
+  // camps sit side by side (32): each is on screen for the same four beats.
+  const wipeDoom = ramp(b, 28, 28.18, outQuart)
+  const wipeBloom = ramp(b, 30, 30.18, outQuart)
+  const split = ramp(b, 31.9, 32.12, inOutQuart)
+  const leftW = (W / 2) * split
+  if (b < 30.2)
+    panel(
+      ctx,
+      s,
+      b,
+      28,
+      { x: 0, w: W },
+      { x: 0, w: W * wipeDoom },
+      C.coral,
+      'doom',
+      doomSide
+    )
+  if (b >= 31.9)
+    panel(
+      ctx,
+      s,
+      b,
+      28,
+      { x: leftW - W / 2, w: W / 2 },
+      { x: 0, w: leftW },
+      C.coral,
+      'doom',
+      doomSide
+    )
+  if (b >= 30) {
+    const mx = split > 0 ? leftW : W * (1 - wipeBloom)
+    panel(
+      ctx,
+      s,
+      b,
+      30,
+      { x: split > 0 ? leftW : 0, w: split > 0 ? W - leftW : W },
+      { x: mx, w: W - mx },
+      C.mint,
+      'bloom',
+      bloomSide
+    )
+  }
   // Seam between the two camps.
-  if (b >= 28) {
+  if (b >= 32) {
     ctx.fillStyle = C.ink
-    ctx.fillRect(leftW - 3, 0, 6, s.H * ramp(b, 28.05, 28.4, outExpo))
+    ctx.fillRect(leftW - 3, 0, 6, s.H * ramp(b, 32.05, 32.4, outExpo))
   }
   const fx = s.fx
   fx.bg = hexToRgb01(C.ink)
   fx.bloom = 0.04
   fx.vignette = 0.2
-  fx.ca = 0.5 + 6 * hit(b, 26, 0.25) + 6 * hit(b, 28, 0.25)
-  fx.samples = (b > 25.95 && b < 26.25) || (b > 27.85 && b < 28.2) ? 32 : 10
+  fx.ca = 0.5 + 6 * (hit(b, 28, 0.25) + hit(b, 30, 0.25) + hit(b, 32, 0.25))
+  fx.samples =
+    (b > 27.95 && b < 28.25) ||
+    (b > 29.95 && b < 30.25) ||
+    (b > 31.85 && b < 32.2)
+      ? 32
+      : 10
 }
 
 // ── B4–B5 · "Everyone has a take" → the noise ────────────────────────────
@@ -470,30 +486,29 @@ const takeCard = (
 
 export function drawTakes(ctx: Ctx, s: S) {
   const b = s.b
-  if (b < 34) {
+  const head = { size: 150, weight: 800, tracking: -0.045, color: C.ink }
+  const line = 'Everyone has a take'
+  if (b < 36) {
     fill(ctx, C.paper, s.W, s.H)
-    const k = 1 + 0.04 * ramp(b, 30, 34)
+    const k = 1 + 0.04 * ramp(b, 34, 36)
     ctx.save()
     applyCamera(ctx, s, { x: 960, y: 540, zoom: k })
-    const size = 150
-    const st = { size, weight: 800, tracking: -0.045, color: C.ink }
-    const line = 'Everyone has a take'
-    const w = measure(ctx, line, st)
+    const w = measure(ctx, line, head)
     let x = (s.W - w) / 2
     for (const [at, word] of [
-      [30, 'Everyone'],
-      [30.5, 'has'],
-      [30.75, 'a'],
-      [31, 'take']
+      [34, 'Everyone'],
+      [34.5, 'has'],
+      [34.75, 'a'],
+      [35, 'take']
     ] as [number, string][]) {
-      riseWord(ctx, b, at, word, x, 585, st)
-      x += measure(ctx, word + ' ', st)
+      riseWord(ctx, b, at, word, x, 585, head)
+      x += measure(ctx, word + ' ', head)
     }
-    // Cards land around the headline on eighth notes, piling up.
+    // Cards land around the headline on sixteenth notes, piling up fast.
     for (let i = 0; i < 16; i++) {
-      const at = 31.5 + i * 0.16
+      const at = 35.1 + i * 0.055
       if (b < at) continue
-      const p = ramp(b, at, at + 0.22, outBack(1.6))
+      const p = ramp(b, at, at + 0.2, outBack(1.6))
       const ang = rand(i * 4.4) * Math.PI * 2
       const r = 330 + rand(i * 8.1) * 260
       const px = 960 + Math.cos(ang) * r * 1.45
@@ -506,15 +521,15 @@ export function drawTakes(ctx: Ctx, s: S) {
     fx.bg = hexToRgb01(C.paper)
     fx.bloom = 0.04
     fx.vignette = 0.14
-    fx.samples = 12
+    fx.samples = b > 35.05 ? 20 : 12
     return
   }
   // The noise in depth: fly through a field of takes, accelerating.
   fill(ctx, '#0c0c0a', s.W, s.H)
-  const t = b - 34
-  const camZ = 1500 * t + 520 * t * t + 300 * Math.pow(Math.max(0, t - 2.3), 3)
+  const t = b - 36
+  const camZ = 2400 * t + 1200 * t * t + 700 * Math.pow(Math.max(0, t - 1.2), 3)
   const focal = 950
-  const roll = Math.sin(t * 0.9) * 0.05 + ramp(b, 36.5, 38, inCubic) * 0.18
+  const roll = Math.sin(t * 1.4) * 0.05 + ramp(b, 36.8, 38, inCubic) * 0.18
   ctx.save()
   ctx.translate(s.W / 2, s.H / 2)
   ctx.rotate(roll)
@@ -543,6 +558,20 @@ export function drawTakes(ctx: Ctx, s: S) {
   items.sort((a, b) => b.z - a.z)
   for (const it of items) it.draw()
   ctx.restore()
+  // The headline blows past the camera as we dive into the noise.
+  const pass = ramp(b, 36, 36.75, inQuad)
+  if (pass < 1) {
+    ctx.save()
+    ctx.translate(960, 540)
+    ctx.scale(lerp(1, 2.4, pass), lerp(1, 2.4, pass))
+    text(ctx, line, 0, 45, {
+      ...head,
+      color: C.paper,
+      align: 'center',
+      alpha: 1 - pass
+    })
+    ctx.restore()
+  }
   // Pulses of doom/bloom color flood the field on the horn accents.
   const flare =
     hit(b, 36, 0.4) +
@@ -567,8 +596,8 @@ export function drawTakes(ctx: Ctx, s: S) {
   fx.bloom = 0.22
   fx.bloomThreshold = 0.78
   fx.vignette = 0.45
-  fx.ca = 1 + t * 1.5 + 8 * hit(b, 36, 0.3)
-  fx.zoomBlur = 0.02 + ramp(b, 36.5, 38, inCubic) * 0.12
+  fx.ca = 1 + t * 3 + 8 * hit(b, 36, 0.3)
+  fx.zoomBlur = 0.02 + ramp(b, 36.8, 38, inCubic) * 0.12
   fx.samples = 28
 }
 

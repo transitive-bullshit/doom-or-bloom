@@ -196,26 +196,33 @@ export function drawBelieve(ctx: Ctx, s: S) {
   fx.samples = 16
 }
 
-// ── D2 · "And why" ─────────────────────────────────────────────────────────
+// ── D2 · "And why." ─────────────────────────────────────────────────────────
 export function drawWhy(ctx: Ctx, s: S) {
   const b = s.b
   fill(ctx, C.ink, s.W, s.H)
   const dive = ramp(b, 89.35, 90, inCubic)
   const push = ramp(b, 86, 89.4, outCubic)
   const sh = shake(b, 88, 14, 0.3)
-  // Exit: push into the heart of "why" and flash to the next scene's cream.
+  // Exit: dive into the period of "why." and flash to the next scene's cream.
   const serif: TextStyle = {
     family: 'serif',
     italic: true,
     size: 640,
     weight: 400
   }
-  const ww = measure(ctx, 'why', serif)
-  const wx = 960 - ww / 2 + 30
+  const ww = measure(ctx, 'why.', serif)
+  const wWhy = measure(ctx, 'why', serif)
+  const wx = 960 - ww / 2 + 60
   const wy = 830
-  const zoom = lerp(1 + push * 0.06, 5.5, dive * dive)
-  const cxw = lerp(960, 1000, ramp(b, 89.35, 89.9, inOutCubic))
-  const cyw = lerp(540, 620, ramp(b, 89.35, 89.9, inOutCubic))
+  const dot = { x: wx + wWhy + (ww - wWhy) * 0.42, y: wy - serif.size * 0.052 }
+  // Keep the period on screen: animate its screen position, derive the camera.
+  const z0 = 1 + push * 0.06
+  const zoom = lerp(z0, 30, dive * dive)
+  const m = ramp(b, 89.35, 89.85, outCubic)
+  const sx = lerp(960 + (dot.x - 960) * z0, 960, m)
+  const sy = lerp(540 + (dot.y - 540) * z0, 540, m)
+  const cxw = dot.x - (sx - 960) / zoom
+  const cyw = dot.y - (sy - 540) / zoom
   ctx.save()
   applyCamera(ctx, s, { x: cxw, y: cyw, zoom, ox: sh.x, oy: sh.y })
   softGlow(ctx, 960, 620, 900, C.violet, 0.14)
@@ -232,7 +239,7 @@ export function drawWhy(ctx: Ctx, s: S) {
     ctx.translate(960, 600)
     ctx.scale(k, k)
     ctx.translate(-960, -600)
-    text(ctx, 'why', wx, wy, {
+    text(ctx, 'why.', wx, wy, {
       ...serif,
       color: prismGradient(ctx, wx, 0, wx + ww, 0),
       alpha: clamp(p * 2)
@@ -247,8 +254,8 @@ export function drawWhy(ctx: Ctx, s: S) {
   fx.vignette = 0.38
   fx.ca = 0.8 + 8 * hit(b, 86.5, 0.35) + 5 * hit(b, 88, 0.3)
   fx.samples = dive > 0 ? 40 : 12
-  fx.zoomBlur = dive * 0.24
-  fx.flash = ramp(b, 89.6, 90, inCubic)
+  fx.zoomBlur = dive * 0.2
+  fx.flash = ramp(b, 89.8, 90, inCubic)
   fx.flashColor = [0.984, 0.98, 0.965]
 }
 
@@ -708,11 +715,11 @@ export function drawFuture(ctx: Ctx, s: S) {
       weight: 400,
       color: prismGradient(ctx, 700, 0, 1000, 0)
     }
-    const w1 = measure(ctx, 'Where do ', a)
+    const w1 = measure(ctx, 'So where do ', a)
     const w2 = measure(ctx, 'you', sr)
     const w3 = measure(ctx, ' land?', a)
     const x0 = 960 - (w1 + w2 + w3) / 2
-    rise(ctx, b, 106, 'Where do', x0, 190, a)
+    rise(ctx, b, 106, 'So where do', x0, 190, a)
     rise(ctx, b, 106.5, 'you', x0 + w1, 190, sr)
     rise(ctx, b, 107, 'land?', x0 + w1 + w2 + measure(ctx, ' ', a), 190, a)
     ctx.restore()

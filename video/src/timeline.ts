@@ -35,11 +35,11 @@ interface Entry {
 
 // Scenes are keyed to global beat positions (see engine/timing.ts).
 const scenes: Entry[] = [
-  { from: -999, to: 18, draw: drawHook },
-  { from: 18, to: 22, draw: drawStakes },
-  { from: 22, to: 26, draw: drawWeeks },
-  { from: 26, to: 30, draw: drawDivide },
-  { from: 30, to: 38, draw: drawTakes },
+  { from: -999, to: 20, draw: drawHook },
+  { from: 20, to: 24, draw: drawStakes },
+  { from: 24, to: 28, draw: drawWeeks },
+  { from: 28, to: 34, draw: drawDivide },
+  { from: 34, to: 38, draw: drawTakes },
   { from: 38, to: 42, draw: drawTribal },
   { from: 42, to: 50, draw: drawTurn },
   { from: 50, to: 54, draw: drawDrop },
