@@ -1,3 +1,4 @@
+import { reportServerError } from '@/lib/server/error-reporting'
 import { cookies } from 'next/headers'
 import {
   loadAssessmentOrDraft,
@@ -65,13 +66,27 @@ export async function POST(
         maxAge: 0
       })
     }
+    const status =
+      result.operation.status === 'running'
+        ? 202
+        : result.operation.status === 'succeeded'
+          ? 200
+          : 503
+    if (status === 503)
+      reportServerError('assessment_failure_response', undefined, {
+        boundary: 'api',
+        requestId: result.operation.requestKey,
+        assessmentId: id,
+        operationId: result.operation.id,
+        application: {
+          effect: 'saved_operation_failure_returned',
+          operationStatus: result.operation.status,
+          publicFailureCategory: result.operation.failureCategory,
+          responseStatus: status
+        }
+      })
     return Response.json(result, {
-      status:
-        result.operation.status === 'running'
-          ? 202
-          : result.operation.status === 'succeeded'
-            ? 200
-            : 503,
+      status,
       headers: privateHeaders
     })
   })

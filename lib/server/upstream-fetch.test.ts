@@ -47,13 +47,21 @@ test('403 body and correlation headers survive for diagnostics without consuming
   expect(await received.json()).toEqual(raw)
   const log = JSON.parse(logs[0]!)
   expect(log).toMatchObject({
+    emitter: 'doom-or-bloom',
+    eventSource: 'application',
+    boundary: 'upstream_transport',
+    application: { effect: 'http_response_returned_to_caller' },
     requestId: 'app-request',
     method: 'POST',
     upstreamPath: '/v1/systemone',
     upstream: {
+      source: 'http_response',
+      status: 403,
+      bodyRepresentation: 'sanitized_preview',
       headers: { 'x-typesafe-request-id': 'req_test_403', 'cf-ray': 'ray-IAD' }
     }
   })
+  expect(log.error).toBeUndefined()
   expect(log.upstream.bodyPreview).toContain('access_denied')
   expect(logs[0]).not.toMatch(
     /private participant|private-credential|response-secret|session=secret/
@@ -94,6 +102,17 @@ test('actual overflow response retains error_type and SDK request ID', async () 
   expect(cause).toBeInstanceOf(APIError)
   expect(cause).toMatchObject({ body, requestId: 'req_overflow', status: 400 })
   expect(JSON.parse(logs[0]!).upstream.bodyPreview).toBe(JSON.stringify(body))
+  expect(JSON.parse(logs[1]!)).toMatchObject({
+    eventSource: 'application',
+    boundary: 'provider_adapter',
+    application: { effect: 'evaluation_batch_aborted' },
+    error: {
+      code: 'max_tokens_exceeded',
+      codeSource: 'application',
+      sdk: { name: '@typesafe-ai/sdk', errorType: 'BadRequestError' },
+      providerRequestId: 'req_overflow'
+    }
+  })
   expect(fetcher).toHaveBeenCalledTimes(1)
 })
 

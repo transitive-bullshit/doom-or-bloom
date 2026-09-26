@@ -139,7 +139,7 @@ test('context overflow is permanent and never triggers recursive splitting', asy
       severity: 'error',
       status: 400,
       attempt: 1,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',
@@ -167,7 +167,7 @@ test('transient batch retries respect the physical ceiling and remaining operati
         severity: 'error' as const,
         status: 429,
         attempt,
-        error: { type: 'Error', code: 'unexpected_error' }
+        application: { effect: 'http_response_returned_to_caller' }
       })
     ),
     {
@@ -206,7 +206,7 @@ test('an oversized fallback stops without searching for the provider limit', asy
       severity: 'error',
       status: 400,
       attempt: 1,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',
@@ -236,7 +236,7 @@ test('authentication failures are not retried, while transient retries have a ph
       severity: 'error',
       status: 401,
       attempt: 1,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',
@@ -252,14 +252,14 @@ test('authentication failures are not retried, while transient retries have a ph
       severity: 'error',
       status: 429,
       attempt: 1,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_call_failed',
       severity: 'error',
       status: 429,
       attempt: 2,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',
@@ -296,7 +296,7 @@ test('caller cancellation stops retry backoff without another physical request',
       severity: 'error',
       status: 429,
       attempt: 1,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',
@@ -401,7 +401,7 @@ test('overflow diagnostics retain status without raw provider errors', async () 
       severity: 'error',
       status: 400,
       attempt: 1,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',
@@ -465,7 +465,7 @@ test('failed later batch retains validated responses and physical diagnostics wi
       severity: 'error',
       status: 401,
       attempt: 2,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',
@@ -522,14 +522,14 @@ test('a second transient failure ends the whole operation after exactly two call
       severity: 'error',
       status: 503,
       attempt: 1,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_call_failed',
       severity: 'error',
       status: 503,
       attempt: 2,
-      error: { type: 'Error', code: 'unexpected_error' }
+      application: { effect: 'http_response_returned_to_caller' }
     },
     {
       event: 'jev_batch_failed',

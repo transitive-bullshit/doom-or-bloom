@@ -206,6 +206,9 @@ export function createLiveProvider(model: string): Provider {
         } catch (err) {
           reportServerError('jev_batch_failed', err, {
             ...diagnosticContext,
+            boundary: 'provider_adapter',
+            provider: 'TypeSafe',
+            application: { effect: 'evaluation_batch_aborted' },
             model,
             attempts,
             stateBytes: Buffer.byteLength(JSON.stringify(state)),

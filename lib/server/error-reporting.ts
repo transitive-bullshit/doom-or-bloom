@@ -65,6 +65,9 @@ export function errorDetails(
             ? error.name
             : 'ApplicationError',
     code,
+    codeSource:
+      systemCode && code === systemCode ? 'runtime_or_library' : 'application',
+    representation: 'application_summary',
     stack: error.stack
       ?.split('\n')
       .filter((line) => /^\s+at /.test(line))
@@ -75,6 +78,7 @@ export function errorDetails(
     .digest('hex')
     .slice(0, 16)
   if (error instanceof APIError) {
+    detail.sdk = { name: '@typesafe-ai/sdk', errorType: error.constructor.name }
     detail.status = error.status
     if (error.requestId && /^[\w-]{1,120}$/.test(error.requestId))
       detail.providerRequestId = error.requestId
@@ -105,7 +109,10 @@ export function reportServerError(
       commit: process.env.VERCEL_GIT_COMMIT_SHA,
       region: process.env.VERCEL_REGION,
       ...context,
-      error: errorDetails(error)
+      emitter: 'doom-or-bloom',
+      eventSource: 'application',
+      boundary: context.boundary ?? 'application',
+      error: error === undefined ? undefined : errorDetails(error)
     })
   )
 }
@@ -132,6 +139,8 @@ export function apiDiagnostics(request: Request, route: string) {
         error,
         {
           ...metadata,
+          boundary: 'api',
+          application: { effect: 'request_failed', responseStatus: status },
           phase,
           route,
           aborted: request.signal.aborted,

@@ -174,6 +174,7 @@ export async function upstreamFetch(
   const { event = 'upstream_request_failed', ...metadata } = context
   const request = {
     ...metadata,
+    boundary: 'upstream_transport',
     method,
     upstreamOrigin: url.origin,
     // Never log query parameters, which may contain tokens or OAuth codes.
@@ -191,6 +192,8 @@ export async function upstreamFetch(
     reportServerError(event, err, {
       ...request,
       status: null,
+      upstream: { source: 'transport', responseReceived: false, status: null },
+      application: { effect: 'exception_rethrown' },
       elapsedMs: Math.round(performance.now() - started)
     })
     throw err
@@ -203,11 +206,16 @@ export async function upstreamFetch(
         body !== undefined
           ? body.length <= 256_000
           : !init?.body && !(input instanceof Request && input.body)
-      reportServerError(event, new Error('Upstream HTTP failure'), {
+      reportServerError(event, undefined, {
         ...request,
         status: response.status,
         elapsedMs: Math.round(performance.now() - started),
+        application: { effect: 'http_response_returned_to_caller' },
         upstream: {
+          source: 'http_response',
+          responseReceived: true,
+          status: response.status,
+          bodyRepresentation: 'sanitized_preview',
           headers: upstreamHeaders(response.headers),
           bodyPreview: canRedact
             ? bodyPreview(sample.text, privateValues)
@@ -217,9 +225,15 @@ export async function upstreamFetch(
         }
       })
     } catch {
-      reportServerError(event, new Error('Upstream HTTP failure'), {
+      reportServerError(event, undefined, {
         ...request,
         status: response.status,
+        upstream: {
+          source: 'http_response',
+          responseReceived: true,
+          status: response.status
+        },
+        application: { effect: 'http_response_returned_to_caller' },
         diagnosticCaptureFailed: true
       })
     }

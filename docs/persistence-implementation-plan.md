@@ -763,3 +763,10 @@ Validation on `6b68802a` plus this checkpoint's working tree: `pnpm test` passed
 - [x] Preserve sanitized upstream HTTP details and correlation headers across TypeSafe, OpenAI participants, X SDK fetches and preview fetching; correlate saved operation keys with engine/provider logs.
 - [x] Record reproducible commands, provider request IDs, limits and remaining uncertainty in [the investigation](research/jev-403-investigation-2026-09-26.md).
 - [x] Verify `pnpm test` (68 files / 329 tests plus format, lint, types, content and unused checks), `pnpm build:local` including production traces, and `pnpm db:test:auth` (expected mocked state-mismatch rejection followed by successful callback/ownership checks). No deployment or provider support message sent.
+
+## Error provenance follow-up
+
+- [x] Label application event provenance and transport/adapter/engine/API boundaries, distinguish SDK exception identity from app classification, and omit fabricated exceptions for HTTP responses.
+- [x] Add the saved-operation API response event to connect upstream failure to public failure category and our response status; retain existing event names for log searches.
+- [x] Document correlation, retry/cascade interpretation, and the distinction between a provider HTTP response and a network exception.
+- [x] Verification: `pnpm test` passed all 329 tests and repository checks; `pnpm build:local` passed compilation and production-trace checks. Logging-only changes; no new paid probes or deployment.

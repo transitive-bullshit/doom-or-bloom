@@ -307,6 +307,8 @@ export async function runAssessment(
             ? (input as Record<string, unknown>)
             : {}
         reportServerError('assessment_stage_failed', err, {
+          boundary: 'assessment_engine',
+          application: { effect: 'assessment_stage_aborted' },
           requestId: logRequestId,
           stage: name,
           attempts,
