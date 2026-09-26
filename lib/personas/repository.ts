@@ -1,7 +1,12 @@
 import 'server-only'
 import { randomUUID } from 'node:crypto'
 import { and, asc, eq, sql } from 'drizzle-orm'
-import { resultSchema } from '../assessment/schema'
+import {
+  componentSchema,
+  resultSchema,
+  worldviewIds
+} from '../assessment/schema'
+import { worldviewValues } from '../assessment/persona-matches'
 import { personaProfileSchema } from '../journeys/catalog'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import type { Pool } from 'pg'
@@ -195,6 +200,55 @@ export function personaRepository(pool: Pool) {
         }
         return id
       })
+    },
+    // Comparison consumers need identity and directional values, not result prose.
+    async selectedComparisons() {
+      const rows = await db
+        .select({
+          id: sql<string>`${personas.metadata}->>'id'`,
+          name: sql<string>`${personas.metadata}->>'name'`,
+          slug: sql<string>`${personas.metadata}->>'slug'`,
+          avatar: sql<string>`${personas.metadata}->>'avatar'`,
+          order: sql<number>`(${personas.metadata}->>'order')::integer`,
+          components: sql<unknown>`coalesce((
+            select jsonb_agg(jsonb_build_object(
+              'vector', component->'vector', 'value', component->'value'
+            ) order by position)
+            from jsonb_array_elements(${assessmentSnapshots.payload} #> '{journey,result,components}')
+              with ordinality as entries(component, position)
+            where component->>'vector' in (${sql.join(
+              worldviewIds.map((id) => sql`${id}`),
+              sql`, `
+            )})
+          ), '[]'::jsonb)`
+        })
+        .from(personas)
+        .innerJoin(
+          assessments,
+          and(
+            eq(assessments.id, personas.selectedAssessmentId),
+            eq(assessments.personaId, personas.id)
+          )
+        )
+        .innerJoin(
+          assessmentSnapshots,
+          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
+        )
+        .where(and(publicSimulation, eq(personas.featured, true)))
+        .orderBy(asc(personas.slug))
+      return rows
+        .sort((a, b) => a.order - b.order)
+        .map(({ order: _order, components, ...identity }) => ({
+          ...personaMetadataSchema
+            .pick({ id: true, name: true, slug: true, avatar: true })
+            .parse(identity),
+          values: worldviewValues({
+            components: componentSchema
+              .pick({ vector: true, value: true })
+              .array()
+              .parse(components)
+          })
+        }))
     },
     // List views need the result and source comparison, never interview history.
     async selectedSummaries(featuredOnly = false) {

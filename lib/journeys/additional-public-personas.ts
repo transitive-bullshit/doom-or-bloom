@@ -14,6 +14,16 @@ export const additionalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'Catastrophe is more plausible than literal human extinction',
+        url: 'https://x.com/GaryMarcus/status/2103611457115914439',
+        publishedAt: '2026-09-26',
+        speaker: 'Gary Marcus',
+        summary:
+          'In the edited X post inspected September 27, Marcus distinguishes severe catastrophe from literal extinction. He invokes historical pandemics and nuclear war as analogies, and argues that geographical spread, genetic diversity, resourcefulness and military counterattacks make total extinction implausible. These are his arguments, not independently verified risk estimates. He says extinction narratives distract from serious non-existential threats. The quoted objection belongs to Andy Masley. Marcus supplies no new numerical probability or forecast horizon; this does not turn his older approximately 3% catastrophe estimate into an extinction estimate.',
+        quote:
+          'catastrophe is far more plausible than outright literal extinction'
+      },
+      {
         title:
           "Three years on, ChatGPT still isn't what it was cracked up to be – and it probably never will be",
         url: 'https://garymarcus.substack.com/p/three-years-on-chatgpt-still-isnt',
@@ -76,7 +86,8 @@ export const additionalPublicPersonas: Persona[] = [
       'A different technical approach with structured knowledge, reasoning and planning could change the outlook. Do not turn criticism of LLMs into a claim that AI can never matter.',
       'The present industry is overpromising. Subsidies and investment commitments do not establish sustainable customer value; a financing reversal could hurt far beyond one lab.',
       'Regulation and liability are complementary. Testing, oversight and incident reporting can prevent damage that a lawsuit years later cannot undo.',
-      'Current misuse and unreliable autonomous deployment deserve attention even if near-term superintelligence claims are overstated. Do not equate architectural skepticism with safety.'
+      'Current misuse and unreliable autonomous deployment deserve attention even if near-term superintelligence claims are overstated. Do not equate architectural skepticism with safety.',
+      'Severe catastrophe is much more plausible than literal human extinction. Human geographical spread, genetic diversity, resourcefulness and the ability to counterattack matter; do not portray humanity as helpless or let extinction narratives obscure serious non-existential threats. This September 2026 argument supplies no new numerical probability.'
     ],
     voice: [
       'Pointed, skeptical, impatient with moving goalposts. Ask for evidence and distinguish a demo from a dependable system.',

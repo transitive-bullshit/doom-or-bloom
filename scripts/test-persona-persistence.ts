@@ -5,6 +5,7 @@ import { Pool } from 'pg'
 import { people } from '../components/landing/people'
 import { databaseUrl } from '../lib/db/config'
 import { personaGeneration } from '../lib/personas/generation'
+import { worldviewValues } from '../lib/assessment/persona-matches'
 import { createAssessment } from '../lib/assessment/state'
 import { seedPersonas } from '../lib/personas/seed'
 import { personaRepository } from '../lib/personas/repository'
@@ -26,6 +27,18 @@ async function verifySummaries() {
     recordedSources: row.payload.journey.personaSnapshot?.sources ?? [],
     result: row.payload.journey.result
   }))
+  assert.deepEqual(
+    await repo.selectedComparisons(),
+    full
+      .filter((row) => row.persona.featured)
+      .map(({ metadata, payload }) => ({
+        id: metadata.id,
+        name: metadata.name,
+        slug: metadata.slug,
+        avatar: metadata.avatar,
+        values: worldviewValues(payload.journey.result!)
+      }))
+  )
   assert.deepEqual(await repo.selectedSummaries(), expected)
   assert.deepEqual(
     await repo.selectedSummaries(true),
@@ -187,6 +200,7 @@ try {
         generated.finalAssessment
       )
   }
+  await verifySummaries()
   // A newly edited brief must not change the sources frozen in the run.
   const revisedBrief = personaProfileSchema.parse(source.persona.sourceBrief)
   revisedBrief.sources = [

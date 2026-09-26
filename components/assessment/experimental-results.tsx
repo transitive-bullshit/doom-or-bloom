@@ -217,7 +217,6 @@ export function ExperimentalResults({
         subject={subject}
         transformationClaim={experiment?.transformation.claim}
         components={result.components}
-        reasoning={result.vertical}
         influence={
           experiment?.influence ??
           emptyComponent('influence', 'Human influence')

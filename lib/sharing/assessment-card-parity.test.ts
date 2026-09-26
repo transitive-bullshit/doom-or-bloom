@@ -18,7 +18,6 @@ const comparisons = people
   .slice(0, 3)
   .map((person) => ({ ...person, values: worldviewValues(result) }))
 vi.mock('@/components/landing/data', () => ({
-  loadExamples: async () => people,
   loadPersonaComparisons: async () => comparisons
 }))
 vi.mock('@/lib/assessments/public-server', () => ({

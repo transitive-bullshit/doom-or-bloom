@@ -6,7 +6,7 @@ This document defines the current product and UI contract. [PERSISTENCE.md](PERS
 
 Participant assessments use whole-answer support; offline persona generation additionally selects and verifies excerpts. [TYPESAFE.md](TYPESAFE.md#runtime-assessments-and-persona-excerpts) owns this processing boundary. Preserve readable historical records while keeping the current UI distinctions below.
 
-The worldview map, human influence, transformation, reasoning scores, inferred P(doom), fingerprints, findings, whole-answer references, resources and downloads remain available. Runtime results hide the detailed milestone timeline, outlook hinges and excerpt-backed reasoning judgments; the review/clarification disclosure and claim-specific correction actions are currently removed from the participant UI. Persona views retain excerpt-based cards. Excerpt and quote-verification behavior described below applies only to personas.
+The worldview map, human influence, transformation, inferred P(doom), fingerprints, findings, whole-answer references, resources and downloads remain available. Runtime results hide the detailed milestone timeline, outlook hinges and excerpt-backed reasoning judgments; the review/clarification disclosure and claim-specific correction actions are currently removed from the participant UI. Persona views retain excerpt-based cards. Excerpt and quote-verification behavior described below applies only to personas.
 
 ## Purpose
 
@@ -47,7 +47,7 @@ The hard problems are evidence curation and choosing the evidence that bears mos
 
 ### Experimental direction: more useful result visualizations
 
-The headline map pairs **Doom–Bloom × Scale of transformation**. Collective human influence is shown as a single axis under “More of your worldview,” alongside expected upside, expected harm, and demonstrated reasoning. These views should help participants recognize their beliefs and identify useful next questions. Reasoning quality does not control map placement.
+The headline map pairs **Doom–Bloom × Scale of transformation**. Collective human influence is shown as a single axis under “More of your worldview,” alongside expected upside and expected harm. These views should help participants recognize their beliefs and identify useful next questions. Reasoning quality does not control map placement.
 
 The local experiment includes the following supporting views. Milestone timelines and excerpt-backed assumptions are currently shown only for simulated users; participant results retain inferred P(doom) and whole-answer support. These are provisional designs, not validated assessment instruments:
 
@@ -212,7 +212,7 @@ The P(doom) card distinguishes inferred estimates from stated or sourced estimat
 
 ### Provisional result points and reasoning
 
-Show demonstrated reasoning as a single axis beside expected upside and harm wherever result cards appear, including per-answer inspection and the progression explorer. Reuse the existing reasoning composite and range. It measures the reasoning demonstrated in the answers, not intelligence or ideological agreement.
+Do not show the demonstrated reasoning card in user-facing results, including participant results, public assessments, simulated-user pages, per-answer inspection and the progression explorer. Retain the reasoning composite, range and evidence in the assessment data for internal analysis and diagnostics; this presentation change does not alter scoring or map placement.
 
 Prefer a tentative map point with an honest interpretation range over withholding a useful estimate. Explicit uncertainty is shown as an unsettled point in the open range, not a moderate belief. An unexplored axis remains unplaced. Direct influence/transformation questions compete through ordinary routing; current behavior does not guarantee one before showing results.
 

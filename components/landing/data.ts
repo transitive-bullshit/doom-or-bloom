@@ -1,5 +1,7 @@
 import 'server-only'
-import { worldviewValues } from '@/lib/assessment/persona-matches'
+import { createHash } from 'node:crypto'
+import { unstable_cache } from 'next/cache'
+import { databaseUrl } from '@/lib/db/config'
 import { reportServerError } from '@/lib/server/error-reporting'
 import { cache } from 'react'
 import { getPool } from '@/lib/db'
@@ -60,13 +62,13 @@ function exampleFromSummary(
 /** Identical comparison inputs for private and public participant results. */
 export const loadPersonaComparisons = cache(async () => {
   try {
-    return (await loadExamples()).map(({ id, name, slug, avatar, result }) => ({
-      id,
-      name,
-      slug,
-      avatar,
-      values: worldviewValues(result)
-    }))
+    // Separate local/test/hosted caches without putting credentials in cache keys.
+    const databaseKey = createHash('sha256').update(databaseUrl()).digest('hex')
+    return await unstable_cache(
+      () => personaRepository(getPool()).selectedComparisons(),
+      ['persona-comparisons-v1', databaseKey],
+      { revalidate: 172800 }
+    )()
   } catch (err) {
     reportServerError('persona_comparisons_unavailable', err, {})
     return []

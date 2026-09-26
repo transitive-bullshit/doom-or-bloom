@@ -211,3 +211,9 @@ The owner-library index matches `(owner_id, created_at)`. Account identity looku
 ## Local operator inspection
 
 The development-only `/admin` dashboard uses a separate read-only connection and guarded Next routes. It supports local or production inspection without changing the ordinary app database. See [admin tooling](admin.md) for launch commands, metric definitions, isolation, and Drizzle Studio. Opening drafts is not persisted, so database-derived starts are first submissions or created forks.
+
+### Persona comparison transfer and caching
+
+Participant comparison inputs select only featured public personas’ IDs, names, slugs, avatars, and directional component names/values in SQL. They exclude source lists, result prose, evidence, and interview snapshots, while preserving comparison values and catalog ordering. Admin detail comparisons use the same query directly and remain fresh on every load. Share-card portrait lookup reuses the compact public comparison data.
+
+The public comparison loader uses the Next Data Cache with a 48-hour revalidation interval, shared across requests and isolated by a hash of the configured database URL. React cache additionally deduplicates within a render. No participant, ownership, or admin data enters this cache. Database selection changes become eligible for refresh after 48 hours; revalidation is request-driven and may serve stale data while refreshing or on failure. Already-generated public pages retain their existing full-route cache behavior. Deployments can reuse the Data Cache; deployment alone does not force comparison refresh. Initial read failures retain the existing logged unavailable state, but that fallback is outside the cache and is not stored as a successful empty result.
