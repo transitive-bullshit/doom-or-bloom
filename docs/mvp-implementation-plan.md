@@ -1,10 +1,8 @@
-# Local MVP implementation plan
+# Original MVP implementation record
 
-Persistence follow-up (approved 2026-09-23): use [the persistent assessments plan](persistence-implementation-plan.md) and [PERSISTENCE.md](PERSISTENCE.md) for database persistence, server authority, anonymous sessions, synchronous operations, forks, public URLs, personas and optional X login. Its decisions supersede conflicting exclusions and persistence/budget architecture below. This file retains the original MVP execution history; do not apply its initial-repository/baseline-commit instructions to the already implemented app.
+Prepared 2026-09-17. This file preserves the original plan and dated execution evidence. The application is implemented; unfinished editorial/corpus review and semantic validation remain real gaps. An unchecked historical feature proposal is not automatically current scope.
 
-Current override (2026-09-18): algorithm 0.4.0 pauses runtime corpus grounding and uses evidence readiness instead of a three-answer minimum. Apply the current contracts in ASSESSMENT/TYPESAFE; older completed checkpoints below are historical, including paid measurements and reference-stage implementation. Corpus authoring/review remains unfinished. Commit these demo changes after static/fixture verification; do not run paid evaluation.
-
-Status: implementation in progress; see checkboxes and checkpoint log for evidence. Prepared 2026-09-17 after reading all seven handoff documents and inspecting the repository and installed Next.js guides.
+For current work, start with [the project guide](README.md) and [architecture](architecture.md). [PERSISTENCE.md](PERSISTENCE.md) supersedes browser-authoritative storage, no-account/public-URL exclusions and the old lifecycle. [ASSESSMENT.md](ASSESSMENT.md) and [TYPESAFE.md](TYPESAFE.md) own current readiness, map, runtime/persona and inference rules. [testing.md](testing.md) owns validation policy. The original setup commands, module proposals, budgets and execution instructions below are historical; consult them to understand a decision, not to bootstrap or reimplement the existing app.
 
 ## 1. Outcome and source of truth
 
@@ -14,7 +12,7 @@ The [handoff index](README.md) links the authoritative product, assessment, Type
 
 Local scope includes the whole experience, real Jev integration, authored assets, and evaluation. Production deployment, Vercel configuration, domain setup, distributed rate limiting, accounts, databases, live news retrieval, and public assessment URLs are outside this plan. Optional sound and native file sharing can wait.
 
-## 2. How implementation agents must use this plan
+## 2. Original implementation workflow (historical)
 
 1. Read the relevant canonical docs before changing that area. Read the installed Next.js guide for the API being used, as required by root `AGENTS.md`.
 2. Execute the numbered milestones in dependency order. Each task below uses `- [ ]`; change it to `- [x]` only when its stated outcome exists and its relevant checks pass. Keep incomplete and blocked tasks unchecked.
@@ -23,7 +21,7 @@ Local scope includes the whole experience, real Jev integration, authored assets
 5. At each commit run formatting, linting, and the checks relevant to the changed code. Once the app scaffold exists, keep the existing `pnpm test` and `pnpm build` checks passing at integration checkpoints. Live API evaluation is separate from ordinary tests.
 6. Human editorial review gates apply to assets and assessment semantics, not routine implementation. Continue independent engineering while review is pending. Record actual reviewer feedback; never self-label an agent draft as human-reviewed.
 
-The repository currently has no commits and the supplied skeleton is untracked. At implementation start, inspect status again and make a clearly identified baseline commit of the supplied project files before feature work, excluding local artifacts and secrets. Do not reset or discard the supplied files. If the initial skeleton cannot yet pass tests/build because the app is absent, record that baseline exception and establish passing checks in milestone 1.
+At kickoff the repository had no commits and the supplied skeleton was untracked. The baseline commit and initial scaffold checks below record that one-time setup; they do not apply to later work.
 
 If multiple agents are assigned later, use the ownership boundaries in section 10. This plan does not require multiple agents.
 

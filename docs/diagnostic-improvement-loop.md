@@ -1,6 +1,6 @@
 # Assessment diagnostic loop — algorithm 0.6.0
 
-This implements the approved review of the participant report from September 20, 2026. It supersedes the earlier 0.5.0 descriptions of map placement, tentative tensions and debug-only trace capture. These remain experimental authored measurements.
+Historical implementation and live-review record from September 20, 2026. The observations below explain the diagnostic design; their cohort counts, per-answer projections, tension/excerpt behavior and storage lifecycle are not current runtime instructions. Use [ASSESSMENT.md](ASSESSMENT.md), [TYPESAFE.md](TYPESAFE.md), [local-debugging.md](local-debugging.md) and [user-journeys.md](user-journeys.md) for current behavior. These remain experimental authored measurements.
 
 ## Placement and reasoning
 

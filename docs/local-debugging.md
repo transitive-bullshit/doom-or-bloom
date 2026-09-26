@@ -1,20 +1,22 @@
 # Local debugging and content inspection
 
-> Persistent assessments use [synchronous operations](PERSISTENCE.md#synchronous-execution-and-idempotency): server-side submissions, processing status and bounded failure records are saved inside bounded POST handlers. Inspect them with normal PostgreSQL tools. Detailed browser traces remain separate from server progress; no operator dashboard is required.
+Use this guide for a failed submission, unexpected interpretation/routing, or a diagnostic export. For read-only cross-assessment database inspection and Drizzle Studio, use [local admin](admin.md).
 
-The [0.6.0 diagnostic loop](diagnostic-improvement-loop.md) documents the current export and per-answer inspection contract. All browser operations capture local traces; the debug toggle controls their visibility.
+Run `pnpm dev` and use its printed Portless URL. `pnpm exec portless get doom-or-bloom --no-worktree` resolves the root checkout; linked worktrees use their printed branch-prefixed URL. The launcher forces live Jev and lets `.env.development.local` override inherited variables; see [environment boundaries](../CONTRIBUTING.md#environment-boundaries) for how other commands differ.
 
-Run `pnpm dev` and use its Portless URL (`pnpm exec portless get doom-or-bloom --no-worktree`). The usual local address is `http://doom-or-bloom.localhost:1355/`; use the printed address if configuration differs.
+## Start with the saved operation
 
-`pnpm dev` and `pnpm dev:tailscale` load `.env.development.local` before validation and startup. Values defined there override inherited shell/editor variables, including X credentials and the auth callback origin. Other inherited variables (such as Portless settings) remain available. Restart after changing this file. Production startup is unchanged.
+1. For a failed or uncertain submission, identify its assessment and persisted request key. Inspect `assessment_operations` for status, deadline, base revision and bounded diagnostics; the previous committed `assessment_snapshots` row remains authoritative until an operation commits.
+2. A lost response may already represent success. Use **Check submission** or refresh before retrying. Repeating the same request key reads its outcome; a known failed/interrupted operation uses a new key with `retryOf`. After the processing deadline passes, **Retry saved submission** resumes through a new synchronous request. There is no worker or restart-time automatic inference.
+3. For a successful but surprising result, select its recorded browser operation and inspect the actual Jev inputs/outputs and deterministic decisions below. Opening inspectors or downloading recorded diagnostics makes no new inference calls.
+
+Server progress and browser diagnostics have different lifetimes. Operations persist in PostgreSQL. Detailed Jev traces live in this browser's IndexedDB; unsubmitted drafts and uncertain request keys live in localStorage. A new browser/origin can recover server progress with the appropriate owner session, but cannot recover traces or unsubmitted drafts stored only in the old browser. Storage failures leave unsent typing in memory until the tab closes.
 
 ## Jev exchanges
 
-Enable **Debug on** to inspect any recorded step. Trace capture is independent of this visibility toggle. Open **Jev / assessment debugging details** to inspect the selected operation. Requests are actual shared state plus that physical batch's questions; responses are validated typed outputs. Current operations use A (interpret), C (route) and D (result generation on request or automatic completion, followed by rubric evidence selection where needed). Corpus grounding is paused; old B1/B2 exchanges remain labeled historical. Each stage explains its purpose. Local routing/projection decisions and the current saved assessment are separate views. Fixture exchanges are explicitly synthetic. Debugging does not expose hidden model reasoning.
+Enable **Debug on** to inspect any recorded step. Trace capture is independent of this visibility toggle. Open **Jev / assessment debugging details** to inspect the selected operation. Requests are actual shared state plus that physical batch's questions; responses are validated typed outputs. Current operations use A (interpret), C (route) and D (result generation on request or automatic stopping; only persona mode adds excerpt evidence selection). Corpus grounding is paused; old B1/B2 exchanges remain labeled historical. Each stage explains its purpose. Local routing/projection decisions and the current saved assessment are separate views. Fixture exchanges are explicitly synthetic. Debugging does not expose hidden model reasoning.
 
-JSON trees have syntax colors, accessible expand/collapse controls, exact JSON copy and reset-folds. Depth 2+ starts folded. Jev `answers` records offer **Default**, **High first** and **Low first** order in the JSON header. Choice/Score answers use `confidence`; Noul answers use their `noul` probability on the same sorting scale. Default is initially selected; ties preserve original order and missing/non-finite values stay last. Sorting changes only presentation, preserving folds; **Copy JSON** still copies the recorded payload in its original order.
-
-Requests/responses appear beside each other on desktop and stack on smaller screens. Everything uses the page scrollbar.
+JSON trees support folding, contextual field explanations and **Copy JSON**. Jev answer sorting is presentation-only: Choice/Score use `confidence`, Noul uses its `noul` probability, and copying preserves the recorded payload order. Contextual help comes from authored meanings and the recorded question, not generated reasoning.
 
 Successful recorded operations are stored in browser IndexedDB for the current assessment, separately from progress. Refresh restores them; **Recorded operation** selects an earlier revision/stage set. Keep up to 64 recent operations, evicting entire oldest operations toward a 32 MB target. A retained operation is never shortened; a single operation exceeding storage availability can fail with a visible notice. Debug-off submissions retain the same diagnostic information. Creating a new assessment uses separate trace history and preserves the original. History belongs to this browser/origin, contains answer text, and is included in participant-downloaded reports but excluded from analytics, server logs and remote storage. Already lost traces cannot be recovered. Failed inference operations preserve the draft and return safe completed/failed-stage diagnostics when the connection succeeds; failures are not counted as completed assessment revisions.
 
@@ -28,7 +30,7 @@ Both pages are available only in local development. They make no inference or an
 
 ## Synthetic User Journeys
 
-Open `/user-journeys` for 15 generated personas and the fixed real-user transcript replay, exact questions/answers, candidate decisions and per-answer results. The inspector shows the latest live run. Regeneration uses live Jev and OpenAI through the CLI; fixed answers use no OpenAI participant. Mechanical regressions remain separate. See [user-journeys.md](user-journeys.md).
+Open `/user-journeys` for recorded persona simulations and the fixed real-user transcript replay, including exact questions/answers, candidate decisions and per-answer results. The inspector reads the latest local live collection; a fresh checkout has no full collection until records are imported or generated. Regeneration uses paid Jev and OpenAI through the CLI; fixed answers use no OpenAI participant. Mechanical regressions remain separate. See [user-journeys.md](user-journeys.md).
 
 ## Interview shortcuts
 
@@ -36,15 +38,13 @@ Cmd+Enter or Ctrl+Enter submits a nonempty answer through the same Continue guar
 
 ## Paperclips
 
-Ordinary recovery requires two consecutive high-confidence non-answers (threshold 0.85). Usable or ambiguous replies reset the streak; navigation/failed inference do not advance it. Exact standalone `test`, then `test again` count as clear misses locally. Exact `show me paperclips` or `show paperclips` explicitly requests the interlude. Case, repeated whitespace and terminal sentence punctuation are normalized; meaningful answers mentioning tests or paperclip maximizers still require normal inference.
+Ordinary recovery requires two consecutive high-confidence non-answers (threshold 0.85). Usable or ambiguous replies reset the streak; navigation/failed inference do not advance it. Exact standalone `test`, then `test again` count as clear misses locally. Exact `paperclips`, `show me paperclips` or `show paperclips` explicitly requests the interlude. Case, repeated whitespace and terminal sentence punctuation are normalized; meaningful answers mentioning tests or paperclip maximizers still require normal inference.
 
-These exact phrases make no Jev calls, contribute no scores and consume the same recovery submission budget. The interlude appears at most once per assessment, surviving refresh. It pauses the interview; dismissing only removes the visual effect. **Try again** uses a remaining submission, **Try a different question** consumes a prompt, and New assessment creates a separate assessment. Reduced motion uses a static treatment. Once exhausted, a repeated explicit request cannot replenish attempts or replay the effect.
+These exact phrases make no Jev calls and contribute no scores. Recovery allows three evaluated submissions per prompt; the one submission that reveals the interlude is exempt. The interlude appears at most once per assessment, surviving refresh. It pauses the interview; dismissing only removes the visual effect. **Try again** uses a remaining submission, **Try a different question** consumes a prompt, and New assessment creates a separate assessment. Reduced motion uses a static treatment. Once exhausted, a repeated explicit request cannot replenish attempts or replay the effect.
 
-## Meaning help and readiness
+## Readiness
 
-Dotted JSON keys offer a short explanation on hover or keyboard focus; Escape dismisses it. Response judgments use their actual recorded request question; saved judgments use their stored question. Dimension IDs/classifications in assessment state use the authored meanings and local glossary. This is contextual help, not Jev reasoning or generated explanation. It adds no requests, alters no payload and is excluded from Copy JSON.
-
-The Evidence readiness meter summarizes existing presence confidence and coverage. Debug disclosure explains the draft 55% threshold and formula; state JSON exposes per-dimension contributions. It is unrelated to forecast correctness or a high reasoning score. A well-covered first answer can unlock results; answering multiple sparse questions does not guarantee readiness. No paid pressure testing is needed to exercise these paths with fixtures.
+Inspect the meter's debug disclosure and per-dimension contributions in state JSON. Readiness measures evidence presence and coverage, not forecast correctness, reasoning quality or answer count. A well-covered first answer can unlock results; repeated sparse answers need not raise the meter. The formula and threshold belong to [assessment readiness](ASSESSMENT.md#question-budget-and-readiness). Exercise these paths with fixtures rather than paid pressure testing.
 
 ## Structured server failures
 
@@ -54,15 +54,7 @@ For saved-assessment requests, use the assessment ID and request key to inspect 
 
 ## Full assessment download
 
-“Download full report” creates `doom or bloom assessment <id>.zip` in the browser. It contains `interview.md` (usable questions and answers), `assessment.md` (readable result summary), `diagnostics.json` (the complete recorded report data, including Jev inputs, outputs and assessment snapshots), `results.png` (the social sharing image) and `worldview-map.png` (the current main map). Text and JSON are compressed; PNGs are stored without additional compression. The archive preserves trace completeness metadata and existing draft/credential exclusions. Missing historical diagnostics remain missing. Image generation must succeed before the archive is downloaded.
-
-The new persistence endpoints retain operation input/status/deadline, physical request count, and bounded status/stage diagnostics in PostgreSQL. Inspect `assessment_operations` with normal Postgres tools. Failed attempts do not change `assessment_snapshots` or the head revision. Repeating the same request key reads its outcome; retrying a known failed/interrupted attempt uses a new key and `retryOf`. The interview now uses these endpoints. Browser-only unsubmitted drafts are keyed by assessment and prompt; refresh loads committed snapshots and saved submission status.
-
-The optional development feedback widget is omitted when browser localStorage cannot be read. Assessment submission still uses the server; unsent typing remains in memory until the tab closes when draft storage is unavailable.
-
-## CI browser environment
-
-GitHub Actions creates `.env.development.local` with disposable native-Postgres credentials and a fixture provider; it does not need developer secrets. Browser suites retain their environment validation. CI sets `PORTLESS_PORT=1355`, `PORTLESS_HTTPS=0`, and a runner-temporary `PORTLESS_STATE_DIR`, then explicitly starts the proxy. This avoids Portless's privileged HTTPS default and interactive sudo/certificate setup on clean runners. Local development keeps its existing Portless settings.
+“Download full report” creates `doom or bloom assessment <id>.zip` in the browser. It contains `interview.md` (usable questions and answers), `assessment.md` (readable result summary), `diagnostics.json` (the complete recorded report data, including Jev inputs, outputs and assessment snapshots), `results.png` (the social sharing image) and `worldview-map.png` (the current main map). Text and JSON are compressed; PNGs are stored without additional compression. The archive preserves trace completeness metadata and excludes unsubmitted drafts and credentials. Missing historical diagnostics remain missing. Image generation must succeed before the archive is downloaded. The [historical diagnostic loop](diagnostic-improvement-loop.md) records the original rationale; current export fields are defined in `lib/sharing/`.
 
 ## Upstream reproduction
 

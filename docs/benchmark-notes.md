@@ -1,8 +1,8 @@
-# Local development measurements and current bounds
+# Historical development measurements
 
-For current bounds and authorized occasional persona runs, see [TypeSafe workflow](TYPESAFE.md#failure-bounds-and-paid-evaluation) and [User Journeys](user-journeys.md). The September 17 measurements below are historical; current replies allow 20,000 characters, runtime reference resolution is paused, and the shared operation ceiling is 24 physical attempts. Maximum-context boundary checks still use mocked transport rather than paid pressure testing.
+For current bounds and authorized occasional persona runs, see [TypeSafe workflow](TYPESAFE.md#failure-bounds-and-paid-evaluation) and [User Journeys](user-journeys.md). The September 17 measurements and safeguards below describe the former implementation, including reference resolution and batch fallback. Current runtime grounding is paused and context overflow fails without recursive splitting. Maximum-context regression checks use mocked transport. Later provider-limit findings are recorded in the [September 26 investigation](research/jev-403-investigation-2026-09-26.md).
 
-Updated 2026-09-17. **Paid pressure testing has stopped at the user’s request.** The original 50-prompt stress setup is superseded by conservative local bounds: 12 issued prompts, warning at 10, 2,000 characters per answer, two resolved references per answer and 16 physical inference attempts across one operation. Boundary checks use fixtures. No paid maximum-context test or numeric provider-limit discovery is required.
+On 2026-09-17, paid pressure testing stopped at the user’s request. The original 50-prompt setup was replaced at that time by 12 issued prompts, a warning at 10, 2,000 characters per answer, two resolved references per answer and 16 physical inference attempts per operation. These are historical limits, not current configuration or instructions to repeat the tests.
 
 ## Historical development evidence
 
@@ -14,7 +14,7 @@ The artifacts under `eval/` were collected before that instruction, using SDK 0.
 
 Earlier [initial](../eval/budget-benchmark-initial.json) and [reduced-ledger](../eval/budget-benchmark-compacted-ledger.json) failures remain historical records. They do not create an instruction to repeat paid tests. Their former acceptance blocker is replaced by the user-authorized smaller bound and local failure safeguards.
 
-## Current safeguards and validation
+## Safeguards at the time of these measurements
 
 Final projection retains every usable raw answer and relevant canonical source summary. Lossless temporary IDs remove bookkeeping and restore original evidence IDs and distributions. Oversized requests permit one smaller question-batch fallback; an oversized child stops. Retries, fallback requests and stages share the operation’s physical-request ceiling and deadline. Failures preserve the participant’s draft rather than inventing a result.
 

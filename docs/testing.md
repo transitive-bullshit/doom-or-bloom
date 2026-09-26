@@ -1,18 +1,12 @@
 # Testing guidelines
 
-## Choosing permanent tests
+## Choosing and running tests
 
-Be relaxed about adding and keeping fast, isolated unit tests. A small, deterministic test of meaningful behavior, an edge case, or a regression can earn its place even for a reversible, low-impact change. Keep setup and assertions simple; tests that merely repeat implementation details or check arbitrary constants add little confidence.
+Use the cheapest layer that verifies meaningful behavior or a known regression. Keep unit tests focused on observable behavior; reserve browser, database and process tests for boundaries mocks cannot establish. Runner names are not cost labels: Vitest includes native image rendering, CSS compilation and file-store integration.
 
-Be more judicious with heavyweight integration and end-to-end tests. They are essential for behavior that depends on real browsers, builds, storage, process boundaries, or interactions between components, but impose greater runtime, CI, debugging, and maintenance costs. Each test should cover an important failure mode that cheaper tests cannot adequately catch. Prefer focused scenarios and representative combinations; expand theme, viewport, option, and lifecycle matrices when the combinations expose distinct risks.
+Run the checks for the affected area below. Once they pass, repeat or broaden testing only for new changes, failures or unresolved concerns. Temporary investigation tests can help reproduce a bug; retain them only when they provide useful lasting coverage. Simplify duplicate heavyweight scenarios while preserving their distinct failure cases.
 
-Judge a test by its actual dependencies and cost, not its filename or runner. A test that launches a browser, builds packages, or starts a server is an integration test even if it runs under the unit command. Use the cheapest layer that gives credible coverage, retaining browser checks for rendering, native interaction, and extension lifecycle behavior that mocks cannot establish.
-
-## Running and maintaining tests
-
-Run tests appropriate to the change and complete required checks. Once those pass, broaden or repeat testing only when new changes, failures, or unresolved concerns justify it; otherwise, continue toward completing the task. These guidelines preserve the checks required by the affected area and release workflow.
-
-When reviewing expensive tests, consider the unique failures they catch alongside measured runtime, flakiness, setup, and maintenance burden. Simplify duplicate scenarios and move suitable assertions to cheaper tests before removing valuable coverage. Keep critical user journeys and known regressions covered. Changing how often a heavyweight suite runs requires preserving its relevant change and release checks; do not silently skip required coverage.
+For documentation-only edits, check formatting (`pnpm exec oxfmt --check <changed-files>`), local links/anchors, and any described commands or behavior against their implementation. Application suites are unnecessary unless executable content, fixtures, or code also changes.
 
 ## Expected diagnostics
 
@@ -24,17 +18,17 @@ Unmatched messages, malformed/plain text, different console levels and excess du
 
 Keep routine GitHub Actions usage limited to the core test job. Heavyweight e2e and browser tests should not be run by GitHub Actions by default.
 
-Continue running relevant heavyweight checks locally for changes and releases that need them, and record their commands, tested revision and results. Reduced automatic CI does not waive those checks. Budget the remaining job's actual commands: `pnpm test` includes integration tests as well as unit tests, formatting, lint and typechecks.
+Continue running relevant heavyweight checks locally for changes and releases that need them, and record their commands, tested revision and results. Reduced automatic CI does not waive those checks. The authoritative command list is in `package.json`; `pnpm test` includes inexpensive integrations as well as formatting, lint, types, unit tests, content validation and unused-code checks.
 
 The single Node 24 job installs the locked dependencies and runs `pnpm test`. It has a five-minute timeout and cancels superseded runs on the same branch. It needs no secrets, `.env.*` files, database, browser installation, Portless proxy, or application build. A timeout is a signal to inspect cost, not automatically raise the limit.
 
-## Temporary tests
-
-Temporary tests may break these guidelines when they help validate an implementation or reproduce an issue. Before finishing, review tests added for the investigation for inclusion in the long-term, committed suite. Apply the relaxed bar to useful isolated unit tests and the higher bar to heavyweight tests; remove tests that only served the investigation.
-
 ## Local change and release gates
 
-Use native PostgreSQL and the dedicated `TEST_DATABASE_URL` ending in `_test`; never production data. See [Contributing](../CONTRIBUTING.md) for setup. Browser commands load `.env.development.local`, validate configuration, seed the test database, and start an isolated Portless server. Install Chromium once with `pnpm exec playwright install chromium`. Test inference is synthetic; these commands do not call paid providers. Normal development still uses live Jev.
+Use native PostgreSQL and the dedicated `TEST_DATABASE_URL` ending in `_test`; never production data. See [Contributing](../CONTRIBUTING.md) for setup and environment precedence. Install Chromium once with `pnpm exec playwright install chromium`.
+
+`check:browser`, `check:persistence` and `check:analytics` validate the incoming configuration, seed the test database, and start separate Portless development servers. Their persona seed requires the ignored local journey collection described in [Contributing](../CONTRIBUTING.md#curated-persona-data); installing packages alone is insufficient on a fresh checkout. The browser and persistence suites override inference to fixtures only after validation, so an incoming `live` configuration still requires a nonempty `TYPESAFE_API_KEY`. A test-only fixture environment avoids that credential dependency; ordinary `pnpm dev` always forces live Jev.
+
+Analytics tests use live-mode configuration to exercise SDK initialization, but supply synthetic credentials, mock assessment evaluation and intercept analytics transport. The production prefetch/cache suites reuse a prior local build through `start:local`; they do not submit inference. None of these checks should call paid providers.
 
 | Change | Required checks beyond `pnpm test` |
 | --- | --- |
@@ -48,50 +42,24 @@ Use native PostgreSQL and the dedicated `TEST_DATABASE_URL` ending in `_test`; n
 | Packaging, Next config, assets, server routes | `pnpm build:local` (includes production trace/asset checks) |
 | Simulated-profile static rendering or map prefetching | `pnpm build:local` then `pnpm check:prefetch`; production-only prefetch checks run with an unreachable database |
 | Public assessment rendering or cache invalidation | `pnpm build:local`, then `pnpm check:public-cache` and `pnpm check:prefetch`; verify publication warmup, immediate HTML/RSC revocation, and built shares with an unreachable database |
-| Release | All above database commands, full `pnpm check:browser`, `pnpm check:persistence`, `pnpm check:analytics`, `pnpm db:test:restart`, and `pnpm build:local` |
+| Release | All above database commands, full `pnpm check:browser`, `pnpm check:persistence`, `pnpm check:analytics`, `pnpm db:test:restart`, and `pnpm build:local`; include the prefetch/cache checks when their affected areas changed |
 
 Run suites sequentially: browser suites share the test database, and build/typegen can conflict over generated Next types. Do not add retries to hide deterministic failures. Preserve traces for failed browser scenarios and record unresolved failures explicitly. Paid Jev/OpenAI evaluations require their own agreed scope and budget; they are not routine test or release requirements.
 
 Record validation in the PR or checkpoint log with the commit SHA (and whether the tree was dirty), commands, results/counts, elapsed time, and any blocked or omitted relevant checks. A passing core CI job alone does not establish release readiness.
 
-## September 24 audit
+## Crash and uncertain-commit checks
 
-Baseline: `a512ced`. [CI run 35912500069](https://github.com/transitive-bullshit/doom-or-bloom/actions/runs/35912500069) took about 8m51s: core `pnpm test` 31s, build 44s, browser suite 6m37s (58 passed, four failed), plus PostgreSQL and browser setup. Later suites were skipped after the failure. Removing their scheduling does not mean those failures were fixed.
+`pnpm db:test:commit` injects failures immediately before and after real PostgreSQL COMMIT. It checks rollback, saved success after a lost acknowledgment, acceptance uncertainty and explicit retry without duplicate evaluation.
 
-The audit covers all 55 `lib/**/*.test.ts` files, the browser/persistence/analytics suites, seven database test scripts, content validation, and production trace checks. No unit-test quota: the 270 existing Vitest cases passed locally before edits. Test-body timings below exclude imports/transform/setup and overlap across workers; use complete command time when budgeting CI.
+`pnpm db:test:restart` needs Chromium, the local persona collection and a native local role with database-creation permission. It defaults to `postgresql://localhost:5432/postgres`; use `POSTGRES_TEST_ADMIN_URL` for a different local admin/test role with CREATEDB. It rejects non-local hosts, creates a uniquely named disposable `_test` database, migrates/seeds twice, and starts an isolated Portless server. It kills that server's observed process tree while a POST is blocked before commit, then verifies browser recovery and retry after restart. The script accelerates the stopped operation's deadline and drops the disposable database afterward; normal app/test databases are not reset.
 
-| Suite / dependencies | Decision and coverage |
-| --- | --- |
-| `lib/assessment/*`, `lib/assessments/client`, `lib/persistence/storage` | Keep fast behavior tests: routing, readiness, projection math, recovery, revisions, storage failures and safe client errors. Versioned-content coverage remains in content/storage tests plus one representative browser version. |
-| `lib/server/*` | Keep engine, request-origin, environment, retry, provider, evidence and safe-error tests. Provider calls are mocked; no HTTP server or paid inference is launched. |
-| `lib/analytics`, `lib/evaluation`, `lib/authoring`, `lib/landing` | Keep allowlisted payloads, cost bounds, input validation and collision geometry; cheap meaningful edge cases. |
-| `lib/content/*`, `test:content` | Keep schema, relationships, provenance and release-review gates. Remove exact corpus sizes and the current count of unreviewed originals; retain release-specific source membership and actual validation failures. |
-| `lib/debug/*` | Keep pure diagnostic/access tests. `styles.test.ts` uses the real native Next CSS compiler to catch a prior compiler panic, not exact CSS declarations; retain this inexpensive integration. |
-| `lib/journeys/*` | Keep fixture-driven engine regressions, source/identity contracts and temporary-file store/experiment integration. Slowest measured test file: store 2.67s; mechanical runner 1.75s. No live generation. |
-| `lib/sharing/*` | Keep reports, URLs, cached previews and native image integrations. PNG export, social cards and public/download parity each took 0.25–0.41s; resource preview decoding 0.93s. These are integrations despite running under `test:unit`; their low cost and export/security coverage justify core inclusion. |
-| Browser `typography` | Remove the font-size/weight/column-width matrix and investigation screenshots. Review typography visually for relevant changes. |
-| Browser `assessment-history` | Remove redundant scenario. `tests/persistence/lazy-drafts.spec.ts` retains actual Back/Forward, draft recovery, first-write and ownership checks; participant tests cover homepage entry. |
-| Browser `bookmarks`, `landing` | Remove duplicate assessment bookmark rendering/subprocess setup, exact 720px layout assertions, and repeated new-persona catalog page loops. Keep actual overflow/fade behavior, representative persona rendering, source links, exports, anchor navigation, mobile layout and hover regressions. Catalog/identity/source validation remains in cheap tests. |
-| Browser `header-account`, `paperclips` | Replace header page × viewport matrix with representative desktop/mobile cases; remove exact CTA height, sprite counts and investigation screenshots. Keep keyboard/logout failures, automatic dismissal, Escape and reduced-motion behavior. |
-| Browser `assessment`, `conversation` | Use one earlier-content version for the browser journey; keep all versions in cheap storage/content coverage. Hide the unanswered replaced question per current UX; preserve draft/recovery checks. Retain long input, two-tab conflicts, uncertain responses, report download and question-cap behavior. |
-| Browser `content-review`, `debug`, `journeys`, `diagnostic-report` | Retain local inspector interactions, no-inference guards, storage failure and diagnostic/report coverage. Hydration errors remain failures, not suppressed warnings. |
-| Browser `breadcrumbs`, `not-found`, `shortcuts`, `interaction` | Retain real navigation, accessible errors, native keyboard/composition and responsive interactions. |
-| Browser `map`, `persona-assessment`, `early-result`, `tweet-sources` | Retain unplaced-result rendering, transcript disclosure, readiness and external embed fallback. These need a browser; run locally for relevant changes. |
-| `tests/persistence/*` | Keep participant, library, lazy-draft, persona and auth scenarios locally. Real cookies, database ownership, publication/revocation and exports are critical boundaries. |
-| `tests/analytics/privacy.spec.ts` | Keep real SDK payload/initialization privacy checks locally. Unit payload tests cannot prove what the SDK transmits. |
-| Seven `scripts/test-*.ts` database checks | Keep native DB/schema, repository, commit, lifecycle, persona and auth checks; restart additionally launches/kills a server and Chromium. All local gates, none in routine GitHub Actions. |
-| Build and `scripts/check-production-traces.mjs` | Keep local change/release packaging gate. Core typegen is not a substitute for a production build. |
+## Deterministic journey browser fixtures
 
-Other manual tools (`scripts/audit-seo.ts`, mechanical journey generation, and paid semantic evaluation) remain focused audit tools, not additions to default CI.
+`tests/browser/journeys.spec.ts` uses `tests/fixtures/journey-browser-data.ts` to generate an in-memory suite once per worker. The subprocess uses the real runner with a mocked evaluator and scripted participant, blocks network access, and never writes to `work/journeys`. Per-test response clones isolate diagnostic/progression overrides; API request validation still reaches the real endpoint. This keeps journey assertions independent of whichever live run is latest. The shared browser server still requires persona seed data.
 
-Validation on `a512ced` plus this testing-policy diff (September 24): `pnpm test` passed, including 55 Vitest files / 270 cases (Vitest command 5.13s locally). After removing corpus-count assertions, `pnpm exec vitest run lib/content/loader.test.ts lib/content/release.test.ts` passed all five cases. `pnpm check:browser` passed all 55 retained scenarios in 2.0 minutes locally. The prior content-inspector hydration error did not reproduce; its page-error assertion remains enabled. These local timings are not a prediction of hosted-runner performance. No database implementation, deployment, or production data was changed.
+## Why heavy checks run locally
 
-`pnpm check:persistence tests/persistence/lazy-drafts.spec.ts` also passed (one case, 7.9s), verifying the retained history/ownership regression before removing its duplicate. Full database, analytics, restart, and production-build gates were not rerun for this test-policy-only change; they remain required for relevant changes and releases.
+The September 24 audit measured [CI run 35912500069](https://github.com/transitive-bullshit/doom-or-bloom/actions/runs/35912500069) at about 8m51s: core checks 31s, build 44s, browser suite 6m37s, plus setup. The audit retained important browser/database/privacy boundaries, removed duplicate rendering matrices, and kept inexpensive native integrations in Vitest. Local scheduling reduces recurring CI cost; it does not waive change or release gates.
 
-## Deterministic journey browser fixtures — September 26, 2026
-
-`tests/browser/journeys.spec.ts` intercepts journey GET responses using an in-memory suite generated once per worker by `tests/fixtures/journey-browser-data.ts`. The subprocess uses the real assessment runner with an explicit mocked evaluator and scripted participant, blocks network access, and never writes to `work/journeys`. It supplies six named cases, including uncertainty, paperclip recovery, and the four original fixed-transcript answers. Results are synthetic browser fixtures, not simulated opinions or semantic evaluations. Per-test response clones keep diagnostic and progression overrides isolated. API request validation still exercises the real local endpoint.
-
-This removes the dependency on whichever ignored local run happened to be latest. The six journey browser cases passed in 13.7s on `31b55b2f` plus this test-only change; the three missing-record failures recorded in the production release notes are resolved. The fixed-transcript browser case now verifies the exact questions and answers as well as their count. No production application behavior, stored journeys, or provider calls changed. Unrelated concurrent portrait changes were excluded from this checkpoint.
-
-`pnpm test` also passed: 297 tests across 61 files (Vitest 2.57s), formatting, lint, types, content validation, and unused-code analysis. The fixture subprocess is explicitly registered as a Knip entry point. The full unrelated browser suite and production build were not rerun for this test-harness-only change.
+Historical validation after that audit: core checks and all 55 retained browser scenarios passed; the retained lazy-draft ownership/history regression also passed. On September 26, deterministic journey fixtures resolved the three missing-record journey failures, with all six journey cases and core checks passing. These are checkpoint observations, not a claim that today's full release gates have run.

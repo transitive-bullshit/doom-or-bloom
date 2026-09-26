@@ -4,7 +4,7 @@
 
 ## Authored runtime assets
 
-The live application uses versioned, reviewed assets rather than runtime prose generation:
+The application uses versioned authored assets rather than runtime prose generation. Current releases remain labeled drafts; human review and freeze gates distinguish a reviewed release from a working demo:
 
 - Worldview and epistemic rubrics.
 - Prompt families and exact prompt variants.
@@ -64,11 +64,7 @@ Follow [SOURCES.md](SOURCES.md) for required-source coverage, genre, recency, da
 
 Use [JOURNEYS.md](JOURNEYS.md) for common-opinion paths and terminology boundaries. The full Notion risk/concept rows live outside the runtime bundle in `content/context/`; their links are preserved in source intake. Keep arguments, illustrations, definitions and empirical evidence distinct. Draft published journeys guide development; separately reviewed held-out conversations establish semantic validation.
 
-MVP target:
-
-- Approximately 100 people or institutions.
-- Approximately 100 incidents or capability demonstrations.
-- Approximately 100 canonical publications or public arguments.
+Cover entities, events and publications according to the required-source registry and topical gaps. The historical 100/100/100 target is not a completion gate.
 
 Each item is a canonical simplified Markdown file stored locally with machine-readable front matter or an equivalent structured header.
 
@@ -174,11 +170,19 @@ Use development-only `/questions` and `/corpus` to inspect the active built-in g
 
 ## Current demo authoring boundary
 
-Algorithm 0.4.0 pauses runtime corpus identification/grounding; retain source assets and review gates for offline authoring. Grounded understanding now concerns the fit between the participant’s claim and the basis they offer, without external fact-checking or a citation requirement. The shared rubric remains an unfrozen draft; labels/meanings now explicitly distinguish expectations, policy, reasoning, participant conviction and evaluator confidence. Interpret/project questions carry full dimension definitions; routing receives a named definitions map. Keep these meanings and debug help aligned rather than assuming internal IDs convey semantics.
+Runtime corpus identification/grounding has been paused since algorithm 0.4.0; retain source assets and review gates for offline authoring. Grounded understanding now concerns the fit between the participant’s claim and the basis they offer, without external fact-checking or a citation requirement. The shared rubric remains an unfrozen draft; labels/meanings now explicitly distinguish expectations, policy, reasoning, participant conviction and evaluator confidence. Interpret/project questions carry full dimension definitions; routing receives a named definitions map. Keep these meanings and debug help aligned rather than assuming internal IDs convey semantics.
 
 Evidence readiness is a separate draft coverage policy, described in [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness). It never changes rubric scores. User journey/evaluation work should include one comprehensive first reply, several sparse/repetitive replies and correction/ambiguity paths, with identical quality rules across outlooks.
 
 Resource conditions may explicitly use `basis: topic` when relevance requires supported discussion rather than a placed position. Topic conditions require component evidence and cannot specify score bounds or `assessed: false`; ordinary position conditions retain their numerical gates. This lets an expressed unknown qualify for useful reading without inventing a forecast. Among eligible resources, supported unplaced topics and unresolved non-reference issues rank before editorial priority. Shortlists diversify both topic and learning purpose. An optional authored `question` states what to investigate; it must not presuppose a position merely because that topic was discussed. Saved older results without a question remain readable.
+
+## Simulated-user source briefs
+
+For simulated-user research or regeneration, follow [user-journeys.md](user-journeys.md#purpose-and-authoring). Briefs in `lib/journeys/` describe supported beliefs and voice; presentation metadata lives in `components/landing/people.ts`. Saved selected results live in Postgres. Updating a brief does not reinterpret an immutable run.
+
+Preserve the lessons from source and interview audits: attribute only the named speaker's turns; distinguish satire, quoted model output and interviewer premises from personal beliefs; keep dated changes and conditional forecasts explicit. Missing source evidence establishes a research gap, not that the person holds an uncertain or moderate view. Technical work or enthusiasm for one tool does not establish an overall societal forecast. Narrative inputs must never prescribe desired assessment scores.
+
+Participant assessments use whole answers. The offline persona runner alone enables excerpt selection, quotation checks, and excerpt-backed result cards. Source-brief grounding and corpus grounding are separate: the former informs simulated answers; the latter is currently paused in the assessment engine.
 
 ## Simulated-user bookmark assets
 

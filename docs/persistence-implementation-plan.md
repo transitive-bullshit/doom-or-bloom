@@ -1,8 +1,8 @@
 # Persistent assessments implementation plan
 
-Prepared 2026-09-23. All local implementation checkpoints are complete, including integrated acceptance and real X login/recovery verification. Evidence and separate deployment limits are recorded below. The latest user decisions are **no Docker and no asynchronous workflows**: bounded assessment operations run in the main POST request. This plan covers local development, with hosted-service setup recorded for later; it does not authorize deployment.
+Prepared 2026-09-23. All local implementation checkpoints are complete, including integrated acceptance and real X login/recovery verification. This file now records the original delivery plan and dated follow-up evidence. Local development uses native PostgreSQL; bounded assessment operations run synchronously in the main POST request. Hosted verification is recorded separately in [production-readiness.md](production-readiness.md). This record does not authorize deployment or production data changes.
 
-Read [PERSISTENCE.md](PERSISTENCE.md) for the accepted UX, relational model, ownership, snapshots, synchronous operations, and publication contracts. Use this file for ordered tasks, checks, commits, and blockers. It supersedes the database/account/public-URL exclusions and browser-authoritative architecture of [the original MVP plan](mvp-implementation-plan.md), whose completed checkpoints remain historical evidence.
+Read [PERSISTENCE.md](PERSISTENCE.md) for the current UX, relational model, ownership, snapshots, operations and publication contracts, and [testing.md](testing.md) for current checks. Use this file to trace why a decision changed and what was verified. Completed checkpoints and earlier log entries describe behavior at that date; later decisions can supersede them. Follow the execution rules only when extending this plan with a new task, not as a requirement to repeat completed work.
 
 ## Execution rules
 
@@ -11,7 +11,7 @@ Read [PERSISTENCE.md](PERSISTENCE.md) for the accepted UX, relational model, own
 3. Update affected canonical docs, visible copy, and contributor instructions alongside the feature that changes their truth. The approved target and currently shipped behavior must remain distinguishable during the transition.
 4. Proceed autonomously through routine implementation, local database setup, migration generation/application to dedicated development/test databases, debugging, fixture checks, and commits. Do not wait for approval at each checkpoint. Optional review moments below are opportunities for feedback, not gates.
 5. Ask for help only when an external account/credential or explicit business decision genuinely blocks progress. Continue independent work. Scope changes, destructive changes to an unrelated/existing database, deployment, and unbudgeted paid inference are not implied by this plan.
-6. Follow repository conventions: pnpm, modern TypeScript, no semicolons, oxfmt, oxlint, and shadcn/ui primitives. Before application code changes, install the locked dependencies and read relevant guides in `node_modules/next/dist/docs/`. This worktree had no `node_modules` when the plan was written.
+6. Follow [AGENTS.md](../AGENTS.md) for repository conventions and [CONTRIBUTING.md](../CONTRIBUTING.md) for setup. Read relevant installed Next.js guides before changing application code.
 7. No Docker, Compose, or Testcontainers, including development and this project's integration tests. Use native Postgres.app, or a native PostgreSQL installation if Postgres.app becomes unavailable. Test databases are disposable and distinct from development data.
 
 ## Delivery sequence

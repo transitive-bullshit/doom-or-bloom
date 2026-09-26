@@ -2,13 +2,13 @@
 
 _Map your AI worldview, one question at a time._
 
-Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectations about advanced AI and the reasoning they demonstrate in their answers. Its working domain is **doom-or-bloom.com**, purchased by Travis. Its fixed root prompt is: **“What do you think AI means for our future—and why?”** This glossary includes the approved [persistent-assessment vocabulary](PERSISTENCE.md); the [implementation plan](persistence-implementation-plan.md) records delivery status. It records agreed product semantics; precise scoring rules remain to be authored and validated.
+Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectations about advanced AI and the reasoning they demonstrate in their answers. Its fixed root prompt is: **“What do you think AI means for our future—and why?”** This glossary defines product semantics; [ASSESSMENT.md](ASSESSMENT.md) defines the current draft scoring rules and [PERSISTENCE.md](PERSISTENCE.md) defines ownership and lifecycle. The assessment remains unvalidated.
 
 ## Language
 
 **Participant**: The person answering the assessment about their own AI worldview. _Avoid_: Patient, subject, account
 
-**Assessment**: A bounded sequence of participant answers and authored follow-ups culminating in a result, normally taking 6–8 prompts but offering a provisional result when evidence readiness supports it, potentially after one detailed reply. Participants can resume a private assessment or continue a published assessment through an independent fork, within the applicable prompt budget; a fresh assessment starts a new conversation. _Avoid_: Chat, session when referring to the assessment itself
+**Assessment**: A bounded sequence of participant answers and authored follow-ups with a provisional result available when evidence readiness supports it, potentially after one detailed reply. Participants can resume a private assessment or continue their published assessment through an independent fork, within the applicable prompt budget; a fresh assessment starts a new conversation. _Avoid_: Chat, session when referring to the assessment itself
 
 **Assessment identifier**: A stable identifier for one assessment across visits, publication, and ownership recovery. It is separate from participant identity and does not grant access to private content. _Avoid_: User ID, account ID, anonymous person
 
@@ -18,7 +18,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Assessment status**: The owner-facing status derived from visibility and current results: In progress, Ready to publish, or Published. It is separate from interview recovery and operation processing. There is no explicit completion step; private assessments remain editable through additional answers. Published content is frozen while public; unpublishing permits further answers on the same assessment.
 
-**Assessment fork**: A new private assessment that inherits a published assessment’s conversation and permits additional answers or corrections without changing the original. _Avoid_: Editing the original, independent new evidence when referring to inherited answers
+**Assessment fork**: A new private assessment created by the owner from their published assessment. It inherits the published conversation and permits additional answers or corrections without changing the original. _Avoid_: Public remix, editing the original, independent new evidence when referring to inherited answers
 
 **Published assessment**: An assessment with results whose full conversation and inferred results are available to other visitors by public link. _Avoid_: Private share, anonymous aggregate
 
@@ -56,15 +56,15 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Result projection**: An authored transformation of selected basis vectors into a participant-facing visualization or summary. Multiple projections can be derived from the same worldview profile without changing the underlying evidence. _Avoid_: The worldview profile itself, objective coordinates
 
-**Doom–Bloom projection**: The participant-facing estimate of the participant's overall expected impact of advanced AI on humanity, integrating positive and negative outcomes, likelihood, severity, distribution, and human continuity. It is not one minus a probability of doom and does not encode policy preference. _Avoid_: Participant-stated probability, acceleration preference
+**Doom–Bloom projection**: The map’s horizontal interpretation of the participant’s expressed orientation toward AI’s future, from concern to hope. Mixed, conditional or undecided outlooks can occupy the middle without forecasting equal benefits and harms. Overall expected impact remains a separate facet; P(doom), reasoning quality and policy preferences do not determine this coordinate. _Avoid_: Event probability, net-impact calculation, acceleration preference
 
 **Projection pass**: The final set of independent Jev judgments that evaluates each output vector against the complete evidence ledger and its authored rubric. Deterministic application logic normalizes, weights, constrains, and renders these structured judgments; Jev does not issue one opaque overall verdict. _Avoid_: Free-form result generation, double-counting derived judgments as new evidence
 
 **Demonstrated reasoning**: The reasoning visible in the participant's answers, including causal explanations, handling of alternatives, consistency, and update conditions. It is distinct from general intelligence, credentials, writing fluency, or agreement with the assessment's authors. _Avoid_: IQ, rationality of the person
 
-**Epistemic quality**: The visible vertical projection composed from demonstrated reasoning, grounded understanding, appropriate uncertainty, internal coherence, and updateability. Its components remain separate internally; missing evidence widens the interpretation range rather than lowering the coordinate. _Avoid_: Expertise, jargon fluency, ideological moderation
+**Epistemic quality**: The composite of the seven demonstrated-reasoning dimensions. It is displayed separately from the worldview map and retains the historical `result.vertical` field in saved data. Its components remain separate internally; missing evidence widens the interpretation range rather than lowering the score. _Avoid_: Map height, expertise, jargon fluency, ideological moderation
 
-**Forecast horizon**: The period and expected capability trajectory within which a participant states a forecast. Early calibration elicits both the participant's timelines and how strongly they hold them; later prompts should preserve that context rather than silently imposing a universal date. _Avoid_: A fixed deadline assumed for every participant
+**Forecast horizon**: The period and expected capability trajectory within which a participant states a forecast. Routing can elicit missing timing or conviction when relevant; subsequent interpretation preserves the participant’s stated context and explicit uncertainty. _Avoid_: A fixed deadline or required question order assumed for every participant
 
 **Interpretation confidence**: The evaluator's certainty about a specific interpretation of the available evidence. It is distinct from how strongly the participant holds a belief and from how much of the worldview the assessment has explored. _Avoid_: Overall accuracy, assessment completeness
 
@@ -74,7 +74,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Evidence readiness**: An experimental summary of supported dimension coverage and interpretation confidence, used to offer a provisional result without a fixed reply-count minimum. It describes the evidence available for this assessment, separately from reasoning quality, participant conviction and forecast accuracy. _Avoid_: Probability that we understand the person, scientific confidence, quality score
 
-**Clarification**: An optional continuation initiated when a participant disputes an inferred claim or result component. It elicits natural-language correction and recomputes the evidence ledger and projections; it does not permit direct score or historical answer editing and remains subject to the applicable prompt budget. _Avoid_: Dragging a result to a preferred coordinate
+**Clarification**: A scoped correction supported by the engine/API and persona runner when an inferred claim is disputed. It elicits new natural-language evidence and recomputes the interpretation within the applicable prompt budget. Claim-specific controls are currently absent from the participant UI, which instead offers continued answering; historical clarification records remain readable. _Avoid_: Direct score editing, historical answer editing, dragging a result to a preferred coordinate
 
 **Procedural neutrality**: The commitment to apply the same evidentiary and reasoning standards across optimistic, pessimistic, moderate, and unconventional positions while publishing methodology, simplifications, content versions, and known biases. It does not claim that editorial choices are value-free. _Avoid_: Viewpoint-free assessment, forced balance
 

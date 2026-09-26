@@ -1,6 +1,6 @@
 # Corpus selection and source guidance
 
-Updated 2026-09-17 from Travis’s source list and Notion canon. This supersedes the initial seed’s emphasis on historical milestones. The expanded seed is **not approved**; reassess it before editorial review and freeze.
+This is the offline corpus-selection and review contract, established from the September 17 source list and Notion canon. Runtime corpus identification and fact-grounding are paused; these requirements remain gates for a future reviewed content release, not prerequisites for unrelated application changes. The expanded seed is **not approved**. Simulated-user source briefs are a separate authoring layer; see [AUTHORING.md](AUTHORING.md#simulated-user-source-briefs).
 
 ## Required intake and freshness
 
@@ -38,7 +38,7 @@ For contemporary entries, add an explicit role and genre in the neutral-context 
 
 The reviewer checks accuracy, recency, neutrality, attribution, aliases, claimed transfer limits and recommendation fit. Earlier approval of a historical snapshot’s factual wording does not approve its relevance as a current entry point. Agent drafts and user-selected URLs are not automatically human-reviewed assets.
 
-Before a local release, recheck contemporary model/evaluation entries older than 90 days, unsettled incidents, and mutable resource hubs. Annual reports must be the latest verified edition. Historical or conceptual entries do not expire merely because they are old, but must retain their role. Runtime uses frozen snapshots; this does not add live news retrieval or automatic rubric changes.
+Before a local release, recheck contemporary model/evaluation entries older than 90 days, unsettled incidents, and mutable resource hubs. Annual reports must be the latest verified edition. Historical or conceptual entries do not expire merely because they are old, but must retain their role. Assessments pin a versioned content bundle; current bundles are drafts and runtime corpus grounding is paused. A future reviewed release would still use pinned snapshots, without live news retrieval or automatic rubric changes.
 
 ## Reassessment of the existing seed and drafts
 
@@ -57,7 +57,7 @@ The former 100/100/100 target is a coverage guide, not a reason to pad the corpu
 
 ## Current local draft integration — 2026-09-17
 
-New assessments use `0.4.0-draft`, with 138 reference identities: the earlier 135 plus three contemporary event drafts. All 117 currently required-mapped snapshot identities, representing 111 required URLs, are present in the local corpus. The three unmapped originals and all partial-access scopes remain open; assembly confers no new review. Prompts, rubrics, findings and the 14 recommendations keep their existing semantics. Saved `0.2.0-draft` and `0.3.0-draft` assessments retain their original 42- and 135-reference corpora until restart.
+New assessments use `0.4.0-draft`, with 138 reference identities: the earlier 135 plus three contemporary event drafts. All 117 currently required-mapped snapshot identities, representing 111 required URLs, are present in the local corpus. The three unmapped originals and all partial-access scopes remain open; assembly confers no new review. Prompts, rubrics, findings and the 14 recommendations keep their existing semantics. Saved `0.2.0-draft` and `0.3.0-draft` assessments retain their original 42- and 135-reference corpora for those saved records. Starting a new assessment uses the current release and preserves earlier records.
 
 The [release provenance](../content/releases/0.4.0-draft/provenance.json) records source paths, original content versions and hashes. Earlier provenance retains the deliberate reuse of two older required publications. Each intake hash records the registry at assembly time; later authoring mappings do not rewrite that historical record. Of the 130 original authoring copies, 96 have current-release copies: there are 172 distinct identities across the two populations. Original authoring notes describe their earlier inclusion state; the current manifest and generated index identify runtime copies. No content/rubric release has been frozen.
 
@@ -65,7 +65,7 @@ The [contemporary event pass](research/contemporary-event-authoring.md) drafts t
 
 Required-source review and balanced genre/topical coverage remain explicit gates. Freeze now refuses any required original without compatible reviewed snapshot mappings, in addition to the ordinary complete-asset review/hash checks.
 
-## Research and authoring checkpoints before integration
+## Historical research and authoring checkpoints
 
 Use the [source coverage and review index](research/source-coverage-2026-09-17.md) to find every required original, mapped asset, research heading, access gate, overlapping identity and current subject counts. `pnpm content:coverage` regenerates the index from repository metadata; its counts do not confer review or prove topical balance.
 

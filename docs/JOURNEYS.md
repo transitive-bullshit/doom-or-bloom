@@ -14,7 +14,7 @@ Both argument pages were fetched; their returned argument and story sections wer
 
 ## Distinctions the journeys must preserve
 
-**Expected impact, catastrophic risk, reasoning and policy are separate.** P(doom) needs an outcome definition and a horizon; a bare number is incomplete evidence. The map remains an expected-impact projection, not one minus P(doom). A preference for acceleration does not imply low risk; a preference for restraint does not imply high risk. High expected benefits can coexist with substantial harm. Conditional differences are not automatically contradictions.
+**Expected impact, catastrophic risk, reasoning and policy are separate.** P(doom) needs an outcome definition and a horizon; a bare number is incomplete evidence. The headline map shows expressed outlook × expected transformation. Outlook is distinct from both the derived net-impact forecast and one minus P(doom). A preference for acceleration does not imply low risk; a preference for restraint does not imply high risk. High expected benefits can coexist with substantial harm. Conditional differences are not automatically contradictions.
 
 The risk families organize mechanisms, not scores or severity levels:
 
@@ -43,7 +43,7 @@ The short Notion definitions are retained verbatim for traceability. [Terminolog
 
 Each ordinary authored conversation starts with the fixed root and contains at least three substantive example answers. Six have 7–8-turn continuations: physical control, defensive advantage, race leadership, short warning, jobs without extinction and lay uncertainty. These lengths are authoring examples; the current runtime uses [evidence readiness](ASSESSMENT.md#question-budget-and-readiness), rather than an answer-count minimum. The follow-ups are illustrative authored paths, not a promise that adaptive routing will choose exactly that sequence.
 
-The internal [Synthetic User Journeys](user-journeys.md) tool adds ten persona-based paths through the actual engine, recorded routing/readiness transitions, free deterministic reruns and explicit budgeted live Jev runs. It complements these argument examples and keeps injected workflow judgments distinct from semantic outputs.
+The internal [User Journeys](user-journeys.md) tool runs generated participants through the actual engine and records routing, readiness and results. Live generation uses OpenAI answers and Jev judgments; the separate `lib/journeys/mechanical/` suite supplies free deterministic regressions with injected judgments. The catalog in `lib/journeys/catalog.ts` owns current membership. Neither layer turns these authored examples into a blinded holdout.
 
 | Journey | Crux to elicit | Regression concern |
 | --- | --- | --- |
@@ -70,7 +70,7 @@ The internal [Synthetic User Journeys](user-journeys.md) tool adds ten persona-b
 
 Eleven draft development variants cover plain language, technical vocabulary, verbosity, relevant humor, a changed conclusion, weakened support for optimism, a weak moderate view and four contemporary source-informed support changes. The latter pair scoped incident reporting with an unsupported universal transfer and add controlled-conflict and human-directed-misuse examples. Their [event research](research/contemporary-event-authoring.md) records the inspected source scope; adding a source changes demonstrated support and is not a same-meaning paraphrase. A variant overrides specified zero-based turn indices; all other turns retain their exact baseline wording. `journeyTurns` materializes independent copies for downstream evaluation. Expected distinctions are qualitative hypotheses requiring human review, rather than guaranteed equal numerical scores.
 
-Three draft corrections follow a result: narrow technical containment by deployment scope, resolve policy tension by coordination assumptions, and leave catastrophic risk unknown while preserving ordinary job harms. Each identifies its vector and, when needed, the catastrophic claim separately. A runner must request clarification through the real operation before answering, rather than edit historical text. If the nominated interpretation is unplaced, record that absence instead of manufacturing a claim to correct. Do not equate length, jargon, citations, centrism or agreement with quality.
+Three draft corrections follow a result: narrow technical containment by deployment scope, resolve policy tension by coordination assumptions, and leave catastrophic risk unknown while preserving ordinary job harms. Each identifies its vector and, when needed, the catastrophic claim separately. These are offline compatibility/evaluation cases: a runner exercising them must request clarification through the real operation before answering, rather than edit historical text. The current participant UI does not expose claim-specific correction. If the nominated interpretation is unplaced, record that absence instead of manufacturing a claim to correct. Do not equate length, jargon, citations, centrism or agreement with quality.
 
 These published development examples cannot later become a blinded holdout. Human reviewers must label a separate held-out set before semantic validation; any future paid evaluation uses a small reviewed suite and an explicit cost budget. Paid pressure testing is excluded.
 

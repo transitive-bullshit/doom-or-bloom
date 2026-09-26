@@ -1,6 +1,6 @@
 # Measurement, Privacy, and Evaluation
 
-> Persistence is now active for participant assessments: anonymous browser sessions own server-saved snapshots and operations. Publication, forks, database personas and optional X login are implemented; remaining acceptance is tracked in [the implementation plan](persistence-implementation-plan.md). [PERSISTENCE.md](PERSISTENCE.md) defines the full approved target.
+For storage, ownership and publication behavior, use [PERSISTENCE.md](PERSISTENCE.md). This document owns telemetry boundaries and evaluation standards; [testing.md](testing.md) owns routine engineering checks.
 
 ## Privacy posture
 
@@ -26,22 +26,22 @@ Production distributions cannot establish classifier correctness.
 | Event | Meaning |
 | --- | --- |
 | `assessment_started` | First substantive answer submitted. |
-| `answer_classified` | A valid semantic evaluation completed. |
+| `answer_classified` | An answer disposition was committed, including deterministic test/paperclip replies that make no Jev call. |
 | `answer_recovery_shown` | A committed response disposition produced an authored re-ask or clarification. |
-| `assessment_paused` | Recovery or an explicit stop paused the interview; not assessment completion. |
+| `assessment_paused` | Reserved compatibility event; current transitions retain recovery state without emitting a pause event. |
 | `paperclip_interlude_shown` | The one-time paperclip recovery state was displayed. |
 | `question_routed` | The next authored prompt was selected. |
 | `results_unlocked` | Readiness and result eligibility reached. |
 | `results_viewed` | A result was rendered to the participant. |
-| `assessment_completed` | Assessment reached completed state or an eligible capped result. |
-| `clarification_started` | Participant disputed an inferred claim. |
-| `result_recomputed` | Clarification produced a new result. |
+| `assessment_completed` | Once per assessment when the engine reaches `results` or an eligible `capped` result. This event does not freeze or publish the assessment. |
+| `clarification_started` | Compatibility event for claim-specific clarification; the current participant UI does not expose this action. |
+| `result_recomputed` | Compatibility event for a result updated after claim-specific clarification. |
 | `assessment_capped` | The assessment’s prompt budget forced finalization (12 initially, up to 12 more per fork, 30 total). |
 | `assessment_restarted` | Legacy event name; no longer emitted. Creating an assessment preserves previous records. |
 | `resource_opened` | Curated resource link opened. |
 | `full_report_downloaded` | Expanded report downloaded. |
 | `share_card_downloaded` | Personalized card downloaded. |
-| `share_intent_opened` | X or native share UI opened; do not call this `shared`. |
+| `share_intent_opened` | Reserved compatibility event; current UI downloads images and copies links, with no share-intent emitter. |
 
 ## Enumerated properties
 
@@ -86,7 +86,7 @@ These are research directions, not new telemetry requirements or claims of valid
 - Root-answer submission.
 - Readiness-based result completion.
 - Voluntary continuation depth.
-- Clarification and recomputation.
+- Additional answers that refine an interpretation; claim-specific clarification is a future/compatibility path.
 - Resource openings, report downloads, and sharing intent.
 - Organic discussion, criticism, and repeat references to the project.
 
@@ -102,7 +102,7 @@ Follow [evaluation-protocol.md](evaluation-protocol.md) when preparing labels, l
 
 Use [argument journeys](JOURNEYS.md) to create development examples and separate held-out cases. Published synthetic journeys are drafts, not a blinded holdout or estimates of participant prevalence. Use local fixtures for bounds. Future paid semantic evaluation requires a small reviewed suite and explicit cost budget; paid pressure testing is out of scope. Evaluate at least:
 
-- Reference identification and attribution.
+- Reference identification and attribution when corpus grounding is enabled; it is currently paused.
 - Worldview-category classification.
 - Epistemic rubric agreement.
 - Question-routing usefulness.
