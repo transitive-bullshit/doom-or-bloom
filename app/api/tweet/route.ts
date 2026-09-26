@@ -1,3 +1,4 @@
+import { withDiagnosticContext } from '@/lib/server/diagnostic-context'
 import { apiDiagnostics } from '@/lib/server/error-reporting'
 import { getTweet } from 'react-tweet/api'
 
@@ -11,7 +12,10 @@ export async function GET(request: Request) {
     )
   try {
     diagnostics.setPhase('fetch_tweet')
-    const data = await getTweet(id, { signal: AbortSignal.timeout(8000) })
+    const data = await withDiagnosticContext(
+      { requestId: diagnostics.requestId, route: '/api/tweet' },
+      () => getTweet(id, { signal: AbortSignal.timeout(8000) })
+    )
     diagnostics.setPhase('serialize_response')
     return Response.json(
       { data: data ?? null },

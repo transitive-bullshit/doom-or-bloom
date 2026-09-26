@@ -1,3 +1,4 @@
+import { diagnosticContext } from './diagnostic-context'
 import { createHash, randomUUID } from 'node:crypto'
 import { APIError } from '@typesafe-ai/sdk'
 import { ZodError } from 'zod'
@@ -108,6 +109,7 @@ export function reportServerError(
       deployment: process.env.VERCEL_DEPLOYMENT_ID,
       commit: process.env.VERCEL_GIT_COMMIT_SHA,
       region: process.env.VERCEL_REGION,
+      ...diagnosticContext(),
       ...context,
       emitter: 'doom-or-bloom',
       eventSource: 'application',

@@ -770,3 +770,10 @@ Validation on `6b68802a` plus this checkpoint's working tree: `pnpm test` passed
 - [x] Add the saved-operation API response event to connect upstream failure to public failure category and our response status; retain existing event names for log searches.
 - [x] Document correlation, retry/cascade interpretation, and the distinction between a provider HTTP response and a network exception.
 - [x] Verification: `pnpm test` passed all 329 tests and repository checks; `pnpm build:local` passed compilation and production-trace checks. Logging-only changes; no new paid probes or deployment.
+
+## Auth and database diagnostics follow-up
+
+- [x] Correlate auth and tweet SDK logs within each request; retain auth responses, redirects, cookies and exceptions unchanged.
+- [x] Log the original account-claim exception before existing session-preserving recovery, and add phase/context to unexpected saved-assessment failures.
+- [x] Attach one idle-client error listener to the shared PostgreSQL pool with connection counts and sanitized error codes; keep connection configuration unchanged.
+- [x] Verified `pnpm test` (71 files / 333 tests and all repository checks), `pnpm db:test:auth` (mocked callback, failed-claim recovery, sign-out and cross-browser ownership), and `pnpm build:local` including production traces. Focused regressions cover concurrent context isolation, unchanged auth response/exception identity and the singleton pool listener. No deployment or paid inference.

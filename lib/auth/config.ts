@@ -1,3 +1,4 @@
+import { reportServerError } from '../server/error-reporting'
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { anonymous } from 'better-auth/plugins'
@@ -93,7 +94,11 @@ export function createAuth(
               anonymousUser.user.id,
               newUser.user.id
             )
-          } catch {
+          } catch (err) {
+            reportServerError('auth_account_claim_failed', err, {
+              boundary: 'account_linking',
+              application: { effect: 'anonymous_session_preserved' }
+            })
             // The library creates its destination session before this hook. Do not
             // replace the browser's valid anonymous cookie when the claim fails.
             const context = ctx.context as typeof ctx.context & {
