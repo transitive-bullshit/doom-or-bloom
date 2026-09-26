@@ -10,6 +10,8 @@ export interface S {
   fx: Fx
   W: number
   H: number
+  /** Poster still: leave out incidental overlays such as the hook's slate. */
+  clean: boolean
 }
 
 export type SceneFn = (ctx: Ctx, s: S) => void

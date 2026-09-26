@@ -55,9 +55,9 @@ const scenes: Entry[] = [
   { from: 111.4, to: 999, draw: drawEnd }
 ]
 
-export function drawFrame(ctx: Ctx, t: number, fx: Fx) {
+export function drawFrame(ctx: Ctx, t: number, fx: Fx, clean = false) {
   const b = beatAtTime(t)
-  const s: S = { t, b, fx, W, H }
+  const s: S = { t, b, fx, W, H, clean }
   for (const sc of scenes) {
     if (b >= sc.from && b < sc.to) {
       ctx.save()

@@ -20,12 +20,14 @@ pnpm preview                       # http://127.0.0.1:4747/?preview: real-time p
 pnpm still b50 b82.5 12.3s 900     # render single frames to out/stills (beat, seconds, or frame index)
 pnpm render                        # full render → out/doom-or-bloom-launch.mp4 (~5 min on an M3 Pro)
 node scripts/render.mjs --from 1200 --to 1500 --out out/clip.mp4   # render a frame range
-./scripts/encode-web.sh out/doom-or-bloom-launch-web.mp4           # lighter social/web encode from the last render
+./scripts/encode-web.sh out/doom-or-bloom-launch-web.mp4           # lighter social/web encode; frame 0 is the DOOM or BLOOM? title
 ./scripts/sheets.sh out/doom-or-bloom-launch.mp4                   # contact sheets for review
 node scripts/vertical.mjs                                          # 9:16 cut for TikTok, Reels and Shorts
 ```
 
 Rendering needs a GPU-backed Chromium: the Playwright build launches with ANGLE on Metal. It also needs `ffmpeg` on the path. The preview server serves portraits straight from the app's `public/personas`.
+
+`stills/doom-or-bloom-title.png` is the clean "DOOM or BLOOM?" title frame that `encode-web.sh` puts first, kept for thumbnails. Regenerate it with `pnpm still --clean --samples 32 157`.
 
 ## How it fits together
 
