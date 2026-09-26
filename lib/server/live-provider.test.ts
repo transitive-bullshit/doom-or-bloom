@@ -315,11 +315,14 @@ test('caller cancellation stops retry backoff without another physical request',
   expect(fetch).toHaveBeenCalledTimes(1)
 })
 test('the shared provider deadline terminates a hanging request and its retries', async () => {
-  expectDiagnostics({
-    event: 'jev_batch_failed',
-    severity: 'error',
-    error: { type: 'ApplicationError', code: 'unexpected_error' }
-  })
+  expectDiagnostics(
+    { event: 'jev_call_failed', severity: 'error', status: null, count: 2 },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: { type: 'ApplicationError', code: 'unexpected_error' }
+    }
+  )
   vi.useFakeTimers()
   vi.spyOn(AbortSignal, 'timeout').mockImplementation((ms) => {
     const controller = new AbortController()

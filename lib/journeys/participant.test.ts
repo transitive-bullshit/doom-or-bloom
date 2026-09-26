@@ -189,6 +189,11 @@ test('Jev failure preserves the paid participant reply without substituting scri
 })
 
 test('failed and incomplete OpenAI responses never become participant answers', async () => {
+  expectDiagnostics({
+    event: 'participant_call_failed',
+    severity: 'error',
+    status: 429
+  })
   for (const response of [
     () => new Response('private error body', { status: 429 }),
     () =>

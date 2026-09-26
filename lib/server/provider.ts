@@ -36,7 +36,11 @@ export interface Provider {
     signal?: AbortSignal,
     attemptBudget?: number,
     captureDebug?: boolean,
-    diagnosticContext?: { requestId?: string; stage?: string }
+    diagnosticContext?: {
+      requestId?: string
+      stage?: string
+      assessmentId?: string
+    }
   ): Promise<Evaluation>
 }
 

@@ -755,3 +755,11 @@ Validation on `0160625b` plus this checkpoint's working tree: `pnpm test` passed
 - [x] Verify the production-shaped failure record through the real owner API, desktop/mobile presentation, reload with restored text, and successful explicit retry using local fixtures.
 
 Validation on `6b68802a` plus this checkpoint's working tree: `pnpm test` passed formatting, lint, types, 321 tests across 66 files, content validation, and unused-code analysis. `pnpm check:browser tests/browser/assessment.spec.ts` passed all 11 cases in 43.0 seconds; the initial sandboxed launch could not access native test Postgres, and the authorized rerun passed. Reviewed the mobile error screenshot. No schema, repository transaction, auth, retry protocol, or provider behavior changes; unrelated lifecycle/restart suites and production build were not rerun. No paid inference, production writes, or deployment. Console usage inspection did not reveal request-level error logs, so the cause of the upstream HTTP 403 remains unconfirmed.
+
+## September 26 upstream 403 investigation checkpoint
+
+- [x] Inspect failed production operations and expanded Vercel errors without changing production records; distinguish missing historical response details from SDK capabilities.
+- [x] Reconstruct the affected first stage and run one bounded live replay; run four authorized synthetic size probes without retries. Original replay succeeded; token overflow returned 400 `max_tokens_exceeded`, not 403.
+- [x] Preserve sanitized upstream HTTP details and correlation headers across TypeSafe, OpenAI participants, X SDK fetches and preview fetching; correlate saved operation keys with engine/provider logs.
+- [x] Record reproducible commands, provider request IDs, limits and remaining uncertainty in [the investigation](research/jev-403-investigation-2026-09-26.md).
+- [x] Verify `pnpm test` (68 files / 329 tests plus format, lint, types, content and unused checks), `pnpm build:local` including production traces, and `pnpm db:test:auth` (expected mocked state-mismatch rejection followed by successful callback/ownership checks). No deployment or provider support message sent.

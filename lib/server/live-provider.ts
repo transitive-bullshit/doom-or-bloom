@@ -1,4 +1,5 @@
 import { reportServerError } from './error-reporting'
+import { upstreamFetch } from './upstream-fetch'
 import 'server-only'
 import { TypeSafeClient } from '@typesafe-ai/sdk'
 import type { EntryType, Questions } from '@typesafe-ai/sdk'
@@ -120,18 +121,18 @@ export function createLiveProvider(model: string): Provider {
           if (diagnostic) requests.push(diagnostic)
           const started = performance.now()
           try {
-            const response = await fetch(url, { ...init, cache: 'no-store' })
+            const response = await upstreamFetch(
+              url,
+              { ...init, cache: 'no-store' },
+              {
+                ...diagnosticContext,
+                provider: 'TypeSafe',
+                event: 'jev_call_failed',
+                attempt: attempts,
+                model
+              }
+            )
             if (diagnostic) diagnostic.status = response.status
-            if (!response.ok)
-              reportServerError(
-                'jev_call_failed',
-                new Error('Provider HTTP failure'),
-                {
-                  ...diagnosticContext,
-                  status: response.status,
-                  attempt: attempts
-                }
-              )
             return response
           } finally {
             if (diagnostic)

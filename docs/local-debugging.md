@@ -48,7 +48,7 @@ The Evidence readiness meter summarizes existing presence confidence and coverag
 
 ## Structured server failures
 
-Provider and engine failures emit structured server logs. Engine stage and Jev batch failures share a server-generated request ID; logs contain bounded status, stage, size and attempt metadata, without raw answers, credentials, provider bodies or exception messages. Jev transient failures retry once. A `max_tokens_exceeded` response fails the operation without recursive splitting.
+Provider and engine failures emit structured server logs. Saved-assessment engine and Jev logs share the persisted operation request key and include the assessment ID. Failed upstream HTTP calls include status, timing, request byte count/SHA-256, allowlisted response headers (including provider request IDs and Cloudflare ray IDs), and a bounded, sanitized error-body preview. JSON previews retain error fields only; echoed request strings, common credentials and personal identifiers are redacted. Large or unavailable request bodies disable body previews because they cannot be safely compared for redaction. Body sampling is capped at 8 KiB and 300 ms and does not consume the SDK response. Raw SDK exception messages remain excluded from general logs. Jev transient failures retry once. A `max_tokens_exceeded` response fails the operation without recursive splitting.
 
 For saved-assessment requests, use the assessment ID and request key to inspect `assessment_operations`. Owner APIs expose only the action, status, deadline, base revision, failure category and retry link; private diagnostic counts and failure history remain in PostgreSQL. The public assessment serializer excludes all operations and browser debug traces. Do not assume every route returns an `X-Request-ID` header: saved-state recovery uses the persisted request key.
 
@@ -63,3 +63,9 @@ The optional development feedback widget is omitted when browser localStorage ca
 ## CI browser environment
 
 GitHub Actions creates `.env.development.local` with disposable native-Postgres credentials and a fixture provider; it does not need developer secrets. Browser suites retain their environment validation. CI sets `PORTLESS_PORT=1355`, `PORTLESS_HTTPS=0`, and a runner-temporary `PORTLESS_STATE_DIR`, then explicitly starts the proxy. This avoids Portless's privileged HTTPS default and interactive sudo/certificate setup on clean runners. Local development keeps its existing Portless settings.
+
+## Upstream reproduction
+
+See the [September 26 Jev investigation](research/jev-403-investigation-2026-09-26.md) for verified context limits, live results and support correlation IDs. `scripts/replay-provider-operation.ts --target production --operation <id>` reconstructs the first provider stage from a read-only database connection. Adding `--send` makes exactly one physical Jev call; it never submits or commits the assessment. Run through `node --conditions=react-server --import tsx`. `scripts/probe-jev-context.ts --send` makes exactly four synthetic size probes without retries. These are explicit paid diagnostic tools, not routine checks.
+
+Artifacts are private local files under ignored `work/diagnostics/` and may contain participant text. Review before sharing. Server transport coverage includes TypeSafe evaluation, OpenAI journey participants, X OAuth/syndication SDK fetches installed at Node startup, and the resource-preview fetch script. Successful response bodies are not logged.

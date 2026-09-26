@@ -1,3 +1,4 @@
+import { upstreamFetch } from '../lib/server/upstream-fetch'
 import { createLocalJourneyStore } from '../lib/journeys/local-store'
 import {
   mkdir,
@@ -86,9 +87,13 @@ const unique = new Map(
 const urls = only ? [only] : [...unique.keys()]
 await mkdir('public/resource-previews', { recursive: true })
 const request = (url: string) =>
-  fetch(url, {
-    signal: AbortSignal.timeout(15000)
-  })
+  upstreamFetch(
+    url,
+    {
+      signal: AbortSignal.timeout(15000)
+    },
+    { provider: 'resource-preview' }
+  )
 const bytes = async (url: string) => {
   const response = await request(url)
   if (!response.ok) throw new Error(`HTTP ${response.status}`)

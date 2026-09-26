@@ -40,7 +40,7 @@ export const evaluateAssessment: Evaluator = async (
             signal,
             budget,
             true,
-            context
+            { ...context, assessmentId: assessment.id }
           )
           stats.physicalRequestCount += result.attempts
           for (const call of result.requests ?? []) {
@@ -70,6 +70,7 @@ export const evaluateAssessment: Evaluator = async (
     },
     loadBundle(assessment.versions.content),
     env.debug,
-    signal
+    signal,
+    input.requestKey
   )
 }

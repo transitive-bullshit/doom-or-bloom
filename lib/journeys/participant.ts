@@ -1,3 +1,4 @@
+import { upstreamFetch } from '../server/upstream-fetch'
 import 'server-only'
 import { z } from 'zod'
 import type { Persona } from './catalog'
@@ -97,18 +98,27 @@ export function createOpenAIParticipant({
       )
       requests++
       const started = performance.now()
-      const response = await fetcher('https://api.openai.com/v1/responses', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
+      const response = await upstreamFetch(
+        'https://api.openai.com/v1/responses',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body,
+          signal: AbortSignal.timeout(60_000)
         },
-        body,
-        signal: AbortSignal.timeout(60_000)
-      }).catch((err: unknown) => {
+        {
+          provider: 'OpenAI',
+          event: 'participant_call_failed',
+          model: participantModel
+        },
+        fetcher
+      ).catch((err: unknown) => {
         throw providerFailure('OpenAI', err)
       })
-      // Never include provider error bodies or headers in diagnostics.
+      // Detailed sanitized responses stay in server logs, not journey exports.
       if (!response.ok)
         throw new JourneyFailure(
           `Participant request failed (HTTP ${response.status})`
