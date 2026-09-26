@@ -22,6 +22,8 @@
   ],
   // Analyze browser entries without executing environment-dependent configs.
   "playwright": false,
+  // The launch video is a standalone package with its own toolchain.
+  "ignore": ["video/**"],
   // Authenticated, externally installed read-only X CLI used by the refresh tool.
   "ignoreBinaries": ["xurl"],
   // Keep the reusable UI primitive APIs while still checking their dependencies.

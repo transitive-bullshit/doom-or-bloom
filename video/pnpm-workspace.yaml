@@ -1,0 +1,5 @@
+# Standalone package: keeps the video tooling out of the app workspace.
+packages: []
+
+allowBuilds:
+  esbuild: true
