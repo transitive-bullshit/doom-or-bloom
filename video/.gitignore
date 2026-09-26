@@ -1,0 +1,5 @@
+node_modules
+out
+dist
+# Commercial music: regenerate locally with scripts/prepare-audio.py
+public/soundtrack.wav
