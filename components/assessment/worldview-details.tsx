@@ -6,13 +6,11 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 
 export function WorldviewDetails({
   components,
-  reasoning,
   influence,
   transformationClaim,
   subject
 }: {
   components: Component[]
-  reasoning: Component
   influence: Component
   transformationClaim?: string | null
   subject?: ResultSubject
@@ -24,7 +22,6 @@ export function WorldviewDetails({
         ['beneficial_potential', 'risk_landscape'].includes(component.vector) &&
         component.value !== null
     ),
-    { ...reasoning, label: 'Demonstrated reasoning' },
     { ...influence, label: 'Human influence' }
   ]
   const positions = facets
@@ -47,7 +44,7 @@ export function WorldviewDetails({
     >
       <h4>{framing.detailsTitle}</h4>
       {impacts.length > 0 && (
-        <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-4'>
+        <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-3'>
           {impacts.map((component) => (
             <Card
               key={component.vector}
@@ -58,12 +55,8 @@ export function WorldviewDetails({
               </CardHeader>
               <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
                 <p className='text-sm text-body-foreground'>
-                  {component.vector === 'epistemic'
-                    ? subject
-                      ? `Reasoning, consideration of alternatives, and handling of uncertainty in ${framing.answers}. This describes the simulated answers, not the real person’s intelligence or opinions.`
-                      : 'How you explain your view, consider alternatives, and handle uncertainty. This describes your answers, not your intelligence or opinions.'
-                    : (component.claim ??
-                      'Several interpretations remain plausible.')}
+                  {component.claim ??
+                    'Several interpretations remain plausible.'}
                 </p>
                 <p className='text-sm font-medium tabular-nums'>
                   {component.value === null
@@ -73,18 +66,14 @@ export function WorldviewDetails({
                 <AxisRange range={component.range} value={component.value} />
                 <div className='flex justify-between text-xs text-muted-foreground'>
                   <span>
-                    {component.vector === 'epistemic'
-                      ? 'Little demonstrated'
-                      : component.vector === 'influence'
-                        ? 'Little influence'
-                        : 'Little impact'}
+                    {component.vector === 'influence'
+                      ? 'Little influence'
+                      : 'Little impact'}
                   </span>
                   <span>
-                    {component.vector === 'epistemic'
-                      ? 'Well developed'
-                      : component.vector === 'influence'
-                        ? 'Strong influence'
-                        : 'Transformative impact'}
+                    {component.vector === 'influence'
+                      ? 'Strong influence'
+                      : 'Transformative impact'}
                   </span>
                 </div>
                 <p className='sr-only'>

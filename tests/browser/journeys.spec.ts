@@ -75,7 +75,7 @@ test('saved persona snapshots expose results and decisions without rerun control
     page
       .getByRole('region', { name: 'Journey result' })
       .getByText('Demonstrated reasoning', { exact: true })
-  ).toBeVisible()
+  ).toHaveCount(0)
   const liveSteps = page.locator('[data-slot=journey-step]')
   await expect(liveSteps.first()).toBeVisible()
   const results = liveSteps.getByRole('button', {
@@ -137,7 +137,7 @@ test('saved persona snapshots expose results and decisions without rerun control
   ).toBeVisible()
   await expect(
     first.getByText('Demonstrated reasoning', { exact: true })
-  ).toBeVisible()
+  ).toHaveCount(0)
   await page.screenshot({
     path: testInfo.outputPath('journeys-desktop.png'),
     fullPage: false
@@ -383,7 +383,7 @@ test('answer selector moves the map and every experimental view without inferenc
   await explorer.getByRole('slider').press('ArrowRight')
   await expect(
     explorer.getByText('Demonstrated reasoning', { exact: true })
-  ).toBeVisible()
+  ).toHaveCount(0)
   await expect(explorer.locator('[data-slot=worldview-map]')).toHaveCount(1)
   await expect(explorer).toContainText('20%')
   await expect(explorer).toContainText('Milestone 2')
@@ -406,7 +406,7 @@ test('answer selector moves the map and every experimental view without inferenc
   await page.unrouteAll({ behavior: 'wait' })
 })
 
-test('completed uncertain personas keep visible map points and a separate reasoning axis', async ({
+test('completed uncertain personas keep visible map points without a reasoning card', async ({
   page
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
@@ -428,6 +428,6 @@ test('completed uncertain personas keep visible map points and a separate reason
     await expect(maps.nth(0)).not.toContainText('Unplaced')
     await expect(
       result.getByText('Demonstrated reasoning', { exact: true })
-    ).toBeVisible()
+    ).toHaveCount(0)
   }
 })
