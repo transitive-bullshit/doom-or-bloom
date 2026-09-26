@@ -1,3 +1,4 @@
+import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { expect, test } from 'vitest'
 import { createOpenAIParticipant, participantRequest } from './participant'
 import { liveJourneyBudget } from './live-budget'
@@ -120,6 +121,16 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
 })
 
 test('Jev failure preserves the paid participant reply without substituting scripted judgments', async () => {
+  expectDiagnostics({
+    event: 'assessment_stage_failed',
+    severity: 'error',
+    stage: 'A: interpret',
+    error: {
+      wrapper: 'JourneyFailure',
+      type: 'Error',
+      code: 'unexpected_error'
+    }
+  })
   const participant = createOpenAIParticipant({
     apiKey: 'fake-secret',
     budget: liveJourneyBudget(),
@@ -209,6 +220,16 @@ test('unknown cost remains reserved and prevents overspending', () => {
 })
 
 test('a failed shared interpretation resumes the saved answer without generating another participant reply', async () => {
+  expectDiagnostics({
+    event: 'assessment_stage_failed',
+    severity: 'error',
+    stage: 'D: projection',
+    error: {
+      wrapper: 'JourneyFailure',
+      type: 'Error',
+      code: 'unexpected_error'
+    }
+  })
   const fixture = createFixtureProvider()
   const evaluator = {
     kind: 'live' as const,

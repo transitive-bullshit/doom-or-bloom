@@ -1,3 +1,4 @@
+import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { cardSchema, ShareCard } from './card'
 import { loadSocialPortrait } from './portraits'
@@ -54,6 +55,13 @@ test('graph export rejects remote image references and external entities', async
 })
 
 test('share card shows real matched portraits and only the requested metrics', async () => {
+  expectDiagnostics({
+    event: 'api_request_failed',
+    severity: 'warn',
+    phase: 'render_card',
+    status: 400,
+    error: { wrapper: 'LimitError', type: 'Error', code: 'unexpected_error' }
+  })
   const matches = await Promise.all(
     people.slice(0, 3).map(async ({ id, name, avatar }) => ({
       id,

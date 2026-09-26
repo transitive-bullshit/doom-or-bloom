@@ -1,3 +1,4 @@
+import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { beforeEach, afterEach, expect, test, vi } from 'vitest'
 import { z } from 'zod'
 import { POST as assess } from '@/app/api/assessment/route'
@@ -25,8 +26,6 @@ beforeEach(() => {
   vi.mocked(runAssessment).mockReset()
   vi.stubEnv('ASSESSMENT_PROVIDER', 'fixture')
   vi.stubEnv('NEXT_PUBLIC_ASSESSMENT_DEBUG', 'false')
-  vi.spyOn(console, 'error').mockImplementation(() => {})
-  vi.spyOn(console, 'warn').mockImplementation(() => {})
 })
 afterEach(() => {
   vi.unstubAllEnvs()
@@ -39,8 +38,8 @@ function request(path: string, body: unknown) {
     body: JSON.stringify(body)
   })
 }
-function failure(response: Response, phase: string) {
-  const raw = vi.mocked(console.error).mock.calls.at(-1)![0] as string
+function failure(response: Response, phase: string, logs: string[]) {
+  const raw = logs[0]!
   expect(raw).not.toContain('PRIVATE_')
   expect(JSON.parse(raw)).toMatchObject({
     event: 'api_request_failed',
@@ -60,6 +59,14 @@ test('retired client-authoritative assessment API cannot run inference', async (
 })
 
 test('tweet network failures log the underlying system code', async () => {
+  const logs = expectDiagnostics({
+    event: 'api_request_failed',
+    severity: 'error',
+    phase: 'fetch_tweet',
+    route: '/api/tweet',
+    status: 502,
+    error: { type: 'Error', cause: { code: 'ECONNRESET' } }
+  })
   vi.mocked(getTweet).mockRejectedValueOnce(
     new Error('PRIVATE_URL', {
       cause: Object.assign(new Error('PRIVATE_HOST'), { code: 'ECONNRESET' })
@@ -67,10 +74,20 @@ test('tweet network failures log the underlying system code', async () => {
   )
   const response = await tweet(new Request('http://localhost/api/tweet?id=123'))
   expect(response.status).toBe(502)
-  expect(failure(response, 'fetch_tweet').error.cause.code).toBe('ECONNRESET')
+  expect(failure(response, 'fetch_tweet', logs).error.cause.code).toBe(
+    'ECONNRESET'
+  )
 })
 
 test('card renderer validation errors are logged as server failures', async () => {
+  const logs = expectDiagnostics({
+    event: 'api_request_failed',
+    severity: 'error',
+    phase: 'render_card',
+    route: '/api/share-card',
+    status: 500,
+    error: { type: 'ZodError', code: 'validation_failed' }
+  })
   const err = z.string().safeParse(123).error!
   vi.mocked(render).mockRejectedValueOnce(err)
   const response = await card(
@@ -83,10 +100,18 @@ test('card renderer validation errors are logged as server failures', async () =
     })
   )
   expect(response.status).toBe(500)
-  failure(response, 'render_card')
+  failure(response, 'render_card', logs)
 })
 
 test('saved persona read failures identify the storage phase', async () => {
+  const logs = expectDiagnostics({
+    event: 'api_request_failed',
+    severity: 'error',
+    phase: 'read_saved_run',
+    route: '/api/user-journeys',
+    status: 500,
+    error: { type: 'Error', code: 'ENOENT' }
+  })
   vi.mocked(projectJourneyStore).mockReturnValueOnce({
     read: async () => {
       throw Object.assign(new Error('PRIVATE_PATH'), { code: 'ENOENT' })
@@ -96,5 +121,5 @@ test('saved persona read failures identify the storage phase', async () => {
     new Request(`http://localhost/api/user-journeys?persona=${personas[0]!.id}`)
   )
   expect(response.status).toBe(500)
-  expect(failure(response, 'read_saved_run').error.code).toBe('ENOENT')
+  expect(failure(response, 'read_saved_run', logs).error.code).toBe('ENOENT')
 })

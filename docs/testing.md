@@ -14,6 +14,12 @@ Run tests appropriate to the change and complete required checks. Once those pas
 
 When reviewing expensive tests, consider the unique failures they catch alongside measured runtime, flakiness, setup, and maintenance burden. Simplify duplicate scenarios and move suitable assertions to cheaper tests before removing valuable coverage. Keep critical user journeys and known regressions covered. Changing how often a heavyweight suite runs requires preserving its relevant change and release checks; do not silently skip required coverage.
 
+## Expected diagnostics
+
+Failure-path Vitest tests use `expectDiagnostics` from `tests/helpers/diagnostics.ts` inside the individual test. Declare the event, severity, relevant stage/status/error fields and exact count (one by default). The helper suppresses only matching structured messages up to that count and asserts every declared diagnostic occurred. Keep diagnostic privacy/correlation assertions on the returned captured strings where relevant.
+
+Unmatched messages, malformed/plain text, different console levels and excess duplicates pass through with their original arguments. Do not use blanket console mocks, global event filters or silent test-runner settings to hide passing-test output. The helper uses console spies and is for non-concurrent tests only; Vitest restores mocks between tests. Browser/server and other process diagnostics remain untouched.
+
 ## GitHub Actions budget
 
 Keep routine GitHub Actions usage limited to the core test job. Heavyweight e2e and browser tests should not be run by GitHub Actions by default.

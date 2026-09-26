@@ -1,3 +1,4 @@
+import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { afterEach, expect, test, vi } from 'vitest'
 import { createLiveProvider, validateEvaluation } from './live-provider'
 import { fixtureAnswer } from './provider'
@@ -132,6 +133,24 @@ test('large batches retain the exact complete state and aggregate physical usage
     expect(requestBody(init).state).toEqual(state)
 })
 test('context overflow is permanent and never triggers recursive splitting', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 400,
+      attempt: 1,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'max_tokens_exceeded',
+        status: 400
+      }
+    }
+  )
   const { provider, fetch } = mockedProvider(async () =>
     Response.json({ message: 'Exceeded token limit' }, { status: 400 })
   )
@@ -141,6 +160,22 @@ test('context overflow is permanent and never triggers recursive splitting', asy
   expect(fetch).toHaveBeenCalledTimes(1)
 })
 test('transient batch retries respect the physical ceiling and remaining operation budget', async () => {
+  expectDiagnostics(
+    ...[...Array.from({ length: 12 }, (_, i) => 2 * i + 1), 1].map(
+      (attempt) => ({
+        event: 'jev_call_failed',
+        severity: 'error' as const,
+        status: 429,
+        attempt,
+        error: { type: 'Error', code: 'unexpected_error' }
+      })
+    ),
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: { type: 'ApplicationError', code: 'unexpected_error' }
+    }
+  )
   let calls = 0
   const { provider, fetch } = mockedProvider(async (_url, init) =>
     ++calls % 2 !== 0
@@ -165,6 +200,24 @@ test('transient batch retries respect the physical ceiling and remaining operati
   expect(fetch).toHaveBeenCalledTimes(2)
 })
 test('an oversized fallback stops without searching for the provider limit', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 400,
+      attempt: 1,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'max_tokens_exceeded',
+        status: 400
+      }
+    }
+  )
   const { provider, fetch } = mockedProvider(async () =>
     Response.json({ message: 'Exceeded token limit' }, { status: 400 })
   )
@@ -177,6 +230,47 @@ test('an oversized fallback stops without searching for the provider limit', asy
   expect(fetch).toHaveBeenCalledTimes(1)
 })
 test('authentication failures are not retried, while transient retries have a physical ceiling', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 401,
+      attempt: 1,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'provider_http_401',
+        status: 401
+      }
+    },
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 429,
+      attempt: 1,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 429,
+      attempt: 2,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'provider_http_429',
+        status: 429
+      }
+    }
+  )
   const { provider, fetch } = mockedProvider(async () =>
     Response.json({ message: 'Unauthorized' }, { status: 401 })
   )
@@ -196,6 +290,20 @@ test('authentication failures are not retried, while transient retries have a ph
   expect(fetch).toHaveBeenCalledTimes(3)
 })
 test('caller cancellation stops retry backoff without another physical request', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 429,
+      attempt: 1,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: { type: 'ApplicationError', code: 'unexpected_error' }
+    }
+  )
   const controller = new AbortController()
   const { provider, fetch } = mockedProvider(async () => {
     controller.abort()
@@ -207,6 +315,11 @@ test('caller cancellation stops retry backoff without another physical request',
   expect(fetch).toHaveBeenCalledTimes(1)
 })
 test('the shared provider deadline terminates a hanging request and its retries', async () => {
+  expectDiagnostics({
+    event: 'jev_batch_failed',
+    severity: 'error',
+    error: { type: 'ApplicationError', code: 'unexpected_error' }
+  })
   vi.useFakeTimers()
   vi.spyOn(AbortSignal, 'timeout').mockImplementation((ms) => {
     const controller = new AbortController()
@@ -279,6 +392,24 @@ test('debug records each physical batch and validated response without adding ca
 })
 
 test('overflow diagnostics retain status without raw provider errors', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 400,
+      attempt: 1,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'max_tokens_exceeded',
+        status: 400
+      }
+    }
+  )
   const { provider, fetch } = mockedProvider(async () =>
     Response.json(
       { message: 'Exceeded token limit PRIVATE_ERROR_CANARY' },
@@ -325,6 +456,24 @@ test('rounded live score at the tolerance boundary is not rejected by floating p
 })
 
 test('failed later batch retains validated responses and physical diagnostics without transport secrets', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 401,
+      attempt: 2,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'provider_http_401',
+        status: 401
+      }
+    }
+  )
   let calls = 0
   const { provider } = mockedProvider(async (_url, init) =>
     ++calls === 1
@@ -364,6 +513,31 @@ test('failed later batch retains validated responses and physical diagnostics wi
 })
 
 test('a second transient failure ends the whole operation after exactly two calls', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 503,
+      attempt: 1,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 503,
+      attempt: 2,
+      error: { type: 'Error', code: 'unexpected_error' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'provider_http_503',
+        status: 503
+      }
+    }
+  )
   const { provider, fetch } = mockedProvider(async () =>
     Response.json(
       { message: 'Busy' },

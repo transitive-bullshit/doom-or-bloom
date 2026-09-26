@@ -1,3 +1,4 @@
+import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { expect, test, vi } from 'vitest'
 import { runAssessment } from './engine'
 import { createFixtureProvider, fixtureAnswer } from './provider'
@@ -640,6 +641,12 @@ test('three sparse answers cannot unlock results by reply count alone', async ()
 })
 
 test('failed operations expose completed stages and failed input without serializing provider secrets', async () => {
+  expectDiagnostics({
+    event: 'assessment_stage_failed',
+    severity: 'error',
+    stage: 'D: projection',
+    error: { type: 'Error', code: 'unexpected_error' }
+  })
   const fixture = createFixtureProvider()
   const provider: Provider = {
     kind: 'fixture',

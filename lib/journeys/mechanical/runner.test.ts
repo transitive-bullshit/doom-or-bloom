@@ -1,3 +1,4 @@
+import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { expect, test } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { loadBundle } from '@/lib/content/loader'
@@ -218,6 +219,16 @@ test('live mode receives only normal participant context, never expected persona
 })
 
 test('budget/provider failure is saved as a partial run without a manufactured result or raw error', async () => {
+  expectDiagnostics({
+    event: 'assessment_stage_failed',
+    severity: 'error',
+    stage: 'A: interpret',
+    error: {
+      wrapper: 'JourneyFailure',
+      type: 'Error',
+      code: 'unexpected_error'
+    }
+  })
   const provider: Provider = {
     kind: 'live',
     evaluate: async () => {
@@ -251,6 +262,21 @@ test('unsupported fixture options fail clearly rather than silently picking a su
 
 for (const failureStage of ['interpret', 'route', 'project'] as const)
   test(`failed ${failureStage} resumes the exact operation once from committed state`, async () => {
+    expectDiagnostics({
+      event: 'assessment_stage_failed',
+      severity: 'error',
+      count: 2,
+      stage: {
+        interpret: 'A: interpret',
+        route: 'C: route',
+        project: 'D: projection'
+      }[failureStage],
+      error: {
+        wrapper: 'JourneyFailure',
+        type: 'Error',
+        code: 'unexpected_error'
+      }
+    })
     const fixture = createFixtureProvider()
     const healthy: Provider = {
       kind: 'live',
@@ -333,6 +359,16 @@ for (const failureStage of ['interpret', 'route', 'project'] as const)
   })
 
 test('failure generating a new result preserves saved answers through retry', async () => {
+  expectDiagnostics({
+    event: 'assessment_stage_failed',
+    severity: 'error',
+    stage: 'D: projection',
+    error: {
+      wrapper: 'JourneyFailure',
+      type: 'Error',
+      code: 'unexpected_error'
+    }
+  })
   const fixture = createFixtureProvider()
   let projections = 0
   const healthy: Provider = {
