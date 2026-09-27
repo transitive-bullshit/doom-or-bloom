@@ -73,6 +73,11 @@ test('proximity warms at most three profiles, cancels passing intent, and reuses
     'data-layout-ready',
     'true'
   )
+  // Proximity targets are measured from resting portraits.
+  await expect(page.locator('.study-chart')).toHaveAttribute(
+    'data-reveal',
+    /^(landed|fade)$/
+  )
   await page.mouse.move(0, 0)
   // Give viewport-driven prefetching enough time to reveal an accidental flood.
   await page.waitForTimeout(400)
