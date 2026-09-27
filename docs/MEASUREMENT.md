@@ -42,6 +42,9 @@ Production distributions cannot establish classifier correctness.
 | `full_report_downloaded` | Expanded report downloaded. |
 | `share_card_downloaded` | Personalized card downloaded. |
 | `share_intent_opened` | Reserved compatibility event; current UI downloads images and copies links, with no share-intent emitter. |
+| `self_placement_submitted` | The participant placed themselves on the map before their first result was revealed. Carries only a coarse `placement_gap` (`close`, `moderate` or `far`). |
+| `self_placement_skipped` | The participant skipped self-placement. |
+| `result_feedback_submitted` | The participant answered “Does this feel right?”. Carries `feedback_rating` and the enumerated `feedback_aspects`; the optional comment is never sent. |
 
 ## Enumerated properties
 
@@ -56,6 +59,7 @@ Allowlisted properties may include:
 - Resource identifiers.
 - Whether an inference was disputed and which authored vector it concerned.
 - Response disposition, recovery-attempt bucket, pause reason, and recovery action, using enumerated values only; never a participant “sincerity” or “troll” label.
+- Self-placement gap bucket, feedback rating and feedback aspect identifiers. Guess coordinates and comment text stay in the private `assessment_feedback` table ([PERSISTENCE.md](PERSISTENCE.md#result-feedback)).
 
 Use a client allowlist or `before_send` equivalent to strip unexpected properties and URL query/hash data.
 
@@ -92,7 +96,12 @@ These are research directions, not new telemetry requirements or claims of valid
 
 ### Resonance
 
-Offer lightweight optional feedback on central inferred claims, such as whether the result reflects the participant's view. A correction is informative, but neither agreement nor disagreement alone establishes evaluator correctness.
+Participants give two optional, lightweight signals ([PRODUCT.md](PRODUCT.md#results)):
+
+- a self-placement on the map before their first result is revealed;
+- a one-tap “Does this feel right?” with optional aspects and a comment.
+
+Both are stored privately with the assessment, together with what was displayed. A disagreement is informative, but neither agreement nor disagreement alone establishes evaluator correctness. Review them periodically as patterns across many participants, for example by answer length, outlook region or algorithm version, using the read-only [feedback audit](benchmark.md). Never tune to a single response. Record decisions in a dated research note before changing questions, definitions or estimators, then confirm them on the [regression benchmark](benchmark.md).
 
 ### Evaluation quality
 
@@ -123,3 +132,5 @@ Review disagreements qualitatively; aggregate accuracy can hide asymmetric ideol
 6. Publish a versioned content or rubric release with a short methodology changelog.
 
 Do not automatically change assessment standards to match the majority of participants or optimize solely for agreement and sharing.
+
+The [feedback audit](benchmark.md#feedback-audit) supports step 1 with a private, read-only review of participants' self-placement and agreement feedback. The [regression benchmark](benchmark.md#regression-benchmark) supports step 5 with fixed simulated participants and references. Both are development evidence, not the blinded human-reviewed holdout above.

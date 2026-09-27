@@ -35,6 +35,7 @@ Analytics tests use live-mode configuration to exercise SDK initialization, but 
 | Browser UI, navigation, clipboard, keyboard, rendering | Relevant files through `pnpm check:browser tests/browser/<file>.spec.ts`; review affected desktop/mobile rendering when appropriate |
 | Ownership, sessions, drafts, library, publication, forks | `pnpm check:persistence`; relevant `db:test:*` checks below |
 | Schema or repository transactions | `pnpm db:migrate:test` twice, `pnpm db:test`, `pnpm db:test:repository`, `pnpm db:test:commit`, `pnpm db:test:lifecycle` |
+| Result feedback (self-placement, agreement) | `pnpm db:test:feedback` and `pnpm check:browser tests/browser/result-feedback.spec.ts` |
 | Persona persistence or selected runs | `pnpm db:test:personas` and `pnpm check:persistence tests/persistence/personas.spec.ts` |
 | Authentication or anonymous claim | `pnpm db:test:auth` and `pnpm check:persistence tests/persistence/auth.spec.ts`; actual provider smoke test when OAuth configuration changes |
 | Interrupted operations or restart recovery | `pnpm db:test:commit`, `pnpm db:test:restart` |
@@ -47,6 +48,10 @@ Analytics tests use live-mode configuration to exercise SDK initialization, but 
 Run suites sequentially: browser suites share the test database, and build/typegen can conflict over generated Next types. Do not add retries to hide deterministic failures. Preserve traces for failed browser scenarios and record unresolved failures explicitly. Paid Jev/OpenAI evaluations require their own agreed scope and budget; they are not routine test or release requirements.
 
 Record validation in the PR or checkpoint log with the commit SHA (and whether the tree was dirty), commands, results/counts, elapsed time, and any blocked or omitted relevant checks. A passing core CI job alone does not establish release readiness.
+
+## Interview benchmark
+
+`pnpm test` runs the `lib/benchmark/` unit tests, including an offline interview through the engine with fixture judgments. The [interview benchmark](benchmark.md) itself makes paid calls, so it is neither routine nor a release gate. After a rubric, prompt, question or estimator change, compare `core` runs before and after, and record both run IDs and the comparison with the change. `pnpm benchmark:run --dry-run` checks a plan without network access.
 
 ## Crash and uncertain-commit checks
 

@@ -32,6 +32,7 @@ Look up current versions and limits in [lib/assessment/schema.ts](../lib/assessm
 | Opinion coverage, argument maps or safety terminology | [JOURNEYS.md](JOURNEYS.md) |
 | Simulated-user research, generation, storage or review | [user-journeys.md](user-journeys.md) |
 | Analytics, privacy or assessment validity | [MEASUREMENT.md](MEASUREMENT.md), [evaluation-protocol.md](evaluation-protocol.md) |
+| Interview regression benchmark or participant feedback review | [benchmark.md](benchmark.md) |
 | Local diagnostics, provider failures or internal review tools | [local-debugging.md](local-debugging.md) |
 | Read-only local/production inspection | [admin.md](admin.md) |
 | Phone or remote-browser development | [remote-testing.md](remote-testing.md) |
