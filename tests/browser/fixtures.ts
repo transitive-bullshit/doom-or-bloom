@@ -15,6 +15,17 @@ export const test = base.extend({
   }
 })
 
+/** Skips the self-placement step that precedes a first result. */
+export async function skipSelfPlacement(page: Page) {
+  await expect(
+    page.getByRole('heading', { name: 'Your results are ready', exact: true })
+  ).toBeVisible()
+  await page.getByRole('button', { name: 'Skip', exact: true }).click()
+  await expect(
+    page.getByRole('heading', { name: 'Results', exact: true })
+  ).toBeVisible()
+}
+
 export async function startAssessment(page: Page) {
   await page.goto('/assessment')
   await page

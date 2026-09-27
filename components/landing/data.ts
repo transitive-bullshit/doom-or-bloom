@@ -8,6 +8,7 @@ import { getPool } from '@/lib/db'
 import { personaRepository } from '@/lib/personas/repository'
 import { simulationPresentation } from '@/lib/personas/payload'
 import { personaProfileSchema } from '@/lib/journeys/catalog'
+import { presentResult } from '@/lib/assessment/present-result'
 
 const loadSummaries = cache((featuredOnly: boolean) =>
   personaRepository(getPool()).selectedSummaries(featuredOnly)
@@ -55,7 +56,7 @@ function exampleFromSummary(
     })),
     sourceBriefUpdated:
       JSON.stringify(row.sources) !== JSON.stringify(row.recordedSources),
-    result: row.result
+    result: presentResult(row.result)
   }
 }
 

@@ -18,9 +18,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await portrait.click()
   await expect(page).toHaveURL(/\/users\/esyudkowsky$/)
   await expect(page.locator('[data-slot=worldview-map]')).toHaveCount(1)
-  await expect(
-    page.getByText('Eliezer Yudkowsky’s estimated P(doom)', { exact: true })
-  ).toBeVisible()
+  await expect(page.getByText(/^Eliezer Yudkowsky’s P\(doom\)/)).toBeVisible()
   await expect(
     page.getByText('What his outlook hinges on', { exact: true })
   ).toBeVisible()

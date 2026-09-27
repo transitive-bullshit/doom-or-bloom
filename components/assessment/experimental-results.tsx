@@ -7,6 +7,8 @@ import { ChevronDownIcon } from 'lucide-react'
 import type { Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
+import { pdoomRangeLabel, presentResult } from '@/lib/assessment/present-result'
+import type { MapPoint } from '@/lib/assessment/self-placement'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { AxisRange } from './axis-range'
 import { Map } from './worldview-map'
@@ -20,13 +22,16 @@ import {
 } from '@/components/ui/collapsible'
 
 export function ExperimentalResults({
-  result,
+  result: saved,
   history = [],
   layout = 'contained',
   excerpts = false,
   reasoningDetails,
   riskCompanion,
-  subject
+  subject,
+  guess,
+  mapNote,
+  feedback
 }: {
   result: Result
   excerpts?: boolean
@@ -35,7 +40,11 @@ export function ExperimentalResults({
   reasoningDetails?: ReactNode
   riskCompanion?: ReactNode
   subject?: ResultSubject
+  guess?: MapPoint | null
+  mapNote?: ReactNode
+  feedback?: ReactNode
 }) {
+  const result = presentResult(saved)
   const experiment =
     result.experiment?.evidenceRevision === result.evidenceRevision
       ? result.experiment
@@ -76,7 +85,9 @@ export function ExperimentalResults({
             y: item.result.experiment?.transformation.value ?? null,
             label: item.label
           }))}
+          guess={guess}
         />
+        {mapNote}
       </div>
       <div
         className={
@@ -89,13 +100,21 @@ export function ExperimentalResults({
           <CardHeader>
             <CardTitle>
               {framing.owner}{' '}
-              {risk?.source === 'public-statement' ? 'stated' : 'estimated'}{' '}
-              P(doom)
+              {risk?.source === 'public-statement'
+                ? 'stated P(doom)'
+                : 'P(doom)'}
+              {risk?.source === 'inferred' && (
+                <span className='font-normal text-muted-foreground'>
+                  {' '}
+                  · inferred
+                </span>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent className='flex flex-col gap-4'>
             <p className='text-4xl font-semibold tracking-tight tabular-nums'>
-              {risk?.token ?? (experiment ? 'Not specified' : 'Not evaluated')}
+              {risk?.token ??
+                (experiment ? 'Not estimated yet' : 'Not evaluated')}
             </p>
             {risk?.bounds && (
               <div>
@@ -116,9 +135,11 @@ export function ExperimentalResults({
                   ? risk.source === 'public-statement'
                     ? `Public statement from ${risk.publicStatement?.publishedAt}. This source-backed value replaces the simulated assessment estimate.`
                     : risk.source === 'inferred'
-                      ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `the likelihood described in ${framing.answers}`}. Approximate interpretation range: ${risk.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Applies to the outcome and conditions in ${framing.answers}; this is an inferred percentage.`
-                      : `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described below; this estimate is not standardized across people.`
-                  : `There is not enough relevant evidence yet to estimate ${framing.possessive} view of catastrophic risk.`}
+                      ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `how ${framing.answers} describe the likelihood`}, not a number ${subject ? 'they' : 'you'} gave.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${!subject && risk.basis === 'contextual' ? ' A rough number in your own words would sharpen it.' : ''}`
+                      : subject
+                        ? `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described; this number is not standardized across people.`
+                        : `You said ${risk.token}. The outcome, horizon and conditions are the ones in your answers; this number isn’t standardized across people.`
+                  : `There wasn’t enough about catastrophic risk in ${framing.answers} to estimate it.${subject ? '' : ' A sentence about how likely you think it is would add one.'}`}
             </p>
             {risk?.publicStatement && (
               <div className='space-y-2 text-sm text-body-foreground'>
@@ -149,6 +170,7 @@ export function ExperimentalResults({
           </CardContent>
         </Card>
         {riskCompanion}
+        {feedback && <div className='lg:col-span-2'>{feedback}</div>}
         {excerpts && Boolean(experiment?.milestones.length) && (
           <Card>
             <CardHeader>

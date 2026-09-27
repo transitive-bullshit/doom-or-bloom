@@ -307,9 +307,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       await bookmark.screenshot({
         path: testInfo.outputPath('resource-bookmark.png')
       })
-      const risk = page
-        .getByText('Your estimated P(doom)', { exact: true })
-        .locator('xpath=../..')
+      const risk = page.getByText(/^Your P\(doom\)/).locator('xpath=../..')
       await expect(risk.locator('[data-slot=axis-point]')).toHaveAttribute(
         'style',
         /left:\s*18%/

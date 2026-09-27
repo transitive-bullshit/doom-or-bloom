@@ -8,7 +8,8 @@ import {
   startAssessment,
   seedAssessment,
   savedAssessment,
-  mockEvaluation
+  mockEvaluation,
+  skipSelfPlacement
 } from './fixtures'
 import { readFile } from 'node:fs/promises'
 import {
@@ -115,7 +116,7 @@ test('saved earlier-version assessments preserve their content through results a
   for (let i = 0; i < 3; i++)
     await submit(page, `Earlier-version synthetic answer ${i}.`)
   await page.getByRole('button', { name: 'View my results' }).click()
-  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await skipSelfPlacement(page)
   const saved = await savedAssessment(page)
   expect(saved.versions.content).toBe(contentVersion)
   expect(saved.result!.versions.content).toBe(contentVersion)
@@ -213,7 +214,7 @@ test('three answers, draft resume, map, report download and another assessment',
   for (let i = 0; i < 3; i++)
     await submit(page, `Relevant synthetic answer ${i}.`)
   await page.getByRole('button', { name: 'View my results' }).click()
-  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await skipSelfPlacement(page)
   await expect(
     page.getByRole('article', { name: 'Question 1 and replies', exact: true })
   ).toContainText('Relevant synthetic answer 0.')
@@ -446,9 +447,7 @@ test('the twelfth prompt finalizes insufficient evidence after a non-answer with
   await expect(page.getByText('Approaching the limit')).toBeVisible()
   await submit(page, 'test')
   await expect(page.getByText('12-prompt cap reached')).toBeVisible()
-  await expect(
-    page.getByText('Insufficient evidence', { exact: true })
-  ).toBeVisible()
+  await expect(page.getByText('Not placed yet', { exact: true })).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Continue answering questions' })
   ).toHaveCount(0)
@@ -494,7 +493,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   })
   await startAssessment(page)
   await expect(
-    page.getByRole('meter', { name: 'Evidence readiness' })
+    page.getByRole('region', { name: 'What your result needs' })
   ).toHaveCount(0)
   await expect(
     page.getByRole('button', { name: 'View my results' })
@@ -506,9 +505,11 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
       30
     )
   )
+  const needs = page.getByRole('region', { name: 'What your result needs' })
   await expect(
-    page.getByRole('meter', { name: 'Evidence readiness' })
-  ).toHaveAttribute('aria-valuenow', '100')
+    needs.getByText('Your results are available', { exact: true })
+  ).toBeVisible()
+  await expect(needs.getByRole('listitem')).toHaveCount(3)
   await expect(
     page.getByRole('button', { name: 'View my results' })
   ).toBeEnabled()
@@ -517,7 +518,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   expect(state.answers).toHaveLength(1)
   expect(state.prompts).toHaveLength(2)
   await page.getByRole('button', { name: 'view your results now' }).click()
-  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await skipSelfPlacement(page)
   await expect(
     page.locator('[data-slot="worldview-map"]').first()
   ).toContainText('scale of transformation')

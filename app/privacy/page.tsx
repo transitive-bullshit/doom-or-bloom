@@ -17,8 +17,10 @@ export default function Privacy() {
         No sign-up is required. A browser session gives you access to your
         private assessments. Submitted answers, rejected replies, results, and
         bounded failure records are saved on our server indefinitely unless you
-        delete the assessment. Unsubmitted typing stays in this browser. We may
-        inspect saved assessments to improve the project.
+        delete the assessment. Feedback you give about your result is saved
+        privately with that assessment and deleted with it. Unsubmitted typing
+        stays in this browser. We may inspect saved assessments to improve the
+        project.
       </p>
       <h2>Where answers go</h2>
       <p>

@@ -6,9 +6,13 @@ export function adminFilters(params: AdminSearch, now = new Date()) {
     ? value('range')
     : 'all'
   const days = range === '24h' ? 1 : range === '7d' ? 7 : 30
-  const state = ['completed', 'active', 'recovery', 'attention'].includes(
-    value('state')
-  )
+  const state = [
+    'completed',
+    'active',
+    'recovery',
+    'attention',
+    'feedback'
+  ].includes(value('state'))
     ? value('state')
     : 'all'
   const origin = ['all', 'simulation'].includes(value('origin'))

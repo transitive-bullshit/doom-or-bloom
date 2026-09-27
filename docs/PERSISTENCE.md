@@ -17,7 +17,7 @@ Keep starting an assessment as fast as it is today. Neither registration nor an 
 | Continue on a private assessment | Continue the existing interview. |
 | Continue on a published assessment | “Fork & continue answering” creates a private fork, then continues answering. |
 | Make private | Remove public access and allow additional answers on the same private assessment. |
-| Delete | Delete this assessment and its snapshots, operations, and retained failure diagnostics. Independent forks remain. |
+| Delete | Delete this assessment and its snapshots, operations, result feedback, and retained failure diagnostics. Independent forks remain. |
 
 Starting uses an explicit POST triggered by the CTA, not a side effect of rendering, prefetching, a crawler visit, or a GET. Establish the session first, then issue a signed, owner-bound browser draft ticket and stable UUID without inserting an assessment, snapshot, operation, or reservation row. Reuse a request key on uncertain retries. Draft tickets are HttpOnly cookies scoped separately to the owner page and its API, with a one-year maximum lifetime; clearing browser credentials loses unsubmitted drafts. Back/Forward and reload preserve the URL and local typing. Explicit New assessment pushes a history entry; the first-run shortcut replaces its entry page. Unsaved drafts never appear in the library or change the returning-visitor CTA behavior.
 
@@ -53,6 +53,7 @@ Use PostgreSQL and Drizzle with the normal PostgreSQL driver (`pg`). Local devel
 | `assessment_snapshots` | `id`, `assessment_id`, monotonically increasing revision, payload format/schema version, immutable JSONB payload, payload digest, evidence revision when available, producing operation, creation time. |
 | `assessment_operations` | `id`, `assessment_id`, unique client request key, immutable action/input and fingerprint, base snapshot/revision, pinned execution versions, status (`running`, `succeeded`, `failed`, or `interrupted`), resulting snapshot, nullable retry-of operation ID, request deadline, physical-request count, bounded call-failure/diagnostic history, failure category, timestamps. |
 | `personas` | Stable ID/unique slug, name, portrait, presentation metadata, current authored source brief, featured flag, selected assessment pointer, timestamps. |
+| `assessment_feedback` | `id`, `assessment_id`, kind (`self_placement` or `agreement`), the result's evidence revision, the snapshot shown, the result's engine version (`algorithm_version`), JSONB payload, timestamps. See [Result feedback](#result-feedback). |
 
 ```mermaid
 erDiagram
@@ -60,6 +61,7 @@ erDiagram
     USER ||--o{ ASSESSMENT : owns
     ASSESSMENT ||--|{ SNAPSHOT : records
     ASSESSMENT ||--o{ OPERATION : receives
+    ASSESSMENT ||--o{ FEEDBACK : receives
     ASSESSMENT o|--o{ ASSESSMENT : forked_from
     PERSONA o|--o{ ASSESSMENT : simulated_subject
 ```
@@ -121,6 +123,19 @@ Finish/share/fork serialize against a live operation and do not freeze a stale r
 Only the owner can fork a published participant assessment, from its published snapshot. The copied initial snapshot is self-contained and starts a new private assessment. Preserve original answer text, evidence links, interpretations, pinned versions, and copied question identities; identifiers inside a snapshot are scoped so inherited IDs need not be globally rewritten. Reset request keys, operation revision bookkeeping, analytics event markers, and transient processing/animation state. Preserve semantic recovery/routing evidence; do not blindly shallow-copy execution state.
 
 New questions and natural-language corrections append to the copied history. Opening a fork does not count inherited answers as new submissions or emit their old analytics events. Parent deletion and unpublishing do not change the independent fork. New submissions update only the fork. Direct editing of prior answers, earlier-point branching, public remixing, and evaluator upgrades are outside this scope.
+
+## Result feedback
+
+`assessment_feedback` stores two participant signals about a displayed result so real disagreement can be audited later. Each row belongs to one assessment, kind and result evidence revision, enforced by a unique `(assessment_id, kind, evidence_revision)` constraint.
+
+- **`self_placement`:** before the result is revealed, where the participant expects to land on the map (`guess`, x and y from 0 to 1). The server adds `placed`, the map point computed from the stored result, with `null` for an unplaced axis; a client cannot supply it. The first guess for a revision wins (insert, on conflict do nothing): a later guess may have seen the result.
+- **`agreement`:** “Does this feel right?” as `yes` or `not_quite`, with optional aspects (only for `not_quite`) and an optional trimmed comment of 1–1000 characters. The server adds `shown`: the placed map point plus the displayed P(doom) value and label, computed with the render-time presentation at write time. Later presentation changes therefore never alter what a rating referred to. A repeated rating for the same revision replaces the payload (upsert) and advances `updated_at`.
+
+A write requires a stored result whose evidence revision matches the request; otherwise the API returns a 409 conflict. Each row also records the assessment's current snapshot at write time, as a composite foreign key to a snapshot of the same assessment, and the result's engine version. Together they link the feedback to exactly what was shown.
+
+Ownership is derived through the assessment. There is no owner column, because an anonymous owner can be claimed or merged into an account and the claim transfers assessments only. `GET` and `POST /api/assessments/<id>/feedback` authorize every request against the session owner and give non-owners the same not-found response as other private routes. Owners can give feedback on their own published assessment view, but publication never exposes it: public pages, JSON and social images read snapshots only. Forks start without the parent's feedback. Deleting an assessment cascades to its feedback.
+
+The optional comment is participant-authored content with the same privacy handling as submitted answers: private, retained until the assessment is deleted, visible to operators in the read-only [admin](admin.md) dashboard, and excluded from analytics. Migration `0007_assessment_feedback` only creates the new table; its foreign keys briefly lock the referenced tables while they are added. Production and the shared Preview database need this migration before the feedback UI is deployed to them; applying it remains part of a separate deployment task.
 
 ## Personas and seeding
 

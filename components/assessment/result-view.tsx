@@ -25,6 +25,12 @@ import {
   CollapsibleTrigger
 } from '@/components/ui/collapsible'
 import { serializeReport, downloadBlob } from '@/lib/sharing/report'
+import { presentResult } from '@/lib/assessment/present-result'
+import { placementComparison } from '@/lib/assessment/self-placement'
+import { resultPlacement } from '@/lib/assessments/feedback'
+import { SelfPlacement } from './self-placement'
+import { ResultFeedback } from './result-feedback'
+import { useResultFeedback } from './use-result-feedback'
 import { emitEvent } from '@/lib/analytics/client'
 import { makeEvent } from '@/lib/analytics/events'
 
@@ -50,7 +56,8 @@ export function ResultView({
   const [downloading, setDownloading] = useState(false)
   const [reportDownloading, setReportDownloading] = useState(false)
   const resultsRoot = useRef<HTMLDivElement>(null)
-  const result = state.result!
+  const result = presentResult(state.result!)
+  const feedback = useResultFeedback(state, !readOnly)
   const supportingAnswers = (evidenceIds: string[]) => {
     const ids = new Set(
       state.evidence
@@ -125,6 +132,18 @@ export function ResultView({
         : 'Download results image for social sharing'}
     </ExpandingArrowAction>
   )
+  if (feedback.stage !== 'revealed')
+    return (
+      <div ref={resultsRoot} aria-busy={feedback.stage === 'pending'}>
+        {feedback.stage === 'guess' && (
+          <SelfPlacement
+            busy={feedback.busy}
+            onSubmit={(guess) => void feedback.submitGuess(guess)}
+            onSkip={feedback.skip}
+          />
+        )}
+      </div>
+    )
   return (
     <div ref={resultsRoot} className='flex flex-col gap-6'>
       {(!readOnly || result.insufficient || result.capped) && (
@@ -132,7 +151,7 @@ export function ResultView({
           {(result.insufficient || result.capped) && (
             <div className='mb-3 flex gap-2'>
               {result.insufficient && (
-                <Badge variant='secondary'>Insufficient evidence</Badge>
+                <Badge variant='secondary'>Not placed yet</Badge>
               )}
               {result.capped && atCap(state) && (
                 <Badge variant='outline'>
@@ -141,13 +160,39 @@ export function ResultView({
               )}
             </div>
           )}
-          {!readOnly && <h2>Results</h2>}
+          {!readOnly && (
+            <>
+              <h2>Results</h2>
+              <p className='mt-2 max-w-prose text-pretty text-body-foreground'>
+                {result.reason}
+                {result.horizontal.value !== null &&
+                  result.experiment?.transformation.value != null &&
+                  ' The dot is our reading of what you wrote and the dashed box shows other plausible readings: an interpretation, not a verdict.'}
+              </p>
+            </>
+          )}
         </div>
       )}
       <ExperimentalResults
         result={result}
         layout={layout}
         riskCompanion={<ClosestPersonas result={result} personas={personas} />}
+        guess={feedback.guess}
+        mapNote={
+          feedback.guess && (
+            <p className='text-sm text-body-foreground'>
+              {placementComparison(feedback.guess, resultPlacement(result))}
+            </p>
+          )
+        }
+        feedback={
+          !readOnly && (
+            <ResultFeedback
+              saved={feedback.agreement}
+              onSubmit={feedback.submitAgreement}
+            />
+          )
+        }
       />
       <ResultDisclosure title='Additional insights'>
         <div className='grid gap-3 sm:grid-cols-2'>

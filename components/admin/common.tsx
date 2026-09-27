@@ -72,7 +72,8 @@ export function AdminFiltersForm({
         ['completed', 'Completed · has results'],
         ['active', 'No results yet'],
         ['recovery', 'Answer recovery'],
-        ['attention', 'Needs attention']
+        ['attention', 'Needs attention'],
+        ['feedback', 'Has result feedback']
       ]
     ],
     [

@@ -1,5 +1,6 @@
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import type { Assessment } from '@/lib/assessment/schema'
+import { presentResult } from '@/lib/assessment/present-result'
 
 export function serializeReport(
   state: Assessment,
@@ -55,6 +56,9 @@ export function serializeReport(
     familiarity: state.familiarity,
     judgments: state.judgments
   }
+  // The JSON keeps the saved snapshot; the readable summary shows what the
+  // participant sees, including render-time presentation upgrades.
+  const shown = presentResult(result)
   const position = (value: number | null) =>
     value === null
       ? 'Unplaced'
@@ -74,41 +78,41 @@ export function serializeReport(
     '',
     'Experimental interpretation of the expectations and reasoning expressed in your answers. P(doom) describes your stated or inferred belief, not an independent prediction of AI catastrophe.',
     '',
-    `Status: ${result.insufficient ? 'Insufficient evidence' : result.provisional ? 'Provisional' : 'Supported projection'}${result.capped ? ' · lifetime prompt cap reached' : ''}`,
+    `Status: ${shown.insufficient ? 'Insufficient evidence' : shown.provisional ? 'Provisional' : 'Supported projection'}${shown.capped ? ' · lifetime prompt cap reached' : ''}`,
     '',
-    `Versions: ${JSON.stringify(result.versions)}`,
+    `Versions: ${JSON.stringify(shown.versions)}`,
     '',
-    `Demonstrated reasoning: ${position(result.vertical.value)}; interpretation range ${result.vertical.range.map((v) => Math.round(v * 100)).join('–')}. Describes reasoning shown in the answers, not intelligence or viewpoint.`,
+    `Demonstrated reasoning: ${position(shown.vertical.value)}; interpretation range ${shown.vertical.range.map((v) => Math.round(v * 100)).join('–')}. Describes reasoning shown in the answers, not intelligence or viewpoint.`,
     '',
     '## Experimental worldview maps',
     '',
-    `Doom–Bloom: ${position(result.horizontal.value)}; interpretation range ${result.horizontal.range.map((v) => Math.round(v * 100)).join('–')}.`,
+    `Doom–Bloom: ${position(shown.horizontal.value)}; interpretation range ${shown.horizontal.range.map((v) => Math.round(v * 100)).join('–')}.`,
     '',
     ...(['influence', 'transformation'] as const).map(
       (axis) =>
-        `${axis === 'influence' ? 'Human influence' : 'Scale of transformation'}: ${position(result.experiment?.[axis].value ?? null)}; ${result.experiment?.[axis].interpretation ?? 'experimental'} interpretation; range ${(result.experiment?.[axis].range ?? [0, 1]).map((v) => Math.round(v * 100)).join('–')}.`
+        `${axis === 'influence' ? 'Human influence' : 'Scale of transformation'}: ${position(shown.experiment?.[axis].value ?? null)}; ${shown.experiment?.[axis].interpretation ?? 'experimental'} interpretation; range ${(shown.experiment?.[axis].range ?? [0, 1]).map((v) => Math.round(v * 100)).join('–')}.`
     ),
     '',
-    `${result.experiment?.pdoom?.source === 'inferred' ? 'Inferred' : 'Stated'} P(doom): ${result.experiment?.pdoom?.token ?? 'Not specified'}. ${result.experiment?.pdoom?.publicStatement ? 'The estimate comes from the cited public statement, overriding the simulated assessment estimate.' : 'The estimate applies to the outcome, horizon and conditions described in your answers.'}`,
-    ...(result.experiment?.pdoom
+    `${shown.experiment?.pdoom?.source === 'inferred' ? 'Inferred' : 'Stated'} P(doom): ${shown.experiment?.pdoom?.token ?? 'Not specified'}. ${shown.experiment?.pdoom?.publicStatement ? 'The estimate comes from the cited public statement, overriding the simulated assessment estimate.' : 'The estimate applies to the outcome, horizon and conditions described in your answers.'}`,
+    ...(shown.experiment?.pdoom
       ? [
-          ...(result.experiment.pdoom.publicStatement
+          ...(shown.experiment.pdoom.publicStatement
             ? [
-                `Source: [${result.experiment.pdoom.publicStatement.title}](${result.experiment.pdoom.publicStatement.url}) (${result.experiment.pdoom.publicStatement.publishedAt}).`,
-                `Outcome: ${result.experiment.pdoom.publicStatement.outcome}. Horizon: ${result.experiment.pdoom.publicStatement.horizon}. Conditions: ${result.experiment.pdoom.publicStatement.conditions}`,
-                `Original assessment estimate: ${result.experiment.pdoom.assessmentEstimate?.token ?? 'Not specified'}.`
+                `Source: [${shown.experiment.pdoom.publicStatement.title}](${shown.experiment.pdoom.publicStatement.url}) (${shown.experiment.pdoom.publicStatement.publishedAt}).`,
+                `Outcome: ${shown.experiment.pdoom.publicStatement.outcome}. Horizon: ${shown.experiment.pdoom.publicStatement.horizon}. Conditions: ${shown.experiment.pdoom.publicStatement.conditions}`,
+                `Original assessment estimate: ${shown.experiment.pdoom.assessmentEstimate?.token ?? 'Not specified'}.`
               ]
             : []),
-          ...(result.experiment.pdoom.text
-            ? [`> ${result.experiment.pdoom.text}`]
+          ...(shown.experiment.pdoom.text
+            ? [`> ${shown.experiment.pdoom.text}`]
             : []),
-          `${result.experiment.pdoom.answerNumber ? `Answer ${result.experiment.pdoom.answerNumber}` : result.experiment.pdoom.publicStatement ? 'Based on a sourced public statement' : 'Based on the full answer history'}.${result.experiment.pdoom.source === 'inferred' ? ` Approximate interpretation range: ${result.experiment.pdoom.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Inferred from ${result.experiment.pdoom.basis === 'contextual' ? 'broader worldview and priorities' : 'qualitative likelihood'}; not a stated percentage or statistical confidence interval.` : ''}`
+          `${shown.experiment.pdoom.answerNumber ? `Answer ${shown.experiment.pdoom.answerNumber}` : shown.experiment.pdoom.publicStatement ? 'Based on a sourced public statement' : 'Based on the full answer history'}.${shown.experiment.pdoom.source === 'inferred' ? ` Approximate interpretation range: ${shown.experiment.pdoom.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Inferred from ${shown.experiment.pdoom.basis === 'contextual' ? 'broader worldview and priorities' : 'qualitative likelihood'}; not a stated percentage or statistical confidence interval.` : ''}`
         ]
       : []),
     '',
     '## Milestones and assumptions',
     '',
-    ...(result.experiment?.milestones.flatMap((m) => [
+    ...(shown.experiment?.milestones.flatMap((m) => [
       `### ${m.label}`,
       '',
       `> ${m.evidence.text}`,
@@ -116,7 +120,7 @@ export function serializeReport(
       `Answer ${m.evidence.answerNumber}.`,
       ''
     ]) ?? []),
-    ...(result.experiment?.hinges.flatMap((h) => [
+    ...(shown.experiment?.hinges.flatMap((h) => [
       `### ${h.label}`,
       '',
       `> ${h.evidence.text}`,
@@ -129,7 +133,7 @@ export function serializeReport(
     '',
     '## Profile',
     '',
-    ...result.components.flatMap((c) => [
+    ...shown.components.flatMap((c) => [
       `### ${c.label}`,
       '',
       c.claim ?? 'Unassessed',
@@ -141,7 +145,7 @@ export function serializeReport(
     ]),
     '## Fingerprint and expressed forecast context',
     '',
-    ...result.fingerprint.flatMap((c) => [
+    ...shown.fingerprint.flatMap((c) => [
       `### ${c.label}`,
       '',
       c.claim ?? 'Unassessed; no supported position is invented.',
@@ -149,7 +153,7 @@ export function serializeReport(
     ]),
     '## Findings',
     '',
-    ...result.findings.flatMap((f) => [
+    ...shown.findings.flatMap((f) => [
       f.text,
       '',
       `Evidence: ${f.evidenceIds.join(', ')}`,
@@ -157,16 +161,16 @@ export function serializeReport(
     ]),
     '## Resources',
     '',
-    ...result.resources.flatMap((r) => [
+    ...shown.resources.flatMap((r) => [
       `[${r.title}](${r.url}) — ${r.purpose}`,
       ''
     ]),
     '## Reference sources',
     '',
-    ...result.sources.flatMap((s) => [
+    ...shown.sources.flatMap((s) => [
       `### ${s.title}`,
       '',
-      `${s.id} · ${s.status} · accessed ${s.accessed} · content ${result.versions.content}`,
+      `${s.id} · ${s.status} · accessed ${s.accessed} · content ${shown.versions.content}`,
       '',
       ...s.urls.map((url, i) => `[Primary source ${i + 1}](${url})`),
       ''

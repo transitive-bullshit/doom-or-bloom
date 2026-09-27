@@ -1,5 +1,12 @@
 'use client'
-import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent
+} from 'react'
 import Image, { getImageProps } from 'next/image'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { PrismField } from '@/components/worldview/prism-field'
@@ -15,7 +22,9 @@ export function Map({
   axis,
   history = [],
   layout = 'breakout',
-  subject
+  subject,
+  guess,
+  pick
 }: {
   horizontal: Component
   vertical: Component
@@ -23,6 +32,10 @@ export function Map({
   history?: Array<{ x: number | null; y: number | null; label: string }>
   layout?: 'contained' | 'breakout'
   subject?: ResultSubject
+  // The participant's own expected position, shown beside the result.
+  guess?: { x: number; y: number } | null
+  // Self-placement mode: the result stays hidden and a tap places the guess.
+  pick?: (point: { x: number; y: number }) => void
 }) {
   const svg = useRef<SVGSVGElement>(null)
   const [labelScale, setLabelScale] = useState(1)
@@ -43,7 +56,19 @@ export function Map({
   const plot = { left: 76, top: 40, width: 528, height: 268 }
   const px = (value: number) => plot.left + value * plot.width
   const py = (value: number) => plot.top + (1 - value) * plot.height
-  const point = x.value !== null && y.value !== null
+  const point = !pick && x.value !== null && y.value !== null
+  const place = (event: PointerEvent<SVGSVGElement>) => {
+    const matrix = svg.current?.getScreenCTM()
+    if (!pick || !matrix) return
+    const local = new DOMPoint(event.clientX, event.clientY).matrixTransform(
+      matrix.inverse()
+    )
+    const clamp = (value: number) => Math.min(1, Math.max(0, value))
+    pick({
+      x: clamp((local.x - plot.left) / plot.width),
+      y: clamp(1 - (local.y - plot.top) / plot.height)
+    })
+  }
   // Keep a native SVG image for clipping and PNG export, using Next's resized
   // 192px source for high-density screens and responsive SVG scaling: SVG
   // images cannot select from an HTML srcSet.
@@ -57,7 +82,9 @@ export function Map({
           quality: 90
         }).props.src
       : undefined
-  const description = `Doom–Bloom: ${x.value === null ? 'unplaced' : Math.round(x.value * 100) + ' out of 100'}. ${definition.label}: ${y.value === null ? 'unplaced' : Math.round(y.value * 100) + ' out of 100'}. Interpretation ranges: ${x.range.map((v) => Math.round(v * 100)).join(' to ')} horizontally, ${y.range.map((v) => Math.round(v * 100)).join(' to ')} vertically. These are interpretation coordinates, not event probabilities.`
+  const description = pick
+    ? `Self-placement map. ${guess ? `Your guess: Doom–Bloom ${Math.round(guess.x * 100)} out of 100, ${definition.label.toLowerCase()} ${Math.round(guess.y * 100)} out of 100.` : 'No guess placed yet.'}`
+    : `Doom–Bloom: ${x.value === null ? 'unplaced' : Math.round(x.value * 100) + ' out of 100'}. ${definition.label}: ${y.value === null ? 'unplaced' : Math.round(y.value * 100) + ' out of 100'}. Interpretation ranges: ${x.range.map((v) => Math.round(v * 100)).join(' to ')} horizontally, ${y.range.map((v) => Math.round(v * 100)).join(' to ')} vertically. These are interpretation coordinates, not event probabilities.`
   return (
     <figure
       data-slot='worldview-map'
@@ -70,7 +97,7 @@ export function Map({
       <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
         <h2 className='col-start-2 text-center'>{definition.question}</h2>
         <div className='col-start-3 justify-self-end'>
-          <MapActions svg={svg} />
+          {!pick && <MapActions svg={svg} />}
         </div>
       </div>
       <svg
@@ -79,8 +106,9 @@ export function Map({
         viewBox={`0 0 ${resultMapLayout.width} ${resultMapLayout.height}`}
         role='img'
         aria-label={description}
-        className='block w-full'
+        className={cn('block w-full', pick && 'cursor-crosshair touch-none')}
         style={{ '--map-label-scale': labelScale } as CSSProperties}
+        onPointerDown={pick ? place : undefined}
       >
         <defs>
           {subject?.avatar && point && (
@@ -143,6 +171,32 @@ export function Map({
         >
           Bloom
         </text>
+        {!subject && (
+          <>
+            <text
+              className='prism-axis-label'
+              x='36'
+              y={py(0.5) + 18}
+              dominantBaseline='middle'
+              textAnchor='middle'
+              fill='var(--map-muted)'
+              fontSize='11'
+            >
+              worried
+            </text>
+            <text
+              className='prism-axis-label'
+              x='644'
+              y={py(0.5) + 18}
+              dominantBaseline='middle'
+              textAnchor='middle'
+              fill='var(--map-muted)'
+              fontSize='11'
+            >
+              hopeful
+            </text>
+          </>
+        )}
         {history.map((entry, index) =>
           entry.x !== null && entry.y !== null ? (
             <g key={index}>
@@ -164,19 +218,45 @@ export function Map({
             </g>
           ) : null
         )}
-        <rect
-          x={px(x.range[0])}
-          y={py(y.range[1])}
-          width={Math.max(2, (x.range[1] - x.range[0]) * plot.width)}
-          height={Math.max(2, (y.range[1] - y.range[0]) * plot.height)}
-          rx='4'
-          fill={`url(#${id}-missing)`}
-          stroke='var(--prism-range-ink)'
-          strokeOpacity='.65'
-          strokeWidth='1.5'
-          vectorEffect='non-scaling-stroke'
-          strokeDasharray='6 5'
-        />
+        {!pick && (
+          <rect
+            x={px(x.range[0])}
+            y={py(y.range[1])}
+            width={Math.max(2, (x.range[1] - x.range[0]) * plot.width)}
+            height={Math.max(2, (y.range[1] - y.range[0]) * plot.height)}
+            rx='4'
+            fill={`url(#${id}-missing)`}
+            stroke='var(--prism-range-ink)'
+            strokeOpacity='.65'
+            strokeWidth='1.5'
+            vectorEffect='non-scaling-stroke'
+            strokeDasharray='6 5'
+          />
+        )}
+        {guess && (
+          <g data-slot='worldview-map-guess'>
+            <circle
+              cx={px(guess.x)}
+              cy={py(guess.y)}
+              r='9'
+              fill='var(--map-surface)'
+              fillOpacity='.6'
+              stroke='var(--map-text)'
+              strokeWidth='2.5'
+              strokeDasharray='3 3'
+            />
+            <text
+              x={px(guess.x)}
+              y={guess.y < 0.15 ? py(guess.y) - 16 : py(guess.y) + 22}
+              textAnchor='middle'
+              fill='var(--map-text)'
+              fontSize='11'
+              fontWeight='600'
+            >
+              {pick ? 'You' : 'Your guess'}
+            </text>
+          </g>
+        )}
         {point && (
           <g>
             {subject?.avatar ? (
@@ -252,7 +332,7 @@ export function Map({
             )}
           </g>
         )}
-        {!point && (
+        {!point && !pick && (
           <g className='map-axis-caption'>
             <rect
               x='194'
@@ -284,7 +364,7 @@ export function Map({
           </g>
         )}
       </svg>
-      {!point && (
+      {!point && !pick && (
         <p className='map-mobile-captions map-muted text-sm'>
           Some dimensions are still unplaced. Open regions show what we don’t
           yet know.
