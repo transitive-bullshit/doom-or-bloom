@@ -4,7 +4,12 @@ import Image from 'next/image'
 import { WorldviewCta } from '@/components/worldview-cta'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import Link from 'next/link'
-import { useSyncExternalStore, useMemo, useState } from 'react'
+import {
+  useSyncExternalStore,
+  useMemo,
+  useState,
+  type CSSProperties
+} from 'react'
 import './prism.css'
 import { usePortraitHighlight } from './use-portrait-highlight'
 import { usePortraitLayout } from './use-portrait-layout'
@@ -151,10 +156,14 @@ export function Prism({
         .sort((a, b) => a.outlook! - b.outlook!),
     [examples]
   )
-  const chartRef = usePortraitLayout(plotted)
+  const portraitsReady = plotted.every((p) => portraits[p.avatar])
+  const chartRef = usePortraitLayout(
+    plotted,
+    portraitsReady,
+    directory ? 'directory' : 'featured'
+  )
   const highlightRef = usePortraitHighlight(plotted)
   const prefetch = usePersonaPrefetch(highlightRef)
-  const portraitsReady = plotted.every((p) => portraits[p.avatar])
   const settlePortrait = (src: string, status: 'loaded' | 'failed') => {
     setPortraits((current) =>
       current[src] === status ? current : { ...current, [src]: status }
@@ -201,11 +210,26 @@ export function Prism({
         data-portraits-ready={portraitsReady}
         role='group'
         aria-label='AI outlook and scale of transformation. Open a portrait to explore their simulated worldview.'
+        aria-busy={!portraitsReady}
       >
         <div className='study-cross-x' />
         <div className='study-cross-y' />
         <span className='study-doom'>Doom</span>
         <span className='study-bloom'>Bloom</span>
+        {plotted.map((p, i) => (
+          <span
+            key={p.id}
+            className='study-dot'
+            aria-hidden
+            style={
+              {
+                left: `${p.outlook! * 100}%`,
+                top: `${(1 - p.transformation!) * 100}%`,
+                '--order': i / Math.max(1, plotted.length - 1)
+              } as CSSProperties
+            }
+          />
+        ))}
         {plotted.map((p) => (
           <PersonaLink
             key={p.id}

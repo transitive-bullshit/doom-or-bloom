@@ -19,6 +19,7 @@ import {
   type PersonaMetadata,
   type SimulationPayload
 } from './payload'
+import { usableRows } from './usable-rows'
 
 export const simulationOwnerId = 'doom-or-bloom-simulations'
 export function personaRepository(pool: Pool) {
@@ -243,9 +244,9 @@ export function personaRepository(pool: Pool) {
         )
         .where(and(publicSimulation, eq(personas.featured, true)))
         .orderBy(asc(personas.slug))
-      return rows
-        .sort((a, b) => a.order - b.order)
-        .map(({ order: _order, components, map, ...identity }) => ({
+      return usableRows(
+        rows.sort((a, b) => a.order - b.order),
+        ({ order: _order, components, map, ...identity }) => ({
           ...personaMetadataSchema
             .pick({ id: true, name: true, slug: true, avatar: true })
             .parse(identity),
@@ -261,12 +262,15 @@ export function personaRepository(pool: Pool) {
               y: z.number().nullable()
             })
             .parse(map)
-        }))
+        }),
+        { read: 'persona_comparisons', persona: (row) => row.slug }
+      )
     },
     // List views need the result and source comparison, never interview history.
     async selectedSummaries(featuredOnly = false) {
       const rows = await db
         .select({
+          slug: personas.slug,
           metadata: personas.metadata,
           sources: sql<unknown>`${personas.sourceBrief}->'sources'`,
           recordedSources: sql<unknown>`coalesce(${assessmentSnapshots.payload} #> '{journey,personaSnapshot,sources}', '[]'::jsonb)`,
@@ -292,8 +296,9 @@ export function personaRepository(pool: Pool) {
           )
         )
         .orderBy(asc(personas.slug))
-      return rows
-        .map((row) => ({
+      return usableRows(
+        rows,
+        (row) => ({
           assessmentId: row.assessmentId,
           metadata: personaMetadataSchema.parse(row.metadata),
           sources: personaProfileSchema
@@ -303,8 +308,9 @@ export function personaRepository(pool: Pool) {
             .pick({ sources: true })
             .parse({ sources: row.recordedSources }).sources,
           result: resultSchema.parse(row.result)
-        }))
-        .sort((a, b) => a.metadata.order - b.metadata.order)
+        }),
+        { read: 'persona_summaries', persona: (row) => row.slug }
+      ).sort((a, b) => a.metadata.order - b.metadata.order)
     },
     // Full catalog reads are reserved for offline import/verification tools.
     async selected() {

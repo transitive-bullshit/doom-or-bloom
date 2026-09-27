@@ -1,5 +1,7 @@
 .map-lab-stage {
   padding: 0 5vw 80px;
+  /* Entering portraits start beyond the page edges without widening it. */
+  overflow-x: clip;
 }
 .map-study {
   --study-ink: var(--prism-text);
@@ -9,6 +11,7 @@
   --study-chart-outline: var(--prism-border);
   --study-portrait-ring: var(--prism-portrait-ring);
   --study-shadow: var(--prism-shadow);
+  --study-portrait-shadow: var(--prism-portrait-shadow);
   --study-field: var(--prism-field);
   color: var(--study-ink);
   background: var(--study-surface);
@@ -101,7 +104,7 @@
   z-index: 2;
   border: 2px solid var(--study-portrait-ring);
   background: var(--study-surface);
-  box-shadow: 0 2px 8px var(--study-shadow);
+  box-shadow: 0 2px 8px var(--study-portrait-shadow);
   /* Frequent scanning: dimming and names respond immediately. */
 }
 .study-point img {
@@ -254,27 +257,80 @@
   }
 }
 
-/* Wait for every portrait to decode before revealing them together. */
-.study-chart:not([data-layout-ready='true']) .study-portrait,
-.study-chart[data-portraits-ready='false'] .study-portrait,
+/* While portraits load, their landing places pulse doom to bloom. */
+.study-dot {
+  position: absolute;
+  z-index: 1;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  pointer-events: none;
+  /* Fast loads reveal portraits before the placeholder would appear. */
+  transition: opacity 400ms var(--ease-out) 250ms;
+}
+@starting-style {
+  .study-dot {
+    opacity: 0;
+  }
+}
+.study-dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--study-portrait-ring);
+  box-shadow:
+    0 0 0 1px var(--study-chart-outline),
+    0 1px 3px var(--study-portrait-shadow);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .study-dot::before {
+    animation: dot-scan 1600ms ease-in-out infinite;
+    animation-delay: calc(var(--order) * 800ms - 1600ms);
+  }
+}
+/* Each dot keeps pulsing until its portrait lands on it. */
+.study-chart[data-reveal] .study-dot {
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out) var(--landing, 0ms);
+}
+.study-chart:is([data-reveal='fade'], [data-reveal='landed']) .study-dot {
+  display: none;
+}
+@keyframes dot-scan {
+  0%,
+  100% {
+    opacity: 0.45;
+    scale: 0.7;
+  }
+  50% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@media (max-width: 520px) {
+  .study-dot {
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+  }
+}
+
+/* Wait for every portrait to decode and the first layout before revealing them together. */
+.study-chart:not([data-reveal]) .study-portrait,
 .study-chart .study-portrait[data-portrait-failed='true'] {
   visibility: hidden;
 }
-.study-chart[data-layout-ready='true'][data-portraits-ready='true']
-  .study-portrait {
-  animation: portrait-enter 250ms var(--ease-out) backwards;
+/* Repeat visits, offscreen maps and reduced motion skip the fly-in. */
+.study-chart[data-reveal='fade'] .study-portrait {
+  animation: portrait-fade 250ms var(--ease-out) backwards;
+}
+.study-chart .study-portrait[data-flying='true'] {
+  pointer-events: none;
 }
 /* Interaction always takes priority over the decorative entrance. */
 .study-chart .study-portrait[data-highlighted='true'] {
   opacity: 1 !important;
-}
-@keyframes portrait-enter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 @keyframes portrait-fade {
   from {
@@ -285,9 +341,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .study-chart[data-layout-ready='true'][data-portraits-ready='true']
-    .study-portrait {
-    animation-name: portrait-fade;
+  .study-chart[data-reveal='fade'] .study-portrait {
     animation-duration: 150ms;
   }
 }

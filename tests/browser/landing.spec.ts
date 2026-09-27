@@ -68,6 +68,11 @@ test('featured portraits stay square and inside their circular frames', async ({
     await page.goto('/')
     const portraits = page.locator('.study-point')
     await expect(portraits.first()).toBeVisible()
+    // Measure resting frames, not portraits tilted mid-entrance.
+    await expect(page.locator('.study-chart')).toHaveAttribute(
+      'data-reveal',
+      /^(landed|fade)$/
+    )
     await portraits.evaluateAll(async (elements) => {
       await Promise.all(
         elements.map((element) => element.querySelector('img')!.decode())
@@ -325,6 +330,73 @@ test('featured map lays out before reveal and fills mobile width with page-edge 
   await page.setViewportSize({ width: 390, height: 844 })
   await expect(portrait).toHaveAttribute('style', initial!)
   await checkBounds()
+})
+
+test('featured portraits fly in once per page load and land on their layout positions', async ({
+  page
+}) => {
+  await page.addInitScript(() => {
+    const record = window as unknown as {
+      reveals: string[]
+      launchOverflow: number
+    }
+    record.reveals = []
+    new MutationObserver(() => {
+      const state =
+        document.querySelector<HTMLElement>('.study-chart')?.dataset.reveal
+      if (!state || state === record.reveals.at(-1)) return
+      record.reveals.push(state)
+      // Flights start beyond the chart and page edges.
+      if (state === 'fly')
+        record.launchOverflow =
+          document.documentElement.scrollWidth -
+          document.documentElement.clientWidth
+    }).observe(document, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-reveal']
+    })
+  })
+  await page.goto('/')
+  const chart = page.locator('.study-chart')
+  await expect(chart).toHaveAttribute('data-reveal', 'landed')
+  expect(
+    await page.evaluate(
+      () => (window as unknown as { reveals: string[] }).reveals
+    )
+  ).toEqual(['fly', 'landed'])
+  expect(
+    await page.evaluate(
+      () => (window as unknown as { launchOverflow: number }).launchOverflow
+    )
+  ).toBe(0)
+  await expect(chart.locator('[data-flying]')).toHaveCount(0)
+  await expect(chart.locator('.study-dot').first()).toBeHidden()
+  const drift = await chart.evaluate((node) => {
+    const origin = node.getBoundingClientRect()
+    return Array.from(
+      node.querySelectorAll<HTMLElement>('.study-portrait'),
+      (portrait) => {
+        const [, x, y] = /translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(
+          portrait.style.transform
+        )!
+        const rect = portrait.getBoundingClientRect()
+        return Math.hypot(
+          rect.left + rect.width / 2 - origin.left - Number(x),
+          rect.top + rect.height / 2 - origin.top - Number(y)
+        )
+      }
+    )
+  })
+  expect(Math.max(...drift)).toBeLessThan(0.5)
+  // Later visits in the same page load skip straight to a fade.
+  await page.getByRole('link', { name: 'Explore all simulated users' }).click()
+  await expect(page).toHaveURL(/\/users$/)
+  await page.goBack()
+  await expect(page.locator('.study-chart')).toHaveAttribute(
+    'data-reveal',
+    'fade'
+  )
 })
 
 test('hovering a featured portrait keeps its map position and tooltip anchor stable', async ({

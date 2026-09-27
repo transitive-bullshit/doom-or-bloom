@@ -62,6 +62,9 @@ export function usePersonaPrefetch(rootRef: RefObject<HTMLElement | null>) {
         const chart = root.querySelector<HTMLElement>('.study-chart')
         if (!chart?.contains(event.target as Node))
           return select(direct ? [direct] : [], 'hover')
+        // Measure only portraits that have appeared and landed.
+        if (!chart.dataset.reveal || chart.dataset.reveal === 'fly')
+          return select([], 'nearby')
         points ??= Array.from(
           chart.querySelectorAll<HTMLElement>('[data-prefetch-key]'),
           (node) => {

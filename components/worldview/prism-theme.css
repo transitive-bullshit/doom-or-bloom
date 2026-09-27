@@ -6,6 +6,8 @@
   --prism-border: #25392b22;
   --prism-portrait-ring: #fbfaf6;
   --prism-shadow: #22332220;
+  /* Portraits sit on the chart field, so their shadow ignores the UI theme. */
+  --prism-portrait-shadow: #22332220;
   /* Chart colors encode the worldview field, independently of UI theme. */
   --prism-range-ink: #25392b;
   --prism-coral: #ff786a;
