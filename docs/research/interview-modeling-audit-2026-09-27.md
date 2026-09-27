@@ -113,6 +113,14 @@ Medians are shown. The rule was adopted. The six benefit-only optimists still at
 
 The “Unclear” headline now also requires the plausible range to run from under 10% to over 30%; a wide range within the low end keeps its point estimate.
 
+**Production outcome.** On September 27 the 716 saved results were re-evaluated with `0.7.1` and written as new snapshots. The median shown P(doom) moved from 1.9% to 5.8%:
+
+- hopeful participants (outlook ≥ 0.6) from under 1% to 2.7%;
+- mixed from 2.0% to 5.5%;
+- worried (outlook < 0.4) from 8.4% to 12%.
+
+The five participants who typed a number now see it, and 15 previously unplaced results are placed. 59 changed map quadrant, and 470 have a different closest thought leader. 19 kept their earlier result because the current rules would not offer one.
+
 ## Production evidence (952 real assessments, Sep 23–27)
 
 Added after launch with the user's permission: read-only queries against production Postgres, analyzed locally. All figures below are counts over participant assessments on algorithm `0.6.1`. No production text was sent to any external service, and examples are short and non-identifying.
