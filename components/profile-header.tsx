@@ -49,7 +49,7 @@ export function ProfileHeader({
                 href={profileUrl}
                 target='_blank'
                 rel='noreferrer'
-                className='mt-2 inline-block text-sm text-muted-foreground underline underline-offset-4'
+                className='mt-0.5 inline-block text-sm text-muted-foreground underline underline-offset-4'
               >
                 {profileLabel}
               </a>
@@ -58,8 +58,14 @@ export function ProfileHeader({
         </div>
         {children}
       </div>
+      {/* One rhythm for name, link and description once the portrait no
+          longer shares their row. */}
       {description && (
-        <p className='mt-4 text-body-foreground'>{description}</p>
+        <p
+          className={`text-body-foreground ${portrait ? 'mt-4 lg:mt-1.5' : 'mt-1.5'}`}
+        >
+          {description}
+        </p>
       )}
     </header>
   )
