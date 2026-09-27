@@ -21,6 +21,18 @@ import {
   CollapsibleContent
 } from '@/components/ui/collapsible'
 
+// Horizons such as "Not specified" add nothing; long ones keep their lead clause.
+const namedHorizon = (horizon: string) =>
+  /^(no |not |unspecified)/iu.test(horizon.trim())
+    ? null
+    : horizon.split(/[;,]/u)[0]!.trim()
+const monthYear = (date: string) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(date))
+
 export function ExperimentalResults({
   result: saved,
   history = [],
@@ -128,43 +140,50 @@ export function ExperimentalResults({
                 </div>
               </div>
             )}
-            <p className='text-sm text-body-foreground'>
-              {!experiment
-                ? 'This assessment has not been evaluated for a numerical catastrophe estimate.'
-                : risk
-                  ? risk.source === 'public-statement'
-                    ? `Public statement from ${risk.publicStatement?.publishedAt}. This source-backed value replaces the simulated assessment estimate.`
-                    : risk.source === 'inferred' && risk.token === 'Unclear'
-                      ? `${subject ? 'These answers' : 'Your answers'} read both as dismissing catastrophe and as expecting it, so there is no meaningful single number.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${subject ? '' : ' A rough number in your own words would settle it.'}`
-                      : risk.source === 'inferred'
-                        ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `how ${framing.answers} describe the likelihood`}, not a number ${subject ? 'they' : 'you'} gave.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${!subject && risk.basis === 'contextual' ? ' A rough number in your own words would sharpen it.' : ''}`
-                        : subject
-                          ? `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described; this number is not standardized across people.`
-                          : `You said ${risk.token}. The outcome, horizon and conditions are the ones in your answers; this number isn’t standardized across people.`
-                  : `There wasn’t enough about catastrophic risk in ${framing.answers} to estimate it.${subject ? '' : ' A sentence about how likely you think it is would add one.'}`}
-            </p>
-            {risk?.publicStatement && (
-              <div className='space-y-2 text-sm text-body-foreground'>
-                <p>{risk.publicStatement.outcome}</p>
-                <p>{risk.publicStatement.conditions}</p>
-                <p>Horizon: {risk.publicStatement.horizon}</p>
-                {risk.estimate === undefined && (
-                  <p>
-                    The dot marks the midpoint of the stated range, not a
-                    separate forecast.
-                  </p>
+            {risk?.publicStatement ? (
+              <div className='flex flex-col gap-2 text-sm text-body-foreground'>
+                {risk.publicStatement.quote && (
+                  <blockquote className='border-l-2 pl-3'>
+                    “{risk.publicStatement.quote}”
+                  </blockquote>
                 )}
-                <a
-                  className='underline underline-offset-4'
-                  href={risk.publicStatement.url}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {risk.publicStatement.title}
-                </a>
+                <p>
+                  {[
+                    risk.publicStatement.outcome,
+                    namedHorizon(risk.publicStatement.horizon)
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
+                </p>
+                <p className='text-muted-foreground'>
+                  <a
+                    className='underline underline-offset-4'
+                    href={risk.publicStatement.url}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    {risk.publicStatement.title}
+                  </a>
+                  {' · '}
+                  {monthYear(risk.publicStatement.publishedAt)}
+                </p>
               </div>
+            ) : (
+              <p className='text-sm text-body-foreground'>
+                {!experiment
+                  ? 'Not evaluated for this assessment.'
+                  : risk
+                    ? risk.source === 'inferred' && risk.token === 'Unclear'
+                      ? `${subject ? 'These answers' : 'Your answers'} read both ways, so there is no single number.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${subject ? '' : ' A rough number in your own words would settle it.'}`
+                      : risk.source === 'inferred'
+                        ? `Inferred from ${framing.answers}, not a number ${subject ? 'they' : 'you'} gave.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${!subject && risk.basis === 'contextual' ? ' A rough number in your own words would sharpen it.' : ''}`
+                        : subject
+                          ? `From ${framing.answers}.`
+                          : `You said ${risk.token}.`
+                    : `Not enough about catastrophic risk in ${framing.answers} to estimate it.${subject ? '' : ' A sentence about how likely you think it is would add one.'}`}
+              </p>
             )}
-            {excerpts && risk?.text && (
+            {excerpts && risk?.text && !risk.publicStatement && (
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
                 {risk.text}
               </blockquote>
