@@ -16,13 +16,27 @@ const profilePaths = new Set(
     (match) => match[1]
   )
 )
-const publicAssessmentPaths = Object.keys(manifest.routes).filter((route) =>
+const publicRoutes = Object.keys(manifest.routes).filter((route) =>
   route.startsWith('/public/assessments/')
 )
-assert.equal(
-  manifest.dynamicRoutes['/public/assessments/[id]'].fallback,
-  null,
-  'Newly published assessments must support on-demand generation'
+const isPublicImage = (route) => route.endsWith('/social-image.png')
+const publicAssessmentPaths = publicRoutes.filter(
+  (route) => !isPublicImage(route)
+)
+const publicImagePaths = publicRoutes.filter(isPublicImage)
+for (const route of [
+  '/public/assessments/[id]',
+  '/public/assessments/[id]/social-image.png'
+])
+  assert.equal(
+    manifest.dynamicRoutes[route].fallback,
+    null,
+    `${route}: newly published assessments must support on-demand generation`
+  )
+assert.deepEqual(
+  publicImagePaths.toSorted(),
+  publicAssessmentPaths.map((route) => `${route}/social-image.png`).toSorted(),
+  'Every pregenerated public assessment must pregenerate its social image'
 )
 assert(
   profilePaths.size > 0,
@@ -39,7 +53,7 @@ for (const route of [
   '/sitemap.xml',
   '/llms.txt',
   ...profilePaths,
-  ...publicAssessmentPaths
+  ...publicRoutes
 ]) {
   assert.equal(
     manifest.routes[route]?.initialRevalidateSeconds,
@@ -59,8 +73,20 @@ for (const route of profilePaths) {
     `${route}: results and answers must be rendered into the initial HTML`
   )
 }
+for (const route of publicImagePaths) {
+  const file = path.join(output, 'server/app', route.slice(1))
+  const meta = JSON.parse(await readFile(`${file}.meta`, 'utf8'))
+  const png = await readFile(`${file}.body`)
+  assert(
+    meta.headers['content-type'] === 'image/png' &&
+      png.toString('latin1', 1, 4) === 'PNG' &&
+      png.readUInt32BE(16) === 1200 &&
+      png.readUInt32BE(20) === 630,
+    `${route}: must be pregenerated as a 1200 × 630 PNG`
+  )
+}
 console.log(
-  `Verified ${profilePaths.size} pregenerated simulated profiles with server-rendered results and answers, and ${publicAssessmentPaths.length} cached public assessments`
+  `Verified ${profilePaths.size} pregenerated simulated profiles with server-rendered results and answers, and ${publicAssessmentPaths.length} cached public assessments with PNG social images`
 )
 const required = path.resolve('eval/development/live-persona-journeys.json')
 for (const route of [
@@ -87,7 +113,7 @@ for (const portraitRoute of [
   'users/[username]/opengraph-image',
   'api/share-card',
   'api/assessments/[id]/results-image',
-  'public/assessments/[id]/social-image.webp'
+  'public/assessments/[id]/social-image.png'
 ]) {
   const portraitTrace = path.join(
     output,

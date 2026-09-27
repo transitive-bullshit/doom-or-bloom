@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test'
 import { createAssessment } from '../../lib/assessment/state'
 import { emptyComponent } from '../../lib/assessment/projections'
 
-test('publication warms HTML/RSC and revocation expires cached content immediately', async ({
+test('publication warms HTML/RSC and social image; revocation expires them immediately', async ({
   request,
   playwright,
   baseURL
@@ -66,6 +66,7 @@ test('publication warms HTML/RSC and revocation expires cached content immediate
     ignoreHTTPSErrors: true
   })
   const path = `/public/assessments/${id}`
+  const image = `${path}/social-image.png`
   const mutation = `/api/assessments/${id}`
   const visibility = async (value: 'public' | 'private') => {
     const response = await request.patch(mutation, {
@@ -81,6 +82,7 @@ test('publication warms HTML/RSC and revocation expires cached content immediate
       expect(await response.text()).not.toContain(marker)
     }
     expect((await visitor.get(`${path}/data`)).status()).toBe(404)
+    expect((await visitor.get(image)).status()).toBe(404)
   }
   try {
     await unavailable() // Also exercise invalidation of cached private 404s.
@@ -108,6 +110,27 @@ test('publication warms HTML/RSC and revocation expires cached content immediate
         { timeout: 20_000 }
       )
       .toBe(true)
+    await expect
+      .poll(
+        async () => {
+          try {
+            const meta = await readFile(`.next/server/app${image}.meta`, 'utf8')
+            return JSON.parse(meta).headers['content-type']
+          } catch {
+            return null
+          }
+        },
+        { timeout: 20_000 }
+      )
+      .toBe('image/png')
+    // Crawler cache-busting query strings share the one generated image.
+    for (const url of [image, `${image}?v=test`]) {
+      const response = await visitor.get(url)
+      expect(response.status()).toBe(200)
+      expect(response.headers()['x-nextjs-cache']).toBe('HIT')
+      expect(response.headers()['content-type']).toBe('image/png')
+      expect(response.headers()['cache-control']).toContain('s-maxage=172800')
+    }
     for (const extraHeaders of [{}, { RSC: '1' }] as Record<string, string>[]) {
       const response = await visitor.get(path, { headers: extraHeaders })
       expect(response.status()).toBe(200)
@@ -132,6 +155,7 @@ test('publication warms HTML/RSC and revocation expires cached content immediate
     const republished = await visitor.get(path)
     expect(republished.status()).toBe(200)
     expect(await republished.text()).toContain(marker)
+    expect((await visitor.get(image)).status()).toBe(200)
     expect((await request.delete(mutation, { headers })).status()).toBe(204)
     await unavailable()
     expect((await visitor.get('/sitemap.xml')).status()).toBe(200)

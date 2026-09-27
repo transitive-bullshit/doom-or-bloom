@@ -30,10 +30,10 @@ test('curated persona routes use the selected database run without a visitor ses
       page.getByRole('heading', { name: new RegExp(persona.name) }).first()
     ).toBeVisible()
     const image = await request.get(
-      `/public/assessments/${persona.id}/social-image.webp`
+      `/public/assessments/${persona.id}/social-image.png`
     )
     expect(image.status()).toBe(200)
-    expect(image.headers()['content-type']).toContain('image/webp')
+    expect(image.headers()['content-type']).toBe('image/png')
     const sitemap = await request.get('/sitemap.xml')
     expect(await sitemap.text()).toContain(`/users/${persona.slug}`)
     expect(await sitemap.text()).not.toContain(

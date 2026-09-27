@@ -78,11 +78,11 @@ test('participant cards support unknown coordinates without simulated labeling',
   expect(html).toContain('My AI Worldview')
   expect(html).toContain('Still unplaced')
   expect(html).not.toContain('SIMULATED')
-  const bytes = await renderShareCard(data, { format: 'webp' })
+  const bytes = await renderShareCard(data, { devicePixelRatio: 1 })
   expect(await sharp(bytes).metadata()).toMatchObject({
-    format: 'webp',
+    format: 'png',
     width: 1200,
     height: 630
   })
-  await sharp(bytes).toFile('/tmp/persistence-unplaced-card.webp')
+  await sharp(bytes).toFile('/tmp/persistence-unplaced-card.png')
 })

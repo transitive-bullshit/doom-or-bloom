@@ -7,14 +7,14 @@ export function pageMetadata({
   title,
   description,
   image,
-  imageType = 'image/webp',
+  imageType = 'image/png',
   imageAlt = 'Doom or Bloom — explore the AI worldview map'
 }: {
   path: string
   title: string
   description: string
   image?: string
-  imageType?: 'image/png' | 'image/jpeg' | 'image/webp'
+  imageType?: 'image/png' | 'image/jpeg'
   imageAlt?: string
 }): Metadata {
   const fullTitle =

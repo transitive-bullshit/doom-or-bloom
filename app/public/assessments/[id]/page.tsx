@@ -5,6 +5,7 @@ import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { simulationPresentation } from '@/lib/personas/payload'
 import { loadPublished } from '@/lib/assessments/public-server'
 import { pageMetadata } from '@/lib/metadata'
+import { publicShareCard, publicShareCardPath } from '@/lib/sharing/public-card'
 import { PublishedResult } from '@/components/assessment/published-result'
 import { Separator } from '@/components/ui/separator'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
@@ -37,7 +38,7 @@ export async function generateMetadata({
             : saved.title,
       description:
         'Explore this AI worldview: expectations, risks, closest perspectives, and the answers behind the assessment.',
-      image: `/public/assessments/${id}/social-image.webp`,
+      image: publicShareCardPath(id, await publicShareCard(saved)),
       imageAlt: 'AI worldview assessment with interpretation ranges'
     }),
     robots: {

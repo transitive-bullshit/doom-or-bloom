@@ -23,6 +23,12 @@ const config: NextConfig = {
         source: '/assessment/:id',
         destination: '/assessments/:id',
         permanent: true
+      },
+      {
+        // Earlier shares advertised WebP previews, which X's composer does not render.
+        source: '/public/assessments/:id/social-image.webp',
+        destination: '/public/assessments/:id/social-image.png',
+        permanent: true
       }
     ]
   },
@@ -43,7 +49,7 @@ const config: NextConfig = {
     '/api/assessments/*/results-image': ['public/personas/*'],
     '/api/share-card': ['public/personas/*'],
     '/users/*/opengraph-image': ['public/personas/*'],
-    '/public/assessments/*/social-image.webp': ['public/personas/*']
+    '/public/assessments/*/social-image.png': ['public/personas/*']
   },
   // Takumi loads a platform-specific native addon at runtime.
   serverExternalPackages: ['takumi-js']
