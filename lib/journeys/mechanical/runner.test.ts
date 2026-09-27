@@ -147,10 +147,10 @@ test('an understood unknown can qualify provisionally without becoming a forecas
       bundle,
       1
     )
-    expect(first.result?.insufficient).toBe(
-      id === 'worried-novice' ? undefined : false
-    )
-    expect(first.finalReadiness.ready).toBe(id === 'open-uncertainty')
+    // An undecided outlook and an unknown scale still place the map, so the
+    // result is available despite little broad coverage.
+    expect(first.result?.insufficient).toBe(false)
+    expect(first.finalReadiness.ready).toBe(true)
     expect(first.finalReadiness.value).toBeLessThan(55)
     const j = await runPersona(
       personas.find((p) => p.id === id)!,

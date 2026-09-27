@@ -1,10 +1,10 @@
-import { startAssessment, mockEvaluation } from './fixtures'
+import { startAssessment, mockEvaluation, skipSelfPlacement } from './fixtures'
 import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
 
 // The browser uses the real engine with explicit mocked judgments in a
 // server-conditioned Node process. No live inference is made.
-test('automatic first-answer results offer voluntary follow-ups and scoped detail cards', async ({
+test('automatic results after the answer floor offer voluntary follow-ups and scoped detail cards', async ({
   page
 }, testInfo) => {
   const operations: string[] = []
@@ -25,13 +25,20 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
     return response
   })
   await startAssessment(page)
-  await page
-    .getByLabel('Your answer', { exact: true })
-    .fill(
-      'I expect useful tools and serious risks, with outcomes depending on oversight. Research should continue, but deployment should require meaningful safeguards.'
-    )
-  await page.getByRole('button', { name: /^Continue/ }).click()
-  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  // Mocked judgments place the map at once; automatic results wait for four answers.
+  for (let i = 0; i < 4; i++) {
+    await page
+      .getByLabel('Your answer', { exact: true })
+      .fill(
+        'I expect useful tools and serious risks, with outcomes depending on oversight. Research should continue, but deployment should require meaningful safeguards.'
+      )
+    await page.getByRole('button', { name: /^Continue/ }).click()
+    if (i < 3)
+      await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+        ''
+      )
+  }
+  await skipSelfPlacement(page)
   await expect(page.getByRole('region', { name: 'More details' })).toBeVisible()
   await page
     .getByRole('region', { name: 'More details' })
@@ -61,10 +68,16 @@ test('automatic first-answer results offer voluntary follow-ups and scoped detai
   await personaPage.goto(destination!)
   await expect(personaPage.getByRole('heading', { level: 1 })).toBeVisible()
   await personaPage.close()
-  expect(operations).toEqual(['answer'])
+  expect(operations).toEqual(['answer', 'answer', 'answer', 'answer'])
   await page
     .getByRole('button', { name: 'Continue answering questions' })
     .click()
   await expect(page.getByLabel('Your answer', { exact: true })).toBeVisible()
-  expect(operations).toEqual(['answer', 'continue'])
+  expect(operations).toEqual([
+    'answer',
+    'answer',
+    'answer',
+    'answer',
+    'continue'
+  ])
 })

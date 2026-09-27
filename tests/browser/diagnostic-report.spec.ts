@@ -1,4 +1,4 @@
-import { startAssessment, mockEvaluation } from './fixtures'
+import { startAssessment, mockEvaluation, skipSelfPlacement } from './fixtures'
 import { unzipSync, strFromU8 } from 'fflate'
 import { expect, test } from './fixtures'
 import { execFileSync } from 'node:child_process'
@@ -90,6 +90,7 @@ test('answer diagnostics preserve traces without generating intermediate results
   await page
     .getByRole('button', { name: 'View my results', exact: true })
     .click()
+  await skipSelfPlacement(page)
   await page.getByRole('button', { name: 'Debug on', exact: true }).click()
   await expect(
     page.getByRole('button', { name: 'Results after this answer', exact: true })
@@ -115,8 +116,7 @@ test('answer diagnostics preserve traces without generating intermediate results
   ).toBe(false)
   expect(
     operations[0].trace.decisions.some(
-      (d: { action: string }) =>
-        d.action === 'routing priorities and tie-break by ID'
+      (d: { action: string }) => d.action === 'core map question'
     )
   ).toBe(true)
   expect(

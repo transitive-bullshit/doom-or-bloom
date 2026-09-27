@@ -18,9 +18,7 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   await portrait.click()
   await expect(page).toHaveURL(/\/users\/esyudkowsky$/)
   await expect(page.locator('[data-slot=worldview-map]')).toHaveCount(1)
-  await expect(
-    page.getByText('Eliezer Yudkowsky’s estimated P(doom)', { exact: true })
-  ).toBeVisible()
+  await expect(page.getByText(/^Eliezer Yudkowsky’s P\(doom\)/)).toBeVisible()
   await expect(
     page.getByText('What his outlook hinges on', { exact: true })
   ).toBeVisible()
@@ -150,8 +148,12 @@ test('persona probability uses a dated public statement with its outcome and sou
       { exact: true }
     )
   ).toBeVisible()
-  await expect(page.getByText(/Public statement from 2026-08-28/)).toBeVisible()
-  await expect(page.getByText(/Separately states 30%/)).toBeVisible()
+  // The card grounds the number in the person's own words and the source.
+  await expect(
+    page.getByText('“about a 10% chance of bringing down civilization”')
+  ).toBeVisible()
+  await expect(page.getByText(/· Aug 2026/)).toBeVisible()
+  await expect(page.getByText(/Separately states 30%/)).toHaveCount(0)
 })
 
 test('persona answer references reopen the transcript and navigate to the exact answer', async ({

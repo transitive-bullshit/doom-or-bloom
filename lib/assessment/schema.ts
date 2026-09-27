@@ -43,7 +43,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.6.1',
+  assessment: '0.7.0',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -59,6 +59,7 @@ export const supportedAssessmentVersions = [
   '0.4.0',
   '0.5.0',
   '0.6.0',
+  '0.6.1',
   versions.assessment
 ]
 export const rootPrompt = 'What do you think AI means for our future—and why?'
@@ -235,7 +236,8 @@ export const worldviewExperimentSchema = z.strictObject({
     'worldview-v4',
     'worldview-v5',
     'worldview-v6',
-    'worldview-v7'
+    'worldview-v7',
+    'worldview-v8'
   ]),
   model: z.string(),
   generatedAt: z.string(),
@@ -265,7 +267,8 @@ export const worldviewExperimentSchema = z.strictObject({
           method: z.enum([
             'shifted-sharpening-v1',
             'shifted-sharpening-v2',
-            'shifted-sharpening-v3'
+            'shifted-sharpening-v3',
+            'logodds-v1'
           ]),
           rawEstimate: probability,
           rawBounds: z.tuple([probability, probability]),

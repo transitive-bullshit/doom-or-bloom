@@ -81,6 +81,28 @@ test('noul has no confidence field; ordered score must agree with distribution',
     )
   ).toThrow()
 })
+test('rounding drift between a score and its distribution uses the distribution', () => {
+  const score: Question = {
+    type: 'score',
+    instructions: 'Rate',
+    criteria: ['Low', 'Middle', 'High']
+  }
+  const answer = {
+    type: 'score' as const,
+    score: 1.2,
+    confidence: 0.5,
+    legend: { '0': 'Low', '1': 'Middle', '2': 'High' },
+    probabilities: { '0': 0.1, '1': 0.5, '2': 0.4 }
+  }
+  const result = validateEvaluation(
+    { ...raw, answers: { q: answer } },
+    { q: score }
+  )
+  expect(result.answers.q).toMatchObject({ type: 'score' })
+  expect(
+    result.answers.q?.type === 'score' ? result.answers.q.score : null
+  ).toBeCloseTo(1.3)
+})
 
 afterEach(() => {
   vi.unstubAllGlobals()
@@ -432,7 +454,7 @@ test('overflow diagnostics retain status without raw provider errors', async () 
   expect(JSON.stringify(failure)).not.toContain('PRIVATE_ERROR_CANARY')
 })
 
-test('rounded live score at the tolerance boundary is not rejected by floating point error', async () => {
+test('a rounded live score is accepted and replaced by its distribution expectation', async () => {
   const scoreQuestion: Question = {
     type: 'score',
     instructions: 'Rate gain',
@@ -453,9 +475,9 @@ test('rounded live score at the tolerance boundary is not rejected by floating p
       usage: { input_tokens: 10, output_tokens: 2 }
     })
   )
-  await expect(
-    provider.evaluate({}, { q: scoreQuestion })
-  ).resolves.toMatchObject({ answers: { q: { score: 0.49 } } })
+  const result = await provider.evaluate({}, { q: scoreQuestion })
+  const answer = result.answers.q
+  expect(answer?.type === 'score' ? answer.score : null).toBeCloseTo(0.46)
 })
 
 test('failed later batch retains validated responses and physical diagnostics without transport secrets', async () => {

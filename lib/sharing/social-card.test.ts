@@ -10,6 +10,7 @@ import { expect, test } from 'vitest'
 import type { JourneySuite } from '@/lib/journeys/schema'
 import { people } from '@/components/landing/people'
 import { SocialCard, socialCardData, socialImageOptions } from './social-card'
+import { presentResult } from '@/lib/assessment/present-result'
 
 const suite: JourneySuite = JSON.parse(
   await readFile('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
@@ -24,13 +25,15 @@ test('every public persona portrait renders with a representative saved result',
     const result = suite.journeys[0]!.result
     expect(result).toBeTruthy()
     const data = socialCardData(result!)
-    expect(data.horizontal).toEqual(result!.horizontal.value)
-    expect(data.horizontalRange).toEqual(result!.horizontal.range)
+    // Cards show the presented result, including render-time range upgrades.
+    const shown = presentResult(result!)
+    expect(data.horizontal).toEqual(shown.horizontal.value)
+    expect(data.horizontalRange).toEqual(shown.horizontal.range)
     expect(data.transformation).toEqual(
-      result!.experiment?.transformation.value ?? null
+      shown.experiment?.transformation.value ?? null
     )
     expect(data.transformationRange).toEqual(
-      result!.experiment?.transformation.range ?? [0, 1]
+      shown.experiment?.transformation.range ?? [0, 1]
     )
     const html = renderToStaticMarkup(
       SocialCard({ person: { ...person, result: result!, portrait } })

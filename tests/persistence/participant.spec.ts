@@ -189,6 +189,8 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     ).json()
 
     await page.reload()
+    // A fresh first result starts with the optional self-placement step.
+    await page.getByRole('button', { name: 'Skip', exact: true }).click()
     const ownerMatches = page
       .getByRole('region', { name: 'Your closest worldviews' })
       .getByRole('link', { name: /persona$/ })

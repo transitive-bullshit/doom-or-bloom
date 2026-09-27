@@ -392,7 +392,9 @@ export function Interview({
                 <div>
                   {state.answers.length > 0 && (
                     <p className='mb-5 text-xs text-muted-foreground'>
-                      {`${state.answers.length} substantive ${state.answers.length === 1 ? 'answer' : 'answers'} · question ${p.ordinal}${p.ordinal >= promptLimit(state) - 2 ? ` of ${promptLimit(state)}` : ''}`}
+                      {p.ordinal >= promptLimit(state) - 2
+                        ? `Question ${p.ordinal} of ${promptLimit(state)}`
+                        : `Question ${p.ordinal} · most people see results after 4–8`}
                     </p>
                   )}
                   <h2 className='text-pretty'>{p.text}</h2>
@@ -567,7 +569,10 @@ export function Interview({
                   </FieldGroup>
                 </form>
                 <div className='space-y-2 text-xs leading-relaxed text-muted-foreground'>
-                  <p>The assessment only takes a few minutes.</p>
+                  <p>
+                    Usually 4–8 short questions, about five minutes. You can
+                    keep going after your results to sharpen them.
+                  </p>
                   <p>
                     Your answers remain private unless you choose to publish
                     them at the end.

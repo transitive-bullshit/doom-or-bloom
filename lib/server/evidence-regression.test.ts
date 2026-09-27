@@ -67,7 +67,11 @@ test('unplaceable positions do not erase understood evidence during projection',
     async evaluate(...args) {
       const response = await fixture.evaluate(...args)
       for (const [id, q] of Object.entries(args[1])) {
-        if (id.endsWith(':position') || id.startsWith('facet:'))
+        // Routing reads an undecided middle outlook, so results are offered;
+        // the projection then finds no interpretable orientation.
+        if (id === 'facet:outlook_orientation' && args[5]?.stage === 'C: route')
+          response.answers[id] = fixtureAnswer(q, '2')
+        else if (id.endsWith(':position') || id.startsWith('facet:'))
           response.answers[id] = fixtureAnswer(q, 'explicitly_unknown')
       }
       return response
@@ -98,8 +102,11 @@ test('unplaceable positions do not erase understood evidence during projection',
     provider,
     bundle
   )
-  expect(evidenceReadiness(result.assessment)).toEqual(before)
+  expect(evidenceReadiness(result.assessment).dimensions).toEqual(
+    before.dimensions
+  )
   expect(result.assessment.result?.horizontal.value).toBeNull()
+  expect(result.assessment.result?.insufficient).toBe(true)
   const catastrophe = result.assessment.result?.fingerprint.find(
     (component) => component.vector === 'catastrophic_risk'
   )

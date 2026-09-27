@@ -1,4 +1,5 @@
 import type { Result } from '@/lib/assessment/schema'
+import { presentResult } from '@/lib/assessment/present-result'
 import {
   closestPersonas,
   type PersonaComparison
@@ -6,9 +7,10 @@ import {
 import type { CardData } from './card'
 
 export function resultCardData(
-  result: Result,
+  saved: Result,
   personas: PersonaComparison[] = []
 ): CardData {
+  const result = presentResult(saved)
   return {
     horizontal: result.horizontal.value,
     vertical: result.vertical.value,

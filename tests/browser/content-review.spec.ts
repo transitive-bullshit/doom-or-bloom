@@ -20,7 +20,7 @@ test('local question and corpus inspectors expose relationships without feedback
   await expect(
     page.getByRole('group', { name: 'Authored question relationships' })
   ).toBeVisible()
-  await expect(page.getByText(/38 catalog entries/)).toBeVisible()
+  await expect(page.getByText(/40 catalog entries/)).toBeVisible()
   for (const id of [
     'grounding.source',
     'tension.general',

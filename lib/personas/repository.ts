@@ -1,5 +1,6 @@
 import 'server-only'
 import { randomUUID } from 'node:crypto'
+import { z } from 'zod'
 import { and, asc, eq, sql } from 'drizzle-orm'
 import {
   componentSchema,
@@ -220,7 +221,13 @@ export function personaRepository(pool: Pool) {
               worldviewIds.map((id) => sql`${id}`),
               sql`, `
             )})
-          ), '[]'::jsonb)`
+          ), '[]'::jsonb)`,
+          // The displayed map point; a stale experiment leaves y unplaced.
+          map: sql<unknown>`jsonb_build_object(
+            'x', ${assessmentSnapshots.payload} #> '{journey,result,horizontal,value}',
+            'y', case when ${assessmentSnapshots.payload} #> '{journey,result,experiment,evidenceRevision}' = ${assessmentSnapshots.payload} #> '{journey,result,evidenceRevision}'
+              then ${assessmentSnapshots.payload} #> '{journey,result,experiment,transformation,value}' end
+          )`
         })
         .from(personas)
         .innerJoin(
@@ -238,7 +245,7 @@ export function personaRepository(pool: Pool) {
         .orderBy(asc(personas.slug))
       return rows
         .sort((a, b) => a.order - b.order)
-        .map(({ order: _order, components, ...identity }) => ({
+        .map(({ order: _order, components, map, ...identity }) => ({
           ...personaMetadataSchema
             .pick({ id: true, name: true, slug: true, avatar: true })
             .parse(identity),
@@ -247,7 +254,13 @@ export function personaRepository(pool: Pool) {
               .pick({ vector: true, value: true })
               .array()
               .parse(components)
-          })
+          }),
+          map: z
+            .strictObject({
+              x: z.number().nullable(),
+              y: z.number().nullable()
+            })
+            .parse(map)
         }))
     },
     // List views need the result and source comparison, never interview history.

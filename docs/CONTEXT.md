@@ -8,7 +8,7 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Participant**: The person answering the assessment about their own AI worldview. _Avoid_: Patient, subject, account
 
-**Assessment**: A bounded sequence of participant answers and authored follow-ups with a provisional result available when evidence readiness supports it, potentially after one detailed reply. Participants can resume a private assessment or continue their published assessment through an independent fork, within the applicable prompt budget; a fresh assessment starts a new conversation. _Avoid_: Chat, session when referring to the assessment itself
+**Assessment**: A bounded sequence of participant answers and authored follow-ups with a provisional result available once the map is placed, potentially after one detailed reply (automatic results wait for four answers). Participants can resume a private assessment or continue their published assessment through an independent fork, within the applicable prompt budget; a fresh assessment starts a new conversation. _Avoid_: Chat, session when referring to the assessment itself
 
 **Assessment identifier**: A stable identifier for one assessment across visits, publication, and ownership recovery. It is separate from participant identity and does not grant access to private content. _Avoid_: User ID, account ID, anonymous person
 
@@ -72,7 +72,9 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Coverage**: Which parts of the worldview and demonstrated reasoning have actually been elicited. Missing coverage is not evidence of poor reasoning. _Avoid_: Low score for an unanswered dimension
 
-**Evidence readiness**: An experimental summary of supported dimension coverage and interpretation confidence, used to offer a provisional result without a fixed reply-count minimum. It describes the evidence available for this assessment, separately from reasoning quality, participant conviction and forecast accuracy. _Avoid_: Probability that we understand the person, scientific confidence, quality score
+**Readiness**: Whether the evidence places the displayed map (the outlook and the scale of change; P(doom) is best effort), judged from the latest routing or result judgments. It gates results, not reasoning quality or forecast accuracy. **Evidence coverage** is the separate experimental summary of supported dimension coverage that guides routing. _Avoid_: Probability that we understand the person, scientific confidence, quality score
+
+**Self-placement**: Where participants expect to land on the map, given before their first result is revealed and stored as private feedback. It is a calibration label, not an input to their result. _Avoid_: Correction, ground truth
 
 **Clarification**: A scoped correction supported by the engine/API and persona runner when an inferred claim is disputed. It elicits new natural-language evidence and recomputes the interpretation within the applicable prompt budget. Claim-specific controls are currently absent from the participant UI, which instead offers continued answering; historical clarification records remain readable. _Avoid_: Direct score editing, historical answer editing, dragging a result to a preferred coordinate
 

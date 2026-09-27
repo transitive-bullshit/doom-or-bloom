@@ -107,6 +107,15 @@ const readinessSchema = z.strictObject({
   total: z.number().int(),
   hasOutlook: z.boolean(),
   hasReasoning: z.boolean(),
+  // Map placement, recorded from algorithm 0.7.0; older journeys omit it.
+  map: z
+    .strictObject({
+      known: z.boolean(),
+      outlook: z.boolean(),
+      scale: z.boolean(),
+      risk: z.boolean()
+    })
+    .optional(),
   dimensions: z.array(
     z.strictObject({
       vector: vectorSchema,

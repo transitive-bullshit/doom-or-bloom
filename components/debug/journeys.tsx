@@ -125,6 +125,10 @@ function Step({
   const label = (id: string) => dimensions.find((d) => d.id === id)?.label ?? id
   const winner = step.rankings[0]
   const selected = step.nextPrompt
+  // Core map questions are asked once before ordinary ranking.
+  const core = step.trace?.decisions.some(
+    (decision) => decision.action === 'core map question'
+  )
   return (
     <li className='min-w-0' data-slot='journey-step'>
       <Card>
@@ -222,8 +226,10 @@ function Step({
               </p>
               <p className='text-muted-foreground'>
                 {winner
-                  ? `${winner.id} ranked first at ${winner.priority.toFixed(2)}. Coverage benefit ${winner.coverage.toFixed(2)}, ambiguity ${winner.ambiguity.toFixed(2)}, tension ${winner.tension.toFixed(2)}, projection ${winner.projection.toFixed(2)}; effort, repetition and a missing-basis bonus also affect priority. New-information eligibility is shown in Decision details.`
-                  : 'The recorded workflow issued this question without a scored candidate ranking.'}{' '}
+                  ? `${winner.id} ranked first at ${winner.priority.toFixed(2)}. Coverage benefit ${winner.coverage.toFixed(2)}, ambiguity ${winner.ambiguity.toFixed(2)}, tension ${winner.tension.toFixed(2)}, projection ${winner.projection.toFixed(2)}; effort and repetition also affect priority. New-information eligibility is shown in Decision details.`
+                  : core
+                    ? 'A core map question, asked once before ordinary follow-ups, so no candidate ranking was needed.'
+                    : 'The recorded workflow issued this question without a scored candidate ranking.'}{' '}
                 {mode === 'synthetic'
                   ? 'Benefits are injected synthetic judgments; the app applies its real eligibility, weights and tie-break rules.'
                   : 'Benefits are typed Jev judgments; the app applies eligibility, weights and tie-break rules.'}
@@ -261,6 +267,13 @@ function Step({
             />
           </Disclosure>
           <Disclosure label='Decision details'>
+            {core && (
+              <p className='text-sm text-muted-foreground'>
+                Core map question: the overall balance (when missing), the
+                eventual scale of change and P(doom) are each asked once before
+                ranked follow-ups.
+              </p>
+            )}
             {step.rankings.length > 0 && (
               <Table>
                 <TableCaption>

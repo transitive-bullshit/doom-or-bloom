@@ -16,29 +16,33 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
     const reason =
       prompt.family === 'root'
         ? 'root already issued'
-        : prompt.noveltyGroup === 'horizon' &&
-            !timingUnexplored &&
-            !state.unresolved.some((u) => u.vector === 'capability_trajectory')
-          ? 'timing already addressed'
-          : prompt.noveltyGroup === 'conviction' && horizonMissing
-            ? 'timing premise not established'
-            : uses >= prompt.maxUses
-              ? 'maximum uses reached'
-              : prompt.readingLevel === 'expert' &&
-                  state.familiarity.level !== 'expert'
-                ? 'expert familiarity not established'
-                : !prompt.permittedAfter.includes('*') &&
-                    !prompt.permittedAfter.includes(previous.family)
-                  ? 'transition excluded'
-                  : prompt.prerequisites.some(
-                        (v) => state.coverage[v] !== 'assessed'
-                      )
-                    ? 'prerequisite missing'
-                    : prompt.exclusions.some(
-                          (v) => state.coverage[v] === 'assessed'
+        : prompt.retired
+          ? 'retired'
+          : prompt.noveltyGroup === 'horizon' &&
+              !timingUnexplored &&
+              !state.unresolved.some(
+                (u) => u.vector === 'capability_trajectory'
+              )
+            ? 'timing already addressed'
+            : prompt.noveltyGroup === 'conviction' && horizonMissing
+              ? 'timing premise not established'
+              : uses >= prompt.maxUses
+                ? 'maximum uses reached'
+                : prompt.readingLevel === 'expert' &&
+                    state.familiarity.level !== 'expert'
+                  ? 'expert familiarity not established'
+                  : !prompt.permittedAfter.includes('*') &&
+                      !prompt.permittedAfter.includes(previous.family)
+                    ? 'transition excluded'
+                    : prompt.prerequisites.some(
+                          (v) => state.coverage[v] !== 'assessed'
                         )
-                      ? 'coverage exclusion'
-                      : null
+                      ? 'prerequisite missing'
+                      : prompt.exclusions.some(
+                            (v) => state.coverage[v] === 'assessed'
+                          )
+                        ? 'coverage exclusion'
+                        : null
     const convictionMissing = !state.answers.some((a) => a.hasConviction)
     const missing =
       (prompt.family === 'timeline' && timingUnexplored) ||
@@ -65,33 +69,43 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
   })
 }
 
-// Give an unexplored displayed axis one direct question before completion.
-// Explicit indecision is already an answer, not an invitation to repeat it.
-export function missingMapQuestion(state: Assessment) {
-  const experiment =
-    state.result?.evidenceRevision === state.evidenceRevision
-      ? state.result.experiment
-      : undefined
-  if (!experiment) return null
-  return (
-    (['influence', 'transformation'] as const)
-      .map((axis) => ({
-        axis,
-        component: experiment[axis],
-        promptId: `${axis}.general`
-      }))
-      .filter(
-        ({ component, promptId }) =>
-          !state.prompts.some((prompt) => prompt.promptId === promptId) &&
-          (component.distribution.explicitly_unknown ?? 0) < 0.5 &&
-          (component.distribution.not_expressed ?? 0) >= 0.35
-      )
-      .sort(
-        (a, b) =>
-          (b.component.distribution.not_expressed ?? 0) -
-          (a.component.distribution.not_expressed ?? 0)
-      )[0]?.promptId ?? null
+// The displayed result is the Doom–Bloom outlook, the scale of change and
+// P(doom). Before ordinary follow-ups, ask the overall-impact question when the
+// balance is still missing, and the scale and P(doom) questions once each
+// (audit variant F). Without the direct scale question, answers about near-term
+// change understated the eventual magnitude even when routing read a scale
+// (0.7.0 validation: y error 0.158 unasked vs 0.091 asked). Explicit indecision
+// is an answer, not an invitation to repeat.
+export function mapGapQuestion(
+  state: Assessment,
+  answers: Record<string, ModelAnswer>,
+  prompts: Prompt[]
+) {
+  const available = (id: string) =>
+    prompts.some((prompt) => prompt.id === id && !prompt.retired) &&
+    !state.prompts.some((prompt) => prompt.promptId === id)
+  const probability = (answer: ModelAnswer | undefined, key: string) =>
+    answer?.type === 'choice' ? (answer.probabilities[key] ?? 0) : null
+  const overall = answers['facet:overall_outlook']
+  if (
+    available('impact.overall') &&
+    (probability(overall, 'not_expressed') ?? 0) >= 0.35 &&
+    (probability(overall, 'explicitly_unknown') ?? 1) < 0.5
   )
+    return 'impact.overall'
+  if (
+    available('transformation.ultimate') &&
+    (probability(answers['experiment:transformation'], 'explicitly_unknown') ??
+      0) < 0.5
+  )
+    return 'transformation.ultimate'
+  // P(doom) is best effort; the question also accepts "no idea".
+  if (
+    available('risk.chance') &&
+    !state.prompts.some((prompt) => prompt.promptId === 'risk.catastrophe')
+  )
+    return 'risk.chance'
+  return null
 }
 
 export function rankCandidates(
@@ -151,19 +165,11 @@ export function rankCandidates(
         noveltyAnswer?.type === 'noul' ? noveltyAnswer.noul : 0,
         answerableGap
       )
-      const basis = answers['outlook:central_basis']
-      const basisGap =
-        item.prompt.id === 'grounding.general' && basis?.type === 'noul'
-          ? 1 - basis.noul
-          : 0
-      const unaskedCrux =
-        item.prompt.id === 'crux.general' &&
-        state.coverage.updateability !== 'assessed'
-      const noveltyThreshold =
-        basisGap >= 0.75 || unaskedCrux ? 0.5 : followUpNoveltyThreshold
+      // Grounding and crux questions compete on their own value; their former
+      // bonuses existed only to satisfy the retired central-basis gate.
+      const noveltyThreshold = followUpNoveltyThreshold
       const projection = normalized(`${item.prompt.id}:projection`)
       const priority =
-        basisGap +
         weights.coverage * coverage +
         weights.ambiguity * ambiguity +
         weights.tension * tension +

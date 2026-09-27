@@ -134,6 +134,7 @@ export function QuestionsInspector({
                 <span className='flex flex-wrap gap-2 text-xs'>
                   <span className='font-mono'>{prompt.id}</span>
                   <Badge variant='secondary'>{prompt.family}</Badge>
+                  {prompt.retired && <Badge variant='outline'>Retired</Badge>}
                 </span>
                 <span className='text-sm'>{prompt.text}</span>
                 <span className='text-xs text-muted-foreground'>
@@ -155,7 +156,12 @@ export function QuestionsInspector({
           rows={[
             { label: 'Family', value: selected.family },
             { label: 'Reading level', value: selected.readingLevel },
-            { label: 'Review status', value: selected.status },
+            {
+              label: 'Review status',
+              value: selected.retired
+                ? `${selected.status} · retired, never issued to new assessments`
+                : selected.status
+            },
             { label: 'Targets', value: selected.targets.join(', ') },
             {
               label: 'Prerequisites: assessed vectors',

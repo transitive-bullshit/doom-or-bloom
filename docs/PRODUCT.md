@@ -105,8 +105,8 @@ The interview begins with **What do you think AI means for our future—and why?
 - Let participants speak freely: submitted answers allow 20,000 characters. Never set a hard input cap or truncate typed, dictated or pasted text. Hide the character count during normal writing; only above the limit, show the count and amount to shorten, and disable Continue until the draft fits. Keep the text box editable and preserve the full draft on reload when browser storage is available.
 - Let the active answer box and expanded debugging details grow with their content, using the page scrollbar rather than nested scroll areas.
 - Show bounded progress without claiming a fake percentage of understanding.
-- Unlock a provisional result when supported coverage and interpretation confidence meet the experimental evidence-readiness threshold; there is no minimum answer count. Show results automatically when no consequential new follow-up remains, with optional deeper questions. Results remain available as an earlier participant action once eligible.
-- The original design aimed for 6–8 prompts; this is not a routing target or a measured typical path. The participant can request results whenever eligible or continue for a sharper read.
+- Results unlock once the map is placed: the outlook and the scale of change, with P(doom) as best effort ([readiness](ASSESSMENT.md#question-budget-and-readiness)). Participants can request results as soon as they unlock. Automatic results wait for four accepted answers, then appear when no consequential new follow-up remains, with optional deeper questions afterwards. Stopping after one or two answers surprised participants who did not know how long the interview was.
+- Set expectations up front: most people see results after 4–8 short questions, in about five minutes, and can keep going afterwards. The question counter reads “Question N · most people see results after 4–8” and switches to “Question N of 12” near the cap. This is expectation-setting copy, not a routing target.
 - Never mechanically force a pro/con debate. Probe a consequential unresolved distinction in the participant’s account, including its reasoning or basis even when the map position would not change.
 
 ### Answer recovery and paperclip interlude
@@ -137,6 +137,12 @@ Optional actions:
 - Download a personalized share card.
 - Copy or download the featured map as a PNG.
 - Start a separate assessment, or explicitly delete an owned assessment from the library.
+
+The first time a participant’s result appears, ask where they expect to land before revealing it (**self-placement**). Show the map without their point or range and invite a tap, with sliders as an accessible alternative. **Show where I landed** reveals the full result with their guess marked beside the placed point, plus one plain sentence comparing the two. Frame differences as something to inspect (“Your answers read as more worried than you placed yourself. Both can be true…”), never as a correction. **Skip** reveals the result immediately. Offer this only right after a first result, so a guess is never anchored by an earlier reveal. A saved guess or a local reveal marker prevents a repeat. Saving the guess never blocks the reveal.
+
+Under the map and P(doom), ask **Does this feel right?** with one-tap **Yes** / **Not quite**. **Not quite** opens optional chips (more hopeful, more worried, more or less change, P(doom) lower or higher, something else) and an optional short comment. Feedback is stored privately with the assessment for periodic human review of patterns ([feedback audit](benchmark.md)). No single response changes a result.
+
+Results open with a one-sentence explanation of why they appeared and what is still open (`result.reason`), plus how to read the map: the dot is our reading of what they wrote, the dashed box shows other plausible readings, and it is an interpretation, not a verdict. Personal maps add small “worried” and “hopeful” labels beneath the Doom and Bloom poles, while the landing map keeps the brand poles. An unplaced result is labeled “Not placed yet”. The P(doom) card names its source. A stated number reads “You said 20%”. Otherwise it shows the inferred point estimate (“<1%”, “≈N%”) with its plausible range beneath. A range headline read as a higher P(doom) than people hold.
 
 Participants can continue answering on a private assessment. Published assessments stay frozen: continuing creates a private fork. Claim-specific review/clarification is not currently offered; historical clarification records remain readable. New assessments permit 12 prompts; forks permit up to 12 additional prompts with a hard ceiling of 30 inherited prompts. Warn two prompts before the applicable ceiling. At the ceiling, show an honest final result, even if evidence is insufficient.
 
@@ -198,7 +204,7 @@ Development-only `/questions` and `/corpus` are read-only inspectors for built-i
 
 ## Local demo visualization
 
-Display a compact Evidence readiness meter while interviewing, including the provisional-result threshold. Explain that it reflects supported coverage rather than forecast accuracy, quality or answer length; debug disclosure gives the experimental formula. See [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness).
+Display a compact **What your result needs** checklist while interviewing: the outlook, the scale of change, and an optional P(doom). Once it is ready, link to the result and say it also appears on its own after four answers. It shows what the displayed result needs, not forecast accuracy, quality or answer length; debug disclosure gives the placement thresholds and evidence coverage. See [ASSESSMENT.md](ASSESSMENT.md#question-budget-and-readiness).
 
 The home-page featured map separates portrait boxes with more than 25% overlap using three bounded visual passes (at most 6px per pass from ideal coordinates, with portrait centers constrained to the chart so at least half remains inside each axis). Layout restarts from the recorded coordinates on each resize; these display offsets never change assessment data. Portrait preload includes the initial layout. Mobile horizontal labels sit in foreground pills hanging off the full-width chart, anchored to the page’s left and right edges.
 
@@ -208,13 +214,16 @@ The Doom–Bloom map is the result’s hero: the same Prism color field and midp
 
 Use the same experimental result component in participant results, results after each answer, and the internal journey inspector. The journey inspector adds a keyboard-accessible answer selector and earlier-answer dots on the map; the supporting views follow the selected snapshot. Missing snapshots stay unavailable rather than using later answers. Older results without experiment data show an explicit unevaluated state.
 
-The P(doom) card distinguishes inferred estimates from stated or sourced estimates when those are available in a simulated-user result. Its single-axis line shows both the estimated point and interpretation range, using the same styling as other single-axis outputs. Simulated-user results show the timeline, which groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. Their assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.
+The P(doom) card distinguishes inferred estimates from stated or sourced estimates when those are available in a simulated-user result. Its single-axis line shows both the estimated point and interpretation range, using the same styling as other single-axis outputs. Keep its prose short.
+
+- A sourced public statement shows the number, then the person’s own words as a short quote, then one line with the outcome (plus the horizon when it names a time), then the source title linked with its month and year. Review notes and caveats stay in the report.
+- Inferred and stated estimates get a single sentence naming where the number comes from, with the plausible range for inferred ones. Simulated-user results show the timeline, which groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. Their assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.
 
 ### Provisional result points and reasoning
 
 Do not show the demonstrated reasoning card in user-facing results, including participant results, public assessments, simulated-user pages, per-answer inspection and the progression explorer. Retain the reasoning composite, range and evidence in the assessment data for internal analysis and diagnostics; this presentation change does not alter scoring or map placement.
 
-Prefer a tentative map point with an honest interpretation range over withholding a useful estimate. Explicit uncertainty is shown as an unsettled point in the open range, not a moderate belief. An unexplored axis remains unplaced. Direct influence/transformation questions compete through ordinary routing; current behavior does not guarantee one before showing results.
+Prefer a tentative map point with an honest interpretation range over withholding a useful estimate. Explicit uncertainty is shown as an unsettled point in the open range, not a moderate belief. An unexplored axis remains unplaced. Routing asks the core map questions (the overall balance when missing, the eventual scale of change and a gut-feel P(doom)) once each before automatic results ([ASSESSMENT.md](ASSESSMENT.md#participant-facing-projections)). Saved results receive display-only upgrades at render time ([presentation of saved results](ASSESSMENT.md#presentation-of-saved-results)); they are never reprocessed.
 
 ### Result presentation and exports
 
@@ -224,7 +233,7 @@ Individual X/Twitter source posts use `react-tweet` embeds in both persona sourc
 
 Persona results share the personal assessment components with a presentation-only subject: name, portrait and possessive pronoun. Persona map markers and PNG exports use the portrait; headings and explanatory text use third person. Exact answer excerpts are never rewritten. Personal results retain second-person framing. Public persona pages show the current source brief, labeled when it differs from the saved simulation’s source snapshot. The journey inspector retains the sources actually used for that run.
 
-Public simulated-user pages place their identity header before the results, with no header CTA. Results lead with the map, highlighted cards, and More details, followed by a Simulated Assessment section: questions and simulated answers are expanded initially; Debug info starts closed and contains reasoning judgments, the recorded final projection input, and the generated result in the shared JSON viewer. Sources and a closing assessment CTA card complete the page. Local, prototype, and portable-site persona pages share this composition.
+Public simulated-user pages place their identity header before the results, with no header CTA. On wide screens (`lg` and up), profile headers hang the portrait in the left margin, so the breadcrumb, name, profile link and summary share the column’s left edge. The name, link and summary are evenly and tightly spaced. Narrower screens keep the portrait inline beside the name, with the summary below the portrait. The published-assessment header shares this layout. Results lead with the map, highlighted cards, and More details, followed by a Simulated Assessment section: questions and simulated answers are expanded initially; Debug info starts closed and contains reasoning judgments, the recorded final projection input, and the generated result in the shared JSON viewer. Sources and a closing assessment CTA card complete the page. Local, prototype, and portable-site persona pages share this composition.
 
 ### Site-wide heading typography
 

@@ -1,11 +1,12 @@
 import { expect, test } from 'vitest'
 import { loadBundle } from '@/lib/content/loader'
-import { createAssessment } from '@/lib/assessment/state'
+import { createAssessment, eligible } from '@/lib/assessment/state'
+import { autoStopFloor } from '@/lib/assessment/readiness'
 import { createFixtureProvider, fixtureAnswer } from './provider'
 import type { Provider } from './provider'
 import { runAssessment } from './engine'
 
-test('a detailed first answer can finish automatically and voluntary exploration still issues a follow-up', async () => {
+test('a detailed first answer makes results available, and automatic results wait for the answer floor', async () => {
   const fixture = createFixtureProvider()
   const provider: Provider = {
     kind: 'fixture',
@@ -33,9 +34,10 @@ test('a detailed first answer can finish automatically and voluntary exploration
     true
   )
   expect(response.assessment.answers).toHaveLength(1)
-  expect(response.assessment.status).toBe('results')
-  expect(response.assessment.result).not.toBeNull()
-  expect(response.assessment.prompts).toHaveLength(1)
+  expect(eligible(response.assessment)).toBe(true)
+  expect(response.assessment.status).toBe('answering')
+  expect(response.assessment.result).toBeNull()
+  expect(response.assessment.prompts).toHaveLength(2)
   const route = response.debug!.stages.find(
     (stage) => stage.name === 'C: route'
   )!
@@ -44,9 +46,30 @@ test('a detailed first answer can finish automatically and voluntary exploration
       (id) => id.endsWith(':ambiguity') || id.endsWith(':tension')
     )
   ).toBe(false)
+  let state = response.assessment
+  for (const [index, text] of [
+    'Maybe a one in a hundred chance of something truly catastrophic.',
+    'Mostly through better tools for scientists and doctors.',
+    'Seeing it write working code changed my mind.'
+  ].entries())
+    state = (
+      await runAssessment(
+        {
+          assessment: state,
+          requestId: `answer-${index + 2}`,
+          debug: false,
+          operation: { type: 'answer', text }
+        },
+        provider,
+        bundle
+      )
+    ).assessment
+  expect(state.answers).toHaveLength(autoStopFloor)
+  expect(state.status).toBe('results')
+  expect(state.result).not.toBeNull()
   const continued = await runAssessment(
     {
-      assessment: response.assessment,
+      assessment: state,
       requestId: 'voluntary-follow-up',
       debug: false,
       operation: { type: 'continue' }
@@ -55,8 +78,8 @@ test('a detailed first answer can finish automatically and voluntary exploration
     bundle
   )
   expect(continued.assessment.status).toBe('answering')
-  expect(continued.assessment.prompts).toHaveLength(2)
-  expect(continued.assessment.answers).toHaveLength(1)
+  expect(continued.assessment.prompts).toHaveLength(autoStopFloor + 1)
+  expect(continued.assessment.answers).toHaveLength(autoStopFloor)
 })
 
 test('an incomplete short account is not stopped solely because no candidate clears the novelty threshold', async () => {
@@ -126,18 +149,29 @@ test('an independent pair check can reject a preliminary tension signal', async 
     loadBundle(),
     true
   )
-  expect(response.assessment.status).toBe('results')
   expect(response.assessment.unresolved).toEqual([])
-  expect(
-    response.debug!.stages.find((stage) => stage.name === 'D: projection')!
-      .state
-  ).not.toHaveProperty('unresolved')
   expect(
     response.debug!.decisions.some(
       (decision) =>
         decision.action === 'tension pair check rejected apparent conflict'
     )
   ).toBe(true)
+  const projected = await runPersona(
+    {
+      assessment: response.assessment,
+      requestId: 'view-results',
+      debug: true,
+      operation: { type: 'project' }
+    },
+    provider,
+    loadBundle(),
+    true
+  )
+  expect(projected.assessment.status).toBe('results')
+  expect(
+    projected.debug!.stages.find((stage) => stage.name === 'D: projection')!
+      .state
+  ).not.toHaveProperty('unresolved')
 })
 
 for (const acrossAnswers of [false, true])
@@ -289,8 +323,8 @@ test('doubling down preserves an unresolved tension without repeating its clarif
     provider,
     bundle
   )
-  expect(reply.assessment.status).toBe('results')
-  expect(reply.assessment.prompts).toHaveLength(2)
+  expect(reply.assessment.prompts).toHaveLength(3)
+  expect(reply.assessment.prompts.at(-1)?.variant).not.toBe('tension')
   expect(
     reply.assessment.unresolved.some((issue) => issue.kind === 'tension')
   ).toBe(true)
@@ -350,13 +384,13 @@ function unresolvedOutlookProvider(
 }
 
 test.each([
-  ['not_expressed', 'answering', 2, 'impact.overall'],
-  ['tentative', 'results', 1, 'root'],
-  ['ambiguous', 'results', 1, 'root'],
-  ['explicitly_unknown', 'results', 1, 'root']
+  ['not_expressed', false, true],
+  ['tentative', true, false],
+  ['ambiguous', false, false],
+  ['explicitly_unknown', false, false]
 ] as const)(
   'outlook %s distinguishes missing information from indecision despite low novelty',
-  async (position, status, count, promptId) => {
+  async (position, ready, asksOverall) => {
     const first = await runAssessment(
       {
         assessment: createAssessment(`outlook-${position}`),
@@ -371,18 +405,43 @@ test.each([
       loadBundle(),
       true
     )
-    expect(first.assessment.result?.horizontal.value).toBe(
-      position === 'not_expressed'
-        ? undefined
-        : position === 'tentative'
-          ? 0.75
-          : null
+    // Results wait for the answer floor; the map decides readiness.
+    expect(first.assessment.status).toBe('answering')
+    expect(eligible(first.assessment)).toBe(ready)
+    expect(first.assessment.prompts).toHaveLength(2)
+    expect(first.assessment.prompts.at(-1)?.promptId === 'impact.overall').toBe(
+      asksOverall
     )
-    expect(first.assessment.status).toBe(status)
-    expect(first.assessment.prompts).toHaveLength(count)
-    expect(first.assessment.prompts.at(-1)?.promptId).toBe(promptId)
   }
 )
+
+test('a tentative outlook is placed when results are requested', async () => {
+  const provider = unresolvedOutlookProvider('tentative')
+  const first = await runAssessment(
+    {
+      assessment: createAssessment('outlook-tentative-result'),
+      requestId: 'opening',
+      debug: false,
+      operation: {
+        type: 'answer',
+        text: 'Large benefits and serious harms are possible.'
+      }
+    },
+    provider,
+    loadBundle()
+  )
+  const projected = await runAssessment(
+    {
+      assessment: first.assessment,
+      requestId: 'view-results',
+      debug: false,
+      operation: { type: 'project' }
+    },
+    provider,
+    loadBundle()
+  )
+  expect(projected.assessment.result?.horizontal.value).toBe(0.75)
+})
 
 test('the direct overall question cannot repeat until a directional answer appears', async () => {
   const provider = unresolvedOutlookProvider('not_expressed')
@@ -412,13 +471,17 @@ test('the direct overall question cannot repeat until a directional answer appea
     provider,
     loadBundle()
   )
-  expect(second.assessment.result?.horizontal.value).toBeNull()
-  expect(second.assessment.status).toBe('results')
-  expect(second.assessment.prompts).toHaveLength(2)
+  expect(
+    second.assessment.prompts.filter(
+      (prompt) => prompt.promptId === 'impact.overall'
+    )
+  ).toHaveLength(1)
+  expect(second.assessment.status).toBe('answering')
+  expect(second.assessment.prompts).toHaveLength(3)
 })
 
 test.each([true, false])(
-  'a borderline novel crux is useful only when updateability is unassessed: %s',
+  'a borderline novel crux gets no special threshold when updateability is unassessed: %s',
   async (missing) => {
     const fixture = createFixtureProvider()
     const provider: Provider = {
@@ -453,6 +516,12 @@ test.each([true, false])(
         return result
       }
     }
+    // Without the core map questions, ordinary ranking decides the follow-up.
+    const bundle = loadBundle()
+    bundle.prompts = bundle.prompts.filter(
+      (prompt) =>
+        !['transformation.ultimate', 'risk.chance'].includes(prompt.id)
+    )
     const response = await runAssessment(
       {
         assessment: createAssessment(`crux-${missing}`),
@@ -464,13 +533,14 @@ test.each([true, false])(
         }
       },
       provider,
-      loadBundle(),
+      bundle,
       true
     )
-    expect(response.assessment.status).toBe(missing ? 'answering' : 'results')
-    expect(response.assessment.prompts.at(-1)?.promptId).toBe(
-      missing ? 'crux.general' : 'root'
-    )
+    const worthwhile = response.debug!.decisions.find(
+      (decision) => decision.action === 'follow-up value and early result'
+    )?.detail as { worthwhile: string[] }
+    // The former crux bonus only served the retired central-basis gate.
+    expect(worthwhile.worthwhile).toEqual([])
   }
 )
 

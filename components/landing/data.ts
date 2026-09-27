@@ -8,6 +8,7 @@ import { getPool } from '@/lib/db'
 import { personaRepository } from '@/lib/personas/repository'
 import { simulationPresentation } from '@/lib/personas/payload'
 import { personaProfileSchema } from '@/lib/journeys/catalog'
+import { presentResult } from '@/lib/assessment/present-result'
 
 const loadSummaries = cache((featuredOnly: boolean) =>
   personaRepository(getPool()).selectedSummaries(featuredOnly)
@@ -55,7 +56,7 @@ function exampleFromSummary(
     })),
     sourceBriefUpdated:
       JSON.stringify(row.sources) !== JSON.stringify(row.recordedSources),
-    result: row.result
+    result: presentResult(row.result)
   }
 }
 
@@ -66,7 +67,7 @@ export const loadPersonaComparisons = cache(async () => {
     const databaseKey = createHash('sha256').update(databaseUrl()).digest('hex')
     return await unstable_cache(
       () => personaRepository(getPool()).selectedComparisons(),
-      ['persona-comparisons-v1', databaseKey],
+      ['persona-comparisons-v2', databaseKey],
       { revalidate: 172800 }
     )()
   } catch (err) {

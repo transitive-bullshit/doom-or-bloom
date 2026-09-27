@@ -125,7 +125,8 @@ test('saved persona snapshots expose results and decisions without rerun control
   await first
     .getByRole('button', { name: 'Decision details', exact: true })
     .click()
-  await expect(first.getByRole('table')).toBeVisible()
+  // The root answer is followed by a core map question rather than a ranking.
+  await expect(first.getByText(/^Core map question:/)).toBeVisible()
   await expect(page.getByLabel('View run')).toHaveCount(0)
   await expect(page.getByLabel('Compare with')).toHaveCount(0)
 
@@ -191,7 +192,7 @@ test('mobile uncertainty and paperclip paths stay inspectable with page scrollin
   await uncertainFirst
     .getByRole('button', { name: 'Result after this answer', exact: true })
     .click()
-  await expect(uncertainFirst).toContainText('mixed, conditional or undecided')
+  await expect(uncertainFirst).toContainText('mixed or undecided')
   await page
     .getByRole('combobox', { name: 'Test journey' })
     .selectOption(

@@ -1,4 +1,10 @@
-import { expect, test, startAssessment, mockEvaluation } from './fixtures'
+import {
+  expect,
+  test,
+  startAssessment,
+  mockEvaluation,
+  skipSelfPlacement
+} from './fixtures'
 import { execFileSync } from 'node:child_process'
 import type { Tweet } from 'react-tweet/api'
 
@@ -110,6 +116,8 @@ test('assessment resources embed tweets and keep a bookmark when a post cannot l
         { input: JSON.stringify(input), encoding: 'utf8' }
       )
     )
+    // Early answers have no result yet; resources attach once one exists.
+    if (!response.assessment.result) return response
     response.assessment.result.resources = [
       {
         id: 'resource.tweet',
@@ -134,13 +142,19 @@ test('assessment resources embed tweets and keep a bookmark when a post cannot l
     return response
   })
   await startAssessment(page)
-  await page
-    .getByLabel('Your answer', { exact: true })
-    .fill(
-      'I expect useful tools and serious risks, with outcomes depending on oversight. Independent tests could change my view.'
-    )
-  await page.getByRole('button', { name: /^Continue/ }).click()
-  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  for (let i = 0; i < 4; i++) {
+    await page
+      .getByLabel('Your answer', { exact: true })
+      .fill(
+        'I expect useful tools and serious risks, with outcomes depending on oversight. Independent tests could change my view.'
+      )
+    await page.getByRole('button', { name: /^Continue/ }).click()
+    if (i < 3)
+      await expect(page.getByLabel('Your answer', { exact: true })).toHaveValue(
+        ''
+      )
+  }
+  await skipSelfPlacement(page)
   await expect(page.locator('.resource-tweet article')).toHaveCount(1)
   await expect(page.locator('[data-resource-layout=masonry]')).toHaveAttribute(
     'data-resource-layout',

@@ -7,6 +7,8 @@ import { ChevronDownIcon } from 'lucide-react'
 import type { Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
+import { pdoomRangeLabel, presentResult } from '@/lib/assessment/present-result'
+import type { MapPoint } from '@/lib/assessment/self-placement'
 import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
 import { AxisRange } from './axis-range'
 import { Map } from './worldview-map'
@@ -19,14 +21,29 @@ import {
   CollapsibleContent
 } from '@/components/ui/collapsible'
 
+// Horizons such as "Not specified" add nothing; long ones keep their lead clause.
+const namedHorizon = (horizon: string) =>
+  /^(no |not |unspecified)/iu.test(horizon.trim())
+    ? null
+    : horizon.split(/[;,]/u)[0]!.trim()
+const monthYear = (date: string) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(date))
+
 export function ExperimentalResults({
-  result,
+  result: saved,
   history = [],
   layout = 'contained',
   excerpts = false,
   reasoningDetails,
   riskCompanion,
-  subject
+  subject,
+  guess,
+  mapNote,
+  feedback
 }: {
   result: Result
   excerpts?: boolean
@@ -35,7 +52,11 @@ export function ExperimentalResults({
   reasoningDetails?: ReactNode
   riskCompanion?: ReactNode
   subject?: ResultSubject
+  guess?: MapPoint | null
+  mapNote?: ReactNode
+  feedback?: ReactNode
 }) {
+  const result = presentResult(saved)
   const experiment =
     result.experiment?.evidenceRevision === result.evidenceRevision
       ? result.experiment
@@ -76,7 +97,9 @@ export function ExperimentalResults({
             y: item.result.experiment?.transformation.value ?? null,
             label: item.label
           }))}
+          guess={guess}
         />
+        {mapNote}
       </div>
       <div
         className={
@@ -89,13 +112,21 @@ export function ExperimentalResults({
           <CardHeader>
             <CardTitle>
               {framing.owner}{' '}
-              {risk?.source === 'public-statement' ? 'stated' : 'estimated'}{' '}
-              P(doom)
+              {risk?.source === 'public-statement'
+                ? 'stated P(doom)'
+                : 'P(doom)'}
+              {risk?.source === 'inferred' && (
+                <span className='font-normal text-muted-foreground'>
+                  {' '}
+                  · inferred
+                </span>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent className='flex flex-col gap-4'>
             <p className='text-4xl font-semibold tracking-tight tabular-nums'>
-              {risk?.token ?? (experiment ? 'Not specified' : 'Not evaluated')}
+              {risk?.token ??
+                (experiment ? 'Not estimated yet' : 'Not evaluated')}
             </p>
             {risk?.bounds && (
               <div>
@@ -109,39 +140,50 @@ export function ExperimentalResults({
                 </div>
               </div>
             )}
-            <p className='text-sm text-body-foreground'>
-              {!experiment
-                ? 'This assessment has not been evaluated for a numerical catastrophe estimate.'
-                : risk
-                  ? risk.source === 'public-statement'
-                    ? `Public statement from ${risk.publicStatement?.publishedAt}. This source-backed value replaces the simulated assessment estimate.`
-                    : risk.source === 'inferred'
-                      ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `the likelihood described in ${framing.answers}`}. Approximate interpretation range: ${risk.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Applies to the outcome and conditions in ${framing.answers}; this is an inferred percentage.`
-                      : `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described below; this estimate is not standardized across people.`
-                  : `There is not enough relevant evidence yet to estimate ${framing.possessive} view of catastrophic risk.`}
-            </p>
-            {risk?.publicStatement && (
-              <div className='space-y-2 text-sm text-body-foreground'>
-                <p>{risk.publicStatement.outcome}</p>
-                <p>{risk.publicStatement.conditions}</p>
-                <p>Horizon: {risk.publicStatement.horizon}</p>
-                {risk.estimate === undefined && (
-                  <p>
-                    The dot marks the midpoint of the stated range, not a
-                    separate forecast.
-                  </p>
+            {risk?.publicStatement ? (
+              <div className='flex flex-col gap-2 text-sm text-body-foreground'>
+                {risk.publicStatement.quote && (
+                  <blockquote className='border-l-2 pl-3'>
+                    “{risk.publicStatement.quote}”
+                  </blockquote>
                 )}
-                <a
-                  className='underline underline-offset-4'
-                  href={risk.publicStatement.url}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {risk.publicStatement.title}
-                </a>
+                <p>
+                  {[
+                    risk.publicStatement.outcome,
+                    namedHorizon(risk.publicStatement.horizon)
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
+                </p>
+                <p className='text-muted-foreground'>
+                  <a
+                    className='underline underline-offset-4'
+                    href={risk.publicStatement.url}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    {risk.publicStatement.title}
+                  </a>
+                  {' · '}
+                  {monthYear(risk.publicStatement.publishedAt)}
+                </p>
               </div>
+            ) : (
+              <p className='text-sm text-body-foreground'>
+                {!experiment
+                  ? 'Not evaluated for this assessment.'
+                  : risk
+                    ? risk.source === 'inferred' && risk.token === 'Unclear'
+                      ? `${subject ? 'These answers' : 'Your answers'} read both ways, so there is no single number.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${subject ? '' : ' A rough number in your own words would settle it.'}`
+                      : risk.source === 'inferred'
+                        ? `Inferred from ${framing.answers}, not a number ${subject ? 'they' : 'you'} gave.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${!subject && risk.basis === 'contextual' ? ' A rough number in your own words would sharpen it.' : ''}`
+                        : subject
+                          ? `From ${framing.answers}.`
+                          : `You said ${risk.token}.`
+                    : `Not enough about catastrophic risk in ${framing.answers} to estimate it.${subject ? '' : ' A sentence about how likely you think it is would add one.'}`}
+              </p>
             )}
-            {excerpts && risk?.text && (
+            {excerpts && risk?.text && !risk.publicStatement && (
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
                 {risk.text}
               </blockquote>
@@ -149,6 +191,7 @@ export function ExperimentalResults({
           </CardContent>
         </Card>
         {riskCompanion}
+        {feedback && <div className='lg:col-span-2'>{feedback}</div>}
         {excerpts && Boolean(experiment?.milestones.length) && (
           <Card>
             <CardHeader>

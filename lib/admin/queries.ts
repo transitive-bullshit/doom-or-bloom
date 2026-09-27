@@ -2,6 +2,7 @@ import 'server-only'
 import { sql, type SQL } from 'drizzle-orm'
 import { z } from 'zod'
 import { assessmentSchema } from '../assessment/schema'
+import { feedbackItemSchema } from '../assessments/feedback'
 import { simulationPayload } from '../personas/payload'
 import { personaRepository } from '../personas/repository'
 import { adminDatabase } from './database'
@@ -86,6 +87,10 @@ function where(f: AdminFilters, owner?: string) {
     )
   if (f.state === 'attention')
     conditions.push(sql`operation_status in ('failed', 'interrupted')`)
+  if (f.state === 'feedback')
+    conditions.push(
+      sql`exists (select 1 from assessment_feedback fb where fb.assessment_id = records.id)`
+    )
   return sql.join(conditions, sql` and `)
 }
 export async function overview(f: AdminFilters) {
@@ -180,6 +185,21 @@ export async function inspectAssessment(id: string, published = false) {
     failure_category, created_at,
     case when status <> 'succeeded' then action->>'text' end submitted_text
     from assessment_operations where assessment_id = ${id}::uuid order by created_at desc, id desc limit 30`)
+  // An inspected database may not have applied the feedback migration yet.
+  const feedbackTable = await db.execute<{ ready: boolean }>(
+    sql`select to_regclass('public.assessment_feedback') is not null as ready`
+  )
+  const feedback = feedbackTable.rows[0]?.ready
+    ? await db.execute<{
+        kind: string
+        evidence_revision: number
+        algorithm_version: string
+        payload: unknown
+        created_at: string
+        updated_at: string
+      }>(sql`select kind, evidence_revision, algorithm_version, payload, created_at, updated_at
+        from assessment_feedback where assessment_id = ${id}::uuid order by created_at, id`)
+    : null
   const state =
     saved.format === 'assessment_v1'
       ? assessmentSchema.parse(saved.payload)
@@ -194,6 +214,16 @@ export async function inspectAssessment(id: string, published = false) {
     state,
     simulation,
     operations: operations.rows,
+    feedback: (feedback?.rows ?? []).map((entry) => ({
+      ...feedbackItemSchema.parse({
+        kind: entry.kind,
+        evidenceRevision: entry.evidence_revision,
+        payload: entry.payload,
+        createdAt: new Date(entry.created_at).toISOString(),
+        updatedAt: new Date(entry.updated_at).toISOString()
+      }),
+      algorithmVersion: entry.algorithm_version
+    })),
     snapshotRevision: saved.revision
   }
 }

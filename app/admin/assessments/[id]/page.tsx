@@ -25,6 +25,11 @@ import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { simulationPresentation } from '@/lib/personas/payload'
 import type { AdminSearch } from '@/lib/admin/filters'
 
+const coordinate = (value: number | null) =>
+  value === null ? 'unplaced' : Math.round(value * 100)
+const mapPoint = ({ x, y }: { x: number | null; y: number | null }) =>
+  `Doom–Bloom ${coordinate(x)} · transformation ${coordinate(y)}`
+
 export default async function Page({
   params,
   searchParams
@@ -192,6 +197,85 @@ export default async function Page({
           </Table>
         </div>
       </details>
+      {saved.feedback.length > 0 && (
+        <details className='text-sm'>
+          <summary className='cursor-pointer'>
+            Result feedback ({saved.feedback.length})
+          </summary>
+          <div className='mt-4 flex flex-col gap-4'>
+            <p className='text-muted-foreground'>
+              The participant’s feedback about the result shown for each
+              evidence revision. A guess is made before the result is revealed
+              and the first one is kept; a rating keeps its latest answer. Map
+              points run from 0 to 100: Doom to Bloom, then low to high
+              transformation.
+            </p>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Feedback</TableHead>
+                  <TableHead>Result</TableHead>
+                  <TableHead>Details</TableHead>
+                  <TableHead>
+                    Time · <AdminTimeZone />
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {saved.feedback.map((entry) => (
+                  <TableRow key={`${entry.kind}:${entry.evidenceRevision}`}>
+                    <TableCell>
+                      {entry.kind === 'self_placement'
+                        ? 'Self-placement'
+                        : 'Agreement'}
+                    </TableCell>
+                    <TableCell>
+                      Evidence revision {entry.evidenceRevision}
+                      <div className='text-xs text-muted-foreground'>
+                        Engine {entry.algorithmVersion}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      {entry.kind === 'self_placement' ? (
+                        <>
+                          <p>Guess: {mapPoint(entry.payload.guess)}</p>
+                          <p>Placed: {mapPoint(entry.payload.placed)}</p>
+                        </>
+                      ) : (
+                        <>
+                          <p>
+                            {entry.payload.rating === 'yes'
+                              ? 'Yes'
+                              : 'Not quite'}
+                            {entry.payload.aspects.length > 0 &&
+                              ` · ${entry.payload.aspects
+                                .map((aspect) => aspect.replaceAll('_', ' '))
+                                .join(', ')}`}
+                          </p>
+                          {entry.payload.comment && (
+                            <p className='mt-2 max-w-xl whitespace-pre-wrap wrap-anywhere'>
+                              {entry.payload.comment}
+                            </p>
+                          )}
+                        </>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <AdminDate value={new Date(entry.createdAt)} />
+                      {entry.updatedAt !== entry.createdAt && (
+                        <div className='text-xs text-muted-foreground'>
+                          Updated{' '}
+                          <AdminDate value={new Date(entry.updatedAt)} />
+                        </div>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </details>
+      )}
       {state && (
         <AdminAssessmentPreview
           key={`${id}:${saved.snapshotRevision}`}

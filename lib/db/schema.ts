@@ -11,8 +11,13 @@ import {
   uniqueIndex,
   index,
   check,
+  foreignKey,
   type AnyPgColumn
 } from 'drizzle-orm/pg-core'
+import type {
+  AgreementPayload,
+  SelfPlacementPayload
+} from '../assessments/feedback'
 import type { Publisher } from '../assessments/publisher'
 import { user } from './auth-schema'
 
@@ -164,6 +169,43 @@ export const assessmentOperations = pgTable(
       'operation_status',
       sql`${t.status} in ('running', 'succeeded', 'failed', 'interrupted') and ((${t.status} = 'succeeded') = (${t.resultingSnapshotId} is not null))`
     )
+  ]
+)
+
+// Participant feedback about one displayed result. Ownership follows the
+// assessment, whose owner can be claimed or merged, so there is no owner column.
+export const assessmentFeedback = pgTable(
+  'assessment_feedback',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    assessmentId: uuid('assessment_id')
+      .notNull()
+      .references(() => assessments.id, { onDelete: 'cascade' }),
+    kind: text('kind', { enum: ['self_placement', 'agreement'] }).notNull(),
+    evidenceRevision: integer('evidence_revision').notNull(),
+    // The current snapshot when feedback was given: exactly what was shown.
+    snapshotId: uuid('snapshot_id').notNull(),
+    algorithmVersion: text('algorithm_version').notNull(),
+    payload: jsonb('payload')
+      .$type<SelfPlacementPayload | AgreementPayload>()
+      .notNull(),
+    createdAt: time('created_at'),
+    updatedAt: time('updated_at')
+  },
+  (t) => [
+    unique('feedback_kind_revision').on(
+      t.assessmentId,
+      t.kind,
+      t.evidenceRevision
+    ),
+    index('feedback_created_at').on(t.createdAt),
+    foreignKey({
+      name: 'feedback_snapshot',
+      columns: [t.assessmentId, t.snapshotId],
+      foreignColumns: [assessmentSnapshots.assessmentId, assessmentSnapshots.id]
+    }).onDelete('cascade'),
+    check('feedback_kind', sql`${t.kind} in ('self_placement', 'agreement')`),
+    check('feedback_revision_nonnegative', sql`${t.evidenceRevision} >= 0`)
   ]
 )
 

@@ -1,4 +1,10 @@
-import { expect, test, startAssessment, savedAssessment } from './fixtures'
+import {
+  expect,
+  test,
+  startAssessment,
+  savedAssessment,
+  skipSelfPlacement
+} from './fixtures'
 import type { Locator, Page } from '@playwright/test'
 
 async function tabTo(page: Page, target: Locator) {
@@ -56,7 +62,7 @@ test('mobile keyboard flow, themes, natural focus and expanded debug fit', async
   const view = page.getByRole('button', { name: 'View my results' })
   await tabTo(page, view)
   await page.keyboard.press('Enter')
-  await expect(page.getByRole('heading', { name: 'Results' })).toBeVisible()
+  await skipSelfPlacement(page)
   for (const name of ['Additional insights', 'A few things that stood out']) {
     const disclosure = page.getByRole('button', { name, exact: true })
     await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
@@ -190,9 +196,7 @@ test('results omit review and clarification while retaining continued answers', 
   }
   const pendingQuestion = await page.locator('h2').innerText()
   await page.getByRole('button', { name: 'View my results' }).click()
-  await expect(
-    page.getByRole('heading', { name: 'Results', exact: true })
-  ).toBeVisible()
+  await skipSelfPlacement(page)
   await expect(
     page.getByRole('heading', { name: pendingQuestion, exact: true })
   ).toHaveCount(0)

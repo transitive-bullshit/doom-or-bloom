@@ -25,7 +25,10 @@ const eventNames = [
   'resource_opened',
   'full_report_downloaded',
   'share_card_downloaded',
-  'share_intent_opened'
+  'share_intent_opened',
+  'self_placement_submitted',
+  'self_placement_skipped',
+  'result_feedback_submitted'
 ] as const
 export type EventName = (typeof eventNames)[number]
 const eventSchema = z.object({
@@ -66,7 +69,24 @@ const eventSchema = z.object({
     // IDs are checked against the current asset catalog before emission.
     prompt_id: z.string().max(120).optional(),
     prompt_family: z.string().max(80).optional(),
-    resource_id: z.string().max(120).optional()
+    resource_id: z.string().max(120).optional(),
+    // Coarse distance between a self-placement and the placed result.
+    placement_gap: z.enum(['close', 'moderate', 'far']).optional(),
+    feedback_rating: z.enum(['yes', 'not_quite']).optional(),
+    feedback_aspects: z
+      .array(
+        z.enum([
+          'outlook_too_doom',
+          'outlook_too_bloom',
+          'scale_too_high',
+          'scale_too_low',
+          'pdoom_too_high',
+          'pdoom_too_low',
+          'other'
+        ])
+      )
+      .max(7)
+      .optional()
   })
 })
 export type Event = z.infer<typeof eventSchema>

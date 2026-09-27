@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 import { createAssessment } from './state'
-import { candidatePrompts, rankCandidates } from './routing'
+import { candidatePrompts, mapGapQuestion, rankCandidates } from './routing'
 import { loadBundle } from '@/lib/content/loader'
 import { fixtureAnswer } from '@/lib/server/provider'
 import { timelineContext, timelineUnknown } from './timeline'
@@ -93,7 +93,8 @@ test('deleted questions are absent for every saved corpus and confidence questio
     for (const vector of Object.keys(state.coverage))
       state.coverage[vector as keyof typeof state.coverage] = 'assessed'
     const candidates = candidatePrompts(state, bundle.prompts)
-    expect(bundle.prompts).toHaveLength(38)
+    // 0.4.0 adds the direct scale and P(doom) anchors from the 2026-09-27 audit.
+    expect(bundle.prompts).toHaveLength(version === '0.4.0-draft' ? 40 : 38)
     for (const id of removed) {
       expect(bundle.prompts.some((prompt) => prompt.id === id)).toBe(false)
       expect(candidates.some((candidate) => candidate.prompt.id === id)).toBe(
@@ -326,45 +327,45 @@ test('supported dimensions retain proportional routing gaps until evidence suppo
   expect(gap()).toBe(0.5)
 })
 
-test('unexplored map axes get one direct question while explicit indecision can finish', async () => {
-  const { missingMapQuestion } = await import('./routing')
-  const { baseResult, emptyComponent } = await import('./projections')
-  const { buildWorldviewExperiment, experimentCandidates } =
-    await import('./worldview-experiment')
-  const state = createAssessment('map-followup')
-  state.result = baseResult(state, [], loadBundle().rubric)
-  const input = { completeParticipantEvidence: [], activeSupport: [] }
-  state.result.experiment = buildWorldviewExperiment(
-    input,
-    experimentCandidates(input),
-    {},
-    state.evidenceRevision,
-    'fixture-v1'
-  )
-  state.result.experiment.influence = {
-    ...emptyComponent('influence', 'Human influence'),
-    value: 0.5,
-    range: [0, 1],
-    distribution: { not_expressed: 0.6, '2': 0.4 }
-  }
-  state.result.experiment.transformation = {
-    ...emptyComponent('transformation', 'Scale'),
-    value: 0.5,
-    range: [0, 1],
-    distribution: { explicitly_unknown: 0.8, not_expressed: 0.2 }
-  }
-  expect(missingMapQuestion(state)).toBe('influence.general')
-  state.prompts.push({
-    ...state.prompts[0]!,
-    id: 'influence-question',
-    promptId: 'influence.general'
+test('the core map questions are asked once each, and explicit indecision is not re-asked', () => {
+  const { prompts } = loadBundle()
+  const state = createAssessment('map-gap')
+  const choice = (probabilities: Record<string, number>) => ({
+    type: 'choice' as const,
+    choice: Object.entries(probabilities).sort((a, b) => b[1] - a[1])[0]![0],
+    probabilities,
+    confidence: 0.8
   })
-  expect(missingMapQuestion(state)).toBeNull()
-  state.result.experiment.transformation.distribution = {
-    not_expressed: 0.9,
-    '1': 0.1
+  const answers = {
+    'facet:overall_outlook': choice({ not_expressed: 0.6, '3': 0.4 }),
+    // Routing already reads a scale; the direct question is still asked once.
+    'experiment:transformation': choice({ '2': 0.7, not_expressed: 0.3 }),
+    'experiment:pdoom:band': choice({ remote: 0.8, unknown: 0.2 })
   }
-  expect(missingMapQuestion(state)).toBe('transformation.general')
-  state.evidenceRevision++
-  expect(missingMapQuestion(state)).toBeNull()
+  expect(mapGapQuestion(state, answers, prompts)).toBe('impact.overall')
+  const ask = (promptId: string) =>
+    state.prompts.push({ ...state.prompts[0]!, id: promptId, promptId })
+  ask('impact.overall')
+  expect(mapGapQuestion(state, answers, prompts)).toBe(
+    'transformation.ultimate'
+  )
+  // Explicit indecision about scale is an answer, not a gap.
+  expect(
+    mapGapQuestion(
+      state,
+      {
+        ...answers,
+        'experiment:transformation': choice({ explicitly_unknown: 0.7 })
+      },
+      prompts
+    )
+  ).toBe('risk.chance')
+  ask('transformation.ultimate')
+  expect(mapGapQuestion(state, answers, prompts)).toBe('risk.chance')
+  // The retired everyday-life wording is never issued again.
+  expect(
+    prompts.find((prompt) => prompt.id === 'transformation.general')?.retired
+  ).toBe(true)
+  ask('risk.catastrophe')
+  expect(mapGapQuestion(state, answers, prompts)).toBeNull()
 })

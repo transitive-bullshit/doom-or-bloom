@@ -54,6 +54,7 @@
     "db:test:auth": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-auth-claim.ts",
     "db:test:commit": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-commit.ts",
     "db:test:restart": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-restart.ts",
+    "db:test:feedback": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-feedback.ts",
     "build:local": "node scripts/next-local.mjs build --webpack && node scripts/check-production-traces.mjs",
     "start:local": "node scripts/next-local.mjs start",
     "journeys:migrate": "node --conditions=react-server --import tsx scripts/migrate-local-journeys.ts",
@@ -61,7 +62,12 @@
     "admin:production": "pnpm dev --admin=production",
     "db:studio": "pnpm db:studio:local",
     "db:studio:local": "node --import tsx scripts/studio.ts local",
-    "db:studio:production": "node --import tsx scripts/studio.ts production"
+    "db:studio:production": "node --import tsx scripts/studio.ts production",
+    "benchmark:run": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/benchmark.ts run",
+    "benchmark:refs": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/benchmark.ts refs",
+    "benchmark:score": "node --conditions=react-server --import tsx scripts/benchmark.ts score",
+    "benchmark:compare": "node --conditions=react-server --import tsx scripts/benchmark.ts compare",
+    "feedback:audit": "node --conditions=react-server --import tsx scripts/feedback-audit.ts"
   },
   "dependencies": {
     "@tanstack/react-table": "^9.2.4",
