@@ -22,21 +22,26 @@ export function ProfileHeader({
   return (
     <header>
       <div className='flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between'>
-        <div className='flex min-w-0 items-center gap-4'>
-          {portrait &&
-            (profileUrl ? (
-              <a
-                href={profileUrl}
-                target='_blank'
-                rel='noreferrer'
-                aria-label={`${name}: ${profileLabel}`}
-                className='shrink-0 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
-              >
-                {portrait}
-              </a>
-            ) : (
-              portrait
-            ))}
+        <div className='relative flex min-w-0 items-center gap-4'>
+          {/* On wide screens the portrait hangs in the margin so the name,
+              link and description share the column's left edge. */}
+          {portrait && (
+            <div className='shrink-0 lg:absolute lg:top-1/2 lg:right-full lg:mr-6 lg:-translate-y-1/2'>
+              {profileUrl ? (
+                <a
+                  href={profileUrl}
+                  target='_blank'
+                  rel='noreferrer'
+                  aria-label={`${name}: ${profileLabel}`}
+                  className='block rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
+                >
+                  {portrait}
+                </a>
+              ) : (
+                portrait
+              )}
+            </div>
+          )}
           <div className='min-w-0'>
             <h1>{name}</h1>
             {profileUrl && (
