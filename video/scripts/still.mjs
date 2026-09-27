@@ -1,4 +1,5 @@
-// Usage: node scripts/still.mjs [--samples N] [--prefix name] <frame|12.5s|b18.25> ...
+// Usage: node scripts/still.mjs [--samples N] [--prefix name] [--clean] <frame|12.5s|b18.25> ...
+// --clean leaves out incidental overlays such as the hook's slate, for poster stills.
 import { chromium } from 'playwright-core'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromeArgs, startServer } from './server.mjs'
@@ -6,10 +7,12 @@ import { chromeArgs, startServer } from './server.mjs'
 const args = process.argv.slice(2)
 let samples
 let prefix = 'f'
+let clean = false
 const specs = []
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--samples') samples = Number(args[++i])
   else if (args[i] === '--prefix') prefix = args[++i]
+  else if (args[i] === '--clean') clean = true
   else specs.push(args[i])
 }
 const FPS = 60
@@ -38,8 +41,8 @@ await mkdir('out/stills', { recursive: true })
 for (const s of specs) {
   const f = toFrame(s)
   const ms = await page.evaluate(
-    ([f, n]) => window.renderFrame(f, n),
-    [f, samples]
+    ([f, n, c]) => window.renderFrame(f, n, c),
+    [f, samples, clean]
   )
   const buf = await page.screenshot({
     type: 'png',

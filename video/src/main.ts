@@ -2,13 +2,15 @@ import { loadAssets } from './engine/assets'
 import { defaultFx, Post } from './engine/post'
 import { DURATION, FPS, FRAMES, H, W } from './engine/timing'
 import { drawFrame } from './timeline'
+import { renderVerticalOverlay } from './vertical'
 
 // The capture scripts drive rendering through these globals.
 const host = window as unknown as {
   __ready: Promise<void>
-  renderFrame: (frame: number, samples?: number) => number
+  renderFrame: typeof renderFrame
   FRAMES: number
   FPS: number
+  renderVerticalOverlay: typeof renderVerticalOverlay
 }
 
 const out = document.getElementById('out') as HTMLCanvasElement
@@ -35,12 +37,12 @@ const resetCtx = () => {
 }
 
 /** Render one output frame with sub-frame motion blur. Returns ms taken. */
-function renderFrame(frame: number, samplesOverride?: number) {
+function renderFrame(frame: number, samplesOverride?: number, clean = false) {
   const t0 = performance.now()
   const t = frame / FPS
   const fx = defaultFx()
   resetCtx()
-  drawFrame(ctx, t, fx)
+  drawFrame(ctx, t, fx, clean)
   const samples = Math.max(
     1,
     Math.min(64, Math.round(samplesOverride ?? fx.samples))
@@ -53,7 +55,7 @@ function renderFrame(frame: number, samplesOverride?: number) {
       const dt = ((i + 0.5) / samples - 0.5) * fx.shutter
       const sub = defaultFx()
       resetCtx()
-      drawFrame(ctx, (frame + dt) / FPS, sub)
+      drawFrame(ctx, (frame + dt) / FPS, sub, clean)
       post.addSubframe(layer, sub, 1 / samples)
     }
   }
@@ -64,6 +66,7 @@ function renderFrame(frame: number, samplesOverride?: number) {
 host.renderFrame = renderFrame
 host.FRAMES = FRAMES
 host.FPS = FPS
+host.renderVerticalOverlay = renderVerticalOverlay
 host.__ready = loadAssets()
 
 // Real-time preview: `index.html?preview` plays with audio and a scrubber.
