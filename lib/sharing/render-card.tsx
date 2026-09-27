@@ -5,10 +5,13 @@ import { LimitError } from '@/lib/server/limits'
 import { ShareCard, type CardData } from './card'
 import { loadSocialPortrait } from './portraits'
 
-/** One composition and portrait-loading path for downloads and public previews. */
+/**
+ * One composition and portrait-loading path for downloads and public previews.
+ * Always PNG: X's post composer does not render WebP link cards.
+ */
 export async function renderShareCard(
   data: CardData,
-  options: { format: 'png' | 'webp'; title?: string; simulated?: boolean }
+  options: { devicePixelRatio: 1 | 2; title?: string; simulated?: boolean }
 ) {
   const people = data.closestPersonaIds.length
     ? await loadPersonaComparisons()
@@ -34,10 +37,6 @@ export async function renderShareCard(
         timeZone: 'UTC'
       }).format(new Date(data.generatedAt))
     : undefined
-  const encoding =
-    options.format === 'png'
-      ? { format: 'png' as const, devicePixelRatio: 2 }
-      : { format: 'webp' as const, devicePixelRatio: 1, quality: 90 }
   return render(
     <div style={{ width: 1200, height: 630, display: 'flex' }}>
       {ShareCard({
@@ -49,7 +48,8 @@ export async function renderShareCard(
       })}
     </div>,
     {
-      ...encoding,
+      format: 'png',
+      devicePixelRatio: options.devicePixelRatio,
       emoji: 'from-font',
       signal: AbortSignal.timeout(10_000)
     }

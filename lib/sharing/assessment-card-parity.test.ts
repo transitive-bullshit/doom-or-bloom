@@ -5,7 +5,7 @@ import type { JourneySuite } from '@/lib/journeys/schema'
 import { people } from '@/components/landing/people'
 import { worldviewValues } from '@/lib/assessment/persona-matches'
 import { resultCardData } from './card-data'
-import { GET as publicCard } from '@/app/public/assessments/[id]/social-image.webp/route'
+import { GET as publicCard } from '@/app/public/assessments/[id]/social-image.png/route'
 import { POST as downloadedCard } from '@/app/api/share-card/route'
 
 const suite: JourneySuite = JSON.parse(
@@ -21,14 +21,17 @@ vi.mock('@/components/landing/data', () => ({
   loadPersonaComparisons: async () => comparisons
 }))
 vi.mock('@/lib/assessments/public-server', () => ({
-  loadPublished: async () => ({
-    kind: 'participant',
-    title: 'Your AI worldview',
-    assessment: { result }
-  })
+  findPublished: async (id: string) =>
+    id === 'test-assessment'
+      ? {
+          kind: 'participant',
+          title: 'Your AI worldview',
+          assessment: { result }
+        }
+      : null
 }))
 
-test('public WebP and downloaded PNG render the same assessment composition', async () => {
+test('public preview and downloaded PNG render the same assessment composition', async () => {
   const preview = await publicCard(new Request('http://localhost/preview'), {
     params: Promise.resolve({ id: 'test-assessment' })
   })
@@ -41,15 +44,23 @@ test('public WebP and downloaded PNG render the same assessment composition', as
   )
   expect(preview.status).toBe(200)
   expect(download.status).toBe(200)
-  expect(preview.headers.get('Cache-Control')).toBe(
-    'public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400'
+  // A returned 404 stays revalidatable; a thrown notFound() would be cached for good.
+  const unpublished = await publicCard(
+    new Request('http://localhost/preview'),
+    {
+      params: Promise.resolve({ id: 'unpublished' })
+    }
   )
+  expect(unpublished.status).toBe(404)
+  // Next's route cache supplies public caching; the handler sets no headers of its own.
+  expect(preview.headers.get('Content-Type')).toBe('image/png')
+  expect(preview.headers.get('Cache-Control')).toBeNull()
   expect(preview.headers.get('X-Robots-Tag')).toBeNull()
   expect(download.headers.get('Cache-Control')).toBe('no-store')
-  const webp = Buffer.from(await preview.arrayBuffer())
+  const social = Buffer.from(await preview.arrayBuffer())
   const png = Buffer.from(await download.arrayBuffer())
-  expect(await sharp(webp).metadata()).toMatchObject({
-    format: 'webp',
+  expect(await sharp(social).metadata()).toMatchObject({
+    format: 'png',
     width: 1200,
     height: 630
   })
@@ -59,7 +70,7 @@ test('public WebP and downloaded PNG render the same assessment composition', as
     height: 1260
   })
   const pixels = await Promise.all(
-    [webp, png].map((bytes) =>
+    [social, png].map((bytes) =>
       sharp(bytes).resize(600, 315).removeAlpha().raw().toBuffer()
     )
   )
@@ -68,9 +79,9 @@ test('public WebP and downloaded PNG render the same assessment composition', as
       (sum, value, index) => sum + Math.abs(value - pixels[1]![index]!),
       0
     ) / pixels[0]!.length
-  // Allow lossy WebP and rasterization at different pixel densities, not layout drift.
+  // Allow rasterization at different pixel densities, not layout drift.
   expect(error).toBeLessThan(3)
-  await sharp(webp).toFile('/tmp/unified-assessment-social.webp')
+  await sharp(social).toFile('/tmp/unified-assessment-social.png')
   await sharp(png)
     .resize(1200, 630)
     .toFile('/tmp/unified-assessment-download.png')

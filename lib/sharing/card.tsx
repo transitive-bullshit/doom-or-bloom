@@ -262,6 +262,9 @@ export function Plot({
   )
 }
 
+/** Bump when ShareCard's rendered output changes, so crawlers refetch public previews. */
+export const shareCardRevision = 1
+
 export function ShareCard({
   data,
   date,

@@ -247,23 +247,36 @@ test('publish, fork, and revoke preserve independent assessments and deny public
       beforeView.assessment.answers[0].text
     )
     expect(renderedHtml('h2').text()).toContain('Full conversation')
-    expect(await html.text()).toContain(
-      `/public/assessments/${id}/social-image.webp`
+    const imageUrl = new URL(
+      renderedHtml('meta[property="og:image"]').attr('content')!
+    )
+    expect(imageUrl.pathname).toBe(`/public/assessments/${id}/social-image.png`)
+    expect(imageUrl.searchParams.get('v')).toMatch(/^[\w-]{12}$/)
+    expect(renderedHtml('meta[name="twitter:image"]').attr('content')).toBe(
+      imageUrl.href
+    )
+    expect(renderedHtml('meta[property="og:image:type"]').attr('content')).toBe(
+      'image/png'
     )
     const json = await (await visitor.request.get(`${publicURL}/data`)).json()
     expect(json.assessment.answers).toHaveLength(1)
     expect(json.ownerId).toBeUndefined()
     expect(json.assessment.draft).toBeUndefined()
     expect(json.operation).toBeUndefined()
-    const image = await visitor.request.get(`${publicURL}/social-image.webp`)
+    const image = await visitor.request.get(imageUrl.pathname + imageUrl.search)
     expect(image.status()).toBe(200)
-    expect(image.headers()['content-type']).toContain('image/webp')
-    expect(image.headers()['cache-control']).toBe(
-      'public, max-age=604800, s-maxage=604800, stale-while-revalidate=86400'
-    )
+    expect(image.headers()['content-type']).toBe('image/png')
     const bytes = await image.body()
-    expect(bytes.toString('ascii', 0, 4)).toBe('RIFF')
-    expect(bytes.toString('ascii', 8, 12)).toBe('WEBP')
+    expect(bytes.toString('latin1', 1, 4)).toBe('PNG')
+    // Earlier shares advertised WebP; keep those URLs working.
+    const earlierImage = await visitor.request.get(
+      `${publicURL}/social-image.webp`,
+      { maxRedirects: 0 }
+    )
+    expect(earlierImage.status()).toBe(308)
+    expect(new URL(earlierImage.headers().location!, publicURL).pathname).toBe(
+      `/public/assessments/${id}/social-image.png`
+    )
     const personaHtml = load(
       await (await visitor.request.get('/users/tszzl')).text()
     )
@@ -281,7 +294,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     const sharp = (await import('sharp')).default
     const metadata = await sharp(bytes).metadata()
     expect([metadata.width, metadata.height]).toEqual([1200, 630])
-    await sharp(bytes).toFile('/tmp/persistence-public-card.webp')
+    await sharp(bytes).toFile('/tmp/persistence-public-card.png')
     expect(await visitor.cookies()).toHaveLength(0)
     const publicPage = await visitor.newPage()
     await publicPage.goto(publicURL)
@@ -517,7 +530,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     ).toHaveCount(0)
     expect((await visitor.request.get(`${publicURL}/data`)).status()).toBe(404)
     expect(
-      (await visitor.request.get(`${publicURL}/social-image.webp`)).status()
+      (await visitor.request.get(`${publicURL}/social-image.png`)).status()
     ).toBe(404)
     for (const directory of ['/sitemap.xml', '/llms.txt']) {
       expect(await (await visitor.request.get(directory)).text()).not.toContain(

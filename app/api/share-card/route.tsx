@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const data = cardSchema.parse(await readBoundedJson(request, 2000))
     inputValidated = true
     diagnostics.setPhase('render_card')
-    const bytes = await renderShareCard(data, { format: 'png' })
+    const bytes = await renderShareCard(data, { devicePixelRatio: 2 })
     diagnostics.setPhase('serialize_response')
     return new Response(new Uint8Array(bytes), {
       headers: {

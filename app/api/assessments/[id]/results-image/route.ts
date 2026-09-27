@@ -23,7 +23,7 @@ export async function GET(
       assessment.result,
       await loadPersonaComparisons()
     )
-    const bytes = await renderShareCard(data, { format: 'png' })
+    const bytes = await renderShareCard(data, { devicePixelRatio: 2 })
     return new Response(new Uint8Array(bytes), {
       headers: { ...privateHeaders, 'Content-Type': 'image/png' }
     })

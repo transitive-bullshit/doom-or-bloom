@@ -1,21 +1,25 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
 
-test('build-time public shares serve cached HTML and RSC with the database unavailable', async ({
+test('build-time public shares serve cached HTML, RSC and social images with the database unavailable', async ({
   request
 }) => {
   const manifest = JSON.parse(
     await readFile('.next/prerender-manifest.json', 'utf8')
   )
   const paths = Object.keys(manifest.routes).filter((path) =>
-    path.startsWith('/public/assessments/')
+    /^\/public\/assessments\/[^/]+$/.test(path)
   )
   test.skip(
     paths.length === 0,
     'No public participant assessments at build time'
   )
   for (const path of paths) {
-    expect(manifest.routes[path].initialRevalidateSeconds).toBe(172800)
+    const image = `${path}/social-image.png`
+    for (const route of [path, image])
+      expect(manifest.routes[route]?.initialRevalidateSeconds, route).toBe(
+        172800
+      )
     for (const headers of [{}, { RSC: '1' }] as Record<string, string>[]) {
       const response = await request.get(path, { headers })
       expect(response.status(), path).toBe(200)
@@ -24,6 +28,11 @@ test('build-time public shares serve cached HTML and RSC with the database unava
         's-maxage=172800'
       )
     }
+    // Crawlers fetch versioned URLs; each is served from the build output.
+    const preview = await request.get(`${image}?v=build`)
+    expect(preview.status(), image).toBe(200)
+    expect(preview.headers()['x-nextjs-cache'], image).toBe('HIT')
+    expect(preview.headers()['content-type'], image).toBe('image/png')
   }
 })
 
