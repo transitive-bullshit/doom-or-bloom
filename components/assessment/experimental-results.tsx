@@ -134,11 +134,13 @@ export function ExperimentalResults({
                 : risk
                   ? risk.source === 'public-statement'
                     ? `Public statement from ${risk.publicStatement?.publishedAt}. This source-backed value replaces the simulated assessment estimate.`
-                    : risk.source === 'inferred'
-                      ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `how ${framing.answers} describe the likelihood`}, not a number ${subject ? 'they' : 'you'} gave.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${!subject && risk.basis === 'contextual' ? ' A rough number in your own words would sharpen it.' : ''}`
-                      : subject
-                        ? `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described; this number is not standardized across people.`
-                        : `You said ${risk.token}. The outcome, horizon and conditions are the ones in your answers; this number isn’t standardized across people.`
+                    : risk.source === 'inferred' && risk.token === 'Unclear'
+                      ? `${subject ? 'These answers' : 'Your answers'} read both as dismissing catastrophe and as expecting it, so there is no meaningful single number.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${subject ? '' : ' A rough number in your own words would settle it.'}`
+                      : risk.source === 'inferred'
+                        ? `Inferred from ${risk.basis === 'contextual' ? `${framing.possessive} broader worldview and priorities` : `how ${framing.answers} describe the likelihood`}, not a number ${subject ? 'they' : 'you'} gave.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${!subject && risk.basis === 'contextual' ? ' A rough number in your own words would sharpen it.' : ''}`
+                        : subject
+                          ? `Copied from ${framing.answers}. The outcome, horizon and conditions remain as described; this number is not standardized across people.`
+                          : `You said ${risk.token}. The outcome, horizon and conditions are the ones in your answers; this number isn’t standardized across people.`
                   : `There wasn’t enough about catastrophic risk in ${framing.answers} to estimate it.${subject ? '' : ' A sentence about how likely you think it is would add one.'}`}
             </p>
             {risk?.publicStatement && (

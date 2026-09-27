@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { resultPoint } from '@/lib/assessment/self-placement'
 
 // Participant feedback about a displayed result: where they expected to land
 // before it was revealed, and whether it feels right afterwards. Shared by the
@@ -95,24 +96,7 @@ export const feedbackItemSchema = z.discriminatedUnion('kind', [
 ])
 export type FeedbackItem = z.infer<typeof feedbackItemSchema>
 
-/**
- * The map point shown for a saved result. Like the results map, an experiment
- * from an earlier evidence revision is not shown, so that axis is unplaced.
- */
-export function resultPlacement(result: {
-  evidenceRevision: number
-  horizontal: { value: number | null }
-  experiment?: {
-    evidenceRevision: number
-    transformation: { value: number | null }
-  }
-}): SelfPlacementPayload['placed'] {
-  const experiment =
-    result.experiment?.evidenceRevision === result.evidenceRevision
-      ? result.experiment
-      : undefined
-  return {
-    x: result.horizontal.value,
-    y: experiment?.transformation.value ?? null
-  }
-}
+/** The map point shown for a saved result; the server records it as placed. */
+export const resultPlacement: (
+  result: Parameters<typeof resultPoint>[0]
+) => SelfPlacementPayload['placed'] = resultPoint

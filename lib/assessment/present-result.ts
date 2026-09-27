@@ -45,11 +45,18 @@ export function pdoomRangeLabel([low, high]: [number, number]) {
     : `${percent(low)}–${percent(high)}%`
 }
 
+// A plausible range wider than about 50× in odds has no meaningful point, as
+// when answers read both as dismissing and as expecting catastrophe.
+const unclearWidth = 4
+const logit = (p: number) =>
+  Math.log(Math.max(p, 0.0001) / Math.max(1 - p, 0.0001))
+
 /**
  * The displayed P(doom). Inferred values are recomputed from their stored band
- * interpretation with the current estimator; contextual or diffuse
- * inferences are labeled with their range instead of a point; stated values
- * keep their qualifiers ("less than 1%" is 0–1%).
+ * interpretation with the current estimator and headlined by their point
+ * estimate, or "Unclear" when the plausible range spans both extremes; the
+ * range is shown separately. Stated values keep their qualifiers ("less than
+ * 1%" is 0–1%).
  */
 export function presentPdoom(pdoom: Pdoom | null | undefined) {
   if (!pdoom || pdoom.source === 'public-statement') return pdoom ?? null
@@ -61,28 +68,28 @@ export function presentPdoom(pdoom: Pdoom | null | undefined) {
       : pdoom
   }
   let next: Pdoom = pdoom
-  if (pdoom.adjustment && pdoom.adjustment.method !== 'logodds-v1') {
-    const inferred = inferPdoom(pdoom.adjustment.bandProbabilities)
-    if (inferred)
-      next = {
-        ...pdoom,
-        estimate: inferred.estimate,
-        bounds: inferred.bounds,
-        adjustment: {
-          ...pdoom.adjustment,
-          method: 'logodds-v1',
-          rawEstimate: inferred.rawEstimate,
-          rawBounds: inferred.bounds
-        }
+  const inferred =
+    pdoom.adjustment && pdoom.adjustment.method !== 'logodds-v1'
+      ? inferPdoom(pdoom.adjustment.bandProbabilities)
+      : null
+  if (inferred && pdoom.adjustment)
+    next = {
+      ...pdoom,
+      estimate: inferred.estimate,
+      bounds: inferred.bounds,
+      adjustment: {
+        ...pdoom.adjustment,
+        method: 'logodds-v1',
+        rawEstimate: inferred.rawEstimate,
+        rawBounds: inferred.bounds
       }
-  }
+    }
   if (next.estimate === undefined || !next.bounds) return next
-  const diffuse = next.bounds[1] / Math.max(next.bounds[0], 0.001) > 4
   return {
     ...next,
     token:
-      next.basis === 'contextual' || diffuse
-        ? pdoomRangeLabel(next.bounds)
+      logit(next.bounds[1]) - logit(next.bounds[0]) > unclearWidth
+        ? 'Unclear'
         : pdoomToken(next.estimate)
   }
 }

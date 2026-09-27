@@ -85,6 +85,16 @@ Other measurements from the final run:
 - The direct questions were asked for the scale 150 times, P(doom) 153 times and overall impact 108 times.
 - None of the 918 brief answers was rejected.
 
+**P(doom) at the extremes.** Recomputing the 44 featured personas' stored band judgments with the log-odds estimator raised well-known dismissers from "<1%" to about 3–7%, for example Yann LeCun 5.7%. It also moved Eliezer Yudkowsky from ≈94% to about 87–91%.
+
+The stored judgments put colloquial "very unlikely" into the 3–10% band of the same name, and the old sharpening transform had been masking that. Three responses were tested:
+
+- **Attitude-anchored band labels.** These brought dismissers under 1%, but pushed mid-range participants down too: validation error rose from 0.45 to 0.89, and Dario Amodei moved from 28% to 18% against his stated 25%.
+- **Anchoring only the two lowest bands.** Validation error rose by 0.17.
+- **Adding only a rule that maps everyday wording by attitude.** Validation error rose by 0.03, with dismissers modestly lower: Marc Andreessen <1%, Ed Zitron 1.2%, Jensen Huang 1.5%, Yann LeCun 4.5%.
+
+The wording rule was adopted. Separately, the P(doom) headline now always shows the point estimate; a range headline such as "under 6%" read as higher than the participant's view. Public figures with well-known numbers are best represented by verified public statements, as for the eight existing ones. The references themselves come from language models and cluster between 2% and 30% (100 of 116), so they cannot settle the extremes.
+
 The validation runs cost $21.40, bringing total spend to $82.40 of the $100 budget.
 
 ## Production evidence (952 real assessments, Sep 23–27)

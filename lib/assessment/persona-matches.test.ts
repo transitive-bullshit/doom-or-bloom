@@ -50,7 +50,7 @@ test('ranks the closest three using dimensions beyond the map, excluding reasoni
   ).toBe('same')
 })
 
-test('normalizes distance by shared dimensions and never treats missing values as neutral', () => {
+test('normalizes distance over the participant’s placed values and never treats missing values as neutral', () => {
   const user = result({
     capability_trajectory: 0,
     transition_dynamics: 0.5,
@@ -92,4 +92,44 @@ test('requires at least half of the participant’s dimensions and uses determin
       persona('a', all(0.5))
     ]).map((match) => match.id)
   ).toEqual(['a', 'b'])
+})
+
+test('a persona cannot match by lacking the participant’s strongest position', () => {
+  const user = result({ ...all(0.5), action_posture: 1 })
+  const { action_posture: _unknown, ...silent } = all(0.5)
+  const matches = closestPersonas(user, [
+    persona('silent', silent),
+    persona('accelerator', { ...all(0.6), action_posture: 1 })
+  ])
+  expect(matches.map((match) => match.id)).toEqual(['accelerator', 'silent'])
+  // The unknown costs the expected disagreement of an uninformed guess.
+  expect(matches[1]!.distance).toBeCloseTo(Math.sqrt(1 / 3 / 8))
+  expect(matches[1]!.dimensions).toBe(7)
+})
+
+test('the displayed map point counts like two dimensions per axis', () => {
+  const user = {
+    ...result(all(0.5)),
+    evidenceRevision: 2,
+    horizontal: { ...emptyComponent('outlook', 'Doom–Bloom'), value: 0.9 },
+    experiment: {
+      evidenceRevision: 2,
+      transformation: {
+        ...emptyComponent('transformation', 'Scale'),
+        value: 0.6
+      }
+    }
+  } as Parameters<typeof closestPersonas>[0]
+  const matches = closestPersonas(user, [
+    { ...persona('opposite', all(0.5)), map: { x: 0.1, y: 0.6 } },
+    { ...persona('nearby', all(0.55)), map: { x: 0.9, y: 0.6 } }
+  ])
+  expect(matches.map((match) => match.id)).toEqual(['nearby', 'opposite'])
+  expect(matches[0]!.dimensions).toBe(10)
+  // A stale experiment leaves the scale out rather than comparing it.
+  const stale = closestPersonas(
+    { ...user, experiment: { ...user.experiment!, evidenceRevision: 1 } },
+    [{ ...persona('nearby', all(0.55)), map: { x: 0.9, y: 0.6 } }]
+  )
+  expect(stale[0]!.dimensions).toBe(9)
 })

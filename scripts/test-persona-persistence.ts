@@ -13,6 +13,7 @@ import { historicalPayload } from '../lib/personas/payload'
 import { personaProfileSchema } from '../lib/journeys/catalog'
 import { suiteSchema } from '../lib/journeys/schema'
 import { assessmentRepository } from '../lib/assessments/repository'
+import { resultPoint } from '../lib/assessment/self-placement'
 
 const connectionString = databaseUrl(process.env.TEST_DATABASE_URL)
 assert.ok(new URL(connectionString).pathname.endsWith('_test'))
@@ -36,7 +37,8 @@ async function verifySummaries() {
         name: metadata.name,
         slug: metadata.slug,
         avatar: metadata.avatar,
-        values: worldviewValues(payload.journey.result!)
+        values: worldviewValues(payload.journey.result!),
+        map: resultPoint(payload.journey.result!)
       }))
   )
   assert.deepEqual(await repo.selectedSummaries(), expected)

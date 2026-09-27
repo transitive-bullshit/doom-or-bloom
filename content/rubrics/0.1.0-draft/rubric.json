@@ -56,7 +56,7 @@
     {
       "id": "risk_landscape",
       "label": "Expected harm",
-      "meaning": "The adverse impact the participant expects, combining severity, likelihood, causal pathways and time horizon across misuse, loss of control and systemic disruption. This is expected harm, not a numerical probability of catastrophe. Preserve an adopted expectation of ordinary harms even when catastrophe is explicitly unknown. Workplace coercion, lost bargaining power, fraud and other non-catastrophic harms can establish this dimension on their own. Uncertainty about one kind of harm does not erase expectations about another; no extinction forecast is required.",
+      "meaning": "The adverse impact the participant expects, combining severity, likelihood, causal pathways and time horizon across misuse, loss of control and systemic disruption. This is expected harm, not a numerical probability of catastrophe. Preserve an adopted expectation of ordinary harms even when catastrophe is explicitly unknown. Workplace coercion, lost bargaining power, fraud and other non-catastrophic harms can establish this dimension on their own. Uncertainty about one kind of harm does not erase expectations about another; no extinction forecast is required. Harm the participant attributes to not developing or adopting AI (stagnation, decline, or threats AI could avert), or to policies that restrict AI, is not an adverse impact of AI itself; seeing AI as protection against such outcomes is evidence of low expected AI harm.",
       "levels": [
         "Little material adverse impact is expected.",
         "Manageable or localized harms are expected.",
@@ -188,7 +188,7 @@
   ],
   "catastrophicRisk": {
     "label": "Catastrophic risk",
-    "meaning": "The participant’s qualitative expectation of humanity-scale catastrophe from AI, such as irreversible loss of control, existential harm or comparably severe systemic collapse. Keep likelihood and severity distinct, preserve the participant’s horizon and assumptions, and do not convert general everyday harm into catastrophe. Explicit unknowns are unplaced.",
+    "meaning": "The participant’s qualitative expectation of humanity-scale catastrophe from AI, such as irreversible loss of control, existential harm or comparably severe systemic collapse. Keep likelihood and severity distinct, preserve the participant’s horizon and assumptions, and do not convert general everyday harm into catastrophe. Explicit unknowns are unplaced. Catastrophe the participant expects from not developing AI, or from policies that restrict it, is not AI-caused catastrophe: seeing AI as humanity’s protection against extinction supports a negligible expectation unless they also expect AI itself to cause catastrophe.",
     "levels": [
       "Catastrophic outcomes are expected to be negligible or effectively avoided under the participant’s stated assumptions.",
       "Catastrophe is possible but expected to be a limited part of the outlook under stated conditions.",

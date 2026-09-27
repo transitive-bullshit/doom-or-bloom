@@ -56,7 +56,8 @@ test('saved sharpened P(doom) values are recomputed from their stored bands', ()
   expect(presented.token).toBe(`≈${Math.round(expected.estimate * 100)}%`)
 })
 
-test('contextual inferences show a range, and stated qualifiers keep their meaning', () => {
+test('inferred values are headlined by their point estimate, and stated qualifiers keep their meaning', () => {
+  // A range headline ("under 10%") read as a higher P(doom) than the point.
   const contextual = presentPdoom({
     source: 'inferred',
     basis: 'contextual',
@@ -64,7 +65,7 @@ test('contextual inferences show a range, and stated qualifiers keep their meani
     estimate: 0.03,
     bounds: [0.008, 0.1]
   })
-  expect(contextual?.token).toBe('under 10%')
+  expect(contextual?.token).toBe('≈3%')
   const stated = presentPdoom({
     source: 'stated',
     token: 'less than 1%',
@@ -77,6 +78,31 @@ test('contextual inferences show a range, and stated qualifiers keep their meani
   expect(stated?.estimate).toBe(0.005)
   expect(pdoomRangeLabel([0.1, 0.3])).toBe('10–30%')
   expect(pdoomRangeLabel([0.5, 0.995])).toBe('over 50%')
+})
+
+test('a split reading is headlined as unclear rather than by a midpoint', () => {
+  const split = presentPdoom({
+    source: 'inferred',
+    basis: 'direct',
+    token: '≈38%',
+    estimate: 0.38,
+    bounds: [0, 1],
+    adjustment: {
+      method: 'shifted-sharpening-v3',
+      rawEstimate: 0.52,
+      rawBounds: [0.02, 0.99],
+      bandProbabilities: {
+        negligible: 0.1,
+        very_unlikely: 0.21,
+        near_certain: 0.18,
+        virtually_certain: 0.14,
+        almost_certain: 0.08
+      }
+    }
+  })
+  expect(split?.token).toBe('Unclear')
+  expect(split?.bounds?.[0]).toBeLessThan(0.1)
+  expect(split?.bounds?.[1]).toBeGreaterThan(0.9)
 })
 
 test('public statements are shown exactly as recorded', () => {

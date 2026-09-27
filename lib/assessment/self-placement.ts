@@ -1,5 +1,27 @@
 export type MapPoint = { x: number; y: number }
 
+/**
+ * The map point shown for a result. Like the results map, an experiment from
+ * an earlier evidence revision is not shown, so that axis is unplaced.
+ */
+export function resultPoint(result: {
+  evidenceRevision: number
+  horizontal: { value: number | null }
+  experiment?: {
+    evidenceRevision: number
+    transformation: { value: number | null }
+  }
+}): { x: number | null; y: number | null } {
+  const experiment =
+    result.experiment?.evidenceRevision === result.evidenceRevision
+      ? result.experiment
+      : undefined
+  return {
+    x: result.horizontal.value,
+    y: experiment?.transformation.value ?? null
+  }
+}
+
 // Differences below this are within retest variation and read as agreement.
 const tolerance = 0.1
 

@@ -67,7 +67,7 @@ export const loadPersonaComparisons = cache(async () => {
     const databaseKey = createHash('sha256').update(databaseUrl()).digest('hex')
     return await unstable_cache(
       () => personaRepository(getPool()).selectedComparisons(),
-      ['persona-comparisons-v1', databaseKey],
+      ['persona-comparisons-v2', databaseKey],
       { revalidate: 172800 }
     )()
   } catch (err) {
