@@ -37,7 +37,7 @@ const { positionals, values: args } = parseArgs({
     plan: { type: 'string' },
     ids: { type: 'string' },
     limit: { type: 'string' },
-    concurrency: { type: 'string', default: '6' },
+    concurrency: { type: 'string', default: '8' },
     'max-usd': { type: 'string', default: '5' },
     'idle-minutes': { type: 'string', default: '30' }
   }
@@ -103,7 +103,10 @@ function pool(write: boolean) {
       'options',
       '-c default_transaction_read_only=on -c statement_timeout=30000'
     )
-  return new Pool({ connectionString: url.toString(), max: 4 })
+  return new Pool({
+    connectionString: url.toString(),
+    max: Math.max(4, Number(args.concurrency))
+  })
 }
 
 function entries(file: string): PlanEntry[] {
@@ -396,26 +399,42 @@ async function write() {
   if (!args.plan) throw new Error('Pass --plan with a reviewed plan file.')
   const db = pool(true)
   const log = `${args.plan}.written.jsonl`
+  // A re-run resumes: assessments already written from this plan are skipped.
+  const written = new Set(
+    (existsSync(log) ? readFileSync(log, 'utf8').split('\n') : [])
+      .filter(Boolean)
+      .map((line) => JSON.parse(line) as { id: string; status: string })
+      .filter((line) => line.status === 'written')
+      .map((line) => line.id)
+  )
   const selected = entries(args.plan).filter(
-    (entry) => entry.decision === 'update' && (!ids || ids.has(entry.id))
+    (entry) =>
+      entry.decision === 'update' &&
+      !written.has(entry.id) &&
+      (!ids || ids.has(entry.id))
   )
   const outcomes: Record<string, number> = {}
-  for (const entry of selected) {
-    const outcome = await commit(db, entry)
-    const key =
-      'reason' in outcome
-        ? `${outcome.status}:${outcome.reason}`
-        : outcome.status
-    outcomes[key] = (outcomes[key] ?? 0) + 1
-    appendFileSync(
-      log,
-      JSON.stringify({
-        id: entry.id,
-        at: new Date().toISOString(),
-        ...outcome
-      }) + '\n'
-    )
-  }
+  // Each commit locks only its own assessment, so commits run in parallel.
+  await pMap(
+    selected,
+    async (entry) => {
+      const outcome = await commit(db, entry)
+      const key =
+        'reason' in outcome
+          ? `${outcome.status}:${outcome.reason}`
+          : outcome.status
+      outcomes[key] = (outcomes[key] ?? 0) + 1
+      appendFileSync(
+        log,
+        JSON.stringify({
+          id: entry.id,
+          at: new Date().toISOString(),
+          ...outcome
+        }) + '\n'
+      )
+    },
+    { concurrency: Number(args.concurrency) }
+  )
   await db.end()
   console.log(
     `Wrote ${selected.length} planned updates: ${Object.entries(outcomes)
