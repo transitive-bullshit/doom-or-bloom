@@ -16,7 +16,7 @@ Live responses are validated strictly. The one tolerance: a Score value may diff
 
 Independent questions in a batch cannot consume one another’s outputs. Later stages receive earlier results only through code. Question IDs are application bookkeeping: supply the actual dimension meaning in instructions/criteria or named shared state. Never equate a category probability with the participant’s event probability, or interpretation confidence with forecast correctness.
 
-## Current local workflow — algorithm 0.7.0
+## Current local workflow — algorithm 0.7.1
 
 ### A. Interpret the reply
 
@@ -62,7 +62,7 @@ Keep corpus assets, source provenance, curated reading recommendations and `/cor
 
 Physical exchanges require server and operation capture enabled. The participant client requests capture independently of its Debug visibility toggle. Browser IndexedDB stores traces separately from server-authoritative progress; failed operations may return safe stage diagnostics without committing an assessment revision. Preserve actual recorded evaluator questions and payloads rather than explaining historical judgments with today’s rubric. [Local debugging](local-debugging.md) defines trace retention, inspection, downloads and sanitized server diagnostics.
 
-New operations use the current assessment algorithm from `lib/assessment/schema.ts` (`0.7.0`); content, rubric and model versions remain pinned to the assessment. Preserve historical payloads and reuse cached results when their evidence revision is unchanged. Storage schema, algorithm and experiment versions are separate compatibility boundaries.
+New operations use the current assessment algorithm from `lib/assessment/schema.ts` (`0.7.1`); content, rubric and model versions remain pinned to the assessment. Preserve historical payloads and reuse cached results when their evidence revision is unchanged. Storage schema, algorithm and experiment versions are separate compatibility boundaries.
 
 ## Failure bounds and paid evaluation
 

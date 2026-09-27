@@ -45,16 +45,19 @@ export function pdoomRangeLabel([low, high]: [number, number]) {
     : `${percent(low)}–${percent(high)}%`
 }
 
-// A plausible range wider than about 50× in odds has no meaningful point, as
-// when answers read both as dismissing and as expecting catastrophe.
+// A plausible range wider than about 50× in odds that runs from under 10% to
+// over 30% has no meaningful point: the answers read both as dismissing and as
+// expecting catastrophe. A wide range within the low (or high) end still has one.
 const unclearWidth = 4
 const logit = (p: number) =>
   Math.log(Math.max(p, 0.0001) / Math.max(1 - p, 0.0001))
+const unclear = ([low, high]: [number, number]) =>
+  logit(high) - logit(low) > unclearWidth && low < 0.1 && high > 0.3
 
 /**
  * The displayed P(doom). Inferred values are recomputed from their stored band
  * interpretation with the current estimator and headlined by their point
- * estimate, or "Unclear" when the plausible range spans both extremes; the
+ * estimate, or "Unclear" when the plausible range spans both low and high; the
  * range is shown separately. Stated values keep their qualifiers ("less than
  * 1%" is 0–1%).
  */
@@ -87,10 +90,7 @@ export function presentPdoom(pdoom: Pdoom | null | undefined) {
   if (next.estimate === undefined || !next.bounds) return next
   return {
     ...next,
-    token:
-      logit(next.bounds[1]) - logit(next.bounds[0]) > unclearWidth
-        ? 'Unclear'
-        : pdoomToken(next.estimate)
+    token: unclear(next.bounds) ? 'Unclear' : pdoomToken(next.estimate)
   }
 }
 
