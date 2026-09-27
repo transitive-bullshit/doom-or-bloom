@@ -105,6 +105,30 @@ test('a split reading is headlined as unclear rather than by a midpoint', () => 
   expect(split?.bounds?.[1]).toBeGreaterThan(0.9)
 })
 
+test('a wide range within the low end keeps its point estimate', () => {
+  // An enthusiast whose reading spreads across the low bands has not read
+  // "both ways"; only a range from unlikely to likely is Unclear.
+  const low = presentPdoom({
+    source: 'inferred',
+    basis: 'direct',
+    token: '<1%',
+    estimate: 0.005,
+    bounds: [0, 0.1],
+    adjustment: {
+      method: 'shifted-sharpening-v3',
+      rawEstimate: 0.02,
+      rawBounds: [0, 0.1],
+      bandProbabilities: {
+        virtually_impossible: 0.28,
+        negligible: 0.32,
+        very_unlikely: 0.34
+      }
+    }
+  })
+  expect(low?.bounds?.[1]).toBeLessThan(0.3)
+  expect(low?.token).toBe('<1%')
+})
+
 test('public statements are shown exactly as recorded', () => {
   const statement = {
     source: 'public-statement' as const,

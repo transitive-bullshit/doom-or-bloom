@@ -97,6 +97,22 @@ The wording rule was adopted. Separately, the P(doom) headline now always shows 
 
 The validation runs cost $21.40, bringing total spend to $82.40 of the $100 budget.
 
+### Optimists on real answers (algorithm 0.7.1)
+
+Re-reading the 712 saved production results with `0.7.0` (for the backfill) showed the simulated validation had missed real participants: they rarely discuss catastrophe. Optimists (outlook ≥ 0.6) went from a median shown P(doom) under 1% to 4.7%, with 137 of 208 at 3–10%. Jev read a hopeful account as “very unlikely” and chose the 3–10% band of that name. Of 21 whose answers named no harm at all, 15 landed at 3–10%, and one enthusiastic account spread across the low bands widely enough to be headlined “Unclear”.
+
+Two changes were tested on the same transcripts (band question only, one Jev call per transcript, $0.37 in total):
+
+| Variant | Benefit-only optimists (21) | Optimists naming harms (187) | Doom side (388) | Simulated error / within 2× |
+| --- | --- | --- | --- | --- |
+| `0.7.0` | 3.6%, 15 at 3–10% | 4.8% | 14.6% | 0.50 / 100 of 126 |
+| Rule: optimism without catastrophic risk → lowest bands | 2.0%, 6 at 3–10% | 3.1% | 13.4% (19 moved > 2×) | 0.62 / 88 |
+| Rule plus relabeling the 3–10% band | 1.2%, 6 at 3–10% | 2.6% | 11.0% (53 moved > 2×) | 0.75 / 72 |
+
+Medians are shown. The rule was adopted. The six benefit-only optimists still at 3–10% did raise catastrophic risks, such as loss of control or an engineered pandemic, in words the keyword filter missed. The doom-side participants it moved are skeptics who see AI as an ordinary or overhyped technology, going from about 3–4% to 1–2%. Simulated error rose mainly where the model-written references place developer personas at 3–6%. Those references cluster between 2% and 30% and cannot settle the low end. The relabeling also lowered participants who treat catastrophe as a real risk, so it was not adopted.
+
+The “Unclear” headline now also requires the plausible range to run from under 10% to over 30%; a wide range within the low end keeps its point estimate.
+
 ## Production evidence (952 real assessments, Sep 23–27)
 
 Added after launch with the user's permission: read-only queries against production Postgres, analyzed locally. All figures below are counts over participant assessments on algorithm `0.6.1`. No production text was sent to any external service, and examples are short and non-identifying.
