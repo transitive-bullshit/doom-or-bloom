@@ -145,6 +145,7 @@ export function baseResult(
   const covered = Object.values(state.coverage).filter(
     (v) => v === 'assessed'
   ).length
+  // Provisional until the projection places the map; see resultReason.
   const insufficient = !eligible(state)
   const horizontal = {
     ...(components.find(
@@ -192,4 +193,27 @@ export function baseResult(
             ? 'Some interpretations still need clarification.'
             : 'A projection of the evidence you supplied, with interpretation ranges.'
   }
+}
+
+/**
+ * Why the participant is seeing this result, derived from what it places.
+ * Recomputed at render time for saved results, so older snapshots gain the
+ * current explanation without reprocessing.
+ */
+export function resultReason(
+  result: Pick<Result, 'capped' | 'horizontal' | 'experiment'>
+) {
+  const placed =
+    result.horizontal.value !== null &&
+    (result.experiment?.transformation.value ?? null) !== null
+  if (!placed)
+    return result.capped
+      ? 'You reached the question limit before your answers placed you on the map. Here’s what we could read from them.'
+      : 'Your answers don’t place you on the map yet. Here’s what we could read so far; another answer or two can place you.'
+  const risk = result.experiment?.pdoom
+    ? ''
+    : ' There wasn’t enough to estimate your P(doom); a sentence about how likely you think catastrophe is would add it.'
+  return result.capped
+    ? `You reached the question limit, so this reflects the answers you gave.${risk}`
+    : `Your answers place your outlook and the scale of change you expect, which is what the map needs.${risk} More answers can sharpen it.`
 }

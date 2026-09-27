@@ -47,7 +47,10 @@ export const promptSchema = z.strictObject({
     exhausted: z.string()
   }),
   contentVersion: z.string(),
-  status: z.enum(['draft', 'reviewed'])
+  status: z.enum(['draft', 'reviewed']),
+  // Retired prompts stay in the catalog so saved histories remain valid, but
+  // routing never issues them again.
+  retired: z.boolean().optional()
 })
 export type Prompt = z.infer<typeof promptSchema>
 export const rubricSchema = z.strictObject({

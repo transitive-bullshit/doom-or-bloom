@@ -54,7 +54,8 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
         if (
           state.candidates &&
           id !== 'central_basis' &&
-          !id.startsWith('facet:')
+          !id.startsWith('facet:') &&
+          !id.startsWith('experiment:')
         ) {
           if (id.startsWith('outlook:')) {
             const vector = id.split(':')[1]!
@@ -119,6 +120,18 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
         // Mechanical cases do not author beliefs for the new experiment.
         if (id === 'experiment:pdoom:band') return pick(q, 'unknown')
         if (id === 'experiment:pdoom:basis') return pick(q, 'absent')
+        // Scale follows the scripted capability expectation once expressed.
+        if (id === 'experiment:transformation') {
+          const level = persona.levels.capability_trajectory
+          return pick(
+            q,
+            !supported.has('capability_trajectory')
+              ? 'not_expressed'
+              : level === null || level === undefined
+                ? 'explicitly_unknown'
+                : String(Math.round((level / 3) * 4))
+          )
+        }
         if (id.startsWith('experiment:'))
           return pick(
             q,

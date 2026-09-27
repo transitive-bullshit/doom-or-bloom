@@ -705,6 +705,11 @@ const familyVectors = {
   action: ['action_posture', 'scope_discipline'],
   scope: ['scope_discipline', 'internal_coherence']
 } satisfies Record<string, VectorId[]>
+// Direct map questions express what they ask, not their broad family.
+const promptVectors = {
+  'transformation.ultimate': ['capability_trajectory', 'transition_dynamics'],
+  'risk.chance': ['risk_landscape', 'appropriate_uncertainty']
+} satisfies Record<string, VectorId[]>
 
 function lookup<T extends object>(map: T, key: string): T[keyof T] | undefined {
   return Object.hasOwn(map, key) ? map[key as keyof T] : undefined
@@ -738,6 +743,8 @@ export function replyForPrompt(
   const overrides = {
     'risk.misuse': c.misuse,
     'risk.catastrophe': c.catastrophe,
+    'risk.chance': c.catastrophe,
+    'transformation.ultimate': `${c.change} ${c.transition}`,
     'risk.ordinary': c.ordinary,
     'mechanism.chain': c.weakestLink,
     'timeline.milestone': `${c.update} ${c.timing}`,
@@ -759,7 +766,9 @@ export function replyForPrompt(
     vectors:
       prompt.family === 'root'
         ? persona.openingVectors
-        : (lookup(familyVectors, prompt.family) ?? []),
+        : (lookup(promptVectors, prompt.id) ??
+          lookup(familyVectors, prompt.family) ??
+          []),
     horizon:
       prompt.family === 'root'
         ? persona.openingTiming

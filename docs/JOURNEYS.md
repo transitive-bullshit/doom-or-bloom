@@ -41,7 +41,7 @@ The short Notion definitions are retained verbatim for traceability. [Terminolog
 
 ## Draft journey coverage
 
-Each ordinary authored conversation starts with the fixed root and contains at least three substantive example answers. Six have 7–8-turn continuations: physical control, defensive advantage, race leadership, short warning, jobs without extinction and lay uncertainty. These lengths are authoring examples; the current runtime uses [evidence readiness](ASSESSMENT.md#question-budget-and-readiness), rather than an answer-count minimum. The follow-ups are illustrative authored paths, not a promise that adaptive routing will choose exactly that sequence.
+Each ordinary authored conversation starts with the fixed root and contains at least three substantive example answers. Six have 7–8-turn continuations: physical control, defensive advantage, race leadership, short warning, jobs without extinction and lay uncertainty. These lengths are authoring examples; the current runtime uses [map-centric readiness](ASSESSMENT.md#question-budget-and-readiness), with a four-answer floor only for automatic results. The follow-ups are illustrative authored paths, not a promise that adaptive routing will choose exactly that sequence.
 
 The internal [User Journeys](user-journeys.md) tool runs generated participants through the actual engine and records routing, readiness and results. Live generation uses OpenAI answers and Jev judgments; the separate `lib/journeys/mechanical/` suite supplies free deterministic regressions with injected judgments. The catalog in `lib/journeys/catalog.ts` owns current membership. Neither layer turns these authored examples into a blinded holdout.
 

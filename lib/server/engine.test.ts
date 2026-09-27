@@ -10,7 +10,7 @@ import {
   eligible,
   issuePrompt
 } from '@/lib/assessment/state'
-import { assessmentSchema, limits } from '@/lib/assessment/schema'
+import { assessmentSchema, limits, versions } from '@/lib/assessment/schema'
 import type { Assessment, Operation } from '@/lib/assessment/schema'
 let seq = 0
 async function run(
@@ -263,7 +263,7 @@ test('three-answer path, reusable results and debug parity', async () => {
   )
   expect(reused.debug?.stages).toHaveLength(0)
   expect(reused.assessment.result).toEqual(historical.result)
-  expect(reused.assessment.versions.assessment).toBe('0.6.1')
+  expect(reused.assessment.versions.assessment).toBe(versions.assessment)
   const request = {
     requestId: 'same',
     assessment: state,
@@ -616,7 +616,12 @@ test('three sparse answers cannot unlock results by reply count alone', async ()
     evaluate: async (...args) => {
       const result = await fixture.evaluate(...args)
       for (const [id, question] of Object.entries(args[1]))
-        if (id.endsWith(':status'))
+        if (
+          id.endsWith(':status') ||
+          ['facet:outlook_orientation', 'experiment:transformation'].includes(
+            id
+          )
+        )
           result.answers[id] = fixtureAnswer(
             question,
             id === 'beneficial_potential:status' ? 'stated' : 'not_expressed'

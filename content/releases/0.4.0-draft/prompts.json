@@ -380,6 +380,26 @@
     "status": "draft"
   },
   {
+    "id": "risk.chance",
+    "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+    "family": "risk",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["risk_landscape", "appropriate_uncertainty"],
+    "effort": 0.2,
+    "noveltyGroup": "risk-catastrophe",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft"
+  },
+  {
     "id": "risk.misuse",
     "text": "Which harmful use of AI concerns you most, if any?",
     "family": "risk",
@@ -752,6 +772,27 @@
     "exclusions": [],
     "targets": ["beneficial_potential", "risk_landscape"],
     "effort": 0.3,
+    "noveltyGroup": "transformation-scale",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "reviewed",
+    "retired": true
+  },
+  {
+    "id": "transformation.ultimate",
+    "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["capability_trajectory", "transition_dynamics"],
+    "effort": 0.2,
     "noveltyGroup": "transformation-scale",
     "maxUses": 1,
     "permittedAfter": ["*"],

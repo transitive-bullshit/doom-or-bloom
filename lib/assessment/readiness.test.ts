@@ -148,3 +148,68 @@ test('a focused supported worldview can qualify without filling unrelated dimens
   state.evidenceRevision++
   expect(evidenceReadiness(state).ready).toBe(false)
 })
+
+function withMap(
+  outlook: Record<string, number>,
+  scale: Record<string, number>,
+  stage: 'route' | 'project' = 'route'
+) {
+  const state = withEvidence([])
+  const judge = (questionId: string, probabilities: Record<string, number>) =>
+    state.judgments.push({
+      id: `${stage}:${questionId}`,
+      answerId: `${stage === 'route' ? 'route' : 'result'}:0`,
+      questionId,
+      stage,
+      question: {
+        type: 'choice',
+        instructions: 'Map output',
+        criteria: Object.fromEntries(
+          Object.keys(probabilities).map((key) => [key, key])
+        )
+      },
+      answer: {
+        type: 'choice',
+        choice: Object.entries(probabilities).sort(
+          (a, b) => b[1] - a[1]
+        )[0]![0],
+        confidence: 1,
+        probabilities
+      },
+      model: 'fixture-v1',
+      rubricVersion: state.versions.rubric
+    })
+  judge('facet:outlook_orientation', outlook)
+  judge('experiment:transformation', scale)
+  return state
+}
+
+test('results unlock when the displayed map is placed, without reasoning coverage', () => {
+  const placed = evidenceReadiness(
+    withMap({ '3': 0.8, not_expressed: 0.2 }, { '4': 0.6, not_expressed: 0.4 })
+  )
+  expect(placed).toMatchObject({ ready: true, hasReasoning: false })
+  expect(placed.map).toMatchObject({ known: true, outlook: true, scale: true })
+  // Explicit uncertainty about scale is a placement; a weak outlook is not.
+  expect(
+    evidenceReadiness(
+      withMap({ '3': 0.8, not_expressed: 0.2 }, { explicitly_unknown: 0.7 })
+    ).ready
+  ).toBe(true)
+  expect(
+    evidenceReadiness(
+      withMap({ '3': 0.6, not_expressed: 0.4 }, { '4': 0.9, '3': 0.1 })
+    ).ready
+  ).toBe(false)
+})
+
+test('the latest map judgment decides readiness across stages', () => {
+  const state = withMap(
+    { '2': 0.9, not_expressed: 0.1 },
+    { not_expressed: 0.8, '2': 0.2 }
+  )
+  expect(evidenceReadiness(state).ready).toBe(false)
+  const later = withMap({ '2': 0.9 }, { '2': 0.9 }, 'project')
+  state.judgments.push(...later.judgments.filter((j) => j.stage === 'project'))
+  expect(evidenceReadiness(state).ready).toBe(true)
+})

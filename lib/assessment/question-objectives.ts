@@ -5,6 +5,8 @@ const questionObjectives = {
     'How much collective human choices can shape the eventual AI outcome, independently of whether current institutions will choose well.',
   'transformation.general':
     'The expected scale of change to everyday life, independently of whether those changes are good or bad.',
+  'transformation.ultimate':
+    'The eventual scale of change AI brings to the world, whenever it arrives, independently of whether it is good or bad.',
   'concrete.general':
     'Which concrete change the participant actually expects, beyond general sentiment.',
   'timeline.general':
@@ -37,6 +39,8 @@ const questionObjectives = {
     'What could prevent potential benefits from reaching ordinary people.',
   'risk.catastrophe':
     'Expected likelihood of irreversible harm, separately from ordinary disruption.',
+  'risk.chance':
+    'A rough probability, or explicit uncertainty, that AI causes extinction or a similarly permanent catastrophe.',
   'risk.misuse': 'Which misuse is central to the participant’s concern.',
   'risk.ordinary': 'Expected everyday harms outside catastrophe scenarios.',
   'risk.cyber-balance':

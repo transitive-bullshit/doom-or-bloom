@@ -36,12 +36,14 @@ import {
 } from '@/lib/assessment/state'
 import {
   candidatePrompts,
+  mapGapQuestion,
   rankCandidates,
   worthwhileCandidates,
   followUpNoveltyThreshold
 } from '@/lib/assessment/routing'
 import {
   baseResult,
+  resultReason,
   emptyComponent,
   quantile
 } from '@/lib/assessment/projections'
@@ -52,7 +54,7 @@ import { AssessmentFailure } from './assessment-failure'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
 import { timelineContext, timelineUnknown } from '@/lib/assessment/timeline'
-import { evidenceReadiness } from '@/lib/assessment/readiness'
+import { autoStopFloor, evidenceReadiness } from '@/lib/assessment/readiness'
 import {
   participantQuestionPolicy,
   noveltyPolicy,
@@ -543,7 +545,8 @@ export async function runAssessment(
       })
       .slice(
         0,
-        Math.floor((limits.questions - 2) / (state.unresolved.length ? 6 : 4))
+        // Five fixed profile and map questions share the batch budget.
+        Math.floor((limits.questions - 5) / (state.unresolved.length ? 6 : 4))
       )
     if (!eligibleCandidates.length) return false
     let selected: Prompt
@@ -553,8 +556,18 @@ export async function runAssessment(
           ?.prompt ?? eligibleCandidates[0]!.prompt
     else {
       const facets = facetQuestions()
+      const mapQuestions = experimentQuestions(
+        { passages: {}, probabilities: {} },
+        false,
+        false
+      )
+      // The displayed outputs are judged every turn so readiness and routing
+      // follow what the participant will see.
       const questions: StageQuestions = {
         'facet:overall_outlook': facets['facet:overall_outlook']!,
+        'facet:outlook_orientation': facets['facet:outlook_orientation']!,
+        'experiment:transformation': mapQuestions['experiment:transformation']!,
+        'experiment:pdoom:band': mapQuestions['experiment:pdoom:band']!,
         central_basis: facets.central_basis
       }
       for (const { prompt } of eligibleCandidates) {
@@ -627,19 +640,16 @@ export async function runAssessment(
         evaluation.answers,
         evaluation.model
       )
-      const overallPosition = evaluation.answers['facet:overall_outlook']
-      const overall = eligibleCandidates.find(
-        ({ prompt }) => prompt.id === 'impact.overall'
-      )
-      if (
-        !explore &&
-        overall &&
-        !state.prompts.some((prompt) => prompt.promptId === 'impact.overall') &&
-        overallPosition?.type === 'choice' &&
-        (overallPosition.probabilities.not_expressed ?? 0) >= 0.35 &&
-        (overallPosition.probabilities.explicitly_unknown ?? 0) < 0.5
-      ) {
-        state = issuePrompt(state, promptDisplay(overall.prompt))
+      const gap = explore
+        ? null
+        : mapGapQuestion(state, evaluation.answers, bundle.prompts)
+      const gapPrompt = bundle.prompts.find((prompt) => prompt.id === gap)
+      if (gapPrompt) {
+        state = issuePrompt(state, promptDisplay(gapPrompt))
+        trace.decisions.push({
+          action: 'core map question',
+          detail: { id: gapPrompt.id }
+        })
         return true
       }
       const ranking = rankCandidates(
@@ -719,7 +729,8 @@ export async function runAssessment(
         !explore &&
         eligible(state) &&
         !uninvestigatedIssue &&
-        !worthwhile.length
+        !worthwhile.length &&
+        state.answers.length >= autoStopFloor
       )
         return false
       selected = (worthwhile[0] ?? ranking[0])!.prompt
@@ -743,7 +754,12 @@ export async function runAssessment(
     }
     let components: Component[] = []
     let experiment: ReturnType<typeof buildWorldviewExperiment> | undefined
-    if (eligible(state)) {
+    // At the question cap every substantive assessment is projected; the map,
+    // not the readiness gate, decides whether the result is insufficient.
+    if (
+      eligible(state) ||
+      (capped && state.answers.some((answer) => answer.substantive))
+    ) {
       const scores = rubricQuestions(
         bundle.rubric,
         'completeParticipantEvidence; prior typed judgments are interpretations, not independent evidence'
@@ -785,17 +801,25 @@ export async function runAssessment(
         catastrophe.levels
       )
       const input = projectionInput(state, bundle)
+      const allCandidates = experimentCandidates(input)
+      // Runtime assessments skip excerpt pools but still read a percentage the
+      // participant typed, so "my p(doom) is 20%" is shown as 20%.
       const candidates =
         mode === 'persona'
-          ? experimentCandidates(input)
-          : { passages: {}, probabilities: {} }
+          ? allCandidates
+          : { passages: {}, probabilities: allCandidates.probabilities }
+      const statedPdoom = Object.keys(candidates.probabilities).length > 0
       Object.assign(
         questions,
-        experimentQuestions(candidates, mode === 'persona')
+        experimentQuestions(
+          candidates,
+          mode === 'persona',
+          mode === 'persona' || statedPdoom
+        )
       )
       const evaluation = await evaluate(
         'D: projection',
-        mode === 'persona'
+        mode === 'persona' || statedPdoom
           ? { ...input, experimentCandidates: candidates }
           : input,
         questions
@@ -885,7 +909,7 @@ export async function runAssessment(
               bundle.rubric
             )
           : {}
-      if (mode === 'persona')
+      if (mode === 'persona' || statedPdoom)
         Object.assign(
           evidenceQuestions,
           experimentVerificationQuestions(candidates, evaluation.answers)
@@ -916,7 +940,7 @@ export async function runAssessment(
           inspection.model
         )
         state.judgments.push(...previous)
-        for (const component of components) {
+        for (const component of mode === 'persona' ? components : []) {
           if (
             !epistemicIds.includes(
               component.vector as (typeof epistemicIds)[number]
@@ -1023,6 +1047,10 @@ export async function runAssessment(
     // unknown can be understood without supporting a directional coordinate.
     const result = baseResult(state, components, bundle.rubric, capped)
     if (experiment) result.experiment = experiment
+    result.insufficient =
+      result.horizontal.value === null ||
+      (experiment?.transformation.value ?? null) === null
+    result.reason = resultReason(result)
     const horizon = timelineContext(state)
     result.fingerprint = [
       {
