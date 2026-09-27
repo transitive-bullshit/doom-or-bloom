@@ -629,5 +629,21 @@ export const people = [
       'Favors rapid AI and biological progress while worrying about lost apprenticeships and dependence on automation.',
     tone: 'bloom' as const,
     featured: false
+  },
+  {
+    id: 'ramez-naam',
+    name: 'Ramez Naam',
+    shortName: 'Ramez Naam',
+    slug: 'ramez',
+    xUsername: 'ramez',
+    xUrl: 'https://x.com/ramez',
+    avatar: '/personas/naam.jpg',
+    initials: 'RN',
+    possessivePronoun: 'his' as const,
+    stance: 'Expect progress. Test the feedback loop. Build safer systems.',
+    description:
+      'Expects broadly beneficial AI progress, questions runaway intelligence growth, and favors open competition with practical safeguards.',
+    tone: 'bloom' as const,
+    featured: false
   }
 ]
