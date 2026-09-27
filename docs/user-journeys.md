@@ -190,6 +190,12 @@ Regenerated all 103 selected users whose recorded source/voice/belief inputs dif
 
 This refresh used compact monolithic diagnostic artifacts. Current generated artifacts use the per-user store described above; the checked-in sample remains a small test fixture.
 
+## Ramez Naam — September 27, 2026
+
+Added [Ramez Naam](research/ramez-naam-persona-2026-09-27.md) at `/users/ramez` with nine dated primary-source records, including his guest essay on Noahpinion. The brief distinguishes useful AI progress from runaway takeoff, preserves his preference for plural access alongside practical safeguards, and excludes Noah Smith’s introductory forecasts. No numerical public P(doom) override is supplied.
+
+The scoped live run completed after one substantial answer under the ordinary automatic stopping policy, using one GPT-5.6 Sol request and five Jev requests for an estimated $0.0212. Its selected result is persisted locally; the generated collection retains all 143 prior records unchanged. The research record contains exact run provenance, source limits and verification. Like the other recent additions, he is in the simulated-user directory with `featured: false`.
+
 ## Initial public-source expansion — September 20–21, 2026
 
 This historical source-selection record explains the initial briefs. Current public-person simulations follow the fidelity rules above and the current catalog, rather than treating these early editorial labels as target outcomes.

@@ -5425,5 +5425,32 @@
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/2cg56uF4hlc/hqdefault.jpg",
     "icon": "/resource-previews/9c4f84c260ea-icon.webp"
+  },
+  "https://www.noahpinion.blog/p/wheres-the-intelligence-explosion": {
+    "source": "https://www.noahpinion.blog/p/wheres-the-intelligence-explosion",
+    "fetchedAt": "2026-09-27T11:38:54.885Z",
+    "description": "Ramez Naam gives a skeptic’s take on Recursive Self-Improvement.",
+    "image": "/resource-previews/8aadf3182bfb-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!x5a8!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08ec0b36-c40e-47a2-831f-16108c969d77_1075x717.jpeg",
+    "icon": "/resource-previews/8aadf3182bfb-icon.webp"
+  },
+  "https://www.rameznaam.com/p/two-ai-futures-to-choose-from": {
+    "source": "https://www.rameznaam.com/p/two-ai-futures-to-choose-from",
+    "fetchedAt": "2026-09-27T11:38:56.011Z",
+    "description": "A messy, plural world of widely spread AI capabilities is a safer and more democratic one than that of a single, perfect AI.",
+    "image": "/resource-previews/d260ffaefe48-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!8UYv!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F37473733-a068-4e45-989d-6038f04eb535_1774x887.png",
+    "icon": "/resource-previews/d260ffaefe48-icon.webp"
+  },
+  "https://www.rameznaam.com/p/optimistic-yet-contrarian-views-on": {
+    "source": "https://www.rameznaam.com/p/optimistic-yet-contrarian-views-on",
+    "fetchedAt": "2026-09-27T11:38:57.026Z",
+    "description": "In a recent talk I argue that many of the popular narratives on AI are wrong. Here's video and some of the key points.",
+    "image": "/resource-previews/4efefe323636-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!hq5u!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb5fd54d5-9387-4321-90ec-68ee3ebf824b_1376x768.jpeg",
+    "icon": "/resource-previews/4efefe323636-icon.webp"
   }
 }

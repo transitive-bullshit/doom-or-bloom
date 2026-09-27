@@ -75,3 +75,4 @@ The 97 `independent-<handle>.jpg` portraits are copied from the corresponding `h
 
 - `bach.jpg`: Joscha Bach’s public [X profile](https://x.com/Plinz), [portrait](https://pbs.twimg.com/profile_images/1924626291078389760/CXMHFvej_400x400.jpg), inspected September 26, 2026.
 - `vittorio.jpg`: Vittorio’s public [X profile](https://x.com/IterIntellectus), [portrait](https://pbs.twimg.com/profile_images/2009602429478633472/8lMkYuep_400x400.jpg), inspected September 26, 2026.
+- `naam.jpg`: Ramez Naam’s public [X profile](https://x.com/ramez), [portrait](https://pbs.twimg.com/profile_images/1897785621802061824/N9bBY8w6_400x400.jpg), verified through the X users API and downloaded September 27, 2026. Identifies the simulated public figure; does not imply participation or endorsement.
