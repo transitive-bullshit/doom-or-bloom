@@ -84,7 +84,14 @@ export async function runPersona(
   participant?: Participant,
   exerciseResults = false,
   resume?: Journey,
-  mechanical?: MechanicalJourney
+  mechanical?: MechanicalJourney,
+  // A recorded transcript is replayed question by question, as for the fixed
+  // user: re-evaluating a saved run never generates or transplants answers.
+  transcript?: ReadonlyArray<{
+    promptId: string
+    question: string
+    answer: string
+  }>
 ): Promise<Journey> {
   if (!Number.isInteger(turns) || turns < 1 || turns > 12)
     throw new Error('Journey turn bound is 1–12')
@@ -97,12 +104,18 @@ export async function runPersona(
       'Resume requires a saved failed operation and an evaluator, without a participant generator'
     )
   const source = live ?? mechanical?.provider
-  const fixed = persona.id === fixedUserPersona.id ? fixedUserAnswers : null
+  if (transcript && (!live || participant || mechanical || resume))
+    throw new Error('Transcript replay requires only a live evaluator')
+  const fixed =
+    transcript ?? (persona.id === fixedUserPersona.id ? fixedUserAnswers : null)
   if (!source || (!resume && !participant && !mechanical && !fixed))
     throw new Error(
       'Journey runs require an evaluator and generated participant; mechanical tests must supply an explicit adapter'
     )
-  const prelude = mechanical?.prelude ?? recoveryPreludes.get(persona.id) ?? []
+  // A recorded transcript already contains any recovery exchange it had.
+  const prelude = transcript
+    ? []
+    : (mechanical?.prelude ?? recoveryPreludes.get(persona.id) ?? [])
   let currentStage: NonNullable<Journey['failureStage']> = 'operation'
   let completedStages: DebugStage[] = []
   let failedOperation: FailedOperation | undefined

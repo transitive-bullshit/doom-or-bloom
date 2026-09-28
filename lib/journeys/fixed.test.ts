@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { fixedUserAnswers, fixedUserPersona } from './fixed'
 import { loadBundle } from '@/lib/content/loader'
 import { runPersona } from './runner'
+import { personas } from './catalog'
 import { createFixtureProvider } from '@/lib/server/provider'
 
 test('fixed original answers are never generated or matched to a different routed question', async () => {
@@ -34,4 +35,35 @@ test('fixed original answers are never generated or matched to a different route
       .update(fixedUserAnswers.map((a) => a.answer).join('\n'))
       .digest('hex')
   ).toBe('bfef53afc2d61f19e34b51fb6ffe84af80efb1c0a2a24c2effe18811fa9dc0e6')
+})
+
+test('a recorded transcript replays for any simulated user, without a recovery prelude', async () => {
+  const fixture = createFixtureProvider()
+  const persona = personas.find((p) => p.id === 'playful-recovery')!
+  const transcript = fixedUserAnswers.slice(0, 2)
+  const journey = await runPersona(
+    persona,
+    loadBundle(),
+    transcript.length,
+    {
+      kind: 'live',
+      async evaluate(...args) {
+        return { ...(await fixture.evaluate(...args)), model: 'jev-1.13.0' }
+      }
+    },
+    undefined,
+    false,
+    undefined,
+    undefined,
+    transcript
+  )
+  expect(journey.error).toBeNull()
+  expect(journey.personaId).toBe(persona.id)
+  // The persona's recovery prelude ("test", "test again") is not replayed.
+  expect(journey.steps.map((s) => s.answer)).toEqual(
+    transcript.map((a) => a.answer)
+  )
+  expect(journey.steps.map((s) => s.prompt.text)).toEqual(
+    transcript.map((a) => a.question)
+  )
 })
