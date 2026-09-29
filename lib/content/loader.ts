@@ -21,6 +21,11 @@ import {
   rubricSchema
 } from './schema'
 import type { Reference } from './schema'
+import {
+  placementQuestions,
+  type PlacementQuestionId
+} from '@/lib/assessment/self-placement'
+import { splitOutlookPairs, splitOutlookPrompt } from '@/lib/assessment/routing'
 
 export function loadReferences(directory: string): Reference[] {
   return readdirSync(directory)
@@ -209,6 +214,18 @@ export function validateBundle(bundle: Bundle) {
       throw new Error('Duplicate prompt target')
     if (Object.values(prompt.recoveryVariants).some((text) => !text.trim()))
       throw new Error('Missing recovery copy')
+    // Triggered prompts are issued by code, which relies on their IDs and,
+    // for placement questions shown on the result page, their exact text.
+    if (
+      prompt.trigger === 'placement' &&
+      placementQuestions[prompt.id as PlacementQuestionId] !== prompt.text
+    )
+      throw new Error('Placement question text mismatch')
+    if (
+      prompt.trigger === 'split_outlook' &&
+      !splitOutlookPairs.some((pair) => splitOutlookPrompt(pair) === prompt.id)
+    )
+      throw new Error('Unknown split outlook question')
   }
   for (const vector of vectorIds)
     if (

@@ -195,6 +195,8 @@ The [evaluation protocol](../evaluation-protocol.md) limit for a same-meaning pa
 
 ## Next experiment: a targeted follow-up question
 
+Both questions below ship in algorithm `0.7.3`: the split-outlook question in routing and the placement question on the result page ([assessment methodology](../ASSESSMENT.md#participant-facing-projections)). Measure them against interviews from before the release and interviews where they did not trigger.
+
 The remaining map error is concentrated in two places a single question could address.
 
 1. **A split reading, before results.** After the core map questions, suppose the latest outlook judgment gives its top level less than 0.6 and the runner-up is an adjacent level. Then ask one contrastive question that names the two readings, in place of an ordinary follow-up.

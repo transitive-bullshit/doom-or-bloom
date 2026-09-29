@@ -26,7 +26,10 @@ import {
 } from '@/components/ui/collapsible'
 import { serializeReport, downloadBlob } from '@/lib/sharing/report'
 import { presentResult } from '@/lib/assessment/present-result'
-import { placementComparison } from '@/lib/assessment/self-placement'
+import {
+  placementComparison,
+  placementQuestion
+} from '@/lib/assessment/self-placement'
 import { resultPlacement } from '@/lib/assessments/feedback'
 import { SelfPlacement } from './self-placement'
 import { ResultFeedback } from './result-feedback'
@@ -58,6 +61,20 @@ export function ResultView({
   const resultsRoot = useRef<HTMLDivElement>(null)
   const result = presentResult(state.result!)
   const feedback = useResultFeedback(state, !readOnly)
+  const placed = resultPlacement(result)
+  // When the participant's own placement and this result differ a lot, offer
+  // one question about it. Answering adds evidence and returns an updated
+  // result; it is offered once, on a current private result.
+  const question =
+    feedback.guess &&
+    !readOnly &&
+    !published &&
+    state.status === 'results' &&
+    state.result?.evidenceRevision === state.evidenceRevision &&
+    !atCap(state) &&
+    !state.prompts.some((prompt) => prompt.variant === 'placement')
+      ? placementQuestion(feedback.guess, placed)
+      : null
   const supportingAnswers = (evidenceIds: string[]) => {
     const ids = new Set(
       state.evidence
@@ -180,9 +197,38 @@ export function ResultView({
         guess={feedback.guess}
         mapNote={
           feedback.guess && (
-            <p className='text-sm text-body-foreground'>
-              {placementComparison(feedback.guess, resultPlacement(result))}
-            </p>
+            <div className='flex flex-col gap-3'>
+              <p className='text-sm text-body-foreground'>
+                {placementComparison(feedback.guess, placed)}
+              </p>
+              {question && (
+                <section
+                  aria-label='A question about the difference'
+                  className='flex flex-col gap-3 rounded-lg border p-4'
+                >
+                  <p className='text-sm font-medium text-pretty'>
+                    {question.text}
+                  </p>
+                  <div className='flex flex-wrap items-center gap-x-3 gap-y-2'>
+                    <Button
+                      type='button'
+                      size='sm'
+                      variant='outline'
+                      disabled={busy}
+                      onClick={() =>
+                        feedback.guess &&
+                        act({ type: 'placement', guess: feedback.guess })
+                      }
+                    >
+                      Answer this question
+                    </Button>
+                    <span className='text-xs text-muted-foreground'>
+                      Your answer updates your result
+                    </span>
+                  </div>
+                </section>
+              )}
+            </div>
           )
         }
         feedback={

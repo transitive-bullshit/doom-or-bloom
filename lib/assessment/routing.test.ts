@@ -1,6 +1,11 @@
 import { expect, test } from 'vitest'
 import { createAssessment } from './state'
-import { candidatePrompts, mapGapQuestion, rankCandidates } from './routing'
+import {
+  candidatePrompts,
+  mapGapQuestion,
+  rankCandidates,
+  splitOutlook
+} from './routing'
 import { loadBundle } from '@/lib/content/loader'
 import { fixtureAnswer } from '@/lib/server/provider'
 import { timelineContext, timelineUnknown } from './timeline'
@@ -93,8 +98,9 @@ test('deleted questions are absent for every saved corpus and confidence questio
     for (const vector of Object.keys(state.coverage))
       state.coverage[vector as keyof typeof state.coverage] = 'assessed'
     const candidates = candidatePrompts(state, bundle.prompts)
-    // 0.4.0 adds the direct scale and P(doom) anchors from the 2026-09-27 audit.
-    expect(bundle.prompts).toHaveLength(version === '0.4.0-draft' ? 40 : 38)
+    // 0.4.0 adds the direct scale and P(doom) anchors from the 2026-09-27
+    // audit and eight triggered questions from the 2026-09-29 review.
+    expect(bundle.prompts).toHaveLength(version === '0.4.0-draft' ? 48 : 38)
     for (const id of removed) {
       expect(bundle.prompts.some((prompt) => prompt.id === id)).toBe(false)
       expect(candidates.some((candidate) => candidate.prompt.id === id)).toBe(
@@ -368,4 +374,59 @@ test('the core map questions are asked once each, and explicit indecision is not
   ).toBe(true)
   ask('risk.catastrophe')
   expect(mapGapQuestion(state, answers, prompts)).toBeNull()
+})
+
+test('a split outlook reading gets one resolving question after the core map questions', () => {
+  const { prompts } = loadBundle()
+  const state = createAssessment('split-outlook')
+  const choice = (probabilities: Record<string, number>) => ({
+    type: 'choice' as const,
+    choice: Object.entries(probabilities).sort((a, b) => b[1] - a[1])[0]![0],
+    probabilities,
+    confidence: 0.6
+  })
+  const ask = (promptId: string) =>
+    state.prompts.push({ ...state.prompts[0]!, id: promptId, promptId })
+  const answers = {
+    'facet:overall_outlook': choice({ '2': 0.8, not_expressed: 0.2 }),
+    'experiment:transformation': choice({ '3': 0.9, not_expressed: 0.1 }),
+    'facet:outlook_orientation': choice({
+      '1': 0.5,
+      '2': 0.4,
+      not_expressed: 0.1
+    })
+  }
+  // The core map questions come first.
+  expect(mapGapQuestion(state, answers, prompts)).toBe(
+    'transformation.ultimate'
+  )
+  ask('transformation.ultimate')
+  ask('risk.chance')
+  expect(mapGapQuestion(state, answers, prompts)).toBe('outlook.lean.1-2')
+  // A clear lead, a non-neighboring runner-up or an unplaced outlook is not split.
+  expect(splitOutlook(choice({ '1': 0.65, '2': 0.35 }))).toBeNull()
+  expect(splitOutlook(choice({ '1': 0.5, '3': 0.45, '2': 0.05 }))).toBeNull()
+  expect(
+    splitOutlook(choice({ '3': 0.35, '4': 0.3, not_expressed: 0.35 }))
+  ).toBeNull()
+  expect(splitOutlook(choice({ '4': 0.45, '3': 0.4, '2': 0.15 }))).toBe('3-4')
+  // It is asked once per assessment, and never ranked as an ordinary follow-up.
+  ask('outlook.lean.1-2')
+  expect(
+    mapGapQuestion(
+      state,
+      {
+        ...answers,
+        'facet:outlook_orientation': choice({ '2': 0.5, '3': 0.45 })
+      },
+      prompts
+    )
+  ).toBeNull()
+  const triggered = candidatePrompts(state, prompts).filter(
+    (c) => c.prompt.trigger
+  )
+  expect(triggered).toHaveLength(8)
+  expect(
+    triggered.every((c) => c.reason === 'issued only by its trigger')
+  ).toBe(true)
 })

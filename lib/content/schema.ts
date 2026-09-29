@@ -50,7 +50,11 @@ export const promptSchema = z.strictObject({
   status: z.enum(['draft', 'reviewed']),
   // Retired prompts stay in the catalog so saved histories remain valid, but
   // routing never issues them again.
-  retired: z.boolean().optional()
+  retired: z.boolean().optional(),
+  // Triggered prompts are never ranked as ordinary follow-ups. A split
+  // outlook reading issues `split_outlook` prompts during routing; a large
+  // gap between a self-placement and its result offers `placement` prompts.
+  trigger: z.enum(['split_outlook', 'placement']).optional()
 })
 export type Prompt = z.infer<typeof promptSchema>
 export const rubricSchema = z.strictObject({

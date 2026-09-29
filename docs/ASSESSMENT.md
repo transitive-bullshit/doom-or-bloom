@@ -145,7 +145,10 @@ Before ordinary follow-ups, routing asks the core map questions, each at most on
 
 - `impact.overall`, only when the overall balance is not expressed;
 - `transformation.ultimate` (“Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?”), unless the participant has explicitly left the scale unknown;
-- `risk.chance`, a gut-feel chance where “no idea” is fine, unless a catastrophe-likelihood question was already asked.
+- `risk.chance`, a gut-feel chance where “no idea” is fine, unless a catastrophe-likelihood question was already asked;
+- then, once, a question that resolves a split outlook reading. When the latest outlook judgment gives its leading level less than 0.6 of the level mass and a neighboring level at least 0.25, routing asks the matching `outlook.lean.<pair>` question, which names both readings (for example, “Are you mainly worried about where AI is heading, or do hope and worry feel roughly balanced to you?”).
+
+In the September 29 review, split readings sat 0.161 from participants’ own placements against 0.135 for the rest, and answering the direct overall-impact question moved readings about twice as close as an ordinary follow-up ([engine design review](research/engine-design-review-2026-09-29.md#next-experiment-a-targeted-follow-up-question)). Triggered prompts are never ranked as ordinary follow-ups.
 
 Explicit indecision counts as an answer and is never re-asked. This is the audit’s variant F, which had the best outlook, scale and P(doom) accuracy of the variants tested. The scale question is asked even when routing already reads a scale. In validation, participants who were not asked it kept a low-biased scale (error 0.160 against 0.097 for those asked, on 153 simulated participants), because answers about near-term change understate the eventual magnitude. With the four-answer floor, the core questions replace ordinary follow-ups rather than lengthening the interview. `transformation.general` (“everyday life”) is retired because it anchored people to the near term. Missing positions remain visibly unplaced. The retained reasoning composite (`result.vertical`) is not displayed to participants.
 
@@ -194,7 +197,9 @@ Choose this path only for upgrades that need no new evidence or judgments. Chang
 
 ## Corrections and clarification
 
-The current participant UI offers **Continue answering questions** to add evidence; it has no claim-specific review/clarification disclosure or correction action. The `clarify` operation remains supported by the engine/API and persona runner, and historical correction records remain readable. The rules below govern that retained operation and its evidence compatibility, rather than a current participant control.
+The current participant UI offers **Continue answering questions** to add evidence; it has no claim-specific review/clarification disclosure or correction action.
+
+It also offers one **placement question** when a participant’s self-placement and their current result differ by more than 0.25 on either axis. The `placement` operation carries the guess, and the engine issues the authored question about the larger difference: more hopeful, more worried, more change or less change. It is offered once, only on a current private result below the prompt cap. The answer is ordinary evidence, not a correction: earlier evidence stays active and nothing is superseded. A usable answer returns straight to a newly projected result, as a clarification does. The `clarify` operation remains supported by the engine/API and persona runner, and historical correction records remain readable. The rules below govern that retained operation and its evidence compatibility, rather than a current participant control.
 
 The retained clarification operation quotes the selected claim, including the separate catastrophic-risk fingerprint. Its follow-up answer updates judgments, evidence, routing and projections. A correction scoped to catastrophic risk keeps prior ordinary-harm evidence active; the catastrophic-risk projection uses evidence from the correction onward. Preserve all raw usable answers and identify the corrected scope explicitly so earlier statements remain available in their original context.
 
@@ -232,7 +237,7 @@ Routing supplies continuous evidence support and each candidate’s intended dis
 
 ### Current elicitation experiment
 
-After a usable answer, routing evaluates the map outputs (outlook orientation, transformation and P(doom) band), overall outlook and central basis alongside candidate selection. The map judgments decide readiness and direct map questions; they share the batch budget, so the candidate shortlist reserves five questions. Full projection runs when results are requested, routing stops or the prompt cap is reached; it is reused while the evidence revision is unchanged. A new accepted answer invalidates the prior result. See [the Jev workflow](TYPESAFE.md#current-local-workflow--algorithm-072) and `lib/server/engine.ts`.
+After a usable answer, routing evaluates the map outputs (outlook orientation, transformation and P(doom) band), overall outlook and central basis alongside candidate selection. The map judgments decide readiness and direct map questions; they share the batch budget, so the candidate shortlist reserves five questions. Full projection runs when results are requested, routing stops or the prompt cap is reached; it is reused while the evidence revision is unchanged. A new accepted answer invalidates the prior result. See [the Jev workflow](TYPESAFE.md#current-local-workflow--algorithm-073) and `lib/server/engine.ts`.
 
 Semantic coverage gain is judged against the exact candidate and all prior answers, without multiplying it by broad dimension coverage. Broad-topic completeness can hide important distinctions. Continuous support gaps inform shortlisting; an unexplored timeline has an early shortlist bonus, separate from final utility. Effective novelty at least 0.6 and positive utility currently qualify a follow-up; explicit unknowns and already explained reasoning should not be elicited repeatedly. This threshold is being evaluated in live journeys.
 
