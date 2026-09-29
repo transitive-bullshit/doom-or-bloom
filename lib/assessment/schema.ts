@@ -43,7 +43,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.7.2',
+  assessment: '0.7.3',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -62,6 +62,7 @@ export const supportedAssessmentVersions = [
   '0.6.1',
   '0.7.0',
   '0.7.1',
+  '0.7.2',
   versions.assessment
 ]
 export const rootPrompt = 'What do you think AI means for our future—and why?'
@@ -520,6 +521,12 @@ export const operationSchema = z.discriminatedUnion('type', [
     type: z.literal('clarify'),
     vector: vectorSchema,
     claim: z.literal('catastrophic_risk').optional()
+  }),
+  // One optional question about a large gap between the participant's
+  // self-placement and their current result; the guess selects the question.
+  z.strictObject({
+    type: z.literal('placement'),
+    guess: z.strictObject({ x: probability, y: probability })
   }),
   z.strictObject({ type: z.literal('skip') }),
   z.strictObject({ type: z.literal('retry') }),

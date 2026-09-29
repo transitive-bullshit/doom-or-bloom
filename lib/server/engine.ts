@@ -64,6 +64,7 @@ import { tensionCandidates, tensionText } from '@/lib/assessment/tension'
 import { facetQuestions, facetComponents } from '@/lib/assessment/facets'
 import { selectPresentation } from '@/lib/assessment/presentation'
 import { questionObjective } from '@/lib/assessment/question-objectives'
+import { placementQuestion, resultPoint } from '@/lib/assessment/self-placement'
 import { createQuestions } from './questions'
 import {
   evidenceExcerpts,
@@ -176,6 +177,9 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
       )
         throw new Error('Invalid tension clarification')
     } else if (p.quotedClaims) throw new Error('Unexpected quoted claims')
+    // Placement questions are issued only by their operation, and only them.
+    if ((p.variant === 'placement') !== (authored?.trigger === 'placement'))
+      throw new Error('Invalid placement question')
     if (p.family === 'clarification') {
       const dimension = p.claimTarget
         ? bundle.rubric.catastrophicRisk
@@ -1330,7 +1334,9 @@ export async function runAssessment(
           verified: false
         })
       if (atCap(state)) await project(true)
-      else if (p.target && eligible(state)) await project()
+      // A clarification or placement answer returns straight to the result.
+      else if ((p.target || p.variant === 'placement') && eligible(state))
+        await project()
       else if (!(await route())) {
         if (eligible(state)) await project()
         else state.status = 'recovery'
@@ -1378,6 +1384,31 @@ export async function runAssessment(
       target: op.vector,
       claimTarget: op.claim,
       sourceEvidenceIds: component.evidenceIds
+    })
+  } else if (op.type === 'placement') {
+    // One optional question when the participant's self-placement and their
+    // current result differ by more than the gap. The answer is ordinary
+    // evidence, not a correction: earlier evidence stays active.
+    if (
+      state.status !== 'results' ||
+      state.result?.evidenceRevision !== state.evidenceRevision ||
+      atCap(state)
+    )
+      throw new Error('This question needs a current result')
+    if (state.prompts.some((prompt) => prompt.variant === 'placement'))
+      throw new Error('This question has already been asked')
+    const question = placementQuestion(op.guess, resultPoint(state.result))
+    const prompt = bundle.prompts.find(
+      (item) => item.id === question?.id && item.trigger === 'placement'
+    )
+    if (!prompt) throw new Error('Your placement is close to your result')
+    state = issuePrompt(state, {
+      ...promptDisplay(prompt),
+      variant: 'placement'
+    })
+    trace.decisions.push({
+      action: 'placement question',
+      detail: { id: prompt.id }
     })
   } else if (op.type === 'retry') {
     if (

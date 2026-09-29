@@ -803,5 +803,173 @@
     },
     "contentVersion": "0.4.0-draft",
     "status": "reviewed"
+  },
+  {
+    "id": "outlook.lean.0-1",
+    "text": "Do you think catastrophe is the most likely outcome, or a serious risk alongside better possibilities?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape", "human_agency"],
+    "effort": 0.2,
+    "noveltyGroup": "outlook-lean",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "split_outlook"
+  },
+  {
+    "id": "outlook.lean.1-2",
+    "text": "Are you mainly worried about where AI is heading, or do hope and worry feel roughly balanced to you?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape", "human_agency"],
+    "effort": 0.2,
+    "noveltyGroup": "outlook-lean",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "split_outlook"
+  },
+  {
+    "id": "outlook.lean.2-3",
+    "text": "If you had to lean one way, do you expect AI to turn out more good than bad, or are you genuinely torn?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape", "human_agency"],
+    "effort": 0.2,
+    "noveltyGroup": "outlook-lean",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "split_outlook"
+  },
+  {
+    "id": "outlook.lean.3-4",
+    "text": "Do you think the upside will clearly outweigh the risks, or is it good on balance with real risks to manage?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape", "human_agency"],
+    "effort": 0.2,
+    "noveltyGroup": "outlook-lean",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "split_outlook"
+  },
+  {
+    "id": "placement.more-hopeful",
+    "text": "You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?",
+    "family": "reflection",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape", "human_agency"],
+    "effort": 0.2,
+    "noveltyGroup": "placement",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "placement"
+  },
+  {
+    "id": "placement.more-worried",
+    "text": "You placed yourself as more worried than your answers read. What worries you that we may have missed?",
+    "family": "reflection",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["beneficial_potential", "risk_landscape", "human_agency"],
+    "effort": 0.2,
+    "noveltyGroup": "placement",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "placement"
+  },
+  {
+    "id": "placement.more-change",
+    "text": "You expect more change than your answers showed. What’s the biggest change you see coming?",
+    "family": "reflection",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["capability_trajectory", "transition_dynamics"],
+    "effort": 0.2,
+    "noveltyGroup": "placement",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "placement"
+  },
+  {
+    "id": "placement.less-change",
+    "text": "Your answers suggest bigger changes than you expect. What do you think will stay the same?",
+    "family": "reflection",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": ["capability_trajectory", "transition_dynamics"],
+    "effort": 0.2,
+    "noveltyGroup": "placement",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "placement"
   }
 ]
