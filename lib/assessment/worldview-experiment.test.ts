@@ -83,6 +83,37 @@ describe('experimental worldview evidence boundaries', () => {
     expect(result.pdoom?.bounds).toEqual([0.1, 0.2])
     expect(assess(source, {}).pdoom).toBeNull()
   })
+  it('reads a bare typed percentage, however short the answer', () => {
+    const question =
+      'What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?'
+    const source: ExperimentInput = {
+      completeParticipantEvidence: [
+        { id: 'a1', prompt: question, answer: '30%', correctionTarget: null },
+        {
+          id: 'a2',
+          prompt: question,
+          answer: '25-30%',
+          correctionTarget: null
+        },
+        {
+          id: 'a3',
+          prompt: question,
+          answer: 'Idk. 0%',
+          correctionTarget: null
+        }
+      ],
+      activeSupport: []
+    }
+    const candidates = experimentCandidates(source)
+    expect(Object.values(candidates.probabilities).map((q) => q.token)).toEqual(
+      ['30%', '25-30%', '0%']
+    )
+    // Fragments this short are still never offered as excerpts.
+    expect(candidates.passages).toEqual({})
+    expect(assess(source, { 'experiment:pdoom': 'n0' }).pdoom?.token).toBe(
+      '30%'
+    )
+  })
   it('keeps qualifier meaning without turning a margin of error into a range', () => {
     const source = input(
       'My extinction estimate is less than 0.5%. Another conditional estimate is 10% ± 5%. Around 25% seems fair. Over 90% if we race.'

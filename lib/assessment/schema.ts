@@ -43,7 +43,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.7.1',
+  assessment: '0.7.2',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -61,6 +61,7 @@ export const supportedAssessmentVersions = [
   '0.6.0',
   '0.6.1',
   '0.7.0',
+  '0.7.1',
   versions.assessment
 ]
 export const rootPrompt = 'What do you think AI means for our future—and why?'

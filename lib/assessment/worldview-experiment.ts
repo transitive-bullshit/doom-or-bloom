@@ -125,9 +125,11 @@ export function experimentCandidates(input: ExperimentInput) {
     for (const sentence of answer.answer.split(/(?<=[.!?])\s+|\n+/u)) {
       for (let start = 0; start < sentence.length; start += 900) {
         const text = sentence.slice(start, start + 900).trim()
-        if (text.length < 8) continue
+        if (!text) continue
         const quote = { answerId: answer.id, answerNumber: index + 1, text }
-        passages.push(quote)
+        // The minimum length is for excerpts only: a bare "30%" is the most
+        // direct answer to the P(doom) question and must still be read.
+        if (text.length >= 8) passages.push(quote)
         const pattern =
           /(?:less than|more than|under|over|below|above|at most|at least|about|around|roughly|approximately|~|<|>)?\s*\d+(?:\.\d+)?\s*(?:%|percent)(?:\s*(?:to|[-–—]|±|\+\/-)\s*\d+(?:\.\d+)?\s*(?:%|percent))?|\d+(?:\.\d+)?\s*(?:to|[-–—])\s*\d+(?:\.\d+)?\s*(?:%|percent)/giu
         for (const match of text.matchAll(pattern)) {
