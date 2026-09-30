@@ -6,6 +6,8 @@ import {
   useAnswerDisclosure
 } from '@/components/assessment/answer-navigation'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
+import { CompareCta } from '@/components/compare-cta'
+import { MobileCta } from '@/components/mobile-cta'
 import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
@@ -50,6 +52,7 @@ export function PersonaPageContent({
         result={person.result}
         reasoningDetails={false}
       />
+      <CompareCta name={person.name} className='mt-8' />
       <section
         aria-label='Simulated Assessment'
         className='mt-10 flex flex-col gap-4'
@@ -99,6 +102,7 @@ export function PersonaPageContent({
       />
       <Separator className='my-20' />
       <WorldviewCtaCard />
+      <MobileCta />
     </AnswerNavigationProvider>
   )
 }

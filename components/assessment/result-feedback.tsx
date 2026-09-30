@@ -43,7 +43,7 @@ export function ResultFeedback({
       >
         <p>
           {saved.rating === 'yes'
-            ? 'Thanks — glad it feels right.'
+            ? 'Thanks, glad it feels right. Share it below and see where your friends land.'
             : 'Thanks for telling us what’s off. We review this feedback to improve how answers are read.'}
         </p>
         <Button

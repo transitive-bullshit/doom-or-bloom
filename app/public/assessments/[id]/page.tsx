@@ -9,6 +9,8 @@ import { publicShareCard, publicShareCardPath } from '@/lib/sharing/public-card'
 import { PublishedResult } from '@/components/assessment/published-result'
 import { Separator } from '@/components/ui/separator'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
+import { CompareCta } from '@/components/compare-cta'
+import { MobileCta } from '@/components/mobile-cta'
 import { repository } from '@/lib/assessments/server'
 
 export const dynamic = 'force-static'
@@ -86,7 +88,7 @@ export default async function Page({
         <ProfileHeader
           name={saved.publisher.name}
           avatar={saved.publisher.image}
-          description={`A map of your AI worldview as of ${publicationDate}.`}
+          description={`A map of their AI worldview as of ${publicationDate}.`}
           profileUrl={saved.publisher.profileUrl}
           profileLabel={
             saved.publisher.username
@@ -95,14 +97,16 @@ export default async function Page({
           }
         />
       ) : (
-        <h1>Your AI worldview</h1>
+        <h1>A shared AI worldview</h1>
       )}
+      <CompareCta name={saved.publisher?.name} />
       <PublishedResult
         state={{ ...state, draft: '', eventMarkers: [] }}
         personas={personas}
       />
       <Separator className='my-12' />
       <WorldviewCtaCard />
+      <MobileCta />
     </AssessmentPage>
   )
 }

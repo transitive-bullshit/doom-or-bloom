@@ -37,6 +37,8 @@ import { Badge } from '@/components/ui/badge'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import { ReadinessMeter } from './readiness-meter'
 import { toast } from 'sonner'
+import { emitEvent } from '@/lib/analytics/client'
+import { makeEvent } from '@/lib/analytics/events'
 import { AnswerNavigationProvider } from './answer-navigation'
 import { DebugPanel } from '@/components/debug/panel'
 import { ResultView } from './result-view'
@@ -156,6 +158,8 @@ export function Interview({
           visibility: value
         })
       })
+      if (value === 'public')
+        emitEvent(makeEvent(state, 'assessment_published'))
       await refresh()
     } catch (err) {
       toast.error(
@@ -250,6 +254,42 @@ export function Interview({
   const excessCharacters = Math.max(0, state.draft.length - limits.answerChars)
   const answerTooLong = excessCharacters > 0
   const turns = conversationTurns(state)
+  // Publishing sits with the share actions at the reveal, not above the thread.
+  const publishControl =
+    record.visibility === 'public' ? (
+      <>
+        <span>Your answers and results are public</span>
+        <Button asChild variant='outline' size='sm'>
+          <Link href={`/public/assessments/${state.id}`}>
+            View public assessment
+          </Link>
+        </Button>
+        <Button
+          variant='ghost'
+          size='sm'
+          disabled={busy || managing}
+          onClick={() => void visibility('private')}
+        >
+          Make private
+        </Button>
+      </>
+    ) : (
+      <>
+        <span>Want to show your answers too?</span>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant='outline'
+              size='sm'
+              disabled={busy || managing || Boolean(uncertain)}
+            >
+              Publish assessment
+            </Button>
+          </DialogTrigger>
+          <PublishConfirmation onConfirm={() => void visibility('public')} />
+        </Dialog>
+      </>
+    )
   const currentTurn = turns[turns.length - 1]!
   return (
     <AnswerNavigationProvider
@@ -260,55 +300,6 @@ export function Interview({
           <Paperclips dismiss={() => void act({ type: 'dismiss' })} />
         )}
         <div className='relative flex flex-col gap-8'>
-          {showResult && (
-            <div className='flex flex-wrap items-center gap-3'>
-              {record.visibility === 'public' ? (
-                <>
-                  <Button asChild variant='outline'>
-                    <Link href={`/public/assessments/${state.id}`}>
-                      View public assessment
-                    </Link>
-                  </Button>
-                  <Button
-                    variant='outline'
-                    disabled={busy || managing}
-                    onClick={() => void visibility('private')}
-                  >
-                    Make private
-                  </Button>
-                  <Button
-                    variant='ghost'
-                    onClick={() => {
-                      void navigator.clipboard
-                        .writeText(
-                          `${window.location.origin}/public/assessments/${state.id}`
-                        )
-                        .then(() => toast.success('Public link copied.'))
-                        .catch(() =>
-                          toast.error(
-                            'Unable to copy. Open the public assessment to copy its URL.'
-                          )
-                        )
-                    }}
-                  >
-                    Copy public link
-                  </Button>
-                </>
-              ) : (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button disabled={busy || managing || Boolean(uncertain)}>
-                      Publish assessment
-                    </Button>
-                  </DialogTrigger>
-                  <PublishConfirmation
-                    onConfirm={() => void visibility('public')}
-                  />
-                </Dialog>
-              )}
-            </div>
-          )}
-
           {uncertain && !busy && (
             <Alert>
               <AlertTitle>Confirm your last submission</AlertTitle>
@@ -386,6 +377,7 @@ export function Interview({
                 busy={busy || managing}
                 published={record.visibility === 'public'}
                 operations={debugOperations}
+                publishControl={publishControl}
               />
             ) : (
               <>

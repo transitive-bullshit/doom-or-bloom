@@ -9,6 +9,7 @@ import {
 import type { Assessment, Operation } from '@/lib/assessment/schema'
 import { eligible, currentPrompt } from '@/lib/assessment/state'
 import { firstTouchFields as touch } from '@/lib/attribution/first-touch'
+import { shareTargets } from '@/lib/sharing/share-caption'
 const eventNames = [
   'assessment_started',
   'answer_classified',
@@ -27,6 +28,7 @@ const eventNames = [
   'full_report_downloaded',
   'share_card_downloaded',
   'share_intent_opened',
+  'assessment_published',
   'self_placement_submitted',
   'self_placement_skipped',
   'result_feedback_submitted'
@@ -88,6 +90,7 @@ const eventSchema = z.object({
       )
       .max(7)
       .optional(),
+    share_target: z.enum(shareTargets).optional(),
     // How this browser first arrived; see lib/attribution/first-touch.ts.
     first_touch_channel: z
       .string()

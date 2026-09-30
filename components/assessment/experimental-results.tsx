@@ -43,7 +43,8 @@ export function ExperimentalResults({
   subject,
   guess,
   mapNote,
-  feedback
+  feedback,
+  share
 }: {
   result: Result
   excerpts?: boolean
@@ -55,6 +56,7 @@ export function ExperimentalResults({
   guess?: MapPoint | null
   mapNote?: ReactNode
   feedback?: ReactNode
+  share?: ReactNode
 }) {
   const result = presentResult(saved)
   const experiment =
@@ -192,6 +194,7 @@ export function ExperimentalResults({
         </Card>
         {riskCompanion}
         {feedback && <div className='lg:col-span-2'>{feedback}</div>}
+        {share && <div className='lg:col-span-2'>{share}</div>}
         {excerpts && Boolean(experiment?.milestones.length) && (
           <Card>
             <CardHeader>
