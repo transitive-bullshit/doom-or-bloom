@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-17",
+  "asOf": "2026-09-30",
   "notionPage": "https://app.notion.com/p/3c5edb27f124807daa8fe82eb1cd4ffd",
   "notionLastEditedAt": "2026-09-17T11:43:39.180Z",
   "notionUnknownBookmarkResolved": "Dario Amodei — The Adolescence of Technology (blank bookmark page; essay already supplied directly)",
@@ -6514,6 +6514,27 @@
           "path": "docs/research/user-source-additions-2026-09-22.md",
           "heading": "Francis Fukuyama — general sources",
           "scope": "Full essay, excluding reader comments; scoped paraphrase and attribution limits. No human review or snapshot mapping."
+        }
+      ]
+    },
+    {
+      "id": "source.user-2026-09-30-sumner-wanna-bet",
+      "url": "https://scottsumner.substack.com/p/wanna-bet",
+      "originalUrls": ["https://scottsumner.substack.com/p/wanna-bet"],
+      "origins": ["user-2026-09-30"],
+      "requiredForInitialCorpus": true,
+      "status": "draft",
+      "genre": "Conceptual essay about AI risk and decision-making under uncertainty",
+      "publishedAt": "2026-09-23",
+      "updatedAt": null,
+      "accessedAt": "2026-09-30",
+      "referenceIds": ["publication.sumner-wanna-bet-2026"],
+      "notes": "User-requested inclusion in the active 0.4.0-draft corpus and resource library. Full public essay inspected; linked empirical claims are not independently verified by this intake. Human review pending; runtime corpus grounding remains paused.",
+      "researchRecords": [
+        {
+          "path": "docs/research/source-additions-2026-09-30.md",
+          "heading": "Scott Sumner — Wanna bet?",
+          "scope": "Complete public essay, all nine numbered sections and postscript; reader comments excluded. Scoped paraphrase, attribution and access limits are recorded in the publication snapshot."
         }
       ]
     }

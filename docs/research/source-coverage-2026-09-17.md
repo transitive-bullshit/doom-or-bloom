@@ -6,24 +6,24 @@ Required URL mappings, obtained reading scope, human review and compatible-relea
 
 ## Counts and populations
 
-Intake as of 2026-09-17; current demo content release 0.4.0-draft.
+Intake as of 2026-09-30; current demo content release 0.4.0-draft.
 
-The registry contains 114 required and 247 optional candidate URLs. Mappings exist for 111 required URLs and 1 of the optional candidates. 117 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
+The registry contains 115 required and 248 optional candidate URLs. Mappings exist for 112 required URLs and 1 of the optional candidates. 118 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
 
-There are 172 distinct snapshot identities across current and authoring populations. 96 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
+There are 173 distinct snapshot identities across current and authoring populations. 96 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
 
 Reviewed counts reflect stored asset metadata, including earlier representative approvals. They do not establish current required-URL review or a frozen release; the current manifest remains draft.
 
 | Population | Total | Entity | Event | Publication | Asset metadata reviewed |
 | --- | --- | --- | --- | --- | --- |
-| Current demo | 138 | 8 | 11 | 119 | 6 |
+| Current demo | 139 | 8 | 11 | 120 | 6 |
 | Separate drafts | 130 | 0 | 3 | 127 | 0 |
-| Distinct required-mapped snapshots | 117 | 1 | 3 | 113 | 1 |
+| Distinct required-mapped snapshots | 118 | 1 | 3 | 114 | 1 |
 
 | Intake population | Pending | Research draft | Partial | Blocked | Draft | Reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| Required | 0 | 0 | 17 | 1 | 96 | 0 |
-| Optional candidates | 247 | 0 | 0 | 0 | 0 | 0 |
+| Required | 0 | 0 | 17 | 1 | 97 | 0 |
+| Optional candidates | 247 | 1 | 0 | 0 | 0 | 0 |
 
 ## Publication date inventory
 
@@ -31,7 +31,7 @@ These counts use publication metadata on distinct required-mapped publication sn
 
 | Publication metadata                    | Snapshots |
 | --------------------------------------- | --------- |
-| 2026                                    | 43        |
+| 2026                                    | 44        |
 | Earlier than 2026                       | 25        |
 | Later than intake year: requires review | 0         |
 | Unknown or qualified date               | 45        |
@@ -181,6 +181,7 @@ Every required original URL remains linked below. Research links identify the ex
 | [source.required-112](https://www.cold-takes.com/most-important-century) | partial | [The most important century: scoped series roadmap](../../content/releases/0.4.0-draft/references/hub.most-important-century.md) (demo) | [12. The “most important century” blog post series](../../docs/research/required-perspectives-and-hubs.md) |
 | [source.required-113](https://intelligence.org/2017/10/13/fire-alarm) | draft | [There’s No Fire Alarm for Artificial General Intelligence](../../content/releases/0.4.0-draft/references/publication.no-fire-alarm-2017.md) (demo) | [13. There’s No Fire Alarm for Artificial General Intelligence](../../docs/research/required-perspectives-and-hubs.md) |
 | [source.required-114](https://www.tobyord.com/writing/the-precipice-revisited) | draft | [The Precipice Revisited](../../content/releases/0.4.0-draft/references/publication.precipice-revisited-2024.md) (demo) | [14. The Precipice Revisited](../../docs/research/required-perspectives-and-hubs.md) |
+| [source.user-2026-09-30-sumner-wanna-bet](https://scottsumner.substack.com/p/wanna-bet) | draft | [Wanna bet?](../../content/releases/0.4.0-draft/references/publication.sumner-wanna-bet-2026.md) (demo) | [Scott Sumner — Wanna bet?](../../docs/research/source-additions-2026-09-30.md) |
 
 ## Overlapping source mappings
 
@@ -192,7 +193,7 @@ Shared identities are retained rather than duplicated to fill counts. A hub may 
 
 ## Optional selection and exclusions
 
-The 247 candidates remain preserved in the intake registry. Unmapped candidates are pending selection, not silently excluded or required to become snapshots. The 36 earlier publication drafts remain background candidates. This index records no final optional exclusion decision; select by diagnostic usefulness, source quality and coverage during human review. Required URLs remain required regardless of optional overlap.
+The 248 candidates remain preserved in the intake registry. Unmapped candidates are pending selection, not silently excluded or required to become snapshots. The 36 earlier publication drafts remain background candidates. This index records no final optional exclusion decision; select by diagnostic usefulness, source quality and coverage during human review. Required URLs remain required regardless of optional overlap.
 
 | Optional candidate already mapped | Registry stage | Snapshot | Research record |
 | --- | --- | --- | --- |
@@ -214,11 +215,11 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | cyber          | 8                         |
 | deception      | 1                         |
 | discovery      | 1                         |
-| economics      | 15                        |
+| economics      | 16                        |
 | economy        | 1                         |
 | energy         | 2                         |
-| evaluation     | 41                        |
-| forecast       | 4                         |
+| evaluation     | 42                        |
+| forecast       | 5                         |
 | goals          | 5                         |
 | governance     | 29                        |
 | grounding      | 1                         |
@@ -227,9 +228,10 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | misuse         | 3                         |
 | multiagent     | 1                         |
 | research       | 5                         |
-| risk           | 71                        |
+| risk           | 72                        |
 | science        | 4                         |
 | transition     | 10                        |
+| uncertainty    | 1                         |
 | upside         | 1                         |
 
 ## Review completion criteria

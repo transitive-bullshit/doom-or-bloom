@@ -5452,5 +5452,14 @@
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!hq5u!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb5fd54d5-9387-4321-90ec-68ee3ebf824b_1376x768.jpeg",
     "icon": "/resource-previews/4efefe323636-icon.webp"
+  },
+  "https://scottsumner.substack.com/p/wanna-bet": {
+    "source": "https://scottsumner.substack.com/p/wanna-bet",
+    "fetchedAt": "2026-09-30T01:55:42.660Z",
+    "description": "And do we even have a choice?",
+    "image": "/resource-previews/0d81bb2cbb46-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!lCr7!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa3df3ca1-139a-48b6-9ed9-9680586c6ca1_2896x1914.png",
+    "icon": "/resource-previews/0d81bb2cbb46-icon.webp"
   }
 }

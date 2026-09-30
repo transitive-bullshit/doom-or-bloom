@@ -4,7 +4,7 @@ This is the offline corpus-selection and review contract, established from the S
 
 ## Required intake and freshness
 
-Every source marked `requiredForInitialCorpus: true` in [source-intake.json](../content/source-intake.json) must be incorporated into the initial corpus. There are 114 deduplicated required URLs from the directly supplied list and [AI Risk Canonical Resources](https://app.notion.com/p/transitive-bs/AI-Risk-Canonical-Resources-3c5edb27f124807daa8fe82eb1cd4ffd). Preserve original URLs and their origin even when deduplicating tracking variants. The Notion bookmark was resolved to the already supplied Adolescence of Technology essay; its bookmark page is blank.
+Every source marked `requiredForInitialCorpus: true` in [source-intake.json](../content/source-intake.json) must be incorporated into the initial corpus. The original canon contains 114 deduplicated required URLs from the directly supplied list and [AI Risk Canonical Resources](https://app.notion.com/p/transitive-bs/AI-Risk-Canonical-Resources-3c5edb27f124807daa8fe82eb1cd4ffd); subsequent user-requested required additions are also recorded in the registry. Preserve original URLs and their origin even when deduplicating tracking variants. The Notion bookmark was resolved to the already supplied Adolescence of Technology essay; its bookmark page is blank.
 
 The later [argument maps and terminology tables](JOURNEYS.md) add 247 distinct candidate URLs, retaining overlaps and origins on the required records. These candidates support targeted authoring and definitions; they are not automatically independently verified or an additional mandatory reading quota. Preserve all five risk families and 69 concepts in authoring context, while choosing snapshots by relevance and the source roles below.
 
@@ -55,7 +55,11 @@ Before a local release, recheck contemporary model/evaluation entries older than
 
 The former 100/100/100 target is a coverage guide, not a reason to pad the corpus with dated or weak entries. Incorporating every required source and achieving balanced, reviewed topical coverage takes precedence over symmetrical counts. Document actual counts, overlaps, exclusions of optional candidates and any required-source blockers.
 
-## Current local draft integration — 2026-09-17
+## Latest local source addition — 2026-09-30
+
+Scott Sumner's [Wanna bet?](https://scottsumner.substack.com/p/wanna-bet) is included in the active draft corpus and reading resources, with a required intake mapping, title/author retrieval aliases and an entry in the generated source-coverage index. The [intake record](research/source-additions-2026-09-30.md) documents access scope and verification. Inclusion retains draft status and the pause on runtime corpus grounding. The September 17 counts below describe the earlier assembly checkpoint.
+
+## Local draft integration — 2026-09-17
 
 New assessments use `0.4.0-draft`, with 138 reference identities: the earlier 135 plus three contemporary event drafts. All 117 currently required-mapped snapshot identities, representing 111 required URLs, are present in the local corpus. The three unmapped originals and all partial-access scopes remain open; assembly confers no new review. Prompts, rubrics, findings and the 14 recommendations keep their existing semantics. Saved `0.2.0-draft` and `0.3.0-draft` assessments retain their original 42- and 135-reference corpora for those saved records. Starting a new assessment uses the current release and preserves earlier records.
 

@@ -306,5 +306,27 @@
     "status": "draft",
     "sourceAccessed": "2026-09-17",
     "question": "How do safeguards against human-directed misuse differ from safeguards against autonomous misalignment?"
+  },
+  {
+    "id": "resource.sumner-wanna-bet",
+    "title": "Wanna bet? — Scott Sumner",
+    "url": "https://scottsumner.substack.com/p/wanna-bet",
+    "purpose": "Examine how to weigh conflicting expertise and make decisions while uncertainty remains.",
+    "purposeGroup": "evaluation",
+    "referenceIds": ["publication.sumner-wanna-bet-2026"],
+    "priority": 0.5,
+    "effort": "Long-form conceptual essay",
+    "familiarity": "general",
+    "conditions": [
+      {
+        "vector": "appropriate_uncertainty",
+        "assessed": true,
+        "basis": "topic"
+      }
+    ],
+    "exclusions": [],
+    "status": "draft",
+    "sourceAccessed": "2026-09-30",
+    "question": "How would you weigh conflicting expert forecasts when deciding what to do about AI risk?"
   }
 ]

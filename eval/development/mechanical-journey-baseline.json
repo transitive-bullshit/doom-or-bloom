@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-27T09:00:44.361Z",
+  "createdAt": "2026-09-30T01:56:32.688Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
-    "assessment": "0.7.0",
+    "assessment": "0.7.1",
     "content": "0.4.0-draft",
     "rubric": "0.1.0-draft",
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "283adaec0dcc3129a0f2a7741f948da6181791acacfd9ea51d6b63c20f3ee1fb",
-  "contentHash": "af6f3b3a1e67bfd84db28908750e38238dba5b87b0c1141c5ceb23f5df417c0a",
+  "engineHash": "78563baf1a4d59cf1d0f705ba890fd3d60a343fe079e102a09c5277f0bda3123",
+  "contentHash": "cfbff3b3ce5f46fbd40304c4f1aa70b4fc8c5b9b81301b21b5e94fa2af1b0aae",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -3013,7 +3013,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -3069,7 +3069,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.214Z",
+          "generatedAt": "2026-09-30T01:56:32.544Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -7291,7 +7291,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -7347,7 +7347,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.235Z",
+          "generatedAt": "2026-09-30T01:56:32.565Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -11539,7 +11539,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -11595,7 +11595,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.256Z",
+          "generatedAt": "2026-09-30T01:56:32.585Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -15596,7 +15596,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -15646,7 +15646,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.271Z",
+          "generatedAt": "2026-09-30T01:56:32.601Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -16087,12 +16087,12 @@
             "effort": "Developer overview"
           },
           {
-            "id": "resource.alien-mind",
-            "title": "An Alien Mind",
-            "url": "https://openai.com/index/an-alien-mind/",
-            "purpose": "Explore a developer’s distinction between goal and value alignment, preserving its forecasts and incentives.",
-            "question": "How might goal alignment differ from alignment with the values you want preserved?",
-            "effort": "Leadership essay"
+            "id": "resource.sumner-wanna-bet",
+            "title": "Wanna bet? — Scott Sumner",
+            "url": "https://scottsumner.substack.com/p/wanna-bet",
+            "purpose": "Examine how to weigh conflicting expertise and make decisions while uncertainty remains.",
+            "question": "How would you weigh conflicting expert forecasts when deciding what to do about AI risk?",
+            "effort": "Long-form conceptual essay"
           }
         ],
         "fingerprint": [
@@ -19623,7 +19623,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -19679,7 +19679,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.290Z",
+          "generatedAt": "2026-09-30T01:56:32.620Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -23331,7 +23331,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -23384,7 +23384,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.307Z",
+          "generatedAt": "2026-09-30T01:56:32.637Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -26905,7 +26905,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -26957,7 +26957,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.320Z",
+          "generatedAt": "2026-09-30T01:56:32.650Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -30832,7 +30832,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -30886,7 +30886,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.335Z",
+          "generatedAt": "2026-09-30T01:56:32.663Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -34318,7 +34318,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -34369,7 +34369,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.347Z",
+          "generatedAt": "2026-09-30T01:56:32.675Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -38470,7 +38470,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.0",
+          "assessment": "0.7.1",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -38520,7 +38520,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-27T09:00:44.361Z",
+          "generatedAt": "2026-09-30T01:56:32.688Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -38992,12 +38992,12 @@
             "effort": "Developer overview"
           },
           {
-            "id": "resource.alien-mind",
-            "title": "An Alien Mind",
-            "url": "https://openai.com/index/an-alien-mind/",
-            "purpose": "Explore a developer’s distinction between goal and value alignment, preserving its forecasts and incentives.",
-            "question": "How might goal alignment differ from alignment with the values you want preserved?",
-            "effort": "Leadership essay"
+            "id": "resource.sumner-wanna-bet",
+            "title": "Wanna bet? — Scott Sumner",
+            "url": "https://scottsumner.substack.com/p/wanna-bet",
+            "purpose": "Examine how to weigh conflicting expertise and make decisions while uncertainty remains.",
+            "question": "How would you weigh conflicting expert forecasts when deciding what to do about AI risk?",
+            "effort": "Long-form conceptual essay"
           }
         ],
         "fingerprint": [
