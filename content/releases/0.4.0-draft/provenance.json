@@ -12,7 +12,8 @@
     "Release metadata",
     "Local draft inclusion wording; original drafts retained",
     "2026-09-17 local draft maintenance: hard-delete grounding.source, tension.general, control.failuremode and crux.test from all local question catalogs at user request; reference source hashes remain unchanged",
-    "2026-09-30 local draft addition: Scott Sumner’s Wanna bet? as publication.sumner-wanna-bet-2026 and resource.sumner-wanna-bet, with required intake mapping; 139 active references and 112/115 required URLs mapped. Human review remains pending. Authored directly in the active draft; original assembly source hashes and intake hash are retained."
+    "2026-09-30 local draft addition: Scott Sumner’s Wanna bet? as publication.sumner-wanna-bet-2026 and resource.sumner-wanna-bet, with required intake mapping; 139 active references and 112/115 required URLs mapped. Human review remains pending. Authored directly in the active draft; original assembly source hashes and intake hash are retained.",
+    "2026-09-30 local draft addition: LessWrong AI Risk Skepticism as hub.lesswrong-ai-risk-skepticism, with required intake mapping; 140 active references and 113/116 required URLs mapped. Wiki definition and discovery listings only; linked essays are not individually incorporated. Human review remains pending. Authored directly in the active draft; original assembly source hashes and intake hash are retained."
   ],
   "references": [
     {

@@ -6537,6 +6537,27 @@
           "scope": "Complete public essay, all nine numbered sections and postscript; reader comments excluded. Scoped paraphrase, attribution and access limits are recorded in the publication snapshot."
         }
       ]
+    },
+    {
+      "id": "source.user-2026-09-30-lesswrong-ai-risk-skepticism",
+      "url": "https://www.lesswrong.com/w/ai-risk-skepticism",
+      "originalUrls": ["https://www.lesswrong.com/w/ai-risk-skepticism"],
+      "origins": ["user-2026-09-30"],
+      "requiredForInitialCorpus": true,
+      "status": "draft",
+      "genre": "Community wiki definition and tagged-post discovery hub",
+      "publishedAt": null,
+      "updatedAt": "2025-01-17",
+      "accessedAt": "2026-09-30",
+      "referenceIds": ["hub.lesswrong-ai-risk-skepticism"],
+      "notes": "User-requested inclusion in the active 0.4.0-draft corpus. Definition and initial visible listings inspected; linked essays are discovery material, not individually read or verified sources. The displayed update dates the wiki, not the linked posts. Human review pending; runtime corpus grounding remains paused.",
+      "researchRecords": [
+        {
+          "path": "docs/research/source-additions-2026-09-30.md",
+          "heading": "LessWrong — AI Risk Skepticism",
+          "scope": "Wiki definition, editor metadata and initial 15 of 31 tagged-post listings; linked essays, comments and additional listings excluded."
+        }
+      ]
     }
   ],
   "contextNotionPages": [

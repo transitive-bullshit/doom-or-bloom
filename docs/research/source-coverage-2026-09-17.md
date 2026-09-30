@@ -8,21 +8,21 @@ Required URL mappings, obtained reading scope, human review and compatible-relea
 
 Intake as of 2026-09-30; current demo content release 0.4.0-draft.
 
-The registry contains 115 required and 248 optional candidate URLs. Mappings exist for 112 required URLs and 1 of the optional candidates. 118 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
+The registry contains 116 required and 248 optional candidate URLs. Mappings exist for 113 required URLs and 1 of the optional candidates. 119 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
 
-There are 173 distinct snapshot identities across current and authoring populations. 96 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
+There are 174 distinct snapshot identities across current and authoring populations. 96 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
 
 Reviewed counts reflect stored asset metadata, including earlier representative approvals. They do not establish current required-URL review or a frozen release; the current manifest remains draft.
 
 | Population | Total | Entity | Event | Publication | Asset metadata reviewed |
 | --- | --- | --- | --- | --- | --- |
-| Current demo | 139 | 8 | 11 | 120 | 6 |
+| Current demo | 140 | 8 | 11 | 121 | 6 |
 | Separate drafts | 130 | 0 | 3 | 127 | 0 |
-| Distinct required-mapped snapshots | 118 | 1 | 3 | 114 | 1 |
+| Distinct required-mapped snapshots | 119 | 1 | 3 | 115 | 1 |
 
 | Intake population | Pending | Research draft | Partial | Blocked | Draft | Reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| Required | 0 | 0 | 17 | 1 | 97 | 0 |
+| Required | 0 | 0 | 17 | 1 | 98 | 0 |
 | Optional candidates | 247 | 1 | 0 | 0 | 0 | 0 |
 
 ## Publication date inventory
@@ -34,7 +34,7 @@ These counts use publication metadata on distinct required-mapped publication sn
 | 2026                                    | 44        |
 | Earlier than 2026                       | 25        |
 | Later than intake year: requires review | 0         |
-| Unknown or qualified date               | 45        |
+| Unknown or qualified date               | 46        |
 
 ## Access and mapping gates
 
@@ -182,6 +182,7 @@ Every required original URL remains linked below. Research links identify the ex
 | [source.required-113](https://intelligence.org/2017/10/13/fire-alarm) | draft | [There’s No Fire Alarm for Artificial General Intelligence](../../content/releases/0.4.0-draft/references/publication.no-fire-alarm-2017.md) (demo) | [13. There’s No Fire Alarm for Artificial General Intelligence](../../docs/research/required-perspectives-and-hubs.md) |
 | [source.required-114](https://www.tobyord.com/writing/the-precipice-revisited) | draft | [The Precipice Revisited](../../content/releases/0.4.0-draft/references/publication.precipice-revisited-2024.md) (demo) | [14. The Precipice Revisited](../../docs/research/required-perspectives-and-hubs.md) |
 | [source.user-2026-09-30-sumner-wanna-bet](https://scottsumner.substack.com/p/wanna-bet) | draft | [Wanna bet?](../../content/releases/0.4.0-draft/references/publication.sumner-wanna-bet-2026.md) (demo) | [Scott Sumner — Wanna bet?](../../docs/research/source-additions-2026-09-30.md) |
+| [source.user-2026-09-30-lesswrong-ai-risk-skepticism](https://www.lesswrong.com/w/ai-risk-skepticism) | draft | [AI Risk Skepticism — LessWrong](../../content/releases/0.4.0-draft/references/hub.lesswrong-ai-risk-skepticism.md) (demo) | [LessWrong — AI Risk Skepticism](../../docs/research/source-additions-2026-09-30.md) |
 
 ## Overlapping source mappings
 
@@ -210,7 +211,7 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | architecture   | 3                         |
 | benefit        | 11                        |
 | capability     | 31                        |
-| control        | 47                        |
+| control        | 48                        |
 | coordination   | 2                         |
 | cyber          | 8                         |
 | deception      | 1                         |
@@ -218,7 +219,7 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | economics      | 16                        |
 | economy        | 1                         |
 | energy         | 2                         |
-| evaluation     | 42                        |
+| evaluation     | 43                        |
 | forecast       | 5                         |
 | goals          | 5                         |
 | governance     | 29                        |
@@ -228,10 +229,10 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | misuse         | 3                         |
 | multiagent     | 1                         |
 | research       | 5                         |
-| risk           | 72                        |
+| risk           | 73                        |
 | science        | 4                         |
 | transition     | 10                        |
-| uncertainty    | 1                         |
+| uncertainty    | 2                         |
 | upside         | 1                         |
 
 ## Review completion criteria

@@ -55,9 +55,11 @@ Before a local release, recheck contemporary model/evaluation entries older than
 
 The former 100/100/100 target is a coverage guide, not a reason to pad the corpus with dated or weak entries. Incorporating every required source and achieving balanced, reviewed topical coverage takes precedence over symmetrical counts. Document actual counts, overlaps, exclusions of optional candidates and any required-source blockers.
 
-## Latest local source addition — 2026-09-30
+## Latest local source additions — 2026-09-30
 
 Scott Sumner's [Wanna bet?](https://scottsumner.substack.com/p/wanna-bet) is included in the active draft corpus and reading resources, with a required intake mapping, title/author retrieval aliases and an entry in the generated source-coverage index. The [intake record](research/source-additions-2026-09-30.md) documents access scope and verification. Inclusion retains draft status and the pause on runtime corpus grounding. The September 17 counts below describe the earlier assembly checkpoint.
+
+LessWrong's [AI Risk Skepticism](https://www.lesswrong.com/w/ai-risk-skepticism) is also included as a required draft wiki/discovery-hub snapshot. Its [intake record](research/source-additions-2026-09-30.md#lesswrong--ai-risk-skepticism) limits coverage to the definition, editor metadata and initial visible post listings; linked essays require separate reading and review.
 
 ## Local draft integration — 2026-09-17
 
