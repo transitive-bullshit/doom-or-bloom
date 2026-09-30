@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import { Analytics } from '@vercel/analytics/next'
-import { stripUrl } from '@/lib/analytics/events'
+import { attributionUrl } from '@/lib/attribution/first-touch'
 export function SiteAnalytics({ enabled }: { enabled: boolean }) {
   const path = usePathname()
   if (
@@ -15,7 +15,8 @@ export function SiteAnalytics({ enabled }: { enabled: boolean }) {
     <Analytics
       debug={false}
       beforeSend={(event) => {
-        const url = stripUrl(event.url)
+        // Only the path and normalized UTM tags reach Vercel; see MEASUREMENT.md.
+        const url = attributionUrl(event.url)
         // The script can remain installed after client navigation away from the interview.
         const internal =
           url &&

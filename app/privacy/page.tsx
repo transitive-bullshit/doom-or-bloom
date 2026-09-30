@@ -102,6 +102,14 @@ export default function Privacy() {
         Concurrent submissions are checked against the saved revision to prevent
         silent overwrites.
       </p>
+      <p>
+        A first-party cookie remembers how your browser first found this site:
+        the link tag you arrived with (such as a newsletter or post), the
+        referring website’s domain, and the kind of page you landed on. It holds
+        no answers and no full addresses. It is saved with your anonymous or X
+        account and sent with anonymous analytics events so we can tell which
+        places bring people here.
+      </p>
 
       <WorldviewCtaCard className='mt-12' />
     </article>

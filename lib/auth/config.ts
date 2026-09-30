@@ -6,6 +6,7 @@ import { drizzle } from 'drizzle-orm/node-postgres'
 import { APIError } from 'better-auth/api'
 import { claimAnonymousAssessments } from './claim'
 import { authUrls } from './urls'
+import { readFirstTouch } from '../attribution/first-touch'
 
 function assertTrustedXUsername(
   data: Record<string, unknown>,
@@ -40,7 +41,14 @@ export function createAuth(
     account: { accountLinking: { enabled: false } },
     user: {
       additionalFields: {
-        xUsername: { type: 'string', required: false }
+        xUsername: { type: 'string', required: false },
+        // Set only from the first-touch cookie at creation or by an anonymous claim.
+        firstTouch: {
+          type: 'json',
+          required: false,
+          input: false,
+          returned: false
+        }
       }
     },
     databaseHooks: {
@@ -52,7 +60,13 @@ export function createAuth(
               context?.path === '/callback/:id' &&
                 context.params?.id === 'twitter'
             )
-            return { data: user }
+            // Anonymous starts and X sign-ins both arrive from the browser, so the
+            // new owner inherits how this browser first found the site.
+            const touch = readFirstTouch(
+              context?.headers?.get('cookie') ??
+                context?.request?.headers.get('cookie')
+            )
+            return { data: touch ? { ...user, firstTouch: touch } : user }
           }
         },
         update: {

@@ -1,4 +1,5 @@
 import { gunzipSync } from 'node:zlib'
+import { Pool } from 'pg'
 import {
   expect,
   test,
@@ -7,6 +8,7 @@ import {
   mockEvaluation
 } from '../browser/fixtures'
 import { assessmentSchema } from '../../lib/assessment/schema'
+import { firstTouchCookie } from '../../lib/attribution/first-touch'
 import {
   acceptAnswer,
   currentPrompt,
@@ -136,6 +138,19 @@ test('actual PostHog SDK payloads exclude answers and URL canaries; resume does 
       provider: 'live'
     }
   })
+  // Arrive from an outreach link: tags are kept, everything else is dropped.
+  await page.goto(`/?ref=Sim-Gwern&utm_medium=dm&private=${canary}`, {
+    referer: `https://t.co/${canary}`
+  })
+  await expect
+    .poll(async () =>
+      decodeURIComponent(
+        (await page.context().cookies()).find(
+          (cookie) => cookie.name === firstTouchCookie
+        )?.value ?? ''
+      )
+    )
+    .toContain('"ref":"sim-gwern"')
   await startAssessment(page)
   const privatePath = new URL(page.url()).pathname
   await page.goto(`${privatePath}?answer=${canary}#${canary}`)
@@ -158,6 +173,32 @@ test('actual PostHog SDK payloads exclude answers and URL canaries; resume does 
   expect(serialized).not.toContain('$referrer')
   expect(serialized).not.toContain('$session_id')
   expect(serialized.match(/"event":"assessment_started"/g)).toHaveLength(1)
+  for (const property of [
+    '"first_touch_channel":"sim-gwern"',
+    '"first_touch_ref":"sim-gwern"',
+    '"first_touch_medium":"dm"',
+    '"first_touch_referrer":"t.co"',
+    '"first_touch_landing":"home"'
+  ])
+    expect(serialized).toContain(property)
+  // The anonymous owner created at start stores the same first touch.
+  const owner = await (await page.request.get('/api/auth/get-session')).json()
+  const database = new Pool({ connectionString: process.env.TEST_DATABASE_URL })
+  try {
+    const { rows } = await database.query(
+      'SELECT first_touch FROM "user" WHERE id=$1',
+      [owner.user.id]
+    )
+    expect(rows[0].first_touch).toMatchObject({
+      ref: 'sim-gwern',
+      medium: 'dm',
+      referrer: 't.co',
+      landing: 'home'
+    })
+    expect(JSON.stringify(rows[0].first_touch)).not.toContain(canary)
+  } finally {
+    await database.end()
+  }
   expect(
     external.every((host) =>
       ['posthog.invalid', 'va.vercel-scripts.com'].includes(host)

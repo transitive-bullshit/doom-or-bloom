@@ -1,6 +1,10 @@
 'use client'
 import type { PostHog, PostHogConfig } from 'posthog-js'
 import { sanitizeEvent } from './events'
+import {
+  firstTouchProperties,
+  readFirstTouch
+} from '../attribution/first-touch'
 import type { Catalog, Event } from './events'
 let catalog: Catalog = { prompts: {}, resources: [] }
 let configured = false
@@ -60,7 +64,16 @@ export const posthogPrivacyConfig = {
 export function emitEvent(event: Event) {
   if (!configured || process.env.NEXT_PUBLIC_ANALYTICS_ENABLED !== 'true')
     return
-  const safe = sanitizeEvent(event, catalog)
+  const safe = sanitizeEvent(
+    {
+      ...event,
+      properties: {
+        ...event.properties,
+        ...firstTouchProperties(readFirstTouch(document.cookie))
+      }
+    },
+    catalog
+  )
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY,
     host = process.env.NEXT_PUBLIC_POSTHOG_HOST
   if (!safe || !key || !host) return

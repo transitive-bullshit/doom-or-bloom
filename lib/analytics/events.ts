@@ -8,6 +8,7 @@ import {
 } from '@/lib/assessment/schema'
 import type { Assessment, Operation } from '@/lib/assessment/schema'
 import { eligible, currentPrompt } from '@/lib/assessment/state'
+import { firstTouchFields as touch } from '@/lib/attribution/first-touch'
 const eventNames = [
   'assessment_started',
   'answer_classified',
@@ -86,7 +87,18 @@ const eventSchema = z.object({
         ])
       )
       .max(7)
-      .optional()
+      .optional(),
+    // How this browser first arrived; see lib/attribution/first-touch.ts.
+    first_touch_channel: z
+      .string()
+      .regex(/^[a-z0-9][a-z0-9._-]{0,99}$/)
+      .optional(),
+    first_touch_ref: touch.tag,
+    first_touch_source: touch.tag,
+    first_touch_medium: touch.tag,
+    first_touch_campaign: touch.tag,
+    first_touch_referrer: touch.referrer,
+    first_touch_landing: touch.landing.optional()
   })
 })
 export type Event = z.infer<typeof eventSchema>
@@ -229,14 +241,4 @@ export function transitionEvents(
       completion_reason: next.status === 'capped' ? 'cap' : 'voluntary'
     })
   return events
-}
-export function stripUrl(raw: string) {
-  try {
-    const url = new URL(raw)
-    url.search = ''
-    url.hash = ''
-    return url.href
-  } catch {
-    return ''
-  }
 }

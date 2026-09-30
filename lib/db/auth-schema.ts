@@ -1,5 +1,12 @@
 import { relations } from 'drizzle-orm'
-import { pgTable, text, timestamp, boolean, index } from 'drizzle-orm/pg-core'
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  jsonb,
+  index
+} from 'drizzle-orm/pg-core'
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
@@ -13,7 +20,8 @@ export const user = pgTable('user', {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
   isAnonymous: boolean('is_anonymous').default(false),
-  xUsername: text('x_username')
+  xUsername: text('x_username'),
+  firstTouch: jsonb('first_touch')
 })
 
 export const session = pgTable(

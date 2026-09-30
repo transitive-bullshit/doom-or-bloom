@@ -11,6 +11,7 @@ import { SiteBreadcrumbs } from '@/components/site-breadcrumbs'
 import { SiteSocialLinks } from '@/components/site-social-links'
 import { SiteActions } from '@/components/site-actions'
 import { SiteAnalytics } from '@/components/analytics'
+import { FirstTouch } from '@/components/first-touch'
 import { serverEnv } from '@/lib/server/env'
 import './globals.css'
 import '@/components/worldview/prism-theme.css'
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </footer>
           </div>
           <Toaster />
+          <FirstTouch />
           <SiteAnalytics enabled={serverEnv().analytics} />
           {process.env.NODE_ENV === 'development' && <DevelopmentFeedback />}
         </ThemeProvider>
