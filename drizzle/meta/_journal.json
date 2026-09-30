@@ -57,6 +57,13 @@
       "when": 1790498565561,
       "tag": "0007_assessment_feedback",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1790806089285,
+      "tag": "0008_user_first_touch",
+      "breakpoints": true
     }
   ]
 }

@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 import { createAuth } from '../lib/auth/config'
+import { firstTouchCookie } from '../lib/attribution/first-touch'
 import * as schema from '../lib/db/auth-schema'
 import { databaseUrl } from '../lib/db/config'
 import { assessmentRepository } from '../lib/assessments/repository'
@@ -28,6 +29,14 @@ function absorb(response: Response) {
     const separator = pair.indexOf('=')
     cookies.set(pair.slice(0, separator), pair.slice(separator + 1))
   }
+}
+const firstTouchOf = async (id: string) =>
+  (await pool.query('SELECT first_touch FROM "user" WHERE id=$1', [id])).rows[0]
+    ?.first_touch
+function setFirstTouch(ref: string, at: string) {
+  const touch = { v: 1, ref, landing: 'home', at }
+  cookies.set(firstTouchCookie, encodeURIComponent(JSON.stringify(touch)))
+  return touch
 }
 async function call(path: string, body?: unknown) {
   const response = await auth.handler(
@@ -88,8 +97,12 @@ async function login() {
   return call(await beginLogin())
 }
 try {
+  const earliest = setFirstTouch('hn', '2026-10-01T00:00:00.000Z')
   const anonymous = await (await call('/sign-in/anonymous', {})).json()
   identities.add(anonymous.user.id)
+  assert.deepEqual(await firstTouchOf(anonymous.user.id), earliest)
+  // The X user is created without the cookie, so only the claim can supply it.
+  cookies.delete(firstTouchCookie)
   const assessment = await repo.create(
     anonymous.user.id,
     randomUUID(),
@@ -142,6 +155,8 @@ try {
   assert.ok(signedIn.user && !signedIn.user.isAnonymous)
   assert.equal(signedIn.user.xUsername, providerUsername)
   identities.add(signedIn.user.id)
+  assert.deepEqual(await firstTouchOf(signedIn.user.id), earliest)
+  assert.equal(signedIn.user.firstTouch, undefined)
   assert.equal((await repo.list(signedIn.user.id)).length, 1)
   assert.equal(
     (await repo.load(signedIn.user.id, assessment.id)).assessment.revision,
@@ -179,8 +194,10 @@ try {
   )
   assert.equal((await repo.list(recovered.user.id))[0]!.id, assessment.id)
   await call('/sign-out', {})
+  const later = setFirstTouch('lw', '2026-10-05T00:00:00.000Z')
   const anotherAnonymous = await (await call('/sign-in/anonymous', {})).json()
   identities.add(anotherAnonymous.user.id)
+  assert.deepEqual(await firstTouchOf(anotherAnonymous.user.id), later)
   const anotherAssessment = await repo.create(
     anotherAnonymous.user.id,
     randomUUID(),
@@ -245,6 +262,8 @@ try {
   const merged = await (await call('/get-session')).json()
   assert.equal(merged.user.id, signedIn.user.id)
   assert.equal(merged.user.xUsername, providerUsername)
+  // Merging a later browser into an existing account keeps the older origin.
+  assert.deepEqual(await firstTouchOf(merged.user.id), earliest)
   assert.equal((await repo.list(merged.user.id)).length, 2)
   assert.deepEqual(
     await repo.publicLoad(anotherAssessment.id),

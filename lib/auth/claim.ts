@@ -1,6 +1,7 @@
 import { and, eq, inArray, sql } from 'drizzle-orm'
 import type { drizzle } from 'drizzle-orm/node-postgres'
 import { assessments, session, user } from '../db/schema'
+import { earliestFirstTouch, parseFirstTouch } from '../attribution/first-touch'
 
 /** Called only after Better Auth has authenticated the destination account. */
 export async function claimAnonymousAssessments(
@@ -25,6 +26,14 @@ export async function claimAnonymousAssessments(
     if (!source) return // The same successful claim may be observed again.
     if (!source.isAnonymous)
       throw new Error('Only anonymous ownership can be claimed')
+    // Keep whichever origin is older: the anonymous browser usually found the
+    // site first, but an existing account may predate it.
+    const firstTouch = earliestFirstTouch(target.firstTouch, source.firstTouch)
+    if (firstTouch && firstTouch.at !== parseFirstTouch(target.firstTouch)?.at)
+      await tx
+        .update(user)
+        .set({ firstTouch })
+        .where(eq(user.id, authenticatedId))
     await tx
       .update(assessments)
       .set({

@@ -4,7 +4,11 @@ import {
   posthogPrivacyConfig,
   sanitizePostHog
 } from './client'
-import { makeEvent, sanitizeEvent, transitionEvents, stripUrl } from './events'
+import { makeEvent, sanitizeEvent, transitionEvents } from './events'
+import {
+  attributionUrl,
+  firstTouchProperties
+} from '../attribution/first-touch'
 import {
   createAssessment,
   recordDisposition,
@@ -56,7 +60,7 @@ test('outbound sanitizer discards text, query strings and SDK enrichment', () =>
       catalog
     )
   ).toBeNull()
-  expect(stripUrl(`https://example.com/?q=${canary}#${canary}`)).toBe(
+  expect(attributionUrl(`https://example.com/?q=${canary}#${canary}`)).toBe(
     'https://example.com/'
   )
   expect(posthogPrivacyConfig.autocapture).toBe(false)
@@ -115,4 +119,39 @@ test('a successful retry keeps its attempt bucket after routing resets the recov
     events.find((event) => event.name === 'answer_classified')?.properties
       .attempt_bucket
   ).toBe('two')
+})
+test('first-touch attribution passes the allowlist only as slugs', () => {
+  const event = makeEvent(createAssessment(id), 'assessment_started')
+  const touch = {
+    v: 1 as const,
+    ref: 'sim-gwern',
+    referrer: 't.co',
+    landing: 'user' as const,
+    at: '2026-10-01T00:00:00.000Z'
+  }
+  const safe = sanitizeEvent(
+    {
+      ...event,
+      properties: { ...event.properties, ...firstTouchProperties(touch) }
+    },
+    catalog
+  )
+  expect(safe?.properties).toMatchObject({
+    first_touch_channel: 'sim-gwern',
+    first_touch_ref: 'sim-gwern',
+    first_touch_referrer: 't.co',
+    first_touch_landing: 'user'
+  })
+  expect(
+    sanitizeEvent(
+      {
+        ...event,
+        properties: {
+          ...event.properties,
+          first_touch_referrer: 'https://t.co/private?q=1'
+        }
+      },
+      catalog
+    )
+  ).toBeNull()
 })
