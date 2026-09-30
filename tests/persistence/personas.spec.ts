@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { Pool } from 'pg'
+import { firstTouchCookie } from '../../lib/attribution/first-touch'
 
 test('curated persona routes use the selected database run without a visitor session', async ({
   page,
@@ -7,6 +8,11 @@ test('curated persona routes use the selected database run without a visitor ses
   context
 }) => {
   const pool = new Pool({ connectionString: process.env.TEST_DATABASE_URL })
+  // Browsing creates no session. The first-party first-touch record is expected.
+  const sessionCookies = async () =>
+    (await context.cookies()).filter(
+      (cookie) => cookie.name !== firstTouchCookie
+    )
   try {
     const { rows } = await pool.query(
       'SELECT p.slug, p.name, p.selected_assessment_id AS id FROM personas p WHERE p.featured ORDER BY p.slug LIMIT 1'
@@ -17,7 +23,7 @@ test('curated persona routes use the selected database run without a visitor ses
     await expect(
       page.getByRole('heading', { name: new RegExp(persona.name) }).first()
     ).toBeVisible()
-    expect(await context.cookies()).toHaveLength(0)
+    expect(await sessionCookies()).toHaveLength(0)
     const data = await request.get(`/public/assessments/${persona.id}/data`)
     expect(data.status()).toBe(200)
     const published = await data.json()
@@ -65,7 +71,7 @@ test('curated persona routes use the selected database run without a visitor ses
       'content',
       /stores assessments/
     )
-    expect(await context.cookies()).toHaveLength(0)
+    expect(await sessionCookies()).toHaveLength(0)
   } finally {
     await pool.end()
   }
