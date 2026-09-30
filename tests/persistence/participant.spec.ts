@@ -334,12 +334,12 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await expect(
       publicPage.getByRole('link', { name: /Download shared/ })
     ).toHaveCount(0)
-    // The compare prompt near the top and the closing card both invite a start.
+    // Beside the header CTA, one compare prompt after the results invites a start.
     await expect(
       publicPage
-        .locator('[data-slot="card"]')
+        .locator('[data-slot="card"]:visible')
         .filter({ hasText: 'Where do you land?' })
-    ).toHaveCount(2)
+    ).toHaveCount(1)
     const conversation = publicPage.getByRole('region', {
       name: 'Full conversation'
     })

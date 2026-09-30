@@ -99,13 +99,25 @@ export default async function Page({
       ) : (
         <h1>A shared AI worldview</h1>
       )}
-      <CompareCta name={saved.publisher?.name} />
+      {/* Phones hide the header CTA, so the invitation leads there. Wider
+          screens already show one in the header; a second, after the
+          results, replaces the closing card rather than adding to it. */}
+      <div className='sm:hidden'>
+        <CompareCta name={saved.publisher?.name} />
+      </div>
       <PublishedResult
         state={{ ...state, draft: '', eventMarkers: [] }}
         personas={personas}
+        afterResults={
+          <div key='compare' className='hidden sm:block'>
+            <CompareCta name={saved.publisher?.name} />
+          </div>
+        }
       />
-      <Separator className='my-12' />
-      <WorldviewCtaCard />
+      <div className='flex flex-col sm:hidden'>
+        <Separator className='my-12' />
+        <WorldviewCtaCard />
+      </div>
       <MobileCta />
     </AssessmentPage>
   )

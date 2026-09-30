@@ -56,15 +56,30 @@ test('the result offers tagged share intents and publishing beside them', async 
   ).searchParams.get('url')!
   expect(new URL(published).pathname).toBe(`/public/assessments/${id}`)
 
-  // Visitors to the published page get a way in near the top.
+  // Visitors get one compare prompt. Wider screens already show the header
+  // CTA, so it follows the results and replaces the closing card.
   await page.goto(`/public/assessments/${id}`)
   await expect(
     page.getByRole('heading', { level: 1, name: 'A shared AI worldview' })
   ).toBeVisible()
-  await expect(page.getByText('Where do you land?').first()).toBeVisible()
   await expect(
     page.getByRole('region', { name: 'Share your result' })
   ).toHaveCount(0)
+  const prompts = page
+    .locator('[data-slot="card"]:visible')
+    .filter({ hasText: 'Where do you land?' })
+  const top = async (locator: import('@playwright/test').Locator) =>
+    (await locator.boundingBox())!.y + (await page.evaluate(() => scrollY))
+  const map = page.locator('[data-slot="worldview-map-svg"]').first()
+  const conversation = page.getByRole('heading', { name: 'Full conversation' })
+  await expect(prompts).toHaveCount(1)
+  expect(await top(prompts)).toBeGreaterThan(await top(map))
+  expect(await top(prompts)).toBeLessThan(await top(conversation))
+  // Phones hide the header CTA, so the prompt leads, with the closing card kept.
+  await page.setViewportSize({ width: 390, height: 844 })
+  await expect(prompts).toHaveCount(2)
+  expect(await top(prompts.first())).toBeLessThan(await top(map))
+  expect(await top(prompts.last())).toBeGreaterThan(await top(conversation))
 })
 
 test('simulated-user pages invite a comparison, pinned on phones', async ({
