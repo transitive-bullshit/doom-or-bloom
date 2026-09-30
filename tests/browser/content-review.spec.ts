@@ -1,4 +1,22 @@
 import { expect, test } from '@playwright/test'
+import { execFileSync } from 'node:child_process'
+
+// The inspector renders loadBundle().prompts, which needs a server-conditioned
+// Node process, so the expected count grows with the authored catalog.
+const catalogEntries: number = JSON.parse(
+  execFileSync(
+    process.execPath,
+    [
+      '--conditions=react-server',
+      '--import',
+      'tsx',
+      '--input-type=module',
+      '--eval',
+      "const { loadBundle } = await import('./lib/content/loader.ts'); process.stdout.write(JSON.stringify(loadBundle().prompts.length))"
+    ],
+    { encoding: 'utf8' }
+  )
+)
 
 test('local question and corpus inspectors expose relationships without feedback editing', async ({
   page,
@@ -20,7 +38,9 @@ test('local question and corpus inspectors expose relationships without feedback
   await expect(
     page.getByRole('group', { name: 'Authored question relationships' })
   ).toBeVisible()
-  await expect(page.getByText(/40 catalog entries/)).toBeVisible()
+  await expect(
+    page.getByText(new RegExp(`^${catalogEntries} catalog entries`))
+  ).toBeVisible()
   for (const id of [
     'grounding.source',
     'tension.general',
