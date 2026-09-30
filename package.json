@@ -68,6 +68,7 @@
     "benchmark:score": "node --conditions=react-server --import tsx scripts/benchmark.ts score",
     "benchmark:compare": "node --conditions=react-server --import tsx scripts/benchmark.ts compare",
     "feedback:audit": "node --conditions=react-server --import tsx scripts/feedback-audit.ts",
+    "social-image:generate": "node --conditions=react-server --import tsx scripts/generate-social-image.ts",
     "results:reevaluate": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/reevaluate-results.ts",
     "personas:reevaluate": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/reevaluate-personas.ts"
   },

@@ -31,7 +31,6 @@ export async function generateMetadata({
     description: `Explore ${person.name}’s simulated AI worldview, map placement, and source-grounded answers. An experimental interpretation, not their own assessment.`,
     // Change the image URL so social crawlers do not reuse the earlier WebP.
     image: `/users/${person.slug}/opengraph-image?v=png-1`,
-    imageType: 'image/png',
     imageAlt: `${person.name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map`
   })
 }
