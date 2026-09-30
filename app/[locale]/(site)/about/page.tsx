@@ -1,6 +1,5 @@
-import { pageMetadata } from '@/lib/metadata'
-import { publicPages } from '@/lib/site'
-import Link from 'next/link'
+import { publicPageMetadata } from '@/lib/metadata'
+import { Link } from '@/i18n/navigation'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
@@ -8,7 +7,9 @@ import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 // The example assessment is public persona data, refreshed with the page.
 export const dynamic = 'error'
 export const revalidate = 86400
-export const metadata = pageMetadata(publicPages[1]!)
+export function generateMetadata() {
+  return publicPageMetadata('about')
+}
 
 export default async function About() {
   const personaId = 'abundance-risk-taker'

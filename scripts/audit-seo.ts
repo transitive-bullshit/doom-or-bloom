@@ -207,11 +207,16 @@ if (process.argv.includes('--check')) {
     [
       '/api/',
       '/api$',
-      '/assessment$',
-      '/assessment/',
-      '/assessments$',
-      '/assessments?',
-      '/assessments/',
+      // Owner routes, unprefixed for English and under each locale prefix.
+      ...['', '/es'].flatMap((prefix) =>
+        [
+          '/assessment$',
+          '/assessment/',
+          '/assessments$',
+          '/assessments?',
+          '/assessments/'
+        ].map((path) => prefix + path)
+      ),
       '/public/assessments/*/data$'
     ].map((path) => `Disallow: ${path}`)
   )

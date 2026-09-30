@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { splitLocalePath } from '../../i18n/config'
 
 // First-party cookie recording how a browser first arrived. Written once by the
 // client, read by the server when it creates an owner and by analytics events.
@@ -51,6 +52,8 @@ export function cleanTag(value: string | null | undefined) {
 }
 
 function landingKind(pathname: string): FirstTouch['landing'] {
+  // Locale prefixes are not page kinds; /es/users is the same landing as /users.
+  pathname = splitLocalePath(pathname).path
   if (pathname === '/') return 'home'
   if (pathname === '/users') return 'users'
   if (pathname.startsWith('/users/')) return 'user'

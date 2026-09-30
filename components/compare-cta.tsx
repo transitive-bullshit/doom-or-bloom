@@ -1,4 +1,5 @@
 import { cn } from 'cn'
+import { useTranslations } from 'next-intl'
 import { Card, CardTitle, CardDescription } from '@/components/ui/card'
 import { WorldviewCta } from '@/components/worldview-cta'
 
@@ -10,6 +11,7 @@ export function CompareCta({
   name?: string | null
   className?: string
 }) {
+  const t = useTranslations('Cta')
   return (
     <Card
       className={cn(
@@ -19,14 +21,12 @@ export function CompareCta({
     >
       <div className='flex flex-col gap-1.5'>
         <CardTitle className='text-lg text-balance'>
-          {name ? `Where do you land vs ${name}?` : 'Where do you land?'}
+          {name ? t('compareTitle', { name }) : t('cardTitle')}
         </CardTitle>
-        <CardDescription>
-          Map your own AI worldview in about 3 minutes, then compare
-        </CardDescription>
+        <CardDescription>{t('compareDescription')}</CardDescription>
       </div>
       <div className='shrink-0'>
-        <WorldviewCta label='Map my worldview' />
+        <WorldviewCta label={t('mapMine')} />
       </div>
     </Card>
   )

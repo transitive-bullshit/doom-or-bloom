@@ -57,9 +57,10 @@ test('explicit qualifiers remain visible without inventing an exact sortable est
 })
 
 test('numeric sorts preserve zero, put missing values last in both directions, and break ties by name', () => {
-  for (const key of Object.keys(directorySorts).filter(
-    (key) => key !== 'name'
-  ) as Exclude<keyof typeof directorySorts, 'name'>[]) {
+  for (const key of directorySorts.filter(
+    (key): key is Exclude<(typeof directorySorts)[number], 'name'> =>
+      key !== 'name'
+  )) {
     const base: Example = {
       id: '',
       name: '',

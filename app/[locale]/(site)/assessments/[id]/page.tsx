@@ -1,5 +1,7 @@
 import { headers, cookies } from 'next/headers'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
+import { getLocale } from 'next-intl/server'
+import { redirect } from '@/i18n/navigation'
 import { z } from 'zod'
 import { getAuth } from '@/lib/auth/server'
 import { loadAssessmentOrDraft, draftCookie } from '@/lib/assessments/drafts'
@@ -24,7 +26,7 @@ export default async function Page({
   const id = z.uuid().safeParse((await params).id)
   if (!id.success) notFound()
   const session = await getAuth().api.getSession({ headers: await headers() })
-  if (!session) redirect('/assessments')
+  if (!session) redirect({ href: '/assessments', locale: await getLocale() })
   const initial = await loadAssessmentOrDraft(
     session.user.id,
     id.data,

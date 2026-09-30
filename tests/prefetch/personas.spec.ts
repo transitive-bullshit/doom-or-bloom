@@ -7,16 +7,17 @@ test('build-time public shares serve cached HTML, RSC and social images with the
   const manifest = JSON.parse(
     await readFile('.next/prerender-manifest.json', 'utf8')
   )
-  const paths = Object.keys(manifest.routes).filter((path) =>
-    /^\/public\/assessments\/[^/]+$/.test(path)
-  )
+  // Pages render in app/[locale] (English at /en); images stay unprefixed.
+  const paths = Object.keys(manifest.routes)
+    .filter((path) => /^\/en\/public\/assessments\/[^/]+$/.test(path))
+    .map((path) => path.slice('/en'.length))
   test.skip(
     paths.length === 0,
     'No public participant assessments at build time'
   )
   for (const path of paths) {
     const image = `${path}/social-image.png`
-    for (const route of [path, image])
+    for (const route of [`/en${path}`, image])
       expect(manifest.routes[route]?.initialRevalidateSeconds, route).toBe(
         172800
       )
@@ -42,9 +43,9 @@ test('every built profile serves initial HTML and RSC without a database', async
   const manifest = JSON.parse(
     await readFile('.next/prerender-manifest.json', 'utf8')
   )
-  const profiles = Object.keys(manifest.routes).filter((path) =>
-    path.startsWith('/users/')
-  )
+  const profiles = Object.keys(manifest.routes)
+    .filter((path) => path.startsWith('/en/users/'))
+    .map((path) => path.slice('/en'.length))
   expect(profiles.length).toBeGreaterThan(0)
   for (const path of profiles) {
     const response = await request.get(path)

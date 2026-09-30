@@ -3,8 +3,16 @@ import {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_SERVER
 } from 'next/constants'
+import createNextIntlPlugin from 'next-intl/plugin'
+import {
+  localeRedirects,
+  localeRewrites,
+  privateRoutePrefixes
+} from './i18n/next-routes'
 import { adminEnvironmentAllowed } from './lib/admin/access'
 import { validateServerEnv } from './lib/server/validate-env'
+
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 
 const config: NextConfig = {
   images: {
@@ -29,14 +37,15 @@ const config: NextConfig = {
         source: '/public/assessments/:id/social-image.webp',
         destination: '/public/assessments/:id/social-image.png',
         permanent: true
-      }
+      },
+      // After legacy URLs, so a remembered language applies to their new form.
+      ...localeRedirects()
     ]
   },
   async headers() {
     return [
       '/admin/:path*',
-      '/assessment/:path*',
-      '/assessments/:path*',
+      ...privateRoutePrefixes.map((prefix) => `${prefix}/:path*`),
       '/public/assessments/:id/data'
     ].map((source) => ({
       source,
@@ -51,6 +60,10 @@ const config: NextConfig = {
     '/users/*/opengraph-image': ['public/personas/*'],
     '/public/assessments/*/social-image.png': ['public/personas/*']
   },
+  experimental: {
+    // Unknown URLs match no route in app/[locale]; see app/global-not-found.tsx.
+    globalNotFound: true
+  },
   // Takumi loads a platform-specific native addon at runtime.
   serverExternalPackages: ['takumi-js']
 }
@@ -60,7 +73,7 @@ export default function nextConfig(phase: string) {
     validateServerEnv()
   const admin =
     phase === PHASE_DEVELOPMENT_SERVER && adminEnvironmentAllowed(process.env)
-  return {
+  return withNextIntl({
     ...config,
     env: { LOCAL_ADMIN_BUILD: admin ? 'true' : 'false' },
     async rewrites() {
@@ -68,9 +81,9 @@ export default function nextConfig(phase: string) {
         beforeFiles: admin
           ? []
           : [{ source: '/admin/:path*', destination: '/internal-unavailable' }],
-        afterFiles: [],
+        afterFiles: localeRewrites(),
         fallback: []
       }
     }
-  }
+  })
 }

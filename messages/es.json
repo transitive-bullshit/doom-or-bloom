@@ -1,0 +1,102 @@
+{
+  "Metadata": {
+    "siteDescription": "Mapea tu visión de la IA y descubre cómo se compara con la de otras personas."
+  },
+  "Pages": {
+    "home": {
+      "title": "Doom or Bloom",
+      "description": "Mapea tu visión de la IA y compárala con la de otras personas. Explora cómo creen figuras públicas que la IA cambiará nuestro futuro y descubre dónde te ubicas."
+    },
+    "about": {
+      "title": "Acerca de",
+      "description": "Cómo Doom or Bloom mapea visiones sobre la IA: nuestra entrevista adaptativa, la metodología experimental y las simulaciones de personas basadas en fuentes."
+    },
+    "privacy": {
+      "title": "Privacidad",
+      "description": "Cómo Doom or Bloom guarda las evaluaciones, protege las respuestas privadas, gestiona las cuentas opcionales y publica los resultados."
+    },
+    "users": {
+      "title": "Usuarios simulados",
+      "description": "Explora y busca visiones simuladas sobre la IA basadas en fuentes, incluidos usuarios que no aparecen en el mapa destacado."
+    }
+  },
+  "Header": {
+    "navigation": "Navegación del sitio",
+    "toggleTheme": "Cambiar entre tema claro y oscuro",
+    "accountMenu": "Menú de la cuenta",
+    "myAssessments": "Mis evaluaciones",
+    "logOut": "Cerrar sesión",
+    "logOutFailed": "No se pudo cerrar la sesión. Inténtalo de nuevo."
+  },
+  "Social": {
+    "github": "Proyecto en GitHub",
+    "x": "Travis en X"
+  },
+  "Footer": {
+    "about": "Acerca de",
+    "privacy": "Privacidad",
+    "language": "Idioma"
+  },
+  "Breadcrumbs": {
+    "label": "Ruta de navegación",
+    "home": "Inicio",
+    "about": "Acerca de",
+    "privacy": "Privacidad",
+    "users": "Usuarios simulados",
+    "assessments": "Mis evaluaciones",
+    "newAssessment": "Nueva evaluación",
+    "assessment": "Evaluación",
+    "page": "Página"
+  },
+  "Cta": {
+    "mapWorldview": "Mapea tu propia visión de la IA",
+    "cardTitle": "¿Dónde te ubicas?",
+    "cardDescription": "Explora tu propia visión de la IA respondiendo unas pocas preguntas sencillas.",
+    "mapMine": "Mapear mi visión de la IA",
+    "compareTitle": "¿Dónde te ubicas frente a {name}?",
+    "compareDescription": "Mapea tu propia visión de la IA en unos 3 minutos y luego compárala"
+  },
+  "Landing": {
+    "title": "¿Cómo cambiará la IA nuestro futuro?",
+    "directoryTitle": "Explora los usuarios simulados",
+    "axisTop": "Cambio civilizatorio",
+    "axisBottom": "Cambio incremental",
+    "mapLabel": "Perspectiva sobre la IA y escala de la transformación. Abre un retrato para explorar su visión simulada.",
+    "viewResults": "Ver los resultados de {name}",
+    "exampleNote": "Resultados de ejemplo basados en usuarios simulados",
+    "exploreAll": "Explora todos los usuarios simulados",
+    "unplaced": "{count, plural, one {# usuario no tiene evidencia suficiente para ubicarlo en el mapa. Su resultado está disponible en la cuadrícula.} other {# usuarios no tienen evidencia suficiente para ubicarlos en el mapa. Sus resultados están disponibles en la cuadrícula.}}",
+    "search": "Busca un usuario simulado",
+    "searchPlaceholder": "Busca nombres o @usuarios",
+    "sortBy": "Ordenar por",
+    "order": "Orden",
+    "nameAscending": "A–Z",
+    "nameDescending": "Z–A",
+    "doomFirst": "Doom primero",
+    "bloomFirst": "Bloom primero",
+    "lowToHigh": "De menor a mayor",
+    "highToLow": "De mayor a menor",
+    "count": "{shown} de {total} usuarios simulados",
+    "followersNote": "Seguidores en X registrados el {date}. Los recuentos no disponibles aparecen al final.",
+    "scoresNote": "Las puntuaciones describen respuestas simuladas. Las que faltan aparecen al final.",
+    "noMatches": "Ningún usuario coincide con “{query}”. Prueba con otro nombre o usuario.",
+    "metricUnavailable": "No disponible",
+    "metricFollowers": "{count, number} seguidores",
+    "sort": {
+      "name": "Nombre",
+      "followers": "Seguidores en X",
+      "outlook": "Doom–Bloom",
+      "transformation": "Cambio civilizatorio",
+      "pdoom": "P(doom)",
+      "reasoning": "Razonamiento demostrado",
+      "upside": "Beneficio esperado",
+      "harm": "Daño esperado",
+      "influence": "Influencia humana"
+    }
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "Parece que te perdiste en el espacio latente",
+    "home": "Volver al inicio"
+  }
+}

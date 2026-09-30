@@ -6,26 +6,36 @@ const output = process.env.NEXT_TEST_DIST_DIR || '.next'
 const manifest = JSON.parse(
   await readFile(path.join(output, 'prerender-manifest.json'), 'utf8')
 )
+// Pages live in app/[locale]; unprefixed English URLs are rewrites to /en.
 const directory = await readFile(
-  path.join(output, 'server/app/users.html'),
+  path.join(output, 'server/app/en/users.html'),
   'utf8'
 )
 const profilePaths = new Set(
   Array.from(
-    directory.matchAll(/href="(\/users\/[^"?#]+)"/g),
-    (match) => match[1]
+    directory.matchAll(/href="\/(users\/[^"?#]+)"/g),
+    (match) => `/en/${match[1]}`
   )
 )
-const publicRoutes = Object.keys(manifest.routes).filter((route) =>
-  route.startsWith('/public/assessments/')
+// Social images stay outside app/[locale], at the public URL.
+const publicImagePaths = Object.keys(manifest.routes).filter(
+  (route) =>
+    route.startsWith('/public/assessments/') &&
+    route.endsWith('/social-image.png')
 )
-const isPublicImage = (route) => route.endsWith('/social-image.png')
-const publicAssessmentPaths = publicRoutes.filter(
-  (route) => !isPublicImage(route)
+const publicAssessmentPaths = Object.keys(manifest.routes).filter((route) =>
+  /^\/en\/public\/assessments\/[^/]+$/.test(route)
 )
-const publicImagePaths = publicRoutes.filter(isPublicImage)
+const publicRoutes = [...publicAssessmentPaths, ...publicImagePaths]
+// Only English is pregenerated; other locales render on first request.
+assert(
+  !Object.keys(manifest.routes).some((route) =>
+    /^\/(?!en\/)[^/]+\/(users|public\/assessments)\/[^/]+$/.test(route)
+  ),
+  'Only English simulated-user and public assessment pages are pregenerated'
+)
 for (const route of [
-  '/public/assessments/[id]',
+  '/[locale]/public/assessments/[id]',
   '/public/assessments/[id]/social-image.png'
 ])
   assert.equal(
@@ -35,7 +45,9 @@ for (const route of [
   )
 assert.deepEqual(
   publicImagePaths.toSorted(),
-  publicAssessmentPaths.map((route) => `${route}/social-image.png`).toSorted(),
+  publicAssessmentPaths
+    .map((route) => `${route.slice('/en'.length)}/social-image.png`)
+    .toSorted(),
   'Every pregenerated public assessment must pregenerate its social image'
 )
 assert(
@@ -43,13 +55,15 @@ assert(
   'Build must contain the selected simulated-user catalog'
 )
 assert.equal(
-  manifest.dynamicRoutes['/users/[username]'].fallback,
+  manifest.dynamicRoutes['/[locale]/users/[username]'].fallback,
   null,
   'New post-build profiles must remain reachable from the revalidated directory'
 )
 for (const route of [
-  '/',
-  '/users',
+  '/en',
+  '/es',
+  '/en/users',
+  '/es/users',
   '/sitemap.xml',
   '/llms.txt',
   ...profilePaths,
@@ -90,10 +104,10 @@ console.log(
 )
 const required = path.resolve('eval/development/live-persona-journeys.json')
 for (const route of [
-  'assessments/[id]/page',
-  'about/page',
-  'users/[username]/page',
-  'prototypes/landing/personas/[id]/page',
+  '[locale]/(site)/assessments/[id]/page',
+  '[locale]/(site)/about/page',
+  '[locale]/(site)/users/[username]/page',
+  '(internal)/prototypes/landing/personas/[id]/page',
   'users/[username]/opengraph-image/route'
 ]) {
   const trace = path.join(output, 'server/app', `${route}.js.nft.json`)
@@ -149,3 +163,19 @@ assert(
   'Every production artifact must block admin routes before filesystem routing'
 )
 console.log('Production routing blocks all local admin paths')
+
+// Locale routing is next.config rewrites/redirects: no proxy function runs
+// before cached pages, and no response sets the locale cookie.
+const middleware = JSON.parse(
+  await readFile(path.join(output, 'server/middleware-manifest.json'), 'utf8')
+)
+assert.deepEqual(
+  Object.keys(middleware.middleware),
+  [],
+  'Locale routing must not add a proxy function'
+)
+assert(
+  routes.rewrites.afterFiles.some((entry) => entry.destination === '/en'),
+  'Unprefixed URLs must be served from the English tree'
+)
+console.log('Locale routing uses static rewrites without a proxy function')

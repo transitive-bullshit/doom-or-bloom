@@ -47,6 +47,13 @@ describe('captureFirstTouch', () => {
     expect(touch.landing).toBe('assessment')
     expect(JSON.stringify(touch)).not.toContain('0b8f1f0e')
   })
+
+  it('ignores the locale prefix when classifying the landing page', () => {
+    expect(
+      capture('https://www.doom-or-bloom.com/es/users/simonw').landing
+    ).toBe('user')
+    expect(capture('https://www.doom-or-bloom.com/es').landing).toBe('home')
+  })
 })
 
 describe('cleanTag', () => {

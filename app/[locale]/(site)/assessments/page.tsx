@@ -1,5 +1,6 @@
 import { headers } from 'next/headers'
-import { redirect } from 'next/navigation'
+import { getLocale } from 'next-intl/server'
+import { redirect } from '@/i18n/navigation'
 import { profileImageUrl } from '@/lib/auth/profile-image'
 import { getAuth } from '@/lib/auth/server'
 import { repository } from '@/lib/assessments/server'
@@ -17,7 +18,8 @@ export default async function Page({
   const session = await getAuth().api.getSession({ headers: await headers() })
   const { authError: error, start } = await searchParams
   const items = session ? await repository().list(session.user.id) : []
-  if (start === '1' && items.length > 0) redirect('/assessments')
+  if (start === '1' && items.length > 0)
+    redirect({ href: '/assessments', locale: await getLocale() })
   return (
     <AssessmentLibrary
       autoStart={start === '1' && !error}
