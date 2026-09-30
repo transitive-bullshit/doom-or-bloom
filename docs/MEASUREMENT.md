@@ -15,7 +15,7 @@ For storage, ownership and publication behavior, use [PERSISTENCE.md](PERSISTENC
 
 ## Analytics responsibilities
 
-- **Vercel Analytics:** basic site traffic and page-level health. Pageview URLs keep the path plus normalized `utm_source`, `utm_medium` and `utm_campaign` tags; a bare `ref` is sent as `utm_source`. Vercel records the referring site itself.
+- **Vercel Analytics:** basic site traffic and page-level health. Pageview URLs keep the path plus normalized `utm_source`, `utm_medium` and `utm_campaign` tags; a bare `ref` is sent as `utm_source`. Vercel records the referring site itself. Paths keep their locale prefix (`/es/users`), so language shows up in page reports; owner, admin and local-tool paths are excluded in every locale ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#routing)).
 - **PostHog:** explicit assessment events, enumerated result properties and the browser's first-touch properties.
 - **Offline evaluation:** whether Jev and the authored system interpreted people correctly.
 

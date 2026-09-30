@@ -23,6 +23,7 @@ Look up current versions and limits in [lib/assessment/schema.ts](../lib/assessm
 | When changing… | Read… |
 | --- | --- |
 | Product scope, participant experience, map or result UI | [PRODUCT.md](PRODUCT.md) |
+| Languages, locale URLs, translated copy or the language selector | [INTERNATIONALIZATION.md](INTERNATIONALIZATION.md) |
 | Domain names or distinctions between identity, evidence, judgments and results | [CONTEXT.md](CONTEXT.md) |
 | Dimensions, routing, recovery, readiness, projections or corrections | [ASSESSMENT.md](ASSESSMENT.md) |
 | Jev inputs, semantic/code boundaries, batching or inference failure handling | [TYPESAFE.md](TYPESAFE.md) |

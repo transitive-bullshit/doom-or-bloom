@@ -154,7 +154,7 @@ Participants can continue answering on a private assessment. Published assessmen
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.
 - The provocative name intentionally primes risk and upside; document this accepted framing bias. Preserve mixed, uncertain, and low-transformation positions throughout assessment and results.
 - Header: GitHub, X, and light/dark theme icon buttons.
-- Footer: About, privacy, methodology/version, and optional tip link.
+- Footer: About, privacy, methodology/version, optional tip link, and a language selector listing each enabled language by its own name (English, Español). Choosing one keeps the current page and is remembered for later visits ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md)).
 
 ## Persistence
 
