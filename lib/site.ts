@@ -5,7 +5,7 @@ export const publicPages = [
     path: '/',
     title: 'Doom or Bloom',
     description:
-      'Map your AI worldview, and compare it with others. Explore how public figures think AI could change our future, then discover where you land.'
+      'Map your AI worldview, and compare it with others. Explore how public figures think AI will change our future, then discover where you land.'
   },
   {
     path: '/about',
