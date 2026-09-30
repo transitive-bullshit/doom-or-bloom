@@ -27,8 +27,27 @@ describe('captureFirstTouch', () => {
       medium: 'dm',
       referrer: 't.co',
       landing: 'user',
+      locale: 'en',
       at: now.toISOString()
     })
+  })
+
+  it('records the landing locale separately from the page kind', () => {
+    const touch = capture('https://www.doom-or-bloom.com/es/users/simonw')
+    expect(touch).toMatchObject({ landing: 'user', locale: 'es' })
+    expect(firstTouchProperties(touch)).toMatchObject({
+      first_touch_landing: 'user',
+      first_touch_locale: 'es'
+    })
+    expect(capture('https://www.doom-or-bloom.com/es')).toMatchObject({
+      landing: 'home',
+      locale: 'es'
+    })
+  })
+
+  it('still reads records saved before locales were recorded', () => {
+    const { locale: _, ...legacy } = capture('https://www.doom-or-bloom.com/')
+    expect(earliestFirstTouch(legacy, null)).toEqual(legacy)
   })
 
   it('treats internal navigation and missing referrers as direct', () => {
@@ -46,13 +65,6 @@ describe('captureFirstTouch', () => {
     )
     expect(touch.landing).toBe('assessment')
     expect(JSON.stringify(touch)).not.toContain('0b8f1f0e')
-  })
-
-  it('ignores the locale prefix when classifying the landing page', () => {
-    expect(
-      capture('https://www.doom-or-bloom.com/es/users/simonw').landing
-    ).toBe('user')
-    expect(capture('https://www.doom-or-bloom.com/es').landing).toBe('home')
   })
 })
 

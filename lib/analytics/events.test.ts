@@ -127,6 +127,7 @@ test('first-touch attribution passes the allowlist only as slugs', () => {
     ref: 'sim-gwern',
     referrer: 't.co',
     landing: 'user' as const,
+    locale: 'es',
     at: '2026-10-01T00:00:00.000Z'
   }
   const safe = sanitizeEvent(
@@ -140,7 +141,8 @@ test('first-touch attribution passes the allowlist only as slugs', () => {
     first_touch_channel: 'sim-gwern',
     first_touch_ref: 'sim-gwern',
     first_touch_referrer: 't.co',
-    first_touch_landing: 'user'
+    first_touch_landing: 'user',
+    first_touch_locale: 'es'
   })
   expect(
     sanitizeEvent(
@@ -150,6 +152,15 @@ test('first-touch attribution passes the allowlist only as slugs', () => {
           ...event.properties,
           first_touch_referrer: 'https://t.co/private?q=1'
         }
+      },
+      catalog
+    )
+  ).toBeNull()
+  expect(
+    sanitizeEvent(
+      {
+        ...event,
+        properties: { ...event.properties, first_touch_locale: '/es/users' }
       },
       catalog
     )
