@@ -570,7 +570,8 @@ export function Interview({
                 </form>
                 <div className='space-y-2 text-xs leading-relaxed text-muted-foreground'>
                   <p>
-                    4 short questions; usually takes about 3 minutes to complete
+                    4 short questions; usually takes about 3 minutes to
+                    complete.
                   </p>
                   <p>
                     Your answers remain private unless you choose to publish
