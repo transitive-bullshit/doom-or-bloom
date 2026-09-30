@@ -101,7 +101,7 @@ Participants give two optional, lightweight signals ([PRODUCT.md](PRODUCT.md#res
 - a self-placement on the map before their first result is revealed;
 - a one-tap “Does this feel right?” with optional aspects and a comment.
 
-Both are stored privately with the assessment, together with what was displayed. A disagreement is informative, but neither agreement nor disagreement alone establishes evaluator correctness. Review them periodically as patterns across many participants, for example by answer length, outlook region or algorithm version, using the read-only [feedback audit](benchmark.md). Never tune to a single response. Record decisions in a dated research note before changing questions, definitions or estimators, then confirm them on the [regression benchmark](benchmark.md).
+Both are stored privately with the assessment, together with what was displayed. A participant who answers the optional placement question sends their guess once more, in that private operation record, so the engine can choose the question; it is never published or sent to analytics. A disagreement is informative, but neither agreement nor disagreement alone establishes evaluator correctness. Review them periodically as patterns across many participants, for example by answer length, outlook region or algorithm version, using the read-only [feedback audit](benchmark.md). Never tune to a single response. Record decisions in a dated research note before changing questions, definitions or estimators, then confirm them on the [regression benchmark](benchmark.md).
 
 ### Evaluation quality
 

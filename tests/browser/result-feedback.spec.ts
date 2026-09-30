@@ -30,7 +30,7 @@ test('participants place themselves before the reveal and can say whether the re
   ).toBeVisible()
   await expect(page.getByText('Your guess', { exact: true })).toBeVisible()
   await expect(
-    page.getByText(/placed yourself|Close to where you placed yourself/)
+    page.getByText(/^Your answers read as|^Close to where you placed yourself/)
   ).toBeVisible()
   const feedback = page.getByRole('region', { name: 'Result feedback' })
   await expect(feedback.getByText('Does this feel right?')).toBeVisible()
@@ -85,4 +85,51 @@ test('participants place themselves before the reveal and can say whether the re
       .getByRole('region', { name: 'Result feedback' })
       .getByText(/Thanks for telling us/)
   ).toBeVisible()
+})
+
+test('a large placement gap offers one question, and answering it updates the result', async ({
+  page
+}, testInfo) => {
+  await startAssessment(page)
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('I expect useful tools and serious risks, depending on oversight.')
+  await page.getByRole('button', { name: /^Continue/ }).click()
+  await page.getByRole('button', { name: 'View my results' }).click()
+  // Fixture judgments place the result at the worried, low-change corner; a
+  // guess in the hopeful, high-change corner is far from it on both axes.
+  const map = page.locator('[data-slot="worldview-map-svg"]')
+  const box = (await map.boundingBox())!
+  await page.mouse.click(box.x + box.width * 0.9, box.y + box.height * 0.1)
+  await page.getByRole('button', { name: 'Show where I landed' }).click()
+
+  const question = page.getByRole('region', {
+    name: 'A question about the difference'
+  })
+  await expect(
+    question.getByText(
+      'You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?'
+    )
+  ).toBeVisible()
+  await page.screenshot({
+    path: testInfo.outputPath('placement-question.png'),
+    fullPage: true
+  })
+  await question.getByRole('button', { name: 'Answer this question' }).click()
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('I expect people to adapt and share the gains over time.')
+  await page.getByRole('button', { name: /^Continue/ }).click()
+
+  // The answer returns straight to an updated result, and the question is not offered again.
+  await expect(
+    page.getByRole('heading', { name: 'Results', exact: true })
+  ).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: 'Your results are ready' })
+  ).toHaveCount(0)
+  await expect(page.getByText(/^Your answers read as/)).toBeVisible()
+  await expect(
+    page.getByRole('region', { name: 'A question about the difference' })
+  ).toHaveCount(0)
 })

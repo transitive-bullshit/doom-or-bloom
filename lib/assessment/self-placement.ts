@@ -25,6 +25,47 @@ export function resultPoint(result: {
 // Differences below this are within retest variation and read as agreement.
 const tolerance = 0.1
 
+// A difference this large on either axis offers one optional question about
+// it: 27% of 219 self-placements on September 29
+// (docs/research/engine-design-review-2026-09-29.md).
+const placementQuestionGap = 0.25
+// The authored prompts carry the same text (checked by content validation).
+export const placementQuestions = {
+  'placement.more-hopeful':
+    'You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?',
+  'placement.more-worried':
+    'You placed yourself as more worried than your answers read. What worries you that we may have missed?',
+  'placement.more-change':
+    'You expect more change than your answers showed. What’s the biggest change you see coming?',
+  'placement.less-change':
+    'Your answers suggest bigger changes than you expect. What do you think will stay the same?'
+} as const
+export type PlacementQuestionId = keyof typeof placementQuestions
+
+/**
+ * The one question offered when a self-placement and its placed result differ
+ * by more than `placementQuestionGap` on an axis. The larger difference wins;
+ * an unplaced result has nothing to compare.
+ */
+export function placementQuestion(
+  guess: MapPoint,
+  placed: { x: number | null; y: number | null }
+) {
+  if (placed.x === null || placed.y === null) return null
+  const dx = guess.x - placed.x
+  const dy = guess.y - placed.y
+  if (Math.max(Math.abs(dx), Math.abs(dy)) <= placementQuestionGap) return null
+  const id: PlacementQuestionId =
+    Math.abs(dx) >= Math.abs(dy)
+      ? dx > 0
+        ? 'placement.more-hopeful'
+        : 'placement.more-worried'
+      : dy > 0
+        ? 'placement.more-change'
+        : 'placement.less-change'
+  return { id, text: placementQuestions[id] }
+}
+
 /** Coarse distance for analytics; never the coordinates themselves. */
 export function placementGap(guess: MapPoint, placed: MapPoint) {
   const distance = Math.hypot(placed.x - guess.x, placed.y - guess.y)

@@ -18,31 +18,33 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
         ? 'root already issued'
         : prompt.retired
           ? 'retired'
-          : prompt.noveltyGroup === 'horizon' &&
-              !timingUnexplored &&
-              !state.unresolved.some(
-                (u) => u.vector === 'capability_trajectory'
-              )
-            ? 'timing already addressed'
-            : prompt.noveltyGroup === 'conviction' && horizonMissing
-              ? 'timing premise not established'
-              : uses >= prompt.maxUses
-                ? 'maximum uses reached'
-                : prompt.readingLevel === 'expert' &&
-                    state.familiarity.level !== 'expert'
-                  ? 'expert familiarity not established'
-                  : !prompt.permittedAfter.includes('*') &&
-                      !prompt.permittedAfter.includes(previous.family)
-                    ? 'transition excluded'
-                    : prompt.prerequisites.some(
-                          (v) => state.coverage[v] !== 'assessed'
-                        )
-                      ? 'prerequisite missing'
-                      : prompt.exclusions.some(
-                            (v) => state.coverage[v] === 'assessed'
+          : prompt.trigger
+            ? 'issued only by its trigger'
+            : prompt.noveltyGroup === 'horizon' &&
+                !timingUnexplored &&
+                !state.unresolved.some(
+                  (u) => u.vector === 'capability_trajectory'
+                )
+              ? 'timing already addressed'
+              : prompt.noveltyGroup === 'conviction' && horizonMissing
+                ? 'timing premise not established'
+                : uses >= prompt.maxUses
+                  ? 'maximum uses reached'
+                  : prompt.readingLevel === 'expert' &&
+                      state.familiarity.level !== 'expert'
+                    ? 'expert familiarity not established'
+                    : !prompt.permittedAfter.includes('*') &&
+                        !prompt.permittedAfter.includes(previous.family)
+                      ? 'transition excluded'
+                      : prompt.prerequisites.some(
+                            (v) => state.coverage[v] !== 'assessed'
                           )
-                        ? 'coverage exclusion'
-                        : null
+                        ? 'prerequisite missing'
+                        : prompt.exclusions.some(
+                              (v) => state.coverage[v] === 'assessed'
+                            )
+                          ? 'coverage exclusion'
+                          : null
     const convictionMissing = !state.answers.some((a) => a.hasConviction)
     const missing =
       (prompt.family === 'timeline' && timingUnexplored) ||
@@ -75,7 +77,8 @@ export function candidatePrompts(state: Assessment, prompts: Prompt[]) {
 // (audit variant F). Without the direct scale question, answers about near-term
 // change understated the eventual magnitude even when routing read a scale
 // (0.7.0 validation: y error 0.158 unasked vs 0.091 asked). Explicit indecision
-// is an answer, not an invitation to repeat.
+// is an answer, not an invitation to repeat. Last, a split outlook reading gets
+// one resolving question.
 export function mapGapQuestion(
   state: Assessment,
   answers: Record<string, ModelAnswer>,
@@ -105,7 +108,53 @@ export function mapGapQuestion(
     !state.prompts.some((prompt) => prompt.promptId === 'risk.catastrophe')
   )
     return 'risk.chance'
+  // With the core questions settled, a reading split between two neighboring
+  // outlook levels gets one question that names both readings.
+  const split = splitOutlook(answers['facet:outlook_orientation'])
+  const askedSplit = state.prompts.some(
+    (issued) =>
+      prompts.find((prompt) => prompt.id === issued.promptId)?.trigger ===
+      'split_outlook'
+  )
+  if (split && !askedSplit && available(splitOutlookPrompt(split)))
+    return splitOutlookPrompt(split)
   return null
+}
+
+// On 219 self-placements, readings split between two neighboring outlook
+// levels sat 0.161 from people's own placements, against 0.135 for the rest,
+// and a direct question about the lean moved readings closer than an ordinary
+// follow-up (docs/research/engine-design-review-2026-09-29.md).
+const splitOutlookThresholds = { top: 0.6, runnerUp: 0.25 } as const
+export const splitOutlookPairs = ['0-1', '1-2', '2-3', '3-4'] as const
+export const splitOutlookPrompt = (pair: string) => `outlook.lean.${pair}`
+
+/**
+ * The pair of neighboring outlook levels a placed reading is split between,
+ * such as "1-2", or null when one level clearly leads. Probabilities are
+ * normalized over the five levels, as the map's outlook is.
+ */
+export function splitOutlook(answer: ModelAnswer | undefined) {
+  if (answer?.type !== 'choice') return null
+  const levels = [0, 1, 2, 3, 4].map(
+    (level) => answer.probabilities[String(level)] ?? 0
+  )
+  const mass = levels.reduce((sum, probability) => sum + probability, 0)
+  // An unplaced outlook is a different gap, not a split reading.
+  if (mass < 0.7) return null
+  const [top, next] = levels
+    .map((probability, level) => ({ probability: probability / mass, level }))
+    .sort((a, b) => b.probability - a.probability || a.level - b.level)
+  if (
+    !top ||
+    !next ||
+    top.probability >= splitOutlookThresholds.top ||
+    next.probability < splitOutlookThresholds.runnerUp ||
+    Math.abs(top.level - next.level) !== 1
+  )
+    return null
+  const low = Math.min(top.level, next.level)
+  return `${low}-${low + 1}` as (typeof splitOutlookPairs)[number]
 }
 
 export function rankCandidates(

@@ -682,3 +682,48 @@ test('failed operations expose completed stages and failed input without seriali
   )
   expect(JSON.stringify(failure.trace)).not.toContain('SECRET_TRANSPORT_BODY')
 })
+
+test('a large self-placement gap offers one placement question that returns to an updated result', async () => {
+  let state = createAssessment('placement')
+  for (let i = 0; i < 3; i++)
+    state = (
+      await run(state, {
+        type: 'answer',
+        text: 'AI could help people, with safeguards.'
+      })
+    ).assessment
+  state = (await run(state, { type: 'project' })).assessment
+  expect(state.status).toBe('results')
+  // Fixture judgments place the result in the worried, low-change corner.
+  await expect(
+    run(state, { type: 'placement', guess: { x: 0.1, y: 0.1 } })
+  ).rejects.toThrow('close to your result')
+  const asked = (
+    await run(state, { type: 'placement', guess: { x: 0.9, y: 0.2 } })
+  ).assessment
+  expect(asked.status).toBe('answering')
+  expect(currentPrompt(asked)).toMatchObject({
+    promptId: 'placement.more-hopeful',
+    family: 'reflection',
+    variant: 'placement'
+  })
+  const answered = (
+    await run(asked, {
+      type: 'answer',
+      text: 'People will adapt and share the gains, as with past technologies.'
+    })
+  ).assessment
+  // The answer is ordinary evidence and the result is projected again at once.
+  expect(answered.status).toBe('results')
+  expect(answered.prompts).toHaveLength(asked.prompts.length)
+  expect(answered.result?.evidenceRevision).toBe(answered.evidenceRevision)
+  expect(answered.answers.at(-1)?.correctionTarget).toBeUndefined()
+  expect(assessmentSchema.safeParse(answered).success).toBe(true)
+  await expect(
+    run(answered, { type: 'placement', guess: { x: 0.9, y: 0.2 } })
+  ).rejects.toThrow('already been asked')
+  // Without a current result there is nothing to compare.
+  await expect(
+    run(asked, { type: 'placement', guess: { x: 0.9, y: 0.2 } })
+  ).rejects.toThrow('needs a current result')
+})

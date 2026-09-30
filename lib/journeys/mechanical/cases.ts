@@ -708,7 +708,11 @@ const familyVectors = {
 // Direct map questions express what they ask, not their broad family.
 const promptVectors = {
   'transformation.ultimate': ['capability_trajectory', 'transition_dynamics'],
-  'risk.chance': ['risk_landscape', 'appropriate_uncertainty']
+  'risk.chance': ['risk_landscape', 'appropriate_uncertainty'],
+  'placement.more-hopeful': ['beneficial_potential'],
+  'placement.more-worried': ['risk_landscape'],
+  'placement.more-change': ['capability_trajectory', 'transition_dynamics'],
+  'placement.less-change': ['capability_trajectory', 'transition_dynamics']
 } satisfies Record<string, VectorId[]>
 
 function lookup<T extends object>(map: T, key: string): T[keyof T] | undefined {
@@ -752,7 +756,11 @@ export function replyForPrompt(
     'upside.distribution': `${c.benefit} ${c.agency}`,
     'upside.bottleneck': `${c.benefit} ${c.mechanism}`,
     'agency.consent': `${c.agency} ${c.tradeoff}`,
-    'grounding.claim': `${c.basis} ${c.weakestLink}`
+    'grounding.claim': `${c.basis} ${c.weakestLink}`,
+    'placement.more-hopeful': c.benefit,
+    'placement.more-worried': c.harm,
+    'placement.more-change': c.change,
+    'placement.less-change': `${c.change} ${c.transition}`
   }
   const override = lookup(overrides, prompt.id)
   if (prompt.id === 'risk.misuse' && !override)
