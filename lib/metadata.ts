@@ -1,34 +1,32 @@
-import defaultSocialImage from '@/app/opengraph-image.jpg'
+import defaultSocialImage from '@/app/opengraph-image.png'
 import type { Metadata } from 'next'
 import { siteUrl } from '@/lib/site'
+import { siteSocialAlt } from '@/lib/sharing/site-social-card'
 
 export function pageMetadata({
   path,
   title,
   description,
   image,
-  imageType = 'image/png',
   imageAlt = 'Doom or Bloom — explore the AI worldview map'
 }: {
   path: string
   title: string
   description: string
   image?: string
-  imageType?: 'image/png' | 'image/jpeg'
   imageAlt?: string
 }): Metadata {
   const fullTitle =
     title === 'Doom or Bloom' ? title : `${title} | Doom or Bloom`
-  // Import the actual file so its dimensions and cache-busting URL track replacements.
+  // Import the generated file so its dimensions and cache-busting URL track
+  // regeneration (`pnpm social-image:generate`). Every social image is a PNG.
   const images = [
     {
       url: `${siteUrl}${image ?? defaultSocialImage.src}`,
       width: image ? 1200 : defaultSocialImage.width,
       height: image ? 630 : defaultSocialImage.height,
-      alt: image
-        ? imageAlt
-        : 'Doom or Bloom — AI worldview map with simulated-user portraits, from doom to bloom and incremental to civilizational change.',
-      type: image ? imageType : 'image/jpeg'
+      alt: image ? imageAlt : siteSocialAlt,
+      type: 'image/png'
     }
   ]
   const openGraph: NonNullable<Metadata['openGraph']> = {

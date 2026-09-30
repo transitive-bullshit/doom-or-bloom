@@ -175,7 +175,7 @@ if (process.argv.includes('--check')) {
     } else {
       assert.match(
         ogImage.pathname,
-        /^\/_next\/static\/media\/opengraph-image\.[a-z0-9]+\.jpg$/,
+        /^\/_next\/static\/media\/opengraph-image\.[a-z0-9]+\.png$/,
         page.path
       )
     }
@@ -183,12 +183,8 @@ if (process.argv.includes('--check')) {
   }
   for (const image of images) {
     assert.equal(image.status, 200, image.url)
-    const imagePath = new URL(image.url!).pathname
-    const isCard =
-      imagePath.startsWith('/users/') ||
-      imagePath.startsWith('/public/assessments/')
-    assert.equal(image.type, isCard ? 'image/png' : 'image/jpeg', image.url)
-    assert.equal(image.format, isCard ? 'png' : 'jpeg', image.url)
+    assert.equal(image.type, 'image/png', image.url)
+    assert.equal(image.format, 'png', image.url)
     assert.equal(image.width, 1200, image.url)
     assert.equal(image.height, 630, image.url)
   }

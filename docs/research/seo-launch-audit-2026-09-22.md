@@ -77,3 +77,7 @@ Repeating the comparison with photos yielded site PNG/WebP sizes of 154,190/68,6
 ## September 23 — Static default artwork
 
 The site-wide image is now the supplied `app/opengraph-image.jpg` (1200 × 630). Non-persona page metadata imports the actual JPEG so its content-hashed URL and dimensions track file replacements, with the correct JPEG type for both Open Graph and X cards. The root file convention also supplies the default for pages without explicit metadata. The accompanying alt-text file describes the botanical circuit artwork. Persona pages retain their explicit, generated WebP map images. Removed obsolete root image tracing rules and updated the full-route SEO audit to verify JPEG defaults alongside persona WebP responses.
+
+## September 30 — Generated default image
+
+The supplied JPEG is replaced by `app/opengraph-image.png`, a 1200 × 630 PNG generated explicitly from production simulated-user data by `pnpm social-image:generate` with Takumi rather than at request time ([contract](../PERSISTENCE.md#public-pages-and-social-images)). It pairs the landing question with a muted featured map and portraits of a few simulated users at their saved positions. Page metadata still imports the file, so its content-hashed URL and dimensions track regeneration; every advertised social image is now `image/png`. The full-route SEO audit expects the PNG default.
