@@ -697,7 +697,7 @@ export function assessmentRepository(pool: Pool) {
             id: row.id,
             // Public assessments are immutable; their last update is publication.
             publishedAt: row.updatedAt.toISOString(),
-            title: 'Your AI worldview',
+            title: 'A shared AI worldview',
             publisher: row.publishedProfile
               ? publisherSchema.parse(row.publishedProfile)
               : null,

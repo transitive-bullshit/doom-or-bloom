@@ -1,4 +1,5 @@
 'use client'
+import type { ReactNode } from 'react'
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
 import type { Assessment } from '@/lib/assessment/schema'
 import { conversationTurns } from '@/lib/assessment/conversation'
@@ -7,10 +8,13 @@ import { ResultView } from './result-view'
 import { AnswerNavigationProvider } from './answer-navigation'
 export function PublishedResult({
   state,
-  personas
+  personas,
+  afterResults
 }: {
   state: Assessment
   personas: PersonaComparison[]
+  /** Rendered between the results and the full conversation. */
+  afterResults?: ReactNode
 }) {
   const turns = conversationTurns(state).filter(
     (turn) => turn.replies.length > 0
@@ -27,6 +31,7 @@ export function PublishedResult({
         published
         readOnly
       />
+      {afterResults}
       <section
         className='flex flex-col gap-4'
         aria-labelledby='full-conversation'

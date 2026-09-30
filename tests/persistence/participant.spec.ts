@@ -316,7 +316,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     )
     await expect(
       publicPage.getByRole('heading', {
-        name: 'Your AI worldview',
+        name: 'A shared AI worldview',
         exact: true
       })
     ).toBeVisible()
@@ -334,9 +334,12 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     await expect(
       publicPage.getByRole('link', { name: /Download shared/ })
     ).toHaveCount(0)
+    // Beside the header CTA, one compare prompt after the results invites a start.
     await expect(
-      publicPage.getByText('Where do you land?', { exact: true })
-    ).toBeVisible()
+      publicPage
+        .locator('[data-slot="card"]:visible')
+        .filter({ hasText: 'Where do you land?' })
+    ).toHaveCount(1)
     const conversation = publicPage.getByRole('region', {
       name: 'Full conversation'
     })

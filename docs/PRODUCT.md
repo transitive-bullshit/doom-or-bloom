@@ -106,7 +106,7 @@ The interview begins with **What do you think AI means for our future—and why?
 - Let the active answer box and expanded debugging details grow with their content, using the page scrollbar rather than nested scroll areas.
 - Show bounded progress without claiming a fake percentage of understanding.
 - Results unlock once the map is placed: the outlook and the scale of change, with P(doom) as best effort ([readiness](ASSESSMENT.md#question-budget-and-readiness)). Participants can request results as soon as they unlock. Automatic results wait for four accepted answers, then appear when no consequential new follow-up remains, with optional deeper questions afterwards. Stopping after one or two answers surprised participants who did not know how long the interview was.
-- Set expectations up front: most people see results after 4–8 short questions, in about five minutes, and can keep going afterwards. The question counter reads “Question N · most people see results after 4–8” and switches to “Question N of 12” near the cap. This is expectation-setting copy, not a routing target.
+- Set expectations up front: most people see results after 4–8 short questions, in about three minutes, and can keep going afterwards. The question counter reads “Question N · most people see results after 4–8” and switches to “Question N of 12” near the cap. This is expectation-setting copy, not a routing target.
 - Never mechanically force a pro/con debate. Probe a consequential unresolved distinction in the participant’s account, including its reasoning or basis even when the map position would not change.
 
 ### Answer recovery and paperclip interlude
@@ -170,8 +170,11 @@ Participants can continue answering on a private assessment. Published assessmen
 - Publish the complete frozen conversation and inferred results at an explicit public URL. Default visibility is private.
 - Public routes enforce publication visibility with route-specific caching and revocation behavior defined in [PERSISTENCE.md](PERSISTENCE.md#public-pages-and-social-images). Making a resource private or deleting it revokes fresh access, but cannot remove previews already cached by external sites.
 - Render cards on demand; persistent image storage is unnecessary. Persona cards remain labeled as simulations.
-- Offer “Download card” and per-map PNG copy/download actions. Omit text-only X posting intents.
-- Native file sharing is an optional enhancement when the browser supports sharing files.
+- The owner's result shows a share bar directly under “Does this feel right?”. It previews the prefilled caption, then offers X, Threads, Bluesky and LinkedIn composer links, Copy link and Download image. Browsers with Web Share also get the native share sheet (text and link). Composers only prefill; nothing is posted or published without the participant.
+- Captions contain only the P(doom) token and the closest thought leader's name, never an @mention. A stated number is quoted as written, and an inferred one is credited to Doom or Bloom (“reads my P(doom) as ~8%”) because inferred values are rough. Without a number, the caption names the thought leader or falls back to a plain invitation.
+- Share links point to the home page, or to the public page once the assessment is published, and carry `?ref=share-<target>` for [attribution](MEASUREMENT.md#acquisition-attribution). No composer can attach an image, so an unpublished share shows the site card rather than a personal preview.
+- Publishing lives in the share bar, with the same confirmation. Per-map PNG copy and download actions stay in the map menu.
+- Pages people reach from a shared link offer a way in: public results show a compare prompt under the heading (“Where do you land vs <name>?”), and simulated-user pages show it between the results and the simulated answers. Phones get a pinned “Where do you land?” bar on both, because the header CTA is hidden below 640px. Public participant pages are titled “A shared AI worldview”, since visitors are not the owner.
 
 ## Enduring non-goals
 

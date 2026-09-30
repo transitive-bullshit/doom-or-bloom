@@ -41,7 +41,8 @@ Production distributions cannot establish classifier correctness.
 | `resource_opened` | Curated resource link opened. |
 | `full_report_downloaded` | Expanded report downloaded. |
 | `share_card_downloaded` | Personalized card downloaded. |
-| `share_intent_opened` | Reserved compatibility event; current UI downloads images and copies links, with no share-intent emitter. |
+| `share_intent_opened` | The owner opened a share action in the result's share bar. Carries `share_target`: `native`, `x`, `threads`, `bluesky`, `linkedin` or `copy_link`. Opening a composer does not mean anything was posted. |
+| `assessment_published` | The owner published an assessment. |
 | `self_placement_submitted` | The participant placed themselves on the map before their first result was revealed. Carries only a coarse `placement_gap` (`close`, `moderate` or `far`). |
 | `self_placement_skipped` | The participant skipped self-placement. |
 | `result_feedback_submitted` | The participant answered “Does this feel right?”. Carries `feedback_rating` and the enumerated `feedback_aspects`; the optional comment is never sent. |
@@ -60,6 +61,7 @@ Allowlisted properties may include:
 - Whether an inference was disputed and which authored vector it concerned.
 - Response disposition, recovery-attempt bucket, pause reason, and recovery action, using enumerated values only; never a participant “sincerity” or “troll” label.
 - First-touch attribution: `first_touch_channel` (the tag, else the referring host, else `direct`), `first_touch_ref`, `first_touch_source`, `first_touch_medium`, `first_touch_campaign`, `first_touch_referrer` (a hostname only) and `first_touch_landing` (a coarse page kind such as `home` or `user`).
+- Share target identifiers.
 - Self-placement gap bucket, feedback rating and feedback aspect identifiers. Guess coordinates and comment text stay in the private `assessment_feedback` table ([PERSISTENCE.md](PERSISTENCE.md#result-feedback)).
 
 Use a client allowlist or `before_send` equivalent to strip unexpected properties and URL query/hash data.
@@ -74,7 +76,7 @@ Recovery events can occur before `assessment_started`, which still requires the 
 
 The server copies the cookie onto a new owner when Better Auth creates one, whether anonymous or through X sign-in, in the `user.first_touch` column. Claiming an anonymous owner into an account keeps the earlier of the two records ([PERSISTENCE.md](PERSISTENCE.md#implemented-x-claim-boundary)). The client adds the same record to every PostHog assessment event as the enumerated properties above. PostHog runs in memory with no persistence, so the cookie is the only link between a landing and later events.
 
-Tag every link we post with `?ref=`, using a lowercase slug: a platform (`x`, `hn`, `lw`, `ph`, `reddit-<subreddit>`), a newsletter or podcast (`nl-<name>`, `pod-<name>`), outreach to a simulated person (`sim-<handle>`), or a share surface (`share-x`, `share-copy`). Use `utm_campaign` to group a launch. Tags describe a channel, never a person who clicked.
+Tag every link we post with `?ref=`, using a lowercase slug: a platform (`x`, `hn`, `lw`, `ph`, `reddit-<subreddit>`), a newsletter or podcast (`nl-<name>`, `pod-<name>`), outreach to a simulated person (`sim-<handle>`), or a share surface (`share-x`, `share-threads`, `share-bluesky`, `share-linkedin`, `share-native`, `share-copy-link`; the share bar adds these automatically). Use `utm_campaign` to group a launch. Tags describe a channel, never a person who clicked.
 
 ## Experimental success
 

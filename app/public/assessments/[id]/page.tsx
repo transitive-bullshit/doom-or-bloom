@@ -9,6 +9,8 @@ import { publicShareCard, publicShareCardPath } from '@/lib/sharing/public-card'
 import { PublishedResult } from '@/components/assessment/published-result'
 import { Separator } from '@/components/ui/separator'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
+import { CompareCta } from '@/components/compare-cta'
+import { MobileCta } from '@/components/mobile-cta'
 import { repository } from '@/lib/assessments/server'
 
 export const dynamic = 'force-static'
@@ -86,7 +88,7 @@ export default async function Page({
         <ProfileHeader
           name={saved.publisher.name}
           avatar={saved.publisher.image}
-          description={`A map of your AI worldview as of ${publicationDate}.`}
+          description={`A map of their AI worldview as of ${publicationDate}.`}
           profileUrl={saved.publisher.profileUrl}
           profileLabel={
             saved.publisher.username
@@ -95,14 +97,28 @@ export default async function Page({
           }
         />
       ) : (
-        <h1>Your AI worldview</h1>
+        <h1>A shared AI worldview</h1>
       )}
+      {/* Phones hide the header CTA, so the invitation leads there. Wider
+          screens already show one in the header; a second, after the
+          results, replaces the closing card rather than adding to it. */}
+      <div className='sm:hidden'>
+        <CompareCta name={saved.publisher?.name} />
+      </div>
       <PublishedResult
         state={{ ...state, draft: '', eventMarkers: [] }}
         personas={personas}
+        afterResults={
+          <div key='compare' className='hidden sm:block'>
+            <CompareCta name={saved.publisher?.name} />
+          </div>
+        }
       />
-      <Separator className='my-12' />
-      <WorldviewCtaCard />
+      <div className='flex flex-col sm:hidden'>
+        <Separator className='my-12' />
+        <WorldviewCtaCard />
+      </div>
+      <MobileCta />
     </AssessmentPage>
   )
 }

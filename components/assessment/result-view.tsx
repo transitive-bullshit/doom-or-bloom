@@ -1,13 +1,15 @@
 'use client'
 import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import type { ReactNode } from 'react'
+import { ShareBar } from './share-bar'
+import { closestPersonas } from '@/lib/assessment/persona-matches'
+import { shareCaption } from '@/lib/sharing/share-caption'
 import { ClosestPersonas } from './closest-personas'
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
 import { resultCardData } from '@/lib/sharing/card-data'
 import { atCap, promptLimit } from '@/lib/assessment/state'
 import { useRef, useState } from 'react'
 import { mapPng } from '@/lib/sharing/map-png'
-import { ExpandingArrowAction } from '@/components/motion/expanding-arrow-button'
 import { Spinner } from '@/components/ui/spinner'
 import { Separator } from '@/components/ui/separator'
 import { toast } from 'sonner'
@@ -45,7 +47,8 @@ export function ResultView({
   published = false,
   readOnly = false,
   layout = 'breakout',
-  operations = []
+  operations = [],
+  publishControl
 }: {
   personas: PersonaComparison[]
   state: Assessment
@@ -55,6 +58,8 @@ export function ResultView({
   readOnly?: boolean
   layout?: 'contained' | 'breakout'
   operations?: SavedDebugOperation[]
+  /** Publish or make-private controls, shown beside the share actions. */
+  publishControl?: ReactNode
 }) {
   const [downloading, setDownloading] = useState(false)
   const [reportDownloading, setReportDownloading] = useState(false)
@@ -136,19 +141,14 @@ export function ResultView({
       setDownloading(false)
     }
   }
-  const downloadAction = (
-    <ExpandingArrowAction
-      type='button'
-      disabled={busy || downloading || reportDownloading}
-      aria-busy={downloading}
-      onClick={() => void card()}
-    >
-      {downloading && <Spinner data-icon='inline-start' aria-hidden='true' />}
-      {downloading
-        ? 'Preparing card…'
-        : 'Download results image for social sharing'}
-    </ExpandingArrowAction>
-  )
+  const experiment =
+    result.experiment?.evidenceRevision === result.evidenceRevision
+      ? result.experiment
+      : undefined
+  const caption = shareCaption({
+    risk: experiment?.pdoom,
+    closest: closestPersonas(result, personas)[0]?.name
+  })
   if (feedback.stage !== 'revealed')
     return (
       <div ref={resultsRoot} aria-busy={feedback.stage === 'pending'}>
@@ -239,6 +239,26 @@ export function ResultView({
             />
           )
         }
+        share={
+          !readOnly && (
+            <ShareBar
+              caption={caption}
+              path={published ? `/public/assessments/${state.id}` : '/'}
+              published={published}
+              downloading={downloading}
+              disabled={busy || reportDownloading}
+              onShare={(target) =>
+                emitEvent(
+                  makeEvent(state, 'share_intent_opened', {
+                    share_target: target
+                  })
+                )
+              }
+              onDownload={() => void card()}
+              publishControl={publishControl}
+            />
+          )
+        }
       />
       <ResultDisclosure title='Additional insights'>
         <div className='grid gap-3 sm:grid-cols-2'>
@@ -319,7 +339,6 @@ export function ResultView({
         <>
           <Separator className='my-6' />
           <div className='flex flex-col items-center gap-4'>
-            {downloadAction}
             <div className='flex flex-wrap justify-center gap-3'>
               <Button
                 type='button'

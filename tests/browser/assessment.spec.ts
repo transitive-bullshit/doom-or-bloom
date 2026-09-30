@@ -271,7 +271,11 @@ test('three answers, draft resume, map, report download and another assessment',
   // The archive must contain the colored worldview field, not the toolbar icon.
   expect(coloredPixels / (100 * 60)).toBeGreaterThan(0.2)
   await report.saveAs(testInfo.outputPath('full-report.zip'))
-  await expect(page.getByRole('link', { name: 'Post on X' })).toHaveCount(0)
+  // Composer links only prefill; nothing is sent to X until the participant posts.
+  await expect(page.getByRole('link', { name: 'Post on X' })).toHaveAttribute(
+    'href',
+    /^https:\/\/x\.com\/intent\/post\?.*ref%3Dshare-x/
+  )
   expect(outbound).toEqual([])
   const previous = page.url()
   await page

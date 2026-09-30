@@ -326,7 +326,7 @@ for (const unplaced of [false, true, 'outlook'] as const) {
       )
       await page
         .getByRole('button', {
-          name: 'Download results image for social sharing',
+          name: 'Download image',
           exact: true
         })
         .last()
