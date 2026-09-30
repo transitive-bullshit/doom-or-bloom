@@ -1,8 +1,10 @@
 import { cn } from 'cn'
+import { useTranslations } from 'next-intl'
 import { Card, CardTitle, CardDescription } from '@/components/ui/card'
 import { WorldviewCta } from '@/components/worldview-cta'
 
 export function WorldviewCtaCard({ className }: { className?: string }) {
+  const t = useTranslations('Cta')
   return (
     <Card
       className={cn(
@@ -10,10 +12,8 @@ export function WorldviewCtaCard({ className }: { className?: string }) {
         className
       )}
     >
-      <CardTitle className='text-2xl'>Where do you land?</CardTitle>
-      <CardDescription>
-        Explore your own AI worldview by answering a few simple questions.
-      </CardDescription>
+      <CardTitle className='text-2xl'>{t('cardTitle')}</CardTitle>
+      <CardDescription>{t('cardDescription')}</CardDescription>
       <WorldviewCta />
     </Card>
   )

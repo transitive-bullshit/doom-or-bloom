@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { splitLocalePath } from '../../i18n/config'
 
 // First-party cookie recording how a browser first arrived. Written once by the
 // client, read by the server when it creates an owner and by analytics events.
@@ -24,7 +25,13 @@ export const firstTouchFields = {
     .string()
     .regex(/^[a-z0-9.-]{1,100}$/)
     .optional(),
-  landing: z.enum(landings)
+  landing: z.enum(landings),
+  // The landing URL's locale code; absent on records made before locales.
+  // A pattern, not the enabled list, so records outlive a disabled locale.
+  locale: z
+    .string()
+    .regex(/^[a-z]{2}(?:-[A-Za-z]{2,4})?$/)
+    .optional()
 }
 
 const firstTouchSchema = z.strictObject({
@@ -35,6 +42,7 @@ const firstTouchSchema = z.strictObject({
   campaign: firstTouchFields.tag,
   referrer: firstTouchFields.referrer,
   landing: firstTouchFields.landing,
+  locale: firstTouchFields.locale,
   at: z.iso.datetime()
 })
 export type FirstTouch = z.infer<typeof firstTouchSchema>
@@ -51,6 +59,8 @@ export function cleanTag(value: string | null | undefined) {
 }
 
 function landingKind(pathname: string): FirstTouch['landing'] {
+  // Locale prefixes are not page kinds; /es/users is the same landing as /users.
+  pathname = splitLocalePath(pathname).path
   if (pathname === '/') return 'home'
   if (pathname === '/users') return 'users'
   if (pathname.startsWith('/users/')) return 'user'
@@ -90,6 +100,7 @@ export function captureFirstTouch({
     campaign: cleanTag(params.get('utm_campaign')),
     referrer: referrerHost(referrer, url.hostname),
     landing: landingKind(url.pathname),
+    locale: splitLocalePath(url.pathname).locale,
     at: now.toISOString()
   })
 }
@@ -143,7 +154,8 @@ export function firstTouchProperties(touch: FirstTouch | null) {
     first_touch_medium: touch.medium,
     first_touch_campaign: touch.campaign,
     first_touch_referrer: touch.referrer,
-    first_touch_landing: touch.landing
+    first_touch_landing: touch.landing,
+    first_touch_locale: touch.locale
   }
 }
 

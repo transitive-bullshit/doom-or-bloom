@@ -19,7 +19,11 @@ export default defineConfig({
         ? ['github-actions' as const]
         : [])
     ],
-    include: ['lib/**/*.test.ts', 'tests/helpers/**/*.test.ts'],
+    include: [
+      'lib/**/*.test.ts',
+      'i18n/**/*.test.ts',
+      'tests/helpers/**/*.test.ts'
+    ],
     restoreMocks: true
   }
 })

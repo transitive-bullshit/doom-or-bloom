@@ -1,0 +1,102 @@
+{
+  "Metadata": {
+    "siteDescription": "Map your AI worldview, and see how it compares with others."
+  },
+  "Pages": {
+    "home": {
+      "title": "Doom or Bloom",
+      "description": "Map your AI worldview, and compare it with others. Explore how public figures think AI will change our future, then discover where you land."
+    },
+    "about": {
+      "title": "About",
+      "description": "How Doom or Bloom maps AI worldviews: our adaptive interview, experimental methodology, and source-grounded persona simulations."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "How Doom or Bloom stores assessments, protects private answers, handles optional accounts, and publishes results publicly."
+    },
+    "users": {
+      "title": "Simulated users",
+      "description": "Explore and search source-grounded simulated AI worldviews, including users beyond the featured map."
+    }
+  },
+  "Header": {
+    "navigation": "Site navigation",
+    "toggleTheme": "Toggle light or dark theme",
+    "accountMenu": "Account menu",
+    "myAssessments": "My assessments",
+    "logOut": "Log out",
+    "logOutFailed": "Couldn’t log out. Please try again."
+  },
+  "Social": {
+    "github": "Project on GitHub",
+    "x": "Travis on X"
+  },
+  "Footer": {
+    "about": "About",
+    "privacy": "Privacy",
+    "language": "Language"
+  },
+  "Breadcrumbs": {
+    "label": "breadcrumb",
+    "home": "Home",
+    "about": "About",
+    "privacy": "Privacy",
+    "users": "Simulated users",
+    "assessments": "My assessments",
+    "newAssessment": "New assessment",
+    "assessment": "Assessment",
+    "page": "Page"
+  },
+  "Cta": {
+    "mapWorldview": "Map your own worldview",
+    "cardTitle": "Where do you land?",
+    "cardDescription": "Explore your own AI worldview by answering a few simple questions.",
+    "mapMine": "Map my worldview",
+    "compareTitle": "Where do you land vs {name}?",
+    "compareDescription": "Map your own AI worldview in about 3 minutes, then compare"
+  },
+  "Landing": {
+    "title": "How will AI change our future?",
+    "directoryTitle": "Explore simulated users",
+    "axisTop": "Civilizational change",
+    "axisBottom": "Incremental change",
+    "mapLabel": "AI outlook and scale of transformation. Open a portrait to explore their simulated worldview.",
+    "viewResults": "View {name} results",
+    "exampleNote": "Example results based on simulated users",
+    "exploreAll": "Explore all simulated users",
+    "unplaced": "{count, plural, one {# user has insufficient evidence for a map position. Their result is available in the grid.} other {# users have insufficient evidence for a map position. Their results are available in the grid.}}",
+    "search": "Find a simulated user",
+    "searchPlaceholder": "Search names or @handles",
+    "sortBy": "Sort by",
+    "order": "Order",
+    "nameAscending": "A–Z",
+    "nameDescending": "Z–A",
+    "doomFirst": "Doom first",
+    "bloomFirst": "Bloom first",
+    "lowToHigh": "Low to high",
+    "highToLow": "High to low",
+    "count": "{shown} of {total} simulated users",
+    "followersNote": "X counts captured {date}. Unavailable counts appear last.",
+    "scoresNote": "Scores describe simulated answers. Missing scores appear last.",
+    "noMatches": "No users match “{query}”. Try another name or handle.",
+    "metricUnavailable": "Not available",
+    "metricFollowers": "{count, number} followers",
+    "sort": {
+      "name": "Name",
+      "followers": "X followers",
+      "outlook": "Doom–Bloom",
+      "transformation": "Civilizational change",
+      "pdoom": "P(doom)",
+      "reasoning": "Demonstrated reasoning",
+      "upside": "Expected upside",
+      "harm": "Expected harm",
+      "influence": "Human influence"
+    }
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "Looks like you got lost in latent space",
+    "home": "Back to home"
+  }
+}

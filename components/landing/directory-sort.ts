@@ -16,18 +16,19 @@ export function directoryPdoom(result: Result) {
   return percentage <= 100 ? percentage / 100 : null
 }
 
-export const directorySorts = {
-  name: 'Name',
-  followers: 'X followers',
-  outlook: 'Doom–Bloom',
-  transformation: 'Civilizational change',
-  pdoom: 'P(doom)',
-  reasoning: 'Demonstrated reasoning',
-  upside: 'Expected upside',
-  harm: 'Expected harm',
-  influence: 'Human influence'
-} as const
-export type DirectorySort = keyof typeof directorySorts
+// Labels live in messages/<locale>.json under Landing.sort.
+export const directorySorts = [
+  'name',
+  'followers',
+  'outlook',
+  'transformation',
+  'pdoom',
+  'reasoning',
+  'upside',
+  'harm',
+  'influence'
+] as const
+export type DirectorySort = (typeof directorySorts)[number]
 export function compareUsers(
   a: MapExample,
   b: MapExample,
@@ -43,12 +44,20 @@ export function compareUsers(
   if (right === null) return -1
   return (direction === 'asc' ? left - right : right - left) || byName
 }
-export function directoryValue(person: MapExample, key: DirectorySort) {
+const englishText = {
+  unavailable: 'Not available',
+  followers: (count: number) => `${count.toLocaleString('en-US')} followers`
+}
+export function directoryValue(
+  person: MapExample,
+  key: DirectorySort,
+  text: typeof englishText = englishText
+) {
   if (key === 'name') return null
   if (key === 'pdoom' && person.pdoomLabel) return person.pdoomLabel
   const value = person[key]
-  if (value == null) return 'Not available'
-  if (key === 'followers') return `${value.toLocaleString('en-US')} followers`
+  if (value == null) return text.unavailable
+  if (key === 'followers') return text.followers(value)
   if (key === 'pdoom')
     return person.pdoomLabel ?? `${(value * 100).toFixed(1)}%`
   return `${Math.round(value * 100)} / 100`

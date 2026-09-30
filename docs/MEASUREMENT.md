@@ -15,7 +15,7 @@ For storage, ownership and publication behavior, use [PERSISTENCE.md](PERSISTENC
 
 ## Analytics responsibilities
 
-- **Vercel Analytics:** basic site traffic and page-level health. Pageview URLs keep the path plus normalized `utm_source`, `utm_medium` and `utm_campaign` tags; a bare `ref` is sent as `utm_source`. Vercel records the referring site itself.
+- **Vercel Analytics:** basic site traffic and page-level health. Pageview URLs keep the path plus normalized `utm_source`, `utm_medium` and `utm_campaign` tags; a bare `ref` is sent as `utm_source`. Vercel records the referring site itself. Paths keep their locale prefix (`/es/users`), so language shows up in page reports; owner, admin and local-tool paths are excluded in every locale ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#routing)).
 - **PostHog:** explicit assessment events, enumerated result properties and the browser's first-touch properties.
 - **Offline evaluation:** whether Jev and the authored system interpreted people correctly.
 
@@ -60,7 +60,7 @@ Allowlisted properties may include:
 - Resource identifiers.
 - Whether an inference was disputed and which authored vector it concerned.
 - Response disposition, recovery-attempt bucket, pause reason, and recovery action, using enumerated values only; never a participant “sincerity” or “troll” label.
-- First-touch attribution: `first_touch_channel` (the tag, else the referring host, else `direct`), `first_touch_ref`, `first_touch_source`, `first_touch_medium`, `first_touch_campaign`, `first_touch_referrer` (a hostname only) and `first_touch_landing` (a coarse page kind such as `home` or `user`).
+- First-touch attribution: `first_touch_channel` (the tag, else the referring host, else `direct`), `first_touch_ref`, `first_touch_source`, `first_touch_medium`, `first_touch_campaign`, `first_touch_referrer` (a hostname only), `first_touch_landing` (a coarse page kind such as `home` or `user`) and `first_touch_locale` (the landing URL's locale code, such as `en` or `es`; absent on records made before October 1, 2026).
 - Share target identifiers.
 - Self-placement gap bucket, feedback rating and feedback aspect identifiers. Guess coordinates and comment text stay in the private `assessment_feedback` table ([PERSISTENCE.md](PERSISTENCE.md#result-feedback)).
 
@@ -72,7 +72,7 @@ Recovery events can occur before `assessment_started`, which still requires the 
 
 ## Acquisition attribution
 
-`lib/attribution/first-touch.ts` owns this boundary. The first page a browser loads writes a first-party `dob_first_touch` cookie, once, for 180 days. It holds the normalized `ref`, `utm_source`, `utm_medium` and `utm_campaign` tags (lowercase slugs of up to 64 characters), the external referring hostname, a coarse landing kind and a timestamp. It never stores a path, query string, assessment ID or answer. Visitors who arrived before this cookie existed record their next visit as their first touch.
+`lib/attribution/first-touch.ts` owns this boundary. The first page a browser loads writes a first-party `dob_first_touch` cookie, once, for 180 days. It holds the normalized `ref`, `utm_source`, `utm_medium` and `utm_campaign` tags (lowercase slugs of up to 64 characters), the external referring hostname, a coarse landing kind, the landing locale and a timestamp. The landing kind ignores the locale prefix: `/es/users/simonw` is a `user` landing with locale `es`. It never stores a path, query string, assessment ID or answer. Visitors who arrived before this cookie existed record their next visit as their first touch.
 
 The server copies the cookie onto a new owner when Better Auth creates one, whether anonymous or through X sign-in, in the `user.first_touch` column. Claiming an anonymous owner into an account keeps the earlier of the two records ([PERSISTENCE.md](PERSISTENCE.md#implemented-x-claim-boundary)). The client adds the same record to every PostHog assessment event as the enumerated properties above. PostHog runs in memory with no persistence, so the cookie is the only link between a landing and later events.
 

@@ -13,6 +13,7 @@ Doom or Bloom helps participants articulate their AI worldview through a bounded
 
 - Use `pnpm`, modern TypeScript, and no semicolons. Format with `pnpm fix:format`; fix lint with `pnpm fix:lint`.
 - Use shadcn/ui for recurring UI primitives and follow [PRODUCT.md](docs/PRODUCT.md) for interaction rules.
+- Translated site copy lives in `messages/<locale>.json`, and localized links come from `@/i18n/navigation`; see [INTERNATIONALIZATION.md](docs/INTERNATIONALIZATION.md).
 - Start local development with `pnpm dev` and use its printed Portless URL. Resolve the root checkout with `pnpm exec portless get doom-or-bloom --no-worktree`; linked worktrees retain their branch-prefixed URL.
 - Use native local PostgreSQL and a separate disposable test database; no Docker. Database/auth/publication changes follow [PERSISTENCE.md](docs/PERSISTENCE.md).
 - Use credential-free fixtures for routine checks. Live journeys make paid OpenAI and Jev calls; follow the bounded workflow in [user-journeys.md](docs/user-journeys.md). Paid pressure testing is excluded.

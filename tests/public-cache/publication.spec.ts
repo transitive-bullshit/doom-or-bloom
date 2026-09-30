@@ -66,6 +66,8 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
     ignoreHTTPSErrors: true
   })
   const path = `/public/assessments/${id}`
+  // The Spanish variant renders on its first request and is revoked with English.
+  const spanish = `/es${path}`
   const image = `${path}/social-image.png`
   const mutation = `/api/assessments/${id}`
   const visibility = async (value: 'public' | 'private') => {
@@ -76,11 +78,15 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
     expect(response.status()).toBe(200)
   }
   const unavailable = async () => {
-    for (const extraHeaders of [{}, { RSC: '1' }] as Record<string, string>[]) {
-      const response = await visitor.get(path, { headers: extraHeaders })
-      expect(response.status()).toBe(404)
-      expect(await response.text()).not.toContain(marker)
-    }
+    for (const page of [path, spanish])
+      for (const extraHeaders of [{}, { RSC: '1' }] as Record<
+        string,
+        string
+      >[]) {
+        const response = await visitor.get(page, { headers: extraHeaders })
+        expect(response.status()).toBe(404)
+        expect(await response.text()).not.toContain(marker)
+      }
     expect((await visitor.get(`${path}/data`)).status()).toBe(404)
     expect((await visitor.get(image)).status()).toBe(404)
   }
@@ -101,8 +107,11 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
         async () => {
           try {
             return (
-              await readFile(`.next/server/app${path}.html`, 'utf8')
-            ).includes(marker)
+              // Rendered by app/[locale]; the public URL rewrites to /en.
+              (
+                await readFile(`.next/server/app/en${path}.html`, 'utf8')
+              ).includes(marker)
+            )
           } catch {
             return false
           }
@@ -138,6 +147,17 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
       expect(response.headers()['cache-control']).toContain('s-maxage=172800')
       expect(await response.text()).toContain(marker)
     }
+    // Rendered on the first request, then served from the full-route cache.
+    for (const cached of [false, true]) {
+      const response = await visitor.get(spanish)
+      expect(response.status()).toBe(200)
+      if (cached) expect(response.headers()['x-nextjs-cache']).toBe('HIT')
+      expect(response.headers()['set-cookie']).toBeUndefined()
+      const html = await response.text()
+      expect(html).toContain(marker)
+      expect(html).toContain('<html lang="es"')
+      expect(html).toContain('<meta name="robots" content="noindex, follow"/>')
+    }
     const data = await visitor.get(`${path}/data`)
     expect(data.headers()['cache-control']).toContain('no-store')
     expect(
@@ -149,6 +169,7 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
       ).status()
     ).toBe(401)
     expect((await visitor.get(path)).status()).toBe(200)
+    expect((await visitor.get(spanish)).status()).toBe(200)
     await visibility('private')
     await unavailable()
     await visibility('public')

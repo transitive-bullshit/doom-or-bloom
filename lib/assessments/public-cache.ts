@@ -1,6 +1,7 @@
 import 'server-only'
 import { revalidatePath } from 'next/cache'
 import { after } from 'next/server'
+import { locales } from '@/i18n/config'
 import { authUrls } from '@/lib/auth/urls'
 import { reportServerError } from '@/lib/server/error-reporting'
 
@@ -11,11 +12,18 @@ export function refreshPublicAssessment(id: string, published: boolean) {
   const paths = [page, `${page}/social-image.png`]
   // Explicit path invalidation expires cached HTML/RSC and images, including an
   // earlier private/unknown 404. Never use stale-while-revalidate for a visibility change.
-  for (const path of paths) revalidatePath(path)
+  // The page renders in app/[locale], so expire the rendered path of every
+  // locale variant as well as the public URL (English is served from /en).
+  for (const path of [
+    ...paths,
+    ...locales.map((locale) => `/${locale}${page}`)
+  ])
+    revalidatePath(path)
   if (!published || process.env.NODE_ENV !== 'production') return
 
-  // After the response flushes invalidation, warm the newly public page and
-  // image without delaying publication, so a share made right away is ready.
+  // After the response flushes invalidation, warm the newly public English page
+  // and image without delaying publication, so a share made right away is ready.
+  // Other locales render on their first request.
   after(() => Promise.all(paths.map((path) => warm(id, path))))
 }
 

@@ -1,3 +1,5 @@
+import { getLocale } from 'next-intl/server'
+import { defaultLocale } from '@/i18n/config'
 import { loadPersonaComparisons } from '@/components/landing/data'
 import { ProfileHeader } from '@/components/profile-header'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
@@ -19,8 +21,13 @@ export const revalidate = 172800
 
 // Only explicitly published participant snapshots are enumerated. New shares
 // are warmed at publication; historical simulation URLs can render on demand.
-export function generateStaticParams() {
-  return repository().publishedParticipantPaths()
+// Other locales translate only the chrome, are noindex, and render on demand;
+// every parent locale yields the English paths (see users/[username]/page.tsx).
+export async function generateStaticParams() {
+  return (await repository().publishedParticipantPaths()).map(({ id }) => ({
+    locale: defaultLocale,
+    id
+  }))
 }
 export async function generateMetadata({
   params
@@ -29,21 +36,25 @@ export async function generateMetadata({
 }) {
   const { id } = await params
   const saved = await loadPublished(id)
+  const metadata = pageMetadata({
+    locale: await getLocale(),
+    translated: false,
+    path: `/public/assessments/${id}`,
+    title:
+      saved.kind === 'simulation'
+        ? `${saved.profile.name}’s AI worldview`
+        : saved.publisher
+          ? `${saved.publisher.name}’s AI worldview`
+          : saved.title,
+    description:
+      'Explore this AI worldview: expectations, risks, closest perspectives, and the answers behind the assessment.',
+    image: publicShareCardPath(id, await publicShareCard(saved)),
+    imageAlt: 'AI worldview assessment with interpretation ranges'
+  })
   return {
-    ...pageMetadata({
-      path: `/public/assessments/${id}`,
-      title:
-        saved.kind === 'simulation'
-          ? `${saved.profile.name}’s AI worldview`
-          : saved.publisher
-            ? `${saved.publisher.name}’s AI worldview`
-            : saved.title,
-      description:
-        'Explore this AI worldview: expectations, risks, closest perspectives, and the answers behind the assessment.',
-      image: publicShareCardPath(id, await publicShareCard(saved)),
-      imageAlt: 'AI worldview assessment with interpretation ranges'
-    }),
-    robots: {
+    ...metadata,
+    // Non-English variants keep pageMetadata's noindex.
+    robots: metadata.robots ?? {
       index: true,
       follow: true,
       googleBot: { 'max-image-preview': 'large' }

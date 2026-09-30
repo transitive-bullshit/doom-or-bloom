@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+// Keeps the visitor's locale prefix when opening the new assessment URL.
+import { useRouter } from '@/i18n/navigation'
 import { toast } from 'sonner'
 import { startAssessment } from '@/lib/assessments/client'
 import { ExpandingArrowAction } from '@/components/motion/expanding-arrow-button'

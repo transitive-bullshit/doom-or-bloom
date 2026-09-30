@@ -3,12 +3,8 @@
 
 import { useEffect, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
-import {
-  NOT_FOUND_DEFAULTS,
-  NotFoundActions,
-  NotFoundStage,
-  type NotFoundProps
-} from './shared'
+import { useTranslations } from 'next-intl'
+import { NotFoundActions, NotFoundStage, type NotFoundProps } from './shared'
 
 const GLYPHS = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&@$?/\\'
 const SCRAMBLE_MS = 700
@@ -60,10 +56,13 @@ function Scramble({ text }: { text: string }) {
 
 export function NotFoundGlitch({
   className,
-  code = NOT_FOUND_DEFAULTS.code,
-  title = NOT_FOUND_DEFAULTS.title,
-  description = NOT_FOUND_DEFAULTS.description
+  code = '404',
+  title,
+  description
 }: NotFoundProps) {
+  const t = useTranslations('NotFound')
+  title ??= t('title')
+  description ??= t('description')
   return (
     <NotFoundStage className={className}>
       <div

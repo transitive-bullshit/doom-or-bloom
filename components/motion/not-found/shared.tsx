@@ -2,6 +2,8 @@
 // Adapted from beui.dev/components/blocks/not-found
 import type { ReactNode } from 'react'
 import { cn } from 'cn'
+import { useLocale, useTranslations } from 'next-intl'
+import { getPathname } from '@/i18n/navigation'
 import { ExpandingArrowLink } from '@/components/motion/expanding-arrow-button'
 
 export interface NotFoundProps {
@@ -11,14 +13,14 @@ export interface NotFoundProps {
   description?: string
 }
 
-export const NOT_FOUND_DEFAULTS = {
-  code: '404',
-  title: 'Page not found',
-  description: 'Looks like you got lost in latent space'
-} as const
-
 export function NotFoundActions() {
-  return <ExpandingArrowLink href='/'>Back to home</ExpandingArrowLink>
+  const t = useTranslations('NotFound')
+  const locale = useLocale()
+  return (
+    <ExpandingArrowLink href={getPathname({ href: '/', locale })}>
+      {t('home')}
+    </ExpandingArrowLink>
+  )
 }
 
 export function NotFoundStage({

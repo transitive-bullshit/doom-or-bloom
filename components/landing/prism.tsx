@@ -1,9 +1,10 @@
 'use client'
 
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import { WorldviewCta } from '@/components/worldview-cta'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
-import Link from 'next/link'
+import { getPathname, Link } from '@/i18n/navigation'
 import {
   useSyncExternalStore,
   useMemo,
@@ -99,7 +100,7 @@ function parsePreferences(raw: string | null): DirectoryPreferences {
     if (
       saved &&
       typeof saved.sort === 'string' &&
-      Object.hasOwn(directorySorts, saved.sort)
+      (directorySorts as readonly string[]).includes(saved.sort)
     ) {
       return {
         sort: saved.sort as DirectorySort,
@@ -124,6 +125,10 @@ export function Prism({
   examples: MapExample[]
   directory?: boolean
 }) {
+  const t = useTranslations('Landing')
+  const locale = useLocale()
+  const userHref = (slug: string) =>
+    getPathname({ href: `/users/${slug}`, locale })
   const storedPreferences = useSyncExternalStore(
     subscribePreferences,
     readPreferences,
@@ -169,6 +174,10 @@ export function Prism({
       current[src] === status ? current : { ...current, [src]: status }
     )
   }
+  const metricText = {
+    unavailable: t('metricUnavailable'),
+    followers: (count: number) => t('metricFollowers', { count })
+  }
   const search = query.trim().toLowerCase().replace(/^@/, '')
   const legend = useMemo(
     () =>
@@ -194,22 +203,18 @@ export function Prism({
       data-highlighting='false'
     >
       <header className='study-heading'>
-        <h1>
-          {directory
-            ? 'Explore simulated users'
-            : 'How will AI change our future?'}
-        </h1>
+        <h1>{directory ? t('directoryTitle') : t('title')}</h1>
         <div className='mt-6 sm:hidden'>
           <WorldviewCta />
         </div>
       </header>
-      <div className='study-axis-top'>Civilizational change</div>
+      <div className='study-axis-top'>{t('axisTop')}</div>
       <div
         className='study-chart'
         ref={chartRef}
         data-portraits-ready={portraitsReady}
         role='group'
-        aria-label='AI outlook and scale of transformation. Open a portrait to explore their simulated worldview.'
+        aria-label={t('mapLabel')}
         aria-busy={!portraitsReady}
       >
         <div className='study-cross-x' />
@@ -235,7 +240,7 @@ export function Prism({
             key={p.id}
             intent={prefetch}
             prefetchKey={`map:${p.slug}`}
-            href={`/users/${p.slug}`}
+            href={userHref(p.slug)}
             className='study-point study-portrait'
             style={{
               left: `${p.outlook! * 100}%`,
@@ -243,7 +248,7 @@ export function Prism({
             }}
             data-person-id={p.id}
             data-portrait-failed={portraits[p.avatar] === 'failed'}
-            aria-label={`View ${p.name} results`}
+            aria-label={t('viewResults', { name: p.name })}
           >
             <Image
               src={p.avatar}
@@ -261,16 +266,16 @@ export function Prism({
           </PersonaLink>
         ))}
       </div>
-      <div className='study-axis-bottom'>Incremental change</div>
+      <div className='study-axis-bottom'>{t('axisBottom')}</div>
       {directory && (
         <div className='directory-controls mt-8 flex w-full flex-col gap-2 text-left'>
           <div className='directory-controls-row'>
             <div className='flex min-w-0 flex-1 flex-col gap-1'>
-              <label htmlFor='user-search'>Find a simulated user</label>
+              <label htmlFor='user-search'>{t('search')}</label>
               <Input
                 id='user-search'
                 type='search'
-                placeholder='Search names or @handles'
+                placeholder={t('searchPlaceholder')}
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 aria-controls='simulated-users'
@@ -279,7 +284,7 @@ export function Prism({
             <div className='directory-selects'>
               <div className='flex flex-col gap-1'>
                 <label htmlFor='user-sort' className='text-xs'>
-                  Sort by
+                  {t('sortBy')}
                 </label>
                 <NativeSelect
                   id='user-sort'
@@ -293,16 +298,16 @@ export function Prism({
                   }}
                   aria-controls='simulated-users'
                 >
-                  {Object.entries(directorySorts).map(([key, label]) => (
+                  {directorySorts.map((key) => (
                     <option key={key} value={key}>
-                      {label}
+                      {t(`sort.${key}`)}
                     </option>
                   ))}
                 </NativeSelect>
               </div>
               <div className='flex flex-col gap-1'>
                 <label htmlFor='user-sort-direction' className='text-xs'>
-                  Order
+                  {t('order')}
                 </label>
                 <NativeSelect
                   id='user-sort-direction'
@@ -313,18 +318,22 @@ export function Prism({
                   aria-controls='simulated-users'
                 >
                   <option value='asc'>
-                    {sort === 'name'
-                      ? 'A–Z'
-                      : sort === 'outlook'
-                        ? 'Doom first'
-                        : 'Low to high'}
+                    {t(
+                      sort === 'name'
+                        ? 'nameAscending'
+                        : sort === 'outlook'
+                          ? 'doomFirst'
+                          : 'lowToHigh'
+                    )}
                   </option>
                   <option value='desc'>
-                    {sort === 'name'
-                      ? 'Z–A'
-                      : sort === 'outlook'
-                        ? 'Bloom first'
-                        : 'High to low'}
+                    {t(
+                      sort === 'name'
+                        ? 'nameDescending'
+                        : sort === 'outlook'
+                          ? 'bloomFirst'
+                          : 'highToLow'
+                    )}
                   </option>
                 </NativeSelect>
               </div>
@@ -332,7 +341,7 @@ export function Prism({
           </div>
           <div className='directory-summary'>
             <p className='directory-count text-muted-foreground' role='status'>
-              {legend.length} of {examples.length} simulated users
+              {t('count', { shown: legend.length, total: examples.length })}
             </p>
             <div className='directory-help'>
               <p
@@ -340,16 +349,16 @@ export function Prism({
                 data-active={sort === 'followers'}
                 aria-hidden={sort !== 'followers'}
               >
-                X counts captured{' '}
-                {examples[0]?.followersCapturedAt?.slice(0, 10)}. Unavailable
-                counts appear last.
+                {t('followersNote', {
+                  date: examples[0]?.followersCapturedAt?.slice(0, 10) ?? ''
+                })}
               </p>
               <p
                 className='directory-count text-muted-foreground'
                 data-active={sort !== 'followers' && sort !== 'pdoom'}
                 aria-hidden={sort === 'followers' || sort === 'pdoom'}
               >
-                Scores describe simulated answers. Missing scores appear last.
+                {t('scoresNote')}
               </p>
             </div>
           </div>
@@ -365,7 +374,7 @@ export function Prism({
             key={p.id}
             intent={prefetch}
             prefetchKey={`legend:${p.slug}`}
-            href={`/users/${p.slug}`}
+            href={userHref(p.slug)}
             data-person-id={p.id}
           >
             <Image
@@ -379,9 +388,9 @@ export function Prism({
             />
             <span className='study-person-name'>
               {p.shortName}
-              {directory && directoryValue(p, sort) && (
+              {directory && directoryValue(p, sort, metricText) && (
                 <span className='directory-metric'>
-                  {directoryValue(p, sort)}
+                  {directoryValue(p, sort, metricText)}
                 </span>
               )}
             </span>
@@ -389,21 +398,18 @@ export function Prism({
         ))}
       </div>
       {directory && legend.length === 0 && (
-        <p className='study-note'>
-          No users match “{query}”. Try another name or handle.
-        </p>
+        <p className='study-note'>{t('noMatches', { query })}</p>
       )}
-      <p className='study-note'>Example results based on simulated users</p>
+      <p className='study-note'>{t('exampleNote')}</p>
       {directory && plotted.length < examples.length && (
         <p className='study-note'>
-          {examples.length - plotted.length} users have insufficient evidence
-          for a map position. Their results are available in the grid.
+          {t('unplaced', { count: examples.length - plotted.length })}
         </p>
       )}
       {!directory && (
         <p className='study-note'>
           <Link href='/users' className='underline underline-offset-4'>
-            Explore all simulated users
+            {t('exploreAll')}
           </Link>
         </p>
       )}

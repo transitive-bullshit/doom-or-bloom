@@ -101,7 +101,8 @@ const eventSchema = z.object({
     first_touch_medium: touch.tag,
     first_touch_campaign: touch.tag,
     first_touch_referrer: touch.referrer,
-    first_touch_landing: touch.landing.optional()
+    first_touch_landing: touch.landing.optional(),
+    first_touch_locale: touch.locale
   })
 })
 export type Event = z.infer<typeof eventSchema>

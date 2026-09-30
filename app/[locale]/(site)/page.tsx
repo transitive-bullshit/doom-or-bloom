@@ -1,5 +1,4 @@
-import { pageMetadata } from '@/lib/metadata'
-import { publicPages } from '@/lib/site'
+import { publicPageMetadata } from '@/lib/metadata'
 import { loadExamples } from '@/components/landing/data'
 import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
@@ -8,7 +7,9 @@ import '@/components/landing/landing.css'
 // Only public persona data belongs in this shared page cache.
 export const dynamic = 'error'
 export const revalidate = 172800
-export const metadata = pageMetadata(publicPages[0]!)
+export function generateMetadata() {
+  return publicPageMetadata('home')
+}
 
 export default async function Page() {
   const examples = (await loadExamples()).map(

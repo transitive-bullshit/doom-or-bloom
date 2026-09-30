@@ -1,8 +1,8 @@
 'use client'
 
 import { Fragment } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { Link, usePathname } from '@/i18n/navigation'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,12 +12,16 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb'
 
-const pageLabels: Record<string, string> = {
-  '/users': 'Simulated users',
-  '/about': 'About',
-  '/privacy': 'Privacy',
-  '/assessments': 'My assessments',
-  '/assessment': 'New assessment',
+const pageLabels = {
+  '/users': 'users',
+  '/about': 'about',
+  '/privacy': 'privacy',
+  '/assessments': 'assessments',
+  '/assessment': 'newAssessment'
+} as const
+
+// Local tools are English-only and live outside app/[locale].
+const toolLabels: Record<string, string> = {
   '/questions': 'Questions',
   '/corpus': 'Corpus',
   '/user-journeys': 'User Journeys',
@@ -26,6 +30,8 @@ const pageLabels: Record<string, string> = {
 }
 
 export function SiteBreadcrumbs() {
+  const t = useTranslations('Breadcrumbs')
+  // The route path without a locale prefix; links add the current prefix back.
   const pathname = usePathname()
   if (
     pathname === '/' ||
@@ -36,23 +42,26 @@ export function SiteBreadcrumbs() {
     return null
   }
 
-  const crumbs = [{ href: '/', label: 'Home' }]
-  let label = pageLabels[pathname]
+  const crumbs = [{ href: '/', label: t('home') }]
+  let label: string | undefined =
+    pathname in pageLabels
+      ? t(pageLabels[pathname as keyof typeof pageLabels])
+      : toolLabels[pathname]
   if (pathname === '/assessment' || /^\/assessments\/[^/]+$/.test(pathname)) {
-    crumbs.push({ href: '/assessments', label: 'My assessments' })
-    label ??= 'Assessment'
+    crumbs.push({ href: '/assessments', label: t('assessments') })
+    label ??= t('assessment')
   } else if (pathname.startsWith('/users/')) {
-    crumbs.push({ href: '/users', label: 'Simulated users' })
+    crumbs.push({ href: '/users', label: t('users') })
     label = `@${pathname.split('/')[2]}`
   } else if (pathname.startsWith('/prototypes/landing/personas/')) {
     crumbs.push({ href: '/prototypes/landing', label: 'Landing preview' })
     label = `@${pathname.split('/')[4]}`
   }
   // Unknown routes (including not-found pages) must not expose IDs as labels.
-  label ??= 'Page'
+  label ??= t('page')
 
   return (
-    <Breadcrumb className='content-column'>
+    <Breadcrumb className='content-column' aria-label={t('label')}>
       <BreadcrumbList>
         {crumbs.map((crumb) => (
           <Fragment key={crumb.href}>

@@ -1,11 +1,17 @@
+import { getTranslations } from 'next-intl/server'
+import { defaultLocale, localeOptions, localizedPath } from '@/i18n/config'
 import { publicPages, siteUrl } from '@/lib/site'
 
 import { loadExamples } from '@/components/landing/data'
 export const dynamic = 'error'
 export const revalidate = 172800
 
+// Stays English. Route handlers have no root params, so pass the locale.
 export async function GET() {
-  const people = await loadExamples(false)
+  const [people, t] = await Promise.all([
+    loadExamples(false),
+    getTranslations({ locale: defaultLocale, namespace: 'Pages' })
+  ])
   const personaPages = people.map((person) => ({
     path: `/users/${person.slug}`,
     title: person.name
@@ -30,8 +36,17 @@ export async function GET() {
     '## Pages',
     '',
     ...publicPages.map(
-      ({ path, title, description }) =>
-        `- [${title}](${siteUrl}${path}): ${description}`
+      ({ key, path }) =>
+        `- [${t(`${key}.title`)}](${siteUrl}${path}): ${t(`${key}.description`)}`
+    ),
+    '',
+    '## Languages',
+    '',
+    'English pages have unprefixed URLs; other languages add a prefix. Site navigation, the home page and the simulated-user directory are translated. Assessment questions, results, simulated answers, About and Privacy are currently in English.',
+    '',
+    ...localeOptions.map(
+      ({ code, endonym }) =>
+        `- [${endonym}](${siteUrl}${localizedPath('/', code)}) (${code})`
     ),
     '',
     '## Simulated users',

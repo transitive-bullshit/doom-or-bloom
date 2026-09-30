@@ -1,16 +1,22 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import { Analytics } from '@vercel/analytics/next'
+import { splitLocalePath } from '@/i18n/config'
 import { attributionUrl } from '@/lib/attribution/first-touch'
-export function SiteAnalytics({ enabled }: { enabled: boolean }) {
-  const path = usePathname()
-  if (
-    !enabled ||
+
+// Owner, admin and local tool pages are never measured, in any locale.
+function internalPath(pathname: string) {
+  const { path } = splitLocalePath(pathname)
+  return (
     path.startsWith('/assessment') ||
     path.startsWith('/admin') ||
     ['/questions', '/corpus', '/user-journeys'].includes(path)
   )
-    return null
+}
+
+export function SiteAnalytics({ enabled }: { enabled: boolean }) {
+  const path = usePathname()
+  if (!enabled || internalPath(path)) return null
   return (
     <Analytics
       debug={false}
@@ -18,14 +24,9 @@ export function SiteAnalytics({ enabled }: { enabled: boolean }) {
         // Only the path and normalized UTM tags reach Vercel; see MEASUREMENT.md.
         const url = attributionUrl(event.url)
         // The script can remain installed after client navigation away from the interview.
-        const internal =
-          url &&
-          (new URL(url).pathname.startsWith('/assessment') ||
-            new URL(url).pathname.startsWith('/admin') ||
-            ['/questions', '/corpus', '/user-journeys'].includes(
-              new URL(url).pathname
-            ))
-        return url && !internal && event.type === 'pageview'
+        return url &&
+          !internalPath(new URL(url).pathname) &&
+          event.type === 'pageview'
           ? { type: 'pageview', url }
           : null
       }}

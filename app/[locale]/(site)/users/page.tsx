@@ -1,5 +1,5 @@
 import followerSnapshot from '@/lib/personas/x-followers.json'
-import { pageMetadata } from '@/lib/metadata'
+import { publicPageMetadata } from '@/lib/metadata'
 import { loadExamples } from '@/components/landing/data'
 import { directoryPdoom } from '@/components/landing/directory-sort'
 import { Prism } from '@/components/landing/prism'
@@ -8,12 +8,9 @@ import '@/components/landing/landing.css'
 
 export const dynamic = 'error'
 export const revalidate = 172800
-export const metadata = pageMetadata({
-  path: '/users',
-  title: 'Simulated users',
-  description:
-    'Explore and search source-grounded simulated AI worldviews, including users beyond the featured map.'
-})
+export function generateMetadata() {
+  return publicPageMetadata('users')
+}
 
 export default async function Page() {
   const examples = (await loadExamples(false)).map(

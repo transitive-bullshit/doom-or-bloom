@@ -32,6 +32,13 @@
   line-height: 1.04;
   text-wrap: balance;
 }
+/* Tight Latin display tracking and leading crowd non-Latin scripts. */
+.study-heading h1:is(:lang(hi), :lang(th), :lang(zh), :lang(ja)) {
+  letter-spacing: normal;
+}
+.study-heading h1:is(:lang(hi), :lang(th)) {
+  line-height: 1.3;
+}
 .study-intro {
   display: flex;
   justify-content: center;
