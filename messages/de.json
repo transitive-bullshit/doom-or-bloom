@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "Bilde deine KI-Weltsicht ab und vergleiche sie mit anderen. Erkunde, wie Persönlichkeiten des öffentlichen Lebens darüber denken, wie KI unsere Zukunft verändern wird, und finde dann heraus, wo du stehst."
+      "title": "Wie hoch ist dein P(doom)? Bilde deine KI-Weltsicht ab",
+      "description": "Mach in etwa 3 Minuten einen kostenlosen Test zu deiner KI-Weltsicht. Sieh, wo du zwischen Doom und Bloom stehst, erhalte ein grobes P(doom) und vergleiche deine Ansichten mit denen bekannter KI-Vordenker."
     },
     "about": {
       "title": "Über Doom or Bloom",
@@ -18,6 +18,14 @@
     "users": {
       "title": "Simulierte Nutzer",
       "description": "Erkunde und durchsuche quellenbasierte simulierte KI-Weltsichten, einschließlich Nutzern, die nicht auf der hervorgehobenen Karte erscheinen."
+    },
+    "pdoom": {
+      "title": "Was ist P(doom)? Einschätzungen von KI-Vordenkern",
+      "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür angibt, dass KI zu einer Katastrophe für die Menschheit führt. Erfahre, was das bedeutet, und vergleiche dann öffentlich geäußerte und simulierte Einschätzungen von KI-Vordenkern."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Verständlich formulierte Beiträge von Doom or Bloom über P(doom), KI-Risiken und darüber, wie Menschen über die Zukunft der KI denken."
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "Über Doom or Bloom",
     "privacy": "Datenschutz",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "language": "Sprache"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "Über Doom or Bloom",
     "privacy": "Datenschutz",
     "users": "Simulierte Nutzer",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "assessments": "Meine Einschätzungen",
     "newAssessment": "Neue Einschätzung",
     "assessment": "Einschätzung",
@@ -700,18 +712,47 @@
     "sourcesTitle": "Quellen",
     "sourcesUpdated": "Quellen für die aktuelle Übersicht dieses simulierten Nutzers.",
     "sourcesDefault": "Artikel, Interviews und Schriften, die als Grundlage für diesen simulierten Nutzer dienen.",
-    "profile": "Profil"
+    "profile": "Profil",
+    "similarTitle": "Ähnliche Weltsichten",
+    "similarDescription": "Vordenker, deren simulierte Weltsichten der von {name} am nächsten kommen"
   },
   "Profiles": {
-    "userTitle": "{name}s KI-Weltsicht",
-    "userDescription": "Erkunde {name}s simulierte KI-Weltsicht, die Position auf der Karte und die quellenbasierten Antworten. Eine experimentelle Interpretation, nicht die eigene Einschätzung dieser Person.",
+    "userTitle": "{name} über KI: simulierte Weltsicht und P(doom)",
+    "userDescription": "Was denkt {name} über KI? Sieh dir eine simulierte Weltsicht an, die auf öffentlichen Beiträgen dieser Person basiert: wo sie zwischen Doom und Bloom liegt, ein grobes P(doom) und die Antworten dahinter. Es ist nicht die eigene Einschätzung dieser Person.",
     "userImageAlt": "{name}s simulierte KI-Weltsicht auf der Karte zu Doom–Bloom und dem Ausmaß der Transformation",
+    "personDescription": "Eine Simulation der KI-Weltsicht von {name}, die auf öffentlichen Beiträgen dieser Person basiert. Sie ist eine experimentelle Interpretation, nicht die eigene Einschätzung dieser Person oder eine Empfehlung.",
     "publicTitle": "{name}s KI-Weltsicht",
     "sharedTitle": "Eine geteilte KI-Weltsicht",
     "publicDescription": "Erkunde diese KI-Weltsicht: Erwartungen, Risiken, ähnlichste Perspektiven und die Antworten, auf denen die Einschätzung beruht.",
     "publicImageAlt": "Einschätzung der KI-Weltsicht mit Interpretationsbereichen",
     "asOf": "Eine Karte der KI-Weltsicht dieser Person mit Stand vom {date}.",
     "profile": "Profil"
+  },
+  "PdoomHub": {
+    "tableTitle": "P(doom) nach Vordenker",
+    "tableDescription": "Wähle eine Spaltenüberschrift zum Sortieren aus",
+    "name": "Vordenker",
+    "stated": "Öffentlich geäußertes P(doom)",
+    "inferred": "Aus simulierten Antworten abgeleitet",
+    "sort": "Nach {column} sortieren",
+    "none": "Keine Angabe dokumentiert",
+    "notEstimated": "Nicht geschätzt",
+    "range": "Plausibler Bereich {range}",
+    "source": "Quelle",
+    "asOf": "Stand {date}: {count, plural, one {# simulierter Vordenker} other {# simulierte Vordenker}}, {stated, plural, one {# mit einem öffentlich geäußerten P(doom)} other {# mit einem öffentlich geäußerten P(doom)}}",
+    "note": "Öffentlich geäußerte Zahlen stammen aus den eigenen Worten der jeweiligen Person und sind mit der Quelle verlinkt. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind diese Zahlen nicht direkt vergleichbar. Abgeleitete Zahlen stammen aus einem simulierten Interview, das auf den öffentlichen Beiträgen der jeweiligen Person beruht: entweder eine von der Simulation angegebene Zahl oder eine grobe Interpretation ihrer Antworten. Sie sind nicht die eigene Einschätzung der Person, und eine Simulation ist keine Empfehlung.",
+    "ctaTitle": "Wie hoch ist dein P(doom)?",
+    "ctaDescription": "Beantworte in etwa 3 Minuten ein paar Fragen und sieh dir dann deine Weltsicht und ein grobes P(doom) neben denen der Vordenker an",
+    "guide": "Lies den Leitfaden zur Bedeutung von P(doom)"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Verständlich formulierte Beiträge über P(doom), KI-Weltsichten und darüber, wie Menschen über die Zukunft der KI denken",
+    "readingTime": "{minutes, plural, one {# Min. Lesezeit} other {# Min. Lesezeit}}",
+    "updated": "Aktualisiert am {date}",
+    "by": "Von {author}",
+    "englishOnly": "Beiträge sind auf Englisch verfasst",
+    "rss": "RSS-Feed"
   },
   "Cards": {
     "civilizational": "Zivilisatorischer Wandel",

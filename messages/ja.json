@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "AIに対する世界観をマッピングし、他の人と比較できます。著名人がAIによって私たちの未来がどう変わると考えているかを探り、自分がどの位置にいるかを確認しましょう。"
+      "title": "あなたのP(doom)は？ AIに対する世界観をマッピング",
+      "description": "約3分で無料のAI世界観テストを受けられます。DoomとBloomの間のどこに位置するかを確認し、おおよそのP(doom)を知り、AIのオピニオンリーダーと自分の見解を比較できます。"
     },
     "about": {
       "title": "概要",
@@ -18,6 +18,14 @@
     "users": {
       "title": "シミュレーションされたユーザー",
       "description": "注目のマップに掲載されていないユーザーも含め、情報源に基づいてシミュレーションされたAIに対する世界観を検索し、探ることができます。"
+    },
+    "pdoom": {
+      "title": "P(doom)とは？ AIのオピニオンリーダーによる推定",
+      "description": "P(doom)とは、AIが人類に破局をもたらす確率として、ある人が示す値です。その意味を理解し、AIのオピニオンリーダーが公に表明した推定値と、シミュレーションによる推定値を比較できます。"
+    },
+    "blog": {
+      "title": "ブログ",
+      "description": "P(doom)、AIリスク、人々がAIの未来をどう考えるかについて、Doom or Bloomが平易な言葉で解説します。"
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "概要",
     "privacy": "プライバシー",
+    "pdoom": "P(doom)",
+    "blog": "ブログ",
     "language": "言語"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "概要",
     "privacy": "プライバシー",
     "users": "シミュレーションされたユーザー",
+    "pdoom": "P(doom)",
+    "blog": "ブログ",
     "assessments": "自分の評価",
     "newAssessment": "新しい評価",
     "assessment": "評価",
@@ -700,18 +712,47 @@
     "sourcesTitle": "出典",
     "sourcesUpdated": "このシミュレーション対象者の現在の概要に関する出典です。",
     "sourcesDefault": "このシミュレーション対象者の根拠として使用された記事、インタビュー、著作です。",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "similarTitle": "似ている世界観",
+    "similarDescription": "シミュレーションされた世界観が{name}の世界観に最も近いオピニオンリーダー"
   },
   "Profiles": {
-    "userTitle": "{name}のAI世界観",
-    "userDescription": "{name}のシミュレーションされたAI世界観、マップ上の位置、出典に基づく回答をご覧ください。本人自身による評価ではなく、実験的な解釈です。",
+    "userTitle": "{name}のAI観：シミュレーションされた世界観とP(doom)",
+    "userDescription": "{name}はAIについてどう考えているのでしょうか？ 公開されている文章から構築した、シミュレーションされた世界観をご覧ください。DoomとBloomの間のどこに位置するか、おおよそのP(doom)、その根拠となる回答を確認できます。本人による評価ではありません。",
     "userImageAlt": "Doom–Bloomと変革の規模のマップ上に示された、{name}のシミュレーションされたAI世界観",
+    "personDescription": "公開されている文章から構築した、{name}のAIに対する世界観のシミュレーションです。これは実験的な解釈であり、本人による評価でも、支持を示すものでもありません。",
     "publicTitle": "{name}のAI世界観",
     "sharedTitle": "共有されたAI世界観",
     "publicDescription": "このAI世界観について、期待、リスク、最も近い見解、評価の根拠となった回答をご覧ください。",
     "publicImageAlt": "解釈範囲を含むAI世界観の評価",
     "asOf": "{date}時点の本人のAI世界観を示すマップです。",
     "profile": "プロフィール"
+  },
+  "PdoomHub": {
+    "tableTitle": "オピニオンリーダー別のP(doom)",
+    "tableDescription": "列の見出しを選択して並べ替え",
+    "name": "オピニオンリーダー",
+    "stated": "公に表明されたP(doom)",
+    "inferred": "シミュレーションされた回答からの推定",
+    "sort": "{column}で並べ替え",
+    "none": "記録なし",
+    "notEstimated": "未推定",
+    "range": "妥当と考えられる範囲：{range}",
+    "source": "出典",
+    "asOf": "{date}時点：{count, plural, one {シミュレーションされたオピニオンリーダー#人} other {シミュレーションされたオピニオンリーダー#人}}、{stated, plural, one {公にP(doom)を表明している人#人} other {公にP(doom)を表明している人#人}}",
+    "note": "公に表明された数値は、出典へのリンクを付けた本人の言葉です。結果や期間の定義は人によって異なるため、これらの数値を直接比較することはできません。推定値は、各人が公開した文章を基に構築したシミュレーション面接から得たものです。シミュレーションが示した数値、またはその回答から大まかに読み取った数値です。本人による推定値ではなく、シミュレーションは支持を示すものでもありません。",
+    "ctaTitle": "あなたのP(doom)は？",
+    "ctaDescription": "約3分でいくつかの質問に答えると、自分の世界観とおおよそのP(doom)をオピニオンリーダーのものと並べて確認できます",
+    "guide": "P(doom)の意味についてのガイドを読む"
+  },
+  "Blog": {
+    "title": "ブログ",
+    "intro": "P(doom)、AIに対する世界観、人々がAIの未来をどう考えるかについての平易な解説",
+    "readingTime": "{minutes, plural, one {読了時間#分} other {読了時間#分}}",
+    "updated": "{date}更新",
+    "by": "著者：{author}",
+    "englishOnly": "記事は英語で書かれています",
+    "rss": "RSSフィード"
   },
   "Cards": {
     "civilizational": "文明規模の変化",

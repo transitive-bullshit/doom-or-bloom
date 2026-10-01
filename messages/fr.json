@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "Cartographiez votre vision du monde sur l’IA et comparez-la à celle des autres. Découvrez comment des personnalités publiques pensent que l’IA changera notre avenir, puis découvrez où vous vous situez."
+      "title": "Quel est votre P(doom) ? Cartographiez votre vision du monde concernant l’IA",
+      "description": "Faites gratuitement un test de vision du monde concernant l’IA en environ 3 minutes. Découvrez où vous vous situez entre doom et bloom, obtenez un P(doom) approximatif et comparez votre point de vue à celui de leaders d’opinion sur l’IA."
     },
     "about": {
       "title": "À propos",
@@ -18,6 +18,14 @@
     "users": {
       "title": "Utilisateurs simulés",
       "description": "Explorez et recherchez des visions du monde simulées sur l’IA, fondées sur des sources, y compris celles d’utilisateurs ne figurant pas sur la carte principale."
+    },
+    "pdoom": {
+      "title": "Qu’est-ce que le P(doom) ? Estimations de leaders d’opinion sur l’IA",
+      "description": "Le P(doom) est la probabilité qu’une personne attribue au fait que l’IA conduise à une catastrophe pour l’humanité. Découvrez ce qu’il signifie, puis comparez les estimations déclarées publiquement et simulées de leaders d’opinion sur l’IA."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Des textes en langage clair de Doom or Bloom sur le P(doom), les risques liés à l’IA et la manière dont les gens envisagent l’avenir de l’IA."
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "À propos",
     "privacy": "Confidentialité",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "language": "Langue"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "À propos",
     "privacy": "Confidentialité",
     "users": "Utilisateurs simulés",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "assessments": "Mes évaluations",
     "newAssessment": "Nouvelle évaluation",
     "assessment": "Évaluation",
@@ -700,18 +712,47 @@
     "sourcesTitle": "Sources",
     "sourcesUpdated": "Sources de la synthèse actuelle de cet utilisateur simulé.",
     "sourcesDefault": "Articles, entretiens et écrits utilisés pour ancrer cet utilisateur simulé dans les faits.",
-    "profile": "Profil"
+    "profile": "Profil",
+    "similarTitle": "Visions du monde similaires",
+    "similarDescription": "Leaders d’opinion dont les visions du monde simulées sont les plus proches de celle de {name}"
   },
   "Profiles": {
-    "userTitle": "Vision du monde de {name} sur l’IA",
-    "userDescription": "Explorez la vision du monde simulée de {name} sur l’IA, sa position sur la carte et ses réponses fondées sur des sources. Il s’agit d’une interprétation expérimentale, et non de sa propre évaluation.",
+    "userTitle": "{name} à propos de l’IA : vision du monde simulée et P(doom)",
+    "userDescription": "Que pense {name} de l’IA ? Découvrez une vision du monde simulée à partir de ses écrits publics : où elle se situe entre doom et bloom, un P(doom) approximatif et les réponses qui la sous-tendent. Il ne s’agit pas de sa propre évaluation.",
     "userImageAlt": "Vision du monde simulée de {name} sur l’IA sur la carte Doom–Bloom et de l’ampleur de la transformation",
+    "personDescription": "Une simulation de la vision du monde de {name} concernant l’IA, élaborée à partir de ses écrits publics. Il s’agit d’une interprétation expérimentale, et non de sa propre évaluation ni d’une approbation.",
     "publicTitle": "Vision du monde de {name} sur l’IA",
     "sharedTitle": "Une vision du monde partagée sur l’IA",
     "publicDescription": "Explorez cette vision du monde sur l’IA : attentes, risques, perspectives les plus proches et réponses à l’origine de l’évaluation.",
     "publicImageAlt": "Évaluation d’une vision du monde sur l’IA avec plages d’interprétation",
     "asOf": "Une carte de sa vision du monde sur l’IA en date du {date}.",
     "profile": "Profil"
+  },
+  "PdoomHub": {
+    "tableTitle": "P(doom) par leader d’opinion",
+    "tableDescription": "Sélectionnez l’en-tête d’une colonne pour trier",
+    "name": "Leader d’opinion",
+    "stated": "P(doom) déclaré publiquement",
+    "inferred": "Déduit des réponses simulées",
+    "sort": "Trier par {column}",
+    "none": "Aucun chiffre recensé",
+    "notEstimated": "Non estimé",
+    "range": "Plage plausible {range}",
+    "source": "Source",
+    "asOf": "Au {date} : {count, plural, one {# leader d’opinion simulé} other {# leaders d’opinion simulés}}, {stated, plural, one {# avec un P(doom) déclaré publiquement} other {# avec un P(doom) déclaré publiquement}}",
+    "note": "Les chiffres déclarés publiquement reprennent les propres propos de la personne, avec un lien vers la source. Les personnes définissent différemment le résultat et l’horizon temporel, de sorte que ces chiffres ne sont pas directement comparables. Les chiffres déduits proviennent d’un entretien simulé élaboré à partir des écrits publics de chaque personne : un chiffre fourni par la simulation ou une lecture approximative de ses réponses. Il ne s’agit pas de la propre estimation de la personne, et une simulation ne constitue pas une approbation.",
+    "ctaTitle": "Quel est votre P(doom) ?",
+    "ctaDescription": "Répondez à quelques questions en environ 3 minutes, puis découvrez votre vision du monde et un P(doom) approximatif à côté des leurs",
+    "guide": "Lire le guide expliquant ce que signifie le P(doom)"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Des notes en langage clair sur le P(doom), les visions du monde concernant l’IA et la manière dont les gens envisagent l’avenir de l’IA",
+    "readingTime": "{minutes, plural, one {# min de lecture} other {# min de lecture}}",
+    "updated": "Mis à jour le {date}",
+    "by": "Par {author}",
+    "englishOnly": "Les articles sont rédigés en anglais",
+    "rss": "Flux RSS"
   },
   "Cards": {
     "civilizational": "Changement civilisationnel",

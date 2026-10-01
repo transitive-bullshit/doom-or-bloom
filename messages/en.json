@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "Map your AI worldview, and compare it with others. Explore how public figures think AI will change our future, then discover where you land."
+      "title": "What’s your P(doom)? Map your AI worldview",
+      "description": "Take a free AI worldview test in about 3 minutes. See where you land between doom and bloom, get a rough P(doom), and compare your views with AI thought leaders."
     },
     "about": {
       "title": "About",
@@ -18,6 +18,14 @@
     "users": {
       "title": "Simulated users",
       "description": "Explore and search source-grounded simulated AI worldviews, including users beyond the featured map."
+    },
+    "pdoom": {
+      "title": "What is P(doom)? Estimates from AI thought leaders",
+      "description": "P(doom) is the probability someone gives that AI leads to catastrophe for humanity. Learn what it means, then compare publicly stated and simulated estimates from AI thought leaders."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Plain-language writing from Doom or Bloom on P(doom), AI risk, and how people think about the future of AI."
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "About",
     "privacy": "Privacy",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "language": "Language"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "About",
     "privacy": "Privacy",
     "users": "Simulated users",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "assessments": "My assessments",
     "newAssessment": "New assessment",
     "assessment": "Assessment",
@@ -700,18 +712,47 @@
     "sourcesTitle": "Sources",
     "sourcesUpdated": "Sources for this simulated user’s current brief.",
     "sourcesDefault": "Articles, interviews, and writings used to ground this simulated user.",
-    "profile": "Profile"
+    "profile": "Profile",
+    "similarTitle": "Similar worldviews",
+    "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s"
   },
   "Profiles": {
-    "userTitle": "{name}’s AI worldview",
-    "userDescription": "Explore {name}’s simulated AI worldview, map placement, and source-grounded answers. An experimental interpretation, not their own assessment.",
+    "userTitle": "{name} on AI: simulated worldview and P(doom)",
+    "userDescription": "What does {name} think about AI? See a simulated worldview built from their public writing: where it lands between doom and bloom, a rough P(doom), and the answers behind it. Not their own assessment.",
     "userImageAlt": "{name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map",
+    "personDescription": "A simulation of {name}’s AI worldview, built from their public writing. It is an experimental interpretation, not their own assessment or an endorsement.",
     "publicTitle": "{name}’s AI worldview",
     "sharedTitle": "A shared AI worldview",
     "publicDescription": "Explore this AI worldview: expectations, risks, closest perspectives, and the answers behind the assessment.",
     "publicImageAlt": "AI worldview assessment with interpretation ranges",
     "asOf": "A map of their AI worldview as of {date}.",
     "profile": "Profile"
+  },
+  "PdoomHub": {
+    "tableTitle": "P(doom) by thought leader",
+    "tableDescription": "Select a column heading to sort",
+    "name": "Thought leader",
+    "stated": "Publicly stated P(doom)",
+    "inferred": "Inferred from simulated answers",
+    "sort": "Sort by {column}",
+    "none": "None on record",
+    "notEstimated": "Not estimated",
+    "range": "Plausible range {range}",
+    "source": "Source",
+    "asOf": "As of {date}: {count, plural, one {# simulated thought leader} other {# simulated thought leaders}}, {stated, plural, one {# with a publicly stated P(doom)} other {# with a publicly stated P(doom)}}",
+    "note": "Publicly stated numbers are the person’s own words, with a link to the source. People define the outcome and time frame differently, so these numbers are not directly comparable. Inferred numbers come from a simulated interview built from each person’s public writing: a figure the simulation gave, or a rough reading of its answers. They are not the person’s own estimate, and a simulation is not an endorsement.",
+    "ctaTitle": "What’s your P(doom)?",
+    "ctaDescription": "Answer a few questions in about 3 minutes, then see your worldview and a rough P(doom) beside theirs",
+    "guide": "Read the guide to what P(doom) means"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Plain-language notes on P(doom), AI worldviews, and how people think about the future of AI",
+    "readingTime": "{minutes, plural, one {# min read} other {# min read}}",
+    "updated": "Updated {date}",
+    "by": "By {author}",
+    "englishOnly": "Posts are written in English",
+    "rss": "RSS feed"
   },
   "Cards": {
     "civilizational": "Civilizational change",

@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "Petakan pandangan dunia AI Anda, dan bandingkan dengan pandangan orang lain. Jelajahi bagaimana tokoh publik memandang AI akan mengubah masa depan kita, lalu temukan posisi Anda."
+      "title": "Berapa P(doom) Anda? Petakan pandangan dunia AI Anda",
+      "description": "Ikuti tes pandangan dunia AI gratis dalam waktu sekitar 3 menit. Lihat posisi Anda di antara Doom dan Bloom, dapatkan perkiraan kasar P(doom), dan bandingkan pandangan Anda dengan para pemimpin opini AI."
     },
     "about": {
       "title": "Tentang",
@@ -18,6 +18,14 @@
     "users": {
       "title": "Pengguna simulasi",
       "description": "Jelajahi dan cari pandangan dunia AI simulasi yang berlandaskan sumber, termasuk pengguna di luar peta unggulan."
+    },
+    "pdoom": {
+      "title": "Apa itu P(doom)? Estimasi dari para pemimpin opini AI",
+      "description": "P(doom) adalah probabilitas yang diberikan seseorang bahwa AI akan menyebabkan katastrofe bagi umat manusia. Pelajari artinya, lalu bandingkan estimasi yang dinyatakan secara publik dan estimasi simulasi dari para pemimpin opini AI."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Tulisan dengan bahasa sederhana dari Doom or Bloom tentang P(doom), risiko AI, dan cara orang memikirkan masa depan AI."
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "Tentang",
     "privacy": "Privasi",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "language": "Bahasa"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "Tentang",
     "privacy": "Privasi",
     "users": "Pengguna simulasi",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "assessments": "Penilaian saya",
     "newAssessment": "Penilaian baru",
     "assessment": "Penilaian",
@@ -700,18 +712,47 @@
     "sourcesTitle": "Sumber",
     "sourcesUpdated": "Sumber untuk ringkasan terkini pengguna simulasi ini.",
     "sourcesDefault": "Artikel, wawancara, dan tulisan yang digunakan sebagai landasan bagi pengguna simulasi ini.",
-    "profile": "Profil"
+    "profile": "Profil",
+    "similarTitle": "Pandangan dunia serupa",
+    "similarDescription": "Pemimpin opini dengan pandangan dunia simulasi yang paling mendekati pandangan {name}"
   },
   "Profiles": {
-    "userTitle": "Pandangan dunia AI {name}",
-    "userDescription": "Jelajahi pandangan dunia AI simulasi {name}, penempatan pada peta, dan jawaban yang berlandaskan sumber. Ini adalah interpretasi eksperimental, bukan penilaian mereka sendiri.",
+    "userTitle": "Pandangan {name} tentang AI: pandangan dunia simulasi dan P(doom)",
+    "userDescription": "Apa pendapat {name} tentang AI? Lihat pandangan dunia simulasi yang dibuat berdasarkan tulisan publik mereka: posisinya di antara Doom dan Bloom, perkiraan kasar P(doom), serta jawaban yang mendasarinya. Ini bukan penilaian mereka sendiri.",
     "userImageAlt": "Pandangan dunia AI simulasi {name} pada peta Doom–Bloom dan skala transformasi",
+    "personDescription": "Simulasi pandangan dunia AI {name}, yang dibuat berdasarkan tulisan publik mereka. Ini adalah interpretasi eksperimental, bukan penilaian mereka sendiri ataupun bentuk dukungan.",
     "publicTitle": "Pandangan dunia AI {name}",
     "sharedTitle": "Pandangan dunia AI yang dibagikan",
     "publicDescription": "Jelajahi pandangan dunia AI ini: ekspektasi, risiko, perspektif terdekat, dan jawaban yang mendasari penilaian.",
     "publicImageAlt": "Penilaian pandangan dunia AI dengan rentang interpretasi",
     "asOf": "Peta pandangan dunia AI mereka per {date}.",
     "profile": "Profil"
+  },
+  "PdoomHub": {
+    "tableTitle": "P(doom) menurut pemimpin opini",
+    "tableDescription": "Pilih judul kolom untuk mengurutkan",
+    "name": "Pemimpin opini",
+    "stated": "P(doom) yang dinyatakan secara publik",
+    "inferred": "Disimpulkan dari jawaban simulasi",
+    "sort": "Urutkan berdasarkan {column}",
+    "none": "Tidak ada dalam catatan",
+    "notEstimated": "Tidak diestimasi",
+    "range": "Rentang yang masuk akal {range}",
+    "source": "Sumber",
+    "asOf": "Per {date}: {count, plural, one {# pemimpin opini simulasi} other {# pemimpin opini simulasi}}, {stated, plural, one {# dengan P(doom) yang dinyatakan secara publik} other {# dengan P(doom) yang dinyatakan secara publik}}",
+    "note": "Angka yang dinyatakan secara publik berasal dari kata-kata orang tersebut sendiri, disertai tautan ke sumbernya. Setiap orang mendefinisikan hasil dan kerangka waktunya secara berbeda, sehingga angka-angka ini tidak dapat dibandingkan secara langsung. Angka yang disimpulkan berasal dari wawancara simulasi yang dibuat berdasarkan tulisan publik setiap orang: angka yang diberikan oleh simulasi, atau pembacaan kasar atas jawabannya. Angka tersebut bukan estimasi orang itu sendiri, dan simulasi bukanlah bentuk dukungan.",
+    "ctaTitle": "Berapa P(doom) Anda?",
+    "ctaDescription": "Jawab beberapa pertanyaan dalam waktu sekitar 3 menit, lalu lihat pandangan dunia Anda dan perkiraan kasar P(doom) di samping pandangan dan perkiraan mereka",
+    "guide": "Baca panduan tentang arti P(doom)"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Catatan dengan bahasa sederhana tentang P(doom), pandangan dunia AI, dan cara orang memikirkan masa depan AI",
+    "readingTime": "{minutes, plural, one {Waktu baca # menit} other {Waktu baca # menit}}",
+    "updated": "Diperbarui {date}",
+    "by": "Oleh {author}",
+    "englishOnly": "Tulisan ditulis dalam bahasa Inggris",
+    "rss": "Umpan RSS"
   },
   "Cards": {
     "civilizational": "Perubahan peradaban",

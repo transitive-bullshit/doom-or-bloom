@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "描绘你的 AI 世界观，并将其与其他人的观点进行比较。探索公众人物认为 AI 将如何改变我们的未来，然后发现你的立场在哪里。"
+      "title": "你的 P(doom) 是多少？描绘你的 AI 世界观",
+      "description": "参加一个免费的 AI 世界观测试，大约需要3分钟。看看你的立场位于 Doom 和 Bloom 之间的何处，获得一个粗略的 P(doom)，并将你的观点与 AI 领域的意见领袖进行比较。"
     },
     "about": {
       "title": "关于",
@@ -18,6 +18,14 @@
     "users": {
       "title": "模拟用户",
       "description": "探索并搜索基于来源模拟的 AI 世界观，包括精选地图之外的用户。"
+    },
+    "pdoom": {
+      "title": "什么是 P(doom)？AI 领域意见领袖的估计",
+      "description": "P(doom) 是某人认为 AI 会给人类带来灾难的概率。了解它的含义，然后比较 AI 领域意见领袖公开表述的估计和模拟估计。"
+    },
+    "blog": {
+      "title": "博客",
+      "description": "Doom or Bloom 关于 P(doom)、AI 风险以及人们如何看待 AI 未来的通俗文章。"
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "关于",
     "privacy": "隐私",
+    "pdoom": "P(doom)",
+    "blog": "博客",
     "language": "语言"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "关于",
     "privacy": "隐私",
     "users": "模拟用户",
+    "pdoom": "P(doom)",
+    "blog": "博客",
     "assessments": "我的评估",
     "newAssessment": "新评估",
     "assessment": "评估",
@@ -700,18 +712,47 @@
     "sourcesTitle": "来源",
     "sourcesUpdated": "此模拟用户当前简介的来源。",
     "sourcesDefault": "用于为此模拟用户提供事实依据的文章、访谈和著述。",
-    "profile": "个人资料"
+    "profile": "个人资料",
+    "similarTitle": "相似的世界观",
+    "similarDescription": "模拟世界观与 {name} 最接近的意见领袖"
   },
   "Profiles": {
-    "userTitle": "{name} 的 AI 世界观",
-    "userDescription": "探索 {name} 的模拟 AI 世界观、地图位置和基于来源的回答。这是一种实验性解读，并非其本人的评估。",
+    "userTitle": "{name} 对 AI 的看法：模拟世界观和 P(doom)",
+    "userDescription": "{name} 如何看待 AI？查看根据其公开文章构建的模拟世界观：它在 Doom 和 Bloom 之间的位置、粗略的 P(doom)，以及得出这些结果的回答。这不是其本人的评估。",
     "userImageAlt": "{name} 的模拟 AI 世界观在 Doom–Bloom 与变革规模地图上的位置",
+    "personDescription": "根据 {name} 的公开文章构建的 AI 世界观模拟。这是一种实验性解读，并非其本人的评估，也不代表其认可。",
     "publicTitle": "{name} 的 AI 世界观",
     "sharedTitle": "分享的 AI 世界观",
     "publicDescription": "探索这一 AI 世界观：预期、风险、最接近的观点，以及评估所依据的回答。",
     "publicImageAlt": "带有解读范围的 AI 世界观评估",
     "asOf": "截至 {date} 的 AI 世界观地图。",
     "profile": "个人资料"
+  },
+  "PdoomHub": {
+    "tableTitle": "各意见领袖的 P(doom)",
+    "tableDescription": "选择列标题进行排序",
+    "name": "意见领袖",
+    "stated": "公开表述的 P(doom)",
+    "inferred": "根据模拟回答推断",
+    "sort": "按{column}排序",
+    "none": "无公开记录",
+    "notEstimated": "未估计",
+    "range": "可能的范围：{range}",
+    "source": "来源",
+    "asOf": "截至 {date}：{count, plural, other {# 位模拟意见领袖}}，{stated, plural, other {# 位公开表述过 P(doom)}}",
+    "note": "公开表述的数字来自本人原话，并附有来源链接。不同的人对结果和时间范围的定义不同，因此这些数字不能直接比较。推断数字来自根据每个人的公开文章构建的模拟访谈：可能是模拟给出的数字，也可能是对其回答的粗略解读。它们并非本人给出的估计，模拟也不代表认可。",
+    "ctaTitle": "你的 P(doom) 是多少？",
+    "ctaDescription": "用大约3分钟回答几个问题，然后将你的世界观和粗略的 P(doom) 与他们的放在一起查看",
+    "guide": "阅读 P(doom) 含义指南"
+  },
+  "Blog": {
+    "title": "博客",
+    "intro": "关于 P(doom)、AI 世界观以及人们如何看待 AI 未来的通俗说明",
+    "readingTime": "{minutes, plural, other {阅读需 # 分钟}}",
+    "updated": "更新于 {date}",
+    "by": "作者：{author}",
+    "englishOnly": "文章以英文撰写",
+    "rss": "RSS 订阅源"
   },
   "Cards": {
     "civilizational": "文明级变革",
