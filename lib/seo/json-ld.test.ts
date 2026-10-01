@@ -137,7 +137,7 @@ describe('structured data', () => {
         name: z.literal(
           'Geoffrey Hinton on AI: simulated worldview and P(doom)'
         ),
-        description: z.string().includes('Not their own assessment'),
+        description: z.string().includes('not their own assessment'),
         mainEntity: ref
       })
       .parse(node(document, 'ProfilePage'))

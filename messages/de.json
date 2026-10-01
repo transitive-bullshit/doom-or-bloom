@@ -5,7 +5,7 @@
   "Pages": {
     "home": {
       "title": "Wie hoch ist dein P(doom)? Bilde deine KI-Weltsicht ab",
-      "description": "Mach in etwa 3 Minuten einen kostenlosen Test zu deiner KI-Weltsicht. Sieh, wo du zwischen Doom und Bloom stehst, erhalte ein grobes P(doom) und vergleiche deine Ansichten mit denen bekannter KI-Vordenker."
+      "description": "Mach in etwa 3 Minuten einen kostenlosen Test zu deiner KI-Weltsicht. Finde heraus, wo du zwischen doom und bloom stehst, erhalte eine grobe P(doom) und vergleiche dich mit KI-Meinungsführern."
     },
     "about": {
       "title": "Über Doom or Bloom",
@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "Was ist P(doom)? Einschätzungen von KI-Vordenkern",
-      "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür angibt, dass KI zu einer Katastrophe für die Menschheit führt. Erfahre, was das bedeutet, und vergleiche dann öffentlich geäußerte und simulierte Einschätzungen von KI-Vordenkern."
+      "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür ansetzt, dass KI zu einer Katastrophe für die Menschheit führt. Erfahre, was sie bedeutet, und sieh dir geäußerte und simulierte Schätzungen von KI-Meinungsführern an."
     },
     "blog": {
       "title": "Blog",
@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} über KI: simulierte Weltsicht und P(doom)",
-    "userDescription": "Was denkt {name} über KI? Sieh dir eine simulierte Weltsicht an, die auf öffentlichen Beiträgen dieser Person basiert: wo sie zwischen Doom und Bloom liegt, ein grobes P(doom) und die Antworten dahinter. Es ist nicht die eigene Einschätzung dieser Person.",
+    "userDescription": "Was denkt {name} über KI? Eine Simulation auf Grundlage öffentlicher Texte, nicht die eigene Einschätzung: wo sie zwischen doom und bloom liegt und eine grobe P(doom).",
     "userImageAlt": "{name}s simulierte KI-Weltsicht auf der Karte zu Doom–Bloom und dem Ausmaß der Transformation",
     "personDescription": "Eine Simulation der KI-Weltsicht von {name}, die auf öffentlichen Beiträgen dieser Person basiert. Sie ist eine experimentelle Interpretation, nicht die eigene Einschätzung dieser Person oder eine Empfehlung.",
     "publicTitle": "{name}s KI-Weltsicht",

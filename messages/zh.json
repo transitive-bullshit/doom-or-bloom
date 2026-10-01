@@ -5,7 +5,7 @@
   "Pages": {
     "home": {
       "title": "你的 P(doom) 是多少？描绘你的 AI 世界观",
-      "description": "参加一个免费的 AI 世界观测试，大约需要3分钟。看看你的立场位于 Doom 和 Bloom 之间的何处，获得一个粗略的 P(doom)，并将你的观点与 AI 领域的意见领袖进行比较。"
+      "description": "参加免费的AI世界观测试，用时大约3分钟。看看你在Doom与Bloom之间的立场，获得一个粗略的P(doom)，并与AI意见领袖进行比较。"
     },
     "about": {
       "title": "关于",
@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "什么是 P(doom)？AI 领域意见领袖的估计",
-      "description": "P(doom) 是某人认为 AI 会给人类带来灾难的概率。了解它的含义，然后比较 AI 领域意见领袖公开表述的估计和模拟估计。"
+      "description": "P(doom)是某人认为AI会给人类带来灾难的概率。了解它的含义，以及AI意见领袖本人陈述和模拟得出的估计。"
     },
     "blog": {
       "title": "博客",
@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} 对 AI 的看法：模拟世界观和 P(doom)",
-    "userDescription": "{name} 如何看待 AI？查看根据其公开文章构建的模拟世界观：它在 Doom 和 Bloom 之间的位置、粗略的 P(doom)，以及得出这些结果的回答。这不是其本人的评估。",
+    "userDescription": "{name}如何看待AI？这是根据公开文字所做的模拟，并非其本人的评估：看看其在Doom与Bloom之间的立场，以及一个粗略的P(doom)。",
     "userImageAlt": "{name} 的模拟 AI 世界观在 Doom–Bloom 与变革规模地图上的位置",
     "personDescription": "根据 {name} 的公开文章构建的 AI 世界观模拟。这是一种实验性解读，并非其本人的评估，也不代表其认可。",
     "publicTitle": "{name} 的 AI 世界观",

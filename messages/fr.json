@@ -5,7 +5,7 @@
   "Pages": {
     "home": {
       "title": "Quel est votre P(doom) ? Cartographiez votre vision du monde concernant l’IA",
-      "description": "Faites gratuitement un test de vision du monde concernant l’IA en environ 3 minutes. Découvrez où vous vous situez entre doom et bloom, obtenez un P(doom) approximatif et comparez votre point de vue à celui de leaders d’opinion sur l’IA."
+      "description": "Faites gratuitement un test de vision du monde concernant l’IA en environ 3 minutes. Découvrez où vous vous situez entre doom et bloom, obtenez une estimation approximative de P(doom) et comparez-vous à des leaders d’opinion sur l’IA."
     },
     "about": {
       "title": "À propos",
@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "Qu’est-ce que le P(doom) ? Estimations de leaders d’opinion sur l’IA",
-      "description": "Le P(doom) est la probabilité qu’une personne attribue au fait que l’IA conduise à une catastrophe pour l’humanité. Découvrez ce qu’il signifie, puis comparez les estimations déclarées publiquement et simulées de leaders d’opinion sur l’IA."
+      "description": "P(doom) est la probabilité qu’une personne attribue au fait que l’IA conduise à une catastrophe pour l’humanité. Découvrez ce que cela signifie, ainsi que les estimations déclarées et simulées de leaders d’opinion sur l’IA."
     },
     "blog": {
       "title": "Blog",
@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} à propos de l’IA : vision du monde simulée et P(doom)",
-    "userDescription": "Que pense {name} de l’IA ? Découvrez une vision du monde simulée à partir de ses écrits publics : où elle se situe entre doom et bloom, un P(doom) approximatif et les réponses qui la sous-tendent. Il ne s’agit pas de sa propre évaluation.",
+    "userDescription": "Que pense {name} de l’IA ? Une simulation fondée sur ses écrits publics, et non sa propre évaluation : où elle se situe entre doom et bloom, ainsi qu’une estimation approximative de P(doom).",
     "userImageAlt": "Vision du monde simulée de {name} sur l’IA sur la carte Doom–Bloom et de l’ampleur de la transformation",
     "personDescription": "Une simulation de la vision du monde de {name} concernant l’IA, élaborée à partir de ses écrits publics. Il s’agit d’une interprétation expérimentale, et non de sa propre évaluation ni d’une approbation.",
     "publicTitle": "Vision du monde de {name} sur l’IA",

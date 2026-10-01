@@ -5,7 +5,7 @@
   "Pages": {
     "home": {
       "title": "Qual é o seu P(doom)? Mapeie sua visão de mundo sobre a IA",
-      "description": "Faça um teste gratuito de visão de mundo sobre a IA em cerca de 3 minutos. Veja onde você se situa entre Doom e Bloom, obtenha um P(doom) aproximado e compare suas opiniões com as de líderes de opinião sobre IA."
+      "description": "Faça um teste gratuito de visão de mundo sobre a IA em cerca de 3 minutos. Veja onde você se situa entre Doom e Bloom, obtenha uma estimativa aproximada de P(doom) e compare com líderes de opinião sobre a IA."
     },
     "about": {
       "title": "Sobre",
@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "O que é P(doom)? Estimativas de líderes de opinião sobre IA",
-      "description": "P(doom) é a probabilidade que alguém atribui à possibilidade de a IA levar a humanidade a uma catástrofe. Saiba o que isso significa e compare estimativas declaradas publicamente e simuladas de líderes de opinião sobre IA."
+      "description": "P(doom) é a chance que alguém atribui à possibilidade de a IA levar a uma catástrofe para a humanidade. Veja o que isso significa, além de estimativas declaradas e simuladas de líderes de opinião sobre a IA."
     },
     "blog": {
       "title": "Blog",
@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} sobre a IA: visão de mundo simulada e P(doom)",
-    "userDescription": "O que {name} pensa sobre a IA? Veja uma visão de mundo simulada construída com base em seus textos públicos: onde ela se situa entre Doom e Bloom, um P(doom) aproximado e as respostas por trás dela. Não é uma avaliação feita pela própria pessoa.",
+    "userDescription": "O que {name} pensa sobre a IA? Uma simulação baseada em textos públicos, não uma avaliação feita por essa pessoa: onde ela se situa entre Doom e Bloom e uma estimativa aproximada de P(doom).",
     "userImageAlt": "Visão de mundo simulada de {name} sobre IA no mapa Doom–Bloom e de escala da transformação",
     "personDescription": "Uma simulação da visão de mundo de {name} sobre a IA, construída com base em seus textos públicos. É uma interpretação experimental, não uma avaliação feita pela própria pessoa nem um endosso.",
     "publicTitle": "Visão de mundo sobre IA de {name}",

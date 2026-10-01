@@ -5,7 +5,7 @@
   "Pages": {
     "home": {
       "title": "What’s your P(doom)? Map your AI worldview",
-      "description": "Take a free AI worldview test in about 3 minutes. See where you land between doom and bloom, get a rough P(doom), and compare your views with AI thought leaders."
+      "description": "Take a free AI worldview test in about 3 minutes. See where you land between doom and bloom, get a rough P(doom), and compare with AI thought leaders."
     },
     "about": {
       "title": "About",
@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "What is P(doom)? Estimates from AI thought leaders",
-      "description": "P(doom) is the probability someone gives that AI leads to catastrophe for humanity. Learn what it means, then compare publicly stated and simulated estimates from AI thought leaders."
+      "description": "P(doom) is the chance someone gives that AI leads to catastrophe for humanity. What it means, plus stated and simulated estimates from AI thought leaders."
     },
     "blog": {
       "title": "Blog",
@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} on AI: simulated worldview and P(doom)",
-    "userDescription": "What does {name} think about AI? See a simulated worldview built from their public writing: where it lands between doom and bloom, a rough P(doom), and the answers behind it. Not their own assessment.",
+    "userDescription": "What does {name} think about AI? A simulation from public writing, not their own assessment: where it lands on doom or bloom, and a rough P(doom).",
     "userImageAlt": "{name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map",
     "personDescription": "A simulation of {name}’s AI worldview, built from their public writing. It is an experimental interpretation, not their own assessment or an endorsement.",
     "publicTitle": "{name}’s AI worldview",

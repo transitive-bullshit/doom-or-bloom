@@ -5,7 +5,7 @@
   "Pages": {
     "home": {
       "title": "¿Cuál es tu P(doom)? Mapea tu visión de la IA",
-      "description": "Haz una prueba gratuita sobre tu visión de la IA en unos 3 minutos. Descubre dónde te ubicas entre Doom y Bloom, obtén una estimación aproximada de P(doom) y compara tus opiniones con las de líderes de opinión sobre IA."
+      "description": "Haz una prueba gratuita sobre tu visión de la IA en unos 3 minutos. Descubre dónde te ubicas entre Doom y Bloom, obtén una P(doom) aproximada y compárala con la de líderes de opinión sobre IA."
     },
     "about": {
       "title": "Acerca de",
@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "¿Qué es P(doom)? Estimaciones de líderes de opinión sobre IA",
-      "description": "P(doom) es la probabilidad que alguien asigna a que la IA provoque una catástrofe para la humanidad. Descubre qué significa y luego compara estimaciones declaradas públicamente y simuladas de líderes de opinión sobre IA."
+      "description": "P(doom) es la probabilidad que alguien asigna a que la IA lleve a una catástrofe para la humanidad. Descubre qué significa y consulta estimaciones declaradas y simuladas de líderes de opinión sobre IA."
     },
     "blog": {
       "title": "Blog",
@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} sobre la IA: visión simulada y P(doom)",
-    "userDescription": "¿Qué piensa {name} sobre la IA? Consulta una visión simulada creada a partir de sus textos públicos: dónde se ubica entre Doom y Bloom, una estimación aproximada de P(doom) y las respuestas en las que se basa. No es su propia evaluación.",
+    "userDescription": "¿Qué piensa {name} sobre la IA? Una simulación basada en textos públicos, no en su propia evaluación: dónde se ubica entre Doom y Bloom y una P(doom) aproximada.",
     "userImageAlt": "La visión simulada de la IA de {name} en el mapa de Doom–Bloom y escala de la transformación",
     "personDescription": "Una simulación de la visión de {name} sobre la IA, creada a partir de sus textos públicos. Es una interpretación experimental, no su propia evaluación ni un respaldo.",
     "publicTitle": "La visión de la IA de {name}",
