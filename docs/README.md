@@ -24,6 +24,8 @@ Look up current versions and limits in [lib/assessment/schema.ts](../lib/assessm
 | --- | --- |
 | Product scope, participant experience, map or result UI | [PRODUCT.md](PRODUCT.md) |
 | Languages, locale URLs, translated copy and content, translation tooling and review, or the language selector | [INTERNATIONALIZATION.md](INTERNATIONALIZATION.md) |
+| Page titles and descriptions, structured data (JSON-LD), canonical URLs, sitemap, robots.txt or llms.txt | [SEO.md](SEO.md) |
+| Blog posts, their data charts and feed, or the P(doom) hub's shared copy | [BLOG.md](BLOG.md) |
 | Domain names or distinctions between identity, evidence, judgments and results | [CONTEXT.md](CONTEXT.md) |
 | Dimensions, routing, recovery, readiness, projections or corrections | [ASSESSMENT.md](ASSESSMENT.md) |
 | Jev inputs, semantic/code boundaries, batching or inference failure handling | [TYPESAFE.md](TYPESAFE.md) |
