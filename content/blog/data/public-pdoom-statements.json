@@ -1,0 +1,73 @@
+{
+  "kind": "ranges",
+  "title": "Publicly stated P(doom) estimates",
+  "source": "Each name links to where the person gave the number. They describe different outcomes and time frames, so the numbers are not directly comparable.",
+  "asOf": "2026-10-01",
+  "provenance": "public-statements",
+  "rows": [
+    {
+      "label": "Andrew McAfee",
+      "token": "≈0%",
+      "low": 0,
+      "high": 0,
+      "note": "Human extinction caused by AI",
+      "href": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/"
+    },
+    {
+      "label": "Gary Marcus",
+      "token": "≈3%",
+      "low": 0.03,
+      "high": 0.03,
+      "note": "Catastrophic danger from misuse, reckless deployment and concentrated power",
+      "href": "https://garymarcus.substack.com/p/why-my-pdoom-has-risen-dramatically"
+    },
+    {
+      "label": "Noah Smith",
+      "token": "≈10%",
+      "low": 0.1,
+      "high": 0.1,
+      "note": "Civilization collapse from AI-enabled bioterrorism",
+      "href": "https://www.noahpinion.blog/p/heres-how-were-all-going-to-die"
+    },
+    {
+      "label": "Geoffrey Hinton",
+      "token": "10–20%",
+      "low": 0.1,
+      "high": 0.2,
+      "note": "Human extinction, within about 30 years",
+      "href": "https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize"
+    },
+    {
+      "label": "Scott Alexander",
+      "token": "20%",
+      "low": 0.2,
+      "high": 0.2,
+      "note": "AI-caused human extinction",
+      "href": "https://www.astralcodexten.com/p/my-ai-opinions"
+    },
+    {
+      "label": "Dario Amodei",
+      "token": "25%",
+      "low": 0.25,
+      "high": 0.25,
+      "note": "A broad AI catastrophe",
+      "href": "https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent"
+    },
+    {
+      "label": "Ryan Greenblatt",
+      "token": "35–40%",
+      "low": 0.35,
+      "high": 0.4,
+      "note": "AI takeover by 2040",
+      "href": "https://www.dwarkesh.com/p/ryan-greenblatt"
+    },
+    {
+      "label": "Max Tegmark",
+      "token": ">90%",
+      "low": 0.9,
+      "high": 1,
+      "note": "Loss of control, if superintelligence is built with no safety regulation",
+      "href": "https://lironshapira.substack.com/p/max-tegmark-vs-dean-ball-debate-ban-superintelligence"
+    }
+  ]
+}

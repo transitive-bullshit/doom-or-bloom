@@ -168,7 +168,7 @@ if (process.argv.includes('--check')) {
     )
     const ogImage = new URL(page.meta['og:image']!)
     assert.equal(ogImage.origin, canonicalOrigin, page.path)
-    if (page.path.startsWith('/users/')) {
+    if (page.path.startsWith('/users/') || page.path.startsWith('/blog/')) {
       assert.equal(ogImage.pathname, `${page.path}/opengraph-image`, page.path)
     } else if (page.path.startsWith('/public/assessments/')) {
       assert.equal(ogImage.pathname, `${page.path}/social-image.png`, page.path)

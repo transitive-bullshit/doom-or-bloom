@@ -13,14 +13,15 @@ export const siteCreator = {
  * messages/<locale>.json under `Pages.<key>`. `translated` marks pages whose
  * main content exists in every enabled locale: only those advertise hreflang
  * alternates and let search engines index their non-English URLs. The P(doom)
- * hub keeps an English body under translated chrome.
+ * hub and the blog keep an English body under translated chrome.
  */
 export const publicPages = [
   { key: 'home', path: '/', translated: true },
   { key: 'about', path: '/about', translated: true },
   { key: 'privacy', path: '/privacy', translated: true },
   { key: 'users', path: '/users', translated: true },
-  { key: 'pdoom', path: '/p-doom', translated: false }
+  { key: 'pdoom', path: '/p-doom', translated: false },
+  { key: 'blog', path: '/blog', translated: false }
 ] as const satisfies readonly {
   key: keyof Messages['Pages']
   path: string

@@ -39,6 +39,9 @@ describe('locale rewrites', () => {
     expect(rewrite('/')).toBe('/en')
     expect(rewrite('/about')).toBe('/en/about')
     expect(rewrite('/users/simonw')).toBe('/en/users/simonw')
+    expect(rewrite('/p-doom')).toBe('/en/p-doom')
+    expect(rewrite('/blog')).toBe('/en/blog')
+    expect(rewrite('/blog/what-is-p-doom')).toBe('/en/blog/what-is-p-doom')
     expect(rewrite('/public/assessments/abc')).toBe(
       '/en/public/assessments/abc'
     )
@@ -56,6 +59,8 @@ describe('locale rewrites', () => {
       '/questions',
       '/prototypes/landing/personas/abc',
       '/users/simonw/opengraph-image',
+      '/blog/what-is-p-doom/opengraph-image',
+      '/blog/rss.xml',
       '/public/assessments/abc/data',
       '/public/assessments/abc/social-image.png'
     ])
@@ -78,6 +83,10 @@ describe('locale redirects', () => {
     expect(redirect('/', 'es')).toBe('/es')
     expect(redirect('/about', 'es')).toBe('/es/about')
     expect(redirect('/users/simonw', 'es')).toBe('/es/users/simonw')
+    // English-bodied pages keep translated chrome under the chosen prefix.
+    expect(redirect('/blog/what-is-p-doom', 'es')).toBe(
+      '/es/blog/what-is-p-doom'
+    )
     for (const path of [
       '/es/about',
       '/api/tweet',
@@ -88,7 +97,9 @@ describe('locale redirects', () => {
       '/personas/simonw.jpg',
       '/_next/static/chunk.js',
       '/public/assessments/abc/data',
-      '/public/assessments/abc/social-image.png'
+      '/public/assessments/abc/social-image.png',
+      '/blog/rss.xml',
+      '/blog/what-is-p-doom/opengraph-image'
     ])
       expect({ path, to: redirect(path, 'es') }).toEqual({ path, to: null })
   })

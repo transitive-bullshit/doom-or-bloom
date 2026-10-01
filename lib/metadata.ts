@@ -24,7 +24,9 @@ export function pageMetadata({
   image,
   imageAlt = 'Doom or Bloom — explore the AI worldview map',
   locale,
-  translated
+  translated,
+  article,
+  feed
 }: {
   path: string
   title: string
@@ -33,6 +35,10 @@ export function pageMetadata({
   imageAlt?: string
   locale: Locale
   translated: boolean
+  /** A blog post: og:type article with its dates and author. */
+  article?: { publishedTime: string; modifiedTime?: string; authors: string[] }
+  /** Advertise the blog's RSS feed. */
+  feed?: boolean
 }): Metadata {
   const url = (target: Locale) => `${siteUrl}${localizedPath(path, target)}`
   // A page without translated content describes itself as its English original.
@@ -51,7 +57,7 @@ export function pageMetadata({
     }
   ]
   const openGraph: NonNullable<Metadata['openGraph']> = {
-    type: 'website',
+    ...(article ? { type: 'article', ...article } : { type: 'website' }),
     locale: openGraphLocale(canonical),
     siteName: 'Doom or Bloom',
     title: fullTitle,
@@ -83,7 +89,12 @@ export function pageMetadata({
   return {
     title: fullTitle,
     description,
-    alternates: { canonical: url(canonical) },
+    alternates: {
+      canonical: url(canonical),
+      ...(feed && {
+        types: { 'application/rss+xml': `${siteUrl}/blog/rss.xml` }
+      })
+    },
     ...(locale !== defaultLocale && { robots: { index: false, follow: true } }),
     openGraph,
     twitter
@@ -91,7 +102,10 @@ export function pageMetadata({
 }
 
 /** Metadata for an entry in `publicPages`, in the current request's locale. */
-export async function publicPageMetadata(key: PublicPageKey) {
+export async function publicPageMetadata(
+  key: PublicPageKey,
+  options: { feed?: boolean } = {}
+) {
   const page = publicPages.find((entry) => entry.key === key)!
   const [locale, t] = await Promise.all([getLocale(), getTranslations('Pages')])
   return pageMetadata({
@@ -99,6 +113,7 @@ export async function publicPageMetadata(key: PublicPageKey) {
     title: t(`${key}.title`),
     description: t(`${key}.description`),
     locale,
-    translated: page.translated
+    translated: page.translated,
+    ...options
   })
 }

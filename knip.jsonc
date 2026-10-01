@@ -18,7 +18,9 @@
     "tests/prefetch/*.spec.ts",
     "playwright.public-cache.config.ts",
     "tests/public-cache/*.spec.ts",
-    "tests/persistence/*.spec.ts"
+    "tests/persistence/*.spec.ts",
+    // Blog posts are imported by slug (app/[locale]/(site)/blog/[slug]).
+    "content/blog/*.mdx"
   ],
   // Analyze browser entries without executing environment-dependent configs.
   "playwright": false,

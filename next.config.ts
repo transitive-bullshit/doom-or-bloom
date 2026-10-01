@@ -3,6 +3,7 @@ import {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_SERVER
 } from 'next/constants'
+import createMDX from '@next/mdx'
 import createNextIntlPlugin from 'next-intl/plugin'
 import {
   localeRedirects,
@@ -13,6 +14,14 @@ import { adminEnvironmentAllowed } from './lib/admin/access'
 import { validateServerEnv } from './lib/server/validate-env'
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
+// Blog posts are MDX imported from content/blog (docs/BLOG.md). Plugins are
+// named by string so Turbopack (development) and webpack (builds) both load
+// them; remark-frontmatter keeps the YAML header out of the rendered post.
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [['remark-frontmatter', ['yaml']], 'remark-gfm']
+  }
+})
 const cardAssets = ['public/personas/*', 'lib/sharing/fonts/*.woff2']
 // Pages that show authored text read their release, rubric and translations
 // by version at runtime (lib/content/l10n-loader.ts), which tracing misses.
@@ -73,7 +82,10 @@ const config: NextConfig = {
     '/*/public/assessments/*/social-image.png': cardAssets,
     '/*/assessments/*': authoredContent,
     '/*/public/assessments/*': authoredContent,
-    '/*/users/*': authoredContent
+    '/*/users/*': authoredContent,
+    // Regenerated at runtime: they list blog posts from their frontmatter.
+    '/sitemap.xml': ['content/blog/*.mdx'],
+    '/llms.txt': ['content/blog/*.mdx']
   },
   experimental: {
     // Unknown URLs match no route in app/[locale]; see app/global-not-found.tsx.
@@ -88,17 +100,24 @@ export default function nextConfig(phase: string) {
     validateServerEnv()
   const admin =
     phase === PHASE_DEVELOPMENT_SERVER && adminEnvironmentAllowed(process.env)
-  return withNextIntl({
-    ...config,
-    env: { LOCAL_ADMIN_BUILD: admin ? 'true' : 'false' },
-    async rewrites() {
-      return {
-        beforeFiles: admin
-          ? []
-          : [{ source: '/admin/:path*', destination: '/internal-unavailable' }],
-        afterFiles: localeRewrites(),
-        fallback: []
+  return withNextIntl(
+    withMDX({
+      ...config,
+      env: { LOCAL_ADMIN_BUILD: admin ? 'true' : 'false' },
+      async rewrites() {
+        return {
+          beforeFiles: admin
+            ? []
+            : [
+                {
+                  source: '/admin/:path*',
+                  destination: '/internal-unavailable'
+                }
+              ],
+          afterFiles: localeRewrites(),
+          fallback: []
+        }
       }
-    }
-  })
+    })
+  )
 }
