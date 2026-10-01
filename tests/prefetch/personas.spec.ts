@@ -107,6 +107,19 @@ test('proximity warms at most three profiles, cancels passing intent, and reuses
         }
       }
     )
+    // Dense clusters can leave a portrait's center under a neighbor; only a
+    // portrait that receives its own click can demonstrate reuse on click.
+    const clickable = new Set(
+      points
+        .filter(
+          (point) =>
+            document
+              .elementFromPoint(point.x, point.y)
+              ?.closest('a')
+              ?.getAttribute('href') === point.href
+        )
+        .map((point) => point.href)
+    )
     // Find an empty patch near a portrait; there must be no actual link hover.
     for (const point of points) {
       for (const [dx, dy] of [
@@ -132,6 +145,7 @@ test('proximity warms at most three profiles, cancels passing intent, and reuses
             a.radius -
             (Math.hypot(b.x - x, b.y - y) - b.radius)
         )[0]!
+        if (!clickable.has(nearest.href)) continue
         return { x, y, href: nearest.href }
       }
     }
