@@ -23,8 +23,73 @@ import { subjectArgs, type ResultSubject } from '@/lib/sharing/result-subject'
 // Saved results keep canonical English: Jev reads it, and the engine validates
 // stored prompts and claims by exact match. Text built in code is therefore
 // mapped back to its ID here, at render time, and shown in the active locale.
-// Authored content (rubric level texts, questions, findings, resources) has
-// no translation yet and passes through unchanged.
+// Authored content (rubric level texts, questions, findings, resources) comes
+// from the committed translations of the assessment's pinned release and
+// rubric (`AuthoredText`, loaded by lib/content/l10n-loader.ts). Each lookup
+// is by ID and applies only when the saved text equals that ID's English
+// source; anything else is shown as saved.
+
+/** One authored English string and its text in the active locale. */
+export type AuthoredEntry = { source: string; text: string }
+
+/**
+ * Authored text of one release and rubric in the active locale, keyed by ID.
+ * Null in English, where saved text is already the display text.
+ */
+export type AuthoredText = {
+  /** Question text by prompt ID. */
+  prompts: Record<string, AuthoredEntry>
+  findings: Record<string, AuthoredEntry>
+  resources: Record<
+    string,
+    Partial<Record<'title' | 'purpose' | 'question' | 'effort', AuthoredEntry>>
+  >
+  /** Rubric level texts by vector, in level order. */
+  levels: Record<string, AuthoredEntry[]>
+}
+type Authored = AuthoredText | null | undefined
+
+const authoredEntry = (entry: AuthoredEntry | undefined, saved: string) =>
+  entry && entry.source === saved ? entry.text : saved
+
+/** An authored question by prompt ID; other text is shown as saved. */
+export function authoredPrompt(
+  authored: Authored,
+  promptId: string | undefined,
+  text: string
+) {
+  return promptId ? authoredEntry(authored?.prompts[promptId], text) : text
+}
+
+export function findingText(
+  authored: Authored,
+  finding: { id: string; text: string }
+) {
+  return authoredEntry(authored?.findings[finding.id], finding.text)
+}
+
+/** A saved resource with its authored fields in the active locale. */
+export function resourceText<
+  T extends {
+    id: string
+    title: string
+    purpose: string
+    question?: string
+    effort: string
+  }
+>(authored: Authored, resource: T): T {
+  const fields = authored?.resources[resource.id]
+  if (!fields) return resource
+  return {
+    ...resource,
+    title: authoredEntry(fields.title, resource.title),
+    purpose: authoredEntry(fields.purpose, resource.purpose),
+    effort: authoredEntry(fields.effort, resource.effort),
+    ...(resource.question !== undefined && {
+      question: authoredEntry(fields.question, resource.question)
+    })
+  }
+}
 
 type Claims = Messages['Claims']
 type LabelId = keyof Claims['labels']
@@ -59,15 +124,32 @@ export function componentLabel(
   return has(t, key) ? t(key as `Claims.labels.${LabelId}`) : component.label
 }
 
-function levelText(t: Translator, vector: string, claim: string) {
+function levelText(
+  t: Translator,
+  vector: string,
+  claim: string,
+  authored?: Authored
+) {
   const index = levelTexts.get(vector)?.indexOf(claim) ?? -1
-  if (index < 0) return null
+  if (index < 0)
+    return (
+      authored?.levels[vector]?.find((level) => level.source === claim)?.text ??
+      null
+    )
   const key = `Claims.levels.${vector}.${index}`
   return has(t, key) ? t(key as `Claims.levels.${LevelId}.0`) : null
 }
 
-/** A stored claim in the active locale. */
-export function claimText(t: Translator, claim: string, vector: string) {
+/**
+ * A stored claim in the active locale. Rubric level texts need the
+ * assessment's authored text; without it they are shown as saved.
+ */
+export function claimText(
+  t: Translator,
+  claim: string,
+  vector: string,
+  authored?: Authored
+) {
   if (Object.hasOwn(fixedClaims, claim))
     return t(fixedClaims[claim as keyof typeof fixedClaims])
   if (has(t, `Claims.unplacedUncertain.${vector}`)) {
@@ -79,13 +161,13 @@ export function claimText(t: Translator, claim: string, vector: string) {
   }
   const answer = timelineClaimAnswer(claim)
   if (answer !== null) return t('Claims.timelineExpressed', { number: answer })
-  const level = levelText(t, vector, claim)
+  const level = levelText(t, vector, claim, authored)
   if (level !== null) return level
   const readings = claimReadings(claim)
   if (readings)
     return t('Claims.readings', {
       readings: readings
-        .map((reading) => levelText(t, vector, reading) ?? reading)
+        .map((reading) => levelText(t, vector, reading, authored) ?? reading)
         .join(' / ')
     })
   return claim
@@ -150,14 +232,15 @@ const clarification =
 /**
  * An issued prompt's display text. Prompts built in code (tension and
  * correction prompts) are rebuilt from their parts in the active locale;
- * authored questions keep their stored English until translated.
+ * authored questions come from the authored text by prompt ID.
  */
 export function promptText(
   t: Translator,
   prompt: Pick<
     PromptInstance,
     'text' | 'family' | 'variant' | 'quotedClaims' | 'target' | 'claimTarget'
-  >
+  > & { promptId?: string },
+  authored?: Authored
 ) {
   const quotes = prompt.quotedClaims
   if (
@@ -179,7 +262,7 @@ export function promptText(
   )
     return t('Conversation.clarification', {
       topic: t(`Claims.topics.${target}` as 'Claims.topics.risk_landscape'),
-      claim: claimText(t, parts[2]!, target)
+      claim: claimText(t, parts[2]!, target, authored)
     })
-  return prompt.text
+  return authoredPrompt(authored, prompt.promptId, prompt.text)
 }

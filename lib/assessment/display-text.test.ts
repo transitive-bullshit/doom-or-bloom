@@ -24,17 +24,22 @@ import {
 import {
   claimText,
   componentLabel,
+  findingText,
   hingeLabel,
   hingeQuestion,
   milestoneLabel,
-  promptText
+  promptText,
+  resourceText
 } from './display-text'
+import { authoredText } from '@/lib/content/l10n-loader'
+import { rootPrompt, versions } from './schema'
 import { createFixtureProvider } from '@/lib/server/provider'
 import { runAssessment } from '@/lib/server/engine'
 
 const en = testTranslator('en')
 const es = testTranslator('es')
 const rubric = loadBundle().rubric
+const authored = authoredText('es', versions)!
 
 // English messages must reproduce the canonical text saved in snapshots, so
 // the English display is unchanged and drift fails here.
@@ -130,9 +135,26 @@ describe('English messages match the canonical saved text', () => {
 })
 
 describe('Spanish display', () => {
-  test('keeps authored rubric levels and translates the code around them', () => {
+  test('translates authored rubric levels with the authored text and the code around them', () => {
     const levels = rubric.dimensions[0]!.levels
-    expect(claimText(es, levels[1]!, rubric.dimensions[0]!.id)).toBe(levels[1])
+    const vector = rubric.dimensions[0]!.id
+    // Without the release's authored text a rubric level is shown as saved.
+    expect(claimText(es, levels[1]!, vector)).toBe(levels[1])
+    expect(claimText(es, levels[1]!, vector, authored)).toBe(
+      authored.levels[vector]![1]!.text
+    )
+    expect(authored.levels[vector]![1]!.text).not.toBe(levels[1])
+    const rubricReadings = supportedClaim(
+      levels,
+      { 0: 0.45, 1: 0.45, 2: 0.1 },
+      false,
+      0.6
+    )
+    expect(claimText(es, rubricReadings, vector, authored)).toBe(
+      `Varias lecturas siguen siendo plausibles: ${[0, 1, 2]
+        .map((i) => authored.levels[vector]![i]!.text)
+        .join(' / ')}`
+    )
     const readings = supportedClaim(
       facets[1]!.levels,
       { 0: 0.45, 1: 0.45, 2: 0.1 },
@@ -173,8 +195,41 @@ describe('Spanish display', () => {
     expect(promptText(es, tension)).toBe(
       'Sobre la IA, dijiste “AI will help” y “we cannot control it”. ¿Cómo encajan ambas ideas?'
     )
-    const authored = { text: 'What do you think?', family: 'root', variant: '' }
-    expect(promptText(es, authored)).toBe(authored.text)
+    const unknown = { text: 'What do you think?', family: 'root', variant: '' }
+    expect(promptText(es, unknown, authored)).toBe(unknown.text)
+    // Authored questions come from the authored text by prompt ID, only when
+    // the saved text is that ID's English.
+    const root = {
+      text: rootPrompt,
+      family: 'root',
+      variant: '',
+      promptId: 'root'
+    }
+    expect(promptText(es, root)).toBe(rootPrompt)
+    expect(promptText(es, root, authored)).toBe(
+      '¿Qué crees que significa la IA para nuestro futuro y por qué?'
+    )
+    expect(
+      promptText(es, { ...root, text: 'An older wording' }, authored)
+    ).toBe('An older wording')
+  })
+
+  test('translates findings and resources by ID and keeps other saved text', () => {
+    const finding = loadBundle().findings[0]!
+    expect(findingText(null, finding)).toBe(finding.text)
+    expect(findingText(authored, finding)).toBe(
+      authored.findings[finding.id]!.text
+    )
+    expect(findingText(authored, { ...finding, text: 'Edited' })).toBe('Edited')
+    const resource = loadBundle().resources[0]!
+    const shown = resourceText(authored, resource)
+    expect(shown.url).toBe(resource.url)
+    expect(shown.title).toBe(authored.resources[resource.id]!.title!.text)
+    expect(shown.title).not.toBe(resource.title)
+    expect(resourceText(authored, { ...resource, title: 'Old' }).title).toBe(
+      'Old'
+    )
+    expect(resourceText(null, resource)).toBe(resource)
   })
 
   test('rebuilds a correction prompt issued by the engine', async () => {

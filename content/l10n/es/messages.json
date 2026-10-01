@@ -1,0 +1,4014 @@
+{
+  "locale": "es",
+  "kind": "messages",
+  "entries": {
+    "Metadata.siteDescription": {
+      "sourceHash": "722265e5fefa9170",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.home.title": {
+      "sourceHash": "5bf833580b506eeb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.home.description": {
+      "sourceHash": "682340f3cc7fe231",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.about.title": {
+      "sourceHash": "4efca0d10c5feb8e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.about.description": {
+      "sourceHash": "bbc7d2671775fed3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.privacy.title": {
+      "sourceHash": "54a57c3147c49f33",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.privacy.description": {
+      "sourceHash": "3d8a6002d80c682b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.users.title": {
+      "sourceHash": "38e7727eb71b4d85",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Pages.users.description": {
+      "sourceHash": "90269ae9806de999",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Header.navigation": {
+      "sourceHash": "7b06d0dd69777639",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Header.toggleTheme": {
+      "sourceHash": "bc2c2bd1e7b19a87",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Header.accountMenu": {
+      "sourceHash": "7fb5995bca43a6a3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Header.myAssessments": {
+      "sourceHash": "9b46d6f861748eeb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Header.logOut": {
+      "sourceHash": "49616145514e9abf",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Header.logOutFailed": {
+      "sourceHash": "ed5c8a16ccda9904",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Social.github": {
+      "sourceHash": "f803aa694000b5fb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Social.x": {
+      "sourceHash": "80d87f6fbc72b94b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Footer.about": {
+      "sourceHash": "4efca0d10c5feb8e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Footer.privacy": {
+      "sourceHash": "54a57c3147c49f33",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Footer.language": {
+      "sourceHash": "a4fe65264ef7dbb3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.label": {
+      "sourceHash": "d6dc6b5ebe192c2c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.home": {
+      "sourceHash": "3a78695388b38b5c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.about": {
+      "sourceHash": "4efca0d10c5feb8e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.privacy": {
+      "sourceHash": "54a57c3147c49f33",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.users": {
+      "sourceHash": "38e7727eb71b4d85",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.assessments": {
+      "sourceHash": "9b46d6f861748eeb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.newAssessment": {
+      "sourceHash": "65dfd90022433355",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.assessment": {
+      "sourceHash": "7808eeeb45dfa074",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Breadcrumbs.page": {
+      "sourceHash": "0a30a815d67d7dd2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cta.mapWorldview": {
+      "sourceHash": "cc4920329c38bbed",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cta.cardTitle": {
+      "sourceHash": "0e5e71fde46d63ae",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cta.cardDescription": {
+      "sourceHash": "bb73dbaa378d85a1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cta.mapMine": {
+      "sourceHash": "1f8ccae4baac04da",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cta.compareTitle": {
+      "sourceHash": "f743a58385024bf4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cta.compareDescription": {
+      "sourceHash": "69dc2be604c5fd6c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.title": {
+      "sourceHash": "a4d306b32a5a3198",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.directoryTitle": {
+      "sourceHash": "f6df55a757239df0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.axisTop": {
+      "sourceHash": "52271c83548e2de3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.axisBottom": {
+      "sourceHash": "4e12315d90b5131a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.mapLabel": {
+      "sourceHash": "6d9b28c6538b9fa2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.viewResults": {
+      "sourceHash": "2d8666368968b043",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.exampleNote": {
+      "sourceHash": "3dd3eacbb99175bb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.exploreAll": {
+      "sourceHash": "159abd32d6f187d3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.unplaced": {
+      "sourceHash": "0b85fd8d9fd63155",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.search": {
+      "sourceHash": "da0a072923bbc84c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.searchPlaceholder": {
+      "sourceHash": "eed3ae05c2183eb5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sortBy": {
+      "sourceHash": "c9129025bd3ff652",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.order": {
+      "sourceHash": "6be090825c997103",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.nameAscending": {
+      "sourceHash": "f9f6c8502eb0f6c9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.nameDescending": {
+      "sourceHash": "5a5261ed154703e0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.doomFirst": {
+      "sourceHash": "6dff8c5555d51fc3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.bloomFirst": {
+      "sourceHash": "24a8ca024385e750",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.lowToHigh": {
+      "sourceHash": "c554bb83b90f990a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.highToLow": {
+      "sourceHash": "f547f4083db343f1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.count": {
+      "sourceHash": "c3499c9bd407e698",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.followersNote": {
+      "sourceHash": "02d007152c991cfb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.scoresNote": {
+      "sourceHash": "1752dea06a5e446c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.noMatches": {
+      "sourceHash": "6202b6a5510f5752",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.metricUnavailable": {
+      "sourceHash": "67a926f7008e2b0e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.metricFollowers": {
+      "sourceHash": "b569e848d2465910",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.name": {
+      "sourceHash": "dcd1d5223f73b3a9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.followers": {
+      "sourceHash": "655fafaee8e3b02e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.outlook": {
+      "sourceHash": "d7dd0105b36c5558",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.transformation": {
+      "sourceHash": "52271c83548e2de3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.pdoom": {
+      "sourceHash": "acf6f0dd4009a176",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.reasoning": {
+      "sourceHash": "3d803fd68a04ee38",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.upside": {
+      "sourceHash": "19d2a0c0c3aacc0a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.harm": {
+      "sourceHash": "72d7cb5af2081940",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Landing.sort.influence": {
+      "sourceHash": "651e2c42da6932f7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "NotFound.title": {
+      "sourceHash": "a469ab4ca4e55bf5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "NotFound.description": {
+      "sourceHash": "ca96788466b34856",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "NotFound.home": {
+      "sourceHash": "76c5505ff2e27ef4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.unauthorized": {
+      "sourceHash": "e6cb0334e8f63ab4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.not_found": {
+      "sourceHash": "336265b19a2da21f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.origin": {
+      "sourceHash": "fc2ffeeb6ceb45cb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.invalid_input": {
+      "sourceHash": "a20a0aa356ada089",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.conflict": {
+      "sourceHash": "ff38a41577733eeb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.busy": {
+      "sourceHash": "bd927cb2de933099",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.published": {
+      "sourceHash": "56bbc96b16d44dff",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.results_required": {
+      "sourceHash": "5d21a2e0f403be66",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.question_limit": {
+      "sourceHash": "0d67ac358dcb81e2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.limited": {
+      "sourceHash": "b1e240def42662a0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.generic": {
+      "sourceHash": "3ccd9d6586ef9143",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.connect": {
+      "sourceHash": "a2f03233345de7c7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Errors.unreachable": {
+      "sourceHash": "26f39622756d4578",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.outlook": {
+      "sourceHash": "d7dd0105b36c5558",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.epistemic": {
+      "sourceHash": "3d803fd68a04ee38",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.influence": {
+      "sourceHash": "651e2c42da6932f7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.transformation": {
+      "sourceHash": "f45d726495ed602b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.timeline": {
+      "sourceHash": "9dcff98e275f0cb9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.overall_outlook": {
+      "sourceHash": "f3a50cfd017a394f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.outlook_orientation": {
+      "sourceHash": "1d28ad4b366d9034",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.capability_ceiling": {
+      "sourceHash": "552795b1cab07346",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.development_pace": {
+      "sourceHash": "c60496c0446b3d47",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.deployment_policy": {
+      "sourceHash": "4224f312eb98f3fa",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.access_policy": {
+      "sourceHash": "6472951f0ae0999c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.capability_trajectory": {
+      "sourceHash": "71e90e45f7820841",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.transition_dynamics": {
+      "sourceHash": "e7f1f8046bc88b02",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.beneficial_potential": {
+      "sourceHash": "19d2a0c0c3aacc0a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.risk_landscape": {
+      "sourceHash": "72d7cb5af2081940",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.technical_controllability": {
+      "sourceHash": "a1508d6d108c6ddc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.institutional_competence": {
+      "sourceHash": "19ad259f0f124eba",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.human_agency": {
+      "sourceHash": "f2fb4a0e7212c7dc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.action_posture": {
+      "sourceHash": "170daa38f26af9dd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.causal_clarity": {
+      "sourceHash": "b7f3e94a3af6cfb8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.scope_discipline": {
+      "sourceHash": "71aa88b0bfe66fc7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.appropriate_uncertainty": {
+      "sourceHash": "4b74a6962a5d1ff5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.internal_coherence": {
+      "sourceHash": "714c36a1a7c993e6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.counterargument_engagement": {
+      "sourceHash": "269050870af16c31",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.updateability": {
+      "sourceHash": "1c72f24222077d09",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.grounded_understanding": {
+      "sourceHash": "97e4f1fcbd9001a0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.labels.catastrophic_risk": {
+      "sourceHash": "2c74054787325cb9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.capability_trajectory": {
+      "sourceHash": "62c927852007185c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.transition_dynamics": {
+      "sourceHash": "9572b56d17ac6ce7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.beneficial_potential": {
+      "sourceHash": "198a0cd782ffc6e5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.risk_landscape": {
+      "sourceHash": "66ab1106e346c947",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.technical_controllability": {
+      "sourceHash": "1a5cf7c8c6c1b980",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.institutional_competence": {
+      "sourceHash": "cb58ee6103428386",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.human_agency": {
+      "sourceHash": "d3920712d2216c43",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.action_posture": {
+      "sourceHash": "dc0b57ebe77d4424",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.causal_clarity": {
+      "sourceHash": "66e58d8002302f3f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.scope_discipline": {
+      "sourceHash": "7e850027c4e97d54",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.appropriate_uncertainty": {
+      "sourceHash": "4a184043fa1a9970",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.internal_coherence": {
+      "sourceHash": "ec542d86b649de08",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.counterargument_engagement": {
+      "sourceHash": "d5c622cb6b04744c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.updateability": {
+      "sourceHash": "f9d1c1babfd3ca14",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.grounded_understanding": {
+      "sourceHash": "426af7e7cc1779e5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.topics.catastrophic_risk": {
+      "sourceHash": "8107837fea176340",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.overall_outlook.0": {
+      "sourceHash": "2a06f5214226e226",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.overall_outlook.1": {
+      "sourceHash": "2866e16036444d7c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.overall_outlook.2": {
+      "sourceHash": "9e8303a2731c6df7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.overall_outlook.3": {
+      "sourceHash": "e8f1d099154c2793",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.overall_outlook.4": {
+      "sourceHash": "0e5c6c3d32828fa9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.outlook_orientation.0": {
+      "sourceHash": "72b20291d26f52d1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.outlook_orientation.1": {
+      "sourceHash": "583f173b05c42a94",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.outlook_orientation.2": {
+      "sourceHash": "af18a7649fb0a4e0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.outlook_orientation.3": {
+      "sourceHash": "0e9a990523741e85",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.outlook_orientation.4": {
+      "sourceHash": "37eed74db83bfbd8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.capability_ceiling.0": {
+      "sourceHash": "a4ba9d0ae51caa96",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.capability_ceiling.1": {
+      "sourceHash": "66c6313224a83334",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.capability_ceiling.2": {
+      "sourceHash": "93a95fda056131a0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.development_pace.0": {
+      "sourceHash": "85644ea48dfba325",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.development_pace.1": {
+      "sourceHash": "9ec9ff09dc687029",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.development_pace.2": {
+      "sourceHash": "4a120224cf2bc806",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.deployment_policy.0": {
+      "sourceHash": "151b4d13aeaad07d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.deployment_policy.1": {
+      "sourceHash": "50e178218bb17cf6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.deployment_policy.2": {
+      "sourceHash": "5190e7a93edaaa6b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.access_policy.0": {
+      "sourceHash": "0a446c8988063a97",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.access_policy.1": {
+      "sourceHash": "1a118eb61bd510cb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.access_policy.2": {
+      "sourceHash": "2a99f04b3348c067",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.influence.0": {
+      "sourceHash": "814e173ccd7a13c2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.influence.1": {
+      "sourceHash": "d37c3802c9883270",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.influence.2": {
+      "sourceHash": "65215e0f6e029871",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.influence.3": {
+      "sourceHash": "4c71578df81357d3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.influence.4": {
+      "sourceHash": "8a70ed2a85cdc554",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.transformation.0": {
+      "sourceHash": "7dadef187a16e8f5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.transformation.1": {
+      "sourceHash": "cc36d86df26e8777",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.transformation.2": {
+      "sourceHash": "70c77c3aa334a702",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.transformation.3": {
+      "sourceHash": "dbae7afd9a4f8dde",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.levels.transformation.4": {
+      "sourceHash": "dd0ad118ab1463a2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.uncertain": {
+      "sourceHash": "6bca78167cd98f0d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unestablished": {
+      "sourceHash": "a410097b3f2a7567",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unresolved": {
+      "sourceHash": "8354a5430d536499",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.readings": {
+      "sourceHash": "3b56179219332b0a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.capability_trajectory": {
+      "sourceHash": "0f1dfdfdca409350",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.transition_dynamics": {
+      "sourceHash": "fec9ffcd2224d0aa",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.beneficial_potential": {
+      "sourceHash": "d964f925d9e6979e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.risk_landscape": {
+      "sourceHash": "e54f158c9d5b4ab6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.technical_controllability": {
+      "sourceHash": "7377c10373040251",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.institutional_competence": {
+      "sourceHash": "f559cde6ce3d023f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.human_agency": {
+      "sourceHash": "e5a6556a52350091",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.action_posture": {
+      "sourceHash": "05a61e30c71fbb8a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUncertain.catastrophic_risk": {
+      "sourceHash": "95ddfd8b9f17d494",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.capability_trajectory": {
+      "sourceHash": "bd76f15f764c82a2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.transition_dynamics": {
+      "sourceHash": "5db82434e39be0fc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.beneficial_potential": {
+      "sourceHash": "d8dd9b4274067c2b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.risk_landscape": {
+      "sourceHash": "cc8ff7ba0fb800d7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.technical_controllability": {
+      "sourceHash": "651f1181338b5da2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.institutional_competence": {
+      "sourceHash": "bcb4a95b9ef58e31",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.human_agency": {
+      "sourceHash": "063d25383553672c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.action_posture": {
+      "sourceHash": "53fb4a6e4bef0da0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.unplacedUnestablished.catastrophic_risk": {
+      "sourceHash": "bee0c84ebfe004ed",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.facetUnsettled": {
+      "sourceHash": "6242fed7d9e01974",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.axisUnsettled": {
+      "sourceHash": "f58a2c143785d4e9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.axisTentative": {
+      "sourceHash": "a026abe51315f9ae",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.timelineExpressed": {
+      "sourceHash": "4935997b9a55072c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.timelineUnsettled": {
+      "sourceHash": "2c4a21ca4edc7366",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.milestones.agi": {
+      "sourceHash": "d943014af1205453",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.milestones.asi": {
+      "sourceHash": "26aa17860c1f2a12",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.milestones.work": {
+      "sourceHash": "142d331a9391133c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.milestones.science": {
+      "sourceHash": "7c50841654ded168",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.hinges.assumption": {
+      "sourceHash": "df6fa7f9443ebd9e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.hinges.uncertainty": {
+      "sourceHash": "52d94d39a154ac85",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.hinges.update": {
+      "sourceHash": "b37c70c85b435d4f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.hingeQuestions.assumption": {
+      "sourceHash": "1e4efe1349e646d3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.hingeQuestions.uncertainty": {
+      "sourceHash": "90a464c30aae5b79",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Claims.hingeQuestions.update": {
+      "sourceHash": "364b2640ac219d8e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reason.unplacedCapped": {
+      "sourceHash": "9d3510bd8f552cae",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reason.unplaced": {
+      "sourceHash": "fe32797e97daea5d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reason.capped": {
+      "sourceHash": "d34c86b44cfadd2b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reason.cappedNoRisk": {
+      "sourceHash": "7060160eb531e8ff",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reason.placed": {
+      "sourceHash": "e7f8a7505a436ba2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reason.placedNoRisk": {
+      "sourceHash": "721dfe97b84d87bc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoomRange.below": {
+      "sourceHash": "9a1826fa81c905fc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoomRange.above": {
+      "sourceHash": "aeee49ecaed83b5c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoomRange.under": {
+      "sourceHash": "20db4f88c12eeaac",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoomRange.over": {
+      "sourceHash": "dd59eace588118aa",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoomRange.about": {
+      "sourceHash": "b9dcc359058ca120",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoomRange.between": {
+      "sourceHash": "cb7a964e6ee24ef6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.unclear": {
+      "sourceHash": "b18ee8ea3c5da452",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.mapNotReady": {
+      "sourceHash": "e7eb9fef5a18c36f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reportStarted": {
+      "sourceHash": "7693d3c0d37ca641",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reportFailed": {
+      "sourceHash": "bb95631fd60c82ef",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.imageStarted": {
+      "sourceHash": "6051367d4a56c92d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.imageFailed": {
+      "sourceHash": "6b7ec30427aa70d4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.notPlaced": {
+      "sourceHash": "14662f550bd58899",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.capReached": {
+      "sourceHash": "60603d5f3e9303f2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.title": {
+      "sourceHash": "219c4a6c86a716e9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.dotNote": {
+      "sourceHash": "e002961963cfa0bd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.differenceLabel": {
+      "sourceHash": "23513b3590c98071",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.answerQuestion": {
+      "sourceHash": "02ff38e2b29175e0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.answerUpdates": {
+      "sourceHash": "6cf86e52e8da6d35",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.insights": {
+      "sourceHash": "e75068c96d8e4008",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.unexplored": {
+      "sourceHash": "ef389a295e25e93f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.timelineAnswer.region": {
+      "sourceHash": "9ee59950c85c6e45",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.timelineAnswer.expand": {
+      "sourceHash": "da28bff4dfa73a71",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.timelineAnswer.collapse": {
+      "sourceHash": "79b3640411b18d83",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.standouts": {
+      "sourceHash": "fdf25d93a8a25b6e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.seeSupporting": {
+      "sourceHash": "650446e0c04cc7e8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.wholeAnswers": {
+      "sourceHash": "35852ef216e42e1f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.supportingAnswer.region": {
+      "sourceHash": "7477f77d131eb355",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.supportingAnswer.expand": {
+      "sourceHash": "dbaa0011c903a806",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.supportingAnswer.collapse": {
+      "sourceHash": "a4a00ea3232bf449",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.interpretation": {
+      "sourceHash": "d3fa63c896b9fde7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.resources": {
+      "sourceHash": "b8429d3a914b2057",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.preparingReport": {
+      "sourceHash": "c7d768adb0dc3d51",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.downloadReport": {
+      "sourceHash": "aee5b840e1e1fe3d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.forkContinue": {
+      "sourceHash": "3e38384377096f6f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.continueAnswering": {
+      "sourceHash": "589c669c43c44341",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.label": {
+      "sourceHash": "050eafeea9a4bf7e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.notRecorded": {
+      "sourceHash": "23b96569a533d566",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoomTitle": {
+      "sourceHash": "a9cbfbc959fd001d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.statedPdoomTitle": {
+      "sourceHash": "63daca8f736114f4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.inferredTag": {
+      "sourceHash": "d4e311ef29dcd5f7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.notEstimated": {
+      "sourceHash": "2a73eac64eb5aa8e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.notEvaluated": {
+      "sourceHash": "d5b2db5b9485376d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.notEvaluated": {
+      "sourceHash": "2794d7e83dbf13f7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.bothWays": {
+      "sourceHash": "6203bfced518c29b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.range": {
+      "sourceHash": "d475f05f04d5bc05",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.settle": {
+      "sourceHash": "12d3b14220534be5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.inferred": {
+      "sourceHash": "e82cb0057a96ba61",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.sharpen": {
+      "sourceHash": "570730b8f3306e26",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.from": {
+      "sourceHash": "724d17d196ec2dc8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.stated": {
+      "sourceHash": "c8311506acde94e8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.missing": {
+      "sourceHash": "d21156d9678891b0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.pdoom.addSentence": {
+      "sourceHash": "a9331bbbeb171698",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.milestoneTitle": {
+      "sourceHash": "2843e75df5a23a6a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.milestoneNote": {
+      "sourceHash": "2abdcede0830f607",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.hingesTitle": {
+      "sourceHash": "ede991c2d0d94b52",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.noHinges": {
+      "sourceHash": "1912828404fd694c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.hingesNotEvaluated": {
+      "sourceHash": "70a0a11c42c7c429",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reasoningLabel": {
+      "sourceHash": "6b812c30b9ca88e8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reasoningTitle": {
+      "sourceHash": "eb171e6058e85a0a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reasoningScore": {
+      "sourceHash": "b9ac6947d2bbfabb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.reasoningNeedsReview": {
+      "sourceHash": "5396a69f5ef80c8e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.unlinked": {
+      "sourceHash": "f2b71193cb85eccb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.explorer.toggle": {
+      "sourceHash": "1e2b139df28f0d6b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.explorer.label": {
+      "sourceHash": "35847fc6a66c3ebb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.explorer.description": {
+      "sourceHash": "70d7848991020006",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.explorer.step": {
+      "sourceHash": "76a42c3df4b29a88",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.explorer.previous": {
+      "sourceHash": "a57b08a480b822a0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.explorer.next": {
+      "sourceHash": "1ff57a29d7c9d11b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.title": {
+      "sourceHash": "b5eff1dbd0154de8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.severalReadings": {
+      "sourceHash": "22f72d9ff72a0cc0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.notEnough": {
+      "sourceHash": "b4d0f7b4c6801dfa",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.score": {
+      "sourceHash": "9711f18c96b818a6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.littleInfluence": {
+      "sourceHash": "c0964b0b59917802",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.strongInfluence": {
+      "sourceHash": "7bb382619b36fe1e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.littleImpact": {
+      "sourceHash": "274e58a3776781f5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.transformativeImpact": {
+      "sourceHash": "e14d438e14ecef3f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.range": {
+      "sourceHash": "8e24462bde01130a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.expectedTransformation": {
+      "sourceHash": "191648e9e7d7db33",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.simulatedPosition": {
+      "sourceHash": "5d7d3ff6a8ca3691",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.yourPosition": {
+      "sourceHash": "aba580e3afdf53dd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.details.note": {
+      "sourceHash": "d4974e676ec41f4f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.closest.title": {
+      "sourceHash": "ed275d1f26ca8a77",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.closest.description": {
+      "sourceHash": "fc2e28993238b64e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.closest.view": {
+      "sourceHash": "f47e1322c520292b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.closest.rank": {
+      "sourceHash": "d16ef15bbe778c22",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.closest.insufficient": {
+      "sourceHash": "fbb57da99ba11654",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.closest.unavailable": {
+      "sourceHash": "14ed6f266b44cdfb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Results.closest.note": {
+      "sourceHash": "0b82ad5c7c26be73",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.unplaced": {
+      "sourceHash": "a92f91fa63ce139f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.close": {
+      "sourceHash": "0f7c61355b397c6f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.worried": {
+      "sourceHash": "f6cff5275bd9f6d1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.hopeful": {
+      "sourceHash": "26ddb7ac6801dab6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.more": {
+      "sourceHash": "36cf0b8abddf9602",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.less": {
+      "sourceHash": "7ffeae7880e18bb5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.worriedMore": {
+      "sourceHash": "4445f66e678d4477",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.worriedLess": {
+      "sourceHash": "b88369479365add5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.hopefulMore": {
+      "sourceHash": "800d733d76f5ae86",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.comparison.hopefulLess": {
+      "sourceHash": "6c685a38d887ff78",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.title": {
+      "sourceHash": "88f9d3f342505ba8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.intro": {
+      "sourceHash": "fd3c2c82d0f2b971",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.label": {
+      "sourceHash": "9f14b8cd2d33167c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.outlook": {
+      "sourceHash": "eae0423095b4f639",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.outlookLow": {
+      "sourceHash": "6150edfdf87d5517",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.outlookHigh": {
+      "sourceHash": "cc31cf0be4275566",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.scale": {
+      "sourceHash": "e003f9cd6a321598",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.sliderValue": {
+      "sourceHash": "1ae6ed661d1f4ce7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.show": {
+      "sourceHash": "a48159c78edc5cd8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.skip": {
+      "sourceHash": "28d03596d24eeb4e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Placement.privacy": {
+      "sourceHash": "171e2c8fb00c97ff",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.caption.statedClosest": {
+      "sourceHash": "ae87e2ea48f491ba",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.caption.stated": {
+      "sourceHash": "789d633317f13ee4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.caption.inferredClosest": {
+      "sourceHash": "c76e92c26fdea14f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.caption.inferred": {
+      "sourceHash": "c8d4384840656ce1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.caption.closest": {
+      "sourceHash": "c3db5f3bf31b1b76",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.caption.none": {
+      "sourceHash": "96b29301948cdebe",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.under": {
+      "sourceHash": "ef0848734e9d3593",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.over": {
+      "sourceHash": "5ff996bd2172ee6d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.title": {
+      "sourceHash": "76f14213fd8e79e7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.publishedNote": {
+      "sourceHash": "c0a61c1aed2e08ee",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.privateNote": {
+      "sourceHash": "a7876284cc325976",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.share": {
+      "sourceHash": "51fc2d24df51a2c3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.x": {
+      "sourceHash": "fc112e0f80bbac35",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.copyFailed": {
+      "sourceHash": "ac0eba94c3574ec9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.linkedinCopied": {
+      "sourceHash": "b6359b9d02b7be3e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.linkCopied": {
+      "sourceHash": "71af38a2d56ba6ab",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.copyLink": {
+      "sourceHash": "dbf362d4f210c780",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.preparingImage": {
+      "sourceHash": "4d0ef130cf526c48",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.downloadImage": {
+      "sourceHash": "3ac575dcce244f93",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.tension": {
+      "sourceHash": "bd1b8e1e95edb0fe",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.clarification": {
+      "sourceHash": "7a55381517d49acb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.showLess": {
+      "sourceHash": "94ea9b1d33a02975",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.readFull": {
+      "sourceHash": "63706de5b1a41f97",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.copied": {
+      "sourceHash": "8d525e5f158b9afe",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.copyUnavailable": {
+      "sourceHash": "dec0e071474930af",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.earlier": {
+      "sourceHash": "c3859d50498417d6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.reply": {
+      "sourceHash": "68459c50efb9db84",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.turn": {
+      "sourceHash": "931fd4d85a2fac30",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.answer.region": {
+      "sourceHash": "831a3ae71d425d0c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.answer.expand": {
+      "sourceHash": "ff1b39e2345ed9eb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.answer.collapse": {
+      "sourceHash": "675a45a17accb622",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.answer.copy": {
+      "sourceHash": "2f97abc03f47ee54",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.answerLink": {
+      "sourceHash": "a4242eb796b2611b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Conversation.fullConversation": {
+      "sourceHash": "435961f064fbc076",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.title": {
+      "sourceHash": "bd78446834abb5a7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.intro": {
+      "sourceHash": "b484b975b15b2713",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.status": {
+      "sourceHash": "f6e3385b23c728db",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.statusCapped": {
+      "sourceHash": "a3a539c93b5b72df",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.versions": {
+      "sourceHash": "2c89147f18b1c176",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.unplaced": {
+      "sourceHash": "9326e31ea8dcac36",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.position": {
+      "sourceHash": "4abe04df63dcd1b6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.reasoning": {
+      "sourceHash": "66ebf8c9c93e722c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.mapsTitle": {
+      "sourceHash": "df0a7a8b423e7574",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.outlook": {
+      "sourceHash": "102c5db28e77d334",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.axis": {
+      "sourceHash": "3802606448541c35",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.pdoom": {
+      "sourceHash": "0e2e655940c2beda",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.notSpecified": {
+      "sourceHash": "dc12bec5d71f167b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.pdoomPublic": {
+      "sourceHash": "c09a2ef8f3c22184",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.pdoomScope": {
+      "sourceHash": "4df0b6a4a689670b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.source": {
+      "sourceHash": "8593a9641c16f300",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.statement": {
+      "sourceHash": "ee779aae9b7d23a4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.originalEstimate": {
+      "sourceHash": "2b459a0a9c3f60d8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.basisAnswer": {
+      "sourceHash": "ba8dde61c7365c77",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.basisPublic": {
+      "sourceHash": "ef7b82167d95b695",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.basisHistory": {
+      "sourceHash": "296d05feed830b80",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.inferredRange": {
+      "sourceHash": "a6076145b5684b58",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.milestonesTitle": {
+      "sourceHash": "b9b1d52c8594e116",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.answer": {
+      "sourceHash": "ba8dde61c7365c77",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.rangesNote": {
+      "sourceHash": "15826d593bf3d6e8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.profileTitle": {
+      "sourceHash": "d696a35bdd1883da",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.unassessed": {
+      "sourceHash": "70c817f1ceaa0625",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.componentPosition": {
+      "sourceHash": "22c0fd49c767ab23",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.supportingAnswers": {
+      "sourceHash": "f47c71e58fc0298d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.none": {
+      "sourceHash": "dc937b59892604f5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.fingerprintTitle": {
+      "sourceHash": "067993a64dc5c0bb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.fingerprintUnassessed": {
+      "sourceHash": "bb10cc7d28c241f7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.findingsTitle": {
+      "sourceHash": "e171c2ff25b55e5a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.evidence": {
+      "sourceHash": "2ff0fe8871140ac6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.resourcesTitle": {
+      "sourceHash": "e89b30aa1dc30a6a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.sourcesTitle": {
+      "sourceHash": "38cd3571ec9ea587",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.sourceMeta": {
+      "sourceHash": "6a5f55bd16135042",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.primarySource": {
+      "sourceHash": "72f2c48e3a88aa00",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.methodologyTitle": {
+      "sourceHash": "f26d07e6b71e4259",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.methodology": {
+      "sourceHash": "601028dc9e3f09c5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.interviewTitle": {
+      "sourceHash": "4effe447355c5054",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.question": {
+      "sourceHash": "847727d518765ed1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Report.filename": {
+      "sourceHash": "31c919a4a0b7ae19",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "AssessmentPages.startTitle": {
+      "sourceHash": "87a40bc2377500d7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "AssessmentPages.startHeading": {
+      "sourceHash": "87a40bc2377500d7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "AssessmentPages.startDescription": {
+      "sourceHash": "82a216f1512aa639",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "AssessmentPages.interviewTitle": {
+      "sourceHash": "a740ab409a6c0219",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "AssessmentPages.interviewHeading": {
+      "sourceHash": "87a40bc2377500d7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "AssessmentPages.libraryTitle": {
+      "sourceHash": "9b46d6f861748eeb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.forkFailed": {
+      "sourceHash": "5a13be8fc5aacaff",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.visibilityFailed": {
+      "sourceHash": "534fcf479ccaaa33",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.publicNote": {
+      "sourceHash": "6bd38fb2bd87efc0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.viewPublic": {
+      "sourceHash": "c788f99f1f4c6a2d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.makePrivate": {
+      "sourceHash": "e83dbc0a3f6bb2ba",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.publishPrompt": {
+      "sourceHash": "64132baf6b81950d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.publish": {
+      "sourceHash": "730356372553656f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.confirmTitle": {
+      "sourceHash": "01fc3364c6151d83",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.confirmDescription": {
+      "sourceHash": "00d19f7018386111",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.checkSubmission": {
+      "sourceHash": "12badfd5e61372a9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.failedTitle": {
+      "sourceHash": "40c51d2957b9384c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.failure.providerRejected": {
+      "sourceHash": "3602b1e8a0e3b600",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.failure.saved": {
+      "sourceHash": "343bf9de676ba1df",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.retrySaved": {
+      "sourceHash": "d3aa62371506d137",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.refreshProgress": {
+      "sourceHash": "658e18ddd81e119b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.savedProgress": {
+      "sourceHash": "b9118668b3a2540e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.updatedDraftTitle": {
+      "sourceHash": "1b54990c455337fd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.updatedDraftDescription": {
+      "sourceHash": "cc9bab204f6a8979",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.questionOf": {
+      "sourceHash": "d914115ee8ff1c87",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.questionProgress": {
+      "sourceHash": "f12f175bde88f625",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.unavailableTitle": {
+      "sourceHash": "167b57433764d52a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.unavailableDescription": {
+      "sourceHash": "396f7fdd21e3ca2b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.limitTitle": {
+      "sourceHash": "039c9c7868099749",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.limitDescription": {
+      "sourceHash": "ca9ee3d3c42889c0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.recovery.paperclipsTitle": {
+      "sourceHash": "9d7af3d826674636",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.recovery.chooseTitle": {
+      "sourceHash": "2d6e7a43361babe0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.recovery.retryTitle": {
+      "sourceHash": "62494347717ea621",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.recovery.paperclips": {
+      "sourceHash": "48f12854b18675d3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.recovery.stopped": {
+      "sourceHash": "103cc8a117644cb1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.recovery.navigation": {
+      "sourceHash": "07758ee74442929f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.emptyAnswer": {
+      "sourceHash": "f8044d9267dbccd5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.answerLabel": {
+      "sourceHash": "d0e869b777a69679",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.placeholder": {
+      "sourceHash": "352269ec000b10a0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.length": {
+      "sourceHash": "418ec68d8604d27c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.tooLong": {
+      "sourceHash": "fb6498ed17a862ae",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.viewResults": {
+      "sourceHash": "12778e9bc5100ea0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.tryAgain": {
+      "sourceHash": "d8b8392e2c542950",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.differentQuestion": {
+      "sourceHash": "15e42193b80e8f27",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.reflecting": {
+      "sourceHash": "e4867aaee2ce99b1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.continue": {
+      "sourceHash": "31fbef162594de01",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.duration": {
+      "sourceHash": "8226f551d0444fa2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.privacy": {
+      "sourceHash": "efe0a163924f892a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.busy": {
+      "sourceHash": "87966a5ea58c6cc1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.keepExploring": {
+      "sourceHash": "49980500258920c6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.notices.draftUnsaved": {
+      "sourceHash": "1a3d98190d61b2f3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.notices.loadFailed": {
+      "sourceHash": "a8ff18f0a5c5236c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.notices.connection": {
+      "sourceHash": "3a1120ef8294703b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.notices.confirmPrevious": {
+      "sourceHash": "2d9a91cf97376ba8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.notices.keepTabOpen": {
+      "sourceHash": "d1d7d06c64967883",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.notices.debugSaveFailed": {
+      "sourceHash": "f33805fd26d7e897",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.notices.unconfirmed": {
+      "sourceHash": "7fa5c1f7b55c01c9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.title": {
+      "sourceHash": "b8dbf82ccedbd48a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.available": {
+      "sourceHash": "74b6bc8838246e23",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.outlook": {
+      "sourceHash": "957463fda0c2b538",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.scale": {
+      "sourceHash": "c00300a90d7c4c0f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.risk": {
+      "sourceHash": "2fb6d6d3f370b496",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.clear": {
+      "sourceHash": "fc43d9e6a7865478",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.pending": {
+      "sourceHash": "3e2275116f63b141",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.ready": {
+      "sourceHash": "8176a2e567416c7c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.autoStop": {
+      "sourceHash": "cd374d47c2d67c60",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.readiness.waiting": {
+      "sourceHash": "d745e41b8da3cf20",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.paperclips.title": {
+      "sourceHash": "7549a6b8b7b01220",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.paperclips.description": {
+      "sourceHash": "93c82a6a990e4aa1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Interview.paperclips.dismiss": {
+      "sourceHash": "cb9698deb2eebaed",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Publish.title": {
+      "sourceHash": "fa1162f1e74253ae",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Publish.description": {
+      "sourceHash": "f3100c48ad4c11d4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Publish.keepPrivate": {
+      "sourceHash": "3c24c8b9006c8d19",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Publish.confirm": {
+      "sourceHash": "730356372553656f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.title": {
+      "sourceHash": "9b46d6f861748eeb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.deleteFailed": {
+      "sourceHash": "8369bf76c6362e16",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.visibilityFailed": {
+      "sourceHash": "534fcf479ccaaa33",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.empty": {
+      "sourceHash": "f359e4d1dc972787",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.deleteTitle": {
+      "sourceHash": "4cd33f651c0afe85",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.deleteDescription": {
+      "sourceHash": "684cfc2db2a08adf",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.keep": {
+      "sourceHash": "fdce5da2cec2ff02",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.deleteConfirm": {
+      "sourceHash": "0a28a0c3d5425357",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.status.published": {
+      "sourceHash": "2ef42ec21d9300dd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.status.ready": {
+      "sourceHash": "c056e02b87d51881",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.status.inProgress": {
+      "sourceHash": "c1f88e9d6c4145cf",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.untitled": {
+      "sourceHash": "466cf3591b21b0dc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.numbered": {
+      "sourceHash": "32972eb3c2e4e69f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.imageCopied": {
+      "sourceHash": "38f828fda0762ed6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.reportStarted": {
+      "sourceHash": "7693d3c0d37ca641",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.imageStarted": {
+      "sourceHash": "6051367d4a56c92d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.imageCopyFailed": {
+      "sourceHash": "58b81f79ac24f0ac",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.reportFailed": {
+      "sourceHash": "bb95631fd60c82ef",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.imageFailed": {
+      "sourceHash": "6b7ec30427aa70d4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.publicCopied": {
+      "sourceHash": "4c1aed1ad2255433",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.publicCopyFailed": {
+      "sourceHash": "950225476df002ef",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.assessment": {
+      "sourceHash": "7808eeeb45dfa074",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.dateCreated": {
+      "sourceHash": "fa91f7628ea5a124",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.statusHeading": {
+      "sourceHash": "920e413c7d411b61",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.actions": {
+      "sourceHash": "ff8059dc6752afdd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.actionsFor": {
+      "sourceHash": "bc0d30cf9fce2f2c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.publish": {
+      "sourceHash": "730356372553656f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.viewPublic": {
+      "sourceHash": "c788f99f1f4c6a2d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.copyPublic": {
+      "sourceHash": "cf2648c03e14f597",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.downloadImage": {
+      "sourceHash": "9ac7ee0a8010378b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.copyImage": {
+      "sourceHash": "9fbdde0651b2c1a1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.downloadReport": {
+      "sourceHash": "aee5b840e1e1fe3d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.makePrivate": {
+      "sourceHash": "e83dbc0a3f6bb2ba",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.delete": {
+      "sourceHash": "e2d0a54968ead24e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.sortAssessments": {
+      "sourceHash": "71531ca0e895d00b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.sortBy": {
+      "sourceHash": "c9129025bd3ff652",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.claimError": {
+      "sourceHash": "19a6d122994997dd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.signinError": {
+      "sourceHash": "b3a7f34f3d1aed43",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.signinUnavailable": {
+      "sourceHash": "2486377d0e3a79be",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.browserSaved": {
+      "sourceHash": "77bce602f940d7a0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.wait": {
+      "sourceHash": "4660a983366f7101",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.signIn": {
+      "sourceHash": "9d453e25312799f2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.opening": {
+      "sourceHash": "6d0f418e0dac0476",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.openFailed": {
+      "sourceHash": "7441100883566c7c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.tryAgain": {
+      "sourceHash": "d8b8392e2c542950",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.create": {
+      "sourceHash": "208e1d3f56476c9c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.question": {
+      "sourceHash": "b0a8615678ad2d7b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.high": {
+      "sourceHash": "0fb2a58cf9e3049e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.low": {
+      "sourceHash": "2567992d31d4765c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.worried": {
+      "sourceHash": "13d9ead0ef6e1b24",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.hopeful": {
+      "sourceHash": "0ad2e0351be5fbd4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.you": {
+      "sourceHash": "08b041935798fbf6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.yourGuess": {
+      "sourceHash": "49054845782fecac",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.unsettled": {
+      "sourceHash": "921f1e62d3bdf359",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.estimate": {
+      "sourceHash": "558ecb0fd23a9e3c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.simulatedView": {
+      "sourceHash": "eff1f50da9a9f513",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.yourView": {
+      "sourceHash": "f962edb311354edf",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.marker": {
+      "sourceHash": "f91ea9419bac352d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.markerFallback": {
+      "sourceHash": "4d38cfe0cdb2ea8e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.unplacedTitle": {
+      "sourceHash": "651fd1947442cff1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.unplacedNote": {
+      "sourceHash": "37079c398570e753",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.unplacedCaption": {
+      "sourceHash": "4e5578e50400b88e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.centerUnresolved": {
+      "sourceHash": "0aa580c77853499a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.simulatedPosition": {
+      "sourceHash": "bd57551aba7b2526",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.estimatedPosition": {
+      "sourceHash": "526a2679ab35262c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.notDetermined": {
+      "sourceHash": "4cf0b5a4bc5e037e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.range": {
+      "sourceHash": "caad6c30d9b76041",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.axes": {
+      "sourceHash": "65a8fa83ee808a29",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.history": {
+      "sourceHash": "ef7dcf8d7bfdf08d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.pickDescription": {
+      "sourceHash": "f450bf2ddff9f3fd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.pickEmpty": {
+      "sourceHash": "bc44aa05be5e9f60",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.outOf": {
+      "sourceHash": "cc1058100dd52453",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.unplaced": {
+      "sourceHash": "4923222edb462cad",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.description": {
+      "sourceHash": "2b48314b7e40c3bd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.actions": {
+      "sourceHash": "806bc846a47f4ab6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.copyPng": {
+      "sourceHash": "f4064484a36a6767",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.downloadPng": {
+      "sourceHash": "c61867c5855be067",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.copied": {
+      "sourceHash": "1302c262c1798364",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.downloaded": {
+      "sourceHash": "b0d268feb2e63409",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.copyFailed": {
+      "sourceHash": "58b81f79ac24f0ac",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.downloadFailed": {
+      "sourceHash": "6b7ec30427aa70d4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.aspects.outlook_too_doom": {
+      "sourceHash": "97d086135c79bfde",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.aspects.outlook_too_bloom": {
+      "sourceHash": "a90c312dc44f8b59",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.aspects.scale_too_low": {
+      "sourceHash": "cc7d80aa35c59468",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.aspects.scale_too_high": {
+      "sourceHash": "18bd78fa31aff2c2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.aspects.pdoom_too_high": {
+      "sourceHash": "65e6e80b7b1526fd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.aspects.pdoom_too_low": {
+      "sourceHash": "03fd894324bcf1e9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.aspects.other": {
+      "sourceHash": "cc72843144841a6f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.label": {
+      "sourceHash": "1b762e5e3c4aace4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.thanksYes": {
+      "sourceHash": "6cfbbb60105674d4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.thanksNo": {
+      "sourceHash": "f08f830df8ec5724",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.change": {
+      "sourceHash": "c0bf75bd78bf9572",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.question": {
+      "sourceHash": "55b5d24a87807e3b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.yes": {
+      "sourceHash": "85a39ab345d672ff",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.notQuite": {
+      "sourceHash": "fd682cdc1fc56418",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.whatsOff": {
+      "sourceHash": "45c22638a02af786",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.placeholder": {
+      "sourceHash": "45ff50f5627d1485",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.commentLabel": {
+      "sourceHash": "cc9ebab9d7ea5045",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.send": {
+      "sourceHash": "f6f4688ff23d50c6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Feedback.saveFailed": {
+      "sourceHash": "f1570ee83089c1eb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.simulatedAssessment": {
+      "sourceHash": "32bb7adf614ea2be",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.viewAnswers": {
+      "sourceHash": "72f90b9fd53fdba4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.question": {
+      "sourceHash": "450e37a8e668c6b8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.debugInfo": {
+      "sourceHash": "b6b46f993d99634c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.stateTitle": {
+      "sourceHash": "55b0b7208ad3ca0f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.stateDescription": {
+      "sourceHash": "a71f45e7457b9e7d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.stateLabel": {
+      "sourceHash": "1a9c658cd2b252b6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.stateMissing": {
+      "sourceHash": "1b9718595831512a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.resultsTitle": {
+      "sourceHash": "218a557d3d8756a5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.resultsDescription": {
+      "sourceHash": "0005b43a3b86f8cd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.resultsLabel": {
+      "sourceHash": "1b36f1b0afd019cc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.sourcesTitle": {
+      "sourceHash": "caf85b0888d78f1f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.sourcesUpdated": {
+      "sourceHash": "f981843d7a99b347",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.sourcesDefault": {
+      "sourceHash": "cfc213a1a01843d3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Persona.profile": {
+      "sourceHash": "d696a35bdd1883da",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.userTitle": {
+      "sourceHash": "769e71e76fcfe72b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.userDescription": {
+      "sourceHash": "599fcb944b0ecf4a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.userImageAlt": {
+      "sourceHash": "88877c4864fa5ea7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.publicTitle": {
+      "sourceHash": "769e71e76fcfe72b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.sharedTitle": {
+      "sourceHash": "85cb9f86cf8744df",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.publicDescription": {
+      "sourceHash": "aac9d17688794713",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.publicImageAlt": {
+      "sourceHash": "9a118f8d8a49aa5b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.asOf": {
+      "sourceHash": "90926775e58dfb1c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Profiles.profile": {
+      "sourceHash": "d696a35bdd1883da",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.civilizational": {
+      "sourceHash": "52271c83548e2de3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.incremental": {
+      "sourceHash": "4e12315d90b5131a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.unsettled": {
+      "sourceHash": "921f1e62d3bdf359",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.estimate": {
+      "sourceHash": "558ecb0fd23a9e3c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.yourView": {
+      "sourceHash": "f962edb311354edf",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.simulated": {
+      "sourceHash": "31fe293b1b90edc6",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.unplaced": {
+      "sourceHash": "d7666213d4e3f7b1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.myWorldview": {
+      "sourceHash": "0f834902eb526d47",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.whereLand": {
+      "sourceHash": "0e5e71fde46d63ae",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.pdoomEstimate": {
+      "sourceHash": "8636bbdc74ad52a8",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.notEstimated": {
+      "sourceHash": "dbbcf5111aaff4e7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.unclear": {
+      "sourceHash": "b18ee8ea3c5da452",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.closest": {
+      "sourceHash": "7af2fb3f6bf3dd7f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.notEnough": {
+      "sourceHash": "5cd3176f2e863644",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.question": {
+      "sourceHash": "a6b1b6d00082dfdc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.footer": {
+      "sourceHash": "9bc515c731ebd181",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.footerSimulated": {
+      "sourceHash": "c4a0445b775a8d6b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.tagline": {
+      "sourceHash": "a51ea043a2809467",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.simulatedKicker": {
+      "sourceHash": "feb8ebfaa6b471ed",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.mapKicker": {
+      "sourceHash": "aa0f1ae30ad3d623",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.personTitle": {
+      "sourceHash": "769e71e76fcfe72b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.siteTitle": {
+      "sourceHash": "a4d306b32a5a3198",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.personNote": {
+      "sourceHash": "7c3a665a3b2db73a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.siteNote": {
+      "sourceHash": "197cd4e4bf597cd2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.noPlacement": {
+      "sourceHash": "1fc761de3cd51ab2",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.centerUnresolved": {
+      "sourceHash": "24770aefff0012cc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.estimatedPlacement": {
+      "sourceHash": "7a8ba3088fd74d81",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Cards.siteFooter": {
+      "sourceHash": "bbd16ab27ca8aabd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.title": {
+      "sourceHash": "e021bd10e3cdba7e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.question": {
+      "sourceHash": "c53da0f96a00dec1",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.intro": {
+      "sourceHash": "dbdc842d5a7622b0",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.whyTitle": {
+      "sourceHash": "87c2782e9aee0217",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.why1": {
+      "sourceHash": "a022560435c7cd12",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.why2": {
+      "sourceHash": "7e6d6d4eb4f10ba9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.interviewTitle": {
+      "sourceHash": "421c84cd277404ca",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.interview1": {
+      "sourceHash": "f6a8cd9cadbb1beb",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.interview2": {
+      "sourceHash": "d00147b8e56242fe",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.jevTitle": {
+      "sourceHash": "9f699a07e5874cfd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.jev1": {
+      "sourceHash": "5a4cdc2b2ca30f44",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.jev2": {
+      "sourceHash": "e3a1377b5185836c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.exampleTitle": {
+      "sourceHash": "bbfc365466020427",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.example": {
+      "sourceHash": "b34f21bd2688ec3e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.inputTitle": {
+      "sourceHash": "44cf8080997ead21",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.inputLabel": {
+      "sourceHash": "3e2af877a9d5d4ab",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.inputNote": {
+      "sourceHash": "58376e47a249616d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.resultTitle": {
+      "sourceHash": "218a557d3d8756a5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.resultLabel": {
+      "sourceHash": "6520eff88cef203a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.resultNote": {
+      "sourceHash": "93fb4b0ea58d48df",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.simulatedTitle": {
+      "sourceHash": "a6fbd543a81c8bb9",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.simulated1": {
+      "sourceHash": "907c2828742b2068",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.simulated2": {
+      "sourceHash": "e8f0e93647e7339c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.mapTitle": {
+      "sourceHash": "4d6b8cb00a8d642b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.map1": {
+      "sourceHash": "a0b5783a265adf71",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.map2": {
+      "sourceHash": "410f65ff81f240dd",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.map3": {
+      "sourceHash": "f1177a020a7f776a",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.answersTitle": {
+      "sourceHash": "fcfbe93051a91e86",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.answers": {
+      "sourceHash": "75a30e13d2e4df50",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.nextTitle": {
+      "sourceHash": "7ad7aa27712dc30e",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.next1": {
+      "sourceHash": "d8cfc6a2e63d5553",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.next2": {
+      "sourceHash": "ea74a94bfb798f10",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.builtBy": {
+      "sourceHash": "e66326720773ae63",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.related": {
+      "sourceHash": "2cd36353bddde117",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "About.source": {
+      "sourceHash": "0a3981982d6bd00d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.title": {
+      "sourceHash": "54a57c3147c49f33",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.intro": {
+      "sourceHash": "7a7896b0901984ab",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.storage": {
+      "sourceHash": "c261fa27978c86a4",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.answersTitle": {
+      "sourceHash": "943444d8de63fa2d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.answers1": {
+      "sourceHash": "2b85957afd8b09dc",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.answers2": {
+      "sourceHash": "ec364423ded044f3",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.accountTitle": {
+      "sourceHash": "8618fca798bc2fc5",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.account": {
+      "sourceHash": "adae9db9b3c08096",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.measurementTitle": {
+      "sourceHash": "2441dd767e11a83d",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.measurement1": {
+      "sourceHash": "a78a0be7b56f5f74",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.measurement2": {
+      "sourceHash": "7c279b5d1f5995a7",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.publishingTitle": {
+      "sourceHash": "aba3418c45fbf01b",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.publishing1": {
+      "sourceHash": "c5c1606e937c8402",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.publishing2": {
+      "sourceHash": "ad5f441069ace00f",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.publishing3": {
+      "sourceHash": "c8212bbe1b287aac",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.publishing4": {
+      "sourceHash": "3692e73c65ace00c",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Privacy.cookie": {
+      "sourceHash": "f9a61c30caa49643",
+      "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

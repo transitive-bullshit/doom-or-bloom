@@ -2,83 +2,16 @@ import { readFileSync } from 'node:fs'
 import { createTranslator } from 'next-intl'
 import { describe, expect, it } from 'vitest'
 import { locales } from './config'
-
-type Catalog = { [key: string]: string | Catalog }
+import {
+  flattenMessages as flatten,
+  messageSignature as shape,
+  type Catalog
+} from './message-checks'
 
 function load(locale: string): Catalog {
   return JSON.parse(
     readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), 'utf8')
   )
-}
-
-function flatten(catalog: Catalog, prefix = ''): Map<string, string> {
-  const entries = new Map<string, string>()
-  for (const [key, value] of Object.entries(catalog)) {
-    const path = prefix ? `${prefix}.${key}` : key
-    if (typeof value === 'string') entries.set(path, value)
-    else for (const entry of flatten(value, path)) entries.set(...entry)
-  }
-  return entries
-}
-
-/**
- * The ICU arguments (with their select/plural type) and rich-text tags a
- * message uses, including those nested in select and plural branches. Branch
- * keys may differ between languages, but every select or plural needs `other`.
- */
-function shape(message: string) {
-  const args = new Set<string>()
-  const tags = new Set<string>()
-  const missingOther: string[] = []
-  let i = 0
-  const rest = () => message.slice(i)
-  const skipSpace = () => {
-    while (/\s/u.test(message[i] ?? '')) i++
-  }
-  function parseMessage() {
-    while (i < message.length && message[i] !== '}') {
-      if (message[i] === '{') parseArgument()
-      else if (message[i] === '<') {
-        const tag = /^<\/?([a-z][\w-]*)\s*\/?>/iu.exec(rest())
-        if (tag) {
-          tags.add(tag[1]!)
-          i += tag[0].length
-        } else i++
-      } else i++
-    }
-  }
-  function parseArgument() {
-    i++
-    const header = /^\s*(\w+)\s*(?:,\s*(\w+)\s*)?/u.exec(rest())
-    if (!header) throw new Error(`Malformed argument in “${message}”`)
-    const [matched, name, type] = header
-    i += matched.length
-    args.add(type ? `${name}:${type}` : name!)
-    if (type === 'select' || type === 'plural' || type === 'selectordinal') {
-      i++ // the comma before the branches
-      const keys: string[] = []
-      for (;;) {
-        const branch = /^\s*(?:offset:\d+\s*)?(=?[\w-]+)\s*\{/u.exec(rest())
-        if (!branch) break
-        keys.push(branch[1]!)
-        i += branch[0].length
-        parseMessage()
-        i++
-      }
-      if (!keys.includes('other')) missingOther.push(name!)
-    } else while (i < message.length && message[i] !== '}') i++
-    skipSpace()
-    if (message[i] !== '}') throw new Error(`Unclosed argument in “${message}”`)
-    i++
-  }
-  parseMessage()
-  if (i < message.length) throw new Error(`Unbalanced braces in “${message}”`)
-  return {
-    empty: !message.trim(),
-    arguments: [...args].toSorted(),
-    tags: [...tags].toSorted(),
-    missingOther
-  }
 }
 
 const byKey = (entries: Map<string, string>) =>
