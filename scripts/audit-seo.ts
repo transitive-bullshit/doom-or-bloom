@@ -208,7 +208,12 @@ if (process.argv.includes('--check')) {
       '/api/',
       '/api$',
       // Owner routes, unprefixed for English and under each locale prefix.
-      ...['', '/es'].flatMap((prefix) =>
+      ...[
+        '',
+        ...['es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id'].map(
+          (code) => `/${code}`
+        )
+      ].flatMap((prefix) =>
         [
           '/assessment$',
           '/assessment/',

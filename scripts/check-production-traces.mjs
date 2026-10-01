@@ -60,10 +60,9 @@ assert.equal(
   'New post-build profiles must remain reachable from the revalidated directory'
 )
 for (const route of [
-  '/en',
-  '/es',
-  '/en/users',
-  '/es/users',
+  ...['en', 'es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id'].flatMap(
+    (code) => [`/${code}`, `/${code}/users`]
+  ),
   '/sitemap.xml',
   '/llms.txt',
   ...profilePaths,

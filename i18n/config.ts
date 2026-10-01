@@ -1,5 +1,6 @@
 // The one list of planned locales. Enabling a locale is a one-line change here,
-// plus its messages/<code>.json catalog; see docs/INTERNATIONALIZATION.md.
+// plus its messages/<code>.json catalog and content/l10n/<code> translations;
+// see docs/INTERNATIONALIZATION.md.
 // Pure data and helpers: next.config.ts, the server and the browser import it.
 //
 // `code` is the URL segment and the next-intl locale id: short and lowercase
@@ -29,7 +30,7 @@ const catalog = [
     endonym: 'Português (Brasil)',
     englishName: 'Brazilian Portuguese',
     openGraph: 'pt_BR',
-    enabled: false
+    enabled: true
   },
   {
     code: 'hi',
@@ -37,7 +38,7 @@ const catalog = [
     endonym: 'हिन्दी',
     englishName: 'Hindi',
     openGraph: 'hi_IN',
-    enabled: false
+    enabled: true
   },
   {
     code: 'zh',
@@ -45,7 +46,7 @@ const catalog = [
     endonym: '简体中文',
     englishName: 'Simplified Chinese',
     openGraph: 'zh_CN',
-    enabled: false
+    enabled: true
   },
   {
     code: 'th',
@@ -53,7 +54,7 @@ const catalog = [
     endonym: 'ไทย',
     englishName: 'Thai',
     openGraph: 'th_TH',
-    enabled: false
+    enabled: true
   },
   {
     code: 'ja',
@@ -61,7 +62,7 @@ const catalog = [
     endonym: '日本語',
     englishName: 'Japanese',
     openGraph: 'ja_JP',
-    enabled: false
+    enabled: true
   },
   {
     code: 'de',
@@ -69,7 +70,7 @@ const catalog = [
     endonym: 'Deutsch',
     englishName: 'German',
     openGraph: 'de_DE',
-    enabled: false
+    enabled: true
   },
   {
     code: 'fr',
@@ -77,7 +78,7 @@ const catalog = [
     endonym: 'Français',
     englishName: 'French',
     openGraph: 'fr_FR',
-    enabled: false
+    enabled: true
   },
   {
     code: 'id',
@@ -85,7 +86,7 @@ const catalog = [
     endonym: 'Bahasa Indonesia',
     englishName: 'Indonesian',
     openGraph: 'id_ID',
-    enabled: false
+    enabled: true
   }
 ] as const satisfies readonly {
   code: string

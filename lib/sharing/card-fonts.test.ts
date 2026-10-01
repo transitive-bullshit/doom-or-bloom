@@ -53,3 +53,16 @@ describe('share card fonts', () => {
     expect(wrappable('自分のAI世界観', 'ja')).toBe('自分のAI世界観')
   })
 })
+
+test('Thai card messages wrap and keep their translator methods', async () => {
+  const { testTranslator } = await import('@/i18n/test-translator')
+  const { cardTranslator } = await import('./card-renderer')
+  const thai = testTranslator('th')
+  const t = cardTranslator(thai, 'th')
+  expect(t('Cards.myWorldview')).toContain('​')
+  expect(t('Cards.myWorldview').replaceAll('​', '')).toBe(
+    thai('Cards.myWorldview')
+  )
+  expect(t.has('Cards.myWorldview')).toBe(true)
+  expect(cardTranslator(thai, 'ja')).toBe(thai)
+})

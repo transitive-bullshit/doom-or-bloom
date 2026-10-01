@@ -42,7 +42,7 @@ export async function GET() {
     '',
     '## Languages',
     '',
-    'English pages have unprefixed URLs; other languages add a prefix. The site, the assessment interface, results, About and Privacy are translated. Assessment questions and other authored assessment text, simulated answers and participant answers stay in English.',
+    'English pages have unprefixed URLs; other languages add a prefix. The site, the assessment interface and its questions, results, About and Privacy are translated (authored assessment text is machine-translated, with native review of the root question, recovery copy and result claims). Simulated answers and participant answers stay as written, so simulated-user and published assessment pages are indexed in English only.',
     '',
     ...localeOptions.map(
       ({ code, tag, endonym }) =>
