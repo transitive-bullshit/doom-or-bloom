@@ -159,6 +159,7 @@ A share link (`share_snapshots`) lets an owner share one result without publishi
 - **Comparisons.** A recipient's browser fetches that data (or `GET /api/personas/<slug>/comparison` for a thought leader) without cookies and compares locally. The server stores nothing about a comparison and never links the two assessments ([PRODUCT.md](PRODUCT.md#sharing)).
 
 Migration `0009_share_snapshots` only creates the table and its indexes; its foreign keys briefly lock `assessments` and `assessment_snapshots` while they are added. Production and the shared Preview database need it before the share link code deploys to them, or every share action fails; applying it is part of a separate deployment task.
+
 ## Jev spend budget
 
 `jev_spend` and `jev_provider_status` back the app's own ceiling on participant Jev spend; [TYPESAFE.md](TYPESAFE.md#spend-budget) owns the budget rules and signals. They hold aggregate counters and one timestamp, never participant data, and nothing references them.
