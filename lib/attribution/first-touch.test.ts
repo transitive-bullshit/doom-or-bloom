@@ -45,6 +45,16 @@ describe('captureFirstTouch', () => {
     })
   })
 
+  it('records search landings on the P(doom) hub', () => {
+    expect(capture('https://www.doom-or-bloom.com/p-doom').landing).toBe(
+      'pdoom'
+    )
+    expect(capture('https://www.doom-or-bloom.com/es/p-doom')).toMatchObject({
+      landing: 'pdoom',
+      locale: 'es'
+    })
+  })
+
   it('still reads records saved before locales were recorded', () => {
     const { locale: _, ...legacy } = capture('https://www.doom-or-bloom.com/')
     expect(earliestFirstTouch(legacy, null)).toEqual(legacy)

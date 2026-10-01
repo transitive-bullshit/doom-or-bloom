@@ -59,10 +59,13 @@ assert.equal(
   null,
   'New post-build profiles must remain reachable from the revalidated directory'
 )
+const localeCodes = ['en', 'es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id']
 for (const route of [
-  ...['en', 'es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id'].flatMap(
-    (code) => [`/${code}`, `/${code}/users`]
-  ),
+  ...localeCodes.flatMap((code) => [
+    `/${code}`,
+    `/${code}/users`,
+    `/${code}/p-doom`
+  ]),
   '/sitemap.xml',
   '/llms.txt',
   ...profilePaths,

@@ -57,6 +57,7 @@ export function SiteShell({
         >
           <div className='flex flex-wrap justify-center gap-x-5 gap-y-2'>
             <Link href='/about'>{t('about')}</Link>
+            <Link href='/p-doom'>{t('pdoom')}</Link>
             <Link href='/privacy'>{t('privacy')}</Link>
           </div>
           <div className='flex flex-wrap items-center justify-center gap-1'>

@@ -6,9 +6,14 @@ import { WorldviewCta } from '@/components/worldview-cta'
 /** Invites a visitor to someone else's result to map their own and compare. */
 export function CompareCta({
   name,
+  title,
+  description,
   className
 }: {
   name?: string | null
+  /** Overrides the default title and description, e.g. on the P(doom) hub. */
+  title?: string
+  description?: string
   className?: string
 }) {
   const t = useTranslations('Cta')
@@ -21,9 +26,11 @@ export function CompareCta({
     >
       <div className='flex flex-col gap-1.5'>
         <CardTitle className='text-lg text-balance'>
-          {name ? t('compareTitle', { name }) : t('cardTitle')}
+          {title ?? (name ? t('compareTitle', { name }) : t('cardTitle'))}
         </CardTitle>
-        <CardDescription>{t('compareDescription')}</CardDescription>
+        <CardDescription>
+          {description ?? t('compareDescription')}
+        </CardDescription>
       </div>
       <div className='shrink-0'>
         <WorldviewCta label={t('mapMine')} />

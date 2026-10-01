@@ -14,6 +14,7 @@ const landings = [
   'public_assessment',
   'assessment',
   'about',
+  'pdoom',
   'other'
 ] as const
 
@@ -68,6 +69,7 @@ function landingKind(pathname: string): FirstTouch['landing'] {
   if (pathname === '/assessment' || pathname.startsWith('/assessments'))
     return 'assessment'
   if (pathname === '/about') return 'about'
+  if (pathname === '/p-doom') return 'pdoom'
   return 'other'
 }
 
