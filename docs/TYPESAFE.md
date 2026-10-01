@@ -16,7 +16,11 @@ Live responses are validated strictly. The one tolerance: a Score value may diff
 
 Independent questions in a batch cannot consume one another’s outputs. Later stages receive earlier results only through code. Question IDs are application bookkeeping: supply the actual dimension meaning in instructions/criteria or named shared state. Never equate a category probability with the participant’s event probability, or interpretation confidence with forecast correctness.
 
-## Current local workflow — algorithm 0.7.3
+## Current local workflow — algorithm 0.7.4
+
+### Participant language
+
+Since algorithm `0.7.4`, every stage's shared state carries one neutral line when the interview runs outside English: `participantLanguage`, for example “The participant is using the interview in Spanish; answers may be written in any language. Judge meaning, not fluency or language.” The language comes from the locale submitted with the reply, else the latest saved reply's. Prompts, choices, rubric definitions and question instructions stay canonical English, and answers are passed as written, never machine-translated. English interviews, persona runs and replies saved before `0.7.4` add nothing, so their inputs are unchanged. Each accepted answer and each rejected reply records its `displayLocale` for provenance ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#jev-and-the-participants-language)). There is no per-language gating or probe; accuracy analysis by language waits for real data.
 
 ### A. Interpret the reply
 
@@ -62,7 +66,7 @@ Keep corpus assets, source provenance, curated reading recommendations and `/cor
 
 Physical exchanges require server and operation capture enabled. The participant client requests capture independently of its Debug visibility toggle. Browser IndexedDB stores traces separately from server-authoritative progress; failed operations may return safe stage diagnostics without committing an assessment revision. Preserve actual recorded evaluator questions and payloads rather than explaining historical judgments with today’s rubric. [Local debugging](local-debugging.md) defines trace retention, inspection, downloads and sanitized server diagnostics.
 
-New operations use the current assessment algorithm from `lib/assessment/schema.ts` (`0.7.3`); content, rubric and model versions remain pinned to the assessment. Preserve historical payloads and reuse cached results when their evidence revision is unchanged. Storage schema, algorithm and experiment versions are separate compatibility boundaries.
+New operations use the current assessment algorithm from `lib/assessment/schema.ts` (`0.7.4`); content, rubric and model versions remain pinned to the assessment. Preserve historical payloads and reuse cached results when their evidence revision is unchanged. Storage schema, algorithm and experiment versions are separate compatibility boundaries.
 
 ## Failure bounds and paid evaluation
 

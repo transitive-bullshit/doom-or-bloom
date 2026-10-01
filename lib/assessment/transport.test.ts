@@ -31,3 +31,15 @@ test('rejected interaction text is bounded locally and excluded from later serve
     })
   ).toThrow()
 })
+
+test('rejected replies keep the language they were written in', () => {
+  const state = createAssessment('local-locale')
+  const next = recordDisposition(state, 'non_answer', 1, 'request-es')
+  const restored = restoreLocalInteraction(
+    state,
+    next,
+    { type: 'answer', text: 'asdf', locale: 'ja' },
+    'request-es'
+  )
+  expect(restored.interactionHistory[0]?.displayLocale).toBe('ja')
+})

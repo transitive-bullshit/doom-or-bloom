@@ -1,6 +1,10 @@
 import { reportServerError } from './error-reporting'
 import 'server-only'
 import { classifyLocalReply } from '@/lib/assessment/local-reply'
+import {
+  participantLanguageNote,
+  participantLocale
+} from '@/lib/assessment/participant-language'
 import type {
   Answer,
   Assessment,
@@ -282,11 +286,21 @@ export async function runAssessment(
     ? AbortSignal.any([signal, AbortSignal.timeout(120_000)])
     : AbortSignal.timeout(120_000)
   let remainingAttempts = limits.providerAttempts as number
+  // Every stage's shared state names the interview language outside English.
+  const locale = participantLocale(state, request.operation)
+  const participantLanguage = locale && participantLanguageNote(locale)
   const evaluate = async (
     name: string,
-    input: unknown,
+    stageInput: unknown,
     questions: StageQuestions
   ) => {
+    const input =
+      participantLanguage &&
+      stageInput &&
+      typeof stageInput === 'object' &&
+      !Array.isArray(stageInput)
+        ? { ...stageInput, participantLanguage }
+        : stageInput
     const stageStarted = performance.now()
     if (remainingAttempts <= 0)
       throw new Error(
@@ -1227,6 +1241,7 @@ export async function runAssessment(
         promptInstanceId: p.id,
         promptText: p.text,
         text: op.text,
+        ...(op.locale && { displayLocale: op.locale }),
         substantive: true,
         correctionTarget: p.target,
         correctionClaimTarget: p.claimTarget,

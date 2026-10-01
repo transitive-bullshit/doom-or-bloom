@@ -43,7 +43,7 @@ export const versionsSchema = z.strictObject({
   model: z.string().max(80)
 })
 export const versions = {
-  assessment: '0.7.3',
+  assessment: '0.7.4',
   content: '0.4.0-draft',
   rubric: '0.1.0-draft',
   model: 'jev-1.13.0'
@@ -63,9 +63,15 @@ export const supportedAssessmentVersions = [
   '0.7.0',
   '0.7.1',
   '0.7.2',
+  '0.7.3',
   versions.assessment
 ]
 export const rootPrompt = 'What do you think AI means for our future—and why?'
+/**
+ * The interface language a reply was written in, as a locale code (`es`).
+ * A pattern rather than the enabled list, so saved replies outlive a locale.
+ */
+const displayLocaleSchema = z.string().regex(/^[a-z]{2}$/)
 export const dispositionSchema = z.enum([
   'usable',
   'needs_clarification',
@@ -153,7 +159,9 @@ const answerSchema = z.strictObject({
   correctionClaimTarget: z.literal('catastrophic_risk').optional(),
   hasHorizon: z.boolean().default(false),
   hasUnknownHorizon: z.boolean().optional(),
-  hasConviction: z.boolean().default(false)
+  hasConviction: z.boolean().default(false),
+  // Provenance since algorithm 0.7.4: the page's language when submitted.
+  displayLocale: displayLocaleSchema.optional()
 })
 export type Answer = z.infer<typeof answerSchema>
 const evidenceSchema = z.strictObject({
@@ -377,7 +385,8 @@ export const currentAssessmentSchema = z.strictObject({
         requestId: z.string().max(120),
         promptInstanceId: z.string().max(120),
         text: z.string().max(limits.answerChars),
-        disposition: dispositionSchema
+        disposition: dispositionSchema,
+        displayLocale: displayLocaleSchema.optional()
       })
     )
     .default([]),
@@ -513,7 +522,9 @@ export const assessmentSchema = z.union([
 export const operationSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('answer'),
-    text: z.string().trim().min(1).max(limits.answerChars)
+    text: z.string().trim().min(1).max(limits.answerChars),
+    // The interview's language, recorded with the reply and given to Jev.
+    locale: displayLocaleSchema.optional()
   }),
   z.strictObject({ type: z.literal('project') }),
   z.strictObject({ type: z.literal('continue') }),

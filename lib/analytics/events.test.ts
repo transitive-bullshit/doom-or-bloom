@@ -166,3 +166,23 @@ test('first-touch attribution passes the allowlist only as slugs', () => {
     )
   ).toBeNull()
 })
+
+test('events carry the interview language of the latest answer', () => {
+  const state = createAssessment(id)
+  expect(makeEvent(state, 'results_viewed').properties).not.toHaveProperty(
+    'interview_locale'
+  )
+  state.answers.push({
+    id: 'root:a',
+    promptInstanceId: 'root',
+    promptText: state.prompts[0]!.text,
+    text: 'Una respuesta',
+    substantive: true,
+    hasHorizon: false,
+    hasConviction: false,
+    displayLocale: 'hi'
+  })
+  const event = makeEvent(state, 'results_viewed')
+  expect(event.properties.interview_locale).toBe('hi')
+  expect(sanitizeEvent(event, catalog)?.properties.interview_locale).toBe('hi')
+})

@@ -16,7 +16,7 @@ import {
 } from '@/lib/assessment/state'
 import type { OwnedAssessment } from '@/lib/assessments/repository'
 import { usePersistentAssessment } from './use-persistent-assessment'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link, useRouter } from '@/i18n/navigation'
 import { api, userErrorMessage } from '@/lib/assessments/client'
 import { promptText } from '@/lib/assessment/display-text'
@@ -90,6 +90,7 @@ export function Interview({
   const root = useTranslations()
   const t = useTranslations('Interview')
   const authored = useAuthoredText()
+  const locale = useLocale()
   const [managing, setManaging] = useState(false)
   const [previewRevision, setPreviewRevision] = useState<number | null>(null)
   const forkKey = useRef<string | null>(null)
@@ -445,7 +446,11 @@ export function Interview({
                       return
                     }
                     if (allowed && !answerTooLong)
-                      void act({ type: 'answer', text: state.draft.trim() })
+                      void act({
+                        type: 'answer',
+                        text: state.draft.trim(),
+                        locale
+                      })
                   }}
                 >
                   <FieldGroup>

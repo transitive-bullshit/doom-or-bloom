@@ -61,6 +61,7 @@ Allowlisted properties may include:
 - Whether an inference was disputed and which authored vector it concerned.
 - Response disposition, recovery-attempt bucket, pause reason, and recovery action, using enumerated values only; never a participant “sincerity” or “troll” label.
 - First-touch attribution: `first_touch_channel` (the tag, else the referring host, else `direct`), `first_touch_ref`, `first_touch_source`, `first_touch_medium`, `first_touch_campaign`, `first_touch_referrer` (a hostname only), `first_touch_landing` (a coarse page kind such as `home` or `user`) and `first_touch_locale` (the landing URL's locale code, such as `en` or `es`; absent on records made before October 1, 2026).
+- `interview_locale`: the locale code of the latest submitted answer (`es`, `ja`), from the answer's saved `displayLocale`; absent before algorithm `0.7.4` and before the first answer.
 - Share target identifiers.
 - Self-placement gap bucket, feedback rating and feedback aspect identifiers. Guess coordinates and comment text stay in the private `assessment_feedback` table ([PERSISTENCE.md](PERSISTENCE.md#result-feedback)).
 
@@ -130,7 +131,7 @@ Use [argument journeys](JOURNEYS.md) to create development examples and separate
 - Bias across conclusion, expertise, verbosity, technical vocabulary, and writing style.
 - False contradiction and false factual-error rates.
 - False non-answer rejection, especially on relevant humor, uncertainty, critical viewpoints, and writing styles; recovery success and bounded termination on repeated nonsense.
-- Answer language. The Spanish interface still asks the authored English questions, and Jev reads answers as written, so participants may answer in either language. Treat results across answer languages as not yet comparable until the paired validation probe ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#deferred)).
+- Answer language. Every enabled language asks machine-translated questions (native review covers only the root question, recovery copy and claim wording), and Jev reads answers as written, with one line naming the interview language. Each answer records its `displayLocale` and events carry `interview_locale`. Treat results across interview languages as not yet comparable: compare dispositions, readiness, confidence and placements by language once there is real data ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#jev-and-the-participants-language)).
 
 Review disagreements qualitatively; aggregate accuracy can hide asymmetric ideological failures.
 

@@ -23,7 +23,8 @@ export function restoreLocalInteraction(
             requestId,
             promptInstanceId: attempt.promptInstanceId,
             text: operation.text,
-            disposition: attempt.disposition
+            disposition: attempt.disposition,
+            ...(operation.locale && { displayLocale: operation.locale })
           }
         ]
       : before.interactionHistory
