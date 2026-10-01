@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 import {
   defaultLocale,
   isLocale,
+  languageAlternates,
+  languageTag,
   localeCookieString,
   localeOptions,
   localizedPath,
@@ -42,7 +44,43 @@ describe('locale paths', () => {
       'Español'
     ])
     expect(isLocale('es')).toBe(true)
+    expect(isLocale('pt')).toBe(false)
     expect(isLocale('pt-BR')).toBe(false)
+  })
+})
+
+describe('URL segments and language tags', () => {
+  it('uses short URL segments for regional and script variants', () => {
+    expect(languageTag('pt')).toBe('pt-BR')
+    expect(languageTag('zh')).toBe('zh-Hans')
+    expect(localizedPath('/about', 'pt')).toBe('/pt/about')
+    expect(localizedPath('/', 'zh')).toBe('/zh')
+  })
+
+  it('keeps every tag a canonical BCP 47 tag', () => {
+    for (const code of [...locales, 'pt', 'zh', 'hi', 'th', 'ja'] as const) {
+      expect(code).toMatch(/^[a-z]{2}$/)
+      expect(Intl.getCanonicalLocales(languageTag(code))).toEqual([
+        languageTag(code)
+      ])
+    }
+    expect(localeOptions.map(({ tag }) => tag)).toEqual(['en', 'es'])
+  })
+
+  it('keys hreflang alternates by tag and links them by segment', () => {
+    expect(
+      languageAlternates('https://example.com', '/about', ['en', 'pt', 'zh'])
+    ).toEqual({
+      en: 'https://example.com/about',
+      'pt-BR': 'https://example.com/pt/about',
+      'zh-Hans': 'https://example.com/zh/about',
+      'x-default': 'https://example.com/about'
+    })
+    expect(languageAlternates('https://example.com', '/')).toEqual({
+      en: 'https://example.com/',
+      es: 'https://example.com/es',
+      'x-default': 'https://example.com/'
+    })
   })
 })
 

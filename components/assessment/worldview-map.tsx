@@ -8,13 +8,16 @@ import {
   type PointerEvent
 } from 'react'
 import Image, { getImageProps } from 'next/image'
-import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
+import { useTranslations } from 'next-intl'
+import { subjectArgs, type ResultSubject } from '@/lib/sharing/result-subject'
 import { PrismField } from '@/components/worldview/prism-field'
 import { MapActions } from './map-actions'
 import { resultMapLayout } from '@/lib/sharing/map-layout'
+import { fitFontSize, pillWidth, textWidth } from '@/lib/sharing/text-fit'
 import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
-import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
+import type { experimentalAxes } from '@/lib/assessment/worldview-experiment'
+import { claimText } from '@/lib/assessment/display-text'
 
 export function Map({
   horizontal: x,
@@ -50,8 +53,8 @@ export function Map({
     observer.observe(element)
     return () => observer.disconnect()
   }, [])
-  const definition = experimentalAxes[axis]
-  const framing = resultFraming(subject)
+  const root = useTranslations()
+  const t = useTranslations('Map')
   const id = useId().replaceAll(':', '')
   const plot = { left: 76, top: 40, width: 528, height: 268 }
   const px = (value: number) => plot.left + value * plot.width
@@ -82,9 +85,53 @@ export function Map({
           quality: 90
         }).props.src
       : undefined
+  const percent = (value: number) => Math.round(value * 100)
+  const coordinate = (value: number | null) =>
+    value === null ? t('unplaced') : t('outOf', { value: percent(value) })
   const description = pick
-    ? `Self-placement map. ${guess ? `Your guess: Doom–Bloom ${Math.round(guess.x * 100)} out of 100, ${definition.label.toLowerCase()} ${Math.round(guess.y * 100)} out of 100.` : 'No guess placed yet.'}`
-    : `Doom–Bloom: ${x.value === null ? 'unplaced' : Math.round(x.value * 100) + ' out of 100'}. ${definition.label}: ${y.value === null ? 'unplaced' : Math.round(y.value * 100) + ' out of 100'}. Interpretation ranges: ${x.range.map((v) => Math.round(v * 100)).join(' to ')} horizontally, ${y.range.map((v) => Math.round(v * 100)).join(' to ')} vertically. These are interpretation coordinates, not event probabilities.`
+    ? guess
+      ? t('pickDescription', {
+          axis,
+          x: percent(guess.x),
+          y: percent(guess.y)
+        })
+      : t('pickEmpty')
+    : t('description', {
+        axis,
+        x: coordinate(x.value),
+        y: coordinate(y.value),
+        xLow: percent(x.range[0]),
+        xHigh: percent(x.range[1]),
+        yLow: percent(y.range[0]),
+        yHigh: percent(y.range[1])
+      })
+  // Translated labels vary in length: side labels shrink to fit the margin,
+  // and the point and caption boxes grow to fit their text.
+  const sideLabel = (text: string) => ({
+    fontSize: fitFontSize(text, 12 * labelScale, 70)
+  })
+  const pointLabel =
+    y.interpretation === 'unsettled'
+      ? t('unsettled')
+      : y.interpretation === 'tentative'
+        ? t('estimate')
+        : subject
+          ? t('simulatedView')
+          : t('yourView')
+  const pointWidth = pillWidth(pointLabel, 12, { minimum: 92 })
+  const caption = { title: t('unplacedTitle'), note: t('unplacedNote') }
+  const captionWidth = Math.min(
+    plot.width,
+    Math.max(
+      292,
+      Math.ceil(
+        Math.max(
+          textWidth(caption.title, 15, true),
+          textWidth(caption.note, 12)
+        )
+      ) + 28
+    )
+  )
   return (
     <figure
       data-slot='worldview-map'
@@ -95,7 +142,7 @@ export function Map({
       )}
     >
       <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
-        <h2 className='col-start-2 text-center'>{definition.question}</h2>
+        <h2 className='col-start-2 text-center'>{t('question', { axis })}</h2>
         <div className='col-start-3 justify-self-end'>
           {!pick && <MapActions svg={svg} />}
         </div>
@@ -136,7 +183,7 @@ export function Map({
           fill='var(--map-muted)'
           fontSize='12'
         >
-          {definition.high}
+          {t('high', { axis })}
         </text>
         <text
           className='prism-axis-label'
@@ -147,7 +194,7 @@ export function Map({
           fill='var(--map-muted)'
           fontSize='12'
         >
-          {definition.low}
+          {t('low', { axis })}
         </text>
         <text
           className='prism-pole'
@@ -181,8 +228,9 @@ export function Map({
               textAnchor='middle'
               fill='var(--map-muted)'
               fontSize='11'
+              style={sideLabel(t('worried'))}
             >
-              worried
+              {t('worried')}
             </text>
             <text
               className='prism-axis-label'
@@ -192,8 +240,9 @@ export function Map({
               textAnchor='middle'
               fill='var(--map-muted)'
               fontSize='11'
+              style={sideLabel(t('hopeful'))}
             >
-              hopeful
+              {t('hopeful')}
             </text>
           </>
         )}
@@ -253,7 +302,7 @@ export function Map({
               fontSize='11'
               fontWeight='600'
             >
-              {pick ? 'You' : 'Your guess'}
+              {pick ? t('you') : t('yourGuess')}
             </text>
           </g>
         )}
@@ -263,7 +312,12 @@ export function Map({
               <g
                 data-persona-marker={subject.name}
                 role='img'
-                aria-label={`${subject.name}: ${y.claim ?? 'Simulated worldview position'}`}
+                aria-label={t('marker', {
+                  name: subject.name,
+                  claim: y.claim
+                    ? claimText(root, y.claim, y.vector)
+                    : t('markerFallback')
+                })}
               >
                 <image
                   href={portrait}
@@ -302,12 +356,12 @@ export function Map({
                   strokeWidth='3'
                 />
                 <g
-                  transform={`translate(${Math.max(plot.left + 46, Math.min(plot.left + plot.width - 46, px(x.value!)))},${y.value! > 0.85 ? py(y.value!) + 36 : py(y.value!) - 29})`}
+                  transform={`translate(${Math.max(plot.left + pointWidth / 2, Math.min(plot.left + plot.width - pointWidth / 2, px(x.value!)))},${y.value! > 0.85 ? py(y.value!) + 36 : py(y.value!) - 29})`}
                 >
                   <rect
-                    x='-46'
+                    x={-pointWidth / 2}
                     y='-14'
-                    width='92'
+                    width={pointWidth}
                     height='25'
                     rx='12.5'
                     fill='var(--map-text)'
@@ -319,13 +373,7 @@ export function Map({
                     fontSize='12'
                     fontWeight='600'
                   >
-                    {y.interpretation === 'unsettled'
-                      ? 'Unsettled'
-                      : y.interpretation === 'tentative'
-                        ? 'Estimate'
-                        : subject
-                          ? 'Simulated view'
-                          : 'Your view'}
+                    {pointLabel}
                   </text>
                 </g>
               </>
@@ -335,9 +383,9 @@ export function Map({
         {!point && !pick && (
           <g className='map-axis-caption'>
             <rect
-              x='194'
+              x={340 - captionWidth / 2}
               y='148.5'
-              width='292'
+              width={captionWidth}
               height='51'
               rx='10'
               fill='var(--map-surface)'
@@ -347,27 +395,26 @@ export function Map({
               y='169.5'
               textAnchor='middle'
               fill='var(--map-text)'
-              fontSize='15'
+              fontSize={fitFontSize(caption.title, 15, captionWidth - 28, true)}
               fontWeight='600'
             >
-              Some dimensions are still unplaced
+              {caption.title}
             </text>
             <text
               x='340'
               y='187.5'
               textAnchor='middle'
               fill='var(--map-muted)'
-              fontSize='12'
+              fontSize={fitFontSize(caption.note, 12, captionWidth - 28)}
             >
-              Open regions show what we don’t yet know.
+              {caption.note}
             </text>
           </g>
         )}
       </svg>
       {!point && !pick && (
         <p className='map-mobile-captions map-muted text-sm'>
-          Some dimensions are still unplaced. Open regions show what we don’t
-          yet know.
+          {t('unplacedCaption')}
         </p>
       )}
       <figcaption className='map-muted text-xs leading-5 sm:text-sm'>
@@ -394,24 +441,23 @@ export function Map({
               </span>
               {point
                 ? y.interpretation === 'unsettled'
-                  ? 'Center of unresolved range'
+                  ? t('centerUnresolved')
                   : subject
-                    ? 'Simulated position'
-                    : 'Your estimated position'
-                : 'Position not yet determined'}
+                    ? t('simulatedPosition')
+                    : t('estimatedPosition')
+                : t('notDetermined')}
             </span>
             <span className='inline-flex items-center gap-2'>
               <span
                 className='map-range h-4 w-5 shrink-0 rounded-sm border border-dashed'
                 aria-hidden='true'
               />
-              Interpretation range
+              {t('range')}
             </span>
           </div>
           <p>
-            Across: {framing.possessive} expressed Doom–Bloom outlook. Up:{' '}
-            {definition.label.toLowerCase()}.
-            {history.length > 0 ? ' Numbered dots show earlier answers.' : ''}
+            {t('axes', { ...subjectArgs(subject), axis })}
+            {history.length > 0 ? ` ${t('history')}` : ''}
           </p>
         </div>
       </figcaption>

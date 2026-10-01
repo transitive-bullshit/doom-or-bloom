@@ -130,6 +130,7 @@ Use [argument journeys](JOURNEYS.md) to create development examples and separate
 - Bias across conclusion, expertise, verbosity, technical vocabulary, and writing style.
 - False contradiction and false factual-error rates.
 - False non-answer rejection, especially on relevant humor, uncertainty, critical viewpoints, and writing styles; recovery success and bounded termination on repeated nonsense.
+- Answer language. The Spanish interface still asks the authored English questions, and Jev reads answers as written, so participants may answer in either language. Treat results across answer languages as not yet comparable until the paired validation probe ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#deferred)).
 
 Review disagreements qualitatively; aggregate accuracy can hide asymmetric ideological failures.
 

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
-import { locales } from '@/i18n/config'
+import { languageTag, locales } from '@/i18n/config'
 import { clientMessages } from '@/i18n/client-messages'
 import { siteUrl } from '@/lib/site'
 import { SiteShell } from '@/components/site-shell'
@@ -33,7 +33,7 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale()
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={languageTag(locale)} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider messages={clientMessages(await getMessages())}>
           <SiteShell languageSelect>{children}</SiteShell>

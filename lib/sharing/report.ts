@@ -1,8 +1,19 @@
+import type { Translator } from '@/i18n/translator'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import type { Assessment } from '@/lib/assessment/schema'
-import { presentResult } from '@/lib/assessment/present-result'
+import {
+  claimText,
+  componentLabel,
+  hingeLabel,
+  hingeQuestion,
+  milestoneLabel,
+  promptText
+} from '@/lib/assessment/display-text'
+import { pdoomTokenLabel, presentResult } from '@/lib/assessment/present-result'
 
+/** The report download; its readable files use the active locale. */
 export function serializeReport(
+  t: Translator,
   state: Assessment,
   operations: SavedDebugOperation[] = []
 ) {
@@ -57,127 +68,215 @@ export function serializeReport(
     judgments: state.judgments
   }
   // The JSON keeps the saved snapshot; the readable summary shows what the
-  // participant sees, including render-time presentation upgrades.
+  // participant sees, including render-time presentation upgrades, in the
+  // active locale. Answers, authored text and identifiers stay as saved.
   const shown = presentResult(result)
   const position = (value: number | null) =>
     value === null
-      ? 'Unplaced'
-      : `${Math.round(value * 100)} / 100 (interpretation coordinate)`
+      ? t('Report.unplaced')
+      : t('Report.position', { value: Math.round(value * 100) })
+  const range = (bounds: [number, number]) =>
+    bounds.map((v) => Math.round(v * 100)).join('–')
   const interview = [
-    '# Interview',
+    `# ${t('Report.interviewTitle')}`,
     '',
-    ...state.answers.flatMap((answer, index) => [
-      `## Question ${index + 1}) ${answer.promptText}`,
-      '',
-      answer.text,
-      ''
-    ])
+    ...state.answers.flatMap((answer, index) => {
+      const prompt = state.prompts.find(
+        (item) => item.id === answer.promptInstanceId
+      )
+      return [
+        `## ${t('Report.question', {
+          number: index + 1,
+          text: prompt
+            ? promptText(t, { ...prompt, text: answer.promptText })
+            : answer.promptText
+        })}`,
+        '',
+        answer.text,
+        ''
+      ]
+    })
   ].join('\n')
+  const pdoom = shown.experiment?.pdoom
+  const status = shown.insufficient
+    ? 'insufficient'
+    : shown.provisional
+      ? 'provisional'
+      : 'supported'
   const markdown = [
-    `# Doom or Bloom — assessment`,
+    `# ${t('Report.title')}`,
     '',
-    'Experimental interpretation of the expectations and reasoning expressed in your answers. P(doom) describes your stated or inferred belief, not an independent prediction of AI catastrophe.',
+    t('Report.intro'),
     '',
-    `Status: ${shown.insufficient ? 'Insufficient evidence' : shown.provisional ? 'Provisional' : 'Supported projection'}${shown.capped ? ' · lifetime prompt cap reached' : ''}`,
+    shown.capped
+      ? t('Report.statusCapped', { status })
+      : t('Report.status', { status }),
     '',
-    `Versions: ${JSON.stringify(shown.versions)}`,
+    t('Report.versions', { versions: JSON.stringify(shown.versions) }),
     '',
-    `Demonstrated reasoning: ${position(shown.vertical.value)}; interpretation range ${shown.vertical.range.map((v) => Math.round(v * 100)).join('–')}. Describes reasoning shown in the answers, not intelligence or viewpoint.`,
+    t('Report.reasoning', {
+      position: position(shown.vertical.value),
+      range: range(shown.vertical.range)
+    }),
     '',
-    '## Experimental worldview maps',
+    `## ${t('Report.mapsTitle')}`,
     '',
-    `Doom–Bloom: ${position(shown.horizontal.value)}; interpretation range ${shown.horizontal.range.map((v) => Math.round(v * 100)).join('–')}.`,
+    t('Report.outlook', {
+      position: position(shown.horizontal.value),
+      range: range(shown.horizontal.range)
+    }),
     '',
-    ...(['influence', 'transformation'] as const).map(
-      (axis) =>
-        `${axis === 'influence' ? 'Human influence' : 'Scale of transformation'}: ${position(shown.experiment?.[axis].value ?? null)}; ${shown.experiment?.[axis].interpretation ?? 'experimental'} interpretation; range ${(shown.experiment?.[axis].range ?? [0, 1]).map((v) => Math.round(v * 100)).join('–')}.`
+    ...(['influence', 'transformation'] as const).map((axis) =>
+      t('Report.axis', {
+        label: t(`Claims.labels.${axis}`),
+        position: position(shown.experiment?.[axis].value ?? null),
+        interpretation:
+          shown.experiment?.[axis].interpretation ?? 'experimental',
+        range: range(shown.experiment?.[axis].range ?? [0, 1])
+      })
     ),
     '',
-    `${shown.experiment?.pdoom?.source === 'inferred' ? 'Inferred' : 'Stated'} P(doom): ${shown.experiment?.pdoom?.token ?? 'Not specified'}. ${shown.experiment?.pdoom?.publicStatement ? 'The estimate comes from the cited public statement, overriding the simulated assessment estimate.' : 'The estimate applies to the outcome, horizon and conditions described in your answers.'}`,
-    ...(shown.experiment?.pdoom
+    `${t('Report.pdoom', {
+      source: pdoom?.source === 'inferred' ? 'inferred' : 'stated',
+      token: pdoom?.token
+        ? pdoomTokenLabel(t, pdoom.token)
+        : t('Report.notSpecified')
+    })} ${pdoom?.publicStatement ? t('Report.pdoomPublic') : t('Report.pdoomScope')}`,
+    ...(pdoom
       ? [
-          ...(shown.experiment.pdoom.publicStatement
+          ...(pdoom.publicStatement
             ? [
-                `Source: [${shown.experiment.pdoom.publicStatement.title}](${shown.experiment.pdoom.publicStatement.url}) (${shown.experiment.pdoom.publicStatement.publishedAt}).`,
-                `Outcome: ${shown.experiment.pdoom.publicStatement.outcome}. Horizon: ${shown.experiment.pdoom.publicStatement.horizon}. Conditions: ${shown.experiment.pdoom.publicStatement.conditions}`,
-                `Original assessment estimate: ${shown.experiment.pdoom.assessmentEstimate?.token ?? 'Not specified'}.`
+                t('Report.source', {
+                  title: pdoom.publicStatement.title,
+                  url: pdoom.publicStatement.url,
+                  date: pdoom.publicStatement.publishedAt
+                }),
+                t('Report.statement', {
+                  outcome: pdoom.publicStatement.outcome,
+                  horizon: pdoom.publicStatement.horizon,
+                  conditions: pdoom.publicStatement.conditions
+                }),
+                t('Report.originalEstimate', {
+                  token: pdoom.assessmentEstimate?.token
+                    ? pdoomTokenLabel(t, pdoom.assessmentEstimate.token)
+                    : t('Report.notSpecified')
+                })
               ]
             : []),
-          ...(shown.experiment.pdoom.text
-            ? [`> ${shown.experiment.pdoom.text}`]
-            : []),
-          `${shown.experiment.pdoom.answerNumber ? `Answer ${shown.experiment.pdoom.answerNumber}` : shown.experiment.pdoom.publicStatement ? 'Based on a sourced public statement' : 'Based on the full answer history'}.${shown.experiment.pdoom.source === 'inferred' ? ` Approximate interpretation range: ${shown.experiment.pdoom.bounds?.map((value) => Math.round(value * 100)).join('–')}%. Inferred from ${shown.experiment.pdoom.basis === 'contextual' ? 'broader worldview and priorities' : 'qualitative likelihood'}; not a stated percentage or statistical confidence interval.` : ''}`
+          ...(pdoom.text ? [`> ${pdoom.text}`] : []),
+          [
+            pdoom.answerNumber
+              ? t('Report.basisAnswer', { number: pdoom.answerNumber })
+              : pdoom.publicStatement
+                ? t('Report.basisPublic')
+                : t('Report.basisHistory'),
+            ...(pdoom.source === 'inferred'
+              ? [
+                  t('Report.inferredRange', {
+                    range:
+                      pdoom.bounds
+                        ?.map((value) => Math.round(value * 100))
+                        .join('–') ?? '',
+                    basis:
+                      pdoom.basis === 'contextual' ? 'contextual' : 'direct'
+                  })
+                ]
+              : [])
+          ].join(' ')
         ]
       : []),
     '',
-    '## Milestones and assumptions',
+    `## ${t('Report.milestonesTitle')}`,
     '',
     ...(shown.experiment?.milestones.flatMap((m) => [
-      `### ${m.label}`,
+      `### ${milestoneLabel(t, m)}`,
       '',
       `> ${m.evidence.text}`,
       '',
-      `Answer ${m.evidence.answerNumber}.`,
+      t('Report.answer', { number: m.evidence.answerNumber }),
       ''
     ]) ?? []),
     ...(shown.experiment?.hinges.flatMap((h) => [
-      `### ${h.label}`,
+      `### ${hingeLabel(t, h)}`,
       '',
       `> ${h.evidence.text}`,
       '',
-      `Answer ${h.evidence.answerNumber}. ${h.question}`,
+      `${t('Report.answer', { number: h.evidence.answerNumber })} ${hingeQuestion(t, h)}`,
       ''
     ]) ?? []),
     '',
-    'Ranges reflect authored qualitative categories, missing evidence and ambiguity; they are not calibrated confidence intervals.',
+    t('Report.rangesNote'),
     '',
-    '## Profile',
+    `## ${t('Report.profileTitle')}`,
     '',
     ...shown.components.flatMap((c) => [
-      `### ${c.label}`,
+      `### ${componentLabel(t, c)}`,
       '',
-      c.claim ?? 'Unassessed',
+      c.claim ? claimText(t, c.claim, c.vector) : t('Report.unassessed'),
       '',
-      `Position: ${position(c.value)}. Interpretation range: ${c.range.map((v) => Math.round(v * 100)).join('–')}. Coverage: ${state.coverage[c.vector as keyof typeof state.coverage] ?? 'Separate fingerprint component'}.`,
+      t('Report.componentPosition', {
+        position: position(c.value),
+        range: range(c.range),
+        coverage:
+          state.coverage[c.vector as keyof typeof state.coverage] ?? 'separate'
+      }),
       '',
-      `Supporting answer IDs: ${Array.from(new Set(evidence.filter((entry) => c.evidenceIds.includes(entry.id)).map((entry) => entry.answerId))).join(', ') || 'None'}. Support refers to whole answers, not selected passages.`,
+      t('Report.supportingAnswers', {
+        ids:
+          Array.from(
+            new Set(
+              evidence
+                .filter((entry) => c.evidenceIds.includes(entry.id))
+                .map((entry) => entry.answerId)
+            )
+          ).join(', ') || t('Report.none')
+      }),
       ''
     ]),
-    '## Fingerprint and expressed forecast context',
+    `## ${t('Report.fingerprintTitle')}`,
     '',
     ...shown.fingerprint.flatMap((c) => [
-      `### ${c.label}`,
+      `### ${componentLabel(t, c)}`,
       '',
-      c.claim ?? 'Unassessed; no supported position is invented.',
+      c.claim
+        ? claimText(t, c.claim, c.vector)
+        : t('Report.fingerprintUnassessed'),
       ''
     ]),
-    '## Findings',
+    `## ${t('Report.findingsTitle')}`,
     '',
     ...shown.findings.flatMap((f) => [
       f.text,
       '',
-      `Evidence: ${f.evidenceIds.join(', ')}`,
+      t('Report.evidence', { ids: f.evidenceIds.join(', ') }),
       ''
     ]),
-    '## Resources',
+    `## ${t('Report.resourcesTitle')}`,
     '',
     ...shown.resources.flatMap((r) => [
       `[${r.title}](${r.url}) — ${r.purpose}`,
       ''
     ]),
-    '## Reference sources',
+    `## ${t('Report.sourcesTitle')}`,
     '',
     ...shown.sources.flatMap((s) => [
       `### ${s.title}`,
       '',
-      `${s.id} · ${s.status} · accessed ${s.accessed} · content ${shown.versions.content}`,
+      t('Report.sourceMeta', {
+        id: s.id,
+        status: s.status,
+        accessed: s.accessed,
+        version: shown.versions.content
+      }),
       '',
-      ...s.urls.map((url, i) => `[Primary source ${i + 1}](${url})`),
+      ...s.urls.map(
+        (url, i) => `[${t('Report.primarySource', { number: i + 1 })}](${url})`
+      ),
       ''
     ]),
-    '## Methodology',
+    `## ${t('Report.methodologyTitle')}`,
     '',
-    'The horizontal projection summarizes expressed outlook from concern to hope. A mixed, conditional or undecided orientation can be understood and placed without inventing a net-impact forecast. The separately recorded overall expected impact can remain explicitly unknown. The middle orientation is not a forecast that benefits and harms cancel. Development pace, deployment rules and access preferences are separate and have no map weight. The vertical map projection interprets expected scale of societal transformation. Human influence over AI outcomes and demonstrated reasoning are shown on separate single axes and preserved with its components in the structured evidence. Unsettled map points mark the center of an unresolved range, not moderate beliefs. Missing evidence widens interpretation ranges. Editorial framing and rubric choices can introduce bias, including the name’s emphasis on doom and bloom.',
+    t('Report.methodology'),
     ''
   ].join('\n')
   return { markdown, interview, json: JSON.stringify(data, null, 2) }

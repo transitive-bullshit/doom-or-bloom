@@ -69,6 +69,8 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
   // The Spanish variant renders on its first request and is revoked with English.
   const spanish = `/es${path}`
   const image = `${path}/social-image.png`
+  // The Spanish page advertises its own card, rendered on first request.
+  const spanishImage = `/es${image}`
   const mutation = `/api/assessments/${id}`
   const visibility = async (value: 'public' | 'private') => {
     const response = await request.patch(mutation, {
@@ -89,6 +91,7 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
       }
     expect((await visitor.get(`${path}/data`)).status()).toBe(404)
     expect((await visitor.get(image)).status()).toBe(404)
+    expect((await visitor.get(spanishImage)).status()).toBe(404)
   }
   try {
     await unavailable() // Also exercise invalidation of cached private 404s.
@@ -157,6 +160,14 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
       expect(html).toContain(marker)
       expect(html).toContain('<html lang="es"')
       expect(html).toContain('<meta name="robots" content="noindex, follow"/>')
+      expect(html).toContain(`${spanishImage}?v=`)
+    }
+    for (const cached of [false, true]) {
+      const response = await visitor.get(spanishImage)
+      expect(response.status()).toBe(200)
+      if (cached) expect(response.headers()['x-nextjs-cache']).toBe('HIT')
+      expect(response.headers()['content-type']).toBe('image/png')
+      expect(response.headers()['set-cookie']).toBeUndefined()
     }
     const data = await visitor.get(`${path}/data`)
     expect(data.headers()['cache-control']).toContain('no-store')

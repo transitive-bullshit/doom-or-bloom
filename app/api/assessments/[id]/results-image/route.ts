@@ -1,4 +1,6 @@
 import { z } from 'zod'
+import { translatorFor } from '@/i18n/translators'
+import { defaultLocale, isLocale } from '@/i18n/config'
 import { privateHeaders, privateRequest } from '@/lib/assessments/http'
 import { repository } from '@/lib/assessments/server'
 import { AssessmentError } from '@/lib/assessments/contracts'
@@ -23,7 +25,12 @@ export async function GET(
       assessment.result,
       await loadPersonaComparisons()
     )
-    const bytes = await renderShareCard(data, { devicePixelRatio: 2 })
+    const param = new URL(request.url).searchParams.get('locale')
+    const locale = isLocale(param) ? param : defaultLocale
+    const bytes = await renderShareCard(await translatorFor(locale), data, {
+      devicePixelRatio: 2,
+      locale
+    })
     return new Response(new Uint8Array(bytes), {
       headers: { ...privateHeaders, 'Content-Type': 'image/png' }
     })

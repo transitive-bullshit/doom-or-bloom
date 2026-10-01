@@ -1,3 +1,5 @@
+import type { Translator } from '@/i18n/translator'
+
 // Interpret bounded diagnostics without exposing provider bodies or exception text.
 // This also explains historical failures without rewriting their stored records.
 export function operationFailureCategory(
@@ -12,8 +14,11 @@ export function operationFailureCategory(
   return lastCall?.status === 403 ? 'provider_rejected' : category
 }
 
-export function operationFailureMessage(category: string | null) {
-  if (category === 'provider_rejected')
-    return 'Our AI provider, TypeSafe (Jev), rejected this request. Your submission is saved. Please try again later.'
-  return 'Your submission is saved and your previous progress is unchanged. Please try again when you’re ready.'
+export function operationFailureMessage(
+  t: Translator,
+  category: string | null
+) {
+  return category === 'provider_rejected'
+    ? t('Interview.failure.providerRejected')
+    : t('Interview.failure.saved')
 }

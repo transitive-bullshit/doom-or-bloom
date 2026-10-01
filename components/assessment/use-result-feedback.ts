@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import type { Assessment } from '@/lib/assessment/schema'
 import { placementGap, type MapPoint } from '@/lib/assessment/self-placement'
@@ -26,6 +27,7 @@ const revealedKey = (id: string) => `doom-or-bloom:result-revealed:${id}`
  * Feedback never blocks the result: failures reveal it and keep going.
  */
 export function useResultFeedback(state: Assessment, enabled: boolean) {
+  const t = useTranslations('Feedback')
   const result = state.result
   const revision = result?.evidenceRevision ?? -1
   const [items, setItems] = useState<Item[]>([])
@@ -142,7 +144,7 @@ export function useResultFeedback(state: Assessment, enabled: boolean) {
         )
         return true
       } catch {
-        toast.error('Couldn’t save your feedback. Please try again.')
+        toast.error(t('saveFailed'))
         return false
       }
     }

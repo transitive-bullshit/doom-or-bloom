@@ -23,7 +23,10 @@ export default async function InternalLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body>
-        <NextIntlClientProvider messages={clientMessages(await getMessages())}>
+        {/* Review tools render every assessment surface (in English). */}
+        <NextIntlClientProvider
+          messages={clientMessages(await getMessages(), 'review')}
+        >
           <SiteShell languageSelect={false}>{children}</SiteShell>
         </NextIntlClientProvider>
       </body>

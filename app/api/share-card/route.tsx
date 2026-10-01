@@ -1,5 +1,7 @@
 import { apiDiagnostics } from '@/lib/server/error-reporting'
+import { translatorFor } from '@/i18n/translators'
 import { ZodError } from 'zod'
+import { defaultLocale, isLocale } from '@/i18n/config'
 import { cardSchema } from '@/lib/sharing/card'
 import { renderShareCard } from '@/lib/sharing/render-card'
 import {
@@ -26,7 +28,13 @@ export async function POST(request: Request) {
     const data = cardSchema.parse(await readBoundedJson(request, 2000))
     inputValidated = true
     diagnostics.setPhase('render_card')
-    const bytes = await renderShareCard(data, { devicePixelRatio: 2 })
+    // The owner's page sends its locale; route handlers have no root params.
+    const param = new URL(request.url).searchParams.get('locale')
+    const locale = isLocale(param) ? param : defaultLocale
+    const bytes = await renderShareCard(await translatorFor(locale), data, {
+      devicePixelRatio: 2,
+      locale
+    })
     diagnostics.setPhase('serialize_response')
     return new Response(new Uint8Array(bytes), {
       headers: {

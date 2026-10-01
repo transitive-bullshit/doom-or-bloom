@@ -8,6 +8,7 @@ import {
   useState,
   type ReactNode
 } from 'react'
+import { useTranslations } from 'next-intl'
 
 const AnswerNavigation = createContext<{
   answerIds: string[]
@@ -62,10 +63,13 @@ export function useAnswerDisclosure(defaultOpen: boolean, number?: number) {
 }
 
 export function AnswerLink({ number }: { number: number }) {
+  const t = useTranslations('Conversation')
   const navigation = useAnswerNavigation()
   if (!navigation || number < 1 || number > navigation.answerIds.length)
     return (
-      <span className='text-xs text-muted-foreground'>Answer {number}</span>
+      <span className='text-xs text-muted-foreground'>
+        {t('answerLink', { number })}
+      </span>
     )
   return (
     <a
@@ -81,7 +85,7 @@ export function AnswerLink({ number }: { number: number }) {
         navigation.reveal(number)
       }}
     >
-      Answer {number}
+      {t('answerLink', { number })}
     </a>
   )
 }

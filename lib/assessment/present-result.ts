@@ -1,3 +1,4 @@
+import type { Translator } from '@/i18n/translator'
 import type { Component, Result } from './schema'
 import { inferPdoom, pdoomToken, statedBounds } from './pdoom'
 import { resultReason } from './projections'
@@ -35,20 +36,33 @@ const percent = (value: number) =>
   value < 0.01 ? '<1' : value > 0.99 ? '>99' : String(Math.round(value * 100))
 
 /** A range label for an inferred P(doom), e.g. "under 5%" or "10–30%". */
-export function pdoomRangeLabel([low, high]: [number, number]) {
-  if (high < 0.01) return '<1%'
-  if (low > 0.99) return '>99%'
-  if (low < 0.01) return `under ${percent(high)}%`
-  if (high > 0.99) return `over ${percent(low)}%`
+export function pdoomRangeLabel(t: Translator, [low, high]: [number, number]) {
+  if (high < 0.01) return t('Results.pdoomRange.below')
+  if (low > 0.99) return t('Results.pdoomRange.above')
+  if (low < 0.01) return t('Results.pdoomRange.under', { value: percent(high) })
+  if (high > 0.99) return t('Results.pdoomRange.over', { value: percent(low) })
   return percent(low) === percent(high)
-    ? `≈${percent(low)}%`
-    : `${percent(low)}–${percent(high)}%`
+    ? t('Results.pdoomRange.about', { value: percent(low) })
+    : t('Results.pdoomRange.between', {
+        low: percent(low),
+        high: percent(high)
+      })
+}
+
+/**
+ * A displayed P(doom) token. Percentages show as computed or as the
+ * participant wrote them; the stored `Unclear` sentinel is translated.
+ */
+export function pdoomTokenLabel(t: Translator, token: string) {
+  return token === unclearToken ? t('Results.unclear') : token
 }
 
 // A plausible range wider than about 50× in odds that runs from under 10% to
 // over 30% has no meaningful point: the answers read both as dismissing and as
 // expecting catastrophe. A wide range within the low (or high) end still has one.
 const unclearWidth = 4
+/** The token of an inferred P(doom) whose plausible range spans low and high. */
+export const unclearToken = 'Unclear'
 const logit = (p: number) =>
   Math.log(Math.max(p, 0.0001) / Math.max(1 - p, 0.0001))
 const unclear = ([low, high]: [number, number]) =>
@@ -90,7 +104,7 @@ export function presentPdoom(pdoom: Pdoom | null | undefined) {
   if (next.estimate === undefined || !next.bounds) return next
   return {
     ...next,
-    token: unclear(next.bounds) ? 'Unclear' : pdoomToken(next.estimate)
+    token: unclear(next.bounds) ? unclearToken : pdoomToken(next.estimate)
   }
 }
 

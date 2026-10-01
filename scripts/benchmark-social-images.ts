@@ -5,6 +5,7 @@ import { render } from 'takumi-js'
 import sharp from 'sharp'
 import { people } from '../components/landing/people'
 import { SocialCard, socialImageOptions } from '../lib/sharing/social-card'
+import { englishTranslator } from '../i18n/translators'
 import type { JourneySuite } from '../lib/journeys/schema'
 
 const output = '/tmp/doom-seo-audit/images'
@@ -24,11 +25,12 @@ const points = examples.flatMap(({ result, portrait }) => {
   const y = result.experiment?.transformation.value
   return x != null && y != null ? [{ x, y, portrait }] : []
 })
+const t = englishTranslator()
 const cards = [
-  { name: 'site', card: SocialCard({ points }) },
+  { name: 'site', card: SocialCard({ t, points }) },
   ...['sama', 'esyudkowsky', 'pmarca'].map((slug) => ({
     name: slug,
-    card: SocialCard({ person: examples.find((p) => p.slug === slug)! })
+    card: SocialCard({ t, person: examples.find((p) => p.slug === slug)! })
   }))
 ]
 const results = []

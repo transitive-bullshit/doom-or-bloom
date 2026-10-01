@@ -33,7 +33,7 @@ Analytics tests use live-mode configuration to exercise SDK initialization, but 
 | Change | Required checks beyond `pnpm test` |
 | --- | --- |
 | Browser UI, navigation, clipboard, keyboard, rendering | Relevant files through `pnpm check:browser tests/browser/<file>.spec.ts`; review affected desktop/mobile rendering when appropriate |
-| Locale routing, message catalogs, language selector or hreflang | `pnpm check:browser tests/browser/i18n.spec.ts`; after routing or caching changes, `pnpm build:local` then `pnpm check:prefetch` (includes `tests/prefetch/locales.spec.ts`) |
+| Locale routing, message catalogs, language selector or hreflang | `pnpm check:browser tests/browser/i18n.spec.ts tests/browser/i18n-assessment.spec.ts` (the second fails on missing messages in the Spanish interview, result, library, profiles, About and Privacy); after routing or caching changes, `pnpm build:local` then `pnpm check:prefetch` (includes `tests/prefetch/locales.spec.ts`) |
 | Ownership, sessions, drafts, library, publication, forks | `pnpm check:persistence`; relevant `db:test:*` checks below |
 | Schema or repository transactions | `pnpm db:migrate:test` twice, `pnpm db:test`, `pnpm db:test:repository`, `pnpm db:test:commit`, `pnpm db:test:lifecycle` |
 | Result feedback (self-placement, agreement) | `pnpm db:test:feedback` and `pnpm check:browser tests/browser/result-feedback.spec.ts` |

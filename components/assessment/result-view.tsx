@@ -1,6 +1,9 @@
 'use client'
 import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import type { ReactNode } from 'react'
+import { useLocale, useTranslations } from 'next-intl'
+import { getPathname } from '@/i18n/navigation'
+import { defaultLocale } from '@/i18n/config'
 import { ShareBar } from './share-bar'
 import { closestPersonas } from '@/lib/assessment/persona-matches'
 import { shareCaption } from '@/lib/sharing/share-caption'
@@ -28,6 +31,8 @@ import {
 } from '@/components/ui/collapsible'
 import { serializeReport, downloadBlob } from '@/lib/sharing/report'
 import { presentResult } from '@/lib/assessment/present-result'
+import { claimText, componentLabel } from '@/lib/assessment/display-text'
+import { resultReasonKind } from '@/lib/assessment/projections'
 import {
   placementComparison,
   placementQuestion
@@ -61,6 +66,9 @@ export function ResultView({
   /** Publish or make-private controls, shown beside the share actions. */
   publishControl?: ReactNode
 }) {
+  const root = useTranslations()
+  const t = useTranslations('Results')
+  const locale = useLocale()
   const [downloading, setDownloading] = useState(false)
   const [reportDownloading, setReportDownloading] = useState(false)
   const resultsRoot = useRef<HTMLDivElement>(null)
@@ -89,7 +97,9 @@ export function ResultView({
     return state.answers.filter((answer) => ids.has(answer.id))
   }
   const renderCard = async () => {
-    const response = await fetch('/api/share-card', {
+    // The card renders in the page's language; English needs no parameter.
+    const query = locale === defaultLocale ? '' : `?locale=${locale}`
+    const response = await fetch(`/api/share-card${query}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(resultCardData(result, personas))
@@ -104,7 +114,7 @@ export function ResultView({
       '[data-slot="worldview-map-svg"]'
     )
     if (!svg) {
-      toast.error('The results map is not ready. Please try again.')
+      toast.error(t('mapNotReady'))
       return
     }
     setReportDownloading(true)
@@ -115,15 +125,15 @@ export function ResultView({
         import('@/lib/sharing/report-zip')
       ])
       const archive = await createReportZip(
-        serializeReport(state, operations),
+        serializeReport(root, state, operations),
         resultsImage,
         mapImage
       )
-      downloadBlob(archive, `doom or bloom assessment ${state.id}.zip`)
-      toast.success('Full report download started.')
+      downloadBlob(archive, root('Report.filename', { id: state.id }))
+      toast.success(t('reportStarted'))
       emitEvent(makeEvent(state, 'full_report_downloaded'))
     } catch {
-      toast.error('Couldn’t download the report. Please try again.')
+      toast.error(t('reportFailed'))
     } finally {
       setReportDownloading(false)
     }
@@ -133,10 +143,10 @@ export function ResultView({
     setDownloading(true)
     try {
       downloadBlob(await renderCard(), 'doom-or-bloom.png')
-      toast.success('Results image download started.')
+      toast.success(t('imageStarted'))
       emitEvent(makeEvent(state, 'share_card_downloaded'))
     } catch {
-      toast.error('Couldn’t download the image. Please try again.')
+      toast.error(t('imageFailed'))
     } finally {
       setDownloading(false)
     }
@@ -145,10 +155,12 @@ export function ResultView({
     result.experiment?.evidenceRevision === result.evidenceRevision
       ? result.experiment
       : undefined
-  const caption = shareCaption({
-    risk: experiment?.pdoom,
-    closest: closestPersonas(result, personas)[0]?.name
-  })
+  const caption = readOnly
+    ? ''
+    : shareCaption(root, {
+        risk: experiment?.pdoom,
+        closest: closestPersonas(result, personas)[0]?.name
+      })
   if (feedback.stage !== 'revealed')
     return (
       <div ref={resultsRoot} aria-busy={feedback.stage === 'pending'}>
@@ -168,23 +180,23 @@ export function ResultView({
           {(result.insufficient || result.capped) && (
             <div className='mb-3 flex gap-2'>
               {result.insufficient && (
-                <Badge variant='secondary'>Not placed yet</Badge>
+                <Badge variant='secondary'>{t('notPlaced')}</Badge>
               )}
               {result.capped && atCap(state) && (
                 <Badge variant='outline'>
-                  {promptLimit(state)}-prompt cap reached
+                  {t('capReached', { limit: promptLimit(state) })}
                 </Badge>
               )}
             </div>
           )}
           {!readOnly && (
             <>
-              <h2>Results</h2>
+              <h2>{t('title')}</h2>
               <p className='mt-2 max-w-prose text-pretty text-body-foreground'>
-                {result.reason}
+                {t(`reason.${resultReasonKind(result)}`)}
                 {result.horizontal.value !== null &&
                   result.experiment?.transformation.value != null &&
-                  ' The dot is our reading of what you wrote and the dashed box shows other plausible readings: an interpretation, not a verdict.'}
+                  ` ${t('dotNote')}`}
               </p>
             </>
           )}
@@ -199,11 +211,11 @@ export function ResultView({
           feedback.guess && (
             <div className='flex flex-col gap-3'>
               <p className='text-sm text-body-foreground'>
-                {placementComparison(feedback.guess, placed)}
+                {placementComparison(root, feedback.guess, placed)}
               </p>
               {question && (
                 <section
-                  aria-label='A question about the difference'
+                  aria-label={t('differenceLabel')}
                   className='flex flex-col gap-3 rounded-lg border p-4'
                 >
                   <p className='text-sm font-medium text-pretty'>
@@ -220,10 +232,10 @@ export function ResultView({
                         act({ type: 'placement', guess: feedback.guess })
                       }
                     >
-                      Answer this question
+                      {t('answerQuestion')}
                     </Button>
                     <span className='text-xs text-muted-foreground'>
-                      Your answer updates your result
+                      {t('answerUpdates')}
                     </span>
                   </div>
                 </section>
@@ -243,7 +255,10 @@ export function ResultView({
           !readOnly && (
             <ShareBar
               caption={caption}
-              path={published ? `/public/assessments/${state.id}` : '/'}
+              path={getPathname({
+                href: published ? `/public/assessments/${state.id}` : '/',
+                locale
+              })}
               published={published}
               downloading={downloading}
               disabled={busy || reportDownloading}
@@ -260,60 +275,76 @@ export function ResultView({
           )
         }
       />
-      <ResultDisclosure title='Additional insights'>
+      <ResultDisclosure title={t('insights')}>
         <div className='grid gap-3 sm:grid-cols-2'>
           {result.fingerprint.map((c) => (
             <div key={c.vector} className='rounded-lg border p-4'>
-              <p className='text-sm font-medium'>{c.label}</p>
+              <p className='text-sm font-medium'>{componentLabel(root, c)}</p>
               <p className='mt-2 text-sm text-body-foreground'>
-                {c.claim ?? 'Still unexplored'}
+                {c.claim ? claimText(root, c.claim, c.vector) : t('unexplored')}
               </p>
               {c.vector === 'timeline' &&
-                supportingAnswers(c.evidenceIds).map((answer) => (
-                  <div
-                    key={answer.id}
-                    className='mt-3 text-sm text-body-foreground'
-                  >
-                    <AnswerDisclosure
-                      text={answer.text}
-                      label={`Timeline answer ${state.answers.indexOf(answer) + 1}`}
-                    />
-                  </div>
-                ))}
+                supportingAnswers(c.evidenceIds).map((answer) => {
+                  const number = { number: state.answers.indexOf(answer) + 1 }
+                  return (
+                    <div
+                      key={answer.id}
+                      className='mt-3 text-sm text-body-foreground'
+                    >
+                      <AnswerDisclosure
+                        text={answer.text}
+                        labels={{
+                          region: t('timelineAnswer.region', number),
+                          expand: t('timelineAnswer.expand', number),
+                          collapse: t('timelineAnswer.collapse', number)
+                        }}
+                      />
+                    </div>
+                  )
+                })}
             </div>
           ))}
         </div>
       </ResultDisclosure>
       {result.findings.length > 0 && (
-        <ResultDisclosure title='A few things that stood out'>
+        <ResultDisclosure title={t('standouts')}>
           {result.findings.map((f) => (
             <Collapsible key={f.id} className='rounded-lg border p-4'>
               <p className='text-sm'>{f.text}</p>
               <CollapsibleTrigger asChild>
                 <Button variant='link' className='px-0 text-xs'>
-                  {supportingAnswers(f.evidenceIds).length > 1
-                    ? 'See supporting answers'
-                    : 'See supporting answer'}
+                  {t('seeSupporting', {
+                    count: Math.max(1, supportingAnswers(f.evidenceIds).length)
+                  })}
                 </Button>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <p className='mt-3 text-xs text-muted-foreground'>
-                  Support links to whole answers, rather than selected passages.
+                  {t('wholeAnswers')}
                 </p>
-                {supportingAnswers(f.evidenceIds).map((answer) => (
-                  <div
-                    key={answer.id}
-                    className='mt-2 border-l-2 pl-3 text-sm text-body-foreground'
-                  >
-                    <AnswerDisclosure
-                      text={answer.text}
-                      label={`Supporting answer ${state.answers.indexOf(answer) + 1}`}
-                    />
-                  </div>
-                ))}
+                {supportingAnswers(f.evidenceIds).map((answer) => {
+                  const number = { number: state.answers.indexOf(answer) + 1 }
+                  return (
+                    <div
+                      key={answer.id}
+                      className='mt-2 border-l-2 pl-3 text-sm text-body-foreground'
+                    >
+                      <AnswerDisclosure
+                        text={answer.text}
+                        labels={{
+                          region: t('supportingAnswer.region', number),
+                          expand: t('supportingAnswer.expand', number),
+                          collapse: t('supportingAnswer.collapse', number)
+                        }}
+                      />
+                    </div>
+                  )
+                })}
                 <p className='mt-3 text-xs text-muted-foreground'>
-                  Interpretation: {result.versions.rubric} ·{' '}
-                  {result.versions.model}
+                  {t('interpretation', {
+                    rubric: result.versions.rubric,
+                    model: result.versions.model
+                  })}
                 </p>
               </CollapsibleContent>
             </Collapsible>
@@ -322,7 +353,7 @@ export function ResultView({
       )}
       {result.resources.length > 0 && (
         <section className='flex flex-col gap-4'>
-          <h5>Resources you might enjoy</h5>
+          <h5>{t('resources')}</h5>
           <ResourceList
             resources={result.resources}
             onOpen={(resource) =>
@@ -350,9 +381,7 @@ export function ResultView({
                 {reportDownloading && (
                   <Spinner data-icon='inline-start' aria-hidden='true' />
                 )}
-                {reportDownloading
-                  ? 'Preparing report…'
-                  : 'Download full report'}
+                {reportDownloading ? t('preparingReport') : t('downloadReport')}
               </Button>
               {(published
                 ? state.prompts.length < limits.maxPrompts
@@ -363,9 +392,7 @@ export function ResultView({
                   variant='outline'
                   onClick={() => act({ type: 'continue' })}
                 >
-                  {published
-                    ? 'Fork & continue answering'
-                    : 'Continue answering questions'}
+                  {published ? t('forkContinue') : t('continueAnswering')}
                 </Button>
               )}
             </div>

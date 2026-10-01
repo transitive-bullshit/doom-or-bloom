@@ -1,5 +1,8 @@
 import { z } from 'zod'
+import type { Translator } from '@/i18n/translator'
 import { PrismField } from '@/components/worldview/prism-field'
+import { unclearToken } from '@/lib/assessment/present-result'
+import { pillWidth } from './text-fit'
 const coordinate = z.number().finite().min(0).max(1)
 const range = z.tuple([coordinate, coordinate]).refine(([a, b]) => a <= b)
 export const cardSchema = z.strictObject({
@@ -41,11 +44,13 @@ const colors = {
 }
 
 export function Plot({
+  t,
   data,
   pointLabel,
   portrait,
   points = []
 }: {
+  t: Translator
   data?: CardData
   pointLabel?: string
   portrait?: string
@@ -64,10 +69,11 @@ export function Plot({
   const point = x != null && y != null
   const label =
     data?.transformationInterpretation === 'unsettled'
-      ? 'Unsettled'
+      ? t('Cards.unsettled')
       : data?.transformationInterpretation === 'tentative'
-        ? 'Estimate'
-        : (pointLabel ?? 'Your view')
+        ? t('Cards.estimate')
+        : (pointLabel ?? t('Cards.yourView'))
+  const labelWidth = pillWidth(label, 12, { minimum: 92 })
   return (
     <svg width={690} height={420} viewBox='0 0 690 420'>
       <defs>
@@ -102,7 +108,7 @@ export function Plot({
         fill={colors.muted}
         fontSize='14'
       >
-        Civilizational change
+        {t('Cards.civilizational')}
       </text>
       <text
         x='345'
@@ -111,7 +117,7 @@ export function Plot({
         fill={colors.muted}
         fontSize='14'
       >
-        Incremental change
+        {t('Cards.incremental')}
       </text>
       <text
         x='38'
@@ -231,12 +237,12 @@ export function Plot({
             </>
           )}
           <g
-            transform={`translate(${Math.max(left + 52, Math.min(px(1) - 52, px(x)))},${y > 0.9 ? py(y) + (portrait ? 44 : 32) : py(y) - (portrait ? 44 : 29)})`}
+            transform={`translate(${Math.max(left + labelWidth / 2 + 6, Math.min(px(1) - labelWidth / 2 - 6, px(x)))},${y > 0.9 ? py(y) + (portrait ? 44 : 32) : py(y) - (portrait ? 44 : 29)})`}
           >
             <rect
-              x='-46'
+              x={-labelWidth / 2}
               y='-14'
-              width='92'
+              width={labelWidth}
               height='25'
               rx='12.5'
               fill={colors.text}
@@ -255,7 +261,7 @@ export function Plot({
       )}
       {data && !point && (
         <text x='355' y='188' textAnchor='middle' fill='#25392b' fontSize='20'>
-          Still unplaced
+          {t('Cards.unplaced')}
         </text>
       )}
     </svg>
@@ -266,12 +272,14 @@ export function Plot({
 export const shareCardRevision = 1
 
 export function ShareCard({
+  t,
   data,
   date,
   matches = [],
   title,
   simulated = false
 }: {
+  t: Translator
   data?: CardData
   date?: string
   title?: string
@@ -302,7 +310,7 @@ export function ShareCard({
           alignItems: 'center'
         }}
       >
-        {title ?? (data ? 'My AI Worldview' : 'Where do you land?')}
+        {title ?? (data ? t('Cards.myWorldview') : t('Cards.whereLand'))}
       </div>
       <div
         style={{
@@ -312,7 +320,7 @@ export function ShareCard({
           marginTop: 12
         }}
       >
-        <Plot data={data} />
+        <Plot t={t} data={data} />
         <div
           style={{
             display: 'flex',
@@ -326,7 +334,7 @@ export function ShareCard({
             <>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
                 <div style={{ color: colors.muted, fontSize: 18 }}>
-                  P(doom) estimate
+                  {t('Cards.pdoomEstimate')}
                 </div>
                 <div
                   style={{
@@ -335,10 +343,14 @@ export function ShareCard({
                     letterSpacing: -1
                   }}
                 >
-                  {data.pdoomToken?.replaceAll('≈', '~').replaceAll('–', '-') ??
-                    (data.pdoom == null
-                      ? 'Not estimated'
-                      : `~${Math.round(data.pdoom * 100)}%`)}
+                  {data.pdoomToken === unclearToken
+                    ? t('Cards.unclear')
+                    : (data.pdoomToken
+                        ?.replaceAll('≈', '~')
+                        .replaceAll('–', '-') ??
+                      (data.pdoom == null
+                        ? t('Cards.notEstimated')
+                        : `~${Math.round(data.pdoom * 100)}%`))}
                 </div>
               </div>
               <div
@@ -351,7 +363,7 @@ export function ShareCard({
                 }}
               >
                 <div style={{ fontSize: 18, fontWeight: 600 }}>
-                  My closest worldviews
+                  {t('Cards.closest')}
                 </div>
                 {matches.length ? (
                   matches.map((person) => (
@@ -377,14 +389,14 @@ export function ShareCard({
                   ))
                 ) : (
                   <div style={{ fontSize: 16, color: colors.muted }}>
-                    Not enough shared evidence yet.
+                    {t('Cards.notEnough')}
                   </div>
                 )}
               </div>
             </>
           ) : (
             <div style={{ fontSize: 29, fontWeight: 600, lineHeight: 1.3 }}>
-              What do you think AI means for our future?
+              {t('Cards.question')}
             </div>
           )}
         </div>
@@ -400,8 +412,10 @@ export function ShareCard({
       >
         <span style={{ flex: 1 }}>
           {data
-            ? `${simulated ? 'Simulated worldview · ' : ''}Dashed area: interpretation range`
-            : 'Map your AI worldview, one question at a time.'}
+            ? simulated
+              ? t('Cards.footerSimulated')
+              : t('Cards.footer')
+            : t('Cards.tagline')}
         </span>
         {date && <span>{date}</span>}
         <span style={{ flex: 1, textAlign: 'right' }}>doom-or-bloom.com</span>

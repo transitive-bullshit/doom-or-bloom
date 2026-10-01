@@ -1,3 +1,4 @@
+import type { Translator } from '@/i18n/translator'
 import { resultCardData } from './card-data'
 import type { Result } from '@/lib/assessment/schema'
 import { Plot, type CardData } from './card'
@@ -14,9 +15,11 @@ export function socialCardData(result: Result): CardData {
 }
 
 export function SocialCard({
+  t,
   person,
   points
 }: {
+  t: Translator
   person?: {
     name: string
     description: string
@@ -26,8 +29,8 @@ export function SocialCard({
   points?: { x: number; y: number; portrait: string }[]
 }) {
   const title = person
-    ? `${person.name}’s AI worldview`
-    : 'How will AI change our future?'
+    ? t('Cards.personTitle', { name: person.name })
+    : t('Cards.siteTitle')
   const displayTitle = title.length > 64 ? `${title.slice(0, 61)}…` : title
   return (
     <div
@@ -52,7 +55,7 @@ export function SocialCard({
       >
         <span>DOOM OR BLOOM</span>
         <span>
-          {person ? 'SIMULATED AI WORLDVIEW' : 'THE AI WORLDVIEW MAP'}
+          {person ? t('Cards.simulatedKicker') : t('Cards.mapKicker')}
         </span>
       </div>
       <div
@@ -78,8 +81,9 @@ export function SocialCard({
         }}
       >
         <Plot
+          t={t}
           data={person ? socialCardData(person.result) : undefined}
-          pointLabel={person ? 'Simulated' : undefined}
+          pointLabel={person ? t('Cards.simulated') : undefined}
           points={points}
           portrait={person?.portrait}
         />
@@ -92,12 +96,10 @@ export function SocialCard({
           }}
         >
           <div style={{ fontSize: 27, lineHeight: 1.3, fontWeight: 600 }}>
-            {person ? person.description : 'Where do you land?'}
+            {person ? person.description : t('Cards.whereLand')}
           </div>
           <div style={{ fontSize: 20, lineHeight: 1.45, color: '#b5bbc5' }}>
-            {person
-              ? 'Based on public sources. A simulation, not their own assessment.'
-              : 'Explore the map. Then map your AI worldview, one question at a time.'}
+            {person ? t('Cards.personNote') : t('Cards.siteNote')}
           </div>
         </div>
       </div>
@@ -114,12 +116,12 @@ export function SocialCard({
           {person
             ? person.result.horizontal.value == null ||
               person.result.experiment?.transformation.value == null
-              ? 'No placement yet · Dashed area: interpretation range'
+              ? t('Cards.noPlacement')
               : person.result.experiment.transformation.interpretation ===
                   'unsettled'
-                ? 'Point: center of unresolved range · Dashed area: interpretation range'
-                : 'Point: estimated placement · Dashed area: interpretation range'
-            : 'Public perspectives. Many possible futures.'}
+                ? t('Cards.centerUnresolved')
+                : t('Cards.estimatedPlacement')
+            : t('Cards.siteFooter')}
         </span>
         <span>doom-or-bloom.com</span>
       </div>

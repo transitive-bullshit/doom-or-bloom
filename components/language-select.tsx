@@ -48,8 +48,8 @@ export function LanguageSelect() {
         <SelectValue />
       </SelectTrigger>
       <SelectContent position='popper' side='top' align='center'>
-        {localeOptions.map(({ code, endonym }) => (
-          <SelectItem key={code} value={code} lang={code}>
+        {localeOptions.map(({ code, tag, endonym }) => (
+          <SelectItem key={code} value={code} lang={tag}>
             {endonym}
           </SelectItem>
         ))}

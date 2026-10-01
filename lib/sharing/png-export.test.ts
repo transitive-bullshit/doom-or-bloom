@@ -1,5 +1,7 @@
 import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { englishTranslator } from '@/i18n/translators'
+import { testTranslator } from '@/i18n/test-translator'
 import { cardSchema, ShareCard } from './card'
 import { loadSocialPortrait } from './portraits'
 import { people } from '@/components/landing/people'
@@ -79,7 +81,9 @@ test('share card shows real matched portraits and only the requested metrics', a
     pdoom: 0.18,
     pdoomToken: '≈18%'
   })
-  const html = renderToStaticMarkup(ShareCard({ data, matches }))
+  const html = renderToStaticMarkup(
+    ShareCard({ t: englishTranslator(), data, matches })
+  )
   for (const person of matches) {
     expect(html).toContain(person.name)
     expect(html).toContain(person.portrait)
@@ -104,4 +108,41 @@ test('share card shows real matched portraits and only the requested metrics', a
       )
     ).status
   ).toBe(400)
+})
+
+test('the share card renders in the participant’s language', async () => {
+  const data = cardSchema.parse({
+    horizontal: 0.5,
+    vertical: 0.5,
+    horizontalRange: [0.3, 0.7],
+    verticalRange: [0.3, 0.7],
+    transformation: 0.6,
+    transformationInterpretation: 'tentative',
+    provisional: false,
+    pdoomToken: 'Unclear'
+  })
+  const html = renderToStaticMarkup(
+    ShareCard({ t: testTranslator('es'), data })
+  )
+  for (const text of [
+    'Mi visión de la IA',
+    'Estimación de P(doom)',
+    'Incierto',
+    'Estimación',
+    'Cambio civilizatorio',
+    'Área discontinua: rango de interpretación'
+  ])
+    expect(html).toContain(text)
+  expect(html).not.toContain('My AI Worldview')
+  const card = await exportCard(
+    new Request('http://localhost/api/share-card?locale=es', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+  )
+  expect(card.status).toBe(200)
+  expect(
+    await sharp(Buffer.from(await card.arrayBuffer())).metadata()
+  ).toMatchObject({ width: 2400, height: 1260, format: 'png' })
 })

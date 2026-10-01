@@ -6,8 +6,13 @@ import { getAuth } from '../auth/server'
 import { hasTrustedOrigin } from '../auth/origin'
 import { LimitError } from '../server/limits'
 import { reportServerError } from '../server/error-reporting'
-import { assessmentErrorMessage } from './error-messages'
+import english from '@/messages/en.json'
+import { assessmentErrorCode, type AssessmentErrorCode } from './error-messages'
 import { AssessmentError } from './contracts'
+
+// API bodies stay English; the browser shows its own localized copy by code.
+// A plain lookup keeps next-intl out of scripts that import this module.
+const errors = (code: AssessmentErrorCode) => english.Errors[code]
 
 export const privateHeaders = { 'Cache-Control': 'private, no-store' }
 export async function privateRequest(
@@ -45,7 +50,7 @@ export async function privateRequest(
           return Response.json(
             {
               code: err.code,
-              error: assessmentErrorMessage(err.status, err.code)
+              error: errors(assessmentErrorCode(err.status, err.code))
             },
             { status: err.status, headers: privateHeaders }
           )
@@ -53,13 +58,13 @@ export async function privateRequest(
           return Response.json(
             {
               code: 'invalid_input',
-              error: assessmentErrorMessage(400, 'invalid_input')
+              error: errors('invalid_input')
             },
             { status: 400, headers: privateHeaders }
           )
         if (err instanceof LimitError)
           return Response.json(
-            { code: 'limited', error: assessmentErrorMessage(429, 'limited') },
+            { code: 'limited', error: errors('limited') },
             { status: 429, headers: privateHeaders }
           )
         reportServerError('assessment_request_failed', err, {
@@ -70,7 +75,7 @@ export async function privateRequest(
         return Response.json(
           {
             code: 'unavailable',
-            error: 'Something went wrong. Please try again.'
+            error: errors('generic')
           },
           { status: 503, headers: privateHeaders }
         )

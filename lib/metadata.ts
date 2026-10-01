@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { getLocale, getTranslations } from 'next-intl/server'
 import {
   defaultLocale,
+  languageAlternates,
   localizedPath,
   locales,
   openGraphLocale,
@@ -12,8 +13,8 @@ import { publicPages, siteUrl, type PublicPageKey } from '@/lib/site'
 import { siteSocialAlt } from '@/lib/sharing/site-social-card'
 
 /**
- * `translated` pages list every locale as an hreflang alternate (English is
- * x-default) and canonicalize to themselves. Other pages have translated chrome
+ * `translated` pages list every locale as an hreflang alternate, keyed by its
+ * BCP 47 tag (English is x-default), and canonicalize to themselves. Other pages have translated chrome
  * only: their non-English URLs are noindex and canonicalize to English.
  */
 export function pageMetadata({
@@ -73,10 +74,7 @@ export function pageMetadata({
       description,
       alternates: {
         canonical: url(canonical),
-        languages: {
-          ...Object.fromEntries(locales.map((other) => [other, url(other)])),
-          'x-default': url(defaultLocale)
-        }
+        languages: languageAlternates(siteUrl, path)
       },
       openGraph,
       twitter

@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
@@ -7,14 +8,15 @@ import { Toggle } from '@/components/ui/toggle'
 import type { AgreementAspect } from '@/lib/assessments/feedback'
 import type { Agreement } from './use-result-feedback'
 
-const aspects: Array<[AgreementAspect, string]> = [
-  ['outlook_too_doom', 'I’m more hopeful than this'],
-  ['outlook_too_bloom', 'I’m more worried than this'],
-  ['scale_too_low', 'I expect more change'],
-  ['scale_too_high', 'I expect less change'],
-  ['pdoom_too_high', 'My P(doom) is lower'],
-  ['pdoom_too_low', 'My P(doom) is higher'],
-  ['other', 'Something else']
+// Labels live in messages/<locale>.json under Feedback.aspects.
+const aspects: AgreementAspect[] = [
+  'outlook_too_doom',
+  'outlook_too_bloom',
+  'scale_too_low',
+  'scale_too_high',
+  'pdoom_too_high',
+  'pdoom_too_low',
+  'other'
 ]
 
 /** One-tap agreement with the result, with optional detail when it’s off. */
@@ -25,6 +27,7 @@ export function ResultFeedback({
   saved: Agreement | null
   onSubmit: (agreement: Agreement) => Promise<boolean>
 }) {
+  const t = useTranslations('Feedback')
   const [editing, setEditing] = useState(false)
   const [rating, setRating] = useState<Agreement['rating'] | null>(null)
   const [selected, setSelected] = useState<AgreementAspect[]>([])
@@ -38,14 +41,10 @@ export function ResultFeedback({
   if (saved && !editing)
     return (
       <section
-        aria-label='Result feedback'
+        aria-label={t('label')}
         className='flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-body-foreground'
       >
-        <p>
-          {saved.rating === 'yes'
-            ? 'Thanks, glad it feels right. Share it below and see where your friends land.'
-            : 'Thanks for telling us what’s off. We review this feedback to improve how answers are read.'}
-        </p>
+        <p>{saved.rating === 'yes' ? t('thanksYes') : t('thanksNo')}</p>
         <Button
           variant='link'
           className='h-auto p-0 text-sm'
@@ -56,17 +55,17 @@ export function ResultFeedback({
             setEditing(true)
           }}
         >
-          Change
+          {t('change')}
         </Button>
       </section>
     )
   return (
     <section
-      aria-label='Result feedback'
+      aria-label={t('label')}
       className='flex flex-col gap-4 rounded-xl border bg-card p-4'
     >
       <div className='flex flex-wrap items-center justify-between gap-3'>
-        <p className='font-medium'>Does this feel right?</p>
+        <p className='font-medium'>{t('question')}</p>
         <div className='flex gap-2'>
           <Button
             variant={rating === 'yes' ? 'default' : 'outline'}
@@ -77,7 +76,7 @@ export function ResultFeedback({
               void send({ rating: 'yes', aspects: [] })
             }}
           >
-            Yes
+            {t('yes')}
           </Button>
           <Button
             variant={rating === 'not_quite' ? 'default' : 'outline'}
@@ -86,7 +85,7 @@ export function ResultFeedback({
             aria-expanded={rating === 'not_quite'}
             onClick={() => setRating('not_quite')}
           >
-            Not quite
+            {t('notQuite')}
           </Button>
         </div>
       </div>
@@ -103,9 +102,9 @@ export function ResultFeedback({
             void send(agreement)
           }}
         >
-          <p className='text-sm text-body-foreground'>What’s off? Pick any.</p>
+          <p className='text-sm text-body-foreground'>{t('whatsOff')}</p>
           <div className='flex flex-wrap gap-2'>
-            {aspects.map(([id, label]) => (
+            {aspects.map((id) => (
               <Toggle
                 key={id}
                 variant='outline'
@@ -119,7 +118,7 @@ export function ResultFeedback({
                   )
                 }
               >
-                {label}
+                {t(`aspects.${id}`)}
               </Toggle>
             ))}
           </div>
@@ -127,8 +126,8 @@ export function ResultFeedback({
             value={comment}
             maxLength={1000}
             onChange={(event) => setComment(event.target.value)}
-            placeholder='Anything else? (optional)'
-            aria-label='What feels off (optional)'
+            placeholder={t('placeholder')}
+            aria-label={t('commentLabel')}
             className='min-h-20 resize-none'
           />
           <div>
@@ -136,7 +135,7 @@ export function ResultFeedback({
               {sending && (
                 <Spinner data-icon='inline-start' aria-hidden='true' />
               )}
-              Send
+              {t('send')}
             </Button>
           </div>
         </form>

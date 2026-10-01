@@ -11,6 +11,9 @@ import type { JourneySuite } from '@/lib/journeys/schema'
 import { people } from '@/components/landing/people'
 import { SocialCard, socialCardData, socialImageOptions } from './social-card'
 import { presentResult } from '@/lib/assessment/present-result'
+import { englishTranslator } from '@/i18n/translators'
+
+const t = englishTranslator()
 
 const suite: JourneySuite = JSON.parse(
   await readFile('lib/journeys/__fixtures__/sample-journeys.json', 'utf8')
@@ -36,7 +39,7 @@ test('every public persona portrait renders with a representative saved result',
       shown.experiment?.transformation.range ?? [0, 1]
     )
     const html = renderToStaticMarkup(
-      SocialCard({ person: { ...person, result: result!, portrait } })
+      SocialCard({ t, person: { ...person, result: result!, portrait } })
     )
     expect(html).toContain(person.name.replaceAll('&', '&amp;'))
     const placed = data.horizontal !== null && data.transformation !== null
@@ -50,6 +53,7 @@ test('every public persona portrait renders with a representative saved result',
 test('profile social output is a decodable 1200 × 630 PNG', async () => {
   const bytes = await render(
     SocialCard({
+      t,
       points: [
         {
           x: 0.2,
@@ -73,12 +77,15 @@ test('participant cards support unknown coordinates without simulated labeling',
   result.horizontal.value = null
   if (result.experiment) result.experiment.transformation.value = null
   const data = resultCardData(result)
-  const card = ShareCard({ data })
+  const card = ShareCard({ t, data })
   const html = renderToStaticMarkup(card)
   expect(html).toContain('My AI Worldview')
   expect(html).toContain('Still unplaced')
   expect(html).not.toContain('SIMULATED')
-  const bytes = await renderShareCard(data, { devicePixelRatio: 1 })
+  const bytes = await renderShareCard(t, data, {
+    devicePixelRatio: 1,
+    locale: 'en'
+  })
   expect(await sharp(bytes).metadata()).toMatchObject({
     format: 'png',
     width: 1200,

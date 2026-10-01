@@ -1,7 +1,13 @@
-import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
+import { useTranslations } from 'next-intl'
+import { subjectArgs, type ResultSubject } from '@/lib/sharing/result-subject'
 import { AxisRange } from './axis-range'
 import type { Component } from '@/lib/assessment/schema'
 import { facets } from '@/lib/assessment/facets'
+import {
+  claimText,
+  componentLabel,
+  levelTextsFor
+} from '@/lib/assessment/display-text'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 
 export function WorldviewDetails({
@@ -15,14 +21,15 @@ export function WorldviewDetails({
   transformationClaim?: string | null
   subject?: ResultSubject
 }) {
-  const framing = resultFraming(subject)
+  const root = useTranslations()
+  const t = useTranslations('Results.details')
   const impacts = [
     ...components.filter(
       (component) =>
         ['beneficial_potential', 'risk_landscape'].includes(component.vector) &&
         component.value !== null
     ),
-    { ...influence, label: 'Human influence' }
+    { ...influence, vector: 'influence' }
   ]
   const positions = facets
     .filter(
@@ -38,11 +45,8 @@ export function WorldviewDetails({
     })
   if (!impacts.length && !positions.length) return null
   return (
-    <section
-      aria-label={framing.detailsTitle}
-      className='mt-5 flex flex-col gap-4'
-    >
-      <h4>{framing.detailsTitle}</h4>
+    <section aria-label={t('title')} className='mt-5 flex flex-col gap-4'>
+      <h4>{t('title')}</h4>
       {impacts.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-3'>
           {impacts.map((component) => (
@@ -51,35 +55,39 @@ export function WorldviewDetails({
               className='row-span-5 grid grid-rows-subgrid gap-3'
             >
               <CardHeader className='block'>
-                <CardTitle className='text-base'>{component.label}</CardTitle>
+                <CardTitle className='text-base'>
+                  {componentLabel(root, component)}
+                </CardTitle>
               </CardHeader>
               <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
                 <p className='text-sm text-body-foreground'>
-                  {component.claim ??
-                    'Several interpretations remain plausible.'}
+                  {component.claim
+                    ? claimText(root, component.claim, component.vector)
+                    : t('severalReadings')}
                 </p>
                 <p className='text-sm font-medium tabular-nums'>
                   {component.value === null
-                    ? 'Not enough evidence yet'
-                    : `${Math.round(component.value * 100)} / 100`}
+                    ? t('notEnough')
+                    : t('score', { value: Math.round(component.value * 100) })}
                 </p>
                 <AxisRange range={component.range} value={component.value} />
                 <div className='flex justify-between text-xs text-muted-foreground'>
                   <span>
                     {component.vector === 'influence'
-                      ? 'Little influence'
-                      : 'Little impact'}
+                      ? t('littleInfluence')
+                      : t('littleImpact')}
                   </span>
                   <span>
                     {component.vector === 'influence'
-                      ? 'Strong influence'
-                      : 'Transformative impact'}
+                      ? t('strongInfluence')
+                      : t('transformativeImpact')}
                   </span>
                 </div>
                 <p className='sr-only'>
-                  Interpretation range {Math.round(component.range[0] * 100)} to{' '}
-                  {Math.round(component.range[1] * 100)} on the qualitative
-                  scale.
+                  {t('range', {
+                    low: Math.round(component.range[0] * 100),
+                    high: Math.round(component.range[1] * 100)
+                  })}
                 </p>
               </CardContent>
             </Card>
@@ -92,12 +100,12 @@ export function WorldviewDetails({
             <Card className='row-span-2 grid grid-rows-subgrid'>
               <CardHeader className='block'>
                 <CardTitle className='text-base'>
-                  Expected transformation
+                  {t('expectedTransformation')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className='text-sm text-body-foreground'>
-                  {transformationClaim}
+                  {claimText(root, transformationClaim, 'transformation')}
                 </p>
               </CardContent>
             </Card>
@@ -105,33 +113,36 @@ export function WorldviewDetails({
           {positions.map(({ facet, component }) => (
             <Card key={facet.id} className='row-span-2 grid grid-rows-subgrid'>
               <CardHeader className='block'>
-                <CardTitle className='text-base'>{facet.label}</CardTitle>
+                <CardTitle className='text-base'>
+                  {componentLabel(root, {
+                    vector: facet.id,
+                    label: facet.label
+                  })}
+                </CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col gap-2'>
-                {facet.levels.map((level) => (
-                  <p
-                    key={level}
-                    className={`rounded-md px-3 py-2 text-sm ${component.claim === level ? 'bg-primary text-primary-foreground' : 'bg-muted text-body-foreground'}`}
-                  >
-                    {component.claim === level && (
-                      <span className='sr-only'>
-                        {subject
-                          ? 'Simulated position: '
-                          : 'Your expressed position: '}
-                      </span>
-                    )}
-                    {level}
-                  </p>
-                ))}
+                {levelTextsFor(root, facet.id, facet.levels).map(
+                  ({ claim, text }) => (
+                    <p
+                      key={claim}
+                      className={`rounded-md px-3 py-2 text-sm ${component.claim === claim ? 'bg-primary text-primary-foreground' : 'bg-muted text-body-foreground'}`}
+                    >
+                      {component.claim === claim && (
+                        <span className='sr-only'>
+                          {subject ? t('simulatedPosition') : t('yourPosition')}
+                        </span>
+                      )}
+                      {text}
+                    </p>
+                  )
+                )}
               </CardContent>
             </Card>
           ))}
         </div>
       )}
       <p className='text-xs text-muted-foreground'>
-        These interpretations keep {framing.possessive} stated conditions.
-        Benefits and harms can both be substantial. The ranges describe how we
-        read {framing.answers}, not statistical confidence intervals.
+        {t('note', subjectArgs(subject))}
       </p>
     </section>
   )

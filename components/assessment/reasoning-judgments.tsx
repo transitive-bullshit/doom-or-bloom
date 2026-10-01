@@ -1,10 +1,14 @@
+import { useTranslations } from 'next-intl'
 import type { Component } from '@/lib/assessment/schema'
+import { componentLabel } from '@/lib/assessment/display-text'
 
 export function ReasoningJudgments({
   components
 }: {
   components: Component[]
 }) {
+  const root = useTranslations()
+  const t = useTranslations('Results')
   const judgments = components.filter(
     (component) => component.reasoningEvidence
   )
@@ -15,15 +19,20 @@ export function ReasoningJudgments({
       {judgments.map((c) => (
         <details key={c.vector} className='rounded-lg border p-3 text-sm'>
           <summary className='cursor-pointer'>
-            {c.label} · {Math.round(c.value! * 100)} / 100
-            {c.reasoningEvidence!.status === 'unsubstantiated'
-              ? ' · needs review'
-              : ''}
+            {t(
+              c.reasoningEvidence!.status === 'unsubstantiated'
+                ? 'reasoningNeedsReview'
+                : 'reasoningScore',
+              {
+                label: componentLabel(root, c),
+                score: Math.round(c.value! * 100)
+              }
+            )}
           </summary>
           <p className='mt-3'>
             {c.reasoningEvidence!.status === 'supported'
               ? c.reasoningEvidence!.weakness
-              : 'The evaluator could not link this rubric reading to a specific supplied excerpt. Treat the score as needing review.'}
+              : t('unlinked')}
           </p>
           {c.reasoningEvidence!.excerpt && (
             <blockquote className='mt-3 border-l-2 pl-3 whitespace-pre-wrap'>

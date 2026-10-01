@@ -1,3 +1,5 @@
+import type { Translator } from '@/i18n/translator'
+
 export type MapPoint = { x: number; y: number }
 
 /**
@@ -30,6 +32,7 @@ const tolerance = 0.1
 // (docs/research/engine-design-review-2026-09-29.md).
 const placementQuestionGap = 0.25
 // The authored prompts carry the same text (checked by content validation).
+// Like other authored questions, they stay English until translated.
 export const placementQuestions = {
   'placement.more-hopeful':
     'You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?',
@@ -77,25 +80,21 @@ export function placementGap(guess: MapPoint, placed: MapPoint) {
  * placed them, framed as something to inspect rather than a correction.
  */
 export function placementComparison(
+  t: Translator,
   guess: MapPoint,
   placed: { x: number | null; y: number | null }
 ) {
   if (placed.x === null || placed.y === null)
-    return 'Your answers don’t place you on the map yet, so there’s nothing to compare with your guess.'
+    return t('Placement.comparison.unplaced')
   const dx = placed.x - guess.x
   const dy = placed.y - guess.y
   const outlook =
-    Math.abs(dx) > tolerance
-      ? `read as more ${dx < 0 ? 'worried' : 'hopeful'} than you placed yourself`
-      : null
-  const scale =
-    Math.abs(dy) > tolerance
-      ? `suggest you expect ${dy > 0 ? 'more' : 'less'} change than you placed yourself`
-      : null
-  if (!outlook && !scale) return 'Close to where you placed yourself.'
-  const difference =
-    outlook && scale
-      ? `${outlook}, and ${scale.replace(' than you placed yourself', '')}`
-      : (outlook ?? scale)
-  return `Your answers ${difference}. Both can be true: the dot reflects what you wrote, not a verdict.`
+    Math.abs(dx) > tolerance ? (dx < 0 ? 'worried' : 'hopeful') : null
+  const scale = Math.abs(dy) > tolerance ? (dy > 0 ? 'more' : 'less') : null
+  if (outlook && scale)
+    return t(
+      `Placement.comparison.${outlook}${scale === 'more' ? 'More' : 'Less'}`
+    )
+  if (outlook ?? scale) return t(`Placement.comparison.${(outlook ?? scale)!}`)
+  return t('Placement.comparison.close')
 }

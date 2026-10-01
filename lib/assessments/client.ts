@@ -1,13 +1,15 @@
 'use client'
-import { assessmentErrorMessage } from './error-messages'
+import type { Translator } from '@/i18n/translator'
+import { assessmentErrorCode, type AssessmentErrorCode } from './error-messages'
 import { submitSchema, type Submission } from './contracts'
 
+/** A failed request, identified by a code whose copy is `Errors.<code>`. */
 export class ApiError extends Error {
   constructor(
     readonly status: number,
-    message: string
+    readonly code: AssessmentErrorCode | 'connect' | 'unreachable'
   ) {
-    super(message)
+    super(code)
   }
 }
 
@@ -20,29 +22,31 @@ export async function api<T>(url: string, init?: RequestInit): Promise<T> {
     cache: 'no-store',
     headers
   }).catch(() => {
-    throw new ApiError(0, 'Unable to connect. Please try again.')
+    throw new ApiError(0, 'connect')
   })
   const text = await response.text()
   let body
   try {
     body = text ? JSON.parse(text) : null
   } catch {
-    throw new ApiError(
-      response.status,
-      'Unable to reach your saved assessment. Please try again.'
-    )
+    throw new ApiError(response.status, 'unreachable')
   }
   if (!response.ok && !body?.operation)
     throw new ApiError(
       response.status,
-      assessmentErrorMessage(response.status, body?.code)
+      assessmentErrorCode(response.status, body?.code)
     )
   return body as T
 }
 
-export function userErrorMessage(error: unknown, fallback: string) {
+/** Controlled copy for a rejected request; other failures use `fallback`. */
+export function userErrorMessage(
+  t: Translator,
+  error: unknown,
+  fallback: string
+) {
   return error instanceof ApiError && error.status >= 400 && error.status < 500
-    ? error.message
+    ? t(`Errors.${error.code}`)
     : fallback
 }
 

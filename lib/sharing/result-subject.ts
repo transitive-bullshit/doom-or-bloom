@@ -5,24 +5,15 @@ export type ResultSubject = {
   possessivePronoun?: 'his' | 'her' | 'their'
 }
 
-export function resultFraming(subject?: ResultSubject) {
-  const possessive = subject?.possessivePronoun ?? 'their'
+/**
+ * Arguments for messages that address the participant or describe a simulated
+ * user: `subject` is `self` or the subject's possessive pronoun, for an ICU
+ * select (`{subject, select, self {…} his {…} her {…} other {…}}`), and `name`
+ * names the subject. Languages without gendered possessives use `other` alone.
+ */
+export function subjectArgs(subject?: ResultSubject) {
   return {
-    owner: subject ? `${subject.name}’s` : 'Your',
-    possessive: subject ? possessive : 'your',
-    answers: subject ? `${possessive} simulated answers` : 'your answers',
-    hingeQuestion: (hinge: { id: string; question: string }) => {
-      if (!subject) return hinge.question
-      const questions: Record<string, string> = {
-        assumption: `If this assumption turned out differently, how would ${possessive} outlook change?`,
-        uncertainty: `What would help ${possessive === 'his' ? 'him' : possessive === 'her' ? 'her' : 'them'} distinguish the plausible outcomes here?`,
-        update: `What evidence would be enough, and in which direction would it move ${possessive} view?`
-      }
-      return questions[hinge.id] ?? hinge.question
-    },
-    detailsTitle: 'More details',
-    resultsLabel: subject
-      ? `${subject.name}’s simulated worldview results`
-      : 'Your worldview results'
+    subject: subject ? (subject.possessivePronoun ?? 'their') : 'self',
+    name: subject?.name ?? ''
   }
 }

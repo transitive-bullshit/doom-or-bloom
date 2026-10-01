@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 // Keeps the visitor's locale prefix when opening the new assessment URL.
 import { useRouter } from '@/i18n/navigation'
 import { toast } from 'sonner'
@@ -12,13 +13,14 @@ export function AssessmentStart({
   automatic?: boolean
 }) {
   const router = useRouter()
+  const t = useTranslations('Library')
   const [busy, setBusy] = useState(automatic)
   const [error, setError] = useState('')
   const [attempt, setAttempt] = useState(0)
   useEffect(() => {
     if (!automatic && attempt === 0) return
     let active = true
-    const toastId = toast.loading('Opening your assessment…')
+    const toastId = toast.loading(t('opening'))
     void startAssessment(automatic)
       .then(({ id }) => {
         if (active) {
@@ -30,7 +32,7 @@ export function AssessmentStart({
       })
       .catch(() => {
         if (active) {
-          const message = 'We couldn’t open your assessment. Please try again.'
+          const message = t('openFailed')
           toast.error(message, { id: toastId })
           setError(message)
           setBusy(false)
@@ -40,7 +42,7 @@ export function AssessmentStart({
       active = false
       toast.dismiss(toastId)
     }
-  }, [automatic, attempt, router])
+  }, [automatic, attempt, router, t])
   return (
     <div className='flex flex-col items-start gap-3'>
       {!automatic || error ? (
@@ -52,7 +54,7 @@ export function AssessmentStart({
             setAttempt((value) => value + 1)
           }}
         >
-          {error ? 'Try again' : 'Create a new assessment'}
+          {error ? t('tryAgain') : t('create')}
         </ExpandingArrowAction>
       ) : null}
     </div>

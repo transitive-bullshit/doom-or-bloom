@@ -10,8 +10,8 @@ export const siteUrl = 'https://www.doom-or-bloom.com'
  */
 export const publicPages = [
   { key: 'home', path: '/', translated: true },
-  { key: 'about', path: '/about', translated: false },
-  { key: 'privacy', path: '/privacy', translated: false },
+  { key: 'about', path: '/about', translated: true },
+  { key: 'privacy', path: '/privacy', translated: true },
   { key: 'users', path: '/users', translated: true }
 ] as const satisfies readonly {
   key: keyof Messages['Pages']

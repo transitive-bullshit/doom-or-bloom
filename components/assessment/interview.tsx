@@ -16,9 +16,10 @@ import {
 } from '@/lib/assessment/state'
 import type { OwnedAssessment } from '@/lib/assessments/repository'
 import { usePersistentAssessment } from './use-persistent-assessment'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { Link, useRouter } from '@/i18n/navigation'
 import { api, userErrorMessage } from '@/lib/assessments/client'
+import { promptText } from '@/lib/assessment/display-text'
 import { operationFailureMessage } from '@/lib/assessments/operation-failure'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { PublishConfirmation } from './publish-confirmation'
@@ -85,6 +86,8 @@ export function Interview({
     refresh
   } = usePersistentAssessment(initial)
   const router = useRouter()
+  const root = useTranslations()
+  const t = useTranslations('Interview')
   const [managing, setManaging] = useState(false)
   const [previewRevision, setPreviewRevision] = useState<number | null>(null)
   const forkKey = useRef<string | null>(null)
@@ -137,12 +140,7 @@ export function Interview({
         router.push(`/assessments/${id}`)
       }
     } catch (err) {
-      toast.error(
-        userErrorMessage(
-          err,
-          'Couldn’t create a new assessment. Please try again.'
-        )
-      )
+      toast.error(userErrorMessage(root, err, t('forkFailed')))
     } finally {
       setManaging(false)
     }
@@ -162,9 +160,7 @@ export function Interview({
         emitEvent(makeEvent(state, 'assessment_published'))
       await refresh()
     } catch (err) {
-      toast.error(
-        userErrorMessage(err, 'Couldn’t change visibility. Please try again.')
-      )
+      toast.error(userErrorMessage(root, err, t('visibilityFailed')))
     } finally {
       setManaging(false)
     }
@@ -258,10 +254,10 @@ export function Interview({
   const publishControl =
     record.visibility === 'public' ? (
       <>
-        <span>Your answers and results are public</span>
+        <span>{t('publicNote')}</span>
         <Button asChild variant='outline' size='sm'>
           <Link href={`/public/assessments/${state.id}`}>
-            View public assessment
+            {t('viewPublic')}
           </Link>
         </Button>
         <Button
@@ -270,12 +266,12 @@ export function Interview({
           disabled={busy || managing}
           onClick={() => void visibility('private')}
         >
-          Make private
+          {t('makePrivate')}
         </Button>
       </>
     ) : (
       <>
-        <span>Want to show your answers too?</span>
+        <span>{t('publishPrompt')}</span>
         <Dialog>
           <DialogTrigger asChild>
             <Button
@@ -283,7 +279,7 @@ export function Interview({
               size='sm'
               disabled={busy || managing || Boolean(uncertain)}
             >
-              Publish assessment
+              {t('publish')}
             </Button>
           </DialogTrigger>
           <PublishConfirmation onConfirm={() => void visibility('public')} />
@@ -302,14 +298,14 @@ export function Interview({
         <div className='relative flex flex-col gap-8'>
           {uncertain && !busy && (
             <Alert>
-              <AlertTitle>Confirm your last submission</AlertTitle>
+              <AlertTitle>{t('confirmTitle')}</AlertTitle>
               <AlertDescription>
-                Your response may have been saved.{' '}
+                {t('confirmDescription')}{' '}
                 <Button
                   variant='outline'
                   onClick={() => void act(uncertain.operation)}
                 >
-                  Check submission
+                  {t('checkSubmission')}
                 </Button>
               </AlertDescription>
             </Alert>
@@ -319,28 +315,31 @@ export function Interview({
             record.operation.baseRevision === state.revision &&
             !uncertain && (
               <Alert>
-                <AlertTitle>This step did not finish</AlertTitle>
+                <AlertTitle>{t('failedTitle')}</AlertTitle>
                 <AlertDescription>
-                  {operationFailureMessage(record.operation.failureCategory)}{' '}
+                  {operationFailureMessage(
+                    root,
+                    record.operation.failureCategory
+                  )}{' '}
                   <Button
                     disabled={busy}
                     onClick={() => void act(record.operation!.action, true)}
                   >
-                    Retry saved submission
+                    {t('retrySaved')}
                   </Button>
                 </AlertDescription>
               </Alert>
             )}
           {notice && (
             <Button variant='ghost' onClick={() => void refresh()}>
-              Refresh saved progress
+              {t('refreshProgress')}
             </Button>
           )}
 
           <div className='flex flex-col gap-6'>
             {notice && (
               <Alert>
-                <AlertTitle>Saved progress</AlertTitle>
+                <AlertTitle>{t('savedProgress')}</AlertTitle>
                 <AlertDescription>{notice}</AlertDescription>
               </Alert>
             )}
@@ -349,10 +348,9 @@ export function Interview({
                 (version) => version === state.versions.content
               ) && (
                 <Alert>
-                  <AlertTitle>Updated draft available</AlertTitle>
+                  <AlertTitle>{t('updatedDraftTitle')}</AlertTitle>
                   <AlertDescription>
-                    Your saved assessment will keep its earlier version. Start a
-                    new assessment to try the updated draft.
+                    {t('updatedDraftDescription')}
                   </AlertDescription>
                 </Alert>
               )}
@@ -385,30 +383,29 @@ export function Interview({
                   {state.answers.length > 0 && (
                     <p className='mb-5 text-xs text-muted-foreground'>
                       {p.ordinal >= promptLimit(state) - 2
-                        ? `Question ${p.ordinal} of ${promptLimit(state)}`
-                        : `Question ${p.ordinal} · most people see results after 4–8`}
+                        ? t('questionOf', {
+                            ordinal: p.ordinal,
+                            limit: promptLimit(state)
+                          })
+                        : t('questionProgress', { ordinal: p.ordinal })}
                     </p>
                   )}
-                  <h2 className='text-pretty'>{p.text}</h2>
+                  <h2 className='text-pretty'>{promptText(root, p)}</h2>
                 </div>
                 <ConversationReplies turn={currentTurn} />
                 {unavailableQuestion && (
                   <Alert>
-                    <AlertTitle>
-                      This question is no longer available
-                    </AlertTitle>
+                    <AlertTitle>{t('unavailableTitle')}</AlertTitle>
                     <AlertDescription>
-                      Your history and draft are preserved. Choose a different
-                      question below to continue.
+                      {t('unavailableDescription')}
                     </AlertDescription>
                   </Alert>
                 )}
                 {p.ordinal >= promptLimit(state) - 2 && (
                   <Alert>
-                    <AlertTitle>Approaching the limit</AlertTitle>
+                    <AlertTitle>{t('limitTitle')}</AlertTitle>
                     <AlertDescription>
-                      This assessment ends at {promptLimit(state)} prompts. You
-                      can restart afterward.
+                      {t('limitDescription', { limit: promptLimit(state) })}
                     </AlertDescription>
                   </Alert>
                 )}
@@ -416,22 +413,22 @@ export function Interview({
                   <Alert>
                     <AlertTitle>
                       {state.recovery.reason === 'paperclips'
-                        ? 'We’ve made some paperclips.'
+                        ? t('recovery.paperclipsTitle')
                         : needsAction
-                          ? 'Choose what to do next'
-                          : 'Another try?'}
+                          ? t('recovery.chooseTitle')
+                          : t('recovery.retryTitle')}
                     </AlertTitle>
                     <AlertDescription>
                       {state.recovery.reason === 'paperclips'
-                        ? "You found the easter egg! Now let's get back to business..."
+                        ? t('recovery.paperclips')
                         : state.recovery.reason === 'exhausted'
                           ? guidance.exhausted
                           : state.recovery.reason === 'needs_clarification'
                             ? guidance.clarification
                             : state.recovery.reason === 'stopped'
-                              ? 'Your progress is here whenever you want to return.'
+                              ? t('recovery.stopped')
                               : state.recovery.reason === 'navigation'
-                                ? 'Use the actions below to choose what happens next.'
+                                ? t('recovery.navigation')
                                 : guidance.reask}
                     </AlertDescription>
                   </Alert>
@@ -440,7 +437,7 @@ export function Interview({
                   onSubmit={(event) => {
                     event.preventDefault()
                     if (!state.draft.trim()) {
-                      toast.error('Enter an answer before continuing.')
+                      toast.error(t('emptyAnswer'))
                       return
                     }
                     if (allowed && !answerTooLong)
@@ -453,13 +450,13 @@ export function Interview({
                       data-disabled={!allowed}
                     >
                       <FieldLabel htmlFor='answer' className='sr-only'>
-                        Your answer
+                        {t('answerLabel')}
                       </FieldLabel>
                       <Textarea
                         id='answer'
                         required
                         value={state.draft}
-                        placeholder='A few sentences is plenty. Using speech-to-text is encouraged.'
+                        placeholder={t('placeholder')}
                         disabled={!allowed}
                         aria-invalid={answerTooLong}
                         aria-describedby={
@@ -490,17 +487,13 @@ export function Interview({
                       {answerTooLong && (
                         <>
                           <FieldDescription id='answer-length'>
-                            {state.draft.length.toLocaleString('en-US')} /{' '}
-                            {limits.answerChars.toLocaleString('en-US')}{' '}
-                            characters
+                            {t('length', {
+                              count: state.draft.length,
+                              limit: limits.answerChars
+                            })}
                           </FieldDescription>
                           <FieldError id='answer-limit'>
-                            Your full answer is still here. Shorten it by{' '}
-                            {excessCharacters.toLocaleString('en-US')}{' '}
-                            {excessCharacters === 1
-                              ? 'character'
-                              : 'characters'}{' '}
-                            to continue.
+                            {t('tooLong', { count: excessCharacters })}
                           </FieldError>
                         </>
                       )}
@@ -514,7 +507,7 @@ export function Interview({
                             variant='ghost'
                             onClick={() => void act({ type: 'project' })}
                           >
-                            View my results
+                            {t('viewResults')}
                           </Button>
                         )}
                         {needsAction &&
@@ -524,7 +517,7 @@ export function Interview({
                               disabled={busy}
                               onClick={() => void act({ type: 'retry' })}
                             >
-                              Try again
+                              {t('tryAgain')}
                             </Button>
                           )}
                         {state.prompts.length < promptLimit(state) &&
@@ -537,7 +530,7 @@ export function Interview({
                               variant='outline'
                               onClick={() => void act({ type: 'skip' })}
                             >
-                              Try a different question
+                              {t('differentQuestion')}
                             </Button>
                           )}
                         {!needsAction && (
@@ -553,7 +546,7 @@ export function Interview({
                                 aria-hidden='true'
                               />
                             )}
-                            {busy ? 'Reflecting on your answer' : 'Continue'}
+                            {busy ? t('reflecting') : t('continue')}
                           </Button>
                         )}
                       </div>
@@ -561,14 +554,8 @@ export function Interview({
                   </FieldGroup>
                 </form>
                 <div className='space-y-2 text-xs leading-relaxed text-muted-foreground'>
-                  <p>
-                    4 short questions; usually takes about 3 minutes to
-                    complete.
-                  </p>
-                  <p>
-                    Your answers remain private unless you choose to publish
-                    them at the end.
-                  </p>
+                  <p>{t('duration')}</p>
+                  <p>{t('privacy')}</p>
                 </div>
                 {state.answers.length > 0 && (
                   <ReadinessMeter
@@ -580,12 +567,12 @@ export function Interview({
                 )}
                 {busy && (
                   <p className='text-sm text-muted-foreground' role='status'>
-                    Reading the evidence and choosing a useful next step…
+                    {t('busy')}
                   </p>
                 )}
                 {state.answers.length >= 6 && (
                   <p className='text-sm text-muted-foreground'>
-                    You can see your result now, or keep exploring.
+                    {t('keepExploring')}
                   </p>
                 )}
               </>
