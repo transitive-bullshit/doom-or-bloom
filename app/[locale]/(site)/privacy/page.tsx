@@ -37,6 +37,7 @@ export default async function Privacy() {
       <p>{t('measurement2')}</p>
       <h2>{t('publishingTitle')}</h2>
       <p>{t('publishing1')}</p>
+      <p>{t('shareLinks')}</p>
       <p>{t('publishing2')}</p>
       <p>{t('publishing3')}</p>
       <p>{t('publishing4')}</p>

@@ -37,6 +37,7 @@ Analytics tests use live-mode configuration to exercise SDK initialization, but 
 | Translations of messages or authored content | `pnpm test:content` (coverage, source hashes, placeholders and ICU arguments for every enabled locale) and `pnpm test` (message formatting, display lookups and card font coverage); after translating, read a sample back. Translating makes paid OpenAI calls ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#translation-tooling)) |
 | Share cards, social images or card fonts | `pnpm test` (`lib/sharing/card-fonts.test.ts`, `png-export.test.ts`), then look at a card in each of hi, th, zh and ja; `pnpm build:local` checks the fonts are traced |
 | Ownership, sessions, drafts, library, publication, forks | `pnpm check:persistence`; relevant `db:test:*` checks below |
+| Share links or comparisons | `pnpm check:persistence tests/persistence/share-links.spec.ts`, `pnpm check:browser tests/browser/share-bar.spec.ts tests/browser/compare.spec.ts` and `pnpm check:analytics`; after caching changes, `pnpm build:local` then `pnpm check:public-cache` (`tests/public-cache/share-links.spec.ts`) |
 | Schema or repository transactions | `pnpm db:migrate:test` twice, `pnpm db:test`, `pnpm db:test:repository`, `pnpm db:test:commit`, `pnpm db:test:lifecycle` |
 | Result feedback (self-placement, agreement) | `pnpm db:test:feedback` and `pnpm check:browser tests/browser/result-feedback.spec.ts` |
 | Persona persistence or selected runs | `pnpm db:test:personas` and `pnpm check:persistence tests/persistence/personas.spec.ts` |
