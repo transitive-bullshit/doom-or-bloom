@@ -1,5 +1,12 @@
 import { z } from 'zod'
-import { doomBands, inferPdoom, pdoomToken, statedBounds } from './pdoom'
+import {
+  doomBands,
+  inferPdoom,
+  pdoomToken,
+  percentValues,
+  statedBounds,
+  statedPercentPattern
+} from './pdoom'
 import type {
   Component,
   ExperimentQuote,
@@ -128,7 +135,11 @@ export function experimentCandidates(input: ExperimentInput) {
   const passages: ExperimentQuote[] = []
   const probabilities: ExperimentQuote[] = []
   input.completeParticipantEvidence.forEach((answer, index) => {
-    for (const sentence of answer.answer.split(/(?<=[.!?])\s+|\n+/u)) {
+    // Sentences end at . ! ? before a space, or at 。！？ and the Devanagari
+    // danda, which need no space after them.
+    for (const sentence of answer.answer.split(
+      /(?<=[.!?])\s+|(?<=[。！？।])\s*|\n+/u
+    )) {
       for (let start = 0; start < sentence.length; start += 900) {
         const text = sentence.slice(start, start + 900).trim()
         if (!text) continue
@@ -136,12 +147,9 @@ export function experimentCandidates(input: ExperimentInput) {
         // The minimum length is for excerpts only: a bare "30%" is the most
         // direct answer to the P(doom) question and must still be read.
         if (text.length >= 8) passages.push(quote)
-        const pattern =
-          /(?:less than|more than|under|over|below|above|at most|at least|about|around|roughly|approximately|~|<|>)?\s*\d+(?:\.\d+)?\s*(?:%|percent)(?:\s*(?:to|[-–—]|±|\+\/-)\s*\d+(?:\.\d+)?\s*(?:%|percent))?|\d+(?:\.\d+)?\s*(?:to|[-–—])\s*\d+(?:\.\d+)?\s*(?:%|percent)/giu
-        for (const match of text.matchAll(pattern)) {
+        for (const match of text.matchAll(statedPercentPattern)) {
           const token = match[0].trim()
-          const values = token.match(/\d+(?:\.\d+)?/g)?.map(Number) ?? []
-          if (values.some((v) => v > 100)) continue
+          if (percentValues(token).some((v) => v > 100)) continue
           // Qualifiers keep their meaning; a margin of error gets no bar.
           const bounds = statedBounds(token)
           const candidate: ExperimentQuote = { ...quote, token }
