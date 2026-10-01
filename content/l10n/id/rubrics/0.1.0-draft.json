@@ -1,0 +1,455 @@
+{
+  "locale": "id",
+  "kind": "rubric",
+  "version": "0.1.0-draft",
+  "entries": {
+    "level:capability_trajectory:0": {
+      "text": "Kemampuan transformatif diperkirakan tidak akan terwujud, atau batas kemampuan yang rendah secara eksplisit diperkirakan.",
+      "sourceHash": "45332aa77e89763e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:1": {
+      "text": "Kemampuan transformatif diperkirakan hanya akan terwujud dalam jangka waktu yang panjang atau tidak pasti.",
+      "sourceHash": "1caad9e3af1c823b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:2": {
+      "text": "Kemampuan transformatif diperkirakan akan terwujud dalam beberapa dekade, dengan waktunya bergantung pada kondisi tertentu atau tidak pasti.",
+      "sourceHash": "fc0d592a2a5c717e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:3": {
+      "text": "Kemampuan transformatif diperkirakan akan terwujud dalam beberapa tahun, dengan tonggak pencapaian atau waktu yang disebutkan.",
+      "sourceHash": "7be8454bb25508ac",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:0": {
+      "text": "Transisi bertahap dengan peringatan yang memadai dan penyebaran luas diperkirakan akan terjadi.",
+      "sourceHash": "4d75d63bcc972e76",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:1": {
+      "text": "Percepatan yang nyata diperkirakan akan terjadi, tetapi masih tersedia waktu yang berarti untuk beradaptasi.",
+      "sourceHash": "616aa99b562fa9a2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:2": {
+      "text": "Transisi cepat dengan peringatan terbatas diperkirakan akan terjadi.",
+      "sourceHash": "1cf04864d24ec589",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:3": {
+      "text": "Transisi mendadak yang memperkuat dirinya sendiri dengan sangat sedikit peringatan diperkirakan akan terjadi.",
+      "sourceHash": "8a00a52d2e6cd875",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:0": {
+      "text": "Dampak positif yang kecil diperkirakan bahkan jika AI canggih terwujud.",
+      "sourceHash": "b4ca95af2e04929f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:1": {
+      "text": "Manfaat yang terbatas atau hanya tersebar secara sempit diperkirakan akan terwujud.",
+      "sourceHash": "2de0b96f1b89dfcf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:2": {
+      "text": "Manfaat besar diperkirakan akan terwujud, dengan syarat penting atau keterbatasan distribusi.",
+      "sourceHash": "78afad70d75f7f87",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:3": {
+      "text": "Manfaat transformatif yang bernilai luas diperkirakan akan terwujud.",
+      "sourceHash": "0039469aca6539d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:0": {
+      "text": "Dampak merugikan yang berarti diperkirakan hanya sedikit.",
+      "sourceHash": "34a88df95706751f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:1": {
+      "text": "Kerugian yang dapat dikelola atau bersifat lokal diperkirakan akan terjadi.",
+      "sourceHash": "a1f3567ff213f1a6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:2": {
+      "text": "Kerugian parah atau meluas merupakan bagian yang berarti dari masa depan yang diperkirakan.",
+      "sourceHash": "0254b37a8211331b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:3": {
+      "text": "Kehilangan yang katastrofik atau tidak dapat dipulihkan merupakan unsur utama masa depan yang diperkirakan.",
+      "sourceHash": "4f5f72872743a2e6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:0": {
+      "text": "Kendali teknis yang andal diperkirakan tidak dapat diwujudkan.",
+      "sourceHash": "a21ea7cf647c16d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:1": {
+      "text": "Kendali diperkirakan akan sangat sulit dan tidak andal.",
+      "sourceHash": "4d5105568afe1813",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:2": {
+      "text": "Kendali diperkirakan dapat diwujudkan dalam kondisi yang berat.",
+      "sourceHash": "89303d162cee93b9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:3": {
+      "text": "Kendali teknis yang andal diperkirakan secara luas dapat diwujudkan.",
+      "sourceHash": "fe22e102703e2dda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:0": {
+      "text": "Lembaga-lembaga diperkirakan akan gagal merespons secara efektif.",
+      "sourceHash": "b201bfd67e082009",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:1": {
+      "text": "Lembaga-lembaga diperkirakan akan merespons terlalu lemah atau terlalu lambat dalam banyak kasus.",
+      "sourceHash": "09bc34029b1e978e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:2": {
+      "text": "Respons yang efektif diperkirakan akan terwujud dalam kondisi koordinasi tertentu.",
+      "sourceHash": "9aa6f5f1ab20f0e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:3": {
+      "text": "Lembaga-lembaga diperkirakan akan beradaptasi secara efektif dan tepat waktu.",
+      "sourceHash": "9e1161b033a11f25",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:0": {
+      "text": "Masa depan yang diperkirakan melemahkan atau menghilangkan bentuk-bentuk agensi/keberlanjutan yang secara eksplisit dianggap berharga oleh peserta.",
+      "sourceHash": "5687590e6d27af27",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:1": {
+      "text": "Agensi atau keberlanjutan yang dianggap berharga diperkirakan akan banyak hilang.",
+      "sourceHash": "0699acb072ef685d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:2": {
+      "text": "Agensi/keberlanjutan yang dianggap berharga diperkirakan akan tetap terjaga secara substansial, dengan perubahan atau syarat tertentu.",
+      "sourceHash": "157e09c1ca4d9f71",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:3": {
+      "text": "Agensi/keberlanjutan yang dianggap berharga diperkirakan akan berkembang atau bertumbuh subur.",
+      "sourceHash": "c59055f0b40fe1cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:0": {
+      "text": "Jeda secara luas atau perlambatan yang substansial lebih diutamakan.",
+      "sourceHash": "c1d3d6a12153d4dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:1": {
+      "text": "Pengembangan yang terkendali dan langkah pengamanan awal yang kuat lebih diutamakan.",
+      "sourceHash": "b524ab64b4a762c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:2": {
+      "text": "Pengembangan berkelanjutan dengan langkah pengamanan yang terarah lebih diutamakan.",
+      "sourceHash": "e1cf86701dfe17de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:3": {
+      "text": "Pengembangan pesat atau akses luas lebih diutamakan.",
+      "sourceHash": "879b4392f9b387d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:0": {
+      "text": "Suatu hasil dinyatakan tanpa mekanisme pendukung.",
+      "sourceHash": "5a1c3841eb66a67e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:1": {
+      "text": "Suatu faktor kausal disebutkan, tetapi kaitannya dengan hasil tersebut tidak dijelaskan.",
+      "sourceHash": "371cb72b0bb281d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:2": {
+      "text": "Suatu mekanisme yang koheren menghubungkan sebab dengan hasil disertai kondisi yang relevan.",
+      "sourceHash": "b5beffee8879dbaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:3": {
+      "text": "Suatu mekanisme diuraikan beserta dependensi, keterbatasan, atau potensi titik kegagalannya.",
+      "sourceHash": "7f3cf132b9208186",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:0": {
+      "text": "Cakupan yang berbeda secara substantif dicampuradukkan tanpa kualifikasi.",
+      "sourceHash": "afbdbad35b37f05d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:1": {
+      "text": "Sebagian cakupan ditentukan, tetapi batas-batas substantif masih kabur.",
+      "sourceHash": "8c0efb8b562edaea",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:2": {
+      "text": "Aktor, kondisi, atau rentang waktu yang relevan dibedakan.",
+      "sourceHash": "8fe55de11a076b2b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:3": {
+      "text": "Batas-batas yang diperlukan untuk menafsirkan klaim yang berdampak penting dinyatakan dengan jelas, termasuk perbedaan yang relevan dalam hal aktor, rentang waktu, atau kondisi. Tidak setiap kalimat perlu menyatakan ulang batas-batas tersebut.",
+      "sourceHash": "56ff0f8bd47bbb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:0": {
+      "text": "Kepastian dinyatakan meskipun bukti secara eksplisit terbatas atau saling bertentangan.",
+      "sourceHash": "84e0a647a0d8a0cb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:1": {
+      "text": "Ketidakpastian diakui, tetapi kekuatan klaim kurang selaras dengan bukti pendukungnya.",
+      "sourceHash": "e9c18716503a9c9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:2": {
+      "text": "Tingkat keyakinan sebanding dengan bukti yang diberikan dan hal-hal penting yang belum diketahui tetap diakui.",
+      "sourceHash": "badd0b94484d1f16",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:3": {
+      "text": "Ketidakpastian dibedakan pada masing-masing klaim dan dikaitkan dengan keterbatasan bukti yang konkret.",
+      "sourceHash": "9184c61fcea3a0fa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:0": {
+      "text": "Pernyataan-pernyataan yang berkaitan tetap tidak selaras berdasarkan asumsi yang sama sebagaimana dinyatakan, bahkan setelah klarifikasi.",
+      "sourceHash": "d7e5b6671ee34fe7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:1": {
+      "text": "Ketidakselarasan yang substantif masih mungkin ada, tetapi telah dijelaskan sebagian.",
+      "sourceHash": "eed384a4ddb31fe4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:2": {
+      "text": "Posisi-posisi yang berkaitan selaras berdasarkan asumsi yang dinyatakan.",
+      "sourceHash": "4ebb860dc5c17fcb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:3": {
+      "text": "Klaim-klaim substantif saling selaras berdasarkan asumsi dan cakupan yang diungkapkan; setiap ketegangan yang tampak diselesaikan melalui pembedaan tersebut. Uraian yang sudah koheren tidak perlu menciptakan pertentangan lalu menyelaraskannya.",
+      "sourceHash": "941dd493b7052d75",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:0": {
+      "text": "Suatu alternatif ditolak tanpa menanggapi klaim sebenarnya.",
+      "sourceHash": "1e4563dbbba8058d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:1": {
+      "text": "Suatu alternatif diakui, tetapi dasar relevan terkuatnya diabaikan.",
+      "sourceHash": "bd768e0832cfe82b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:2": {
+      "text": "Suatu alternatif yang serius disajikan secara adil dan ditanggapi berdasarkan kekuatannya sendiri.",
+      "sourceHash": "4a756c3d0300fd9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:3": {
+      "text": "Peserta mengidentifikasi kapan suatu alternatif yang serius dapat memberikan penjelasan yang lebih baik daripada uraiannya.",
+      "sourceHash": "1bac2063b829f376",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:0": {
+      "text": "Peserta secara eksplisit menutup kemungkinan untuk merevisi keyakinannya apa pun buktinya.",
+      "sourceHash": "157205d903c1b6d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:1": {
+      "text": "Suatu kondisi pembaruan yang samar diberikan tanpa menentukan bukti yang relevan.",
+      "sourceHash": "bc5b4358911f27fd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:2": {
+      "text": "Bukti yang dapat diidentifikasi atau suatu perkembangan dapat mengubah keyakinan yang dinyatakan.",
+      "sourceHash": "eb36a607e4097aaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:3": {
+      "text": "Suatu pengamatan spesifik yang dapat membedakan dikaitkan dengan perubahan tertentu dalam keyakinan.",
+      "sourceHash": "0d00980368b2b87b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:0": {
+      "text": "Suatu pengamatan yang diberikan secara eksplisit bertentangan secara substantif dengan klaim yang hendak didukungnya.",
+      "sourceHash": "53d564965a501f56",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:1": {
+      "text": "Suatu pengamatan atau contoh yang diajukan memiliki kaitan yang lemah atau tidak dijelaskan dengan klaim tersebut.",
+      "sourceHash": "09cf5cebb4eed43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:2": {
+      "text": "Suatu kaitan yang jelas menghubungkan dasar yang diajukan dengan klaim tersebut, disertai keterbatasan yang relevan.",
+      "sourceHash": "f90613a49168196e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:3": {
+      "text": "Uraian tersebut membedakan pengamatan, penafsiran, dan ketidakpastian, serta menjelaskan keterbatasan dasar yang diajukan.",
+      "sourceHash": "2f3bbfe9043ee3e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:0": {
+      "text": "Hasil katastrofik diperkirakan dapat diabaikan atau secara efektif dihindari berdasarkan asumsi yang dinyatakan peserta.",
+      "sourceHash": "d0b165abc2ca8cb9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:1": {
+      "text": "Katastrofe mungkin terjadi, tetapi diperkirakan menjadi bagian terbatas dari pandangan tersebut berdasarkan kondisi yang dinyatakan.",
+      "sourceHash": "1f05c56cd9ef9efd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:2": {
+      "text": "Hasil katastrofik merupakan kemungkinan substantif dalam pandangan peserta, dengan ketidakpastian atau kondisi yang berdampak penting.",
+      "sourceHash": "29557cbfc3c2218f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:3": {
+      "text": "Hasil katastrofik mendominasi perkiraan peserta berdasarkan asumsi yang dinyatakan.",
+      "sourceHash": "a918c0b82b0759dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

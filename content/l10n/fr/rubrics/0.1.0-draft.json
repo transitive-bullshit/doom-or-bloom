@@ -1,0 +1,455 @@
+{
+  "locale": "fr",
+  "kind": "rubric",
+  "version": "0.1.0-draft",
+  "entries": {
+    "level:capability_trajectory:0": {
+      "text": "Aucune capacité transformatrice n’est attendue, ou un plafond bas est explicitement anticipé.",
+      "sourceHash": "45332aa77e89763e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:1": {
+      "text": "Une capacité transformatrice n’est attendue qu’à un horizon lointain ou indéfini.",
+      "sourceHash": "1caad9e3af1c823b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:2": {
+      "text": "Une capacité transformatrice est attendue d’ici quelques décennies, selon un calendrier conditionnel ou incertain.",
+      "sourceHash": "fc0d592a2a5c717e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:3": {
+      "text": "Une capacité transformatrice est attendue d’ici quelques années, avec des jalons ou un calendrier précis.",
+      "sourceHash": "7be8454bb25508ac",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:0": {
+      "text": "Une transition progressive, assortie d’un préavis substantiel et d’une large diffusion, est attendue.",
+      "sourceHash": "4d75d63bcc972e76",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:1": {
+      "text": "Une accélération sensible est attendue, mais il reste un temps d’adaptation significatif.",
+      "sourceHash": "616aa99b562fa9a2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:2": {
+      "text": "Une transition rapide avec un préavis limité est attendue.",
+      "sourceHash": "1cf04864d24ec589",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:3": {
+      "text": "Une transition brutale et auto-amplificatrice, avec très peu de préavis, est attendue.",
+      "sourceHash": "8a00a52d2e6cd875",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:0": {
+      "text": "Peu d’effets positifs sont attendus, même si une IA avancée voit le jour.",
+      "sourceHash": "b4ca95af2e04929f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:1": {
+      "text": "Des bénéfices limités ou répartis de manière restreinte sont attendus.",
+      "sourceHash": "2de0b96f1b89dfcf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:2": {
+      "text": "Des bénéfices substantiels sont attendus, sous réserve de conditions importantes ou de limites dans leur répartition.",
+      "sourceHash": "78afad70d75f7f87",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:3": {
+      "text": "Des bénéfices transformateurs et largement profitables sont attendus.",
+      "sourceHash": "0039469aca6539d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:0": {
+      "text": "Peu d’effets négatifs substantiels sont attendus.",
+      "sourceHash": "34a88df95706751f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:1": {
+      "text": "Des dommages gérables ou localisés sont attendus.",
+      "sourceHash": "a1f3567ff213f1a6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:2": {
+      "text": "Des dommages graves ou généralisés constituent une composante substantielle de l’avenir attendu.",
+      "sourceHash": "0254b37a8211331b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:3": {
+      "text": "Une perte catastrophique ou irréversible occupe une place centrale dans l’avenir attendu.",
+      "sourceHash": "4f5f72872743a2e6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:0": {
+      "text": "Un contrôle technique fiable devrait être irréalisable.",
+      "sourceHash": "a21ea7cf647c16d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:1": {
+      "text": "Le contrôle devrait être très difficile et peu fiable.",
+      "sourceHash": "4d5105568afe1813",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:2": {
+      "text": "Le contrôle devrait être réalisable dans des conditions exigeantes.",
+      "sourceHash": "89303d162cee93b9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:3": {
+      "text": "Un contrôle technique fiable devrait être largement réalisable.",
+      "sourceHash": "fe22e102703e2dda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:0": {
+      "text": "Les institutions ne devraient pas parvenir à réagir efficacement.",
+      "sourceHash": "b201bfd67e082009",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:1": {
+      "text": "Les institutions devraient, dans de nombreux cas, réagir trop faiblement ou trop tard.",
+      "sourceHash": "09bc34029b1e978e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:2": {
+      "text": "Des réponses efficaces sont attendues sous réserve de conditions de coordination précises.",
+      "sourceHash": "9aa6f5f1ab20f0e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:3": {
+      "text": "Les institutions devraient s’adapter efficacement et à temps.",
+      "sourceHash": "9e1161b033a11f25",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:0": {
+      "text": "L’avenir attendu compromet ou élimine les formes de capacité d’action ou de continuité auxquelles la personne interrogée accorde explicitement de la valeur.",
+      "sourceHash": "5687590e6d27af27",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:1": {
+      "text": "Une part importante de la capacité d’action ou de la continuité valorisée devrait être perdue.",
+      "sourceHash": "0699acb072ef685d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:2": {
+      "text": "La capacité d’action ou la continuité valorisée devrait être en grande partie préservée, moyennant des changements ou sous certaines conditions.",
+      "sourceHash": "157e09c1ca4d9f71",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:3": {
+      "text": "La capacité d’action ou la continuité valorisée devrait se développer ou s’épanouir.",
+      "sourceHash": "c59055f0b40fe1cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:0": {
+      "text": "Une pause générale ou un ralentissement substantiel sont privilégiés.",
+      "sourceHash": "c1d3d6a12153d4dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:1": {
+      "text": "Un développement limité et de solides mesures de protection préalables sont privilégiés.",
+      "sourceHash": "b524ab64b4a762c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:2": {
+      "text": "La poursuite du développement avec des mesures de protection ciblées est privilégiée.",
+      "sourceHash": "e1cf86701dfe17de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:3": {
+      "text": "Un développement rapide ou un large accès sont privilégiés.",
+      "sourceHash": "879b4392f9b387d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:0": {
+      "text": "Un résultat est affirmé sans mécanisme à l’appui.",
+      "sourceHash": "5a1c3841eb66a67e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:1": {
+      "text": "Un facteur causal est nommé, mais son lien avec le résultat n’est pas expliqué.",
+      "sourceHash": "371cb72b0bb281d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:2": {
+      "text": "Un mécanisme cohérent relie une cause à un résultat sous une condition pertinente.",
+      "sourceHash": "b5beffee8879dbaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:3": {
+      "text": "Un mécanisme est développé en précisant ses dépendances, ses limites ou ses points de défaillance potentiels.",
+      "sourceHash": "7f3cf132b9208186",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:0": {
+      "text": "Des périmètres sensiblement différents sont confondus sans réserve.",
+      "sourceHash": "afbdbad35b37f05d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:1": {
+      "text": "Un certain périmètre est précisé, mais des limites importantes restent floues.",
+      "sourceHash": "8c0efb8b562edaea",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:2": {
+      "text": "Les acteurs, conditions ou horizons pertinents sont distingués.",
+      "sourceHash": "8fe55de11a076b2b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:3": {
+      "text": "Les limites nécessaires à l’interprétation des affirmations lourdes de conséquences sont claires, notamment les différences pertinentes entre les acteurs, les horizons ou les conditions. Il n’est pas nécessaire que chaque phrase rappelle ces limites.",
+      "sourceHash": "56ff0f8bd47bbb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:0": {
+      "text": "Une certitude est affirmée malgré des éléments de preuve explicitement limités ou contradictoires.",
+      "sourceHash": "84e0a647a0d8a0cb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:1": {
+      "text": "L’incertitude est reconnue, mais la force de l’affirmation correspond mal aux éléments qui l’étayent.",
+      "sourceHash": "e9c18716503a9c9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:2": {
+      "text": "Le degré de confiance est proportionné aux éléments de preuve fournis et les inconnues importantes sont maintenues.",
+      "sourceHash": "badd0b94484d1f16",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:3": {
+      "text": "L’incertitude est différenciée selon les affirmations et reliée à des limites concrètes des éléments de preuve.",
+      "sourceHash": "9184c61fcea3a0fa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:0": {
+      "text": "Après clarification, des affirmations connexes restent incompatibles sous les mêmes hypothèses énoncées.",
+      "sourceHash": "d7e5b6671ee34fe7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:1": {
+      "text": "Une incompatibilité importante reste possible, mais elle est partiellement expliquée.",
+      "sourceHash": "eed384a4ddb31fe4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:2": {
+      "text": "Les positions connexes sont compatibles sous les hypothèses énoncées.",
+      "sourceHash": "4ebb860dc5c17fcb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:3": {
+      "text": "Les affirmations importantes sont compatibles entre elles dans le cadre de leurs hypothèses et périmètres exprimés ; toute tension apparente est résolue par ces distinctions. Un exposé déjà cohérent n’a pas besoin d’inventer une contradiction pour ensuite la résoudre.",
+      "sourceHash": "941dd493b7052d75",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:0": {
+      "text": "Une autre possibilité est écartée sans que son affirmation réelle soit examinée.",
+      "sourceHash": "1e4563dbbba8058d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:1": {
+      "text": "Une autre possibilité est reconnue, mais son fondement pertinent le plus solide est omis.",
+      "sourceHash": "bd768e0832cfe82b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:2": {
+      "text": "Une autre possibilité sérieuse est présentée équitablement et examinée sur le fond.",
+      "sourceHash": "4a756c3d0300fd9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:3": {
+      "text": "Le participant détermine dans quels cas une autre possibilité sérieuse pourrait mieux rendre compte de la situation que son propre exposé.",
+      "sourceHash": "1bac2063b829f376",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:0": {
+      "text": "Le participant exclut explicitement de réviser sa conviction, quels que soient les éléments de preuve.",
+      "sourceHash": "157205d903c1b6d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:1": {
+      "text": "Une condition de révision vague est donnée sans préciser les éléments de preuve pertinents.",
+      "sourceHash": "bc5b4358911f27fd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:2": {
+      "text": "Des éléments de preuve identifiables ou une évolution pourraient modifier la conviction énoncée.",
+      "sourceHash": "eb36a607e4097aaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:3": {
+      "text": "Une observation précise permettant de trancher est liée à une modification particulière de la conviction.",
+      "sourceHash": "0d00980368b2b87b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:0": {
+      "text": "Une observation explicitement fournie contredit substantiellement l’affirmation qu’elle est censée étayer.",
+      "sourceHash": "53d564965a501f56",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:1": {
+      "text": "Une observation ou un exemple proposé présente un lien faible ou inexpliqué avec l’affirmation.",
+      "sourceHash": "09cf5cebb4eed43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:2": {
+      "text": "Un lien clair relie le fondement proposé à l’affirmation, avec les limites pertinentes.",
+      "sourceHash": "f90613a49168196e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:3": {
+      "text": "L’exposé distingue l’observation, l’interprétation et l’incertitude, en expliquant les limites du fondement proposé.",
+      "sourceHash": "2f3bbfe9043ee3e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:0": {
+      "text": "Les issues catastrophiques devraient être négligeables ou effectivement évitées dans le cadre des hypothèses énoncées par le participant.",
+      "sourceHash": "d0b165abc2ca8cb9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:1": {
+      "text": "Une catastrophe est possible, mais ne devrait constituer qu’une part limitée des perspectives dans les conditions énoncées.",
+      "sourceHash": "1f05c56cd9ef9efd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:2": {
+      "text": "Les issues catastrophiques constituent une possibilité substantielle dans les perspectives du participant, avec une incertitude ou des conditions lourdes de conséquences.",
+      "sourceHash": "29557cbfc3c2218f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:3": {
+      "text": "Les issues catastrophiques dominent les attentes de la personne participante selon les hypothèses énoncées.",
+      "sourceHash": "a918c0b82b0759dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import 'server-only'
 import { createHmac, timingSafeEqual } from 'node:crypto'
+import { brotliCompressSync, brotliDecompressSync } from 'node:zlib'
 import { z } from 'zod'
 import {
   defaultLocale,
@@ -50,18 +51,25 @@ function sign(value: string) {
     .update(`assessment-draft:${value}`)
     .digest()
 }
+// The page ticket is set once per enabled locale, so its size multiplies:
+// a Brotli-compressed payload (marked `~`) keeps ten locales' start response
+// near 10 KB rather than 22 KB, under common 16 KB header limits. Tickets
+// issued before compression stay readable.
+const compressed = '~'
 export function reserveDraft(owner: string, requestKey: string, model: string) {
   // Stable across uncertain start retries, with no reservation row.
   const hex = sign(`${owner}:${requestKey}`).toString('hex')
   const id = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-a${hex.slice(17, 20)}-${hex.slice(20, 32)}`
   const assessment = createAssessment(id, model)
-  const payload = Buffer.from(
-    JSON.stringify({
-      owner,
-      assessment,
-      expires: Date.now() + 365 * 24 * 60 * 60 * 1000
-    })
-  ).toString('base64url')
+  const payload =
+    compressed +
+    brotliCompressSync(
+      JSON.stringify({
+        owner,
+        assessment,
+        expires: Date.now() + 365 * 24 * 60 * 60 * 1000
+      })
+    ).toString('base64url')
   return { id, ticket: `${payload}.${sign(payload).toString('base64url')}` }
 }
 function readDraftTicket(owner: string, id: string, ticket?: string | null) {
@@ -77,9 +85,10 @@ function readDraftTicket(owner: string, id: string, ticket?: string | null) {
     !timingSafeEqual(supplied, expected)
   )
     throw missing()
-  const parsed = ticketSchema.safeParse(
-    JSON.parse(Buffer.from(payload, 'base64url').toString())
-  )
+  const bytes = payload.startsWith(compressed)
+    ? brotliDecompressSync(Buffer.from(payload.slice(1), 'base64url'))
+    : Buffer.from(payload, 'base64url')
+  const parsed = ticketSchema.safeParse(JSON.parse(bytes.toString()))
   if (
     !parsed.success ||
     parsed.data.owner !== owner ||

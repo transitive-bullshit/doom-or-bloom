@@ -16,6 +16,8 @@ import { loadPersonaComparisons } from '@/components/landing/data'
 import { serverEnv } from '@/lib/server/env'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { SurfaceMessages } from '@/components/surface-messages'
+import { AuthoredTextProvider } from '@/components/assessment/authored-text'
+import { authoredText, recoveryCopy } from '@/lib/content/l10n-loader'
 export const dynamic = 'force-dynamic'
 export async function generateMetadata() {
   const t = await getTranslations('AssessmentPages')
@@ -52,31 +54,36 @@ export default async function Page({
       <AssessmentPage>
         <h1 className='content-column pt-10'>{t('interviewHeading')}</h1>
         <SurfaceMessages surface='interview'>
-          <Interview
-            personas={personas}
-            initial={initial}
-            fixtureMode={env.provider === 'fixture'}
-            debugDefault={env.debug}
-            debugAvailable={env.debug}
-            analyticsEnabled={env.posthog}
-            analyticsCatalog={{
-              prompts: Object.fromEntries(
-                bundle.prompts.map((p) => [p.id, p.family])
-              ),
-              resources: bundle.resources.map((r) => r.id)
-            }}
-            dimensions={[
-              ...bundle.rubric.dimensions.map(({ id, label, meaning }) => ({
-                id,
-                label,
-                meaning
-              })),
-              { id: 'catastrophic_risk', ...bundle.rubric.catastrophicRisk }
-            ]}
-            recoveryCopy={Object.fromEntries(
-              bundle.prompts.map((p) => [p.id, p.recoveryVariants])
-            )}
-          />
+          <AuthoredTextProvider
+            value={authoredText(locale, initial.assessment.versions)}
+          >
+            <Interview
+              personas={personas}
+              initial={initial}
+              fixtureMode={env.provider === 'fixture'}
+              debugDefault={env.debug}
+              debugAvailable={env.debug}
+              analyticsEnabled={env.posthog}
+              analyticsCatalog={{
+                prompts: Object.fromEntries(
+                  bundle.prompts.map((p) => [p.id, p.family])
+                ),
+                resources: bundle.resources.map((r) => r.id)
+              }}
+              dimensions={[
+                ...bundle.rubric.dimensions.map(({ id, label, meaning }) => ({
+                  id,
+                  label,
+                  meaning
+                })),
+                { id: 'catastrophic_risk', ...bundle.rubric.catastrophicRisk }
+              ]}
+              recoveryCopy={recoveryCopy(
+                locale,
+                initial.assessment.versions.content
+              )}
+            />
+          </AuthoredTextProvider>
         </SurfaceMessages>
       </AssessmentPage>
     </PageTransition>

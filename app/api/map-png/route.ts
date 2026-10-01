@@ -1,4 +1,6 @@
 import { resultMapExport } from '@/lib/sharing/map-layout'
+import { defaultLocale, isLocale } from '@/i18n/config'
+import { cardRenderOptions } from '@/lib/sharing/card-renderer'
 import { render } from 'takumi-js'
 import { z, ZodError } from 'zod'
 import { apiDiagnostics } from '@/lib/server/error-reporting'
@@ -47,6 +49,8 @@ export async function POST(request: Request) {
       )
     inputValidated = true
     diagnostics.setPhase('render_map', { svgBytes: Buffer.byteLength(svg) })
+    const param = new URL(request.url).searchParams.get('locale')
+    const locale = isLocale(param) ? param : defaultLocale
     const bytes = await render(
       {
         type: 'image',
@@ -54,6 +58,8 @@ export async function POST(request: Request) {
         style: resultMapExport
       },
       {
+        // The page's language picks fonts for labels in non-Latin scripts.
+        ...(await cardRenderOptions(locale)),
         devicePixelRatio: 2,
         format: 'png',
         signal: AbortSignal.timeout(10_000)

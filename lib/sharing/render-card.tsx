@@ -5,12 +5,13 @@ import type { Translator } from '@/i18n/translator'
 import { loadPersonaComparisons } from '@/components/landing/data'
 import { LimitError } from '@/lib/server/limits'
 import { ShareCard, type CardData } from './card'
+import { cardRenderOptions, cardTranslator, wrappable } from './card-renderer'
 import { loadSocialPortrait } from './portraits'
 
 /**
  * One composition and portrait-loading path for downloads and public previews.
  * Always PNG: X's post composer does not render WebP link cards. Text uses
- * the translator's language; Spanish needs no fonts beyond Takumi's default.
+ * the translator's language, with Noto fallbacks for non-Latin scripts.
  */
 export async function renderShareCard(
   t: Translator,
@@ -49,15 +50,16 @@ export async function renderShareCard(
   return render(
     <div style={{ width: 1200, height: 630, display: 'flex' }}>
       {ShareCard({
-        t,
+        t: cardTranslator(t, options.locale),
         data,
         matches,
         date,
-        title: options.title,
+        title: options.title && wrappable(options.title, options.locale),
         simulated: options.simulated
       })}
     </div>,
     {
+      ...(await cardRenderOptions(options.locale)),
       format: 'png',
       devicePixelRatio: options.devicePixelRatio,
       emoji: 'from-font',

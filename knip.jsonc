@@ -24,8 +24,9 @@
   "playwright": false,
   // The launch video is a standalone package with its own toolchain.
   "ignore": ["video/**"],
-  // Authenticated, externally installed read-only X CLI used by the refresh tool.
-  "ignoreBinaries": ["xurl"],
+  // Externally installed tools: the read-only X CLI used by the refresh tool,
+  // and uv, which runs fontTools for `pnpm fonts:subset`.
+  "ignoreBinaries": ["xurl", "uv"],
   // Keep the reusable UI primitive APIs while still checking their dependencies.
   "ignoreIssues": {
     "components/ui/**": ["exports", "types"]

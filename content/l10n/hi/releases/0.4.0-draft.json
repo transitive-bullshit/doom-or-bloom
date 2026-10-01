@@ -1,0 +1,1876 @@
+{
+  "locale": "hi",
+  "kind": "release",
+  "version": "0.4.0-draft",
+  "entries": {
+    "prompt:root:text": {
+      "text": "आपके विचार में एआई हमारे भविष्य के लिए क्या मायने रखती है—और क्यों?",
+      "sourceHash": "387139f8add0c09e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:text": {
+      "text": "आपके अनुसार एआई कौन-सा एक ठोस बदलाव लाएगी?",
+      "sourceHash": "31a4cf0897a5346c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:text": {
+      "text": "अगर एआई कभी रोज़मर्रा की ज़िंदगी में बड़े बदलाव लाएगी, तो आपके अनुसार ऐसा कब होगा?",
+      "sourceHash": "b8dbc39437255265",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:text": {
+      "text": "आप इस बारे में कितने आश्वस्त हैं कि एआई रोज़मर्रा की ज़िंदगी में बड़े बदलाव कब लाएगी?",
+      "sourceHash": "6307382fa1ef9cd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:text": {
+      "text": "आपके अनुसार एआई लोगों की ज़िंदगी में सबसे अधिक क्या बदलेगी, और कैसे?",
+      "sourceHash": "c9d873f85e0bddda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:text": {
+      "text": "किस अवलोकन या अनुभव ने एआई के भविष्य के प्रभाव के बारे में आपके दृष्टिकोण को सबसे अधिक आकार दिया है?",
+      "sourceHash": "f400e70def334935",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:text": {
+      "text": "क्या आपको लगता है कि लोग इंसानों से अधिक बुद्धिमान एआई सिस्टम पर नियंत्रण बनाए रखेंगे, और क्यों?",
+      "sourceHash": "cb285c18438beece",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:text": {
+      "text": "आपके अनुसार एआई विकसित करने वाले लोग और संस्थाएँ इसके जोखिमों पर कैसी प्रतिक्रिया देंगे?",
+      "sourceHash": "ccce59b65d94452b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:text": {
+      "text": "आपके अनुसार, अगर कोई बड़े लाभ होंगे, तो लोगों को एआई से कौन-से बड़े लाभ मिलेंगे?",
+      "sourceHash": "928e73541b79f339",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:text": {
+      "text": "आपके अनुसार, अगर एआई कोई बड़े नुकसान पहुँचाएगी, तो वे क्या होंगे?",
+      "sourceHash": "033ab3d4a25ba58d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:text": {
+      "text": "कौन-सी खोज या घटना एआई के भविष्य के प्रभाव के बारे में आपके दृष्टिकोण को सबसे अधिक बदल देगी?",
+      "sourceHash": "b0618f7c01f48bb6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:text": {
+      "text": "एआई के भविष्य के प्रभाव के बारे में आपके समग्र दृष्टिकोण के विरुद्ध सबसे मज़बूत तर्क क्या है?",
+      "sourceHash": "5d7a73cf99892b28",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:text": {
+      "text": "एक अच्छे भविष्य में इंसान होने की किन बातों को बनाए रखना ज़रूरी होगा?",
+      "sourceHash": "2bbe2555bcae903b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:text": {
+      "text": "किन बातों से एआई की प्रगति तेज़ या धीमी हो सकती है?",
+      "sourceHash": "238ed6ca05fc40ae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:text": {
+      "text": "अगर एआई ने ऐसा नुकसान पहुँचाया जिसे पलटा न जा सके, तो आपके अनुसार सबसे पहले कौन-से चेतावनी संकेत दिखाई देंगे?",
+      "sourceHash": "c36134cee8749d84",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:text": {
+      "text": "अगर कोई चीज़ एआई सिस्टम को बेहतर बनाने की एआई की गति को सीमित करेगी, तो वह क्या होगी?",
+      "sourceHash": "e78fe233c9de1d01",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:text": {
+      "text": "आपके अनुसार एआई से सबसे अधिक लाभ किसे होगा?",
+      "sourceHash": "50f0b5b89aee9976",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:text": {
+      "text": "अगर कोई चीज़ एआई के लाभों को आम लोगों तक पहुँचने से रोक सकती है, तो वह क्या होगी?",
+      "sourceHash": "b4c0f944ba8fcf6e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:text": {
+      "text": "आपके विचार में इसकी कितनी संभावना है कि एआई ऐसा नुकसान पहुँचाएगी जिससे मानवता कभी उबर नहीं सकेगी?",
+      "sourceHash": "1b69507c12c73b2f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:text": {
+      "text": "आपके सहज अनुमान के अनुसार, इस बात की मोटी-मोटी कितनी संभावना है कि एआई मानव विलुप्ति या इसी तरह की किसी स्थायी आपदा का कारण बनेगा? कोई संख्या या “पता नहीं” कहना ठीक है।",
+      "sourceHash": "2737b14e5892bc29",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:text": {
+      "text": "अगर एआई का कोई नुकसानदेह उपयोग आपको चिंतित करता है, तो कौन-सा उपयोग सबसे अधिक चिंतित करता है?",
+      "sourceHash": "882c6397adc58faf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:text": {
+      "text": "आपके अनुसार, अगर एआई रोज़मर्रा की ज़िंदगी में कोई समस्याएँ पैदा करेगी, तो वे क्या होंगी?",
+      "sourceHash": "5c7d6cf59f585482",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:text": {
+      "text": "कौन-सा सबूत इस बारे में आपका दृष्टिकोण बदल देगा कि लोग शक्तिशाली एआई को नियंत्रित कर सकते हैं या नहीं?",
+      "sourceHash": "0a013f2235e53256",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:text": {
+      "text": "आपके विचार में किन दबावों से यह तय होगा कि एआई कंपनियाँ सुरक्षा को कैसे संभालती हैं?",
+      "sourceHash": "308cc8ecf2666f79",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:text": {
+      "text": "क्या आपको लगता है कि प्रतिस्पर्धी एआई कंपनियाँ या सरकारें सुरक्षा के लिए सहयोग करेंगी, और क्यों?",
+      "sourceHash": "f23eaf8e4ce62cae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:text": {
+      "text": "एआई वाले एक अच्छे भविष्य में लोगों को किस तरह के बदलावों से इनकार करने में सक्षम होना चाहिए?",
+      "sourceHash": "a8573a7b6045d000",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:text": {
+      "text": "एआई के भविष्य के प्रभाव को बेहतर बनाने के लिए आप कौन-सा नुकसान स्वीकार करेंगे?",
+      "sourceHash": "6061cce047c108ad",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:text": {
+      "text": "आज के एआई सिस्टम ने आपको इस बारे में क्या दिखाया है कि भविष्य की एआई क्या कर पाएगी?",
+      "sourceHash": "b2562dbbc8bb7ca2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:text": {
+      "text": "एआई के भविष्य के बारे में आपकी भविष्यवाणी सबसे अधिक किस धारणा पर निर्भर करती है?",
+      "sourceHash": "8f9445d5a4ac971c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:text": {
+      "text": "कौन-सा संकेत आपको बताएगा कि एआई रोज़मर्रा की ज़िंदगी को बदलना शुरू कर रही है?",
+      "sourceHash": "54d7efdd16c3de1a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:text": {
+      "text": "एआई लोगों की ज़िंदगी को कैसे बदलेगी, इसकी आपकी व्याख्या में किस बात के लिए सबूत सबसे कमज़ोर हैं?",
+      "sourceHash": "b17b9d5d89ed03b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:text": {
+      "text": "आपके अनुसार एआई 2030 तक क्या कर पाएगी?",
+      "sourceHash": "5aa3053228393e8c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:text": {
+      "text": "अगर एआई को विकसित या इस्तेमाल करने के तरीके में कुछ बदलना चाहिए, तो वह क्या है?",
+      "sourceHash": "f3b25b08f4e4b602",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:text": {
+      "text": "एआई के भविष्य के बारे में सोचते समय आप किस बात को लेकर सबसे अधिक अनिश्चित हैं?",
+      "sourceHash": "6733afd567d2cdf7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:text": {
+      "text": "आपके अनुसार समय के साथ लोगों की ज़िंदगी पर एआई के प्रभाव कैसे बदलेंगे?",
+      "sourceHash": "cb2b83083b01a9fe",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:text": {
+      "text": "लाभ और नुकसान दोनों को साथ लेकर देखें, तो आपके अनुसार एआई का कुल प्रभाव क्या होगा?",
+      "sourceHash": "33f7d3f8a75621ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:text": {
+      "text": "आपके अनुसार एआई साइबर हमलावरों और बचाव करने वालों के बीच संतुलन को कैसे बदलेगी?",
+      "sourceHash": "e1d0e830e494df3e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:reask": {
+      "text": "क्या आपको लगता है कि एआई साइबर हमलावरों या बचाव करने वालों में से किसकी अधिक मदद करेगी, और क्यों?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:clarification": {
+      "text": "क्या आपको लगता है कि एआई साइबर हमलावरों या बचाव करने वालों में से किसकी अधिक मदद करेगी, और क्यों?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:exhausted": {
+      "text": "क्या आपको लगता है कि एआई साइबर हमलावरों या बचाव करने वालों में से किसकी अधिक मदद करेगी, और क्यों?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:text": {
+      "text": "लोग एआई के भविष्य के प्रभाव को किस हद तक आकार दे सकते हैं?",
+      "sourceHash": "4961359a645e5f2a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:text": {
+      "text": "आपको क्या लगता है कि एआई के कारण रोज़मर्रा की ज़िंदगी कितनी बदलेगी?",
+      "sourceHash": "eff862f05a11a834",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:text": {
+      "text": "अच्छे या बुरे को अलग रखते हुए: आपके विचार में एआई अंततः दुनिया को कितना बदलेगा—थोड़ा, बहुत ज़्यादा या पूरी तरह?",
+      "sourceHash": "c04ddec578f4e43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:text": {
+      "text": "क्या आपको लगता है कि विनाश सबसे संभावित परिणाम है, या यह बेहतर संभावनाओं के साथ मौजूद एक गंभीर जोखिम है?",
+      "sourceHash": "f36588d9ee3dc51e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:text": {
+      "text": "क्या आप मुख्य रूप से इस बात को लेकर चिंतित हैं कि एआई किस दिशा में जा रही है, या आपको आशा और चिंता लगभग बराबर लगती हैं?",
+      "sourceHash": "b8c8995689641b48",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:text": {
+      "text": "अगर आपको किसी एक ओर झुकना पड़े, तो क्या आप उम्मीद करते हैं कि एआई बुरी से अधिक अच्छी साबित होगी, या आप सच में दुविधा में हैं?",
+      "sourceHash": "023a52c97dc01113",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:text": {
+      "text": "क्या आपको लगता है कि लाभ स्पष्ट रूप से जोखिमों से अधिक होंगे, या कुल मिलाकर परिणाम अच्छा होगा, लेकिन वास्तविक जोखिमों को संभालना पड़ेगा?",
+      "sourceHash": "2717f186c55147de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:text": {
+      "text": "आपने खुद को अपने उत्तरों से झलकने वाले रुख की तुलना में अधिक आशावान माना। आपको किस बात से आशा मिलती है जो आपके उत्तरों में नहीं दिखी?",
+      "sourceHash": "9aaa67777523a93e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:text": {
+      "text": "आपने खुद को अपने उत्तरों से झलकने वाले रुख की तुलना में अधिक चिंतित माना। आपको किस बात की चिंता है जो शायद हमारी नज़र से छूट गई?",
+      "sourceHash": "0bcf7fdc36273697",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:text": {
+      "text": "आपके उत्तरों में जितना बदलाव दिखा, आप उससे अधिक बदलाव की उम्मीद करते हैं। आपके अनुसार आने वाला सबसे बड़ा बदलाव क्या है?",
+      "sourceHash": "853edb2888486a22",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:text": {
+      "text": "आपके उत्तर आपकी अपेक्षा से बड़े बदलावों का संकेत देते हैं। आपके विचार में क्या वैसा ही रहेगा?",
+      "sourceHash": "049c9c47c2ab7c8b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.revision-closed": {
+      "text": "आपने इस विश्वास को बदलने की संभावना को खारिज कर दिया, चाहे कोई भी प्रमाण मिले। ऐसी एक बात बताने की कोशिश करें जिसे देखने पर आप फिर से विचार करेंगे, और यह भी कि आप क्या बदलेंगे।",
+      "sourceHash": "a2f6cee65ef18d20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.causal": {
+      "text": "आपने एक अपेक्षित परिणाम को उसकी प्रक्रिया से जोड़ा। इससे आपके दृष्टिकोण के एक महत्वपूर्ण हिस्से को परखना आसान हो जाता है।",
+      "sourceHash": "c890cbb654949d10",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.crux": {
+      "text": "आपने ऐसी बात पहचानी जो आपका दृष्टिकोण बदल सकती है। यह एक उपयोगी निर्णायक मुद्दा है, जिस पर नज़र रखी जा सकती है।",
+      "sourceHash": "95f906e83ba7a7b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.scope": {
+      "text": "आपने एक शर्त या दायरा स्पष्ट किया। इससे अपेक्षा को उन परिस्थितियों से अलग समझने में मदद मिलती है जिन पर वह निर्भर है।",
+      "sourceHash": "2d5a1fafa1e682f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.uncertainty": {
+      "text": "आपने अनिश्चितता इस तरह व्यक्त की कि अधिक प्रमाण के लिए गुंजाइश बनी रहती है। यह अपने आप में अपेक्षित परिणाम को बेहतर या बदतर नहीं बनाता।",
+      "sourceHash": "766780dd13f68fd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.countercase": {
+      "text": "आपने उस गंभीर कारण पर विचार किया जिसकी वजह से आपकी अपेक्षा गलत हो सकती है। आपके मुख्य विवरण के साथ इस वैकल्पिक संभावना को भी परखना उपयोगी है।",
+      "sourceHash": "86dfb82e18cd85cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.coherence": {
+      "text": "आपके बताए हुए रुख, आपके द्वारा वर्णित परिस्थितियों में, एक-दूसरे से मेल खाते हैं। यह फिर भी इन उत्तरों की एक व्याख्या है।",
+      "sourceHash": "070ebe22de961a8d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.grounded": {
+      "text": "आपने अपने विवरण को ऐसे प्रमाण से जोड़ा जिसकी जाँच की जा सकती है। फिर भी, कोई संदर्भ क्या स्थापित कर सकता है, इसकी सीमाएँ होती हैं।",
+      "sourceHash": "ed714a4a470db0e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.benefit-conditions": {
+      "text": "आप एआई से कुछ लाभ की अपेक्षा करते हैं और आपने अपने विवरण में सीमाओं या शर्तों का वर्णन किया है। विचार करें कि आपके अपेक्षित लाभों के लिए इनमें से कौन-सी शर्तें सबसे अधिक मायने रखती हैं।",
+      "sourceHash": "6f1a60236580e372",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.risk-concern": {
+      "text": "नुकसान आपकी अपेक्षा का एक महत्वपूर्ण हिस्सा है। यह आकलन उस अपेक्षा को आपकी पसंदीदा प्रतिक्रिया से अलग रखता है।",
+      "sourceHash": "ff87bcf5506e374c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.control-conditions": {
+      "text": "आपको अपेक्षा है कि कठिन शर्तों के तहत तकनीकी नियंत्रण संभव होगा। ये शर्तें बाकी दृष्टिकोण के लिए मायने रखती हैं।",
+      "sourceHash": "6107a23a56de2262",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.institutions": {
+      "text": "आपको अपेक्षा है कि जो होगा उसमें संस्थाएँ महत्वपूर्ण भूमिका निभाएँगी। आपके विवरण में प्रोत्साहनों और समन्वय की जाँच करना उपयोगी है।",
+      "sourceHash": "16818def76d32160",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.continuity": {
+      "text": "आपको अपेक्षा है कि निर्णय लेने की जिन क्षमताओं या निरंतरता के रूपों को आप महत्व देते हैं, वे काफी हद तक सुरक्षित रहेंगे या बढ़ेंगे।",
+      "sourceHash": "fd3c81de137b2d1f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.transition": {
+      "text": "आपके विवरण में यह शामिल है कि प्रगति किस तरह आगे बढ़ सकती है। समय और चेतावनी के बारे में इसकी धारणाएँ लाभ और जोखिम, दोनों को प्रभावित कर सकती हैं।",
+      "sourceHash": "1a39f16ea7df3270",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.policy-separate": {
+      "text": "आपने एआई के प्रति अपनी पसंदीदा प्रतिक्रिया व्यक्त की। हम इस पसंद को मानचित्र पर अपेक्षित प्रभाव की स्थिति से अलग रखते हैं।",
+      "sourceHash": "fd6bba03b287c274",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:title": {
+      "text": "Anthropic Institute के आर्थिक परिदृश्य",
+      "sourceHash": "417ea190ea30a739",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:purpose": {
+      "text": "शर्तों पर आधारित आर्थिक परिदृश्यों और बाधाओं की तुलना करें, उन्हें भविष्य के मापे गए परिणाम माने बिना।",
+      "sourceHash": "81393a94ee808e02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:question": {
+      "text": "कौन-सी बाधाएँ एआई से होने वाले आर्थिक लाभ को सीमित कर सकती हैं?",
+      "sourceHash": "7ae183d9e2df4c82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:effort": {
+      "text": "पहले संक्षिप्त विवरण; पूरे परिदृश्यों में अधिक समय लगेगा",
+      "sourceHash": "d75d17148d444e3c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:title": {
+      "text": "METR की स्वतंत्र Hugging Face जाँच",
+      "sourceHash": "fbf30a4eae538f06",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:purpose": {
+      "text": "एजेंट के देखे गए व्यवहार, प्रतिस्पर्धी व्याख्याओं और जाँचकर्ताओं की पहुँच की सीमाओं को परखें।",
+      "sourceHash": "9b9ff8a4dc8c277f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:question": {
+      "text": "एक स्वतंत्र जाँच किसी एजेंट के व्यवहार के बारे में क्या स्थापित कर सकती है, और क्या अज्ञात रहता है?",
+      "sourceHash": "a7447a441df7fa30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:effort": {
+      "text": "जाँच का संक्षिप्त विवरण",
+      "sourceHash": "5097ada005f3ce30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:title": {
+      "text": "एआई मूल्यांकन के लिए न्यूनतम संचालन शर्तें",
+      "sourceHash": "3da6f597cfb2bb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:purpose": {
+      "text": "विचार करें कि स्वतंत्र मूल्यांकनकर्ताओं को प्रणालियों की जाँच करने और महत्वपूर्ण निष्कर्षों की रिपोर्ट देने के लिए क्या चाहिए।",
+      "sourceHash": "79933d17a5751dcd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:question": {
+      "text": "किस तरह की पहुँच और स्वतंत्रता एआई मूल्यांकन को आपके लिए जानकारीपूर्ण बनाएगी?",
+      "sourceHash": "774a9d973e55550d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:effort": {
+      "text": "रूपरेखा का संक्षिप्त विवरण",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:title": {
+      "text": "Project Glasswing और रक्षात्मक तैनाती",
+      "sourceHash": "6336689f5d1ee7ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:purpose": {
+      "text": "किसी रक्षात्मक कार्यक्रम के बताए गए दायरे की जाँच करें और प्रतिबद्धताओं को समग्र सुरक्षा पर मापे गए प्रभावों से अलग समझें।",
+      "sourceHash": "06ce1e779b21de30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:question": {
+      "text": "कौन-सा प्रमाण दिखाएगा कि रक्षात्मक तैनाती से समग्र सुरक्षा बेहतर होती है?",
+      "sourceHash": "53ab7a34046bc5f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:effort": {
+      "text": "कार्यक्रम का संक्षिप्त विवरण",
+      "sourceHash": "0c8793f284a9cfc0",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:title": {
+      "text": "OpenAI की मॉडल असंरेखण रिपोर्टिंग रूपरेखा",
+      "sourceHash": "571655d4bf35d5c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:purpose": {
+      "text": "प्रस्तावित घटना-रिपोर्टिंग प्रक्रियाओं की तुलना आपके दृष्टिकोण में जवाबदेही के तंत्रों से करें।",
+      "sourceHash": "fc1c2b23cf76e41f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:question": {
+      "text": "एआई से जुड़ी किसी घटना के बाद आप किस तरह की रिपोर्टिंग और जवाबदेही चाहेंगे?",
+      "sourceHash": "4b15a6290e708e45",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:effort": {
+      "text": "रूपरेखा का संक्षिप्त विवरण",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:title": {
+      "text": "साइबर क्षमताओं के अनुसार विकास की गति तय करना",
+      "sourceHash": "7c0aa04427b3ca40",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:purpose": {
+      "text": "यह माने बिना क्षमता की सीमाओं, सुरक्षा उपायों और डिप्लॉयमेंट के फैसलों की जाँच करें कि कोई योजना अनुपालन को प्रमाणित करती है।",
+      "sourceHash": "2a0fc46a0f56c08e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:question": {
+      "text": "क्षमता की किन सीमाओं के आधार पर डिप्लॉयमेंट या विकास के फैसले बदलने चाहिए?",
+      "sourceHash": "234e6c6fd38698e8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:effort": {
+      "text": "डेवलपर की विस्तृत रूपरेखा",
+      "sourceHash": "3d19ba12206176df",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:title": {
+      "text": "मल्टी-एजेंट सिस्टम में पैटर्न और समस्याएँ",
+      "sourceHash": "edaa43716f21e91b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:purpose": {
+      "text": "प्रयोगों में समन्वय और विफलता के तरीकों की जाँच करें और उन परिस्थितियों को ध्यान में रखें जिनमें वे देखे गए थे।",
+      "sourceHash": "c52900fac5a6633c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:question": {
+      "text": "किन परिस्थितियों में सहयोग करने वाले एजेंटों को नियंत्रित करना अधिक कठिन हो जाता है?",
+      "sourceHash": "4a945e21df4a838b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:effort": {
+      "text": "शोध का अवलोकन; प्रयोगों में अधिक समय लगेगा",
+      "sourceHash": "d3e09c379b601596",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:title": {
+      "text": "एआई एजेंट झूठ क्यों बोल रहे हैं, धोखा क्यों दे रहे हैं और समन्वय क्यों कर रहे हैं?",
+      "sourceHash": "aa692e6caa5e9ecc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:purpose": {
+      "text": "एजेंट के व्यवहार की एक आरोपित व्याख्या की तुलना उसमें चर्चा किए गए प्राथमिक साक्ष्यों से करें।",
+      "sourceHash": "c5d6eaa877005b73",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:question": {
+      "text": "एजेंट के व्यवहार की किन व्याख्याओं को मूल अवलोकनों से समर्थन मिलता है?",
+      "sourceHash": "f639c2e59cf3153a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:effort": {
+      "text": "टिप्पणी का अवलोकन",
+      "sourceHash": "8990936aa6f1031b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:title": {
+      "text": "Epoch का साइबर कमज़ोरियों से जुड़ा डेटा",
+      "sourceHash": "d2dcc2d31789fd60",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:purpose": {
+      "text": "कमज़ोरियों की संख्या से समग्र क्षमता या जोखिम के बारे में सामान्य निष्कर्ष निकालने से पहले मापन की परिभाषाओं और सैंपलिंग की जाँच करें।",
+      "sourceHash": "cc0795fe945453b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:question": {
+      "text": "कमज़ोरियों की संख्या हमें क्षमता के बारे में क्या बता सकती है, और क्या नहीं बता सकती?",
+      "sourceHash": "a5a4446c9d00be70",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:effort": {
+      "text": "पहले डेटासेट के दस्तावेज़",
+      "sourceHash": "d9d710dd967c7faa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:title": {
+      "text": "एक अपरिचित मन",
+      "sourceHash": "60a5837b4af29689",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:purpose": {
+      "text": "लक्ष्य और मूल्य संरेखण के बीच एक डेवलपर के बताए अंतर को समझें और उसके पूर्वानुमानों व प्रोत्साहनों को ध्यान में रखें।",
+      "sourceHash": "8d285abb8e33a8d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:question": {
+      "text": "लक्ष्य संरेखण, उन मूल्यों के साथ संरेखण से किस तरह अलग हो सकता है जिन्हें आप बनाए रखना चाहते हैं?",
+      "sourceHash": "2fc235604992e0b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:effort": {
+      "text": "नेतृत्व पर निबंध",
+      "sourceHash": "49ca3fb177fc6151",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:title": {
+      "text": "एआई एजेंट अनुकूलनशील कंप्यूटर वर्म को संभव बनाते हैं",
+      "sourceHash": "351d503078ec0edd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:purpose": {
+      "text": "एक नियंत्रित साइबर प्रदर्शन, उसकी पूर्वापेक्षाओं और स्वायत्त नुकसान के प्रमाण के रूप में उसकी सीमाओं की जाँच करें।",
+      "sourceHash": "31a723c74e0c610d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:question": {
+      "text": "कौन-सी पूर्वापेक्षाएँ यह सीमित करती हैं कि कोई नियंत्रित साइबर प्रदर्शन हमें वास्तविक दुनिया में होने वाले नुकसान के बारे में क्या बताता है?",
+      "sourceHash": "03b5e34737093c54",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:effort": {
+      "text": "पहले सारांश; फिर पूरा तकनीकी शोधपत्र",
+      "sourceHash": "84c026eeda132f7a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:title": {
+      "text": "The DeepMind Institute के शोध का दायरा",
+      "sourceHash": "58291c2d62906c20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:purpose": {
+      "text": "किसी संस्था की प्रस्तावित शोध भूमिका की जाँच करें, लेकिन उसकी घोषणा को सफल गवर्नेंस का प्रमाण न मानें।",
+      "sourceHash": "2c8802e04982959a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:question": {
+      "text": "किस बात से यह प्रमाणित होगा कि कोई प्रस्तावित शोध संस्था गवर्नेंस को बेहतर बनाती है?",
+      "sourceHash": "31d402132acaf390",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:effort": {
+      "text": "संस्थान का परिचय",
+      "sourceHash": "59467e16822d70ef",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:title": {
+      "text": "Hugging Face की घटना और आगे का रास्ता",
+      "sourceHash": "1f6422d794a2ba9c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:purpose": {
+      "text": "डेवलपर द्वारा दिए गए घटना के विवरण और सुरक्षा उपायों की तुलना सीमित दायरे वाली स्वतंत्र जाँच से करें।",
+      "sourceHash": "752f0ff72c45d75a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:question": {
+      "text": "डेवलपर के विवरण और स्वतंत्र जाँच में कहाँ सहमति है और कहाँ अंतर?",
+      "sourceHash": "dad285e6e6f8d457",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:effort": {
+      "text": "डेवलपर का अवलोकन",
+      "sourceHash": "330913b2a18ec74f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:title": {
+      "text": "Anthropic की September 2026 की खतरा-खुफिया रिपोर्ट",
+      "sourceHash": "5e12966a50dd3fd1",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:purpose": {
+      "text": "मानव-निर्देशित दुरुपयोग को स्वायत्त असंरेखण के समान माने बिना, रिपोर्ट किए गए दुर्भावनापूर्ण उपयोगों और प्रतिक्रिया की सीमाओं की जाँच करें।",
+      "sourceHash": "d6b90ee564028c52",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:question": {
+      "text": "मानव-निर्देशित दुरुपयोग के विरुद्ध सुरक्षा उपाय, स्वायत्त असंरेखण के विरुद्ध सुरक्षा उपायों से कैसे अलग हैं?",
+      "sourceHash": "3e92d764fb23a6c4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:effort": {
+      "text": "रिपोर्ट का अवलोकन",
+      "sourceHash": "0a3a200868ea390a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:title": {
+      "text": "शर्त लगाना चाहेंगे? — Scott Sumner",
+      "sourceHash": "539c05c3a92cda02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:purpose": {
+      "text": "परस्पर विरोधी विशेषज्ञ रायों को कैसे तौलें और अनिश्चितता बनी रहने पर निर्णय कैसे लें, इसकी पड़ताल करें।",
+      "sourceHash": "1d0e12fea7c649db",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:question": {
+      "text": "एआई जोखिम के बारे में क्या करना है, यह तय करते समय आप विशेषज्ञों के परस्पर विरोधी पूर्वानुमानों को कैसे तौलेंगे?",
+      "sourceHash": "15631f30de57c032",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:effort": {
+      "text": "लंबा वैचारिक निबंध",
+      "sourceHash": "3e57a264e373ed8b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

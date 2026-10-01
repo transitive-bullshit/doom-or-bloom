@@ -31,8 +31,8 @@ const tolerance = 0.1
 // it: 27% of 219 self-placements on September 29
 // (docs/research/engine-design-review-2026-09-29.md).
 const placementQuestionGap = 0.25
-// The authored prompts carry the same text (checked by content validation).
-// Like other authored questions, they stay English until translated.
+// The authored prompts carry the same text (checked by content validation),
+// so the display layer shows their translation by prompt ID.
 export const placementQuestions = {
   'placement.more-hopeful':
     'You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?',

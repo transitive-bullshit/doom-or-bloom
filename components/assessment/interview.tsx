@@ -16,10 +16,11 @@ import {
 } from '@/lib/assessment/state'
 import type { OwnedAssessment } from '@/lib/assessments/repository'
 import { usePersistentAssessment } from './use-persistent-assessment'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link, useRouter } from '@/i18n/navigation'
 import { api, userErrorMessage } from '@/lib/assessments/client'
 import { promptText } from '@/lib/assessment/display-text'
+import { useAuthoredText } from './authored-text'
 import { operationFailureMessage } from '@/lib/assessments/operation-failure'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { PublishConfirmation } from './publish-confirmation'
@@ -88,6 +89,8 @@ export function Interview({
   const router = useRouter()
   const root = useTranslations()
   const t = useTranslations('Interview')
+  const authored = useAuthoredText()
+  const locale = useLocale()
   const [managing, setManaging] = useState(false)
   const [previewRevision, setPreviewRevision] = useState<number | null>(null)
   const forkKey = useRef<string | null>(null)
@@ -390,7 +393,9 @@ export function Interview({
                         : t('questionProgress', { ordinal: p.ordinal })}
                     </p>
                   )}
-                  <h2 className='text-pretty'>{promptText(root, p)}</h2>
+                  <h2 className='text-pretty'>
+                    {promptText(root, p, authored)}
+                  </h2>
                 </div>
                 <ConversationReplies turn={currentTurn} />
                 {unavailableQuestion && (
@@ -441,7 +446,11 @@ export function Interview({
                       return
                     }
                     if (allowed && !answerTooLong)
-                      void act({ type: 'answer', text: state.draft.trim() })
+                      void act({
+                        type: 'answer',
+                        text: state.draft.trim(),
+                        locale
+                      })
                   }}
                 >
                   <FieldGroup>

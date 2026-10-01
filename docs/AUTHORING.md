@@ -164,6 +164,12 @@ Content hashes include the release provenance and payload assets; the manifest t
 
 Demo recommendations can carry an authored priority from 0 to 1 for curation among equally relevant eligible resources. This affects resource ordering only; runtime mention/grounding boosts are paused; familiarity gates still apply, and selected resources diversify their learning purpose. Priority never changes assessment scores.
 
+## Translations
+
+Participant-visible authored text (questions and their recovery copy, findings, resources and rubric level texts) is translated ahead of time into `content/l10n/<locale>/`, outside the release directories, keyed by stable ID and by the English it translates ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#authored-content)). Freezing hashes only the English release, so a translation fix is an ordinary commit.
+
+Changing or adding English text makes its translations stale, and `pnpm test:content` fails until they are regenerated: run `pnpm l10n:translate --locale=<code> --only-stale --allow-paid --max-cost=<usd>` for each enabled locale (a new release version needs a full run, which reuses translations of unchanged English), read a sample back, and commit the result with the English change. Write English that survives translation: whole sentences, no idioms that carry the meaning, and no premise or hedge that a literal rendering would distort. A new root question, recovery message or rubric level needs native review in every language (`pnpm l10n:review`); other text may stay machine-translated.
+
 ## Local content inspection
 
 Use development-only `/questions` and `/corpus` to inspect the active built-in graph and snapshots. These are read-only tools; editorial feedback forms and the save API have been removed. See the [local debugging guide](local-debugging.md) and [participant prompt audit](prompt-quality-review.md) for inspection and revision context. Historical project notes remain on disk but are not loaded by the app.

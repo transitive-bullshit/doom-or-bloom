@@ -727,3 +727,62 @@ test('a large self-placement gap offers one placement question that returns to a
     run(asked, { type: 'placement', guess: { x: 0.9, y: 0.2 } })
   ).rejects.toThrow('needs a current result')
 })
+
+test('Jev hears the interview language outside English and each reply records its locale', async () => {
+  const fixture = createFixtureProvider()
+  const states: unknown[] = []
+  const provider: Provider = {
+    kind: 'fixture',
+    evaluate: async (state, questions, signal) => {
+      states.push(state)
+      return fixture.evaluate(state, questions, signal)
+    }
+  }
+  const note =
+    'The participant is using the interview in Spanish; answers may be written in any language. Judge meaning, not fluency or language.'
+  const first = await run(
+    createAssessment('language-es'),
+    {
+      type: 'answer',
+      text: 'Espero herramientas útiles y riesgos serios, según la supervisión.',
+      locale: 'es'
+    },
+    provider
+  )
+  expect(first.assessment.answers[0]?.displayLocale).toBe('es')
+  expect(states.length).toBeGreaterThan(0)
+  expect(
+    states.every(
+      (state) =>
+        (state as { participantLanguage?: string }).participantLanguage === note
+    )
+  ).toBe(true)
+  // Later operations without a reply follow the latest reply's language.
+  states.length = 0
+  await run(first.assessment, { type: 'project' }, provider)
+  expect(states.length).toBeGreaterThan(0)
+  expect(
+    states.every(
+      (state) =>
+        (state as { participantLanguage?: string }).participantLanguage === note
+    )
+  ).toBe(true)
+
+  // English and replies without a locale leave Jev's inputs unchanged.
+  for (const locale of ['en', undefined]) {
+    states.length = 0
+    const english = await run(
+      createAssessment(`language-${locale ?? 'none'}`),
+      {
+        type: 'answer',
+        text: 'I expect useful tools and serious risks, depending on oversight.',
+        ...(locale && { locale })
+      },
+      provider
+    )
+    expect(english.assessment.answers[0]?.displayLocale).toBe(locale)
+    expect(
+      states.some((state) => 'participantLanguage' in (state as object))
+    ).toBe(false)
+  }
+})

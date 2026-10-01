@@ -18,6 +18,7 @@ import { cn } from 'cn'
 import type { Component } from '@/lib/assessment/schema'
 import type { experimentalAxes } from '@/lib/assessment/worldview-experiment'
 import { claimText } from '@/lib/assessment/display-text'
+import { useAuthoredText } from './authored-text'
 
 export function Map({
   horizontal: x,
@@ -55,6 +56,7 @@ export function Map({
   }, [])
   const root = useTranslations()
   const t = useTranslations('Map')
+  const authored = useAuthoredText()
   const id = useId().replaceAll(':', '')
   const plot = { left: 76, top: 40, width: 528, height: 268 }
   const px = (value: number) => plot.left + value * plot.width
@@ -315,7 +317,7 @@ export function Map({
                 aria-label={t('marker', {
                   name: subject.name,
                   claim: y.claim
-                    ? claimText(root, y.claim, y.vector)
+                    ? claimText(root, y.claim, y.vector, authored)
                     : t('markerFallback')
                 })}
               >

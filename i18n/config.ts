@@ -1,5 +1,6 @@
 // The one list of planned locales. Enabling a locale is a one-line change here,
-// plus its messages/<code>.json catalog; see docs/INTERNATIONALIZATION.md.
+// plus its messages/<code>.json catalog and content/l10n/<code> translations;
+// see docs/INTERNATIONALIZATION.md.
 // Pure data and helpers: next.config.ts, the server and the browser import it.
 //
 // `code` is the URL segment and the next-intl locale id: short and lowercase
@@ -11,6 +12,7 @@ const catalog = [
     code: 'en',
     tag: 'en',
     endonym: 'English',
+    englishName: 'English',
     openGraph: 'en_US',
     enabled: true
   },
@@ -18,6 +20,7 @@ const catalog = [
     code: 'es',
     tag: 'es',
     endonym: 'Español',
+    englishName: 'Spanish',
     openGraph: 'es_ES',
     enabled: true
   },
@@ -25,56 +28,72 @@ const catalog = [
     code: 'pt',
     tag: 'pt-BR',
     endonym: 'Português (Brasil)',
+    englishName: 'Brazilian Portuguese',
     openGraph: 'pt_BR',
-    enabled: false
+    enabled: true
   },
   {
     code: 'hi',
     tag: 'hi',
     endonym: 'हिन्दी',
+    englishName: 'Hindi',
     openGraph: 'hi_IN',
-    enabled: false
+    enabled: true
   },
   {
     code: 'zh',
     tag: 'zh-Hans',
     endonym: '简体中文',
+    englishName: 'Simplified Chinese',
     openGraph: 'zh_CN',
-    enabled: false
+    enabled: true
   },
-  { code: 'th', tag: 'th', endonym: 'ไทย', openGraph: 'th_TH', enabled: false },
+  {
+    code: 'th',
+    tag: 'th',
+    endonym: 'ไทย',
+    englishName: 'Thai',
+    openGraph: 'th_TH',
+    enabled: true
+  },
   {
     code: 'ja',
     tag: 'ja',
     endonym: '日本語',
+    englishName: 'Japanese',
     openGraph: 'ja_JP',
-    enabled: false
+    enabled: true
   },
   {
     code: 'de',
     tag: 'de',
     endonym: 'Deutsch',
+    englishName: 'German',
     openGraph: 'de_DE',
-    enabled: false
+    enabled: true
   },
   {
     code: 'fr',
     tag: 'fr',
     endonym: 'Français',
+    englishName: 'French',
     openGraph: 'fr_FR',
-    enabled: false
+    enabled: true
   },
   {
     code: 'id',
     tag: 'id',
     endonym: 'Bahasa Indonesia',
+    englishName: 'Indonesian',
     openGraph: 'id_ID',
-    enabled: false
+    enabled: true
   }
 ] as const satisfies readonly {
   code: string
   tag: string
   endonym: string
+  /** For prompts and logs written in English, such as Jev's context line. */
+  englishName: string
   openGraph: string
   enabled: boolean
 }[]
@@ -99,6 +118,15 @@ export function isLocale(value: unknown): value is Locale {
 export function languageTag(code: CatalogCode): CatalogEntry['tag'] {
   return catalog.find((entry) => entry.code === code)!.tag
 }
+
+/** The language's English name, e.g. `pt` → `Brazilian Portuguese`. */
+export function languageName(code: CatalogCode): CatalogEntry['englishName'] {
+  return catalog.find((entry) => entry.code === code)!.englishName
+}
+
+/** Every planned locale code, enabled or not. */
+export const catalogCodes = catalog.map((entry) => entry.code)
+export type { CatalogCode }
 
 export function openGraphLocale(locale: Locale) {
   return catalog.find((entry) => entry.code === locale)!.openGraph

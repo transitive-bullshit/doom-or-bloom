@@ -11,9 +11,21 @@ import {
   promptSchema,
   resourceSchema
 } from '../lib/content/schema'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 import { z } from 'zod'
+import { defaultLocale, locales } from '../i18n/config'
+import { messageProblems, type Catalog } from '../i18n/message-checks'
+import { supportedContentVersions, versions } from '../lib/assessment/schema'
+import {
+  l10nKinds,
+  l10nPath,
+  l10nProblems,
+  releaseSources,
+  rubricSources,
+  type L10nKind
+} from '../lib/content/l10n'
+import { readL10n, readRelease, readRubric } from '../lib/content/l10n-loader'
 const bundle = loadBundle()
 const drafts = loadDraftReferences()
 const context = loadAuthoringContext(bundle)
@@ -72,4 +84,84 @@ console.log(
 )
 console.log(
   `Validated ${context.taxonomy.riskFamilies.length} risk families, ${context.taxonomy.safetyConcepts.length} concepts, ${context.development.journeys.length} draft development journeys and ${context.intake.sources.length} source intake records. Authoring context is outside runtime scoring.`
+)
+
+// Committed translations. Every enabled locale needs complete, current
+// translations of every supported release and the rubric; any other
+// translation file that exists must be current too.
+const l10nRoot = path.join(process.cwd(), 'content/l10n')
+const required = locales
+  .filter((locale) => locale !== defaultLocale)
+  .flatMap((locale) => [
+    ...supportedContentVersions.map((version) => ({
+      locale,
+      kind: 'release' as L10nKind,
+      version
+    })),
+    { locale, kind: 'rubric' as L10nKind, version: versions.rubric }
+  ])
+const present = existsSync(l10nRoot)
+  ? readdirSync(l10nRoot).flatMap((locale) =>
+      l10nKinds.flatMap((kind) => {
+        const directory = path.dirname(
+          path.join(process.cwd(), l10nPath(locale, kind, 'x'))
+        )
+        return existsSync(directory)
+          ? readdirSync(directory)
+              .filter((file) => file.endsWith('.json'))
+              .map((file) => ({
+                locale,
+                kind,
+                version: file.slice(0, -'.json'.length)
+              }))
+          : []
+      })
+    )
+  : []
+const l10nFiles = new Map(
+  [...required, ...present].map((file) => [
+    l10nPath(file.locale, file.kind, file.version),
+    file
+  ])
+)
+const l10nErrors: string[] = []
+for (const [location, { locale, kind, version }] of l10nFiles) {
+  const file = readL10n(locale, kind, version)
+  if (
+    file &&
+    (file.locale !== locale || file.kind !== kind || file.version !== version)
+  )
+    l10nErrors.push(
+      `${location}: locale, kind or version does not match its path`
+    )
+  const sources =
+    kind === 'release'
+      ? releaseSources(readRelease(version))
+      : rubricSources(readRubric(version))
+  for (const problem of l10nProblems(file, sources))
+    l10nErrors.push(`${location}: ${problem}`)
+}
+// Message catalogs: the same keys, ICU arguments and tags as English.
+const catalog = (code: string) =>
+  JSON.parse(
+    readFileSync(path.join(process.cwd(), 'messages', `${code}.json`), 'utf8')
+  ) as Catalog
+const messageLocales = readdirSync(path.join(process.cwd(), 'messages'))
+  .filter((file) => file.endsWith('.json'))
+  .map((file) => file.slice(0, -'.json'.length))
+for (const locale of locales)
+  if (!messageLocales.includes(locale))
+    l10nErrors.push(`messages/${locale}.json is missing`)
+for (const locale of messageLocales.filter((code) => code !== defaultLocale))
+  for (const problem of messageProblems(
+    catalog(defaultLocale),
+    catalog(locale)
+  ))
+    l10nErrors.push(`messages/${locale}.json: ${problem}`)
+if (l10nErrors.length)
+  throw new Error(
+    `Translations are incomplete or stale:\n${l10nErrors.slice(0, 40).join('\n')}${l10nErrors.length > 40 ? `\n…and ${l10nErrors.length - 40} more` : ''}\nRun pnpm l10n:translate --locale=<code> --only-stale (docs/INTERNATIONALIZATION.md).`
+  )
+console.log(
+  `Validated ${l10nFiles.size} authored-content translation files and ${messageLocales.length - 1} message catalogs against English.`
 )

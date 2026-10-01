@@ -1,0 +1,1568 @@
+{
+  "locale": "th",
+  "kind": "release",
+  "version": "0.3.0-draft",
+  "entries": {
+    "prompt:root:text": {
+      "text": "คุณคิดว่า AI มีความหมายอย่างไรต่ออนาคตของเรา และเพราะเหตุใด?",
+      "sourceHash": "387139f8add0c09e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:text": {
+      "text": "การเปลี่ยนแปลงที่เป็นรูปธรรมหนึ่งอย่างซึ่งคุณคาดว่า AI จะนำมาคืออะไร?",
+      "sourceHash": "31a4cf0897a5346c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:text": {
+      "text": "คุณคาดว่า AI จะนำการเปลี่ยนแปลงครั้งใหญ่มาสู่ชีวิตประจำวันเมื่อใด หากจะเกิดขึ้น?",
+      "sourceHash": "b8dbc39437255265",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:text": {
+      "text": "คุณมั่นใจเพียงใดว่า AI จะนำการเปลี่ยนแปลงครั้งใหญ่มาสู่ชีวิตประจำวันเมื่อใด?",
+      "sourceHash": "6307382fa1ef9cd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:text": {
+      "text": "คุณคาดว่า AI จะเปลี่ยนแปลงเรื่องใดในชีวิตของผู้คนมากที่สุด และอย่างไร?",
+      "sourceHash": "c9d873f85e0bddda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:text": {
+      "text": "ข้อสังเกตหรือประสบการณ์ใดมีอิทธิพลต่อมุมมองของคุณเกี่ยวกับผลกระทบในอนาคตของ AI มากที่สุด?",
+      "sourceHash": "f400e70def334935",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:text": {
+      "text": "คุณคาดว่าผู้คนจะยังคงควบคุมระบบ AI ที่ฉลาดกว่ามนุษย์ได้หรือไม่ และเพราะเหตุใด?",
+      "sourceHash": "cb285c18438beece",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:text": {
+      "text": "คุณคาดว่าผู้คนและสถาบันที่พัฒนา AI จะรับมือกับความเสี่ยงของ AI อย่างไร?",
+      "sourceHash": "ccce59b65d94452b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:text": {
+      "text": "คุณคาดว่าผู้คนจะได้รับประโยชน์สำคัญอะไรบ้างจาก AI หากมี?",
+      "sourceHash": "928e73541b79f339",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:text": {
+      "text": "คุณคาดว่า AI จะก่อให้เกิดอันตรายสำคัญอะไรบ้าง หากมี?",
+      "sourceHash": "033ab3d4a25ba58d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:text": {
+      "text": "การค้นพบหรือเหตุการณ์ใดที่จะเปลี่ยนมุมมองของคุณเกี่ยวกับผลกระทบในอนาคตของ AI มากที่สุด?",
+      "sourceHash": "b0618f7c01f48bb6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:text": {
+      "text": "ข้อโต้แย้งที่หนักแน่นที่สุดต่อมุมมองโดยรวมของคุณเกี่ยวกับผลกระทบในอนาคตของ AI คืออะไร?",
+      "sourceHash": "5d7a73cf99892b28",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:text": {
+      "text": "อนาคตที่ดีจำเป็นต้องรักษาอะไรไว้เกี่ยวกับความเป็นมนุษย์?",
+      "sourceHash": "2bbe2555bcae903b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:text": {
+      "text": "อะไรอาจทำให้ความก้าวหน้าของ AI เร็วขึ้นหรือช้าลง?",
+      "sourceHash": "238ed6ca05fc40ae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:text": {
+      "text": "หาก AI ก่อให้เกิดอันตรายที่ไม่อาจย้อนกลับได้ คุณคาดว่าสัญญาณเตือนใดจะปรากฏขึ้นก่อน?",
+      "sourceHash": "c36134cee8749d84",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:text": {
+      "text": "มีสิ่งใดบ้างที่จะจำกัดความเร็วที่ AI สามารถพัฒนาระบบ AI ให้ดีขึ้นได้ หากมี?",
+      "sourceHash": "e78fe233c9de1d01",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:text": {
+      "text": "คุณคาดว่าใครจะได้รับประโยชน์จาก AI มากที่สุด?",
+      "sourceHash": "50f0b5b89aee9976",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:text": {
+      "text": "มีสิ่งใดบ้างที่อาจขัดขวางไม่ให้ประโยชน์จาก AI เข้าถึงคนทั่วไป หากมี?",
+      "sourceHash": "b4c0f944ba8fcf6e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:text": {
+      "text": "คุณคิดว่ามีโอกาสเพียงใดที่ AI จะก่อให้เกิดอันตรายที่มนุษยชาติไม่อาจฟื้นตัวได้อีกเลย?",
+      "sourceHash": "1b69507c12c73b2f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:text": {
+      "text": "การใช้ AI ในทางที่ก่อให้เกิดอันตรายแบบใดทำให้คุณกังวลมากที่สุด หากมี?",
+      "sourceHash": "882c6397adc58faf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:text": {
+      "text": "คุณคาดว่า AI จะก่อให้เกิดปัญหาอะไรบ้างในชีวิตประจำวัน หากมี?",
+      "sourceHash": "5c7d6cf59f585482",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:text": {
+      "text": "หลักฐานใดจะเปลี่ยนมุมมองของคุณว่าผู้คนสามารถควบคุม AI ที่ทรงพลังได้หรือไม่?",
+      "sourceHash": "0a013f2235e53256",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:text": {
+      "text": "คุณคิดว่าแรงกดดันใดจะกำหนดวิธีที่บริษัท AI จัดการเรื่องความปลอดภัย?",
+      "sourceHash": "308cc8ecf2666f79",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:text": {
+      "text": "คุณคาดว่าบริษัท AI หรือรัฐบาลที่แข่งขันกันจะร่วมมือกันด้านความปลอดภัยหรือไม่ และเพราะเหตุใด?",
+      "sourceHash": "f23eaf8e4ce62cae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:text": {
+      "text": "ในอนาคตที่ดีของ AI ผู้คนควรมีสิทธิปฏิเสธการเปลี่ยนแปลงแบบใดได้บ้าง?",
+      "sourceHash": "a8573a7b6045d000",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:text": {
+      "text": "คุณยอมรับผลเสียอะไรได้บ้างเพื่อทำให้ผลกระทบในอนาคตของ AI ดีขึ้น?",
+      "sourceHash": "6061cce047c108ad",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:text": {
+      "text": "ระบบ AI ในปัจจุบันแสดงให้คุณเห็นอะไรบ้างว่า AI ในอนาคตจะสามารถทำอะไรได้?",
+      "sourceHash": "b2562dbbc8bb7ca2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:text": {
+      "text": "การคาดการณ์ของคุณเกี่ยวกับอนาคตของ AI ขึ้นอยู่กับสมมติฐานใดมากที่สุด?",
+      "sourceHash": "8f9445d5a4ac971c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:text": {
+      "text": "สัญญาณใดจะบอกคุณว่า AI กำลังเริ่มเปลี่ยนแปลงชีวิตประจำวัน?",
+      "sourceHash": "54d7efdd16c3de1a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:text": {
+      "text": "ส่วนใดในคำอธิบายของคุณว่า AI จะเปลี่ยนแปลงชีวิตของผู้คนอย่างไรมีหลักฐานรองรับน้อยที่สุด?",
+      "sourceHash": "b17b9d5d89ed03b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:text": {
+      "text": "คุณคาดว่า AI จะสามารถทำอะไรได้บ้างภายในปี 2030?",
+      "sourceHash": "5aa3053228393e8c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:text": {
+      "text": "ควรเปลี่ยนแปลงวิธีพัฒนาหรือใช้งาน AI อย่างไรบ้าง หากควรมีการเปลี่ยนแปลง?",
+      "sourceHash": "f3b25b08f4e4b602",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:text": {
+      "text": "เมื่อคิดถึงอนาคตของ AI คุณไม่แน่ใจเรื่องใดมากที่สุด?",
+      "sourceHash": "6733afd567d2cdf7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:text": {
+      "text": "คุณคาดว่าผลกระทบของ AI ต่อชีวิตของผู้คนจะเปลี่ยนแปลงไปอย่างไรเมื่อเวลาผ่านไป?",
+      "sourceHash": "cb2b83083b01a9fe",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:text": {
+      "text": "เมื่อพิจารณาประโยชน์และอันตรายร่วมกัน คุณคาดว่า AI จะมีผลกระทบโดยรวมอย่างไร?",
+      "sourceHash": "33f7d3f8a75621ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:text": {
+      "text": "คุณคาดว่า AI จะเปลี่ยนดุลระหว่างผู้โจมตีทางไซเบอร์กับฝ่ายป้องกันอย่างไร?",
+      "sourceHash": "e1d0e830e494df3e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:reask": {
+      "text": "คุณคิดว่า AI จะช่วยผู้โจมตีทางไซเบอร์หรือฝ่ายป้องกันมากกว่ากัน และเพราะเหตุใด?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:clarification": {
+      "text": "คุณคิดว่า AI จะช่วยผู้โจมตีทางไซเบอร์หรือฝ่ายป้องกันมากกว่ากัน และเพราะเหตุใด?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:exhausted": {
+      "text": "คุณคิดว่า AI จะช่วยผู้โจมตีทางไซเบอร์หรือฝ่ายป้องกันมากกว่ากัน และเพราะเหตุใด?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:text": {
+      "text": "ผู้คนสามารถกำหนดผลกระทบของ AI ในอนาคตได้มากเพียงใด?",
+      "sourceHash": "4961359a645e5f2a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:text": {
+      "text": "คุณคาดว่าชีวิตประจำวันจะเปลี่ยนแปลงไปมากเพียงใดเนื่องจาก AI?",
+      "sourceHash": "eff862f05a11a834",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.revision-closed": {
+      "text": "คุณตัดความเป็นไปได้ที่จะเปลี่ยนความเชื่อนี้ออกไปโดยไม่คำนึงถึงหลักฐาน ลองระบุข้อสังเกตหนึ่งอย่างที่จะทำให้คุณพิจารณาใหม่ และสิ่งที่คุณจะเปลี่ยน",
+      "sourceHash": "a2f6cee65ef18d20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.causal": {
+      "text": "คุณเชื่อมโยงผลลัพธ์ที่คาดไว้กับกลไกหนึ่ง ซึ่งทำให้ส่วนสำคัญของมุมมองคุณตรวจสอบได้ง่ายขึ้น",
+      "sourceHash": "c890cbb654949d10",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.crux": {
+      "text": "คุณระบุสิ่งที่อาจเปลี่ยนมุมมองของคุณได้ นี่คือประเด็นชี้ขาดที่ควรติดตามต่อไป",
+      "sourceHash": "95f906e83ba7a7b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.scope": {
+      "text": "คุณทำให้เงื่อนไขหรือขอบเขตชัดเจนขึ้น ซึ่งช่วยแยกความคาดหมายออกจากสถานการณ์ที่ความคาดหมายนั้นขึ้นอยู่กับ",
+      "sourceHash": "2d5a1fafa1e682f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.uncertainty": {
+      "text": "คุณแสดงความไม่แน่นอนในลักษณะที่เปิดรับหลักฐานเพิ่มเติม การทำเช่นนั้นไม่ได้ทำให้ผลลัพธ์ที่คาดไว้ดีขึ้นหรือแย่ลงในตัวมันเอง",
+      "sourceHash": "766780dd13f68fd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.countercase": {
+      "text": "คุณพิจารณาเหตุผลสำคัญที่อาจทำให้ความคาดหมายของคุณผิด ทางเลือกอีกแบบนี้ควรได้รับการตรวจสอบควบคู่ไปกับคำอธิบายหลักของคุณ",
+      "sourceHash": "86dfb82e18cd85cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.coherence": {
+      "text": "จุดยืนที่คุณระบุสอดคล้องกันภายใต้เงื่อนไขที่คุณอธิบายไว้ ทั้งนี้ยังคงเป็นการตีความคำตอบเหล่านี้",
+      "sourceHash": "070ebe22de961a8d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.grounded": {
+      "text": "คุณเชื่อมโยงคำอธิบายของคุณกับหลักฐานที่ตรวจสอบได้ อย่างไรก็ตาม แหล่งอ้างอิงยังมีข้อจำกัดว่าสามารถยืนยันอะไรได้บ้าง",
+      "sourceHash": "ed714a4a470db0e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.benefit-conditions": {
+      "text": "คุณคาดว่าจะมีผลดีบางอย่างจาก AI และได้อธิบายข้อจำกัดหรือเงื่อนไขไว้ในคำอธิบายของคุณ ลองพิจารณาว่าเงื่อนไขใดในบรรดาเงื่อนไขเหล่านั้นสำคัญที่สุดต่อผลดีที่คุณคาดไว้",
+      "sourceHash": "6f1a60236580e372",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.risk-concern": {
+      "text": "อันตรายเป็นส่วนที่มีผลสำคัญในความคาดหมายของคุณ แบบประเมินนี้แยกความคาดหมายนั้นออกจากแนวทางตอบสนองที่คุณต้องการ",
+      "sourceHash": "ff87bcf5506e374c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.control-conditions": {
+      "text": "คุณคาดว่าการควบคุมทางเทคนิคจะเป็นไปได้ภายใต้เงื่อนไขที่เข้มงวด เงื่อนไขเหล่านั้นมีความสำคัญต่อมุมมองส่วนอื่น ๆ",
+      "sourceHash": "6107a23a56de2262",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.institutions": {
+      "text": "คุณคาดว่าสถาบันต่าง ๆ จะมีความสำคัญต่อสิ่งที่จะเกิดขึ้น แรงจูงใจและการประสานงานในคำอธิบายของคุณควรได้รับการตรวจสอบ",
+      "sourceHash": "16818def76d32160",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.continuity": {
+      "text": "คุณคาดว่ารูปแบบของความสามารถในการกระทำด้วยตนเองหรือความต่อเนื่องที่คุณให้คุณค่าจะได้รับการรักษาไว้หรือขยายขึ้นอย่างมาก",
+      "sourceHash": "fd3c81de137b2d1f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.transition": {
+      "text": "คำอธิบายของคุณครอบคลุมว่าความก้าวหน้าอาจดำเนินไปอย่างไร สมมติฐานเกี่ยวกับจังหวะเวลาและสัญญาณเตือนอาจส่งผลต่อทั้งผลดีและความเสี่ยง",
+      "sourceHash": "1a39f16ea7df3270",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.policy-separate": {
+      "text": "คุณแสดงแนวทางตอบสนองต่อ AI ที่ต้องการ เราแยกความต้องการนั้นออกจากตำแหน่งผลกระทบที่คาดไว้บนแผนที่",
+      "sourceHash": "fd6bba03b287c274",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:title": {
+      "text": "ฉากทัศน์ทางเศรษฐกิจจาก Anthropic Institute",
+      "sourceHash": "417ea190ea30a739",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:purpose": {
+      "text": "เปรียบเทียบฉากทัศน์ทางเศรษฐกิจแบบมีเงื่อนไขและคอขวดต่าง ๆ โดยไม่ถือว่าสิ่งเหล่านี้เป็นผลลัพธ์ในอนาคตที่วัดได้",
+      "sourceHash": "81393a94ee808e02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:question": {
+      "text": "คอขวดใดบ้างที่อาจจำกัดผลดีทางเศรษฐกิจจาก AI?",
+      "sourceHash": "7ae183d9e2df4c82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:effort": {
+      "text": "อ่านภาพรวมก่อน ส่วนฉากทัศน์ฉบับเต็มใช้เวลานานกว่า",
+      "sourceHash": "d75d17148d444e3c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:title": {
+      "text": "การตรวจสอบ Hugging Face อย่างเป็นอิสระโดย METR",
+      "sourceHash": "fbf30a4eae538f06",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:purpose": {
+      "text": "ตรวจสอบพฤติกรรมของเอเจนต์ที่สังเกตพบ การตีความที่แตกต่างกัน และข้อจำกัดในการเข้าถึงของผู้ตรวจสอบ",
+      "sourceHash": "9b9ff8a4dc8c277f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:question": {
+      "text": "การตรวจสอบอย่างเป็นอิสระสามารถยืนยันอะไรเกี่ยวกับพฤติกรรมของเอเจนต์ได้บ้าง และอะไรที่ยังไม่ทราบ?",
+      "sourceHash": "a7447a441df7fa30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:effort": {
+      "text": "ภาพรวมการตรวจสอบ",
+      "sourceHash": "5097ada005f3ce30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:title": {
+      "text": "เงื่อนไขการดำเนินงานขั้นต่ำสำหรับการประเมิน AI",
+      "sourceHash": "3da6f597cfb2bb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:purpose": {
+      "text": "พิจารณาว่าผู้ประเมินอิสระต้องการอะไรเพื่อใช้ตรวจสอบระบบและรายงานข้อค้นพบที่มีนัยสำคัญ",
+      "sourceHash": "79933d17a5751dcd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:question": {
+      "text": "การเข้าถึงและความเป็นอิสระในระดับใดที่จะทำให้การประเมิน AI ให้ข้อมูลที่เป็นประโยชน์แก่คุณ?",
+      "sourceHash": "774a9d973e55550d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:effort": {
+      "text": "ภาพรวมกรอบการทำงาน",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:title": {
+      "text": "Project Glasswing และการนำไปใช้งานเพื่อการป้องกัน",
+      "sourceHash": "6336689f5d1ee7ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:purpose": {
+      "text": "ตรวจสอบขอบเขตที่โครงการป้องกันระบุไว้ และแยกแยะข้อผูกพันออกจากผลสุทธิด้านความมั่นคงที่วัดได้",
+      "sourceHash": "06ce1e779b21de30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:question": {
+      "text": "หลักฐานใดจะแสดงว่าการนำไปใช้งานเพื่อการป้องกันช่วยเพิ่มความมั่นคงสุทธิ?",
+      "sourceHash": "53ab7a34046bc5f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:effort": {
+      "text": "ภาพรวมโครงการ",
+      "sourceHash": "0c8793f284a9cfc0",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:title": {
+      "text": "กรอบการรายงานภาวะไม่สอดคล้องของโมเดลโดย OpenAI",
+      "sourceHash": "571655d4bf35d5c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:purpose": {
+      "text": "เปรียบเทียบกระบวนการรายงานเหตุการณ์ที่เสนอกับกลไกความรับผิดชอบในมุมมองของคุณ",
+      "sourceHash": "fc1c2b23cf76e41f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:question": {
+      "text": "หลังเกิดเหตุการณ์เกี่ยวกับ AI คุณต้องการให้มีการรายงานและความรับผิดชอบแบบใด?",
+      "sourceHash": "4b15a6290e708e45",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:effort": {
+      "text": "ภาพรวมกรอบการทำงาน",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:title": {
+      "text": "การกำหนดจังหวะการพัฒนาให้สอดคล้องกับความสามารถทางไซเบอร์",
+      "sourceHash": "7c0aa04427b3ca40",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:purpose": {
+      "text": "พิจารณาเกณฑ์ระดับความสามารถ มาตรการป้องกัน และการตัดสินใจนำไปใช้งาน โดยไม่สันนิษฐานว่าแผนหนึ่งแสดงให้เห็นถึงการปฏิบัติตามข้อกำหนด",
+      "sourceHash": "2a0fc46a0f56c08e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:question": {
+      "text": "เกณฑ์ระดับความสามารถใดควรทำให้มีการเปลี่ยนแปลงการตัดสินใจเกี่ยวกับการนำไปใช้งานหรือการพัฒนา?",
+      "sourceHash": "234e6c6fd38698e8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:effort": {
+      "text": "กรอบการทำงานโดยละเอียดสำหรับนักพัฒนา",
+      "sourceHash": "3d19ba12206176df",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:title": {
+      "text": "รูปแบบและปัญหาในระบบหลายเอเจนต์",
+      "sourceHash": "edaa43716f21e91b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:purpose": {
+      "text": "พิจารณาการประสานงานในการทดลองและรูปแบบความล้มเหลว โดยคงเงื่อนไขที่ใช้ในการสังเกตสิ่งเหล่านั้นไว้",
+      "sourceHash": "c52900fac5a6633c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:question": {
+      "text": "ภายใต้เงื่อนไขใด เอเจนต์ที่ร่วมมือกันจึงควบคุมได้ยากขึ้น?",
+      "sourceHash": "4a945e21df4a838b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:effort": {
+      "text": "ภาพรวมงานวิจัย ส่วนการทดลองใช้เวลาอ่านนานกว่า",
+      "sourceHash": "d3e09c379b601596",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:title": {
+      "text": "เหตุใดเอเจนต์ AI จึงโกหก โกง และประสานงานกัน?",
+      "sourceHash": "aa692e6caa5e9ecc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:purpose": {
+      "text": "เปรียบเทียบการตีความพฤติกรรมของเอเจนต์ที่มีการระบุแหล่งที่มากับหลักฐานปฐมภูมิที่เนื้อหานั้นกล่าวถึง",
+      "sourceHash": "c5d6eaa877005b73",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:question": {
+      "text": "การตีความพฤติกรรมของเอเจนต์แบบใดได้รับการสนับสนุนจากข้อสังเกตที่เป็นพื้นฐาน?",
+      "sourceHash": "f639c2e59cf3153a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:effort": {
+      "text": "ภาพรวมเชิงบทวิจารณ์",
+      "sourceHash": "8990936aa6f1031b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:title": {
+      "text": "ข้อมูลช่องโหว่ทางไซเบอร์ของ Epoch",
+      "sourceHash": "d2dcc2d31789fd60",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:purpose": {
+      "text": "พิจารณานิยามการวัดและการสุ่มตัวอย่าง ก่อนสรุปทั่วไปจากจำนวนช่องโหว่ไปเป็นความสามารถหรือความเสี่ยงโดยรวม",
+      "sourceHash": "cc0795fe945453b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:question": {
+      "text": "จำนวนช่องโหว่บอกอะไรเราได้เกี่ยวกับความสามารถ และมีอะไรที่บอกเราไม่ได้?",
+      "sourceHash": "a5a4446c9d00be70",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:effort": {
+      "text": "อ่านเอกสารประกอบชุดข้อมูลก่อน",
+      "sourceHash": "d9d710dd967c7faa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:title": {
+      "text": "จิตใจที่แปลกแยก",
+      "sourceHash": "60a5837b4af29689",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:purpose": {
+      "text": "สำรวจการแยกความแตกต่างของนักพัฒนาระหว่างการปรับเป้าหมายให้สอดคล้องกับการปรับค่านิยมให้สอดคล้อง โดยคงการคาดการณ์และสิ่งจูงใจที่เกี่ยวข้องไว้",
+      "sourceHash": "8d285abb8e33a8d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:question": {
+      "text": "การปรับเป้าหมายให้สอดคล้องอาจแตกต่างจากการปรับให้สอดคล้องกับค่านิยมที่คุณต้องการรักษาไว้อย่างไร?",
+      "sourceHash": "2fc235604992e0b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:effort": {
+      "text": "บทความจากผู้นำ",
+      "sourceHash": "49ca3fb177fc6151",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:title": {
+      "text": "เอเจนต์ AI ทำให้เกิดเวิร์มคอมพิวเตอร์ที่ปรับตัวได้",
+      "sourceHash": "351d503078ec0edd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:purpose": {
+      "text": "พิจารณาการสาธิตทางไซเบอร์ในสภาพแวดล้อมควบคุม เงื่อนไขเบื้องต้น และข้อจำกัดของการใช้สิ่งนี้เป็นหลักฐานของอันตรายที่เกิดขึ้นโดยอัตโนมัติ",
+      "sourceHash": "31a723c74e0c610d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:question": {
+      "text": "เงื่อนไขเบื้องต้นใดจำกัดว่าสิ่งที่การสาธิตทางไซเบอร์ในสภาพแวดล้อมควบคุมบอกเราเกี่ยวกับอันตรายในโลกจริงได้มากน้อยเพียงใด?",
+      "sourceHash": "03b5e34737093c54",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:effort": {
+      "text": "อ่านบทคัดย่อก่อน แล้วจึงอ่านบทความวิชาการฉบับเต็ม",
+      "sourceHash": "84c026eeda132f7a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:title": {
+      "text": "ขอบเขตภารกิจการวิจัยของ The DeepMind Institute",
+      "sourceHash": "58291c2d62906c20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:purpose": {
+      "text": "พิจารณาบทบาทการวิจัยที่เสนอของสถาบัน โดยไม่ถือว่าประกาศของสถาบันเป็นหลักฐานว่าการกำกับดูแลประสบความสำเร็จ",
+      "sourceHash": "2c8802e04982959a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:question": {
+      "text": "อะไรจะแสดงให้เห็นว่าสถาบันวิจัยที่เสนอช่วยปรับปรุงการกำกับดูแล?",
+      "sourceHash": "31d402132acaf390",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:effort": {
+      "text": "บทแนะนำสถาบัน",
+      "sourceHash": "59467e16822d70ef",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:title": {
+      "text": "เหตุการณ์ของ Hugging Face และหนทางข้างหน้า",
+      "sourceHash": "1f6422d794a2ba9c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:purpose": {
+      "text": "เปรียบเทียบคำชี้แจงเหตุการณ์และมาตรการป้องกันของนักพัฒนากับการสืบสวนอิสระที่มีขอบเขตแคบกว่า",
+      "sourceHash": "752f0ff72c45d75a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:question": {
+      "text": "คำชี้แจงของนักพัฒนากับการสืบสวนอิสระสอดคล้องหรือแตกต่างกันตรงไหน?",
+      "sourceHash": "dad285e6e6f8d457",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:effort": {
+      "text": "ภาพรวมจากนักพัฒนา",
+      "sourceHash": "330913b2a18ec74f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:title": {
+      "text": "รายงานข่าวกรองภัยคุกคามประจำเดือน September 2026 ของ Anthropic",
+      "sourceHash": "5e12966a50dd3fd1",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:purpose": {
+      "text": "พิจารณาการใช้งานที่เป็นอันตรายตามที่มีการรายงานและข้อจำกัดในการรับมือ โดยไม่ถือว่าการใช้ในทางที่ผิดซึ่งมนุษย์เป็นผู้สั่งการเท่ากับความไม่สอดคล้องที่เกิดขึ้นโดยอัตโนมัติ",
+      "sourceHash": "d6b90ee564028c52",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:question": {
+      "text": "มาตรการป้องกันการใช้ในทางที่ผิดซึ่งมนุษย์เป็นผู้สั่งการแตกต่างจากมาตรการป้องกันความไม่สอดคล้องที่เกิดขึ้นโดยอัตโนมัติอย่างไร?",
+      "sourceHash": "3e92d764fb23a6c4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:effort": {
+      "text": "ภาพรวมรายงาน",
+      "sourceHash": "0a3a200868ea390a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

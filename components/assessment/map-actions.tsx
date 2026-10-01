@@ -3,7 +3,7 @@
 import { useState, type RefObject } from 'react'
 import { toast } from 'sonner'
 import { CopyIcon, DownloadIcon, EllipsisIcon } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -17,6 +17,7 @@ import { downloadBlob } from '@/lib/sharing/report'
 
 export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
   const t = useTranslations('Map')
+  const locale = useLocale()
   const [busy, setBusy] = useState(false)
   const exportImage = async (copy: boolean) => {
     if (!svg.current || busy) return
@@ -30,7 +31,10 @@ export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
           'Image copying is unavailable here. Choose Download PNG instead.'
         )
       }
-      const png = mapPng(svg.current)
+      const png = mapPng(svg.current, {
+        title: t('question', { axis: 'transformation' }),
+        locale
+      })
       if (copy) {
         // Start the clipboard write inside the user gesture, including on Safari.
         await navigator.clipboard.write([

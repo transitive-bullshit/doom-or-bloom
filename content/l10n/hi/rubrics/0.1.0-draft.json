@@ -1,0 +1,455 @@
+{
+  "locale": "hi",
+  "kind": "rubric",
+  "version": "0.1.0-draft",
+  "entries": {
+    "level:capability_trajectory:0": {
+      "text": "परिवर्तनकारी क्षमता की उम्मीद नहीं है, या स्पष्ट रूप से इसकी अधिकतम सीमा कम रहने का अनुमान है।",
+      "sourceHash": "45332aa77e89763e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:1": {
+      "text": "परिवर्तनकारी क्षमता की उम्मीद केवल बहुत लंबे या अनिश्चित समय के बाद है।",
+      "sourceHash": "1caad9e3af1c823b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:2": {
+      "text": "परिवर्तनकारी क्षमता की उम्मीद दशकों के भीतर है, लेकिन इसका समय कुछ शर्तों पर निर्भर या अनिश्चित है।",
+      "sourceHash": "fc0d592a2a5c717e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:3": {
+      "text": "परिवर्तनकारी क्षमता की उम्मीद कुछ वर्षों के भीतर है, और इसके लिए खास पड़ाव या समय बताए गए हैं।",
+      "sourceHash": "7be8454bb25508ac",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:0": {
+      "text": "पर्याप्त पूर्व-चेतावनी और व्यापक प्रसार के साथ धीरे-धीरे बदलाव होने की उम्मीद है।",
+      "sourceHash": "4d75d63bcc972e76",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:1": {
+      "text": "गति में साफ़ बढ़ोतरी की उम्मीद है, लेकिन उसके अनुरूप ढलने के लिए सार्थक समय फिर भी मिलेगा।",
+      "sourceHash": "616aa99b562fa9a2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:2": {
+      "text": "सीमित पूर्व-चेतावनी के साथ तेज़ बदलाव होने की उम्मीद है।",
+      "sourceHash": "1cf04864d24ec589",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:3": {
+      "text": "बहुत कम पूर्व-चेतावनी के साथ अचानक ऐसा बदलाव होने की उम्मीद है जो खुद को और तेज़ करता जाए।",
+      "sourceHash": "8a00a52d2e6cd875",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:0": {
+      "text": "उन्नत एआई आ भी जाए, तब भी बहुत कम सकारात्मक प्रभाव की उम्मीद है।",
+      "sourceHash": "b4ca95af2e04929f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:1": {
+      "text": "सीमित लाभ या बहुत छोटे दायरे में बँटे लाभों की उम्मीद है।",
+      "sourceHash": "2de0b96f1b89dfcf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:2": {
+      "text": "काफ़ी लाभ की उम्मीद है, लेकिन उनके साथ महत्वपूर्ण शर्तें या वितरण संबंधी सीमाएँ होंगी।",
+      "sourceHash": "78afad70d75f7f87",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:3": {
+      "text": "व्यापक रूप से मूल्यवान और परिवर्तनकारी लाभों की उम्मीद है।",
+      "sourceHash": "0039469aca6539d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:0": {
+      "text": "बहुत कम ठोस प्रतिकूल प्रभाव की उम्मीद है।",
+      "sourceHash": "34a88df95706751f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:1": {
+      "text": "संभाले जा सकने वाले या स्थानीय स्तर तक सीमित नुकसानों की उम्मीद है।",
+      "sourceHash": "a1f3567ff213f1a6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:2": {
+      "text": "गंभीर या व्यापक नुकसान के भविष्य का एक ठोस और अपेक्षित हिस्सा होने की उम्मीद है।",
+      "sourceHash": "0254b37a8211331b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:3": {
+      "text": "विनाशकारी या अपरिवर्तनीय क्षति अपेक्षित भविष्य का केंद्रीय हिस्सा है।",
+      "sourceHash": "4f5f72872743a2e6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:0": {
+      "text": "भरोसेमंद तकनीकी नियंत्रण को अव्यावहारिक माना गया है।",
+      "sourceHash": "a21ea7cf647c16d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:1": {
+      "text": "नियंत्रण के बहुत कठिन और अविश्वसनीय होने की उम्मीद है।",
+      "sourceHash": "4d5105568afe1813",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:2": {
+      "text": "कठिन शर्तों के तहत नियंत्रण के संभव होने की उम्मीद है।",
+      "sourceHash": "89303d162cee93b9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:3": {
+      "text": "भरोसेमंद तकनीकी नियंत्रण के व्यापक रूप से संभव होने की उम्मीद है।",
+      "sourceHash": "fe22e102703e2dda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:0": {
+      "text": "संस्थाओं से प्रभावी ढंग से प्रतिक्रिया देने में विफल रहने की उम्मीद है।",
+      "sourceHash": "b201bfd67e082009",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:1": {
+      "text": "कई मामलों में संस्थाओं की प्रतिक्रिया बहुत कमज़ोर या बहुत देर से आने की उम्मीद है।",
+      "sourceHash": "09bc34029b1e978e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:2": {
+      "text": "समन्वय की खास शर्तें पूरी होने पर प्रभावी प्रतिक्रियाओं की उम्मीद है।",
+      "sourceHash": "9aa6f5f1ab20f0e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:3": {
+      "text": "संस्थाओं से समय रहते प्रभावी ढंग से अनुकूलन करने की उम्मीद है।",
+      "sourceHash": "9e1161b033a11f25",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:0": {
+      "text": "अपेक्षित भविष्य उन स्वायत्तता या निरंतरता के रूपों को कमज़ोर या समाप्त कर देता है जिन्हें प्रतिभागी ने स्पष्ट रूप से मूल्यवान माना है।",
+      "sourceHash": "5687590e6d27af27",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:1": {
+      "text": "मूल्यवान स्वायत्तता या निरंतरता का एक बड़ा हिस्सा खो जाने की उम्मीद है।",
+      "sourceHash": "0699acb072ef685d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:2": {
+      "text": "बदलावों या शर्तों के साथ, मूल्यवान स्वायत्तता या निरंतरता के काफ़ी हद तक सुरक्षित रहने की उम्मीद है।",
+      "sourceHash": "157e09c1ca4d9f71",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:3": {
+      "text": "मूल्यवान स्वायत्तता या निरंतरता के बढ़ने या फलने-फूलने की उम्मीद है।",
+      "sourceHash": "c59055f0b40fe1cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:0": {
+      "text": "व्यापक रोक या विकास को काफी धीमा करना बेहतर माना गया है।",
+      "sourceHash": "c1d3d6a12153d4dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:1": {
+      "text": "संयमित विकास और पहले से मजबूत सुरक्षा उपाय बेहतर माने गए हैं।",
+      "sourceHash": "b524ab64b4a762c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:2": {
+      "text": "लक्षित सुरक्षा उपायों के साथ विकास जारी रखना बेहतर माना गया है।",
+      "sourceHash": "e1cf86701dfe17de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:3": {
+      "text": "तेज विकास या व्यापक पहुँच बेहतर मानी गई है।",
+      "sourceHash": "879b4392f9b387d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:0": {
+      "text": "परिणाम के समर्थन में कोई प्रक्रिया बताए बिना उसे सही मान लिया गया है।",
+      "sourceHash": "5a1c3841eb66a67e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:1": {
+      "text": "एक कारण बताया गया है, लेकिन परिणाम से उसका संबंध समझाया नहीं गया है।",
+      "sourceHash": "371cb72b0bb281d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:2": {
+      "text": "एक सुसंगत प्रक्रिया किसी प्रासंगिक शर्त के साथ कारण को परिणाम से जोड़ती है।",
+      "sourceHash": "b5beffee8879dbaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:3": {
+      "text": "एक प्रक्रिया को उसकी निर्भरताओं, सीमाओं या विफलता के संभावित बिंदुओं के साथ विकसित किया गया है।",
+      "sourceHash": "7f3cf132b9208186",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:0": {
+      "text": "ठोस रूप से अलग-अलग दायरों को बिना किसी स्पष्टीकरण के एक मान लिया गया है।",
+      "sourceHash": "afbdbad35b37f05d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:1": {
+      "text": "कुछ दायरा निर्धारित किया गया है, लेकिन महत्वपूर्ण सीमाएँ अस्पष्ट बनी हुई हैं।",
+      "sourceHash": "8c0efb8b562edaea",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:2": {
+      "text": "प्रासंगिक पक्षों, परिस्थितियों या समय-सीमाओं के बीच अंतर किया गया है।",
+      "sourceHash": "8fe55de11a076b2b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:3": {
+      "text": "महत्वपूर्ण दावों की व्याख्या के लिए आवश्यक सीमाएँ स्पष्ट हैं, जिनमें प्रासंगिक पक्षों, समय-सीमाओं या परिस्थितियों के बीच अंतर शामिल हैं। हर वाक्य में उन सीमाओं को दोहराना आवश्यक नहीं है।",
+      "sourceHash": "56ff0f8bd47bbb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:0": {
+      "text": "स्पष्ट रूप से सीमित या परस्पर विरोधी साक्ष्य के बावजूद निश्चितता का दावा किया गया है।",
+      "sourceHash": "84e0a647a0d8a0cb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:1": {
+      "text": "अनिश्चितता स्वीकार की गई है, लेकिन दावे की मजबूती उसके समर्थन से ठीक तरह मेल नहीं खाती।",
+      "sourceHash": "e9c18716503a9c9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:2": {
+      "text": "विश्वास का स्तर दिए गए साक्ष्य के अनुपात में है और महत्वपूर्ण अज्ञात बातों को अज्ञात ही रखा गया है।",
+      "sourceHash": "badd0b94484d1f16",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:3": {
+      "text": "अलग-अलग दावों में अनिश्चितता के बीच अंतर किया गया है और उसे साक्ष्य की ठोस सीमाओं से जोड़ा गया है।",
+      "sourceHash": "9184c61fcea3a0fa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:0": {
+      "text": "स्पष्टीकरण के बाद भी संबंधित कथन उन्हीं बताई गई मान्यताओं के तहत परस्पर असंगत बने हुए हैं।",
+      "sourceHash": "d7e5b6671ee34fe7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:1": {
+      "text": "एक महत्वपूर्ण असंगति संभव बनी हुई है, लेकिन उसे आंशिक रूप से समझाया गया है।",
+      "sourceHash": "eed384a4ddb31fe4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:2": {
+      "text": "संबंधित दृष्टिकोण बताई गई मान्यताओं के तहत एक-दूसरे से मेल खाते हैं।",
+      "sourceHash": "4ebb860dc5c17fcb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:3": {
+      "text": "महत्वपूर्ण दावे अपनी व्यक्त मान्यताओं और दायरों के तहत एक-दूसरे से मेल खाते हैं; जो भी तनाव दिखाई देते हैं, वे इन अंतरों से सुलझ जाते हैं। पहले से सुसंगत विवरण में किसी विरोधाभास को गढ़कर फिर उसका समाधान करने की आवश्यकता नहीं है।",
+      "sourceHash": "941dd493b7052d75",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:0": {
+      "text": "किसी वैकल्पिक दृष्टिकोण के वास्तविक दावे पर विचार किए बिना उसे खारिज कर दिया गया है।",
+      "sourceHash": "1e4563dbbba8058d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:1": {
+      "text": "किसी वैकल्पिक दृष्टिकोण को स्वीकार किया गया है, लेकिन उसके सबसे मजबूत प्रासंगिक आधार को छोड़ दिया गया है।",
+      "sourceHash": "bd768e0832cfe82b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:2": {
+      "text": "एक गंभीर वैकल्पिक दृष्टिकोण को निष्पक्ष रूप से प्रस्तुत किया गया है और उसकी खूबियों के आधार पर उस पर विचार किया गया है।",
+      "sourceHash": "4a756c3d0300fd9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:3": {
+      "text": "प्रतिभागी यह पहचानते हैं कि किन परिस्थितियों में कोई गंभीर वैकल्पिक दृष्टिकोण उनके विवरण से बेहतर साबित हो सकता है।",
+      "sourceHash": "1bac2063b829f376",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:0": {
+      "text": "प्रतिभागी स्पष्ट रूप से कहते हैं कि साक्ष्य चाहे जो हो, वे अपने विश्वास में बदलाव नहीं करेंगे।",
+      "sourceHash": "157205d903c1b6d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:1": {
+      "text": "प्रासंगिक साक्ष्य बताए बिना राय बदलने की एक अस्पष्ट शर्त दी गई है।",
+      "sourceHash": "bc5b4358911f27fd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:2": {
+      "text": "पहचाने जा सकने वाले साक्ष्य या किसी घटनाक्रम से बताया गया विश्वास बदल सकता है।",
+      "sourceHash": "eb36a607e4097aaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:3": {
+      "text": "अलग-अलग संभावनाओं में फर्क कर सकने वाले किसी विशिष्ट अवलोकन को विश्वास में किसी खास बदलाव से जोड़ा गया है।",
+      "sourceHash": "0d00980368b2b87b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:0": {
+      "text": "स्पष्ट रूप से दिया गया कोई अवलोकन उस दावे का ठोस रूप से खंडन करता है, जिसके समर्थन में उसका उपयोग किया गया है।",
+      "sourceHash": "53d564965a501f56",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:1": {
+      "text": "दिए गए किसी अवलोकन या उदाहरण का दावे से संबंध कमजोर है या समझाया नहीं गया है।",
+      "sourceHash": "09cf5cebb4eed43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:2": {
+      "text": "प्रासंगिक सीमाओं को ध्यान में रखते हुए, दिए गए आधार और दावे के बीच स्पष्ट संबंध स्थापित किया गया है।",
+      "sourceHash": "f90613a49168196e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:3": {
+      "text": "विवरण में अवलोकन, व्याख्या और अनिश्चितता के बीच अंतर किया गया है और दिए गए आधार की सीमाएँ समझाई गई हैं।",
+      "sourceHash": "2f3bbfe9043ee3e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:0": {
+      "text": "प्रतिभागी की बताई गई मान्यताओं के तहत विनाशकारी परिणामों की संभावना नगण्य रहने या उनसे प्रभावी रूप से बच निकलने की अपेक्षा है।",
+      "sourceHash": "d0b165abc2ca8cb9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:1": {
+      "text": "बताई गई परिस्थितियों में विनाश संभव है, लेकिन दृष्टिकोण में इसकी भूमिका सीमित रहने की अपेक्षा है।",
+      "sourceHash": "1f05c56cd9ef9efd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:2": {
+      "text": "प्रतिभागी के दृष्टिकोण में विनाशकारी परिणाम एक महत्वपूर्ण संभावना हैं, जिनसे जुड़ी अनिश्चितता या परिस्थितियों के गंभीर परिणाम हो सकते हैं।",
+      "sourceHash": "29557cbfc3c2218f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:3": {
+      "text": "बताई गई मान्यताओं के तहत प्रतिभागी की अपेक्षा में विनाशकारी परिणाम प्रमुख हैं।",
+      "sourceHash": "a918c0b82b0759dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

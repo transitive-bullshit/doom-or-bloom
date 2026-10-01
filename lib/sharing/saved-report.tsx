@@ -66,8 +66,14 @@ export async function savedReport(
     const svg = container.querySelector<SVGSVGElement>(
       '[data-slot="worldview-map-svg"]'
     )!
-    const [image, map] = await Promise.all([resultsImage, mapPng(svg)])
     const t = createTranslator(intl) as unknown as Translator
+    const [image, map] = await Promise.all([
+      resultsImage,
+      mapPng(svg, {
+        title: t('Map.question', { axis: 'transformation' }),
+        locale: intl.locale
+      })
+    ])
     return await createReportZip(
       serializeReport(t, assessment, operations),
       image,

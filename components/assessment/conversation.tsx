@@ -12,6 +12,7 @@ import { AnswerResult } from './answer-result'
 import { Check, Copy, CircleAlert } from 'lucide-react'
 import type { ConversationTurn } from '@/lib/assessment/conversation'
 import { promptText } from '@/lib/assessment/display-text'
+import { useAuthoredText } from './authored-text'
 import { Bubble, BubbleContent } from '@/components/ui/bubble'
 import { Message, MessageContent, MessageHeader } from '@/components/ui/message'
 import {
@@ -175,6 +176,7 @@ export function ConversationHistory({
   operations?: SavedDebugOperation[]
 }) {
   const root = useTranslations()
+  const authored = useAuthoredText()
   return turns.map((turn) => (
     <article
       key={turn.prompt.id}
@@ -186,7 +188,11 @@ export function ConversationHistory({
           <Bubble variant='ghost'>
             <BubbleContent>
               <h4 className='text-pretty whitespace-pre-wrap wrap-anywhere'>
-                {promptText(root, { ...turn.prompt, text: turn.question })}
+                {promptText(
+                  root,
+                  { ...turn.prompt, text: turn.question },
+                  authored
+                )}
               </h4>
             </BubbleContent>
           </Bubble>

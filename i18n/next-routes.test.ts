@@ -44,7 +44,7 @@ describe('locale rewrites', () => {
     )
     expect(rewrite('/assessments')).toBe('/en/assessments')
     // An unknown locale-like prefix is just an unknown English path (404).
-    expect(rewrite('/fr/about')).toBe('/en/fr/about')
+    expect(rewrite('/ko/about')).toBe('/en/ko/about')
   })
 
   it('leaves locale prefixes and routes outside app/[locale] alone', () => {
@@ -99,8 +99,9 @@ describe('private routes', () => {
     expect(privateRoutePrefixes).toEqual([
       '/assessment',
       '/assessments',
-      '/es/assessment',
-      '/es/assessments'
+      ...['es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id'].flatMap(
+        (code) => [`/${code}/assessment`, `/${code}/assessments`]
+      )
     ])
   })
 })

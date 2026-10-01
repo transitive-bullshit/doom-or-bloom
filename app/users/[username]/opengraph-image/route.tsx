@@ -5,6 +5,7 @@ import { loadSocialPortrait } from '@/lib/sharing/portraits'
 import { ImageResponse } from 'takumi-js/response'
 import { loadPersona } from '@/components/landing/data'
 import { SocialCard, socialImageOptions } from '@/lib/sharing/social-card'
+import { cardRenderOptions, cardTranslator } from '@/lib/sharing/card-renderer'
 
 // A plain route handler rather than the opengraph-image file convention: it
 // stays outside app/[locale] at its published URL. Profile metadata in other
@@ -23,9 +24,13 @@ export async function GET(
   const locale = isLocale(param) ? param : defaultLocale
   return new ImageResponse(
     SocialCard({
-      t: await translatorFor(locale),
+      t: cardTranslator(await translatorFor(locale), locale),
       person: { ...person, portrait: await loadSocialPortrait(person.avatar) }
     }),
-    { ...socialImageOptions, headers: publicImageCacheHeaders }
+    {
+      ...socialImageOptions,
+      ...(await cardRenderOptions(locale)),
+      headers: publicImageCacheHeaders
+    }
   )
 }

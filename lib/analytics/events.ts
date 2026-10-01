@@ -102,7 +102,9 @@ const eventSchema = z.object({
     first_touch_campaign: touch.tag,
     first_touch_referrer: touch.referrer,
     first_touch_landing: touch.landing.optional(),
-    first_touch_locale: touch.locale
+    first_touch_locale: touch.locale,
+    // The language of the latest submitted answer, since algorithm 0.7.4.
+    interview_locale: touch.locale
   })
 })
 export type Event = z.infer<typeof eventSchema>
@@ -162,6 +164,9 @@ export function makeEvent(
         Math.max(x.range[1] - x.range[0], y.range[1] - y.range[0]) > 0.4
           ? 'wide'
           : 'narrow',
+      ...(state.answers.at(-1)?.displayLocale && {
+        interview_locale: state.answers.at(-1)!.displayLocale
+      }),
       ...extra
     }
   }

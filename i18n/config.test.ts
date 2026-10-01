@@ -31,21 +31,46 @@ describe('locale paths', () => {
     // Only enabled, non-default locales are prefixes.
     expect(splitLocalePath('/en/about').path).toBe('/en/about')
     expect(splitLocalePath('/fr/about')).toEqual({
+      locale: 'fr',
+      path: '/about'
+    })
+    expect(splitLocalePath('/ko/about')).toEqual({
       locale: 'en',
-      path: '/fr/about'
+      path: '/ko/about'
     })
     expect(splitLocalePath('/essay').path).toBe('/essay')
   })
 
   it('lists each enabled locale once with its endonym', () => {
-    expect(locales).toEqual(['en', 'es'])
+    expect(locales).toEqual([
+      'en',
+      'es',
+      'pt',
+      'hi',
+      'zh',
+      'th',
+      'ja',
+      'de',
+      'fr',
+      'id'
+    ])
     expect(localeOptions.map(({ endonym }) => endonym)).toEqual([
       'English',
-      'Español'
+      'Español',
+      'Português (Brasil)',
+      'हिन्दी',
+      '简体中文',
+      'ไทย',
+      '日本語',
+      'Deutsch',
+      'Français',
+      'Bahasa Indonesia'
     ])
     expect(isLocale('es')).toBe(true)
-    expect(isLocale('pt')).toBe(false)
+    expect(isLocale('pt')).toBe(true)
     expect(isLocale('pt-BR')).toBe(false)
+    expect(isLocale('zh-Hans')).toBe(false)
+    expect(isLocale('ko')).toBe(false)
   })
 })
 
@@ -64,7 +89,18 @@ describe('URL segments and language tags', () => {
         languageTag(code)
       ])
     }
-    expect(localeOptions.map(({ tag }) => tag)).toEqual(['en', 'es'])
+    expect(localeOptions.map(({ tag }) => tag)).toEqual([
+      'en',
+      'es',
+      'pt-BR',
+      'hi',
+      'zh-Hans',
+      'th',
+      'ja',
+      'de',
+      'fr',
+      'id'
+    ])
   })
 
   it('keys hreflang alternates by tag and links them by segment', () => {
@@ -79,6 +115,14 @@ describe('URL segments and language tags', () => {
     expect(languageAlternates('https://example.com', '/')).toEqual({
       en: 'https://example.com/',
       es: 'https://example.com/es',
+      'pt-BR': 'https://example.com/pt',
+      hi: 'https://example.com/hi',
+      'zh-Hans': 'https://example.com/zh',
+      th: 'https://example.com/th',
+      ja: 'https://example.com/ja',
+      de: 'https://example.com/de',
+      fr: 'https://example.com/fr',
+      id: 'https://example.com/id',
       'x-default': 'https://example.com/'
     })
   })
