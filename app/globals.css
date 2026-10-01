@@ -180,6 +180,11 @@
   :is(:lang(hi), :lang(th)) :is(h1, h2, h3, h4, h5, h6) {
     line-height: 1.6;
   }
+  /* Japanese headings break between phrases (どう stays whole) where the
+     browser supports it; elsewhere CJK breaks between any characters. */
+  :lang(ja) :is(h1, h2, h3, h4, h5, h6) {
+    word-break: auto-phrase;
+  }
   button,
   a {
     touch-action: manipulation;
