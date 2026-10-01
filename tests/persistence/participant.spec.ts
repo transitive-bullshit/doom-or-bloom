@@ -1,6 +1,7 @@
 import { Pool } from 'pg'
 import { load } from 'cheerio'
 import { test, expect } from '@playwright/test'
+import { firstTouchCookie } from '../../lib/attribution/first-touch'
 
 test('first CTA creates directly, draft survives reload, answer is server-saved, returning CTA opens library', async ({
   page,
@@ -8,7 +9,13 @@ test('first CTA creates directly, draft survives reload, answer is server-saved,
   baseURL
 }) => {
   await page.goto('/')
-  expect(await context.cookies()).toHaveLength(0)
+  // No session before the first CTA. The first-party first-touch record may
+  // already be written, depending on when the page hydrates.
+  expect(
+    (await context.cookies()).filter(
+      (cookie) => cookie.name !== firstTouchCookie
+    )
+  ).toHaveLength(0)
   await page
     .getByRole('link', { name: 'Map your own worldview' })
     .last()
