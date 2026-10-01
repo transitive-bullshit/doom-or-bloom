@@ -133,3 +133,14 @@ test('the displayed map point counts like two dimensions per axis', () => {
   )
   expect(stale[0]!.dimensions).toBe(9)
 })
+
+test('returns up to the requested number of matches for similar-worldview lists', () => {
+  const user = result(all(0.6))
+  const candidates = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7].map((value) =>
+    persona(`p${value}`, all(value))
+  )
+  expect(closestPersonas(user, candidates)).toHaveLength(3)
+  expect(closestPersonas(user, candidates, 6).map((match) => match.id)).toEqual(
+    ['p0.6', 'p0.5', 'p0.7', 'p0.4', 'p0.3', 'p0.2']
+  )
+})

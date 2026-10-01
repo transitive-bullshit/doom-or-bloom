@@ -12,6 +12,7 @@ import { MobileCta } from '@/components/mobile-cta'
 import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
+import { SimilarWorldviews, type SimilarWorldview } from './similar-worldviews'
 import { ExperimentalResults } from '@/components/assessment/experimental-results'
 import { ReasoningJudgments } from '@/components/assessment/reasoning-judgments'
 import { JsonViewer } from '@/components/debug/json-viewer'
@@ -25,7 +26,8 @@ import { useAuthoredText } from '@/components/assessment/authored-text'
 
 export function PersonaPageContent({
   person,
-  assessment
+  assessment,
+  similar = []
 }: {
   person: Pick<
     Example,
@@ -40,6 +42,8 @@ export function PersonaPageContent({
     | 'sourceBriefUpdated'
   > & { result: Result }
   assessment: PersonaAssessment
+  /** Nearest simulated users, linked after the compare prompt. */
+  similar?: SimilarWorldview[]
 }) {
   const t = useTranslations('Persona')
   return (
@@ -57,6 +61,11 @@ export function PersonaPageContent({
         reasoningDetails={false}
       />
       <CompareCta name={person.name} className='mt-8' />
+      {similar.length > 0 && (
+        <div className='mt-10'>
+          <SimilarWorldviews name={person.name} people={similar} />
+        </div>
+      )}
       <section
         aria-label={t('simulatedAssessment')}
         className='mt-10 flex flex-col gap-4'

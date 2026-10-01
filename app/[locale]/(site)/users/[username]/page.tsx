@@ -8,7 +8,11 @@ import { pageMetadata } from '@/lib/metadata'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { PageTransition } from '@/components/page-transition'
 import { notFound } from 'next/navigation'
-import { loadPersona, loadPersonaPaths } from '@/components/landing/data'
+import {
+  loadPersona,
+  loadPersonaPaths,
+  loadSimilarWorldviews
+} from '@/components/landing/data'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { profileJsonLd } from '@/lib/seo/json-ld'
 
@@ -65,8 +69,9 @@ export default async function Page({
   const profile = await loadPersona(slug)
   if (!profile) notFound()
   const { person, assessment } = profile
-  const [locale, t] = await Promise.all([
+  const [locale, similar, t] = await Promise.all([
     getLocale(),
+    loadSimilarWorldviews(person),
     getTranslations('Profiles')
   ])
   const authored = authoredTextFor(locale, person.result.versions, {
@@ -90,7 +95,11 @@ export default async function Page({
         <AssessmentPage className='content-column pt-6 pb-10'>
           <SurfaceMessages surface='published'>
             <AuthoredTextProvider value={authored}>
-              <PersonaPageContent person={person} assessment={assessment} />
+              <PersonaPageContent
+                person={person}
+                assessment={assessment}
+                similar={similar}
+              />
             </AuthoredTextProvider>
           </SurfaceMessages>
         </AssessmentPage>

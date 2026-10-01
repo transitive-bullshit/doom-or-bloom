@@ -9,6 +9,8 @@ import { personaRepository } from '@/lib/personas/repository'
 import { simulationPresentation } from '@/lib/personas/payload'
 import { personaProfileSchema } from '@/lib/journeys/catalog'
 import { presentResult } from '@/lib/assessment/present-result'
+import { closestPersonas } from '@/lib/assessment/persona-matches'
+import type { Result } from '@/lib/assessment/schema'
 
 const loadSummaries = cache((featuredOnly: boolean) =>
   personaRepository(getPool()).selectedSummaries(featuredOnly)
@@ -60,18 +62,40 @@ function exampleFromSummary(
   }
 }
 
-/** Identical comparison inputs for private and public participant results. */
-export const loadPersonaComparisons = cache(async () => {
+// Comparison inputs share the Data Cache across requests and builds. Separate
+// local/test/hosted caches without putting credentials in cache keys.
+const comparisons = async (featuredOnly: boolean) => {
   try {
-    // Separate local/test/hosted caches without putting credentials in cache keys.
     const databaseKey = createHash('sha256').update(databaseUrl()).digest('hex')
     return await unstable_cache(
-      () => personaRepository(getPool()).selectedComparisons(),
-      ['persona-comparisons-v3', databaseKey],
+      () => personaRepository(getPool()).selectedComparisons(featuredOnly),
+      [
+        featuredOnly ? 'persona-comparisons-v3' : 'persona-catalog-v1',
+        databaseKey
+      ],
       { revalidate: 172800 }
     )()
   } catch (err) {
     reportServerError('persona_comparisons_unavailable', err, {})
     return []
   }
-})
+}
+
+/** Identical comparison inputs for private and public participant results. */
+export const loadPersonaComparisons = cache(() => comparisons(true))
+
+/**
+ * The simulated users nearest to one profile across the whole catalog, by the
+ * same distance participants' closest worldviews use. Profiles link to them.
+ */
+export async function loadSimilarWorldviews(
+  person: { id: string; result: Result },
+  limit = 6
+) {
+  const others = (await comparisons(false)).filter(
+    (other) => other.id !== person.id
+  )
+  return closestPersonas(person.result, others, limit).map(
+    ({ id, slug, name, avatar }) => ({ id, slug, name, avatar })
+  )
+}
