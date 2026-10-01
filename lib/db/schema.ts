@@ -4,8 +4,11 @@ import {
   text,
   uuid,
   integer,
+  bigint,
+  date,
   boolean,
   timestamp,
+  primaryKey,
   jsonb,
   unique,
   uniqueIndex,
@@ -254,4 +257,43 @@ export const shareSnapshots = pgTable(
 // Contains no assessment content or owner data. Nothing is inserted on draft opening.
 export const usedAssessmentDrafts = pgTable('used_assessment_drafts', {
   id: uuid('id').primaryKey()
+})
+
+// Estimated participant Jev spend per UTC day and month, for the app's own
+// budget (lib/server/jev-budget.ts). Aggregate counters only, never participant
+// data. Rows are incremented atomically, so concurrent instances never lose spend.
+export const jevSpend = pgTable(
+  'jev_spend',
+  {
+    period: text('period', { enum: ['day', 'month'] }).notNull(),
+    periodStart: date('period_start', { mode: 'string' }).notNull(),
+    inputTokens: bigint('input_tokens', { mode: 'number' })
+      .notNull()
+      .default(0),
+    outputTokens: bigint('output_tokens', { mode: 'number' })
+      .notNull()
+      .default(0),
+    costNanoUsd: bigint('cost_nano_usd', { mode: 'number' })
+      .notNull()
+      .default(0),
+    requests: integer('requests').notNull().default(0),
+    updatedAt: time('updated_at')
+  },
+  (t) => [
+    primaryKey({ name: 'jev_spend_pk', columns: [t.period, t.periodStart] }),
+    check('jev_spend_period', sql`${t.period} in ('day', 'month')`),
+    check(
+      'jev_spend_nonnegative',
+      sql`${t.inputTokens} >= 0 and ${t.outputTokens} >= 0 and ${t.costNanoUsd} >= 0 and ${t.requests} >= 0`
+    )
+  ]
+)
+
+// When TypeSafe last answered that the account has no credits (HTTP 402).
+export const jevProviderStatus = pgTable('jev_provider_status', {
+  provider: text('provider').primaryKey(),
+  outOfCreditsAt: timestamp('out_of_credits_at', {
+    withTimezone: true
+  }).notNull(),
+  updatedAt: time('updated_at')
 })

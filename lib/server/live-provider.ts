@@ -71,7 +71,12 @@ export function validateEvaluation(
   }
   return { ...result, attempts }
 }
-export function createLiveProvider(model: string): Provider {
+export function createLiveProvider(
+  model: string,
+  // Called with each successful request's reported usage, including requests
+  // of an operation that later fails, so spend can be counted per request.
+  { onUsage }: { onUsage?: (usage: Evaluation['usage']) => void } = {}
+): Provider {
   return {
     kind: 'live',
     evaluate: async (
@@ -198,6 +203,16 @@ export function createLiveProvider(model: string): Provider {
             { state: state as EntryType, model, questions: typedQuestions },
             { signal: boundedSignal }
           )
+          // Usage is billed once TypeSafe answers, even if validation fails.
+          const usage = (raw as { usage?: Partial<Evaluation['usage']> })?.usage
+          const tokens = (value: unknown) =>
+            typeof value === 'number' && Number.isFinite(value) && value > 0
+              ? Math.round(value)
+              : 0
+          onUsage?.({
+            input_tokens: tokens(usage?.input_tokens),
+            output_tokens: tokens(usage?.output_tokens)
+          })
           const result = validateEvaluation(raw, Object.fromEntries(part))
           if (result.model !== model)
             throw new Error('Provider returned a different model version')
