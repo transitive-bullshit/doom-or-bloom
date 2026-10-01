@@ -1,0 +1,293 @@
+import type { Page } from '@playwright/test'
+import { expect, test } from './fixtures'
+
+const site = 'https://www.doom-or-bloom.com'
+
+type Node = Record<string, unknown> & {
+  '@type': string
+  description?: string
+  numberOfItems?: number
+  itemListElement?: { url?: string }[]
+}
+
+/** Every JSON-LD node on the page, flattening @graph documents. */
+async function structuredData(page: Page): Promise<Node[]> {
+  const scripts = await page
+    .locator('script[type="application/ld+json"]')
+    .allTextContents()
+  return scripts.flatMap((text) => {
+    const document = JSON.parse(text)
+    return document['@graph'] ?? [document]
+  })
+}
+const ofType = (nodes: Node[], type: string) =>
+  nodes.filter((node) => node['@type'] === type)
+
+async function canonicalAndRobots(page: Page) {
+  const head = page.locator('head')
+  return {
+    canonical: await head.locator('link[rel="canonical"]').getAttribute('href'),
+    robots: await head.locator('meta[name="robots"]').getAttribute('content')
+  }
+}
+
+test('the home page names the P(doom) search and describes a free web app', async ({
+  page
+}) => {
+  await page.goto('/')
+  await expect(page).toHaveTitle(
+    'What’s your P(doom)? Map your AI worldview | Doom or Bloom'
+  )
+  const nodes = await structuredData(page)
+  expect(ofType(nodes, 'WebSite')).toHaveLength(1)
+  expect(ofType(nodes, 'WebApplication')[0]).toMatchObject({
+    name: 'Doom or Bloom',
+    isAccessibleForFree: true,
+    offers: { price: '0' },
+    creator: { '@id': `${site}/#creator` }
+  })
+  expect(ofType(nodes, 'Person')[0]).toMatchObject({
+    name: 'Travis Fischer',
+    url: 'https://x.com/transitive_bs'
+  })
+  // Footer links make the hub and the blog crawlable from every page.
+  const footer = page.locator('footer')
+  await expect(
+    footer.getByRole('link', { name: 'P(doom)', exact: true })
+  ).toHaveAttribute('href', '/p-doom')
+  await expect(
+    footer.getByRole('link', { name: 'Blog', exact: true })
+  ).toHaveAttribute('href', '/blog')
+})
+
+test('the P(doom) hub defines the term, then sorts stated and inferred estimates', async ({
+  page
+}) => {
+  await page.goto('/p-doom')
+  await expect(page).toHaveTitle(
+    'What is P(doom)? Estimates from AI thought leaders | Doom or Bloom'
+  )
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'What is P(doom)?' })
+  ).toBeVisible()
+  await expect(page.locator('main header p').first()).toHaveText(
+    /^P\(doom\) is the probability a person assigns to advanced AI causing an existential catastrophe/
+  )
+  await expect(
+    page.getByText(
+      /^As of .+ simulated thought leaders, \d+ with a publicly stated P\(doom\)$/
+    )
+  ).toBeVisible()
+  await expect(
+    page.getByRole('link', { name: 'Read the guide to what P(doom) means' })
+  ).toHaveAttribute('href', '/blog/what-is-p-doom')
+
+  const table = page.locator('[data-slot="pdoom-table"]')
+  const rows = table.locator('tbody tr')
+  expect(await rows.count()).toBeGreaterThan(20)
+  await expect(
+    table.getByRole('columnheader', { name: /Inferred from simulated answers/ })
+  ).toHaveAttribute('aria-sort', 'descending')
+  // A publicly stated number appears only with its source.
+  const hinton = rows.filter({ hasText: 'Geoffrey Hinton' })
+  await expect(hinton.getByRole('cell').nth(1)).toContainText('10–20%')
+  await expect(
+    hinton.getByRole('link', {
+      name: 'The Godfather of AI says we cannot afford to get it wrong'
+    })
+  ).toHaveAttribute('href', /^https:\/\/www\.wbur\.org\//)
+  await expect(
+    hinton.getByRole('link', { name: 'Geoffrey Hinton' })
+  ).toHaveAttribute('href', '/users/geoffreyhinton')
+  const stated = await rows
+    .filter({ has: page.locator('td:nth-child(2) a') })
+    .count()
+  expect(stated).toBeGreaterThan(0)
+  expect(stated).toBeLessThan(await rows.count())
+
+  // Sorting by name, then by the stated column, reorders the rows.
+  await table.getByRole('button', { name: 'Sort by Thought leader' }).click()
+  const names = await rows.locator('td:first-child').allTextContents()
+  expect(names).toEqual(
+    names.toSorted((a, b) => new Intl.Collator('en').compare(a, b))
+  )
+  await table
+    .getByRole('button', { name: 'Sort by Publicly stated P(doom)' })
+    .click()
+  await expect(rows.first().locator('td:nth-child(2) a')).toBeVisible()
+  await expect(
+    table.getByRole('columnheader', { name: /Publicly stated/ })
+  ).toHaveAttribute('aria-sort', 'descending')
+
+  const nodes = await structuredData(page)
+  expect(ofType(nodes, 'Dataset')[0]).toMatchObject({
+    url: `${site}/p-doom`,
+    isAccessibleForFree: true,
+    variableMeasured: [
+      'Publicly stated P(doom)',
+      'Inferred from simulated answers'
+    ]
+  })
+  const list = ofType(nodes, 'ItemList')[0]!
+  expect(list.numberOfItems).toBe(await rows.count())
+  expect(list.itemListElement?.[0]?.url).toMatch(`${site}/users/`)
+  expect(ofType(nodes, 'BreadcrumbList')).toHaveLength(1)
+  await expect(
+    page.getByRole('link', { name: 'Map my worldview' })
+  ).toHaveAttribute('href', '/assessments?start=1')
+  expect(await canonicalAndRobots(page)).toEqual({
+    canonical: `${site}/p-doom`,
+    robots: 'index, follow'
+  })
+
+  // The explainer stays English; other locales translate the chrome and defer
+  // to the English page in search.
+  await page.goto('/es/p-doom')
+  await expect(page.locator('main header[lang="en"] h1')).toHaveText(
+    'What is P(doom)?'
+  )
+  await expect(
+    page.getByRole('heading', { name: 'P(doom) por líder de opinión' })
+  ).toBeVisible()
+  expect(await canonicalAndRobots(page)).toEqual({
+    canonical: `${site}/p-doom`,
+    robots: 'noindex, follow'
+  })
+})
+
+test('the blog lists posts, and a post carries article data, a card and a feed', async ({
+  page,
+  request
+}) => {
+  await page.goto('/blog')
+  await expect(page).toHaveTitle('Blog | Doom or Bloom')
+  await page.getByRole('link', { name: 'What is P(doom)?' }).click()
+  await expect(page).toHaveURL(/\/blog\/what-is-p-doom$/)
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'What is P(doom)?' })
+  ).toBeVisible()
+  await expect(page.locator('main article header')).toContainText(
+    /By Travis Fischer · .+ · \d+ min read/
+  )
+  const body = page.locator('[data-slot="blog-post-body"]')
+  await expect(body).toHaveAttribute('lang', 'en')
+  // Headings never end with a period, and the chart cites each number.
+  for (const heading of await body.locator('h2').allTextContents())
+    expect(heading).not.toMatch(/\.$/)
+  const chart = page.locator('[data-slot="blog-data-ranges"]')
+  await expect(chart.getByRole('rowheader')).toHaveCount(8)
+  await expect(
+    chart.getByRole('link', { name: 'Geoffrey Hinton' })
+  ).toHaveAttribute('href', /wbur\.org/)
+  await expect(
+    body.getByRole('link', { name: 'P(doom) table of thought leaders' })
+  ).toHaveAttribute('href', '/p-doom')
+
+  const nodes = await structuredData(page)
+  expect(ofType(nodes, 'Article')[0]).toMatchObject({
+    headline: 'What is P(doom)?',
+    url: `${site}/blog/what-is-p-doom`,
+    inLanguage: 'en',
+    author: { name: 'Travis Fischer', url: 'https://x.com/transitive_bs' }
+  })
+  expect(ofType(nodes, 'BreadcrumbList')[0]?.itemListElement).toHaveLength(3)
+  const head = page.locator('head')
+  await expect(head.locator('meta[property="og:type"]')).toHaveAttribute(
+    'content',
+    'article'
+  )
+  await expect(
+    head.locator('link[rel="alternate"][type="application/rss+xml"]')
+  ).toHaveAttribute('href', `${site}/blog/rss.xml`)
+  const image = new URL(
+    (await head.locator('meta[property="og:image"]').getAttribute('content'))!
+  )
+  expect(image.pathname).toBe('/blog/what-is-p-doom/opengraph-image')
+  const card = await request.get(image.pathname + image.search)
+  expect(card.status()).toBe(200)
+  expect(card.headers()['content-type']).toBe('image/png')
+  const png = await card.body()
+  expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([1200, 630])
+
+  const feed = await request.get('/blog/rss.xml')
+  expect(feed.headers()['content-type']).toContain('application/rss+xml')
+  expect(await feed.text()).toContain(
+    `<link>${site}/blog/what-is-p-doom</link>`
+  )
+
+  // Posts are English: other locales translate the chrome only.
+  await page.goto('/es/blog/what-is-p-doom')
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es')
+  await expect(
+    page.getByText('Las publicaciones están escritas en inglés')
+  ).toBeVisible()
+  expect(await canonicalAndRobots(page)).toEqual({
+    canonical: `${site}/blog/what-is-p-doom`,
+    robots: 'noindex, follow'
+  })
+  expect((await page.goto('/blog/no-such-post'))?.status()).toBe(404)
+})
+
+test('profiles link similar worldviews and describe the simulated person', async ({
+  page
+}) => {
+  await page.goto('/users/geoffreyhinton')
+  await expect(page).toHaveTitle(
+    'Geoffrey Hinton on AI: simulated worldview and P(doom) | Doom or Bloom'
+  )
+  const similar = page.locator('[data-slot="similar-worldviews"]')
+  await expect(
+    similar.getByRole('heading', { name: 'Similar worldviews' })
+  ).toBeVisible()
+  const links = similar.getByRole('link')
+  const count = await links.count()
+  expect(count).toBeGreaterThanOrEqual(3)
+  expect(count).toBeLessThanOrEqual(6)
+  for (const href of await links.evaluateAll((anchors) =>
+    anchors.map((anchor) => anchor.getAttribute('href'))
+  ))
+    expect(href).toMatch(/^\/users\/(?!geoffreyhinton$)[^/]+$/)
+  // After the compare prompt, before the simulated answers.
+  const [compare, list, answers] = await Promise.all(
+    [
+      page.getByText('Where do you land vs Geoffrey Hinton?'),
+      similar,
+      page.getByRole('region', { name: 'Simulated Assessment', exact: true })
+    ].map((locator) => locator.boundingBox())
+  )
+  expect(list!.y).toBeGreaterThan(compare!.y)
+  expect(answers!.y).toBeGreaterThan(list!.y)
+  await links.first().click()
+  await expect(page).toHaveURL(/\/users\/(?!geoffreyhinton$)[^/]+$/)
+
+  await page.goto('/users/geoffreyhinton')
+  const nodes = await structuredData(page)
+  expect(ofType(nodes, 'ProfilePage')[0]).toMatchObject({
+    url: `${site}/users/geoffreyhinton`,
+    mainEntity: { '@id': `${site}/users/geoffreyhinton#person` }
+  })
+  const person = ofType(nodes, 'Person')[0]!
+  expect(person).toMatchObject({
+    name: 'Geoffrey Hinton',
+    sameAs: expect.arrayContaining([
+      expect.stringMatching(/^https:\/\/x\.com\//)
+    ])
+  })
+  expect(person.description).toMatch(/simulation .* public writing/)
+  expect(person.description).toContain('not their own assessment')
+  expect(ofType(nodes, 'BreadcrumbList')[0]?.itemListElement).toHaveLength(3)
+})
+
+test('the sitemap and llms.txt list the hub and posts in English only', async ({
+  request
+}) => {
+  const sitemap = await (await request.get('/sitemap.xml')).text()
+  for (const path of ['/p-doom', '/blog', '/blog/what-is-p-doom'])
+    expect(sitemap).toContain(`<loc>${site}${path}</loc>`)
+  expect(sitemap).not.toContain(`${site}/es/p-doom`)
+  expect(sitemap).not.toContain(`${site}/es/blog`)
+  const llms = await (await request.get('/llms.txt')).text()
+  expect(llms).toContain('## Blog')
+  expect(llms).toContain(`- [What is P(doom)?](${site}/blog/what-is-p-doom)`)
+  expect(llms).toContain(`(${site}/p-doom)`)
+})
