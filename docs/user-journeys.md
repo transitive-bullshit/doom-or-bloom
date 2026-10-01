@@ -211,6 +211,12 @@ Added [Ramez Naam](research/ramez-naam-persona-2026-09-27.md) at `/users/ramez` 
 
 The scoped live run completed after one substantial answer under the ordinary automatic stopping policy, using one GPT-5.6 Sol request and five Jev requests for an estimated $0.0212. Its selected result is persisted locally; the generated collection retains all 143 prior records unchanged. The research record contains exact run provenance, source limits and verification. Like the other recent additions, he is in the simulated-user directory with `featured: false`.
 
+## Simulated users batch 1 — October 1, 2026
+
+Added 25 source-grounded simulated users to balance a catalog that sat mostly near the pragmatic-optimist group. They are critics of AI claims, pause and x-risk advocates, safety and policy writers, builders and commentators, and journalists and podcast hosts; two of them are pseudonymous accounts simulated from their own posts. Each brief has 8–12 inspected primary sources, and all are listed in the directory with `featured: false`. Eight verified first-person P(doom) statements are recorded with their outcomes, horizons and conditions. Three candidate numbers were excluded because their scope or attribution did not support a displayed estimate. The [batch record](research/simulated-users-batch-1-2026-10-01.md) links the five research records and gives run provenance, the fidelity review, coverage limits and verification.
+
+Scoped live runs (`--persona=<id> --turns=5 --max-requests=24 --max-cost=0.3`) used 106 GPT-5.6 Sol and 550 Jev requests, for an estimated $2.72. Six final operations hit Jev timeouts or the request budget and were completed by one bounded resume each. The selected runs are persisted locally only; the local collection retains all 144 prior records unchanged.
+
 ## Initial public-source expansion — September 20–21, 2026
 
 This historical source-selection record explains the initial briefs. Current public-person simulations follow the fidelity rules above and the current catalog, rather than treating these early editorial labels as target outcomes.
