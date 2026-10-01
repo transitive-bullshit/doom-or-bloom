@@ -1,7 +1,7 @@
 import 'server-only'
 import { revalidatePath } from 'next/cache'
 import { after } from 'next/server'
-import { locales } from '@/i18n/config'
+import { defaultLocale, locales } from '@/i18n/config'
 import { authUrls } from '@/lib/auth/urls'
 import { reportServerError } from '@/lib/server/error-reporting'
 
@@ -14,9 +14,15 @@ export function refreshPublicAssessment(id: string, published: boolean) {
   // earlier private/unknown 404. Never use stale-while-revalidate for a visibility change.
   // The page renders in app/[locale], so expire the rendered path of every
   // locale variant as well as the public URL (English is served from /en).
+  // English images keep the unprefixed route; other languages render their
+  // own card under their prefix.
   for (const path of [
     ...paths,
-    ...locales.map((locale) => `/${locale}${page}`)
+    ...locales.flatMap((locale) =>
+      locale === defaultLocale
+        ? [`/${locale}${page}`]
+        : [`/${locale}${page}`, `/${locale}${page}/social-image.png`]
+    )
   ])
     revalidatePath(path)
   if (!published || process.env.NODE_ENV !== 'production') return

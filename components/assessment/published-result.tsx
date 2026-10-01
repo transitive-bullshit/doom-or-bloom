@@ -1,5 +1,6 @@
 'use client'
 import type { ReactNode } from 'react'
+import { useTranslations } from 'next-intl'
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
 import type { Assessment } from '@/lib/assessment/schema'
 import { conversationTurns } from '@/lib/assessment/conversation'
@@ -16,6 +17,7 @@ export function PublishedResult({
   /** Rendered between the results and the full conversation. */
   afterResults?: ReactNode
 }) {
+  const t = useTranslations('Conversation')
   const turns = conversationTurns(state).filter(
     (turn) => turn.replies.length > 0
   )
@@ -36,7 +38,7 @@ export function PublishedResult({
         className='flex flex-col gap-4'
         aria-labelledby='full-conversation'
       >
-        <h2 id='full-conversation'>Full conversation</h2>
+        <h2 id='full-conversation'>{t('fullConversation')}</h2>
         <div className='flex flex-col gap-8'>
           <ConversationHistory turns={turns} />
         </div>

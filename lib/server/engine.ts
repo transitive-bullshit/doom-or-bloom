@@ -53,7 +53,12 @@ import { EvaluationFailure } from './provider'
 import { AssessmentFailure } from './assessment-failure'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
-import { timelineContext, timelineUnknown } from '@/lib/assessment/timeline'
+import {
+  timelineContext,
+  timelineExpressedClaim,
+  timelineUnknown,
+  timelineUnsettledClaim
+} from '@/lib/assessment/timeline'
 import { autoStopFloor, evidenceReadiness } from '@/lib/assessment/readiness'
 import {
   participantQuestionPolicy,
@@ -1060,9 +1065,9 @@ export async function runAssessment(
       {
         ...emptyComponent('timeline', 'Timeline'),
         claim: horizon
-          ? `Timing expressed in answer ${state.answers.indexOf(horizon) + 1}; see the full answer for its scope and uncertainty.`
+          ? timelineExpressedClaim(state.answers.indexOf(horizon) + 1)
           : timelineUnknown(state)
-            ? 'You have not settled on a timeline.'
+            ? timelineUnsettledClaim
             : null,
         evidenceIds: horizon
           ? activeEvidence(state)

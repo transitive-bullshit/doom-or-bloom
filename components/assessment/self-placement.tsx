@@ -1,13 +1,12 @@
 'use client'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Map } from './worldview-map'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
 import type { MapPoint } from '@/lib/assessment/self-placement'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-
-const axis = experimentalAxes.transformation
 
 /** Asks where participants expect to land before their result is revealed. */
 export function SelfPlacement({
@@ -19,6 +18,8 @@ export function SelfPlacement({
   onSubmit: (guess: MapPoint) => void
   onSkip: () => void
 }) {
+  const t = useTranslations('Placement')
+  const map = useTranslations('Map')
   const [guess, setGuess] = useState<MapPoint | null>(null)
   const current = guess ?? { x: 0.5, y: 0.5 }
   const slider = (
@@ -37,7 +38,11 @@ export function SelfPlacement({
         onChange={(event) =>
           setGuess({ ...current, [key]: Number(event.target.value) / 100 })
         }
-        aria-valuetext={`${Math.round(current[key] * 100)} out of 100, from ${low} to ${high}`}
+        aria-valuetext={t('sliderValue', {
+          value: Math.round(current[key] * 100),
+          low,
+          high
+        })}
         className='accent-current'
       />
       <span className='flex justify-between text-xs text-muted-foreground'>
@@ -47,25 +52,30 @@ export function SelfPlacement({
     </label>
   )
   return (
-    <section aria-label='Self-placement' className='flex flex-col gap-5'>
+    <section aria-label={t('label')} className='flex flex-col gap-5'>
       <div>
-        <h2>Your results are ready</h2>
-        <p className='mt-2 text-pretty text-body-foreground'>
-          Before you see them: where do you think you’ll land? Tap the map where
-          you’d place yourself, or use the sliders.
-        </p>
+        <h2>{t('title')}</h2>
+        <p className='mt-2 text-pretty text-body-foreground'>{t('intro')}</p>
       </div>
       <Map
         horizontal={emptyComponent('outlook', 'Doom–Bloom')}
-        vertical={emptyComponent('transformation', axis.label)}
+        vertical={emptyComponent(
+          'transformation',
+          experimentalAxes.transformation.label
+        )}
         axis='transformation'
         layout='contained'
         pick={setGuess}
         guess={guess}
       />
       <div className='grid gap-5 sm:grid-cols-2'>
-        {slider('x', 'Your outlook', 'Doom · worried', 'Bloom · hopeful')}
-        {slider('y', 'How much AI will change the world', axis.low, axis.high)}
+        {slider('x', t('outlook'), t('outlookLow'), t('outlookHigh'))}
+        {slider(
+          'y',
+          t('scale'),
+          map('low', { axis: 'transformation' }),
+          map('high', { axis: 'transformation' })
+        )}
       </div>
       <div className='flex flex-wrap items-center gap-3'>
         <Button
@@ -73,16 +83,13 @@ export function SelfPlacement({
           onClick={() => guess && onSubmit(guess)}
         >
           {busy && <Spinner data-icon='inline-start' aria-hidden='true' />}
-          Show where I landed
+          {t('show')}
         </Button>
         <Button variant='ghost' disabled={busy} onClick={onSkip}>
-          Skip
+          {t('skip')}
         </Button>
       </div>
-      <p className='text-xs text-muted-foreground'>
-        Your guess stays private with your assessment. Comparing guesses with
-        results helps us check whether the map reads people fairly.
-      </p>
+      <p className='text-xs text-muted-foreground'>{t('privacy')}</p>
     </section>
   )
 }

@@ -4,6 +4,8 @@ import type { JourneySuite } from '@/lib/journeys/schema'
 import type { Result } from '@/lib/assessment/schema'
 import { people } from '@/components/landing/people'
 import { worldviewValues } from '@/lib/assessment/persona-matches'
+import { englishTranslator } from '@/i18n/translators'
+import { testTranslator } from '@/i18n/test-translator'
 import { publicShareCard, publicShareCardPath } from './public-card'
 
 const suite: JourneySuite = JSON.parse(
@@ -22,7 +24,11 @@ const id = '6f1c2b7e-3d4a-4c5b-8e9f-0a1b2c3d4e5f'
 const participant = (saved: Result) =>
   ({ kind: 'participant', assessment: { result: saved } }) as Published
 const previewPath = async (saved: Published) =>
-  publicShareCardPath(id, await publicShareCard(saved))
+  publicShareCardPath(
+    id,
+    await publicShareCard(saved, englishTranslator()),
+    'en'
+  )
 
 test('a public preview URL changes exactly when its card changes', async () => {
   const path = await previewPath(participant(result))
@@ -44,9 +50,16 @@ test('a public preview URL changes exactly when its card changes', async () => {
     profile: { name: 'Ada Lovelace' },
     simulation: { journey: { result } }
   } as Published
-  expect(await publicShareCard(simulation)).toMatchObject({
+  expect(await publicShareCard(simulation, englishTranslator())).toMatchObject({
     title: 'Ada Lovelace’s AI worldview',
     simulated: true
   })
   expect(await previewPath(simulation)).not.toBe(path)
+
+  // Other languages render their own card under their prefix.
+  const spanish = await publicShareCard(simulation, testTranslator('es'))
+  expect(spanish.title).toBe('La visión de la IA de Ada Lovelace')
+  expect(publicShareCardPath(id, spanish, 'es')).toMatch(
+    new RegExp(`^/es/public/assessments/${id}/social-image\\.png\\?v=`)
+  )
 })

@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { intentUrl, shareCaption, shareUrl } from './share-caption'
+import { englishTranslator } from '@/i18n/translators'
+import { testTranslator } from '@/i18n/test-translator'
+import { intentUrl, shareCaption as caption, shareUrl } from './share-caption'
+
+const shareCaption = (input: Parameters<typeof caption>[1]) =>
+  caption(englishTranslator(), input)
 
 describe('shareCaption', () => {
   it('quotes a stated number as the participant wrote it', () => {
@@ -33,6 +38,21 @@ describe('shareCaption', () => {
     )
     expect(shareCaption({})).toBe(
       'Just mapped my AI worldview in about 3 minutes\n\nWhere do you land?'
+    )
+  })
+
+  it('is one whole message per language', () => {
+    const t = testTranslator('es')
+    expect(
+      caption(t, {
+        risk: { source: 'inferred', token: '<1%' },
+        closest: 'Andrej Karpathy'
+      })
+    ).toBe(
+      'Doom or Bloom estima mi P(doom) en menos del 1% y mi visión de la IA se parece más a la de Andrej Karpathy\n\n¿Dónde te ubicas?'
+    )
+    expect(caption(t, {})).toBe(
+      'Acabo de mapear mi visión de la IA en unos 3 minutos\n\n¿Dónde te ubicas?'
     )
   })
 

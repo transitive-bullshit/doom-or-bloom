@@ -1,5 +1,7 @@
 'use client'
 import { useState } from 'react'
+import { useLocale, useTranslations } from 'next-intl'
+import { getPathname } from '@/i18n/navigation'
 import { cn } from 'cn'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -16,12 +18,14 @@ export function AccountAccess({
   enabled: boolean
   authError: 'claim' | 'signin' | null
 }) {
+  const t = useTranslations('Library')
+  const locale = useLocale()
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(
     authError === 'claim'
-      ? 'Your assessments could not be linked. Your browser still has access; try signing in again.'
+      ? t('claimError')
       : authError
-        ? 'Sign-in was not completed. You can try again whenever you’re ready.'
+        ? t('signinError')
         : null
   )
   async function act() {
@@ -32,15 +36,17 @@ export function AccountAccess({
         method: 'POST',
         body: JSON.stringify({
           provider: 'twitter',
-          callbackURL: '/assessments',
-          errorCallbackURL: '/assessments?authError=signin'
+          // Return to the library in the visitor's language.
+          callbackURL: getPathname({ href: '/assessments', locale }),
+          errorCallbackURL: getPathname({
+            href: '/assessments?authError=signin',
+            locale
+          })
         })
       })
       window.location.assign(result.url)
     } catch {
-      setError(
-        'Unable to sign in right now. Your saved assessments are unchanged.'
-      )
+      setError(t('signinUnavailable'))
       setBusy(false)
     }
   }
@@ -55,9 +61,7 @@ export function AccountAccess({
         )}
       >
         {!signedIn && (
-          <p className='text-muted-foreground'>
-            Your assessments are saved for this browser.
-          </p>
+          <p className='text-muted-foreground'>{t('browserSaved')}</p>
         )}
         {signedIn && profile && (
           <>
@@ -77,7 +81,7 @@ export function AccountAccess({
             disabled={busy}
             onClick={() => void act()}
           >
-            {busy ? 'Please wait…' : 'Sign in with X'}
+            {busy ? t('wait') : t('signIn')}
           </Button>
         )}
       </div>

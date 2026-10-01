@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useId, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import type { SavedDebugOperation } from '@/lib/debug/trace-storage'
 import {
   AnswerTarget,
@@ -10,6 +11,7 @@ import {
 import { AnswerResult } from './answer-result'
 import { Check, Copy, CircleAlert } from 'lucide-react'
 import type { ConversationTurn } from '@/lib/assessment/conversation'
+import { promptText } from '@/lib/assessment/display-text'
 import { Bubble, BubbleContent } from '@/components/ui/bubble'
 import { Message, MessageContent, MessageHeader } from '@/components/ui/message'
 import {
@@ -19,15 +21,19 @@ import {
 } from '@/components/ui/collapsible'
 import { Button } from '@/components/ui/button'
 
+/** Accessible names for one answer: its region and its disclosure actions. */
+export type AnswerLabels = { region: string; expand: string; collapse: string }
+
 export function AnswerDisclosure({
   text,
-  label,
+  labels,
   answerNumber
 }: {
   text: string
-  label: string
+  labels: AnswerLabels
   answerNumber?: number
 }) {
+  const t = useTranslations('Conversation')
   const [open, setOpen] = useAnswerDisclosure(false, answerNumber ?? 0)
   const long = text.length > 360 || text.split('\n').length > 4
   const content = !long ? (
@@ -38,10 +44,10 @@ export function AnswerDisclosure({
         <Button
           variant='link'
           size='sm'
-          aria-label={`${open ? 'Collapse' : 'Read full'} ${label.toLowerCase()}`}
+          aria-label={open ? labels.collapse : labels.expand}
           className='mb-2 px-0'
         >
-          {open ? 'Show less' : 'Read full answer'}
+          {open ? t('showLess') : t('readFull')}
         </Button>
       </CollapsibleTrigger>
       {!open && (
@@ -50,7 +56,7 @@ export function AnswerDisclosure({
       <CollapsibleContent>
         <div
           role='region'
-          aria-label={label}
+          aria-label={labels.region}
           className='whitespace-pre-wrap wrap-anywhere'
         >
           {text}
@@ -66,6 +72,7 @@ export function AnswerDisclosure({
 }
 
 function CopyAnswer({ text, label }: { text: string; label: string }) {
+  const t = useTranslations('Conversation')
   const [status, setStatus] = useState<'idle' | 'copied' | 'error'>('idle')
   const reset = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const statusId = useId()
@@ -87,7 +94,7 @@ function CopyAnswer({ text, label }: { text: string; label: string }) {
         size='icon-sm'
         className='copy-answer-button'
         data-copy-state={status}
-        aria-label={`Copy ${label.toLowerCase()}`}
+        aria-label={label}
         aria-describedby={statusId}
         onClick={() => void copy()}
       >
@@ -108,9 +115,9 @@ function CopyAnswer({ text, label }: { text: string; label: string }) {
       </Button>
       <span id={statusId} role='status' className='sr-only'>
         {status === 'copied'
-          ? 'Copied'
+          ? t('copied')
           : status === 'error'
-            ? 'Copy unavailable in this browser'
+            ? t('copyUnavailable')
             : ''}
       </span>
     </span>
@@ -118,38 +125,46 @@ function CopyAnswer({ text, label }: { text: string; label: string }) {
 }
 
 export function ConversationReplies({ turn }: { turn: ConversationTurn }) {
+  const t = useTranslations('Conversation')
   const navigation = useAnswerNavigation()
-  return turn.replies.map((reply, index) => (
-    <Message
-      key={reply.id}
-      align='end'
-      aria-label={`Your reply ${index + 1} to question ${turn.prompt.ordinal}`}
-    >
-      <MessageContent>
-        {reply.earlier && <MessageHeader>Earlier reply</MessageHeader>}
-        <Bubble variant='secondary' align='end'>
-          <BubbleContent
-            tabIndex={0}
-            className='answer-bubble relative min-h-12 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
-          >
-            <AnswerDisclosure
-              answerNumber={
-                reply.earlier
-                  ? undefined
-                  : (navigation?.answerIds.indexOf(reply.id) ?? -1) + 1
-              }
-              text={reply.text}
-              label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
-            />
-            <CopyAnswer
-              text={reply.text}
-              label={`Answer ${index + 1} to question ${turn.prompt.ordinal}`}
-            />
-          </BubbleContent>
-        </Bubble>
-      </MessageContent>
-    </Message>
-  ))
+  return turn.replies.map((reply, index) => {
+    const numbers = { answer: index + 1, question: turn.prompt.ordinal }
+    return (
+      <Message
+        key={reply.id}
+        align='end'
+        aria-label={t('reply', {
+          reply: index + 1,
+          question: turn.prompt.ordinal
+        })}
+      >
+        <MessageContent>
+          {reply.earlier && <MessageHeader>{t('earlier')}</MessageHeader>}
+          <Bubble variant='secondary' align='end'>
+            <BubbleContent
+              tabIndex={0}
+              className='answer-bubble relative min-h-12 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring'
+            >
+              <AnswerDisclosure
+                answerNumber={
+                  reply.earlier
+                    ? undefined
+                    : (navigation?.answerIds.indexOf(reply.id) ?? -1) + 1
+                }
+                text={reply.text}
+                labels={{
+                  region: t('answer.region', numbers),
+                  expand: t('answer.expand', numbers),
+                  collapse: t('answer.collapse', numbers)
+                }}
+              />
+              <CopyAnswer text={reply.text} label={t('answer.copy', numbers)} />
+            </BubbleContent>
+          </Bubble>
+        </MessageContent>
+      </Message>
+    )
+  })
 }
 
 export function ConversationHistory({
@@ -159,18 +174,19 @@ export function ConversationHistory({
   turns: ConversationTurn[]
   operations?: SavedDebugOperation[]
 }) {
+  const root = useTranslations()
   return turns.map((turn) => (
     <article
       key={turn.prompt.id}
       className='flex flex-col gap-5'
-      aria-label={`Question ${turn.prompt.ordinal} and replies`}
+      aria-label={root('Conversation.turn', { question: turn.prompt.ordinal })}
     >
       <Message>
         <MessageContent>
           <Bubble variant='ghost'>
             <BubbleContent>
               <h4 className='text-pretty whitespace-pre-wrap wrap-anywhere'>
-                {turn.question}
+                {promptText(root, { ...turn.prompt, text: turn.question })}
               </h4>
             </BubbleContent>
           </Bubble>

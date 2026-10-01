@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import {
   Card,
   CardHeader,
@@ -21,17 +22,15 @@ export function ClosestPersonas({
   result: Result
   personas: PersonaComparison[]
 }) {
+  const t = useTranslations('Results.closest')
   const matches = closestPersonas(result, personas)
   return (
     <Card role='region' aria-labelledby='closest-personas-title'>
       <CardHeader>
         <CardTitle>
-          <h3 id='closest-personas-title'>Your closest worldviews</h3>
+          <h3 id='closest-personas-title'>{t('title')}</h3>
         </CardTitle>
-        <CardDescription>
-          Explore the thought leaders whose simulated worldviews are closest to
-          your views across capabilities, risks, upside, control, and policy.
-        </CardDescription>
+        <CardDescription>{t('description')}</CardDescription>
       </CardHeader>
       <CardContent>
         {matches.length ? (
@@ -40,7 +39,7 @@ export function ClosestPersonas({
               <li key={person.id} className='min-w-0'>
                 <Link
                   href={`/users/${person.slug}`}
-                  aria-label={`View ${person.name}’s persona`}
+                  aria-label={t('view', { name: person.name })}
                   className='flex h-full flex-col gap-4 rounded-lg border p-4 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
                 >
                   <div className='flex items-center justify-between gap-3'>
@@ -52,8 +51,10 @@ export function ClosestPersonas({
                       className='image-outline size-14 rounded-full object-cover'
                     />
                     <span className='text-sm text-muted-foreground'>
-                      <span className='sr-only'>Rank </span>
-                      {index + 1}
+                      <span className='sr-only'>
+                        {t('rank', { number: index + 1 })}
+                      </span>
+                      <span aria-hidden='true'>{index + 1}</span>
                     </span>
                   </div>
                   <span className='font-medium'>{person.name}</span>
@@ -63,17 +64,12 @@ export function ClosestPersonas({
           </ol>
         ) : (
           <p className='text-sm text-body-foreground'>
-            {personas.length
-              ? 'There isn’t enough shared worldview evidence to suggest personas yet. Comparisons need at least three dimensions. Answering more questions can help.'
-              : 'Persona comparisons are temporarily unavailable. Your assessment results are still available.'}
+            {personas.length ? t('insufficient') : t('unavailable')}
           </p>
         )}
       </CardContent>
       <CardFooter>
-        <p className='text-xs text-muted-foreground'>
-          Matches reflect simulated views based on recent sources and may change
-          over time.
-        </p>
+        <p className='text-xs text-muted-foreground'>{t('note')}</p>
       </CardFooter>
     </Card>
   )

@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest'
+import { englishTranslator } from '@/i18n/translators'
 import {
   operationFailureCategory,
   operationFailureMessage
@@ -10,7 +11,9 @@ test('historical evaluation failures explain a confirmed provider rejection', ()
     { category: 'evaluation_failed' }
   ])
   expect(category).toBe('provider_rejected')
-  expect(operationFailureMessage(category)).toContain('TypeSafe (Jev)')
+  expect(operationFailureMessage(englishTranslator(), category)).toContain(
+    'TypeSafe (Jev)'
+  )
 })
 
 test('a previous provider failure does not override a later failure or application category', () => {
@@ -32,8 +35,8 @@ test.each([null, {}, [], [null], [{ status: '403' }]])(
     expect(operationFailureCategory('evaluation_failed', diagnostics)).toBe(
       'evaluation_failed'
     )
-    expect(operationFailureMessage('private exception text')).not.toMatch(
-      /TypeSafe|private exception/
-    )
+    expect(
+      operationFailureMessage(englishTranslator(), 'private exception text')
+    ).not.toMatch(/TypeSafe|private exception/)
   }
 )

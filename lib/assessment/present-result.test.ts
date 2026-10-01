@@ -7,6 +7,7 @@ import {
   experimentCandidates
 } from './worldview-experiment'
 import { inferPdoom } from './pdoom'
+import { englishTranslator } from '@/i18n/translators'
 import { pdoomRangeLabel, presentPdoom, presentResult } from './present-result'
 import type { Result } from './schema'
 
@@ -76,8 +77,12 @@ test('inferred values are headlined by their point estimate, and stated qualifie
   })
   expect(stated?.bounds).toEqual([0, 0.01])
   expect(stated?.estimate).toBe(0.005)
-  expect(pdoomRangeLabel([0.1, 0.3])).toBe('10–30%')
-  expect(pdoomRangeLabel([0.5, 0.995])).toBe('over 50%')
+  const t = englishTranslator()
+  expect(pdoomRangeLabel(t, [0.1, 0.3])).toBe('10–30%')
+  expect(pdoomRangeLabel(t, [0.5, 0.995])).toBe('over 50%')
+  expect(pdoomRangeLabel(t, [0.001, 0.05])).toBe('under 5%')
+  expect(pdoomRangeLabel(t, [0.2, 0.204])).toBe('≈20%')
+  expect(pdoomRangeLabel(englishTranslator(), [0, 0.005])).toBe('<1%')
 })
 
 test('a split reading is headlined as unclear rather than by a midpoint', () => {

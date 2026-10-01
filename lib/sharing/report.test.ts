@@ -2,6 +2,7 @@ import { expect, test } from 'vitest'
 import { createAssessment } from '@/lib/assessment/state'
 import { baseResult, emptyComponent } from '@/lib/assessment/projections'
 import { loadBundle } from '@/lib/content/loader'
+import { englishTranslator } from '@/i18n/translators'
 import { serializeReport } from './report'
 
 test('expanded reports preserve usable evidence while excluding local rejected text, drafts and retry records', () => {
@@ -35,7 +36,7 @@ test('expanded reports preserve usable evidence while excluding local rejected t
     loadBundle().rubric,
     false
   )
-  const report = serializeReport(state)
+  const report = serializeReport(englishTranslator(), state)
   for (const artifact of [report.interview, report.json]) {
     expect(artifact).toContain(text)
     expect(artifact).not.toContain('PRIVATE_DRAFT_CANARY')
@@ -76,7 +77,9 @@ test('diagnostic reports retain routes, exact evaluator input, snapshots and exp
     createdAt: '2026-09-20T00:00:00.000Z',
     provider: 'live' as const
   }
-  const partial = JSON.parse(serializeReport(state, [operation]).json)
+  const partial = JSON.parse(
+    serializeReport(englishTranslator(), state, [operation]).json
+  )
   expect(partial.diagnosticTrace.completeness).toBe('partial')
   expect(partial.diagnosticTrace.missingBaseRevisions).toEqual([1])
   expect(partial.diagnosticTrace.operations[0].assessment.result).toEqual(
@@ -98,7 +101,7 @@ test('diagnostic reports retain routes, exact evaluator input, snapshots and exp
     assessment: { ...operation.assessment, revision: 2 }
   }
   const complete = JSON.parse(
-    serializeReport(state, [operation, failed, last]).json
+    serializeReport(englishTranslator(), state, [operation, failed, last]).json
   )
   expect(complete.diagnosticTrace.completeness).toBe('complete')
   expect(complete.diagnosticTrace.operations[1].error).toBe('Evaluation failed')

@@ -1,6 +1,7 @@
 'use client'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { useRouter } from '@/i18n/navigation'
 import { toast } from 'sonner'
 import { cn } from 'cn'
 import { Button } from '@/components/ui/button'
@@ -45,6 +46,8 @@ export function AssessmentLibrary({
   authError: 'claim' | 'signin' | null
 }) {
   const router = useRouter()
+  const root = useTranslations()
+  const t = useTranslations('Library')
   const [busy, setBusy] = useState<string | null>(null)
   const [deleting, setDeleting] = useState<LibraryItem | null>(null)
   const [publishing, setPublishing] = useState<LibraryItem | null>(null)
@@ -54,12 +57,7 @@ export function AssessmentLibrary({
       await api(`/api/assessments/${id}`, { method: 'DELETE' })
       router.refresh()
     } catch (err) {
-      toast.error(
-        userErrorMessage(
-          err,
-          'Couldn’t delete this assessment. Please try again.'
-        )
-      )
+      toast.error(userErrorMessage(root, err, t('deleteFailed')))
     } finally {
       setBusy(null)
     }
@@ -79,16 +77,14 @@ export function AssessmentLibrary({
       })
       router.refresh()
     } catch (err) {
-      toast.error(
-        userErrorMessage(err, 'Couldn’t change visibility. Please try again.')
-      )
+      toast.error(userErrorMessage(root, err, t('visibilityFailed')))
     } finally {
       setBusy(null)
     }
   }
   return (
     <div className='content-column flex flex-col gap-8 py-8'>
-      <h1>My assessments</h1>
+      <h1>{t('title')}</h1>
       <div
         className={cn(
           'flex flex-col gap-8',
@@ -103,9 +99,7 @@ export function AssessmentLibrary({
         />
         <AssessmentStart automatic={autoStart} />
       </div>
-      {items.length === 0 && !autoStart && (
-        <p>No assessments yet. Start whenever you’re ready.</p>
-      )}
+      {items.length === 0 && !autoStart && <p>{t('empty')}</p>}
       {items.length > 0 && (
         <AssessmentTable
           items={items}
@@ -135,14 +129,12 @@ export function AssessmentLibrary({
       >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete this assessment?</DialogTitle>
-            <DialogDescription>
-              This deletes the assessment, results, and saved submissions.
-            </DialogDescription>
+            <DialogTitle>{t('deleteTitle')}</DialogTitle>
+            <DialogDescription>{t('deleteDescription')}</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant='outline'>Keep it</Button>
+              <Button variant='outline'>{t('keep')}</Button>
             </DialogClose>
             <DialogClose asChild>
               <Button
@@ -151,7 +143,7 @@ export function AssessmentLibrary({
                   if (deleting) void remove(deleting.id)
                 }}
               >
-                Delete assessment
+                {t('deleteConfirm')}
               </Button>
             </DialogClose>
           </DialogFooter>

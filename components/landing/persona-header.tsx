@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { ProfileHeader } from '@/components/profile-header'
 
 export function PersonaHeader({
@@ -12,6 +13,7 @@ export function PersonaHeader({
     description: string
   }
 }) {
+  const t = useTranslations('Persona')
   return (
     <ProfileHeader
       name={person.name}
@@ -20,7 +22,7 @@ export function PersonaHeader({
       profileLabel={
         person.xUrl
           ? `x.com/${person.xUrl.split('/').at(-1)}`
-          : person.profileLabel
+          : (person.profileLabel ?? t('profile'))
       }
       description={person.description}
     />

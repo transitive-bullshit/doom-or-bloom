@@ -2,6 +2,7 @@
 import { memo, useEffect, useEffectEvent, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Paperclip, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
@@ -52,6 +53,7 @@ const fireworks = bursts.map((burst, index) => ({
 }))
 
 export function Paperclips({ dismiss }: { dismiss: () => void }) {
+  const t = useTranslations('Interview.paperclips')
   const [visible, setVisible] = useState(true)
   const finished = useRef(false)
   function finish() {
@@ -82,12 +84,12 @@ export function Paperclips({ dismiss }: { dismiss: () => void }) {
       <div className='pointer-events-auto absolute top-4 right-4 left-4 sm:left-auto sm:max-w-sm'>
         <Alert role='status'>
           <Paperclip />
-          <AlertTitle>Paperclip production has escalated.</AlertTitle>
+          <AlertTitle>{t('title')}</AlertTitle>
           <AlertDescription>
-            <p>A spectacularly unhelpful amount of paperclips.</p>
+            <p>{t('description')}</p>
             <Button variant='outline' onClick={finish} className='mt-2'>
               <X data-icon='inline-start' />
-              Dismiss paperclips
+              {t('dismiss')}
             </Button>
           </AlertDescription>
         </Alert>

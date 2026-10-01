@@ -7,6 +7,9 @@ import type {
 } from './schema'
 import { emptyComponent, quantile } from './projections'
 
+/** The stored claim for an explicitly unsettled facet. */
+export const facetUnsettledClaim = 'You have not settled on a position here.'
+
 // These are separate claims, not extra votes in a dimension average.
 export const facets: Array<{
   id: string
@@ -159,9 +162,7 @@ export function facetComponents(
         evidenceIds,
         distribution: answer.probabilities,
         claim:
-          answer.choice === 'explicitly_unknown'
-            ? 'You have not settled on a position here.'
-            : null
+          answer.choice === 'explicitly_unknown' ? facetUnsettledClaim : null
       }
     const conditional = Object.fromEntries(
       Object.entries(distribution).map(([key, value]) => [key, value / mass])

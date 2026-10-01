@@ -1,5 +1,6 @@
 'use client'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import type { Assessment, Operation } from '@/lib/assessment/schema'
 import { assessmentSchema } from '@/lib/assessment/schema'
 import { currentPrompt } from '@/lib/assessment/state'
@@ -22,6 +23,8 @@ import { emitEvent } from '@/lib/analytics/client'
 import { transitionEvents } from '@/lib/analytics/events'
 
 export function usePersistentAssessment(initial: OwnedAssessment) {
+  const root = useTranslations()
+  const t = useTranslations('Interview.notices')
   const [record, setRecord] = useState(initial)
   const [notice, setNotice] = useState('')
   const [sending, setSending] = useState(false)
@@ -29,17 +32,18 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
   const state = useRef(initial.assessment)
   const inFlight = useRef(false)
   const endpoint = `/api/assessments/${initial.assessment.id}`
-  const persist = useCallback((value: Assessment) => {
-    state.current = value
-    setRecord((previous) => ({ ...previous, assessment: value }))
-    try {
-      writeDraft(value.id, currentPrompt(value).id, value.draft)
-    } catch {
-      setNotice(
-        'Unsubmitted typing cannot be saved in this browser. Submitted progress is saved on the server.'
-      )
-    }
-  }, [])
+  const persist = useCallback(
+    (value: Assessment) => {
+      state.current = value
+      setRecord((previous) => ({ ...previous, assessment: value }))
+      try {
+        writeDraft(value.id, currentPrompt(value).id, value.draft)
+      } catch {
+        setNotice(t('draftUnsaved'))
+      }
+    },
+    [t]
+  )
   const refresh = useCallback(async () => {
     const next = await api<OwnedAssessment>(endpoint)
     const assessment = assessmentSchema.parse(next.assessment)
@@ -94,27 +98,18 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
     queueMicrotask(() => {
       void api('/api/auth/get-session').catch(() => {})
       void refresh().catch((err) =>
-        setNotice(
-          userErrorMessage(
-            err,
-            'Couldn’t load your assessment. Please refresh the page.'
-          )
-        )
+        setNotice(userErrorMessage(root, err, t('loadFailed')))
       )
     })
-  }, [refresh])
+  }, [refresh, root, t])
   const processing = record.operation?.status === 'running'
   useEffect(() => {
     if (!processing) return
     const timer = setInterval(() => {
-      void refresh().catch(() =>
-        setNotice(
-          'Connection interrupted. Your answer may still be processing. Please refresh the page.'
-        )
-      )
+      void refresh().catch(() => setNotice(t('connection')))
     }, 1500)
     return () => clearInterval(timer)
-  }, [processing, refresh])
+  }, [processing, refresh, t])
 
   const act = async (operation: Operation, explicitRetry = false) => {
     if (inFlight.current || processing) return
@@ -132,7 +127,7 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
       uncertain &&
       JSON.stringify(uncertain.operation) !== JSON.stringify(operation)
     ) {
-      setNotice('Confirm the previous submission before making another change.')
+      setNotice(t('confirmPrevious'))
       return
     }
     inFlight.current = true
@@ -142,7 +137,7 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
     try {
       writePending(input, before.id)
     } catch {
-      setNotice('Keep this tab open until the submission is confirmed.')
+      setNotice(t('keepTabOpen'))
     }
     try {
       const result = await api<OperationOutcome>(endpoint, {
@@ -158,11 +153,7 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
           operation,
           assessment: result.assessment,
           createdAt: new Date().toISOString()
-        }).catch(() =>
-          setNotice(
-            'Your assessment is saved, but browser debug details could not be saved.'
-          )
-        )
+        }).catch(() => setNotice(t('debugSaveFailed')))
       }
       try {
         writePending(null, before.id)
@@ -183,12 +174,7 @@ export function usePersistentAssessment(initial: OwnedAssessment) {
       // including after reload. Keep notices for connection/storage problems.
       await refresh()
     } catch (err) {
-      setNotice(
-        userErrorMessage(
-          err,
-          'We couldn’t confirm your answer was saved. Check its status before continuing.'
-        )
-      )
+      setNotice(userErrorMessage(root, err, t('unconfirmed')))
       if (err instanceof ApiError && err.status >= 400 && err.status < 500) {
         try {
           writePending(null, before.id)

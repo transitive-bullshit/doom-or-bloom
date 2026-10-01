@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState, type ReactNode } from 'react'
 import { DownloadIcon, LinkIcon, Share2Icon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
@@ -11,8 +12,9 @@ import {
   type ShareTarget
 } from '@/lib/sharing/share-caption'
 
+// Product names stay as they are; X's label is a translated action.
 const platforms = [
-  ['x', 'Post on X'],
+  ['x', null],
   ['threads', 'Threads'],
   ['bluesky', 'Bluesky'],
   ['linkedin', 'LinkedIn']
@@ -42,6 +44,7 @@ export function ShareBar({
   onDownload: () => void
   publishControl?: ReactNode
 }) {
+  const t = useTranslations('Share')
   // Web Share exists on phones and some desktops; decide after hydration.
   const [native, setNative] = useState(false)
   const [origin, setOrigin] = useState(siteUrl)
@@ -57,7 +60,7 @@ export function ShareBar({
       await navigator.clipboard.writeText(text)
       toast.success(success)
     } catch {
-      toast.error('Unable to copy. Select the text and copy it instead.')
+      toast.error(t('copyFailed'))
     }
   }
   return (
@@ -67,12 +70,10 @@ export function ShareBar({
     >
       <div className='flex flex-col gap-1'>
         <p id='share-result-title' className='font-medium'>
-          Share your result
+          {t('title')}
         </p>
         <p className='text-sm text-body-foreground'>
-          {published
-            ? 'Posts link to your public page, which includes your answers.'
-            : 'Posts include only your P(doom) and closest thought leader, with a link to Doom or Bloom. Your answers stay private.'}
+          {published ? t('publishedNote') : t('privateNote')}
         </p>
       </div>
       <p className='rounded-lg bg-muted p-3 text-sm whitespace-pre-line text-body-foreground'>
@@ -94,7 +95,7 @@ export function ShareBar({
             }}
           >
             <Share2Icon data-icon='inline-start' aria-hidden='true' />
-            Share…
+            {t('share')}
           </Button>
         )}
         {platforms.map(([target, label]) => (
@@ -106,13 +107,10 @@ export function ShareBar({
               onClick={() => {
                 onShare(target)
                 if (target === 'linkedin')
-                  void copy(
-                    caption,
-                    'Caption copied. Paste it into your LinkedIn post.'
-                  )
+                  void copy(caption, t('linkedinCopied'))
               }}
             >
-              {label}
+              {label ?? t('x')}
             </a>
           </Button>
         ))}
@@ -122,11 +120,11 @@ export function ShareBar({
           size='sm'
           onClick={() => {
             onShare('copy_link')
-            void copy(shareUrl(link, 'copy_link'), 'Link copied.')
+            void copy(shareUrl(link, 'copy_link'), t('linkCopied'))
           }}
         >
           <LinkIcon data-icon='inline-start' aria-hidden='true' />
-          Copy link
+          {t('copyLink')}
         </Button>
         <Button
           type='button'
@@ -141,7 +139,7 @@ export function ShareBar({
           ) : (
             <DownloadIcon data-icon='inline-start' aria-hidden='true' />
           )}
-          {downloading ? 'Preparing image…' : 'Download image'}
+          {downloading ? t('preparingImage') : t('downloadImage')}
         </Button>
       </div>
       {publishControl && (

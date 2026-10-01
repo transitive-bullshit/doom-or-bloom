@@ -1,5 +1,7 @@
 import 'server-only'
 import { render } from 'takumi-js'
+import { languageTag, type Locale } from '@/i18n/config'
+import type { Translator } from '@/i18n/translator'
 import { loadPersonaComparisons } from '@/components/landing/data'
 import { LimitError } from '@/lib/server/limits'
 import { ShareCard, type CardData } from './card'
@@ -7,11 +9,18 @@ import { loadSocialPortrait } from './portraits'
 
 /**
  * One composition and portrait-loading path for downloads and public previews.
- * Always PNG: X's post composer does not render WebP link cards.
+ * Always PNG: X's post composer does not render WebP link cards. Text uses
+ * the translator's language; Spanish needs no fonts beyond Takumi's default.
  */
 export async function renderShareCard(
+  t: Translator,
   data: CardData,
-  options: { devicePixelRatio: 1 | 2; title?: string; simulated?: boolean }
+  options: {
+    devicePixelRatio: 1 | 2
+    locale: Locale
+    title?: string
+    simulated?: boolean
+  }
 ) {
   const people = data.closestPersonaIds.length
     ? await loadPersonaComparisons()
@@ -30,7 +39,7 @@ export async function renderShareCard(
     }))
   )
   const date = data.generatedAt
-    ? new Intl.DateTimeFormat('en-US', {
+    ? new Intl.DateTimeFormat(languageTag(options.locale), {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
@@ -40,6 +49,7 @@ export async function renderShareCard(
   return render(
     <div style={{ width: 1200, height: 630, display: 'flex' }}>
       {ShareCard({
+        t,
         data,
         matches,
         date,

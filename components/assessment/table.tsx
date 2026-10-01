@@ -1,7 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import { useState, type ReactNode } from 'react'
+import { useLocale, useMessages, useTranslations } from 'next-intl'
+import { defaultLocale, languageTag } from '@/i18n/config'
+import type { Translator } from '@/i18n/translator'
+import { getPathname, Link } from '@/i18n/navigation'
 import { cn } from 'cn'
 import { toast } from 'sonner'
 import { downloadBlob } from '@/lib/sharing/report'
@@ -42,8 +45,8 @@ const features = tableFeatures({
 })
 const helper = createColumnHelper<typeof features, LibraryItem>()
 
-function createdDate(item: LibraryItem) {
-  return new Intl.DateTimeFormat('en-US', {
+function createdDate(item: LibraryItem, tag: string) {
+  return new Intl.DateTimeFormat(tag, {
     dateStyle: 'medium',
     timeZone: 'UTC'
   }).format(new Date(item.createdAt))
@@ -51,10 +54,18 @@ function createdDate(item: LibraryItem) {
 
 function status(item: LibraryItem) {
   return item.visibility === 'public'
-    ? 'Published'
+    ? 'published'
     : item.hasResults
-      ? 'Ready to publish'
-      : 'In progress'
+      ? 'ready'
+      : 'inProgress'
+}
+
+// New assessments are saved as "Your AI worldview #<n>"; show that title, and
+// a missing one, in the active locale. Other saved titles show as written.
+function title(t: Translator<'Library'>, item: LibraryItem) {
+  if (item.title === null) return t('untitled')
+  const number = /^Your AI worldview #(\d+)$/u.exec(item.title)?.[1]
+  return number ? t('numbered', { number }) : item.title
 }
 
 function SortHeader<TValue>({
@@ -102,12 +113,18 @@ export function AssessmentTable({
   onMakePrivate: (item: LibraryItem) => void
   onDelete: (item: LibraryItem) => void
 }) {
+  const root = useTranslations()
+  const t = useTranslations('Library')
+  const locale = useLocale()
+  const messages = useMessages()
+  const tag = languageTag(locale)
   const date = (item: LibraryItem) =>
     datePresentation ? (
       datePresentation.render(item.createdAt)
     ) : (
-      <time dateTime={item.createdAt}>{createdDate(item)}</time>
+      <time dateTime={item.createdAt}>{createdDate(item, tag)}</time>
     )
+  const statusLabel = (item: LibraryItem) => t(`status.${status(item)}`)
   const [exporting, setExporting] = useState(false)
   async function exportResults(
     id: string,
@@ -122,7 +139,8 @@ export function AssessmentTable({
       ) {
         throw new Error('Image copying unavailable')
       }
-      const image = fetch(`/api/assessments/${id}/results-image`, {
+      const query = locale === defaultLocale ? '' : `?locale=${locale}`
+      const image = fetch(`/api/assessments/${id}/results-image${query}`, {
         cache: 'no-store'
       }).then((response) => {
         if (!response.ok) throw new Error('Image unavailable')
@@ -137,26 +155,26 @@ export function AssessmentTable({
       } else if (action === 'report') {
         const { savedReport } = await import('@/lib/sharing/saved-report')
         downloadBlob(
-          await savedReport(id, image),
-          `doom or bloom assessment ${id}.zip`
+          await savedReport(id, image, { locale, messages }),
+          root('Report.filename', { id })
         )
       } else {
         downloadBlob(await image, 'doom-or-bloom.png')
       }
       toast.success(
         action === 'copy'
-          ? 'Results image copied.'
+          ? t('imageCopied')
           : action === 'report'
-            ? 'Full report download started.'
-            : 'Results image download started.'
+            ? t('reportStarted')
+            : t('imageStarted')
       )
     } catch {
       toast.error(
         action === 'copy'
-          ? 'Couldn’t copy the image. Try downloading it instead.'
+          ? t('imageCopyFailed')
           : action === 'report'
-            ? 'Couldn’t download the report. Please try again.'
-            : 'Couldn’t download the image. Please try again.'
+            ? t('reportFailed')
+            : t('imageFailed')
       )
     } finally {
       setExporting(false)
@@ -165,11 +183,11 @@ export function AssessmentTable({
   async function copyPublicLink(id: string) {
     try {
       await navigator.clipboard.writeText(
-        `${window.location.origin}/public/assessments/${id}`
+        `${window.location.origin}${getPathname({ href: `/public/assessments/${id}`, locale })}`
       )
-      toast.success('Public link copied.')
+      toast.success(t('publicCopied'))
     } catch {
-      toast.error('Unable to copy. Open the public assessment to copy its URL.')
+      toast.error(t('publicCopyFailed'))
     }
   }
   const [sorting, setSorting] = useState<SortingState>([
@@ -177,21 +195,19 @@ export function AssessmentTable({
   ])
   const columns = helper.columns([
     helper.accessor('title', {
-      header: 'Assessment',
+      header: t('assessment'),
       enableSorting: false,
       cell: ({ row }) => (
         <Link
           className='flex min-h-13 w-full flex-col items-start justify-center gap-2 px-3 py-3 font-medium sm:flex-row sm:items-center sm:justify-start sm:px-2'
           href={`${hrefPrefix}/${row.original.id}`}
         >
-          <span className='wrap-anywhere'>
-            {row.original.title ?? 'Your AI worldview'}
-          </span>
+          <span className='wrap-anywhere'>{title(t, row.original)}</span>
           <span className='flex flex-wrap items-center gap-2 sm:hidden'>
             <span className='text-xs font-normal text-muted-foreground'>
               {date(row.original)}
             </span>
-            <Badge variant='outline'>{status(row.original)}</Badge>
+            <Badge variant='outline'>{statusLabel(row.original)}</Badge>
           </span>
         </Link>
       )
@@ -199,7 +215,7 @@ export function AssessmentTable({
     helper.accessor('createdAt', {
       header: ({ column }) => (
         <SortHeader column={column}>
-          {datePresentation?.heading ?? 'Date created'}
+          {datePresentation?.heading ?? t('dateCreated')}
         </SortHeader>
       ),
       sortFn: 'text',
@@ -207,22 +223,24 @@ export function AssessmentTable({
     }),
     helper.accessor(status, {
       id: 'status',
-      header: ({ column }) => <SortHeader column={column}>Status</SortHeader>,
+      header: ({ column }) => (
+        <SortHeader column={column}>{t('statusHeading')}</SortHeader>
+      ),
       sortFn: 'text',
       cell: ({ row }) =>
         row.original.visibility === 'public' && !readOnly ? (
           <Badge asChild variant='outline'>
             <Link href={`/public/assessments/${row.original.id}`}>
-              Published
+              {t('status.published')}
             </Link>
           </Badge>
         ) : (
-          <Badge variant='outline'>{status(row.original)}</Badge>
+          <Badge variant='outline'>{statusLabel(row.original)}</Badge>
         )
     }),
     helper.display({
       id: 'actions',
-      header: () => <span className='sr-only'>Actions</span>,
+      header: () => <span className='sr-only'>{t('actions')}</span>,
       cell: ({ row }) => (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -230,7 +248,7 @@ export function AssessmentTable({
               variant='ghost'
               size='icon'
               disabled={busy || exporting}
-              aria-label={`Actions for ${row.original.title ?? 'Your AI worldview'}`}
+              aria-label={t('actionsFor', { title: title(t, row.original) })}
             >
               <MoreHorizontal aria-hidden />
             </Button>
@@ -240,20 +258,20 @@ export function AssessmentTable({
               {row.original.visibility === 'private' &&
                 row.original.hasResults && (
                   <DropdownMenuItem onSelect={() => onPublish(row.original)}>
-                    Publish assessment
+                    {t('publish')}
                   </DropdownMenuItem>
                 )}
               {row.original.visibility === 'public' && (
                 <>
                   <DropdownMenuItem asChild>
                     <Link href={`/public/assessments/${row.original.id}`}>
-                      View public assessment
+                      {t('viewPublic')}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onSelect={() => void copyPublicLink(row.original.id)}
                   >
-                    Copy link to public assessment
+                    {t('copyPublic')}
                   </DropdownMenuItem>
                 </>
               )}
@@ -265,32 +283,32 @@ export function AssessmentTable({
                       void exportResults(row.original.id, 'download')
                     }
                   >
-                    Download results image
+                    {t('downloadImage')}
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onSelect={() => void exportResults(row.original.id, 'copy')}
                   >
-                    Copy results image
+                    {t('copyImage')}
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onSelect={() =>
                       void exportResults(row.original.id, 'report')
                     }
                   >
-                    Download full report
+                    {t('downloadReport')}
                   </DropdownMenuItem>
                 </>
               )}
               {row.original.visibility === 'public' && (
                 <DropdownMenuItem onSelect={() => onMakePrivate(row.original)}>
-                  Make private
+                  {t('makePrivate')}
                 </DropdownMenuItem>
               )}
               <DropdownMenuItem
                 variant='destructive'
                 onSelect={() => onDelete(row.original)}
               >
-                Delete
+                {t('delete')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
@@ -313,16 +331,18 @@ export function AssessmentTable({
     <div className='flex min-w-0 flex-col gap-2'>
       <div
         className='flex flex-wrap items-center gap-3 sm:hidden'
-        aria-label='Sort assessments'
+        aria-label={t('sortAssessments')}
       >
-        <span className='text-sm text-muted-foreground'>Sort by</span>
+        <span className='text-sm text-muted-foreground'>{t('sortBy')}</span>
         <SortHeader column={table.getColumn('createdAt')!}>
-          {datePresentation?.heading ?? 'Date created'}
+          {datePresentation?.heading ?? t('dateCreated')}
         </SortHeader>
-        <SortHeader column={table.getColumn('status')!}>Status</SortHeader>
+        <SortHeader column={table.getColumn('status')!}>
+          {t('statusHeading')}
+        </SortHeader>
       </div>
       <div className='min-w-0 rounded-md border'>
-        <Table aria-label='My assessments'>
+        <Table aria-label={t('title')}>
           <TableHeader>
             {table.getHeaderGroups().map((group) => (
               <TableRow key={group.id}>

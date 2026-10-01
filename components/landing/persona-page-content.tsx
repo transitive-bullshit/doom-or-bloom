@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import {
   AnswerNavigationProvider,
   AnswerTarget,
@@ -38,6 +39,7 @@ export function PersonaPageContent({
   > & { result: Result }
   assessment: PersonaAssessment
 }) {
+  const t = useTranslations('Persona')
   return (
     <AnswerNavigationProvider
       answerIds={assessment.answers.map((answer) => answer.id)}
@@ -54,43 +56,38 @@ export function PersonaPageContent({
       />
       <CompareCta name={person.name} className='mt-8' />
       <section
-        aria-label='Simulated Assessment'
+        aria-label={t('simulatedAssessment')}
         className='mt-10 flex flex-col gap-4'
       >
-        <h2>Simulated Assessment</h2>
+        <h2>{t('simulatedAssessment')}</h2>
         <PersonaAnswers assessment={assessment} />
-        <section aria-label='Debug info'>
+        <section aria-label={t('debugInfo')}>
           <Collapsible>
-            <DisclosureTrigger>Debug info</DisclosureTrigger>
+            <DisclosureTrigger>{t('debugInfo')}</DisclosureTrigger>
             <CollapsibleContent className='mt-4 flex min-w-0 flex-col gap-5'>
               <ReasoningJudgments components={person.result.components} />
               <div className='flex min-w-0 flex-col gap-3'>
-                <h3>Assessment state</h3>
+                <h3>{t('stateTitle')}</h3>
                 <p className='text-sm text-muted-foreground'>
-                  The simulated answers, supporting evidence, and dimension
-                  definitions supplied to Jev for the final assessment.
+                  {t('stateDescription')}
                 </p>
                 {assessment.finalState ? (
                   <JsonViewer
-                    label='Final assessment state'
+                    label={t('stateLabel')}
                     value={assessment.finalState}
                   />
                 ) : (
                   <p className='text-sm text-muted-foreground'>
-                    The input state was not recorded for this result.
+                    {t('stateMissing')}
                   </p>
                 )}
               </div>
               <div className='flex min-w-0 flex-col gap-3'>
-                <h3>Generated results</h3>
+                <h3>{t('resultsTitle')}</h3>
                 <p className='text-sm text-muted-foreground'>
-                  The resulting map coordinates, scores, uncertainty ranges, and
-                  findings, including any sourced P(doom) override.
+                  {t('resultsDescription')}
                 </p>
-                <JsonViewer
-                  label='Final generated result'
-                  value={person.result}
-                />
+                <JsonViewer label={t('resultsLabel')} value={person.result} />
               </div>
             </CollapsibleContent>
           </Collapsible>
@@ -108,18 +105,19 @@ export function PersonaPageContent({
 }
 
 function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
+  const t = useTranslations('Persona')
   const [open, setOpen] = useAnswerDisclosure(true)
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
       <DisclosureTrigger>
-        View questions and simulated answers ({assessment.answers.length})
+        {t('viewAnswers', { count: assessment.answers.length })}
       </DisclosureTrigger>
       <CollapsibleContent className='mt-6 flex flex-col gap-8'>
         {assessment.answers.map((answer, index) => (
           <AnswerTarget key={`${answer.id}-${index}`} number={index + 1}>
             <article className='flex min-w-0 flex-col gap-3'>
               <p className='text-xs text-muted-foreground'>
-                Question {index + 1}
+                {t('question', { number: index + 1 })}
               </p>
               <h3 className='w-full text-pretty'>{answer.question}</h3>
               <div className='rounded-xl bg-muted p-4 text-base leading-relaxed whitespace-pre-wrap wrap-anywhere'>

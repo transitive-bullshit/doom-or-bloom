@@ -1,5 +1,6 @@
 'use client'
 import { CheckCircle2Icon, CircleIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import type { Assessment } from '@/lib/assessment/schema'
 import { autoStopFloor, evidenceReadiness } from '@/lib/assessment/readiness'
 import { Badge } from '@/components/ui/badge'
@@ -21,27 +22,23 @@ export function ReadinessMeter({
   disabled: boolean
   onViewResults: () => void
 }) {
+  const t = useTranslations('Interview.readiness')
   const readiness = evidenceReadiness(state)
   const { map } = readiness
   // Saved assessments without map judgments show what the earlier rule knew.
   const items = [
     {
-      label: 'Your outlook, from doom to bloom',
+      label: t('outlook'),
       done: map.known ? map.outlook : readiness.hasOutlook
     },
-    { label: 'How much you expect AI to change the world', done: map.scale },
-    { label: 'Your P(doom), if you have a sense of it', done: map.risk }
+    { label: t('scale'), done: map.scale },
+    { label: t('risk'), done: map.risk }
   ]
   return (
-    <section
-      className='rounded-xl border bg-card p-4'
-      aria-label='What your result needs'
-    >
+    <section className='rounded-xl border bg-card p-4' aria-label={t('title')}>
       <div className='flex flex-wrap items-center justify-between gap-2'>
-        <p className='text-sm font-medium'>What your result needs</p>
-        {readiness.ready && (
-          <Badge variant='secondary'>Your results are available</Badge>
-        )}
+        <p className='text-sm font-medium'>{t('title')}</p>
+        {readiness.ready && <Badge variant='secondary'>{t('available')}</Badge>}
       </div>
       <ul className='mt-3 flex flex-col gap-2 text-sm'>
         {items.map((item) => (
@@ -64,7 +61,7 @@ export function ReadinessMeter({
             >
               {item.label}
               <span className='sr-only'>
-                {item.done ? ': clear' : ': not clear yet'}
+                {item.done ? t('clear') : t('pending')}
               </span>
             </span>
           </li>
@@ -73,22 +70,24 @@ export function ReadinessMeter({
       <p className='mt-3 text-xs leading-relaxed text-muted-foreground'>
         {readiness.ready ? (
           <>
-            You can{' '}
-            <Button
-              type='button'
-              variant='link'
-              className='h-auto p-0 text-xs underline'
-              disabled={disabled}
-              onClick={onViewResults}
-            >
-              view your results now
-            </Button>
-            , or keep answering to refine them.
+            {t.rich('ready', {
+              link: (chunks) => (
+                <Button
+                  type='button'
+                  variant='link'
+                  className='h-auto p-0 text-xs underline'
+                  disabled={disabled}
+                  onClick={onViewResults}
+                >
+                  {chunks}
+                </Button>
+              )
+            })}
             {state.answers.length < autoStopFloor &&
-              ` They also appear on their own after ${autoStopFloor} answers.`}
+              ` ${t('autoStop', { count: autoStopFloor })}`}
           </>
         ) : (
-          'Your result appears once your outlook and the scale of change you expect are clear. Unsure is a fine answer too.'
+          t('waiting')
         )}
       </p>
       {debug && (

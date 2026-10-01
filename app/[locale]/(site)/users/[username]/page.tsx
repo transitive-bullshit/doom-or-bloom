@@ -1,5 +1,6 @@
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { defaultLocale } from '@/i18n/config'
+import { SurfaceMessages } from '@/components/surface-messages'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { pageMetadata } from '@/lib/metadata'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
@@ -34,15 +35,20 @@ export async function generateMetadata({
   const profile = await loadPersona(username)
   if (!profile) notFound()
   const { person } = profile
+  const [locale, t] = await Promise.all([
+    getLocale(),
+    getTranslations('Profiles')
+  ])
   return pageMetadata({
-    locale: await getLocale(),
+    locale,
     translated: false,
     path: `/users/${person.slug}`,
-    title: `${person.name}’s AI worldview`,
-    description: `Explore ${person.name}’s simulated AI worldview, map placement, and source-grounded answers. An experimental interpretation, not their own assessment.`,
+    title: t('userTitle', { name: person.name }),
+    description: t('userDescription', { name: person.name }),
     // Change the image URL so social crawlers do not reuse the earlier WebP.
-    image: `/users/${person.slug}/opengraph-image?v=png-1`,
-    imageAlt: `${person.name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map`
+    // Other languages add theirs, so a shared link previews in that language.
+    image: `/users/${person.slug}/opengraph-image?v=png-1${locale === defaultLocale ? '' : `&locale=${locale}`}`,
+    imageAlt: t('userImageAlt', { name: person.name })
   })
 }
 
@@ -58,7 +64,9 @@ export default async function Page({
   return (
     <PageTransition>
       <AssessmentPage className='content-column pt-6 pb-10'>
-        <PersonaPageContent person={person} assessment={assessment} />
+        <SurfaceMessages surface='published'>
+          <PersonaPageContent person={person} assessment={assessment} />
+        </SurfaceMessages>
       </AssessmentPage>
     </PageTransition>
   )

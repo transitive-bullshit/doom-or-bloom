@@ -1,3 +1,6 @@
+import type { Translator } from '@/i18n/translator'
+import { unclearToken } from '@/lib/assessment/present-result'
+
 // Prefilled text for share intents. Only the P(doom) token and a thought
 // leader's name leave the page; the participant still reviews and posts it.
 
@@ -16,34 +19,37 @@ type Risk = {
   token?: string
 }
 
-function inferredToken(token: string) {
-  if (token.startsWith('<')) return `under ${token.slice(1)}`
-  if (token.startsWith('>')) return `over ${token.slice(1)}`
+function inferredToken(t: Translator, token: string) {
+  if (token.startsWith('<')) return t('Share.under', { value: token.slice(1) })
+  if (token.startsWith('>')) return t('Share.over', { value: token.slice(1) })
   return token.replace('≈', '~')
 }
 
-export function shareCaption({
-  risk,
-  closest
-}: {
-  risk?: Risk | null
-  closest?: string
-}) {
-  const token = risk?.token && risk.token !== 'Unclear' ? risk.token : null
-  const doom = !token
-    ? null
-    : risk?.source === 'inferred'
-      ? `Doom or Bloom reads my P(doom) as ${inferredToken(token)}`
-      : `My P(doom) is ${token}`
-  const lead =
-    doom && closest
-      ? `${doom}, and my AI worldview lands closest to ${closest}`
-      : doom
-        ? doom
-        : closest
-          ? `Just mapped my AI worldview. It lands closest to ${closest}`
-          : 'Just mapped my AI worldview in about 3 minutes'
-  return `${lead}\n\nWhere do you land?`
+/** The prefilled post, one whole message per combination of facts shown. */
+export function shareCaption(
+  t: Translator,
+  {
+    risk,
+    closest
+  }: {
+    risk?: Risk | null
+    closest?: string
+  }
+) {
+  const token = risk?.token && risk.token !== unclearToken ? risk.token : null
+  if (!token)
+    return closest
+      ? t('Share.caption.closest', { closest })
+      : t('Share.caption.none')
+  if (risk?.source === 'inferred') {
+    const value = inferredToken(t, token)
+    return closest
+      ? t('Share.caption.inferredClosest', { token: value, closest })
+      : t('Share.caption.inferred', { token: value })
+  }
+  return closest
+    ? t('Share.caption.statedClosest', { token, closest })
+    : t('Share.caption.stated', { token })
 }
 
 /** A link back to the site, tagged so first-touch attribution sees the share. */

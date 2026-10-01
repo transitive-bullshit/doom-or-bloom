@@ -31,6 +31,12 @@ export const experimentInputSchema = z.object({
 })
 export type ExperimentInput = z.infer<typeof experimentInputSchema>
 
+/** Stored claims for an axis without a supported level. */
+export const unsettledAxisClaim =
+  'You have not settled on this. The point marks the center of the open range, not a moderate belief.'
+export const tentativeAxisClaim =
+  'A tentative estimate from your answers; the wider range shows other plausible readings.'
+
 export const experimentalAxes = {
   influence: {
     label: 'Human influence',
@@ -64,7 +70,7 @@ export const experimentalAxes = {
   }
 } as const
 
-const milestones = [
+export const milestones = [
   {
     id: 'agi',
     label: 'General AI',
@@ -90,7 +96,7 @@ const milestones = [
       'scientific, medical or everyday capability and adoption milestones'
   }
 ] as const
-const hinges = [
+export const hinges = [
   {
     id: 'assumption',
     label: 'A central assumption',
@@ -444,9 +450,9 @@ export function buildWorldviewExperiment(
           ],
       confidence: unsettled ? unknown : mass * answer.confidence,
       claim: unsettled
-        ? 'You have not settled on this. The point marks the center of the open range, not a moderate belief.'
+        ? unsettledAxisClaim
         : tentative
-          ? 'A tentative estimate from your answers; the wider range shows other plausible readings.'
+          ? tentativeAxisClaim
           : (definition.levels[Math.round(directional * 4)] ?? null),
       evidenceIds: input.activeSupport
         .filter((e) => ['stated', 'strongly_implied'].includes(e.status))

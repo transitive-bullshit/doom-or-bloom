@@ -1,14 +1,18 @@
 import { headers } from 'next/headers'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { redirect } from '@/i18n/navigation'
 import { profileImageUrl } from '@/lib/auth/profile-image'
 import { getAuth } from '@/lib/auth/server'
 import { repository } from '@/lib/assessments/server'
 import { AssessmentLibrary } from '@/components/assessment/library'
+import { SurfaceMessages } from '@/components/surface-messages'
 export const dynamic = 'force-dynamic'
-export const metadata = {
-  title: 'My assessments',
-  robots: { index: false, follow: false }
+export async function generateMetadata() {
+  const t = await getTranslations('AssessmentPages')
+  return {
+    title: t('libraryTitle'),
+    robots: { index: false, follow: false }
+  }
 }
 export default async function Page({
   searchParams
@@ -21,26 +25,28 @@ export default async function Page({
   if (start === '1' && items.length > 0)
     redirect({ href: '/assessments', locale: await getLocale() })
   return (
-    <AssessmentLibrary
-      autoStart={start === '1' && !error}
-      signedIn={Boolean(session && !session.user.isAnonymous)}
-      profile={
-        session && !session.user.isAnonymous
-          ? {
-              name: session.user.name,
-              image: profileImageUrl(session.user.image)
-            }
-          : null
-      }
-      authEnabled={Boolean(
-        process.env.X_CLIENT_ID && process.env.X_CLIENT_SECRET
-      )}
-      authError={error === 'claim' ? 'claim' : error ? 'signin' : null}
-      items={items.map((item) => ({
-        ...item,
-        updatedAt: item.updatedAt.toISOString(),
-        createdAt: item.createdAt.toISOString()
-      }))}
-    />
+    <SurfaceMessages surface='library'>
+      <AssessmentLibrary
+        autoStart={start === '1' && !error}
+        signedIn={Boolean(session && !session.user.isAnonymous)}
+        profile={
+          session && !session.user.isAnonymous
+            ? {
+                name: session.user.name,
+                image: profileImageUrl(session.user.image)
+              }
+            : null
+        }
+        authEnabled={Boolean(
+          process.env.X_CLIENT_ID && process.env.X_CLIENT_SECRET
+        )}
+        authError={error === 'claim' ? 'claim' : error ? 'signin' : null}
+        items={items.map((item) => ({
+          ...item,
+          updatedAt: item.updatedAt.toISOString(),
+          createdAt: item.createdAt.toISOString()
+        }))}
+      />
+    </SurfaceMessages>
   )
 }

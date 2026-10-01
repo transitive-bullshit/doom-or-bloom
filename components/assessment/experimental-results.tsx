@@ -1,15 +1,27 @@
 'use client'
 
 import { useState, type ReactNode } from 'react'
+import { useLocale, useTranslations } from 'next-intl'
+import { languageTag } from '@/i18n/config'
 import { AnswerLink } from './answer-navigation'
 import { ReasoningJudgments } from './reasoning-judgments'
 import { ChevronDownIcon } from 'lucide-react'
 import type { Result } from '@/lib/assessment/schema'
 import { emptyComponent } from '@/lib/assessment/projections'
 import { experimentalAxes } from '@/lib/assessment/worldview-experiment'
-import { pdoomRangeLabel, presentResult } from '@/lib/assessment/present-result'
+import {
+  pdoomRangeLabel,
+  pdoomTokenLabel,
+  presentResult,
+  unclearToken
+} from '@/lib/assessment/present-result'
+import {
+  hingeLabel,
+  hingeQuestion,
+  milestoneLabel
+} from '@/lib/assessment/display-text'
 import type { MapPoint } from '@/lib/assessment/self-placement'
-import { resultFraming, type ResultSubject } from '@/lib/sharing/result-subject'
+import { subjectArgs, type ResultSubject } from '@/lib/sharing/result-subject'
 import { AxisRange } from './axis-range'
 import { Map } from './worldview-map'
 import { WorldviewDetails } from './worldview-details'
@@ -26,8 +38,8 @@ const namedHorizon = (horizon: string) =>
   /^(no |not |unspecified)/iu.test(horizon.trim())
     ? null
     : horizon.split(/[;,]/u)[0]!.trim()
-const monthYear = (date: string) =>
-  new Intl.DateTimeFormat('en-US', {
+const monthYear = (date: string, locale: string) =>
+  new Intl.DateTimeFormat(locale, {
     month: 'short',
     year: 'numeric',
     timeZone: 'UTC'
@@ -58,16 +70,22 @@ export function ExperimentalResults({
   feedback?: ReactNode
   share?: ReactNode
 }) {
+  const root = useTranslations()
+  const t = useTranslations('Results')
+  const tag = languageTag(useLocale())
   const result = presentResult(saved)
   const experiment =
     result.experiment?.evidenceRevision === result.evidenceRevision
       ? result.experiment
       : undefined
   const risk = experiment?.pdoom
-  const framing = resultFraming(subject)
+  const who = subjectArgs(subject)
+  const range = risk?.bounds
+    ? ` ${t('pdoom.range', { range: pdoomRangeLabel(root, risk.bounds) })}`
+    : ''
   return (
     <section
-      aria-label={framing.resultsLabel}
+      aria-label={t('label', who)}
       className={
         layout === 'breakout'
           ? 'flex flex-col gap-5 lg:relative lg:left-1/2 lg:w-[min(80rem,calc(100vw-4rem))] lg:-translate-x-1/2'
@@ -75,11 +93,7 @@ export function ExperimentalResults({
       }
     >
       {!experiment && (
-        <p className='text-sm text-body-foreground'>
-          These experimental interpretations were not recorded for this
-          snapshot. The map remains unplaced until new evidence is evaluated;
-          older reasoning scores are not reused.
-        </p>
+        <p className='text-sm text-body-foreground'>{t('notRecorded')}</p>
       )}
       <div className='flex min-w-0 flex-col gap-2'>
         <Map
@@ -113,22 +127,24 @@ export function ExperimentalResults({
         <Card>
           <CardHeader>
             <CardTitle>
-              {framing.owner}{' '}
               {risk?.source === 'public-statement'
-                ? 'stated P(doom)'
-                : 'P(doom)'}
+                ? t('statedPdoomTitle', who)
+                : t('pdoomTitle', who)}
               {risk?.source === 'inferred' && (
                 <span className='font-normal text-muted-foreground'>
                   {' '}
-                  · inferred
+                  {t('inferredTag')}
                 </span>
               )}
             </CardTitle>
           </CardHeader>
           <CardContent className='flex flex-col gap-4'>
             <p className='text-4xl font-semibold tracking-tight tabular-nums'>
-              {risk?.token ??
-                (experiment ? 'Not estimated yet' : 'Not evaluated')}
+              {risk?.token
+                ? pdoomTokenLabel(root, risk.token)
+                : experiment
+                  ? t('notEstimated')
+                  : t('notEvaluated')}
             </p>
             {risk?.bounds && (
               <div>
@@ -167,22 +183,22 @@ export function ExperimentalResults({
                     {risk.publicStatement.title}
                   </a>
                   {' · '}
-                  {monthYear(risk.publicStatement.publishedAt)}
+                  {monthYear(risk.publicStatement.publishedAt, tag)}
                 </p>
               </div>
             ) : (
               <p className='text-sm text-body-foreground'>
                 {!experiment
-                  ? 'Not evaluated for this assessment.'
+                  ? t('pdoom.notEvaluated')
                   : risk
-                    ? risk.source === 'inferred' && risk.token === 'Unclear'
-                      ? `${subject ? 'These answers' : 'Your answers'} read both ways, so there is no single number.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${subject ? '' : ' A rough number in your own words would settle it.'}`
+                    ? risk.source === 'inferred' && risk.token === unclearToken
+                      ? `${t('pdoom.bothWays', who)}${range}${subject ? '' : ` ${t('pdoom.settle')}`}`
                       : risk.source === 'inferred'
-                        ? `Inferred from ${framing.answers}, not a number ${subject ? 'they' : 'you'} gave.${risk.bounds ? ` Plausible range: ${pdoomRangeLabel(risk.bounds)}.` : ''}${!subject && risk.basis === 'contextual' ? ' A rough number in your own words would sharpen it.' : ''}`
+                        ? `${t('pdoom.inferred', who)}${range}${!subject && risk.basis === 'contextual' ? ` ${t('pdoom.sharpen')}` : ''}`
                         : subject
-                          ? `From ${framing.answers}.`
-                          : `You said ${risk.token}.`
-                    : `Not enough about catastrophic risk in ${framing.answers} to estimate it.${subject ? '' : ' A sentence about how likely you think it is would add one.'}`}
+                          ? t('pdoom.from', who)
+                          : t('pdoom.stated', { token: risk.token ?? '' })
+                    : `${t('pdoom.missing', who)}${subject ? '' : ` ${t('pdoom.addSentence')}`}`}
               </p>
             )}
             {excerpts && risk?.text && !risk.publicStatement && (
@@ -198,7 +214,7 @@ export function ExperimentalResults({
         {excerpts && Boolean(experiment?.milestones.length) && (
           <Card>
             <CardHeader>
-              <CardTitle>{framing.owner} milestone timeline</CardTitle>
+              <CardTitle>{t('milestoneTitle', who)}</CardTitle>
             </CardHeader>
             <CardContent>
               <ol className='flex flex-col gap-5 border-l-2 pl-5'>
@@ -211,7 +227,9 @@ export function ExperimentalResults({
                       aria-hidden='true'
                       className='absolute top-1 -left-[1.7rem] size-3 rounded-full border-2 border-background bg-primary'
                     />
-                    <p className='text-sm font-semibold'>{milestone.label}</p>
+                    <p className='text-sm font-semibold'>
+                      {milestoneLabel(root, milestone)}
+                    </p>
                     <p className='text-sm whitespace-pre-wrap text-body-foreground'>
                       {milestone.evidence.text}
                     </p>
@@ -220,8 +238,7 @@ export function ExperimentalResults({
                 ))}
               </ol>
               <p className='mt-4 text-xs text-muted-foreground'>
-                Grouped by milestone, not spaced or ordered by inferred dates.
-                AGI and superhuman AI retain {framing.possessive} definitions.
+                {t('milestoneNote', who)}
               </p>
             </CardContent>
           </Card>
@@ -230,7 +247,7 @@ export function ExperimentalResults({
       {excerpts && (
         <Card>
           <CardHeader>
-            <CardTitle>What {framing.possessive} outlook hinges on</CardTitle>
+            <CardTitle>{t('hingesTitle', who)}</CardTitle>
           </CardHeader>
           <CardContent className='grid gap-x-5 gap-y-3 md:grid-cols-3'>
             {experiment?.hinges.length ? (
@@ -239,21 +256,21 @@ export function ExperimentalResults({
                   key={hinge.id}
                   className='row-span-4 grid grid-rows-subgrid gap-3'
                 >
-                  <p className='text-sm font-semibold'>{hinge.label}</p>
+                  <p className='text-sm font-semibold'>
+                    {hingeLabel(root, hinge)}
+                  </p>
                   <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap text-body-foreground'>
                     {hinge.evidence.text}
                   </blockquote>
                   <AnswerLink number={hinge.evidence.answerNumber} />
                   <p className='text-sm font-medium'>
-                    {framing.hingeQuestion(hinge)}
+                    {hingeQuestion(root, hinge, subject)}
                   </p>
                 </div>
               ))
             ) : (
               <p className='text-sm text-body-foreground'>
-                {experiment
-                  ? 'No specific assumption, unresolved question or update condition was selected yet. Missing discussion is not a reasoning weakness.'
-                  : 'Assumptions and update conditions have not been evaluated for this assessment.'}
+                {experiment ? t('noHinges') : t('hingesNotEvaluated')}
               </p>
             )}
           </CardContent>
@@ -265,7 +282,7 @@ export function ExperimentalResults({
         components={result.components}
         influence={
           experiment?.influence ??
-          emptyComponent('influence', 'Human influence')
+          emptyComponent('influence', experimentalAxes.influence.label)
         }
       />
       {excerpts &&
@@ -274,10 +291,10 @@ export function ExperimentalResults({
             (component) => component.reasoningEvidence
           ) && (
             <section
-              aria-label='Reasoning judgments'
+              aria-label={t('reasoningLabel')}
               className='flex flex-col gap-3'
             >
-              <h3>Reasoning judgments to inspect</h3>
+              <h3>{t('reasoningTitle')}</h3>
               <ReasoningJudgments components={result.components} />
             </section>
           )))}
@@ -292,6 +309,7 @@ export function JourneyResultExplorer({
   snapshots: Array<{ label: string; result: Result }>
   subject?: ResultSubject
 }) {
+  const t = useTranslations('Results.explorer')
   const [selected, setSelected] = useState<number | null>(null)
   const index = Math.min(selected ?? snapshots.length - 1, snapshots.length - 1)
   const snapshot = snapshots[index]
@@ -300,7 +318,7 @@ export function JourneyResultExplorer({
     <Collapsible>
       <CollapsibleTrigger asChild>
         <Button variant='outline' className='group w-full justify-between'>
-          Watch the worldview develop
+          {t('toggle')}
           <ChevronDownIcon
             data-icon='inline-end'
             className='group-data-[state=open]:rotate-180'
@@ -308,14 +326,10 @@ export function JourneyResultExplorer({
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <section
-          aria-label='Worldview progression'
-          className='flex flex-col gap-5 pt-5'
-        >
+        <section aria-label={t('label')} className='flex flex-col gap-5 pt-5'>
           <div>
             <p className='mt-2 text-sm text-body-foreground'>
-              Choose an answer to see the map and supporting results at that
-              point. Numbered dots show earlier placed answers.
+              {t('description')}
             </p>
           </div>
           <div className='flex flex-wrap items-center gap-3'>
@@ -323,7 +337,7 @@ export function JourneyResultExplorer({
               htmlFor='journey-result-step'
               className='text-sm font-medium'
             >
-              After answer {snapshot.label}
+              {t('step', { label: snapshot.label })}
             </label>
             <input
               id='journey-result-step'
@@ -333,7 +347,7 @@ export function JourneyResultExplorer({
               max={snapshots.length - 1}
               value={index}
               onChange={(event) => setSelected(Number(event.target.value))}
-              aria-valuetext={`After answer ${snapshot.label}`}
+              aria-valuetext={t('step', { label: snapshot.label })}
             />
             <Button
               variant='outline'
@@ -341,7 +355,7 @@ export function JourneyResultExplorer({
               disabled={index === 0}
               onClick={() => setSelected(index - 1)}
             >
-              Previous
+              {t('previous')}
             </Button>
             <Button
               variant='outline'
@@ -349,7 +363,7 @@ export function JourneyResultExplorer({
               disabled={index === snapshots.length - 1}
               onClick={() => setSelected(index + 1)}
             >
-              Next
+              {t('next')}
             </Button>
           </div>
           <ExperimentalResults

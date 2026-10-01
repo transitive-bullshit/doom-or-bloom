@@ -1,5 +1,7 @@
 import { afterEach, expect, test, vi } from 'vitest'
-import { api, ApiError } from './client'
+import { englishTranslator } from '@/i18n/translators'
+import { testTranslator } from '@/i18n/test-translator'
+import { api, ApiError, userErrorMessage } from './client'
 
 afterEach(() => vi.unstubAllGlobals())
 test('empty error responses produce a useful API error, not a JSON parse error', async () => {
@@ -44,8 +46,14 @@ test('network exception text is not exposed', async () => {
       .fn()
       .mockRejectedValue(new TypeError('Failed to fetch internal-api-host'))
   )
-  await expect(api('/api/assessments/example')).rejects.toThrow(
-    'Unable to connect. Please try again.'
+  const error = await api<never>('/api/assessments/example').catch(
+    (err: unknown) => err as ApiError
+  )
+  expect(error).toMatchObject({ status: 0, code: 'connect' })
+  expect(error.message).not.toContain('internal-api-host')
+  // A network failure is not a rejected request: the caller's copy applies.
+  expect(userErrorMessage(englishTranslator(), error, 'Fallback')).toBe(
+    'Fallback'
   )
 })
 
@@ -62,7 +70,14 @@ test('known errors use controlled copy rather than a server-supplied message', a
       )
     )
   )
-  await expect(api('/api/assessments/example')).rejects.toThrow(
+  const error = await api<never>('/api/assessments/example').catch(
+    (err: unknown) => err as ApiError
+  )
+  expect(error).toMatchObject({ status: 409, code: 'results_required' })
+  expect(userErrorMessage(englishTranslator(), error, 'Fallback')).toBe(
     'View your results before publishing.'
+  )
+  expect(userErrorMessage(testTranslator('es'), error, 'Fallback')).toBe(
+    'Consulta tus resultados antes de publicar.'
   )
 })

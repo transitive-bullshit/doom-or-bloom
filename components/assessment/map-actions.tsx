@@ -3,6 +3,7 @@
 import { useState, type RefObject } from 'react'
 import { toast } from 'sonner'
 import { CopyIcon, DownloadIcon, EllipsisIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -15,6 +16,7 @@ import { mapPng } from '@/lib/sharing/map-png'
 import { downloadBlob } from '@/lib/sharing/report'
 
 export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
+  const t = useTranslations('Map')
   const [busy, setBusy] = useState(false)
   const exportImage = async (copy: boolean) => {
     if (!svg.current || busy) return
@@ -37,13 +39,9 @@ export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
       } else {
         downloadBlob(await png, 'doom-or-bloom-map.png')
       }
-      toast.success(copy ? 'Map copied as PNG.' : 'Map downloaded as PNG.')
+      toast.success(copy ? t('copied') : t('downloaded'))
     } catch {
-      toast.error(
-        copy
-          ? 'Couldn’t copy the image. Try downloading it instead.'
-          : 'Couldn’t download the image. Please try again.'
-      )
+      toast.error(copy ? t('copyFailed') : t('downloadFailed'))
     } finally {
       setBusy(false)
     }
@@ -56,7 +54,7 @@ export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
             variant='ghost'
             size='icon'
             disabled={busy}
-            aria-label='Map image actions'
+            aria-label={t('actions')}
           >
             <EllipsisIcon />
           </Button>
@@ -65,11 +63,11 @@ export function MapActions({ svg }: { svg: RefObject<SVGSVGElement | null> }) {
           <DropdownMenuGroup>
             <DropdownMenuItem onSelect={() => void exportImage(true)}>
               <CopyIcon />
-              Copy PNG
+              {t('copyPng')}
             </DropdownMenuItem>
             <DropdownMenuItem onSelect={() => void exportImage(false)}>
               <DownloadIcon />
-              Download PNG
+              {t('downloadPng')}
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
