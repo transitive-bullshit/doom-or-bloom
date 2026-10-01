@@ -1,6 +1,8 @@
 import { getLocale, getTranslations } from 'next-intl/server'
 import { defaultLocale } from '@/i18n/config'
 import { SurfaceMessages } from '@/components/surface-messages'
+import { AuthoredTextProvider } from '@/components/assessment/authored-text'
+import { authoredTextFor } from '@/lib/content/l10n-loader'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { pageMetadata } from '@/lib/metadata'
 import { PersonaPageContent } from '@/components/landing/persona-page-content'
@@ -61,11 +63,16 @@ export default async function Page({
   const profile = await loadPersona(slug)
   if (!profile) notFound()
   const { person, assessment } = profile
+  const authored = authoredTextFor(await getLocale(), person.result.versions, {
+    promptIds: assessment.answers.map(({ promptId }) => promptId)
+  })
   return (
     <PageTransition>
       <AssessmentPage className='content-column pt-6 pb-10'>
         <SurfaceMessages surface='published'>
-          <PersonaPageContent person={person} assessment={assessment} />
+          <AuthoredTextProvider value={authored}>
+            <PersonaPageContent person={person} assessment={assessment} />
+          </AuthoredTextProvider>
         </SurfaceMessages>
       </AssessmentPage>
     </PageTransition>

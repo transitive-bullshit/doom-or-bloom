@@ -4,18 +4,25 @@ import type { Assessment } from '@/lib/assessment/schema'
 import {
   claimText,
   componentLabel,
+  findingText,
   hingeLabel,
   hingeQuestion,
   milestoneLabel,
-  promptText
+  promptText,
+  resourceText,
+  type AuthoredText
 } from '@/lib/assessment/display-text'
 import { pdoomTokenLabel, presentResult } from '@/lib/assessment/present-result'
 
-/** The report download; its readable files use the active locale. */
+/**
+ * The report download; its readable files use the active locale, with
+ * authored text from the assessment's release when one is given.
+ */
 export function serializeReport(
   t: Translator,
   state: Assessment,
-  operations: SavedDebugOperation[] = []
+  operations: SavedDebugOperation[] = [],
+  authored: AuthoredText | null = null
 ) {
   if (!state.result) throw new Error('A result is required')
   const result = state.result
@@ -88,7 +95,7 @@ export function serializeReport(
         `## ${t('Report.question', {
           number: index + 1,
           text: prompt
-            ? promptText(t, { ...prompt, text: answer.promptText })
+            ? promptText(t, { ...prompt, text: answer.promptText }, authored)
             : answer.promptText
         })}`,
         '',
@@ -212,7 +219,9 @@ export function serializeReport(
     ...shown.components.flatMap((c) => [
       `### ${componentLabel(t, c)}`,
       '',
-      c.claim ? claimText(t, c.claim, c.vector) : t('Report.unassessed'),
+      c.claim
+        ? claimText(t, c.claim, c.vector, authored)
+        : t('Report.unassessed'),
       '',
       t('Report.componentPosition', {
         position: position(c.value),
@@ -239,24 +248,24 @@ export function serializeReport(
       `### ${componentLabel(t, c)}`,
       '',
       c.claim
-        ? claimText(t, c.claim, c.vector)
+        ? claimText(t, c.claim, c.vector, authored)
         : t('Report.fingerprintUnassessed'),
       ''
     ]),
     `## ${t('Report.findingsTitle')}`,
     '',
     ...shown.findings.flatMap((f) => [
-      f.text,
+      findingText(authored, f),
       '',
       t('Report.evidence', { ids: f.evidenceIds.join(', ') }),
       ''
     ]),
     `## ${t('Report.resourcesTitle')}`,
     '',
-    ...shown.resources.flatMap((r) => [
-      `[${r.title}](${r.url}) — ${r.purpose}`,
-      ''
-    ]),
+    ...shown.resources.flatMap((saved) => {
+      const r = resourceText(authored, saved)
+      return [`[${r.title}](${r.url}) — ${r.purpose}`, '']
+    }),
     `## ${t('Report.sourcesTitle')}`,
     '',
     ...shown.sources.flatMap((s) => [

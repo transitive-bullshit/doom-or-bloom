@@ -20,6 +20,8 @@ import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 import type { Result } from '@/lib/assessment/schema'
 import type { Example } from './shared'
 import type { PersonaAssessment } from '@/lib/journeys/persona-assessment'
+import { authoredPrompt } from '@/lib/assessment/display-text'
+import { useAuthoredText } from '@/components/assessment/authored-text'
 
 export function PersonaPageContent({
   person,
@@ -106,6 +108,7 @@ export function PersonaPageContent({
 
 function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
   const t = useTranslations('Persona')
+  const authored = useAuthoredText()
   const [open, setOpen] = useAnswerDisclosure(true)
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
@@ -119,7 +122,9 @@ function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
               <p className='text-xs text-muted-foreground'>
                 {t('question', { number: index + 1 })}
               </p>
-              <h3 className='w-full text-pretty'>{answer.question}</h3>
+              <h3 className='w-full text-pretty'>
+                {authoredPrompt(authored, answer.promptId, answer.question)}
+              </h3>
               <div className='rounded-xl bg-muted p-4 text-base leading-relaxed whitespace-pre-wrap wrap-anywhere'>
                 {answer.answer}
               </div>

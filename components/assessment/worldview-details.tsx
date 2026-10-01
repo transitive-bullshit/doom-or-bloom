@@ -9,6 +9,7 @@ import {
   levelTextsFor
 } from '@/lib/assessment/display-text'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { useAuthoredText } from './authored-text'
 
 export function WorldviewDetails({
   components,
@@ -23,6 +24,7 @@ export function WorldviewDetails({
 }) {
   const root = useTranslations()
   const t = useTranslations('Results.details')
+  const authored = useAuthoredText()
   const impacts = [
     ...components.filter(
       (component) =>
@@ -62,7 +64,12 @@ export function WorldviewDetails({
               <CardContent className='row-span-4 grid grid-rows-subgrid gap-3'>
                 <p className='text-sm text-body-foreground'>
                   {component.claim
-                    ? claimText(root, component.claim, component.vector)
+                    ? claimText(
+                        root,
+                        component.claim,
+                        component.vector,
+                        authored
+                      )
                     : t('severalReadings')}
                 </p>
                 <p className='text-sm font-medium tabular-nums'>
@@ -105,7 +112,12 @@ export function WorldviewDetails({
               </CardHeader>
               <CardContent>
                 <p className='text-sm text-body-foreground'>
-                  {claimText(root, transformationClaim, 'transformation')}
+                  {claimText(
+                    root,
+                    transformationClaim,
+                    'transformation',
+                    authored
+                  )}
                 </p>
               </CardContent>
             </Card>

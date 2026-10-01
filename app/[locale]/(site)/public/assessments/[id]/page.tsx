@@ -1,6 +1,8 @@
 import { getLocale, getTranslations } from 'next-intl/server'
 import { defaultLocale, languageTag } from '@/i18n/config'
 import { SurfaceMessages } from '@/components/surface-messages'
+import { AuthoredTextProvider } from '@/components/assessment/authored-text'
+import { authoredTextFor } from '@/lib/content/l10n-loader'
 import { loadPersonaComparisons } from '@/components/landing/data'
 import { ProfileHeader } from '@/components/profile-header'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
@@ -74,15 +76,27 @@ export default async function Page({
     return (
       <AssessmentPage className='content-column pt-6 pb-14'>
         <SurfaceMessages surface='published'>
-          <PersonaPageContent
-            person={{
-              ...saved.profile,
-              result: presentation.result,
-              sources: sources.map(({ title, url }) => ({ title, url })),
-              sourceBriefUpdated: false
-            }}
-            assessment={presentation.assessment}
-          />
+          <AuthoredTextProvider
+            value={authoredTextFor(
+              await getLocale(),
+              presentation.result.versions,
+              {
+                promptIds: presentation.assessment.answers.map(
+                  ({ promptId }) => promptId
+                )
+              }
+            )}
+          >
+            <PersonaPageContent
+              person={{
+                ...saved.profile,
+                result: presentation.result,
+                sources: sources.map(({ title, url }) => ({ title, url })),
+                sourceBriefUpdated: false
+              }}
+              assessment={presentation.assessment}
+            />
+          </AuthoredTextProvider>
         </SurfaceMessages>
       </AssessmentPage>
     )
@@ -123,15 +137,23 @@ export default async function Page({
         <CompareCta name={saved.publisher?.name} />
       </div>
       <SurfaceMessages surface='published'>
-        <PublishedResult
-          state={{ ...state, draft: '', eventMarkers: [] }}
-          personas={personas}
-          afterResults={
-            <div key='compare' className='hidden sm:block'>
-              <CompareCta name={saved.publisher?.name} />
-            </div>
-          }
-        />
+        <AuthoredTextProvider
+          value={authoredTextFor(locale, state.versions, {
+            promptIds: state.prompts.map(({ promptId }) => promptId),
+            findingIds: state.result?.findings.map(({ id }) => id),
+            resourceIds: state.result?.resources.map(({ id }) => id)
+          })}
+        >
+          <PublishedResult
+            state={{ ...state, draft: '', eventMarkers: [] }}
+            personas={personas}
+            afterResults={
+              <div key='compare' className='hidden sm:block'>
+                <CompareCta name={saved.publisher?.name} />
+              </div>
+            }
+          />
+        </AuthoredTextProvider>
       </SurfaceMessages>
       <div className='flex flex-col sm:hidden'>
         <Separator className='my-12' />

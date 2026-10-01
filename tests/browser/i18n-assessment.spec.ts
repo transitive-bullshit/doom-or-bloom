@@ -1,8 +1,26 @@
+import { readFileSync } from 'node:fs'
 import type { Page } from '@playwright/test'
 import { expect, test } from './fixtures'
 
-// Spanish UI around authored English questions: the interface, results,
-// sharing and page bodies are translated; questions and rubric text are not.
+// The Spanish interface, results, sharing and page bodies, and the authored
+// questions and rubric levels from content/l10n.
+
+const json = (file: string) => JSON.parse(readFileSync(file, 'utf8'))
+const rubric = json('content/rubrics/0.1.0-draft/rubric.json') as {
+  dimensions: { id: string; levels: string[] }[]
+}
+const spanishRubric = json('content/l10n/es/rubrics/0.1.0-draft.json') as {
+  entries: Record<string, { text: string }>
+}
+/** The English and Spanish level texts of the result's impact dimensions. */
+const impactLevels = rubric.dimensions
+  .filter(({ id }) => ['beneficial_potential', 'risk_landscape'].includes(id))
+  .flatMap(({ id, levels }) =>
+    levels.map((english, index) => ({
+      english,
+      spanish: spanishRubric.entries[`level:${id}:${index}`]!.text
+    }))
+  )
 
 /** Fails on any missing or malformed message in the rendered surfaces. */
 function watchMessages(page: Page) {
@@ -39,9 +57,9 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
       exact: true
     })
   ).toBeVisible()
-  // Authored questions stay English until their translations exist.
+  // The authored root question comes from the committed translation.
   await expect(page.getByRole('heading', { level: 2 }).first()).toHaveText(
-    'What do you think AI means for our future—and why?'
+    '¿Qué crees que significa la IA para nuestro futuro y por qué?'
   )
 
   // Fixture judgments place the map after one answer; this does not test live semantics.
@@ -71,6 +89,21 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
   ).toBeVisible()
   await expect(
     page.getByRole('img', { name: /^Doom–Bloom: \d+ de 100\./u })
+  ).toBeVisible()
+  // "More details" quotes rubric levels, translated by ID.
+  const details = page.getByRole('region', { name: 'Más detalles' })
+  await expect(details).toBeVisible()
+  const shown = await details.innerText()
+  expect(impactLevels.some(({ spanish }) => shown.includes(spanish))).toBe(true)
+  expect(impactLevels.some(({ english }) => shown.includes(english))).toBe(
+    false
+  )
+  // The answered question in the conversation is translated too.
+  await expect(
+    page.getByRole('heading', {
+      level: 4,
+      name: '¿Qué crees que significa la IA para nuestro futuro y por qué?'
+    })
   ).toBeVisible()
 
   const bar = page.getByRole('region', { name: 'Comparte tu resultado' })

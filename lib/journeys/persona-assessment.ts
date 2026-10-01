@@ -12,6 +12,7 @@ export function personaAssessment(journey: Journey) {
       .filter((step) => step.answer !== null)
       .map((step) => ({
         id: step.prompt.id,
+        promptId: step.prompt.promptId,
         question: step.prompt.text,
         answer: step.answer!
       })),

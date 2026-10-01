@@ -31,7 +31,14 @@ import {
 } from '@/components/ui/collapsible'
 import { serializeReport, downloadBlob } from '@/lib/sharing/report'
 import { presentResult } from '@/lib/assessment/present-result'
-import { claimText, componentLabel } from '@/lib/assessment/display-text'
+import {
+  authoredPrompt,
+  claimText,
+  componentLabel,
+  findingText,
+  resourceText
+} from '@/lib/assessment/display-text'
+import { useAuthoredText } from './authored-text'
 import { resultReasonKind } from '@/lib/assessment/projections'
 import {
   placementComparison,
@@ -69,6 +76,7 @@ export function ResultView({
   const root = useTranslations()
   const t = useTranslations('Results')
   const locale = useLocale()
+  const authored = useAuthoredText()
   const [downloading, setDownloading] = useState(false)
   const [reportDownloading, setReportDownloading] = useState(false)
   const resultsRoot = useRef<HTMLDivElement>(null)
@@ -125,7 +133,7 @@ export function ResultView({
         import('@/lib/sharing/report-zip')
       ])
       const archive = await createReportZip(
-        serializeReport(root, state, operations),
+        serializeReport(root, state, operations, authored),
         resultsImage,
         mapImage
       )
@@ -219,7 +227,7 @@ export function ResultView({
                   className='flex flex-col gap-3 rounded-lg border p-4'
                 >
                   <p className='text-sm font-medium text-pretty'>
-                    {question.text}
+                    {authoredPrompt(authored, question.id, question.text)}
                   </p>
                   <div className='flex flex-wrap items-center gap-x-3 gap-y-2'>
                     <Button
@@ -281,7 +289,9 @@ export function ResultView({
             <div key={c.vector} className='rounded-lg border p-4'>
               <p className='text-sm font-medium'>{componentLabel(root, c)}</p>
               <p className='mt-2 text-sm text-body-foreground'>
-                {c.claim ? claimText(root, c.claim, c.vector) : t('unexplored')}
+                {c.claim
+                  ? claimText(root, c.claim, c.vector, authored)
+                  : t('unexplored')}
               </p>
               {c.vector === 'timeline' &&
                 supportingAnswers(c.evidenceIds).map((answer) => {
@@ -310,7 +320,7 @@ export function ResultView({
         <ResultDisclosure title={t('standouts')}>
           {result.findings.map((f) => (
             <Collapsible key={f.id} className='rounded-lg border p-4'>
-              <p className='text-sm'>{f.text}</p>
+              <p className='text-sm'>{findingText(authored, f)}</p>
               <CollapsibleTrigger asChild>
                 <Button variant='link' className='px-0 text-xs'>
                   {t('seeSupporting', {
@@ -355,7 +365,14 @@ export function ResultView({
         <section className='flex flex-col gap-4'>
           <h5>{t('resources')}</h5>
           <ResourceList
-            resources={result.resources}
+            resources={result.resources.map((saved) => {
+              const resource = resourceText(authored, saved)
+              // Bookmarks prefer the publisher's English description; a
+              // translated question reads better in another language.
+              return resource.question !== saved.question
+                ? { ...resource, summary: resource.question }
+                : resource
+            })}
             onOpen={(resource) =>
               emitEvent(
                 makeEvent(state, 'resource_opened', {
