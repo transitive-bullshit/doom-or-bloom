@@ -2,8 +2,14 @@ import { resultMapExport, resultMapLayout } from './map-layout'
 
 const svgNamespace = 'http://www.w3.org/2000/svg'
 
-/** Prepare the visible plot for Takumi, resolving theme tokens before leaving the DOM. */
-export async function mapPng(svg: SVGSVGElement): Promise<Blob> {
+/**
+ * Prepare the visible plot for Takumi, resolving theme tokens before leaving
+ * the DOM. `title` heads the image; `locale` picks the server's fonts.
+ */
+export async function mapPng(
+  svg: SVGSVGElement,
+  { title, locale }: { title: string; locale: string }
+): Promise<Blob> {
   const theme = getComputedStyle(svg)
   // Takumi's SVG decoder needs sRGB colors rather than browser-only color syntax.
   const colorCanvas = document.createElement('canvas')
@@ -112,13 +118,14 @@ export async function mapPng(svg: SVGSVGElement): Promise<Blob> {
     node.textContent = text
     clone.appendChild(node)
   }
-  label('How will AI change the world?', 34, 22, foreground)
+  label(title, 34, 22, foreground)
   const serialized = new XMLSerializer()
     .serializeToString(clone)
     .replace(/var\((--[\w-]+)\)/g, (_, token: string) =>
       color(theme.getPropertyValue(token).trim())
     )
-  const response = await fetch('/api/map-png', {
+  const query = locale === 'en' ? '' : `?locale=${encodeURIComponent(locale)}`
+  const response = await fetch(`/api/map-png${query}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ svg: serialized })

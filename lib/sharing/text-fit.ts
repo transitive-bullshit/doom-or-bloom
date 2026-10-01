@@ -7,19 +7,24 @@ const wide = /[mwMW@%]/u
 // CJK, Hangul and full-width forms take a full em.
 const fullWidth = /[ᄀ-ᇿ⺀-鿿가-힯豈-﫿＀-￯]/u
 
+// Thai card text marks word boundaries with zero-width spaces.
+const zeroWidth = /[​-‍]/u
+
 /** Estimated rendered width of `text` in the units of `fontSize`. */
 export function textWidth(text: string, fontSize: number, bold = false) {
   let ems = 0
   for (const char of text)
-    ems += fullWidth.test(char)
-      ? 1
-      : narrow.test(char)
-        ? 0.28
-        : wide.test(char)
-          ? 0.83
-          : /\p{Lu}/u.test(char)
-            ? 0.67
-            : 0.54
+    ems += zeroWidth.test(char)
+      ? 0
+      : fullWidth.test(char)
+        ? 1
+        : narrow.test(char)
+          ? 0.28
+          : wide.test(char)
+            ? 0.83
+            : /\p{Lu}/u.test(char)
+              ? 0.67
+              : 0.54
   return ems * fontSize * (bold ? 1.05 : 1)
 }
 

@@ -129,7 +129,10 @@ export function ResultView({
     try {
       const [resultsImage, mapImage, { createReportZip }] = await Promise.all([
         renderCard(),
-        mapPng(svg),
+        mapPng(svg, {
+          title: root('Map.question', { axis: 'transformation' }),
+          locale
+        }),
         import('@/lib/sharing/report-zip')
       ])
       const archive = await createReportZip(

@@ -147,8 +147,31 @@ for (const portraitRoute of [
     )
   }
 }
+// Takumi never reads system fonts: card routes bundle the Noto subsets.
+const cardFonts = (await readdir('lib/sharing/fonts')).filter((file) =>
+  file.endsWith('.woff2')
+)
+for (const fontRoute of [
+  'users/[username]/opengraph-image',
+  'api/share-card',
+  'api/assessments/[id]/results-image',
+  'api/map-png',
+  'public/assessments/[id]/social-image.png',
+  '[locale]/(site)/public/assessments/[id]/social-image.png'
+]) {
+  const trace = path.join(output, `server/app/${fontRoute}/route.js.nft.json`)
+  const { files } = JSON.parse(await readFile(trace, 'utf8'))
+  const bundled = new Set(
+    files.map((file) => path.resolve(path.dirname(trace), file))
+  )
+  for (const file of cardFonts)
+    assert(
+      bundled.has(path.resolve('lib/sharing/fonts', file)),
+      `${fontRoute}: card font ${file} is missing from the bundle`
+    )
+}
 console.log(
-  'Production persona bundles read PostgreSQL and include required social portraits'
+  'Production persona bundles read PostgreSQL and include required social portraits and card fonts'
 )
 
 const routes = JSON.parse(

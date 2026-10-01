@@ -48,6 +48,28 @@ test('Takumi exports graph and card layouts at twice their logical dimensions', 
   ).toMatchObject({ width: 2400, height: 1260, format: 'png' })
 })
 
+test('cards in Hindi and Japanese render with their registered fonts', async () => {
+  for (const locale of ['hi', 'ja', 'th', 'zh']) {
+    const card = await exportCard(
+      request(`share-card?locale=${locale}`, {
+        horizontal: 0.6,
+        vertical: 0.5,
+        horizontalRange: [0.5, 0.7],
+        verticalRange: [0.4, 0.6],
+        pdoom: 0.12,
+        pdoomToken: '≈12%',
+        generatedAt: '2026-10-01T00:00:00Z',
+        provisional: false,
+        closestPersonaIds: people.slice(0, 3).map(({ id }) => id)
+      })
+    )
+    expect(card.status).toBe(200)
+    expect(
+      await sharp(Buffer.from(await card.arrayBuffer())).metadata()
+    ).toMatchObject({ width: 2400, height: 1260, format: 'png' })
+  }
+})
+
 test('graph export rejects remote image references and external entities', async () => {
   for (const svg of [
     '<svg><image href="http://localhost/private"/></svg>',
