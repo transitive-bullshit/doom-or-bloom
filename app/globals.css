@@ -44,6 +44,9 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+  /* The logo's coral, kept for sparing editorial emphasis (PRODUCT.md#coral-accent).
+     The same in both themes, like the map colors. */
+  --coral: #ff786a;
 }
 .dark {
   --background: oklch(0.17 0.006 90);
@@ -90,6 +93,7 @@
   --color-body-foreground: var(--body-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-coral: var(--coral);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);

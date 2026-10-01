@@ -242,6 +242,10 @@ Public simulated-user pages place their identity header before the results, with
 
 ### Site-wide heading typography
 
+### Coral accent
+
+The coral from the logo's doom half (`--coral`, `#ff786a`; Tailwind `coral`) is the site's one accent color. Use it sparingly, for editorial emphasis only: data marks in charts, the left rule of definitions and pull quotes, and similar small markers on content pages. Don't use it for body text, buttons, large fills, links or error states (those use `destructive`). It stays the same in light and dark mode, like the map colors. The map's own Prism field keeps its separate tokens.
+
 Use the global heading styles in `app/globals.css` on every route, including landing pages, assessment owner/public pages, personas, informational pages, and local tools. At the default root size, h1–h6 are 30, 24, 20, 18, 16, and 14px respectively, with weight 600, line-height 1.4, and balanced wrapping. The scale stays consistent across breakpoints. The homepage hero is an explicit display-heading exception: its original 40–76px fluid scale (36px on mobile), weight 500, and tight tracking/leading are preserved in prism.css. Choose heading levels for page/section hierarchy; do not add local text-size, weight, leading, or tracking overrides. Heading classes may control layout, spacing, alignment, and color. Component labels such as bookmark titles remain independent non-heading elements.
 
 ### Reading column

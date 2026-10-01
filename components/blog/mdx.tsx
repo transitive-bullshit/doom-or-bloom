@@ -33,7 +33,7 @@ function Anchor({ href = '', children, ...props }: ComponentProps<'a'>) {
 /** The quotable definition the P(doom) hub opens with. */
 function Definition() {
   return (
-    <p className='border-l-2 border-[#ff786a] pl-4 text-lg leading-relaxed font-medium'>
+    <p className='border-l-2 border-coral pl-4 text-lg leading-relaxed font-medium'>
       {pdoomDefinition}
     </p>
   )
@@ -49,7 +49,7 @@ export const blogComponents = {
   ),
   blockquote: (props) => (
     <blockquote
-      className='border-l-2 pl-4 text-body-foreground italic'
+      className='border-l-2 border-coral pl-4 text-body-foreground italic'
       {...props}
     />
   ),

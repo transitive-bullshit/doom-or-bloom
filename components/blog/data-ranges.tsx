@@ -52,7 +52,7 @@ export function DataRanges({ data }: { data: unknown }) {
                     className='relative h-2.5 min-w-0 flex-1 rounded-full bg-muted'
                   >
                     <span
-                      className='absolute top-0 h-2.5 rounded-full bg-[#ff786a]'
+                      className='absolute top-0 h-2.5 rounded-full bg-coral'
                       style={{
                         left: `min(${row.low * 100}%, calc(100% - 0.625rem))`,
                         width: `max(0.625rem, ${(row.high - row.low) * 100}%)`
