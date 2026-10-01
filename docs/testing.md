@@ -39,6 +39,7 @@ Analytics tests use live-mode configuration to exercise SDK initialization, but 
 | Ownership, sessions, drafts, library, publication, forks | `pnpm check:persistence`; relevant `db:test:*` checks below |
 | Share links or comparisons | `pnpm check:persistence tests/persistence/share-links.spec.ts`, `pnpm check:browser tests/browser/share-bar.spec.ts tests/browser/compare.spec.ts` and `pnpm check:analytics`; after caching changes, `pnpm build:local` then `pnpm check:public-cache` (`tests/public-cache/share-links.spec.ts`) |
 | Schema or repository transactions | `pnpm db:migrate:test` twice, `pnpm db:test`, `pnpm db:test:repository`, `pnpm db:test:commit`, `pnpm db:test:lifecycle` |
+| Jev spend budget, provider billing failures or the over-budget notice | `pnpm db:test:budget` (concurrent spend, signals, the TypeSafe hold and a saved answer through the real evaluator with a mocked TypeSafe) and `pnpm check:browser tests/browser/jev-budget.spec.ts` |
 | Result feedback (self-placement, agreement) | `pnpm db:test:feedback` and `pnpm check:browser tests/browser/result-feedback.spec.ts` |
 | Persona persistence or selected runs | `pnpm db:test:personas` and `pnpm check:persistence tests/persistence/personas.spec.ts` |
 | Authentication or anonymous claim | `pnpm db:test:auth` and `pnpm check:persistence tests/persistence/auth.spec.ts`; actual provider smoke test when OAuth configuration changes |

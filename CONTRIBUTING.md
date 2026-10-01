@@ -68,6 +68,8 @@ Keep `.env.development.local` and `.env.production.local` private. Use identical
 
 When diagnosing a mismatch, inspect the launcher and parse the intended env file directly. Printing `process.env` after `--env-file` can still show an inherited value. The development launcher deliberately differs from the other commands; removing an exported variable will not override a value saved in its file.
 
+Participant Jev spend is capped by `JEV_MONTHLY_BUDGET_USD` (default 150, per UTC month) and `JEV_DAILY_BUDGET_USD` (default 50, per UTC day). Leave them unset to use the defaults. To raise a budget, set the variable in the hosting environment and redeploy; `0` pauses participant Jev calls. A malformed value keeps the default. The estimate lives in the database, so local development counts its own live calls separately from production. See [the spend budget](docs/TYPESAFE.md#spend-budget).
+
 Analytics are off by default and disabled in fixture mode. Enabling analytics requires the PostHog settings and confirmed IP disposal validated by `lib/server/validate-env.ts`; see [measurement](docs/MEASUREMENT.md) for the privacy contract.
 
 ## Development checks

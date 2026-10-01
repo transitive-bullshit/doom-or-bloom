@@ -58,6 +58,8 @@ Use PostgreSQL and Drizzle with the normal PostgreSQL driver (`pg`). Local devel
 | `personas` | Stable ID/unique slug, name, portrait, presentation metadata, current authored source brief, featured flag, selected assessment pointer, timestamps. |
 | `assessment_feedback` | `id`, `assessment_id`, kind (`self_placement` or `agreement`), the result's evidence revision, the snapshot shown, the result's engine version (`algorithm_version`), JSONB payload, timestamps. See [Result feedback](#result-feedback). |
 | `share_snapshots` | Short unguessable `id`, `assessment_id`, the snapshot whose result the card shows, the result's evidence revision, card data and comparison values (JSONB), optional sharer first name, creation and revocation times. See [Share links](#share-links). |
+| `jev_spend` | Estimated participant Jev spend per UTC `day` and `month`: `period`, `period_start` (the month's first day), input and output tokens, `cost_nano_usd`, successful request count, `updated_at`. Aggregate counters only. See [Jev spend budget](#jev-spend-budget). |
+| `jev_provider_status` | One row per provider (`typesafe`) with the time it last reported no credits (`out_of_credits_at`), which starts a 10-minute hold. |
 
 ```mermaid
 erDiagram
@@ -115,6 +117,8 @@ A server crash does not cause automatic resumption. Owner reads show the committ
 
 The owner view derives `provider_rejected` from an `evaluation_failed` operation whose last recorded provider call returned HTTP 403. Its persistent alert names TypeSafe (Jev), confirms the submission is saved, and asks the participant to try later. This covers historical records without rewriting them or exposing diagnostic payloads. Other failures retain neutral recovery copy. The alert survives reload and offers the existing explicit retry; it does not claim a provider outage or explain why access was denied.
 
+A Jev budget block is stored as its own failure category: `budget_exhausted` when the app's [spend budget](#jev-spend-budget) is used up, `provider_out_of_credits` when TypeSafe has no credits. Both are classified when the operation fails, and an older `evaluation_failed` record whose last provider call returned HTTP 402 reads as `provider_out_of_credits`. The submitted input stays in the failed operation, its base snapshot is unchanged, and a first answer still materializes its draft, so the participant can retry the saved submission later. The owner view shows the [over-budget notice](PRODUCT.md#out-of-budget) for both.
+
 A disconnected browser may miss a success response or the handler may be cancelled; do not depend on it continuing after disconnect. On reload, fetch the saved operation/state to distinguish committed, still-running, failed, and interrupted outcomes. Only poll status when resolving an existing in-flight/uncertain request, not as the primary submission protocol. Preserve a local draft until server acceptance is known.
 
 Use the current bounded operation deadline (120 seconds in the baseline) and an abort signal for all provider calls. Ensure the eventual hosting request-duration setting accommodates it; deployment remains separate. The current aggregate physical-request cap is 32 (`limits.providerAttempts` in `lib/assessment/schema.ts`). One logical operation can contain multiple batches; preserve the aggregate cap while enforcing at most one retry per failed call. Audit SDK/transport and engine retry layers so they do not multiply retries or let oversized-batch fallback silently exceed the newly approved retry policy. Maximum-history fixtures must validate any required batching changes; never drop evidence to fit a retry.
@@ -155,6 +159,16 @@ A share link (`share_snapshots`) lets an owner share one result without publishi
 - **Comparisons.** A recipient's browser fetches that data (or `GET /api/personas/<slug>/comparison` for a thought leader) without cookies and compares locally. The server stores nothing about a comparison and never links the two assessments ([PRODUCT.md](PRODUCT.md#sharing)).
 
 Migration `0009_share_snapshots` only creates the table and its indexes; its foreign keys briefly lock `assessments` and `assessment_snapshots` while they are added. Production and the shared Preview database need it before the share link code deploys to them, or every share action fails; applying it is part of a separate deployment task.
+## Jev spend budget
+
+`jev_spend` and `jev_provider_status` back the app's own ceiling on participant Jev spend; [TYPESAFE.md](TYPESAFE.md#spend-budget) owns the budget rules and signals. They hold aggregate counters and one timestamp, never participant data, and nothing references them.
+
+- Spend is written once per operation, after its Jev calls, as one `INSERT … ON CONFLICT DO UPDATE` that adds to the UTC month and day rows. Postgres serializes writers on each row and the statement locks month before day, so concurrent serverless instances keep every increment without deadlocks. `RETURNING` gives each writer its own total, so exactly one write sees a threshold crossing.
+- A TypeSafe out-of-credits failure upserts `jev_provider_status` only when no hold is active, so exactly one request starts and reports each hold.
+- Reading the budget is one query of both rows and the hold. A failed read or write logs `jev_budget_unavailable` and never fails the operation; a missing table therefore disables the budget rather than every interview.
+- Rows for past periods are never read again and can be deleted. Raise a budget through its environment variable, not by editing the current rows.
+
+Migration `0010_jev_budget` only creates these two tables and takes no locks on existing ones. Apply it to the shared Preview database and production before deploying this code there: without it, spend goes unrecorded and the budget is not enforced. Applying it remains part of a separate deployment task.
 
 ## Re-evaluating saved results
 
