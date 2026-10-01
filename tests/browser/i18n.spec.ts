@@ -82,7 +82,9 @@ test('translated pages advertise hreflang alternates; chrome-only ones defer to 
   for (const [path, canonical] of [
     ['/', site],
     ['/es', `${site}/es`],
-    ['/es/users', `${site}/es/users`]
+    ['/es/users', `${site}/es/users`],
+    ['/es/about', `${site}/es/about`],
+    ['/privacy', `${site}/privacy`]
   ] as const) {
     await page.goto(path)
     const head = page.locator('head')
@@ -90,10 +92,11 @@ test('translated pages advertise hreflang alternates; chrome-only ones defer to 
       'href',
       canonical
     )
-    const english = path === '/' ? site : `${site}${path.slice(3)}`
+    const route = path.replace(/^\/es(?=\/|$)/u, '') || '/'
+    const english = route === '/' ? site : `${site}${route}`
     for (const [hreflang, href] of [
       ['en', english],
-      ['es', `${site}${path === '/' ? '/es' : path}`],
+      ['es', `${site}/es${route === '/' ? '' : route}`],
       ['x-default', english]
     ] as const)
       await expect(
@@ -104,7 +107,9 @@ test('translated pages advertise hreflang alternates; chrome-only ones defer to 
       'index, follow'
     )
   }
-  for (const path of ['/es/about', '/es/users/jensenhuang']) {
+  // Simulated answers and participant answers stay in their original
+  // language, so their pages are noindex outside English.
+  for (const path of ['/es/users/jensenhuang']) {
     await page.goto(path)
     const head = page.locator('head')
     await expect(head.locator('link[rel="canonical"]')).toHaveAttribute(

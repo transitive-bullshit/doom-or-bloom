@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server'
 import { publicPageMetadata } from '@/lib/metadata'
 import { serverEnv } from '@/lib/server/env'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
@@ -5,112 +6,41 @@ export function generateMetadata() {
   return publicPageMetadata('privacy')
 }
 
-export default function Privacy() {
+export default async function Privacy() {
   const { analytics, posthog } = serverEnv()
+  const t = await getTranslations('Privacy')
   return (
     <article className='content-column flex flex-col gap-5 py-14 text-base leading-relaxed [&>h2]:mt-6 [&>h2]:-mb-2'>
-      <h1>Privacy</h1>
+      <h1>{t('title')}</h1>
+      <p>{t('intro')}</p>
+      <p>{t('storage')}</p>
+      <h2>{t('answersTitle')}</h2>
       <p>
-        Your answers and results are private by default. You can choose to
-        publish them if you want to share them.
+        {t.rich('answers1', {
+          typesafe: (chunks) => (
+            <a className='underline' href='https://typesafe.ai'>
+              {chunks}
+            </a>
+          )
+        })}
       </p>
+      <p>{t('answers2')}</p>
+      <h2>{t('accountTitle')}</h2>
+      <p>{t('account')}</p>
+      <h2>{t('measurementTitle')}</h2>
       <p>
-        No sign-up is required. A browser session gives you access to your
-        private assessments. Submitted answers, rejected replies, results, and
-        bounded failure records are saved on our server indefinitely unless you
-        delete the assessment. Feedback you give about your result is saved
-        privately with that assessment and deleted with it. Unsubmitted typing
-        stays in this browser. We may inspect saved assessments to improve the
-        project.
+        {t('measurement1', {
+          vercel: analytics ? 'on' : 'off',
+          posthog: posthog ? 'on' : 'off'
+        })}
       </p>
-      <h2>Where answers go</h2>
-      <p>
-        For real assessments, your submitted answers and relevant prior usable
-        answers travel through this app’s server to TypeSafe for Jev evaluation,
-        alongside authored questions and selected reference summaries. They do
-        leave your device. We do not claim a particular TypeSafe retention
-        policy; consult{' '}
-        <a className='underline' href='https://typesafe.ai'>
-          TypeSafe
-        </a>{' '}
-        for its current terms. The assessment database is separate from
-        TypeSafe’s processing.
-      </p>
-      <p>
-        Rejected replies are retained as conversation history but excluded from
-        scoring evidence. Operational diagnostics stay private. Browser debug
-        records may also contain submitted text and judgments; avoid sharing
-        them inadvertently. Creating a new assessment preserves previous
-        assessments. Delete an assessment from My assessments to remove its
-        server records.
-      </p>
-      <h2>Optional account recovery</h2>
-      <p>
-        Where X sign-in is available, you can link this browser’s assessments to
-        your account and recover them in another browser. We store your X
-        account identifier and authentication profile. Signing in does not
-        publish your assessments or add your X identity to their public pages.
-        You can still create and share assessments without signing in.
-      </p>
-      <h2>Optional measurement</h2>
-      <p>
-        Vercel page analytics are {analytics ? 'enabled' : 'disabled'} in this
-        build. PostHog assessment analytics are{' '}
-        {posthog ? 'enabled' : 'disabled'}. When enabled, Vercel measures page
-        traffic and PostHog receives explicit assessment events. We exclude
-        answer text, excerpts, full reports, private assessment URLs, free-form
-        clarification, and URL query strings or hashes. Session replay,
-        heatmaps, autocapture, automatic exception collection, and person
-        profiles are disabled.
-      </p>
-      <p>
-        A random per-assessment identifier links events across resumed visits
-        and changes for each new assessment or fork. This is pseudonymous
-        linkage, not mathematical anonymity. Enabling PostHog requires its
-        project-level IP-data disposal setting. Analytics credentials alone do
-        not enable collection.
-      </p>
-      <h2>Publishing and deleting</h2>
-      <p>
-        Publishing makes your full submitted conversation and inferred results
-        available to anyone and allows search engines to index the public page.
-        If you publish while signed in, your profile name, photo, and profile
-        link are included. Anonymous publications stay anonymous unless you make
-        them private and publish again while signed in. Operational failure
-        records remain private. Making an assessment private or deleting it
-        removes access to its page and data. Cached social images can remain
-        available for up to eight days, and external sites may retain previews
-        longer. Continuing a published assessment creates a separate private
-        copy; changing or deleting the original does not change that copy.
-      </p>
-      <p>
-        Source cards may embed public X posts. Post text is fetched through this
-        app’s server; embedded profile images, photos, and videos load from X’s
-        media servers. Your assessment answers are not sent to X.
-      </p>
-      <p>
-        Results images are generated on this app’s server from your assessment
-        results. They contain no raw answers. Private downloads are not publicly
-        hosted; publishing also makes a social preview available. Full reports
-        contain your answers, evidence, and any available local diagnostics, so
-        review them before sharing.
-      </p>
-      <p>
-        Anonymous progress is tied to your browser session. Optional X sign-in,
-        where available, lets you recover linked assessments in another browser.
-        Clearing or expiring cookies loses anonymous access but does not delete
-        the server records. Unsubmitted drafts do not sync across devices.
-        Concurrent submissions are checked against the saved revision to prevent
-        silent overwrites.
-      </p>
-      <p>
-        A first-party cookie remembers how your browser first found this site:
-        the link tag you arrived with (such as a newsletter or post), the
-        referring website’s domain, and the kind of page you landed on. It holds
-        no answers and no full addresses. It is saved with your anonymous or X
-        account and sent with anonymous analytics events so we can tell which
-        places bring people here.
-      </p>
+      <p>{t('measurement2')}</p>
+      <h2>{t('publishingTitle')}</h2>
+      <p>{t('publishing1')}</p>
+      <p>{t('publishing2')}</p>
+      <p>{t('publishing3')}</p>
+      <p>{t('publishing4')}</p>
+      <p>{t('cookie')}</p>
 
       <WorldviewCtaCard className='mt-12' />
     </article>
