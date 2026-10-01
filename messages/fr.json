@@ -554,7 +554,7 @@
       "providerRejected": "Notre fournisseur d’IA, TypeSafe (Jev), a rejeté cette requête. Votre réponse est enregistrée. Veuillez réessayer plus tard.",
       "saved": "Votre réponse est enregistrée et votre progression précédente reste inchangée. Veuillez réessayer lorsque vous serez prêt.",
       "budgetTitle": "Doom or Bloom fait une pause",
-      "budgetBody": "Bonjour, ici Travis. Doom or Bloom est un projet parallèle gratuit qui reçoit beaucoup plus de trafic que je ne l’avais prévu, si bien qu’il a dépassé son budget. Merci de patienter et de revenir dans environ 12 heures, ou de m’envoyer un message sur X à <link>@transitive_bs</link> pour me relancer.",
+      "budgetBody": "Bonjour, ici Travis. Doom or Bloom est un projet personnel gratuit, et il reçoit beaucoup plus de trafic que je ne l’avais prévu, si bien qu’il a dépassé son budget. Merci de patienter et de revenir dans quelques heures, ou envoyez-moi un message sur X à <link>@transitive_bs</link> pour en savoir plus.",
       "budgetSaved": "Tout ce que vous avez écrit est enregistré, vous pourrez donc réessayer exactement là où vous vous êtes arrêté.",
       "budgetDraft": "Vous pouvez toujours rédiger votre réponse. Elle reste dans ce navigateur jusqu’à ce que vous l’envoyiez."
     },

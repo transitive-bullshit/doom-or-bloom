@@ -125,7 +125,7 @@ When Jev is out of budget, because the app's spend budget is used up or TypeSafe
 
 > **Doom or Bloom is taking a breather**
 >
-> Hey, Travis here. Doom or Bloom is a free side project, and it’s getting way more traffic than I expected, so it blew past its budget. Please be patient and check back in about 12 hours, or message me on X at @transitive_bs to follow up.
+> Hey, Travis here. Doom or Bloom is a free side project, and it’s getting way more traffic than I expected, so it blew past its budget. Please be patient and check back in a few hours, or message me on X at @transitive_bs to follow up.
 
 - Opening an interview while Jev is out of budget shows the notice above the question, adding “You can still write your answer. It stays in this browser until you send it.” The answer field stays usable and sending is not blocked, since the budget may have recovered; a blocked send is saved like any other.
 - A blocked submission keeps its text in the saved operation and in the answer field. The notice replaces the generic failure alert, adds “Everything you wrote is saved, so you can retry right where you left off.” and offers **Retry saved submission**. It survives reload.

@@ -30,7 +30,7 @@ async function expectNotice(page: Page, saved: boolean) {
   await expect(notice).toHaveCount(1)
   await expect(notice).toContainText('Doom or Bloom is taking a breather')
   await expect(notice).toContainText('free side project')
-  await expect(notice).toContainText('check back in about 12 hours')
+  await expect(notice).toContainText('check back in a few hours')
   await expect(
     notice.getByRole('link', { name: '@transitive_bs' })
   ).toHaveAttribute('href', 'https://x.com/transitive_bs')
