@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
+import { BreadcrumbJsonLd } from '@/components/json-ld'
 
 // The example assessment is public persona data, refreshed with the page.
 export const dynamic = 'error'
@@ -37,6 +38,8 @@ export default async function About() {
   const person = examples.find((example) => example.id === personaId)
   return (
     <article className='content-column space-y-10 py-14 text-base leading-relaxed'>
+      {/* Hidden, so it adds no gap or margin. */}
+      <BreadcrumbJsonLd path='/about' />
       <header className='space-y-5'>
         <h1>{t('title')}</h1>
         <p>{t('question')}</p>

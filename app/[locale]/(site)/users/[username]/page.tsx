@@ -9,6 +9,8 @@ import { PersonaPageContent } from '@/components/landing/persona-page-content'
 import { PageTransition } from '@/components/page-transition'
 import { notFound } from 'next/navigation'
 import { loadPersona, loadPersonaPaths } from '@/components/landing/data'
+import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
+import { profileJsonLd } from '@/lib/seo/json-ld'
 
 export const dynamic = 'force-static'
 export const dynamicParams = true
@@ -63,18 +65,36 @@ export default async function Page({
   const profile = await loadPersona(slug)
   if (!profile) notFound()
   const { person, assessment } = profile
-  const authored = authoredTextFor(await getLocale(), person.result.versions, {
+  const [locale, t] = await Promise.all([
+    getLocale(),
+    getTranslations('Profiles')
+  ])
+  const authored = authoredTextFor(locale, person.result.versions, {
     promptIds: assessment.answers.map(({ promptId }) => promptId)
   })
+  const path = `/users/${person.slug}`
   return (
-    <PageTransition>
-      <AssessmentPage className='content-column pt-6 pb-10'>
-        <SurfaceMessages surface='published'>
-          <AuthoredTextProvider value={authored}>
-            <PersonaPageContent person={person} assessment={assessment} />
-          </AuthoredTextProvider>
-        </SurfaceMessages>
-      </AssessmentPage>
-    </PageTransition>
+    <>
+      <JsonLd
+        data={profileJsonLd({
+          person,
+          locale,
+          title: t('userTitle', { name: person.name }),
+          description: t('userDescription', { name: person.name }),
+          personDescription: t('personDescription', { name: person.name }),
+          dateModified: person.result.experiment?.generatedAt
+        })}
+      />
+      <BreadcrumbJsonLd path={path} />
+      <PageTransition>
+        <AssessmentPage className='content-column pt-6 pb-10'>
+          <SurfaceMessages surface='published'>
+            <AuthoredTextProvider value={authored}>
+              <PersonaPageContent person={person} assessment={assessment} />
+            </AuthoredTextProvider>
+          </SurfaceMessages>
+        </AssessmentPage>
+      </PageTransition>
+    </>
   )
 }

@@ -2,6 +2,12 @@ import type { Messages } from 'next-intl'
 
 export const siteUrl = 'https://www.doom-or-bloom.com'
 
+/** The site's author, credited in structured data and on blog posts. */
+export const siteCreator = {
+  name: 'Travis Fischer',
+  url: 'https://x.com/transitive_bs'
+} as const
+
 /**
  * Discoverable static pages. Titles and descriptions live in
  * messages/<locale>.json under `Pages.<key>`. `translated` marks pages whose

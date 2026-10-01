@@ -4,6 +4,7 @@ import { loadExamples } from '@/components/landing/data'
 import { directoryPdoom } from '@/components/landing/directory-sort'
 import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
+import { BreadcrumbJsonLd } from '@/components/json-ld'
 import '@/components/landing/landing.css'
 
 export const dynamic = 'error'
@@ -42,10 +43,13 @@ export default async function Page() {
     })
   )
   return (
-    <PageTransition>
-      <div className='map-lab-stage'>
-        <Prism examples={examples} directory />
-      </div>
-    </PageTransition>
+    <>
+      <BreadcrumbJsonLd path='/users' />
+      <PageTransition>
+        <div className='map-lab-stage'>
+          <Prism examples={examples} directory />
+        </div>
+      </PageTransition>
+    </>
   )
 }
