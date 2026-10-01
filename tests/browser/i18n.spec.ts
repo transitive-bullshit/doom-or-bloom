@@ -175,3 +175,17 @@ test('page responses never set cookies, in any locale', async ({ request }) => {
     expect(response.headers()['set-cookie'], path).toBeUndefined()
   }
 })
+
+test('starting from a Spanish page opens the interview under /es', async ({
+  page
+}) => {
+  await page.goto('/es')
+  await page
+    .getByRole('link', { name: 'Mapea tu propia visión de la IA' })
+    .last()
+    .click()
+  await expect(page).toHaveURL(/\/es\/assessments\/[a-f0-9-]+$/)
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es')
+  // The unsaved draft's page ticket must reach the locale-prefixed owner page.
+  await expect(page.locator('textarea').first()).toBeVisible()
+})

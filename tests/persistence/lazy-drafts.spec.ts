@@ -19,7 +19,15 @@ test('unsubmitted drafts survive history and reload without database rows; first
     const draftCookies = (await context.cookies()).filter((cookie) =>
       cookie.name.startsWith('assessment-draft')
     )
-    expect(draftCookies).toHaveLength(2)
+    // The owner page in each locale, and the API.
+    expect(draftCookies.map(({ name, path }) => [name, path])).toEqual(
+      expect.arrayContaining([
+        ['assessment-draft', `/assessments/${id}`],
+        ['assessment-draft-es', `/es/assessments/${id}`],
+        ['assessment-draft-api', `/api/assessments/${id}`]
+      ])
+    )
+    expect(draftCookies).toHaveLength(3)
     expect(draftCookies.every((cookie) => cookie.value.length < 4000)).toBe(
       true
     )
