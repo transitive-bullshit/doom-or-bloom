@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} à propos de l’IA : vision du monde simulée et P(doom)",
-    "userDescription": "Que pense {name} de l’IA ? Une simulation fondée sur ses écrits publics, et non sa propre évaluation : où elle se situe entre doom et bloom, ainsi qu’une estimation approximative de P(doom).",
+    "userDescription": "Que pense {name} de l’IA ? Découvrez où se situe sa vision du monde simulée entre Doom et Bloom, avec une estimation approximative de P(doom) et les réponses qui la sous-tendent.",
     "userImageAlt": "Vision du monde simulée de {name} sur l’IA sur la carte Doom–Bloom et de l’ampleur de la transformation",
     "personDescription": "Une simulation de la vision du monde de {name} concernant l’IA, élaborée à partir de ses écrits publics. Il s’agit d’une interprétation expérimentale, et non de sa propre évaluation ni d’une approbation.",
     "publicTitle": "Vision du monde de {name} sur l’IA",

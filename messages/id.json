@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "Pandangan {name} tentang AI: pandangan dunia simulasi dan P(doom)",
-    "userDescription": "Apa pendapat {name} tentang AI? Simulasi berdasarkan tulisan publik, bukan penilaian mereka sendiri: posisinya dalam doom atau bloom, serta perkiraan kasar P(doom).",
+    "userDescription": "Apa pendapat {name} tentang AI? Lihat di mana posisi pandangan dunia simulasinya di antara Doom dan Bloom, beserta perkiraan kasar P(doom) dan jawaban yang mendasarinya.",
     "userImageAlt": "Pandangan dunia AI simulasi {name} pada peta Doom–Bloom dan skala transformasi",
     "personDescription": "Simulasi pandangan dunia AI {name}, yang dibuat berdasarkan tulisan publik mereka. Ini adalah interpretasi eksperimental, bukan penilaian mereka sendiri ataupun bentuk dukungan.",
     "publicTitle": "Pandangan dunia AI {name}",

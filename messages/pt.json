@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} sobre a IA: visão de mundo simulada e P(doom)",
-    "userDescription": "O que {name} pensa sobre a IA? Uma simulação baseada em textos públicos, não uma avaliação feita por essa pessoa: onde ela se situa entre Doom e Bloom e uma estimativa aproximada de P(doom).",
+    "userDescription": "O que {name} pensa sobre a IA? Veja onde a visão de mundo simulada dessa pessoa se situa entre doom e bloom, com uma P(doom) aproximada e as respostas por trás dela.",
     "userImageAlt": "Visão de mundo simulada de {name} sobre IA no mapa Doom–Bloom e de escala da transformação",
     "personDescription": "Uma simulação da visão de mundo de {name} sobre a IA, construída com base em seus textos públicos. É uma interpretação experimental, não uma avaliação feita pela própria pessoa nem um endosso.",
     "publicTitle": "Visão de mundo sobre IA de {name}",

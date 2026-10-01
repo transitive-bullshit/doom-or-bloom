@@ -718,7 +718,7 @@
   },
   "Profiles": {
     "userTitle": "{name} on AI: simulated worldview and P(doom)",
-    "userDescription": "What does {name} think about AI? A simulation from public writing, not their own assessment: where it lands on doom or bloom, and a rough P(doom).",
+    "userDescription": "What does {name} think about AI? See where their simulated worldview lands between doom and bloom, with a rough P(doom) and the answers behind it.",
     "userImageAlt": "{name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map",
     "personDescription": "A simulation of {name}’s AI worldview, built from their public writing. It is an experimental interpretation, not their own assessment or an endorsement.",
     "publicTitle": "{name}’s AI worldview",
