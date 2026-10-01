@@ -236,3 +236,16 @@ export function jevBudgetGuard(store: JevBudgetStore) {
     }
   }
 }
+
+/** Whether a new participant answer would be blocked right now. */
+export async function participantBudgetBlocked(store: JevBudgetStore) {
+  try {
+    return (await store.state()).blocked
+  } catch (err) {
+    reportServerError('jev_budget_unavailable', err, {
+      boundary: 'jev_budget',
+      application: { effect: 'budget_notice_skipped' }
+    })
+    return null
+  }
+}

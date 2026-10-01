@@ -12,7 +12,7 @@ import { assessmentRepository, type Evaluator } from './repository'
 export function repository() {
   return assessmentRepository(getPool())
 }
-function budgetStore() {
+export function budgetStore() {
   return jevBudgetStore(getPool())
 }
 export const evaluateAssessment: Evaluator = async (

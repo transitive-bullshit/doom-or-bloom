@@ -14,6 +14,8 @@ import { Interview } from '@/components/assessment/interview'
 import { loadBundle } from '@/lib/content/loader'
 import { loadPersonaComparisons } from '@/components/landing/data'
 import { serverEnv } from '@/lib/server/env'
+import { budgetStore } from '@/lib/assessments/server'
+import { participantBudgetBlocked } from '@/lib/server/jev-budget-store'
 import { AssessmentPage } from '@/components/assessment/assessment-page'
 import { SurfaceMessages } from '@/components/surface-messages'
 import { AuthoredTextProvider } from '@/components/assessment/authored-text'
@@ -47,7 +49,11 @@ export default async function Page({
   })
   const env = serverEnv()
   const bundle = loadBundle(initial.assessment.versions.content)
-  const personas = await loadPersonaComparisons()
+  // A new answer would be blocked by the Jev budget: say so before they write.
+  const [personas, budgetBlock] = await Promise.all([
+    loadPersonaComparisons(),
+    participantBudgetBlocked(budgetStore())
+  ])
   const t = await getTranslations('AssessmentPages')
   return (
     <PageTransition>
@@ -61,6 +67,7 @@ export default async function Page({
               personas={personas}
               initial={initial}
               fixtureMode={env.provider === 'fixture'}
+              budgetBlocked={budgetBlock !== null}
               debugDefault={env.debug}
               debugAvailable={env.debug}
               analyticsEnabled={env.posthog}
