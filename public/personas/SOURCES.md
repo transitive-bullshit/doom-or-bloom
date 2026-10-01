@@ -76,3 +76,33 @@ The 97 `independent-<handle>.jpg` portraits are copied from the corresponding `h
 - `bach.jpg`: Joscha Bach’s public [X profile](https://x.com/Plinz), [portrait](https://pbs.twimg.com/profile_images/1924626291078389760/CXMHFvej_400x400.jpg), inspected September 26, 2026.
 - `vittorio.jpg`: Vittorio’s public [X profile](https://x.com/IterIntellectus), [portrait](https://pbs.twimg.com/profile_images/2009602429478633472/8lMkYuep_400x400.jpg), inspected September 26, 2026.
 - `naam.jpg`: Ramez Naam’s public [X profile](https://x.com/ramez), [portrait](https://pbs.twimg.com/profile_images/1897785621802061824/N9bBY8w6_400x400.jpg), verified through the X users API and downloaded September 27, 2026. Identifies the simulated public figure; does not imply participation or endorsement.
+
+## Simulated users batch 1 — October 1, 2026
+
+Each account was verified through the X users API (`/2/users/by`) on October 1, 2026 and its current `_400x400` profile image downloaded, then center-cropped and re-encoded as JPEG at no more than 400×400. Portraits identify the simulated public figure or account; they do not imply participation or endorsement. Two current X avatars are not photographs of the person (a magazine cover and a hammer logo), so, as for Andrew McAfee, their own sites supply the portrait.
+
+- `booch.jpg`: Grady Booch’s public [X profile](https://x.com/Grady_Booch), [portrait](https://pbs.twimg.com/profile_images/1350371022067781634/0mw7Irfk_400x400.jpg), account ID `397689316`.
+- `kambhampati.jpg`: Subbarao Kambhampati’s public [X profile](https://x.com/rao2z), [portrait](https://pbs.twimg.com/profile_images/1240088892751007745/zFdWaIFe_400x400.jpg), account ID `2850858010`.
+- `mitchell.jpg`: Melanie Mitchell’s public [X profile](https://x.com/MelMitchell1), [portrait](https://pbs.twimg.com/profile_images/1417524012104785928/HENn1FzD_400x400.jpg), account ID `367297219`.
+- `dietterich.jpg`: Thomas G. Dietterich’s public [X profile](https://x.com/tdietterich), [portrait](https://pbs.twimg.com/profile_images/704767204437336065/wAAXEdOd_400x400.jpg), account ID `768092862`.
+- `kapoor.jpg`: Sayash Kapoor’s public [X profile](https://x.com/sayashk), [portrait](https://pbs.twimg.com/profile_images/1521238232867946496/U_GCI43e_400x400.jpg), account ID `3084274082`.
+- `merchant.jpg`: Brian Merchant’s public [X profile](https://x.com/bcmerchant); its avatar is a hammer logo, so the portrait is his author photo on his [Blood in the Machine about page](https://www.bloodinthemachine.com/about) ([image](https://substack-post-media.s3.amazonaws.com/public/images/cf40536c-5ef0-4d0a-b3a3-93c359d0742a_200x200.jpeg)), downloaded October 1, 2026.
+- `shapira.jpg`: Liron Shapira’s public [X profile](https://x.com/liron), [portrait](https://pbs.twimg.com/profile_images/1791204047032397826/amHciX6i_400x400.jpg), account ID `15672273`.
+- `bensinger.jpg`: Rob Bensinger’s public [X profile](https://x.com/robbensinger), [portrait](https://pbs.twimg.com/profile_images/623283107756687360/cFxQ5o55_400x400.jpg), account ID `17479925`.
+- `aisafetymemes.jpg`: The AI Notkilleveryoneism Memes account’s public [X profile](https://x.com/AISafetyMemes), [portrait](https://pbs.twimg.com/profile_images/1640414967345328130/Bfx1jmim_400x400.jpg), account ID `1315709346689568770`. The avatar is the pseudonymous account’s chosen image, not a photograph of a person.
+- `elmore.jpg`: Holly Elmore’s public [X profile](https://x.com/ilex_ulmus), [portrait](https://pbs.twimg.com/profile_images/2080757980291637248/BxiSUU--_400x400.jpg), account ID `1458979594183266333`.
+- `grace.jpg`: Katja Grace’s public [X profile](https://x.com/KatjaGrace), [portrait](https://pbs.twimg.com/profile_images/1634492046449987585/JNJje3Cj_400x400.jpg), account ID `46897695`.
+- `piper.jpg`: Kelsey Piper’s public [X profile](https://x.com/KelseyTuoc), [portrait](https://pbs.twimg.com/profile_images/1957484507730518016/JKtDNrOH_400x400.jpg), account ID `1008492120125030400`.
+- `brundage.jpg`: Miles Brundage’s public [X profile](https://x.com/Miles_Brundage), [portrait](https://pbs.twimg.com/profile_images/2089462134828871680/cW8--1eS_400x400.jpg), account ID `1214528593`.
+- `lovely.jpg`: Garrison Lovely’s public [X profile](https://x.com/GarrisonLovely); its avatar is a magazine cover, so the portrait is the [headshot](https://garrisonlovely.com/headshot-900.jpg) on his [own site](https://garrisonlovely.com/) (photo credit there: Min Goodman-Cheng), downloaded October 1, 2026.
+- `habryka.jpg`: Oliver Habryka’s public [X profile](https://x.com/ohabryka), [portrait](https://pbs.twimg.com/profile_images/511622062654238720/k1pgu9nY_400x400.jpeg), account ID `450679540`.
+- `cotra.jpg`: Ajeya Cotra’s public [X profile](https://x.com/ajeya_cotra), [portrait](https://pbs.twimg.com/profile_images/1653845490885332995/GPWuOoqu_400x400.jpg), account ID `917512572965761024`.
+- `bayeslord.jpg`: The bayes account’s public [X profile](https://x.com/bayeslord), [portrait](https://pbs.twimg.com/profile_images/2034779070953627648/8HT6GahS_400x400.jpg), account ID `1084942466376257537`. The avatar is the pseudonymous account’s chosen image, not a photograph of a person.
+- `srinivasan.jpg`: Balaji Srinivasan’s public [X profile](https://x.com/balajis), [portrait](https://pbs.twimg.com/profile_images/2049168417710915585/egYgw1FA_400x400.jpg), account ID `2178012643`.
+- `casado.jpg`: Martin Casado’s public [X profile](https://x.com/martin_casado), [portrait](https://pbs.twimg.com/profile_images/1556885485888237568/HH1iBQNp_400x400.jpg), account ID `16591288`.
+- `hanania.jpg`: Richard Hanania’s public [X profile](https://x.com/RichardHanania), [portrait](https://pbs.twimg.com/profile_images/2089498736586350592/98WkSoyP_400x400.jpg), account ID `1041044330092195840`.
+- `roose.jpg`: Kevin Roose’s public [X profile](https://x.com/kevinroose), [portrait](https://pbs.twimg.com/profile_images/2100401210482413568/elX6pwFj_400x400.jpg), account ID `18816166`.
+- `newton.jpg`: Casey Newton’s public [X profile](https://x.com/CaseyNewton), [portrait](https://pbs.twimg.com/profile_images/2101082321680289792/rV3fFyEL_400x400.jpg), account ID `69426451`.
+- `wiblin.jpg`: Rob Wiblin’s public [X profile](https://x.com/robertwiblin), [portrait](https://pbs.twimg.com/profile_images/1890364551423504384/VSUxxPid_400x400.jpg), account ID `47268595`.
+- `labenz.jpg`: Nathan Labenz’s public [X profile](https://x.com/labenz), [portrait](https://pbs.twimg.com/profile_images/1614103328245309441/YPi8U18v_400x400.png), account ID `19636275`.
+- `aella.jpg`: Aella’s public [X profile](https://x.com/Aella_Girl), [portrait](https://pbs.twimg.com/profile_images/1908328831485669376/Jo1ipjZJ_400x400.jpg), account ID `795885295`.
