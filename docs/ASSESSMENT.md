@@ -183,6 +183,10 @@ Missing evidence widens the interpretation range; it does not lower the score. T
 
 Jev distributions over authored qualitative categories may be projected into a position and range. This is an assessment interpretation—not the participant's event probability and not a statistically validated confidence interval. Displayed map ranges are never narrower than ±0.05 around the point, which is the retest variation observed for the same simulated worldview. This minimum is applied at render time, so it also covers saved results.
 
+### Interview language
+
+The interview, its questions and the result are shown in the participant's language from committed translations; snapshots, prompts sent to Jev and claims stay canonical English, and answers are judged as written ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#jev-and-the-participants-language)). Outside English, Jev is told the interview language in one neutral line ([TYPESAFE.md](TYPESAFE.md#participant-language)), and each answer records its `displayLocale`. A typed P(doom) is read in every enabled language. Results across interview languages are not yet treated as comparable.
+
 ### Presentation of saved results
 
 Saved snapshots are immutable and are never reprocessed. `presentResult` (`lib/assessment/present-result.ts`) applies display-only upgrades at render time to every saved result, including the participant view, share cards, reports, the published view and persona pages:
