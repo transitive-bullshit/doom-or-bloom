@@ -1,0 +1,1876 @@
+{
+  "locale": "id",
+  "kind": "release",
+  "version": "0.4.0-draft",
+  "entries": {
+    "prompt:root:text": {
+      "text": "Menurut Anda, apa arti AI bagi masa depan kita—dan mengapa?",
+      "sourceHash": "387139f8add0c09e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:text": {
+      "text": "Apa satu perubahan konkret yang Anda perkirakan akan dibawa oleh AI?",
+      "sourceHash": "31a4cf0897a5346c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:text": {
+      "text": "Kapan, kalaupun pernah, Anda memperkirakan AI akan membawa perubahan besar dalam kehidupan sehari-hari?",
+      "sourceHash": "b8dbc39437255265",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:text": {
+      "text": "Seberapa yakin Anda tentang kapan AI akan membawa perubahan besar dalam kehidupan sehari-hari?",
+      "sourceHash": "6307382fa1ef9cd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:text": {
+      "text": "Apa yang paling Anda perkirakan akan diubah oleh AI dalam kehidupan orang-orang, dan bagaimana?",
+      "sourceHash": "c9d873f85e0bddda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:text": {
+      "text": "Pengamatan atau pengalaman apa yang paling membentuk pandangan Anda tentang dampak AI pada masa depan?",
+      "sourceHash": "f400e70def334935",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:text": {
+      "text": "Apakah Anda memperkirakan manusia akan tetap memegang kendali atas sistem AI yang lebih cerdas daripada manusia, dan mengapa?",
+      "sourceHash": "cb285c18438beece",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:text": {
+      "text": "Menurut Anda, bagaimana orang dan lembaga yang mengembangkan AI akan menanggapi risikonya?",
+      "sourceHash": "ccce59b65d94452b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:text": {
+      "text": "Manfaat besar apa, jika ada, yang Anda perkirakan akan diperoleh orang-orang dari AI?",
+      "sourceHash": "928e73541b79f339",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:text": {
+      "text": "Kerugian besar apa, jika ada, yang Anda perkirakan akan disebabkan oleh AI?",
+      "sourceHash": "033ab3d4a25ba58d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:text": {
+      "text": "Penemuan atau peristiwa apa yang paling mungkin mengubah pandangan Anda tentang dampak AI pada masa depan?",
+      "sourceHash": "b0618f7c01f48bb6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:text": {
+      "text": "Apa argumen terkuat yang menentang pandangan Anda secara keseluruhan tentang dampak AI pada masa depan?",
+      "sourceHash": "5d7a73cf99892b28",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:text": {
+      "text": "Dalam masa depan yang baik, apa yang perlu dipertahankan dari hakikat menjadi manusia?",
+      "sourceHash": "2bbe2555bcae903b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:text": {
+      "text": "Apa yang dapat membuat kemajuan AI semakin cepat atau melambat?",
+      "sourceHash": "238ed6ca05fc40ae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:text": {
+      "text": "Jika AI menyebabkan kerugian yang tidak dapat dipulihkan, tanda peringatan apa yang Anda perkirakan akan muncul lebih dahulu?",
+      "sourceHash": "c36134cee8749d84",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:text": {
+      "text": "Apa, jika ada, yang akan membatasi seberapa cepat AI dapat meningkatkan sistem AI?",
+      "sourceHash": "e78fe233c9de1d01",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:text": {
+      "text": "Siapa yang Anda perkirakan akan paling diuntungkan oleh AI?",
+      "sourceHash": "50f0b5b89aee9976",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:text": {
+      "text": "Apa, jika ada, yang dapat mencegah manfaat AI menjangkau orang biasa?",
+      "sourceHash": "b4c0f944ba8fcf6e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:text": {
+      "text": "Menurut Anda, seberapa besar kemungkinan AI menyebabkan kerugian yang tidak akan pernah dapat dipulihkan oleh umat manusia?",
+      "sourceHash": "1b69507c12c73b2f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:text": {
+      "text": "Menurut perkiraan kasar berdasarkan naluri Anda, seberapa besar kemungkinan AI menyebabkan kepunahan manusia atau bencana permanen serupa? Angka atau “tidak tahu” dapat diterima.",
+      "sourceHash": "2737b14e5892bc29",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:text": {
+      "text": "Penggunaan AI yang merugikan mana, jika ada, yang paling Anda khawatirkan?",
+      "sourceHash": "882c6397adc58faf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:text": {
+      "text": "Masalah apa, jika ada, yang Anda perkirakan akan disebabkan oleh AI dalam kehidupan sehari-hari?",
+      "sourceHash": "5c7d6cf59f585482",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:text": {
+      "text": "Bukti apa yang akan mengubah pandangan Anda tentang apakah manusia dapat mengendalikan AI yang kuat?",
+      "sourceHash": "0a013f2235e53256",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:text": {
+      "text": "Tekanan apa yang menurut Anda akan membentuk cara perusahaan AI menangani keselamatan?",
+      "sourceHash": "308cc8ecf2666f79",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:text": {
+      "text": "Apakah Anda memperkirakan perusahaan AI atau pemerintah yang saling bersaing akan bekerja sama dalam hal keselamatan, dan mengapa?",
+      "sourceHash": "f23eaf8e4ce62cae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:text": {
+      "text": "Perubahan seperti apa yang seharusnya dapat ditolak orang-orang dalam masa depan AI yang baik?",
+      "sourceHash": "a8573a7b6045d000",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:text": {
+      "text": "Dampak negatif apa yang bersedia Anda terima untuk membuat dampak AI pada masa depan menjadi lebih baik?",
+      "sourceHash": "6061cce047c108ad",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:text": {
+      "text": "Apa yang telah ditunjukkan oleh sistem AI saat ini kepada Anda tentang apa yang akan mampu dilakukan AI pada masa depan?",
+      "sourceHash": "b2562dbbc8bb7ca2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:text": {
+      "text": "Asumsi apa yang paling mendasari prediksi Anda tentang masa depan AI?",
+      "sourceHash": "8f9445d5a4ac971c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:text": {
+      "text": "Tanda apa yang akan menunjukkan kepada Anda bahwa AI mulai mengubah kehidupan sehari-hari?",
+      "sourceHash": "54d7efdd16c3de1a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:text": {
+      "text": "Di bagian mana bukti paling lemah dalam penjelasan Anda tentang bagaimana AI akan mengubah kehidupan orang-orang?",
+      "sourceHash": "b17b9d5d89ed03b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:text": {
+      "text": "Apa yang Anda perkirakan akan mampu dilakukan AI pada 2030?",
+      "sourceHash": "5aa3053228393e8c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:text": {
+      "text": "Apa, jika ada, yang seharusnya diubah dalam cara AI dikembangkan atau digunakan?",
+      "sourceHash": "f3b25b08f4e4b602",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:text": {
+      "text": "Apa yang paling tidak Anda yakini ketika memikirkan masa depan AI?",
+      "sourceHash": "6733afd567d2cdf7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:text": {
+      "text": "Bagaimana Anda memperkirakan dampak AI terhadap kehidupan orang-orang akan berubah seiring waktu?",
+      "sourceHash": "cb2b83083b01a9fe",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:text": {
+      "text": "Dengan mempertimbangkan manfaat dan kerugian secara bersama-sama, dampak keseluruhan apa yang Anda perkirakan akan ditimbulkan AI?",
+      "sourceHash": "33f7d3f8a75621ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:text": {
+      "text": "Bagaimana Anda memperkirakan AI akan mengubah keseimbangan antara penyerang dan pembela siber?",
+      "sourceHash": "e1d0e830e494df3e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:reask": {
+      "text": "Menurut Anda, apakah AI akan lebih membantu penyerang atau pembela siber, dan mengapa?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:clarification": {
+      "text": "Menurut Anda, apakah AI akan lebih membantu penyerang atau pembela siber, dan mengapa?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:exhausted": {
+      "text": "Menurut Anda, apakah AI akan lebih membantu penyerang atau pembela siber, dan mengapa?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:text": {
+      "text": "Seberapa besar manusia dapat membentuk dampak AI pada masa depan?",
+      "sourceHash": "4961359a645e5f2a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:text": {
+      "text": "Seberapa besar perubahan dalam kehidupan sehari-hari yang Anda perkirakan akan terjadi karena AI?",
+      "sourceHash": "eff862f05a11a834",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:text": {
+      "text": "Terlepas dari baik atau buruk: menurut Anda, pada akhirnya seberapa besar AI akan mengubah dunia—sedikit, banyak, atau sepenuhnya?",
+      "sourceHash": "c04ddec578f4e43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:text": {
+      "text": "Menurut Anda, apakah katastrofe merupakan hasil yang paling mungkin, atau risiko serius di samping kemungkinan-kemungkinan yang lebih baik?",
+      "sourceHash": "f36588d9ee3dc51e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:text": {
+      "text": "Apakah Anda terutama khawatir tentang arah perkembangan AI, atau apakah harapan dan kekhawatiran terasa kurang lebih seimbang bagi Anda?",
+      "sourceHash": "b8c8995689641b48",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:text": {
+      "text": "Jika harus condong ke satu sisi, apakah Anda memperkirakan AI pada akhirnya akan lebih banyak membawa kebaikan daripada keburukan, atau apakah Anda benar-benar bimbang?",
+      "sourceHash": "023a52c97dc01113",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:text": {
+      "text": "Menurut Anda, apakah manfaatnya jelas akan lebih besar daripada risikonya, atau apakah secara keseluruhan hasilnya baik dengan risiko nyata yang perlu dikelola?",
+      "sourceHash": "2717f186c55147de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:text": {
+      "text": "Anda menempatkan diri sebagai lebih penuh harapan daripada yang tercermin dari jawaban Anda. Apa yang membuat Anda penuh harapan tetapi tidak terlihat dalam jawaban Anda?",
+      "sourceHash": "9aaa67777523a93e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:text": {
+      "text": "Anda menempatkan diri sebagai lebih khawatir daripada yang tercermin dari jawaban Anda. Apa yang Anda khawatirkan yang mungkin kami lewatkan?",
+      "sourceHash": "0bcf7fdc36273697",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:text": {
+      "text": "Anda memperkirakan perubahan yang lebih besar daripada yang ditunjukkan jawaban Anda. Apa perubahan terbesar yang Anda lihat akan terjadi?",
+      "sourceHash": "853edb2888486a22",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:text": {
+      "text": "Jawaban Anda menyiratkan perubahan yang lebih besar daripada yang Anda perkirakan. Menurut Anda, apa yang akan tetap sama?",
+      "sourceHash": "049c9c47c2ab7c8b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.revision-closed": {
+      "text": "Anda mengesampingkan kemungkinan untuk mengubah keyakinan ini terlepas dari bukti apa pun. Cobalah sebutkan satu pengamatan yang akan membuat Anda mempertimbangkannya kembali, serta apa yang akan Anda ubah.",
+      "sourceHash": "a2f6cee65ef18d20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.causal": {
+      "text": "Anda menghubungkan hasil yang diperkirakan dengan suatu mekanisme. Hal ini membuat bagian penting dari pandangan Anda lebih mudah ditelaah.",
+      "sourceHash": "c890cbb654949d10",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.crux": {
+      "text": "Anda mengidentifikasi sesuatu yang dapat mengubah pandangan Anda. Ini adalah titik penentu yang berguna untuk terus dipantau.",
+      "sourceHash": "95f906e83ba7a7b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.scope": {
+      "text": "Anda memperjelas suatu kondisi atau cakupan. Hal ini membantu membedakan perkiraan tersebut dari keadaan yang mendasarinya.",
+      "sourceHash": "2d5a1fafa1e682f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.uncertainty": {
+      "text": "Anda mengungkapkan ketidakpastian dengan cara yang tetap membuka ruang bagi lebih banyak bukti. Hal itu sendiri tidak membuat hasil yang diperkirakan menjadi lebih baik atau lebih buruk.",
+      "sourceHash": "766780dd13f68fd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.countercase": {
+      "text": "Anda menanggapi alasan serius yang dapat membuat perkiraan Anda keliru. Alternatif tersebut berguna untuk ditelaah bersama penjelasan utama Anda.",
+      "sourceHash": "86dfb82e18cd85cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.coherence": {
+      "text": "Posisi yang Anda nyatakan selaras satu sama lain berdasarkan kondisi yang Anda uraikan. Hal itu tetap merupakan interpretasi atas jawaban-jawaban ini.",
+      "sourceHash": "070ebe22de961a8d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.grounded": {
+      "text": "Anda menghubungkan penjelasan Anda dengan bukti yang dapat diperiksa. Suatu rujukan tetap memiliki batasan dalam hal apa yang dapat dibuktikannya.",
+      "sourceHash": "ed714a4a470db0e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.benefit-conditions": {
+      "text": "Anda memperkirakan adanya sejumlah manfaat dari AI dan menguraikan batasan atau kondisi dalam penjelasan Anda. Pertimbangkan kondisi mana yang paling penting bagi manfaat yang Anda perkirakan.",
+      "sourceHash": "6f1a60236580e372",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.risk-concern": {
+      "text": "Kerugian merupakan bagian yang penting dan berdampak dari perkiraan Anda. Penilaian ini memisahkan perkiraan tersebut dari respons yang Anda pilih.",
+      "sourceHash": "ff87bcf5506e374c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.control-conditions": {
+      "text": "Anda memperkirakan bahwa kendali teknis dapat diwujudkan dalam kondisi yang menuntut. Kondisi tersebut penting bagi bagian lain dari pandangan Anda.",
+      "sourceHash": "6107a23a56de2262",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.institutions": {
+      "text": "Anda memperkirakan bahwa lembaga akan berpengaruh terhadap apa yang terjadi. Insentif dan koordinasi dalam penjelasan Anda layak ditelaah.",
+      "sourceHash": "16818def76d32160",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.continuity": {
+      "text": "Anda memperkirakan bahwa bentuk agensi atau keberlanjutan yang Anda hargai akan dipertahankan atau diperluas secara substansial.",
+      "sourceHash": "fd3c81de137b2d1f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.transition": {
+      "text": "Penjelasan Anda mencakup bagaimana kemajuan dapat berlangsung. Asumsi tentang waktu dan tanda peringatannya dapat memengaruhi manfaat maupun risiko.",
+      "sourceHash": "1a39f16ea7df3270",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.policy-separate": {
+      "text": "Anda mengungkapkan respons yang Anda pilih terhadap AI. Kami memisahkan preferensi tersebut dari penempatan dampak yang diperkirakan pada peta.",
+      "sourceHash": "fd6bba03b287c274",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:title": {
+      "text": "Skenario ekonomi dari Anthropic Institute",
+      "sourceHash": "417ea190ea30a739",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:purpose": {
+      "text": "Bandingkan skenario ekonomi bersyarat dan hambatan tanpa memperlakukannya sebagai hasil masa depan yang telah diukur.",
+      "sourceHash": "81393a94ee808e02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:question": {
+      "text": "Hambatan apa yang dapat membatasi manfaat ekonomi AI?",
+      "sourceHash": "7ae183d9e2df4c82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:effort": {
+      "text": "Baca ikhtisar terlebih dahulu; skenario lengkap memerlukan waktu lebih lama",
+      "sourceHash": "d75d17148d444e3c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:title": {
+      "text": "Investigasi independen METR terhadap Hugging Face",
+      "sourceHash": "fbf30a4eae538f06",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:purpose": {
+      "text": "Telaah perilaku agen yang diamati, berbagai interpretasi yang bersaing, dan batasan akses para penyelidik.",
+      "sourceHash": "9b9ff8a4dc8c277f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:question": {
+      "text": "Apa yang dapat dipastikan oleh investigasi independen mengenai perilaku suatu agen, dan apa yang masih belum diketahui?",
+      "sourceHash": "a7447a441df7fa30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:effort": {
+      "text": "Ikhtisar investigasi",
+      "sourceHash": "5097ada005f3ce30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:title": {
+      "text": "Kondisi operasional minimum untuk evaluasi AI",
+      "sourceHash": "3da6f597cfb2bb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:purpose": {
+      "text": "Pertimbangkan apa yang dibutuhkan evaluator independen untuk menyelidiki sistem dan melaporkan temuan material.",
+      "sourceHash": "79933d17a5751dcd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:question": {
+      "text": "Akses dan independensi seperti apa yang akan membuat evaluasi AI informatif bagi Anda?",
+      "sourceHash": "774a9d973e55550d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:effort": {
+      "text": "Ikhtisar kerangka kerja",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:title": {
+      "text": "Project Glasswing dan penerapan defensif",
+      "sourceHash": "6336689f5d1ee7ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:purpose": {
+      "text": "Telaah cakupan yang dinyatakan dari suatu program defensif dan bedakan komitmen dari dampak bersih terhadap keamanan yang telah diukur.",
+      "sourceHash": "06ce1e779b21de30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:question": {
+      "text": "Bukti apa yang akan menunjukkan bahwa penerapan defensif meningkatkan keamanan bersih?",
+      "sourceHash": "53ab7a34046bc5f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:effort": {
+      "text": "Ikhtisar program",
+      "sourceHash": "0c8793f284a9cfc0",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:title": {
+      "text": "Kerangka kerja pelaporan ketidakselarasan model OpenAI",
+      "sourceHash": "571655d4bf35d5c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:purpose": {
+      "text": "Bandingkan proses pelaporan insiden yang diusulkan dengan mekanisme akuntabilitas dalam pandangan Anda.",
+      "sourceHash": "fc1c2b23cf76e41f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:question": {
+      "text": "Pelaporan dan akuntabilitas seperti apa yang Anda inginkan setelah insiden AI?",
+      "sourceHash": "4b15a6290e708e45",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:effort": {
+      "text": "Ikhtisar kerangka kerja",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:title": {
+      "text": "Menyesuaikan laju pengembangan dengan kemampuan siber",
+      "sourceHash": "7c0aa04427b3ca40",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:purpose": {
+      "text": "Telaah ambang batas kemampuan, langkah pengamanan, dan keputusan penerapan tanpa menganggap bahwa suatu rencana menunjukkan kepatuhan.",
+      "sourceHash": "2a0fc46a0f56c08e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:question": {
+      "text": "Ambang batas kemampuan mana yang seharusnya mengubah keputusan penerapan atau pengembangan?",
+      "sourceHash": "234e6c6fd38698e8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:effort": {
+      "text": "Kerangka kerja terperinci untuk pengembang",
+      "sourceHash": "3d19ba12206176df",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:title": {
+      "text": "Pola dan masalah dalam sistem multiagen",
+      "sourceHash": "edaa43716f21e91b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:purpose": {
+      "text": "Telaah koordinasi eksperimental dan pola kegagalan, dengan tetap mempertahankan kondisi ketika keduanya diamati.",
+      "sourceHash": "c52900fac5a6633c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:question": {
+      "text": "Dalam kondisi apa agen-agen yang bekerja sama menjadi lebih sulit dikendalikan?",
+      "sourceHash": "4a945e21df4a838b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:effort": {
+      "text": "Ikhtisar riset; eksperimen memerlukan waktu lebih lama",
+      "sourceHash": "d3e09c379b601596",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:title": {
+      "text": "Mengapa agen AI berbohong, berbuat curang, dan berkoordinasi?",
+      "sourceHash": "aa692e6caa5e9ecc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:purpose": {
+      "text": "Bandingkan interpretasi perilaku agen yang dikaitkan dengan pihak tertentu dengan bukti primer yang dibahasnya.",
+      "sourceHash": "c5d6eaa877005b73",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:question": {
+      "text": "Interpretasi mana atas perilaku agen yang didukung oleh pengamatan yang mendasarinya?",
+      "sourceHash": "f639c2e59cf3153a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:effort": {
+      "text": "Ikhtisar komentar",
+      "sourceHash": "8990936aa6f1031b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:title": {
+      "text": "Data kerentanan siber Epoch",
+      "sourceHash": "d2dcc2d31789fd60",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:purpose": {
+      "text": "Telaah definisi pengukuran dan pengambilan sampel sebelum menggeneralisasi jumlah kerentanan menjadi kemampuan atau risiko secara keseluruhan.",
+      "sourceHash": "cc0795fe945453b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:question": {
+      "text": "Apa yang dapat disampaikan oleh jumlah kerentanan tentang kemampuan, dan apa yang tidak dapat disampaikannya?",
+      "sourceHash": "a5a4446c9d00be70",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:effort": {
+      "text": "Dokumentasi set data terlebih dahulu",
+      "sourceHash": "d9d710dd967c7faa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:title": {
+      "text": "Pikiran Asing",
+      "sourceHash": "60a5837b4af29689",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:purpose": {
+      "text": "Telusuri pembedaan yang dibuat seorang pengembang antara penyelarasan tujuan dan penyelarasan nilai, dengan tetap mempertahankan prakiraan dan insentifnya.",
+      "sourceHash": "8d285abb8e33a8d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:question": {
+      "text": "Bagaimana penyelarasan tujuan mungkin berbeda dari penyelarasan dengan nilai-nilai yang ingin Anda pertahankan?",
+      "sourceHash": "2fc235604992e0b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:effort": {
+      "text": "Esai kepemimpinan",
+      "sourceHash": "49ca3fb177fc6151",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:title": {
+      "text": "Agen AI Memungkinkan Worm Komputer Adaptif",
+      "sourceHash": "351d503078ec0edd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:purpose": {
+      "text": "Telaah demonstrasi siber terkendali, prasyaratnya, dan keterbatasannya sebagai bukti kerugian otonom.",
+      "sourceHash": "31a723c74e0c610d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:question": {
+      "text": "Prasyarat mana yang membatasi apa yang dapat disampaikan oleh demonstrasi siber terkendali tentang kerugian di dunia nyata?",
+      "sourceHash": "03b5e34737093c54",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:effort": {
+      "text": "Abstrak terlebih dahulu; makalah teknis lengkap",
+      "sourceHash": "84c026eeda132f7a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:title": {
+      "text": "Ruang lingkup riset The DeepMind Institute",
+      "sourceHash": "58291c2d62906c20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:purpose": {
+      "text": "Telaah peran riset yang diusulkan suatu lembaga tanpa memperlakukan pengumumannya sebagai bukti tata kelola yang berhasil.",
+      "sourceHash": "2c8802e04982959a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:question": {
+      "text": "Apa yang akan menunjukkan bahwa lembaga riset yang diusulkan meningkatkan tata kelola?",
+      "sourceHash": "31d402132acaf390",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:effort": {
+      "text": "Pengantar lembaga",
+      "sourceHash": "59467e16822d70ef",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:title": {
+      "text": "Insiden Hugging Face dan langkah ke depan",
+      "sourceHash": "1f6422d794a2ba9c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:purpose": {
+      "text": "Bandingkan laporan insiden dan langkah pengamanan dari pengembang dengan investigasi independen yang cakupannya lebih sempit.",
+      "sourceHash": "752f0ff72c45d75a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:question": {
+      "text": "Dalam hal apa laporan pengembang dan investigasi independen sejalan atau berbeda?",
+      "sourceHash": "dad285e6e6f8d457",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:effort": {
+      "text": "Ikhtisar pengembang",
+      "sourceHash": "330913b2a18ec74f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:title": {
+      "text": "Laporan intelijen ancaman Anthropic pada September 2026",
+      "sourceHash": "5e12966a50dd3fd1",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:purpose": {
+      "text": "Telaah penggunaan berbahaya yang dilaporkan dan batas-batas respons tanpa menyamakan penyalahgunaan yang diarahkan manusia dengan ketidakselarasan otonom.",
+      "sourceHash": "d6b90ee564028c52",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:question": {
+      "text": "Bagaimana langkah pengamanan terhadap penyalahgunaan yang diarahkan manusia berbeda dari langkah pengamanan terhadap ketidakselarasan otonom?",
+      "sourceHash": "3e92d764fb23a6c4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:effort": {
+      "text": "Ikhtisar laporan",
+      "sourceHash": "0a3a200868ea390a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:title": {
+      "text": "Mau bertaruh? — Scott Sumner",
+      "sourceHash": "539c05c3a92cda02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:purpose": {
+      "text": "Mengkaji cara mempertimbangkan keahlian yang saling bertentangan dan mengambil keputusan selagi ketidakpastian masih ada.",
+      "sourceHash": "1d0e12fea7c649db",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:question": {
+      "text": "Bagaimana Anda akan mempertimbangkan prakiraan para ahli yang saling bertentangan ketika memutuskan apa yang harus dilakukan mengenai risiko AI?",
+      "sourceHash": "15631f30de57c032",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:effort": {
+      "text": "Esai konseptual panjang",
+      "sourceHash": "3e57a264e373ed8b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

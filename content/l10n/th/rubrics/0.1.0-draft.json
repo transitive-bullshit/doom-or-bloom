@@ -1,0 +1,455 @@
+{
+  "locale": "th",
+  "kind": "rubric",
+  "version": "0.1.0-draft",
+  "entries": {
+    "level:capability_trajectory:0": {
+      "text": "ไม่คาดว่าจะเกิดความสามารถที่ก่อให้เกิดการเปลี่ยนแปลง หรือมีการคาดไว้อย่างชัดเจนว่าขีดจำกัดจะอยู่ในระดับต่ำ",
+      "sourceHash": "45332aa77e89763e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:1": {
+      "text": "คาดว่าจะเกิดความสามารถที่ก่อให้เกิดการเปลี่ยนแปลงในกรอบเวลาที่ยาวนานหรือไม่มีกำหนดเท่านั้น",
+      "sourceHash": "1caad9e3af1c823b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:2": {
+      "text": "คาดว่าจะเกิดความสามารถที่ก่อให้เกิดการเปลี่ยนแปลงภายในหลายทศวรรษ โดยช่วงเวลาขึ้นอยู่กับเงื่อนไขหรือยังไม่แน่นอน",
+      "sourceHash": "fc0d592a2a5c717e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:3": {
+      "text": "คาดว่าจะเกิดความสามารถที่ก่อให้เกิดการเปลี่ยนแปลงภายในไม่กี่ปี โดยมีการระบุเหตุการณ์สำคัญหรือช่วงเวลาไว้",
+      "sourceHash": "7be8454bb25508ac",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:0": {
+      "text": "คาดว่าจะเป็นการเปลี่ยนผ่านอย่างค่อยเป็นค่อยไป โดยมีสัญญาณเตือนล่วงหน้ามากพอและมีการแพร่กระจายในวงกว้าง",
+      "sourceHash": "4d75d63bcc972e76",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:1": {
+      "text": "คาดว่าจะมีการเร่งตัวที่สังเกตได้ แต่ยังมีเวลามากพอสำหรับการปรับตัวอย่างมีนัยสำคัญ",
+      "sourceHash": "616aa99b562fa9a2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:2": {
+      "text": "คาดว่าจะเป็นการเปลี่ยนผ่านอย่างรวดเร็วโดยมีสัญญาณเตือนล่วงหน้าจำกัด",
+      "sourceHash": "1cf04864d24ec589",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:3": {
+      "text": "คาดว่าจะเป็นการเปลี่ยนผ่านอย่างฉับพลันที่เสริมแรงตัวเอง โดยมีสัญญาณเตือนล่วงหน้าน้อยมาก",
+      "sourceHash": "8a00a52d2e6cd875",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:0": {
+      "text": "คาดว่าจะมีผลกระทบเชิงบวกเพียงเล็กน้อย แม้ว่า AI ขั้นสูงจะเกิดขึ้น",
+      "sourceHash": "b4ca95af2e04929f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:1": {
+      "text": "คาดว่าจะได้รับประโยชน์อย่างจำกัดหรือกระจุกตัวอยู่ในวงแคบ",
+      "sourceHash": "2de0b96f1b89dfcf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:2": {
+      "text": "คาดว่าจะได้รับประโยชน์อย่างมาก โดยมีเงื่อนไขสำคัญหรือข้อจำกัดด้านการกระจายประโยชน์",
+      "sourceHash": "78afad70d75f7f87",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:3": {
+      "text": "คาดว่าจะได้รับประโยชน์ที่ก่อให้เกิดการเปลี่ยนแปลงและมีคุณค่าอย่างกว้างขวาง",
+      "sourceHash": "0039469aca6539d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:0": {
+      "text": "คาดว่าจะมีผลกระทบเชิงลบที่มีนัยสำคัญเพียงเล็กน้อย",
+      "sourceHash": "34a88df95706751f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:1": {
+      "text": "คาดว่าจะเกิดอันตรายที่จัดการได้หรือจำกัดอยู่เฉพาะพื้นที่",
+      "sourceHash": "a1f3567ff213f1a6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:2": {
+      "text": "อันตรายร้ายแรงหรือแพร่หลายในวงกว้างเป็นส่วนสำคัญที่คาดว่าจะเกิดขึ้นในอนาคต",
+      "sourceHash": "0254b37a8211331b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:3": {
+      "text": "ความสูญเสียระดับหายนะหรือไม่อาจย้อนคืนได้เป็นแก่นสำคัญของอนาคตที่คาดไว้",
+      "sourceHash": "4f5f72872743a2e6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:0": {
+      "text": "คาดว่าการควบคุมทางเทคนิคที่เชื่อถือได้จะไม่สามารถทำได้",
+      "sourceHash": "a21ea7cf647c16d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:1": {
+      "text": "คาดว่าการควบคุมจะทำได้ยากมากและไม่น่าเชื่อถือ",
+      "sourceHash": "4d5105568afe1813",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:2": {
+      "text": "คาดว่าการควบคุมจะสามารถทำได้ภายใต้เงื่อนไขที่เข้มงวด",
+      "sourceHash": "89303d162cee93b9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:3": {
+      "text": "คาดว่าการควบคุมทางเทคนิคที่เชื่อถือได้จะสามารถทำได้อย่างกว้างขวาง",
+      "sourceHash": "fe22e102703e2dda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:0": {
+      "text": "คาดว่าสถาบันต่าง ๆ จะไม่สามารถรับมือได้อย่างมีประสิทธิผล",
+      "sourceHash": "b201bfd67e082009",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:1": {
+      "text": "คาดว่าในหลายกรณี สถาบันต่าง ๆ จะรับมืออย่างอ่อนแอเกินไปหรือช้าเกินไป",
+      "sourceHash": "09bc34029b1e978e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:2": {
+      "text": "คาดว่าจะมีการรับมือที่มีประสิทธิผลภายใต้เงื่อนไขเฉพาะด้านการประสานงาน",
+      "sourceHash": "9aa6f5f1ab20f0e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:3": {
+      "text": "คาดว่าสถาบันต่าง ๆ จะปรับตัวได้อย่างมีประสิทธิผลและทันท่วงที",
+      "sourceHash": "9e1161b033a11f25",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:0": {
+      "text": "อนาคตที่คาดไว้บั่นทอนหรือขจัดรูปแบบของความสามารถในการกำหนดและลงมือกระทำ/ความต่อเนื่องที่ผู้เข้าร่วมให้คุณค่าไว้อย่างชัดเจน",
+      "sourceHash": "5687590e6d27af27",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:1": {
+      "text": "คาดว่าจะสูญเสียความสามารถในการกำหนดและลงมือกระทำหรือความต่อเนื่องที่ให้คุณค่าไปอย่างมีนัยสำคัญ",
+      "sourceHash": "0699acb072ef685d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:2": {
+      "text": "คาดว่าความสามารถในการกำหนดและลงมือกระทำ/ความต่อเนื่องที่ให้คุณค่าจะได้รับการรักษาไว้เป็นส่วนใหญ่ โดยมีการเปลี่ยนแปลงหรือเงื่อนไขบางประการ",
+      "sourceHash": "157e09c1ca4d9f71",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:3": {
+      "text": "คาดว่าความสามารถในการกำหนดและลงมือกระทำ/ความต่อเนื่องที่ให้คุณค่าจะขยายตัวหรือเฟื่องฟู",
+      "sourceHash": "c59055f0b40fe1cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:0": {
+      "text": "ต้องการให้มีการหยุดในวงกว้างหรือชะลอความเร็วลงอย่างมาก",
+      "sourceHash": "c1d3d6a12153d4dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:1": {
+      "text": "ต้องการให้พัฒนาอย่างจำกัดและมีมาตรการป้องกันล่วงหน้าที่เข้มงวด",
+      "sourceHash": "b524ab64b4a762c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:2": {
+      "text": "ต้องการให้พัฒนาต่อไปพร้อมมาตรการป้องกันที่มุ่งเป้าเฉพาะด้าน",
+      "sourceHash": "e1cf86701dfe17de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:3": {
+      "text": "ต้องการให้พัฒนาอย่างรวดเร็วหรือเปิดให้เข้าถึงในวงกว้าง",
+      "sourceHash": "879b4392f9b387d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:0": {
+      "text": "มีการยืนยันผลลัพธ์โดยไม่มีกลไกสนับสนุน",
+      "sourceHash": "5a1c3841eb66a67e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:1": {
+      "text": "มีการระบุปัจจัยเชิงสาเหตุ แต่ไม่ได้อธิบายความเชื่อมโยงกับผลลัพธ์",
+      "sourceHash": "371cb72b0bb281d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:2": {
+      "text": "มีกลไกที่สอดคล้องกันเชื่อมโยงสาเหตุกับผลลัพธ์ภายใต้เงื่อนไขที่เกี่ยวข้อง",
+      "sourceHash": "b5beffee8879dbaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:3": {
+      "text": "มีการอธิบายกลไกโดยครอบคลุมสิ่งที่กลไกนั้นขึ้นอยู่กับ ข้อจำกัด หรือจุดที่อาจล้มเหลว",
+      "sourceHash": "7f3cf132b9208186",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:0": {
+      "text": "มีการปะปนขอบเขตที่แตกต่างกันอย่างมีนัยสำคัญโดยไม่มีการระบุเงื่อนไขกำกับ",
+      "sourceHash": "afbdbad35b37f05d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:1": {
+      "text": "มีการระบุขอบเขตบางส่วน แต่เส้นแบ่งที่สำคัญยังคงไม่ชัดเจน",
+      "sourceHash": "8c0efb8b562edaea",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:2": {
+      "text": "มีการแยกแยะผู้มีบทบาท เงื่อนไข หรือกรอบเวลาที่เกี่ยวข้อง",
+      "sourceHash": "8fe55de11a076b2b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:3": {
+      "text": "ขอบเขตที่จำเป็นต่อการตีความข้อกล่าวอ้างซึ่งมีผลสำคัญมีความชัดเจน รวมถึงความแตกต่างที่เกี่ยวข้องของผู้มีบทบาท กรอบเวลา หรือเงื่อนไข โดยไม่จำเป็นที่ทุกประโยคจะต้องกล่าวย้ำขอบเขตเหล่านั้น",
+      "sourceHash": "56ff0f8bd47bbb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:0": {
+      "text": "มีการยืนยันความแน่นอนแม้หลักฐานจะถูกระบุอย่างชัดเจนว่ามีจำกัดหรือขัดแย้งกัน",
+      "sourceHash": "84e0a647a0d8a0cb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:1": {
+      "text": "มีการยอมรับความไม่แน่นอน แต่ระดับความหนักแน่นของข้อกล่าวอ้างไม่สอดคล้องกับสิ่งสนับสนุนอย่างเหมาะสม",
+      "sourceHash": "e9c18716503a9c9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:2": {
+      "text": "ระดับความเชื่อมั่นเป็นสัดส่วนกับหลักฐานที่ให้มา และยังคงสะท้อนสิ่งสำคัญที่ยังไม่ทราบ",
+      "sourceHash": "badd0b94484d1f16",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:3": {
+      "text": "มีการแยกแยะระดับความไม่แน่นอนของข้อกล่าวอ้างแต่ละข้อและเชื่อมโยงกับข้อจำกัดของหลักฐานที่เป็นรูปธรรม",
+      "sourceHash": "9184c61fcea3a0fa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:0": {
+      "text": "ข้อความที่เกี่ยวข้องกันยังคงไม่สอดคล้องกันภายใต้สมมติฐานเดียวกันที่ระบุไว้ แม้ผ่านการชี้แจงแล้ว",
+      "sourceHash": "d7e5b6671ee34fe7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:1": {
+      "text": "ความไม่สอดคล้องที่มีนัยสำคัญยังคงเป็นไปได้ แต่มีการอธิบายไว้บางส่วน",
+      "sourceHash": "eed384a4ddb31fe4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:2": {
+      "text": "จุดยืนที่เกี่ยวข้องสอดคล้องกันภายใต้สมมติฐานที่ระบุไว้",
+      "sourceHash": "4ebb860dc5c17fcb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:3": {
+      "text": "ข้อกล่าวอ้างที่มีนัยสำคัญสอดคล้องกันภายใต้สมมติฐานและขอบเขตที่แสดงไว้ โดยความตึงเครียดใดๆ ที่ดูเหมือนมีได้รับการคลี่คลายด้วยการแยกแยะเหล่านั้น คำอธิบายที่สอดคล้องกันอยู่แล้วไม่จำเป็นต้องสร้างข้อขัดแย้งขึ้นมาแล้วจึงปรับให้สอดคล้องกัน",
+      "sourceHash": "941dd493b7052d75",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:0": {
+      "text": "มีการปฏิเสธทางเลือกอื่นโดยไม่ได้พิจารณาข้อกล่าวอ้างที่แท้จริงของทางเลือกนั้น",
+      "sourceHash": "1e4563dbbba8058d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:1": {
+      "text": "มีการยอมรับทางเลือกอื่น แต่ละเว้นเหตุผลรองรับที่หนักแน่นและเกี่ยวข้องที่สุดของทางเลือกนั้น",
+      "sourceHash": "bd768e0832cfe82b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:2": {
+      "text": "มีการนำเสนอทางเลือกอื่นที่มีน้ำหนักอย่างเป็นธรรมและพิจารณาตามคุณค่าของเหตุผลในตัวมันเอง",
+      "sourceHash": "4a756c3d0300fd9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:3": {
+      "text": "ผู้เข้าร่วมระบุได้ว่าเมื่อใดทางเลือกอื่นที่มีน้ำหนักอาจอธิบายได้ดีกว่าคำอธิบายของตน",
+      "sourceHash": "1bac2063b829f376",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:0": {
+      "text": "ผู้เข้าร่วมตัดความเป็นไปได้ในการปรับแก้ความเชื่ออย่างชัดเจนโดยไม่คำนึงถึงหลักฐาน",
+      "sourceHash": "157205d903c1b6d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:1": {
+      "text": "มีการระบุเงื่อนไขสำหรับการปรับตามข้อมูลใหม่อย่างคลุมเครือโดยไม่ได้ระบุหลักฐานที่เกี่ยวข้อง",
+      "sourceHash": "bc5b4358911f27fd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:2": {
+      "text": "หลักฐานที่ระบุได้หรือพัฒนาการบางอย่างอาจเปลี่ยนความเชื่อที่ระบุไว้",
+      "sourceHash": "eb36a607e4097aaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:3": {
+      "text": "มีการเชื่อมโยงข้อสังเกตเฉพาะที่ช่วยแยกแยะระหว่างความเป็นไปได้ต่างๆ เข้ากับการเปลี่ยนแปลงความเชื่อเรื่องหนึ่งโดยเฉพาะ",
+      "sourceHash": "0d00980368b2b87b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:0": {
+      "text": "ข้อสังเกตที่ให้ไว้อย่างชัดเจนขัดแย้งอย่างมีนัยสำคัญกับข้อกล่าวอ้างที่ข้อสังเกตนั้นถูกนำมาใช้สนับสนุน",
+      "sourceHash": "53d564965a501f56",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:1": {
+      "text": "ข้อสังเกตหรือตัวอย่างที่เสนอมีความเชื่อมโยงกับข้อกล่าวอ้างเพียงเล็กน้อยหรือไม่มีการอธิบายความเชื่อมโยง",
+      "sourceHash": "09cf5cebb4eed43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:2": {
+      "text": "มีความเชื่อมโยงที่ชัดเจนระหว่างเหตุผลรองรับที่เสนอกับข้อกล่าวอ้าง พร้อมระบุข้อจำกัดที่เกี่ยวข้อง",
+      "sourceHash": "f90613a49168196e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:3": {
+      "text": "คำอธิบายแยกแยะระหว่างข้อสังเกต การตีความ และความไม่แน่นอน พร้อมอธิบายข้อจำกัดของเหตุผลรองรับที่เสนอ",
+      "sourceHash": "2f3bbfe9043ee3e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:0": {
+      "text": "คาดว่าผลลัพธ์ที่เป็นหายนะจะมีน้อยมากหรือถูกหลีกเลี่ยงได้อย่างมีประสิทธิผลภายใต้สมมติฐานที่ผู้เข้าร่วมระบุไว้",
+      "sourceHash": "d0b165abc2ca8cb9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:1": {
+      "text": "หายนะมีความเป็นไปได้ แต่คาดว่าจะเป็นเพียงส่วนจำกัดของมุมมองโดยรวมภายใต้เงื่อนไขที่ระบุไว้",
+      "sourceHash": "1f05c56cd9ef9efd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:2": {
+      "text": "ผลลัพธ์ที่เป็นหายนะเป็นความเป็นไปได้ที่มีนัยสำคัญในมุมมองของผู้เข้าร่วม โดยมีความไม่แน่นอนหรือเงื่อนไขที่ส่งผลสำคัญ",
+      "sourceHash": "29557cbfc3c2218f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:3": {
+      "text": "ภายใต้สมมติฐานที่ระบุไว้ ผู้เข้าร่วมคาดว่าผลลัพธ์ที่เป็นหายนะจะเกิดขึ้นเป็นหลัก",
+      "sourceHash": "a918c0b82b0759dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

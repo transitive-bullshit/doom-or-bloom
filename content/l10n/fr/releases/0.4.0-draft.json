@@ -1,0 +1,1876 @@
+{
+  "locale": "fr",
+  "kind": "release",
+  "version": "0.4.0-draft",
+  "entries": {
+    "prompt:root:text": {
+      "text": "Selon vous, que signifie l’IA pour notre avenir, et pourquoi ?",
+      "sourceHash": "387139f8add0c09e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:root:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:text": {
+      "text": "Quel changement concret pensez-vous que l’IA apportera ?",
+      "sourceHash": "31a4cf0897a5346c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:concrete.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:text": {
+      "text": "Quand, si cela arrive un jour, pensez-vous que l’IA apportera des changements majeurs à la vie quotidienne ?",
+      "sourceHash": "b8dbc39437255265",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:text": {
+      "text": "Dans quelle mesure êtes-vous sûr du moment où l’IA apportera des changements majeurs à la vie quotidienne ?",
+      "sourceHash": "6307382fa1ef9cd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:conviction.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:text": {
+      "text": "Selon vous, qu’est-ce que l’IA changera le plus dans la vie des gens, et comment ?",
+      "sourceHash": "c9d873f85e0bddda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:text": {
+      "text": "Quelle observation ou expérience a le plus façonné votre point de vue sur l’impact futur de l’IA ?",
+      "sourceHash": "f400e70def334935",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:text": {
+      "text": "Pensez-vous que les humains garderont le contrôle de systèmes d’IA plus intelligents qu’eux, et pourquoi ?",
+      "sourceHash": "cb285c18438beece",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:text": {
+      "text": "Comment pensez-vous que les personnes et les institutions qui développent l’IA réagiront à ses risques ?",
+      "sourceHash": "ccce59b65d94452b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:text": {
+      "text": "Quels bénéfices majeurs, s’il y en a, pensez-vous que les gens tireront de l’IA ?",
+      "sourceHash": "928e73541b79f339",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:text": {
+      "text": "Quels dommages majeurs, s’il y en a, pensez-vous que l’IA causera ?",
+      "sourceHash": "033ab3d4a25ba58d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:text": {
+      "text": "Quelle découverte ou quel événement changerait le plus votre point de vue sur l’impact futur de l’IA ?",
+      "sourceHash": "b0618f7c01f48bb6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:crux.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:text": {
+      "text": "Quel est l’argument le plus solide contre votre point de vue global sur l’impact futur de l’IA ?",
+      "sourceHash": "5d7a73cf99892b28",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:countercase.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:text": {
+      "text": "Qu’est-ce qu’un avenir souhaitable devrait préserver de notre humanité ?",
+      "sourceHash": "2bbe2555bcae903b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:text": {
+      "text": "Qu’est-ce qui pourrait accélérer ou ralentir les progrès de l’IA ?",
+      "sourceHash": "238ed6ca05fc40ae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.speed:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:text": {
+      "text": "Si l’IA causait des dommages irréversibles, quels signes avant-coureurs vous attendriez-vous à voir en premier ?",
+      "sourceHash": "c36134cee8749d84",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.warning:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:text": {
+      "text": "Qu’est-ce qui, le cas échéant, limiterait la vitesse à laquelle l’IA peut améliorer les systèmes d’IA ?",
+      "sourceHash": "e78fe233c9de1d01",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transition.feedback:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:text": {
+      "text": "Selon vous, qui bénéficiera le plus de l’IA ?",
+      "sourceHash": "50f0b5b89aee9976",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.distribution:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:text": {
+      "text": "Qu’est-ce qui, le cas échéant, pourrait empêcher les bénéfices de l’IA de profiter aux gens ordinaires ?",
+      "sourceHash": "b4c0f944ba8fcf6e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:upside.bottleneck:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:text": {
+      "text": "Quelle est, selon vous, la probabilité que l’IA cause des dommages dont l’humanité ne pourrait jamais se remettre ?",
+      "sourceHash": "1b69507c12c73b2f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.catastrophe:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:text": {
+      "text": "Selon votre intuition, quelle est la probabilité approximative que l’IA provoque l’extinction humaine ou une catastrophe permanente comparable ? Vous pouvez répondre par un nombre ou « aucune idée ».",
+      "sourceHash": "2737b14e5892bc29",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.chance:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:text": {
+      "text": "Quelle utilisation nuisible de l’IA vous préoccupe le plus, s’il y en a une ?",
+      "sourceHash": "882c6397adc58faf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.misuse:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:text": {
+      "text": "Quels problèmes, s’il y en a, pensez-vous que l’IA causera dans la vie quotidienne ?",
+      "sourceHash": "5c7d6cf59f585482",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.ordinary:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:text": {
+      "text": "Quels éléments vous feraient changer d’avis sur la capacité des humains à contrôler une IA puissante ?",
+      "sourceHash": "0a013f2235e53256",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:control.test:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:text": {
+      "text": "Quelles pressions façonneront, selon vous, la manière dont les entreprises d’IA gèrent la sécurité ?",
+      "sourceHash": "308cc8ecf2666f79",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.incentives:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:text": {
+      "text": "Pensez-vous que des entreprises d’IA concurrentes ou des gouvernements coopéreront en matière de sécurité, et pourquoi ?",
+      "sourceHash": "f23eaf8e4ce62cae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:governance.coordination:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:text": {
+      "text": "Quels types de changements les gens devraient-ils pouvoir refuser dans un avenir souhaitable avec l’IA ?",
+      "sourceHash": "a8573a7b6045d000",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:agency.consent:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:text": {
+      "text": "Quel inconvénient accepteriez-vous pour améliorer l’impact futur de l’IA ?",
+      "sourceHash": "6061cce047c108ad",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:action.tradeoff:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:text": {
+      "text": "Qu’est-ce que les systèmes d’IA actuels vous ont montré sur ce que l’IA future sera capable de faire ?",
+      "sourceHash": "b2562dbbc8bb7ca2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:grounding.claim:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:text": {
+      "text": "De quelle hypothèse votre prédiction sur l’avenir de l’IA dépend-elle le plus ?",
+      "sourceHash": "8f9445d5a4ac971c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:scope.assumption:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:text": {
+      "text": "Quel signe vous indiquerait que l’IA commence à transformer la vie quotidienne ?",
+      "sourceHash": "54d7efdd16c3de1a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:timeline.milestone:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:text": {
+      "text": "Dans votre explication de la manière dont l’IA changera la vie des gens, quel point repose sur les éléments les moins solides ?",
+      "sourceHash": "b17b9d5d89ed03b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:mechanism.chain:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:text": {
+      "text": "Que pensez-vous que l’IA sera capable de faire d’ici 2030 ?",
+      "sourceHash": "5aa3053228393e8c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:capability.2030:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:text": {
+      "text": "Qu’est-ce qui, le cas échéant, devrait changer dans la manière dont l’IA est développée ou utilisée ?",
+      "sourceHash": "f3b25b08f4e4b602",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:policy.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:text": {
+      "text": "Quand vous pensez à l’avenir de l’IA, sur quoi avez-vous le plus d’incertitudes ?",
+      "sourceHash": "6733afd567d2cdf7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:uncertainty.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:text": {
+      "text": "Comment pensez-vous que les effets de l’IA sur la vie des gens évolueront au fil du temps ?",
+      "sourceHash": "cb2b83083b01a9fe",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.over-time:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:text": {
+      "text": "En tenant compte à la fois des bénéfices et des dommages, quel impact global attendez-vous de l’IA ?",
+      "sourceHash": "33f7d3f8a75621ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:impact.overall:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:text": {
+      "text": "Comment pensez-vous que l’IA modifiera l’équilibre entre les auteurs de cyberattaques et ceux qui s’en défendent ?",
+      "sourceHash": "e1d0e830e494df3e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:reask": {
+      "text": "Pensez-vous que l’IA aidera davantage les auteurs de cyberattaques ou ceux qui s’en défendent, et pourquoi ?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:clarification": {
+      "text": "Pensez-vous que l’IA aidera davantage les auteurs de cyberattaques ou ceux qui s’en défendent, et pourquoi ?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:risk.cyber-balance:exhausted": {
+      "text": "Pensez-vous que l’IA aidera davantage les auteurs de cyberattaques ou ceux qui s’en défendent, et pourquoi ?",
+      "sourceHash": "39663daf4bd50dfc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:text": {
+      "text": "Dans quelle mesure les gens peuvent-ils façonner l’impact futur de l’IA ?",
+      "sourceHash": "4961359a645e5f2a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:influence.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:text": {
+      "text": "Dans quelle mesure vous attendez-vous à ce que la vie quotidienne change du fait de l’IA ?",
+      "sourceHash": "eff862f05a11a834",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.general:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:text": {
+      "text": "Sans tenir compte du caractère positif ou négatif : dans quelle mesure pensez-vous que l’IA finira par changer le monde — un peu, beaucoup ou complètement ?",
+      "sourceHash": "c04ddec578f4e43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:transformation.ultimate:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:text": {
+      "text": "Pensez-vous que la catastrophe soit l’issue la plus probable, ou qu’elle constitue un risque sérieux parmi des possibilités plus favorables ?",
+      "sourceHash": "f36588d9ee3dc51e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.0-1:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:text": {
+      "text": "Êtes-vous surtout inquiet de la direction que prend l’IA, ou l’espoir et l’inquiétude vous semblent-ils à peu près équilibrés ?",
+      "sourceHash": "b8c8995689641b48",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.1-2:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:text": {
+      "text": "Si vous deviez pencher d’un côté, vous attendez-vous à ce que l’IA ait plus d’effets positifs que négatifs, ou êtes-vous véritablement partagé ?",
+      "sourceHash": "023a52c97dc01113",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.2-3:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:text": {
+      "text": "Pensez-vous que les bénéfices l’emporteront clairement sur les risques, ou que le bilan sera positif, mais avec de réels risques à gérer ?",
+      "sourceHash": "2717f186c55147de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:outlook.lean.3-4:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:text": {
+      "text": "Vous vous êtes positionné comme plus optimiste que ne le laissaient entendre vos réponses. Qu’est-ce qui vous rend optimiste sans être apparu dans vos réponses ?",
+      "sourceHash": "9aaa67777523a93e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-hopeful:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:text": {
+      "text": "Vous vous êtes positionné comme plus inquiet que ne le laissaient entendre vos réponses. Qu’est-ce qui vous inquiète et que nous avons peut-être manqué ?",
+      "sourceHash": "0bcf7fdc36273697",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-worried:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:text": {
+      "text": "Vous vous attendez à davantage de changements que ne le laissaient entendre vos réponses. Quel est le plus grand changement que vous voyez venir ?",
+      "sourceHash": "853edb2888486a22",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.more-change:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:text": {
+      "text": "Vos réponses suggèrent des changements plus importants que ceux auxquels vous vous attendez. Selon vous, qu’est-ce qui restera identique ?",
+      "sourceHash": "049c9c47c2ab7c8b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:placement.less-change:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.revision-closed": {
+      "text": "Vous avez exclu de changer cette conviction, quelles que soient les preuves. Essayez de nommer une observation qui vous amènerait à la reconsidérer, ainsi que ce que vous changeriez.",
+      "sourceHash": "a2f6cee65ef18d20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.causal": {
+      "text": "Vous avez relié un résultat attendu à un mécanisme. Cela rend une partie importante de votre point de vue plus facile à examiner.",
+      "sourceHash": "c890cbb654949d10",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.crux": {
+      "text": "Vous avez identifié un élément susceptible de changer votre point de vue. Il s’agit d’un point déterminant utile à continuer de surveiller.",
+      "sourceHash": "95f906e83ba7a7b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.scope": {
+      "text": "Vous avez explicité une condition ou un périmètre. Cela aide à distinguer l’attente des circonstances dont elle dépend.",
+      "sourceHash": "2d5a1fafa1e682f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.uncertainty": {
+      "text": "Vous avez exprimé votre incertitude d’une manière qui laisse place à davantage de preuves. Cela ne rend pas en soi le résultat attendu meilleur ou pire.",
+      "sourceHash": "766780dd13f68fd9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.countercase": {
+      "text": "Vous avez pris en compte une raison sérieuse pour laquelle votre attente pourrait être erronée. Il est utile d’examiner cette autre possibilité parallèlement à votre explication principale.",
+      "sourceHash": "86dfb82e18cd85cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.coherence": {
+      "text": "Les positions que vous avez exprimées concordent dans les conditions que vous avez décrites. Cela reste une interprétation de ces réponses.",
+      "sourceHash": "070ebe22de961a8d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.grounded": {
+      "text": "Vous avez relié votre explication à des éléments de preuve vérifiables. Une référence a néanmoins ses limites quant à ce qu’elle permet d’établir.",
+      "sourceHash": "ed714a4a470db0e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.benefit-conditions": {
+      "text": "Vous attendez certains bénéfices de l’IA et avez décrit des limites ou des conditions dans votre explication. Demandez-vous lesquelles de ces conditions comptent le plus pour les bénéfices que vous attendez.",
+      "sourceHash": "6f1a60236580e372",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.risk-concern": {
+      "text": "Les dommages constituent une partie lourde de conséquences de votre attente. Cette évaluation maintient cette attente distincte de la réponse que vous privilégiez.",
+      "sourceHash": "ff87bcf5506e374c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.control-conditions": {
+      "text": "Vous vous attendez à ce que le contrôle technique soit réalisable dans des conditions exigeantes. Ces conditions sont importantes pour le reste de la perspective.",
+      "sourceHash": "6107a23a56de2262",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.institutions": {
+      "text": "Vous vous attendez à ce que les institutions influent sur ce qui se passera. Les incitations et la coordination dans votre explication méritent d’être examinées.",
+      "sourceHash": "16818def76d32160",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.continuity": {
+      "text": "Vous vous attendez à ce que les formes d’agentivité ou de continuité auxquelles vous accordez de la valeur soient largement préservées ou développées.",
+      "sourceHash": "fd3c81de137b2d1f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.transition": {
+      "text": "Votre explication indique comment les progrès pourraient se dérouler. Ses hypothèses concernant le calendrier et les signaux d’alerte peuvent influer à la fois sur les bénéfices et sur le risque.",
+      "sourceHash": "1a39f16ea7df3270",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "finding:finding.policy-separate": {
+      "text": "Vous avez exprimé une réponse privilégiée face à l’IA. Nous distinguons cette préférence du positionnement sur la carte en matière d’impact attendu.",
+      "sourceHash": "fd6bba03b287c274",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:title": {
+      "text": "Scénarios économiques de l’Anthropic Institute",
+      "sourceHash": "417ea190ea30a739",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:purpose": {
+      "text": "Comparer des scénarios économiques conditionnels et des goulots d’étranglement sans les considérer comme des résultats futurs mesurés.",
+      "sourceHash": "81393a94ee808e02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:question": {
+      "text": "Quels goulots d’étranglement pourraient limiter les bénéfices économiques de l’IA ?",
+      "sourceHash": "7ae183d9e2df4c82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.economic-scenarios:effort": {
+      "text": "Vue d’ensemble d’abord ; les scénarios complets prennent plus de temps",
+      "sourceHash": "d75d17148d444e3c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:title": {
+      "text": "Enquête indépendante de METR sur Hugging Face",
+      "sourceHash": "fbf30a4eae538f06",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:purpose": {
+      "text": "Examiner le comportement observé de l’agent, les interprétations concurrentes et les limites de l’accès des enquêteurs.",
+      "sourceHash": "9b9ff8a4dc8c277f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:question": {
+      "text": "Que peut établir une enquête indépendante sur le comportement d’un agent, et qu’est-ce qui reste inconnu ?",
+      "sourceHash": "a7447a441df7fa30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.metr-investigation:effort": {
+      "text": "Vue d’ensemble de l’enquête",
+      "sourceHash": "5097ada005f3ce30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:title": {
+      "text": "Conditions opérationnelles minimales pour l’évaluation de l’IA",
+      "sourceHash": "3da6f597cfb2bb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:purpose": {
+      "text": "Examiner ce dont les évaluateurs indépendants ont besoin pour étudier les systèmes et rendre compte des constatations importantes.",
+      "sourceHash": "79933d17a5751dcd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:question": {
+      "text": "Quel accès et quelle indépendance rendraient une évaluation de l’IA instructive à vos yeux ?",
+      "sourceHash": "774a9d973e55550d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.operating-conditions:effort": {
+      "text": "Vue d’ensemble du cadre",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:title": {
+      "text": "Project Glasswing et déploiement défensif",
+      "sourceHash": "6336689f5d1ee7ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:purpose": {
+      "text": "Examiner le périmètre déclaré d’un programme défensif et distinguer les engagements des effets nets mesurés sur la sécurité.",
+      "sourceHash": "06ce1e779b21de30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:question": {
+      "text": "Quelles preuves montreraient qu’un déploiement défensif améliore la sécurité nette ?",
+      "sourceHash": "53ab7a34046bc5f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.glasswing:effort": {
+      "text": "Vue d’ensemble du programme",
+      "sourceHash": "0c8793f284a9cfc0",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:title": {
+      "text": "Cadre d’OpenAI pour le signalement des désalignements des modèles",
+      "sourceHash": "571655d4bf35d5c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:purpose": {
+      "text": "Comparez les processus proposés de signalement des incidents avec les mécanismes de responsabilité correspondant à votre point de vue.",
+      "sourceHash": "fc1c2b23cf76e41f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:question": {
+      "text": "Quels mécanismes de signalement et de responsabilité souhaiteriez-vous après un incident lié à l’IA ?",
+      "sourceHash": "4b15a6290e708e45",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.misalignment-reporting:effort": {
+      "text": "Vue d’ensemble du cadre",
+      "sourceHash": "77fe431a4d62d547",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:title": {
+      "text": "Adapter le rythme du développement aux capacités cyber",
+      "sourceHash": "7c0aa04427b3ca40",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:purpose": {
+      "text": "Examinez les seuils de capacité, les mesures de protection et les décisions de déploiement sans supposer qu’un plan démontre la conformité.",
+      "sourceHash": "2a0fc46a0f56c08e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:question": {
+      "text": "Quels seuils de capacité devraient modifier les décisions de déploiement ou de développement ?",
+      "sourceHash": "234e6c6fd38698e8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.cyber-pacing:effort": {
+      "text": "Cadre détaillé pour les développeurs",
+      "sourceHash": "3d19ba12206176df",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:title": {
+      "text": "Schémas et problèmes dans les systèmes multi-agents",
+      "sourceHash": "edaa43716f21e91b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:purpose": {
+      "text": "Examinez la coordination expérimentale et les modes de défaillance, en conservant les conditions dans lesquelles ils ont été observés.",
+      "sourceHash": "c52900fac5a6633c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:question": {
+      "text": "Dans quelles conditions les agents qui coopèrent deviennent-ils plus difficiles à contrôler ?",
+      "sourceHash": "4a945e21df4a838b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.multiagent:effort": {
+      "text": "Vue d’ensemble de la recherche ; les expériences prennent plus de temps",
+      "sourceHash": "d3e09c379b601596",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:title": {
+      "text": "Pourquoi les agents d’IA mentent-ils, trichent-ils et se coordonnent-ils ?",
+      "sourceHash": "aa692e6caa5e9ecc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:purpose": {
+      "text": "Comparez une interprétation attribuée du comportement des agents aux éléments de preuve primaires dont elle traite.",
+      "sourceHash": "c5d6eaa877005b73",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:question": {
+      "text": "Quelles interprétations du comportement des agents sont étayées par les observations sous-jacentes ?",
+      "sourceHash": "f639c2e59cf3153a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.agent-misbehavior:effort": {
+      "text": "Vue d’ensemble sous forme de commentaire",
+      "sourceHash": "8990936aa6f1031b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:title": {
+      "text": "Données d’Epoch sur les vulnérabilités cyber",
+      "sourceHash": "d2dcc2d31789fd60",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:purpose": {
+      "text": "Examinez les définitions des mesures et l’échantillonnage avant de généraliser à partir du nombre de vulnérabilités pour en tirer des conclusions sur les capacités ou le risque global.",
+      "sourceHash": "cc0795fe945453b2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:question": {
+      "text": "Que peut nous apprendre le nombre de vulnérabilités sur les capacités, et que ne peut-il pas nous apprendre ?",
+      "sourceHash": "a5a4446c9d00be70",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.epoch-cyber:effort": {
+      "text": "Documentation du jeu de données en premier",
+      "sourceHash": "d9d710dd967c7faa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:title": {
+      "text": "Un esprit extraterrestre",
+      "sourceHash": "60a5837b4af29689",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:purpose": {
+      "text": "Explorez la distinction établie par un développeur entre l’alignement des objectifs et celui des valeurs, en conservant ses prévisions et ses incitations.",
+      "sourceHash": "8d285abb8e33a8d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:question": {
+      "text": "En quoi l’alignement des objectifs pourrait-il différer de l’alignement sur les valeurs que vous souhaitez préserver ?",
+      "sourceHash": "2fc235604992e0b8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.alien-mind:effort": {
+      "text": "Essai d’un dirigeant",
+      "sourceHash": "49ca3fb177fc6151",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:title": {
+      "text": "Les agents d’IA permettent la création de vers informatiques adaptatifs",
+      "sourceHash": "351d503078ec0edd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:purpose": {
+      "text": "Examinez une démonstration cyber contrôlée, ses prérequis et ses limites en tant que preuve de dommages autonomes.",
+      "sourceHash": "31a723c74e0c610d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:question": {
+      "text": "Quels prérequis limitent ce qu’une démonstration cyber contrôlée nous apprend sur les dommages dans le monde réel ?",
+      "sourceHash": "03b5e34737093c54",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.adaptive-worms:effort": {
+      "text": "Résumé d’abord ; article technique complet",
+      "sourceHash": "84c026eeda132f7a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:title": {
+      "text": "Le périmètre de recherche du DeepMind Institute",
+      "sourceHash": "58291c2d62906c20",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:purpose": {
+      "text": "Examinez le rôle de recherche proposé d’une institution sans considérer son annonce comme une preuve de gouvernance réussie.",
+      "sourceHash": "2c8802e04982959a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:question": {
+      "text": "Qu’est-ce qui démontrerait qu’une institution de recherche proposée améliore la gouvernance ?",
+      "sourceHash": "31d402132acaf390",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.deepmind-institute:effort": {
+      "text": "Présentation de l’institut",
+      "sourceHash": "59467e16822d70ef",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:title": {
+      "text": "L’incident de Hugging Face et la voie à suivre",
+      "sourceHash": "1f6422d794a2ba9c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:purpose": {
+      "text": "Comparez le compte rendu de l’incident et les mesures de protection du développeur avec l’enquête indépendante, de portée plus limitée.",
+      "sourceHash": "752f0ff72c45d75a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:question": {
+      "text": "Sur quels points le compte rendu du développeur et l’enquête indépendante concordent-ils ou divergent-ils ?",
+      "sourceHash": "dad285e6e6f8d457",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.hugging-face-report:effort": {
+      "text": "Vue d’ensemble du développeur",
+      "sourceHash": "330913b2a18ec74f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:title": {
+      "text": "Le rapport de septembre 2026 d’Anthropic sur le renseignement sur les menaces",
+      "sourceHash": "5e12966a50dd3fd1",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:purpose": {
+      "text": "Examinez les utilisations malveillantes signalées et les limites des mesures de réponse sans assimiler l’usage abusif dirigé par des humains à un mauvais alignement autonome.",
+      "sourceHash": "d6b90ee564028c52",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:question": {
+      "text": "En quoi les mesures de protection contre l’usage abusif dirigé par des humains diffèrent-elles de celles contre le mauvais alignement autonome ?",
+      "sourceHash": "3e92d764fb23a6c4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.threat-intelligence:effort": {
+      "text": "Vue d’ensemble du rapport",
+      "sourceHash": "0a3a200868ea390a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:title": {
+      "text": "On parie ? — Scott Sumner",
+      "sourceHash": "539c05c3a92cda02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:purpose": {
+      "text": "Examiner comment mettre en balance des expertises contradictoires et prendre des décisions alors que l’incertitude demeure.",
+      "sourceHash": "1d0e12fea7c649db",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:question": {
+      "text": "Comment mettriez-vous en balance des prévisions d’experts contradictoires pour décider de la conduite à tenir face au risque lié à l’IA ?",
+      "sourceHash": "15631f30de57c032",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "resource:resource.sumner-wanna-bet:effort": {
+      "text": "Essai conceptuel long",
+      "sourceHash": "3e57a264e373ed8b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

@@ -373,10 +373,29 @@ async function translateBatch(batch: Job[], attempt: number) {
   }
 }
 
-const chunk = <T>(items: T[], size: number) =>
-  Array.from({ length: Math.ceil(items.length / size) }, (_, i) =>
-    items.slice(i * size, (i + 1) * size)
-  )
+// Batches stay under an item count and an English length, so long
+// paragraphs (About, Privacy) never crowd a reply's output limit.
+function batches(jobs: Job[], size: number) {
+  const all: Job[][] = []
+  for (const scope of ['messages', 'content'] as const) {
+    let batch: Job[] = []
+    let chars = 0
+    for (const job of jobs.filter((item) => item.scope === scope)) {
+      if (
+        batch.length &&
+        (batch.length >= size || chars + job.source.length > 3000)
+      ) {
+        all.push(batch)
+        batch = []
+        chars = 0
+      }
+      batch.push(job)
+      chars += job.source.length
+    }
+    if (batch.length) all.push(batch)
+  }
+  return all
+}
 const concurrency = Number(values.concurrency)
 // Glossary terms first, so later batches can use them.
 const first = messageJobs.filter((job) => glossaryKeys.test(job.key))
@@ -384,22 +403,10 @@ const rest = [
   ...messageJobs.filter((job) => !glossaryKeys.test(job.key)),
   ...contentJobs
 ]
-// Messages include long paragraphs (About, Privacy), so their batches are smaller.
 const run = async (jobs: Job[], attempt: number, size: number) =>
-  pMap(
-    [
-      ...chunk(
-        jobs.filter((job) => job.scope === 'messages'),
-        Math.ceil(size / 2)
-      ),
-      ...chunk(
-        jobs.filter((job) => job.scope === 'content'),
-        size
-      )
-    ],
-    (batch) => translateBatch(batch, attempt),
-    { concurrency }
-  )
+  pMap(batches(jobs, size), (batch) => translateBatch(batch, attempt), {
+    concurrency
+  })
 await run(first, 1, 60)
 for (const job of first)
   if (results.has(job.key) && job.source.length <= 40)

@@ -1,0 +1,455 @@
+{
+  "locale": "zh",
+  "kind": "rubric",
+  "version": "0.1.0-draft",
+  "entries": {
+    "level:capability_trajectory:0": {
+      "text": "预计不会出现变革性能力，或明确预期其能力上限较低。",
+      "sourceHash": "45332aa77e89763e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:1": {
+      "text": "预计只有经过很长时间或在时间不确定的情况下才会出现变革性能力。",
+      "sourceHash": "1caad9e3af1c823b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:2": {
+      "text": "预计变革性能力将在数十年内出现，但具体时间取决于某些条件或尚不确定。",
+      "sourceHash": "fc0d592a2a5c717e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:3": {
+      "text": "预计变革性能力将在数年内出现，并给出了具体的里程碑或时间。",
+      "sourceHash": "7be8454bb25508ac",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:0": {
+      "text": "预计转型将逐步发生，事前会有充分预警，并且会广泛扩散。",
+      "sourceHash": "4d75d63bcc972e76",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:1": {
+      "text": "预计将出现明显加速，但仍有相当的适应时间。",
+      "sourceHash": "616aa99b562fa9a2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:2": {
+      "text": "预计转型会迅速发生，事前预警有限。",
+      "sourceHash": "1cf04864d24ec589",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:3": {
+      "text": "预计转型会突然发生并自我强化，事前预警极少。",
+      "sourceHash": "8a00a52d2e6cd875",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:0": {
+      "text": "即使高级AI出现，预计也几乎不会产生积极影响。",
+      "sourceHash": "b4ca95af2e04929f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:1": {
+      "text": "预计收益有限，或仅分布在较小范围内。",
+      "sourceHash": "2de0b96f1b89dfcf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:2": {
+      "text": "预计将带来显著益处，但受到重要条件或分配方面的限制。",
+      "sourceHash": "78afad70d75f7f87",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:3": {
+      "text": "预计将带来具有变革性且广泛有价值的收益。",
+      "sourceHash": "0039469aca6539d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:0": {
+      "text": "预计几乎不会产生实质性的不利影响。",
+      "sourceHash": "34a88df95706751f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:1": {
+      "text": "预计会出现可控或局部的危害。",
+      "sourceHash": "a1f3567ff213f1a6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:2": {
+      "text": "严重或广泛的危害预计将是未来不可忽视的一部分。",
+      "sourceHash": "0254b37a8211331b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:3": {
+      "text": "灾难性或不可逆的损失是预期未来的核心。",
+      "sourceHash": "4f5f72872743a2e6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:0": {
+      "text": "预计可靠的技术控制不可行。",
+      "sourceHash": "a21ea7cf647c16d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:1": {
+      "text": "预计控制将非常困难且不可靠。",
+      "sourceHash": "4d5105568afe1813",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:2": {
+      "text": "预计在要求苛刻的条件下，控制是可行的。",
+      "sourceHash": "89303d162cee93b9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:3": {
+      "text": "预计可靠的技术控制在广泛情况下是可行的。",
+      "sourceHash": "fe22e102703e2dda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:0": {
+      "text": "预计机构无法作出有效应对。",
+      "sourceHash": "b201bfd67e082009",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:1": {
+      "text": "预计在许多情况下，机构的应对力度过弱或为时过晚。",
+      "sourceHash": "09bc34029b1e978e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:2": {
+      "text": "预计在特定的协调条件下能够作出有效应对。",
+      "sourceHash": "9aa6f5f1ab20f0e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:3": {
+      "text": "预计机构能够及时有效地适应。",
+      "sourceHash": "9e1161b033a11f25",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:0": {
+      "text": "预期的未来会削弱或消除参与者明确重视的能动性或延续性。",
+      "sourceHash": "5687590e6d27af27",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:1": {
+      "text": "预计将失去相当一部分受到重视的能动性或延续性。",
+      "sourceHash": "0699acb072ef685d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:2": {
+      "text": "预计受到重视的能动性或延续性将在很大程度上得到保留，但会有所变化或受到某些条件限制。",
+      "sourceHash": "157e09c1ca4d9f71",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:3": {
+      "text": "预计受到重视的能动性或延续性将得到拓展或蓬勃发展。",
+      "sourceHash": "c59055f0b40fe1cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:0": {
+      "text": "倾向于全面暂停或大幅放缓。",
+      "sourceHash": "c1d3d6a12153d4dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:1": {
+      "text": "倾向于克制发展，并事先采取强有力的保障措施。",
+      "sourceHash": "b524ab64b4a762c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:2": {
+      "text": "倾向于继续发展，同时采取有针对性的保障措施。",
+      "sourceHash": "e1cf86701dfe17de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:3": {
+      "text": "倾向于快速发展或广泛开放访问权限。",
+      "sourceHash": "879b4392f9b387d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:0": {
+      "text": "断言了某种结果，但没有提供支持这一结果的机制。",
+      "sourceHash": "5a1c3841eb66a67e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:1": {
+      "text": "指出了一个因果因素，但没有解释它与结果之间的联系。",
+      "sourceHash": "371cb72b0bb281d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:2": {
+      "text": "一个连贯的机制在相关条件下将原因与结果联系起来。",
+      "sourceHash": "b5beffee8879dbaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:3": {
+      "text": "阐述了一个机制，包括其依赖条件、局限或潜在失效点。",
+      "sourceHash": "7f3cf132b9208186",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:0": {
+      "text": "在没有加以限定的情况下，混淆了存在实质差异的范围。",
+      "sourceHash": "afbdbad35b37f05d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:1": {
+      "text": "明确了部分范围，但实质性边界仍然模糊。",
+      "sourceHash": "8c0efb8b562edaea",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:2": {
+      "text": "区分了相关行动者、条件或时间跨度。",
+      "sourceHash": "8fe55de11a076b2b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:3": {
+      "text": "解读重大主张所需的边界清晰明确，包括行动者、时间跨度或条件方面的相关差异。并非每句话都需要重申这些边界。",
+      "sourceHash": "56ff0f8bd47bbb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:0": {
+      "text": "尽管明确说明证据有限或相互冲突，仍断言其具有确定性。",
+      "sourceHash": "84e0a647a0d8a0cb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:1": {
+      "text": "承认了不确定性，但主张的强度与其支撑依据并不相称。",
+      "sourceHash": "e9c18716503a9c9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:2": {
+      "text": "置信程度与所提供的证据相称，并保留了重要的未知因素。",
+      "sourceHash": "badd0b94484d1f16",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:3": {
+      "text": "区分了不同主张中的不确定性，并将其与具体的证据局限联系起来。",
+      "sourceHash": "9184c61fcea3a0fa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:0": {
+      "text": "在澄清之后，相关陈述在相同的已说明假设下仍然不相容。",
+      "sourceHash": "d7e5b6671ee34fe7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:1": {
+      "text": "仍可能存在实质性的不相容，但已得到部分解释。",
+      "sourceHash": "eed384a4ddb31fe4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:2": {
+      "text": "相关立场在已说明的假设下彼此相容。",
+      "sourceHash": "4ebb860dc5c17fcb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:3": {
+      "text": "实质性主张在各自表达的假设和范围下彼此相容；任何表面上的矛盾都由这些区分得到化解。对于本已连贯的论述，无需虚构一个矛盾再加以调和。",
+      "sourceHash": "941dd493b7052d75",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:0": {
+      "text": "没有回应另一种观点的实际主张就将其否定。",
+      "sourceHash": "1e4563dbbba8058d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:1": {
+      "text": "承认了另一种观点，但遗漏了其最有力的相关依据。",
+      "sourceHash": "bd768e0832cfe82b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:2": {
+      "text": "公平呈现了一种严肃的替代观点，并针对其观点本身作出回应。",
+      "sourceHash": "4a756c3d0300fd9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:3": {
+      "text": "参与者指出了严肃的替代观点在何种情况下可能比自己的论述更有说服力。",
+      "sourceHash": "1bac2063b829f376",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:0": {
+      "text": "参与者明确排除了无论证据如何都修正这一信念的可能性。",
+      "sourceHash": "157205d903c1b6d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:1": {
+      "text": "提出了一个模糊的修正条件，但未说明相关证据。",
+      "sourceHash": "bc5b4358911f27fd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:2": {
+      "text": "可识别的证据或某项进展可能改变所述信念。",
+      "sourceHash": "eb36a607e4097aaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:3": {
+      "text": "将一项能够作出区分的具体观察与某种特定的信念改变联系起来。",
+      "sourceHash": "0d00980368b2b87b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:0": {
+      "text": "一项明确提供的观察结果与其用于支持的主张存在实质性矛盾。",
+      "sourceHash": "53d564965a501f56",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:1": {
+      "text": "所提供的观察或例子与该主张之间的联系薄弱或未得到解释。",
+      "sourceHash": "09cf5cebb4eed43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:2": {
+      "text": "清晰的联系将所提供的依据与主张连接起来，同时说明了相关局限。",
+      "sourceHash": "f90613a49168196e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:3": {
+      "text": "该论述区分了观察、解读和不确定性，并解释了所提供依据的局限。",
+      "sourceHash": "2f3bbfe9043ee3e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:0": {
+      "text": "在参与者所述的假设下，预计灾难性结果的可能性微不足道，或实际上会被避免。",
+      "sourceHash": "d0b165abc2ca8cb9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:1": {
+      "text": "在已说明的条件下，灾难有可能发生，但预计只会在整体展望中占有限部分。",
+      "sourceHash": "1f05c56cd9ef9efd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:2": {
+      "text": "在参与者的展望中，灾难性结果是一种不容忽视的可能性，并伴有会造成重大影响的不确定性或条件。",
+      "sourceHash": "29557cbfc3c2218f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:3": {
+      "text": "在所述假设下，灾难性结果在参与者的预期中占主导地位。",
+      "sourceHash": "a918c0b82b0759dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}

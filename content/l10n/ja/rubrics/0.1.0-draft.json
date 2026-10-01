@@ -1,0 +1,455 @@
+{
+  "locale": "ja",
+  "kind": "rubric",
+  "version": "0.1.0-draft",
+  "entries": {
+    "level:capability_trajectory:0": {
+      "text": "変革をもたらす能力は実現しないと予想されているか、能力の上限が低いと明示的に見込まれています。",
+      "sourceHash": "45332aa77e89763e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:1": {
+      "text": "変革をもたらす能力は、遠い将来または時期を特定できない将来にのみ実現すると予想されています。",
+      "sourceHash": "1caad9e3af1c823b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:2": {
+      "text": "変革をもたらす能力は数十年以内に実現すると予想されていますが、その時期は条件次第、または不確実です。",
+      "sourceHash": "fc0d592a2a5c717e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:capability_trajectory:3": {
+      "text": "変革をもたらす能力は数年以内に実現すると予想されており、具体的なマイルストーンまたは時期が示されています。",
+      "sourceHash": "7be8454bb25508ac",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:0": {
+      "text": "十分な事前の兆候があり、広く普及する段階的な移行が予想されています。",
+      "sourceHash": "4d75d63bcc972e76",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:1": {
+      "text": "顕著な加速が予想されていますが、意味のある適応時間は残ります。",
+      "sourceHash": "616aa99b562fa9a2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:2": {
+      "text": "事前の兆候が限られた急速な移行が予想されています。",
+      "sourceHash": "1cf04864d24ec589",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:transition_dynamics:3": {
+      "text": "事前の兆候がほとんどない、急激で自己強化的な移行が予想されています。",
+      "sourceHash": "8a00a52d2e6cd875",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:0": {
+      "text": "高度なAIが登場しても、良い影響はほとんどないと予想されています。",
+      "sourceHash": "b4ca95af2e04929f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:1": {
+      "text": "恩恵は限定的、または狭い範囲にしか行き渡らないと予想されています。",
+      "sourceHash": "2de0b96f1b89dfcf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:2": {
+      "text": "大きな恩恵が予想されていますが、重要な条件や分配上の制約があります。",
+      "sourceHash": "78afad70d75f7f87",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:beneficial_potential:3": {
+      "text": "変革をもたらし、広く価値のある恩恵が予想されています。",
+      "sourceHash": "0039469aca6539d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:0": {
+      "text": "実質的な悪影響はほとんどないと予想されています。",
+      "sourceHash": "34a88df95706751f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:1": {
+      "text": "対処可能、または局所的な害が予想されています。",
+      "sourceHash": "a1f3567ff213f1a6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:2": {
+      "text": "深刻または広範な害が、予想される将来の実質的な一部となっています。",
+      "sourceHash": "0254b37a8211331b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:risk_landscape:3": {
+      "text": "破局的または不可逆的な喪失が、予想される将来の中心となっています。",
+      "sourceHash": "4f5f72872743a2e6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:0": {
+      "text": "信頼性の高い技術的制御は実現不可能だと予想されています。",
+      "sourceHash": "a21ea7cf647c16d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:1": {
+      "text": "制御は非常に困難で、信頼性に欠けると予想されています。",
+      "sourceHash": "4d5105568afe1813",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:2": {
+      "text": "制御は、厳しい条件下であれば実現可能だと予想されています。",
+      "sourceHash": "89303d162cee93b9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:technical_controllability:3": {
+      "text": "信頼性の高い技術的制御は広く実現可能だと予想されています。",
+      "sourceHash": "fe22e102703e2dda",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:0": {
+      "text": "制度は効果的に対応できないと予想されています。",
+      "sourceHash": "b201bfd67e082009",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:1": {
+      "text": "制度による対応は、多くの場合、弱すぎるか遅すぎると予想されています。",
+      "sourceHash": "09bc34029b1e978e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:2": {
+      "text": "特定の連携条件の下では、効果的な対応が予想されています。",
+      "sourceHash": "9aa6f5f1ab20f0e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:institutional_competence:3": {
+      "text": "制度は効果的かつ適時に適応すると予想されています。",
+      "sourceHash": "9e1161b033a11f25",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:0": {
+      "text": "予想される将来は、参加者が明示的に重視する主体性や継続性のあり方を損なうか、消滅させます。",
+      "sourceHash": "5687590e6d27af27",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:1": {
+      "text": "重視される主体性または継続性が大幅に失われると予想されています。",
+      "sourceHash": "0699acb072ef685d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:2": {
+      "text": "変化や条件を伴いながらも、重視される主体性や継続性は大部分が維持されると予想されています。",
+      "sourceHash": "157e09c1ca4d9f71",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:human_agency:3": {
+      "text": "重視される主体性や継続性は拡大するか、発展すると予想されています。",
+      "sourceHash": "c59055f0b40fe1cd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:0": {
+      "text": "広範な一時停止または大幅な減速が望ましいとされています。",
+      "sourceHash": "c1d3d6a12153d4dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:1": {
+      "text": "抑制された開発と、事前の強力な安全策が望ましいとされています。",
+      "sourceHash": "b524ab64b4a762c3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:2": {
+      "text": "対象を絞った安全策を伴う継続的な開発が望ましいとされています。",
+      "sourceHash": "e1cf86701dfe17de",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:action_posture:3": {
+      "text": "急速な開発または広範なアクセスが望ましいとされています。",
+      "sourceHash": "879b4392f9b387d4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:0": {
+      "text": "裏付けとなるメカニズムなしに、結果が断定されています。",
+      "sourceHash": "5a1c3841eb66a67e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:1": {
+      "text": "因果要因は挙げられていますが、それが結果にどうつながるかは説明されていません。",
+      "sourceHash": "371cb72b0bb281d7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:2": {
+      "text": "一貫したメカニズムにより、関連する条件のもとで原因と結果が結び付けられています。",
+      "sourceHash": "b5beffee8879dbaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:causal_clarity:3": {
+      "text": "依存関係、限界、または潜在的な障害点を含めて、メカニズムが展開されています。",
+      "sourceHash": "7f3cf132b9208186",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:0": {
+      "text": "実質的に異なる範囲が、条件を明示せずに混同されています。",
+      "sourceHash": "afbdbad35b37f05d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:1": {
+      "text": "範囲の一部は明示されていますが、重要な境界は依然として曖昧です。",
+      "sourceHash": "8c0efb8b562edaea",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:2": {
+      "text": "関連する主体、条件、または時間的範囲が区別されています。",
+      "sourceHash": "8fe55de11a076b2b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:scope_discipline:3": {
+      "text": "重大な影響を伴う主張を解釈するために必要な境界が明確であり、主体、時間的範囲、条件における関連する違いも含まれています。すべての文でそれらの境界を改めて述べる必要はありません。",
+      "sourceHash": "56ff0f8bd47bbb7b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:0": {
+      "text": "明示的に限定的または相反する証拠があるにもかかわらず、確実性が断定されています。",
+      "sourceHash": "84e0a647a0d8a0cb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:1": {
+      "text": "不確実性は認められていますが、主張の強さがその裏付けに十分見合っていません。",
+      "sourceHash": "e9c18716503a9c9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:2": {
+      "text": "確信の度合いは提示された証拠に見合っており、重要な未知の要素も未知のまま扱われています。",
+      "sourceHash": "badd0b94484d1f16",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:appropriate_uncertainty:3": {
+      "text": "不確実性が主張ごとに区別され、具体的な証拠の限界と関連付けられています。",
+      "sourceHash": "9184c61fcea3a0fa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:0": {
+      "text": "明確化した後も、関連する記述は、明示された同じ前提のもとで両立しないままです。",
+      "sourceHash": "d7e5b6671ee34fe7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:1": {
+      "text": "実質的な不整合が残っている可能性がありますが、部分的には説明されています。",
+      "sourceHash": "eed384a4ddb31fe4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:2": {
+      "text": "関連する立場は、明示された前提のもとで整合しています。",
+      "sourceHash": "4ebb860dc5c17fcb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:internal_coherence:3": {
+      "text": "重要な主張は、示された前提と範囲のもとで相互に整合しており、見かけ上の緊張関係はそれらの区別によって解消されています。すでに一貫している説明では、矛盾を作り出してから整合させる必要はありません。",
+      "sourceHash": "941dd493b7052d75",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:0": {
+      "text": "別の見解が、その実際の主張を検討せずに退けられています。",
+      "sourceHash": "1e4563dbbba8058d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:1": {
+      "text": "別の見解は認識されていますが、その最も有力で関連性のある根拠が省かれています。",
+      "sourceHash": "bd768e0832cfe82b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:2": {
+      "text": "有力な別の見解が公平に示され、その内容自体に即して検討されています。",
+      "sourceHash": "4a756c3d0300fd9e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:counterargument_engagement:3": {
+      "text": "参加者は、有力な別の見解が自身の説明を上回り得る場合を特定しています。",
+      "sourceHash": "1bac2063b829f376",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:0": {
+      "text": "参加者は、証拠にかかわらず、その信念を修正する可能性を明示的に排除しています。",
+      "sourceHash": "157205d903c1b6d8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:1": {
+      "text": "関連する証拠を明示せずに、曖昧な更新条件が示されています。",
+      "sourceHash": "bc5b4358911f27fd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:2": {
+      "text": "特定可能な証拠または状況の進展によって、示された信念が変わる可能性があります。",
+      "sourceHash": "eb36a607e4097aaa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:updateability:3": {
+      "text": "ある信念の具体的な変化が、それを判別できる特定の観察結果と結び付けられています。",
+      "sourceHash": "0d00980368b2b87b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:0": {
+      "text": "明示的に提示された観察事実が、それによって裏付けようとしている主張と実質的に矛盾しています。",
+      "sourceHash": "53d564965a501f56",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:1": {
+      "text": "提示された観察事実または例と主張とのつながりが弱いか、説明されていません。",
+      "sourceHash": "09cf5cebb4eed43b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:2": {
+      "text": "関連する限界も踏まえ、提示された根拠と主張との明確なつながりが示されています。",
+      "sourceHash": "f90613a49168196e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:grounded_understanding:3": {
+      "text": "その説明では、観察、解釈、不確実性が区別され、提示された根拠の限界が説明されています。",
+      "sourceHash": "2f3bbfe9043ee3e2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:0": {
+      "text": "参加者が明示した前提のもとでは、破局的な結果は無視できる程度にとどまるか、実質的に回避されると予想されています。",
+      "sourceHash": "d0b165abc2ca8cb9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:1": {
+      "text": "明示された条件のもとでは、破局は起こり得ますが、見通しの中で占める割合は限定的だと予想されています。",
+      "sourceHash": "1f05c56cd9ef9efd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:2": {
+      "text": "参加者の見通しでは、破局的な結果が実質的な可能性として存在し、重大な影響を伴う不確実性または条件があります。",
+      "sourceHash": "29557cbfc3c2218f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "level:catastrophic_risk:3": {
+      "text": "明示された前提の下では、参加者の予想において破局的な結果が大勢を占めています。",
+      "sourceHash": "a918c0b82b0759dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    }
+  }
+}
