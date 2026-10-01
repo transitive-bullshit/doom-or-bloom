@@ -45,8 +45,8 @@ export async function GET() {
     'English pages have unprefixed URLs; other languages add a prefix. Site navigation, the home page and the simulated-user directory are translated. Assessment questions, results, simulated answers, About and Privacy are currently in English.',
     '',
     ...localeOptions.map(
-      ({ code, endonym }) =>
-        `- [${endonym}](${siteUrl}${localizedPath('/', code)}) (${code})`
+      ({ code, tag, endonym }) =>
+        `- [${endonym}](${siteUrl}${localizedPath('/', code)}) (${tag})`
     ),
     '',
     '## Simulated users',
