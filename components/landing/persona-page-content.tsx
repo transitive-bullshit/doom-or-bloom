@@ -60,7 +60,7 @@ export function PersonaPageContent({
         result={person.result}
         reasoningDetails={false}
       />
-      <CompareCta name={person.name} className='mt-8' />
+      <CompareCta name={person.name} className='mt-16' />
       {similar.length > 0 && (
         <div className='mt-10'>
           <SimilarWorldviews name={person.name} people={similar} />
@@ -68,7 +68,7 @@ export function PersonaPageContent({
       )}
       <section
         aria-label={t('simulatedAssessment')}
-        className='mt-10 flex flex-col gap-4'
+        className='mt-20 flex flex-col gap-4'
       >
         <h2>{t('simulatedAssessment')}</h2>
         <PersonaAnswers assessment={assessment} />
