@@ -5461,5 +5461,1337 @@
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!lCr7!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa3df3ca1-139a-48b6-9ed9-9680586c6ca1_2896x1914.png",
     "icon": "/resource-previews/0d81bb2cbb46-icon.webp"
+  },
+  "https://oxide-and-friends.transistor.fm/episodes/software-engineering-past-present-and-future-with-grady-booch": {
+    "source": "https://oxide-and-friends.transistor.fm/episodes/software-engineering-past-present-and-future-with-grady-booch",
+    "fetchedAt": "2026-10-01T04:19:40.555Z",
+    "description": "Bryan and Adam were joined by Grady Booch, software engineering pioneer and living legend, to speak about the past present and future of software engineering. History doesn't repeat itself, but it ...",
+    "image": "/resource-previews/8f5c3ddd8d69-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://img.transistorcdn.com/hCXbZuPOpzI6WjdAPoEa69ndF7qGy-S2VYSwNJ0eKdM/rs:fill:0:0:1/w:800/h:800/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS9jM2Q5/MWI3NGJlMzdkN2Y2/MTI1MzA2NzhiYjMz/ZTM2NC5wbmc.webp",
+    "icon": "/resource-previews/8f5c3ddd8d69-icon.webp"
+  },
+  "https://newsletter.pragmaticengineer.com/p/the-third-golden-age-of-software": {
+    "source": "https://newsletter.pragmaticengineer.com/p/the-third-golden-age-of-software",
+    "fetchedAt": "2026-10-01T04:19:43.133Z",
+    "description": "I sit down with Grady Booch to put today’s AI automation claims in historical context and explain why software engineering is entering another golden age, not disappearing.",
+    "image": "/resource-previews/be4e7ca97288-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/youtube/w_728,c_limit/OfMAtaocvJw",
+    "icon": "/resource-previews/be4e7ca97288-icon.webp"
+  },
+  "https://arxiv.org/abs/2504.09762": {
+    "source": "https://arxiv.org/abs/2504.09762",
+    "fetchedAt": "2026-10-01T04:19:43.751Z",
+    "description": "Abstract page for arXiv paper 2504.09762: Position: Stop Anthropomorphizing Intermediate Tokens as Reasoning/Thinking Traces!",
+    "icon": "/resource-previews/36785c61b920-icon.webp",
+    "image": "/resource-previews/36785c61b920-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://arxiv.org/abs/2504.09762"
+  },
+  "https://www.listennotes.com/podcasts/the-information/reasoning-models-and-blg5cWpTRZ2/": {
+    "source": "https://www.listennotes.com/podcasts/the-information/reasoning-models-and-blg5cWpTRZ2/",
+    "fetchedAt": "2026-10-01T04:19:46.794Z",
+    "description": "01:11:53 - We sat down with Rao Kambhampati, a Professor of CS at Arizona State University and former President of AAAI, to talk about reasoning models: what t…",
+    "image": "/resource-previews/59fa3537dfec-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn-images-3.listennotes.com/podcasts/the-information/reasoning-models-and-WIbTelJ5uA0-blg5cWpTRZ2.1400x1400.jpg",
+    "icon": "/resource-previews/59fa3537dfec-icon.webp"
+  },
+  "https://economictimes.indiatimes.com/tech/artificial-intelligence/dissenting-voices-against-ai-are-getting-louder/articleshow/129907947.cms": {
+    "source": "https://economictimes.indiatimes.com/tech/artificial-intelligence/dissenting-voices-against-ai-are-getting-louder/articleshow/129907947.cms",
+    "fetchedAt": "2026-10-01T04:19:47.853Z",
+    "description": "The call is to pause the development of AI systems since they pose significant risks, including existential threat. But Swathi Moorthy finds experts have a different take",
+    "image": "/resource-previews/3f1175c455ee-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-38944,resizemode-75,msid-129907947/tech/artificial-intelligence/dissenting-voices-against-ai-are-getting-louder.jpg",
+    "icon": "/resource-previews/3f1175c455ee-icon.webp"
+  },
+  "https://www.linkedin.com/posts/subbarao-kambhampati-3260708_voicing-my-opinion-that-agi-has-become-a-activity-7429883815633817600-mIsq": {
+    "source": "https://www.linkedin.com/posts/subbarao-kambhampati-3260708_voicing-my-opinion-that-agi-has-become-a-activity-7429883815633817600-mIsq",
+    "fetchedAt": "2026-10-01T04:19:48.912Z",
+    "description": "Voicing my opinion that AGI has become a marketing buzzword rather than a meaningful goal.. 🤷‍♂️",
+    "image": "/resource-previews/c20893137ef9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/v2/D5622AQFD7Cks5l_bMg/feedshare-image-high-res/B56ZxwHbI.KgAU-/0/1771407520848?e=2147483647&v=beta&t=85hVk7gxgMYxwqXaJjYF1JiRhb1vdXNQwituljWSDEM",
+    "icon": "/resource-previews/c20893137ef9-icon.webp"
+  },
+  "https://arxiv.org/abs/2402.01817": {
+    "source": "https://arxiv.org/abs/2402.01817",
+    "fetchedAt": "2026-10-01T04:19:51.672Z",
+    "description": "Abstract page for arXiv paper 2402.01817: LLMs Can't Plan, But Can Help Planning in LLM-Modulo Frameworks",
+    "icon": "/resource-previews/5a8e0c175dc3-icon.webp",
+    "image": "/resource-previews/5a8e0c175dc3-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://arxiv.org/abs/2402.01817"
+  },
+  "https://aiguide.substack.com/p/misleading-metaphors-and-real-risks": {
+    "source": "https://aiguide.substack.com/p/misleading-metaphors-and-real-risks",
+    "fetchedAt": "2026-10-01T04:19:56.890Z",
+    "description": "What To Fear from AI Agents and How to Reclaim Our Human Agency",
+    "image": "/resource-previews/c754ff48aa16-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!gkfB!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fab8a7594-11f7-498c-88cd-5092270c590f_1920x1493.jpeg",
+    "icon": "/resource-previews/c754ff48aa16-icon.webp"
+  },
+  "https://yalereview.org/article/melanie-mitchell-jagged-intelligence": {
+    "source": "https://yalereview.org/article/melanie-mitchell-jagged-intelligence",
+    "fetchedAt": "2026-10-01T04:19:57.185Z",
+    "description": "Melanie Mitchell probes the jagged landscape of AI and its uncertain future.",
+    "image": "/resource-previews/44b68eb33cf4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://d181q449nqu6en.cloudfront.net/content/craft/website-assets/seo_mitchell_blueprint.png",
+    "icon": "/resource-previews/44b68eb33cf4-icon.webp"
+  },
+  "https://aiguide.substack.com/p/do-half-of-ai-researchers-believe": {
+    "source": "https://aiguide.substack.com/p/do-half-of-ai-researchers-believe",
+    "fetchedAt": "2026-10-01T04:19:57.612Z",
+    "description": "Fact-checking a widespread claim",
+    "image": "/resource-previews/e6021740c7ae-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!Q4oG!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F553110ac-d42f-4ee3-9f92-488f9cb8f462_926x642.jpeg",
+    "icon": "/resource-previews/e6021740c7ae-icon.webp"
+  },
+  "https://bsky.app/profile/melaniemitchell.bsky.social/post/3mupjhjurfc2s": {
+    "source": "https://bsky.app/profile/melaniemitchell.bsky.social/post/3mupjhjurfc2s",
+    "fetchedAt": "2026-10-01T04:19:58.475Z",
+    "description": "\"At this very moment, we have an emerging alien—and uncontrollable—intelligence that bears scrutiny\" Why do pple keep saying the models are \"uncontrollable\"? Any of them could be put in an unhackable sandbox--these exist! Any of these companies could shut any of these models off at any time. [contains quote post or other embedded content]",
+    "icon": "/resource-previews/075c24a24bee-icon.webp",
+    "image": "/resource-previews/075c24a24bee-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/melaniemitchell.bsky.social/post/3mupjhjurfc2s"
+  },
+  "https://bsky.app/profile/melaniemitchell.bsky.social/post/3muy34fw7ks2a": {
+    "source": "https://bsky.app/profile/melaniemitchell.bsky.social/post/3muy34fw7ks2a",
+    "fetchedAt": "2026-10-01T04:20:02.548Z",
+    "description": "Hey @ericlipton.nytimes.com 👋 AI is not “evolving” on its own. *People* are choosing how to build it. *People* are choosing how to train it. *People* are choosing how to run it. Maybe the problem is that they are the *wrong people* to make these choices. [contains quote post or other embedded content]",
+    "icon": "/resource-previews/273703a753c1-icon.webp",
+    "image": "/resource-previews/273703a753c1-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/melaniemitchell.bsky.social/post/3muy34fw7ks2a"
+  },
+  "https://aiguide.substack.com/p/on-evaluating-cognitive-capabilities": {
+    "source": "https://aiguide.substack.com/p/on-evaluating-cognitive-capabilities",
+    "fetchedAt": "2026-10-01T04:20:05.349Z",
+    "description": "(Apologies for the length of this post, which means it gets cut off in the email version.",
+    "image": "/resource-previews/02dcbaa264ef-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!ptTf!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb2dd2318-37b9-4f59-985c-55b28b511651_744x392.png",
+    "icon": "/resource-previews/02dcbaa264ef-icon.webp"
+  },
+  "https://buildcognitiveresonance.substack.com/p/reflections-on-ai-from-melanie-mitchell": {
+    "source": "https://buildcognitiveresonance.substack.com/p/reflections-on-ai-from-melanie-mitchell",
+    "fetchedAt": "2026-10-01T04:20:06.275Z",
+    "description": "My conversation with one of AI's \"OG\" researchers and theorists",
+    "image": "/resource-previews/3efeece15a8b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!KGa_!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0628cc32-90b0-4816-a081-1481170ffe83_956x692.png",
+    "icon": "/resource-previews/3efeece15a8b-icon.webp"
+  },
+  "https://aiguide.substack.com/p/magical-thinking-on-ai": {
+    "source": "https://aiguide.substack.com/p/magical-thinking-on-ai",
+    "fetchedAt": "2026-10-01T04:20:07.413Z",
+    "description": "A Response to Thomas Friedman's Recent AI Columns in the New York Times",
+    "image": "/resource-previews/3f41991bc7e4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!MIdj!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dec6585-ba22-4124-bd66-4aa0a4d5837c_1693x1920.jpeg",
+    "icon": "/resource-previews/3f41991bc7e4-icon.webp"
+  },
+  "https://machinelearning.transistor.fm/episodes/the-chaotic-evolution-of-the-field-with-tom-dietterich": {
+    "source": "https://machinelearning.transistor.fm/episodes/the-chaotic-evolution-of-the-field-with-tom-dietterich",
+    "fetchedAt": "2026-10-01T04:20:08.301Z",
+    "description": "Tom discusses the chaotic evolution of the field of machine learning with Tom Dietterich, Distinguished Professor Emeritus at Oregon State University. Tom has made numerous research contributions t...",
+    "image": "/resource-previews/cace85522afe-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://img.transistorcdn.com/dVsFy7ENBbrW60LCM5acSpehPLb8j2RtrZkC_KCIJck/rs:fill:0:0:1/w:800/h:800/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS9iYjU3/Zjg4NDY1Mzk1ZDQ1/NTQwYmMxNDZjMTU5/MzJhMi5wbmc.webp",
+    "icon": "/resource-previews/cace85522afe-icon.webp"
+  },
+  "https://www.oberlin.edu/news-and-events/running-to-the-noise-podcast/running-noise-episode-23": {
+    "source": "https://www.oberlin.edu/news-and-events/running-to-the-noise-podcast/running-noise-episode-23",
+    "fetchedAt": "2026-10-01T04:20:10.063Z",
+    "description": "Artificial intelligence has evolved from an abstract concept into one of the most transformative forces of our time. When Tom Dietterich graduated from Oberlin in 1977 with a degree in mathematics, AI was still largely theoretical. Over the decades that followed, his pioneering research helped turn theory into reality.",
+    "icon": "/resource-previews/784538f7cfae-icon.webp",
+    "image": "/resource-previews/784538f7cfae-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.oberlin.edu/news-and-events/running-to-the-noise-podcast/running-noise-episode-23"
+  },
+  "https://bsky.app/profile/tdietterich.bsky.social/post/3mntcv5erbk2e": {
+    "source": "https://bsky.app/profile/tdietterich.bsky.social/post/3mntcv5erbk2e",
+    "fetchedAt": "2026-10-01T04:20:13.582Z",
+    "description": "As an AI/ML researcher myself, the argument that it is complex is a reason NOT to push it. The current tech is just the first \"knowledge technology\" that scales up, but it has many many problems. I hope we can develop something much simpler and better! 1/",
+    "icon": "/resource-previews/258678ab262d-icon.webp",
+    "image": "/resource-previews/258678ab262d-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/tdietterich.bsky.social/post/3mntcv5erbk2e"
+  },
+  "https://bsky.app/profile/tdietterich.bsky.social/post/3mlje4jlvbk2p": {
+    "source": "https://bsky.app/profile/tdietterich.bsky.social/post/3mlje4jlvbk2p",
+    "fetchedAt": "2026-10-01T04:20:16.490Z",
+    "description": "This points to an important direction: layering symbolic systems on top of LLMs. These can overcome the main shortcomings of LLM architectures: probabilistic execution, continual learning, attribution, and (maybe) uncertainty quantification. 1/ [contains quote post or other embedded content]",
+    "icon": "/resource-previews/b3cfab548ce3-icon.webp",
+    "image": "/resource-previews/b3cfab548ce3-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/tdietterich.bsky.social/post/3mlje4jlvbk2p"
+  },
+  "https://bsky.app/profile/tdietterich.bsky.social/post/3lrm6vn5ztc2e": {
+    "source": "https://bsky.app/profile/tdietterich.bsky.social/post/3lrm6vn5ztc2e",
+    "fetchedAt": "2026-10-01T04:20:16.895Z",
+    "description": "The concept of \"AGI\" (a system that can match or exceed human performance across all tasks) shares all of the defects of the Turing Test. 1/",
+    "icon": "/resource-previews/23e3a5fd1a68-icon.webp",
+    "image": "/resource-previews/23e3a5fd1a68-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/tdietterich.bsky.social/post/3lrm6vn5ztc2e"
+  },
+  "https://bsky.app/profile/tdietterich.bsky.social/post/3mfuxhuwvok2j": {
+    "source": "https://bsky.app/profile/tdietterich.bsky.social/post/3mfuxhuwvok2j",
+    "fetchedAt": "2026-10-01T04:20:17.304Z",
+    "description": "LLM-based technology is good for many things, but it is not a reliable tool for autonomous weaponry. LLMs require large GPU computers to operate; you can't put them on standard military platforms, and certainly not on drones.",
+    "icon": "/resource-previews/753b0620f3f4-icon.webp",
+    "image": "/resource-previews/753b0620f3f4-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/tdietterich.bsky.social/post/3mfuxhuwvok2j"
+  },
+  "https://bsky.app/profile/tdietterich.bsky.social/post/3mjyalrqixs2g": {
+    "source": "https://bsky.app/profile/tdietterich.bsky.social/post/3mjyalrqixs2g",
+    "fetchedAt": "2026-10-01T04:20:17.805Z",
+    "description": "Bengio chairs the international AI safety report. internationalaisafetyreport.org. It is a good faith effort to assess the whole spectrum of AI risks. (I served as one of the external advisors.) https://internationalaisafetyreport.org/",
+    "icon": "/resource-previews/f09f08cf9c14-icon.webp",
+    "image": "/resource-previews/f09f08cf9c14-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/tdietterich.bsky.social/post/3mjyalrqixs2g"
+  },
+  "https://bsky.app/profile/tdietterich.bsky.social/post/3m622ehsloc2n": {
+    "source": "https://bsky.app/profile/tdietterich.bsky.social/post/3m622ehsloc2n",
+    "fetchedAt": "2026-10-01T04:20:21.341Z",
+    "description": "I agree that emotional addiction to chatbots is the number one risk of AI today. Here is a gift link to an important OpEd in the NYTimes: https://www.nytimes.com/2025/11/17/opinion/her-film-chatbots-romance.html?unlocked_article_code=1.2k8.jlYw.hoAXCVH5g8uY&smid=url-share",
+    "icon": "/resource-previews/520dcb52e221-icon.webp",
+    "image": "/resource-previews/520dcb52e221-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/tdietterich.bsky.social/post/3m622ehsloc2n"
+  },
+  "https://venturebeat.com/business/ai-experts-challenge-doomer-narrative-including-extinction-risk-claims": {
+    "source": "https://venturebeat.com/business/ai-experts-challenge-doomer-narrative-including-extinction-risk-claims",
+    "fetchedAt": "2026-10-01T04:20:21.800Z",
+    "description": "Older, secondary context. Responding to the Statement on AI Risk, he said he was baffled by prominent signers’ positions, that outside deep learning most researchers thought industry and the press were over-reacting to LLM fluency, and that the greatest computing risk was cyberattacks on critical infrastructure. He suggested examining the funding incentives of existential-risk organizations alongside those of researchers like himself, without questioning their sincerity. Newer sources take precedence: by 2026 he takes AI-enabled mass-casualty misuse seriously and endorses a broad international risk assessment. Full article inspected.",
+    "icon": "/resource-previews/b2a1b81c3752-icon.webp",
+    "image": "/resource-previews/b2a1b81c3752-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://venturebeat.com/business/ai-experts-challenge-doomer-narrative-including-extinction-risk-claims"
+  },
+  "https://www.aisummer.org/p/sayash-kapoor-on-claude-mythos-as": {
+    "source": "https://www.aisummer.org/p/sayash-kapoor-on-claude-mythos-as",
+    "fetchedAt": "2026-10-01T04:20:22.234Z",
+    "description": "\"AI is going to be a genuinely transformative technology. And that includes this ability to find and perhaps even develop exploits for vulnerabilities.\"",
+    "image": "/resource-previews/f97e30a977ad-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!s1lO!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F194130686%2Fe01d6733-18cb-48da-8d05-bff8fbf9ffdb%2Ftranscoded-1776121390.png",
+    "icon": "/resource-previews/f97e30a977ad-icon.webp"
+  },
+  "https://horizonlaunchpad.substack.com/p/shaping-ai-policy-as-an-academic": {
+    "source": "https://horizonlaunchpad.substack.com/p/shaping-ai-policy-as-an-academic",
+    "fetchedAt": "2026-10-01T04:20:23.744Z",
+    "description": "Sayash Kapoor on how to have impact through research",
+    "image": "/resource-previews/c28b3d553f00-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!QmmQ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6ef971b4-3afa-4126-8c93-bd31f5e2e432_1456x1048.png",
+    "icon": "/resource-previews/c28b3d553f00-icon.webp"
+  },
+  "https://www.normaltech.ai/p/p-doom": {
+    "source": "https://www.normaltech.ai/p/p-doom",
+    "fetchedAt": "2026-10-01T04:20:24.937Z",
+    "description": "How speculation gets laundered through pseudo-quantification",
+    "image": "/resource-previews/3321dd8b8776-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!vQj7!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fedcb1dda-0882-4b56-9e2a-d6c3b131bd79_2562x1278.jpeg",
+    "icon": "/resource-previews/3321dd8b8776-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/the-politics-and-possibilities-of": {
+    "source": "https://www.bloodinthemachine.com/p/the-politics-and-possibilities-of",
+    "fetchedAt": "2026-10-01T04:20:25.743Z",
+    "description": "AI will not exterminate the human race. But what big tech really *is* doing is bad enough that the notion may help fuel the movement against it.",
+    "image": "/resource-previews/2b3d0eabcd36-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!OVT-!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F551a1f65-10ee-4271-a42b-0a65a8f06262_1322x729.png",
+    "icon": "/resource-previews/2b3d0eabcd36-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/how-the-stories-about-all-powerful": {
+    "source": "https://www.bloodinthemachine.com/p/how-the-stories-about-all-powerful",
+    "fetchedAt": "2026-10-01T04:20:26.800Z",
+    "description": "The x-risk of super intelligence going rogue must be addressed, and mint trillion dollar companies in the process. Plus: How workers can beat the tech oligarchy",
+    "image": "/resource-previews/622593813209-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!GQDS!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8c7a23b4-5595-4a34-be95-97a7e30f00b8_6000x4378.jpeg",
+    "icon": "/resource-previews/622593813209-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/ai-may-kill-all-humans-industry-leaders": {
+    "source": "https://www.bloodinthemachine.com/p/ai-may-kill-all-humans-industry-leaders",
+    "fetchedAt": "2026-10-01T04:20:28.303Z",
+    "description": "Listen now (64 mins) | A conversation with Naomi Klein and Astra Taylor about “end times fascism” in the tech industry.",
+    "image": "/resource-previews/1a01c5192c1f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!2CTT!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F208115081%2Fc2f2072d-272c-49e9-9d52-3ca698c4f0a3%2Ftranscoded-1789325599.png",
+    "icon": "/resource-previews/1a01c5192c1f-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/how-to-use-ai-doom-marketing-to-dupe": {
+    "source": "https://www.bloodinthemachine.com/p/how-to-use-ai-doom-marketing-to-dupe",
+    "fetchedAt": "2026-10-01T04:20:29.269Z",
+    "description": "The anatomy of what may be the most effective marketing campaign ever. Plus, the mythology of the world's first trillionaire, the Summer of Ludd, and a D&D game inspired by Blood in the Machine.",
+    "image": "/resource-previews/9bd0d6e83d90-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/youtube/w_728,c_limit/INGOC6-LLv0",
+    "icon": "/resource-previews/9bd0d6e83d90-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/why-office-workers-are-turning-against": {
+    "source": "https://www.bloodinthemachine.com/p/why-office-workers-are-turning-against",
+    "fetchedAt": "2026-10-01T04:20:29.920Z",
+    "description": "Whether or not you like AI at work ultimately boils down to a question of power.",
+    "image": "/resource-previews/eb5e65226fcd-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!r25o!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5836ab51-d52b-4e2f-94c0-9253f110d35b_1023x682.png",
+    "icon": "/resource-previews/eb5e65226fcd-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/the-real-ai-jobs-apocalypse": {
+    "source": "https://www.bloodinthemachine.com/p/the-real-ai-jobs-apocalypse",
+    "fetchedAt": "2026-10-01T04:20:30.441Z",
+    "description": "A chat with sociologist and ‘AI Con’ author Dr. Alex Hanna. Plus, the human labor that behind Waymos, NYC bans AI in schools, and why a ‘tech forward future’ is a mirage.",
+    "image": "/resource-previews/dc617f4f4ab6-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!dxUn!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F214088271%2Fdf1bf5ba-8682-4e83-ba39-968566450734%2Ftranscoded-1788557532.png",
+    "icon": "/resource-previews/dc617f4f4ab6-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/with-the-backlash-to-data-centers": {
+    "source": "https://www.bloodinthemachine.com/p/with-the-backlash-to-data-centers",
+    "fetchedAt": "2026-10-01T04:20:31.017Z",
+    "description": "The backlash against data centers is difficult to understand if your salary depends on your not understanding it.",
+    "image": "/resource-previews/8eb13a3158b9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!PP4c!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffa87e7fb-5bb8-41b4-8bb2-b1ec3e3c3c34_649x454.png",
+    "icon": "/resource-previews/8eb13a3158b9-icon.webp"
+  },
+  "https://www.bloodinthemachine.com/p/on-agi-mass-automation-and-what-the": {
+    "source": "https://www.bloodinthemachine.com/p/on-agi-mass-automation-and-what-the",
+    "fetchedAt": "2026-10-01T04:20:31.538Z",
+    "description": "Or how I got Hard Forked",
+    "image": "/resource-previews/a0ab2c7944ee-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/youtube/w_728,c_limit/bOSUvL26DjA",
+    "icon": "/resource-previews/a0ab2c7944ee-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/i-raised-an-ai-investors-pdoom-live": {
+    "source": "https://lironshapira.substack.com/p/i-raised-an-ai-investors-pdoom-live",
+    "fetchedAt": "2026-10-01T04:20:32.692Z",
+    "description": "An investing show that's \"99% optimistic about AI\" lets an AI doomer into their echo chamber.",
+    "image": "/resource-previews/a69c5586bd1f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!rg5V!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F210002577%2F78996499-49ac-4fec-ac50-ab3e5c396970%2Ftranscoded-1785977403.png",
+    "icon": "/resource-previews/a69c5586bd1f-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/living-with-a-50-pdoom-liron-shapira": {
+    "source": "https://lironshapira.substack.com/p/living-with-a-50-pdoom-liron-shapira",
+    "fetchedAt": "2026-10-01T04:20:33.598Z",
+    "description": "In which I explain my epistemology around AI Doom, and why I'm a techno-optimist in the short term",
+    "image": "/resource-previews/6df739931094-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!GFQt!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F204592854%2Fd2cc3e3d-ff95-4449-aa9b-b37344ca3822%2Ftranscoded-1782991977.png",
+    "icon": "/resource-previews/6df739931094-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/sam-altman-is-gaslighting-about-ai-risk": {
+    "source": "https://lironshapira.substack.com/p/sam-altman-is-gaslighting-about-ai-risk",
+    "fetchedAt": "2026-10-01T04:20:34.383Z",
+    "description": "Sam Altman keeps insisting that AI progress is going better than the doomers predicted and that superintelligence may not change the world much.",
+    "image": "/resource-previews/4194078ac36e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!pvbN!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F213113675%2F2845ce9f-c00e-4bdb-aac3-1a4e61c9e39a%2Ftranscoded-1787908043.png",
+    "icon": "/resource-previews/4194078ac36e-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/will-ai-actually-destroy-humanity": {
+    "source": "https://lironshapira.substack.com/p/will-ai-actually-destroy-humanity",
+    "fetchedAt": "2026-10-01T04:20:35.338Z",
+    "description": "Let's see whether the AI-savvy crowd at LessOnline 2026 can talk me off the doom train.",
+    "image": "/resource-previews/a2a58d231e83-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!7RHC!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F202683561%2F39e1726f-f72d-4d2e-99be-82e8202b2c28%2Ftranscoded-1781858469.png",
+    "icon": "/resource-previews/a2a58d231e83-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/why-im-happy-the-us-government-banned": {
+    "source": "https://lironshapira.substack.com/p/why-im-happy-the-us-government-banned",
+    "fetchedAt": "2026-10-01T04:20:36.324Z",
+    "description": "I’m a simple man: I see AI getting paused. I feel good about it.",
+    "image": "/resource-previews/6e243c171028-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!DhIF!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F34f5af5c-bc0c-48a2-8911-d5387bc1e302_1672x941.png",
+    "icon": "/resource-previews/6e243c171028-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/the-facade-of-ai-safety-will-crumble": {
+    "source": "https://lironshapira.substack.com/p/the-facade-of-ai-safety-will-crumble",
+    "fetchedAt": "2026-10-01T04:20:37.698Z",
+    "description": "AI companies don't get why the problem is hard, so they fake working on it. Then we die.",
+    "image": "/resource-previews/143dadb18584-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!ZWm9!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0200e8e2-60e3-42d4-8ef7-7daa46340ced_2376x950.jpeg",
+    "icon": "/resource-previews/143dadb18584-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/q-and-a-is-liron-too-dismissive-of": {
+    "source": "https://lironshapira.substack.com/p/q-and-a-is-liron-too-dismissive-of",
+    "fetchedAt": "2026-10-01T04:20:38.571Z",
+    "description": "Impromptu stream from my new studio!",
+    "image": "/resource-previews/4a0c1f283501-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!msrJ!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F185946381%2F75a58811-0189-41de-8679-47687187e7c8%2Ftranscoded-00001.png",
+    "icon": "/resource-previews/4a0c1f283501-icon.webp"
+  },
+  "https://nothingismere.substack.com/p/why-didnt-we-react-to-ai-sooner": {
+    "source": "https://nothingismere.substack.com/p/why-didnt-we-react-to-ai-sooner",
+    "fetchedAt": "2026-10-01T04:20:39.964Z",
+    "description": "A retrospective written August 7, before Jacob Coxon changed the world",
+    "image": "/resource-previews/8f3641a34ebf-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!IAAy!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6d751ca3-77f7-4760-8c38-0e30a15551f0_1200x811.png",
+    "icon": "/resource-previews/8f3641a34ebf-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/NBEmGx3djmSXawp3H/no77e-s-shortform?commentId=H7acZmqSo4wbsuLXs": {
+    "source": "https://www.lesswrong.com/posts/NBEmGx3djmSXawp3H/no77e-s-shortform?commentId=H7acZmqSo4wbsuLXs",
+    "fetchedAt": "2026-10-01T04:20:40.951Z",
+    "description": "Comment by Rob Bensinger - I wrote a reply to Scott on Twitter, before seeing the discussion here; I think it's a lot clearer than my original (IMO sloppy) tweet. I've copied the reply below; see also my reply to Buck. _____________________________________________________ To clarify the claim I’m making: I’m not trying to throw EA under a bus. This thread spun off from a discussion where I said I thought EA’s net impact on AI x-risk was probably positive, but I was highly uncertain. Somebody asked what the bad components of EA’s impact were, and I went off on Anthropic, and on EA’s (and especially OpenPhil’s) entanglement with the company and their support for Anthropic’s operations. (To the extent that a lot of x-risk-adjacent EA seems to function, in practice, as a talent pipeline for Anthropic.) I also said that I think OpenPhil’s bet on OpenAI was a disaster. And I said that there’s a culture of caginess, soft-pedaling, and trying-to-sound-reassuringly-mundane that I think has damaged AI risk discourse a fair amount, and that various people in and around OpenPhil have contributed to. I’m restating this partly to be clear about what my exact claims are. E.g., I’m not claiming that items 1+2+3 are things OpenPhil and Anthropic leadership would happily endorse as stated. I deliberately phrased them in ways that highlight what I see as the flaws in these views and memes, in the hope that this could help wake up some people in and around OpenPhil+Anthropic to the road they’re walking. This may have been the wrong conversational tack, but my vague sense is that there have been a lot of milder conversations about these topics over the years, and they don’t seem to have produced a serious reckoning, retrospective, or course change of the kind I would have expected. I hoped it was obvious from the phrasing that 1-3 were attempting to embed the obvious critiques into the view summary, rather than attempting to phrase things in a way that would make the proponent go “Hell yeah, I love that v",
+    "image": "/resource-previews/6b53cdeb7528-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
+    "icon": "/resource-previews/6b53cdeb7528-icon.webp"
+  },
+  "https://nothingismere.substack.com/p/a-near-term-policy-for-not-getting": {
+    "source": "https://nothingismere.substack.com/p/a-near-term-policy-for-not-getting",
+    "fetchedAt": "2026-10-01T04:20:43.679Z",
+    "description": "Hundreds of scientists, including three of the four most cited living AI scientists, have said that AI poses a very real chance of killing us all.",
+    "image": "/resource-previews/2ec5a8fdfc8c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!6qSD!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F95b256a7-39e4-4e2d-b14f-9286a80ead13_977x312.png",
+    "icon": "/resource-previews/2ec5a8fdfc8c-icon.webp"
+  },
+  "https://nothingismere.substack.com/p/a-reply-to-macaskill-on-if-anyone": {
+    "source": "https://nothingismere.substack.com/p/a-reply-to-macaskill-on-if-anyone",
+    "fetchedAt": "2026-10-01T04:20:44.159Z",
+    "description": "What if progress from here to smarter-than-human AI is continuous?",
+    "image": "/resource-previews/e4765f31f3e7-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!crK3!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0ef44f8f-b7f6-4c16-a68c-3b9587917584_707x670.png",
+    "icon": "/resource-previews/e4765f31f3e7-icon.webp"
+  },
+  "https://x.com/AISafetyMemes": {
+    "source": "https://x.com/AISafetyMemes",
+    "fetchedAt": "2026-10-01T04:20:44.553Z",
+    "description": "Techno-optimist, but AGI is not like the other technologies. Step 1: make memes. Step 2: ??? Step 3: lower p(doom)",
+    "image": "/resource-previews/0aeb34b6586c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/profile_banners/1315709346689568770/1683824187",
+    "icon": "/resource-previews/0aeb34b6586c-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/holly-elmore-exposes-ai-doom-enablers": {
+    "source": "https://lironshapira.substack.com/p/holly-elmore-exposes-ai-doom-enablers",
+    "fetchedAt": "2026-10-01T04:20:46.572Z",
+    "description": "Should we publicly shame the individuals who join the companies building superintelligence?",
+    "image": "/resource-previews/e08a7e767041-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!2f9K!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F204215061%2Faa5bac3b-fc00-471f-b211-b8617af4beed%2Ftranscoded-1782799989.png",
+    "icon": "/resource-previews/e08a7e767041-icon.webp"
+  },
+  "https://news.berkeley.edu/2026/02/06/berkeley-talks-pause-ai/": {
+    "source": "https://news.berkeley.edu/2026/02/06/berkeley-talks-pause-ai/",
+    "fetchedAt": "2026-10-01T04:20:47.964Z",
+    "description": "Holly Elmore, the director of PauseAI US, warns that we are repeating the mistakes of the past by playing with a high-stakes technology we don't fully understand.",
+    "image": "/resource-previews/09d7b53e4112-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://news.berkeley.edu/wp-content/uploads/2026/02/PauseAI_protest-2560-1024x585.jpg",
+    "icon": "/resource-previews/09d7b53e4112-icon.webp"
+  },
+  "https://hollyelmore.substack.com/p/what-is-the-ai-race-racing-to": {
+    "source": "https://hollyelmore.substack.com/p/what-is-the-ai-race-racing-to",
+    "fetchedAt": "2026-10-01T04:20:48.786Z",
+    "description": "The answer is immortality and world domination, but not for you. If you think that's silly, then don't let a handful of billionaires and zealots kill us for it.",
+    "image": "/resource-previews/3d582f88d969-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!3biC!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbb548fde-bb82-431b-aacd-fb9b8fee289f_1536x1566.jpeg",
+    "icon": "/resource-previews/3d582f88d969-icon.webp"
+  },
+  "https://hollyelmore.substack.com/p/post-singularity-same-shit": {
+    "source": "https://hollyelmore.substack.com/p/post-singularity-same-shit",
+    "fetchedAt": "2026-10-01T04:20:50.248Z",
+    "description": "Abundance would hit its limits pretty quick. When it comes to relating with other people, the Singularity would be same shit, different day.",
+    "image": "/resource-previews/1f10ea712216-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!tVsn!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8fd9077-5bbb-40d4-8736-717d7e439da3_4032x3024.jpeg",
+    "icon": "/resource-previews/1f10ea712216-icon.webp"
+  },
+  "https://hollyelmore.substack.com/p/pause-world": {
+    "source": "https://hollyelmore.substack.com/p/pause-world",
+    "fetchedAt": "2026-10-01T04:20:51.134Z",
+    "description": "What happens after we #PauseAI",
+    "image": "/resource-previews/cbed08faa1f4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!TPjh!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff74e9a3d-0a32-413b-9d36-671ccdf78303_1242x1656.jpeg",
+    "icon": "/resource-previews/cbed08faa1f4-icon.webp"
+  },
+  "https://hollyelmore.substack.com/p/ai-is-found-not-designed": {
+    "source": "https://hollyelmore.substack.com/p/ai-is-found-not-designed",
+    "fetchedAt": "2026-10-01T04:20:52.160Z",
+    "description": "No one programs AI to be dangerous, but that's because they don't program it at all.",
+    "image": "/resource-previews/2577673eaf38-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!3BU1!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F738ad0b2-a2e1-44df-b675-d267355a88f4_1206x1152.jpeg",
+    "icon": "/resource-previews/2577673eaf38-icon.webp"
+  },
+  "https://hollyelmore.substack.com/p/underresponsibility-and-the-anthropic": {
+    "source": "https://hollyelmore.substack.com/p/underresponsibility-and-the-anthropic",
+    "fetchedAt": "2026-10-01T04:20:53.237Z",
+    "description": "The Nuremberg defense is: “I was just following orders.” The Anthropic defense is: “We are better than the counterfactual.” But the counterfactual is whatever they can imagine.",
+    "image": "/resource-previews/b3fd74517362-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!cdhE!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa2ad67d5-fa9d-4e1c-9700-c8d25867e466_1181x1479.jpeg",
+    "icon": "/resource-previews/b3fd74517362-icon.webp"
+  },
+  "https://hollyelmore.substack.com/p/dont-fall-for-ai-conquistadors": {
+    "source": "https://hollyelmore.substack.com/p/dont-fall-for-ai-conquistadors",
+    "fetchedAt": "2026-10-01T04:20:54.235Z",
+    "description": "The AI industry is using us, our data, our art, our writing, our subscriptions, and our compliance… until they don't need us anymore. They're not collaborators— they're conquistadors.",
+    "image": "/resource-previews/afea68a4b19e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!xXEI!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea7b27d6-0f34-4eb8-b454-e83f2de9c868_1804x1190.jpeg",
+    "icon": "/resource-previews/afea68a4b19e-icon.webp"
+  },
+  "https://hollyelmore.substack.com/p/the-ai-genies-out-of-the-bottle-now": {
+    "source": "https://hollyelmore.substack.com/p/the-ai-genies-out-of-the-bottle-now",
+    "fetchedAt": "2026-10-01T04:20:55.294Z",
+    "description": "We will be dealing with threat of AI forever. Our only choice is how.",
+    "image": "/resource-previews/279670cb293e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!goaM!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F016000c7-57d0-4f19-8554-7d5217ed8652_1813x966.png",
+    "icon": "/resource-previews/279670cb293e-icon.webp"
+  },
+  "https://80000hours.org/podcast/episodes/katja-grace-vs-tom-davidson-ai-risk-debate/": {
+    "source": "https://80000hours.org/podcast/episodes/katja-grace-vs-tom-davidson-ai-risk-debate/",
+    "fetchedAt": "2026-10-01T04:20:56.441Z",
+    "description": "Argues misaligned AI takeover is substantially more likely and probably worse than humans seizing power with AI: more capable agents with misaligned goals eventually get power, and many AI instances may coordinate more readily than a human could command them all. Expects gradual transfer of power from humans to AIs to be more likely than either sudden scenario. Near term the best mitigation is not building AI much more powerful than us until alignment and its target are solid, ideally stopping; her ideal is removing much of the compute (crediting her partner David Krueger’s idea), though she would accept many pause designs over full steam ahead. Thinks China shares the incentive to pause and racing mainly shortens timelines. Her turns in the publisher transcript inspected.",
+    "image": "/resource-previews/d62e643797ad-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://80000hours.org/wp-content/uploads/2026/09/katja-vs-tom-WP-thumb-scaled.jpg",
+    "icon": "/resource-previews/d62e643797ad-icon.webp"
+  },
+  "https://aiandyou.net/e/314-guest-katja-grace-ai-impact-researcher-part-2/": {
+    "source": "https://aiandyou.net/e/314-guest-katja-grace-ai-impact-researcher-part-2/",
+    "fetchedAt": "2026-10-01T04:20:57.785Z",
+    "description": "This and all episodes at: https://aiandyou.net/ . I am talking with Katja Grace, founder of AI Impacts, a forecasting and risk research project focused on AI safety and governance. She has leveraged her passion and concern about AI risk into a significant role in, for instance, surveying the AI community for its evaluations of risk, which got her named to Time Magazine’s 100 most influential people in AI for 2024. She is an expert on technological trajectories, model scaling, and anthropic reasoning. In our conclusion, we talk about predicting superintelligence, Katja’s p(doom), regulation, the Great Filter argument, and Katja’s childhood calculations for dealing with lethal snake encounters. All this plus our usual look at today's AI headlines! Transcript and URLs referenced at HumanCusp Blog.",
+    "image": "/resource-previews/f962d7c2f5cd-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://mcdn.podbean.com/mf/web/a2ihj5/podbean_banner_wide.jpg",
+    "icon": "/resource-previews/f962d7c2f5cd-icon.webp"
+  },
+  "https://aiandyou.net/e/313-guest-katja-grace-ai-impact-researcher-part-1/": {
+    "source": "https://aiandyou.net/e/313-guest-katja-grace-ai-impact-researcher-part-1/",
+    "fetchedAt": "2026-10-01T04:21:03.052Z",
+    "description": "This and all episodes at: https://aiandyou.net/ . When you stop and really consider the existential risks of AI, it becomes very apparent that we should do something. Yet so few people do. Someone who’s attempting to make up for that is Katja Grace, founder of AI Impacts, a forecasting and risk research project focused on AI safety and governance. Her surveys of the AI community’s evaluations of risk have gotten her named to Time Magazine’s 100 most influential people in AI for 2024 and her papers on those surveys have been some of the most discussed scientific papers of their time. She’s an expert on technological trajectories, model scaling, and anthropic reasoning. We talk about what’s driving Katja to do this work, the fundamental risks that she sees in AI, AI evolving unexpected goals, risks of agents, comparing unemployment risks and like extinction risks, artificial general intelligence, the stunning results of the surveys she’s run on when AI will have serious effects, and… Trojan Horse racing. All this plus our usual look at today's AI headlines! Transcript and URLs referenced at HumanCusp Blog.",
+    "image": "/resource-previews/eb02c84ca59e-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://mcdn.podbean.com/mf/web/a2ihj5/podbean_banner_wide.jpg",
+    "icon": "/resource-previews/eb02c84ca59e-icon.webp"
+  },
+  "https://worldspiritsockpuppet.substack.com/p/ai-pause-the-case-for-asap": {
+    "source": "https://worldspiritsockpuppet.substack.com/p/ai-pause-the-case-for-asap",
+    "fetchedAt": "2026-10-01T04:21:06.050Z",
+    "description": "I often hear people say they think we should pause AI at some point, but not yet.",
+    "image": "/resource-previews/4559d88c13ba-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!u1if!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fworldspiritsockpuppet.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1632224156%26version%3D9",
+    "icon": "/resource-previews/4559d88c13ba-icon.webp"
+  },
+  "https://worldspiritsockpuppet.substack.com/p/ai-catastrophe-more-like-a-genocide": {
+    "source": "https://worldspiritsockpuppet.substack.com/p/ai-catastrophe-more-like-a-genocide",
+    "fetchedAt": "2026-10-01T04:21:07.551Z",
+    "description": "A notable fraction of people respond to hearing about existential risk from AI by saying they don’t really care if everyone dies.",
+    "image": "/resource-previews/b91c4dccc9e7-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!u1if!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fworldspiritsockpuppet.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1632224156%26version%3D9",
+    "icon": "/resource-previews/b91c4dccc9e7-icon.webp"
+  },
+  "https://worldspiritsockpuppet.substack.com/p/ai-unemployment-and-ai-extinction": {
+    "source": "https://worldspiritsockpuppet.substack.com/p/ai-unemployment-and-ai-extinction",
+    "fetchedAt": "2026-10-01T04:21:08.598Z",
+    "description": "My sense is that people think of AI existential risk and AI unemployment as distinct issues.",
+    "image": "/resource-previews/8d753d1be7f8-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!x4S3!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3c2e2428-abac-4cb7-88cd-b307a8c35dcb_3500x2333.jpeg",
+    "icon": "/resource-previews/8d753d1be7f8-icon.webp"
+  },
+  "https://worldspiritsockpuppet.substack.com/p/ai-cognitive-labor-glut-new-guys": {
+    "source": "https://worldspiritsockpuppet.substack.com/p/ai-cognitive-labor-glut-new-guys",
+    "fetchedAt": "2026-10-01T04:21:10.198Z",
+    "description": "Why is the advent of AI a big deal, and more worrying than previous advents?",
+    "image": "/resource-previews/13f1e473f0f2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!ZwMF!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F071ba08c-e5f8-4c94-bb18-3b6f3fd11892_1626x792.png",
+    "icon": "/resource-previews/13f1e473f0f2-icon.webp"
+  },
+  "https://worldspiritsockpuppet.substack.com/p/ai-as-a-trojan-horse-race": {
+    "source": "https://worldspiritsockpuppet.substack.com/p/ai-as-a-trojan-horse-race",
+    "fetchedAt": "2026-10-01T04:21:11.797Z",
+    "description": "I’ve argued that the AI situation is not clearly an ‘arms race’.",
+    "image": "/resource-previews/efa6a5134ee0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!jCvc!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9f75c05d-140c-4391-b097-89cff1c7f36a_465x363.jpeg",
+    "icon": "/resource-previews/efa6a5134ee0-icon.webp"
+  },
+  "https://blog.aiimpacts.org/p/what-did-ai-researchers-think-at": {
+    "source": "https://blog.aiimpacts.org/p/what-did-ai-researchers-think-at",
+    "fetchedAt": "2026-10-01T04:21:12.860Z",
+    "description": "Highlights from the latest survey",
+    "image": "/resource-previews/98c94783da98-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!IFtg!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbc5ee081-2248-4dde-b023-d82a358da8d7_2232x1440.png",
+    "icon": "/resource-previews/98c94783da98-icon.webp"
+  },
+  "https://www.theargumentmag.com/p/losing-control-of-ai-is-actually": {
+    "source": "https://www.theargumentmag.com/p/losing-control-of-ai-is-actually",
+    "fetchedAt": "2026-10-01T04:21:14.194Z",
+    "description": "I think we should regulate the people spending billions to build a machine god",
+    "image": "/resource-previews/b759a701d031-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!fELt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F68313731-83cf-459e-8e1f-6bd7269870c7_1402x1122.png",
+    "icon": "/resource-previews/b759a701d031-icon.webp"
+  },
+  "https://www.theargumentmag.com/p/ais-biggest-critic-has-lost-the-plot": {
+    "source": "https://www.theargumentmag.com/p/ais-biggest-critic-has-lost-the-plot",
+    "fetchedAt": "2026-10-01T04:21:14.638Z",
+    "description": "Ed Zitron vs. reality",
+    "image": "/resource-previews/e330d8ed658b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!D-G-!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc5979a92-1aa2-4040-b398-475d13b0004e_1024x678.jpeg",
+    "icon": "/resource-previews/e330d8ed658b-icon.webp"
+  },
+  "https://www.vox.com/podcasts/483724/agentic-ai-hype-cycle-reactions-alignment-problem-dangers-explained": {
+    "source": "https://www.vox.com/podcasts/483724/agentic-ai-hype-cycle-reactions-alignment-problem-dangers-explained",
+    "fetchedAt": "2026-10-01T04:21:15.488Z",
+    "description": "The AI hype is real. We’re not prepared for what’s next.",
+    "image": "/resource-previews/6bde734bd12c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://platform.vox.com/wp-content/uploads/sites/2/2026/03/gettyimages-2262355309.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200",
+    "icon": "/resource-previews/6bde734bd12c-icon.webp"
+  },
+  "https://www.theargumentmag.com/p/anthropic-probably-shouldnt-be-doing": {
+    "source": "https://www.theargumentmag.com/p/anthropic-probably-shouldnt-be-doing",
+    "fetchedAt": "2026-10-01T04:21:17.636Z",
+    "description": "Claude's constitution comes up with an ethical framework to balance being useful, safe, and treating users like adults",
+    "image": "/resource-previews/536874678669-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!qRas!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8fe199b0-c5c1-452b-abc0-27972515e265_2782x1077.jpeg",
+    "icon": "/resource-previews/536874678669-icon.webp"
+  },
+  "https://www.theargumentmag.com/p/can-you-tinker-your-way-out-of-the": {
+    "source": "https://www.theargumentmag.com/p/can-you-tinker-your-way-out-of-the",
+    "fetchedAt": "2026-10-01T04:21:18.364Z",
+    "description": "The doomsday advice industrial complex",
+    "image": "/resource-previews/45cf3ca26815-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!Pdy1!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F19954cb5-e15b-43da-8932-72fc86878a6f_1804x1662.jpeg",
+    "icon": "/resource-previews/45cf3ca26815-icon.webp"
+  },
+  "https://www.theargumentmag.com/p/we-need-to-be-able-to-sue-ai-companies": {
+    "source": "https://www.theargumentmag.com/p/we-need-to-be-able-to-sue-ai-companies",
+    "fetchedAt": "2026-10-01T04:21:19.393Z",
+    "description": "When a chatbot breaks bad, you should be able to go to court",
+    "image": "/resource-previews/693602292f77-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!fjJE!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F86507570-acf0-4ce8-ad03-0dceb64c8a3c_6000x4000.jpeg",
+    "icon": "/resource-previews/693602292f77-icon.webp"
+  },
+  "https://www.theargumentmag.com/p/if-someone-builds-it-will-everyone": {
+    "source": "https://www.theargumentmag.com/p/if-someone-builds-it-will-everyone",
+    "fetchedAt": "2026-10-01T04:21:21.286Z",
+    "description": "The scariest book of the year",
+    "image": "/resource-previews/7554b922e7f6-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!kigO!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F49912039-d7ad-4b73-9318-eae7b30ab227_5105x3744.jpeg",
+    "icon": "/resource-previews/7554b922e7f6-icon.webp"
+  },
+  "https://www.theguardian.com/commentisfree/2026/aug/21/openai-frontier-ai-speed": {
+    "source": "https://www.theguardian.com/commentisfree/2026/aug/21/openai-frontier-ai-speed",
+    "fetchedAt": "2026-10-01T04:21:21.751Z",
+    "description": "I understand the pressure on AI companies to rush forward. But employees are right to be concerned",
+    "image": "/resource-previews/d7769cca3859-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.guim.co.uk/img/media/5580ff8262ca418fc1145725debe914855547075/667_0_3333_2667/master/3333.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=567afd1e56fba7ade81f561a68615257",
+    "icon": "/resource-previews/d7769cca3859-icon.webp"
+  },
+  "https://milesbrundage.substack.com/p/my-speech-at-borgo-laudato-si": {
+    "source": "https://milesbrundage.substack.com/p/my-speech-at-borgo-laudato-si",
+    "fetchedAt": "2026-10-01T04:21:23.903Z",
+    "description": "On speed, competition, and loss of control",
+    "image": "/resource-previews/8e30425d0e98-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!sN-Y!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F445c9b9f-1e7e-4637-9479-661c3564d728_1206x462.png",
+    "icon": "/resource-previews/8e30425d0e98-icon.webp"
+  },
+  "https://milesbrundage.substack.com/p/were-in-triage-mode-for-ai-policy": {
+    "source": "https://milesbrundage.substack.com/p/were-in-triage-mode-for-ai-policy",
+    "fetchedAt": "2026-10-01T04:21:25.090Z",
+    "description": "We lost a lot of valuable time in 2025, but it's (hopefully) not to late to avoid the worst-case scenarios if we prioritize.",
+    "image": "/resource-previews/9ca0921f68c2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!CGyB!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4acc0cd6-55db-4e6a-a46d-5eae574d016e_1138x798.png",
+    "icon": "/resource-previews/9ca0921f68c2-icon.webp"
+  },
+  "https://milesbrundage.substack.com/p/the-launch-of-averi": {
+    "source": "https://milesbrundage.substack.com/p/the-launch-of-averi",
+    "fetchedAt": "2026-10-01T04:21:25.736Z",
+    "description": "And a new megapaper on frontier AI auditing with coauthors at dozens of organizations",
+    "image": "/resource-previews/5ab1f32c3f53-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!m1SZ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4ac74c99-1406-4196-b23a-585a7b327400_1600x701.png",
+    "icon": "/resource-previews/5ab1f32c3f53-icon.webp"
+  },
+  "https://www.aei.org/multimedia/faster-please-the-podcast-84-ai-risks-and-rewards-my-chat-transcript-with-ai-researcher-miles-brundage/": {
+    "source": "https://www.aei.org/multimedia/faster-please-the-podcast-84-ai-risks-and-rewards-my-chat-transcript-with-ai-researcher-miles-brundage/",
+    "fetchedAt": "2026-10-01T04:21:27.193Z",
+    "description": "Today on Faster, Please! — The Podcast, I chat with Miles Brundage about extracting the most out of AI’s potential while mitigating harms. We discuss the evolving expectations for AI development and how to reconcile with the technology’s most daunting challenges.",
+    "image": "/resource-previews/782f7d664155-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.aei.org/wp-content/uploads/2025/09/Pethokoukis.FP_.100325jpg.jpg",
+    "icon": "/resource-previews/782f7d664155-icon.webp"
+  },
+  "https://www.theguardian.com/commentisfree/2026/sep/29/ai-replace-humans": {
+    "source": "https://www.theguardian.com/commentisfree/2026/sep/29/ai-replace-humans",
+    "fetchedAt": "2026-10-01T04:21:28.054Z",
+    "description": "The industry is engaged in a perverse quest to replace humans. We cannot cede the best tools available to the other side",
+    "image": "/resource-previews/f715ec048e47-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.guim.co.uk/img/media/52d00fc6027dbd2d917c1aa06a7801cc9bb1aa34/508_0_5027_4021/master/5027.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=e077dc33b000a3ecd0fbfcbb54c97d15",
+    "icon": "/resource-previews/f715ec048e47-icon.webp"
+  },
+  "https://www.cognitiverevolution.ai/obsolete-or-irreplaceable-garrison-lovely-on-stopping-the-race-to-replace-human-labor/": {
+    "source": "https://www.cognitiverevolution.ai/obsolete-or-irreplaceable-garrison-lovely-on-stopping-the-race-to-replace-human-labor/",
+    "fetchedAt": "2026-10-01T04:21:28.883Z",
+    "description": "Journalist Garrison Lovely discusses his reporting from inside the AI industry, exploring the beliefs driving AGI development and making the case for halting the race to replace human labor.",
+    "image": "/resource-previews/75863a129f1c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/PiBNrW7Q_Ws/hqdefault.jpg",
+    "icon": "/resource-previews/75863a129f1c-icon.webp"
+  },
+  "https://www.theguardian.com/commentisfree/2026/sep/10/ai-control-sci-fi": {
+    "source": "https://www.theguardian.com/commentisfree/2026/sep/10/ai-control-sci-fi",
+    "fetchedAt": "2026-10-01T04:21:30.125Z",
+    "description": "What sounds like the overwrought penultimate episode in a sci-fi series about AI doom is now our reality",
+    "image": "/resource-previews/b4059432982e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.guim.co.uk/img/media/ab092d24af4da5ba1b82248ec344a05d2dd4919b/621_114_4477_3584/master/4477.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&enable=upscale&s=d983d50e890798ce61437e8ed44b0d1b",
+    "icon": "/resource-previews/b4059432982e-icon.webp"
+  },
+  "https://www.obsolete.pub/p/openais-warning-shot-taught-us-something": {
+    "source": "https://www.obsolete.pub/p/openais-warning-shot-taught-us-something",
+    "fetchedAt": "2026-10-01T04:21:30.851Z",
+    "description": "Getting the AI we actually want is about more than just safety",
+    "image": "/resource-previews/e6767ad6781f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!CEMO!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbfe7d28d-988e-4181-9f7a-1a9c98f1e907_1738x1822.jpeg",
+    "icon": "/resource-previews/e6767ad6781f-icon.webp"
+  },
+  "https://www.obsolete.pub/p/we-should-stop-not-slow-our-obsolescence": {
+    "source": "https://www.obsolete.pub/p/we-should-stop-not-slow-our-obsolescence",
+    "fetchedAt": "2026-10-01T04:21:31.974Z",
+    "description": "The AI industry's biggest letter yet doesn't go far enough, but it's a welcome step",
+    "image": "/resource-previews/b25c3e110c27-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!Va2u!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee07c872-8021-4454-b439-dd0d8f885e42_1688x758.png",
+    "icon": "/resource-previews/b25c3e110c27-icon.webp"
+  },
+  "https://www.obsolete.pub/p/sam-altman-would-hate-it-my-book": {
+    "source": "https://www.obsolete.pub/p/sam-altman-would-hate-it-my-book",
+    "fetchedAt": "2026-10-01T04:21:33.009Z",
+    "description": "On the effort to render us obsolete, and the only surefire way to stop it",
+    "image": "/resource-previews/126008f48718-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!dt64!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbfd1df37-ac13-4bfc-ba5b-eb74cf5b7614_2100x1500.png",
+    "icon": "/resource-previews/126008f48718-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/CYTwRZtrhHuYf7QYu/a-case-for-courage-when-speaking-of-ai-danger?commentId=gmdQgZs2BiBgP9CQa": {
+    "source": "https://www.lesswrong.com/posts/CYTwRZtrhHuYf7QYu/a-case-for-courage-when-speaking-of-ai-danger?commentId=gmdQgZs2BiBgP9CQa",
+    "fetchedAt": "2026-10-01T04:21:33.888Z",
+    "description": "Comment by habryka - I don't think it's remotely as obvious then! If you don't care about future people, then your key priority is to achieve immortality for the current generation, for which I do think building AGI is probably your best bet. If it were to take 50+ years to build AGI, that would imply most people on earth have died of aging, and so you should have probably just rushed towards AGI if you think that would have been less than 50% likely to cause extinction. People who hold this position are arguing for things like \"we should only slow down AI development if for each year of slowing down we would be reducing risk of human extinction by more than 1%\", which is a policy that if acted on consistently would more likely than not cause humanity's extinction within 100 years (as you would be accepting a minimum of a 1% chance of death each year in exchange for faster AI development). Here are ChatGPTs actuarial tables about how long the current population is expected to survive: Years into the futureShare of people alive today who are expected to die*Rough number of deaths (out of 8.23 billion)10 years (2035)≈ 8 %~0.65 billion20 years (2045)≈ 25 %~2.0 billion30 years (2055)≈ 49 %~4.0 billion40 years (2065)≈ 74 %~6.1 billion50 years (2075)≈ 86 %~7.1 billion By the logic of the future not being bigger than 8 billion people, you should lock in a policy that has a 50% chance of causing human extinction, if it allows current people alive to extend their lifespan by more than ~35 years. I am more doomy than that about AI, in that I assign much more than 50% probability that deploying superintelligence would kill everyone, but it's definitely a claim that requires a lot more thinking through than the usual \"the risk is at least 10% or so\".",
+    "image": "/resource-previews/33ba3b6a3580-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
+    "icon": "/resource-previews/33ba3b6a3580-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/qgehQxiTXj53X49mM/sonnet-4-5-s-eval-gaming-seriously-undermines-alignment?commentId=ZduAcXb3ErDZJLrHm": {
+    "source": "https://www.lesswrong.com/posts/qgehQxiTXj53X49mM/sonnet-4-5-s-eval-gaming-seriously-undermines-alignment?commentId=ZduAcXb3ErDZJLrHm",
+    "fetchedAt": "2026-10-01T04:21:36.055Z",
+    "description": "Comment by habryka - Don't build AGI for a long time. Probably make smarter humans. Build better coordination technology so that you can be very careful with scaling up. Do a huge enormous amount of mechinterp in the decades you have.",
+    "image": "/resource-previews/d335de4f6bfd-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/qgehQxiTXj53X49mM/mkmjscflxpuwicqfbxr0",
+    "icon": "/resource-previews/d335de4f6bfd-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/zumPKp3zPDGsppFcF/anthropic-is-probably-not-meeting-its-rsp-security": {
+    "source": "https://www.lesswrong.com/posts/zumPKp3zPDGsppFcF/anthropic-is-probably-not-meeting-its-rsp-security",
+    "fetchedAt": "2026-10-01T04:21:38.644Z",
+    "description": "TLDR: An AI company's model weight security is at most as good as its compute providers' security. Anthropic has committed (with a bit of ambiguity,…",
+    "image": "/resource-previews/8edf292e8df2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/zumPKp3zPDGsppFcF/fjg54eys5oub7wepzgzs",
+    "icon": "/resource-previews/8edf292e8df2-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/eKGdCNdKjvTBG9i6y/toss-a-bitcoin-to-your-lightcone-lw-lighthaven-s-2026": {
+    "source": "https://www.lesswrong.com/posts/eKGdCNdKjvTBG9i6y/toss-a-bitcoin-to-your-lightcone-lw-lighthaven-s-2026",
+    "fetchedAt": "2026-10-01T04:21:42.254Z",
+    "description": "TL;DR: Lightcone Infrastructure, the organization behind LessWrong, Lighthaven, the AI 2027 website, the AI Alignment Forum, and many other things, n…",
+    "image": "/resource-previews/5c0eae17621e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/eKGdCNdKjvTBG9i6y/x3apakmobxsschoyrcjt",
+    "icon": "/resource-previews/5c0eae17621e-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/2trvf5byng7caPsyx/optimal-timing-for-superintelligence-mundane-considerations?commentId=DxC5zb2jfJZr2BuZ7": {
+    "source": "https://www.lesswrong.com/posts/2trvf5byng7caPsyx/optimal-timing-for-superintelligence-mundane-considerations?commentId=DxC5zb2jfJZr2BuZ7",
+    "fetchedAt": "2026-10-01T04:21:47.722Z",
+    "description": "Comment by habryka - I do feel confused about the centrality of the person-affecting stance in this paper. My relationship to the person-affecting stance is approximately the same as the stance I would have to an analysis of the form \"what should someone do if they personally don't want to die and are indifferent to killing other people, or causing large amounts of suffering to other people, in the pursuit of that goal\". And my stance to that goal is \"that is deeply sociopathic and might make a fun fiction story, but it obviously shouldn't be the basis of societal decision-making, and luckily also isn't\". But when I read this paper, I don't get that you relate to it anything like that. You say a bit that you are only doing this analysis from a person-affecting view, but most of the frame of the paper treats that view as something that is reasonable to maybe be the primary determinant of societal decision-making, and that just doesn't really make any sense to me. Like, imagine applying this analysis to any previous generation of humans. It would have resulted in advocating previous generations of humans to gamble everything on extremely tenuous chances of immortality, and probably would have long resulted in extinction, or at least massively inhibited growth. It obviously doesn't generalize in any straightforward sense. And I feel like in order for the paper to leave the reader not with a very confused model of what is good to do here, that kind of analysis needed to be a very central part of the paper.",
+    "image": "/resource-previews/1ab21da47f99-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/2trvf5byng7caPsyx/yyof4kx2gvtvawqidnk9",
+    "icon": "/resource-previews/1ab21da47f99-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/HzKuzrKfaDJvQqmjh/responsible-scaling-policy-v3?commentId=DYvgbmrJiDNd7iLMb": {
+    "source": "https://www.lesswrong.com/posts/HzKuzrKfaDJvQqmjh/responsible-scaling-policy-v3?commentId=DYvgbmrJiDNd7iLMb",
+    "fetchedAt": "2026-10-01T04:21:52.184Z",
+    "description": "Comment by habryka - (See my other comment for thoughts on various individual sections in this post) Some broader reflections on the overall RSP situation: About 3 years ago, when the broader AI-safety community had to make a crucial choice about how to relate to government regulation, how to relate to AI capability companies, and how to relate to AI models really looking like they might soon be very competent, there was a big debate about how we should be thinking about regulation and the associated incentives on both governments and companies. Many people (me included) said that what we should do is to convince policy-makers that progress is already too fast, these systems might soon be very dangerous, and the top priority should be to directly intervene by slowing down AI capabilities progress. Such regulation would be centered around limiting how much compute individual actors or frontier companies could use for model training runs, as those are the most obvious correlates of risk, or other regulation that would directly and immediately impact operations of frontier companies. Many others said that it was not the right time to start advocating for a slow down or pause to policymakers. Instead we should centrally focus on getting people to make conditional policy commitments. Current policymakers and frontier company employees are not sold that future AI systems will pose a risk, but that's fine! We simply need them to agree to make if-then-commitments, where if certain risk thresholds or capabilities are met, then they would commit to slowing down. Different people went different paths, but most of the ecosystem's resources went into the latter kind of plan, with the two central pillars being to start and invest in evaluation companies like METR and Apollo (to develop evaluations and capability measurements that could provide the ifs), and work at companies or within governments to develop commitments (the thens) based on the evaluations. I think we should update very substant",
+    "image": "/resource-previews/bf7f17b9af36-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
+    "icon": "/resource-previews/bf7f17b9af36-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/HzKuzrKfaDJvQqmjh/responsible-scaling-policy-v3?commentId=QvLoNZiHMQb8vrcZQ": {
+    "source": "https://www.lesswrong.com/posts/HzKuzrKfaDJvQqmjh/responsible-scaling-policy-v3?commentId=QvLoNZiHMQb8vrcZQ",
+    "fetchedAt": "2026-10-01T04:21:54.756Z",
+    "description": "Comment by habryka - Certainly! I am not saying we are in a world with enormous political buy-in for slowing down AI, though honestly, I think we are kind of close to where my median was in 2023, maybe a bit above (I never expected much buy-in). [...] Maybe there is some miscommunication here. I personally do not think that a short pause at any point in the last few years would have been useful on its own, and the primary reason why I would have supported one is because it would have made future pauses much more likely (though that of course depends on the implementation details). If you had asked me about ideal timing on when to halt capabilities progress I think I probably would have suggested capability levels roughly where I expect things to be at in early 2027 (which to be clear, 2 years ago I would have predicted to be more than 3 years away). Of course, we are nowhere near coordinating a global pause within the next year, and so the \"stop as soon as possible\" position seems right to me at this point. But to be clear, I wasn't talking about any kind of pause at all in my comment above, so this is all mostly a distraction from the topic at hand. The central policies that I was referring to when I was talking about \"direct risk regulation\" are things like: * Direct liability for harms caused by AI (which would have functioned as a pretty direct and immediate tax on AI development, conveniently a bit more leveraged on the future and more competent AI systems) * Datacenter construction moratoriums * Licensing regimes (these are tricky and my guess is would backfire for various reasons, but I do think the proposals I've seen were motivated by a \"we need to directly intervene on how this technology is being developed right now\") We've seen pretty specific proposals for at least the first two, with SB 1047 introducing a bunch of direct liability, and Bernie Sanders and other congress-people advocating for datacenter moratoriums (in many cases downstream of IMO confused environmen",
+    "image": "/resource-previews/c2de554e3915-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
+    "icon": "/resource-previews/c2de554e3915-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/jinzzbPHshif8nmnw/do-not-conquer-what-you-cannot-defend": {
+    "source": "https://www.lesswrong.com/posts/jinzzbPHshif8nmnw/do-not-conquer-what-you-cannot-defend",
+    "fetchedAt": "2026-10-01T04:21:56.927Z",
+    "description": "Once upon a time there was a great king. He ruled his kingdom with wisdom and economically literate policies, and prosperity followed. Seeing this, t…",
+    "image": "/resource-previews/fa337fe87464-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/c_fill,ar_1.91,g_auto/SocialPreview/tmd6uogsjts1ekk2pi27",
+    "icon": "/resource-previews/fa337fe87464-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/jinzzbPHshif8nmnw/do-not-conquer-what-you-cannot-defend?commentId=NeWi8wbGrSrMLgsH3": {
+    "source": "https://www.lesswrong.com/posts/jinzzbPHshif8nmnw/do-not-conquer-what-you-cannot-defend?commentId=NeWi8wbGrSrMLgsH3",
+    "fetchedAt": "2026-10-01T04:21:59.854Z",
+    "description": "Comment by habryka - Come on. Yes, timelines appear to be on the shorter side, but clearly it would be extreme hubris to stop planning around >5 year timelines! That really seems very dogmatic to me. My median timeline is ~7 years until truly transformative AI. And I have quite a lot of probability on things longer than that!",
+    "image": "/resource-previews/c68a8c47f1ce-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/c_fill,ar_1.91,g_auto/SocialPreview/tmd6uogsjts1ekk2pi27",
+    "icon": "/resource-previews/c68a8c47f1ce-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/MqgwHJ93pJpaeHXs6/posts-i-don-t-have-time-to-write": {
+    "source": "https://www.lesswrong.com/posts/MqgwHJ93pJpaeHXs6/posts-i-don-t-have-time-to-write",
+    "fetchedAt": "2026-10-01T04:22:02.460Z",
+    "description": "I am a busy man and will die knowing I have not said all I wanted to say. But maybe I can at least leave some IOUs behind. • • …",
+    "image": "/resource-previews/2374a210c001-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/c_fill,ar_1.91,g_auto/SocialPreview/lpjiwmofxtuuu4nsgrto",
+    "icon": "/resource-previews/2374a210c001-icon.webp"
+  },
+  "https://manifund.substack.com/p/podcast-austin-and-oli-on-funding": {
+    "source": "https://manifund.substack.com/p/podcast-austin-and-oli-on-funding",
+    "fetchedAt": "2026-10-01T04:22:05.424Z",
+    "description": "A new funding platform; notes on Surplus; hot takes",
+    "image": "/resource-previews/23a62970b9f4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/youtube/w_728,c_limit/oBwoln30qlU",
+    "icon": "/resource-previews/23a62970b9f4-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/qTtMXuFvgFtWzWpKQ/alex-mallen-s-shortform?commentId=EvF2zgRF6vPDNcexd": {
+    "source": "https://www.lesswrong.com/posts/qTtMXuFvgFtWzWpKQ/alex-mallen-s-shortform?commentId=EvF2zgRF6vPDNcexd",
+    "fetchedAt": "2026-10-01T04:22:06.090Z",
+    "description": "Comment by habryka - I greatly appreciate this comment! Thanks for writing it. A few more detailed thoughts as they came up when reading: [...] I have always been happy to talk to y'all, and I think my takes in discussions with you, Buck and Ryan all ended up aging well with many of my points in our discussions mirroring your list at the end quite closely.[1] I don't really know what more patience and cooperation would have looked like. Eliezer and Nate have also written literally thousands of essays by now laying out their worldview (which, to be clear, Ryan and Buck have also done to a very substantial degree).[2] [...] All things considered, Redwood's strategy is better than almost anyone else's[3]. That said, given that we are in a thread where we look at some of the deep assumptions behind the Redwood worldview, let me state the biggest mistake I currently think you are making: 10 people on the inside cannot align the AIs (or set things off on a course where the AIs align the future AIs), and will not put us in a position to do anything useful with the AI systems, unless you actually make a concrete specific plan that you talk to other people about with what you are going to do with that powerful AI system.[4] There might be weak pivotal acts, in the sense of gameboard flipping action you can take with a powerful AI system, but if so, they do not seem easy to execute, or easy to find, or would cause a bunch of paranoia and fear if pursued that would make everything worse. The most valuable component of control work is to use early controlled AI systems to produce evidence of misalignment, and then channel that evidence into a substantial slowdown or pause[5]. This means there is a huge difference between being in a position to share evidence collected, vs. working in a highly constrained position within a lab. In past discussions I had with Buck, he seemed to think most of the value would come from just executing control schemes within a lab without any ability to share evide",
+    "image": "/resource-previews/c8210b26859b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
+    "icon": "/resource-previews/c8210b26859b-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/evidence-about-risk-should-be-transparent": {
+    "source": "https://www.planned-obsolescence.org/p/evidence-about-risk-should-be-transparent",
+    "fetchedAt": "2026-10-01T04:22:08.571Z",
+    "description": "We can’t develop safety standards if we have to rely on opaque judgment",
+    "image": "/resource-previews/f0af67b22c40-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!hQZc!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fce1f52dd-01ea-4dfa-8c22-5b3d4bab70ce_1990x1131.jpeg",
+    "icon": "/resource-previews/f0af67b22c40-icon.webp"
+  },
+  "https://www.dwarkesh.com/p/ajeya-cotra": {
+    "source": "https://www.dwarkesh.com/p/ajeya-cotra",
+    "fetchedAt": "2026-10-01T04:22:09.493Z",
+    "description": "\"This might be the clearest warning shot we ever get.\"",
+    "image": "/resource-previews/f1cc0cbef591-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!fly3!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F213682035%2F6af3651c-3def-4be3-a92c-eeb9f2bba2ac%2Ftranscoded-1788276468.png",
+    "icon": "/resource-previews/f1cc0cbef591-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/the-hugging-face-attack-surprised": {
+    "source": "https://www.planned-obsolescence.org/p/the-hugging-face-attack-surprised",
+    "fetchedAt": "2026-10-01T04:22:10.548Z",
+    "description": "It’s a major warning shot, and might be the last one we get",
+    "image": "/resource-previews/ba56be073b7b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!6stx!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dca53b4-f6ee-4ba3-9ffd-daf022835cca_1880x1048.png",
+    "icon": "/resource-previews/ba56be073b7b-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/hurtling-through-2026": {
+    "source": "https://www.planned-obsolescence.org/p/hurtling-through-2026",
+    "fetchedAt": "2026-10-01T04:22:11.086Z",
+    "description": "Scoring ten qualitative forecasts five months early",
+    "image": "/resource-previews/ef32e9e4ab97-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!f2iz!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbf77c345-7ab6-4adb-9a69-16c40216e297_1220x916.png",
+    "icon": "/resource-previews/ef32e9e4ab97-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/total-research-transparency-would": {
+    "source": "https://www.planned-obsolescence.org/p/total-research-transparency-would",
+    "fetchedAt": "2026-10-01T04:22:12.107Z",
+    "description": "We could learn what's scary and stop doing that",
+    "image": "/resource-previews/15eab5e54eaa-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!wGpL!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3167c94b-14bd-49cd-8646-3b8b3b45ce1f_1484x966.png",
+    "icon": "/resource-previews/15eab5e54eaa-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/could-a-company-overpower-nations": {
+    "source": "https://www.planned-obsolescence.org/p/could-a-company-overpower-nations",
+    "fetchedAt": "2026-10-01T04:22:12.881Z",
+    "description": "The leading AI company could gain unprecedented power",
+    "image": "/resource-previews/6fc6d5373dfc-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!PtDX!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9ec82965-0730-4637-9cf5-dd8a4306ba60_1731x909.png",
+    "icon": "/resource-previews/6fc6d5373dfc-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/science-and-speculation": {
+    "source": "https://www.planned-obsolescence.org/p/science-and-speculation",
+    "fetchedAt": "2026-10-01T04:22:13.664Z",
+    "description": "Will we agree about AI risks in time?",
+    "image": "/resource-previews/d195e28221b7-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!MHh0!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4357f4a8-2583-496e-89f4-1f2abae6e659_1731x909.png",
+    "icon": "/resource-previews/d195e28221b7-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/six-milestones-for-ai-automation": {
+    "source": "https://www.planned-obsolescence.org/p/six-milestones-for-ai-automation",
+    "fetchedAt": "2026-10-01T04:22:14.530Z",
+    "description": "What can AI do on its own, and how well?",
+    "image": "/resource-previews/f50c36766856-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!ZCnm!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F262daf43-96c0-4a82-9272-781db7a79187_2068x1146.png",
+    "icon": "/resource-previews/f50c36766856-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/takeoff-speeds-rule-everything-around": {
+    "source": "https://www.planned-obsolescence.org/p/takeoff-speeds-rule-everything-around",
+    "fetchedAt": "2026-10-01T04:22:15.373Z",
+    "description": "Not all short timelines are created equal",
+    "image": "/resource-previews/c33461472e1b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!y0b_!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa3b4898b-1c83-4e3a-beb3-212cf75ca06c_1125x675.png",
+    "icon": "/resource-previews/c33461472e1b-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/ai-predictions-for-2026": {
+    "source": "https://www.planned-obsolescence.org/p/ai-predictions-for-2026",
+    "fetchedAt": "2026-10-01T04:22:16.305Z",
+    "description": "But first, scoring my predictions for 2025",
+    "image": "/resource-previews/82fe4ce5f5b5-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!SlhK!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2ccfd02e-0a3c-4d48-90ee-1ecda468d699_1348x636.png",
+    "icon": "/resource-previews/82fe4ce5f5b5-icon.webp"
+  },
+  "https://www.planned-obsolescence.org/p/self-sufficient-ai": {
+    "source": "https://www.planned-obsolescence.org/p/self-sufficient-ai",
+    "fetchedAt": "2026-10-01T04:22:17.106Z",
+    "description": "No, we don't \"have AGI already.\" But in any case, we should articulate clearer milestones.",
+    "image": "/resource-previews/3e71b2580ce8-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!jnD8!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2d677553-d145-49d9-b21d-17defb3089f5_2048x1455.jpeg",
+    "icon": "/resource-previews/3e71b2580ce8-icon.webp"
+  },
+  "https://bayeslord.substack.com/p/the-overton-window-is-moving": {
+    "source": "https://bayeslord.substack.com/p/the-overton-window-is-moving",
+    "fetchedAt": "2026-10-01T04:22:17.888Z",
+    "description": "A few thoughts on AI lab nationalization",
+    "image": "/resource-previews/813a1b372593-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!bQPL!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd09726a4-49ab-426e-8557-997b062357b2_3840x1920.jpeg",
+    "icon": "/resource-previews/813a1b372593-icon.webp"
+  },
+  "https://bayeslord.substack.com/p/ai-optimism-is-waning": {
+    "source": "https://bayeslord.substack.com/p/ai-optimism-is-waning",
+    "fetchedAt": "2026-10-01T04:22:19.979Z",
+    "description": "I didn’t want to have to write this, to be honest. But staying quiet is starting to feel counterproductive. A few thoughts on why things aren’t working.",
+    "image": "/resource-previews/c274a6ba8c45-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!hB55!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0681db26-fcb3-4baa-a70f-6be88190ea06_4768x2614.png",
+    "icon": "/resource-previews/c274a6ba8c45-icon.webp"
+  },
+  "https://bayeslord.substack.com/p/46-thoughts-on-the-near-future": {
+    "source": "https://bayeslord.substack.com/p/46-thoughts-on-the-near-future",
+    "fetchedAt": "2026-10-01T04:22:20.952Z",
+    "description": "This list is based on a thread I posted on X on June 4th.",
+    "image": "/resource-previews/26b658e9988e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!1cUN!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff166e1a4-d307-48c7-9f08-d601234c57fb_1265x900.jpeg",
+    "icon": "/resource-previews/26b658e9988e-icon.webp"
+  },
+  "https://balajis.com/p/ai-is-polytheistic-not-monotheistic": {
+    "source": "https://balajis.com/p/ai-is-polytheistic-not-monotheistic",
+    "fetchedAt": "2026-10-01T04:22:22.521Z",
+    "description": "And ten more thoughts on AI.",
+    "image": "/resource-previews/4e7b1ed71e3b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!3y15!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff3825f73-51a5-4c12-9649-26c89f080e5a_1066x813.png",
+    "icon": "/resource-previews/4e7b1ed71e3b-icon.webp"
+  },
+  "https://podscripts.co/podcasts/a16z-podcast/aaron-levie-steven-sinofsky-martin-casado-how-do-you-secure-a-world-of-ai-agents": {
+    "source": "https://podscripts.co/podcasts/a16z-podcast/aaron-levie-steven-sinofsky-martin-casado-how-do-you-secure-a-world-of-ai-agents",
+    "fetchedAt": "2026-10-01T04:22:23.316Z",
+    "description": "Aaron Levie, Steven Sinofsky & Martin Casado: How Do You Secure a World of AI Agents? - a16z Podcast Transcript and Discussion",
+    "image": "/resource-previews/c0db695c7539-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://podscripts.co/pod_covers/a16z-podcast.webp",
+    "icon": "/resource-previews/c0db695c7539-icon.webp"
+  },
+  "https://podscripts.co/podcasts/a16z-podcast/martin-casado-on-where-the-value-is-going-in-ai": {
+    "source": "https://podscripts.co/podcasts/a16z-podcast/martin-casado-on-where-the-value-is-going-in-ai",
+    "fetchedAt": "2026-10-01T04:22:26.979Z",
+    "description": "Martin Casado on Where the Value Is Going in AI - a16z Podcast Transcript and Discussion",
+    "image": "/resource-previews/1ea357b6de93-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://podscripts.co/pod_covers/a16z-podcast.webp",
+    "icon": "/resource-previews/1ea357b6de93-icon.webp"
+  },
+  "https://a16zpolicy.substack.com/p/to-regulate-ai-effectively-focus": {
+    "source": "https://a16zpolicy.substack.com/p/to-regulate-ai-effectively-focus",
+    "fetchedAt": "2026-10-01T04:22:29.163Z",
+    "description": "A conversation with Martin Casado on learning from past computing platform shifts, understanding marginal risk in AI, and why open source matters for US competitiveness.",
+    "image": "/resource-previews/b623311b6685-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!Ldnk!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F184806048%2F10d8fcf9-c739-4fbf-a9be-4c8a7ce36a0a%2Ftranscoded-1768598579.png",
+    "icon": "/resource-previews/b623311b6685-icon.webp"
+  },
+  "https://a16z.com/base-ai-policy-on-evidence-not-existential-angst/": {
+    "source": "https://a16z.com/base-ai-policy-on-evidence-not-existential-angst/",
+    "fetchedAt": "2026-10-01T04:22:30.582Z",
+    "description": "There actually is a reasonable policy position on AI regulation: focus on marginal risk and apply our regulatory energy there.",
+    "image": "/resource-previews/aa004f7bf8a4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://a16z.com/wp-content/themes/a16z/assets/images/opegraph_images/corporate-Yoast-Facebook.jpg",
+    "icon": "/resource-previews/aa004f7bf8a4-icon.webp"
+  },
+  "https://www.richardhanania.com/p/which-experts-should-you-trust-on": {
+    "source": "https://www.richardhanania.com/p/which-experts-should-you-trust-on",
+    "fetchedAt": "2026-10-01T04:22:33.310Z",
+    "description": "A lot depends on the forecasters you ask",
+    "image": "/resource-previews/47eb0816193e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!h6FT!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F92a6548d-189b-435b-a7c1-18fd9548638d_1238x1256.png",
+    "icon": "/resource-previews/47eb0816193e-icon.webp"
+  },
+  "https://www.richardhanania.com/p/why-is-china-not-freaking-out-about": {
+    "source": "https://www.richardhanania.com/p/why-is-china-not-freaking-out-about",
+    "fetchedAt": "2026-10-01T04:22:34.578Z",
+    "description": "The West has become unusually pessimistic about science and technology",
+    "image": "/resource-previews/1b5718ad3212-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!4_Jw!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa2d2a11d-e8d7-45ca-8cb8-5801cd7ccb17_600x549.png",
+    "icon": "/resource-previews/1b5718ad3212-icon.webp"
+  },
+  "https://www.richardhanania.com/p/what-if-were-already-solving-alignment": {
+    "source": "https://www.richardhanania.com/p/what-if-were-already-solving-alignment",
+    "fetchedAt": "2026-10-01T04:22:36.225Z",
+    "description": "It’s a process, not an endpoint",
+    "image": "/resource-previews/1e8d7c9f910a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!_RSu!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd422bc10-1b83-4abf-8d64-3bcb4ac8399c_1247x702.png",
+    "icon": "/resource-previews/1e8d7c9f910a-icon.webp"
+  },
+  "https://www.richardhanania.com/p/outrunning-democracy": {
+    "source": "https://www.richardhanania.com/p/outrunning-democracy",
+    "fetchedAt": "2026-10-01T04:22:37.200Z",
+    "description": "Why the anti-data center movement will lose",
+    "image": "/resource-previews/ae548bb07e5d-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!A3q7!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4013f304-c4c7-4664-af1f-e785017b1d73_1535x1024.png",
+    "icon": "/resource-previews/ae548bb07e5d-icon.webp"
+  },
+  "https://www.richardhanania.com/p/can-ai-replace-me-already": {
+    "source": "https://www.richardhanania.com/p/can-ai-replace-me-already",
+    "fetchedAt": "2026-10-01T04:22:38.772Z",
+    "description": "Results of an AI Turing test survey: Women are ready for our new reality, old people aren't",
+    "image": "/resource-previews/3b28eb4058f9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!Vwoh!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F05553f40-628b-4b73-af5d-28840a802655_1472x940.png",
+    "icon": "/resource-previews/3b28eb4058f9-icon.webp"
+  },
+  "https://unherd.com/2026/04/how-ai-will-cure-populist-paranoia/": {
+    "source": "https://unherd.com/2026/04/how-ai-will-cure-populist-paranoia/",
+    "fetchedAt": "2026-10-01T04:22:40.599Z",
+    "description": "UnHerd column arguing that social media is populist while AI is technocratic, so AI replacing social media could make discourse less conspiratorial and more factual. Cites research on AI debunking conspiracy beliefs and on X users’ fact-checking requests to Grok and Perplexity. Presented as a possibility, not a certainty; he grants that propaganda models are possible but expects little market demand. Full column inspected.",
+    "image": "/resource-previews/4d99c6c5e2a3-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://unherd.com/wp-content/uploads/2026/04/GettyImages-2204064825.jpg",
+    "icon": "/resource-previews/4d99c6c5e2a3-icon.webp"
+  },
+  "https://www.richardhanania.com/p/ai-doomerism-as-science-fiction": {
+    "source": "https://www.richardhanania.com/p/ai-doomerism-as-science-fiction",
+    "fetchedAt": "2026-10-01T04:22:42.250Z",
+    "description": "Judge anti-doomers by the totality of their arguments, not the average quality of each one",
+    "image": "/resource-previews/d68c24e156e1-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!JoSR!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08cd2d77-5eff-4ad2-bd2a-c77cd2dde55e_1606x1054.png",
+    "icon": "/resource-previews/d68c24e156e1-icon.webp"
+  },
+  "https://www.infotech.com/digital-disruption/ai-researchers-are-panicking-what-comes-next-is-worse-than-nuclear-bombs": {
+    "source": "https://www.infotech.com/digital-disruption/ai-researchers-are-panicking-what-comes-next-is-worse-than-nuclear-bombs",
+    "fetchedAt": "2026-10-01T04:22:42.993Z",
+    "description": "<p>The",
+    "image": "/resource-previews/8e3829ca5f89-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn1-public.infotech.com/podcast_episode_hero_images/uploads/58227/original.jpg?1789994204/",
+    "icon": "/resource-previews/8e3829ca5f89-icon.webp"
+  },
+  "https://www.nytimes.com/2026/09/18/business/ai-risk-silicon-valley-regulations.html": {
+    "source": "https://www.nytimes.com/2026/09/18/business/ai-risk-silicon-valley-regulations.html",
+    "fetchedAt": "2026-10-01T04:22:45.405Z",
+    "description": "His final Times column. He is heartened that AI risk has gone mainstream and that rival lab leaders echoed calls for a coordinated slowdown and embedded evaluators, and he rejects reading this as a psyop or regulatory-capture scheme. He is more pessimistic about action: he doubts the Trump administration or Congress will act and says his internal p(doom) is moving higher, without giving a number. He argues insiders should not decide humanity’s fate alone and calls for broad public investment in alignment, for labs to slow down and spend more on safety, and for lawmakers to study the risks and regulate to minimize catastrophe, naming the AI Futures Project’s fictional Plan A as one strategy that might work. Full text inspected via a New York Times syndication copy; the events it describes are his reporting.",
+    "icon": "/resource-previews/0309deab2ac0-icon.webp",
+    "image": "/resource-previews/0309deab2ac0-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.nytimes.com/2026/09/18/business/ai-risk-silicon-valley-regulations.html"
+  },
+  "https://podscripts.co/podcasts/hard-fork/ai-safety-goes-mainstream-a-hard-fork-exit-ama": {
+    "source": "https://podscripts.co/podcasts/hard-fork/ai-safety-goes-mainstream-a-hard-fork-exit-ama",
+    "fetchedAt": "2026-10-01T04:22:47.802Z",
+    "description": "A.I. Safety Goes Mainstream + a ‘Hard Fork’ Exit AMA - Hard Fork Transcript and Discussion",
+    "image": "/resource-previews/5a4133e9a73b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://podscripts.co/pod_covers/hard-fork.webp",
+    "icon": "/resource-previews/5a4133e9a73b-icon.webp"
+  },
+  "https://kevinroose.substack.com/p/leaving-the-times": {
+    "source": "https://kevinroose.substack.com/p/leaving-the-times",
+    "fetchedAt": "2026-10-01T04:22:51.678Z",
+    "description": "-30-",
+    "image": "/resource-previews/3be8291d5946-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!Z7ui!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4917b325-62b2-430f-ae99-2f9a17fc21d5_3847x2458.jpeg",
+    "icon": "/resource-previews/3be8291d5946-icon.webp"
+  },
+  "https://www.nytimes.com/2025/03/14/technology/why-im-feeling-the-agi.html": {
+    "source": "https://www.nytimes.com/2025/03/14/technology/why-im-feeling-the-agi.html",
+    "fetchedAt": "2026-10-01T04:22:53.008Z",
+    "description": "Older context. He predicted that one or more companies would claim AGI probably in 2026 or 2027, possibly in 2025, said definitional fights would matter less than losing our monopoly on human-level intelligence, and said it may be too early to know whether AGI will be great or terrible. He called hardened skeptics wrong and a source of false security, allowed that bottlenecks could delay AGI, and argued that even arrival in 2036 justifies preparing now through energy, cybersecurity, faster approval of AI-designed drugs, regulation of the most serious harms and AI literacy. Full text inspected via a New York Times syndication copy. Newer 2026 sources take precedence and give no new dated AGI forecast.",
+    "icon": "/resource-previews/b6730a347fa7-icon.webp",
+    "image": "/resource-previews/b6730a347fa7-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.nytimes.com/2025/03/14/technology/why-im-feeling-the-agi.html"
+  },
+  "https://www.platformer.news/hard-fork-machine-gods/": {
+    "source": "https://www.platformer.news/hard-fork-machine-gods/",
+    "fetchedAt": "2026-10-01T04:22:55.595Z",
+    "description": "Saying goodbye to some old friends — and hello to Machine Gods",
+    "image": "/resource-previews/c3723541f739-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w1200/2026/09/EB08A327-4595-4C33-985F-BAF496D96996.jpg",
+    "icon": "/resource-previews/c3723541f739-icon.webp"
+  },
+  "https://www.platformer.news/ai-safety-vibe-shift-coxon-anthropic/": {
+    "source": "https://www.platformer.news/ai-safety-vibe-shift-coxon-anthropic/",
+    "fetchedAt": "2026-10-01T04:22:56.793Z",
+    "description": "Once a fringe obsession of Bay Area rationalists, existential risk is suddenly all anyone is talking about",
+    "image": "/resource-previews/e2d2220bb20b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w1200/2026/09/shutterstock_2663445441.jpg",
+    "icon": "/resource-previews/e2d2220bb20b-icon.webp"
+  },
+  "https://www.platformer.news/openai-huggingface-metr-report-slowdown/": {
+    "source": "https://www.platformer.news/openai-huggingface-metr-report-slowdown/",
+    "fetchedAt": "2026-10-01T04:22:57.396Z",
+    "description": "The AI industry is begging for a slowdown. Maybe we should listen?",
+    "image": "/resource-previews/295afd1b85c4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w1200/2026/09/shutterstock_2370776671.jpg",
+    "icon": "/resource-previews/295afd1b85c4-icon.webp"
+  },
+  "https://crooked.com/podcast/ai-apocalypse-now/": {
+    "source": "https://crooked.com/podcast/ai-apocalypse-now/",
+    "fetchedAt": "2026-10-01T04:22:57.839Z",
+    "description": "He says his bias is that technology helps people but that he wants to ring alarm bells about risks that may arrive within the next year; he is more worried than people who dismiss the doomers and increasingly nervous as capabilities rise. He argues superintelligence is not personal and by default may not listen to its owner, calls reward hacking an industry-wide alignment problem, is most worried about biological risk, and gives OpenAI some benefit of the doubt on internal deceleration. He says he has been leaning pessimistic because US safety investment barely scratches the surface, finds hope in bipartisan local opposition to data centers, has deep uncertainty about which jobs are safe while expecting capabilities not to top out within six months, and does not expect a massive bubble wipeout because businesses keep buying AI. Unlabeled but clearly turn-structured transcript inspected.",
+    "image": "/resource-previews/4c26ab1377f4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://crooked.com/wp-content/uploads/2025/08/Crooked-Social-Share-scaled.png",
+    "icon": "/resource-previews/4c26ab1377f4-icon.webp"
+  },
+  "https://www.platformer.news/zuckerberg-ai-manifesto-dragons/": {
+    "source": "https://www.platformer.news/zuckerberg-ai-manifesto-dragons/",
+    "fetchedAt": "2026-10-01T04:23:00.372Z",
+    "description": "What Mark Zuckerberg misunderstands about powerful AI",
+    "image": "/resource-previews/6ad45cec0ae8-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w1200/2026/08/shutterstock_2490551853.jpg",
+    "icon": "/resource-previews/6ad45cec0ae8-icon.webp"
+  },
+  "https://www.platformer.news/a-big-week-for-ai-denialism/": {
+    "source": "https://www.platformer.news/a-big-week-for-ai-denialism/",
+    "fetchedAt": "2026-10-01T04:23:00.984Z",
+    "description": "In the wake of OpenAI’s cyberattack against Hugging Face, few seem ready to acknowledge the implications",
+    "image": "/resource-previews/62a18500d8a5-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w1200/2026/07/shutterstock_2641216495.jpg",
+    "icon": "/resource-previews/62a18500d8a5-icon.webp"
+  },
+  "https://www.platformer.news/ai-backlash-data-centers-jobs-inflation/": {
+    "source": "https://www.platformer.news/ai-backlash-data-centers-jobs-inflation/",
+    "fetchedAt": "2026-10-01T04:23:01.567Z",
+    "description": "AI's externalities are growing faster than the industry can address them",
+    "image": "/resource-previews/bd6e30c337cc-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w1200/2026/07/shutterstock_2685684165.jpg",
+    "icon": "/resource-previews/bd6e30c337cc-icon.webp"
+  },
+  "https://bsky.app/profile/caseynewton.bsky.social/post/3mp7hfne36s2h": {
+    "source": "https://bsky.app/profile/caseynewton.bsky.social/post/3mp7hfne36s2h",
+    "fetchedAt": "2026-10-01T04:23:02.168Z",
+    "description": "The same people who railed against Biden-era safety testing and disclosure requirements have now implemented an opaque licensing regime for the release of new AI models that has no known decision criteria or legal basis [contains quote post or other embedded content]",
+    "icon": "/resource-previews/5b86bc09c384-icon.webp",
+    "image": "/resource-previews/5b86bc09c384-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/caseynewton.bsky.social/post/3mp7hfne36s2h"
+  },
+  "https://www.buzzsprout.com/2315966/episodes/18757776-let-fly-the-claudes-of-war-with-casey-newton": {
+    "source": "https://www.buzzsprout.com/2315966/episodes/18757776-let-fly-the-claudes-of-war-with-casey-newton",
+    "fetchedAt": "2026-10-01T04:23:03.988Z",
+    "description": "In this week’s roundup of the latest news in online speech, content moderation and internet regulation, Ben is joined by Casey Newton, founder and editor of Platformer and co-host of Hard Fork, a podcast that makes sense of the rapidly changing world of tech. Together, they discuss:After a deadly...",
+    "image": "/resource-previews/69988e99af72-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.buzzsprout.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MTEwNjA1NTU1LCJwdXIiOiJibG9iX2lkIn19--a041c938271b21aea1f260d1109c7cde345a91ca/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJqcGciLCJyZXNpemVfdG9fZmlsbCI6WzI1MCwyNTAseyJjcm9wIjoiY2VudHJlIn1dLCJzYXZlciI6eyJxdWFsaXR5Ijo2MH0sImNvbG91cnNwYWNlIjoic3JnYiJ9LCJwdXIiOiJ2YXJpYXRpb24ifX0=--21f3793904e6ce1806a5a794a691217fceef82c7/ctrl-alt-speech-cover-image.jpg",
+    "icon": "/resource-previews/69988e99af72-icon.webp"
+  },
+  "https://www.platformer.news/ai-skeptics-gary-marcus-curve-conference/": {
+    "source": "https://www.platformer.news/ai-skeptics-gary-marcus-curve-conference/",
+    "fetchedAt": "2026-10-01T04:23:06.231Z",
+    "description": "It’s fun to say that artificial intelligence is fake and sucks — but evidence is mounting that it’s real and dangerous",
+    "image": "/resource-previews/d24d0943ad38-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/a0/4c/a04c7225-d919-4d78-9b7c-a3fdd071349b/content/images/size/w1200/2024/12/igor-omilaev-eGGFZ5X2LnA-unsplash.jpg",
+    "icon": "/resource-previews/d24d0943ad38-icon.webp"
+  },
+  "https://80000hours.org/podcast/episodes/2026-agi-timelines/": {
+    "source": "https://80000hours.org/podcast/episodes/2026-agi-timelines/",
+    "fetchedAt": "2026-10-01T04:23:07.114Z",
+    "description": "Weighs seven 2026 developments: revenue growth, METR time horizons, the Mythos jump, Anthropic’s reported internal speedups, AI still struggling to run real businesses, a maths result and cheaper-than-expected inference. Says his timelines shortened by about a year: fully automated AI R&D would shock him in 2026, is imaginable in 2027 and plausible in 2028 if trends continue, while a slower path into the mid-2030s remains very possible. Names four unresolved cruxes (skills needed for recursive self-improvement, missing capabilities in low-feedback domains, spillover from verifiable-reward training, compute bottlenecks). Closes by judging that the benefits of slowing are approaching the point of outweighing the costs and that worried insiders should be given more time; a judgement, not a drafted policy. Full transcript inspected.",
+    "image": "/resource-previews/4d485c750ec3-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://80000hours.org/wp-content/uploads/2026/08/CURRENT-YT-Thumbnails-3840-x-2160-px-2026-08-04T163931.117-scaled.jpg",
+    "icon": "/resource-previews/4d485c750ec3-icon.webp"
+  },
+  "https://80000hours.org/podcast/episodes/claude-mythos-hacking-alignment/": {
+    "source": "https://80000hours.org/podcast/episodes/claude-mythos-hacking-alignment/",
+    "fetchedAt": "2026-10-01T04:23:08.398Z",
+    "description": "His reading of Anthropic’s Mythos system card and alignment risk update. Calls its cyber capabilities a nightmare for computer security and says he is deeply uncomfortable with any company or government having unrestricted access to it. Would bet the strong alignment results probably reflect the model, but argues evaluation awareness, chain-of-thought exposure during training and unfaithful reasoning mean they cannot be taken at face value. Infers that a jump of this size brings automated AI R&D forward and shrinks preparation time, and says he lost sleep over it. An interpretation of company disclosures, not independent testing. Full transcript inspected.",
+    "image": "/resource-previews/b66553bc2c5f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://80000hours.org/wp-content/uploads/2026/04/Mythos-LP-thumb-scaled.jpg",
+    "icon": "/resource-previews/b66553bc2c5f-icon.webp"
+  },
+  "https://80000hours.org/podcast/episodes/agi-timelines-in-2025/": {
+    "source": "https://80000hours.org/podcast/episodes/agi-timelines-in-2025/",
+    "fetchedAt": "2026-10-01T04:23:09.474Z",
+    "description": "Explains why timelines shortened in early 2025 and lengthened later: limited reasoning generalisation, costly inference scaling, inefficient reinforcement learning, missing continual learning and non-coding bottlenecks in AI R&D. Rejects the story that AI is useless, stalled or unprofitable, citing capability indices, falling costs, revenue, per-user margins and his own heavy daily use. Its timeline (shocked by 2027, imaginable 2028, plausible 2029–2030) is superseded by the August update. Argues that even a roughly ten-year timeline leaves too little time to prepare for social, political, economic, military and epistemic upheaval. Full transcript inspected.",
+    "image": "/resource-previews/4f37d8ffbab4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://80000hours.org/wp-content/uploads/2026/02/agi-timelines-lp-thumb-scaled.jpg",
+    "icon": "/resource-previews/4f37d8ffbab4-icon.webp"
+  },
+  "https://80000hours.org/podcast/episodes/ai-misconceptions-disagreements/": {
+    "source": "https://80000hours.org/podcast/episodes/ai-misconceptions-disagreements/",
+    "fetchedAt": "2026-10-01T04:23:10.102Z",
+    "description": "Older context: recorded in 2023 and released in 2025, with Rob saying it mostly held up but he would not say everything the same way now. He says AI risk does not depend on a superintelligence story and that the danger is obvious rather than speculative; he has seen AI as a possible hinge of history since about 2009–2010 and expects useful agentic AI to be built. At the time he thought takeoff more likely to take years or decades than days, which made prosaic safety work and government involvement look more useful, and he did not expect mass layoffs within a couple of years. Newer 2026 sources take precedence on timelines and policy. Own turns inspected.",
+    "image": "/resource-previews/7db5bdac4f76-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://80000hours.org/wp-content/uploads/2025/02/ai_misconceptions_mashup_wp_banner-transformed-gpt.jpeg",
+    "icon": "/resource-previews/7db5bdac4f76-icon.webp"
+  },
+  "https://www.cognitiverevolution.ai/success-without-dignity-nathan-finds-hope-amidst-chaos-from-the-intelligence-horizon-podcast/": {
+    "source": "https://www.cognitiverevolution.ai/success-without-dignity-nathan-finds-hope-amidst-chaos-from-the-intelligence-horizon-podcast/",
+    "fetchedAt": "2026-10-01T04:23:11.183Z",
+    "description": "Nathan Labenz joins The Intelligence Horizon to discuss compressed AI timelines, interpretability, and RL scaling, weighing transformative benefits like curing diseases against existential risks, evolving p(doom) estimates, and the roles of governance and US-China cooperation.",
+    "image": "/resource-previews/d4dca4aa825c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/CQOQvHWsENs/hqdefault.jpg",
+    "icon": "/resource-previews/d4dca4aa825c-icon.webp"
+  },
+  "https://www.cognitiverevolution.ai/ama-part-2-is-fine-tuning-dead-how-am-i-preparing-for-agi-are-we-headed-for-ubi-more/": {
+    "source": "https://www.cognitiverevolution.ai/ama-part-2-is-fine-tuning-dead-how-am-i-preparing-for-agi-are-we-headed-for-ubi-more/",
+    "fetchedAt": "2026-10-01T04:23:12.655Z",
+    "description": "Nathan answers listener questions on whether fine-tuning is fading, what misalignment and continual learning results imply, how he is preparing for AGI, timelines for job disruption and possible UBI, and how to explain AI and safety issues to the wider public and kids.",
+    "image": "/resource-previews/4d78fa8ff344-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/wlHK2KQuCXw/hqdefault.jpg",
+    "icon": "/resource-previews/4d78fa8ff344-icon.webp"
+  },
+  "https://www.cognitiverevolution.ai/nathan-goes-to-china-3-us-china-relations-the-art-of-the-ai-deal-the-road-to-pax-robotica/": {
+    "source": "https://www.cognitiverevolution.ai/nathan-goes-to-china-3-us-china-relations-the-art-of-the-ai-deal-the-road-to-pax-robotica/",
+    "fetchedAt": "2026-10-01T04:23:13.643Z",
+    "description": "In the finale of his three-part series on China, Nathan assesses Chinese technological strength and the state of US-China relations. He explores the impact of export controls, views from Beijing, and proposals for bilateral AI diplomacy.",
+    "image": "/resource-previews/dba75cded7dc-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/Btq_ztX0R9M/hqdefault.jpg",
+    "icon": "/resource-previews/dba75cded7dc-icon.webp"
+  },
+  "https://www.cognitiverevolution.ai/my-positive-vision-for-the-ai-future-from-the-existential-hope-podcast/": {
+    "source": "https://www.cognitiverevolution.ai/my-positive-vision-for-the-ai-future-from-the-existential-hope-podcast/",
+    "fetchedAt": "2026-10-01T04:23:15.786Z",
+    "description": "This episode explores building a positive vision for the AI future, discussing how AI could transform daily life, from self-driving cars to personalized tutoring and improved health. It also covers fostering societal expectations and the impact of fiction on AI's development.",
+    "image": "/resource-previews/fa893801bcd4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/DFtg29VdQpE/hqdefault.jpg",
+    "icon": "/resource-previews/fa893801bcd4-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/plzdontkillus": {
+    "source": "https://lironshapira.substack.com/p/plzdontkillus",
+    "fetchedAt": "2026-10-01T04:23:16.855Z",
+    "description": "Aella, Ronny Fernandez, Avalon Warren, Avisha NessAiver, and Josh Thor on what PlzDontKillUs actually achieved for AI x-risk reduction.",
+    "image": "/resource-previews/9d50ecb450e6-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!T7vV!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8baad17b-2f93-452d-8b8d-a122a7dbde4b_1376x768.png",
+    "icon": "/resource-previews/9d50ecb450e6-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=dUNVY6g9rAA": {
+    "source": "https://www.youtube.com/watch?v=dUNVY6g9rAA",
+    "fetchedAt": "2026-10-01T04:23:17.879Z",
+    "description": "Aella joins MTS to discuss AI doom, transhumanism, and the economic illiteracy of young people. She walks through her approach to microdosing psychedelics, h...",
+    "image": "/resource-previews/40c4ebef56e0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/dUNVY6g9rAA/hqdefault.jpg",
+    "icon": "/resource-previews/40c4ebef56e0-icon.webp"
+  },
+  "https://sfstandard.com/2026/04/22/sex-researcher-aella-hopes-make-ai-doom-go-mainstream/": {
+    "source": "https://sfstandard.com/2026/04/22/sex-researcher-aella-hopes-make-ai-doom-go-mainstream/",
+    "fetchedAt": "2026-10-01T04:23:19.457Z",
+    "description": "“The world doesn’t understand the magnitude of the thing,” says the cofounder of Plz Don’t Kill Us.",
+    "image": "/resource-previews/a4c9f29a415f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://assets.sfstandard.com/image/994911177489/image_q9ih6bjkih14naoqlieij33a25/-C100.00%25x78.70%25%2C0.00%25%2C19.23%25-S1200x630-FPNG",
+    "icon": "/resource-previews/a4c9f29a415f-icon.webp"
+  },
+  "https://aella.substack.com/p/my-attempts-to-sensemake-ai-risk": {
+    "source": "https://aella.substack.com/p/my-attempts-to-sensemake-ai-risk",
+    "fetchedAt": "2026-10-01T04:23:24.577Z",
+    "description": "Making sense of AI risk is very hard for me.",
+    "image": "/resource-previews/dc714e8031bb-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!dTZ_!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F5153180e-36ea-4a1c-aff3-70457d671717_1024x1024.png",
+    "icon": "/resource-previews/dc714e8031bb-icon.webp"
   }
 }

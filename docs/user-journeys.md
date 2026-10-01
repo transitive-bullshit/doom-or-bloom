@@ -169,6 +169,10 @@ The replay saves each completed snapshot for resumption. `--publish` requires th
 
 The September 29 run re-evaluated 135 of the 144 selected simulated users from engine 0.6 to 0.7.1, for $1.36 in Jev calls. The other nine keep their runs because the current engine would not offer a result from their one to three recorded answers. The share of simulated users at the “mixed” outlook fell from 19% to 12%, both ends grew, and the median inferred P(doom) moved from 7.9% to 4.7%. All eight verified public statements carried over.
 
+## Import selected simulated users
+
+`pnpm personas:import plan --env <file> --ids slug,slug` compares the named users' selected local `simulation_v1` runs with a target database such as production, which it opens read-only. `write` copies each profile and run through the persona repository without inference, under the run's original generation key, and verifies that the target selected the same snapshot digest. Repeating an import is idempotent, and generation ordering keeps a newer target selection in place. The source must be the loopback database named by `.env.development.local`. Importing into production or preview is a separate, owner-approved step; deploy afterward so portraits, previews and static profiles rebuild.
+
 ## Andrew McAfee — September 23, 2026
 
 Added [Andrew McAfee](research/andrew-mcafee-sources-2026-09-23.md) at `/users/amcafee` with seven dated 2026 sources: four original-publisher interviews/articles, two authored X posts, and the requested Diary of a CEO debate. Only his labeled turns from the third-party debate transcript ground the persona; neither other speakers nor the full transcript are included. His official MIT biography supplies the portrait.
@@ -206,6 +210,12 @@ This refresh used compact monolithic diagnostic artifacts. Current generated art
 Added [Ramez Naam](research/ramez-naam-persona-2026-09-27.md) at `/users/ramez` with nine dated primary-source records, including his guest essay on Noahpinion. The brief distinguishes useful AI progress from runaway takeoff, preserves his preference for plural access alongside practical safeguards, and excludes Noah Smith’s introductory forecasts. No numerical public P(doom) override is supplied.
 
 The scoped live run completed after one substantial answer under the ordinary automatic stopping policy, using one GPT-5.6 Sol request and five Jev requests for an estimated $0.0212. Its selected result is persisted locally; the generated collection retains all 143 prior records unchanged. The research record contains exact run provenance, source limits and verification. Like the other recent additions, he is in the simulated-user directory with `featured: false`.
+
+## Simulated users batch 1 — October 1, 2026
+
+Added 25 source-grounded simulated users to balance a catalog that sat mostly near the pragmatic-optimist group. They are critics of AI claims, pause and x-risk advocates, safety and policy writers, builders and commentators, and journalists and podcast hosts; two of them are pseudonymous accounts simulated from their own posts. Each brief has 8–12 inspected primary sources, and all are listed in the directory with `featured: false`. Eight verified first-person P(doom) statements are recorded with their outcomes, horizons and conditions. Three candidate numbers were excluded because their scope or attribution did not support a displayed estimate. The [batch record](research/simulated-users-batch-1-2026-10-01.md) links the five research records and gives run provenance, the fidelity review, coverage limits and verification.
+
+Scoped live runs (`--persona=<id> --turns=5 --max-requests=24 --max-cost=0.3`) used 106 GPT-5.6 Sol and 550 Jev requests, for an estimated $2.72. Six final operations hit Jev timeouts or the request budget and were completed by one bounded resume each. The selected runs are persisted locally only; the local collection retains all 144 prior records unchanged.
 
 ## Initial public-source expansion — September 20–21, 2026
 

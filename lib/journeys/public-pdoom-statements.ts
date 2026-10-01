@@ -109,5 +109,120 @@ export const publicPdoomStatements: Record<
       'AI-enabled bioterrorism specifically; informal estimates rather than exhaustive all-cause AI risk Separately states 30% for world-changing destruction. Survivors and recovery remain distinct questions.',
     estimate: 0.1,
     quote: 'about a 10% chance of bringing down civilization'
+  },
+  'grady-booch': {
+    token: '≈0%',
+    bounds: [0, 0],
+    estimate: 0,
+    title: 'My p(doom) remains asymptotically close to zero',
+    url: 'https://x.com/grady_booch/status/2098149216803787067',
+    publishedAt: '2026-09-10',
+    outcome:
+      'Not defined in the post; its context is humanity’s destruction by dangerous superintelligent AI',
+    horizon: 'No horizon stated',
+    conditions:
+      'Verbal near-zero judgment (“asymptotically close to zero”), not a numeral or calculated estimate; “remains” marks a standing view. Recorded like the McAfee near-zero precedent. The same post respects much higher estimates while criticizing lab insiders.',
+    quote: 'My p(doom) remains asymptotically close to zero.'
+  },
+  'liron-shapira': {
+    token: '≈50%',
+    bounds: [0.1, 0.9],
+    estimate: 0.5,
+    title:
+      'I Raised an AI Investor’s P(Doom) Live On Air — Liron on Milk Road AI',
+    url: 'https://lironshapira.substack.com/p/i-raised-an-ai-investors-pdoom-live',
+    publishedAt: '2026-08-06',
+    outcome:
+      'Human extinction (whether we and our descendants are around at all); elsewhere he defines doom more broadly as permanently losing more than 99% of future value',
+    horizon: 'Roughly by 2050',
+    conditions:
+      'All-things-considered ballpark including a chance of pausing; he says 50% really means a double-digit probability and has given 10–90% as his range (Feb 19, 2026). About 80% if superintelligence is built (Jan 27, 2026). Liron’s own turn at 00:03:12; recorded July 22, first aired July 27, 2026.',
+    quote: 'My own probability is 50%.'
+  },
+  'holly-elmore': {
+    token: '50–60%',
+    bounds: [0.5, 0.6],
+    title:
+      'Let’s CALL OUT the AI Doom “Enablers” Joining OpenAI & Anthropic — Dr. Holly Elmore, PauseAI US',
+    url: 'https://lironshapira.substack.com/p/holly-elmore-exposes-ai-doom-enablers',
+    publishedAt: '2026-06-30',
+    outcome:
+      'AI disaster (“doom”) as asked on Doom Debates; she does not define the endpoint, and it is not an extinction-only figure',
+    horizon: 'Not specified',
+    conditions:
+      'Subjective answer to “What’s your P(Doom)?” at 00:06:15–00:06:47 in the publisher transcript. She says she does not truly think in these terms, that any current risk is intolerable, that the figure has risen from her earlier estimates, and that she still puts 15–20% on getting lucky; in the same answer she says disaster is not necessarily more likely than not. Earlier, on the same show in September 2025, she gave roughly 20–40% for the worst outcomes (about 20% extinction).',
+    quote: 'It’s probably 50 to 60% now. I used to be lower.'
+  },
+  'katja-grace': {
+    token: '≈50%',
+    bounds: [0.5, 0.5],
+    estimate: 0.5,
+    title: '314 - Guest: Katja Grace, AI Impact Researcher, part 2',
+    url: 'https://aiandyou.net/e/314-guest-katja-grace-ai-impact-researcher-part-2/',
+    publishedAt: '2026-06-22',
+    outcome:
+      'AI “doom” in her discussion of the probability that current AI development destroys the world; endpoint not further defined (the host’s follow-up paraphrases it as human extinction)',
+    horizon: 'Not specified',
+    conditions:
+      'Approximate and variable (“it varies”, “maybe like”). She separates the default p(doom) from how much it can be changed and says she is pretty optimistic about changing it. Show-published PDF transcript without speaker labels; attribution follows the question–answer sequence. Not derived from her AI Impacts surveys, whose figures are other researchers’ answers.',
+    quote: 'Well, it varies. I’d say maybe like 50 percent.'
+  },
+  'oliver-habryka': {
+    token: '>50%',
+    bounds: [0.5, 1],
+    title: 'Comment on “A case for courage, when speaking of AI danger”',
+    url: 'https://www.lesswrong.com/posts/CYTwRZtrhHuYf7QYu/a-case-for-courage-when-speaking-of-ai-danger?commentId=gmdQgZs2BiBgP9CQa',
+    publishedAt: '2025-07-15',
+    outcome: 'Superintelligence killing everyone (human extinction)',
+    horizon:
+      'No calendar horizon; conditional on superintelligence being deployed',
+    conditions:
+      'Conditional on deploying superintelligence; he says “much more than 50%” and that the claim needs more thinking through than the common at-least-10% argument. Not an estimate of whether deployment will happen. LessWrong comment, full text inspected.',
+    quote:
+      'much more than 50% probability that deploying superintelligence would kill everyone'
+  },
+  'kevin-roose': {
+    token: '≈10%',
+    bounds: [0.1, 0.1],
+    estimate: 0.1,
+    title:
+      'AI Researchers Are Panicking | What Comes Next Is Worse Than Nuclear Bombs (Digital Disruption)',
+    url: 'https://www.infotech.com/digital-disruption/ai-researchers-are-panicking-what-comes-next-is-worse-than-nuclear-bombs',
+    publishedAt: '2026-09-21',
+    outcome:
+      'Everyone dying from AI (“how likely we all are to die from AI”); human extinction',
+    horizon: 'No fixed calendar horizon',
+    conditions:
+      'His usual rough answer in his own turn of a speaker-labeled publisher transcript; he calls 10% an unacceptable existential risk and says the outcome depends on our response. His September 18 column says his p(doom) needle is moving higher without a number; a 10–15% remark on another podcast appears only in a mislabeled automatic transcript and is not used.',
+    quote: 'I usually say mine is about 10%'
+  },
+  'nathan-labenz': {
+    token: '10–90%',
+    bounds: [0.1, 0.9],
+    title:
+      'Success without Dignity? Nathan finds Hope Amidst Chaos, from The Intelligence Horizon Podcast',
+    url: 'https://www.cognitiverevolution.ai/success-without-dignity-nathan-finds-hope-amidst-chaos-from-the-intelligence-horizon-podcast/',
+    publishedAt: '2026-04-01',
+    outcome:
+      'Unspecified AI “doom”; he does not define the endpoint (in January 2026 he contrasted post-scarcity utopia with “we’re all dead from AI”)',
+    horizon: 'No fixed calendar horizon',
+    conditions:
+      'Deliberately wide subjective range in his own episode introduction (“remains”), repeated in his guest turn as what he usually says; he stresses shifting the odds over precision and says he has become somewhat more optimistic. Supersedes his January 22, 2026 AMA figure, “high single digit to low double digit range”.',
+    quote: 'My p(doom) remains somewhere in the 10-90% range.'
+  },
+  aella: {
+    token: '75%',
+    bounds: [0.75, 0.75],
+    estimate: 0.75,
+    title:
+      'They’re Making AI Doom Cool! Ft. AELLA, Brangus, Avalon Warren, Avisha NessAiver & Josh Thor of PlzDontKillUs',
+    url: 'https://lironshapira.substack.com/p/plzdontkillus',
+    publishedAt: '2026-08-26',
+    outcome:
+      '“Doom” as asked on Doom Debates (AI existential catastrophe); the exchange does not define the endpoint further',
+    horizon: 'Not specified; she separately says timelines are probably short',
+    conditions:
+      'Unconditional answer to the host’s P(Doom) question at 00:29:50 in a host-published, speaker-labeled transcript; she later adds it is higher than she would like. Her remaining hope rests mainly on superintelligence taking an interest in consciousness, which she rates as unlikely. Distinct from her “nine out of 10 worried” rating and her 2022 essay.',
+    quote: 'Seventy-five percent.'
   }
 }

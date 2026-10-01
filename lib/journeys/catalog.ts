@@ -15,6 +15,11 @@ import { mcafeePublicPersona } from './mcafee-public-persona'
 import { bachPublicPersona } from './bach-public-persona'
 import { vittorioPublicPersona } from './vittorio-public-persona'
 import { naamPublicPersona } from './naam-public-persona'
+import { researchCriticPersonas } from './research-critic-personas'
+import { riskAdvocatePersonas } from './risk-advocate-personas'
+import { safetyPolicyPersonas } from './safety-policy-personas'
+import { builderCommentatorPersonas } from './builder-commentator-personas'
+import { mediaHostPersonas } from './media-host-personas'
 import { independentPersonas } from './independent-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
@@ -67,6 +72,11 @@ const narrativePersonas: Persona[] = [
   bachPublicPersona,
   vittorioPublicPersona,
   naamPublicPersona,
+  ...researchCriticPersonas,
+  ...riskAdvocatePersonas,
+  ...safetyPolicyPersonas,
+  ...builderCommentatorPersonas,
+  ...mediaHostPersonas,
   ...safetyResearcherPersonas,
   ...worldviewWriterPersonas,
   ...independentPersonas,
