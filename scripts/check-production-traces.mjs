@@ -146,6 +146,28 @@ for (const portraitRoute of [
     )
   }
 }
+// Pages that show authored text bundle every release and its translations.
+for (const page of [
+  '[locale]/(site)/assessments/[id]/page',
+  '[locale]/(site)/public/assessments/[id]/page',
+  '[locale]/(site)/users/[username]/page'
+]) {
+  const trace = path.join(output, 'server/app', `${page}.js.nft.json`)
+  const { files } = JSON.parse(await readFile(trace, 'utf8'))
+  const bundled = new Set(
+    files.map((file) => path.resolve(path.dirname(trace), file))
+  )
+  for (const file of [
+    'content/releases/0.4.0-draft/prompts.json',
+    'content/rubrics/0.1.0-draft/rubric.json',
+    'content/l10n/ja/releases/0.4.0-draft.json',
+    'content/l10n/th/rubrics/0.1.0-draft.json'
+  ])
+    assert(
+      bundled.has(path.resolve(file)),
+      `${page}: authored content ${file} is missing from the bundle`
+    )
+}
 // Takumi never reads system fonts: card routes bundle the Noto subsets.
 const cardFonts = (await readdir('lib/sharing/fonts')).filter((file) =>
   file.endsWith('.woff2')

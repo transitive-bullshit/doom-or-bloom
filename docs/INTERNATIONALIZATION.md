@@ -74,7 +74,7 @@ The sitemap lists every locale URL of a translated page with `alternates.languag
 
 Pages use system fonts. `app/globals.css` adds `:lang()` fallback stacks for hi, th, zh and ja, relaxes tight Latin tracking for those scripts and gives Thai and Devanagari taller headings; `components/landing/prism.css` does the same for the hero.
 
-Takumi, which renders share cards, social images and the map PNG, never reads system fonts. Its built-in font covers Latin scripts. `lib/sharing/fonts/` carries OFL Noto Sans Devanagari, Thai, JP and SC subsets (Regular and Bold static instances, WOFF2, about 820 KB in all; `OFL-noto.txt`), declared in `lib/sharing/card-fonts.ts`:
+Takumi, which renders share cards, social images and the map PNG, never reads system fonts. Its built-in font covers Latin scripts. `lib/sharing/fonts/` carries OFL Noto Sans Devanagari, Thai, JP and SC subsets (Regular and Bold static instances, WOFF2, about 840 KB in all; `OFL-noto.txt`), declared in `lib/sharing/card-fonts.ts`:
 
 - each covers its script's Unicode block, or for Han every character the committed catalogs and authored translations of its locales use, plus the card dates, digits, spaces and punctuation (SVG labels take one font per run);
 - `pnpm fonts:subset --source=<directory>` rebuilds them from the Google Fonts variable fonts with fontTools through `uv`, and writes `coverage.json`. `lib/sharing/card-fonts.test.ts` fails when a catalog gains a character its font lacks, so rerun it after translating;
@@ -116,6 +116,7 @@ content/l10n/<code>/messages.json                    # provenance of messages/<c
 - `lib/content/l10n-loader.ts` builds an `AuthoredText` (each entry's English source and display text) for an assessment's pinned release and rubric in a locale: `authoredText` for the owner interview, and `authoredTextFor` for read-only pages, which sends only the questions, findings and resources they show. English returns null. A stale or missing entry shows English, per entry.
 - Pages put it in `<AuthoredTextProvider>` (`components/assessment/authored-text.tsx`) around their client tree: the owner interview, published participant pages and simulated-user pages. Components read it with `useAuthoredText()` and pass it to `promptText`, `claimText`, `authoredPrompt`, `findingText` and `resourceText`. Each lookup is by ID and applies only when the saved text equals that ID's English source, so older or edited snapshots show what they saved. The owner page also sends recovery copy already translated (`recoveryCopy`).
 - Snapshots stay canonical English throughout: Jev reads English prompts, and `validateSnapshot` and `isAuthoredClaim` require exact English.
+- The loader builds file paths from versions, which tracing cannot follow, so `next.config.ts` includes the release text, rubrics and `content/l10n` release and rubric files for those three pages, and `scripts/check-production-traces.mjs` asserts them. A new page that shows authored text needs the same.
 - A resource bookmark normally shows its publisher's English description; outside English a translated resource question takes its place.
 
 ### Validation

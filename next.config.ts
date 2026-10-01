@@ -14,6 +14,13 @@ import { validateServerEnv } from './lib/server/validate-env'
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 const cardAssets = ['public/personas/*', 'lib/sharing/fonts/*.woff2']
+// Pages that show authored text read their release, rubric and translations
+// by version at runtime (lib/content/l10n-loader.ts), which tracing misses.
+const authoredContent = [
+  'content/l10n/*/{releases,rubrics}/*.json',
+  'content/releases/*/{prompts,findings,resources}.json',
+  'content/rubrics/*/rubric.json'
+]
 
 const config: NextConfig = {
   images: {
@@ -63,7 +70,10 @@ const config: NextConfig = {
     '/api/map-png': ['lib/sharing/fonts/*.woff2'],
     '/users/*/opengraph-image': cardAssets,
     '/public/assessments/*/social-image.png': cardAssets,
-    '/*/public/assessments/*/social-image.png': cardAssets
+    '/*/public/assessments/*/social-image.png': cardAssets,
+    '/*/assessments/*': authoredContent,
+    '/*/public/assessments/*': authoredContent,
+    '/*/users/*': authoredContent
   },
   experimental: {
     // Unknown URLs match no route in app/[locale]; see app/global-not-found.tsx.
