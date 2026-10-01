@@ -134,9 +134,7 @@ describe('structured data', () => {
       .object({
         '@type': z.literal('ProfilePage'),
         url: z.literal(`${site}/users/geoffreyhinton`),
-        name: z.literal(
-          'Geoffrey Hinton on AI: simulated worldview and P(doom)'
-        ),
+        name: z.literal('Geoffrey Hinton on AI and P(doom)'),
         description: z.string().includes('simulated worldview'),
         mainEntity: ref
       })

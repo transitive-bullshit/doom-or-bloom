@@ -717,7 +717,7 @@
     "similarDescription": "模拟世界观与 {name} 最接近的意见领袖"
   },
   "Profiles": {
-    "userTitle": "{name} 对 AI 的看法：模拟世界观和 P(doom)",
+    "userTitle": "{name} 对 AI 和 P(doom) 的看法",
     "userDescription": "{name}对AI有何看法？查看其模拟世界观在Doom与Bloom之间的立场位置，以及粗略的P(doom)和这一结果背后的回答。",
     "userImageAlt": "{name} 的模拟 AI 世界观在 Doom–Bloom 与变革规模地图上的位置",
     "personDescription": "根据 {name} 的公开文章构建的 AI 世界观模拟。这是一种实验性解读，并非其本人的评估，也不代表其认可。",

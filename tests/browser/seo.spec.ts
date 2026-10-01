@@ -233,7 +233,7 @@ test('profiles link similar worldviews and describe the simulated person', async
 }) => {
   await page.goto('/users/geoffreyhinton')
   await expect(page).toHaveTitle(
-    'Geoffrey Hinton on AI: simulated worldview and P(doom) | Doom or Bloom'
+    'Geoffrey Hinton on AI and P(doom) | Doom or Bloom'
   )
   const similar = page.locator('[data-slot="similar-worldviews"]')
   await expect(
