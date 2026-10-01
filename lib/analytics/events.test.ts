@@ -187,38 +187,50 @@ test('events carry the interview language of the latest answer', () => {
   expect(sanitizeEvent(event, catalog)?.properties.interview_locale).toBe('hi')
 })
 
-test('share link events carry enumerated values, never IDs', () => {
+test('share link and compare events carry enumerated values, never IDs', () => {
   const state = createAssessment(id)
+  const viewed = makeEvent(state, 'compare_result_viewed', {
+    alignment_bucket: 'mostly_aligned',
+    compare_source: 'snapshot'
+  })
   const shared = makeEvent(state, 'share_intent_opened', {
     share_target: 'copy_link',
-    share_surface: 'result_bar',
+    share_surface: 'compare_result',
     link_kind: 'snapshot'
   })
-  const created = makeEvent(state, 'share_link_created', {
-    share_surface: 'result_bar'
-  })
-  for (const event of [shared, created])
+  for (const event of [
+    viewed,
+    shared,
+    makeEvent(state, 'share_link_created', { share_surface: 'result_bar' })
+  ])
     expect(sanitizeEvent(event, catalog)?.properties).toMatchObject(
       event.properties
     )
   const canary = 'AbCdEfGh_jKl-123'
   const safe = sanitizeEvent(
     {
-      ...created,
-      properties: { ...created.properties, share_link_id: canary }
+      ...viewed,
+      properties: {
+        ...viewed.properties,
+        share_link_id: canary,
+        compare_target: `persona:${canary}`,
+        other_assessment_id: canary
+      }
     },
     catalog
   )
   expect(JSON.stringify(safe)).not.toContain(canary)
-  expect(
-    sanitizeEvent(
-      {
-        ...shared,
-        properties: { ...shared.properties, link_kind: `/s/${canary}` }
-      },
-      catalog
-    )
-  ).toBeNull()
+  for (const properties of [
+    { alignment_bucket: canary },
+    { compare_source: `persona:${canary}` },
+    { link_kind: `/s/${canary}` }
+  ])
+    expect(
+      sanitizeEvent(
+        { ...viewed, properties: { ...viewed.properties, ...properties } },
+        catalog
+      )
+    ).toBeNull()
 })
 
 test('share link pageviews report the route, never the link ID', () => {

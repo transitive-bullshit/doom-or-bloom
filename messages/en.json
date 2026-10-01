@@ -430,6 +430,40 @@
     "linkFailed": "Couldn’t create your share link. Please try again.",
     "shareAgain": "Your link is ready. Tap Share again."
   },
+  "Compare": {
+    "title": "You vs {name}",
+    "friend": "your friend",
+    "friendLabel": "A friend",
+    "bucket": {
+      "very_aligned": "Very aligned",
+      "mostly_aligned": "Mostly aligned",
+      "some_distance": "Some distance",
+      "worlds_apart": "Worlds apart"
+    },
+    "bucketUnknown": "Too early to say",
+    "outlook": {
+      "same": "Your outlooks are close",
+      "more_hopeful": "You’re more hopeful than {name}",
+      "more_worried": "You’re more worried than {name}"
+    },
+    "change": {
+      "same": "You expect about the same scale of change",
+      "more": "You expect more change than {name}",
+      "less": "You expect less change than {name}"
+    },
+    "unplaced": "One of you isn’t fully on the map yet, so some differences are still open",
+    "pdoom": "P(doom)",
+    "you": "You",
+    "pdoomMissing": "Not estimated",
+    "sharedClosest": "You both land near {closest}",
+    "simulated": "{name}’s point is simulated from public sources, not their own answers",
+    "private": "Compared in your browser. Neither of you sees the other’s answers",
+    "send": "Send them your result",
+    "sendText": "I mapped my AI worldview too. Here’s where I land",
+    "sendCopied": "Link copied. Send it back to them.",
+    "viewPersona": "See {name}’s result",
+    "gone": "This comparison link was turned off, so there’s nothing to compare"
+  },
   "Conversation": {
     "tension": "About AI, you said “{first}” and “{second}” — how do these fit together?",
     "clarification": "Our read of {topic} was: “{claim}” What would you change about that interpretation?",
@@ -632,7 +666,10 @@
     "opening": "Opening your assessment…",
     "openFailed": "We couldn’t open your assessment. Please try again.",
     "tryAgain": "Try again",
-    "create": "Create a new assessment"
+    "create": "Create a new assessment",
+    "compareTitle": "Ready to compare?",
+    "compareDescription": "Start a new assessment to compare, or use your latest result",
+    "compareLatest": "Compare with my latest result"
   },
   "Map": {
     "question": "{axis, select, influence {How much can humans shape the future?} other {How will AI change the world?}}",
@@ -649,6 +686,7 @@
     "theirView": "Their view",
     "marker": "{name}: {claim}",
     "markerFallback": "Simulated worldview position",
+    "otherMarker": "{name}’s position",
     "unplacedTitle": "Some dimensions are still unplaced",
     "unplacedNote": "Open regions show what we don’t yet know.",
     "unplacedCaption": "Some dimensions are still unplaced. Open regions show what we don’t yet know.",

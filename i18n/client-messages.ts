@@ -32,6 +32,7 @@ const surfaces = {
     'Placement',
     'Feedback',
     'Share',
+    'Compare',
     'Publish',
     'Errors',
     'Report'
@@ -49,6 +50,7 @@ const surfaces = {
     'Placement',
     'Feedback',
     'Share',
+    'Compare',
     'Publish',
     'Errors',
     'Report',

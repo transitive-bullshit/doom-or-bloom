@@ -113,5 +113,5 @@ test('simulated-user pages invite a comparison, pinned on phones', async ({
   await expect(pinned).toBeVisible()
   await expect(
     pinned.getByRole('link', { name: 'Map my worldview' })
-  ).toHaveAttribute('href', '/assessments?start=1')
+  ).toHaveAttribute('href', '/assessments?start=1&compare=persona%3Akarpathy')
 })

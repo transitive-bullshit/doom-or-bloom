@@ -339,6 +339,10 @@
 .worldview-map .map-point {
   background: var(--map-text);
 }
+.worldview-map .map-other {
+  background: var(--map-surface);
+  border-color: var(--map-text);
+}
 .worldview-map .map-range,
 .worldview-map .map-divider {
   border-color: color-mix(in oklab, var(--map-text) 35%, var(--map-surface));

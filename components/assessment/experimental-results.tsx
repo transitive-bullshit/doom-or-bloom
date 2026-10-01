@@ -54,6 +54,7 @@ export function ExperimentalResults({
   riskCompanion,
   subject,
   guess,
+  others,
   mapNote,
   feedback,
   share
@@ -66,6 +67,7 @@ export function ExperimentalResults({
   riskCompanion?: ReactNode
   subject?: ResultSubject
   guess?: MapPoint | null
+  others?: Array<MapPoint & { label: string; avatar?: string }>
   mapNote?: ReactNode
   feedback?: ReactNode
   share?: ReactNode
@@ -114,6 +116,7 @@ export function ExperimentalResults({
             label: item.label
           }))}
           guess={guess}
+          others={others}
         />
         {mapNote}
       </div>

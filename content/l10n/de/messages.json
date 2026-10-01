@@ -2048,6 +2048,162 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "Compare.title": {
+      "sourceHash": "2ee29c8856d3132d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.friend": {
+      "sourceHash": "ac3a0c19799bc50e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.friendLabel": {
+      "sourceHash": "6c274d2b23ddaa65",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.bucket.very_aligned": {
+      "sourceHash": "0a6bc03d904488dd",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.bucket.mostly_aligned": {
+      "sourceHash": "b551400c721dc4aa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.bucket.some_distance": {
+      "sourceHash": "90a895e65f42179e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.bucket.worlds_apart": {
+      "sourceHash": "6279c652126ed8c4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.bucketUnknown": {
+      "sourceHash": "4fb811716d1f5761",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.outlook.same": {
+      "sourceHash": "8c7f69daf5949052",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.outlook.more_hopeful": {
+      "sourceHash": "362f4fac58adf8ec",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.outlook.more_worried": {
+      "sourceHash": "544ce676fc0e2789",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.change.same": {
+      "sourceHash": "2c850b89cde8f562",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.change.more": {
+      "sourceHash": "d9c9f1a2fb91f220",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.change.less": {
+      "sourceHash": "82cfa287f9f26dac",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.unplaced": {
+      "sourceHash": "75c10ff5ae1fcfd6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.pdoom": {
+      "sourceHash": "acf6f0dd4009a176",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.you": {
+      "sourceHash": "08b041935798fbf6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.pdoomMissing": {
+      "sourceHash": "dbbcf5111aaff4e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.sharedClosest": {
+      "sourceHash": "f3fc82f88adc97eb",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.simulated": {
+      "sourceHash": "8a80b2d5671703a6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.private": {
+      "sourceHash": "1d078066c548534e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.send": {
+      "sourceHash": "e2e5ae5d95a5470f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.sendText": {
+      "sourceHash": "ac7e687fc8e2072d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.sendCopied": {
+      "sourceHash": "756e039a25c10302",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.viewPersona": {
+      "sourceHash": "b31bdeac18aa37aa",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Compare.gone": {
+      "sourceHash": "3757a5520cc259c7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "Conversation.tension": {
       "sourceHash": "bd1b8e1e95edb0fe",
       "model": "gpt-5.6-sol",
@@ -3116,6 +3272,24 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "Library.compareTitle": {
+      "sourceHash": "ab2ccb75b74af6bc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.compareDescription": {
+      "sourceHash": "cae01371c4da143a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Library.compareLatest": {
+      "sourceHash": "acae87458e997a02",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "Map.question": {
       "sourceHash": "b0a8615678ad2d7b",
       "model": "gpt-5.6-sol",
@@ -3196,6 +3370,12 @@
     },
     "Map.markerFallback": {
       "sourceHash": "4d38cfe0cdb2ea8e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.otherMarker": {
+      "sourceHash": "56ffeba38ce43d54",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"

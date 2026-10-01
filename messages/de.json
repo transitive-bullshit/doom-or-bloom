@@ -430,6 +430,40 @@
     "linkFailed": "Dein Link zum Teilen konnte nicht erstellt werden. Bitte versuche es erneut.",
     "shareAgain": "Dein Link ist bereit. Tippe erneut auf „Teilen“."
   },
+  "Compare": {
+    "title": "Du und {name} im Vergleich",
+    "friend": "dein Freund",
+    "friendLabel": "Ein Freund",
+    "bucket": {
+      "very_aligned": "Sehr ähnlich",
+      "mostly_aligned": "Größtenteils ähnlich",
+      "some_distance": "Einige Unterschiede",
+      "worlds_apart": "Welten voneinander entfernt"
+    },
+    "bucketUnknown": "Noch zu früh für eine Einschätzung",
+    "outlook": {
+      "same": "Eure Einschätzungen liegen nah beieinander",
+      "more_hopeful": "Du bist hoffnungsvoller als {name}",
+      "more_worried": "Du bist besorgter als {name}"
+    },
+    "change": {
+      "same": "Ihr erwartet ungefähr das gleiche Ausmaß an Veränderung",
+      "more": "Du erwartest mehr Veränderung als {name}",
+      "less": "Du erwartest weniger Veränderung als {name}"
+    },
+    "unplaced": "Eine Person von euch ist noch nicht vollständig auf der Karte eingeordnet, daher sind einige Unterschiede noch offen",
+    "pdoom": "P(doom)",
+    "you": "Du",
+    "pdoomMissing": "Nicht geschätzt",
+    "sharedClosest": "Ihr steht beide in der Nähe von {closest}",
+    "simulated": "Der Punkt von {name} wurde anhand öffentlicher Quellen simuliert und basiert nicht auf eigenen Antworten",
+    "private": "Der Vergleich findet in deinem Browser statt. Ihr seht die Antworten der jeweils anderen Person nicht",
+    "send": "Sende dein Ergebnis",
+    "sendText": "Ich habe auch meine KI-Weltsicht abgebildet. Hier stehe ich",
+    "sendCopied": "Link kopiert. Sende ihn zurück.",
+    "viewPersona": "Ergebnis von {name} ansehen",
+    "gone": "Dieser Vergleichslink wurde deaktiviert, daher gibt es nichts zu vergleichen"
+  },
   "Conversation": {
     "tension": "Zum Thema KI hast du gesagt: „{first}“ und „{second}“ – wie passt das zusammen?",
     "clarification": "Unsere Interpretation von {topic} war: „{claim}“ Was würdest du an dieser Interpretation ändern?",
@@ -632,7 +666,10 @@
     "opening": "Deine Einschätzung wird geöffnet…",
     "openFailed": "Deine Einschätzung konnte nicht geöffnet werden. Bitte versuche es erneut.",
     "tryAgain": "Erneut versuchen",
-    "create": "Neue Einschätzung erstellen"
+    "create": "Neue Einschätzung erstellen",
+    "compareTitle": "Bereit für den Vergleich?",
+    "compareDescription": "Beginne eine neue Einschätzung für den Vergleich oder verwende dein neuestes Ergebnis",
+    "compareLatest": "Mit meinem neuesten Ergebnis vergleichen"
   },
   "Map": {
     "question": "{axis, select, influence {Wie stark können Menschen die Zukunft gestalten?} other {Wie wird KI die Welt verändern?}}",
@@ -649,6 +686,7 @@
     "theirView": "Ihre Sichtweise",
     "marker": "{name}: {claim}",
     "markerFallback": "Position der simulierten Weltsicht",
+    "otherMarker": "Position von {name}",
     "unplacedTitle": "Einige Dimensionen sind noch nicht eingeordnet",
     "unplacedNote": "Offene Bereiche zeigen, was wir noch nicht wissen.",
     "unplacedCaption": "Einige Dimensionen sind noch nicht eingeordnet. Offene Bereiche zeigen, was wir noch nicht wissen.",

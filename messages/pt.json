@@ -430,6 +430,40 @@
     "linkFailed": "Não foi possível criar seu link de compartilhamento. Tente novamente.",
     "shareAgain": "Seu link está pronto. Toque em Compartilhar novamente."
   },
+  "Compare": {
+    "title": "Você e {name}",
+    "friend": "a pessoa amiga",
+    "friendLabel": "Uma pessoa amiga",
+    "bucket": {
+      "very_aligned": "Muito alinhados",
+      "mostly_aligned": "Em grande parte alinhados",
+      "some_distance": "Alguma distância",
+      "worlds_apart": "Em mundos distintos"
+    },
+    "bucketUnknown": "É cedo demais para dizer",
+    "outlook": {
+      "same": "Suas perspectivas são próximas",
+      "more_hopeful": "Você está mais esperançoso do que {name}",
+      "more_worried": "Você está mais preocupado do que {name}"
+    },
+    "change": {
+      "same": "Vocês esperam uma escala de mudança semelhante",
+      "more": "Você espera mais mudanças do que {name}",
+      "less": "Você espera menos mudanças do que {name}"
+    },
+    "unplaced": "Uma das duas pessoas ainda não está totalmente posicionada no mapa, então algumas diferenças permanecem em aberto",
+    "pdoom": "P(doom)",
+    "you": "Você",
+    "pdoomMissing": "Não estimada",
+    "sharedClosest": "Vocês dois se situam perto de {closest}",
+    "simulated": "O ponto de {name} é simulado com base em fontes públicas, não nas próprias respostas dessa pessoa",
+    "private": "A comparação é feita no seu navegador. Nenhuma das duas pessoas vê as respostas da outra",
+    "send": "Enviar seu resultado",
+    "sendText": "Também mapeei minha visão de mundo sobre a IA. Veja onde me situo",
+    "sendCopied": "Link copiado. Envie-o de volta para essa pessoa.",
+    "viewPersona": "Ver o resultado de {name}",
+    "gone": "Este link de comparação foi desativado, então não há nada para comparar"
+  },
   "Conversation": {
     "tension": "Sobre IA, você disse “{first}” e “{second}” — como essas afirmações se encaixam?",
     "clarification": "Nossa interpretação de {topic} foi: “{claim}” O que você mudaria nessa interpretação?",
@@ -632,7 +666,10 @@
     "opening": "Abrindo sua avaliação…",
     "openFailed": "Não foi possível abrir sua avaliação. Tente novamente.",
     "tryAgain": "Tentar novamente",
-    "create": "Criar uma nova avaliação"
+    "create": "Criar uma nova avaliação",
+    "compareTitle": "Tudo pronto para comparar?",
+    "compareDescription": "Inicie uma nova avaliação para comparar ou use seu resultado mais recente",
+    "compareLatest": "Comparar com meu resultado mais recente"
   },
   "Map": {
     "question": "{axis, select, influence {Quanto os seres humanos podem moldar o futuro?} other {Como a IA mudará o mundo?}}",
@@ -649,6 +686,7 @@
     "theirView": "Visão dessa pessoa",
     "marker": "{name}: {claim}",
     "markerFallback": "Posição da visão de mundo simulada",
+    "otherMarker": "Posição de {name}",
     "unplacedTitle": "Algumas dimensões ainda não foram posicionadas",
     "unplacedNote": "As regiões abertas mostram o que ainda não sabemos.",
     "unplacedCaption": "Algumas dimensões ainda não foram posicionadas. As regiões abertas mostram o que ainda não sabemos.",

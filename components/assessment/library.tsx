@@ -19,6 +19,8 @@ import {
 import { AssessmentStart } from './start'
 import { AccountAccess } from './account-access'
 import { api, userErrorMessage } from '@/lib/assessments/client'
+import { writeCompareTarget, type CompareTarget } from '@/lib/sharing/compare'
+import { Card, CardDescription, CardTitle } from '@/components/ui/card'
 
 export type LibraryItem = {
   id: string
@@ -36,9 +38,12 @@ export function AssessmentLibrary({
   profile,
   authEnabled,
   authError,
-  autoStart = false
+  autoStart = false,
+  compare = null
 }: {
   autoStart?: boolean
+  /** Someone the visitor came to compare with; see lib/sharing/compare.ts. */
+  compare?: CompareTarget | null
   items: LibraryItem[]
   signedIn: boolean
   profile: { name: string; image: string | null } | null
@@ -51,6 +56,10 @@ export function AssessmentLibrary({
   const [busy, setBusy] = useState<string | null>(null)
   const [deleting, setDeleting] = useState<LibraryItem | null>(null)
   const [publishing, setPublishing] = useState<LibraryItem | null>(null)
+  // A returning visitor can compare their newest result instead of starting.
+  const latest = items
+    .filter((item) => item.hasResults)
+    .toSorted((a, b) => b.createdAt.localeCompare(a.createdAt))[0]
   async function remove(id: string) {
     setBusy(id)
     try {
@@ -97,8 +106,27 @@ export function AssessmentLibrary({
           enabled={authEnabled}
           authError={authError}
         />
-        <AssessmentStart automatic={autoStart} />
+        <AssessmentStart automatic={autoStart} compare={compare} />
       </div>
+      {compare && !autoStart && latest && (
+        <Card className='gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between'>
+          <div className='flex flex-col gap-1.5'>
+            <CardTitle className='text-lg'>{t('compareTitle')}</CardTitle>
+            <CardDescription>{t('compareDescription')}</CardDescription>
+          </div>
+          <Button
+            type='button'
+            variant='outline'
+            className='shrink-0'
+            onClick={() => {
+              writeCompareTarget(latest.id, compare)
+              router.push(`/assessments/${latest.id}`)
+            }}
+          >
+            {t('compareLatest')}
+          </Button>
+        </Card>
+      )}
       {items.length === 0 && !autoStart && <p>{t('empty')}</p>}
       {items.length > 0 && (
         <AssessmentTable

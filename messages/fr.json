@@ -430,6 +430,40 @@
     "linkFailed": "Impossible de créer votre lien de partage. Veuillez réessayer.",
     "shareAgain": "Votre lien est prêt. Appuyez à nouveau sur Partager."
   },
+  "Compare": {
+    "title": "Vous et {name}",
+    "friend": "votre ami",
+    "friendLabel": "Un ami",
+    "bucket": {
+      "very_aligned": "Très proches",
+      "mostly_aligned": "Globalement proches",
+      "some_distance": "Une certaine distance",
+      "worlds_apart": "Aux antipodes"
+    },
+    "bucketUnknown": "Trop tôt pour le dire",
+    "outlook": {
+      "same": "Vos perspectives sont proches",
+      "more_hopeful": "Vous êtes plus optimiste que {name}",
+      "more_worried": "Vous êtes plus inquiet que {name}"
+    },
+    "change": {
+      "same": "Vous vous attendez à une ampleur de changement à peu près identique",
+      "more": "Vous vous attendez à davantage de changement que {name}",
+      "less": "Vous vous attendez à moins de changement que {name}"
+    },
+    "unplaced": "L’un de vous n’est pas encore entièrement positionné sur la carte, certaines différences restent donc ouvertes",
+    "pdoom": "P(doom)",
+    "you": "Vous",
+    "pdoomMissing": "Non estimée",
+    "sharedClosest": "Vous vous situez tous les deux près de {closest}",
+    "simulated": "Le point de {name} est simulé à partir de sources publiques, et non de ses propres réponses",
+    "private": "Comparaison effectuée dans votre navigateur. Aucun de vous ne voit les réponses de l’autre",
+    "send": "Envoyez-lui votre résultat",
+    "sendText": "J’ai moi aussi cartographié ma vision du monde concernant l’IA. Voici où je me situe",
+    "sendCopied": "Lien copié. Renvoyez-le-lui.",
+    "viewPersona": "Voir le résultat de {name}",
+    "gone": "Ce lien de comparaison a été désactivé, il n’y a donc rien à comparer"
+  },
   "Conversation": {
     "tension": "À propos de l’IA, vous avez dit « {first} » et « {second} » — comment ces deux affirmations s’articulent-elles ?",
     "clarification": "Notre interprétation de {topic} était : « {claim} » Que changeriez-vous à cette interprétation ?",
@@ -632,7 +666,10 @@
     "opening": "Ouverture de votre évaluation…",
     "openFailed": "Nous n’avons pas pu ouvrir votre évaluation. Veuillez réessayer.",
     "tryAgain": "Réessayer",
-    "create": "Créer une nouvelle évaluation"
+    "create": "Créer une nouvelle évaluation",
+    "compareTitle": "Prêt à comparer ?",
+    "compareDescription": "Commencez une nouvelle évaluation pour comparer, ou utilisez votre résultat le plus récent",
+    "compareLatest": "Comparer avec mon résultat le plus récent"
   },
   "Map": {
     "question": "{axis, select, influence {Dans quelle mesure les humains peuvent-ils façonner l’avenir ?} other {Comment l’IA changera-t-elle le monde ?}}",
@@ -649,6 +686,7 @@
     "theirView": "Leur point de vue",
     "marker": "{name} : {claim}",
     "markerFallback": "Position simulée de la vision du monde",
+    "otherMarker": "Position de {name}",
     "unplacedTitle": "Certaines dimensions ne sont pas encore positionnées",
     "unplacedNote": "Les zones ouvertes montrent ce que nous ne savons pas encore.",
     "unplacedCaption": "Certaines dimensions ne sont pas encore positionnées. Les zones ouvertes montrent ce que nous ne savons pas encore.",

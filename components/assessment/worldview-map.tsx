@@ -28,6 +28,7 @@ export function Map({
   layout = 'breakout',
   subject,
   guess,
+  others = [],
   pick
 }: {
   horizontal: Component
@@ -38,6 +39,9 @@ export function Map({
   subject?: ResultSubject
   // The participant's own expected position, shown beside the result.
   guess?: { x: number; y: number } | null
+  // Someone to compare with: a thought leader (with a portrait) or a friend's
+  // shared card (a diamond), each labeled.
+  others?: Array<{ x: number; y: number; label: string; avatar?: string }>
   // Self-placement mode: the result stays hidden and a tap places the guess.
   pick?: (point: { x: number; y: number }) => void
 }) {
@@ -87,6 +91,17 @@ export function Map({
           quality: 90
         }).props.src
       : undefined
+  const otherPortraits = others.map(({ avatar }) =>
+    avatar
+      ? getImageProps({
+          src: avatar,
+          alt: '',
+          width: 64,
+          height: 64,
+          quality: 90
+        }).props.src
+      : undefined
+  )
   const shared = subject?.kind === 'shared'
   const percent = (value: number) => Math.round(value * 100)
   const coordinate = (value: number | null) =>
@@ -287,6 +302,87 @@ export function Map({
             strokeDasharray='6 5'
           />
         )}
+        {others.map((other, index) => {
+          const cx = px(other.x),
+            cy = py(other.y)
+          // Labels keep a readable size on narrow screens, like axis labels.
+          const size = 11 * labelScale
+          const width = pillWidth(other.label, size, { minimum: 48 })
+          const height = 21 * labelScale
+          const below = other.y > 0.15
+          const offset = (other.avatar ? 15 : 9) + height / 2 + 4
+          return (
+            <g
+              key={index}
+              data-slot='worldview-map-other'
+              role='img'
+              aria-label={t('otherMarker', { name: other.label })}
+            >
+              {other.avatar ? (
+                <>
+                  <defs>
+                    <clipPath id={`${id}-other-${index}`}>
+                      <circle cx={cx} cy={cy} r='14.25' />
+                    </clipPath>
+                  </defs>
+                  <image
+                    href={otherPortraits[index]}
+                    data-export-src={other.avatar}
+                    x={cx - 15}
+                    y={cy - 15}
+                    width='30'
+                    height='30'
+                    preserveAspectRatio='xMidYMid slice'
+                    clipPath={`url(#${id}-other-${index})`}
+                  />
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r='14.25'
+                    fill='none'
+                    stroke='var(--prism-portrait-ring)'
+                    strokeWidth='1.5'
+                  />
+                </>
+              ) : (
+                <rect
+                  x='-7'
+                  y='-7'
+                  width='14'
+                  height='14'
+                  rx='2'
+                  transform={`translate(${cx} ${cy}) rotate(45)`}
+                  fill='var(--map-surface)'
+                  stroke='var(--map-text)'
+                  strokeWidth='2.5'
+                />
+              )}
+              <g
+                transform={`translate(${Math.max(plot.left + width / 2, Math.min(plot.left + plot.width - width / 2, cx))},${below ? cy + offset : cy - offset})`}
+              >
+                <rect
+                  x={-width / 2}
+                  y={-height / 2}
+                  width={width}
+                  height={height}
+                  rx={height / 2}
+                  fill='var(--map-surface)'
+                  stroke='var(--map-text)'
+                  strokeOpacity='.35'
+                />
+                <text
+                  textAnchor='middle'
+                  dominantBaseline='central'
+                  fill='var(--map-text)'
+                  fontSize={size}
+                  fontWeight='600'
+                >
+                  {other.label}
+                </text>
+              </g>
+            </g>
+          )
+        })}
         {guess && (
           <g data-slot='worldview-map-guess'>
             <circle
@@ -454,6 +550,29 @@ export function Map({
                       : t('estimatedPosition')
                 : t('notDetermined')}
             </span>
+            {others.map((other, index) => (
+              <span key={index} className='inline-flex items-center gap-2'>
+                <span
+                  className='inline-flex h-4 w-5 shrink-0 items-center justify-center'
+                  aria-hidden='true'
+                >
+                  {other.avatar ? (
+                    <Image
+                      src={other.avatar}
+                      alt=''
+                      width={16}
+                      height={16}
+                      sizes='16px'
+                      quality={90}
+                      className='size-4 rounded-full border border-white object-cover'
+                    />
+                  ) : (
+                    <span className='map-other size-2.5 rotate-45 rounded-[2px] border-2' />
+                  )}
+                </span>
+                {other.label}
+              </span>
+            ))}
             <span className='inline-flex items-center gap-2'>
               <span
                 className='map-range h-4 w-5 shrink-0 rounded-sm border border-dashed'

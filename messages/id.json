@@ -430,6 +430,40 @@
     "linkFailed": "Tidak dapat membuat tautan berbagi Anda. Silakan coba lagi.",
     "shareAgain": "Tautan Anda sudah siap. Ketuk Bagikan lagi."
   },
+  "Compare": {
+    "title": "Anda vs {name}",
+    "friend": "teman Anda",
+    "friendLabel": "Seorang teman",
+    "bucket": {
+      "very_aligned": "Sangat selaras",
+      "mostly_aligned": "Sebagian besar selaras",
+      "some_distance": "Ada sedikit perbedaan",
+      "worlds_apart": "Sangat berbeda"
+    },
+    "bucketUnknown": "Terlalu dini untuk menyimpulkan",
+    "outlook": {
+      "same": "Pandangan Anda berdekatan",
+      "more_hopeful": "Anda lebih penuh harapan daripada {name}",
+      "more_worried": "Anda lebih khawatir daripada {name}"
+    },
+    "change": {
+      "same": "Anda memperkirakan skala perubahan yang kurang lebih sama",
+      "more": "Anda memperkirakan lebih banyak perubahan daripada {name}",
+      "less": "Anda memperkirakan lebih sedikit perubahan daripada {name}"
+    },
+    "unplaced": "Salah satu dari Anda belum sepenuhnya ditempatkan di peta, jadi beberapa perbedaan masih belum diketahui",
+    "pdoom": "P(doom)",
+    "you": "Anda",
+    "pdoomMissing": "Belum diestimasi",
+    "sharedClosest": "Anda berdua berada di dekat {closest}",
+    "simulated": "Titik {name} disimulasikan dari sumber publik, bukan dari jawaban mereka sendiri",
+    "private": "Dibandingkan di peramban Anda. Anda berdua tidak dapat melihat jawaban satu sama lain",
+    "send": "Kirim hasil Anda kepada mereka",
+    "sendText": "Saya juga memetakan pandangan dunia AI saya. Inilah posisi saya",
+    "sendCopied": "Tautan disalin. Kirimkan kembali kepada mereka.",
+    "viewPersona": "Lihat hasil {name}",
+    "gone": "Tautan perbandingan ini telah dinonaktifkan, jadi tidak ada yang dapat dibandingkan"
+  },
   "Conversation": {
     "tension": "Tentang AI, Anda mengatakan “{first}” dan “{second}” — bagaimana keduanya selaras?",
     "clarification": "Pemahaman kami tentang {topic} adalah: “{claim}” Apa yang ingin Anda ubah dari interpretasi tersebut?",
@@ -632,7 +666,10 @@
     "opening": "Membuka penilaian Anda…",
     "openFailed": "Kami tidak dapat membuka penilaian Anda. Silakan coba lagi.",
     "tryAgain": "Coba lagi",
-    "create": "Buat penilaian baru"
+    "create": "Buat penilaian baru",
+    "compareTitle": "Siap membandingkan?",
+    "compareDescription": "Mulai penilaian baru untuk membandingkan, atau gunakan hasil terbaru Anda",
+    "compareLatest": "Bandingkan dengan hasil terbaru saya"
   },
   "Map": {
     "question": "{axis, select, influence {Seberapa besar manusia dapat membentuk masa depan?} other {Bagaimana AI akan mengubah dunia?}}",
@@ -649,6 +686,7 @@
     "theirView": "Pandangan mereka",
     "marker": "{name}: {claim}",
     "markerFallback": "Posisi pandangan dunia simulasi",
+    "otherMarker": "Posisi {name}",
     "unplacedTitle": "Beberapa dimensi masih belum ditempatkan",
     "unplacedNote": "Area terbuka menunjukkan apa yang belum kita ketahui.",
     "unplacedCaption": "Beberapa dimensi masih belum ditempatkan. Area terbuka menunjukkan apa yang belum kita ketahui.",

@@ -430,6 +430,40 @@
     "linkFailed": "无法创建你的分享链接。请重试。",
     "shareAgain": "你的链接已准备好。再次点击分享。"
   },
+  "Compare": {
+    "title": "你与{name}",
+    "friend": "你的朋友",
+    "friendLabel": "一个朋友",
+    "bucket": {
+      "very_aligned": "非常一致",
+      "mostly_aligned": "大体一致",
+      "some_distance": "存在一些差异",
+      "worlds_apart": "截然不同"
+    },
+    "bucketUnknown": "现在下结论还太早",
+    "outlook": {
+      "same": "你们的前景看法接近",
+      "more_hopeful": "你比{name}更抱有希望",
+      "more_worried": "你比{name}更担忧"
+    },
+    "change": {
+      "same": "你们预期的变革规模大致相同",
+      "more": "你预期的变革比{name}更多",
+      "less": "你预期的变革比{name}更少"
+    },
+    "unplaced": "你们中有一人尚未在地图上完全定位，因此有些差异仍未确定",
+    "pdoom": "P(doom)",
+    "you": "你",
+    "pdoomMissing": "未估计",
+    "sharedClosest": "你们的位置都接近{closest}",
+    "simulated": "{name}的位置是根据公开来源模拟的，并非来自其本人回答",
+    "private": "比较在你的浏览器中进行。你们都看不到对方的回答",
+    "send": "将你的结果发给对方",
+    "sendText": "我也描绘了自己的AI世界观。这是我的立场",
+    "sendCopied": "链接已复制。把它发回给对方。",
+    "viewPersona": "查看{name}的结果",
+    "gone": "此比较链接已关闭，因此没有可比较的内容"
+  },
   "Conversation": {
     "tension": "关于 AI，你说过“{first}”和“{second}”——这两者如何相互契合？",
     "clarification": "我们对{topic}的理解是：“{claim}”你会如何修改这一解读？",
@@ -632,7 +666,10 @@
     "opening": "正在打开你的评估…",
     "openFailed": "无法打开你的评估。请重试。",
     "tryAgain": "重试",
-    "create": "创建新评估"
+    "create": "创建新评估",
+    "compareTitle": "准备好比较了吗？",
+    "compareDescription": "开始新的评估以进行比较，或使用你的最新结果",
+    "compareLatest": "与我的最新结果比较"
   },
   "Map": {
     "question": "{axis, select, influence {人类能在多大程度上塑造未来？} other {AI将如何改变世界？}}",
@@ -649,6 +686,7 @@
     "theirView": "他们的观点",
     "marker": "{name}：{claim}",
     "markerFallback": "模拟世界观位置",
+    "otherMarker": "{name}的位置",
     "unplacedTitle": "部分维度仍未定位",
     "unplacedNote": "空白区域表示我们尚不了解的部分。",
     "unplacedCaption": "部分维度仍未定位。空白区域表示我们尚不了解的部分。",

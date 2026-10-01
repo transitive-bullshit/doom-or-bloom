@@ -430,6 +430,40 @@
     "linkFailed": "共有リンクを作成できませんでした。もう一度お試しください。",
     "shareAgain": "リンクの準備ができました。もう一度「共有」をタップしてください。"
   },
+  "Compare": {
+    "title": "あなたと{name}の比較",
+    "friend": "あなたの友人",
+    "friendLabel": "友人",
+    "bucket": {
+      "very_aligned": "非常に近い",
+      "mostly_aligned": "おおむね近い",
+      "some_distance": "やや隔たりがある",
+      "worlds_apart": "大きく隔たっている"
+    },
+    "bucketUnknown": "判断するにはまだ早いです",
+    "outlook": {
+      "same": "見通しは近いです",
+      "more_hopeful": "あなたは{name}より期待を抱いています",
+      "more_worried": "あなたは{name}より懸念を抱いています"
+    },
+    "change": {
+      "same": "予想している変化の規模はほぼ同じです",
+      "more": "あなたは{name}より大きな変化を予想しています",
+      "less": "あなたは{name}より小さな変化を予想しています"
+    },
+    "unplaced": "どちらか一方がまだマップ上に完全には配置されていないため、いくつかの相違点はまだ明らかになっていません",
+    "pdoom": "P(doom)",
+    "you": "あなた",
+    "pdoomMissing": "未推定",
+    "sharedClosest": "2人とも{closest}の近くに位置しています",
+    "simulated": "{name}の点は、本人の回答ではなく、公開情報源からシミュレーションされたものです",
+    "private": "比較はブラウザ内で行われます。お互いの回答が相手に表示されることはありません",
+    "send": "あなたの結果を相手に送る",
+    "sendText": "私も自分のAIに対する世界観をマッピングしました。私の位置はこちらです",
+    "sendCopied": "リンクをコピーしました。相手に送り返してください。",
+    "viewPersona": "{name}の結果を見る",
+    "gone": "この比較リンクは無効になっているため、比較できるものはありません"
+  },
   "Conversation": {
     "tension": "AIについて、あなたは「{first}」と「{second}」と述べました。この2つはどのように両立しますか？",
     "clarification": "{topic}について、こちらでは「{claim}」と解釈しました。この解釈のどこを変更しますか？",
@@ -632,7 +666,10 @@
     "opening": "評価を開いています…",
     "openFailed": "評価を開けませんでした。もう一度お試しください。",
     "tryAgain": "もう一度試す",
-    "create": "新しい評価を作成する"
+    "create": "新しい評価を作成する",
+    "compareTitle": "比較する準備はできましたか？",
+    "compareDescription": "新しい評価を開始して比較するか、最新の結果を使用してください",
+    "compareLatest": "最新の結果と比較する"
   },
   "Map": {
     "question": "{axis, select, influence {人間は未来をどの程度形作れるでしょうか？} other {AIは世界をどのように変えるでしょうか？}}",
@@ -649,6 +686,7 @@
     "theirView": "その人の見解",
     "marker": "{name}: {claim}",
     "markerFallback": "シミュレーションされた世界観の位置",
+    "otherMarker": "{name}の位置",
     "unplacedTitle": "一部の次元はまだ配置されていません",
     "unplacedNote": "空白の領域は、まだ分かっていないことを示しています。",
     "unplacedCaption": "一部の次元はまだ配置されていません。空白の領域は、まだ分かっていないことを示しています。",
