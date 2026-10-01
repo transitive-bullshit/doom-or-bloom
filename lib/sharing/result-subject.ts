@@ -3,6 +3,11 @@ export type ResultSubject = {
   name: string
   avatar?: string
   possessivePronoun?: 'his' | 'her' | 'their'
+  /**
+   * A simulated user (the default), or a real person's card-only share link,
+   * whose point is “their view” rather than a simulation.
+   */
+  kind?: 'simulated' | 'shared'
 }
 
 /**

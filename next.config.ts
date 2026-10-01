@@ -71,6 +71,7 @@ const config: NextConfig = {
     '/users/*/opengraph-image': cardAssets,
     '/public/assessments/*/social-image.png': cardAssets,
     '/*/public/assessments/*/social-image.png': cardAssets,
+    '/*/s/*/social-image.png': cardAssets,
     '/*/assessments/*': authoredContent,
     '/*/public/assessments/*': authoredContent,
     '/*/users/*': authoredContent

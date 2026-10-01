@@ -87,6 +87,7 @@ export function Map({
           quality: 90
         }).props.src
       : undefined
+  const shared = subject?.kind === 'shared'
   const percent = (value: number) => Math.round(value * 100)
   const coordinate = (value: number | null) =>
     value === null ? t('unplaced') : t('outOf', { value: percent(value) })
@@ -117,9 +118,11 @@ export function Map({
       ? t('unsettled')
       : y.interpretation === 'tentative'
         ? t('estimate')
-        : subject
-          ? t('simulatedView')
-          : t('yourView')
+        : shared
+          ? t('theirView')
+          : subject
+            ? t('simulatedView')
+            : t('yourView')
   const pointWidth = pillWidth(pointLabel, 12, { minimum: 92 })
   const caption = { title: t('unplacedTitle'), note: t('unplacedNote') }
   const captionWidth = Math.min(
@@ -220,7 +223,7 @@ export function Map({
         >
           Bloom
         </text>
-        {!subject && (
+        {(!subject || shared) && (
           <>
             <text
               className='prism-axis-label'
@@ -444,9 +447,11 @@ export function Map({
               {point
                 ? y.interpretation === 'unsettled'
                   ? t('centerUnresolved')
-                  : subject
-                    ? t('simulatedPosition')
-                    : t('estimatedPosition')
+                  : shared
+                    ? t('sharedPosition')
+                    : subject
+                      ? t('simulatedPosition')
+                      : t('estimatedPosition')
                 : t('notDetermined')}
             </span>
             <span className='inline-flex items-center gap-2'>

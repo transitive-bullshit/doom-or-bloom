@@ -11,7 +11,7 @@ async function reachResult(page: import('@playwright/test').Page) {
   await skipSelfPlacement(page)
 }
 
-test('the result offers tagged share intents and publishing beside them', async ({
+test('the result shares a card-only link, created on first use, and publishing beside it', async ({
   page,
   context
 }) => {
@@ -21,28 +21,43 @@ test('the result offers tagged share intents and publishing beside them', async 
   await expect(bar).toBeVisible()
   await expect(bar).toContainText('Where do you land?')
   await expect(bar).toContainText('Your answers stay private')
-
-  const x = new URL(
-    (await bar.getByRole('link', { name: 'Post on X' }).getAttribute('href'))!
-  )
-  expect(x.origin + x.pathname).toBe('https://x.com/intent/post')
-  expect(new URL(x.searchParams.get('url')!).searchParams.get('ref')).toBe(
-    'share-x'
-  )
-  expect(x.searchParams.get('text')).toContain('Where do you land?')
+  const xLink = async () =>
+    new URL(
+      (await bar.getByRole('link', { name: 'Post on X' }).getAttribute('href'))!
+    )
+  // Until someone shares, no link exists and composers point home.
+  const before = await xLink()
+  expect(before.origin + before.pathname).toBe('https://x.com/intent/post')
+  expect(new URL(before.searchParams.get('url')!).pathname).toBe('/')
+  expect(before.searchParams.get('text')).toContain('Where do you land?')
   for (const name of ['Threads', 'Bluesky', 'LinkedIn'])
     await expect(bar.getByRole('link', { name })).toHaveAttribute(
       'target',
       '_blank'
     )
+  await expect(
+    bar.getByRole('button', { name: 'Stop sharing link' })
+  ).toHaveCount(0)
 
   await context.grantPermissions(['clipboard-read', 'clipboard-write'])
   await bar.getByRole('button', { name: 'Copy link' }).click()
+  await expect(page.getByText('Link copied.', { exact: true })).toBeVisible()
+  await expect(bar.getByLabel('Name on your link')).toHaveCount(0)
   const copied = new URL(
     await page.evaluate(() => navigator.clipboard.readText())
   )
-  expect(copied.pathname).toBe('/')
+  expect(copied.pathname).toMatch(/^\/s\/[A-Za-z0-9_-]{16}$/)
   expect(copied.searchParams.get('ref')).toBe('share-copy-link')
+  // The link is reused, so every composer previews the participant's card.
+  const after = new URL((await xLink()).searchParams.get('url')!)
+  expect(after.pathname).toBe(copied.pathname)
+  expect(after.searchParams.get('ref')).toBe('share-x')
+
+  // Stopping revokes it; the next share creates a new one.
+  await bar.getByRole('button', { name: 'Stop sharing link' }).click()
+  await expect(page.getByText('Sharing stopped')).toBeVisible()
+  expect((await page.request.get(copied.pathname)).status()).toBe(404)
+  expect(new URL((await xLink()).searchParams.get('url')!).pathname).toBe('/')
 
   // Publishing moved from above the conversation into the share bar.
   await bar.getByRole('button', { name: 'Publish assessment' }).click()

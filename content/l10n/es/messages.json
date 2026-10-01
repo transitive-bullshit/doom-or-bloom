@@ -1941,8 +1941,8 @@
       "reviewStatus": "machine"
     },
     "Share.privateNote": {
-      "sourceHash": "a7876284cc325976",
-      "model": "unrecorded",
+      "sourceHash": "9ea3bbc8f56c25a4",
+      "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
@@ -1991,6 +1991,60 @@
     "Share.downloadImage": {
       "sourceHash": "3ac575dcce244f93",
       "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.nameLabel": {
+      "sourceHash": "71201e73f6c0a573",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.nameHint": {
+      "sourceHash": "bd47a6a1aa93e1e9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.nameInvalid": {
+      "sourceHash": "fd01beb6ff977d18",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.linkActive": {
+      "sourceHash": "6b296132b77a1a30",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.stopSharing": {
+      "sourceHash": "f2e332ce77afc9cf",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.stopped": {
+      "sourceHash": "0196000c38753a75",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.stopFailed": {
+      "sourceHash": "d2bb54d5a78a8c5e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.linkFailed": {
+      "sourceHash": "8712478fa7551685",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Share.shareAgain": {
+      "sourceHash": "94443b451163ae55",
+      "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
@@ -3128,6 +3182,12 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "Map.theirView": {
+      "sourceHash": "9050fd9847413799",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "Map.marker": {
       "sourceHash": "f91ea9419bac352d",
       "model": "unrecorded",
@@ -3173,6 +3233,12 @@
     "Map.estimatedPosition": {
       "sourceHash": "526a2679ab35262c",
       "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Map.sharedPosition": {
+      "sourceHash": "50034de7f944b5bf",
+      "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
@@ -3527,6 +3593,108 @@
     "Profiles.profile": {
       "sourceHash": "d696a35bdd1883da",
       "model": "unrecorded",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.title": {
+      "sourceHash": "66cf7496a4172298",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.titleAnonymous": {
+      "sourceHash": "e718c703d5c64aa4",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.metaTitleNamed": {
+      "sourceHash": "769e71e76fcfe72b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.metaTitle": {
+      "sourceHash": "7d6d4cf6bb3baf42",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.description": {
+      "sourceHash": "f9b4d9a3d8f1be4d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.imageAlt": {
+      "sourceHash": "43c14a101daf881f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.sharedOn": {
+      "sourceHash": "9d72b36ba278b2e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.pdoom": {
+      "sourceHash": "acf6f0dd4009a176",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.pdoomStated": {
+      "sourceHash": "563da18673dd564a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.pdoomInferred": {
+      "sourceHash": "3d83f4441cb65926",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.pdoomMissing": {
+      "sourceHash": "dbbcf5111aaff4e7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.closest": {
+      "sourceHash": "653e506234de713e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.closestNone": {
+      "sourceHash": "8fec7c9aea962e93",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.ctaTitle": {
+      "sourceHash": "0e5e71fde46d63ae",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.ctaDescription": {
+      "sourceHash": "7fcb9d57b63bec10",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.ctaButton": {
+      "sourceHash": "2e6170bcc635d211",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Snapshot.privacy": {
+      "sourceHash": "71b828ce8373834b",
+      "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },

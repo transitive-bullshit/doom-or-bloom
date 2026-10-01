@@ -7,6 +7,8 @@ import { defaultLocale } from '@/i18n/config'
 import { ShareBar } from './share-bar'
 import { closestPersonas } from '@/lib/assessment/persona-matches'
 import { shareCaption } from '@/lib/sharing/share-caption'
+import { shareLinkPath } from '@/lib/sharing/share-links'
+import { useShareLink } from './use-share-link'
 import { ClosestPersonas } from './closest-personas'
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
 import { resultCardData } from '@/lib/sharing/card-data'
@@ -83,6 +85,20 @@ export function ResultView({
   const result = presentResult(state.result!)
   const feedback = useResultFeedback(state, !readOnly)
   const placed = resultPlacement(result)
+  const revealed = feedback.stage === 'revealed'
+  const current =
+    state.result?.evidenceRevision === state.evidenceRevision
+      ? state.result.evidenceRevision
+      : null
+  const shareLink = useShareLink({
+    assessmentId: state.id,
+    evidenceRevision: current,
+    enabled: !readOnly && revealed,
+    onCreated: (surface) =>
+      emitEvent(
+        makeEvent(state, 'share_link_created', { share_surface: surface })
+      )
+  })
   // When the participant's own placement and this result differ a lot, offer
   // one question about it. Answering adds evidence and returns an updated
   // result; it is offered once, on a current private result.
@@ -104,6 +120,7 @@ export function ResultView({
     )
     return state.answers.filter((answer) => ids.has(answer.id))
   }
+  const localized = (href: string) => getPathname({ href, locale })
   const renderCard = async () => {
     // The card renders in the page's language; English needs no parameter.
     const query = locale === defaultLocale ? '' : `?locale=${locale}`
@@ -266,17 +283,29 @@ export function ResultView({
           !readOnly && (
             <ShareBar
               caption={caption}
-              path={getPathname({
-                href: published ? `/public/assessments/${state.id}` : '/',
-                locale
-              })}
               published={published}
+              publicPath={localized(`/public/assessments/${state.id}`)}
+              homePath={localized('/')}
+              linkPath={
+                shareLink.link
+                  ? localized(shareLinkPath(shareLink.link.id))
+                  : null
+              }
+              activeLinks={shareLink.active}
+              ensureLink={async (name) =>
+                localized(
+                  shareLinkPath((await shareLink.ensure(name, 'result_bar')).id)
+                )
+              }
+              onStopSharing={shareLink.revoke}
               downloading={downloading}
               disabled={busy || reportDownloading}
-              onShare={(target) =>
+              onShare={(target, kind) =>
                 emitEvent(
                   makeEvent(state, 'share_intent_opened', {
-                    share_target: target
+                    share_target: target,
+                    share_surface: 'result_bar',
+                    link_kind: kind
                   })
                 )
               }

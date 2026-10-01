@@ -19,6 +19,8 @@ import type {
   SelfPlacementPayload
 } from '../assessments/feedback'
 import type { Publisher } from '../assessments/publisher'
+import type { CardData } from '../sharing/card'
+import type { ShareComparison } from '../sharing/share-links'
 import { user } from './auth-schema'
 
 export * from './auth-schema'
@@ -206,6 +208,45 @@ export const assessmentFeedback = pgTable(
     }).onDelete('cascade'),
     check('feedback_kind', sql`${t.kind} in ('self_placement', 'agreement')`),
     check('feedback_revision_nonnegative', sql`${t.evidenceRevision} >= 0`)
+  ]
+)
+
+// A card-only share link (/s/<id>): the card data of one displayed result and
+// the worldview values a recipient compares against, never answers. Ownership
+// follows the assessment; deleting it deletes its links, and revoking sets
+// `revoked_at`. At most one active link exists per result evidence revision.
+export const shareSnapshots = pgTable(
+  'share_snapshots',
+  {
+    id: text('id').primaryKey(),
+    assessmentId: uuid('assessment_id')
+      .notNull()
+      .references(() => assessments.id, { onDelete: 'cascade' }),
+    // The assessment snapshot whose result the card shows.
+    snapshotId: uuid('snapshot_id').notNull(),
+    evidenceRevision: integer('evidence_revision').notNull(),
+    card: jsonb('card').$type<CardData>().notNull(),
+    comparison: jsonb('comparison').$type<ShareComparison>().notNull(),
+    sharerName: text('sharer_name'),
+    createdAt: time('created_at'),
+    revokedAt: timestamp('revoked_at', { withTimezone: true })
+  },
+  (t) => [
+    index('share_snapshot_assessment').on(t.assessmentId),
+    uniqueIndex('one_active_share_snapshot')
+      .on(t.assessmentId, t.evidenceRevision)
+      .where(sql`${t.revokedAt} is null`),
+    foreignKey({
+      name: 'share_snapshot_snapshot',
+      columns: [t.assessmentId, t.snapshotId],
+      foreignColumns: [assessmentSnapshots.assessmentId, assessmentSnapshots.id]
+    }).onDelete('cascade'),
+    check('share_snapshot_id', sql`${t.id} ~ '^[A-Za-z0-9_-]{16}$'`),
+    check(
+      'share_snapshot_name',
+      sql`${t.sharerName} is null or char_length(${t.sharerName}) between 1 and 40`
+    ),
+    check('share_snapshot_revision', sql`${t.evidenceRevision} >= 0`)
   ]
 )
 
