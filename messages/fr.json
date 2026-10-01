@@ -738,6 +738,7 @@
     "none": "Aucun chiffre recensé",
     "notEstimated": "Non estimé",
     "range": "Plage plausible {range}",
+    "given": "Indiqué dans l’entretien simulé",
     "source": "Source",
     "asOf": "Au {date} : {count, plural, one {# leader d’opinion simulé} other {# leaders d’opinion simulés}}, {stated, plural, one {# avec un P(doom) déclaré publiquement} other {# avec un P(doom) déclaré publiquement}}",
     "note": "Les chiffres déclarés publiquement reprennent les propres propos de la personne, avec un lien vers la source. Les personnes définissent différemment le résultat et l’horizon temporel, de sorte que ces chiffres ne sont pas directement comparables. Les chiffres déduits proviennent d’un entretien simulé élaboré à partir des écrits publics de chaque personne : un chiffre fourni par la simulation ou une lecture approximative de ses réponses. Il ne s’agit pas de la propre estimation de la personne, et une simulation ne constitue pas une approbation.",

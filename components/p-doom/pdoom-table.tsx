@@ -182,9 +182,9 @@ export function PdoomTable({
                   <span className='font-semibold tabular-nums'>
                     {row.simulated.token}
                   </span>
-                  {row.simulated.range && (
+                  {row.simulated.detail && (
                     <span className='text-xs text-muted-foreground'>
-                      {row.simulated.range}
+                      {row.simulated.detail}
                     </span>
                   )}
                 </div>

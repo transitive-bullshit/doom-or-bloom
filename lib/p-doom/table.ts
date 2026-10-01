@@ -25,7 +25,8 @@ export type PdoomRow = {
     token: string
     /** For sorting; null when the reading is unclear. */
     value: number | null
-    range: string | null
+    /** The plausible range of an inferred number, or that the simulation gave it. */
+    detail: string | null
   } | null
 }
 
@@ -89,12 +90,14 @@ export function pdoomRows(
                 ? null
                 : (simulated.estimate ??
                   (simulated.bounds ? middle(simulated.bounds) : null)),
-            range:
-              simulated.source === 'inferred' && simulated.bounds
-                ? t('PdoomHub.range', {
-                    range: pdoomRangeLabel(t, simulated.bounds)
-                  })
-                : null
+            detail:
+              simulated.source === 'stated'
+                ? t('PdoomHub.given')
+                : simulated.source === 'inferred' && simulated.bounds
+                  ? t('PdoomHub.range', {
+                      range: pdoomRangeLabel(t, simulated.bounds)
+                    })
+                  : null
           }
         : null
     }

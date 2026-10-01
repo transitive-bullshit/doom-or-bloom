@@ -738,6 +738,7 @@
     "none": "Ninguno registrado",
     "notEstimated": "Sin estimar",
     "range": "Rango plausible: {range}",
+    "given": "Dado en la entrevista simulada",
     "source": "Fuente",
     "asOf": "A fecha de {date}: {count, plural, one {# líder de opinión simulado} other {# líderes de opinión simulados}}, {stated, plural, one {# con un P(doom) declarado públicamente} other {# con un P(doom) declarado públicamente}}",
     "note": "Las cifras declaradas públicamente son palabras de la propia persona e incluyen un enlace a la fuente. Cada persona define el resultado y el horizonte temporal de manera diferente, por lo que estas cifras no son directamente comparables. Las cifras inferidas proceden de una entrevista simulada creada a partir de los textos públicos de cada persona: una cifra proporcionada por la simulación o una interpretación aproximada de sus respuestas. No son estimaciones de la propia persona, y una simulación no constituye un respaldo.",

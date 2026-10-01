@@ -3650,6 +3650,12 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "PdoomHub.given": {
+      "sourceHash": "a726d96d77e08ec7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "PdoomHub.source": {
       "sourceHash": "0e570ca6fabe24f9",
       "model": "gpt-5.6-sol",

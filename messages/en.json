@@ -738,6 +738,7 @@
     "none": "None on record",
     "notEstimated": "Not estimated",
     "range": "Plausible range {range}",
+    "given": "Given in the simulated interview",
     "source": "Source",
     "asOf": "As of {date}: {count, plural, one {# simulated thought leader} other {# simulated thought leaders}}, {stated, plural, one {# with a publicly stated P(doom)} other {# with a publicly stated P(doom)}}",
     "note": "Publicly stated numbers are the person’s own words, with a link to the source. People define the outcome and time frame differently, so these numbers are not directly comparable. Inferred numbers come from a simulated interview built from each person’s public writing: a figure the simulation gave, or a rough reading of its answers. They are not the person’s own estimate, and a simulation is not an endorsement.",

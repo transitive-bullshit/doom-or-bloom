@@ -67,15 +67,19 @@ test('rows show a stated number only with its public source, beside the simulate
         dateTime: statement.publishedAt
       }
     },
-    simulated: { token: '≈8%', value: 0.08, range: 'Plausible range 3–20%' }
+    simulated: {
+      token: '≈8%',
+      value: 0.08,
+      detail: 'Plausible range 3–20%'
+    }
   })
   expect(rows[1]!.stated).toBeNull()
   expect(rows[1]!.simulated?.token).toBe('≈8%')
-  // A number the simulation gave keeps its words and has no inferred range.
+  // A number the simulation gave keeps its words and says where it came from.
   expect(rows[2]!.simulated).toEqual({
     token: 'around 30 percent',
     value: 0.3,
-    range: null
+    detail: 'Given in the simulated interview'
   })
   expect(rows[3]).toMatchObject({ stated: null, simulated: null })
 })
@@ -106,7 +110,7 @@ test('sorting keeps missing and unclear numbers last in either direction', () =>
             outcome: '',
             source: { title: '', url: '', date: '', dateTime: '' }
           },
-    simulated: { token: `${simulated}`, value: simulated, range: null }
+    simulated: { token: `${simulated}`, value: simulated, detail: null }
   })
   const rows = [
     row('b', 0.2),

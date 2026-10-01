@@ -738,6 +738,7 @@
     "none": "Tidak ada dalam catatan",
     "notEstimated": "Tidak diestimasi",
     "range": "Rentang yang masuk akal {range}",
+    "given": "Diberikan dalam wawancara simulasi",
     "source": "Sumber",
     "asOf": "Per {date}: {count, plural, one {# pemimpin opini simulasi} other {# pemimpin opini simulasi}}, {stated, plural, one {# dengan P(doom) yang dinyatakan secara publik} other {# dengan P(doom) yang dinyatakan secara publik}}",
     "note": "Angka yang dinyatakan secara publik berasal dari kata-kata orang tersebut sendiri, disertai tautan ke sumbernya. Setiap orang mendefinisikan hasil dan kerangka waktunya secara berbeda, sehingga angka-angka ini tidak dapat dibandingkan secara langsung. Angka yang disimpulkan berasal dari wawancara simulasi yang dibuat berdasarkan tulisan publik setiap orang: angka yang diberikan oleh simulasi, atau pembacaan kasar atas jawabannya. Angka tersebut bukan estimasi orang itu sendiri, dan simulasi bukanlah bentuk dukungan.",

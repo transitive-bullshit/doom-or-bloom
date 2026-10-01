@@ -738,6 +738,7 @@
     "none": "Keine Angabe dokumentiert",
     "notEstimated": "Nicht geschätzt",
     "range": "Plausibler Bereich {range}",
+    "given": "Im simulierten Interview angegeben",
     "source": "Quelle",
     "asOf": "Stand {date}: {count, plural, one {# simulierter Vordenker} other {# simulierte Vordenker}}, {stated, plural, one {# mit einem öffentlich geäußerten P(doom)} other {# mit einem öffentlich geäußerten P(doom)}}",
     "note": "Öffentlich geäußerte Zahlen stammen aus den eigenen Worten der jeweiligen Person und sind mit der Quelle verlinkt. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind diese Zahlen nicht direkt vergleichbar. Abgeleitete Zahlen stammen aus einem simulierten Interview, das auf den öffentlichen Beiträgen der jeweiligen Person beruht: entweder eine von der Simulation angegebene Zahl oder eine grobe Interpretation ihrer Antworten. Sie sind nicht die eigene Einschätzung der Person, und eine Simulation ist keine Empfehlung.",
