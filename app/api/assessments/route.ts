@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import {
   reserveDraft,
-  draftCookie,
+  draftPageCookies,
   draftApiCookie,
   draftCookieOptions
 } from '@/lib/assessments/drafts'
@@ -30,7 +30,8 @@ export async function POST(request: Request) {
     }
     const draft = reserveDraft(owner, input.requestKey, serverEnv().model)
     const cookieStore = await cookies()
-    cookieStore.set(draftCookie, draft.ticket, draftCookieOptions(draft.id))
+    for (const { name, options } of draftPageCookies(draft.id))
+      cookieStore.set(name, draft.ticket, options)
     cookieStore.set(draftApiCookie, draft.ticket, {
       ...draftCookieOptions(draft.id),
       path: `/api/assessments/${draft.id}`

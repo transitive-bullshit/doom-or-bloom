@@ -2,7 +2,7 @@ import { reportServerError } from '@/lib/server/error-reporting'
 import { cookies } from 'next/headers'
 import {
   loadAssessmentOrDraft,
-  draftCookie,
+  draftPageCookies,
   draftApiCookie,
   draftCookieOptions
 } from '@/lib/assessments/drafts'
@@ -59,7 +59,8 @@ export async function POST(
     )
     if (initial.unsaved) {
       const cookieStore = await cookies()
-      cookieStore.set(draftCookie, '', { ...draftCookieOptions(id), maxAge: 0 })
+      for (const { name, options } of draftPageCookies(id))
+        cookieStore.set(name, '', { ...options, maxAge: 0 })
       cookieStore.set(draftApiCookie, '', {
         ...draftCookieOptions(id),
         path: `/api/assessments/${id}`,

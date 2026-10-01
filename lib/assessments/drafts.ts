@@ -1,13 +1,18 @@
 import 'server-only'
 import { createHmac, timingSafeEqual } from 'node:crypto'
 import { z } from 'zod'
+import {
+  defaultLocale,
+  localizedPath,
+  locales,
+  type Locale
+} from '@/i18n/config'
 import { assessmentSchema } from '../assessment/schema'
 import { createAssessment } from '../assessment/state'
 import { AssessmentError } from './contracts'
 import { repository } from './server'
 import type { OwnedAssessment } from './repository'
 
-export const draftCookie = 'assessment-draft'
 export const draftApiCookie = 'assessment-draft-api'
 export const draftCookieOptions = (id: string) => ({
   path: `/assessments/${id}`,
@@ -16,6 +21,23 @@ export const draftCookieOptions = (id: string) => ({
   secure: process.env.NODE_ENV === 'production',
   maxAge: 365 * 24 * 60 * 60
 })
+
+/**
+ * The owner page has a URL in every locale (`/assessments/<id>`,
+ * `/es/assessments/<id>`), and a cookie path matches only one of them, so the
+ * ticket is set once per locale. Names differ because a response can set each
+ * cookie name only once.
+ */
+export const draftPageCookies = (id: string) =>
+  locales.map((locale) => ({
+    name: draftCookieName(locale),
+    options: {
+      ...draftCookieOptions(id),
+      path: localizedPath(`/assessments/${id}`, locale)
+    }
+  }))
+export const draftCookieName = (locale: Locale) =>
+  locale === defaultLocale ? 'assessment-draft' : `assessment-draft-${locale}`
 const ticketSchema = z.object({
   owner: z.string(),
   expires: z.number(),
