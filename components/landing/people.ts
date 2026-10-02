@@ -517,6 +517,20 @@ const catalog = [
     featured: person.featured ?? false
   })),
   {
+    id: 'superintelligence-philosopher',
+    name: 'Nick Bostrom',
+    shortName: 'Nick Bostrom',
+    slug: 'nick-bostrom',
+    xUsername: null,
+    xUrl: null,
+    avatar: '/personas/bostrom.jpg',
+    initials: 'NB',
+    possessivePronoun: 'his' as const,
+    stance: 'Understand the risks and the possibilities of superintelligence.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
     id: 'joscha-bach',
     name: 'Joscha Bach',
     shortName: 'Joscha Bach',
