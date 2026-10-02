@@ -381,7 +381,10 @@
   },
   {
     "id": "risk.chance",
-    "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+    "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
+    "formerTexts": [
+      "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine."
+    ],
     "family": "risk",
     "readingLevel": "general",
     "prerequisites": [],
@@ -705,7 +708,10 @@
   },
   {
     "id": "impact.overall",
-    "text": "Taking benefits and harms together, what overall impact do you expect AI to have?",
+    "text": "Taking benefits and harms together, what overall impact do you expect AI to have on our society?",
+    "formerTexts": [
+      "Taking benefits and harms together, what overall impact do you expect AI to have?"
+    ],
     "family": "concretization",
     "readingLevel": "general",
     "prerequisites": [],
@@ -786,7 +792,10 @@
   },
   {
     "id": "transformation.ultimate",
-    "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+    "text": "How much do you think AI will ultimately change the world?",
+    "formerTexts": [
+      "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?"
+    ],
     "family": "concretization",
     "readingLevel": "general",
     "prerequisites": [],
@@ -806,7 +815,10 @@
   },
   {
     "id": "outlook.lean.0-1",
-    "text": "Do you think catastrophe is the most likely outcome, or a serious risk alongside better possibilities?",
+    "text": "Do you see catastrophe as the most likely outcome, or do you view it as one serious risk alongside better possibilities?",
+    "formerTexts": [
+      "Do you think catastrophe is the most likely outcome, or a serious risk alongside better possibilities?"
+    ],
     "family": "concretization",
     "readingLevel": "general",
     "prerequisites": [],
@@ -848,7 +860,10 @@
   },
   {
     "id": "outlook.lean.2-3",
-    "text": "If you had to lean one way, do you expect AI to turn out more good than bad, or are you genuinely torn?",
+    "text": "Do you lean toward AI doing more good than bad, or are you genuinely torn?",
+    "formerTexts": [
+      "If you had to lean one way, do you expect AI to turn out more good than bad, or are you genuinely torn?"
+    ],
     "family": "concretization",
     "readingLevel": "general",
     "prerequisites": [],
@@ -869,7 +884,10 @@
   },
   {
     "id": "outlook.lean.3-4",
-    "text": "Do you think the upside will clearly outweigh the risks, or is it good on balance with real risks to manage?",
+    "text": "Will the benefits from AI clearly outweigh its risks, or is it good on balance with real risks to manage?",
+    "formerTexts": [
+      "Do you think the upside will clearly outweigh the risks, or is it good on balance with real risks to manage?"
+    ],
     "family": "concretization",
     "readingLevel": "general",
     "prerequisites": [],
@@ -890,7 +908,10 @@
   },
   {
     "id": "placement.more-hopeful",
-    "text": "You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?",
+    "text": "You placed yourself as more hopeful than your answers suggest. What gives you hope that we missed?",
+    "formerTexts": [
+      "You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?"
+    ],
     "family": "reflection",
     "readingLevel": "general",
     "prerequisites": [],
@@ -911,7 +932,10 @@
   },
   {
     "id": "placement.more-worried",
-    "text": "You placed yourself as more worried than your answers read. What worries you that we may have missed?",
+    "text": "You placed yourself as more worried than your answers suggest. What worries you that we missed?",
+    "formerTexts": [
+      "You placed yourself as more worried than your answers read. What worries you that we may have missed?"
+    ],
     "family": "reflection",
     "readingLevel": "general",
     "prerequisites": [],

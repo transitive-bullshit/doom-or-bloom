@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "id": "baseline",
-  "createdAt": "2026-09-30T01:56:32.688Z",
+  "createdAt": "2026-10-02T19:37:48.630Z",
   "mode": "synthetic",
   "authoring": "Codex-authored fictional answer scripts",
   "versions": {
-    "assessment": "0.7.1",
+    "assessment": "0.7.4",
     "content": "0.4.0-draft",
     "rubric": "0.1.0-draft",
     "model": "persona-script-v1"
   },
   "inputHash": "9890bbe8011f2a424d5e1517fb861c17c048a2abe8540d4f28b881ffdaa7b6fe",
-  "engineHash": "78563baf1a4d59cf1d0f705ba890fd3d60a343fe079e102a09c5277f0bda3123",
-  "contentHash": "cfbff3b3ce5f46fbd40304c4f1aa70b4fc8c5b9b81301b21b5e94fa2af1b0aae",
+  "engineHash": "6c5cdd9b54761d7823c865c657da20ef8f661b23e5edd31b0c99fe12c2eca4b8",
+  "contentHash": "f33121b189744ca3ae9ed3e1479e6dc0c4bdbc2dd147600d61253aefc2769160",
   "turns": 5,
   "requestBudget": null,
   "journeys": [
@@ -343,7 +343,7 @@
           "nextPrompt": {
             "id": "journey-38810ac8a94e2862a697:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -380,7 +380,7 @@
           "prompt": {
             "id": "journey-38810ac8a94e2862a697:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -608,7 +608,7 @@
           "nextPrompt": {
             "id": "journey-38810ac8a94e2862a697:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -645,7 +645,7 @@
           "prompt": {
             "id": "journey-38810ac8a94e2862a697:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -3013,7 +3013,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -3069,7 +3069,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.544Z",
+          "generatedAt": "2026-10-02T19:37:48.470Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -4621,7 +4621,7 @@
           "nextPrompt": {
             "id": "journey-468652ddc0b37243013b:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -4658,7 +4658,7 @@
           "prompt": {
             "id": "journey-468652ddc0b37243013b:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -4886,7 +4886,7 @@
           "nextPrompt": {
             "id": "journey-468652ddc0b37243013b:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -4923,7 +4923,7 @@
           "prompt": {
             "id": "journey-468652ddc0b37243013b:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -7291,7 +7291,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -7347,7 +7347,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.565Z",
+          "generatedAt": "2026-10-02T19:37:48.493Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -8869,7 +8869,7 @@
           "nextPrompt": {
             "id": "journey-71bf2c696abf3473377e:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -8906,7 +8906,7 @@
           "prompt": {
             "id": "journey-71bf2c696abf3473377e:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -9134,7 +9134,7 @@
           "nextPrompt": {
             "id": "journey-71bf2c696abf3473377e:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -9171,7 +9171,7 @@
           "prompt": {
             "id": "journey-71bf2c696abf3473377e:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -11539,7 +11539,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -11595,7 +11595,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.585Z",
+          "generatedAt": "2026-10-02T19:37:48.516Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -13184,7 +13184,7 @@
           "nextPrompt": {
             "id": "journey-14015ebf351c74d79e77:p2",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 2,
             "variant": "original",
@@ -13221,7 +13221,7 @@
           "prompt": {
             "id": "journey-14015ebf351c74d79e77:p2",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 2,
             "variant": "original",
@@ -15596,7 +15596,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -15646,7 +15646,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.601Z",
+          "generatedAt": "2026-10-02T19:37:48.534Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -16953,7 +16953,7 @@
           "nextPrompt": {
             "id": "journey-c6b589474b41e76ac338:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -16990,7 +16990,7 @@
           "prompt": {
             "id": "journey-c6b589474b41e76ac338:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -17218,7 +17218,7 @@
           "nextPrompt": {
             "id": "journey-c6b589474b41e76ac338:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -17255,7 +17255,7 @@
           "prompt": {
             "id": "journey-c6b589474b41e76ac338:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -19623,7 +19623,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -19679,7 +19679,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.620Z",
+          "generatedAt": "2026-10-02T19:37:48.553Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -21184,7 +21184,7 @@
           "nextPrompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -21221,7 +21221,7 @@
           "prompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -21449,7 +21449,7 @@
           "nextPrompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -21486,7 +21486,7 @@
           "prompt": {
             "id": "journey-894e1eaadc0d7ed633a8:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -23331,7 +23331,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -23384,7 +23384,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.637Z",
+          "generatedAt": "2026-10-02T19:37:48.571Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -24767,7 +24767,7 @@
           "nextPrompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -24804,7 +24804,7 @@
           "prompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -25032,7 +25032,7 @@
           "nextPrompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -25069,7 +25069,7 @@
           "prompt": {
             "id": "journey-33ef5c36b2c11531b3c4:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -26905,7 +26905,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -26957,7 +26957,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.650Z",
+          "generatedAt": "2026-10-02T19:37:48.586Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -28420,7 +28420,7 @@
           "nextPrompt": {
             "id": "journey-70802c3cf05fa0f0812f:p2",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 2,
             "variant": "original",
@@ -28457,7 +28457,7 @@
           "prompt": {
             "id": "journey-70802c3cf05fa0f0812f:p2",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 2,
             "variant": "original",
@@ -30832,7 +30832,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -30886,7 +30886,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.663Z",
+          "generatedAt": "2026-10-02T19:37:48.602Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -32171,7 +32171,7 @@
           "nextPrompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -32208,7 +32208,7 @@
           "prompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -32436,7 +32436,7 @@
           "nextPrompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -32473,7 +32473,7 @@
           "prompt": {
             "id": "journey-5bde7dc8469dbcbb9c88:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -34318,7 +34318,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -34369,7 +34369,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.675Z",
+          "generatedAt": "2026-10-02T19:37:48.617Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",
@@ -36323,7 +36323,7 @@
           "nextPrompt": {
             "id": "journey-037ec99e57e839e46284:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -36360,7 +36360,7 @@
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p2",
             "promptId": "transformation.ultimate",
-            "text": "Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?",
+            "text": "How much do you think AI will ultimately change the world?",
             "family": "concretization",
             "ordinal": 2,
             "variant": "original",
@@ -36588,7 +36588,7 @@
           "nextPrompt": {
             "id": "journey-037ec99e57e839e46284:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -36625,7 +36625,7 @@
           "prompt": {
             "id": "journey-037ec99e57e839e46284:p3",
             "promptId": "risk.chance",
-            "text": "What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe? A number or “no idea” is fine.",
+            "text": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
             "family": "risk",
             "ordinal": 3,
             "variant": "original",
@@ -38470,7 +38470,7 @@
       "result": {
         "evidenceRevision": 5,
         "versions": {
-          "assessment": "0.7.1",
+          "assessment": "0.7.4",
           "content": "0.4.0-draft",
           "rubric": "0.1.0-draft",
           "model": "persona-script-v1"
@@ -38520,7 +38520,7 @@
         "experiment": {
           "version": "worldview-v8",
           "model": "persona-script-v1",
-          "generatedAt": "2026-09-30T01:56:32.688Z",
+          "generatedAt": "2026-10-02T19:37:48.630Z",
           "evidenceRevision": 5,
           "influence": {
             "vector": "influence",

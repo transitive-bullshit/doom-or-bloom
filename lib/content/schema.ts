@@ -32,6 +32,9 @@ const id = z
 export const promptSchema = z.strictObject({
   id,
   text: z.string().min(1).max(1000),
+  // Earlier wordings of a reworded prompt. Saved histories that issued one
+  // stay valid; routing only ever issues `text`.
+  formerTexts: z.array(z.string().min(1).max(1000)).optional(),
   family: z.string().max(80),
   readingLevel: z.enum(['general', 'expert']),
   prerequisites: z.array(vectorSchema),

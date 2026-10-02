@@ -35,9 +35,9 @@ const placementQuestionGap = 0.25
 // so the display layer shows their translation by prompt ID.
 export const placementQuestions = {
   'placement.more-hopeful':
-    'You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?',
+    'You placed yourself as more hopeful than your answers suggest. What gives you hope that we missed?',
   'placement.more-worried':
-    'You placed yourself as more worried than your answers read. What worries you that we may have missed?',
+    'You placed yourself as more worried than your answers suggest. What worries you that we missed?',
   'placement.more-change':
     'You expect more change than your answers showed. What’s the biggest change you see coming?',
   'placement.less-change':

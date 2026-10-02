@@ -153,13 +153,16 @@ function validateSnapshot(state: Assessment, bundle: Bundle) {
   for (const [index, p] of state.prompts.entries()) {
     const authored = bundle.prompts.find((item) => item.id === p.promptId)
     // Local draft edits can delete a question. Keep its issued history without
-    // retaining a deleted catalog entry; known questions still validate exactly.
+    // retaining a deleted catalog entry; known questions still validate
+    // exactly, against the current wording or a recorded former one.
     if (
       (!authored && ['root', 'clarification'].includes(p.family)) ||
       (authored &&
         p.family !== 'clarification' &&
         p.variant !== 'tension' &&
-        (p.text !== authored.text || p.family !== authored.family)) ||
+        ((p.text !== authored.text &&
+          !authored.formerTexts?.includes(p.text)) ||
+          p.family !== authored.family)) ||
       p.ordinal !== index + 1 ||
       instances.has(p.id)
     )
