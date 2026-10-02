@@ -121,14 +121,14 @@ export default async function Page() {
         <CompareCta title={t('ctaTitle')} description={t('ctaDescription')} />
         <section
           aria-labelledby='pdoom-sources-title'
-          className='flex flex-col gap-5 border-t pt-10'
+          className='reference-breakout flex flex-col gap-5 border-t pt-10'
         >
           <h2 id='pdoom-sources-title'>{t('sourcesTitle')}</h2>
           <Footnotes footnotes={footnotes} />
         </section>
         <section
           aria-labelledby='pdoom-reading-title'
-          className='flex flex-col gap-6'
+          className='reference-breakout flex flex-col gap-6'
         >
           <div className='flex flex-col gap-2'>
             <h2 id='pdoom-reading-title'>{t('readingTitle')}</h2>

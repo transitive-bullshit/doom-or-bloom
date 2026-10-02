@@ -733,6 +733,8 @@
     "name": "Pemimpin opini",
     "stated": "P(doom) yang dinyatakan secara publik",
     "declined": "Tanpa angka",
+    "showAllSources": "Tampilkan semua {count} sumber",
+    "fewerSources": "Tampilkan lebih sedikit sumber",
     "cite": "Sumber {number}",
     "asOf": "Per {date}",
     "note": "Setiap angka berasal dari kata-kata orang tersebut sendiri, dengan tautan ke tempat mereka mengatakannya. Orang-orang mendefinisikan hasil dan kerangka waktunya secara berbeda, sehingga angka-angka tersebut tidak dapat dibandingkan secara langsung.",
@@ -742,7 +744,6 @@
     "proponents": "Siapa yang mengemukakannya",
     "disagreement": "Hal-hal yang tidak disepakati para ahli",
     "sourcesTitle": "Sumber",
-    "backToText": "Kembali ke teks untuk sumber {number}",
     "readingTitle": "Bacaan lebih lanjut",
     "readingGroups": {
       "start": "Mulai di sini",

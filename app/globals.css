@@ -374,6 +374,14 @@
     animation-delay: 0s !important;
   }
 }
+/* Reference lists (sources, readings) widen past the reading column on desktop
+   so long titles wrap less; see PRODUCT.md. */
+@media (min-width: 64rem) {
+  .reference-breakout {
+    width: min(60rem, calc(100vw - 3rem));
+    margin-left: calc(50% - min(60rem, calc(100vw - 3rem)) / 2);
+  }
+}
 .result-breakout {
   position: relative;
   left: 50%;

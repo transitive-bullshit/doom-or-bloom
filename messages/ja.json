@@ -733,6 +733,8 @@
     "name": "オピニオンリーダー",
     "stated": "公に表明されたP(doom)",
     "declined": "数値なし",
+    "showAllSources": "{count}件の情報源をすべて表示",
+    "fewerSources": "表示する情報源を減らす",
     "cite": "出典{number}",
     "asOf": "{date}時点",
     "note": "各数値は本人の発言に基づいており、その発言元へのリンクが付いています。結果と期間の定義は人によって異なるため、数値を直接比較することはできません。",
@@ -742,7 +744,6 @@
     "proponents": "それを主張する人々",
     "disagreement": "専門家の意見が分かれる点",
     "sourcesTitle": "出典",
-    "backToText": "出典{number}の本文に戻る",
     "readingTitle": "関連資料",
     "readingGroups": {
       "start": "まずはこちら",

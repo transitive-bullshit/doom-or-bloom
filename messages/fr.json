@@ -733,6 +733,8 @@
     "name": "Leader d’opinion",
     "stated": "P(doom) déclaré publiquement",
     "declined": "Aucun nombre",
+    "showAllSources": "Afficher les {count} sources",
+    "fewerSources": "Afficher moins de sources",
     "cite": "Source {number}",
     "asOf": "Au {date}",
     "note": "Chaque nombre provient des propres propos de la personne, avec un lien vers l’endroit où elle l’a indiqué. Les personnes définissent différemment l’issue et l’horizon temporel, de sorte que les nombres ne sont pas directement comparables.",
@@ -742,7 +744,6 @@
     "proponents": "Qui défend cette thèse",
     "disagreement": "Les points de désaccord entre experts",
     "sourcesTitle": "Sources",
-    "backToText": "Revenir au texte correspondant à la source {number}",
     "readingTitle": "Pour aller plus loin",
     "readingGroups": {
       "start": "Commencer ici",

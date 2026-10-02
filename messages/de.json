@@ -733,6 +733,8 @@
     "name": "Vordenker",
     "stated": "Öffentlich geäußertes P(doom)",
     "declined": "Keine Zahl",
+    "showAllSources": "Alle {count} Quellen anzeigen",
+    "fewerSources": "Weniger Quellen anzeigen",
     "cite": "Quelle {number}",
     "asOf": "Stand: {date}",
     "note": "Jede Zahl stammt aus den eigenen Worten der jeweiligen Person und ist mit der Stelle verlinkt, an der sie sie genannt hat. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind die Zahlen nicht direkt vergleichbar.",
@@ -742,7 +744,6 @@
     "proponents": "Wer dafür argumentiert",
     "disagreement": "Worüber Fachleute uneinig sind",
     "sourcesTitle": "Quellen",
-    "backToText": "Zurück zum Text für Quelle {number}",
     "readingTitle": "Weiterführende Literatur",
     "readingGroups": {
       "start": "Hier anfangen",

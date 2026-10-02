@@ -49,5 +49,5 @@ export function footnoteRegistry() {
   }
 }
 
-export const citationId = (number: number) => `cite-${number}`
+const citationId = (number: number) => `cite-${number}`
 export const footnoteId = (number: number) => `source-${number}`

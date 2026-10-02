@@ -733,6 +733,8 @@
     "name": "意见领袖",
     "stated": "公开表述的 P(doom)",
     "declined": "未提供数字",
+    "showAllSources": "显示全部 {count} 个来源",
+    "fewerSources": "显示较少来源",
     "cite": "来源 {number}",
     "asOf": "截至 {date}",
     "note": "每个数字都来自当事人的原话，并链接至其发表该言论的出处。不同人对结果和时间范围的定义不同，因此这些数字不能直接比较。",
@@ -742,7 +744,6 @@
     "proponents": "谁主张这一观点",
     "disagreement": "专家的分歧所在",
     "sourcesTitle": "来源",
-    "backToText": "返回来源 {number} 对应的正文",
     "readingTitle": "延伸阅读",
     "readingGroups": {
       "start": "从这里开始",

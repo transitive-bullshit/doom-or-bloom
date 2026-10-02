@@ -3620,6 +3620,18 @@
       "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
+    "PdoomHub.showAllSources": {
+      "sourceHash": "0b8f55850a36cb81",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.fewerSources": {
+      "sourceHash": "ad082304679af75e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
     "PdoomHub.cite": {
       "sourceHash": "d593ff5d9bc95ebc",
       "model": "gpt-5.6-sol",
@@ -3670,12 +3682,6 @@
     },
     "PdoomHub.sourcesTitle": {
       "sourceHash": "caf85b0888d78f1f",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-02",
-      "reviewStatus": "machine"
-    },
-    "PdoomHub.backToText": {
-      "sourceHash": "e3fb0d18acd228f3",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-02",
       "reviewStatus": "machine"

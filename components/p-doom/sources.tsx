@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { GlobeIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { citationId, footnoteId, type Footnote } from '@/lib/p-doom/citations'
+import { footnoteId, type Footnote } from '@/lib/p-doom/citations'
+import { MoreSources } from './more-sources'
 import { sourceIcon } from '@/lib/p-doom/favicons'
 import type { Reading } from '@/lib/p-doom/readings'
 
@@ -44,11 +45,18 @@ function SourceLink({ title, url }: { title: string; url: string }) {
   )
 }
 
-/** Numbered footnotes in citation order, each linking back to the text. */
-export function Footnotes({ footnotes }: { footnotes: Footnote[] }) {
-  const t = useTranslations('PdoomHub')
+/** Footnotes shown before the rest fold into a disclosure. */
+const visibleFootnotes = 10
+
+function FootnoteList({
+  footnotes,
+  start = 1
+}: {
+  footnotes: Footnote[]
+  start?: number
+}) {
   return (
-    <ol className='flex flex-col gap-3 text-sm leading-relaxed'>
+    <ol start={start} className='flex flex-col gap-3 text-sm leading-relaxed'>
       {footnotes.map(({ number, title, url, by, year }) => (
         <li
           key={number}
@@ -63,22 +71,35 @@ export function Footnotes({ footnotes }: { footnotes: Footnote[] }) {
             <p className='pl-6 text-muted-foreground'>
               <span lang='en'>{by}</span>
               {' · '}
-              <span className='whitespace-nowrap'>
-                {year}
-                {' · '}
-                <a
-                  href={`#${citationId(number)}`}
-                  aria-label={t('backToText', { number })}
-                  className='rounded-sm underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-2 focus-visible:outline-ring'
-                >
-                  ↩
-                </a>
-              </span>
+              <span className='whitespace-nowrap'>{year}</span>
             </p>
           </div>
         </li>
       ))}
     </ol>
+  )
+}
+
+/**
+ * Numbered footnotes in citation order. The first few show; the rest open on
+ * demand, or when a reader follows a marker to one of them.
+ */
+export function Footnotes({ footnotes }: { footnotes: Footnote[] }) {
+  const t = useTranslations('PdoomHub')
+  const shown = footnotes.slice(0, visibleFootnotes)
+  const more = footnotes.slice(visibleFootnotes)
+  return (
+    <div className='flex flex-col gap-3'>
+      <FootnoteList footnotes={shown} />
+      {more.length > 0 && (
+        <MoreSources
+          showLabel={t('showAllSources', { count: footnotes.length })}
+          hideLabel={t('fewerSources')}
+        >
+          <FootnoteList footnotes={more} start={visibleFootnotes + 1} />
+        </MoreSources>
+      )}
+    </div>
   )
 }
 

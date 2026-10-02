@@ -733,6 +733,8 @@
     "name": "Thought leader",
     "stated": "Publicly stated P(doom)",
     "declined": "No number",
+    "showAllSources": "Show all {count} sources",
+    "fewerSources": "Show fewer sources",
     "cite": "Source {number}",
     "asOf": "As of {date}",
     "note": "Each number comes from the person’s own words, linked to where they said it. People define the outcome and time frame differently, so the numbers are not directly comparable.",
@@ -742,7 +744,6 @@
     "proponents": "Who argues it",
     "disagreement": "Where experts disagree",
     "sourcesTitle": "Sources",
-    "backToText": "Back to the text for source {number}",
     "readingTitle": "Further reading",
     "readingGroups": {
       "start": "Start here",

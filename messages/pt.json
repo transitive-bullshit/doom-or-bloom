@@ -733,6 +733,8 @@
     "name": "Líder de opinião",
     "stated": "P(doom) declarado publicamente",
     "declined": "Nenhum número",
+    "showAllSources": "Mostrar todas as {count} fontes",
+    "fewerSources": "Mostrar menos fontes",
     "cite": "Fonte {number}",
     "asOf": "Em {date}",
     "note": "Cada número vem das próprias palavras da pessoa, com um link para onde ela o declarou. As pessoas definem o resultado e o horizonte temporal de maneiras diferentes, por isso os números não são diretamente comparáveis.",
@@ -742,7 +744,6 @@
     "proponents": "Quem defende essa ideia",
     "disagreement": "Em que os especialistas discordam",
     "sourcesTitle": "Fontes",
-    "backToText": "Voltar ao texto da fonte {number}",
     "readingTitle": "Leituras adicionais",
     "readingGroups": {
       "start": "Comece aqui",
