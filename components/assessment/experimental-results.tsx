@@ -54,6 +54,8 @@ export function ExperimentalResults({
   riskCompanion,
   subject,
   guess,
+  others,
+  mapControls,
   mapNote,
   feedback,
   share
@@ -66,6 +68,8 @@ export function ExperimentalResults({
   riskCompanion?: ReactNode
   subject?: ResultSubject
   guess?: MapPoint | null
+  others?: Array<MapPoint & { label: string; avatar?: string }>
+  mapControls?: ReactNode
   mapNote?: ReactNode
   feedback?: ReactNode
   share?: ReactNode
@@ -114,6 +118,8 @@ export function ExperimentalResults({
             label: item.label
           }))}
           guess={guess}
+          others={others}
+          controls={mapControls}
         />
         {mapNote}
       </div>
@@ -150,7 +156,13 @@ export function ExperimentalResults({
               <div>
                 <AxisRange
                   range={risk.bounds}
-                  value={risk.estimate ?? (risk.bounds[0] + risk.bounds[1]) / 2}
+                  // A publicly stated range or bound has no point to plot.
+                  value={
+                    risk.estimate ??
+                    (risk.source === 'public-statement'
+                      ? null
+                      : (risk.bounds[0] + risk.bounds[1]) / 2)
+                  }
                 />
                 <div className='mt-2 flex justify-between text-xs text-muted-foreground'>
                   <span>0%</span>

@@ -118,7 +118,7 @@ The [live generation record](research/canonical-persona-run-2026-09-21.md) recor
 
 `lib/journeys/public-pdoom-statements.ts` records verified numerical public statements with a date, URL, outcome, horizon and conditions. These are attached to the persona snapshot and applied to every available per-answer result and the final result after the real assessment has run. They do not change Jev inputs, routing, readiness, reasoning scores or map coordinates. Personal assessments and mechanical tests do not use this override.
 
-Overridden estimates have `source: public-statement`, a `publicStatement` provenance record, and the original engine value in `assessmentEstimate`. The displayed token preserves ranges and inequalities. The axis dot uses the range midpoint when no point estimate was stated; the UI explicitly explains this. A quoted range is not an interpretation confidence interval.
+Overridden estimates have `source: public-statement`, a `publicStatement` provenance record, and the original engine value in `assessmentEstimate`. The displayed token preserves ranges and inequalities. When no point estimate was stated, the axis line shows only the stated band, with no dot; the `/users` directory still sorts such a statement by its midpoint. A quoted range is not an interpretation confidence interval.
 
 The initial verified set covers Hinton (10–20%, January 2025, with later qualitative context), Marcus (approximately 3%), Dario (25%), Tegmark (>90% conditional on no regulation), and Noah (approximately 10% civilization collapse from biological misuse, with his separate 30% severe-destruction estimate retained as context). These endpoints are not interchangeable extinction forecasts. Unverified numbers attributed to other people remain excluded; their simulated answers continue through normal estimation.
 
@@ -166,6 +166,7 @@ The replay saves each completed snapshot for resumption. `--publish` requires th
 - `plan` calls Jev but writes nothing, and records what each page would show before and after.
 - `write` publishes each replay through the persisted generation records (`begin`/`finish`). It becomes a new public simulation and, being newer, the selected run.
 - Earlier runs stay at their own URLs. Pages, the map and nearest-persona comparisons refresh on the next deployment.
+- `plan --restate` applies a newly recorded public statement to a user whose brief is otherwise unchanged. It copies the selected `simulation_v1` run and applies the statement to the snapshot and every result, with no Jev call. The new run keeps the answers, scores and engine hashes of the run it copies; users without a statement, with historical payloads or with a different statement already applied are skipped.
 
 The September 29 run re-evaluated 135 of the 144 selected simulated users from engine 0.6 to 0.7.1, for $1.36 in Jev calls. The other nine keep their runs because the current engine would not offer a result from their one to three recorded answers. The share of simulated users at the “mixed” outlook fell from 19% to 12%, both ends grew, and the median inferred P(doom) moved from 7.9% to 4.7%. All eight verified public statements carried over.
 
@@ -216,6 +217,10 @@ The scoped live run completed after one substantial answer under the ordinary au
 Added 25 source-grounded simulated users to balance a catalog that sat mostly near the pragmatic-optimist group. They are critics of AI claims, pause and x-risk advocates, safety and policy writers, builders and commentators, and journalists and podcast hosts; two of them are pseudonymous accounts simulated from their own posts. Each brief has 8–12 inspected primary sources, and all are listed in the directory with `featured: false`. Eight verified first-person P(doom) statements are recorded with their outcomes, horizons and conditions. Three candidate numbers were excluded because their scope or attribution did not support a displayed estimate. The [batch record](research/simulated-users-batch-1-2026-10-01.md) links the five research records and gives run provenance, the fidelity review, coverage limits and verification.
 
 Scoped live runs (`--persona=<id> --turns=5 --max-requests=24 --max-cost=0.3`) used 106 GPT-5.6 Sol and 550 Jev requests, for an estimated $2.72. Six final operations hit Jev timeouts or the request budget and were completed by one bounded resume each. The selected runs are persisted locally only; the local collection retains all 144 prior records unchanged.
+
+## P(doom) sources — October 2, 2026
+
+An audit of all 169 simulated users added 14 verified public P(doom) statements (30 in all) and up to two missing sources to each of 28 briefs: the statements' backers, refusals and close statements, and a rewrite of Roko Mijic's outdated brief. Those 28 users were regenerated with scoped live runs for an estimated $2.15. The six whose briefs did not change got their statement through `personas:reevaluate plan --restate`, on copies of production's September 29 runs, with no inference. The selected runs are local only. The [research record](research/pdoom-sources-2026-10-02.md) lists the statements and exclusions, the sources per user, before and after placements, the fidelity review and the import command.
 
 ## Initial public-source expansion — September 20–21, 2026
 

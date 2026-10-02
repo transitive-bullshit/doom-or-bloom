@@ -32,6 +32,7 @@ export function PersonaPageContent({
   person: Pick<
     Example,
     | 'name'
+    | 'slug'
     | 'avatar'
     | 'xUrl'
     | 'profileUrl'
@@ -60,7 +61,11 @@ export function PersonaPageContent({
         result={person.result}
         reasoningDetails={false}
       />
-      <CompareCta name={person.name} className='mt-16' />
+      <CompareCta
+        name={person.name}
+        compare={`persona:${person.slug}`}
+        className='mt-16'
+      />
       {similar.length > 0 && (
         <div className='mt-10'>
           <SimilarWorldviews name={person.name} people={similar} />
@@ -110,7 +115,7 @@ export function PersonaPageContent({
       />
       <Separator className='my-20' />
       <WorldviewCtaCard />
-      <MobileCta />
+      <MobileCta compare={`persona:${person.slug}`} />
     </AnswerNavigationProvider>
   )
 }

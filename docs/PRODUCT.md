@@ -119,6 +119,18 @@ After two consecutive clearly unusable replies, play a full-screen paperclip emo
 
 Use a finite, lightweight decorative effect with an immediate dismiss action, at most once per assessment. Keep controls unobscured, support reduced motion with a static illustration, and avoid flashing, surprise audio, or a heavy physics simulation. The joke is about the app making paperclips, not about the participant's intelligence or sincerity. Repeated misses after the effect receive the same neutral recovery choices without replaying it. This is an MVP recovery state, independent of debug mode; exact copy and visual treatment belong in the representative editorial review.
 
+### Out of budget
+
+When Jev is out of budget, because the app's spend budget is used up or TypeSafe has no credits ([TYPESAFE.md](TYPESAFE.md#spend-budget)), the interview never shows a generic error. It shows one notice in Travis's casual first person, the same for both causes, without naming the provider or an amount:
+
+> **Doom or Bloom is taking a breather**
+>
+> Hey, Travis here. Doom or Bloom is a free side project, and it’s getting way more traffic than I expected, so it blew past its budget. Please be patient and check back in a few hours, or message me on X at @transitive_bs to follow up.
+
+- Opening an interview while Jev is out of budget shows the notice above the question, adding “You can still write your answer. It stays in this browser until you send it.” The answer field stays usable and sending is not blocked, since the budget may have recovered; a blocked send is saved like any other.
+- A blocked submission keeps its text in the saved operation and in the answer field. The notice replaces the generic failure alert, adds “Everything you wrote is saved, so you can retry right where you left off.” and offers **Retry saved submission**. It survives reload.
+- @transitive_bs links to x.com/transitive_bs in a new tab. The copy lives in `Interview.failure` and is translated into every enabled language.
+
 ### Results
 
 The result should lead with:
@@ -134,7 +146,7 @@ Optional actions:
 - Continue answering to sharpen provisional regions.
 - Supporting answers use bounded disclosure and whole-answer provenance; no selected-passage attribution is required for MVP.
 - Download a full report.
-- Download a personalized share card.
+- Download a personalized share card, or share a card-only link to it.
 - Copy or download the featured map as a PNG.
 - Start a separate assessment, or explicitly delete an owned assessment from the library.
 
@@ -148,7 +160,7 @@ Participants can continue answering on a private assessment. Published assessmen
 
 ### Supporting surfaces
 
-- `/` contains the landing map; `/assessment` is a start entry point, `/assessments/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/public/assessments/<id>` shows a published frozen assessment. `/users/[username]` shows a selected public persona simulation.
+- `/` contains the landing map; `/assessment` is a start entry point, `/assessments/<id>` contains the owned interview and result, `/assessments` lists owned assessments, and `/public/assessments/<id>` shows a published frozen assessment. `/s/<id>` shows only the card of a shared result. `/users/[username]` shows a selected public persona simulation.
 - `/p-doom` is a researched reference page. It answers “What is P(doom)?” in its first two sentences with the shared quotable definition, in two to four short neutral paragraphs with a link to the guide post, then:
   - **A curated table** (`lib/p-doom/curated.ts`) of about 20 prominent thought leaders, each linking to their profile: stated numbers from low to high, then four well-known people who decline to give one. A row shows the stated token exactly as written (“<5%”, “10–20%”, “>90%”) with a footnote marker and one short outcome, horizon or condition note; a refusal shows “No number”, an exact quote of under 15 words and a short note. Numbers are read by persona id from the verified statements (`lib/journeys/public-pdoom-statements.ts`) when the page renders, so a person without one is left out and a note written for another source gives way to the statement's outcome. The order is editorial: ranges and lower bounds are never sorted or plotted at a midpoint. The table shows no simulated estimates and has no sort controls. A dated “As of” line and a note that definitions differ go with it, and a card below links to `/users`, where every simulated thought leader can be searched and sorted, including by a rough inferred P(doom).
   - **How it could happen** (`lib/p-doom/scenarios.ts`): six scenarios, each with a short plain-language description, who argues it and where experts disagree, citing sources with numbered footnote markers.
@@ -160,7 +172,7 @@ Participants can continue answering on a private assessment. Published assessmen
 
 - `/blog` lists posts, newest first; `/blog/<slug>` shows one post ([BLOG.md](BLOG.md)). Posts are English under translated chrome.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
-- A concise privacy policy explains server retention, operator access, optional account recovery, whole-conversation publication, browser drafts and pseudonymous analytics.
+- A concise privacy policy explains server retention, operator access, optional account recovery, whole-conversation publication, card-only share links and comparisons, browser drafts and pseudonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.
 - The provocative name intentionally primes risk and upside; document this accepted framing bias. Preserve mixed, uncertain, and low-transformation positions throughout assessment and results.
 - Header: GitHub, X, and light/dark theme icon buttons.
@@ -182,9 +194,11 @@ Participants can continue answering on a private assessment. Published assessmen
 - Render cards on demand; persistent image storage is unnecessary. Persona cards remain labeled as simulations.
 - The owner's result shows a share bar directly under “Does this feel right?”. It previews the prefilled caption, then offers X, Threads, Bluesky and LinkedIn composer links, Copy link and Download image. Browsers with Web Share also get the native share sheet (text and link). Composers only prefill; nothing is posted or published without the participant.
 - Captions contain only the P(doom) token and the closest thought leader's name, never an @mention. A stated number is quoted as written, and an inferred one is credited to Doom or Bloom (“reads my P(doom) as ~8%”) because inferred values are rough. Without a number, the caption names the thought leader or falls back to a plain invitation.
-- Share links point to the home page, or to the public page once the assessment is published, and carry `?ref=share-<target>` for [attribution](MEASUREMENT.md#acquisition-attribution). No composer can attach an image, so an unpublished share shows the site card rather than a personal preview.
+- No composer can attach an image, so an unpublished result shares a **share link**: `/s/<id>`, a noindex page with only the card (the map point and range, P(doom) and the closest thought leaders) and a strong “Where do you land? / Compare now” invitation. Its link preview is the participant's own card. The first share action creates the link and later ones reuse it; a new result gets a new link. A published result keeps linking to its public page. Every link carries `?ref=share-<target>` for [attribution](MEASUREMENT.md#acquisition-attribution). Storage, revocation and caching are in [PERSISTENCE.md](PERSISTENCE.md#share-links).
+- Before the first share, an optional “Name on your link” field takes a first name for the page's heading (“Alex mapped their AI worldview”); left blank, it says “A friend”. Once a link exists the bar says anyone with it sees only the card and offers **Stop sharing link**, which revokes every link of the assessment. Changing the name means stopping and sharing again.
 - Publishing lives in the share bar, with the same confirmation. Per-map PNG copy and download actions stay in the map menu.
-- Pages people reach from a shared link offer a way in: public results show a compare prompt under the heading (“Where do you land vs <name>?”), and simulated-user pages show it between the results and the simulated answers. On simulated-user pages a “Similar worldviews” list follows it: up to six other simulated users nearest by the same distance as a participant’s closest worldviews, compared across the whole catalog, each a portrait and name linking to their profile. Phones get a pinned “Where do you land?” bar on both, because the header CTA is hidden below 640px. Public participant pages are titled “A shared AI worldview”, since visitors are not the owner.
+- **Compare with me.** A thought leader's compare invitation opens `/assessments?start=1&compare=persona:<slug>`, and a share link's opens `/assessments?start=1&compare=<id>`. The target is kept in browser storage for the new draft. Returning visitors land in their library, which offers “Compare with my latest result” beside starting a new assessment. After self-placement, the result shows the other person on the same map (a thought leader's portrait, or a labeled diamond for a friend) and a comparison card: an alignment bucket (Very aligned, Mostly aligned, Some distance, Worlds apart), plain differences in outlook and scale of change, both P(doom) values side by side, and for a friend a thought leader both land near. The bucket uses the weighted distance that ranks closest thought leaders; with too little in common it says “Too early to say” instead of guessing. A two-option switch under the map heading, **Just you** or **You vs <name>**, turns the comparison off and on: off leaves only the participant on the map and hides the comparison card. Arriving from a compare link shows it, as does comparing from the library again; the choice is kept with the target in browser storage, so a reload keeps it. A thought leader's comparison keeps the simulation label and links to their page. A friend's offers **Send them your result**, which shares the participant's own share link tagged `?ref=compare`. The comparison is computed in the participant's browser from public data; nothing about it is saved, and the two assessments are never linked. If the link was revoked, the result says the comparison was turned off.
+- Pages people reach from a shared link offer a way in: public results show a compare prompt under the heading (“Where do you land vs <name>?”), and simulated-user pages show it between the results and the simulated answers. On simulated-user pages a “Similar worldviews” list follows it: up to six other simulated users nearest by the same distance as a participant’s closest worldviews, compared across the whole catalog, each a portrait and name linking to their profile. Phones get a pinned “Where do you land?” bar on both, because the header CTA is hidden below 640px. On simulated-user pages both carry that thought leader as the compare target. Public participant pages are titled “A shared AI worldview”, since visitors are not the owner.
 
 ## Enduring non-goals
 
@@ -229,7 +243,7 @@ Use the same experimental result component in participant results, results after
 
 The P(doom) card distinguishes inferred estimates from stated or sourced estimates when those are available in a simulated-user result. Its single-axis line shows both the estimated point and interpretation range, using the same styling as other single-axis outputs. Keep its prose short.
 
-- A sourced public statement shows the number, then the person’s own words as a short quote, then one line with the outcome (plus the horizon when it names a time), then the source title linked with its month and year. Review notes and caveats stay in the report.
+- A sourced public statement shows the number, then the person’s own words as a short quote, then one line with the outcome (plus the horizon when it names a time), then the source title linked with its month and year. Review notes and caveats stay in the report. A stated range or bound without a stated point (10–90%, ≥10%) shows only its band on the axis line, never a midpoint dot.
 - Inferred and stated estimates get a single sentence naming where the number comes from, with the plausible range for inferred ones. Simulated-user results show the timeline, which groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. Their assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.
 
 ### Provisional result points and reasoning
@@ -264,7 +278,7 @@ Use the shared `content-column` utility for assessment, public assessment, perso
 
 Assessment visibility uses “publish” terminology: “Publish assessment,” “Published,” “Ready to publish,” and “Make private.” Reserve “share” for distributing a link or downloading an image for social sharing, not changing assessment visibility.
 
-Use shared shadcn breadcrumbs as the first page-content element, before the first h1, on all routes except the homepage and public assessment pages. Assessment details link back to My assessments; persona details show the handle. Do not duplicate these with ad hoc back links. Published assessments offer “Fork & continue answering” to start an independently editable assessment.
+Use shared shadcn breadcrumbs as the first page-content element, before the first h1, on all routes except the homepage, public assessment pages and share link pages. Assessment details link back to My assessments; persona details show the handle. Do not duplicate these with ad hoc back links. Published assessments offer “Fork & continue answering” to start an independently editable assessment.
 
 New assessment URLs begin as browser-backed drafts: keep them out of the library and assessment tables until the first answer is submitted. Reload and Back/Forward preserve unsubmitted typing. Failed first-answer processing remains recoverable once submitted. Public assessment and persona pages use 24px top padding. ProfileHeader has no outer margins; the containing page provides a single 32px gap below it. The identity description sits below its name and portrait.
 
@@ -273,6 +287,8 @@ Plain section disclosures use the shared DisclosureTrigger: align the label with
 The global header shows a compact animated “Map your own worldview” CTA for signed-out visitors, including anonymous browser sessions. Signed-in participants instead see their avatar with a shadcn account menu containing My assessments and Log out. The library retains sign-in access but no separate sign-out button. Persona identity headers have no CTA; their closing CTA remains.
 
 Conversation history shows only questions with submitted replies on both private and public assessments. An unanswered current question appears only while actively answering; viewing results hides it, and continuing the interview restores it without changing the saved assessment history.
+
+Share link pages are landing pages like public assessments: no breadcrumbs, the shared reading column, and a pinned “Where do you land? / Compare now” bar on phones.
 
 Missing routes and unavailable resources use the shared branded 404 page: the Be UI glitch graphic in the worldview palette, “404 · Page not found,” “Looks like you got lost in latent space,” and a Back to home link. Keep the status accessible independently of the decorative animation and respect reduced motion.
 

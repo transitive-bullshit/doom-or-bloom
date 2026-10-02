@@ -70,7 +70,7 @@ export const curatedPeople: CuratedPerson[] = [
   {
     id: 'abundance-risk-taker',
     note: {
-      url: 'https://singjupost.com/transcript-of-elon-musk-on-verdict-with-senator-ted-cruz-podcast-part-1/',
+      url: 'https://www.youtube.com/watch?v=BDREZmpkIz8',
       text: 'Killer robots annihilating humanity'
     }
   },

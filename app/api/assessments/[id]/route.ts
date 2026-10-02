@@ -11,7 +11,11 @@ import { privateHeaders, privateRequest } from '@/lib/assessments/http'
 import { submitSchema } from '@/lib/assessments/contracts'
 import { repository, evaluateAssessment } from '@/lib/assessments/server'
 import { readBoundedJson } from '@/lib/server/limits'
-import { refreshPublicAssessment } from '@/lib/assessments/public-cache'
+import {
+  refreshPublicAssessment,
+  refreshShareLinks
+} from '@/lib/assessments/public-cache'
+import { isBudgetFailure } from '@/lib/assessments/operation-failure'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 150
@@ -74,18 +78,24 @@ export async function POST(
           ? 200
           : 503
     if (status === 503)
-      reportServerError('assessment_failure_response', undefined, {
-        boundary: 'api',
-        requestId: result.operation.requestKey,
-        assessmentId: id,
-        operationId: result.operation.id,
-        application: {
-          effect: 'saved_operation_failure_returned',
-          operationStatus: result.operation.status,
-          publicFailureCategory: result.operation.failureCategory,
-          responseStatus: status
-        }
-      })
+      reportServerError(
+        'assessment_failure_response',
+        undefined,
+        {
+          boundary: 'api',
+          requestId: result.operation.requestKey,
+          assessmentId: id,
+          operationId: result.operation.id,
+          application: {
+            effect: 'saved_operation_failure_returned',
+            operationStatus: result.operation.status,
+            publicFailureCategory: result.operation.failureCategory,
+            responseStatus: status
+          }
+        },
+        // An over-budget block is expected and has its own budget signals.
+        isBudgetFailure(result.operation.failureCategory) ? 'warn' : 'error'
+      )
     return Response.json(result, {
       status,
       headers: privateHeaders
@@ -122,8 +132,9 @@ export async function DELETE(
 ) {
   return privateRequest(request, async (owner) => {
     const id = z.uuid().parse((await context.params).id)
-    await repository().remove(owner, id)
+    const { shareLinkIds } = await repository().remove(owner, id)
     refreshPublicAssessment(id, false)
+    refreshShareLinks(shareLinkIds)
     return new Response(null, { status: 204, headers: privateHeaders })
   })
 }

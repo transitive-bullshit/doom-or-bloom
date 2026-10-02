@@ -55,6 +55,7 @@ import type { Bundle } from '@/lib/content/loader'
 import type { Prompt } from '@/lib/content/schema'
 import { EvaluationFailure } from './provider'
 import { AssessmentFailure } from './assessment-failure'
+import { JevBudgetExhausted } from './jev-budget'
 import type { Provider } from './provider'
 import { projectionInput } from './projection-input'
 import {
@@ -331,26 +332,32 @@ export async function runAssessment(
           input && typeof input === 'object'
             ? (input as Record<string, unknown>)
             : {}
-        reportServerError('assessment_stage_failed', err, {
-          boundary: 'assessment_engine',
-          application: { effect: 'assessment_stage_aborted' },
-          requestId: logRequestId,
-          stage: name,
-          attempts,
-          remainingAttempts,
-          elapsedMs: Math.round(performance.now() - stageStarted),
-          stateBytes: Buffer.byteLength(JSON.stringify(input)),
-          questionBytes: Buffer.byteLength(JSON.stringify(questions)),
-          questionCount: Object.keys(questions).length,
-          fieldBytes: Object.fromEntries(
-            fields
-              .filter((key) => record[key] !== undefined)
-              .map((key) => [
-                key,
-                Buffer.byteLength(JSON.stringify(record[key]))
-              ])
-          )
-        })
+        reportServerError(
+          'assessment_stage_failed',
+          err,
+          {
+            boundary: 'assessment_engine',
+            application: { effect: 'assessment_stage_aborted' },
+            requestId: logRequestId,
+            stage: name,
+            attempts,
+            remainingAttempts,
+            elapsedMs: Math.round(performance.now() - stageStarted),
+            stateBytes: Buffer.byteLength(JSON.stringify(input)),
+            questionBytes: Buffer.byteLength(JSON.stringify(questions)),
+            questionCount: Object.keys(questions).length,
+            fieldBytes: Object.fromEntries(
+              fields
+                .filter((key) => record[key] !== undefined)
+                .map((key) => [
+                  key,
+                  Buffer.byteLength(JSON.stringify(record[key]))
+                ])
+            )
+          },
+          // A spend-budget block made no Jev call; it is expected, not a fault.
+          err instanceof JevBudgetExhausted ? 'warn' : 'error'
+        )
         if (!debugEnabled || !request.debug) throw err
         const failedStage: DebugStage = {
           name,

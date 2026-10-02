@@ -94,4 +94,8 @@ Doom or Bloom is a bounded, adaptive self-assessment of a participant's expectat
 
 **Share card**: A participant-controlled visual summary of a result intended for sharing beyond the assessment. _Avoid_: Public transcript
 
+**Share link**: A revocable, unguessable public URL (`/s/<id>`) that shows one result's share card and nothing else, created when the owner first shares a private result. It is not publication: the conversation stays private. _Avoid_: Public link, published assessment, snapshot when referring to an assessment snapshot
+
+**Comparison**: A participant's result shown beside a thought leader's or a share link's card, with an alignment bucket and plain differences, computed in the participant's browser. It is not stored and does not link the two assessments. _Avoid_: Match score, compatibility percentage
+
 **Anonymous ownership claim**: A transaction that transfers a browser’s assessments to its authenticated account, preserving IDs, snapshots and visibility. It then removes the anonymous owner and revokes its sessions. Failure leaves anonymous access intact. Authentication is optional; anonymous publications stay anonymous after sign-in. Explicit publication while signed in captures a public name, portrait, and profile link.

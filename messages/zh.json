@@ -423,7 +423,7 @@
     "over": "高于 {value}",
     "title": "分享你的结果",
     "publishedNote": "帖子会链接到你的公开页面，其中包括你的回答。",
-    "privateNote": "帖子仅包括你的 P(doom) 和最接近的意见领袖，并附有 Doom or Bloom 的链接。你的回答会保持私密。",
+    "privateNote": "帖子会链接到一个仅显示你结果的页面。你的回答将保持私密。",
     "share": "分享…",
     "x": "发布到 X",
     "copyFailed": "无法复制。请改为选择文本并复制。",
@@ -431,7 +431,16 @@
     "linkCopied": "链接已复制。",
     "copyLink": "复制链接",
     "preparingImage": "正在准备图片…",
-    "downloadImage": "下载图片"
+    "downloadImage": "下载图片",
+    "nameLabel": "链接上显示的名字",
+    "nameHint": "可选。留空时，页面会显示“一个朋友”",
+    "nameInvalid": "只能使用字母，例如 Alex 或 Mary-Jane",
+    "linkActive": "任何拥有你链接的人都只能看到你的卡片，绝不会看到你的回答",
+    "stopSharing": "停止分享链接",
+    "stopped": "已停止分享。已经显示你卡片的帖子可能仍会保留预览。",
+    "stopFailed": "无法停止分享。请重试。",
+    "linkFailed": "无法创建你的分享链接。请重试。",
+    "shareAgain": "你的链接已准备好。再次点击分享。"
   },
   "Conversation": {
     "tension": "关于 AI，你说过“{first}”和“{second}”——这两者如何相互契合？",
@@ -519,7 +528,11 @@
     "failedTitle": "此步骤未完成",
     "failure": {
       "providerRejected": "我们的 AI 提供商 TypeSafe (Jev) 拒绝了此请求。你的提交已保存。请稍后重试。",
-      "saved": "你的提交已保存，之前的进度未发生变化。准备好后请重试。"
+      "saved": "你的提交已保存，之前的进度未发生变化。准备好后请重试。",
+      "budgetTitle": "Doom or Bloom 正在稍作休整",
+      "budgetBody": "嗨，我是 Travis。Doom or Bloom 是一个免费的业余项目，访问量远超我的预期，因此预算已经用完了。请耐心等待，几小时后再回来查看，或者在 X 上给我发消息 <link>@transitive_bs</link> 以便跟进。",
+      "budgetSaved": "你写的所有内容都已保存，因此你可以从上次中断的地方重试。",
+      "budgetDraft": "你仍然可以撰写回答。在你发送之前，它会保存在此浏览器中。"
     },
     "retrySaved": "重试已保存的提交",
     "refreshProgress": "刷新已保存的进度",
@@ -635,7 +648,10 @@
     "opening": "正在打开你的评估…",
     "openFailed": "无法打开你的评估。请重试。",
     "tryAgain": "重试",
-    "create": "创建新评估"
+    "create": "创建新评估",
+    "compareTitle": "准备好比较了吗？",
+    "compareDescription": "开始新的评估以进行比较，或使用你的最新结果",
+    "compareLatest": "与我的最新结果比较"
   },
   "Map": {
     "question": "{axis, select, influence {人类能在多大程度上塑造未来？} other {AI将如何改变世界？}}",
@@ -672,7 +688,10 @@
     "copied": "地图已复制为 PNG。",
     "downloaded": "地图已下载为 PNG。",
     "copyFailed": "无法复制图片。请尝试改为下载。",
-    "downloadFailed": "无法下载图片。请重试。"
+    "downloadFailed": "无法下载图片。请重试。",
+    "theirView": "他们的观点",
+    "otherMarker": "{name}的位置",
+    "sharedPosition": "他们的估计位置"
   },
   "Feedback": {
     "aspects": {
@@ -848,6 +867,62 @@
     "publishing2": "来源卡片可能会嵌入 X 上的公开帖子。帖子文本会通过此应用的服务器获取；嵌入的个人资料图片、照片和视频则从 X 的媒体服务器加载。你的评估回答不会发送给 X。",
     "publishing3": "结果图片根据你的评估结果在此应用的服务器上生成，其中不包含原始回答。私密下载的内容不会公开托管；发布后还会提供社交分享预览。完整报告包含你的回答、证据和任何可用的本地诊断信息，因此请在分享前查看。",
     "publishing4": "匿名进度与你的浏览器会话关联。在可用的情况下，你可以选择使用 X 登录，以便在其他浏览器中恢复已关联的评估。清除 Cookie 或 Cookie 过期会导致你失去匿名访问权限，但不会删除服务器记录。未提交的草稿不会跨设备同步。系统会根据已保存的修订版本检查并发提交，以防止在无提示的情况下被覆盖。",
-    "cookie": "第一方 Cookie 会记录你的浏览器最初通过何种方式找到此网站：你访问时所用链接的标签（例如简报或帖子）、引荐网站的域名，以及你进入的页面类型。它不包含任何回答或完整地址。它会与你的匿名账户或 X 账户一同保存，并随匿名分析事件发送，以便我们了解哪些来源为此网站带来了访问者。"
+    "cookie": "第一方 Cookie 会记录你的浏览器最初通过何种方式找到此网站：你访问时所用链接的标签（例如简报或帖子）、引荐网站的域名，以及你进入的页面类型。它不包含任何回答或完整地址。它会与你的匿名账户或 X 账户一同保存，并随匿名分析事件发送，以便我们了解哪些来源为此网站带来了访问者。",
+    "shareLinks": "分享链接只会显示你的卡片：你的地图位置和范围、你的 P(doom) 和与你观点最接近的思想领袖；如果你添加了名字，还会显示名字。为了让其他人能够比较，链接还会以数字形式包含你的地图位置所依据的八项世界观评分。它绝不会显示你的回答或你展现出的推理能力，也不会被搜索引擎收录。任何获得链接的人都可以查看该卡片，直到你在结果页面选择“停止分享链接”或删除该评估；其他网站已经获取的预览可能仍会保留。当有人通过你的链接将其结果与你的结果进行比较时，比较会在其浏览器中进行：你们双方都看不到对方的回答，我们也不会记录比较了哪些结果。"
+  },
+  "Compare": {
+    "title": "你与{name}",
+    "view": "结果视图",
+    "justYou": "仅你自己",
+    "friend": "你的朋友",
+    "friendLabel": "一个朋友",
+    "bucket": {
+      "very_aligned": "非常一致",
+      "mostly_aligned": "大体一致",
+      "some_distance": "存在一些差异",
+      "worlds_apart": "截然不同"
+    },
+    "bucketUnknown": "现在下结论还太早",
+    "outlook": {
+      "same": "你们的前景看法接近",
+      "more_hopeful": "你比{name}更抱有希望",
+      "more_worried": "你比{name}更担忧"
+    },
+    "change": {
+      "same": "你们预期的变革规模大致相同",
+      "more": "你预期的变革比{name}更多",
+      "less": "你预期的变革比{name}更少"
+    },
+    "unplaced": "你们中有一人尚未在地图上完全定位，因此有些差异仍未确定",
+    "pdoom": "P(doom)",
+    "you": "你",
+    "pdoomMissing": "未估计",
+    "sharedClosest": "你们的位置都接近{closest}",
+    "simulated": "{name}的位置是根据公开来源模拟的，并非来自其本人回答",
+    "private": "比较在你的浏览器中进行。你们都看不到对方的回答",
+    "send": "将你的结果发给对方",
+    "sendText": "我也描绘了自己的AI世界观。这是我的立场",
+    "sendCopied": "链接已复制。把它发回给对方。",
+    "viewPersona": "查看{name}的结果",
+    "gone": "此比较链接已关闭，因此没有可比较的内容"
+  },
+  "Snapshot": {
+    "title": "{name}描绘了自己的AI世界观",
+    "titleAnonymous": "一位朋友描绘了他们的AI世界观",
+    "metaTitleNamed": "{name}的AI世界观",
+    "metaTitle": "你对AI的立场在哪里？",
+    "description": "在 Doom–Bloom 地图上查看这一AI世界观，然后用大约3分钟描绘你自己的世界观并进行比较。",
+    "imageAlt": "Doom–Bloom 与变革规模地图上的一个AI世界观，包含 P(doom) 和最接近的意见领袖",
+    "sharedOn": "分享于{date}",
+    "pdoom": "P(doom)",
+    "pdoomStated": "他们自己给出的数值",
+    "pdoomInferred": "根据他们的回答推断",
+    "pdoomMissing": "未估计",
+    "closest": "最接近的意见领袖",
+    "closestNone": "目前信息不足，无法匹配",
+    "ctaTitle": "你的立场在哪里？",
+    "ctaDescription": "用大约3分钟描绘你自己的AI世界观，然后在同一张地图上查看两者",
+    "ctaButton": "立即比较",
+    "privacy": "此页面仅显示他们的卡片，绝不会显示他们的回答。描绘你的世界观是免费的，除非你主动分享，否则你的回答会保持私密"
   }
 }

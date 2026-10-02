@@ -12,6 +12,7 @@ const landings = [
   'users',
   'user',
   'public_assessment',
+  'share_link',
   'assessment',
   'about',
   'pdoom',
@@ -67,6 +68,7 @@ function landingKind(pathname: string): FirstTouch['landing'] {
   if (pathname === '/users') return 'users'
   if (pathname.startsWith('/users/')) return 'user'
   if (pathname.startsWith('/public/assessments/')) return 'public_assessment'
+  if (pathname.startsWith('/s/')) return 'share_link'
   if (pathname === '/assessment' || pathname.startsWith('/assessments'))
     return 'assessment'
   if (pathname === '/about') return 'about'
@@ -163,13 +165,18 @@ export function firstTouchProperties(touch: FirstTouch | null) {
   }
 }
 
+// A share link's ID is a capability: pageviews report its route instead.
+const shareLinkPage = /^((?:\/[a-z]{2})?\/s\/)[^/]+/
+
 /**
  * Pageview URL for Vercel Web Analytics: path plus normalized UTM tags only.
  * A bare `?ref=` becomes `utm_source` so Vercel's source breakdown sees it.
+ * Share link pages report `/s/[id]` (with any locale prefix), never the ID.
  */
 export function attributionUrl(raw: string) {
   try {
     const url = new URL(raw)
+    url.pathname = url.pathname.replace(shareLinkPage, '$1[id]')
     const params = url.searchParams
     const tags = {
       utm_source: cleanTag(params.get('utm_source') ?? params.get('ref')),

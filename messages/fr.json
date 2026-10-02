@@ -423,7 +423,7 @@
     "over": "plus de {value}",
     "title": "Partager votre résultat",
     "publishedNote": "Les publications renvoient vers votre page publique, qui comprend vos réponses.",
-    "privateNote": "Les publications comprennent uniquement votre P(doom) et la figure d’opinion la plus proche, avec un lien vers Doom or Bloom. Vos réponses restent privées.",
+    "privateNote": "Les publications renvoient vers une page contenant uniquement vos résultats. Vos réponses restent privées.",
     "share": "Partager…",
     "x": "Publier sur X",
     "copyFailed": "Impossible de copier. Sélectionnez le texte et copiez-le à la place.",
@@ -431,7 +431,16 @@
     "linkCopied": "Lien copié.",
     "copyLink": "Copier le lien",
     "preparingImage": "Préparation de l’image…",
-    "downloadImage": "Télécharger l’image"
+    "downloadImage": "Télécharger l’image",
+    "nameLabel": "Nom affiché sur votre lien",
+    "nameHint": "Facultatif. Laissez ce champ vide et la page affichera « Un ami »",
+    "nameInvalid": "Utilisez uniquement des lettres, comme Alex ou Mary-Jane",
+    "linkActive": "Toute personne disposant de votre lien voit uniquement votre fiche, jamais vos réponses",
+    "stopSharing": "Désactiver le lien de partage",
+    "stopped": "Partage désactivé. Les publications qui affichent déjà votre fiche peuvent conserver leur aperçu.",
+    "stopFailed": "Impossible de désactiver le partage. Veuillez réessayer.",
+    "linkFailed": "Impossible de créer votre lien de partage. Veuillez réessayer.",
+    "shareAgain": "Votre lien est prêt. Appuyez à nouveau sur Partager."
   },
   "Conversation": {
     "tension": "À propos de l’IA, vous avez dit « {first} » et « {second} » — comment ces deux affirmations s’articulent-elles ?",
@@ -519,7 +528,11 @@
     "failedTitle": "Cette étape ne s’est pas terminée",
     "failure": {
       "providerRejected": "Notre fournisseur d’IA, TypeSafe (Jev), a rejeté cette requête. Votre réponse est enregistrée. Veuillez réessayer plus tard.",
-      "saved": "Votre réponse est enregistrée et votre progression précédente reste inchangée. Veuillez réessayer lorsque vous serez prêt."
+      "saved": "Votre réponse est enregistrée et votre progression précédente reste inchangée. Veuillez réessayer lorsque vous serez prêt.",
+      "budgetTitle": "Doom or Bloom fait une pause",
+      "budgetBody": "Bonjour, ici Travis. Doom or Bloom est un projet personnel gratuit, et il reçoit beaucoup plus de trafic que je ne l’avais prévu, si bien qu’il a dépassé son budget. Merci de patienter et de revenir dans quelques heures, ou envoyez-moi un message sur X à <link>@transitive_bs</link> pour en savoir plus.",
+      "budgetSaved": "Tout ce que vous avez écrit est enregistré, vous pourrez donc réessayer exactement là où vous vous êtes arrêté.",
+      "budgetDraft": "Vous pouvez toujours rédiger votre réponse. Elle reste dans ce navigateur jusqu’à ce que vous l’envoyiez."
     },
     "retrySaved": "Réessayer d’envoyer la réponse enregistrée",
     "refreshProgress": "Actualiser la progression enregistrée",
@@ -635,7 +648,10 @@
     "opening": "Ouverture de votre évaluation…",
     "openFailed": "Nous n’avons pas pu ouvrir votre évaluation. Veuillez réessayer.",
     "tryAgain": "Réessayer",
-    "create": "Créer une nouvelle évaluation"
+    "create": "Créer une nouvelle évaluation",
+    "compareTitle": "Prêt à comparer ?",
+    "compareDescription": "Commencez une nouvelle évaluation pour comparer, ou utilisez votre résultat le plus récent",
+    "compareLatest": "Comparer avec mon résultat le plus récent"
   },
   "Map": {
     "question": "{axis, select, influence {Dans quelle mesure les humains peuvent-ils façonner l’avenir ?} other {Comment l’IA changera-t-elle le monde ?}}",
@@ -672,7 +688,10 @@
     "copied": "Carte copiée au format PNG.",
     "downloaded": "Carte téléchargée au format PNG.",
     "copyFailed": "Impossible de copier l’image. Essayez plutôt de la télécharger.",
-    "downloadFailed": "Impossible de télécharger l’image. Veuillez réessayer."
+    "downloadFailed": "Impossible de télécharger l’image. Veuillez réessayer.",
+    "theirView": "Leur point de vue",
+    "otherMarker": "Position de {name}",
+    "sharedPosition": "Leur position estimée"
   },
   "Feedback": {
     "aspects": {
@@ -848,6 +867,62 @@
     "publishing2": "Les fiches de sources peuvent intégrer des publications X publiques. Le texte des publications est récupéré par le serveur de cette application ; les images de profil, photos et vidéos intégrées sont chargées depuis les serveurs multimédias de X. Vos réponses à l’évaluation ne sont pas envoyées à X.",
     "publishing3": "Les images de résultats sont générées sur le serveur de cette application à partir des résultats de votre évaluation. Elles ne contiennent aucune réponse brute. Les téléchargements privés ne sont pas hébergés publiquement ; la publication rend également disponible un aperçu pour les réseaux sociaux. Les rapports complets contiennent vos réponses, les éléments probants et tous les diagnostics locaux disponibles ; examinez-les donc avant de les partager.",
     "publishing4": "La progression anonyme est liée à votre session de navigateur. La connexion facultative avec X, lorsqu’elle est disponible, vous permet de récupérer les évaluations liées dans un autre navigateur. La suppression ou l’expiration des cookies entraîne la perte de l’accès anonyme, mais ne supprime pas les enregistrements du serveur. Les brouillons non envoyés ne sont pas synchronisés entre les appareils. Les envois simultanés sont comparés à la révision enregistrée afin d’éviter les écrasements silencieux.",
-    "cookie": "Un cookie interne mémorise comment votre navigateur a trouvé ce site pour la première fois : la balise du lien par lequel vous êtes arrivé (par exemple, une newsletter ou une publication), le domaine du site web référent et le type de page sur laquelle vous êtes arrivé. Il ne contient aucune réponse ni aucune adresse complète. Il est enregistré avec votre compte anonyme ou X et envoyé avec les événements d’analyse anonymes afin que nous puissions déterminer quels endroits amènent les visiteurs ici."
+    "cookie": "Un cookie interne mémorise comment votre navigateur a trouvé ce site pour la première fois : la balise du lien par lequel vous êtes arrivé (par exemple, une newsletter ou une publication), le domaine du site web référent et le type de page sur laquelle vous êtes arrivé. Il ne contient aucune réponse ni aucune adresse complète. Il est enregistré avec votre compte anonyme ou X et envoyé avec les événements d’analyse anonymes afin que nous puissions déterminer quels endroits amènent les visiteurs ici.",
+    "shareLinks": "Un lien de partage affiche uniquement votre fiche : votre point et votre plage sur la carte, votre P(doom) et les leaders d’opinion les plus proches de votre point de vue, ainsi qu’un prénom si vous en ajoutez un. Pour permettre aux autres de comparer, il contient également, sous forme de nombres, les huit scores de vision du monde qui sous-tendent votre point sur la carte. Il n’affiche jamais vos réponses ni votre raisonnement démontré et n’est pas indexé par les moteurs de recherche. Toute personne disposant du lien peut voir la fiche jusqu’à ce que vous choisissiez Arrêter de partager le lien sur votre résultat ou que vous supprimiez l’évaluation ; les aperçus que d’autres sites ont déjà récupérés peuvent subsister. Lorsqu’une personne compare son résultat au vôtre à l’aide de votre lien, la comparaison s’effectue dans son navigateur : aucun de vous ne voit les réponses de l’autre, et nous n’enregistrons pas quels résultats ont été comparés."
+  },
+  "Compare": {
+    "title": "Vous et {name}",
+    "view": "Vue des résultats",
+    "justYou": "Vous uniquement",
+    "friend": "votre ami",
+    "friendLabel": "Un ami",
+    "bucket": {
+      "very_aligned": "Très proches",
+      "mostly_aligned": "Globalement proches",
+      "some_distance": "Une certaine distance",
+      "worlds_apart": "Aux antipodes"
+    },
+    "bucketUnknown": "Trop tôt pour le dire",
+    "outlook": {
+      "same": "Vos perspectives sont proches",
+      "more_hopeful": "Vous êtes plus optimiste que {name}",
+      "more_worried": "Vous êtes plus inquiet que {name}"
+    },
+    "change": {
+      "same": "Vous vous attendez à une ampleur de changement à peu près identique",
+      "more": "Vous vous attendez à davantage de changement que {name}",
+      "less": "Vous vous attendez à moins de changement que {name}"
+    },
+    "unplaced": "L’un de vous n’est pas encore entièrement positionné sur la carte, certaines différences restent donc ouvertes",
+    "pdoom": "P(doom)",
+    "you": "Vous",
+    "pdoomMissing": "Non estimée",
+    "sharedClosest": "Vous vous situez tous les deux près de {closest}",
+    "simulated": "Le point de {name} est simulé à partir de sources publiques, et non de ses propres réponses",
+    "private": "Comparaison effectuée dans votre navigateur. Aucun de vous ne voit les réponses de l’autre",
+    "send": "Envoyez-lui votre résultat",
+    "sendText": "J’ai moi aussi cartographié ma vision du monde concernant l’IA. Voici où je me situe",
+    "sendCopied": "Lien copié. Renvoyez-le-lui.",
+    "viewPersona": "Voir le résultat de {name}",
+    "gone": "Ce lien de comparaison a été désactivé, il n’y a donc rien à comparer"
+  },
+  "Snapshot": {
+    "title": "{name} a cartographié sa vision du monde concernant l’IA",
+    "titleAnonymous": "Une personne de votre entourage a cartographié sa vision du monde concernant l’IA",
+    "metaTitleNamed": "La vision du monde de {name} concernant l’IA",
+    "metaTitle": "Où vous situez-vous concernant l’IA ?",
+    "description": "Découvrez cette vision du monde concernant l’IA sur la carte Doom–Bloom, puis cartographiez la vôtre en environ 3 minutes et comparez-les.",
+    "imageAlt": "Une vision du monde concernant l’IA sur la carte Doom–Bloom et de l’ampleur de la transformation, avec P(doom) et les leaders d’opinion les plus proches",
+    "sharedOn": "Partagé le {date}",
+    "pdoom": "P(doom)",
+    "pdoomStated": "Sa propre estimation",
+    "pdoomInferred": "Déduit de ses réponses",
+    "pdoomMissing": "Non estimé",
+    "closest": "Leaders d’opinion les plus proches",
+    "closestNone": "Pas encore assez d’éléments pour établir une correspondance",
+    "ctaTitle": "Où vous situez-vous ?",
+    "ctaDescription": "Cartographiez votre propre vision du monde concernant l’IA en environ 3 minutes, puis affichez les deux sur une même carte",
+    "ctaButton": "Comparer maintenant",
+    "privacy": "Cette page montre uniquement sa fiche, jamais ses réponses. Cartographier la vôtre est gratuit, et vos réponses restent privées sauf si vous les partagez"
   }
 }

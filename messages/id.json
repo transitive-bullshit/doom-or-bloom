@@ -423,7 +423,7 @@
     "over": "di atas {value}",
     "title": "Bagikan hasil Anda",
     "publishedNote": "Postingan tertaut ke halaman publik Anda, yang mencakup jawaban Anda.",
-    "privateNote": "Postingan hanya mencantumkan P(doom) dan tokoh pemikir terdekat Anda, dengan tautan ke Doom or Bloom. Jawaban Anda tetap bersifat pribadi.",
+    "privateNote": "Postingan menautkan ke halaman yang hanya berisi hasil Anda. Jawaban Anda tetap bersifat pribadi.",
     "share": "Bagikan…",
     "x": "Posting di X",
     "copyFailed": "Tidak dapat menyalin. Pilih teks lalu salin sebagai gantinya.",
@@ -431,7 +431,16 @@
     "linkCopied": "Tautan disalin.",
     "copyLink": "Salin tautan",
     "preparingImage": "Menyiapkan gambar…",
-    "downloadImage": "Unduh gambar"
+    "downloadImage": "Unduh gambar",
+    "nameLabel": "Nama pada tautan Anda",
+    "nameHint": "Opsional. Biarkan kosong dan halaman akan menampilkan “Seorang teman”",
+    "nameInvalid": "Gunakan huruf saja, seperti Alex atau Mary-Jane",
+    "linkActive": "Siapa pun yang memiliki tautan Anda hanya dapat melihat kartu Anda, bukan jawaban Anda",
+    "stopSharing": "Berhenti membagikan tautan",
+    "stopped": "Berbagi dihentikan. Postingan yang sudah menampilkan kartu Anda mungkin tetap menampilkan pratinjaunya.",
+    "stopFailed": "Tidak dapat berhenti berbagi. Silakan coba lagi.",
+    "linkFailed": "Tidak dapat membuat tautan berbagi Anda. Silakan coba lagi.",
+    "shareAgain": "Tautan Anda sudah siap. Ketuk Bagikan lagi."
   },
   "Conversation": {
     "tension": "Tentang AI, Anda mengatakan “{first}” dan “{second}” — bagaimana keduanya selaras?",
@@ -519,7 +528,11 @@
     "failedTitle": "Langkah ini tidak selesai",
     "failure": {
       "providerRejected": "Penyedia AI kami, TypeSafe (Jev), menolak permintaan ini. Jawaban Anda telah disimpan. Silakan coba lagi nanti.",
-      "saved": "Jawaban Anda telah disimpan dan progres Anda sebelumnya tidak berubah. Silakan coba lagi saat Anda siap."
+      "saved": "Jawaban Anda telah disimpan dan progres Anda sebelumnya tidak berubah. Silakan coba lagi saat Anda siap.",
+      "budgetTitle": "Doom or Bloom sedang beristirahat sejenak",
+      "budgetBody": "Hai, Travis di sini. Doom or Bloom adalah proyek sampingan gratis, dan situs ini mendapatkan jauh lebih banyak kunjungan daripada yang saya perkirakan, sehingga anggarannya terlampaui. Mohon bersabar dan periksa kembali dalam beberapa jam, atau kirimi saya pesan di X melalui <link>@transitive_bs</link> untuk menindaklanjuti.",
+      "budgetSaved": "Semua yang Anda tulis telah disimpan, jadi Anda dapat mencoba lagi tepat dari bagian terakhir yang Anda tinggalkan.",
+      "budgetDraft": "Anda masih dapat menulis jawaban Anda. Jawaban tersebut tetap tersimpan di peramban ini hingga Anda mengirimkannya."
     },
     "retrySaved": "Coba kirim kembali jawaban yang disimpan",
     "refreshProgress": "Muat ulang progres yang disimpan",
@@ -635,7 +648,10 @@
     "opening": "Membuka penilaian Anda…",
     "openFailed": "Kami tidak dapat membuka penilaian Anda. Silakan coba lagi.",
     "tryAgain": "Coba lagi",
-    "create": "Buat penilaian baru"
+    "create": "Buat penilaian baru",
+    "compareTitle": "Siap membandingkan?",
+    "compareDescription": "Mulai penilaian baru untuk membandingkan, atau gunakan hasil terbaru Anda",
+    "compareLatest": "Bandingkan dengan hasil terbaru saya"
   },
   "Map": {
     "question": "{axis, select, influence {Seberapa besar manusia dapat membentuk masa depan?} other {Bagaimana AI akan mengubah dunia?}}",
@@ -672,7 +688,10 @@
     "copied": "Peta disalin sebagai PNG.",
     "downloaded": "Peta diunduh sebagai PNG.",
     "copyFailed": "Gambar tidak dapat disalin. Coba unduh sebagai gantinya.",
-    "downloadFailed": "Gambar tidak dapat diunduh. Silakan coba lagi."
+    "downloadFailed": "Gambar tidak dapat diunduh. Silakan coba lagi.",
+    "theirView": "Pandangan mereka",
+    "otherMarker": "Posisi {name}",
+    "sharedPosition": "Estimasi posisi mereka"
   },
   "Feedback": {
     "aspects": {
@@ -848,6 +867,62 @@
     "publishing2": "Kartu sumber dapat menyematkan postingan publik X. Teks postingan diambil melalui server aplikasi ini; gambar profil, foto, dan video yang disematkan dimuat dari server media X. Jawaban penilaian Anda tidak dikirimkan ke X.",
     "publishing3": "Gambar hasil dibuat di server aplikasi ini dari hasil penilaian Anda. Gambar tersebut tidak memuat jawaban mentah. Unduhan privat tidak dihosting secara publik; memublikasikan juga menyediakan pratinjau untuk media sosial. Laporan lengkap memuat jawaban Anda, bukti, dan diagnostik lokal yang tersedia, jadi tinjaulah sebelum membagikannya.",
     "publishing4": "Progres anonim terikat pada sesi browser Anda. Opsi masuk dengan X, jika tersedia, memungkinkan Anda memulihkan penilaian yang ditautkan di browser lain. Menghapus cookie atau membiarkannya kedaluwarsa menghilangkan akses anonim, tetapi tidak menghapus catatan di server. Draf yang belum dikirim tidak disinkronkan antarperangkat. Pengiriman serentak diperiksa terhadap revisi yang tersimpan untuk mencegah penimpaan tanpa pemberitahuan.",
-    "cookie": "Cookie pihak pertama mengingat bagaimana browser Anda pertama kali menemukan situs ini: tag tautan yang Anda gunakan saat tiba (seperti buletin atau postingan), domain situs web perujuk, dan jenis halaman tempat Anda mendarat. Cookie ini tidak memuat jawaban maupun alamat lengkap. Cookie ini disimpan bersama akun anonim atau akun X Anda dan dikirim bersama peristiwa analitik anonim agar kami dapat mengetahui tempat mana yang membawa orang ke sini."
+    "cookie": "Cookie pihak pertama mengingat bagaimana browser Anda pertama kali menemukan situs ini: tag tautan yang Anda gunakan saat tiba (seperti buletin atau postingan), domain situs web perujuk, dan jenis halaman tempat Anda mendarat. Cookie ini tidak memuat jawaban maupun alamat lengkap. Cookie ini disimpan bersama akun anonim atau akun X Anda dan dikirim bersama peristiwa analitik anonim agar kami dapat mengetahui tempat mana yang membawa orang ke sini.",
+    "shareLinks": "Tautan berbagi hanya menampilkan kartu Anda: titik dan rentang Anda pada peta, P(doom) Anda, dan pemimpin opini yang pandangannya paling dekat dengan pandangan Anda, serta nama depan jika Anda menambahkannya. Agar orang lain dapat membandingkan, tautan tersebut juga memuat delapan skor pandangan dunia yang mendasari titik Anda pada peta, dalam bentuk angka. Tautan tersebut tidak pernah menampilkan jawaban atau penalaran yang Anda tunjukkan, dan tidak diindeks oleh mesin pencari. Siapa pun yang memiliki tautan tersebut dapat melihat kartu itu hingga Anda memilih Berhenti membagikan tautan pada hasil Anda atau menghapus penilaian; pratinjau yang sudah diambil oleh situs lain mungkin tetap ada. Ketika seseorang membandingkan hasil mereka dengan tautan Anda, perbandingan berlangsung di peramban mereka: Anda dan orang tersebut tidak dapat melihat jawaban satu sama lain, dan kami tidak mencatat hasil mana yang dibandingkan."
+  },
+  "Compare": {
+    "title": "Anda vs {name}",
+    "view": "Tampilan hasil",
+    "justYou": "Hanya Anda",
+    "friend": "teman Anda",
+    "friendLabel": "Seorang teman",
+    "bucket": {
+      "very_aligned": "Sangat selaras",
+      "mostly_aligned": "Sebagian besar selaras",
+      "some_distance": "Ada sedikit perbedaan",
+      "worlds_apart": "Sangat berbeda"
+    },
+    "bucketUnknown": "Terlalu dini untuk menyimpulkan",
+    "outlook": {
+      "same": "Pandangan Anda berdekatan",
+      "more_hopeful": "Anda lebih penuh harapan daripada {name}",
+      "more_worried": "Anda lebih khawatir daripada {name}"
+    },
+    "change": {
+      "same": "Anda memperkirakan skala perubahan yang kurang lebih sama",
+      "more": "Anda memperkirakan lebih banyak perubahan daripada {name}",
+      "less": "Anda memperkirakan lebih sedikit perubahan daripada {name}"
+    },
+    "unplaced": "Salah satu dari Anda belum sepenuhnya ditempatkan di peta, jadi beberapa perbedaan masih belum diketahui",
+    "pdoom": "P(doom)",
+    "you": "Anda",
+    "pdoomMissing": "Belum diestimasi",
+    "sharedClosest": "Anda berdua berada di dekat {closest}",
+    "simulated": "Titik {name} disimulasikan dari sumber publik, bukan dari jawaban mereka sendiri",
+    "private": "Dibandingkan di peramban Anda. Anda berdua tidak dapat melihat jawaban satu sama lain",
+    "send": "Kirim hasil Anda kepada mereka",
+    "sendText": "Saya juga memetakan pandangan dunia AI saya. Inilah posisi saya",
+    "sendCopied": "Tautan disalin. Kirimkan kembali kepada mereka.",
+    "viewPersona": "Lihat hasil {name}",
+    "gone": "Tautan perbandingan ini telah dinonaktifkan, jadi tidak ada yang dapat dibandingkan"
+  },
+  "Snapshot": {
+    "title": "{name} memetakan pandangan dunia AI mereka",
+    "titleAnonymous": "Seorang teman memetakan pandangan dunia AI mereka",
+    "metaTitleNamed": "Pandangan dunia AI {name}",
+    "metaTitle": "Di mana posisi Anda mengenai AI?",
+    "description": "Lihat pandangan dunia AI ini pada peta Doom–Bloom, lalu petakan pandangan Anda sendiri dalam waktu sekitar 3 menit dan bandingkan.",
+    "imageAlt": "Pandangan dunia AI pada peta Doom–Bloom dan skala transformasi, dengan P(doom) dan pemimpin opini terdekat",
+    "sharedOn": "Dibagikan {date}",
+    "pdoom": "P(doom)",
+    "pdoomStated": "Angka yang mereka tentukan sendiri",
+    "pdoomInferred": "Disimpulkan dari jawaban mereka",
+    "pdoomMissing": "Belum diestimasi",
+    "closest": "Pemimpin opini terdekat",
+    "closestNone": "Belum cukup informasi untuk dicocokkan",
+    "ctaTitle": "Di mana posisi Anda?",
+    "ctaDescription": "Petakan pandangan dunia AI Anda sendiri dalam waktu sekitar 3 menit, lalu lihat keduanya pada satu peta",
+    "ctaButton": "Bandingkan sekarang",
+    "privacy": "Halaman ini hanya menampilkan kartu mereka, tidak pernah menampilkan jawaban mereka. Memetakan pandangan Anda gratis, dan jawaban Anda tetap bersifat pribadi kecuali Anda membagikannya"
   }
 }

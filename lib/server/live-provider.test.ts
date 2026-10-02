@@ -1,7 +1,8 @@
 import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { afterEach, expect, test, vi } from 'vitest'
 import { createLiveProvider, validateEvaluation } from './live-provider'
-import { fixtureAnswer } from './provider'
+import { EvaluationFailure, fixtureAnswer } from './provider'
+import { isProviderOutOfCredits } from './jev-budget'
 import { limits } from '@/lib/assessment/schema'
 import { providerFailure } from '@/lib/journeys/failure'
 import type { Question } from '@/lib/assessment/schema'
@@ -594,4 +595,61 @@ test('maximum fork history preserves all thirty multibyte answers across planned
   expect(fetch).toHaveBeenCalledTimes(12)
   expect(result.attempts).toBeLessThanOrEqual(limits.providerAttempts)
   expect(Object.keys(result.answers)).toHaveLength(limits.questions)
+})
+
+test('a TypeSafe 402 is permanent, reads as out of credits and keeps earlier usage', async () => {
+  expectDiagnostics(
+    {
+      event: 'jev_call_failed',
+      severity: 'error',
+      status: 402,
+      attempt: 2,
+      application: { effect: 'http_response_returned_to_caller' }
+    },
+    {
+      event: 'jev_batch_failed',
+      severity: 'error',
+      error: {
+        type: 'TypeSafeAPIError',
+        code: 'provider_http_402',
+        status: 402,
+        providerErrorType: 'billing_error'
+      }
+    }
+  )
+  vi.stubEnv('TYPESAFE_API_KEY', 'test-key-never-a-real-credential')
+  let calls = 0
+  const fetch = vi.fn<(url: unknown, init: RequestInit) => Promise<Response>>(
+    async (_url, init) =>
+      ++calls === 1
+        ? successfulResponse(init)
+        : Response.json(
+            {
+              detail: {
+                error_type: 'billing_error',
+                message:
+                  'Your organization has no available TypeSafe API credits.'
+              }
+            },
+            { status: 402 }
+          )
+  )
+  vi.stubGlobal('fetch', fetch)
+  const usage: Array<{ input_tokens: number; output_tokens: number }> = []
+  const provider = createLiveProvider('jev-1.13.0', {
+    onUsage: (call) => usage.push(call)
+  })
+  const questions = Object.fromEntries(
+    Array.from({ length: 9 }, (_, i) => [`q${i}`, question])
+  )
+  const error = await provider
+    .evaluate({ text: '漢'.repeat(40_000) }, questions)
+    .catch((err: unknown) => err)
+  expect(error).toBeInstanceOf(EvaluationFailure)
+  expect(error).toMatchObject({ status: 402, attempts: 2 })
+  expect(isProviderOutOfCredits(error)).toBe(true)
+  // Never retried: a refill is not seconds away.
+  expect(fetch).toHaveBeenCalledTimes(2)
+  // The first batch was billed and is counted even though the operation failed.
+  expect(usage).toEqual([{ input_tokens: 10, output_tokens: 2 }])
 })

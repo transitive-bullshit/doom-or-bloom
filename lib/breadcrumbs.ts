@@ -29,7 +29,7 @@ export const blogPostPath = /^\/blog\/[^/]+$/
  * The breadcrumb trail for a route path without its locale prefix: the linked
  * ancestors and the current page's label. The site header renders it, and
  * pages describe the same trail as a BreadcrumbList in structured data. Home,
- * public assessments and admin have none. A blog post passes its title.
+ * public assessments, share links and admin have none. A blog post passes its title.
  */
 export function breadcrumbTrail(
   pathname: string,
@@ -39,6 +39,8 @@ export function breadcrumbTrail(
   if (
     pathname === '/' ||
     pathname.startsWith('/public/assessments/') ||
+    // Share links are landing pages, like public assessments.
+    pathname.startsWith('/s/') ||
     pathname === '/admin' ||
     pathname.startsWith('/admin/')
   )

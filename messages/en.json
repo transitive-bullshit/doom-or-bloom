@@ -423,7 +423,7 @@
     "over": "over {value}",
     "title": "Share your result",
     "publishedNote": "Posts link to your public page, which includes your answers.",
-    "privateNote": "Posts include only your P(doom) and closest thought leader, with a link to Doom or Bloom. Your answers stay private.",
+    "privateNote": "Posts link to a page with just your results. Your answers stay private.",
     "share": "Share…",
     "x": "Post on X",
     "copyFailed": "Unable to copy. Select the text and copy it instead.",
@@ -431,7 +431,16 @@
     "linkCopied": "Link copied.",
     "copyLink": "Copy link",
     "preparingImage": "Preparing image…",
-    "downloadImage": "Download image"
+    "downloadImage": "Download image",
+    "nameLabel": "Name on your link",
+    "nameHint": "Optional. Leave it blank and the page says “A friend”",
+    "nameInvalid": "Use letters only, like Alex or Mary-Jane",
+    "linkActive": "Anyone with your link sees only your card, never your answers",
+    "stopSharing": "Stop sharing link",
+    "stopped": "Sharing stopped. Posts that already show your card may keep their preview.",
+    "stopFailed": "Couldn’t stop sharing. Please try again.",
+    "linkFailed": "Couldn’t create your share link. Please try again.",
+    "shareAgain": "Your link is ready. Tap Share again."
   },
   "Conversation": {
     "tension": "About AI, you said “{first}” and “{second}” — how do these fit together?",
@@ -519,7 +528,11 @@
     "failedTitle": "This step did not finish",
     "failure": {
       "providerRejected": "Our AI provider, TypeSafe (Jev), rejected this request. Your submission is saved. Please try again later.",
-      "saved": "Your submission is saved and your previous progress is unchanged. Please try again when you’re ready."
+      "saved": "Your submission is saved and your previous progress is unchanged. Please try again when you’re ready.",
+      "budgetTitle": "Doom or Bloom is taking a breather",
+      "budgetBody": "Hey, Travis here. Doom or Bloom is a free side project, and it’s getting way more traffic than I expected, so it blew past its budget. Please be patient and check back in a few hours, or message me on X at <link>@transitive_bs</link> to follow up.",
+      "budgetSaved": "Everything you wrote is saved, so you can retry right where you left off.",
+      "budgetDraft": "You can still write your answer. It stays in this browser until you send it."
     },
     "retrySaved": "Retry saved submission",
     "refreshProgress": "Refresh saved progress",
@@ -635,7 +648,10 @@
     "opening": "Opening your assessment…",
     "openFailed": "We couldn’t open your assessment. Please try again.",
     "tryAgain": "Try again",
-    "create": "Create a new assessment"
+    "create": "Create a new assessment",
+    "compareTitle": "Ready to compare?",
+    "compareDescription": "Start a new assessment to compare, or use your latest result",
+    "compareLatest": "Compare with my latest result"
   },
   "Map": {
     "question": "{axis, select, influence {How much can humans shape the future?} other {How will AI change the world?}}",
@@ -672,7 +688,10 @@
     "copied": "Map copied as PNG.",
     "downloaded": "Map downloaded as PNG.",
     "copyFailed": "Couldn’t copy the image. Try downloading it instead.",
-    "downloadFailed": "Couldn’t download the image. Please try again."
+    "downloadFailed": "Couldn’t download the image. Please try again.",
+    "theirView": "Their view",
+    "otherMarker": "{name}’s position",
+    "sharedPosition": "Their estimated position"
   },
   "Feedback": {
     "aspects": {
@@ -848,6 +867,62 @@
     "publishing2": "Source cards may embed public X posts. Post text is fetched through this app’s server; embedded profile images, photos, and videos load from X’s media servers. Your assessment answers are not sent to X.",
     "publishing3": "Results images are generated on this app’s server from your assessment results. They contain no raw answers. Private downloads are not publicly hosted; publishing also makes a social preview available. Full reports contain your answers, evidence, and any available local diagnostics, so review them before sharing.",
     "publishing4": "Anonymous progress is tied to your browser session. Optional X sign-in, where available, lets you recover linked assessments in another browser. Clearing or expiring cookies loses anonymous access but does not delete the server records. Unsubmitted drafts do not sync across devices. Concurrent submissions are checked against the saved revision to prevent silent overwrites.",
-    "cookie": "A first-party cookie remembers how your browser first found this site: the link tag you arrived with (such as a newsletter or post), the referring website’s domain, and the kind of page you landed on. It holds no answers and no full addresses. It is saved with your anonymous or X account and sent with anonymous analytics events so we can tell which places bring people here."
+    "cookie": "A first-party cookie remembers how your browser first found this site: the link tag you arrived with (such as a newsletter or post), the referring website’s domain, and the kind of page you landed on. It holds no answers and no full addresses. It is saved with your anonymous or X account and sent with anonymous analytics events so we can tell which places bring people here.",
+    "shareLinks": "A share link shows only your card: your map point and range, your P(doom) and your closest thought leaders, plus a first name if you add one. So that others can compare, it also carries the eight worldview scores behind your map point, as numbers. It never shows your answers or your demonstrated reasoning, and it is not indexed by search engines. Anyone with the link can see the card until you choose Stop sharing link on your result or delete the assessment; previews that other sites already fetched may remain. When someone compares their result with your link, the comparison happens in their browser: neither of you sees the other’s answers, and we don’t record which results were compared."
+  },
+  "Compare": {
+    "title": "You vs {name}",
+    "view": "Results view",
+    "justYou": "Just you",
+    "friend": "your friend",
+    "friendLabel": "A friend",
+    "bucket": {
+      "very_aligned": "Very aligned",
+      "mostly_aligned": "Mostly aligned",
+      "some_distance": "Some distance",
+      "worlds_apart": "Worlds apart"
+    },
+    "bucketUnknown": "Too early to say",
+    "outlook": {
+      "same": "Your outlooks are close",
+      "more_hopeful": "You’re more hopeful than {name}",
+      "more_worried": "You’re more worried than {name}"
+    },
+    "change": {
+      "same": "You expect about the same scale of change",
+      "more": "You expect more change than {name}",
+      "less": "You expect less change than {name}"
+    },
+    "unplaced": "One of you isn’t fully on the map yet, so some differences are still open",
+    "pdoom": "P(doom)",
+    "you": "You",
+    "pdoomMissing": "Not estimated",
+    "sharedClosest": "You both land near {closest}",
+    "simulated": "{name}’s point is simulated from public sources, not their own answers",
+    "private": "Compared in your browser. Neither of you sees the other’s answers",
+    "send": "Send them your result",
+    "sendText": "I mapped my AI worldview too. Here’s where I land",
+    "sendCopied": "Link copied. Send it back to them.",
+    "viewPersona": "See {name}’s result",
+    "gone": "This comparison link was turned off, so there’s nothing to compare"
+  },
+  "Snapshot": {
+    "title": "{name} mapped their AI worldview",
+    "titleAnonymous": "A friend mapped their AI worldview",
+    "metaTitleNamed": "{name}’s AI worldview",
+    "metaTitle": "Where do you land on AI?",
+    "description": "See this AI worldview on the Doom–Bloom map, then map your own in about 3 minutes and compare.",
+    "imageAlt": "An AI worldview on the Doom–Bloom and scale of transformation map, with P(doom) and closest thought leaders",
+    "sharedOn": "Shared {date}",
+    "pdoom": "P(doom)",
+    "pdoomStated": "Their own number",
+    "pdoomInferred": "Read from their answers",
+    "pdoomMissing": "Not estimated",
+    "closest": "Closest thought leaders",
+    "closestNone": "Not enough to match yet",
+    "ctaTitle": "Where do you land?",
+    "ctaDescription": "Map your own AI worldview in about 3 minutes, then see both on one map",
+    "ctaButton": "Compare now",
+    "privacy": "This page shows only their card, never their answers. Mapping yours is free, and your answers stay private unless you share them"
   }
 }

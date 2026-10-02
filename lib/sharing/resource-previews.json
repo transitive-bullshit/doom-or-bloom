@@ -6797,22 +6797,38 @@
   "https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/": {
     "source": "https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/",
     "fetchedAt": "2026-10-02T00:07:04.536Z",
-    "icon": "/resource-previews/80abc09fcf94-icon.webp"
+    "icon": "/resource-previews/80abc09fcf94-icon.webp",
+    "description": "Predictions that AI could destroy humanity in a few years are irresponsible and not based on science, Nvidia&#039;s co-founder told CBS News.",
+    "image": "/resource-previews/80abc09fcf94-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://assets1.cbsnewsstatic.com/hub/i/r/2026/09/18/ca887747-0cd6-4acb-870e-b58cabc4ed91/thumbnail/1200x630/0d4d71c1177f0f6aa26fc8e06dac60fd/cbsn-fusion-nvidia-ceo-jensen-huang-ai-safety-concerns-2030-not-end-of-world-thumbnail.jpg"
   },
   "https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/": {
     "source": "https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/",
     "fetchedAt": "2026-10-02T00:07:03.825Z",
-    "icon": "/resource-previews/34cdf36c427f-icon.webp"
+    "icon": "/resource-previews/34cdf36c427f-icon.webp",
+    "description": "Third-party speaker-labeled transcript; use only Daniel’s answers, not Steven Bartlett’s framing. Asked whether we are heading somewhere bad if things don’t change, he says yes but he is not confident: something like 70%, because the current default path heads somewhere very scary. He corrects the host’s “70% chance of human extinction”: the figure is for AIs taking over or a comparably very big catastrophe, and AIs might take over without killing everyone. He does not think we are definitely doomed and could see it working out well.",
+    "image": "/resource-previews/34cdf36c427f-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://singjupost.com/wp-content/uploads/2026/07/Daniel_Kokotajlo_Interview_Captioned.jpg"
   },
   "https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident": {
     "source": "https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident",
     "fetchedAt": "2026-10-02T00:07:04.280Z",
-    "icon": "/resource-previews/70853eea50f7-icon.webp"
+    "icon": "/resource-previews/70853eea50f7-icon.webp",
+    "description": "Connor Leahy has spent his career at the frontier of AI, from reverse-engineering GPT-2 as a student and co-founding EleutherAI to building the AI safety compan",
+    "image": "/resource-previews/70853eea50f7-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://assets.pippa.io/shows/69d4f193b76468caacc5068f/1786721585058-4b8219ec-8d7d-4408-8cc7-6a16aec105d5.jpeg"
   },
   "https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/": {
     "source": "https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/",
     "fetchedAt": "2026-10-02T00:07:03.511Z",
-    "icon": "/resource-previews/9c69a3d7ebc1-icon.webp"
+    "icon": "/resource-previews/9c69a3d7ebc1-icon.webp",
+    "description": "Publisher speaker-labeled transcript; use only Yoshua’s answers, not Rob Wiblin’s. Asked whether the 20% p(doom) he gave in 2023 has gone up or down, he says he would rather stay out of the p(doom) game: there is no scientific data to calculate such a number, it could be small or large, and the plausible interval is far too high for his taste. Do not present the 2023 20% as his current estimate.",
+    "image": "/resource-previews/9c69a3d7ebc1-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://80000hours.org/wp-content/uploads/2026/05/Bengio-WP-thumb-scaled.jpg"
   },
   "https://www.tobyord.com/writing/the-precipice-revisited": {
     "source": "https://www.tobyord.com/writing/the-precipice-revisited",
@@ -6955,5 +6971,131 @@
     "source": "https://aiimpacts.org/counterarguments-to-the-basic-ai-x-risk-case/",
     "fetchedAt": "2026-10-02T00:07:14.455Z",
     "icon": "/resource-previews/e2769b69aca0-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=BDREZmpkIz8": {
+    "source": "https://www.youtube.com/watch?v=BDREZmpkIz8",
+    "fetchedAt": "2026-10-02T00:13:53.515Z",
+    "description": "In a Verdict Exclusive from The White House, Elon Musk joins Senator Ted Cruz and Ben Ferguson for a discussion about D.O.G.E. and the first 50 days of the T...",
+    "image": "/resource-previews/bb9819b42b0b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/BDREZmpkIz8/hqdefault.jpg",
+    "icon": "/resource-previews/bb9819b42b0b-icon.webp"
+  },
+  "https://www.c-span.org/program/public-affairs-event/presidential-science-and-tech-adviser-david-sacks-on-artificial-intelligence/685323": {
+    "source": "https://www.c-span.org/program/public-affairs-event/presidential-science-and-tech-adviser-david-sacks-on-artificial-intelligence/685323",
+    "fetchedAt": "2026-10-02T00:13:55.125Z",
+    "description": "Speaking at Politico's Decoded Summit, presidential science and technology adviser David Sacks discussed artificial intelligence, AI regulation, technology and the digital economy. He addressed lawmakers' calls for AI regulation and concerns about the potential risks of artificial intelligence, including risks to humanity. He argued that concerns about AI have been overstated and discussed what he described as media-driven fears surrounding the technology. Sacks also discussed accountability for AI companies and the importance of ensuring the technology is developed safely, while emphasizing competition with China in artificial intelligence.",
+    "icon": "/resource-previews/d9b70fff1222-icon.webp",
+    "image": "/resource-previews/d9b70fff1222-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.c-span.org/program/public-affairs-event/presidential-science-and-tech-adviser-david-sacks-on-artificial-intelligence/685323"
+  },
+  "https://www.theojaffee.com/p/9-dwarkesh-patel": {
+    "source": "https://www.theojaffee.com/p/9-dwarkesh-patel",
+    "fetchedAt": "2026-10-02T00:13:55.133Z",
+    "description": "Podcasting, AI, Talent, and Fixing Government",
+    "image": "/resource-previews/a01389775efb-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.scdn.co/image/ab6765630000ba8acad0a8ea81f37ff23ca18807",
+    "icon": "/resource-previews/a01389775efb-icon.webp"
+  },
+  "https://www.possible.fm/podcasts/feifei/": {
+    "source": "https://www.possible.fm/podcasts/feifei/",
+    "fetchedAt": "2026-10-02T00:13:59.387Z",
+    "description": "Podcast transcript. She says AI policy should be based on science, not science fiction, and that hype about either the extinction of humanity or world peace because of AI is more science fiction than science. Qualitative; no number.",
+    "image": "/resource-previews/f1f0864c55c5-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.possible.fm/wp-content/uploads/2023/03/share.png",
+    "icon": "/resource-previews/f1f0864c55c5-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=OGpTw4tthko": {
+    "source": "https://www.youtube.com/watch?v=OGpTw4tthko",
+    "fetchedAt": "2026-10-02T00:13:59.538Z",
+    "description": "Let’s face it: in the long run, there’s either going to be safe AI or no AI.There is no future with powerful unsafe AI and human beings.In this episode of Fo...",
+    "image": "/resource-previews/6656cbf272d1-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/OGpTw4tthko/hqdefault.jpg",
+    "icon": "/resource-previews/6656cbf272d1-icon.webp"
+  },
+  "https://www.wired.com/story/the-big-interview-podcast-timnit-gebru/": {
+    "source": "https://www.wired.com/story/the-big-interview-podcast-timnit-gebru/",
+    "fetchedAt": "2026-10-02T00:14:00.729Z",
+    "description": "One of AI’s fiercest critics believes the doom talk is about founders making money, not saving humanity.",
+    "image": "/resource-previews/34e949eb4311-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.wired.com/photos/6ab58bd8630fd3fdf523eab4/191:100/w_1280,c_limit/Big-Interview-UV-Solo-Timnit-Gebru-2266305419-Business.jpg",
+    "icon": "/resource-previews/34e949eb4311-icon.webp"
+  },
+  "https://www.existentialhope.com/podcasts/daron-acemoglu-new-paths-for-human-technology-synergy": {
+    "source": "https://www.existentialhope.com/podcasts/daron-acemoglu-new-paths-for-human-technology-synergy",
+    "fetchedAt": "2026-10-02T00:14:01.333Z",
+    "description": "Older podcast transcript. Asked about speculative existential risks, he says that if he believed AGI posed a real existential risk of running out of control and enslaving or destroying humanity he would be very worried, but he does not think that is a major issue, and emphasizing it plays into the narrative that these technologies are amazing. Qualitative; no number.",
+    "image": "/resource-previews/4f3b8d00709e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn.prod.website-files.com/623dfa0be39a605e5b1bb007/69a6ef3320ff53c006105895_62.png",
+    "icon": "/resource-previews/4f3b8d00709e-icon.webp"
+  },
+  "https://bsky.app/profile/emilymbender.bsky.social/post/3mveglfhzoz2d": {
+    "source": "https://bsky.app/profile/emilymbender.bsky.social/post/3mveglfhzoz2d",
+    "fetchedAt": "2026-10-02T00:14:01.674Z",
+    "description": "Just because someone uses a number to make a claim doesn't mean they've done some science to get there. That claim is as reliable as \"There's a 10% chance that it will rain jelly beans tomorrow!\" /fin for now.",
+    "icon": "/resource-previews/1e105c1cc3d8-icon.webp",
+    "image": "/resource-previews/1e105c1cc3d8-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bsky.app/profile/emilymbender.bsky.social/post/3mveglfhzoz2d"
+  },
+  "https://marginalrevolution.com/marginalrevolution/2026/09/a-doomsday-scenario-for-american-ai.html": {
+    "source": "https://marginalrevolution.com/marginalrevolution/2026/09/a-doomsday-scenario-for-american-ai.html",
+    "fetchedAt": "2026-10-02T00:14:02.515Z",
+    "description": "His own excerpt of the closing of his Free Press column, read in full. Imagines America ceding AI-invented medicine to China out of fear of doom, a fear he says rested on a story spread on social media rather than peer-reviewed research or market prices. Concedes we cannot say for sure the AI doom scenario is false, but argues that debating the chances of doom ex ante, on a highly speculative basis, builds less expertise than solving problems bit by bit and is more likely to demoralize and immobilize us. A refusal to estimate, not a zero-risk claim.",
+    "icon": "/resource-previews/27e315e28cea-icon.webp",
+    "image": "/resource-previews/27e315e28cea-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://marginalrevolution.com/marginalrevolution/2026/09/a-doomsday-scenario-for-american-ai.html"
+  },
+  "https://www.richardhanania.com/p/robin-hanson-says-youre-going-to": {
+    "source": "https://www.richardhanania.com/p/robin-hanson-says-youre-going-to",
+    "fetchedAt": "2026-10-02T00:14:05.634Z",
+    "description": "On the nature of intelligence, knowledge, the abstraction hierarchy, consciousness, and the future of humanity",
+    "image": "/resource-previews/5578a85474b9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!zT-V!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F37934be4-169b-427e-a8dd-fa6f750b24da_722x978.png",
+    "icon": "/resource-previews/5578a85474b9-icon.webp"
+  },
+  "https://bigthink.com/series/the-big-think-interview/future-of-ai-co-intelligence/": {
+    "source": "https://bigthink.com/series/the-big-think-interview/future-of-ai-co-intelligence/",
+    "fetchedAt": "2026-10-02T00:14:07.402Z",
+    "description": "Big Think Interview transcript (page undated; recorded after Co-Intelligence, likely 2024). He does not have a p(doom) he really thinks about, because he does not think we can assign a probability to things going wrong, and the framing makes the technology the agent when people decide how it is used. He treats the “machine god” scenario as worth some worry but argues it takes agency away from us.",
+    "icon": "/resource-previews/0c83eccbadef-icon.webp",
+    "image": "/resource-previews/0c83eccbadef-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://bigthink.com/series/the-big-think-interview/future-of-ai-co-intelligence/"
+  },
+  "https://www.cognitiverevolution.ai/ai-engineers-pendants-and-competition-between-openai-and-developers-with-swyx-of-latent-space/": {
+    "source": "https://www.cognitiverevolution.ai/ai-engineers-pendants-and-competition-between-openai-and-developers-with-swyx-of-latent-space/",
+    "fetchedAt": "2026-10-02T00:14:09.483Z",
+    "description": "Watch Episode Here Listen to Episode Here Show Notes ℹ️The following notes are AI-generated, based on the episode transcript. Please listen to the episode for the full conversation. In this episode, Nathan sits down with Swyx of Latent Space to chat about AI engineers and tools to check",
+    "image": "/resource-previews/1424a529224f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/5EzAabIUSE8/hqdefault.jpg",
+    "icon": "/resource-previews/1424a529224f-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/BHGoF7tPqtLo9mXFL/plan-r-diversity-escrow-and-political-rights-for-asics": {
+    "source": "https://www.lesswrong.com/posts/BHGoF7tPqtLo9mXFL/plan-r-diversity-escrow-and-political-rights-for-asics",
+    "fetchedAt": "2026-10-02T00:14:10.834Z",
+    "description": "See Also: • https://www.lesswrong.com/posts/n8u3BfqFoGh4jnzpo/plan-r-ai-safety-by-asics …",
+    "image": "/resource-previews/046aa4833b50-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1654295382/new_mississippi_river_fjdmww.jpg",
+    "icon": "/resource-previews/046aa4833b50-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/apHWSGDiydv3ivmg6/varieties-of-doom": {
+    "source": "https://www.lesswrong.com/posts/apHWSGDiydv3ivmg6/varieties-of-doom",
+    "fetchedAt": "2026-10-02T00:14:11.343Z",
+    "description": "There has been a lot of talk about \"p(doom)\" over the last few years. This has always rubbed me the wrong way because \"p(doom)\" didn't feel like it m…",
+    "image": "/resource-previews/fc5d9d19424f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/apHWSGDiydv3ivmg6/majak6vex2tdxrjg4xge",
+    "icon": "/resource-previews/fc5d9d19424f-icon.webp"
   }
 }

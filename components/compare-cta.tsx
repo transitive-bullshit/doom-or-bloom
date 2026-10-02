@@ -8,12 +8,15 @@ export function CompareCta({
   name,
   title,
   description,
+  compare,
   className
 }: {
   name?: string | null
   /** Overrides the default title and description, e.g. on the P(doom) hub. */
   title?: string
   description?: string
+  /** Shows the visitor's result beside this one; see lib/sharing/compare.ts. */
+  compare?: string
   className?: string
 }) {
   const t = useTranslations('Cta')
@@ -33,7 +36,7 @@ export function CompareCta({
         </CardDescription>
       </div>
       <div className='shrink-0'>
-        <WorldviewCta label={t('mapMine')} />
+        <WorldviewCta label={t('mapMine')} compare={compare} />
       </div>
     </Card>
   )

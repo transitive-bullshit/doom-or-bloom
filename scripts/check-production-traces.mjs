@@ -151,7 +151,8 @@ for (const portraitRoute of [
   'users/[username]/opengraph-image',
   'api/share-card',
   'api/assessments/[id]/results-image',
-  'public/assessments/[id]/social-image.png'
+  'public/assessments/[id]/social-image.png',
+  '[locale]/(site)/s/[id]/social-image.png'
 ]) {
   const portraitTrace = path.join(
     output,
@@ -217,7 +218,8 @@ for (const fontRoute of [
   'api/assessments/[id]/results-image',
   'api/map-png',
   'public/assessments/[id]/social-image.png',
-  '[locale]/(site)/public/assessments/[id]/social-image.png'
+  '[locale]/(site)/public/assessments/[id]/social-image.png',
+  '[locale]/(site)/s/[id]/social-image.png'
 ]) {
   const trace = path.join(output, `server/app/${fontRoute}/route.js.nft.json`)
   const { files } = JSON.parse(await readFile(trace, 'utf8'))

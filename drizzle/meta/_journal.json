@@ -64,6 +64,20 @@
       "when": 1790806089285,
       "tag": "0008_user_first_touch",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1790826243857,
+      "tag": "0009_share_snapshots",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1790898694480,
+      "tag": "0010_jev_budget",
+      "breakpoints": true
     }
   ]
 }

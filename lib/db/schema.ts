@@ -4,8 +4,11 @@ import {
   text,
   uuid,
   integer,
+  bigint,
+  date,
   boolean,
   timestamp,
+  primaryKey,
   jsonb,
   unique,
   uniqueIndex,
@@ -19,6 +22,8 @@ import type {
   SelfPlacementPayload
 } from '../assessments/feedback'
 import type { Publisher } from '../assessments/publisher'
+import type { CardData } from '../sharing/card'
+import type { ShareComparison } from '../sharing/share-links'
 import { user } from './auth-schema'
 
 export * from './auth-schema'
@@ -209,8 +214,86 @@ export const assessmentFeedback = pgTable(
   ]
 )
 
+// A card-only share link (/s/<id>): the card data of one displayed result and
+// the worldview values a recipient compares against, never answers. Ownership
+// follows the assessment; deleting it deletes its links, and revoking sets
+// `revoked_at`. At most one active link exists per result evidence revision.
+export const shareSnapshots = pgTable(
+  'share_snapshots',
+  {
+    id: text('id').primaryKey(),
+    assessmentId: uuid('assessment_id')
+      .notNull()
+      .references(() => assessments.id, { onDelete: 'cascade' }),
+    // The assessment snapshot whose result the card shows.
+    snapshotId: uuid('snapshot_id').notNull(),
+    evidenceRevision: integer('evidence_revision').notNull(),
+    card: jsonb('card').$type<CardData>().notNull(),
+    comparison: jsonb('comparison').$type<ShareComparison>().notNull(),
+    sharerName: text('sharer_name'),
+    createdAt: time('created_at'),
+    revokedAt: timestamp('revoked_at', { withTimezone: true })
+  },
+  (t) => [
+    index('share_snapshot_assessment').on(t.assessmentId),
+    uniqueIndex('one_active_share_snapshot')
+      .on(t.assessmentId, t.evidenceRevision)
+      .where(sql`${t.revokedAt} is null`),
+    foreignKey({
+      name: 'share_snapshot_snapshot',
+      columns: [t.assessmentId, t.snapshotId],
+      foreignColumns: [assessmentSnapshots.assessmentId, assessmentSnapshots.id]
+    }).onDelete('cascade'),
+    check('share_snapshot_id', sql`${t.id} ~ '^[A-Za-z0-9_-]{16}$'`),
+    check(
+      'share_snapshot_name',
+      sql`${t.sharerName} is null or char_length(${t.sharerName}) between 1 and 40`
+    ),
+    check('share_snapshot_revision', sql`${t.evidenceRevision} >= 0`)
+  ]
+)
+
 // A spent draft ID survives deletion so a signed browser ticket cannot recreate it.
 // Contains no assessment content or owner data. Nothing is inserted on draft opening.
 export const usedAssessmentDrafts = pgTable('used_assessment_drafts', {
   id: uuid('id').primaryKey()
+})
+
+// Estimated participant Jev spend per UTC day and month, for the app's own
+// budget (lib/server/jev-budget.ts). Aggregate counters only, never participant
+// data. Rows are incremented atomically, so concurrent instances never lose spend.
+export const jevSpend = pgTable(
+  'jev_spend',
+  {
+    period: text('period', { enum: ['day', 'month'] }).notNull(),
+    periodStart: date('period_start', { mode: 'string' }).notNull(),
+    inputTokens: bigint('input_tokens', { mode: 'number' })
+      .notNull()
+      .default(0),
+    outputTokens: bigint('output_tokens', { mode: 'number' })
+      .notNull()
+      .default(0),
+    costNanoUsd: bigint('cost_nano_usd', { mode: 'number' })
+      .notNull()
+      .default(0),
+    requests: integer('requests').notNull().default(0),
+    updatedAt: time('updated_at')
+  },
+  (t) => [
+    primaryKey({ name: 'jev_spend_pk', columns: [t.period, t.periodStart] }),
+    check('jev_spend_period', sql`${t.period} in ('day', 'month')`),
+    check(
+      'jev_spend_nonnegative',
+      sql`${t.inputTokens} >= 0 and ${t.outputTokens} >= 0 and ${t.costNanoUsd} >= 0 and ${t.requests} >= 0`
+    )
+  ]
+)
+
+// When TypeSafe last answered that the account has no credits (HTTP 402).
+export const jevProviderStatus = pgTable('jev_provider_status', {
+  provider: text('provider').primaryKey(),
+  outOfCreditsAt: timestamp('out_of_credits_at', {
+    withTimezone: true
+  }).notNull(),
+  updatedAt: time('updated_at')
 })
