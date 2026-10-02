@@ -106,16 +106,20 @@ export default function nextConfig(phase: string) {
       ...config,
       env: { LOCAL_ADMIN_BUILD: admin ? 'true' : 'false' },
       async rewrites() {
+        const locale = localeRewrites()
         return {
-          beforeFiles: admin
-            ? []
-            : [
-                {
-                  source: '/admin/:path*',
-                  destination: '/internal-unavailable'
-                }
-              ],
-          afterFiles: localeRewrites(),
+          beforeFiles: [
+            ...(admin
+              ? []
+              : [
+                  {
+                    source: '/admin/:path*',
+                    destination: '/internal-unavailable'
+                  }
+                ]),
+            ...locale.beforeFiles
+          ],
+          afterFiles: locale.afterFiles,
           fallback: []
         }
       }

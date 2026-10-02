@@ -70,15 +70,27 @@ export function localeRedirects() {
 }
 
 /**
- * Serves unprefixed URLs from the English tree. These run after static files
- * and non-dynamic routes, and before dynamic routes such as app/[locale]. A
- * path that then matches no route gets app/global-not-found.tsx.
+ * Serves unprefixed URLs from the English tree. A path that then matches no
+ * route gets app/global-not-found.tsx.
+ *
+ * Vercel serves RSC requests from prerendered files by pathname: after
+ * `beforeFiles`, it maps `/x` to `/x.rsc` or `/x.segments/<segment>.segment.rsc`,
+ * but maps `/` to `/index.rsc` and `/index.segments/…`. The root therefore
+ * rewrites in `beforeFiles`, so its RSC requests map to `/en.rsc` and
+ * `/en.segments/…`; no static file can shadow `/`. Other paths rewrite in
+ * `afterFiles`, after static files and non-dynamic routes and before dynamic
+ * routes such as app/[locale], and carry their RSC suffix into `/en/…`.
  */
 export function localeRewrites() {
-  return [
-    { source: '/', destination: `/${defaultLocale}` },
-    { source: `/:path(${routedPath})`, destination: `/${defaultLocale}/:path` }
-  ]
+  return {
+    beforeFiles: [{ source: '/', destination: `/${defaultLocale}` }],
+    afterFiles: [
+      {
+        source: `/:path(${routedPath})`,
+        destination: `/${defaultLocale}/:path`
+      }
+    ]
+  }
 }
 
 /** Owner routes stay private in every locale. */
