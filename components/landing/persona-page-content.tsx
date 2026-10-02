@@ -148,7 +148,12 @@ function PersonaAnswers({
       <DisclosureTrigger>
         {t('viewAnswers', { count: assessment.answers.length })}
       </DisclosureTrigger>
-      <CollapsibleContent className='mt-6 flex flex-col gap-8'>
+      {/* Mounted while closed, so the pregenerated page keeps every answer
+          and its anchor in the HTML. */}
+      <CollapsibleContent
+        forceMount
+        className='mt-6 flex flex-col gap-8 data-[state=closed]:hidden'
+      >
         {assessment.answers.map((answer, index) => (
           <AnswerTarget key={`${answer.id}-${index}`} number={index + 1}>
             <article className='flex min-w-0 flex-col gap-3'>

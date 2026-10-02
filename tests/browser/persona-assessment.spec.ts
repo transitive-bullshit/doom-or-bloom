@@ -51,7 +51,7 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
   await expect(assessment.locator('article')).toHaveCount(answers.length)
   await assessmentToggle.click()
   await expect(assessmentToggle).toHaveAttribute('aria-expanded', 'false')
-  await expect(assessment.locator('article')).toHaveCount(0)
+  await expect(assessment.locator('article').first()).toBeHidden()
   const positions = await Promise.all(
     [
       page.locator('[data-slot="worldview-map"]'),

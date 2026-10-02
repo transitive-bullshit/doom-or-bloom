@@ -300,7 +300,8 @@ test('profiles link similar worldviews and describe the simulated person', async
     name: /View questions and simulated answers/
   })
   await expect(answers).toHaveAttribute('aria-expanded', 'false')
-  await expect(assessment.locator('article')).toHaveCount(0)
+  // Closed, but still in the pregenerated HTML.
+  await expect(assessment.locator('article').first()).toBeHidden()
   await answers.click()
   await expect(answers).toHaveAttribute('aria-expanded', 'true')
   await expect(assessment.locator('article').first()).toBeVisible()
