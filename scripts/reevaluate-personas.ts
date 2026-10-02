@@ -5,8 +5,10 @@
 // the ordinary generation records and publishes it as a new public simulation,
 // which becomes the persona's selected run when it is newer. Earlier runs stay
 // frozen at their own URLs. See docs/PERSISTENCE.md#re-evaluating-saved-results.
+// With --restate, `plan` instead copies each selected run and applies the
+// persona's current verified public P(doom) statement, with no inference.
 //
-//   personas:reevaluate plan --env <file> --out <plan.jsonl> [--ids slug,slug]
+//   personas:reevaluate plan --env <file> --out <plan.jsonl> [--ids slug,slug] [--restate]
 //   personas:reevaluate write --env <file> --plan <plan.jsonl> [--ids slug,slug]
 import { createHash } from 'node:crypto'
 import { appendFileSync, existsSync, readFileSync } from 'node:fs'
@@ -19,6 +21,7 @@ import { resultPoint } from '../lib/assessment/self-placement'
 import { loadBundle } from '../lib/content/loader'
 import { databaseUrl } from '../lib/db/config'
 import { personas as catalog } from '../lib/journeys/catalog'
+import { restatePublicPdoom } from '../lib/journeys/public-pdoom'
 import { journeyHashes, runPersona } from '../lib/journeys/runner'
 import type { Journey } from '../lib/journeys/schema'
 import { personaGeneration } from '../lib/personas/generation'
@@ -34,7 +37,8 @@ const { positionals, values: args } = parseArgs({
     plan: { type: 'string' },
     ids: { type: 'string' },
     concurrency: { type: 'string', default: '8' },
-    'max-usd': { type: 'string', default: '6' }
+    'max-usd': { type: 'string', default: '6' },
+    restate: { type: 'boolean', default: false }
   }
 })
 // Jev bills input tokens only (rates in lib/journeys/live-budget.ts).
@@ -56,11 +60,17 @@ type PlanEntry = {
   before?: ReturnType<typeof summary>
   after?: ReturnType<typeof summary>
   provenance?: Provenance
-  input?: {
-    kind: 'reevaluation'
-    sourceAssessmentId: string
-    transcript: Transcript
-  }
+  input?:
+    | {
+        kind: 'reevaluation'
+        sourceAssessmentId: string
+        transcript: Transcript
+      }
+    | {
+        kind: 'restatement'
+        sourceAssessmentId: string
+        statement: NonNullable<(typeof catalog)[number]['statedPdoom']>
+      }
   journey?: Journey
 }
 
@@ -208,6 +218,53 @@ async function plan() {
         return record({ ...known, decision: 'skip', reason: 'not-in-catalog' })
       if (!old)
         return record({ ...known, decision: 'skip', reason: 'no-saved-result' })
+      if (args.restate) {
+        const statement = persona.statedPdoom
+        if (!statement)
+          return record({ ...known, decision: 'skip', reason: 'no-statement' })
+        // Historical payloads carry no engine snapshot to publish alongside.
+        if (payload.kind !== 'simulation_v1')
+          return record({ ...known, decision: 'skip', reason: 'historical' })
+        const restated = restatePublicPdoom(
+          { ...payload.journey, finalAssessment: payload.assessment },
+          statement
+        )
+        if (!restated)
+          return record({
+            ...known,
+            decision: 'skip',
+            reason: 'different-statement'
+          })
+        if (old.experiment?.pdoom?.source === 'public-statement')
+          return record({
+            ...known,
+            decision: 'skip',
+            reason: 'already-stated'
+          })
+        const input = {
+          kind: 'restatement' as const,
+          sourceAssessmentId: row.selected_assessment_id,
+          statement
+        }
+        return record({
+          ...known,
+          decision: 'update',
+          before: summary(old),
+          after: summary(restated.result!),
+          provenance: {
+            runId: `restate-${Date.now()}`,
+            createdAt: new Date().toISOString(),
+            inputHash: createHash('sha256')
+              .update(JSON.stringify(input))
+              .digest('hex'),
+            // The engine and content that produced the restated answers.
+            engineHash: payload.provenance.engineHash,
+            contentHash: payload.provenance.contentHash
+          },
+          input,
+          journey: restated
+        })
+      }
       if (old.versions.assessment === versions.assessment)
         return record({ ...known, decision: 'skip', reason: 'already-current' })
       if (!transcript.length || transcript.length > 12)

@@ -166,6 +166,7 @@ The replay saves each completed snapshot for resumption. `--publish` requires th
 - `plan` calls Jev but writes nothing, and records what each page would show before and after.
 - `write` publishes each replay through the persisted generation records (`begin`/`finish`). It becomes a new public simulation and, being newer, the selected run.
 - Earlier runs stay at their own URLs. Pages, the map and nearest-persona comparisons refresh on the next deployment.
+- `plan --restate` applies a newly recorded public statement to a user whose brief is otherwise unchanged. It copies the selected `simulation_v1` run and applies the statement to the snapshot and every result, with no Jev call. The new run keeps the answers, scores and engine hashes of the run it copies; users without a statement, with historical payloads or with a different statement already applied are skipped.
 
 The September 29 run re-evaluated 135 of the 144 selected simulated users from engine 0.6 to 0.7.1, for $1.36 in Jev calls. The other nine keep their runs because the current engine would not offer a result from their one to three recorded answers. The share of simulated users at the “mixed” outlook fell from 19% to 12%, both ends grew, and the median inferred P(doom) moved from 7.9% to 4.7%. All eight verified public statements carried over.
 
