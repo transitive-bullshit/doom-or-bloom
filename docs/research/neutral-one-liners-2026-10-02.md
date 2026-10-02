@@ -54,7 +54,7 @@ These need the closest read. The review page lists every person's before, after 
 
 ## Production
 
-The profile header, social card and metadata read each profile's metadata from Postgres, so production keeps the old lines until they are synced. `pnpm personas:sync-metadata` updates only profile metadata from `people.ts` ([Sync profile metadata](../user-journeys.md#sync-profile-metadata)), without touching briefs or runs. It was tested on a disposable copy of the local database. Production still needs, after owner approval:
+The profile header and social card read each profile's metadata from Postgres, so production keeps the old lines until they are synced. `pnpm personas:sync-metadata` updates only profile metadata from `people.ts` ([Sync profile metadata](../user-journeys.md#sync-profile-metadata)), without touching briefs or runs. It was tested on a disposable copy of the local database. Production still needs, after owner approval:
 
 ```sh
 pnpm personas:sync-metadata plan --env .env.production.local --all

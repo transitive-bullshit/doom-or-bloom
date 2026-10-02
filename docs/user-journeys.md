@@ -21,7 +21,7 @@ The [diagnostic improvement loop](diagnostic-improvement-loop.md) records why th
 
 ### Simulated-user one-liners
 
-Each simulated user has a one-line description under their name on the profile header, on their social card and in the profile's metadata. It is our description of a real third party, framed as a simulation of them, so it must be something they would likely accept as fair. All of them live in `components/landing/one-liners.ts`, keyed by slug; write one when adding a person, and revisit it when their brief changes.
+Each simulated user has a one-line description under their name in the profile header and on their social card. It is our description of a real third party, framed as a simulation of them, so it must be something they would likely accept as fair. All of them live in `components/landing/one-liners.ts`, keyed by slug; write one when adding a person, and revisit it when their brief changes.
 
 - Describe what the person is publicly known to argue or work on, in neutral, conservative terms. Don't push them toward Doom or Bloom, and don't single out one scenario, project or number as their view.
 - Keep both sides of a view at the weight their sources give them. Use neutral verbs (argues, studies, builds, calls for), not loaded ones or labels (dismisses, cheers, doomer, hype).

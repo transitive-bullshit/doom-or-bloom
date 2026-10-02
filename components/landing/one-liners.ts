@@ -1,11 +1,11 @@
 import type { VerifiedQuote } from '@/lib/personas/one-liner-rules'
 
-// The one-line description under each simulated user's name: the profile
-// header, the social card and the profile's metadata. Each describes a real
-// person, so follow docs/user-journeys.md#simulated-user-one-liners: what they
-// are publicly known to argue or work on, in neutral, conservative words they
-// would accept as fair, supported across their public writing. No P(doom)
-// numbers or catastrophe outcomes, and no quotes unless verified below.
+// The one-line description under each simulated user's name, in the profile
+// header and on the social card. Each describes a real person, so follow
+// docs/user-journeys.md#simulated-user-one-liners: what they are publicly
+// known to argue or work on, in neutral, conservative words they would accept
+// as fair, supported across their public writing. No P(doom) numbers or
+// catastrophe outcomes, and no quotes unless verified below.
 // `pnpm test:content` checks the mechanical parts. English only, like briefs.
 export const oneLiners: Record<string, string> = {
   // Andrew McAfee
