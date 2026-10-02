@@ -1941,9 +1941,9 @@
       "reviewStatus": "machine"
     },
     "Share.privateNote": {
-      "sourceHash": "9ea3bbc8f56c25a4",
+      "sourceHash": "3e77f83f81a0308c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "Share.share": {

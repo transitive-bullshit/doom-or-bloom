@@ -20,7 +20,9 @@ test('the result shares a card-only link, created on first use, and publishing b
   const bar = page.getByRole('region', { name: 'Share your result' })
   await expect(bar).toBeVisible()
   await expect(bar).toContainText('Where do you land?')
-  await expect(bar).toContainText('Your answers stay private')
+  await expect(bar).toContainText(
+    'Posts link to a page with just your results. Your answers stay private.'
+  )
   const xLink = async () =>
     new URL(
       (await bar.getByRole('link', { name: 'Post on X' }).getAttribute('href'))!

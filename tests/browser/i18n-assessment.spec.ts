@@ -107,7 +107,7 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
   ).toBeVisible()
 
   const bar = page.getByRole('region', { name: 'Comparte tu resultado' })
-  await expect(bar).toContainText('Tus respuestas se mantienen privadas')
+  await expect(bar).toContainText('Tus respuestas permanecen privadas')
   await expect(bar).toContainText('¿Dónde te ubicas?')
   const x = new URL(
     (await bar

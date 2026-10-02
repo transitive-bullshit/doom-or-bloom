@@ -411,7 +411,7 @@
     "over": "plus de {value}",
     "title": "Partager votre résultat",
     "publishedNote": "Les publications renvoient vers votre page publique, qui comprend vos réponses.",
-    "privateNote": "Les publications renvoient vers une page contenant uniquement votre fiche : votre carte, votre P(doom) et les leaders d’opinion les plus proches. Vos réponses restent privées.",
+    "privateNote": "Les publications renvoient vers une page contenant uniquement vos résultats. Vos réponses restent privées.",
     "share": "Partager…",
     "x": "Publier sur X",
     "copyFailed": "Impossible de copier. Sélectionnez le texte et copiez-le à la place.",
