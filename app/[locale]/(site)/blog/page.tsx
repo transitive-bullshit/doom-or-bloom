@@ -5,6 +5,7 @@ import { publicPageMetadata } from '@/lib/metadata'
 import { blogPosts } from '@/lib/blog/posts'
 import { postDate } from '@/lib/blog/format'
 import { blogJsonLd } from '@/lib/seo/json-ld'
+import { blogCardPath } from '@/lib/sharing/blog-social-card'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 
 // Posts are English and change only with a deployment. Other locales translate
@@ -28,7 +29,7 @@ export default async function Page() {
         data={blogJsonLd({
           name: 'Doom or Bloom blog',
           description: pages('blog.description'),
-          posts
+          posts: posts.map((post) => ({ ...post, image: blogCardPath(post) }))
         })}
       />
       <div className='content-column flex flex-col gap-10 py-14 text-base leading-relaxed'>

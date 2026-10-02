@@ -38,12 +38,19 @@ Every title must fit Google's desktop limit of about 600px of 20px Arial with " 
 
 | Page | Types |
 | --- | --- |
-| `/` | `WebSite`, `WebApplication` (free: `isAccessibleForFree` and a zero-price `Offer`) and the creator `Person`, Travis Fischer (`https://x.com/transitive_bs`) |
-| `/users/<slug>` | `ProfilePage` whose `mainEntity` is the simulated `Person`: name, portrait, `sameAs` their X and profile links, and a description that says it is a simulation from public writing, not their own assessment |
-| `/p-doom` | `Dataset` (the curated table: the publicly stated variable, `dateModified` and the sources of its numbers and quoted refusals) and an `ItemList` of its profiles in table order |
-| `/blog` | `Blog` with each post as an `Article` part |
-| `/blog/<slug>` | `Article`: headline, dates, author, the post card, `wordCount` and `timeRequired` |
-| Every page with breadcrumbs | `BreadcrumbList` matching the visible trail, in the page's locale |
+| `/` | `WebSite` (no `SearchAction`: the directory's search is not addressable by URL), `WebApplication` (free: `isAccessibleForFree` and a zero-price `Offer`) and the creator `Person`, Travis Fischer, with `sameAs` his X, GitHub and website |
+| `/users/<slug>` | `WebPage` about the real person: `mainEntity` and the first `about` are the `Person`, followed by the shared topics; `citation` lists the profile's sources as `CreativeWork`s (dated when the source brief records a date). The `Person` has a name, portrait, the factual one-liner as `description` and `sameAs` their X or profile link, plus English Wikipedia and Wikidata where `lib/seo/person-identities.json` has them |
+| `/users` | `CollectionPage` whose `mainEntity` is an `ItemList` of every profile in the directory's default order (by name) |
+| `/p-doom` | `WebPage` about P(doom), whose `mainEntity` is the `Dataset` of the curated table: `variableMeasured` (a `PropertyValue`), `creator`, `dateModified`, `temporalCoverage`, `isAccessibleForFree` and `isBasedOn` the sources of its numbers and quoted refusals. No `license` is stated for the table, so none is claimed. An `ItemList` of its profiles in table order |
+| `/about` | `AboutPage` about the `WebSite` |
+| `/blog` | `Blog` with each post as a `BlogPosting` in `blogPost` |
+| `/blog/<slug>` | `BlogPosting`: headline, dates, author and publisher (the creator), the post card, `mainEntityOfPage`, `wordCount` and `timeRequired` |
+| Every page with breadcrumbs | `BreadcrumbList` matching the visible trail, in the page's locale; pages with a `WebPage` node link it as `breadcrumb` |
+
+- **Simulated people.** A profile is a `WebPage`, not a `ProfilePage`, which Google reserves for people affiliated with the site. The `Person`'s `description` is their one-liner, never the simulation's result. The page's `description` adds that the worldview is a simulation from public writing, not their own assessment, after the search description, so snippets don't lead with it.
+- **Shared `@id`s.** Pages join through stable `@id`s: `/#website`, `/#creator`, `/users/<slug>#person` for the real person in every locale and on every page that lists them (`/p-doom`, `/users`), and the topics `/#topic-ai-safety` and `/#topic-ai-existential-risk` (`Thing`s) and `/#topic-p-doom` (a `DefinedTerm` with the shared definition), each with its Wikipedia and Wikidata `sameAs`. A page includes the full node for every topic it references. Profiles and `/users` are about all three topics; `/p-doom` is about P(doom) and existential risk.
+- **Wikipedia and Wikidata.** `lib/seo/person-identities.json` maps profile slugs to English Wikipedia articles about that person and their Wikidata items. Add a person only after checking the article is about them, not a namesake, a disambiguation page or a redirect to an organization or blog (Gwern, Nathan Lambert, John Scott-Railton, Katja Grace and Scott Alexander have none), and resolve the item with `https://en.wikipedia.org/w/api.php?action=query&prop=pageprops&ppprop=wikibase_item&redirects=1&titles=<title>`. `lib/seo/person-identities.test.ts` checks every key is a known slug and every URL is well formed.
+- **Not used.** No FAQ markup (Google restricts FAQ rich results to authoritative government and health sites) and no `Quiz` (it describes a test of knowledge, not an opinion interview).
 
 Render JSON-LD with `JsonLd`, which escapes `<` so text cannot close the script element. Place it after the breadcrumbs (they must stay the first page-content element) and outside `PageTransition`. Add a builder and a test for any new type rather than writing objects inline in a page. Check new types with Google's Rich Results Test or the Schema Markup Validator against a public deployment.
 

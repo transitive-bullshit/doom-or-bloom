@@ -40,12 +40,14 @@ export default async function Page() {
     <>
       <JsonLd
         data={pdoomJsonLd({
-          name: pages('pdoom.title'),
+          locale,
+          title: pages('pdoom.title'),
           description: pages('pdoom.description'),
-          variables: [t('stated')],
+          tableName: t('tableTitle'),
+          variable: t('stated'),
           asOf: asOf.toISOString().slice(0, 10),
           people: rows,
-          citations: rows.map((row) => row.source.url)
+          sources: rows.map((row) => row.source)
         })}
       />
       <article className='content-column flex flex-col gap-12 py-14 text-base leading-relaxed'>

@@ -51,10 +51,12 @@ function exampleFromSummary(
   return {
     ...metadata,
     assessmentId: row.assessmentId,
-    sources: row.sources.map(({ title, url, summary }) => ({
+    sources: row.sources.map(({ title, url, summary, publishedAt }) => ({
       title,
       url,
-      summary
+      summary,
+      // Profile structured data dates its citations.
+      ...(publishedAt && { publishedAt })
     })),
     sourceBriefUpdated:
       JSON.stringify(row.sources) !== JSON.stringify(row.recordedSources),

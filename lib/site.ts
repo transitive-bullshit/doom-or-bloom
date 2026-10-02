@@ -9,7 +9,13 @@ export const siteTitle = (title: string) =>
 /** The site's author, credited in structured data and on blog posts. */
 export const siteCreator = {
   name: 'Travis Fischer',
-  url: 'https://x.com/transitive_bs'
+  url: 'https://x.com/transitive_bs',
+  /** Profiles that identify the same person, for structured data. */
+  sameAs: [
+    'https://x.com/transitive_bs',
+    'https://github.com/transitive-bullshit',
+    'https://transitivebullsh.it'
+  ]
 } as const
 
 /**
