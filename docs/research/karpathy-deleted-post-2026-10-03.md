@@ -93,3 +93,9 @@ Profile sources come from the database brief, so production's profile changes on
 ```sh
 pnpm personas:import write --env .env.production.local --ids karpathy
 ```
+
+The write ran from this branch after merging `main` at `1d088e10`, where `pnpm test` passed (614 tests). It reported `karpathy: new selected run; verified selected digest`. No inference or migration was needed. A read-only comparison found local and production identical in selected digest, source brief and complete simulation payload, with the new one-liner.
+
+- Production assessment: `b91beff3-c84d-4358-93ab-14da9076f79b`, public, origin `simulation`.
+- Selected digest: `d2e4ffe2bfae0d9169691cbadbe084cd1df07fc965fbad9004ace9e4c2750ad0`.
+- The September 28 run and its earlier answers stay at their own URLs.
