@@ -28,6 +28,7 @@ Opening paragraph…
 - Write in a plain, candid voice without hype. Personas are "thought leaders"; the interview takes "about 3 minutes". Say when a number is inferred or simulated, and that simulations are not endorsements.
 - Use typographic quotes and apostrophes, like the rest of the site's copy.
 - Link to site pages with root-relative URLs (`[the P(doom) table](/p-doom)`); they keep the reader's language prefix. Other links open in a new tab.
+- Write people's full names. The first mention of anyone with a published profile in each paragraph, list item or table cell links to their profile automatically ([SEO.md](SEO.md#internal-links)). Names in headings, links and bold or italic text stay as written, and single-word names (Roon, Aella) need an explicit link such as `[Roon](/users/tszzl)`.
 - Reading time is computed from the prose (230 words a minute); you do not set it.
 - Every post renders with the shared reading column, a byline, its `BlogPosting` structured data, a Takumi social card at `/blog/<slug>/opengraph-image` and a closing assessment CTA. The newest post comes first on the index and in the feed.
 
@@ -49,7 +50,7 @@ Charts render from committed aggregate JSON in `content/blog/data/`. A post impo
 
 | Component | Data (`kind`) | Renders |
 | --- | --- | --- |
-| `<DataRanges data={…} />` | `ranges`: rows with a `label`, a `token` as written ("10–20%"), `low` and `high` probabilities, an optional `note` and source `href` | A table with one range bar per row on a 0–100% scale. Leave `note` off rows about people: a one-line gloss can misrepresent a third party’s views, and the source link carries the context |
+| `<DataRanges data={…} />` | `ranges`: rows with a `label`, a `token` as written ("10–20%"), `low` and `high` probabilities, an optional `note` and source `href` | A table with one range bar per row on a 0–100% scale. A label naming someone with a profile links to it; `href` records the number’s source, which the chart doesn’t link. Leave `note` off rows about people: a one-line gloss can misrepresent a third party’s views, and the source link carries the context |
 | `<DataMap data={…} />` | `map`: points with `outlook` (Doom 0 to Bloom 1), `transformation` (incremental 0 to civilizational 1), an optional `label` and a relative `weight` | The result map's Prism field and geometry with sized points, plus an equivalent screen-reader table |
 | `<Definition />` | none | The quotable P(doom) definition shared with the `/p-doom` hub (`lib/p-doom/copy.ts`) |
 

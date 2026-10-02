@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import { GlobeIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { footnoteId, type Footnote } from '@/lib/p-doom/citations'
+import { footnoteId } from '@/lib/p-doom/citations'
+import type { HubFootnote, HubReading } from '@/lib/p-doom/hub'
+import { MentionText } from '@/components/mention-text'
 import { MoreSources } from './more-sources'
 import { sourceIcon } from '@/lib/p-doom/favicons'
-import type { Reading } from '@/lib/p-doom/readings'
 
 /** The cited site's locally stored favicon, or a globe. */
 function SiteIcon({ url }: { url: string }) {
@@ -52,12 +53,12 @@ function FootnoteList({
   footnotes,
   start = 1
 }: {
-  footnotes: Footnote[]
+  footnotes: HubFootnote[]
   start?: number
 }) {
   return (
     <ol start={start} className='flex flex-col gap-3 text-sm leading-relaxed'>
-      {footnotes.map(({ number, title, url, by, year }) => (
+      {footnotes.map(({ number, title, url, byline, year }) => (
         <li
           key={number}
           id={footnoteId(number)}
@@ -69,7 +70,9 @@ function FootnoteList({
           <div className='flex min-w-0 flex-col gap-0.5'>
             <SourceLink title={title} url={url} />
             <p className='pl-6 text-muted-foreground'>
-              <span lang='en'>{by}</span>
+              <span lang='en'>
+                <MentionText parts={byline} />
+              </span>
               {' · '}
               <span className='whitespace-nowrap'>{year}</span>
             </p>
@@ -84,7 +87,7 @@ function FootnoteList({
  * Numbered footnotes in citation order. The first few show; the rest open on
  * demand, or when a reader follows a marker to one of them.
  */
-export function Footnotes({ footnotes }: { footnotes: Footnote[] }) {
+export function Footnotes({ footnotes }: { footnotes: HubFootnote[] }) {
   const t = useTranslations('PdoomHub')
   const shown = footnotes.slice(0, visibleFootnotes)
   const more = footnotes.slice(visibleFootnotes)
@@ -104,16 +107,18 @@ export function Footnotes({ footnotes }: { footnotes: Footnote[] }) {
 }
 
 /** Recommended readings, each with its site's favicon and a one-line reason. */
-export function ReadingList({ readings }: { readings: Reading[] }) {
+export function ReadingList({ readings }: { readings: HubReading[] }) {
   return (
     <ul className='flex flex-col gap-4 text-sm leading-relaxed'>
-      {readings.map(({ title, url, by, year, kind, description }) => (
+      {readings.map(({ title, url, byline, year, kind, blurb }) => (
         <li key={url} className='flex flex-col gap-1'>
           <SourceLink title={title} url={url} />
           <p className='pl-6 text-muted-foreground'>
-            {by} · {year} · {kind}
+            <MentionText parts={byline} /> · {year} · {kind}
           </p>
-          <p className='pl-6 text-body-foreground'>{description}</p>
+          <p className='pl-6 text-body-foreground'>
+            <MentionText parts={blurb} />
+          </p>
         </li>
       ))}
     </ul>

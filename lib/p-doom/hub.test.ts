@@ -173,6 +173,51 @@ describe('citations', () => {
   })
 })
 
+describe('profile links', () => {
+  const published = [
+    {
+      id: 'biosecurity-abundance-optimist',
+      slug: 'noahpinion',
+      name: 'Noah Smith'
+    },
+    { id: 'frontier-pacer', slug: 'darioamodei', name: 'Dario Amodei' },
+    { id: 'control-alarmist', slug: 'esyudkowsky', name: 'Eliezer Yudkowsky' },
+    {
+      id: 'superintelligence-stop-advocate',
+      slug: 'so8res',
+      name: 'Nate Soares'
+    }
+  ].map((entry) => ({ ...entry, avatar: '/personas/x.jpg' }))
+  const content = hubContent(published)
+  const slugs = (parts: object[]) =>
+    parts.flatMap((part) => ('slug' in part ? [part.slug] : []))
+
+  test('link the first mention in each paragraph of published people only', () => {
+    // Toby Ord has no profile; Noah Smith does.
+    expect(slugs(content.intro)).toEqual(['noahpinion'])
+    const misuse = content.scenarios.find(
+      ({ id }) => id === 'mass-casualty-misuse'
+    )!
+    expect(slugs(misuse.summary)).toEqual(['darioamodei'])
+    expect(misuse.proponents.map(({ name }) => slugs(name))).toEqual([
+      ['darioamodei'],
+      ['noahpinion'],
+      []
+    ])
+    expect(slugs(hubContent([]).intro)).toEqual([])
+  })
+
+  test('link every published author in footnotes and readings', () => {
+    const book = content.footnotes.find(
+      (note) => note.url === scenarioSources['if-anyone-builds-it'].url
+    )!
+    expect(slugs(book.byline)).toEqual(['esyudkowsky', 'so8res'])
+    expect(book.byline.map(({ text }) => text).join('')).toBe(book.by)
+    const [start] = content.readings
+    expect(slugs(start!.readings[0]!.byline)).toEqual(['esyudkowsky', 'so8res'])
+  })
+})
+
 describe('sources and readings', () => {
   const all: HubSource[] = [
     ...hubContent(everyone).footnotes,

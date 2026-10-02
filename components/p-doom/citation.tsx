@@ -1,10 +1,10 @@
-import { Fragment } from 'react'
 import { useTranslations } from 'next-intl'
 import {
   footnoteId,
   type Citation as CitationData
 } from '@/lib/p-doom/citations'
 import type { CitedProse } from '@/lib/p-doom/hub'
+import { MentionText } from '@/components/mention-text'
 
 /** A bracketed footnote marker linking to its numbered source. */
 export function Citation({ number, id }: CitationData) {
@@ -26,7 +26,7 @@ export function Citation({ number, id }: CitationData) {
   )
 }
 
-/** Hub prose with italic titles and footnote markers. */
+/** Hub prose with italic titles, footnote markers and linked names. */
 export function CitedText({ prose }: { prose: CitedProse }) {
   return prose.map((part, index) =>
     'number' in part ? (
@@ -34,7 +34,7 @@ export function CitedText({ prose }: { prose: CitedProse }) {
     ) : 'emphasis' in part ? (
       <cite key={index}>{part.emphasis}</cite>
     ) : (
-      <Fragment key={index}>{part.text}</Fragment>
+      <MentionText key={index} parts={[part]} />
     )
   )
 }

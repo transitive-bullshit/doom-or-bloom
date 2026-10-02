@@ -127,6 +127,10 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
     scenarios.getByRole('heading', { name: 'How it could happen' })
   ).toBeVisible()
   await expect(scenarios.locator('h3')).toHaveCount(6)
+  // Mentions of people with a profile link to it.
+  await expect(
+    scenarios.getByRole('link', { name: 'Noah Smith' }).first()
+  ).toHaveAttribute('href', '/users/noahpinion')
   const sources = page.locator(
     'section[aria-labelledby="pdoom-sources-title"] li'
   )
@@ -237,11 +241,13 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
   // Headings never end with a period, and the chart cites each number.
   for (const heading of await body.locator('h2').allTextContents())
     expect(heading).not.toMatch(/\.$/)
+  // Names link to simulated profiles; the numbers are not links.
   const chart = page.locator('[data-slot="blog-data-ranges"]')
   await expect(chart.getByRole('rowheader')).toHaveCount(8)
   await expect(
     chart.getByRole('link', { name: 'Geoffrey Hinton' })
-  ).toHaveAttribute('href', /wbur\.org/)
+  ).toHaveAttribute('href', '/users/geoffreyhinton')
+  await expect(chart.getByRole('link')).toHaveCount(8)
   await expect(
     body.getByRole('link', { name: 'P(doom) table of thought leaders' })
   ).toHaveAttribute('href', '/p-doom')

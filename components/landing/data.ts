@@ -83,6 +83,14 @@ const comparisons = async (featuredOnly: boolean) => {
   }
 }
 
+/**
+ * Every published profile's name, so prose can link mentions. Empty when the
+ * catalog is unavailable, which leaves names unlinked.
+ */
+export const loadProfileNames = cache(async () =>
+  (await comparisons(false)).map(({ slug, name }) => ({ slug, name }))
+)
+
 /** Identical comparison inputs for private and public participant results. */
 export const loadPersonaComparisons = cache(() => comparisons(true))
 

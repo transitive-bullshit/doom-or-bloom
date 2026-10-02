@@ -1,11 +1,20 @@
 import { postDate } from '@/lib/blog/format'
 import { rangeDataSchema } from '@/lib/blog/schema'
+import type { ProfileMentions } from '@/lib/personas/mentions'
+import { MentionText } from '@/components/mention-text'
 
 /**
  * A probability range per row, such as stated P(doom) estimates, from a
  * committed JSON file in content/blog/data. Renders as an accessible table.
+ * A person's name links to their profile; `href` records the source.
  */
-export function DataRanges({ data }: { data: unknown }) {
+export function DataRanges({
+  data,
+  mention = (text) => [{ text }]
+}: {
+  data: unknown
+  mention?: ProfileMentions
+}) {
   const chart = rangeDataSchema.parse(data)
   return (
     <figure
@@ -27,18 +36,7 @@ export function DataRanges({ data }: { data: unknown }) {
                 scope='row'
                 className='w-[38%] py-3 pr-3 text-left align-top font-medium'
               >
-                {row.href ? (
-                  <a
-                    href={row.href}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='underline underline-offset-4'
-                  >
-                    {row.label}
-                  </a>
-                ) : (
-                  row.label
-                )}
+                <MentionText parts={mention(row.label)} />
                 {row.note && (
                   <span className='mt-1 block text-xs font-normal text-muted-foreground'>
                     {row.note}

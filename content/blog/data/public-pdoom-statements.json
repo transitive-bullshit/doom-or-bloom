@@ -1,7 +1,7 @@
 {
   "kind": "ranges",
   "title": "Publicly stated P(doom) estimates",
-  "source": "Each name links to where the person gave the number. They describe different outcomes and time frames, so the numbers are not directly comparable.",
+  "source": "Each number’s source is in the P(doom) table. They describe different outcomes and time frames, so the numbers are not directly comparable.",
   "asOf": "2026-10-01",
   "provenance": "public-statements",
   "rows": [

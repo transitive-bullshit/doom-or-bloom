@@ -1,12 +1,14 @@
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
+import { profileMentions, type MentionPart } from '@/lib/personas/mentions'
 import {
   footnoteRegistry,
   segments,
   type Citation,
+  type Footnote,
   type HubSource
 } from './citations'
 import { curatedPeople, statementPublishers } from './curated'
-import { readingGroups } from './readings'
+import { readingGroups, type Reading } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
 
 type Statements = typeof publicPdoomStatements
@@ -76,41 +78,73 @@ export function hubRows(
   })
 }
 
-/** Prose with each citation resolved to its footnote number. */
-export type CitedProse = ({ text: string } | { emphasis: string } | Citation)[]
+/**
+ * Prose with each citation resolved to its footnote number, and the names of
+ * people with a profile marked for linking.
+ */
+export type CitedProse = (MentionPart | { emphasis: string } | Citation)[]
 
 /**
  * Everything the hub cites, numbered in reading order: the table's sources,
- * then the scenarios.
+ * then the scenarios. Names of people with a published profile link to it:
+ * the first mention in each paragraph, and every name in a byline or list.
  */
 export function hubContent(
   people: readonly Person[],
   statements: Statements = publicPdoomStatements
 ) {
   const { cite, footnotes } = footnoteRegistry()
+  const mention = profileMentions(people)
   const rows = hubRows(people, statements).map((row) => ({
     ...row,
     citation: cite(row.source)
   }))
-  const prose = (text: string): CitedProse =>
-    segments(text).map((part) => {
-      if (!('cite' in part)) return part
+  const prose = (text: string): CitedProse => {
+    const linked = new Set<string>()
+    return segments(text).flatMap((part): CitedProse => {
+      if ('text' in part) return mention(part.text, linked)
+      if ('emphasis' in part) return [part]
       const source = (scenarioSources as Record<string, HubSource>)[part.cite]
       if (!source) throw new Error(`Unknown scenario source [^${part.cite}]`)
-      return cite(source)
+      return [cite(source)]
     })
+  }
   const intro = prose(scenariosIntro)
   const cited = scenarios.map((scenario) => ({
     id: scenario.id,
     title: scenario.title,
     summary: prose(scenario.summary),
     proponents: scenario.proponents.map(({ name, claim }) => ({
-      name,
+      name: mention(name),
       claim: prose(claim)
     })),
     disagreement: prose(scenario.disagreement)
   }))
-  return { rows, intro, scenarios: cited, footnotes }
+  return {
+    rows,
+    intro,
+    scenarios: cited,
+    footnotes: footnotes.map((footnote): HubFootnote => ({
+      ...footnote,
+      byline: mention(footnote.by)
+    })),
+    readings: readingGroups.map(({ id, readings }) => ({
+      id,
+      readings: readings.map((reading): HubReading => ({
+        ...reading,
+        byline: mention(reading.by),
+        blurb: mention(reading.description)
+      }))
+    }))
+  }
+}
+
+/** A footnote whose authors link to their profiles. */
+export type HubFootnote = Footnote & { byline: MentionPart[] }
+/** A recommended reading whose authors and blurb link to profiles. */
+export type HubReading = Reading & {
+  byline: MentionPart[]
+  blurb: MentionPart[]
 }
 
 /** Every page the hub can link to, for prefetching favicons. */
