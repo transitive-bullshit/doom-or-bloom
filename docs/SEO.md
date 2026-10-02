@@ -15,10 +15,10 @@ This document owns how pages present themselves to search engines and AI crawler
 
 ## Titles and descriptions
 
-Write titles for what people search, not for the site's internal names: "What’s your P(doom)? Map your AI worldview", "What is P(doom)? Estimates from AI thought leaders", "<Name> on AI and P(doom)". `pageMetadata` appends " | Doom or Bloom"; the brand name "Doom or Bloom" and the subtitle in [README.md](README.md#locked-product-language) stay as written.
+Write titles for what people search, not for the site's internal names: "How will AI change our future? Map your AI worldview", "What is P(doom)? Estimates from AI thought leaders", "<Name> on AI and P(doom)". `pageMetadata` appends " | Doom or Bloom"; the brand name "Doom or Bloom" and the subtitle in [README.md](README.md#locked-product-language) stay as written. Keep titles neutral: lead with the site's own question rather than insider vocabulary like P(doom) on the home page, which most people don't know and which frames the site as doom-leaning.
 
 - No trailing period on a title. Descriptions are one or two full sentences and keep their periods.
-- Pages about a simulated user call the worldview simulated in the description; keep titles short ("<Name> on AI and P(doom)"). The structured data adds that it is a simulation from public writing, not their own assessment; don't lead search snippets with that disclaimer. Inferred P(doom) is described as rough.
+- Pages about a simulated user call the worldview simulated in the description; keep titles short ("<Name>’s views on AI and P(doom)"). The structured data adds that it is a simulation from public writing, not their own assessment; don't lead search snippets with that disclaimer. Inferred P(doom) is described as rough.
 - Personas are "thought leaders"; the interview takes "about 3 minutes".
 - Translate every title and description through the catalogs ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#adding-a-string)). Post titles are English, like their posts.
 

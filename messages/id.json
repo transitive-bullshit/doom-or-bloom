@@ -4,7 +4,7 @@
   },
   "Pages": {
     "home": {
-      "title": "Berapa P(doom) Anda? Petakan pandangan dunia AI Anda",
+      "title": "Bagaimana AI akan mengubah masa depan kita? Petakan pandangan dunia AI Anda",
       "description": "Ikuti tes pandangan dunia AI gratis dalam waktu sekitar 3 menit. Lihat posisi Anda antara doom dan bloom, dapatkan perkiraan kasar P(doom), dan bandingkan dengan para pemimpin opini AI."
     },
     "about": {
@@ -736,7 +736,7 @@
     "similarDescription": "Pemimpin opini dengan pandangan dunia simulasi yang paling mendekati pandangan {name}"
   },
   "Profiles": {
-    "userTitle": "{name} tentang AI dan P(doom)",
+    "userTitle": "Pandangan {name} tentang AI dan P(doom)",
     "userDescription": "Apa pendapat {name} tentang AI? Lihat di mana posisi pandangan dunia simulasinya di antara Doom dan Bloom, beserta perkiraan kasar P(doom) dan jawaban yang mendasarinya.",
     "userImageAlt": "Pandangan dunia AI simulasi {name} pada peta Doom–Bloom dan skala transformasi",
     "personDescription": "Simulasi pandangan dunia AI {name}, yang dibuat berdasarkan tulisan publik mereka. Ini adalah interpretasi eksperimental, bukan penilaian mereka sendiri ataupun bentuk dukungan.",

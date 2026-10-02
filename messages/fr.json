@@ -4,7 +4,7 @@
   },
   "Pages": {
     "home": {
-      "title": "Quel est votre P(doom) ? Cartographiez votre vision du monde concernant l’IA",
+      "title": "Comment l’IA changera-t-elle notre avenir ? Cartographiez votre vision du monde concernant l’IA",
       "description": "Faites gratuitement un test de vision du monde concernant l’IA en environ 3 minutes. Découvrez où vous vous situez entre doom et bloom, obtenez une estimation approximative de P(doom) et comparez-vous à des leaders d’opinion sur l’IA."
     },
     "about": {
@@ -736,7 +736,7 @@
     "similarDescription": "Leaders d’opinion dont les visions du monde simulées sont les plus proches de celle de {name}"
   },
   "Profiles": {
-    "userTitle": "{name} sur l’IA et P(doom)",
+    "userTitle": "Points de vue de {name} sur l’IA et P(doom)",
     "userDescription": "Que pense {name} de l’IA ? Découvrez où se situe sa vision du monde simulée entre Doom et Bloom, avec une estimation approximative de P(doom) et les réponses qui la sous-tendent.",
     "userImageAlt": "Vision du monde simulée de {name} sur l’IA sur la carte Doom–Bloom et de l’ampleur de la transformation",
     "personDescription": "Une simulation de la vision du monde de {name} concernant l’IA, élaborée à partir de ses écrits publics. Il s’agit d’une interprétation expérimentale, et non de sa propre évaluation ni d’une approbation.",

@@ -49,7 +49,7 @@ Charts render from committed aggregate JSON in `content/blog/data/`. A post impo
 
 | Component | Data (`kind`) | Renders |
 | --- | --- | --- |
-| `<DataRanges data={…} />` | `ranges`: rows with a `label`, a `token` as written ("10–20%"), `low` and `high` probabilities, an optional `note` and source `href` | A table with one range bar per row on a 0–100% scale |
+| `<DataRanges data={…} />` | `ranges`: rows with a `label`, a `token` as written ("10–20%"), `low` and `high` probabilities, an optional `note` and source `href` | A table with one range bar per row on a 0–100% scale. Leave `note` off rows about people: a one-line gloss can misrepresent a third party’s views, and the source link carries the context |
 | `<DataMap data={…} />` | `map`: points with `outlook` (Doom 0 to Bloom 1), `transformation` (incremental 0 to civilizational 1), an optional `label` and a relative `weight` | The result map's Prism field and geometry with sized points, plus an equivalent screen-reader table |
 | `<Definition />` | none | The quotable P(doom) definition shared with the `/p-doom` hub (`lib/p-doom/copy.ts`) |
 

@@ -29,119 +29,119 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'anti-doomer',
     note: {
       url: 'https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/',
-      text: 'The end of the world, by 2030'
+      text: 'Chance of the end of the world by 2030'
     }
   },
   {
     id: 'world-model-optimist',
     note: {
       url: 'https://x.com/ylecun/status/2046577402264870958',
-      text: 'Below the odds of an extinction-level asteroid strike'
+      text: 'Chance AI causes human extinction'
     }
   },
   {
     id: 'bubble-critic',
     note: {
       url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
-      text: 'Human extinction caused strictly by AI'
+      text: 'Chance AI alone causes human extinction'
     }
   },
   {
     id: 'empirical-skeptic',
     note: {
       url: 'https://garymarcus.substack.com/p/why-my-pdoom-has-risen-dramatically',
-      text: 'Catastrophe through misuse, reckless deployment or concentrated power'
+      text: 'Chance of catastrophe from misuse, reckless deployment or concentrated power'
     }
   },
   {
     id: 'independent-davidad',
     note: {
       url: 'https://www.cognitiverevolution.ai/alignment-with-awakening-davidad-on-moral-realism-ai-wisdom-why-his-p-doom-is-down-to-5/',
-      text: 'Down from “the 70s” around 2022'
+      text: 'Chance of AI catastrophe, down from “the 70s” around 2022'
     }
   },
   {
     id: 'kevin-roose',
     note: {
       url: 'https://www.infotech.com/digital-disruption/ai-researchers-are-panicking-what-comes-next-is-worse-than-nuclear-bombs',
-      text: 'Everyone dying from AI'
+      text: 'Chance everyone dies from AI'
     }
   },
   {
     id: 'abundance-risk-taker',
     note: {
       url: 'https://www.youtube.com/watch?v=BDREZmpkIz8',
-      text: 'Killer robots annihilating humanity'
+      text: 'Chance AI annihilates humanity'
     }
   },
   {
     id: 'concerned-pioneer',
     note: {
       url: 'https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize',
-      text: 'Human extinction, within about 30 years'
+      text: 'Chance AI causes human extinction within about 30 years'
     }
   },
   {
     id: 'rationalist-safety-advocate',
     note: {
       url: 'https://www.astralcodexten.com/p/my-ai-opinions',
-      text: 'Human extinction caused by AI'
+      text: 'Chance AI causes human extinction'
     }
   },
   {
     id: 'frontier-pacer',
     note: {
       url: 'https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent',
-      text: 'Things going badly, broadly defined'
+      text: 'Chance things go really badly, broadly defined'
     }
   },
   {
     id: 'empirical-control-researcher',
     note: {
       url: 'https://www.dwarkesh.com/p/ryan-greenblatt',
-      text: 'AI takeover by 2040'
+      text: 'Chance of AI takeover by 2040'
     }
   },
   {
     id: 'independent-eli-lifland',
     note: {
       url: 'https://blog.controlai.org/p/special-edition-the-future-of-ai',
-      text: 'Misaligned AI takeover, including about 25% for extinction'
+      text: 'Chance of misaligned AI takeover, including about 25% for extinction'
     }
   },
   {
     id: 'katja-grace',
     note: {
       url: 'https://aiandyou.net/e/314-guest-katja-grace-ai-impact-researcher-part-2/',
-      text: 'Current AI development destroying the world'
+      text: 'Chance current AI development destroys the world'
     }
   },
   {
     id: 'takeoff-forecaster',
     note: {
       url: 'https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/',
-      text: 'AI takeover or a similar catastrophe, if nothing changes'
+      text: 'Chance of AI takeover or a similar catastrophe if nothing changes'
     }
   },
   {
     id: 'independent-thezvi',
     note: {
       url: 'https://www.cognitiverevolution.ai/zvi-s-mic-works-recursive-self-improvement-live-player-analysis-anthropic-vs-dow-more/',
-      text: 'Doom, not further defined'
+      text: 'Chance of doom, not further defined'
     }
   },
   {
     id: 'tool-ai-moratorium',
     note: {
       url: 'https://lironshapira.substack.com/p/max-tegmark-vs-dean-ball-debate-ban-superintelligence',
-      text: 'Loss of control, if there is no regulation'
+      text: 'Chance of losing control if there is no regulation'
     }
   },
   {
     id: 'independent-npcollapse',
     note: {
       url: 'https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident',
-      text: 'On the current trajectory; “the future is not decided”'
+      text: 'Chance of doom on the current trajectory'
     }
   },
   {

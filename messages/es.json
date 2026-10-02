@@ -4,7 +4,7 @@
   },
   "Pages": {
     "home": {
-      "title": "¿Cuál es tu P(doom)? Mapea tu visión de la IA",
+      "title": "¿Cómo cambiará la IA nuestro futuro? Mapea tu visión de la IA",
       "description": "Haz una prueba gratuita sobre tu visión de la IA en unos 3 minutos. Descubre dónde te ubicas entre Doom y Bloom, obtén una P(doom) aproximada y compárala con la de líderes de opinión sobre IA."
     },
     "about": {
@@ -736,7 +736,7 @@
     "similarDescription": "Líderes de opinión cuyas visiones simuladas son las más cercanas a la de {name}"
   },
   "Profiles": {
-    "userTitle": "{name} sobre la IA y P(doom)",
+    "userTitle": "Las opiniones de {name} sobre la IA y P(doom)",
     "userDescription": "¿Qué piensa {name} sobre la IA? Mira dónde se ubica su visión simulada entre Doom y Bloom, junto con una P(doom) aproximada y las respuestas en las que se basa.",
     "userImageAlt": "La visión simulada de la IA de {name} en el mapa de Doom–Bloom y escala de la transformación",
     "personDescription": "Una simulación de la visión de {name} sobre la IA, creada a partir de sus textos públicos. Es una interpretación experimental, no su propia evaluación ni un respaldo.",

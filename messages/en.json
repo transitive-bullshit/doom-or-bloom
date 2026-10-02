@@ -4,7 +4,7 @@
   },
   "Pages": {
     "home": {
-      "title": "What’s your P(doom)? Map your AI worldview",
+      "title": "How will AI change our future? Map your AI worldview",
       "description": "Take a free AI worldview test in about 3 minutes. See where you land between doom and bloom, get a rough P(doom), and compare with AI thought leaders."
     },
     "about": {
@@ -736,7 +736,7 @@
     "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s"
   },
   "Profiles": {
-    "userTitle": "{name} on AI and P(doom)",
+    "userTitle": "{name}’s views on AI and P(doom)",
     "userDescription": "What does {name} think about AI? See where their simulated worldview lands between doom and bloom, with a rough P(doom) and the answers behind it.",
     "userImageAlt": "{name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map",
     "personDescription": "A simulation of {name}’s AI worldview, built from their public writing. It is an experimental interpretation, not their own assessment or an endorsement.",

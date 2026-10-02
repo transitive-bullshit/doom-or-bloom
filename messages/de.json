@@ -4,7 +4,7 @@
   },
   "Pages": {
     "home": {
-      "title": "Wie hoch ist dein P(doom)? Bilde deine KI-Weltsicht ab",
+      "title": "Wie wird KI unsere Zukunft verändern? Bilde deine KI-Weltsicht ab",
       "description": "Mach in etwa 3 Minuten einen kostenlosen Test zu deiner KI-Weltsicht. Finde heraus, wo du zwischen doom und bloom stehst, erhalte eine grobe P(doom) und vergleiche dich mit KI-Meinungsführern."
     },
     "about": {
@@ -736,7 +736,7 @@
     "similarDescription": "Vordenker, deren simulierte Weltsichten der von {name} am nächsten kommen"
   },
   "Profiles": {
-    "userTitle": "{name} über KI und P(doom)",
+    "userTitle": "Die Ansichten von {name} zu KI und P(doom)",
     "userDescription": "Was denkt {name} über KI? Sieh, wo die simulierte Weltsicht dieser Person zwischen Doom und Bloom liegt, mit einer groben P(doom)-Schätzung und den zugrunde liegenden Antworten.",
     "userImageAlt": "{name}s simulierte KI-Weltsicht auf der Karte zu Doom–Bloom und dem Ausmaß der Transformation",
     "personDescription": "Eine Simulation der KI-Weltsicht von {name}, die auf öffentlichen Beiträgen dieser Person basiert. Sie ist eine experimentelle Interpretation, nicht die eigene Einschätzung dieser Person oder eine Empfehlung.",

@@ -36,7 +36,7 @@ test('the home page names the P(doom) search and describes a free web app', asyn
 }) => {
   await page.goto('/')
   await expect(page).toHaveTitle(
-    'What’s your P(doom)? Map your AI worldview | Doom or Bloom'
+    'How will AI change our future? Map your AI worldview | Doom or Bloom'
   )
   const nodes = await structuredData(page)
   expect(ofType(nodes, 'WebSite')).toHaveLength(1)
@@ -254,7 +254,7 @@ test('profiles link similar worldviews and describe the simulated person', async
 }) => {
   await page.goto('/users/geoffreyhinton')
   await expect(page).toHaveTitle(
-    'Geoffrey Hinton on AI and P(doom) | Doom or Bloom'
+    'Geoffrey Hinton’s views on AI and P(doom) | Doom or Bloom'
   )
   const similar = page.locator('[data-slot="similar-worldviews"]')
   await expect(

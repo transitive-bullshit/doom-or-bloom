@@ -46,7 +46,7 @@ describe('the curated table', () => {
       avatar: '/personas/concerned-pioneer.jpg',
       token: '10–20%',
       quote: null,
-      note: 'Human extinction, within about 30 years',
+      note: 'Chance AI causes human extinction within about 30 years',
       source: {
         title: 'The Godfather of AI says we cannot afford to get it wrong',
         url: 'https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize',

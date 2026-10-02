@@ -4,7 +4,7 @@
   },
   "Pages": {
     "home": {
-      "title": "你的 P(doom) 是多少？描绘你的 AI 世界观",
+      "title": "AI将如何改变我们的未来？描绘你的AI世界观",
       "description": "参加免费的AI世界观测试，用时大约3分钟。看看你在Doom与Bloom之间的立场，获得一个粗略的P(doom)，并与AI意见领袖进行比较。"
     },
     "about": {
@@ -736,7 +736,7 @@
     "similarDescription": "模拟世界观与 {name} 最接近的意见领袖"
   },
   "Profiles": {
-    "userTitle": "{name} 对 AI 和 P(doom) 的看法",
+    "userTitle": "{name}对AI和P(doom)的看法",
     "userDescription": "{name}对AI有何看法？查看其模拟世界观在Doom与Bloom之间的立场位置，以及粗略的P(doom)和这一结果背后的回答。",
     "userImageAlt": "{name} 的模拟 AI 世界观在 Doom–Bloom 与变革规模地图上的位置",
     "personDescription": "根据 {name} 的公开文章构建的 AI 世界观模拟。这是一种实验性解读，并非其本人的评估，也不代表其认可。",
