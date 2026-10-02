@@ -28,6 +28,8 @@ Use native PostgreSQL and the dedicated `TEST_DATABASE_URL` ending in `_test`; n
 
 `check:browser`, `check:persistence` and `check:analytics` validate the incoming configuration, seed the test database, and start separate Portless development servers. Their persona seed requires the ignored local journey collection described in [Contributing](../CONTRIBUTING.md#curated-persona-data); installing packages alone is insufficient on a fresh checkout. The browser and persistence suites override inference to fixtures only after validation, so an incoming `live` configuration still requires a nonempty `TYPESAFE_API_KEY`. A test-only fixture environment avoids that credential dependency; ordinary `pnpm dev` always forces live Jev.
 
+Portless can serve these local test origins over HTTPS with a locally issued certificate. Each Playwright configuration allows that certificate in both `webServer.ignoreHTTPSErrors` (the readiness probe) and `use.ignoreHTTPSErrors` (browser and request contexts). A missing readiness setting can report a startup timeout even when Next is ready; use `DEBUG=pw:webserver` to distinguish certificate errors from a slow or failed server.
+
 Analytics tests use live-mode configuration to exercise SDK initialization, but supply synthetic credentials, mock assessment evaluation and intercept analytics transport. The production prefetch/cache suites reuse a prior local build through `start:local`; they do not submit inference. None of these checks should call paid providers.
 
 | Change | Required checks beyond `pnpm test` |
