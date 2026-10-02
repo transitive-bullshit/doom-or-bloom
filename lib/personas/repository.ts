@@ -116,6 +116,39 @@ export function personaRepository(pool: Pool) {
         return row!.id
       })
     },
+    // Presentation fields only: the source brief and selected run stay as
+    // they are. Profiles the database lacks are skipped and left out of the
+    // returned slugs; they arrive with their run through an import.
+    async updateProfiles(profiles: PersonaMetadata[]) {
+      return db.transaction(async (tx) => {
+        const updated: string[] = []
+        for (const input of profiles) {
+          const metadata = personaMetadataSchema.parse(input)
+          const [persona] = await tx
+            .select()
+            .from(personas)
+            .where(eq(personas.slug, metadata.slug))
+            .for('update')
+          if (!persona) continue
+          if (personaMetadataSchema.parse(persona.metadata).id !== metadata.id)
+            throw new Error(
+              `${metadata.slug}: profile belongs to another persona`
+            )
+          await tx
+            .update(personas)
+            .set({
+              name: metadata.name,
+              portrait: metadata.avatar,
+              metadata,
+              featured: metadata.featured,
+              updatedAt: new Date()
+            })
+            .where(eq(personas.id, persona.id))
+          updated.push(metadata.slug)
+        }
+        return updated
+      })
+    },
     async publish(
       personaId: string,
       seedKey: string,

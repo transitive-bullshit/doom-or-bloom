@@ -226,6 +226,31 @@ try {
       (row) => row.assessmentId === run.id
     )
   )
+  // A metadata sync changes the profile, never its brief or selected run.
+  const unsynced = (await repo.selected()).find(
+    (row) => row.persona.id === testPersona
+  )!
+  const synced = {
+    ...unsynced.metadata,
+    description:
+      'Test profile whose one-liner changes without touching its brief or run.'
+  }
+  assert.deepEqual(await repo.updateProfiles([synced]), [testId])
+  const resynced = (await repo.selected()).find(
+    (row) => row.persona.id === testPersona
+  )!
+  assert.deepEqual(resynced.metadata, synced)
+  assert.deepEqual(resynced.persona.sourceBrief, unsynced.persona.sourceBrief)
+  assert.equal(resynced.assessmentId, unsynced.assessmentId)
+  assert.deepEqual(
+    await repo.updateProfiles([{ ...synced, slug: 'no-such-simulated-user' }]),
+    []
+  )
+  await assert.rejects(
+    repo.updateProfiles([{ ...synced, id: 'another-persona' }]),
+    /belongs to another persona/
+  )
+  await verifySummaries()
   const olderProvenance = {
     ...provenance,
     runId: `${testId}-older-live`,
@@ -290,7 +315,7 @@ try {
     'interrupted'
   )
   console.log(
-    'Persona persistence passed: exact curated import, idempotency, provenance conflicts, publication validation, ordering fence, stable old URLs'
+    'Persona persistence passed: exact curated import, idempotency, provenance conflicts, publication validation, ordering fence, stable old URLs, metadata-only sync'
   )
 } finally {
   if (testPersona) {
