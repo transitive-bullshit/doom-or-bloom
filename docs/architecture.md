@@ -39,7 +39,8 @@ The engine evaluates answer disposition before accepting evidence. Usable answer
 | Database and identity | `lib/db/`, `drizzle/`, `lib/auth/` | PostgreSQL schema/migrations and Better Auth, including anonymous ownership claims |
 | Authored assets | `content/releases/`, `content/rubrics/`, [lib/content/loader.ts](../lib/content/loader.ts), `lib/authoring/` | Validated versioned prompts, rubrics, references, findings and resources |
 | Simulated users | [lib/journeys/catalog.ts](../lib/journeys/catalog.ts), `lib/journeys/`, `lib/personas/` | Source briefs, offline runner/local artifacts, immutable database simulations and selected public profiles |
-| Reports, privacy and diagnostics | `lib/sharing/`, `lib/analytics/`, `lib/debug/`, `lib/admin/`, `lib/server/upstream-fetch.ts` | Participant exports, allowlisted telemetry, private traces and operator inspection |
+| Reports, privacy and diagnostics | `lib/sharing/`, `lib/analytics/`, `lib/debug/`, `lib/admin/`, `lib/server/upstream-fetch.ts` | Participant exports, share captions, share link cards and browser-side comparisons (`lib/sharing/compare.ts`), allowlisted telemetry, private traces and operator inspection |
+| Share links | [lib/assessments/share-links.ts](../lib/assessments/share-links.ts), `app/api/assessments/[id]/share-link/`, `app/[locale]/(site)/s/[id]/` | Owner-authorized create, reuse and revoke; the public card page and image; cache expiry ([PERSISTENCE.md](PERSISTENCE.md#share-links)) |
 | Browser-local storage | [lib/assessments/client.ts](../lib/assessments/client.ts), `components/assessment/use-persistent-assessment.ts` | Current drafts and pending requests. `lib/persistence/` is legacy whole-assessment storage retained for compatibility tests. |
 
 The singular `lib/assessment/` is the interview model; plural `lib/assessments/` is the persistent resource and API boundary. Keep code with the boundary that owns the rule. Test scripts under `scripts/` exercise repositories against native Postgres; unit tests sit beside code and browser checks live under `tests/`.
@@ -52,6 +53,7 @@ The singular `lib/assessment/` is the interview model; plural `lib/assessments/`
 | Assessment | Durable identity, visibility, lineage, version pins and snapshot pointers. Its library status is derived, not a completion workflow. |
 | Snapshot | Immutable conversation, evidence, judgments, recovery state and result together. `revision` tracks state changes; `evidenceRevision` determines whether a result still matches its evidence. |
 | Operation | Private submitted action and execution status. A failed submission is retained here without pretending it became evaluated evidence. |
+| Share link | A revocable public card for one result (`share_snapshots`), never the conversation. Distinct from publication and from an assessment snapshot. |
 | Prompt / answer / judgment | An issued authored question, the participant's exact response, and an interpretation of that response. A model judgment is not another observation. |
 | Result | A derived view of supported evidence. Coverage, interpretation confidence, participant conviction and inferred P(doom) are different quantities. |
 | Persona / simulation | Authored source brief and one generated assessment. A persona selects a public simulation; regenerating inserts history and advances a pointer. |

@@ -5,7 +5,8 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type PointerEvent
+  type PointerEvent,
+  type ReactNode
 } from 'react'
 import Image, { getImageProps } from 'next/image'
 import { useTranslations } from 'next-intl'
@@ -28,6 +29,8 @@ export function Map({
   layout = 'breakout',
   subject,
   guess,
+  others = [],
+  controls,
   pick
 }: {
   horizontal: Component
@@ -38,6 +41,11 @@ export function Map({
   subject?: ResultSubject
   // The participant's own expected position, shown beside the result.
   guess?: { x: number; y: number } | null
+  // Someone to compare with: a thought leader (with a portrait) or a friend's
+  // shared card (a diamond), each labeled.
+  others?: Array<{ x: number; y: number; label: string; avatar?: string }>
+  // Controls under the heading, such as showing or hiding a comparison.
+  controls?: ReactNode
   // Self-placement mode: the result stays hidden and a tap places the guess.
   pick?: (point: { x: number; y: number }) => void
 }) {
@@ -87,6 +95,18 @@ export function Map({
           quality: 90
         }).props.src
       : undefined
+  const otherPortraits = others.map(({ avatar }) =>
+    avatar
+      ? getImageProps({
+          src: avatar,
+          alt: '',
+          width: 64,
+          height: 64,
+          quality: 90
+        }).props.src
+      : undefined
+  )
+  const shared = subject?.kind === 'shared'
   const percent = (value: number) => Math.round(value * 100)
   const coordinate = (value: number | null) =>
     value === null ? t('unplaced') : t('outOf', { value: percent(value) })
@@ -117,9 +137,11 @@ export function Map({
       ? t('unsettled')
       : y.interpretation === 'tentative'
         ? t('estimate')
-        : subject
-          ? t('simulatedView')
-          : t('yourView')
+        : shared
+          ? t('theirView')
+          : subject
+            ? t('simulatedView')
+            : t('yourView')
   const pointWidth = pillWidth(pointLabel, 12, { minimum: 92 })
   const caption = { title: t('unplacedTitle'), note: t('unplacedNote') }
   const captionWidth = Math.min(
@@ -143,11 +165,14 @@ export function Map({
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
     >
-      <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
-        <h2 className='col-start-2 text-center'>{t('question', { axis })}</h2>
-        <div className='col-start-3 justify-self-end'>
-          {!pick && <MapActions svg={svg} />}
+      <div className='flex flex-col gap-3'>
+        <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
+          <h2 className='col-start-2 text-center'>{t('question', { axis })}</h2>
+          <div className='col-start-3 justify-self-end'>
+            {!pick && <MapActions svg={svg} />}
+          </div>
         </div>
+        {controls && <div className='flex justify-center'>{controls}</div>}
       </div>
       <svg
         ref={svg}
@@ -220,7 +245,7 @@ export function Map({
         >
           Bloom
         </text>
-        {!subject && (
+        {(!subject || shared) && (
           <>
             <text
               className='prism-axis-label'
@@ -284,6 +309,87 @@ export function Map({
             strokeDasharray='6 5'
           />
         )}
+        {others.map((other, index) => {
+          const cx = px(other.x),
+            cy = py(other.y)
+          // Labels keep a readable size on narrow screens, like axis labels.
+          const size = 11 * labelScale
+          const width = pillWidth(other.label, size, { minimum: 48 })
+          const height = 21 * labelScale
+          const below = other.y > 0.15
+          const offset = (other.avatar ? 15 : 9) + height / 2 + 4
+          return (
+            <g
+              key={index}
+              data-slot='worldview-map-other'
+              role='img'
+              aria-label={t('otherMarker', { name: other.label })}
+            >
+              {other.avatar ? (
+                <>
+                  <defs>
+                    <clipPath id={`${id}-other-${index}`}>
+                      <circle cx={cx} cy={cy} r='14.25' />
+                    </clipPath>
+                  </defs>
+                  <image
+                    href={otherPortraits[index]}
+                    data-export-src={other.avatar}
+                    x={cx - 15}
+                    y={cy - 15}
+                    width='30'
+                    height='30'
+                    preserveAspectRatio='xMidYMid slice'
+                    clipPath={`url(#${id}-other-${index})`}
+                  />
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r='14.25'
+                    fill='none'
+                    stroke='var(--prism-portrait-ring)'
+                    strokeWidth='1.5'
+                  />
+                </>
+              ) : (
+                <rect
+                  x='-7'
+                  y='-7'
+                  width='14'
+                  height='14'
+                  rx='2'
+                  transform={`translate(${cx} ${cy}) rotate(45)`}
+                  fill='var(--map-surface)'
+                  stroke='var(--map-text)'
+                  strokeWidth='2.5'
+                />
+              )}
+              <g
+                transform={`translate(${Math.max(plot.left + width / 2, Math.min(plot.left + plot.width - width / 2, cx))},${below ? cy + offset : cy - offset})`}
+              >
+                <rect
+                  x={-width / 2}
+                  y={-height / 2}
+                  width={width}
+                  height={height}
+                  rx={height / 2}
+                  fill='var(--map-surface)'
+                  stroke='var(--map-text)'
+                  strokeOpacity='.35'
+                />
+                <text
+                  textAnchor='middle'
+                  dominantBaseline='central'
+                  fill='var(--map-text)'
+                  fontSize={size}
+                  fontWeight='600'
+                >
+                  {other.label}
+                </text>
+              </g>
+            </g>
+          )
+        })}
         {guess && (
           <g data-slot='worldview-map-guess'>
             <circle
@@ -444,11 +550,36 @@ export function Map({
               {point
                 ? y.interpretation === 'unsettled'
                   ? t('centerUnresolved')
-                  : subject
-                    ? t('simulatedPosition')
-                    : t('estimatedPosition')
+                  : shared
+                    ? t('sharedPosition')
+                    : subject
+                      ? t('simulatedPosition')
+                      : t('estimatedPosition')
                 : t('notDetermined')}
             </span>
+            {others.map((other, index) => (
+              <span key={index} className='inline-flex items-center gap-2'>
+                <span
+                  className='inline-flex h-4 w-5 shrink-0 items-center justify-center'
+                  aria-hidden='true'
+                >
+                  {other.avatar ? (
+                    <Image
+                      src={other.avatar}
+                      alt=''
+                      width={16}
+                      height={16}
+                      sizes='16px'
+                      quality={90}
+                      className='size-4 rounded-full border border-white object-cover'
+                    />
+                  ) : (
+                    <span className='map-other size-2.5 rotate-45 rounded-[2px] border-2' />
+                  )}
+                </span>
+                {other.label}
+              </span>
+            ))}
             <span className='inline-flex items-center gap-2'>
               <span
                 className='map-range h-4 w-5 shrink-0 rounded-sm border border-dashed'

@@ -339,9 +339,24 @@
 .worldview-map .map-point {
   background: var(--map-text);
 }
+.worldview-map .map-other {
+  background: var(--map-surface);
+  border-color: var(--map-text);
+}
 .worldview-map .map-range,
 .worldview-map .map-divider {
   border-color: color-mix(in oklab, var(--map-text) 35%, var(--map-surface));
+}
+/* Someone to compare with fades in when the comparison is shown. */
+@media (prefers-reduced-motion: no-preference) {
+  .worldview-map [data-slot='worldview-map-other'] {
+    animation: map-other-in 200ms var(--ease-out) both;
+  }
+}
+@keyframes map-other-in {
+  from {
+    opacity: 0;
+  }
 }
 
 /* Route changes fade the page while the shared chrome stays still. */

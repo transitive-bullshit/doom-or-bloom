@@ -36,6 +36,8 @@ export function SiteBreadcrumbs() {
   if (
     pathname === '/' ||
     pathname.startsWith('/public/assessments/') ||
+    // Share links are landing pages, like public assessments.
+    pathname.startsWith('/s/') ||
     pathname === '/admin' ||
     pathname.startsWith('/admin/')
   ) {

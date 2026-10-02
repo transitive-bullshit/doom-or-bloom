@@ -66,6 +66,18 @@ describe('captureFirstTouch', () => {
     expect(touch.landing).toBe('assessment')
     expect(JSON.stringify(touch)).not.toContain('0b8f1f0e')
   })
+
+  it('records a share link landing without its ID', () => {
+    const touch = capture(
+      'https://www.doom-or-bloom.com/es/s/AbCdEfGh_jKl-123?ref=share-x'
+    )
+    expect(touch).toMatchObject({
+      landing: 'share_link',
+      ref: 'share-x',
+      locale: 'es'
+    })
+    expect(JSON.stringify(touch)).not.toContain('AbCdEfGh')
+  })
 })
 
 describe('cleanTag', () => {

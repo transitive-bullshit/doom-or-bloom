@@ -186,3 +186,61 @@ test('events carry the interview language of the latest answer', () => {
   expect(event.properties.interview_locale).toBe('hi')
   expect(sanitizeEvent(event, catalog)?.properties.interview_locale).toBe('hi')
 })
+
+test('share link and compare events carry enumerated values, never IDs', () => {
+  const state = createAssessment(id)
+  const viewed = makeEvent(state, 'compare_result_viewed', {
+    alignment_bucket: 'mostly_aligned',
+    compare_source: 'snapshot'
+  })
+  const shared = makeEvent(state, 'share_intent_opened', {
+    share_target: 'copy_link',
+    share_surface: 'compare_result',
+    link_kind: 'snapshot'
+  })
+  for (const event of [
+    viewed,
+    shared,
+    makeEvent(state, 'share_link_created', { share_surface: 'result_bar' })
+  ])
+    expect(sanitizeEvent(event, catalog)?.properties).toMatchObject(
+      event.properties
+    )
+  const canary = 'AbCdEfGh_jKl-123'
+  const safe = sanitizeEvent(
+    {
+      ...viewed,
+      properties: {
+        ...viewed.properties,
+        share_link_id: canary,
+        compare_target: `persona:${canary}`,
+        other_assessment_id: canary
+      }
+    },
+    catalog
+  )
+  expect(JSON.stringify(safe)).not.toContain(canary)
+  for (const properties of [
+    { alignment_bucket: canary },
+    { compare_source: `persona:${canary}` },
+    { link_kind: `/s/${canary}` }
+  ])
+    expect(
+      sanitizeEvent(
+        { ...viewed, properties: { ...viewed.properties, ...properties } },
+        catalog
+      )
+    ).toBeNull()
+})
+
+test('share link pageviews report the route, never the link ID', () => {
+  expect(
+    attributionUrl('https://example.com/s/AbCdEfGh_jKl-123?ref=share-x#top')
+  ).toBe('https://example.com/s/[id]?utm_source=share-x')
+  expect(attributionUrl('https://example.com/es/s/AbCdEfGh_jKl-123')).toBe(
+    'https://example.com/es/s/[id]'
+  )
+  expect(attributionUrl('https://example.com/users/simonw')).toBe(
+    'https://example.com/users/simonw'
+  )
+})

@@ -11,7 +11,10 @@ import { privateHeaders, privateRequest } from '@/lib/assessments/http'
 import { submitSchema } from '@/lib/assessments/contracts'
 import { repository, evaluateAssessment } from '@/lib/assessments/server'
 import { readBoundedJson } from '@/lib/server/limits'
-import { refreshPublicAssessment } from '@/lib/assessments/public-cache'
+import {
+  refreshPublicAssessment,
+  refreshShareLinks
+} from '@/lib/assessments/public-cache'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 150
@@ -122,8 +125,9 @@ export async function DELETE(
 ) {
   return privateRequest(request, async (owner) => {
     const id = z.uuid().parse((await context.params).id)
-    await repository().remove(owner, id)
+    const { shareLinkIds } = await repository().remove(owner, id)
     refreshPublicAssessment(id, false)
+    refreshShareLinks(shareLinkIds)
     return new Response(null, { status: 204, headers: privateHeaders })
   })
 }

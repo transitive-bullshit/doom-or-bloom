@@ -32,6 +32,7 @@ const surfaces = {
     'Placement',
     'Feedback',
     'Share',
+    'Compare',
     'Publish',
     'Errors',
     'Report'
@@ -40,6 +41,8 @@ const surfaces = {
   library: ['Library', 'Publish', 'Errors', 'Report', 'Claims', 'Map'],
   /** Published participant results and simulated-user profiles. */
   published: [...result, 'Persona'],
+  /** A card-only share link: just its map. */
+  shared: ['Map', 'Claims'],
   /** Local review tools render every assessment surface in English. */
   review: [
     ...result,
@@ -47,6 +50,7 @@ const surfaces = {
     'Placement',
     'Feedback',
     'Share',
+    'Compare',
     'Publish',
     'Errors',
     'Report',

@@ -107,7 +107,7 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
   ).toBeVisible()
 
   const bar = page.getByRole('region', { name: 'Comparte tu resultado' })
-  await expect(bar).toContainText('Tus respuestas siguen siendo privadas')
+  await expect(bar).toContainText('Tus respuestas permanecen privadas')
   await expect(bar).toContainText('¿Dónde te ubicas?')
   const x = new URL(
     (await bar
@@ -119,11 +119,14 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
   )
   await context.grantPermissions(['clipboard-read', 'clipboard-write'])
   await bar.getByRole('button', { name: 'Copiar enlace' }).click()
+  await expect(
+    page.getByText('Se copió el enlace.', { exact: true })
+  ).toBeVisible()
   const copied = new URL(
     await page.evaluate(() => navigator.clipboard.readText())
   )
-  // Shares keep the visitor's language.
-  expect(copied.pathname).toBe('/es')
+  // Shares keep the visitor's language: a card-only link under /es.
+  expect(copied.pathname).toMatch(/^\/es\/s\/[A-Za-z0-9_-]{16}$/u)
   expect(copied.searchParams.get('ref')).toBe('share-copy-link')
 
   await bar.getByRole('button', { name: 'Publicar la evaluación' }).click()

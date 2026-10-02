@@ -1,11 +1,14 @@
 import { gunzipSync } from 'node:zlib'
 import { Pool } from 'pg'
+import { execFileSync } from 'node:child_process'
+import type { BrowserContext, Page } from '@playwright/test'
 import {
   expect,
   test,
   startAssessment,
   savedAssessment,
-  mockEvaluation
+  mockEvaluation,
+  skipSelfPlacement
 } from '../browser/fixtures'
 import { assessmentSchema } from '../../lib/assessment/schema'
 import { firstTouchCookie } from '../../lib/attribution/first-touch'
@@ -227,4 +230,155 @@ test('missing live key preserves the draft and does not consume a semantic attem
   )
   const attempts = (await savedAssessment(page)).attempts
   expect(attempts).toEqual([])
+})
+
+/** Intercepts PostHog transport for a context and collects decoded payloads. */
+async function capturePostHog(context: BrowserContext, baseURL: string) {
+  const captured: string[] = []
+  // The SDK drops WebDriver traffic; emulate a participant for transport tests.
+  await context.addInitScript(() => {
+    Object.defineProperty(navigator, 'webdriver', { get: () => false })
+    Object.defineProperty(navigator, 'userAgentData', { get: () => undefined })
+    // Desktop browsers without Web Share copy links instead.
+    Object.defineProperty(navigator, 'share', { value: undefined })
+  })
+  await context.route('**/*', async (route) => {
+    const request = route.request()
+    const url = new URL(request.url())
+    if (url.origin === 'http://localhost:4747')
+      return route.fulfill({ json: {} })
+    if (url.origin === new URL(baseURL).origin) return route.continue()
+    const body = request.postDataBuffer()
+    if (url.hostname === 'posthog.invalid' && body)
+      captured.push(
+        body[0] === 0x1f && body[1] === 0x8b
+          ? gunzipSync(body).toString('utf8')
+          : url.searchParams.get('compression') === 'base64'
+            ? Buffer.from(
+                new URLSearchParams(body.toString('utf8')).get('data')!,
+                'base64'
+              ).toString('utf8')
+            : body.toString('utf8')
+      )
+    await route.fulfill({
+      status: 200,
+      json: {},
+      headers: { 'access-control-allow-origin': '*' }
+    })
+  })
+  return captured
+}
+
+// The real engine with fixture judgments, run outside the server; no inference.
+async function revealResult(page: Page) {
+  await mockEvaluation(page, async (input) =>
+    JSON.parse(
+      execFileSync(
+        process.execPath,
+        [
+          '--conditions=react-server',
+          '--import',
+          'tsx',
+          'tests/browser/early-engine.ts'
+        ],
+        { input: JSON.stringify(input), encoding: 'utf8' }
+      )
+    )
+  )
+  await expect(page).toHaveURL(/\/assessments\/[a-f0-9-]+$/)
+  await page
+    .getByLabel('Your answer', { exact: true })
+    .fill('I expect useful tools and serious risks, depending on oversight.')
+  await page.getByRole('button', { name: /^Continue/ }).click()
+  await page.getByRole('button', { name: 'View my results' }).click()
+  await skipSelfPlacement(page)
+}
+
+test('share link and compare events carry only enumerated values, never link, persona or assessment IDs', async ({
+  page,
+  browser,
+  baseURL
+}) => {
+  const sharer = await capturePostHog(page.context(), baseURL!)
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write'])
+  // A thought-leader comparison, then a share link from its result.
+  await page.goto('/users/karpathy')
+  await page
+    .locator('[data-slot="card"]')
+    .filter({ hasText: 'Where do you land vs' })
+    .getByRole('link', { name: 'Map my worldview' })
+    .click()
+  await revealResult(page)
+  const sharerId = new URL(page.url()).pathname.split('/').at(-1)!
+  await expect(page.getByRole('region', { name: /^You vs / })).toBeVisible()
+  const bar = page.getByRole('region', { name: 'Share your result' })
+  await bar.getByRole('button', { name: 'Copy link' }).click()
+  await expect(page.getByText('Link copied.', { exact: true })).toBeVisible()
+  const link = new URL(
+    await page.evaluate(() => navigator.clipboard.readText())
+  )
+  const linkId = link.pathname.split('/').at(-1)!
+  expect(linkId).toMatch(/^[A-Za-z0-9_-]{16}$/)
+  await expect
+    .poll(() => sharer.join('\n'), { timeout: 15_000 })
+    .toContain('share_link_created')
+  await expect
+    .poll(() => sharer.join('\n'), { timeout: 15_000 })
+    .toContain('compare_result_viewed')
+
+  // A friend arrives from the link and compares.
+  const friend = await browser.newContext({ baseURL, ignoreHTTPSErrors: true })
+  try {
+    const recipient = await capturePostHog(friend, baseURL!)
+    await friend.grantPermissions(['clipboard-read', 'clipboard-write'])
+    const visitor = await friend.newPage()
+    await visitor.goto(`${link.pathname}?ref=share-x`)
+    await visitor
+      .getByRole('region', { name: 'Where do you land?' })
+      .getByRole('link', { name: 'Compare now' })
+      .click()
+    await revealResult(visitor)
+    const comparison = visitor.getByRole('region', { name: /^You vs / })
+    await comparison
+      .getByRole('button', { name: 'Send them your result' })
+      .click()
+    await expect(visitor.getByText('Link copied. Send it back')).toBeVisible()
+    await expect
+      .poll(() => recipient.join('\n'), { timeout: 15_000 })
+      .toContain('share_link_created')
+    const sent = recipient.join('\n')
+    expect(sent).toMatch(
+      /"event":"compare_result_viewed".*?"alignment_bucket":"(very_aligned|mostly_aligned|some_distance|worlds_apart|unknown)"/
+    )
+    expect(sent).toContain('"compare_source":"snapshot"')
+    expect(sent).toContain('"share_surface":"compare_result"')
+    expect(sent).toContain('"first_touch_ref":"share-x"')
+    expect(sent).toContain('"first_touch_landing":"share_link"')
+    const sentBack = new URL(
+      await visitor.evaluate(() => navigator.clipboard.readText())
+    )
+    const recipientId = new URL(visitor.url()).pathname.split('/').at(-1)!
+    const shared = sharer.join('\n')
+    expect(shared).toContain('"compare_source":"persona"')
+    expect(shared).toContain('"share_surface":"result_bar"')
+    expect(shared).toContain('"link_kind":"snapshot"')
+    // Neither side's payloads name the link, the thought leader or the other
+    // assessment; each carries only its own random assessment ID.
+    for (const serialized of [shared, sent]) {
+      expect(serialized).not.toContain(linkId)
+      expect(serialized).not.toContain(sentBack.pathname.split('/').at(-1)!)
+      expect(serialized).not.toContain('karpathy')
+      expect(serialized).not.toContain('/s/')
+    }
+    expect(shared).not.toContain(recipientId)
+    expect(sent).not.toContain(sharerId)
+  } finally {
+    const items = await friend.request.get('/api/assessments')
+    if (items.ok())
+      for (const item of (await items.json()) as { id: string }[])
+        await friend.request.delete(`/api/assessments/${item.id}`, {
+          headers: { origin: baseURL! }
+        })
+    await friend.close()
+  }
 })

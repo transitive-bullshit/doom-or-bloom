@@ -13,6 +13,12 @@ export const shareTargets = [
   'copy_link'
 ] as const
 export type ShareTarget = (typeof shareTargets)[number]
+/** Where a share action was offered. */
+export const shareSurfaces = ['result_bar', 'compare_result'] as const
+export type ShareSurface = (typeof shareSurfaces)[number]
+/** What the shared link opens. */
+export const linkKinds = ['home', 'snapshot', 'public'] as const
+export type LinkKind = (typeof linkKinds)[number]
 
 type Risk = {
   source?: 'stated' | 'inferred' | 'public-statement'
@@ -52,10 +58,16 @@ export function shareCaption(
     : t('Share.caption.stated', { token })
 }
 
-/** A link back to the site, tagged so first-touch attribution sees the share. */
-export function shareUrl(base: string, target: ShareTarget) {
+/**
+ * A link back to the site, tagged so first-touch attribution sees the share.
+ * Sending a result back from a comparison is tagged `compare`.
+ */
+export function shareUrl(base: string, target: ShareTarget | 'compare') {
   const url = new URL(base)
-  url.searchParams.set('ref', `share-${target.replace('_', '-')}`)
+  url.searchParams.set(
+    'ref',
+    target === 'compare' ? 'compare' : `share-${target.replace('_', '-')}`
+  )
   return url.href
 }
 

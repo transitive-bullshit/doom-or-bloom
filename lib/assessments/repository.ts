@@ -1,6 +1,6 @@
 import 'server-only'
 import { createHash, randomUUID } from 'node:crypto'
-import { and, count, desc, eq, isNotNull, lte } from 'drizzle-orm'
+import { and, count, desc, eq, isNotNull, isNull, lte } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import type { Pool } from 'pg'
 import {
@@ -19,6 +19,7 @@ import {
   personas,
   user,
   account,
+  shareSnapshots,
   usedAssessmentDrafts
 } from '../db/schema'
 import { publisherSchema, type Publisher } from './publisher'
@@ -786,10 +787,22 @@ export function assessmentRepository(pool: Pool) {
         return { id }
       })
     },
+    /** Deletes the assessment; returns its active share link IDs to expire. */
     async remove(ownerId: string, id: string) {
-      await db.transaction(async (tx) => {
+      return db.transaction(async (tx) => {
         await owned(tx, ownerId, id, true)
+        // The row lock waits for a link being created, so none is missed.
+        const links = await tx
+          .select({ id: shareSnapshots.id })
+          .from(shareSnapshots)
+          .where(
+            and(
+              eq(shareSnapshots.assessmentId, id),
+              isNull(shareSnapshots.revokedAt)
+            )
+          )
         await tx.delete(assessments).where(eq(assessments.id, id))
+        return { shareLinkIds: links.map((link) => link.id) }
       })
     }
   }

@@ -6,12 +6,19 @@ import { getPathname } from '@/i18n/navigation'
 import { defaultLocale } from '@/i18n/config'
 import { ShareBar } from './share-bar'
 import { closestPersonas } from '@/lib/assessment/persona-matches'
-import { shareCaption } from '@/lib/sharing/share-caption'
+import { shareCaption, shareUrl } from '@/lib/sharing/share-caption'
+import { shareLinkPath } from '@/lib/sharing/share-links'
+import { compareWorldviews } from '@/lib/sharing/compare'
+import { ComparisonCard } from './comparison-card'
+import { CompareToggle } from './compare-toggle'
+import { copyText } from './clipboard'
+import { useCompare } from './use-compare'
+import { useShareLink } from './use-share-link'
 import { ClosestPersonas } from './closest-personas'
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
 import { resultCardData } from '@/lib/sharing/card-data'
 import { atCap, promptLimit } from '@/lib/assessment/state'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { mapPng } from '@/lib/sharing/map-png'
 import { Spinner } from '@/components/ui/spinner'
 import { Separator } from '@/components/ui/separator'
@@ -83,6 +90,22 @@ export function ResultView({
   const result = presentResult(state.result!)
   const feedback = useResultFeedback(state, !readOnly)
   const placed = resultPlacement(result)
+  const revealed = feedback.stage === 'revealed'
+  const current =
+    state.result?.evidenceRevision === state.evidenceRevision
+      ? state.result.evidenceRevision
+      : null
+  const shareLink = useShareLink({
+    assessmentId: state.id,
+    evidenceRevision: current,
+    enabled: !readOnly && revealed,
+    onCreated: (surface) =>
+      emitEvent(
+        makeEvent(state, 'share_link_created', { share_surface: surface })
+      )
+  })
+  const compare = useCompare(state.id, !readOnly && revealed)
+  const [sending, setSending] = useState(false)
   // When the participant's own placement and this result differ a lot, offer
   // one question about it. Answering adds evidence and returns an updated
   // result; it is offered once, on a current private result.
@@ -104,6 +127,7 @@ export function ResultView({
     )
     return state.answers.filter((answer) => ids.has(answer.id))
   }
+  const localized = (href: string) => getPathname({ href, locale })
   const renderCard = async () => {
     // The card renders in the page's language; English needs no parameter.
     const query = locale === defaultLocale ? '' : `?locale=${locale}`
@@ -172,6 +196,90 @@ export function ResultView({
         risk: experiment?.pdoom,
         closest: closestPersonas(result, personas)[0]?.name
       })
+  const comparison =
+    compare.status === 'ready'
+      ? compareWorldviews(state.result!, compare.other, personas)
+      : null
+  const compareSource = compare.status === 'ready' ? compare.other.kind : null
+  const bucket = comparison ? (comparison.bucket ?? 'unknown') : null
+  // One event per result and comparison source, across reloads; later state
+  // changes to the same result do not repeat it.
+  const viewed = useRef(state)
+  useEffect(() => {
+    viewed.current = state
+  })
+  const evidenceRevision = result.evidenceRevision
+  useEffect(() => {
+    if (!compareSource || !bucket) return
+    const marker = `doom-or-bloom:compare-viewed:${viewed.current.id}:${evidenceRevision}:${compareSource}`
+    try {
+      if (localStorage.getItem(marker)) return
+      localStorage.setItem(marker, '1')
+    } catch {
+      /* Without storage, a reload may repeat the event. */
+    }
+    emitEvent(
+      makeEvent(viewed.current, 'compare_result_viewed', {
+        alignment_bucket: bucket,
+        compare_source: compareSource
+      })
+    )
+  }, [compareSource, bucket, evidenceRevision])
+  const otherName =
+    compare.status === 'ready'
+      ? (compare.other.name ?? root('Compare.friend'))
+      : ''
+  // Sends a friend this participant's own card, closing the loop.
+  const sendBack = async () => {
+    if (sending) return
+    setSending(true)
+    const native = typeof navigator.share === 'function'
+    emitEvent(
+      makeEvent(state, 'share_intent_opened', {
+        share_target: native ? 'native' : 'copy_link',
+        share_surface: 'compare_result',
+        link_kind: 'snapshot'
+      })
+    )
+    const url = shareLink
+      .ensure(null, 'compare_result')
+      .then(({ id }) =>
+        shareUrl(
+          `${window.location.origin}${localized(shareLinkPath(id))}`,
+          'compare'
+        )
+      )
+    try {
+      if (native) {
+        await navigator
+          .share({ text: root('Compare.sendText'), url: await url })
+          .catch((err: unknown) => {
+            if (err instanceof Error && err.name === 'NotAllowedError')
+              toast(root('Share.shareAgain'))
+          })
+      } else {
+        await copyText(url)
+        toast.success(root('Compare.sendCopied'))
+      }
+    } catch {
+      toast.error(root('Share.linkFailed'))
+    } finally {
+      setSending(false)
+    }
+  }
+  // Hidden when the participant chooses to see just their own result.
+  const comparisonCard =
+    compare.status === 'ready' && compare.shown && comparison ? (
+      <ComparisonCard
+        other={compare.other}
+        comparison={comparison}
+        name={otherName}
+        sending={sending}
+        onSend={
+          compare.other.kind === 'snapshot' ? () => void sendBack() : undefined
+        }
+      />
+    ) : null
   if (feedback.stage !== 'revealed')
     return (
       <div ref={resultsRoot} aria-busy={feedback.stage === 'pending'}>
@@ -218,12 +326,43 @@ export function ResultView({
         layout={layout}
         riskCompanion={<ClosestPersonas result={result} personas={personas} />}
         guess={feedback.guess}
+        mapControls={
+          compare.status === 'ready' ? (
+            <CompareToggle
+              name={otherName}
+              avatar={compare.other.avatar}
+              shown={compare.shown}
+              onShownChange={compare.show}
+            />
+          ) : compare.status === 'loading' ? (
+            // Holds the toggle's place while the other result loads.
+            <div aria-hidden='true' className='h-9.5' />
+          ) : undefined
+        }
+        others={
+          comparison &&
+          compare.status === 'ready' &&
+          compare.shown &&
+          comparison.them.x !== null &&
+          comparison.them.y !== null
+            ? [
+                {
+                  x: comparison.them.x,
+                  y: comparison.them.y,
+                  label: compare.other.name ?? root('Compare.friendLabel'),
+                  avatar: compare.other.avatar
+                }
+              ]
+            : undefined
+        }
         mapNote={
-          feedback.guess && (
+          (feedback.guess || comparisonCard || compare.status === 'gone') && (
             <div className='flex flex-col gap-3'>
-              <p className='text-sm text-body-foreground'>
-                {placementComparison(root, feedback.guess, placed)}
-              </p>
+              {feedback.guess && (
+                <p className='text-sm text-body-foreground'>
+                  {placementComparison(root, feedback.guess, placed)}
+                </p>
+              )}
               {question && (
                 <section
                   aria-label={t('differenceLabel')}
@@ -251,6 +390,12 @@ export function ResultView({
                   </div>
                 </section>
               )}
+              {comparisonCard}
+              {compare.status === 'gone' && (
+                <p className='text-sm text-body-foreground'>
+                  {root('Compare.gone')}
+                </p>
+              )}
             </div>
           )
         }
@@ -266,17 +411,29 @@ export function ResultView({
           !readOnly && (
             <ShareBar
               caption={caption}
-              path={getPathname({
-                href: published ? `/public/assessments/${state.id}` : '/',
-                locale
-              })}
               published={published}
+              publicPath={localized(`/public/assessments/${state.id}`)}
+              homePath={localized('/')}
+              linkPath={
+                shareLink.link
+                  ? localized(shareLinkPath(shareLink.link.id))
+                  : null
+              }
+              activeLinks={shareLink.active}
+              ensureLink={async (name) =>
+                localized(
+                  shareLinkPath((await shareLink.ensure(name, 'result_bar')).id)
+                )
+              }
+              onStopSharing={shareLink.revoke}
               downloading={downloading}
               disabled={busy || reportDownloading}
-              onShare={(target) =>
+              onShare={(target, kind) =>
                 emitEvent(
                   makeEvent(state, 'share_intent_opened', {
-                    share_target: target
+                    share_target: target,
+                    share_surface: 'result_bar',
+                    link_kind: kind
                   })
                 )
               }
