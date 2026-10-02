@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "Apa itu P(doom)? Estimasi dari para pemimpin opini AI",
-      "description": "P(doom) adalah peluang yang seseorang berikan bahwa AI menyebabkan katastrofe bagi umat manusia. Penjelasan maknanya, beserta estimasi yang dinyatakan dan disimulasikan dari para pemimpin opini AI."
+      "description": "P(doom) adalah peluang yang diberikan seseorang bahwa AI akan menyebabkan katastrofe bagi umat manusia. Apa artinya, apa yang dikatakan para pemimpin opini AI, dan bagaimana hal itu dapat terjadi."
     },
     "blog": {
       "title": "Blog",
@@ -730,18 +730,26 @@
   },
   "PdoomHub": {
     "tableTitle": "P(doom) menurut pemimpin opini",
-    "tableDescription": "Pilih judul kolom untuk mengurutkan",
     "name": "Pemimpin opini",
     "stated": "P(doom) yang dinyatakan secara publik",
-    "inferred": "Disimpulkan dari jawaban simulasi",
-    "sort": "Urutkan berdasarkan {column}",
-    "none": "Tidak ada dalam catatan",
-    "notEstimated": "Tidak diestimasi",
-    "range": "Rentang yang masuk akal {range}",
-    "given": "Diberikan dalam wawancara simulasi",
-    "source": "Sumber",
-    "asOf": "Per {date}: {count, plural, one {# pemimpin opini simulasi} other {# pemimpin opini simulasi}}, {stated, plural, one {# dengan P(doom) yang dinyatakan secara publik} other {# dengan P(doom) yang dinyatakan secara publik}}",
-    "note": "Angka yang dinyatakan secara publik berasal dari kata-kata orang tersebut sendiri, disertai tautan ke sumbernya. Setiap orang mendefinisikan hasil dan kerangka waktunya secara berbeda, sehingga angka-angka ini tidak dapat dibandingkan secara langsung. Angka yang disimpulkan berasal dari wawancara simulasi yang dibuat berdasarkan tulisan publik setiap orang: angka yang diberikan oleh simulasi, atau pembacaan kasar atas jawabannya. Angka tersebut bukan estimasi orang itu sendiri, dan simulasi bukanlah bentuk dukungan.",
+    "declined": "Tanpa angka",
+    "cite": "Sumber {number}",
+    "asOf": "Per {date}",
+    "note": "Setiap angka berasal dari kata-kata orang tersebut sendiri, dengan tautan ke tempat mereka mengatakannya. Orang-orang mendefinisikan hasil dan kerangka waktunya secara berbeda, sehingga angka-angka tersebut tidak dapat dibandingkan secara langsung.",
+    "allUsers": "Lihat semua {count} pemimpin opini simulasi",
+    "allUsersDescription": "Cari dan urutkan semua orang di peta, termasuk berdasarkan P(doom) kasar yang disimpulkan dari setiap simulasi",
+    "scenariosTitle": "Bagaimana hal itu dapat terjadi",
+    "proponents": "Siapa yang mengemukakannya",
+    "disagreement": "Hal-hal yang tidak disepakati para ahli",
+    "sourcesTitle": "Sumber",
+    "backToText": "Kembali ke teks untuk sumber {number}",
+    "readingTitle": "Bacaan lebih lanjut",
+    "readingGroups": {
+      "start": "Mulai di sini",
+      "core": "Argumen inti",
+      "forecasts": "Prakiraan dan survei",
+      "critiques": "Kritik"
+    },
     "ctaTitle": "Berapa P(doom) Anda?",
     "ctaDescription": "Jawab beberapa pertanyaan dalam waktu sekitar 3 menit, lalu lihat pandangan dunia Anda dan perkiraan kasar P(doom) di samping pandangan dan perkiraan mereka",
     "guide": "Baca panduan tentang arti P(doom)"

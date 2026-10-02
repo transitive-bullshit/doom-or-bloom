@@ -60,7 +60,7 @@ test('the home page names the P(doom) search and describes a free web app', asyn
   ).toHaveAttribute('href', '/blog')
 })
 
-test('the P(doom) hub defines the term, then sorts stated and inferred estimates', async ({
+test('the P(doom) hub defines the term, then cites curated estimates, scenarios and readings', async ({
   page
 }) => {
   await page.goto('/p-doom')
@@ -73,63 +73,81 @@ test('the P(doom) hub defines the term, then sorts stated and inferred estimates
   await expect(page.locator('main header p').first()).toHaveText(
     /^P\(doom\) is the probability a person assigns to advanced AI causing an existential catastrophe/
   )
-  await expect(
-    page.getByText(
-      /^As of .+ simulated thought leaders, \d+ with a publicly stated P\(doom\)$/
-    )
-  ).toBeVisible()
+  await expect(page.getByText(/^As of .+\d{4}$/)).toBeVisible()
   await expect(
     page.getByRole('link', { name: 'Read the guide to what P(doom) means' })
   ).toHaveAttribute('href', '/blog/what-is-p-doom')
 
+  // A curated table, not the whole catalog: stated numbers as written, each
+  // with a footnote, then refusals quoted instead of a number.
   const table = page.locator('[data-slot="pdoom-table"]')
   const rows = table.locator('tbody tr')
-  expect(await rows.count()).toBeGreaterThan(20)
-  await expect(
-    table.getByRole('columnheader', { name: /Inferred from simulated answers/ })
-  ).toHaveAttribute('aria-sort', 'descending')
-  // A publicly stated number appears only with its source.
+  const count = await rows.count()
+  expect(count).toBeGreaterThanOrEqual(10)
+  expect(count).toBeLessThanOrEqual(25)
+  await expect(table.getByRole('button')).toHaveCount(0)
   const hinton = rows.filter({ hasText: 'Geoffrey Hinton' })
   await expect(hinton.getByRole('cell').nth(1)).toContainText('10–20%')
   await expect(
-    hinton.getByRole('link', {
+    hinton.getByRole('link', { name: 'Geoffrey Hinton' })
+  ).toHaveAttribute('href', '/users/geoffreyhinton')
+  const marker = hinton.getByRole('link', { name: /^Source \d+$/ })
+  const footnote = (await marker.getAttribute('href'))!
+  expect(footnote).toMatch(/^#source-\d+$/)
+  await expect(
+    page.locator(footnote).getByRole('link', {
       name: 'The Godfather of AI says we cannot afford to get it wrong'
     })
   ).toHaveAttribute('href', /^https:\/\/www\.wbur\.org\//)
-  await expect(
-    hinton.getByRole('link', { name: 'Geoffrey Hinton' })
-  ).toHaveAttribute('href', '/users/geoffreyhinton')
-  const stated = await rows
-    .filter({ has: page.locator('td:nth-child(2) a') })
-    .count()
-  expect(stated).toBeGreaterThan(0)
-  expect(stated).toBeLessThan(await rows.count())
-
-  // Sorting by name, then by the stated column, reorders the rows.
-  await table.getByRole('button', { name: 'Sort by Thought leader' }).click()
-  const names = await rows.locator('td:first-child').allTextContents()
-  expect(names).toEqual(
-    names.toSorted((a, b) => new Intl.Collator('en').compare(a, b))
+  await expect(page.locator(footnote).locator('img')).toHaveAttribute(
+    'src',
+    /^\/resource-previews\/[\w-]+\.webp$/
   )
-  await table
-    .getByRole('button', { name: 'Sort by Publicly stated P(doom)' })
-    .click()
-  await expect(rows.first().locator('td:nth-child(2) a')).toBeVisible()
+  const bengio = rows.filter({ hasText: 'Yoshua Bengio' })
+  await expect(bengio).toContainText('No number')
+  await expect(bengio.locator('q')).toHaveText(
+    'I’d rather stay out of the p(doom) game.'
+  )
+  await expect(rows.last()).toContainText('No number')
   await expect(
-    table.getByRole('columnheader', { name: /Publicly stated/ })
-  ).toHaveAttribute('aria-sort', 'descending')
+    page.getByRole('link', { name: /^See all \d+ simulated thought leaders$/ })
+  ).toHaveAttribute('href', '/users')
+
+  // Six scenarios cite numbered sources; a reading list closes the page.
+  const scenarios = page.locator(
+    'section[aria-labelledby="pdoom-scenarios-title"]'
+  )
+  await expect(
+    scenarios.getByRole('heading', { name: 'How it could happen' })
+  ).toBeVisible()
+  await expect(scenarios.locator('h3')).toHaveCount(6)
+  const sources = page.locator(
+    'section[aria-labelledby="pdoom-sources-title"] li'
+  )
+  expect(await sources.count()).toBeGreaterThan(count + 20)
+  await expect(sources.last()).toHaveAttribute('id', /^source-\d+$/)
+  const reading = page.locator('section[aria-labelledby="pdoom-reading-title"]')
+  await expect(reading.locator('h3')).toHaveText([
+    'Start here',
+    'The core argument',
+    'Forecasts and surveys',
+    'Critiques'
+  ])
+  await expect(
+    reading.getByRole('link', { name: /^AI as Normal Technology$/ })
+  ).toHaveAttribute(
+    'href',
+    'https://www.normaltech.ai/p/ai-as-normal-technology'
+  )
 
   const nodes = await structuredData(page)
   expect(ofType(nodes, 'Dataset')[0]).toMatchObject({
     url: `${site}/p-doom`,
     isAccessibleForFree: true,
-    variableMeasured: [
-      'Publicly stated P(doom)',
-      'Inferred from simulated answers'
-    ]
+    variableMeasured: ['Publicly stated P(doom)']
   })
   const list = ofType(nodes, 'ItemList')[0]!
-  expect(list.numberOfItems).toBe(await rows.count())
+  expect(list.numberOfItems).toBe(count)
   expect(list.itemListElement?.[0]?.url).toMatch(`${site}/users/`)
   expect(ofType(nodes, 'BreadcrumbList')).toHaveLength(1)
   await expect(
@@ -148,6 +166,9 @@ test('the P(doom) hub defines the term, then sorts stated and inferred estimates
   )
   await expect(
     page.getByRole('heading', { name: 'P(doom) por líder de opinión' })
+  ).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: 'Cómo podría ocurrir' })
   ).toBeVisible()
   expect(await canonicalAndRobots(page)).toEqual({
     canonical: `${site}/p-doom`,

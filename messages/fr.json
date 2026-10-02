@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "Qu’est-ce que le P(doom) ? Estimations de leaders d’opinion sur l’IA",
-      "description": "P(doom) est la probabilité qu’une personne attribue au fait que l’IA conduise à une catastrophe pour l’humanité. Découvrez ce que cela signifie, ainsi que les estimations déclarées et simulées de leaders d’opinion sur l’IA."
+      "description": "P(doom) est la probabilité qu’une personne attribue au risque que l’IA mène à une catastrophe pour l’humanité. Ce que cela signifie, ce qu’en disent les leaders d’opinion sur l’IA et comment cela pourrait se produire."
     },
     "blog": {
       "title": "Blog",
@@ -730,18 +730,26 @@
   },
   "PdoomHub": {
     "tableTitle": "P(doom) par leader d’opinion",
-    "tableDescription": "Sélectionnez l’en-tête d’une colonne pour trier",
     "name": "Leader d’opinion",
     "stated": "P(doom) déclaré publiquement",
-    "inferred": "Déduit des réponses simulées",
-    "sort": "Trier par {column}",
-    "none": "Aucun chiffre recensé",
-    "notEstimated": "Non estimé",
-    "range": "Plage plausible {range}",
-    "given": "Indiqué dans l’entretien simulé",
-    "source": "Source",
-    "asOf": "Au {date} : {count, plural, one {# leader d’opinion simulé} other {# leaders d’opinion simulés}}, {stated, plural, one {# avec un P(doom) déclaré publiquement} other {# avec un P(doom) déclaré publiquement}}",
-    "note": "Les chiffres déclarés publiquement reprennent les propres propos de la personne, avec un lien vers la source. Les personnes définissent différemment le résultat et l’horizon temporel, de sorte que ces chiffres ne sont pas directement comparables. Les chiffres déduits proviennent d’un entretien simulé élaboré à partir des écrits publics de chaque personne : un chiffre fourni par la simulation ou une lecture approximative de ses réponses. Il ne s’agit pas de la propre estimation de la personne, et une simulation ne constitue pas une approbation.",
+    "declined": "Aucun nombre",
+    "cite": "Source {number}",
+    "asOf": "Au {date}",
+    "note": "Chaque nombre provient des propres propos de la personne, avec un lien vers l’endroit où elle l’a indiqué. Les personnes définissent différemment l’issue et l’horizon temporel, de sorte que les nombres ne sont pas directement comparables.",
+    "allUsers": "Voir les {count} leaders d’opinion simulés",
+    "allUsersDescription": "Recherchez et triez toutes les personnes figurant sur la carte, notamment selon une estimation approximative de P(doom) déduite de chaque simulation",
+    "scenariosTitle": "Comment cela pourrait se produire",
+    "proponents": "Qui défend cette thèse",
+    "disagreement": "Les points de désaccord entre experts",
+    "sourcesTitle": "Sources",
+    "backToText": "Revenir au texte correspondant à la source {number}",
+    "readingTitle": "Pour aller plus loin",
+    "readingGroups": {
+      "start": "Commencer ici",
+      "core": "L’argument central",
+      "forecasts": "Prévisions et enquêtes",
+      "critiques": "Critiques"
+    },
     "ctaTitle": "Quel est votre P(doom) ?",
     "ctaDescription": "Répondez à quelques questions en environ 3 minutes, puis découvrez votre vision du monde et un P(doom) approximatif à côté des leurs",
     "guide": "Lire le guide expliquant ce que signifie le P(doom)"

@@ -200,8 +200,8 @@ describe('structured data', () => {
     const document = pdoomJsonLd({
       name: 'What is P(doom)?',
       description:
-        'P(doom) estimates, stated publicly or inferred from simulations.',
-      variables: ['Publicly stated P(doom)', 'Inferred from simulated answers'],
+        'P(doom) estimates thought leaders have stated publicly, with sources.',
+      variables: ['Publicly stated P(doom)'],
       asOf: '2026-10-01',
       people: [
         { slug: 'geoffreyhinton', name: 'Geoffrey Hinton' },
@@ -217,7 +217,7 @@ describe('structured data', () => {
       isAccessibleForFree: z.literal(true),
       dateModified: z.iso.date(),
       creator,
-      variableMeasured: z.array(z.string()).length(2),
+      variableMeasured: z.tuple([z.literal('Publicly stated P(doom)')]),
       citation: z.array(z.url())
     }).parse(node(document, 'Dataset'))
     expect(

@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "¿Qué es P(doom)? Estimaciones de líderes de opinión sobre IA",
-      "description": "P(doom) es la probabilidad que alguien asigna a que la IA lleve a una catástrofe para la humanidad. Descubre qué significa y consulta estimaciones declaradas y simuladas de líderes de opinión sobre IA."
+      "description": "P(doom) es la probabilidad que alguien asigna a que la IA lleve a una catástrofe para la humanidad. Qué significa, qué dicen los líderes de opinión sobre IA y cómo podría ocurrir."
     },
     "blog": {
       "title": "Blog",
@@ -730,18 +730,26 @@
   },
   "PdoomHub": {
     "tableTitle": "P(doom) por líder de opinión",
-    "tableDescription": "Selecciona el encabezado de una columna para ordenar",
     "name": "Líder de opinión",
     "stated": "P(doom) declarado públicamente",
-    "inferred": "Inferido a partir de respuestas simuladas",
-    "sort": "Ordenar por {column}",
-    "none": "Ninguno registrado",
-    "notEstimated": "Sin estimar",
-    "range": "Rango plausible: {range}",
-    "given": "Dado en la entrevista simulada",
-    "source": "Fuente",
-    "asOf": "A fecha de {date}: {count, plural, one {# líder de opinión simulado} other {# líderes de opinión simulados}}, {stated, plural, one {# con un P(doom) declarado públicamente} other {# con un P(doom) declarado públicamente}}",
-    "note": "Las cifras declaradas públicamente son palabras de la propia persona e incluyen un enlace a la fuente. Cada persona define el resultado y el horizonte temporal de manera diferente, por lo que estas cifras no son directamente comparables. Las cifras inferidas proceden de una entrevista simulada creada a partir de los textos públicos de cada persona: una cifra proporcionada por la simulación o una interpretación aproximada de sus respuestas. No son estimaciones de la propia persona, y una simulación no constituye un respaldo.",
+    "declined": "Sin cifra",
+    "cite": "Fuente {number}",
+    "asOf": "A fecha de {date}",
+    "note": "Cada cifra proviene de las propias palabras de la persona, con un enlace al lugar donde la expresó. Las personas definen el resultado y el plazo de manera diferente, por lo que las cifras no son directamente comparables.",
+    "allUsers": "Ver los {count} líderes de opinión simulados",
+    "allUsersDescription": "Busca y ordena a todas las personas del mapa, incluso según una estimación aproximada de P(doom) inferida de cada simulación",
+    "scenariosTitle": "Cómo podría ocurrir",
+    "proponents": "Quién lo sostiene",
+    "disagreement": "En qué discrepan los expertos",
+    "sourcesTitle": "Fuentes",
+    "backToText": "Volver al texto de la fuente {number}",
+    "readingTitle": "Lecturas adicionales",
+    "readingGroups": {
+      "start": "Empieza aquí",
+      "core": "El argumento central",
+      "forecasts": "Pronósticos y encuestas",
+      "critiques": "Críticas"
+    },
     "ctaTitle": "¿Cuál es tu P(doom)?",
     "ctaDescription": "Responde unas pocas preguntas en unos 3 minutos y luego consulta tu visión y una estimación aproximada de P(doom) junto a las suyas",
     "guide": "Lee la guía sobre qué significa P(doom)"

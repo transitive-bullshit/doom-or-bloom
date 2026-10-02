@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "Was ist P(doom)? Einschätzungen von KI-Vordenkern",
-      "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür ansetzt, dass KI zu einer Katastrophe für die Menschheit führt. Erfahre, was sie bedeutet, und sieh dir geäußerte und simulierte Schätzungen von KI-Meinungsführern an."
+      "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür angibt, dass KI zu einer Katastrophe für die Menschheit führt. Was das bedeutet, was KI-Meinungsführer sagen und wie es dazu kommen könnte."
     },
     "blog": {
       "title": "Blog",
@@ -730,18 +730,26 @@
   },
   "PdoomHub": {
     "tableTitle": "P(doom) nach Vordenker",
-    "tableDescription": "Wähle eine Spaltenüberschrift zum Sortieren aus",
     "name": "Vordenker",
     "stated": "Öffentlich geäußertes P(doom)",
-    "inferred": "Aus simulierten Antworten abgeleitet",
-    "sort": "Nach {column} sortieren",
-    "none": "Keine Angabe dokumentiert",
-    "notEstimated": "Nicht geschätzt",
-    "range": "Plausibler Bereich {range}",
-    "given": "Im simulierten Interview angegeben",
-    "source": "Quelle",
-    "asOf": "Stand {date}: {count, plural, one {# simulierter Vordenker} other {# simulierte Vordenker}}, {stated, plural, one {# mit einem öffentlich geäußerten P(doom)} other {# mit einem öffentlich geäußerten P(doom)}}",
-    "note": "Öffentlich geäußerte Zahlen stammen aus den eigenen Worten der jeweiligen Person und sind mit der Quelle verlinkt. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind diese Zahlen nicht direkt vergleichbar. Abgeleitete Zahlen stammen aus einem simulierten Interview, das auf den öffentlichen Beiträgen der jeweiligen Person beruht: entweder eine von der Simulation angegebene Zahl oder eine grobe Interpretation ihrer Antworten. Sie sind nicht die eigene Einschätzung der Person, und eine Simulation ist keine Empfehlung.",
+    "declined": "Keine Zahl",
+    "cite": "Quelle {number}",
+    "asOf": "Stand: {date}",
+    "note": "Jede Zahl stammt aus den eigenen Worten der jeweiligen Person und ist mit der Stelle verlinkt, an der sie sie genannt hat. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind die Zahlen nicht direkt vergleichbar.",
+    "allUsers": "Alle {count} simulierten Meinungsführer anzeigen",
+    "allUsersDescription": "Alle Personen auf der Karte durchsuchen und sortieren, auch nach einem groben P(doom), das aus der jeweiligen Simulation abgeleitet wurde",
+    "scenariosTitle": "Wie es dazu kommen könnte",
+    "proponents": "Wer dafür argumentiert",
+    "disagreement": "Worüber Fachleute uneinig sind",
+    "sourcesTitle": "Quellen",
+    "backToText": "Zurück zum Text für Quelle {number}",
+    "readingTitle": "Weiterführende Literatur",
+    "readingGroups": {
+      "start": "Hier anfangen",
+      "core": "Das Kernargument",
+      "forecasts": "Prognosen und Umfragen",
+      "critiques": "Kritik"
+    },
     "ctaTitle": "Wie hoch ist dein P(doom)?",
     "ctaDescription": "Beantworte in etwa 3 Minuten ein paar Fragen und sieh dir dann deine Weltsicht und ein grobes P(doom) neben denen der Vordenker an",
     "guide": "Lies den Leitfaden zur Bedeutung von P(doom)"

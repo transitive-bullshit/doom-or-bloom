@@ -238,8 +238,8 @@ export function blogJsonLd({
 }
 
 /**
- * The P(doom) hub's table: a dataset of stated and simulated estimates, and the
- * list of simulated users it links to.
+ * The P(doom) hub's table: a dataset of publicly stated estimates, and the list
+ * of thought leaders whose simulated profiles it links to.
  */
 export function pdoomJsonLd({
   name,
@@ -255,7 +255,7 @@ export function pdoomJsonLd({
   /** ISO date (YYYY-MM-DD) the table was read. */
   asOf: string
   people: { slug: string; name: string }[]
-  /** Sources of publicly stated numbers. */
+  /** Sources of the stated numbers and quoted refusals. */
   citations: string[]
 }): JsonLdDocument {
   const url = pageUrl('/p-doom')
@@ -274,7 +274,7 @@ export function pdoomJsonLd({
         creator: creator(),
         variableMeasured: variables,
         measurementTechnique:
-          'Publicly stated estimates with source links; rough estimates inferred from simulated interviews grounded in public writing',
+          'Estimates stated in public, quoted as written and linked to their sources; prominent refusals to give a number are quoted instead',
         keywords: ['P(doom)', 'AI risk', 'AI safety', 'existential risk'],
         ...(citations.length && { citation: citations }),
         isPartOf: { '@id': websiteId }

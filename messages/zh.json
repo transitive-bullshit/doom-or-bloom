@@ -21,7 +21,7 @@
     },
     "pdoom": {
       "title": "什么是 P(doom)？AI 领域意见领袖的估计",
-      "description": "P(doom)是某人认为AI会给人类带来灾难的概率。了解它的含义，以及AI意见领袖本人陈述和模拟得出的估计。"
+      "description": "P(doom) 是某人认为 AI 会给人类带来灾难的概率。它意味着什么、AI 意见领袖怎么说，以及这种情况可能如何发生。"
     },
     "blog": {
       "title": "博客",
@@ -730,18 +730,26 @@
   },
   "PdoomHub": {
     "tableTitle": "各意见领袖的 P(doom)",
-    "tableDescription": "选择列标题进行排序",
     "name": "意见领袖",
     "stated": "公开表述的 P(doom)",
-    "inferred": "根据模拟回答推断",
-    "sort": "按{column}排序",
-    "none": "无公开记录",
-    "notEstimated": "未估计",
-    "range": "可能的范围：{range}",
-    "given": "在模拟访谈中给出",
-    "source": "来源",
-    "asOf": "截至 {date}：{count, plural, other {# 位模拟意见领袖}}，{stated, plural, other {# 位公开表述过 P(doom)}}",
-    "note": "公开表述的数字来自本人原话，并附有来源链接。不同的人对结果和时间范围的定义不同，因此这些数字不能直接比较。推断数字来自根据每个人的公开文章构建的模拟访谈：可能是模拟给出的数字，也可能是对其回答的粗略解读。它们并非本人给出的估计，模拟也不代表认可。",
+    "declined": "未提供数字",
+    "cite": "来源 {number}",
+    "asOf": "截至 {date}",
+    "note": "每个数字都来自当事人的原话，并链接至其发表该言论的出处。不同人对结果和时间范围的定义不同，因此这些数字不能直接比较。",
+    "allUsers": "查看全部 {count} 位模拟意见领袖",
+    "allUsersDescription": "搜索地图上的所有人并进行排序，包括按从每次模拟中推断出的粗略 P(doom) 排序",
+    "scenariosTitle": "这种情况可能如何发生",
+    "proponents": "谁主张这一观点",
+    "disagreement": "专家的分歧所在",
+    "sourcesTitle": "来源",
+    "backToText": "返回来源 {number} 对应的正文",
+    "readingTitle": "延伸阅读",
+    "readingGroups": {
+      "start": "从这里开始",
+      "core": "核心论点",
+      "forecasts": "预测与调查",
+      "critiques": "批评"
+    },
     "ctaTitle": "你的 P(doom) 是多少？",
     "ctaDescription": "用大约3分钟回答几个问题，然后将你的世界观和粗略的 P(doom) 与他们的放在一起查看",
     "guide": "阅读 P(doom) 含义指南"

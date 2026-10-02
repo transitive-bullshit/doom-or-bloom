@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { languageTag } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
@@ -5,14 +6,19 @@ import { publicPageMetadata } from '@/lib/metadata'
 import { loadExamples } from '@/components/landing/data'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { CompareCta } from '@/components/compare-cta'
-import { PdoomTable } from '@/components/p-doom/pdoom-table'
-import { pdoomRows } from '@/lib/p-doom/table'
+import { Button } from '@/components/ui/button'
+import { HubTable } from '@/components/p-doom/hub-table'
+import { Scenarios } from '@/components/p-doom/scenarios'
+import { Footnotes, ReadingList } from '@/components/p-doom/sources'
+import { hubContent } from '@/lib/p-doom/hub'
+import { readingGroups } from '@/lib/p-doom/readings'
 import { pdoomDefinition, pdoomGuidePath } from '@/lib/p-doom/copy'
 import { pdoomJsonLd } from '@/lib/seo/json-ld'
 
-// Public simulated-user data only, refreshed with the profiles it links to.
-// The explainer is English in every locale; other locales translate the chrome
-// and defer to the English page in search (see docs/SEO.md).
+// Stated numbers come from the verified public statements, and the profiles
+// they link to are refreshed with the simulated users. The explainer,
+// scenarios and sources are English in every locale; other locales translate
+// the chrome and defer to the English page in search (see docs/SEO.md).
 export const dynamic = 'error'
 export const revalidate = 172800
 export function generateMetadata() {
@@ -20,33 +26,26 @@ export function generateMetadata() {
 }
 
 export default async function Page() {
-  const [locale, root, t, pages, people] = await Promise.all([
+  const [locale, t, pages, people] = await Promise.all([
     getLocale(),
-    getTranslations(),
     getTranslations('PdoomHub'),
     getTranslations('Pages'),
     loadExamples(false)
   ])
   const tag = languageTag(locale)
-  const rows = pdoomRows(root, tag, people)
-  const stated = rows.filter((row) => row.stated)
-  // The table is read when the page is generated, at most every 48 hours.
+  const { rows, intro, scenarios, footnotes } = hubContent(people)
+  // The page is generated at most every 48 hours.
   const asOf = new Date()
-  const columns = {
-    name: t('name'),
-    stated: t('stated'),
-    simulated: t('inferred')
-  }
   return (
     <>
       <JsonLd
         data={pdoomJsonLd({
           name: pages('pdoom.title'),
           description: pages('pdoom.description'),
-          variables: [columns.stated, columns.simulated],
+          variables: [t('stated')],
           asOf: asOf.toISOString().slice(0, 10),
           people: rows,
-          citations: stated.map((row) => row.stated!.source.url)
+          citations: rows.map((row) => row.source.url)
         })}
       />
       <article className='content-column flex flex-col gap-12 py-14 text-base leading-relaxed'>
@@ -68,11 +67,11 @@ export default async function Page() {
             without a serious safety effort.
           </p>
           <p>
-            The table lists the thought leaders simulated on Doom or Bloom.
-            Where someone has stated a number in public, it appears with its
-            source. Every row also shows a rough P(doom) read from a simulated
-            interview built from that person’s public writing. That second
-            number is our reading of a simulation, not their own estimate.
+            Below are the numbers some of the most prominent voices on AI have
+            given in public, each in their own words and linked to its source.
+            Several well-known figures refuse to give a number, and their
+            reasons are part of the story. Six scenarios then describe what
+            people fear could actually happen, with the research behind each.
           </p>
           <p lang={tag}>
             <Link
@@ -94,32 +93,63 @@ export default async function Page() {
                 date: new Intl.DateTimeFormat(tag, {
                   dateStyle: 'long',
                   timeZone: 'UTC'
-                }).format(asOf),
-                count: rows.length,
-                stated: stated.length
+                }).format(asOf)
               })}
             </p>
-            <p className='text-sm text-muted-foreground'>
-              {t('tableDescription')}
-            </p>
           </div>
-          <PdoomTable
-            rows={rows}
-            labels={{
-              ...columns,
-              sort: {
-                name: t('sort', { column: columns.name }),
-                stated: t('sort', { column: columns.stated }),
-                simulated: t('sort', { column: columns.simulated })
-              },
-              none: t('none'),
-              notEstimated: t('notEstimated'),
-              source: t('source')
-            }}
-          />
+          <HubTable rows={rows} />
           <p className='text-sm text-muted-foreground'>{t('note')}</p>
+          <div className='flex flex-col items-start gap-2 rounded-xl border bg-card px-5 py-4 sm:flex-row sm:items-center sm:justify-between'>
+            <p className='text-sm text-muted-foreground'>
+              {t('allUsersDescription')}
+            </p>
+            <Button variant='outline' asChild className='shrink-0'>
+              <Link href='/users' prefetch={false}>
+                {t('allUsers', { count: people.length })}
+                <ArrowRight aria-hidden />
+              </Link>
+            </Button>
+          </div>
+        </section>
+        <section
+          aria-labelledby='pdoom-scenarios-title'
+          className='flex flex-col gap-5'
+        >
+          <h2 id='pdoom-scenarios-title'>{t('scenariosTitle')}</h2>
+          <Scenarios intro={intro} scenarios={scenarios} lang={tag} />
         </section>
         <CompareCta title={t('ctaTitle')} description={t('ctaDescription')} />
+        <section
+          aria-labelledby='pdoom-sources-title'
+          className='flex flex-col gap-5 border-t pt-10'
+        >
+          <h2 id='pdoom-sources-title'>{t('sourcesTitle')}</h2>
+          <Footnotes footnotes={footnotes} />
+        </section>
+        <section
+          aria-labelledby='pdoom-reading-title'
+          className='flex flex-col gap-6'
+        >
+          <div className='flex flex-col gap-2'>
+            <h2 id='pdoom-reading-title'>{t('readingTitle')}</h2>
+            <p lang='en' className='text-body-foreground'>
+              The essential reading on why many researchers think advanced AI
+              could end in catastrophe, followed by the strongest critiques.
+            </p>
+          </div>
+          {readingGroups.map(({ id, readings }) => (
+            <section
+              key={id}
+              aria-labelledby={`reading-${id}`}
+              className='flex flex-col gap-4'
+            >
+              <h3 id={`reading-${id}`}>{t(`readingGroups.${id}`)}</h3>
+              <div lang='en'>
+                <ReadingList readings={readings} />
+              </div>
+            </section>
+          ))}
+        </section>
       </article>
     </>
   )

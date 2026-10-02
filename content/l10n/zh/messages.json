@@ -63,9 +63,9 @@
       "reviewStatus": "machine"
     },
     "Pages.pdoom.description": {
-      "sourceHash": "1a23ed8a550971d9",
+      "sourceHash": "9c6492b26f8a6f54",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "Pages.blog.title": {
@@ -3602,12 +3602,6 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
-    "PdoomHub.tableDescription": {
-      "sourceHash": "7d86a9ad405605e0",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
     "PdoomHub.name": {
       "sourceHash": "e293e4285da91d78",
       "model": "gpt-5.6-sol",
@@ -3620,58 +3614,100 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
-    "PdoomHub.inferred": {
-      "sourceHash": "38322d3ab7426339",
+    "PdoomHub.declined": {
+      "sourceHash": "2d463a039c6e2eda",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
-    "PdoomHub.sort": {
-      "sourceHash": "55fb1bf9a6651681",
+    "PdoomHub.cite": {
+      "sourceHash": "d593ff5d9bc95ebc",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
-    "PdoomHub.none": {
-      "sourceHash": "3df0019376bb85bd",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
-    "PdoomHub.notEstimated": {
-      "sourceHash": "dbbcf5111aaff4e7",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
-    "PdoomHub.range": {
-      "sourceHash": "1cb221042594320f",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
-    "PdoomHub.given": {
-      "sourceHash": "a726d96d77e08ec7",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
-    "PdoomHub.source": {
-      "sourceHash": "0e570ca6fabe24f9",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "PdoomHub.asOf": {
-      "sourceHash": "ccffc911ec436830",
+      "sourceHash": "bd3feb8a76ac1693",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "PdoomHub.note": {
-      "sourceHash": "0bb06cf58604257a",
+      "sourceHash": "657f5fba4bc3476f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.allUsers": {
+      "sourceHash": "f7d3857935a08065",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.allUsersDescription": {
+      "sourceHash": "ddb9c1f221fa6067",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.scenariosTitle": {
+      "sourceHash": "e704254554835cde",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.proponents": {
+      "sourceHash": "ae35916ddfb20249",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.disagreement": {
+      "sourceHash": "e6448bf4007c6a35",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.sourcesTitle": {
+      "sourceHash": "caf85b0888d78f1f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.backToText": {
+      "sourceHash": "e3fb0d18acd228f3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.readingTitle": {
+      "sourceHash": "4082f515b2f4929c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.readingGroups.start": {
+      "sourceHash": "2adc964c084749b1",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.readingGroups.core": {
+      "sourceHash": "777bdc6b898978cc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.readingGroups.forecasts": {
+      "sourceHash": "36bc32ea2e916bc3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "PdoomHub.readingGroups.critiques": {
+      "sourceHash": "bab048c401afef66",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "PdoomHub.ctaTitle": {
