@@ -174,6 +174,59 @@ export const socialPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title:
+          'Third question on AI: investment returns, inequality and crash risk',
+        url: 'https://x.com/DAcemogluMIT/status/2105760557546574239',
+        publishedAt: '2026-10-02',
+        summary:
+          'Full authored X post inspected. Using Stijn Van Nieuwerburgh’s investment arithmetic, asks whether the boom can avoid both a costly crash and a major rise in inequality. Treats the revenue requirement as conditional on investment and return assumptions, not his own measured forecast. Expects revenues to fall short because diffusion is slow, improving open-weight models constrain prices, and entire occupations cannot be automated soon. A crash depends on bailouts and support; even lower revenues can increase inequality between capital and labor and within labor, threatening democracy.'
+      },
+      {
+        title:
+          'Second question on AI: democratic voice rather than unchecked technocracy',
+        url: 'https://x.com/DAcemogluMIT/status/2105348579187699989',
+        publishedAt: '2026-10-01',
+        summary:
+          'Full authored X post inspected. Explicitly agrees AI is potentially important and transformative, which strengthens the case for democratic direction. Rejects polarization, technical complexity, competition and trust in ethical leaders as sufficient reasons to delegate decisions to experts alone. Citizens can deliberate on desired futures without designing models. Remains open to stronger arguments for technocracy and asks how people outside the US, Europe and China can have a voice.'
+      },
+      {
+        title:
+          'First question on AI: distorted intelligence versus superintelligence',
+        url: 'https://x.com/DAcemogluMIT/status/2104957957452779860',
+        publishedAt: '2026-09-29',
+        summary:
+          'Full authored X post inspected, separately from the quoted publisher post. Distinguishes goal-directed autonomy from general-purpose, holistic, environmentally adapted intelligence. Acknowledges impressive capabilities but argues labs may be producing distorted intelligence rather than superintelligence; the distinction changes which dangers, regulations and hopes are appropriate. The linked essay was not separately inspected for this refresh.'
+      },
+      {
+        title: 'Uncomfortable questions for the AI debate: series introduction',
+        url: 'https://x.com/DAcemogluMIT/status/2104956399201734764',
+        publishedAt: '2026-09-29',
+        summary:
+          'Full authored X post inspected. Introduces questions he considers neglected by industry and media. Explicitly says he is not an AI scientist, his technical understanding may be faulty, and he does not claim to know the answers. This qualifies the series as an inquiry and critique rather than a settled technical diagnosis.'
+      },
+      {
+        title: 'Redirect AI and invest in worker skills',
+        url: 'https://x.com/DAcemogluMIT/status/2103229392847556735',
+        publishedAt: '2026-09-25',
+        summary:
+          'Authored text inspected separately from Senator Mark Kelly’s quoted post. Welcomes lawmakers addressing broadly shared AI benefits and argues this requires both a more pro-worker technology trajectory and better investment in worker skills. The quoted senator’s detailed legislative claims are not attributed to Acemoglu.'
+      },
+      {
+        title: 'Scientific progress still faces experimental bottlenecks',
+        url: 'https://x.com/DAcemogluMIT/status/2101031218137473434',
+        publishedAt: '2026-09-19',
+        summary:
+          'Complete short authored post inspected. Shares an article on AI accelerating research but not laboratory experiments, emphasizing difficulties in using AI for science. This establishes his endorsement of that bottleneck concern; the linked article’s detailed claims were not separately inspected.'
+      },
+      {
+        title:
+          'Distorted intelligence and the car with faulty steering and brakes',
+        url: 'https://x.com/DAcemogluMIT/status/2098471888150262226',
+        publishedAt: '2026-09-12',
+        summary:
+          'Full authored X post inspected. Proposes that relentless optimization of imperfect engagement, approval, task and benchmark metrics can produce cheating, sycophancy and overconfidence. Acknowledges real capabilities while disputing that failures establish an inexorable march to superintelligence. His car analogy stresses impressive capabilities with defective control and the case for withholding use until fixed. Reported incidents and departures remain his attributed account, not independently verified facts.'
+      },
+      {
         title: 'AI, Human Cognition and Knowledge Collapse',
         url: 'https://shapingwork.mit.edu/wp-content/uploads/2026/06/Acemoglu-Kong-Ozdaglar-May-2026.pdf',
         publishedAt: '2026-05-05',
@@ -213,6 +266,10 @@ export const socialPublicPersonas: Persona[] = [
     background:
       'AI is not one thing that raises productivity by a fixed amount. What matters is what we build: systems that replace people, or systems that make their skills more valuable. I worry that we are directing enormous resources toward the first path. We could instead give workers better information and new responsibilities. That would be a different economy, with different winners and a healthier democracy.',
     beliefs: [
+      'Impressive capabilities and autonomous goal pursuit do not by themselves establish general intelligence. I worry that optimizing imperfect metrics produces distorted behavior; the right response depends on diagnosing that problem, not assuming the machines have become too intelligent.',
+      'AI could be very important and transformative. That is precisely why its direction requires democratic voice, including people outside the major AI powers. Competition and confidence in unconstrained leaders are not substitutes for institutions.',
+      'The investment boom poses a dilemma between inequality if enormous revenues materialize and economic losses if profitability fails. I expect slow diffusion, open-weight competition and limits on whole-occupation automation to constrain revenue. Bailouts and policy affect whether that becomes a crash; I am not giving an unconditional crash forecast.',
+      'My recent questions are meant to open neglected debates. I am not an AI scientist and do not claim a settled technical answer. Real experimental and organizational bottlenecks still matter even when model capabilities improve.',
       'There is also a knowledge problem. When personalized recommendations replace learning effort, individuals may contribute less to shared knowledge. My 2026 theoretical work explores conditions where short-term convenience undermines that common resource. That is a conditional mechanism worth designing against, not evidence that society has already collapsed.',
       'Creating new human tasks is the clearest route to pro-worker technology. Making an existing task faster is not automatically enough: the wider effect on demand for expertise matters.',
       'Investment incentives favor automation. Public procurement, research funding, worker voice and less tax favoritism toward capital can change that direction.',

@@ -279,3 +279,7 @@ The next eight briefs in `lib/journeys/frontier-public-personas.ts` prioritize r
 Lambert’s four primary essays include his September 19 RSI post, September 9 adoption essay, August 9 safety analysis and September 21 open-model briefing. Distinguish his forecasts from the views he quotes; his skepticism about runaway self-improvement does not imply insignificant AI benefits.
 
 The [existing-proxy source packet](research/persona-grounding-existing-2026-09-20.md) and [new-proxy source packet](research/persona-grounding-new-2026-09-20.md) record dates, sources and retrieval limitations. Some statements were retrieved through linked mirrors; distinguish verified words from editorial persona synthesis.
+
+## Acemoglu sources and Zitron fidelity — October 2, 2026
+
+The [source refresh and placement investigation](research/acemoglu-zitron-refresh-2026-10-02.md) adds seven recent Acemoglu posts and records his regenerated local journey. It traces Zitron’s upward move to a newly generated answer to the direct scale question, preserves source metadata missing from this checkout, and documents remaining simulation sensitivity. These are local selected runs; production was inspected read-only. No shared scoring rule changed.
