@@ -119,6 +119,18 @@ After two consecutive clearly unusable replies, play a full-screen paperclip emo
 
 Use a finite, lightweight decorative effect with an immediate dismiss action, at most once per assessment. Keep controls unobscured, support reduced motion with a static illustration, and avoid flashing, surprise audio, or a heavy physics simulation. The joke is about the app making paperclips, not about the participant's intelligence or sincerity. Repeated misses after the effect receive the same neutral recovery choices without replaying it. This is an MVP recovery state, independent of debug mode; exact copy and visual treatment belong in the representative editorial review.
 
+### Out of budget
+
+When Jev is out of budget, because the app's spend budget is used up or TypeSafe has no credits ([TYPESAFE.md](TYPESAFE.md#spend-budget)), the interview never shows a generic error. It shows one notice in Travis's casual first person, the same for both causes, without naming the provider or an amount:
+
+> **Doom or Bloom is taking a breather**
+>
+> Hey, Travis here. Doom or Bloom is a free side project, and it’s getting way more traffic than I expected, so it blew past its budget. Please be patient and check back in a few hours, or message me on X at @transitive_bs to follow up.
+
+- Opening an interview while Jev is out of budget shows the notice above the question, adding “You can still write your answer. It stays in this browser until you send it.” The answer field stays usable and sending is not blocked, since the budget may have recovered; a blocked send is saved like any other.
+- A blocked submission keeps its text in the saved operation and in the answer field. The notice replaces the generic failure alert, adds “Everything you wrote is saved, so you can retry right where you left off.” and offers **Retry saved submission**. It survives reload.
+- @transitive_bs links to x.com/transitive_bs in a new tab. The copy lives in `Interview.failure` and is translated into every enabled language.
+
 ### Results
 
 The result should lead with:

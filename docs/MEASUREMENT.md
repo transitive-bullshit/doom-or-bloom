@@ -73,6 +73,10 @@ PostHog's transport also carries its configured public project identifier, the r
 
 Recovery events can occur before `assessment_started`, which still requires the first substantive answer. Keep their denominators separate when reading funnels. Re-asks are not new `question_routed` events unless a different prompt instance is issued; retries/reloads must not duplicate events. An Easter egg or paused assessment is not `assessment_completed`. Measure successful recovery and false rejection of usable answers alongside non-answer frequency; do not optimize for triggering the joke.
 
+## Operational signals
+
+The Jev spend budget reports through structured server logs (`lib/server/error-reporting.ts`), not PostHog: `jev_budget_threshold_crossed` at 80% (warn) and 100% (error) of the UTC day or month budget, `jev_provider_out_of_credits` (error) when TypeSafe reports no credits, and `jev_budget_unavailable` or `jev_budget_config_invalid` (error) when the budget cannot be read or configured. Each carries the period, threshold, spent and limit in USD, plus the usual request correlation and deployment fields; never answers, assessment or owner IDs. Find them in the Vercel runtime logs by event name. Blocked operations add no analytics event; their saved `budget_exhausted` and `provider_out_of_credits` operations are visible to operators in the [admin](admin.md) dashboard. See [TYPESAFE.md](TYPESAFE.md#spend-budget).
+
 ## Acquisition attribution
 
 `lib/attribution/first-touch.ts` owns this boundary. The first page a browser loads writes a first-party `dob_first_touch` cookie, once, for 180 days. It holds the normalized `ref`, `utm_source`, `utm_medium` and `utm_campaign` tags (lowercase slugs of up to 64 characters), the external referring hostname, a coarse landing kind, the landing locale and a timestamp. The landing kind ignores the locale prefix: `/es/users/simonw` is a `user` landing with locale `es`. It never stores a path, query string, assessment ID or answer. Visitors who arrived before this cookie existed record their next visit as their first touch.

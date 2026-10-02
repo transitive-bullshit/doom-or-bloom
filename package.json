@@ -54,6 +54,7 @@
     "db:test:auth": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-auth-claim.ts",
     "db:test:commit": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-commit.ts",
     "db:test:restart": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-restart.ts",
+    "db:test:budget": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-jev-budget.ts",
     "db:test:feedback": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/test-assessment-feedback.ts",
     "build:local": "node scripts/next-local.mjs build --webpack && node scripts/check-production-traces.mjs",
     "start:local": "node scripts/next-local.mjs start",

@@ -552,7 +552,11 @@
     "failedTitle": "Esta etapa não foi concluída",
     "failure": {
       "providerRejected": "Nosso provedor de IA, TypeSafe (Jev), rejeitou esta solicitação. Sua resposta foi salva. Tente novamente mais tarde.",
-      "saved": "Sua resposta foi salva, e seu progresso anterior permanece inalterado. Tente novamente quando estiver pronto."
+      "saved": "Sua resposta foi salva, e seu progresso anterior permanece inalterado. Tente novamente quando estiver pronto.",
+      "budgetTitle": "Doom or Bloom está fazendo uma pausa",
+      "budgetBody": "Olá, aqui é o Travis. Doom or Bloom é um projeto paralelo gratuito e está recebendo muito mais tráfego do que eu esperava, então ultrapassou o orçamento. Tenha paciência e volte em algumas horas, ou envie uma mensagem para mim no X em <link>@transitive_bs</link> para acompanhar.",
+      "budgetSaved": "Tudo o que você escreveu está salvo, então você pode tentar novamente exatamente de onde parou.",
+      "budgetDraft": "Você ainda pode escrever sua resposta. Ela fica neste navegador até você enviá-la."
     },
     "retrySaved": "Tentar enviar novamente a resposta salva",
     "refreshProgress": "Atualizar o progresso salvo",

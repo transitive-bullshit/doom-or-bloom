@@ -552,7 +552,11 @@
     "failedTitle": "This step did not finish",
     "failure": {
       "providerRejected": "Our AI provider, TypeSafe (Jev), rejected this request. Your submission is saved. Please try again later.",
-      "saved": "Your submission is saved and your previous progress is unchanged. Please try again when you’re ready."
+      "saved": "Your submission is saved and your previous progress is unchanged. Please try again when you’re ready.",
+      "budgetTitle": "Doom or Bloom is taking a breather",
+      "budgetBody": "Hey, Travis here. Doom or Bloom is a free side project, and it’s getting way more traffic than I expected, so it blew past its budget. Please be patient and check back in a few hours, or message me on X at <link>@transitive_bs</link> to follow up.",
+      "budgetSaved": "Everything you wrote is saved, so you can retry right where you left off.",
+      "budgetDraft": "You can still write your answer. It stays in this browser until you send it."
     },
     "retrySaved": "Retry saved submission",
     "refreshProgress": "Refresh saved progress",

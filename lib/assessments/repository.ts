@@ -28,6 +28,7 @@ import { publicAssessment } from './public'
 import { personaMetadataSchema, simulationPayload } from '../personas/payload'
 import { AssessmentError, type Submission } from './contracts'
 import { operationFailureCategory } from './operation-failure'
+import { budgetFailureCategory } from '../server/jev-budget'
 
 export function fingerprint(value: unknown): string {
   const canonical = (v: unknown): unknown =>
@@ -547,22 +548,19 @@ export function assessmentRepository(pool: Pool) {
           .where(eq(assessmentOperations.id, op.id))
         if (!saved) throw missing()
         if (saved.status !== 'running') return outcome(db, saved)
+        // A budget block keeps its own category so the owner sees why; the
+        // submitted input stays in this operation for an explicit retry.
+        const category =
+          err instanceof AssessmentError
+            ? err.code
+            : (budgetFailureCategory(err) ?? 'evaluation_failed')
         const [failed] = await db
           .update(assessmentOperations)
           .set({
             status: expired(saved) ? 'interrupted' : 'failed',
             physicalRequestCount: stats.physicalRequestCount,
-            failureCategory:
-              err instanceof AssessmentError ? err.code : 'evaluation_failed',
-            diagnostics: [
-              ...stats.failures.slice(0, 32),
-              {
-                category:
-                  err instanceof AssessmentError
-                    ? err.code
-                    : 'evaluation_failed'
-              }
-            ],
+            failureCategory: category,
+            diagnostics: [...stats.failures.slice(0, 32), { category }],
             updatedAt: new Date()
           })
           .where(

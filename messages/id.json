@@ -552,7 +552,11 @@
     "failedTitle": "Langkah ini tidak selesai",
     "failure": {
       "providerRejected": "Penyedia AI kami, TypeSafe (Jev), menolak permintaan ini. Jawaban Anda telah disimpan. Silakan coba lagi nanti.",
-      "saved": "Jawaban Anda telah disimpan dan progres Anda sebelumnya tidak berubah. Silakan coba lagi saat Anda siap."
+      "saved": "Jawaban Anda telah disimpan dan progres Anda sebelumnya tidak berubah. Silakan coba lagi saat Anda siap.",
+      "budgetTitle": "Doom or Bloom sedang beristirahat sejenak",
+      "budgetBody": "Hai, Travis di sini. Doom or Bloom adalah proyek sampingan gratis, dan situs ini mendapatkan jauh lebih banyak kunjungan daripada yang saya perkirakan, sehingga anggarannya terlampaui. Mohon bersabar dan periksa kembali dalam beberapa jam, atau kirimi saya pesan di X melalui <link>@transitive_bs</link> untuk menindaklanjuti.",
+      "budgetSaved": "Semua yang Anda tulis telah disimpan, jadi Anda dapat mencoba lagi tepat dari bagian terakhir yang Anda tinggalkan.",
+      "budgetDraft": "Anda masih dapat menulis jawaban Anda. Jawaban tersebut tetap tersimpan di peramban ini hingga Anda mengirimkannya."
     },
     "retrySaved": "Coba kirim kembali jawaban yang disimpan",
     "refreshProgress": "Muat ulang progres yang disimpan",

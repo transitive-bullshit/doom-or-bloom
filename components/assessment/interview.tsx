@@ -21,7 +21,11 @@ import { Link, useRouter } from '@/i18n/navigation'
 import { api, userErrorMessage } from '@/lib/assessments/client'
 import { promptText } from '@/lib/assessment/display-text'
 import { useAuthoredText } from './authored-text'
-import { operationFailureMessage } from '@/lib/assessments/operation-failure'
+import {
+  isBudgetFailure,
+  operationFailureMessage
+} from '@/lib/assessments/operation-failure'
+import { BudgetNotice } from './budget-notice'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { PublishConfirmation } from './publish-confirmation'
 import { Button } from '@/components/ui/button'
@@ -61,10 +65,13 @@ export function Interview({
   analyticsEnabled,
   analyticsCatalog,
   fixtureMode,
-  dimensions
+  dimensions,
+  budgetBlocked = false
 }: {
   personas: PersonaComparison[]
   initial: OwnedAssessment
+  /** Jev was out of budget when the page loaded; see BudgetNotice. */
+  budgetBlocked?: boolean
   debugDefault: boolean
   debugAvailable: boolean
   analyticsEnabled: boolean
@@ -239,6 +246,19 @@ export function Interview({
     (previewRevision === state.revision ||
       record.visibility === 'public' ||
       ['results', 'capped'].includes(state.status))
+  const failedOperation =
+    record.operation &&
+    ['failed', 'interrupted'].includes(record.operation.status) &&
+    record.operation.baseRevision === state.revision &&
+    !uncertain
+      ? record.operation
+      : null
+  // The server found Jev out of budget when this page loaded. Any operation
+  // since then replaces this notice with its own outcome.
+  const budgetNoticeOnLoad =
+    budgetBlocked &&
+    record.visibility === 'private' &&
+    (record.operation?.id ?? null) === (initial.operation?.id ?? null)
   const guidance = recoveryCopy[p.promptId] ?? recoveryCopy.root!
   const unavailableQuestion = !recoveryCopy[p.promptId]
   const needsAction = ['exhausted', 'navigation', 'stopped'].includes(
@@ -313,26 +333,36 @@ export function Interview({
               </AlertDescription>
             </Alert>
           )}
-          {record.operation &&
-            ['failed', 'interrupted'].includes(record.operation.status) &&
-            record.operation.baseRevision === state.revision &&
-            !uncertain && (
+          {failedOperation &&
+            (isBudgetFailure(failedOperation.failureCategory) ? (
+              <BudgetNotice saved>
+                <Button
+                  disabled={busy}
+                  onClick={() => void act(failedOperation.action, true)}
+                >
+                  {t('retrySaved')}
+                </Button>
+              </BudgetNotice>
+            ) : (
               <Alert>
                 <AlertTitle>{t('failedTitle')}</AlertTitle>
                 <AlertDescription>
                   {operationFailureMessage(
                     root,
-                    record.operation.failureCategory
+                    failedOperation.failureCategory
                   )}{' '}
                   <Button
                     disabled={busy}
-                    onClick={() => void act(record.operation!.action, true)}
+                    onClick={() => void act(failedOperation.action, true)}
                   >
                     {t('retrySaved')}
                   </Button>
                 </AlertDescription>
               </Alert>
-            )}
+            ))}
+          {!failedOperation && !showResult && budgetNoticeOnLoad && (
+            <BudgetNotice saved={false} />
+          )}
           {notice && (
             <Button variant='ghost' onClick={() => void refresh()}>
               {t('refreshProgress')}

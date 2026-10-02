@@ -71,6 +71,13 @@
       "when": 1790826243857,
       "tag": "0009_share_snapshots",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1790898694480,
+      "tag": "0010_jev_budget",
+      "breakpoints": true
     }
   ]
 }

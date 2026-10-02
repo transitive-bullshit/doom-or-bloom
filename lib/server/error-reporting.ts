@@ -2,6 +2,7 @@ import { diagnosticContext } from './diagnostic-context'
 import { createHash, randomUUID } from 'node:crypto'
 import { APIError } from '@typesafe-ai/sdk'
 import { ZodError } from 'zod'
+import { JevBudgetExhausted, providerErrorType } from './jev-budget'
 
 export function isContextOverflow(error: unknown, depth = 0): boolean {
   if (!(error instanceof Error) || depth > 4) return false
@@ -37,16 +38,18 @@ export function errorDetails(
       : undefined
   const code = isContextOverflow(error)
     ? 'max_tokens_exceeded'
-    : (systemCode ??
-      (error instanceof ZodError
-        ? 'validation_failed'
-        : error.name === 'AbortError'
-          ? 'request_aborted'
-          : error.name === 'TimeoutError'
-            ? 'request_timeout'
-            : error instanceof APIError
-              ? `provider_http_${error.status}`
-              : 'unexpected_error'))
+    : error instanceof JevBudgetExhausted
+      ? error.block
+      : (systemCode ??
+        (error instanceof ZodError
+          ? 'validation_failed'
+          : error.name === 'AbortError'
+            ? 'request_aborted'
+            : error.name === 'TimeoutError'
+              ? 'request_timeout'
+              : error instanceof APIError
+                ? `provider_http_${error.status}`
+                : 'unexpected_error'))
   const wrapper = [
     'AssessmentFailure',
     'EvaluationFailure',
@@ -81,6 +84,9 @@ export function errorDetails(
   if (error instanceof APIError) {
     detail.sdk = { name: '@typesafe-ai/sdk', errorType: error.constructor.name }
     detail.status = error.status
+    // A short structured code such as `billing_error`, never the message.
+    const providerType = providerErrorType(error)
+    if (providerType) detail.providerErrorType = providerType
     if (error.requestId && /^[\w-]{1,120}$/.test(error.requestId))
       detail.providerRequestId = error.requestId
   }
