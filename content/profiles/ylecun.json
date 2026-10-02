@@ -1,0 +1,41 @@
+{
+  "slug": "ylecun",
+  "summary": "LeCun argues that AI can be designed to stay safe and useful, and that systems trained only on text won’t reach human-level intelligence.",
+  "statements": [
+    {
+      "quote": "Ultimately, the goal is to amplify human intelligence and bring those benefits to humanity, which I think is intrinsically good.",
+      "date": "2026-07-13",
+      "venue": "Nebius Science interview",
+      "url": "https://nebius.science/stories/meet-yann-lecuns-lab-and-the-ai-world-of-2030",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "We’re never going to get to human-level AI by just training on text. It’s just not going to happen.",
+      "date": "2026-05-12",
+      "venue": "Mixture of Experts interview",
+      "url": "https://www.mixtureofexperts.co/p/ai-for-the-real-world-a-conversation",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "It makes little sense to attribute a probability to an event on which we have agency.",
+      "date": "2026-04-21",
+      "venue": "Post on X",
+      "url": "https://x.com/ylecun/status/2046577402264870958",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "The nice thing about an AI system is that you can design it in such a way that it cannot escape its guardrails.",
+      "date": "2025-04-02",
+      "venue": "Newsweek interview",
+      "url": "https://www.newsweek.com/nw-ai/ai-impact-interview-yann-lecun-artificial-intelligence-2054237",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "The desire to dominate is not correlated with intelligence at all.",
+      "date": "2024-02-13",
+      "venue": "TIME interview",
+      "url": "https://time.com/6694432/yann-lecun-meta-ai-interview/",
+      "verified": "2026-10-02"
+    }
+  ]
+}
