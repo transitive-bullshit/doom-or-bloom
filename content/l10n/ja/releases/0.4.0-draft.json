@@ -536,10 +536,10 @@
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:text": {
-      "text": "AIが人類の絶滅、または同様に恒久的な破局を引き起こす確率を、大まかな直感ではどの程度だと考えますか？ 数値でも「分からない」でも構いません。",
-      "sourceHash": "2737b14e5892bc29",
+      "text": "AIが人類絶滅、または同様に永続的な破局を引き起こす可能性は、直感的にどのくらいだと思いますか？",
+      "sourceHash": "112bb17f97b73c85",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:reask": {
@@ -984,10 +984,10 @@
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:text": {
-      "text": "恩恵と害の両方を考慮すると、AIは全体としてどのような影響をもたらすと予想しますか？",
-      "sourceHash": "33f7d3f8a75621ee",
+      "text": "恩恵と害を総合すると、AIは私たちの社会に全体としてどのような影響を与えると予想しますか？",
+      "sourceHash": "64a2b642e8d7c18f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:reask": {
@@ -1096,10 +1096,10 @@
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:text": {
-      "text": "良いか悪いかはさておき、AIは最終的に世界をどの程度変えると思いますか？ 少し、大きく、それとも完全にでしょうか？",
-      "sourceHash": "c04ddec578f4e43b",
+      "text": "AIは最終的に世界をどの程度変えると思いますか？",
+      "sourceHash": "124d74b12dc3527c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:reask": {
@@ -1124,10 +1124,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:text": {
-      "text": "破局が最も可能性の高い結果だと思いますか、それとも、より良い可能性もある一方での深刻なリスクだと思いますか？",
-      "sourceHash": "f36588d9ee3dc51e",
+      "text": "破局が最も可能性の高い結果だと考えますか、それとも、より良い可能性もある中での深刻なリスクの一つだと捉えますか？",
+      "sourceHash": "74963ec2401bcfe1",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:reask": {
@@ -1180,10 +1180,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:text": {
-      "text": "どちらかに傾くとすれば、AIは悪い面より良い面のほうが多い結果になると予想しますか、それとも本当に判断が分かれていますか？",
-      "sourceHash": "023a52c97dc01113",
+      "text": "AIは害よりも恩恵を多くもたらすという方に傾いていますか、それとも本当に判断が揺れていますか？",
+      "sourceHash": "94a1676dfd79b64e",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:reask": {
@@ -1208,10 +1208,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:text": {
-      "text": "恩恵がリスクを明らかに上回ると思いますか、それとも、現実に対処すべきリスクはあるものの、全体としては良い結果になると思いますか？",
-      "sourceHash": "2717f186c55147de",
+      "text": "AIによる恩恵はそのリスクを明らかに上回るでしょうか、それとも、対処すべき現実的なリスクはあるものの、総合的には良いものでしょうか？",
+      "sourceHash": "1540da303bf487ae",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:reask": {
@@ -1236,10 +1236,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:text": {
-      "text": "回答から読み取れる以上に、自分は期待寄りだと配置しました。回答に表れなかった、期待を抱く理由は何ですか？",
-      "sourceHash": "9aaa67777523a93e",
+      "text": "回答から示唆されるよりも期待寄りの位置に自分を配置しました。私たちが見落とした、期待を抱く理由は何ですか？",
+      "sourceHash": "c1b07d5b2f8a77de",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:reask": {
@@ -1264,10 +1264,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:text": {
-      "text": "回答から読み取れる以上に、自分は懸念寄りだと配置しました。こちらが見落としたかもしれない懸念は何ですか？",
-      "sourceHash": "0bcf7fdc36273697",
+      "text": "回答から示唆されるよりも懸念寄りの位置に自分を配置しました。私たちが見落とした、懸念していることは何ですか？",
+      "sourceHash": "ea7b4ca6a41abe79",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:reask": {

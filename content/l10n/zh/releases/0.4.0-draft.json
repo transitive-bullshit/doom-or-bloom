@@ -536,10 +536,10 @@
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:text": {
-      "text": "凭你的直觉粗略估计，AI导致人类灭绝或类似的永久性灾难的概率是多少？回答一个数字或“不知道”都可以。",
-      "sourceHash": "2737b14e5892bc29",
+      "text": "凭直觉，你认为AI导致人类灭绝或类似的永久性灾难的概率有多大？",
+      "sourceHash": "112bb17f97b73c85",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:reask": {
@@ -984,10 +984,10 @@
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:text": {
-      "text": "综合考虑益处与危害，你预计AI总体上会产生什么影响？",
-      "sourceHash": "33f7d3f8a75621ee",
+      "text": "综合考虑益处和危害，你预计AI会对我们的社会产生怎样的总体影响？",
+      "sourceHash": "64a2b642e8d7c18f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:reask": {
@@ -1096,10 +1096,10 @@
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:text": {
-      "text": "先不考虑好坏：你认为AI最终会在多大程度上改变世界——一点、很大程度，还是彻底改变？",
-      "sourceHash": "c04ddec578f4e43b",
+      "text": "你认为AI最终会在多大程度上改变世界？",
+      "sourceHash": "124d74b12dc3527c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:reask": {
@@ -1124,10 +1124,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:text": {
-      "text": "你认为灾难是最可能的结果，还是与更好的可能性并存的一项严重风险？",
-      "sourceHash": "f36588d9ee3dc51e",
+      "text": "你认为灾难是最可能的结果，还是将其视为与更好可能性并存的一项严重风险？",
+      "sourceHash": "74963ec2401bcfe1",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:reask": {
@@ -1180,10 +1180,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:text": {
-      "text": "如果必须偏向一边，你预计AI最终会利大于弊，还是确实难以判断？",
-      "sourceHash": "023a52c97dc01113",
+      "text": "你倾向于认为AI带来的益处多于危害，还是确实难以取舍？",
+      "sourceHash": "94a1676dfd79b64e",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:reask": {
@@ -1208,10 +1208,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:text": {
-      "text": "你认为益处会明显超过风险，还是总体上有利，但确实存在需要管理的风险？",
-      "sourceHash": "2717f186c55147de",
+      "text": "AI带来的益处会明显超过其风险，还是总体上有益，但存在需要管理的实际风险？",
+      "sourceHash": "1540da303bf487ae",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:reask": {
@@ -1236,10 +1236,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:text": {
-      "text": "你的自我定位比你的回答所显示的更抱有希望。有哪些让你抱有希望的原因没有在回答中体现出来？",
-      "sourceHash": "9aaa67777523a93e",
+      "text": "你的自我定位比你的回答所显示的更抱有希望。有哪些我们遗漏的因素让你抱有希望？",
+      "sourceHash": "c1b07d5b2f8a77de",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:reask": {
@@ -1264,10 +1264,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:text": {
-      "text": "你的自我定位比你的回答所显示的更担忧。有哪些我们可能遗漏的事情让你担忧？",
-      "sourceHash": "0bcf7fdc36273697",
+      "text": "你的自我定位比你的回答所显示的更担忧。有哪些我们遗漏的因素让你感到担忧？",
+      "sourceHash": "ea7b4ca6a41abe79",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:reask": {

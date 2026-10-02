@@ -536,10 +536,10 @@
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:text": {
-      "text": "Wie hoch ist nach deinem groben Bauchgefühl die Wahrscheinlichkeit, dass KI das Aussterben der Menschheit oder eine ähnlich dauerhafte Katastrophe verursacht? Eine Zahl oder „keine Ahnung“ ist in Ordnung.",
-      "sourceHash": "2737b14e5892bc29",
+      "text": "Wie hoch ist deinem Bauchgefühl nach die Wahrscheinlichkeit, dass KI zum Aussterben der Menschheit oder zu einer ähnlich dauerhaften Katastrophe führt?",
+      "sourceHash": "112bb17f97b73c85",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:reask": {
@@ -984,10 +984,10 @@
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:text": {
-      "text": "Wenn du Vorteile und Schäden zusammen betrachtest, welche Auswirkungen wird KI deiner Erwartung nach insgesamt haben?",
-      "sourceHash": "33f7d3f8a75621ee",
+      "text": "Wenn du Vorteile und Schäden zusammen betrachtest, welche Auswirkungen wird KI deiner Erwartung nach insgesamt auf unsere Gesellschaft haben?",
+      "sourceHash": "64a2b642e8d7c18f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:reask": {
@@ -1096,10 +1096,10 @@
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:text": {
-      "text": "Unabhängig davon, ob zum Guten oder Schlechten: Wie stark wird KI deiner Meinung nach die Welt letztlich verändern – ein wenig, stark oder vollständig?",
-      "sourceHash": "c04ddec578f4e43b",
+      "text": "Wie stark wird KI deiner Meinung nach letztlich die Welt verändern?",
+      "sourceHash": "124d74b12dc3527c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:reask": {
@@ -1124,10 +1124,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:text": {
-      "text": "Hältst du eine Katastrophe für das wahrscheinlichste Ergebnis oder für ein ernstes Risiko neben besseren Möglichkeiten?",
-      "sourceHash": "f36588d9ee3dc51e",
+      "text": "Siehst du eine Katastrophe als das wahrscheinlichste Ergebnis oder als ein ernstes Risiko neben besseren Möglichkeiten?",
+      "sourceHash": "74963ec2401bcfe1",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:reask": {
@@ -1180,10 +1180,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:text": {
-      "text": "Wenn du dich für eine Richtung entscheiden müsstest: Erwartest du, dass KI letztlich mehr Gutes als Schlechtes bewirkt, oder bist du wirklich hin- und hergerissen?",
-      "sourceHash": "023a52c97dc01113",
+      "text": "Gehst du eher davon aus, dass KI mehr Gutes als Schlechtes bewirken wird, oder bist du wirklich unentschlossen?",
+      "sourceHash": "94a1676dfd79b64e",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:reask": {
@@ -1208,10 +1208,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:text": {
-      "text": "Glaubst du, dass die Vorteile die Risiken klar überwiegen werden, oder ist die Bilanz positiv, aber mit realen Risiken, die bewältigt werden müssen?",
-      "sourceHash": "2717f186c55147de",
+      "text": "Werden die Vorteile von KI ihre Risiken klar überwiegen, oder ist sie insgesamt positiv, bringt aber reale Risiken mit sich, die bewältigt werden müssen?",
+      "sourceHash": "1540da303bf487ae",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:reask": {
@@ -1236,10 +1236,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:text": {
-      "text": "Du hast dich hoffnungsvoller eingeordnet, als deine Antworten vermuten ließen. Was stimmt dich hoffnungsvoll, das in deinen Antworten nicht zum Ausdruck kam?",
-      "sourceHash": "9aaa67777523a93e",
+      "text": "Du hast dich hoffnungsvoller eingeordnet, als deine Antworten vermuten lassen. Was gibt dir Hoffnung, das wir übersehen haben?",
+      "sourceHash": "c1b07d5b2f8a77de",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:reask": {
@@ -1264,10 +1264,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:text": {
-      "text": "Du hast dich besorgter eingeordnet, als deine Antworten vermuten ließen. Was bereitet dir Sorgen, das wir möglicherweise übersehen haben?",
-      "sourceHash": "0bcf7fdc36273697",
+      "text": "Du hast dich besorgter eingeordnet, als deine Antworten vermuten lassen. Was bereitet dir Sorgen, das wir übersehen haben?",
+      "sourceHash": "ea7b4ca6a41abe79",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:reask": {

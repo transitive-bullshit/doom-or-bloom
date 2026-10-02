@@ -8,6 +8,8 @@ import type { VerifiedQuote } from '@/lib/personas/one-liner-rules'
 // catastrophe outcomes, and no quotes unless verified below.
 // `pnpm test:content` checks the mechanical parts. English only, like briefs.
 export const oneLiners: Record<string, string> = {
+  'nick-bostrom':
+    'Philosopher who studies superintelligence, its risks, and the possibilities for human flourishing in a technologically transformed world.',
   // Andrew McAfee
   amcafee:
     'MIT research scientist who expects large benefits from AI and favors broad experimentation, with rules that respond to demonstrated harms.',

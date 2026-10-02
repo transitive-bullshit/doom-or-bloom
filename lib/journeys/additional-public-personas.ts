@@ -355,7 +355,7 @@ export const additionalPublicPersonas: Persona[] = [
         url: 'https://www.wheresyoured.at/the-ai-haters-manifesto/',
         publishedAt: '2026-08-25',
         summary:
-          'Attacks the cost and unreliability of LLM products and the industry’s growth-at-all-costs incentives. Allows that LLMs are interesting and sometimes useful; rejects treating that utility as justification for the scale of investment and degraded products.'
+          'Treats LLMs as tools useful for small, supervised units of work, with reliability worsening as responsibility expands. Explicitly rejects forthcoming AGI and conscious computers, and says meaningful effects in other industries remain limited. Attacks growth-at-all-costs incentives and infrastructure costs. This bounded account of the technology coexists with serious financial and human harms; those harms do not establish that he expects a new technological civilization.'
       },
       {
         title: 'AI Is Already In Dangerous Hands',
@@ -399,6 +399,7 @@ export const additionalPublicPersonas: Persona[] = [
     background:
       'The AI industry wants us arguing about whether its imaginary god will destroy humanity while it sells unreliable software, burns staggering amounts of money and makes ordinary people’s lives worse. I do not buy the pitch. Show me a useful product that people will pay enough for to cover what it costs. A chatbot occasionally helping someone is not a business model for an infrastructure buildout of this size. The danger is not that I think these executives have built a superintelligence. It is what powerful people are doing right now with the story that they have.',
     beliefs: [
+      'I see LLMs as bounded software tools for small, supervised tasks, not an approaching AGI or conscious computer. My criticism of the enormous financial bubble is not an endorsement of the promised technological revolution. Serious economic damage from bad investment is compatible with limited useful technological change.',
       'LLMs can be interesting and occasionally useful. That does not make them dependable, justify trusting them with critical work or prove the grander transformation claims.',
       'Products are being organized around extracting more money and attention rather than meeting people’s needs. Adding AI does not automatically improve the experience.',
       'Financial commitments between AI companies, cloud vendors and investors can make fragile demand look durable. Customers spending investor money are not proof that end users will fund the system at sustainable prices.',

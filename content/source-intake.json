@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-30",
+  "asOf": "2026-10-03",
   "notionPage": "https://app.notion.com/p/3c5edb27f124807daa8fe82eb1cd4ffd",
   "notionLastEditedAt": "2026-09-17T11:43:39.180Z",
   "notionUnknownBookmarkResolved": "Dario Amodei — The Adolescence of Technology (blank bookmark page; essay already supplied directly)",
@@ -6556,6 +6556,285 @@
           "path": "docs/research/source-additions-2026-09-30.md",
           "heading": "LessWrong — AI Risk Skepticism",
           "scope": "Wiki definition, editor metadata and initial 15 of 31 tagged-post listings; linked essays, comments and additional listings excluded."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-home",
+      "url": "https://nickbostrom.com",
+      "originalUrls": ["https://nickbostrom.com"],
+      "origins": ["user-2026-10-03"],
+      "requiredForInitialCorpus": true,
+      "status": "research_draft",
+      "genre": "Author publication directory",
+      "publishedAt": null,
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "Author directory inspected for targeted primary sources; not every linked publication was read. Discovery provenance, not a standalone opinion claim.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-persona-2026-10-03.md",
+          "heading": "Foundational and beneficial futures sources",
+          "scope": "Author directory inspected for targeted primary sources; not every linked publication was read. Discovery provenance, not a standalone opinion claim."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-optimal-2026",
+      "url": "https://nickbostrom.com/optimal.pdf",
+      "originalUrls": ["https://nickbostrom.com/optimal.pdf"],
+      "origins": ["user-2026-10-03"],
+      "requiredForInitialCorpus": true,
+      "status": "research_draft",
+      "genre": "Working paper",
+      "publishedAt": "2026",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "Version 1.0 inspected. Incorporated into the Nick Bostrom simulation brief with model assumptions and scope limits. No frozen corpus reference or human review yet.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-persona-2026-10-03.md",
+          "heading": "Optimal timing",
+          "scope": "Version 1.0 inspected. Incorporated into the Nick Bostrom simulation brief with model assumptions and scope limits. No frozen corpus reference or human review yet."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-nyt-2026",
+      "url": "https://www.nytimes.com/2026/10/01/opinion/interesting-times-podcast-spencer-klavan-nick-bostrom.html",
+      "originalUrls": [
+        "https://www.nytimes.com/2026/10/01/opinion/interesting-times-podcast-spencer-klavan-nick-bostrom.html"
+      ],
+      "origins": ["user-2026-10-03"],
+      "requiredForInitialCorpus": true,
+      "status": "blocked",
+      "genre": "Podcast interview",
+      "publishedAt": "2026-10-01",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "Requested original retained. Publisher-distributed episode metadata verified, but original article/transcript inaccessible. No substantive interview claims incorporated; full transcript verification remains open.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-persona-2026-10-03.md",
+          "heading": "October 1 interview",
+          "scope": "Requested original retained. Publisher-distributed episode metadata verified, but original article/transcript inaccessible. No substantive interview claims incorporated; full transcript verification remains open."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-01",
+      "url": "https://nickbostrom.com/papers/vulnerable.pdf",
+      "originalUrls": ["https://nickbostrom.com/papers/vulnerable.pdf"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2019",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–4: abstract, policy implications, introduction, definition and explicit qualifications. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–4: abstract, policy implications, introduction, definition and explicit qualifications."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-02",
+      "url": "https://existential-risk.com/concept.pdf",
+      "originalUrls": ["https://existential-risk.com/concept.pdf"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2013",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–2 and 5: abstract, uncertainty discussion, maxipok qualification and risk classification. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–2 and 5: abstract, uncertainty discussion, maxipok qualification and risk classification."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-03",
+      "url": "https://nickbostrom.com/papers/unilateralist.pdf",
+      "originalUrls": ["https://nickbostrom.com/papers/unilateralist.pdf"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2016-01-26",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–3 and 17–18: publication details, abstract, motivating model and discussion of conformity and dissent. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–3 and 17–18: publication details, abstract, motivating model and discussion of conformity and dissent."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-04",
+      "url": "https://nickbostrom.com/papers/racing-to-the-precipice.pdf",
+      "originalUrls": [
+        "https://nickbostrom.com/papers/racing-to-the-precipice.pdf"
+      ],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2013-10",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–3 and 6–7: technical-report date, abstract, simplified model, coordination and information effects. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–3 and 6–7: technical-report date, abstract, simplified model, coordination and information effects."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-05",
+      "url": "https://nickbostrom.com/papers/propositions-concerning-digital-minds-and-society/",
+      "originalUrls": [
+        "https://nickbostrom.com/papers/propositions-concerning-digital-minds-and-society/"
+      ],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2023",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "HTML opening/version statement, Consciousness and Metaphysics, Respecting AI Interests, and entertainment/suffering propositions. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "HTML opening/version statement, Consciousness and Metaphysics, Respecting AI Interests, and entertainment/suffering propositions."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-06",
+      "url": "https://nickbostrom.com/papers/digital-minds.pdf",
+      "originalUrls": ["https://nickbostrom.com/papers/digital-minds.pdf"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2021",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–2, 4–5 and 12–14: abstract, welfare mechanisms, discrimination cautions and compromise discussion. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–2, 4–5 and 12–14: abstract, welfare mechanisms, discrimination cautions and compromise discussion."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-07",
+      "url": "https://nickbostrom.com/ogimodel.pdf",
+      "originalUrls": ["https://nickbostrom.com/ogimodel.pdf"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2025-10",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–2 and 12–13: version, abstract, core model and discussion of benefit-sharing limitations and nationalization. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–2 and 12–13: version, abstract, core model and discussion of benefit-sharing limitations and nationalization."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-08",
+      "url": "https://nickbostrom.com/papers/openness.pdf",
+      "originalUrls": ["https://nickbostrom.com/papers/openness.pdf"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2017",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–2: abstract, policy implications, introduction and distinction among forms of openness; a later notes excerpt was not used for claims. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–2: abstract, policy implications, introduction and distinction among forms of openness; a later notes excerpt was not used for claims."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-09",
+      "url": "https://nickbostrom.com/posthuman.pdf",
+      "originalUrls": ["https://nickbostrom.com/posthuman.pdf"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2008",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "PDF pp. 1–3 and 23–24: publication information, definitions, limited theses and concluding qualifications. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "PDF pp. 1–3 and 23–24: publication information, definitions, limited theses and concluding qualifications."
+        }
+      ]
+    },
+    {
+      "id": "source.bostrom-expansion-10",
+      "url": "https://nickbostrom.com/papers/transhumanist-values/",
+      "originalUrls": ["https://nickbostrom.com/papers/transhumanist-values/"],
+      "origins": ["bostrom-persona-expansion-2026-10-03"],
+      "requiredForInitialCorpus": false,
+      "status": "research_draft",
+      "genre": "Author-hosted research paper or philosophical essay",
+      "publishedAt": "2005",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": [],
+      "notes": "HTML sections 1 and 4, and the preceding identity discussion: technological possibility, risk, global security and wide access. Incorporated in simulated-person source brief; no corpus review implied.",
+      "researchRecords": [
+        {
+          "path": "docs/research/nick-bostrom-expanded-sources-2026-10-03.md",
+          "heading": "Verified additions",
+          "scope": "HTML sections 1 and 4, and the preceding identity discussion: technological possibility, risk, global security and wide access."
         }
       ]
     }

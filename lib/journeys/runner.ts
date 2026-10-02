@@ -346,8 +346,12 @@ export async function runPersona(
       for (let i = 0; i < (fixed ? fixed.length : turns); i++) {
         if (fixed) {
           const original = fixed[i]!
+          // A reworded question replays the wording the answer was given to.
           const authored = bundle.prompts.find(
-            (p) => p.id === original.promptId && p.text === original.question
+            (p) =>
+              p.id === original.promptId &&
+              (p.text === original.question ||
+                p.formerTexts?.includes(original.question))
           )
           if (!authored)
             throw new Error(
