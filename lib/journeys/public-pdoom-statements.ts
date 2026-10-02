@@ -224,5 +224,210 @@ export const publicPdoomStatements: Record<
     conditions:
       'Unconditional answer to the host’s P(Doom) question at 00:29:50 in a host-published, speaker-labeled transcript; she later adds it is higher than she would like. Her remaining hope rests mainly on superintelligence taking an interest in consciousness, which she rates as unlikely. Distinct from her “nine out of 10 worried” rating and her 2022 essay.',
     quote: 'Seventy-five percent.'
+  },
+  'takeoff-forecaster': {
+    token: '≈70%',
+    bounds: [0.7, 0.7],
+    estimate: 0.7,
+    title: 'Transcript of Daniel Kokotajlo Interview: Diary Of A CEO Podcast',
+    url: 'https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/',
+    publishedAt: '2026-07-13',
+    outcome:
+      'AI takeover or a comparably very big catastrophe on the default path “if things don’t change”; explicitly not an extinction-only estimate',
+    horizon: 'Not specified; a forecast for the current default path',
+    conditions:
+      "Subjective and rounded ('something like 70%'), on the default path 'if things don’t change'. He corrects the host’s '70% chance of human extinction': AIs might take over without killing everyone. Says 'I don’t think that we’re definitely doomed'. Third-party speaker-labelled transcript (Singju Post) of the episode published 2026-07-13. Same figure as his April 2025 Dwarkesh statement ('my P(doom) is sort of infamously high, like 70%'). A later interview (Jan Jekielek, premiered 2026-09-26) answers the P(doom) question only qualitatively ('probably this will end poorly').",
+    quote: '70% chance of something like AIs taking over'
+  },
+  'abundance-risk-taker': {
+    token: '10–20%',
+    bounds: [0.1, 0.2],
+    title: 'ELON MUSK JOINS VERDICT - PART 1 | Verdict Ep. 214',
+    url: 'https://www.youtube.com/watch?v=BDREZmpkIz8',
+    publishedAt: '2025-03-17',
+    outcome:
+      '“Killer robots annihilating humanity”, in Ted Cruz’s question; the complement he names is about 80% “extreme prosperity for all”',
+    horizon:
+      'About 5–10 years; his answer to “On what time frame?” reads “after to 10 years” in the official upload’s automatic captions and “five to ten years” in press quotations',
+    conditions:
+      'Off-the-cuff, rounded answer: “20% likely, maybe 10%”, then calls the glass “80 to 90% full, meaning like 80% likely” extreme prosperity for all. Words checked against the automatic captions of the show’s official YouTube upload and Transformer’s quotation (2025-03-21); Singju Post’s third-party transcript renders the answer as “Likely, maybe 10%”. Consistent with JRE #2281 (2025-02-28), where a good outcome is “like 80% likely”. In The Economist’s July 2026 interview, asked whether 10–20% still holds, he said the risk is “not zero” without restating or replacing the number.',
+    quote: '20% likely, maybe 10%'
+  },
+  'alignment-philosopher': {
+    token: '≥10%',
+    bounds: [0.1, 0.99],
+    title: 'Leaving Open Philanthropy, going to Anthropic',
+    url: 'https://joecarlsmith.com/2025/11/03/leaving-open-philanthropy-going-to-anthropic/',
+    publishedAt: '2025-11-03',
+    outcome:
+      'The technology being built by companies like Anthropic destroying the entire future of the human species (existential catastrophe)',
+    horizon: 'Not specified',
+    conditions:
+      "Verbal numeric category ('significant (read: double-digit)'), not a point estimate or narrow range; do not render as 10% or a midpoint. Speaking only for himself, not Anthropic. Consistent with his earlier '>10%' updates (May 2022 note on the 2021 report; 2023 shorter version); his original ~5% by 2070 was disowned as too low.",
+    quote:
+      'a significant (read: double-digit) probability of destroying the entire future of the human species'
+  },
+  'independent-thezvi': {
+    token: '≈70%',
+    bounds: [0.7, 0.7],
+    estimate: 0.7,
+    title:
+      "Zvi's Mic Works! Recursive Self-Improvement, Live Player Analysis, Anthropic vs DoW + More!",
+    url: 'https://www.cognitiverevolution.ai/zvi-s-mic-works-recursive-self-improvement-live-player-analysis-anthropic-vs-dow-more/',
+    publishedAt: '2026-03-19',
+    outcome:
+      'AI “doom” as asked by Nathan Labenz (“your latest P doom”); endpoint not defined in the exchange (his discussion is about superintelligence ending up with goals we do not want)',
+    horizon: 'No fixed calendar horizon',
+    conditions:
+      'His own turn near the end of the episode, answering Labenz’s request for a P(doom) update, in the publisher’s speaker-labelled (automatic, lowercase, partly garbled) transcript. Deliberately one significant digit; he says the update is “kind of a wash”: Anthropic’s virtue-basin approach is more promising than expected, but speed and the Department of War fight offset it. Restates the figure from his previous appearance (Sept 2025). Implicitly reaffirmed in Pick Your Poison (Cognitive Revolution, 2026-08-05), where he says a do-what-the-user-wants alignment world “would not make me update down from 70%”. Not the host’s paraphrase.',
+    quote: "i think it's like yeah seventy ish"
+  },
+  'independent-eli-lifland': {
+    token: '≈50%',
+    bounds: [0.5, 0.5],
+    estimate: 0.5,
+    title: 'Special Edition: The Future of AI and Humanity, with Eli Lifland',
+    url: 'https://blog.controlai.org/p/special-edition-the-future-of-ai',
+    publishedAt: '2025-04-10',
+    outcome:
+      'Misaligned AI takeover; his extinction estimate within it is roughly 25%',
+    horizon: 'Not specified',
+    conditions:
+      'His own answer (“Eli:”) in ControlAI’s published interview, asked how likely the extinction threat is. Both figures are rough. Not the 75% he gives for takeover conditional on the fast, closely raced AI 2027 scenario. In AXRP 50 (2026-08-03, 02:03:17) he says extinction conditional on misaligned takeover is under 50%, consistent with 25/50; no newer overall number found, and his timelines have lengthened since (2032 automated-coder median). Editor may prefer the extinction figure (≈25%) if the page means extinction.',
+    quote:
+      'Roughly 25% on extinction, which is a subset of roughly 50% on misaligned takeover.'
+  },
+  'independent-davidad': {
+    token: '<5%',
+    bounds: [0, 0.05],
+    title:
+      'Alignment with Awakening: Davidad on Moral Realism, AI Wisdom, & why His p(Doom) is Down to 5%',
+    url: 'https://www.cognitiverevolution.ai/alignment-with-awakening-davidad-on-moral-realism-ai-wisdom-why-his-p-doom-is-down-to-5/',
+    publishedAt: '2026-07-12',
+    outcome:
+      'Residual AI doom, which he decomposes into being wrong about the wisdom attractor, Malthusian competition for land and energy (~1%), catastrophic (bio) misuse (~1%), a military first strike, and conflict between strong but violent AI coalitions',
+    horizon: 'No fixed calendar horizon',
+    conditions:
+      'His own turn at [1:04:02] in the publisher’s timestamped, speaker-labelled transcript; later says these risks “fit into my 5%” [1:55:52] and “I’ve come down to five” [2:08:58], so the editor could render it ≈05%. Excludes a separate 20–30% for a non-catastrophic but somewhat dystopian concentration of power [1:08–1:10] and the biological-human disempowerment he expects but does not count as doom. He calls even this “extremely risky”.',
+    quote: 'I like my, my P doom is less than 5% now.'
+  },
+  'independent-npcollapse': {
+    token: '≈99%',
+    bounds: [0.99, 0.99],
+    estimate: 0.99,
+    title:
+      "#201 - Connor Leahy - The AI That Escaped: Inside OpenAI's Rogue Agent Incident (The Peter McCormack Show)",
+    url: 'https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident',
+    publishedAt: '2026-08-14',
+    outcome:
+      'Things going poorly on the current trajectory toward superintelligence; in context, human extinction. Stated relative to Nate Soares, whom he puts at “maybe like 99”, and followed at once by “the future is not decided”',
+    horizon: 'Not specified',
+    conditions:
+      'Conditional on continuing the current trajectory; he immediately insists “the future is not decided”. Stated relationally at [60:44–60:49] (host: “I think Nate Soares is 100”; Connor: “Surely not 100. Maybe like 99.”): asked if it is above 20%, “Yes”; 100%, “No”; he puts Nate Soares at “maybe like 99” and his own within rounding error of that. Source is Wave’s machine transcript with speaker labels (not show-published); attribution follows an unambiguous question–answer sequence. Supersedes his June 2025 figure of 50–80% extinction or near-extinction within 50 years “if we do literally nothing” (The Great Simplification #184, publisher speaker-labelled transcript at 00:58:13, recorded 2025-05-21) — use that cleaner but older statement if a machine transcript is not acceptable.',
+    quote: 'very, very high, within rounding error of Nate or whatever'
+  },
+  'independent-robertskmiles': {
+    token: '10–90%',
+    bounds: [0.1, 0.9],
+    title:
+      'Rob Miles, Top AI Safety Educator: Humanity Isn’t Ready for Superintelligence!',
+    url: 'https://lironshapira.substack.com/p/rob-miles-top-ai-safety-communicator',
+    publishedAt: '2025-08-23',
+    outcome:
+      'Unspecified AI “doom” as asked on Doom Debates (AI existential catastrophe); he does not define the endpoint',
+    horizon: 'No fixed calendar horizon',
+    conditions:
+      "His own answer at 00:21:58 in the host-published, speaker-labelled transcript: he says “I don't know” and that anyone below 10% or above 90% is overconfident, so this is a defensible range rather than a point estimate. At 00:27:31–00:30:50 he says his P(doom) is “hugely variable”, driven by how humanity responds: “totally fine” if we make the right choices, “totally fucked” if we ignore it. He does not confirm the host’s suggestion that he is in the “50 plus zone”. He also argues the exact number is the wrong focus.",
+    quote: 'any number in the 10 to 90% range is plausibly defensible'
+  },
+  'independent-rokomijic': {
+    token: '35–40%',
+    bounds: [0.35, 0.4],
+    title:
+      "The scary thing about P(Doom) is that if Lab CEOs are saying 10%, you know that's not the real number.",
+    url: 'https://x.com/RokoMijic/status/2103594224616681791',
+    publishedAt: '2026-09-25',
+    outcome:
+      'AI doom; in a reply he describes superhuman AI covering Earth in data centers and reactors and hunting humans down — human extinction',
+    horizon:
+      'This century, with most of the risk in the next 15 years on a laissez-faire trajectory (his reply of 2026-09-26)',
+    conditions:
+      'His all-things-considered figure, including “a determined effort to reduce it” and his expectation of aggressive AI regulation; on the current laissez-faire trajectory he puts it at “probably more like 95%” (conditional). Ten minutes later he replied “Okay maybe 35% ... 35 +-5% is not much difference” (https://x.com/RokoMijic/status/2103596881414881596), hence the range. All posts fetched via api.fxtwitter.com.',
+    quote:
+      'I personally think that 40% is reasonable with a determined effort to reduce it'
+  },
+  'bubble-critic': {
+    token: '0%',
+    bounds: [0, 0],
+    estimate: 0,
+    title:
+      'DOAC AI Emergency Debate: ft. Ed Zitron, Andrew McAfee, Nate Soares & Roman Yampolskiy (Transcript)',
+    url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
+    publishedAt: '2026-09-17',
+    outcome:
+      'Human extinction caused strictly by AI, as asked in the debate’s opening envelope question',
+    horizon: 'No fixed calendar horizon',
+    conditions:
+      'His own turn at 00:05:53 in a third-party speaker-labelled transcript (same source as the verified McAfee entry); the host confirms “we’ve got 99%, 0%”. He excludes a data-centre-driven climate disaster, which he says could potentially eradicate humanity. Near the end (02:20:51), asked about a more-than-10% chance of “existential harm” within about ten years, he says “I mean, look, 1%” before pivoting to non-existential harms; that hedged answer to a broader question is not used as the headline figure. Elsewhere he calls insiders’ probabilities meaningless.',
+    quote: 'if we’re talking strictly about AI, I stand at zero'
+  },
+  'world-model-optimist': {
+    token: '≈0%',
+    bounds: [0, 0.0001],
+    title: "I didn't say p(doom) was zero",
+    url: 'https://x.com/ylecun/status/2046577402264870958',
+    publishedAt: '2026-04-21',
+    outcome:
+      'Undefined “p(doom)”; he benchmarks it against an extinction-level asteroid impact and says it is far less likely than a nuclear holocaust',
+    horizon:
+      'No fixed calendar horizon; the next-millennium window belongs to the asteroid comparison',
+    conditions:
+      'Verbal upper bound, not a numeral: p(doom) is smaller than the probability of an extinction-level asteroid strike in the next millennium, offered because “everyone insists on pulling numbers out of thin air”. Recorded as near zero on the McAfee and Booch precedent; the bounds cap it at 0.01%, a loose reading of the asteroid comparison. In the same post he says he did not say p(doom) was zero, that all estimates are pulled out of thin air, and that a probability makes little sense for an event we have agency over. Reply to a post relaying Hassabis’s claim that LeCun thinks it is 0%. Full post text read via api.fxtwitter.com.',
+    quote:
+      'p(doom) is smaller than the probability of an extinction-level asteroid hitting the earth'
+  },
+  'anti-doomer': {
+    token: '0% by 2030',
+    bounds: [0, 0],
+    estimate: 0,
+    title:
+      'Nvidia\'s Jensen Huang rejects AI extinction warnings as "doomsday narratives"',
+    url: 'https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/',
+    publishedAt: '2026-09-20',
+    outcome:
+      'AI bringing about “the end of the world”, in answer to claims that AI could kill everyone by the end of the decade',
+    horizon: 'By 2030; he gives no longer-horizon number',
+    conditions:
+      'Categorical rhetorical dismissal in his own quoted words, not a calculated estimate: he says such predictions are “not grounded in science”. It covers only the period to 2030, and he gives no longer-horizon number. Quoted in the interviewing outlet’s own write-up of Jo Ling Kent’s interview, recorded Friday 2026-09-18; the 46-minute extended video was not opened. In a search-result excerpt of a podscripts transcript of his 2026-09-23 Ezra Klein Show interview (not fetched), he attacks Hinton’s 10% figure without offering a number of his own.',
+    quote: "There is 0% chance that's going to be the end of the world"
+  },
+  'open-science-realist': {
+    token: '≈0%',
+    bounds: [0, 0],
+    estimate: 0,
+    title: 'One resignation turned the embers of AI fear into a wildfire',
+    url: 'https://www.interconnects.ai/p/one-resignation-turned-the-embers',
+    publishedAt: '2026-09-10',
+    outcome:
+      'Complete human extinction from AI. He separately treats AI-caused disasters (cyberattacks on critical infrastructure, bio-risks) as worth debating',
+    horizon: 'Not specified',
+    conditions:
+      'Verbal judgment, no numeral: extinction is “so low it isn’t worth discussing”. Recorded as near-zero on the McAfee and Booch precedent, but the wording is less explicit than “near zero”. It is not a claim that AI is safe or that serious AI disasters are negligible. In the same essay he says “estimating annihilation is useless.” Full text read via the Substack API.',
+    quote:
+      'I put the probability of complete extinction as being so low it isn’t worth discussing'
+  },
+  'independent-jd-pressman': {
+    token: '12%',
+    bounds: [0.12, 0.12],
+    estimate: 0.12,
+    title: 'Varieties Of Doom',
+    url: 'https://www.lesswrong.com/posts/apHWSGDiydv3ivmg6/varieties-of-doom',
+    publishedAt: '2025-11-17',
+    outcome:
+      'Undefined “doom”; he says the term conflates several distinct AI outcomes, which the essay separates into layers. Not an extinction-only forecast',
+    horizon: 'Not specified',
+    conditions:
+      'Self-reported figure he says he would sometimes give in private conversations, disclosed in his own essay with the caveat that “doom” is nebulous. In the same passage he says he had declined to give anything interpretable as a p(doom) in public until he could explain the layers of doom, which this essay sets out to do; the essay does not restate 12% as a fresh all-things-considered number. Separately he puts the “paperclipper” (successor that retains nothing of value) outcome in the sub-1% range. LessWrong publication date; a blog copy is dated 2025-10-27.',
+    quote: "In private conversations I'd sometimes give my p(doom) as 12%"
   }
 }
