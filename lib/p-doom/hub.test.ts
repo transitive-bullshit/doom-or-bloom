@@ -189,7 +189,7 @@ describe('sources and readings', () => {
     }
     for (const { readings } of readingGroups)
       for (const reading of readings)
-        expect(reading.description).not.toMatch(/\.$/)
+        expect(reading.description).toMatch(/[.!?]$/)
   })
 
   test('show a committed local favicon for every page the hub links', async () => {
