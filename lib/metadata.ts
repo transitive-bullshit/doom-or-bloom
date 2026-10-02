@@ -9,7 +9,7 @@ import {
   openGraphLocale,
   type Locale
 } from '@/i18n/config'
-import { publicPages, siteUrl, type PublicPageKey } from '@/lib/site'
+import { publicPages, siteTitle, siteUrl, type PublicPageKey } from '@/lib/site'
 import { siteSocialAlt } from '@/lib/sharing/site-social-card'
 
 /**
@@ -43,8 +43,7 @@ export function pageMetadata({
   const url = (target: Locale) => `${siteUrl}${localizedPath(path, target)}`
   // A page without translated content describes itself as its English original.
   const canonical = translated ? locale : defaultLocale
-  const fullTitle =
-    title === 'Doom or Bloom' ? title : `${title} | Doom or Bloom`
+  const fullTitle = siteTitle(title)
   // Import the generated file so its dimensions and cache-busting URL track
   // regeneration (`pnpm social-image:generate`). Every social image is a PNG.
   const images = [

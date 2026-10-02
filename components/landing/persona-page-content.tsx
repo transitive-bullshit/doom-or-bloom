@@ -13,6 +13,7 @@ import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
 import { SimilarWorldviews, type SimilarWorldview } from './similar-worldviews'
+import { PublicStatements } from './public-statements'
 import { ExperimentalResults } from '@/components/assessment/experimental-results'
 import { ReasoningJudgments } from '@/components/assessment/reasoning-judgments'
 import { JsonViewer } from '@/components/debug/json-viewer'
@@ -21,13 +22,15 @@ import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 import type { Result } from '@/lib/assessment/schema'
 import type { Example } from './shared'
 import type { PersonaAssessment } from '@/lib/journeys/persona-assessment'
+import type { PublicStatements as Statements } from '@/lib/personas/public-statements'
 import { authoredPrompt } from '@/lib/assessment/display-text'
 import { useAuthoredText } from '@/components/assessment/authored-text'
 
 export function PersonaPageContent({
   person,
   assessment,
-  similar = []
+  similar = [],
+  statements
 }: {
   person: Pick<
     Example,
@@ -45,6 +48,8 @@ export function PersonaPageContent({
   assessment: PersonaAssessment
   /** Nearest simulated users, linked after the compare prompt. */
   similar?: SimilarWorldview[]
+  /** What the real person has said, below the map and its follow-ups. */
+  statements?: Statements
 }) {
   const t = useTranslations('Persona')
   return (
@@ -71,12 +76,20 @@ export function PersonaPageContent({
           <SimilarWorldviews name={person.name} people={similar} />
         </div>
       )}
+      {statements && (
+        <div className='mt-20'>
+          <PublicStatements name={person.name} statements={statements} />
+        </div>
+      )}
       <section
         aria-label={t('simulatedAssessment')}
         className='mt-20 flex flex-col gap-4'
       >
         <h2>{t('simulatedAssessment')}</h2>
-        <PersonaAnswers assessment={assessment} />
+        {/* With the real person's own words above, the simulated answers
+            start closed, one click away. Participant pages pass no
+            statements, so their answers stay open. */}
+        <PersonaAnswers assessment={assessment} defaultOpen={!statements} />
         <section aria-label={t('debugInfo')}>
           <Collapsible>
             <DisclosureTrigger>{t('debugInfo')}</DisclosureTrigger>
@@ -120,16 +133,27 @@ export function PersonaPageContent({
   )
 }
 
-function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
+function PersonaAnswers({
+  assessment,
+  defaultOpen
+}: {
+  assessment: PersonaAssessment
+  defaultOpen: boolean
+}) {
   const t = useTranslations('Persona')
   const authored = useAuthoredText()
-  const [open, setOpen] = useAnswerDisclosure(true)
+  const [open, setOpen] = useAnswerDisclosure(defaultOpen)
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
       <DisclosureTrigger>
         {t('viewAnswers', { count: assessment.answers.length })}
       </DisclosureTrigger>
-      <CollapsibleContent className='mt-6 flex flex-col gap-8'>
+      {/* Mounted while closed, so the pregenerated page keeps every answer
+          and its anchor in the HTML. */}
+      <CollapsibleContent
+        forceMount
+        className='mt-6 flex flex-col gap-8 data-[state=closed]:hidden'
+      >
         {assessment.answers.map((answer, index) => (
           <AnswerTarget key={`${answer.id}-${index}`} number={index + 1}>
             <article className='flex min-w-0 flex-col gap-3'>

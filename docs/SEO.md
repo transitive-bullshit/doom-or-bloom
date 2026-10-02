@@ -6,7 +6,7 @@ This document owns how pages present themselves to search engines and AI crawler
 
 | What | Where |
 | --- | --- |
-| Page titles and descriptions | `messages/<locale>.json` under `Pages.<key>` for the pages in `publicPages` (`lib/site.ts`); `Profiles.userTitle` and `Profiles.userDescription` for simulated users; frontmatter for blog posts |
+| Page titles and descriptions | `messages/<locale>.json` under `Pages.<key>` for the pages in `publicPages` (`lib/site.ts`); `Profiles` for simulated users, whose titles `profileTitle` in `lib/seo/profile-titles.ts` builds ([Profile titles](#profile-titles)); frontmatter for blog posts |
 | Metadata assembly | `pageMetadata` and `publicPageMetadata` in `lib/metadata.ts`: the title suffix, canonical URL, hreflang alternates, noindex outside English for English-bodied pages, Open Graph (`article` for posts) and the RSS alternate |
 | Structured data | Pure builders in `lib/seo/json-ld.ts`, rendered by `JsonLd` and `BreadcrumbJsonLd` in `components/json-ld.tsx`; shapes are tested in `lib/seo/json-ld.test.ts` |
 | Breadcrumbs | `breadcrumbTrail` in `lib/breadcrumbs.ts`, shared by the visible breadcrumbs and their BreadcrumbList |
@@ -15,12 +15,24 @@ This document owns how pages present themselves to search engines and AI crawler
 
 ## Titles and descriptions
 
-Write titles for what people search, not for the site's internal names: "How will AI change our future? Take the 3-minute quiz", "What is P(doom)? Estimates from Hinton, Musk, LeCun and more", "<Name> on AI and P(doom)". `pageMetadata` appends " | Doom or Bloom"; the brand name "Doom or Bloom" and the subtitle in [README.md](README.md#locked-product-language) stay as written. Balance search demand with editorial neutrality: the home page's title keeps a neutral, trust-preserving framing (it leads with the site's own question rather than insider vocabulary that frames the site as doom-leaning), while topic pages (`/p-doom`, profiles, posts) target the terms people actually search, P(doom) included. Choose target queries from keyword research, not intuition: see `docs/research/seo-keywords-2026-10-02.md`. Name people in titles and descriptions across the range of views (Hinton, LeCun, Altman), never only one side, and avoid catalog counts that change ("169 thought leaders").
+Write titles for what people search, not for the site's internal names: "How will AI change our future? Take the 3-minute quiz", "What is P(doom)? Estimates from Hinton, Musk, LeCun and more", "Geoffrey Hinton on AI safety, risk and P(doom)". `pageMetadata` appends " | Doom or Bloom"; the brand name "Doom or Bloom" and the subtitle in [README.md](README.md#locked-product-language) stay as written. Balance search demand with editorial neutrality: the home page's title keeps a neutral, trust-preserving framing (it leads with the site's own question rather than insider vocabulary that frames the site as doom-leaning), while topic pages (`/p-doom`, profiles, posts) target the terms people actually search, P(doom) included. Choose target queries from keyword research, not intuition: see `docs/research/seo-keywords-2026-10-02.md`. Name people in titles and descriptions across the range of views (Hinton, LeCun, Altman), never only one side, and avoid catalog counts that change ("169 thought leaders").
 
 - No trailing period on a title. Descriptions are one or two full sentences and keep their periods.
-- Pages about a simulated user call the worldview simulated in the description; keep titles short ("<Name>’s views on AI and P(doom)"). The structured data adds that it is a simulation from public writing, not their own assessment; don't lead search snippets with that disclaimer. Inferred P(doom) is described as rough.
+- Pages about a simulated user call the worldview simulated in the description; the title names topics, not the simulation. The structured data adds that it is a simulation from public writing, not their own assessment; don't lead search snippets with that disclaimer. Inferred P(doom) is described as rough.
 - Personas are "thought leaders"; the interview takes "about 3 minutes".
 - Translate every title and description through the catalogs ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#adding-a-string)). Post titles are English, like their posts.
+
+### Profile titles
+
+A simulated user's title names what people search about that person, then falls back to where they land on the map:
+
+1. **Search topics**, when the keyword study found strong evidence: up to three topics from a controlled vocabulary, stored per person with their evidence in `lib/seo/profile-title-topics.json`. A topic is strong when Google ranks "<name> ai <topic>" (or "<name> on ai <topic>", "<name> p doom", "<name> agi") in its top three suggestions for that prefix. P(doom), safety and risk need only that, as approved on October 2; other topics also need Google's overall suggestions for the name, Bing or DuckDuckGo to show them. The list runs P(doom), then safety and risk when confirmed, then the rest by demand. Refresh it with a new keyword study, never at runtime, and review it by hand: drop suggestions about someone else with the same name.
+2. **Map position** for everyone else, neutral topics rather than stances: outlook below 40 "<Name> on AI safety and risk", 40 to 79 "<Name> on AI’s risks and benefits", 80 and up "<Name> on AI’s future and opportunities". The bands come from the decision page; P(doom) is named only where people search it.
+3. **"<Name> on AI"** for an unplaced profile.
+
+Titles read as a plain list, never a colon. Topics that name a kind of AI share one "AI" ("AI safety, risk and P(doom)"); without one the list starts with AI itself ("AI and P(doom)", "AI, jobs and AGI"). "The future of AI" leads a list unless another topic already names AI, when it closes it as "the future" ("AI regulation, jobs and the future"). P(doom) comes last. The vocabulary: safety, risk, regulation, policy, ethics, consciousness, the AI bubble, jobs, education, healthcare, open source, AGI, superintelligence, the future and P(doom). Stances such as optimism are not topics.
+
+Every title must fit Google's desktop limit of about 600px of 20px Arial with " | Doom or Bloom" (`googleTitleWidth` in `lib/seo/title-width.ts`). The choice is made in English: a search title drops its least searched topics until it fits, and a map title that doesn't fit falls back to "<Name> on AI". Other languages show the same choice through `Profiles.userTitleTopics`, `Profiles.userTitleMap`, `Profiles.titleTopic` and `Profiles.titleTopicAfterAi` (a topic's shorter form once AI is named), joined with the locale's list format (British English in English, so no serial comma). `lib/seo/profile-titles.test.ts` checks the grammar for every combination of topics and the width of every catalog title.
 
 ## Structured data
 

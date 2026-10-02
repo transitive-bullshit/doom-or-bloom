@@ -34,6 +34,10 @@ import {
   verifiedOneLinerQuotes
 } from '../components/landing/one-liners'
 import { oneLinerProblems } from '../lib/personas/one-liner-rules'
+import {
+  publicStatementProblems,
+  publicStatements
+} from '../lib/personas/public-statements'
 const bundle = loadBundle()
 const drafts = loadDraftReferences()
 const context = loadAuthoringContext(bundle)
@@ -116,6 +120,40 @@ if (oneLinerErrors.length)
     `Simulated-user one-liners break the rule in docs/user-journeys.md#simulated-user-one-liners:\n${oneLinerErrors.join('\n')}`
   )
 console.log(`Validated ${people.length} simulated-user one-liners.`)
+
+// What each real person has said about AI, shown on their profile:
+// docs/user-journeys.md#public-statements. Every file must be registered.
+const statementsDirectory = path.join(process.cwd(), 'content/profiles')
+const statementFiles = existsSync(statementsDirectory)
+  ? readdirSync(statementsDirectory).filter((file) => file.endsWith('.json'))
+  : []
+const statementErrors = [
+  ...statementFiles
+    .filter((file) => !publicStatements.has(file.slice(0, -'.json'.length)))
+    .map(
+      (file) => `${file}: not registered in lib/personas/public-statements.ts`
+    ),
+  ...[...publicStatements.values()].flatMap((file) => [
+    ...(slugs.has(file.slug)
+      ? []
+      : [`${file.slug}: statements for no simulated user`]),
+    ...(statementFiles.includes(`${file.slug}.json`)
+      ? []
+      : [
+          `${file.slug}: registered without content/profiles/${file.slug}.json`
+        ]),
+    ...publicStatementProblems(file).map(
+      (problem) => `${file.slug}: ${problem}`
+    )
+  ])
+]
+if (statementErrors.length)
+  throw new Error(
+    `Public statements break the rule in docs/user-journeys.md#public-statements:\n${statementErrors.join('\n')}`
+  )
+console.log(
+  `Validated public statements for ${publicStatements.size} simulated users.`
+)
 
 // Committed translations. Every enabled locale needs complete, current
 // translations of every supported release and the rubric; any other

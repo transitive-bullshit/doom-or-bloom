@@ -733,10 +733,45 @@
     "sourcesDefault": "このシミュレーション対象者の根拠として使用された記事、インタビュー、著作です。",
     "profile": "プロフィール",
     "similarTitle": "似ている世界観",
-    "similarDescription": "シミュレーションされた世界観が{name}の世界観に最も近いオピニオンリーダー"
+    "similarDescription": "シミュレーションされた世界観が{name}の世界観に最も近いオピニオンリーダー",
+    "statementsTitle": "{name}がAIについて語ったこと",
+    "statementsNote": "リンク先の出典から原文どおりに引用（{date}に確認）"
   },
   "Profiles": {
-    "userTitle": "{name}のAIとP(doom)に関する見解",
+    "userTitle": "{name}のAI観",
+    "userTitleTopics": "{name}の{topics}観",
+    "userTitleMap": {
+      "concern": "{name}のAI安全性とリスクに関する見解",
+      "middle": "{name}のAIのリスクと恩恵に関する見解",
+      "bloom": "{name}のAIの未来と機会に関する見解"
+    },
+    "titleTopic": {
+      "ai": "AI",
+      "safety": "AI安全性",
+      "risk": "AIリスク",
+      "regulation": "AI規制",
+      "policy": "AI政策",
+      "ethics": "AI倫理",
+      "consciousness": "AIの意識",
+      "bubble": "AIバブル",
+      "jobs": "雇用",
+      "education": "教育",
+      "healthcare": "医療",
+      "opensource": "オープンソース",
+      "agi": "AGI",
+      "superintelligence": "超知能",
+      "future": "AIの未来",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "安全性",
+      "risk": "リスク",
+      "regulation": "規制",
+      "policy": "政策",
+      "ethics": "倫理",
+      "consciousness": "意識",
+      "future": "未来"
+    },
     "userDescription": "{name}はAIについてどう考えているのでしょうか？シミュレーションされたその人の世界観がDoomとBloomの間のどこに位置するのかを、大まかなP(doom)と、その根拠となる回答とともに確認できます。",
     "userImageAlt": "Doom–Bloomと変革の規模のマップ上に示された、{name}のシミュレーションされたAI世界観",
     "personDescription": "公開されている文章から構築した、{name}のAIに対する世界観のシミュレーションです。これは実験的な解釈であり、本人による評価でも、支持を示すものでもありません。",

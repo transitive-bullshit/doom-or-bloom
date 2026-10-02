@@ -1,0 +1,950 @@
+{
+  "studied": "2026-10-03",
+  "method": "Google, Bing and DuckDuckGo autocomplete (US English) for \"<name> ai\", \"<name> on ai\" and each followed by a–z, plus Google probes \"<name> p d\", \"<name> ag\" and \"<name> sup\". A topic is strong when Google ranks it in its top three suggestions for the topic’s own prefix (for example \"geoffrey hinton ai s\"). P(doom), safety and risk need only that, as approved on October 2; any other topic must also be among Google’s overall suggestions for the name or suggested by Bing or DuckDuckGo. Topics are listed most searched first, at most three: P(doom), then safety and risk when Google’s overall list or a second engine confirms them, then the rest by Google’s overall rank, the engines that suggest them and how many variants people type. Titles drop topics from the end until they fit. googleRank is the prefix rank and overallRank the rank among Google’s suggestions for \"<name> ai\" or \"<name> on ai\" (0 is first).",
+  "people": {
+    "realdonaldtrump": {
+      "topics": ["regulation", "policy", "risk"],
+      "evidence": [
+        {
+          "topic": "regulation",
+          "googleRank": 0,
+          "overallRank": 4,
+          "engines": ["google"],
+          "queries": [
+            "donald trump on ai regulation",
+            "donald trump ai bill",
+            "donald trump ai law"
+          ]
+        },
+        {
+          "topic": "policy",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "donald trump ai executive order",
+            "donald trump ai policy"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": [
+            "donald trump ai risks stance",
+            "donald trump ai risk comments"
+          ]
+        }
+      ]
+    },
+    "elonmusk": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["elon musk p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 7,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": ["elon musk on ai safety", "elon musk ai safety"]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 10,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "elon musk on ai dangers",
+            "elon musk on ai warning",
+            "elon musk ai danger"
+          ]
+        }
+      ]
+    },
+    "barackobama": {
+      "topics": ["policy"],
+      "evidence": [
+        {
+          "topic": "policy",
+          "googleRank": 0,
+          "overallRank": 10,
+          "engines": ["google"],
+          "queries": ["barack obama ai policy warning"]
+        }
+      ]
+    },
+    "sama": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["sam altman p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 1,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "sam altman on ai safety",
+            "sam altman ai safety",
+            "sam altman ai safety warnings"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 7,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "sam altman ai warning",
+            "sam altman on ai danger",
+            "sam altman on ai risks"
+          ]
+        }
+      ]
+    },
+    "darioamodei": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["dario amodei p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "dario amodei on ai safety",
+            "dario amodei ai safety",
+            "dario amodei ai safety essay"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 1,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "dario amodei on ai risk",
+            "dario amodei ai warning",
+            "dario amodei ai risks"
+          ]
+        }
+      ]
+    },
+    "jensenhuang": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["jensen huang p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 1,
+          "overallRank": null,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": ["jensen huang ai safety", "jensen huang on ai safety"]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 1,
+          "overallRank": 4,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "jensen huang on ai threat",
+            "jensen huang ai risk perspective",
+            "jensen huang ai warning"
+          ]
+        }
+      ]
+    },
+    "billgates": {
+      "topics": ["safety", "risk", "jobs"],
+      "evidence": [
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 8,
+          "engines": ["google"],
+          "queries": ["bill gates on ai safety", "bill gates ai safety"]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "bill gates ai warning",
+            "bill gates on ai risk",
+            "bill gates on ai threat"
+          ]
+        },
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "bill gates on ai and jobs",
+            "bill gates ai jobs",
+            "bill gates on ai job loss"
+          ]
+        }
+      ]
+    },
+    "finkd": {
+      "topics": ["safety", "jobs", "bubble"],
+      "evidence": [
+        {
+          "topic": "safety",
+          "googleRank": 1,
+          "overallRank": 11,
+          "engines": ["google"],
+          "queries": ["mark zuckerberg on ai safety"]
+        },
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 5,
+          "engines": ["google"],
+          "queries": [
+            "mark zuckerberg ai employment future",
+            "mark zuckerberg ai jobs",
+            "mark zuckerberg ai job predictions"
+          ]
+        },
+        {
+          "topic": "bubble",
+          "googleRank": 0,
+          "overallRank": 2,
+          "engines": ["google"],
+          "queries": [
+            "mark zuckerberg on ai bubble",
+            "mark zuckerberg ai bubble"
+          ]
+        }
+      ]
+    },
+    "sensanders": {
+      "topics": ["regulation", "jobs", "risk"],
+      "evidence": [
+        {
+          "topic": "regulation",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["google"],
+          "queries": [
+            "bernie sanders ai bill",
+            "bernie sanders ai moratorium",
+            "bernie sanders on ai regulation"
+          ]
+        },
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 7,
+          "engines": ["google"],
+          "queries": [
+            "bernie sanders on ai and jobs",
+            "bernie sanders ai jobs",
+            "bernie sanders on ai jobs"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 1,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": [
+            "bernie sanders ai warning",
+            "bernie sanders ai threat",
+            "bernie sanders dangers of ai"
+          ]
+        }
+      ]
+    },
+    "demishassabis": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["demis hassabis p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "demis hassabis on ai safety",
+            "demis hassabis ai safety",
+            "demis hassabis ai safety proposal"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 2,
+          "engines": ["google"],
+          "queries": [
+            "demis hassabis on ai risk",
+            "demis hassabis ai warning",
+            "demis hassabis ai threats"
+          ]
+        }
+      ]
+    },
+    "geoffreyhinton": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["geoffrey hinton p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 2,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "geoffrey hinton ai safety",
+            "geoffrey hinton on ai safety",
+            "geoffrey hinton ai safety news march 2026"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "geoffrey hinton on ai dangers",
+            "geoffrey hinton ai warning speech",
+            "geoffrey hinton on ai risk"
+          ]
+        }
+      ]
+    },
+    "ilyasut": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["ilya sutskever p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["google"],
+          "queries": [
+            "ilya sutskever on ai safety",
+            "ilya sutskever ai safety",
+            "ilya sutskever ai safety company"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 6,
+          "engines": ["google"],
+          "queries": [
+            "ilya sutskever ai warning",
+            "ilya sutskever ai risk",
+            "ilya sutskever ai danger"
+          ]
+        }
+      ]
+    },
+    "karpathy": {
+      "topics": ["pdoom", "jobs", "bubble"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["andrej karpathy p doom"]
+        },
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 1,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "andrej karpathy ai jobs",
+            "andrej karpathy ai job exposure",
+            "andrej karpathy ai jobs chart"
+          ]
+        },
+        {
+          "topic": "bubble",
+          "googleRank": 0,
+          "overallRank": 2,
+          "engines": ["google"],
+          "queries": [
+            "andrej karpathy on ai bubble",
+            "andrej karpathy ai bubble"
+          ]
+        }
+      ]
+    },
+    "pmarca": {
+      "topics": ["jobs", "regulation", "future"],
+      "evidence": [
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["google"],
+          "queries": [
+            "marc andreessen on ai and jobs",
+            "marc andreessen ai jobs",
+            "marc andreessen ai layoffs"
+          ]
+        },
+        {
+          "topic": "regulation",
+          "googleRank": 0,
+          "overallRank": 4,
+          "engines": ["google"],
+          "queries": ["marc andreessen ai regulation"]
+        },
+        {
+          "topic": "future",
+          "googleRank": 1,
+          "overallRank": 8,
+          "engines": ["google"],
+          "queries": [
+            "marc andreessen ai prediction",
+            "marc andreessen future of ai"
+          ]
+        }
+      ]
+    },
+    "ylecun": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["yann lecun p(doom)"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["google"],
+          "queries": ["yann lecun on ai safety", "yann lecun ai safety"]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 3,
+          "engines": ["google"],
+          "queries": [
+            "yann lecun on ai risk",
+            "yann lecun ai risk",
+            "yann lecun ai warning"
+          ]
+        }
+      ]
+    },
+    "esyudkowsky": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["eliezer yudkowsky p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 2,
+          "engines": ["google"],
+          "queries": ["eliezer yudkowsky ai safety"]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 8,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "eliezer yudkowsky ai warning",
+            "eliezer yudkowsky dangers of ai"
+          ]
+        }
+      ]
+    },
+    "drfeifei": {
+      "topics": ["safety", "ethics"],
+      "evidence": [
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 8,
+          "engines": ["google"],
+          "queries": ["fei fei li ai safety"]
+        },
+        {
+          "topic": "ethics",
+          "googleRank": 0,
+          "overallRank": 12,
+          "engines": ["google"],
+          "queries": ["fei fei li ai ethics"]
+        }
+      ]
+    },
+    "yoshua_bengio": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["yoshua bengio p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "yoshua bengio ai safety",
+            "yoshua bengio on ai safety",
+            "yoshua bengio ai safety report"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 1,
+          "engines": ["google"],
+          "queries": [
+            "yoshua bengio ai warning",
+            "yoshua bengio ai risks",
+            "yoshua bengio ai threat"
+          ]
+        }
+      ]
+    },
+    "andrewyng": {
+      "topics": ["jobs", "bubble"],
+      "evidence": [
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 6,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "andrew ng on ai job loss",
+            "andrew ng ai jobs",
+            "andrew ng on ai jobs"
+          ]
+        },
+        {
+          "topic": "bubble",
+          "googleRank": 0,
+          "overallRank": 2,
+          "engines": ["google"],
+          "queries": ["andrew ng on ai bubble", "andrew ng ai bubble"]
+        }
+      ]
+    },
+    "edzitron": {
+      "topics": ["bubble"],
+      "evidence": [
+        {
+          "topic": "bubble",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "ed zitron ai bubble",
+            "ed zitron on ai bubble",
+            "ed zitron ai bubble burst"
+          ]
+        }
+      ]
+    },
+    "dhh": {
+      "topics": [],
+      "evidence": []
+    },
+    "davidsacks": {
+      "topics": ["regulation", "policy", "safety"],
+      "evidence": [
+        {
+          "topic": "regulation",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["google"],
+          "queries": [
+            "david sacks on ai regulation",
+            "david sacks ai regulation",
+            "david sacks ai moratorium"
+          ]
+        },
+        {
+          "topic": "policy",
+          "googleRank": 0,
+          "overallRank": 9,
+          "engines": ["google"],
+          "queries": [
+            "david sacks ai executive order",
+            "david sacks ai policy",
+            "david sacks ai action plan"
+          ]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 1,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["david sacks ai safety"]
+        }
+      ]
+    },
+    "noamshazeer": {
+      "topics": [],
+      "evidence": []
+    },
+    "dwarkesh_sp": {
+      "topics": ["pdoom"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["dwarkesh patel p doom"]
+        }
+      ]
+    },
+    "dacemoglumit": {
+      "topics": ["jobs", "bubble"],
+      "evidence": [
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 2,
+          "engines": ["google"],
+          "queries": [
+            "daron acemoglu ai jobs",
+            "daron acemoglu ai job loss",
+            "daron acemoglu ai labor"
+          ]
+        },
+        {
+          "topic": "bubble",
+          "googleRank": 1,
+          "overallRank": 6,
+          "engines": ["google"],
+          "queries": ["daron acemoglu ai bubble"]
+        }
+      ]
+    },
+    "balajis": {
+      "topics": [],
+      "evidence": []
+    },
+    "richardhanania": {
+      "topics": [],
+      "evidence": []
+    },
+    "aella_girl": {
+      "topics": ["safety"],
+      "evidence": [
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["google"],
+          "queries": ["aella ai safety"]
+        }
+      ]
+    },
+    "liang-wenfeng": {
+      "topics": [],
+      "evidence": []
+    },
+    "richardssutton": {
+      "topics": ["safety", "agi"],
+      "evidence": [
+        {
+          "topic": "safety",
+          "googleRank": 1,
+          "overallRank": 3,
+          "engines": ["google"],
+          "queries": ["richard sutton ai safety"]
+        },
+        {
+          "topic": "agi",
+          "googleRank": 1,
+          "overallRank": 10,
+          "engines": ["google"],
+          "queries": [
+            "richard sutton agi",
+            "richard sutton agi timeline",
+            "richard sutton agi prediction"
+          ]
+        }
+      ]
+    },
+    "timnitgebru": {
+      "topics": ["safety", "ethics"],
+      "evidence": [
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 5,
+          "engines": ["google"],
+          "queries": ["timnit gebru ai safety"]
+        },
+        {
+          "topic": "ethics",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "timnit gebru ai ethics",
+            "timnit gebru ai ethics researcher",
+            "timnit gebru google ai ethics"
+          ]
+        }
+      ]
+    },
+    "realgeorgehotz": {
+      "topics": [],
+      "evidence": []
+    },
+    "tylercowen": {
+      "topics": ["bubble", "jobs", "education"],
+      "evidence": [
+        {
+          "topic": "bubble",
+          "googleRank": 1,
+          "overallRank": 2,
+          "engines": ["google"],
+          "queries": ["tyler cowen ai bubble"]
+        },
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 4,
+          "engines": ["google"],
+          "queries": ["tyler cowen.ai jobs", "tyler cowen ai unemployment"]
+        },
+        {
+          "topic": "education",
+          "googleRank": 0,
+          "overallRank": 11,
+          "engines": ["google"],
+          "queries": ["tyler cowen ai education"]
+        }
+      ]
+    },
+    "plinz": {
+      "topics": [],
+      "evidence": []
+    },
+    "tegmark": {
+      "topics": ["pdoom", "safety", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["max tegmark p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 1,
+          "engines": ["google"],
+          "queries": [
+            "max tegmark ai safety",
+            "max tegmark ai safety index",
+            "max tegmark ai safety group"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["google"],
+          "queries": ["max tegmark ai warning", "max tegmark ai risk"]
+        }
+      ]
+    },
+    "so8res": {
+      "topics": [],
+      "evidence": []
+    },
+    "slatestarcodex": {
+      "topics": ["pdoom", "safety", "future"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["scott alexander p doom"]
+        },
+        {
+          "topic": "safety",
+          "googleRank": 2,
+          "overallRank": 9,
+          "engines": ["google"],
+          "queries": ["scott alexander ai safety"]
+        },
+        {
+          "topic": "future",
+          "googleRank": 0,
+          "overallRank": 7,
+          "engines": ["google"],
+          "queries": ["scott alexander ai prediction"]
+        }
+      ],
+      "note": "Not healthcare: “scott alexander ai health” is a company, Scott Alexander AI Health Ltd."
+    },
+    "garymarcus": {
+      "topics": ["pdoom", "bubble", "future"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["gary marcus p doom"]
+        },
+        {
+          "topic": "bubble",
+          "googleRank": 0,
+          "overallRank": 0,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "gary marcus ai bubble",
+            "gary marcus ai bubble warning",
+            "gary marcus wired ai bubble"
+          ]
+        },
+        {
+          "topic": "future",
+          "googleRank": 1,
+          "overallRank": 6,
+          "engines": ["google"],
+          "queries": ["gary marcus ai predictions"]
+        }
+      ]
+    },
+    "npcollapse": {
+      "topics": ["safety"],
+      "evidence": [
+        {
+          "topic": "safety",
+          "googleRank": 0,
+          "overallRank": 3,
+          "engines": ["google"],
+          "queries": ["connor leahy ai safety"]
+        }
+      ]
+    },
+    "schmidhuberai": {
+      "topics": [],
+      "evidence": []
+    },
+    "dkokotajlo": {
+      "topics": ["pdoom", "future", "risk"],
+      "evidence": [
+        {
+          "topic": "pdoom",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": ["daniel kokotajlo p doom"]
+        },
+        {
+          "topic": "future",
+          "googleRank": 0,
+          "overallRank": 1,
+          "engines": ["google"],
+          "queries": [
+            "daniel kokotajlo ai predictions",
+            "daniel kokotajlo ai predictions 2021",
+            "daniel kokotajlo future ai predictions"
+          ]
+        },
+        {
+          "topic": "risk",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["google"],
+          "queries": [
+            "daniel kokotajlo ai dangers",
+            "daniel kokotajlo ai warning"
+          ]
+        }
+      ]
+    },
+    "kevinroose": {
+      "topics": ["jobs", "agi"],
+      "evidence": [
+        {
+          "topic": "jobs",
+          "googleRank": 0,
+          "overallRank": 11,
+          "engines": ["google"],
+          "queries": ["kevin roose ai job apocalypse"]
+        },
+        {
+          "topic": "agi",
+          "googleRank": 0,
+          "overallRank": null,
+          "engines": ["bing", "duckduckgo", "google"],
+          "queries": [
+            "kevin roose agi chronicles",
+            "kevin roose agi",
+            "kevin roose agi book"
+          ]
+        }
+      ]
+    }
+  }
+}

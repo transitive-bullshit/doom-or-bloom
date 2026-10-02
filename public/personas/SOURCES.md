@@ -106,3 +106,5 @@ Each account was verified through the X users API (`/2/users/by`) on October 1, 
 - `wiblin.jpg`: Rob Wiblin’s public [X profile](https://x.com/robertwiblin), [portrait](https://pbs.twimg.com/profile_images/1890364551423504384/VSUxxPid_400x400.jpg), account ID `47268595`.
 - `labenz.jpg`: Nathan Labenz’s public [X profile](https://x.com/labenz), [portrait](https://pbs.twimg.com/profile_images/1614103328245309441/YPi8U18v_400x400.png), account ID `19636275`.
 - `aella.jpg`: Aella’s public [X profile](https://x.com/Aella_Girl), [portrait](https://pbs.twimg.com/profile_images/1908328831485669376/Jo1ipjZJ_400x400.jpg), account ID `795885295`.
+
+Nick Bostrom, retrieved October 3, 2026: official author portrait from [Deep Utopia](https://nickbostrom.com/deep-utopia/), https://nickbostrom.com/deep-utopia/images/author-photo.jpg?v=2, stored as `bostrom.jpg`. Identifies a fictional simulation, not an endorsement.

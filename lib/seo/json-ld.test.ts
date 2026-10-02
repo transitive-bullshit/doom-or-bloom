@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { englishTranslator } from '@/i18n/translators'
 import { breadcrumbTrail } from '@/lib/breadcrumbs'
 import { oneLiner } from '@/components/landing/one-liners'
+import { profileTitle } from './profile-titles'
 import {
   aboutJsonLd,
   articleJsonLd,
@@ -128,7 +129,11 @@ const profile = (person: Parameters<typeof profileJsonLd>[0]['person']) => {
   return profileJsonLd({
     person,
     locale: 'en',
-    title: t('userTitle', { name: person.name }),
+    title: profileTitle(englishTranslator(), 'en', {
+      slug: person.slug,
+      name: person.name,
+      outlook: 0.25
+    }),
     description: t('userDescription', { name: person.name }),
     disclosure: t('personDescription', { name: person.name }),
     dateModified: '2026-09-21T21:10:20.265Z'
@@ -260,7 +265,7 @@ describe('structured data', () => {
         '@type': z.literal('WebPage'),
         '@id': z.literal(`${site}/users/geoffreyhinton#webpage`),
         url: z.literal(`${site}/users/geoffreyhinton`),
-        name: z.literal('Geoffrey Hinton’s views on AI and P(doom)'),
+        name: z.literal('Geoffrey Hinton on AI safety, risk and P(doom)'),
         description: z.string(),
         inLanguage: z.literal('en'),
         dateModified: z.iso.datetime(),

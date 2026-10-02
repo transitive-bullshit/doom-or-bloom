@@ -1,0 +1,41 @@
+{
+  "slug": "liang-wenfeng",
+  "summary": "Liang says DeepSeek pursues general AI through original research and efficient models, and he favors open source and affordable access.",
+  "statements": [
+    {
+      "quote": "Our destination is AGI, which means we need to study new model structures to realize stronger model capability with limited resources.",
+      "date": "2024-07",
+      "venue": "Waves (36Kr) interview, ChinaTalk translation",
+      "url": "https://www.chinatalk.media/p/deepseek-ceo-interview-with-chinas",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "In the face of disruptive technologies, moats created by closed source are temporary. Even OpenAI’s closed source approach can’t prevent others from catching up.",
+      "date": "2024-07",
+      "venue": "Waves (36Kr) interview, ChinaTalk translation",
+      "url": "https://www.chinatalk.media/p/deepseek-ceo-interview-with-chinas",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We believe that as the economy develops, China should gradually become a contributor instead of freeriding.",
+      "date": "2024-07",
+      "venue": "Waves (36Kr) interview, ChinaTalk translation",
+      "url": "https://www.chinatalk.media/p/deepseek-ceo-interview-with-chinas",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We hope more people can use LLMs even on a small app at low cost, rather than the technology being monopolized by a few.",
+      "date": "2023-05",
+      "venue": "Waves (36Kr) interview, Recode China AI translation",
+      "url": "https://www.recodechinaai.com/p/the-deep-roots-of-deepseek-how-it",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We’re working on AGI — Artificial General Intelligence. Language models are likely a prerequisite for AGI and already exhibit some AGI characteristics.",
+      "date": "2023-05",
+      "venue": "Waves (36Kr) interview, ChinaTalk translation",
+      "url": "https://www.chinatalk.media/p/deepseek-from-hedge-fund-to-frontier",
+      "verified": "2026-10-03"
+    }
+  ]
+}

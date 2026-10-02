@@ -1,0 +1,41 @@
+{
+  "slug": "ilyasut",
+  "summary": "Sutskever expects extraordinarily powerful AI, sees generalization and alignment as open problems and now favors deploying AI incrementally.",
+  "statements": [
+    {
+      "quote": "Future AI will be extraordinarily powerful compared to anything that exists today, and dealing with this future power will require unprecedented measures, such as the ones described here.",
+      "date": "2026-07",
+      "venue": "Comment on the Pacing the Frontier statement",
+      "url": "https://www.pacingthefrontier.com/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The thing which I think is the most fundamental is that these models somehow just generalize dramatically worse than people.",
+      "date": "2025-11-25",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/ilya-sutskever-2",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I maintain that there is something that’s better to build, and I think that everyone will want that. It’s the AI that’s robustly aligned to care about sentient life specifically.",
+      "date": "2025-11-25",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/ilya-sutskever-2",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "One of the ways in which my thinking has been changing is that I now place more importance on AI being deployed incrementally and in advance.",
+      "date": "2025-11-25",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/ilya-sutskever-2",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I think that it is likely that we will have rapid economic growth.",
+      "date": "2025-11-25",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/ilya-sutskever-2",
+      "verified": "2026-10-03"
+    }
+  ]
+}

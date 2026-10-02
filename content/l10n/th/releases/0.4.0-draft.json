@@ -536,10 +536,10 @@
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:text": {
-      "text": "จากความรู้สึกคร่าว ๆ คุณคิดว่ามีโอกาสเท่าใดที่ AI จะทำให้มนุษย์สูญพันธุ์หรือก่อให้เกิดหายนะที่ถาวรในระดับใกล้เคียงกัน? ตอบเป็นตัวเลขหรือ “ไม่รู้” ก็ได้",
-      "sourceHash": "2737b14e5892bc29",
+      "text": "โดยสัญชาตญาณแล้ว คุณคิดว่ามีโอกาสมากเพียงใดที่ AI จะทำให้มนุษย์สูญพันธุ์หรือก่อให้เกิดหายนะที่ถาวรในระดับใกล้เคียงกัน?",
+      "sourceHash": "112bb17f97b73c85",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:reask": {
@@ -984,10 +984,10 @@
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:text": {
-      "text": "เมื่อพิจารณาประโยชน์และอันตรายร่วมกัน คุณคาดว่า AI จะมีผลกระทบโดยรวมอย่างไร?",
-      "sourceHash": "33f7d3f8a75621ee",
+      "text": "เมื่อพิจารณาทั้งประโยชน์และอันตรายร่วมกัน คุณคาดว่า AI จะส่งผลกระทบโดยรวมต่อสังคมของเราอย่างไร?",
+      "sourceHash": "64a2b642e8d7c18f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:reask": {
@@ -1096,10 +1096,10 @@
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:text": {
-      "text": "หากไม่นับว่าดีหรือร้าย คุณคิดว่าในท้ายที่สุด AI จะเปลี่ยนแปลงโลกมากเพียงใด—เล็กน้อย มาก หรือโดยสิ้นเชิง?",
-      "sourceHash": "c04ddec578f4e43b",
+      "text": "คุณคิดว่าท้ายที่สุดแล้ว AI จะเปลี่ยนแปลงโลกมากเพียงใด?",
+      "sourceHash": "124d74b12dc3527c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:reask": {
@@ -1124,10 +1124,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:text": {
-      "text": "คุณคิดว่าหายนะเป็นผลลัพธ์ที่มีแนวโน้มเกิดขึ้นมากที่สุด หรือเป็นความเสี่ยงร้ายแรงที่มีอยู่ควบคู่กับความเป็นไปได้ที่ดีกว่า?",
-      "sourceHash": "f36588d9ee3dc51e",
+      "text": "คุณมองว่าหายนะเป็นผลลัพธ์ที่มีแนวโน้มเกิดขึ้นมากที่สุด หรือมองว่าเป็นความเสี่ยงร้ายแรงประการหนึ่งควบคู่กับความเป็นไปได้อื่นๆ ที่ดีกว่า?",
+      "sourceHash": "74963ec2401bcfe1",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:reask": {
@@ -1180,10 +1180,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:text": {
-      "text": "หากต้องเอนเอียงไปทางใดทางหนึ่ง คุณคาดว่า AI จะส่งผลดีมากกว่าผลเสีย หรือคุณยังลังเลใจอย่างแท้จริง?",
-      "sourceHash": "023a52c97dc01113",
+      "text": "คุณเอนเอียงไปทางมองว่า AI จะก่อผลดีมากกว่าผลเสีย หรือคุณยังลังเลใจอย่างแท้จริง?",
+      "sourceHash": "94a1676dfd79b64e",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:reask": {
@@ -1208,10 +1208,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:text": {
-      "text": "คุณคิดว่าผลดีจะมีมากกว่าความเสี่ยงอย่างชัดเจน หรือโดยรวมแล้วจะเป็นผลดีแต่ยังมีความเสี่ยงจริงที่ต้องจัดการ?",
-      "sourceHash": "2717f186c55147de",
+      "text": "ประโยชน์จาก AI จะมีมากกว่าความเสี่ยงอย่างชัดเจน หรือโดยรวมแล้ว AI จะให้ผลดีแต่ยังมีความเสี่ยงจริงที่ต้องจัดการ?",
+      "sourceHash": "1540da303bf487ae",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:reask": {
@@ -1236,10 +1236,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:text": {
-      "text": "คุณระบุว่าตนเองมีความหวังมากกว่าที่อ่านได้จากคำตอบ อะไรทำให้คุณมีความหวังแต่ไม่ได้ปรากฏในคำตอบ?",
-      "sourceHash": "9aaa67777523a93e",
+      "text": "คุณระบุว่าตนเองมีความหวังมากกว่าที่คำตอบของคุณบ่งชี้ อะไรทำให้คุณมีความหวังที่เราไม่ได้พิจารณา?",
+      "sourceHash": "c1b07d5b2f8a77de",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:reask": {
@@ -1264,10 +1264,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:text": {
-      "text": "คุณระบุว่าตนเองกังวลมากกว่าที่อ่านได้จากคำตอบ มีเรื่องใดที่ทำให้คุณกังวลซึ่งเราอาจมองข้ามไป?",
-      "sourceHash": "0bcf7fdc36273697",
+      "text": "คุณระบุว่าตนเองกังวลมากกว่าที่คำตอบของคุณบ่งชี้ อะไรทำให้คุณกังวลที่เราไม่ได้พิจารณา?",
+      "sourceHash": "ea7b4ca6a41abe79",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:reask": {

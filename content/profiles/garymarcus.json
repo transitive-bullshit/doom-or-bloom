@@ -1,0 +1,41 @@
+{
+  "slug": "garymarcus",
+  "summary": "Marcus argues that scaling language models alone won’t produce reliable AI, and he calls for new approaches and enforceable oversight.",
+  "statements": [
+    {
+      "quote": "We also need to wean ourselves from an addiction to large language models, and to foster more research into outside-the-box alternatives that are more interpretable and more tractable.",
+      "date": "2026-09-21",
+      "venue": "Remarks at a UN General Assembly digital cooperation event",
+      "url": "https://garymarcus.substack.com/p/big-news-at-the-un",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "What we actually need right now is increased reliability, better cybersecurity, and genuine enforcement",
+      "date": "2026-09-21",
+      "venue": "Remarks at a UN General Assembly digital cooperation event",
+      "url": "https://garymarcus.substack.com/p/big-news-at-the-un",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "AI appears to be elevating the risks of serious cyberattacks that could hobble things like banking or electrical grids.",
+      "date": "2026-09-10",
+      "venue": "Marcus on AI newsletter",
+      "url": "https://garymarcus.substack.com/p/no-anderson-cooper-ai-is-not-going",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I still think putting AI in the public domain, with an international effort towards medicine and science, would be a good idea.",
+      "date": "2026-07-20",
+      "venue": "Marcus on AI newsletter",
+      "url": "https://garymarcus.substack.com/p/china-has-all-but-caught-up-the-us",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "In short, I am at least modestly bullish on AGI, but don’t think that large language models like ChatGPT are the droids we are looking for.",
+      "date": "2025-11-29",
+      "venue": "Marcus on AI newsletter",
+      "url": "https://garymarcus.substack.com/p/three-years-on-chatgpt-still-isnt",
+      "verified": "2026-10-03"
+    }
+  ]
+}

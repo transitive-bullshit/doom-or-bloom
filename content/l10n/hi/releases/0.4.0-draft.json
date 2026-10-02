@@ -536,10 +536,10 @@
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:text": {
-      "text": "आपके सहज अनुमान के अनुसार, इस बात की मोटी-मोटी कितनी संभावना है कि एआई मानव विलुप्ति या इसी तरह की किसी स्थायी आपदा का कारण बनेगा? कोई संख्या या “पता नहीं” कहना ठीक है।",
-      "sourceHash": "2737b14e5892bc29",
+      "text": "आपको सहज रूप से कितनी संभावना लगती है कि एआई मानव विलुप्ति या ऐसी ही किसी स्थायी आपदा का कारण बनेगा?",
+      "sourceHash": "112bb17f97b73c85",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:reask": {
@@ -984,10 +984,10 @@
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:text": {
-      "text": "लाभ और नुकसान दोनों को साथ लेकर देखें, तो आपके अनुसार एआई का कुल प्रभाव क्या होगा?",
-      "sourceHash": "33f7d3f8a75621ee",
+      "text": "लाभ और नुकसान, दोनों को साथ में देखते हुए, आप हमारे समाज पर एआई के कुल प्रभाव के बारे में क्या अपेक्षा रखते हैं?",
+      "sourceHash": "64a2b642e8d7c18f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:reask": {
@@ -1096,10 +1096,10 @@
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:text": {
-      "text": "अच्छे या बुरे को अलग रखते हुए: आपके विचार में एआई अंततः दुनिया को कितना बदलेगा—थोड़ा, बहुत ज़्यादा या पूरी तरह?",
-      "sourceHash": "c04ddec578f4e43b",
+      "text": "आपके हिसाब से एआई अंततः दुनिया को कितना बदल देगा?",
+      "sourceHash": "124d74b12dc3527c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:reask": {
@@ -1124,10 +1124,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:text": {
-      "text": "क्या आपको लगता है कि विनाश सबसे संभावित परिणाम है, या यह बेहतर संभावनाओं के साथ मौजूद एक गंभीर जोखिम है?",
-      "sourceHash": "f36588d9ee3dc51e",
+      "text": "क्या आप विनाश को सबसे संभावित परिणाम मानते हैं, या इसे बेहतर संभावनाओं के साथ मौजूद एक गंभीर जोखिम के रूप में देखते हैं?",
+      "sourceHash": "74963ec2401bcfe1",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:reask": {
@@ -1180,10 +1180,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:text": {
-      "text": "अगर आपको किसी एक ओर झुकना पड़े, तो क्या आप उम्मीद करते हैं कि एआई बुरी से अधिक अच्छी साबित होगी, या आप सच में दुविधा में हैं?",
-      "sourceHash": "023a52c97dc01113",
+      "text": "क्या आपका झुकाव इस ओर है कि एआई नुकसान से ज़्यादा भलाई करेगा, या आप सचमुच दुविधा में हैं?",
+      "sourceHash": "94a1676dfd79b64e",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:reask": {
@@ -1208,10 +1208,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:text": {
-      "text": "क्या आपको लगता है कि लाभ स्पष्ट रूप से जोखिमों से अधिक होंगे, या कुल मिलाकर परिणाम अच्छा होगा, लेकिन वास्तविक जोखिमों को संभालना पड़ेगा?",
-      "sourceHash": "2717f186c55147de",
+      "text": "क्या एआई से होने वाले लाभ स्पष्ट रूप से उसके जोखिमों से अधिक होंगे, या कुल मिलाकर यह अच्छा होगा, लेकिन इसके वास्तविक जोखिमों को संभालना पड़ेगा?",
+      "sourceHash": "1540da303bf487ae",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:reask": {
@@ -1236,10 +1236,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:text": {
-      "text": "आपने खुद को अपने उत्तरों से झलकने वाले रुख की तुलना में अधिक आशावान माना। आपको किस बात से आशा मिलती है जो आपके उत्तरों में नहीं दिखी?",
-      "sourceHash": "9aaa67777523a93e",
+      "text": "आपने अपनी स्थिति अपने जवाबों से संकेत मिलने की तुलना में ज़्यादा आशावान चुनी है। ऐसी कौन-सी बात आपको आशा देती है जिसे हम समझ नहीं पाए?",
+      "sourceHash": "c1b07d5b2f8a77de",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:reask": {
@@ -1264,10 +1264,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:text": {
-      "text": "आपने खुद को अपने उत्तरों से झलकने वाले रुख की तुलना में अधिक चिंतित माना। आपको किस बात की चिंता है जो शायद हमारी नज़र से छूट गई?",
-      "sourceHash": "0bcf7fdc36273697",
+      "text": "आपने अपनी स्थिति अपने जवाबों से संकेत मिलने की तुलना में ज़्यादा चिंतित चुनी है। ऐसी कौन-सी बात आपको चिंतित करती है जिसे हम समझ नहीं पाए?",
+      "sourceHash": "ea7b4ca6a41abe79",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:reask": {

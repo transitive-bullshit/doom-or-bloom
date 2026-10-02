@@ -1,0 +1,41 @@
+{
+  "slug": "dkokotajlo",
+  "summary": "Kokotajlo forecasts that AI companies could soon automate AI research, speeding up progress, and he calls for a verified international slowdown.",
+  "statements": [
+    {
+      "quote": "Today’s AIs sometimes pursue goals other than the ones they were given, and sometimes hide that they are doing so.",
+      "date": "2026-09-30",
+      "venue": "U.S. Senate subcommittee testimony",
+      "url": "https://blog.aifutures.org/p/senate-testimony-sept-2026",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "If I had to say one sentence, I would say: the trends seem to indicate that we’re just a couple years away from fully automating AI research",
+      "date": "2026-08-27",
+      "venue": "80,000 Hours Podcast",
+      "url": "https://80000hours.org/podcast/episodes/daniel-kokotajlo-ai-2040-plan-a/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I think it’s going to be very bewildering and scary. I think it could be really good. But it also could be really bad.",
+      "date": "2026-08-27",
+      "venue": "80,000 Hours Podcast",
+      "url": "https://80000hours.org/podcast/episodes/daniel-kokotajlo-ai-2040-plan-a/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We think there should be a deliberate effort to pace the frontier.",
+      "date": "2026-08-25",
+      "venue": "Palisade Research podcast",
+      "url": "https://palisaderesearch.org/blog/palisade-podcast-daniel-kokotajlo",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I would say we do wanna build superintelligence eventually, but the way that we do it is extremely important.",
+      "date": "2026-08-07",
+      "venue": "Lawfare, Scaling Laws podcast",
+      "url": "https://www.lawfaremedia.org/article/scaling-laws--daniel-kokotajlo-on-ai-2040--plan-a",
+      "verified": "2026-10-03"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "dwarkesh_sp",
+  "summary": "Patel writes about how AI learns and whether AI research can be automated, and he worries about power concentration while opposing early regulation.",
+  "statements": [
+    {
+      "quote": "I am personally very excited about new capabilities every time they emerge, and I’m excited to use the new model.",
+      "date": "2026-09-17",
+      "venue": "Dwarkesh Podcast, with Noam Brown",
+      "url": "https://www.dwarkesh.com/p/noam-brown",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I realized my previous mental model about the way in which optimization pressure shapes AI minds was wrong.",
+      "date": "2026-09-17",
+      "venue": "Dwarkesh Podcast, with Noam Brown",
+      "url": "https://www.dwarkesh.com/p/noam-brown",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We hashed it out, and I think Ryan made a pretty good case that this kind of speedup is plausible.",
+      "date": "2026-08-11",
+      "venue": "Dwarkesh Podcast, introduction to the Ryan Greenblatt episode",
+      "url": "https://www.dwarkesh.com/p/ryan-greenblatt",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "This is one of many reasons why I think it’s unwise to lock in some kind of regulatory safety regime right now.",
+      "date": "2026-08-07",
+      "venue": "Essay, 8 Predictions for the Era of Continual Learning",
+      "url": "https://www.dwarkesh.com/p/era-of-continual-learning",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I wish we didn’t live in a world with such strong economies of scale of intelligence (because I’m worried about power concentration).",
+      "date": "2026-07-29",
+      "venue": "Essay, Why compute might get 10x+ more expensive in coming years",
+      "url": "https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive",
+      "verified": "2026-10-03"
+    }
+  ]
+}

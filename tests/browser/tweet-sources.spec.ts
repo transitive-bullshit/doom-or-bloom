@@ -42,6 +42,13 @@ const tweet = (id: string): Tweet => ({
 test('persona bookmarks precede a separate themed tweet masonry', async ({
   page
 }, testInfo) => {
+  const hydrationErrors: string[] = []
+  page.on('console', (message) => {
+    if (message.type() === 'error' && /hydrat/i.test(message.text()))
+      hydrationErrors.push(message.text())
+  })
+  // The server cannot see this preference; tweets must still hydrate cleanly.
+  await page.emulateMedia({ colorScheme: 'dark' })
   await page.route('**/api/tweet?*', (route) =>
     route.fulfill({
       json: {
@@ -76,20 +83,17 @@ test('persona bookmarks precede a separate themed tweet masonry', async ({
     )
   ).toBe(true)
   await sources.screenshot({ path: testInfo.outputPath('tweet-masonry.png') })
-  const theme = await sources
-    .locator('.resource-tweet')
-    .first()
-    .getAttribute('data-theme')
+  const card = sources.locator('.resource-tweet .react-tweet-theme').first()
+  await expect(card).toHaveCSS('background-color', 'rgb(21, 32, 43)')
   await page.getByRole('button', { name: 'Toggle light or dark theme' }).click()
-  await expect(sources.locator('.resource-tweet').first()).toHaveAttribute(
-    'data-theme',
-    theme === 'dark' ? 'light' : 'dark'
-  )
+  // The site's light theme overrides the dark system preference.
+  await expect(card).toHaveCSS('background-color', 'rgb(255, 255, 255)')
   await page.setViewportSize({ width: 390, height: 844 })
   await expect(layout).toHaveCSS('column-count', '1')
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
+  expect(hydrationErrors).toEqual([])
 })
 
 test('assessment resources embed tweets and keep a bookmark when a post cannot load', async ({

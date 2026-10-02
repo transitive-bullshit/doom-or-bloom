@@ -161,15 +161,16 @@ test('persona probability uses a dated public statement with its outcome and sou
   await expect(page.getByText(/Separately states 30%/)).toHaveCount(0)
 })
 
-test('persona answer references reopen the transcript and navigate to the exact answer', async ({
+test('persona answer references open the transcript and navigate to the exact answer', async ({
   page
 }) => {
-  await page.goto('/users/esyudkowsky')
+  // With the person's own statements above them, the simulated answers start
+  // closed; a reference in the results still opens them.
+  await page.goto('/users/geoffreyhinton')
   const disclosure = page.getByRole('button', {
     name: /View questions and simulated answers/
   })
-  await expect(disclosure).toHaveAttribute('aria-expanded', 'true')
-  await disclosure.click()
+  await expect(disclosure).toHaveAttribute('aria-expanded', 'false')
   const link = page.getByRole('link', { name: /^Answer \d+$/ }).first()
   const hash = (await link.getAttribute('href'))!
   await expect(link).toHaveCSS('text-decoration-line', 'none')
@@ -323,12 +324,17 @@ test('featured map lays out before reveal and fills mobile width with page-edge 
     }
   }
   await checkBounds()
-  const portrait = chart.locator('.study-portrait').first()
-  const initial = await portrait.getAttribute('style')
+  // Compare the whole layout: a portrait seeded at a corner keeps its
+  // position at every width.
+  const layout = () =>
+    chart
+      .locator('.study-portrait')
+      .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('style')))
+  const initial = await layout()
   await page.setViewportSize({ width: 1280, height: 900 })
-  await expect(portrait).not.toHaveAttribute('style', initial!)
+  await expect.poll(layout).not.toEqual(initial)
   await page.setViewportSize({ width: 390, height: 844 })
-  await expect(portrait).toHaveAttribute('style', initial!)
+  await expect.poll(layout).toEqual(initial)
   await checkBounds()
 })
 

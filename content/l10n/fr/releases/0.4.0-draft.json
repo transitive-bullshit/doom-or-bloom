@@ -536,10 +536,10 @@
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:text": {
-      "text": "Selon votre intuition, quelle est la probabilité approximative que l’IA provoque l’extinction humaine ou une catastrophe permanente comparable ? Vous pouvez répondre par un nombre ou « aucune idée ».",
-      "sourceHash": "2737b14e5892bc29",
+      "text": "Selon votre intuition, quelle est la probabilité que l’IA provoque l’extinction de l’humanité ou une catastrophe tout aussi permanente ?",
+      "sourceHash": "112bb17f97b73c85",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:reask": {
@@ -984,10 +984,10 @@
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:text": {
-      "text": "En tenant compte à la fois des bénéfices et des dommages, quel impact global attendez-vous de l’IA ?",
-      "sourceHash": "33f7d3f8a75621ee",
+      "text": "En tenant compte à la fois des bénéfices et des dommages, quel impact global pensez-vous que l’IA aura sur notre société ?",
+      "sourceHash": "64a2b642e8d7c18f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:reask": {
@@ -1096,10 +1096,10 @@
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:text": {
-      "text": "Sans tenir compte du caractère positif ou négatif : dans quelle mesure pensez-vous que l’IA finira par changer le monde — un peu, beaucoup ou complètement ?",
-      "sourceHash": "c04ddec578f4e43b",
+      "text": "Dans quelle mesure pensez-vous que l’IA finira par changer le monde ?",
+      "sourceHash": "124d74b12dc3527c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:reask": {
@@ -1124,10 +1124,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:text": {
-      "text": "Pensez-vous que la catastrophe soit l’issue la plus probable, ou qu’elle constitue un risque sérieux parmi des possibilités plus favorables ?",
-      "sourceHash": "f36588d9ee3dc51e",
+      "text": "Voyez-vous la catastrophe comme l’issue la plus probable, ou comme un risque sérieux parmi d’autres possibilités plus favorables ?",
+      "sourceHash": "74963ec2401bcfe1",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:reask": {
@@ -1180,10 +1180,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:text": {
-      "text": "Si vous deviez pencher d’un côté, vous attendez-vous à ce que l’IA ait plus d’effets positifs que négatifs, ou êtes-vous véritablement partagé ?",
-      "sourceHash": "023a52c97dc01113",
+      "text": "Pensez-vous que l’IA fera plus de bien que de mal, ou êtes-vous véritablement partagé ?",
+      "sourceHash": "94a1676dfd79b64e",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:reask": {
@@ -1208,10 +1208,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:text": {
-      "text": "Pensez-vous que les bénéfices l’emporteront clairement sur les risques, ou que le bilan sera positif, mais avec de réels risques à gérer ?",
-      "sourceHash": "2717f186c55147de",
+      "text": "Les bénéfices de l’IA l’emporteront-ils clairement sur ses risques, ou son bilan sera-t-il positif malgré des risques réels à gérer ?",
+      "sourceHash": "1540da303bf487ae",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:reask": {
@@ -1236,10 +1236,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:text": {
-      "text": "Vous vous êtes positionné comme plus optimiste que ne le laissaient entendre vos réponses. Qu’est-ce qui vous rend optimiste sans être apparu dans vos réponses ?",
-      "sourceHash": "9aaa67777523a93e",
+      "text": "Vous vous êtes positionné comme plus optimiste que vos réponses ne le laissent penser. Qu’est-ce qui vous donne de l’espoir et que nous n’avons pas relevé ?",
+      "sourceHash": "c1b07d5b2f8a77de",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:reask": {
@@ -1264,10 +1264,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:text": {
-      "text": "Vous vous êtes positionné comme plus inquiet que ne le laissaient entendre vos réponses. Qu’est-ce qui vous inquiète et que nous avons peut-être manqué ?",
-      "sourceHash": "0bcf7fdc36273697",
+      "text": "Vous vous êtes positionné comme plus inquiet que vos réponses ne le laissent penser. Qu’est-ce qui vous inquiète et que nous n’avons pas relevé ?",
+      "sourceHash": "ea7b4ca6a41abe79",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:reask": {

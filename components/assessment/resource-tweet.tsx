@@ -1,7 +1,6 @@
 'use client'
 
 import { EmbeddedTweet, TweetSkeleton, useTweet } from 'react-tweet'
-import { useTheme } from 'next-themes'
 import { ResourceBookmark } from './resource-bookmark'
 
 export default function ResourceTweet({
@@ -14,13 +13,13 @@ export default function ResourceTweet({
   onOpen?: () => void
 }) {
   const { data, isLoading } = useTweet(id, `/api/tweet?id=${id}`)
-  const { resolvedTheme } = useTheme()
   if (!isLoading && !data)
     return <ResourceBookmark resource={resource} onOpen={onOpen} />
+  // react-tweet themes itself from the `light`/`dark` class next-themes sets on
+  // <html> before paint, so the markup stays identical on server and client.
   return (
     <div
       className='resource-tweet'
-      data-theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
       onClickCapture={(event) => {
         if (event.target instanceof Element && event.target.closest('a'))
           onOpen?.()

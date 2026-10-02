@@ -302,7 +302,7 @@ test('profiles link similar worldviews and describe the simulated person', async
 }) => {
   await page.goto('/users/geoffreyhinton')
   await expect(page).toHaveTitle(
-    'Geoffrey Hinton’s views on AI and P(doom) | Doom or Bloom'
+    'Geoffrey Hinton on AI safety, risk and P(doom) | Doom or Bloom'
   )
   const similar = page.locator('[data-slot="similar-worldviews"]')
   await expect(
@@ -316,16 +316,43 @@ test('profiles link similar worldviews and describe the simulated person', async
     anchors.map((anchor) => anchor.getAttribute('href'))
   ))
     expect(href).toMatch(/^\/users\/(?!geoffreyhinton$)[^/]+$/)
-  // After the compare prompt, before the simulated answers.
-  const [compare, list, answers] = await Promise.all(
+  // After the compare prompt come Similar worldviews, then what Hinton has
+  // said himself, then the simulated answers, closed until asked for.
+  const statements = page.locator('[data-slot="public-statements"]')
+  await expect(
+    statements.getByRole('heading', {
+      level: 2,
+      name: 'What Geoffrey Hinton has said about AI'
+    })
+  ).toBeVisible()
+  await expect(statements.locator('blockquote')).toHaveCount(5)
+  await expect(statements.getByRole('link').first()).toHaveAttribute(
+    'href',
+    /^https:\/\//
+  )
+  const assessment = page.getByRole('region', {
+    name: 'Simulated Assessment',
+    exact: true
+  })
+  const positions = await Promise.all(
     [
       page.getByText('Where do you land vs Geoffrey Hinton?'),
       similar,
-      page.getByRole('region', { name: 'Simulated Assessment', exact: true })
+      statements,
+      assessment
     ].map((locator) => locator.boundingBox())
   )
-  expect(list!.y).toBeGreaterThan(compare!.y)
-  expect(answers!.y).toBeGreaterThan(list!.y)
+  for (let i = 1; i < positions.length; i++)
+    expect(positions[i]!.y).toBeGreaterThan(positions[i - 1]!.y)
+  const answers = assessment.getByRole('button', {
+    name: /View questions and simulated answers/
+  })
+  await expect(answers).toHaveAttribute('aria-expanded', 'false')
+  // Closed, but still in the pregenerated HTML.
+  await expect(assessment.locator('article').first()).toBeHidden()
+  await answers.click()
+  await expect(answers).toHaveAttribute('aria-expanded', 'true')
+  await expect(assessment.locator('article').first()).toBeVisible()
   await links.first().click()
   await expect(page).toHaveURL(/\/users\/(?!geoffreyhinton$)[^/]+$/)
 

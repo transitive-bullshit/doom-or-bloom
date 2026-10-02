@@ -733,10 +733,45 @@
     "sourcesDefault": "Artículos, entrevistas y textos usados para fundamentar a este usuario simulado.",
     "profile": "Perfil",
     "similarTitle": "Visiones similares",
-    "similarDescription": "Líderes de opinión cuyas visiones simuladas son las más cercanas a la de {name}"
+    "similarDescription": "Líderes de opinión cuyas visiones simuladas son las más cercanas a la de {name}",
+    "statementsTitle": "Lo que {name} ha dicho sobre la IA",
+    "statementsNote": "Citas textuales de las fuentes enlazadas, comprobadas el {date}"
   },
   "Profiles": {
-    "userTitle": "Las opiniones de {name} sobre la IA y P(doom)",
+    "userTitle": "{name} sobre la IA",
+    "userTitleTopics": "{name} sobre {topics}",
+    "userTitleMap": {
+      "concern": "{name} sobre la seguridad y el riesgo de la IA",
+      "middle": "{name} sobre los riesgos y beneficios de la IA",
+      "bloom": "{name} sobre el futuro y las oportunidades de la IA"
+    },
+    "titleTopic": {
+      "ai": "IA",
+      "safety": "seguridad de la IA",
+      "risk": "riesgo de la IA",
+      "regulation": "regulación de la IA",
+      "policy": "políticas sobre la IA",
+      "ethics": "ética de la IA",
+      "consciousness": "consciencia de la IA",
+      "bubble": "la burbuja de la IA",
+      "jobs": "empleo",
+      "education": "educación",
+      "healthcare": "atención médica",
+      "opensource": "código abierto",
+      "agi": "IAG",
+      "superintelligence": "superinteligencia",
+      "future": "el futuro de la IA",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "seguridad",
+      "risk": "riesgo",
+      "regulation": "regulación",
+      "policy": "políticas",
+      "ethics": "ética",
+      "consciousness": "consciencia",
+      "future": "el futuro"
+    },
     "userDescription": "¿Qué piensa {name} sobre la IA? Mira dónde se ubica su visión simulada entre Doom y Bloom, junto con una P(doom) aproximada y las respuestas en las que se basa.",
     "userImageAlt": "La visión simulada de la IA de {name} en el mapa de Doom–Bloom y escala de la transformación",
     "personDescription": "Una simulación de la visión de {name} sobre la IA, creada a partir de sus textos públicos. Es una interpretación experimental, no su propia evaluación ni un respaldo.",

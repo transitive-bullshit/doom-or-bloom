@@ -1,0 +1,41 @@
+{
+  "slug": "jensenhuang",
+  "summary": "Huang argues for broad AI adoption, open models and more infrastructure, and says alarming people about AI risk is irresponsible.",
+  "statements": [
+    {
+      "quote": "Scaring people is unnecessary. It is irresponsible.",
+      "date": "2026-09-18",
+      "venue": "CBS News interview",
+      "url": "https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Our company’s success is directly connected to the safe deployment of products and services",
+      "date": "2026-09-18",
+      "venue": "CBS News interview",
+      "url": "https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Open source is fundamentally necessary for many industries to join the AI revolution.",
+      "date": "2026-03-23",
+      "venue": "Lex Fridman Podcast",
+      "url": "https://lexfridman.com/jensen-huang-transcript/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Every college student should graduate and be an expert in AI.",
+      "date": "2026-03-23",
+      "venue": "Lex Fridman Podcast",
+      "url": "https://lexfridman.com/jensen-huang-transcript/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The choices we make now, how fast we build, how broadly we participate and how responsibly we deploy it, will shape what this era becomes.",
+      "date": "2026-03-10",
+      "venue": "Essay, AI Is a 5-Layer Cake",
+      "url": "https://blogs.nvidia.com/blog/ai-5-layer-cake/",
+      "verified": "2026-10-03"
+    }
+  ]
+}

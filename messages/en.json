@@ -733,10 +733,45 @@
     "sourcesDefault": "Articles, interviews, and writings used to ground this simulated user.",
     "profile": "Profile",
     "similarTitle": "Similar worldviews",
-    "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s"
+    "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s",
+    "statementsTitle": "What {name} has said about AI",
+    "statementsNote": "Word for word from the linked sources, checked {date}"
   },
   "Profiles": {
-    "userTitle": "{name}’s views on AI and P(doom)",
+    "userTitle": "{name} on AI",
+    "userTitleTopics": "{name} on {topics}",
+    "userTitleMap": {
+      "concern": "{name} on AI safety and risk",
+      "middle": "{name} on AI’s risks and benefits",
+      "bloom": "{name} on AI’s future and opportunities"
+    },
+    "titleTopic": {
+      "ai": "AI",
+      "safety": "AI safety",
+      "risk": "AI risk",
+      "regulation": "AI regulation",
+      "policy": "AI policy",
+      "ethics": "AI ethics",
+      "consciousness": "AI consciousness",
+      "bubble": "the AI bubble",
+      "jobs": "jobs",
+      "education": "education",
+      "healthcare": "healthcare",
+      "opensource": "open source",
+      "agi": "AGI",
+      "superintelligence": "superintelligence",
+      "future": "the future of AI",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "safety",
+      "risk": "risk",
+      "regulation": "regulation",
+      "policy": "policy",
+      "ethics": "ethics",
+      "consciousness": "consciousness",
+      "future": "the future"
+    },
     "userDescription": "What does {name} think about AI? See where their simulated worldview lands between doom and bloom, with a rough P(doom) and the answers behind it.",
     "userImageAlt": "{name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map",
     "personDescription": "A simulation of {name}’s AI worldview, built from their public writing. It is an experimental interpretation, not their own assessment or an endorsement.",

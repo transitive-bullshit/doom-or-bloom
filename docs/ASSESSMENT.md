@@ -144,8 +144,8 @@ Each experimental axis uses five authored positions plus missing and explicitly 
 Before ordinary follow-ups, routing asks the core map questions, each at most once:
 
 - `impact.overall`, only when the overall balance is not expressed;
-- `transformation.ultimate` (“Setting aside good or bad: how much do you think AI will ultimately change the world—a little, a lot, or completely?”), unless the participant has explicitly left the scale unknown;
-- `risk.chance`, a gut-feel chance where “no idea” is fine, unless a catastrophe-likelihood question was already asked;
+- `transformation.ultimate` (“How much do you think AI will ultimately change the world?”), unless the participant has explicitly left the scale unknown;
+- `risk.chance` (“What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?”), which asks for a number, unless a catastrophe-likelihood question was already asked. “No idea” still counts as an answer;
 - then, once, a question that resolves a split outlook reading. When the latest outlook judgment gives its leading level less than 0.6 of the level mass and a neighboring level at least 0.25, routing asks the matching `outlook.lean.<pair>` question, which names both readings (for example, “Are you mainly worried about where AI is heading, or do hope and worry feel roughly balanced to you?”).
 
 In the September 29 review, split readings sat 0.161 from participants’ own placements against 0.135 for the rest, and answering the direct overall-impact question moved readings about twice as close as an ordinary follow-up ([engine design review](research/engine-design-review-2026-09-29.md#next-experiment-a-targeted-follow-up-question)). Triggered prompts are never ranked as ordinary follow-ups.

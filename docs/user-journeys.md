@@ -33,6 +33,17 @@ Each simulated user has a one-line description under their name in the profile h
 
 `pnpm test:content` checks the mechanical parts: length, punctuation, and no percentages, P(doom) or outcome words outside a verified quote. Fairness still needs a read against the brief. The brief's own `description` is backstage context for the simulated participant, never shown publicly. The [October 2 rewrite](research/neutral-one-liners-2026-10-02.md) applied this rule to all 169 people.
 
+### Public statements
+
+Profiles of people with search demand can show “What <Name> has said about AI”, below the map, the compare prompt and Similar worldviews. It is the real person's public record beside our simulation of them, so it follows the one-liner's fairness bar and adds stricter sourcing.
+
+- Three to five quotes, newest first, each with its date, venue and link. Aim for 25 words or fewer; `pnpm test:content` rejects more than 30.
+- Exact words only, checked against a primary source you fetched: their own writing, an official transcript, or an outlet's direct quote from its own interview. Attribute only their turns in a transcript, never an interviewer's. Trim only at sentence or clause boundaries and never join separate passages. Curly quotes and apostrophes may replace straight ones. Record the check in `verified`.
+- Choose quotes that are fair to their overall view at the weight their sources give it: benefits and risks, and what they think should be done. Show a change of view only where the sources show it, ideally in their own words. Prefer sources in their brief.
+- Never quote simulated answers. A stated P(doom) belongs on the P(doom) card, not here.
+- Open with one neutral sentence under [the one-liner rule](#simulated-user-one-liners); it can mention a documented change of view.
+- Store each person in `content/profiles/<slug>.json` and register it in `lib/personas/public-statements.ts`. Quotes and summaries are English, like briefs; only the heading and note are translated.
+
 ## Live models and boundaries
 
 The default participant is **GPT-5.6 Sol** (`gpt-5.6-sol`), with live Jev through the normal engine. The participant receives character context, actual questions, conversation history and recovery guidance. It never sees desired scores, judgment targets, readiness, candidate rankings or the assessment rubric. Jev receives the actual answers and ordinary engine state, not persona identity or source packets.
@@ -279,3 +290,11 @@ The next eight briefs in `lib/journeys/frontier-public-personas.ts` prioritize r
 Lambert’s four primary essays include his September 19 RSI post, September 9 adoption essay, August 9 safety analysis and September 21 open-model briefing. Distinguish his forecasts from the views he quotes; his skepticism about runaway self-improvement does not imply insignificant AI benefits.
 
 The [existing-proxy source packet](research/persona-grounding-existing-2026-09-20.md) and [new-proxy source packet](research/persona-grounding-new-2026-09-20.md) record dates, sources and retrieval limitations. Some statements were retrieved through linked mirrors; distinguish verified words from editorial persona synthesis.
+
+## Acemoglu sources and Zitron fidelity — October 2, 2026
+
+The [source refresh and placement investigation](research/acemoglu-zitron-refresh-2026-10-02.md) adds seven recent Acemoglu posts and records his regenerated local journey. It traces Zitron’s upward move to a newly generated answer to the direct scale question, preserves source metadata missing from this checkout, and documents remaining simulation sensitivity. These are local selected runs; production was inspected read-only. No shared scoring rule changed.
+
+## Nick Bostrom — October 3, 2026
+
+Added the `superintelligence-philosopher` brief and `/users/nick-bostrom` presentation metadata. The [source review](research/nick-bostrom-persona-2026-10-03.md) distinguishes historical control arguments, conditional beneficial futures and the 2026 timing paper’s existing-person scope. The requested October 1 NYT interview is retained with an explicit transcript-access gap, not used for unverified beliefs. The expanded brief now has 18 source links; the [additional paper review](research/nick-bostrom-expanded-sources-2026-10-03.md) records reading scopes. A bounded local run generated four accepted answers and a selected result, verified at `/user-journeys` and `/users/nick-bostrom`. See the [run record](research/nick-bostrom-persona-2026-10-03.md#expanded-brief-and-live-run) for provenance and limits. The subsequent user-requested production import preserved the complete selected payload; the [production verification](research/nick-bostrom-persona-2026-10-03.md#production-publication) records its identity and live checks.
