@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "¿Cómo cambiará la IA nuestro futuro? Mapea tu visión de la IA",
-      "description": "Haz una prueba gratuita sobre tu visión de la IA en unos 3 minutos. Descubre dónde te ubicas entre Doom y Bloom, obtén una P(doom) aproximada y compárala con la de líderes de opinión sobre IA."
+      "title": "¿Cómo cambiará la IA nuestro futuro? Haz el cuestionario de 3 minutos",
+      "description": "Cuestionario gratuito de 3 minutos sobre el futuro de la IA. Descubre si te inclinas por Doom o Bloom, obtén una estimación aproximada de P(doom) y compara tus opiniones con las de Hinton, LeCun, Altman y otros."
     },
     "about": {
       "title": "Acerca de",
@@ -16,12 +16,12 @@
       "description": "Cómo Doom or Bloom guarda las evaluaciones, protege las respuestas privadas, gestiona las cuentas opcionales y publica los resultados."
     },
     "users": {
-      "title": "Usuarios simulados",
-      "description": "Explora y busca visiones simuladas sobre la IA basadas en fuentes, incluidos usuarios que no aparecen en el mapa destacado."
+      "title": "Qué opinan los líderes de opinión sobre la seguridad y los riesgos de la IA",
+      "description": "Busca y compara visiones simuladas de la IA de figuras públicas, desde Hinton y Bengio hasta LeCun y Andreessen, con su P(doom) declarada públicamente cuando esté disponible."
     },
     "pdoom": {
-      "title": "¿Qué es P(doom)? Estimaciones de líderes de opinión sobre IA",
-      "description": "P(doom) es la probabilidad que alguien asigna a que la IA lleve a una catástrofe para la humanidad. Qué significa, qué dicen los líderes de opinión sobre IA y cómo podría ocurrir."
+      "title": "¿Qué es P(doom)? Estimaciones de Hinton, Musk, LeCun y otros",
+      "description": "P(doom) es la probabilidad que alguien asigna a que la IA termine en una catástrofe para la humanidad. Descubre qué han dicho Hinton, Musk, Amodei, LeCun y otros, con fuentes."
     },
     "blog": {
       "title": "Blog",

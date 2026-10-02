@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Bagaimana AI akan mengubah masa depan kita? Petakan pandangan dunia AI Anda",
-      "description": "Ikuti tes pandangan dunia AI gratis dalam waktu sekitar 3 menit. Lihat posisi Anda antara doom dan bloom, dapatkan perkiraan kasar P(doom), dan bandingkan dengan para pemimpin opini AI."
+      "title": "Bagaimana AI akan mengubah masa depan kita? Ikuti kuis 3 menit",
+      "description": "Kuis gratis selama 3 menit tentang masa depan AI. Lihat apakah Anda lebih condong ke doom atau bloom, dapatkan perkiraan kasar P(doom), dan bandingkan pandangan Anda dengan Hinton, LeCun, Altman, dan lainnya."
     },
     "about": {
       "title": "Tentang",
@@ -16,12 +16,12 @@
       "description": "Cara Doom or Bloom menyimpan penilaian, melindungi jawaban privat, menangani akun opsional, dan memublikasikan hasil secara terbuka."
     },
     "users": {
-      "title": "Pengguna simulasi",
-      "description": "Jelajahi dan cari pandangan dunia AI simulasi yang berlandaskan sumber, termasuk pengguna di luar peta unggulan."
+      "title": "Posisi para pemimpin opini mengenai keamanan dan risiko AI",
+      "description": "Cari dan bandingkan pandangan dunia AI simulasi dari tokoh publik, mulai dari Hinton dan Bengio hingga LeCun dan Andreessen, beserta P(doom) yang mereka nyatakan secara publik jika ada."
     },
     "pdoom": {
-      "title": "Apa itu P(doom)? Estimasi dari para pemimpin opini AI",
-      "description": "P(doom) adalah peluang yang diberikan seseorang bahwa AI akan menyebabkan katastrofe bagi umat manusia. Apa artinya, apa yang dikatakan para pemimpin opini AI, dan bagaimana hal itu dapat terjadi."
+      "title": "Apa itu P(doom)? Perkiraan dari Hinton, Musk, LeCun, dan lainnya",
+      "description": "P(doom) adalah peluang yang seseorang berikan bahwa AI berakhir dengan katastrofe bagi umat manusia. Lihat apa yang telah dikatakan Hinton, Musk, Amodei, LeCun, dan lainnya, beserta sumbernya."
     },
     "blog": {
       "title": "Blog",

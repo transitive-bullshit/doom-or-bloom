@@ -36,7 +36,7 @@ test('the home page names the P(doom) search and describes a free web app', asyn
 }) => {
   await page.goto('/')
   await expect(page).toHaveTitle(
-    'How will AI change our future? Map your AI worldview | Doom or Bloom'
+    'How will AI change our future? Take the 3-minute quiz | Doom or Bloom'
   )
   const nodes = await structuredData(page)
   expect(ofType(nodes, 'WebSite')).toHaveLength(1)
@@ -65,7 +65,7 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
 }) => {
   await page.goto('/p-doom')
   await expect(page).toHaveTitle(
-    'What is P(doom)? Estimates from AI thought leaders | Doom or Bloom'
+    'What is P(doom)? Estimates from Hinton, Musk, LeCun and more | Doom or Bloom'
   )
   await expect(
     page.getByRole('heading', { level: 1, name: 'What is P(doom)?' })

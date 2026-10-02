@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "AI将如何改变我们的未来？描绘你的AI世界观",
-      "description": "参加免费的AI世界观测试，用时大约3分钟。看看你在Doom与Bloom之间的立场，获得一个粗略的P(doom)，并与AI意见领袖进行比较。"
+      "title": "AI将如何改变我们的未来？参加这个3分钟测验",
+      "description": "关于AI未来的免费3分钟测验。看看你更倾向于 Doom 还是 Bloom，获得一个粗略的 P(doom)，并将你的观点与 Hinton、LeCun、Altman 等人进行比较。"
     },
     "about": {
       "title": "关于",
@@ -16,12 +16,12 @@
       "description": "Doom or Bloom 如何存储评估、保护非公开回答、处理可选账户，以及公开发布结果。"
     },
     "users": {
-      "title": "模拟用户",
-      "description": "探索并搜索基于来源模拟的 AI 世界观，包括精选地图之外的用户。"
+      "title": "意见领袖在AI安全与风险问题上的立场",
+      "description": "搜索并比较公众人物的模拟AI世界观，从 Hinton 和 Bengio 到 LeCun 和 Andreessen，并查看他们公开表明的 P(doom)（如有）。"
     },
     "pdoom": {
-      "title": "什么是 P(doom)？AI 领域意见领袖的估计",
-      "description": "P(doom) 是某人认为 AI 会给人类带来灾难的概率。它意味着什么、AI 意见领袖怎么说，以及这种情况可能如何发生。"
+      "title": "P(doom) 是什么？Hinton、Musk、LeCun 等人的估计",
+      "description": "P(doom) 是某人认为AI最终会给人类带来灾难的概率。查看 Hinton、Musk、Amodei、LeCun 等人的公开说法及其来源。"
     },
     "blog": {
       "title": "博客",

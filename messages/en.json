@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "How will AI change our future? Map your AI worldview",
-      "description": "Take a free AI worldview test in about 3 minutes. See where you land between doom and bloom, get a rough P(doom), and compare with AI thought leaders."
+      "title": "How will AI change our future? Take the 3-minute quiz",
+      "description": "Free 3-minute quiz on the future of AI. See if you lean doom or bloom, get a rough P(doom), and compare your views with Hinton, LeCun, Altman and more."
     },
     "about": {
       "title": "About",
@@ -16,12 +16,12 @@
       "description": "How Doom or Bloom stores assessments, protects private answers, handles optional accounts, and publishes results publicly."
     },
     "users": {
-      "title": "Simulated users",
-      "description": "Explore and search source-grounded simulated AI worldviews, including users beyond the featured map."
+      "title": "Where thought leaders stand on AI safety and risk",
+      "description": "Search and compare simulated AI worldviews of public figures, from Hinton and Bengio to LeCun and Andreessen, with publicly stated P(doom) where given."
     },
     "pdoom": {
-      "title": "What is P(doom)? Estimates from AI thought leaders",
-      "description": "P(doom) is the chance someone gives that AI leads to catastrophe for humanity. What it means, what AI thought leaders say, and how it could happen."
+      "title": "What is P(doom)? Estimates from Hinton, Musk, LeCun and more",
+      "description": "P(doom) is the chance someone gives that AI ends in catastrophe for humanity. See what Hinton, Musk, Amodei, LeCun and others have said, with sources."
     },
     "blog": {
       "title": "Blog",

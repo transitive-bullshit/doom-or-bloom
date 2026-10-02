@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Wie wird KI unsere Zukunft verändern? Bilde deine KI-Weltsicht ab",
-      "description": "Mach in etwa 3 Minuten einen kostenlosen Test zu deiner KI-Weltsicht. Finde heraus, wo du zwischen doom und bloom stehst, erhalte eine grobe P(doom) und vergleiche dich mit KI-Meinungsführern."
+      "title": "Wie wird KI unsere Zukunft verändern? Mach das 3-Minuten-Quiz",
+      "description": "Kostenloses 3-Minuten-Quiz über die Zukunft der KI. Finde heraus, ob du eher zu Doom oder Bloom tendierst, erhalte eine grobe Schätzung für P(doom) und vergleiche deine Ansichten mit denen von Hinton, LeCun, Altman und anderen."
     },
     "about": {
       "title": "Über Doom or Bloom",
@@ -16,12 +16,12 @@
       "description": "Wie Doom or Bloom Einschätzungen speichert, private Antworten schützt, optionale Konten handhabt und Ergebnisse öffentlich veröffentlicht."
     },
     "users": {
-      "title": "Simulierte Nutzer",
-      "description": "Erkunde und durchsuche quellenbasierte simulierte KI-Weltsichten, einschließlich Nutzern, die nicht auf der hervorgehobenen Karte erscheinen."
+      "title": "Wie Meinungsführer zu Sicherheit und Risiken von KI stehen",
+      "description": "Durchsuche und vergleiche simulierte KI-Weltsichten öffentlicher Persönlichkeiten, von Hinton und Bengio bis LeCun und Andreessen, einschließlich öffentlich genannter P(doom)-Werte, sofern vorhanden."
     },
     "pdoom": {
-      "title": "Was ist P(doom)? Einschätzungen von KI-Vordenkern",
-      "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür angibt, dass KI zu einer Katastrophe für die Menschheit führt. Was das bedeutet, was KI-Meinungsführer sagen und wie es dazu kommen könnte."
+      "title": "Was ist P(doom)? Schätzungen von Hinton, Musk, LeCun und anderen",
+      "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür ansetzt, dass KI in einer Katastrophe für die Menschheit endet. Erfahre mit Quellenangaben, was Hinton, Musk, Amodei, LeCun und andere dazu gesagt haben."
     },
     "blog": {
       "title": "Blog",

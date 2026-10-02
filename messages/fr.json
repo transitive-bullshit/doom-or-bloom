@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Comment l’IA changera-t-elle notre avenir ? Cartographiez votre vision du monde concernant l’IA",
-      "description": "Faites gratuitement un test de vision du monde concernant l’IA en environ 3 minutes. Découvrez où vous vous situez entre doom et bloom, obtenez une estimation approximative de P(doom) et comparez-vous à des leaders d’opinion sur l’IA."
+      "title": "Comment l’IA changera-t-elle notre avenir ? Faites le quiz de 3 minutes",
+      "description": "Quiz gratuit de 3 minutes sur l’avenir de l’IA. Découvrez si vous penchez vers Doom ou Bloom, obtenez une estimation approximative de P(doom) et comparez votre point de vue à ceux de Hinton, LeCun, Altman et d’autres."
     },
     "about": {
       "title": "À propos",
@@ -16,12 +16,12 @@
       "description": "Comment Doom or Bloom conserve les évaluations, protège les réponses privées, gère les comptes facultatifs et publie les résultats publiquement."
     },
     "users": {
-      "title": "Utilisateurs simulés",
-      "description": "Explorez et recherchez des visions du monde simulées sur l’IA, fondées sur des sources, y compris celles d’utilisateurs ne figurant pas sur la carte principale."
+      "title": "Positionnement des leaders d’opinion sur la sécurité et les risques liés à l’IA",
+      "description": "Recherchez et comparez les visions du monde simulées de personnalités publiques concernant l’IA, de Hinton et Bengio à LeCun et Andreessen, avec les P(doom) qu’elles ont déclarées publiquement, le cas échéant."
     },
     "pdoom": {
-      "title": "Qu’est-ce que le P(doom) ? Estimations de leaders d’opinion sur l’IA",
-      "description": "P(doom) est la probabilité qu’une personne attribue au risque que l’IA mène à une catastrophe pour l’humanité. Ce que cela signifie, ce qu’en disent les leaders d’opinion sur l’IA et comment cela pourrait se produire."
+      "title": "Qu’est-ce que P(doom) ? Estimations de Hinton, Musk, LeCun et d’autres",
+      "description": "P(doom) est la probabilité qu’une personne attribue à une catastrophe pour l’humanité causée par l’IA. Découvrez ce qu’en ont dit Hinton, Musk, Amodei, LeCun et d’autres, avec les sources."
     },
     "blog": {
       "title": "Blog",
