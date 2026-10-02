@@ -108,7 +108,7 @@ test('a large placement gap offers one question, and answering it updates the re
   })
   await expect(
     question.getByText(
-      'You placed yourself as more hopeful than your answers read. What makes you hopeful that your answers didn’t show?'
+      'You placed yourself as more hopeful than your answers suggest. What gives you hope that we missed?'
     )
   ).toBeVisible()
   await page.screenshot({

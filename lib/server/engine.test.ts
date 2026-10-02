@@ -160,6 +160,33 @@ test('answered deleted questions remain valid history while known question edits
     'Invalid prompt history'
   )
 })
+test('a reworded question keeps histories that issued its former wording valid', async () => {
+  const reworded = loadBundle().prompts.find(
+    (p) => p.id === 'transformation.ultimate'
+  )!
+  expect(reworded.formerTexts?.length).toBeGreaterThan(0)
+  let state = createAssessment('former-wording')
+  for (let i = 0; i < 2; i++)
+    state = (
+      await run(state, {
+        type: 'answer',
+        text: 'AI may improve medicine, with uncertain timing.'
+      })
+    ).assessment
+  const issued = state.prompts[1]!
+  issued.promptId = reworded.id
+  issued.family = reworded.family
+  issued.text = reworded.formerTexts![0]!
+  state.answers.find((a) => a.promptInstanceId === issued.id)!.promptText =
+    issued.text
+  const projected = await run(state, { type: 'project' })
+  expect(projected.assessment.prompts[1]!.text).toBe(reworded.formerTexts![0])
+  const tampered = structuredClone(state)
+  tampered.prompts[1]!.text = 'An unrecorded wording of a known question.'
+  await expect(run(tampered, { type: 'stop' })).rejects.toThrow(
+    'Invalid prompt history'
+  )
+})
 test('placeholders and an explicit paperclip request use bounded local recovery with no provider calls', async () => {
   const noInference: Provider = {
     kind: 'live',

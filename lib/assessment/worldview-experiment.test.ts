@@ -85,7 +85,7 @@ describe('experimental worldview evidence boundaries', () => {
   })
   it('reads a bare typed percentage, however short the answer', () => {
     const question =
-      'What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?'
+      'What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?'
     const source: ExperimentInput = {
       completeParticipantEvidence: [
         { id: 'a1', prompt: question, answer: '30%', correctionTarget: null },
