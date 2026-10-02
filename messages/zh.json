@@ -733,7 +733,9 @@
     "sourcesDefault": "用于为此模拟用户提供事实依据的文章、访谈和著述。",
     "profile": "个人资料",
     "similarTitle": "相似的世界观",
-    "similarDescription": "模拟世界观与 {name} 最接近的意见领袖"
+    "similarDescription": "模拟世界观与 {name} 最接近的意见领袖",
+    "statementsTitle": "{name}关于AI说过的话",
+    "statementsNote": "逐字引自所链接的出处，核对于 {date}"
   },
   "Profiles": {
     "userTitle": "{name}对AI和P(doom)的看法",

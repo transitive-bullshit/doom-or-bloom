@@ -733,7 +733,9 @@
     "sourcesDefault": "このシミュレーション対象者の根拠として使用された記事、インタビュー、著作です。",
     "profile": "プロフィール",
     "similarTitle": "似ている世界観",
-    "similarDescription": "シミュレーションされた世界観が{name}の世界観に最も近いオピニオンリーダー"
+    "similarDescription": "シミュレーションされた世界観が{name}の世界観に最も近いオピニオンリーダー",
+    "statementsTitle": "{name}がAIについて語ったこと",
+    "statementsNote": "リンク先の出典から原文どおりに引用（{date}に確認）"
   },
   "Profiles": {
     "userTitle": "{name}のAIとP(doom)に関する見解",

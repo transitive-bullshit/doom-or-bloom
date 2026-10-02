@@ -733,7 +733,9 @@
     "sourcesDefault": "Articles, interviews, and writings used to ground this simulated user.",
     "profile": "Profile",
     "similarTitle": "Similar worldviews",
-    "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s"
+    "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s",
+    "statementsTitle": "What {name} has said about AI",
+    "statementsNote": "Word for word from the linked sources, checked {date}"
   },
   "Profiles": {
     "userTitle": "{name}’s views on AI and P(doom)",

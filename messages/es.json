@@ -733,7 +733,9 @@
     "sourcesDefault": "Artículos, entrevistas y textos usados para fundamentar a este usuario simulado.",
     "profile": "Perfil",
     "similarTitle": "Visiones similares",
-    "similarDescription": "Líderes de opinión cuyas visiones simuladas son las más cercanas a la de {name}"
+    "similarDescription": "Líderes de opinión cuyas visiones simuladas son las más cercanas a la de {name}",
+    "statementsTitle": "Lo que {name} ha dicho sobre la IA",
+    "statementsNote": "Citas textuales de las fuentes enlazadas, comprobadas el {date}"
   },
   "Profiles": {
     "userTitle": "Las opiniones de {name} sobre la IA y P(doom)",

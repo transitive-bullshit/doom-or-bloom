@@ -15,6 +15,7 @@ import {
 } from '@/components/landing/data'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { profileJsonLd } from '@/lib/seo/json-ld'
+import { publicStatements } from '@/lib/personas/public-statements'
 
 export const dynamic = 'force-static'
 export const dynamicParams = true
@@ -99,6 +100,7 @@ export default async function Page({
                 person={person}
                 assessment={assessment}
                 similar={similar}
+                statements={publicStatements.get(person.slug)}
               />
             </AuthoredTextProvider>
           </SurfaceMessages>

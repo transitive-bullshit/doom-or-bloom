@@ -733,7 +733,9 @@
     "sourcesDefault": "Articles, entretiens et écrits utilisés pour ancrer cet utilisateur simulé dans les faits.",
     "profile": "Profil",
     "similarTitle": "Visions du monde similaires",
-    "similarDescription": "Leaders d’opinion dont les visions du monde simulées sont les plus proches de celle de {name}"
+    "similarDescription": "Leaders d’opinion dont les visions du monde simulées sont les plus proches de celle de {name}",
+    "statementsTitle": "Ce que {name} a dit sur l’IA",
+    "statementsNote": "Citations exactes tirées des sources en lien, vérifiées le {date}"
   },
   "Profiles": {
     "userTitle": "Points de vue de {name} sur l’IA et P(doom)",

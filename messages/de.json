@@ -733,7 +733,9 @@
     "sourcesDefault": "Artikel, Interviews und Schriften, die als Grundlage für diesen simulierten Nutzer dienen.",
     "profile": "Profil",
     "similarTitle": "Ähnliche Weltsichten",
-    "similarDescription": "Vordenker, deren simulierte Weltsichten der von {name} am nächsten kommen"
+    "similarDescription": "Vordenker, deren simulierte Weltsichten der von {name} am nächsten kommen",
+    "statementsTitle": "Was {name} über KI gesagt hat",
+    "statementsNote": "Wörtlich aus den verlinkten Quellen, geprüft am {date}"
   },
   "Profiles": {
     "userTitle": "Die Ansichten von {name} zu KI und P(doom)",

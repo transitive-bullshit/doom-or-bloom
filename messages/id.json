@@ -733,7 +733,9 @@
     "sourcesDefault": "Artikel, wawancara, dan tulisan yang digunakan sebagai landasan bagi pengguna simulasi ini.",
     "profile": "Profil",
     "similarTitle": "Pandangan dunia serupa",
-    "similarDescription": "Pemimpin opini dengan pandangan dunia simulasi yang paling mendekati pandangan {name}"
+    "similarDescription": "Pemimpin opini dengan pandangan dunia simulasi yang paling mendekati pandangan {name}",
+    "statementsTitle": "Apa yang pernah dikatakan {name} tentang AI",
+    "statementsNote": "Dikutip kata demi kata dari sumber yang ditautkan, diperiksa pada {date}"
   },
   "Profiles": {
     "userTitle": "Pandangan {name} tentang AI dan P(doom)",

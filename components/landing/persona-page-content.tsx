@@ -13,6 +13,7 @@ import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
 import { SimilarWorldviews, type SimilarWorldview } from './similar-worldviews'
+import { PublicStatements } from './public-statements'
 import { ExperimentalResults } from '@/components/assessment/experimental-results'
 import { ReasoningJudgments } from '@/components/assessment/reasoning-judgments'
 import { JsonViewer } from '@/components/debug/json-viewer'
@@ -21,13 +22,15 @@ import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 import type { Result } from '@/lib/assessment/schema'
 import type { Example } from './shared'
 import type { PersonaAssessment } from '@/lib/journeys/persona-assessment'
+import type { PublicStatements as Statements } from '@/lib/personas/public-statements'
 import { authoredPrompt } from '@/lib/assessment/display-text'
 import { useAuthoredText } from '@/components/assessment/authored-text'
 
 export function PersonaPageContent({
   person,
   assessment,
-  similar = []
+  similar = [],
+  statements
 }: {
   person: Pick<
     Example,
@@ -45,6 +48,8 @@ export function PersonaPageContent({
   assessment: PersonaAssessment
   /** Nearest simulated users, linked after the compare prompt. */
   similar?: SimilarWorldview[]
+  /** What the real person has said, below the map and its follow-ups. */
+  statements?: Statements
 }) {
   const t = useTranslations('Persona')
   return (
@@ -69,6 +74,11 @@ export function PersonaPageContent({
       {similar.length > 0 && (
         <div className='mt-10'>
           <SimilarWorldviews name={person.name} people={similar} />
+        </div>
+      )}
+      {statements && (
+        <div className='mt-20'>
+          <PublicStatements name={person.name} statements={statements} />
         </div>
       )}
       <section
