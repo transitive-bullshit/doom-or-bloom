@@ -7,4 +7,6 @@ Added three requested sources to `hands-on-agent-builder` in `lib/journeys/found
 
 - [US Job Market Visualizer](https://karpathy.ai/jobs/): verified directly on September 23. Added the project and its explicit limits: exploratory BLS visualization, rough LLM exposure estimates, and no inference that exposure predicts job disappearance. No publication date was supplied because the page does not establish one.
 
+October 3, 2026: the Reuters source was removed after Karpathy's underlying X post was deleted. See [the deleted-post record](karpathy-deleted-post-2026-10-03.md).
+
 These additions update the current source brief and public persona source links. The saved simulation, historical source snapshot, generated answers and assessment coordinates have not been regenerated or rewritten.
