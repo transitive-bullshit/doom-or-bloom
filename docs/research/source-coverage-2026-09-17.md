@@ -6,24 +6,24 @@ Required URL mappings, obtained reading scope, human review and compatible-relea
 
 ## Counts and populations
 
-Intake as of 2026-09-30; current demo content release 0.4.0-draft.
+Intake as of 2026-10-03; current demo content release 0.4.0-draft.
 
-The registry contains 116 required and 248 optional candidate URLs. Mappings exist for 113 required URLs and 1 of the optional candidates. 119 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
+The registry contains 120 required and 258 optional candidate URLs. Mappings exist for 114 required URLs and 1 of the optional candidates. 120 distinct snapshots are referenced by required URLs; mappings are not a one-URL/one-snapshot quota.
 
-There are 174 distinct snapshot identities across current and authoring populations. 96 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
+There are 175 distinct snapshot identities across current and authoring populations. 96 original authoring drafts have copies in the current release; do not add the two population totals as distinct content. Current copies are linked below when available.
 
 Reviewed counts reflect stored asset metadata, including earlier representative approvals. They do not establish current required-URL review or a frozen release; the current manifest remains draft.
 
 | Population | Total | Entity | Event | Publication | Asset metadata reviewed |
 | --- | --- | --- | --- | --- | --- |
-| Current demo | 140 | 8 | 11 | 121 | 6 |
+| Current demo | 141 | 8 | 11 | 122 | 6 |
 | Separate drafts | 130 | 0 | 3 | 127 | 0 |
-| Distinct required-mapped snapshots | 119 | 1 | 3 | 115 | 1 |
+| Distinct required-mapped snapshots | 120 | 1 | 3 | 116 | 1 |
 
 | Intake population | Pending | Research draft | Partial | Blocked | Draft | Reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| Required | 0 | 0 | 17 | 1 | 98 | 0 |
-| Optional candidates | 247 | 1 | 0 | 0 | 0 | 0 |
+| Required | 0 | 2 | 17 | 2 | 99 | 0 |
+| Optional candidates | 247 | 11 | 0 | 0 | 0 | 0 |
 
 ## Publication date inventory
 
@@ -31,7 +31,7 @@ These counts use publication metadata on distinct required-mapped publication sn
 
 | Publication metadata                    | Snapshots |
 | --------------------------------------- | --------- |
-| 2026                                    | 44        |
+| 2026                                    | 45        |
 | Earlier than 2026                       | 25        |
 | Later than intake year: requires review | 0         |
 | Unknown or qualified date               | 46        |
@@ -60,6 +60,9 @@ These records need access/scope reconciliation or a missing snapshot before full
 | [source.required-104](https://global.oup.com/academic/product/superintelligence-9780198739838) | partial | [Superintelligence: publisher-described remit and edition](../../content/releases/0.4.0-draft/references/book.superintelligence-paperback-2016.md) (demo) | [12. Superintelligence: Paths, Dangers, Strategies](../../docs/research/required-foundations.md) |
 | [source.required-106](https://academic.oup.com/book/40615/chapter/348239228) | partial | [Artificial Intelligence as a positive and negative factor in global risk: abstract scope](../../content/releases/0.4.0-draft/references/chapter.ai-positive-negative-global-risk-2008.md) (demo) | [14. Artificial Intelligence as a positive and negative factor in global risk](../../docs/research/required-foundations.md) |
 | [source.required-112](https://www.cold-takes.com/most-important-century) | partial | [The most important century: scoped series roadmap](../../content/releases/0.4.0-draft/references/hub.most-important-century.md) (demo) | [12. The “most important century” blog post series](../../docs/research/required-perspectives-and-hubs.md) |
+| [source.bostrom-home](https://nickbostrom.com) | research_draft | No snapshot | [Foundational and beneficial futures sources](../../docs/research/nick-bostrom-persona-2026-10-03.md) |
+| [source.bostrom-optimal-2026](https://nickbostrom.com/optimal.pdf) | research_draft | No snapshot | [Optimal timing](../../docs/research/nick-bostrom-persona-2026-10-03.md) |
+| [source.bostrom-nyt-2026](https://www.nytimes.com/2026/10/01/opinion/interesting-times-podcast-spencer-klavan-nick-bostrom.html) | blocked | No snapshot | [October 1 interview](../../docs/research/nick-bostrom-persona-2026-10-03.md) |
 
 ## All required mappings
 
@@ -183,6 +186,10 @@ Every required original URL remains linked below. Research links identify the ex
 | [source.required-114](https://www.tobyord.com/writing/the-precipice-revisited) | draft | [The Precipice Revisited](../../content/releases/0.4.0-draft/references/publication.precipice-revisited-2024.md) (demo) | [14. The Precipice Revisited](../../docs/research/required-perspectives-and-hubs.md) |
 | [source.user-2026-09-30-sumner-wanna-bet](https://scottsumner.substack.com/p/wanna-bet) | draft | [Wanna bet?](../../content/releases/0.4.0-draft/references/publication.sumner-wanna-bet-2026.md) (demo) | [Scott Sumner — Wanna bet?](../../docs/research/source-additions-2026-09-30.md) |
 | [source.user-2026-09-30-lesswrong-ai-risk-skepticism](https://www.lesswrong.com/w/ai-risk-skepticism) | draft | [AI Risk Skepticism — LessWrong](../../content/releases/0.4.0-draft/references/hub.lesswrong-ai-risk-skepticism.md) (demo) | [LessWrong — AI Risk Skepticism](../../docs/research/source-additions-2026-09-30.md) |
+| [source.bostrom-home](https://nickbostrom.com) | research_draft | No snapshot | [Foundational and beneficial futures sources](../../docs/research/nick-bostrom-persona-2026-10-03.md) |
+| [source.bostrom-optimal-2026](https://nickbostrom.com/optimal.pdf) | research_draft | No snapshot | [Optimal timing](../../docs/research/nick-bostrom-persona-2026-10-03.md) |
+| [source.bostrom-nyt-2026](https://www.nytimes.com/2026/10/01/opinion/interesting-times-podcast-spencer-klavan-nick-bostrom.html) | blocked | No snapshot | [October 1 interview](../../docs/research/nick-bostrom-persona-2026-10-03.md) |
+| [source.user-2026-10-03-casp-intelligence-explosion](https://casp.ac/reports/intelligence-explosion) | draft | [What if automating AI R&D triggers an intelligence explosion?](../../content/releases/0.4.0-draft/references/report.casp-intelligence-explosion-2026.md) (demo) | [Source and access scope](../../docs/research/casp-intelligence-explosion-2026-10-03.md) |
 
 ## Overlapping source mappings
 
@@ -194,7 +201,7 @@ Shared identities are retained rather than duplicated to fill counts. A hub may 
 
 ## Optional selection and exclusions
 
-The 248 candidates remain preserved in the intake registry. Unmapped candidates are pending selection, not silently excluded or required to become snapshots. The 36 earlier publication drafts remain background candidates. This index records no final optional exclusion decision; select by diagnostic usefulness, source quality and coverage during human review. Required URLs remain required regardless of optional overlap.
+The 258 candidates remain preserved in the intake registry. Unmapped candidates are pending selection, not silently excluded or required to become snapshots. The 36 earlier publication drafts remain background candidates. This index records no final optional exclusion decision; select by diagnostic usefulness, source quality and coverage during human review. Required URLs remain required regardless of optional overlap.
 
 | Optional candidate already mapped | Registry stage | Snapshot | Research record |
 | --- | --- | --- | --- |
@@ -210,8 +217,8 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | agency         | 19                        |
 | architecture   | 3                         |
 | benefit        | 11                        |
-| capability     | 31                        |
-| control        | 48                        |
+| capability     | 32                        |
+| control        | 49                        |
 | coordination   | 2                         |
 | cyber          | 8                         |
 | deception      | 1                         |
@@ -222,17 +229,17 @@ Counts below describe overlapping freeform subject tags on distinct required-map
 | evaluation     | 43                        |
 | forecast       | 5                         |
 | goals          | 5                         |
-| governance     | 29                        |
+| governance     | 30                        |
 | grounding      | 1                         |
 | human-agency   | 1                         |
 | infrastructure | 2                         |
 | misuse         | 3                         |
 | multiagent     | 1                         |
 | research       | 5                         |
-| risk           | 73                        |
+| risk           | 74                        |
 | science        | 4                         |
 | transition     | 10                        |
-| uncertainty    | 2                         |
+| uncertainty    | 3                         |
 | upside         | 1                         |
 
 ## Review completion criteria

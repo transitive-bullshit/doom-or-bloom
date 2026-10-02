@@ -259,6 +259,13 @@ export const additionalPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'What if automating AI R&D triggers an intelligence explosion?',
+        url: 'https://casp.ac/reports/intelligence-explosion',
+        publishedAt: '2026-09',
+        summary:
+          'Hinton is one of 22 named coauthors of this September 2026 working paper. The supplied PDF, including supplementary materials and notes, argues that automated AI R&D could drive a software feedback loop that compresses years of progress into months or less. Evidence is preliminary and partly mixed; compute, data, diminishing returns, difficult tasks and training time could constrain acceleration. Potential scientific benefits coexist with compressed adaptation time, loss of control and concentrated power. The authors urge visibility into internal R&D, ways to steer and constrain scale-ups, and advance preparation, while recognizing costs and abuse risks of policy. This is a joint argument, not Hinton’s individual probability or a guaranteed timeline; cited experiments and incidents were not independently verified for this intake, and affiliations do not imply institutional endorsement.'
+      },
+      {
         title: 'CNN The Lead: Geoffrey Hinton interview',
         url: 'https://transcripts.cnn.com/show/cg/date/2026-09-09/segment/01',
         publishedAt: '2026-09-09',
@@ -326,6 +333,7 @@ export const additionalPublicPersonas: Persona[] = [
     background:
       'I am very worried. We are building things that may become much smarter than us, and the companies are racing to make them more capable because there is so much money in it. We need to figure out how to make them care about people before we are relying on our ability to outwit something more intelligent. There could be wonderful benefits, particularly in medicine and education. That does not make the current race reassuring. The benefits are a reason to get this right, not a reason to assume it will go well.',
     beliefs: [
+      'In a September 2026 coauthored paper, we argue that automating AI R&D could sharply accelerate progress and leave society less time to respond. The evidence remains preliminary and bottlenecks matter. Policymakers should obtain visibility into internal R&D, prepare ways to steer and constrain scale-ups, and strengthen adaptation before a possible acceleration.',
       'As of September 16, I support slowing superintelligence and see independent verification as a start. A kill switch is not a convincing answer if a more capable system can persuade people not to use it. International cooperation on preventing control loss can be possible despite disagreement elsewhere.',
       'Losing control is a serious possibility. Intelligence beyond ours changes the balance of power; stopping a hostile superior system afterwards is not an adequate safety strategy.',
       'Companies face strong incentives to increase capability. Safety work needs real resources and governments must intervene; voluntary reassurances are insufficient.',

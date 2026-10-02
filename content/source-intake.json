@@ -6837,6 +6837,27 @@
           "scope": "HTML sections 1 and 4, and the preceding identity discussion: technological possibility, risk, global security and wide access."
         }
       ]
+    },
+    {
+      "id": "source.user-2026-10-03-casp-intelligence-explosion",
+      "url": "https://casp.ac/reports/intelligence-explosion",
+      "originalUrls": ["https://casp.ac/reports/intelligence-explosion"],
+      "origins": ["user-2026-10-03"],
+      "requiredForInitialCorpus": true,
+      "status": "draft",
+      "genre": "Joint working paper: evidence synthesis, conditional modeling and policy proposals",
+      "publishedAt": "2026-09",
+      "updatedAt": null,
+      "accessedAt": "2026-10-03",
+      "referenceIds": ["report.casp-intelligence-explosion-2026"],
+      "notes": "Entire user-supplied 15-page PDF read, including internal supplementary materials and endnotes. Exact publication day unknown. Cited studies not independently verified. Preliminary conditional evidence; no personal probabilities inferred from coauthorship. Active local draft inclusion; human review pending.",
+      "researchRecords": [
+        {
+          "path": "docs/research/casp-intelligence-explosion-2026-10-03.md",
+          "heading": "Source and access scope",
+          "scope": "Supplied PDF: cover plus numbered pp. 1–14, including internal supplement on pp. 12–13 and endnotes through p. 14. File hash and attribution limitations recorded; no separately linked supplement or cited studies independently verified."
+        }
+      ]
     }
   ],
   "contextNotionPages": [
