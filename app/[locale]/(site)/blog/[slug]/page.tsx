@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import type { MDXComponents } from 'mdx/types'
 import { notFound } from 'next/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { defaultLocale, languageTag } from '@/i18n/config'
@@ -7,14 +8,18 @@ import { blogPost, blogPosts } from '@/lib/blog/posts'
 import { postDate } from '@/lib/blog/format'
 import { breadcrumbTrail } from '@/lib/breadcrumbs'
 import { articleJsonLd } from '@/lib/seo/json-ld'
+import { profileMentions } from '@/lib/personas/mentions'
 import { blogCardPath } from '@/lib/sharing/blog-social-card'
+import { loadProfileNames } from '@/components/landing/data'
+import { profileLinkComponents } from '@/components/blog/mdx'
 import { BreadcrumbTrail } from '@/components/breadcrumb-trail'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 
 // Every post renders at build in every locale; unknown slugs are 404s. The
 // post body is English everywhere: other locales translate the chrome, are
-// noindex and canonicalize to the English post (see docs/BLOG.md).
+// noindex and canonicalize to the English post (see docs/BLOG.md). Names link
+// to the profiles published when the post was built.
 export const dynamic = 'error'
 export const dynamicParams = false
 export function generateStaticParams() {
@@ -46,13 +51,14 @@ export async function generateMetadata({ params }: Props) {
 export default async function Page({ params }: Props) {
   const post = blogPost((await params).slug)
   if (!post) notFound()
-  const [{ default: Post }, locale, t, crumbs] = await Promise.all([
+  const [{ default: Post }, locale, t, crumbs, profiles] = await Promise.all([
     import(`@/content/blog/${post.slug}.mdx`) as Promise<{
-      default: ComponentType
+      default: ComponentType<{ components?: MDXComponents }>
     }>,
     getLocale(),
     getTranslations('Blog'),
-    getTranslations('Breadcrumbs')
+    getTranslations('Breadcrumbs'),
+    loadProfileNames()
   ])
   const tag = languageTag(locale)
   const path = `/blog/${post.slug}`
@@ -91,7 +97,7 @@ export default async function Page({ params }: Props) {
           data-slot='blog-post-body'
           className='flex flex-col gap-5 [&>h2]:mt-6 [&>h2]:-mb-1 [&>h3]:mt-2'
         >
-          <Post />
+          <Post components={profileLinkComponents(profileMentions(profiles))} />
         </div>
       </article>
       <div className='content-column pb-14'>

@@ -11,7 +11,6 @@ import { HubTable } from '@/components/p-doom/hub-table'
 import { Scenarios } from '@/components/p-doom/scenarios'
 import { Footnotes, ReadingList } from '@/components/p-doom/sources'
 import { hubContent } from '@/lib/p-doom/hub'
-import { readingGroups } from '@/lib/p-doom/readings'
 import { pdoomDefinition, pdoomGuidePath } from '@/lib/p-doom/copy'
 import { pdoomJsonLd } from '@/lib/seo/json-ld'
 
@@ -33,7 +32,7 @@ export default async function Page() {
     loadExamples(false)
   ])
   const tag = languageTag(locale)
-  const { rows, intro, scenarios, footnotes } = hubContent(people)
+  const { rows, intro, scenarios, footnotes, readings } = hubContent(people)
   // The page is generated at most every 48 hours.
   const asOf = new Date()
   return (
@@ -139,15 +138,17 @@ export default async function Page() {
               could end in catastrophe, followed by the strongest critiques.
             </p>
           </div>
-          {readingGroups.map(({ id, readings }) => (
+          {readings.map((group) => (
             <section
-              key={id}
-              aria-labelledby={`reading-${id}`}
+              key={group.id}
+              aria-labelledby={`reading-${group.id}`}
               className='flex flex-col gap-4'
             >
-              <h3 id={`reading-${id}`}>{t(`readingGroups.${id}`)}</h3>
+              <h3 id={`reading-${group.id}`}>
+                {t(`readingGroups.${group.id}`)}
+              </h3>
               <div lang='en'>
-                <ReadingList readings={readings} />
+                <ReadingList readings={group.readings} />
               </div>
             </section>
           ))}

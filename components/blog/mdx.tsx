@@ -1,7 +1,9 @@
-import type { ComponentProps } from 'react'
+import { Children, type ComponentProps, type ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import { Link } from '@/i18n/navigation'
 import { pdoomDefinition } from '@/lib/p-doom/copy'
+import type { ProfileMentions } from '@/lib/personas/mentions'
+import { MentionText } from '@/components/mention-text'
 import { DataMap } from './data-map'
 import { DataRanges } from './data-ranges'
 
@@ -58,3 +60,29 @@ export const blogComponents = {
   DataRanges,
   Definition
 } satisfies MDXComponents
+
+/**
+ * Links people with a published profile: the first mention of each in a
+ * paragraph, list item or table cell, and every name in a chart. Text inside
+ * headings, links and emphasis stays as written.
+ */
+export function profileLinkComponents(mention: ProfileMentions): MDXComponents {
+  const linkNames = (children: ReactNode) => {
+    const linked = new Set<string>()
+    return Children.map(children, (child) =>
+      typeof child === 'string' ? (
+        <MentionText parts={mention(child, linked)} />
+      ) : (
+        child
+      )
+    )
+  }
+  return {
+    p: ({ children, ...props }) => <p {...props}>{linkNames(children)}</p>,
+    li: ({ children, ...props }) => <li {...props}>{linkNames(children)}</li>,
+    td: ({ children, ...props }) => <td {...props}>{linkNames(children)}</td>,
+    DataRanges: (props: ComponentProps<typeof DataRanges>) => (
+      <DataRanges {...props} mention={mention} />
+    )
+  }
+}
