@@ -86,7 +86,10 @@ export function PersonaPageContent({
         className='mt-20 flex flex-col gap-4'
       >
         <h2>{t('simulatedAssessment')}</h2>
-        <PersonaAnswers assessment={assessment} />
+        {/* With the real person's own words above, the simulated answers
+            start closed, one click away. Participant pages pass no
+            statements, so their answers stay open. */}
+        <PersonaAnswers assessment={assessment} defaultOpen={!statements} />
         <section aria-label={t('debugInfo')}>
           <Collapsible>
             <DisclosureTrigger>{t('debugInfo')}</DisclosureTrigger>
@@ -130,10 +133,16 @@ export function PersonaPageContent({
   )
 }
 
-function PersonaAnswers({ assessment }: { assessment: PersonaAssessment }) {
+function PersonaAnswers({
+  assessment,
+  defaultOpen
+}: {
+  assessment: PersonaAssessment
+  defaultOpen: boolean
+}) {
   const t = useTranslations('Persona')
   const authored = useAuthoredText()
-  const [open, setOpen] = useAnswerDisclosure(true)
+  const [open, setOpen] = useAnswerDisclosure(defaultOpen)
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
       <DisclosureTrigger>
