@@ -29,7 +29,7 @@ Opening paragraph…
 - Use typographic quotes and apostrophes, like the rest of the site's copy.
 - Link to site pages with root-relative URLs (`[the P(doom) table](/p-doom)`); they keep the reader's language prefix. Other links open in a new tab.
 - Reading time is computed from the prose (230 words a minute); you do not set it.
-- Every post renders with the shared reading column, a byline, its `Article` structured data, a Takumi social card at `/blog/<slug>/opengraph-image` and a closing assessment CTA. The newest post comes first on the index and in the feed.
+- Every post renders with the shared reading column, a byline, its `BlogPosting` structured data, a Takumi social card at `/blog/<slug>/opengraph-image` and a closing assessment CTA. The newest post comes first on the index and in the feed.
 
 Check a post with `pnpm dev`, then run `pnpm test`, `pnpm check:browser tests/browser/seo.spec.ts` and, before release, `pnpm build:local` and `pnpm check:prefetch`.
 
