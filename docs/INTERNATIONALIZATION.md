@@ -13,12 +13,12 @@ Translated:
 - the About and Privacy pages and the legacy `/assessment` start page;
 - the whole assessment interface: the interview, readiness, recovery and error copy, toasts and aria-labels, self-placement, the result (map, P(doom) card, closest worldviews, details, feedback, share bar and captions), the publish dialog and the library;
 - simulated-user and public assessment page chrome, their metadata, and their social images;
-- the chrome of the P(doom) hub (table headings, labels, the “As of” line, notes and CTA) and of the blog (index heading, bylines, reading times), and their metadata;
+- the chrome of the P(doom) hub (table and section headings, labels, the “As of” line, the comparability note, the directory link and CTA) and of the blog (index heading, bylines, reading times), and their metadata;
 - the downloaded share card, the map image and the Markdown report;
 - text that `lib/` code builds: result reasons, P(doom) ranges, claim scopes and readings, facet and experimental-axis labels and levels, milestone and hinge labels, self-placement comparisons, share captions, tension and correction prompts and API error messages;
 - authored assessment content from `content/`: questions (including the placement and split-outlook questions), their recovery copy, findings, resources and rubric level texts ([Authored content](#authored-content)).
 
-Not translated: blog posts and their social cards and feed, the P(doom) hub’s explainer ([BLOG.md](BLOG.md#languages)), participant answers and simulated answers (Jev reads answers as written; see [Jev and the participant's language](#jev-and-the-participants-language)), persona descriptions, admin, local review tools, debug panels (including the JSON inspector that About and simulated-user pages embed), the fixture-mode badge, llms.txt (English, with a Languages section) and API error bodies. The library page's report download keeps authored text in English; the report from the interview page translates it.
+Not translated: blog posts and their social cards and feed, the P(doom) hub’s explainer, table notes and quotes, scenarios, sources and readings ([BLOG.md](BLOG.md#languages)), participant answers and simulated answers (Jev reads answers as written; see [Jev and the participant's language](#jev-and-the-participants-language)), persona descriptions, admin, local review tools, debug panels (including the JSON inspector that About and simulated-user pages embed), the fixture-mode badge, llms.txt (English, with a Languages section) and API error bodies. The library page's report download keeps authored text in English; the report from the interview page translates it.
 
 All translations other than the Spanish UI catalog are machine translations. Native review is required only for the root question, the recovery and retry copy and the wording of result claims ([Review](#review)); it does not block a release.
 

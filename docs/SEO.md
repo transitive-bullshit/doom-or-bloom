@@ -28,7 +28,7 @@ Write titles for what people search, not for the site's internal names: "What’
 | --- | --- |
 | `/` | `WebSite`, `WebApplication` (free: `isAccessibleForFree` and a zero-price `Offer`) and the creator `Person`, Travis Fischer (`https://x.com/transitive_bs`) |
 | `/users/<slug>` | `ProfilePage` whose `mainEntity` is the simulated `Person`: name, portrait, `sameAs` their X and profile links, and a description that says it is a simulation from public writing, not their own assessment |
-| `/p-doom` | `Dataset` (the table: stated and inferred variables, `dateModified`, source citations) and an `ItemList` of the linked profiles |
+| `/p-doom` | `Dataset` (the curated table: the publicly stated variable, `dateModified` and the sources of its numbers and quoted refusals) and an `ItemList` of its profiles in table order |
 | `/blog` | `Blog` with each post as an `Article` part |
 | `/blog/<slug>` | `Article`: headline, dates, author, the post card, `wordCount` and `timeRequired` |
 | Every page with breadcrumbs | `BreadcrumbList` matching the visible trail, in the page's locale |
@@ -44,7 +44,7 @@ Render JSON-LD with `JsonLd`, which escapes `<` so text cannot close the script 
 
 ## Internal links
 
-The footer links About, P(doom), Blog and Privacy on every page. Each simulated-user page links up to six similar worldviews (`loadSimilarWorldviews` in `components/landing/data.ts`, using the same distance as a participant's closest worldviews across the whole catalog). The P(doom) hub links every profile and the "What is P(doom)?" post; the post links back to the hub. These links do not prefetch automatically, like the map and directory.
+The footer links About, P(doom), Blog and Privacy on every page. Each simulated-user page links up to six similar worldviews (`loadSimilarWorldviews` in `components/landing/data.ts`, using the same distance as a participant's closest worldviews across the whole catalog). The P(doom) hub links its curated thought leaders' profiles, the `/users` directory of every profile and the "What is P(doom)?" post; the post links back to the hub. These links do not prefetch automatically, like the map and directory.
 
 ## Owner tasks
 

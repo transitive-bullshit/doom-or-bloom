@@ -41,7 +41,7 @@ export async function GET() {
         `- [${t(`${key}.title`)}](${siteUrl}${path}): ${t(`${key}.description`)}`
     ),
     '',
-    'The P(doom) page explains the term and lists simulated thought leaders with any publicly stated P(doom), linked to its source, beside a rough estimate inferred from their simulated answers.',
+    'The P(doom) page explains the term, lists the P(doom) that prominent thought leaders have stated in public and the reasons some refuse to give one, describes six scenarios for how advanced AI could end in catastrophe, and closes with numbered sources and a reading list. The directory of simulated users shows a rough P(doom) inferred from each simulation.',
     '',
     '## Blog',
     '',
