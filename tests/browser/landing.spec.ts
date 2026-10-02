@@ -323,12 +323,17 @@ test('featured map lays out before reveal and fills mobile width with page-edge 
     }
   }
   await checkBounds()
-  const portrait = chart.locator('.study-portrait').first()
-  const initial = await portrait.getAttribute('style')
+  // Compare the whole layout: a portrait seeded at a corner keeps its
+  // position at every width.
+  const layout = () =>
+    chart
+      .locator('.study-portrait')
+      .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('style')))
+  const initial = await layout()
   await page.setViewportSize({ width: 1280, height: 900 })
-  await expect(portrait).not.toHaveAttribute('style', initial!)
+  await expect.poll(layout).not.toEqual(initial)
   await page.setViewportSize({ width: 390, height: 844 })
-  await expect(portrait).toHaveAttribute('style', initial!)
+  await expect.poll(layout).toEqual(initial)
   await checkBounds()
 })
 
