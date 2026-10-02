@@ -5,19 +5,17 @@
 // generation ordering means an older run never replaces a newer selection.
 // `plan` opens the target read-only and writes nothing; `write` upserts each
 // profile, publishes its run and verifies the target's selected digest.
+// Profile metadata, including the one-liner, comes from people.ts rather than
+// the local database, so an import never restores an older description.
 // See docs/user-journeys.md#import-selected-simulated-users.
 //
 //   personas:import plan --env <file> --ids slug,slug
 //   personas:import write --env <file> --ids slug,slug
-import { readFileSync } from 'node:fs'
-import { parseArgs, parseEnv } from 'node:util'
-import { Pool } from 'pg'
-import { databaseUrl } from '../lib/db/config'
-import {
-  personaMetadataSchema,
-  simulationPayload
-} from '../lib/personas/payload'
+import { parseArgs } from 'node:util'
+import { catalogMetadata } from '../lib/personas/catalog-metadata'
+import { simulationPayload } from '../lib/personas/payload'
 import { personaRepository } from '../lib/personas/repository'
+import { localSourcePool, targetPool } from './persona-target'
 
 const { positionals, values: args } = parseArgs({
   allowPositionals: true,
@@ -30,33 +28,6 @@ if (!args.env) throw new Error('Pass --env with the target database settings.')
 if (!args.ids) throw new Error('Pass --ids with the simulated users to import.')
 const slugs = [...new Set(args.ids.split(','))]
 
-function sourcePool() {
-  const saved = parseEnv(readFileSync('.env.development.local', 'utf8'))
-  const url = new URL(databaseUrl(saved.DATABASE_URL))
-  if (!['localhost', '127.0.0.1', '[::1]'].includes(url.hostname))
-    throw new Error('The import source must be the local development database.')
-  url.searchParams.set('options', '-c default_transaction_read_only=on')
-  return new Pool({ connectionString: url.toString(), max: 2 })
-}
-
-function targetPool(write: boolean) {
-  // Only database settings are read, never auth or app flags.
-  const saved = parseEnv(readFileSync(args.env!, 'utf8'))
-  const value = write
-    ? saved.DATABASE_URL
-    : saved.ADMIN_DATABASE_URL ||
-      saved.DATABASE_MIGRATION_URL ||
-      saved.DATABASE_URL
-  if (!value) throw new Error(`${args.env} has no database URL.`)
-  const url = new URL(databaseUrl(value))
-  if (!write && !url.hostname.includes('-pooler.'))
-    url.searchParams.set(
-      'options',
-      '-c default_transaction_read_only=on -c statement_timeout=60000'
-    )
-  return new Pool({ connectionString: url.toString(), max: 2 })
-}
-
 const selectedQuery = `
   SELECT p.slug, p.metadata, p.source_brief, a.seed_key, s.format, s.digest, s.payload
   FROM personas p
@@ -64,8 +35,9 @@ const selectedQuery = `
   JOIN assessment_snapshots s ON s.id = a.final_snapshot_id
   WHERE p.slug = $1`
 
-const source = sourcePool()
-const target = targetPool(mode === 'write')
+const source = localSourcePool()
+const target = targetPool(args.env, mode === 'write')
+const catalog = catalogMetadata()
 try {
   for (const slug of slugs) {
     const { rows } = await source.query(selectedQuery, [slug])
@@ -74,6 +46,9 @@ try {
     if (local.format !== 'simulation_v1')
       throw new Error(`${slug}: only simulation_v1 snapshots are imported`)
     const payload = simulationPayload.parse(local.payload)
+    const metadata = catalog.find((profile) => profile.slug === slug)
+    if (!metadata)
+      throw new Error(`${slug}: not in components/landing/people.ts`)
     const before = (await target.query(selectedQuery, [slug])).rows[0]
     const state = !before
       ? 'new profile'
@@ -85,10 +60,7 @@ try {
       continue
     }
     const repo = personaRepository(target)
-    const personaId = await repo.upsertProfile(
-      personaMetadataSchema.parse(local.metadata),
-      local.source_brief
-    )
+    const personaId = await repo.upsertProfile(metadata, local.source_brief)
     await repo.publish(personaId, local.seed_key, payload)
     const after = (await target.query(selectedQuery, [slug])).rows[0]
     if (after?.digest !== local.digest)
