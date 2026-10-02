@@ -1,0 +1,41 @@
+{
+  "slug": "schmidhuberai",
+  "summary": "Schmidhuber expects AI to make lives longer and healthier, stresses AI in the physical world and argues a ban on superintelligence is infeasible.",
+  "statements": [
+    {
+      "quote": "It’s infeasible to ban super intelligence. Compute continues to become 10 times cheaper every 5 years.",
+      "date": "2026-09-24",
+      "venue": "Post on X",
+      "url": "https://x.com/SchmidhuberAI/status/2103019743477424167",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The future of intelligence is not just language; it is physical AI powered by World Models.",
+      "date": "2026-09-24",
+      "venue": "Sakana AI announcement of his role as Chief Scientific Advisor",
+      "url": "https://sakana.ai/schmidhuber/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Sure, as I have predicted for 5 decades, at some point we’ll have superhuman physical AI. But it will take longer than 2 years.",
+      "date": "2026-09-22",
+      "venue": "Post on X",
+      "url": "https://x.com/SchmidhuberAI/status/2102485812055089298",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "For many years, I have been predicting that our AI will continue to make people’s lives longer, healthier, easier, and happier.",
+      "date": "2025-02-24",
+      "venue": "Rest of World interview",
+      "url": "https://restofworld.org/2025/juergen-schmidhuber-ai-saudi-arabia-tech/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "On the other hand, curious systems are very difficult to predict, and it is difficult or impossible to prove that curiosity won’t kill the cat or others.",
+      "date": "2025-02-24",
+      "venue": "Rest of World interview",
+      "url": "https://restofworld.org/2025/juergen-schmidhuber-ai-saudi-arabia-tech/",
+      "verified": "2026-10-03"
+    }
+  ]
+}

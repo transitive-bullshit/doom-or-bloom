@@ -1,7 +1,26 @@
 import { z } from 'zod'
 import { oneLinerProblems } from './one-liner-rules'
+import aellaGirl from '@/content/profiles/aella_girl.json'
+import balajis from '@/content/profiles/balajis.json'
+import dacemoglumit from '@/content/profiles/dacemoglumit.json'
 import darioamodei from '@/content/profiles/darioamodei.json'
+import dkokotajlo from '@/content/profiles/dkokotajlo.json'
+import dwarkeshSp from '@/content/profiles/dwarkesh_sp.json'
+import garymarcus from '@/content/profiles/garymarcus.json'
 import geoffreyhinton from '@/content/profiles/geoffreyhinton.json'
+import kevinroose from '@/content/profiles/kevinroose.json'
+import liangWenfeng from '@/content/profiles/liang-wenfeng.json'
+import npcollapse from '@/content/profiles/npcollapse.json'
+import plinz from '@/content/profiles/plinz.json'
+import realgeorgehotz from '@/content/profiles/realgeorgehotz.json'
+import richardhanania from '@/content/profiles/richardhanania.json'
+import richardssutton from '@/content/profiles/richardssutton.json'
+import schmidhuberai from '@/content/profiles/schmidhuberai.json'
+import slatestarcodex from '@/content/profiles/slatestarcodex.json'
+import so8res from '@/content/profiles/so8res.json'
+import tegmark from '@/content/profiles/tegmark.json'
+import timnitgebru from '@/content/profiles/timnitgebru.json'
+import tylercowen from '@/content/profiles/tylercowen.json'
 import ylecun from '@/content/profiles/ylecun.json'
 
 // What a simulated user's real person has said about AI: short, dated quotes
@@ -61,9 +80,30 @@ export function publicStatementProblems(file: PublicStatements) {
   return problems
 }
 
-const files = [darioamodei, geoffreyhinton, ylecun].map((file) =>
-  publicStatementsSchema.parse(file)
-)
+const files = [
+  aellaGirl,
+  balajis,
+  dacemoglumit,
+  darioamodei,
+  dkokotajlo,
+  dwarkeshSp,
+  garymarcus,
+  geoffreyhinton,
+  kevinroose,
+  liangWenfeng,
+  npcollapse,
+  plinz,
+  realgeorgehotz,
+  richardhanania,
+  richardssutton,
+  schmidhuberai,
+  slatestarcodex,
+  so8res,
+  tegmark,
+  timnitgebru,
+  tylercowen,
+  ylecun
+].map((file) => publicStatementsSchema.parse(file))
 
 /** Every profile with sourced statements, keyed by slug. */
 export const publicStatements: ReadonlyMap<string, PublicStatements> = new Map(

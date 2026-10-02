@@ -1,0 +1,41 @@
+{
+  "slug": "dacemoglumit",
+  "summary": "Acemoglu argues that AI should be steered toward complementing workers rather than replacing them, and that its direction needs democratic input.",
+  "statements": [
+    {
+      "quote": "My instinct is that democratic voice is essential, and relying too much on technocracy could be both dangerous and counterproductive.",
+      "date": "2026-09-30",
+      "venue": "Post on X",
+      "url": "https://x.com/DAcemogluMIT/status/2105348579187699989",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Agentic AI is not AGI, in my opinion, but it’s pretty impressive.",
+      "date": "2026-09-14",
+      "venue": "Justified Posteriors podcast",
+      "url": "https://empiricrafting.substack.com/p/daron-acemoglu-on-pro-worker-ai-and",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The problem rather may be that the way that frontier labs are training these models is leading to distorted intelligence.",
+      "date": "2026-09-11",
+      "venue": "Post on X",
+      "url": "https://x.com/DAcemogluMIT/status/2098471888150262226",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "AI tools can also be designed to complement workers, enhancing their capabilities and productivity, rather than substituting for them.",
+      "date": "2026-08-21",
+      "venue": "Nature essay",
+      "url": "https://www.nature.com/articles/d41586-026-02566-6",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "What is at stake is not only shared prosperity, but also our democratic system.",
+      "date": "2026-08-21",
+      "venue": "Nature essay",
+      "url": "https://www.nature.com/articles/d41586-026-02566-6",
+      "verified": "2026-10-03"
+    }
+  ]
+}
