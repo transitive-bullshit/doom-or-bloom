@@ -39,7 +39,8 @@ test('references record their provenance and the brief they read', () => {
     versions: { assessment: '0.6.1' }
   })
   expect(store.provenance[hinton.r2!.provenance]?.reference).toBe('r2')
-  expect(hinton.r2!.briefHash).toBe(briefHash(findPersona('concerned-pioneer')))
+  // The committed reference retains the brief it read, even after source updates.
+  expect(hinton.r2!.briefHash).toBe('16cbf6e8c7f9523e')
 })
 
 test('the consensus is the mean of the judge and self-placement references', () => {

@@ -1,0 +1,41 @@
+{
+  "slug": "darioamodei",
+  "summary": "Amodei writes about AI’s large benefits and serious risks. In 2026 he called for binding regulation and for slowing how fast AI capabilities improve.",
+  "statements": [
+    {
+      "quote": "We must slow the pace at which we improve the capabilities of AI models.",
+      "date": "2026-09-12",
+      "venue": "Essay, We Must Pace the Frontier",
+      "url": "https://darioamodei.com/post/we-must-pace-the-frontier",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "However, now the risks are clearly here. It is time to go beyond transparency to more serious and binding regulation of AI.",
+      "date": "2026-06",
+      "venue": "Essay, Policy on the AI Exponential",
+      "url": "https://darioamodei.com/post/policy-on-the-ai-exponential",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "I believe deeply in our ability to prevail, in humanity’s spirit and its nobility, but we must face the situation squarely and without illusions.",
+      "date": "2026-01",
+      "venue": "Essay, The Adolescence of Technology",
+      "url": "https://darioamodei.com/essay/the-adolescence-of-technology",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "Powerful AI will shape humanity’s destiny, and we deserve to understand our own creations before they radically transform our economy, our lives, and our future.",
+      "date": "2025-04",
+      "venue": "Essay, The Urgency of Interpretability",
+      "url": "https://darioamodei.com/post/the-urgency-of-interpretability",
+      "verified": "2026-10-02"
+    },
+    {
+      "quote": "AI-enabled biology and medicine will allow us to compress the progress that human biologists would have achieved over the next 50-100 years into 5-10 years.",
+      "date": "2024-10",
+      "venue": "Essay, Machines of Loving Grace",
+      "url": "https://darioamodei.com/essay/machines-of-loving-grace",
+      "verified": "2026-10-02"
+    }
+  ]
+}

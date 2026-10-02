@@ -5,15 +5,16 @@ const suite = (await createLocalJourneyStore(
   process.cwd()
 ).latest()) as JourneySuite
 
+// A profile without sourced statements, whose simulated answers start open.
 const journey = suite.journeys.find(
-  (journey) => journey.personaId === 'anti-doomer'
+  (journey) => journey.personaId === 'permissionless-innovation-optimist'
 )!
 
 test('persona page orders results, answers, collapsed debug info, sources and closing CTA', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
-  await page.goto('/users/jensenhuang')
+  await page.goto('/users/amcafee')
   const ctas = page.getByRole('link', {
     name: 'Map your own worldview',
     exact: true
@@ -50,7 +51,7 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
   await expect(assessment.locator('article')).toHaveCount(answers.length)
   await assessmentToggle.click()
   await expect(assessmentToggle).toHaveAttribute('aria-expanded', 'false')
-  await expect(assessment.locator('article')).toHaveCount(0)
+  await expect(assessment.locator('article').first()).toBeHidden()
   const positions = await Promise.all(
     [
       page.locator('[data-slot="worldview-map"]'),

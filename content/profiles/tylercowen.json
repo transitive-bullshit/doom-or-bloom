@@ -1,0 +1,41 @@
+{
+  "slug": "tylercowen",
+  "summary": "Cowen expects large gains from AI, argues that institutions absorb it slowly and asks AI pessimists for testable predictions.",
+  "statements": [
+    {
+      "quote": "There are further AI/Intelligence advances on tap, plus absorbing the advances to date, and exploiting them, takes a long time.",
+      "date": "2026-09-13",
+      "venue": "Blog post, Marginal Revolution",
+      "url": "https://marginalrevolution.com/marginalrevolution/2026/09/a-simple-model-of-ai-aided-economic-growth.html",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "If you have very pessimistic fears or predictions about AI, name the market prices that will support or confirm them.",
+      "date": "2026-09-04",
+      "venue": "Post on X",
+      "url": "https://x.com/tylercowen/status/2095868117649952809",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The key is to create some basic safeguards, but without stifling broader AI progress.",
+      "date": "2026-08-27",
+      "venue": "Marginal Revolution, excerpt of his Free Press column",
+      "url": "https://marginalrevolution.com/marginalrevolution/2026/08/the-least-bad-way-to-regulate-ai.html",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I think the net picture of strong AI is likely to be good rather than bad.",
+      "date": "2026-07-08",
+      "venue": "Talk at Google DeepMind, Human Life in a Post-AGI World",
+      "url": "https://tylercowen.com/human-life-in-a-post-agi-world-talk/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The biggest risk is not from the AI companies, but rather that the government with the most powerful AI systems becomes the bad guy itself.",
+      "date": "2026-03-17",
+      "venue": "Marginal Revolution, excerpt of his Free Press column",
+      "url": "https://marginalrevolution.com/marginalrevolution/2026/03/the-ai-arms-race.html",
+      "verified": "2026-10-03"
+    }
+  ]
+}

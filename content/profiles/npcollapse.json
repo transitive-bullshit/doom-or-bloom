@@ -1,0 +1,41 @@
+{
+  "slug": "npcollapse",
+  "summary": "Leahy warns that superintelligence would take control from humanity and calls for laws and a verified international ban, not a halt to useful AI.",
+  "statements": [
+    {
+      "quote": "Superintelligent AI is neither a tool nor a weapon. It is an adversary.",
+      "date": "2026-09-04",
+      "venue": "Post on X",
+      "url": "https://x.com/NPCollapse/status/2095891728783778225",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We should criminalize the creation of superintelligence, and then we should push towards an international trust-but-verify regime",
+      "date": "2026-07-08",
+      "venue": "Modern CTO podcast",
+      "url": "https://moderncto.io/connor-leahy-controlai/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Many of today’s models have valuable applications, including for defense purposes, but superintelligent AI is in a category of its own.",
+      "date": "2026-07-01",
+      "venue": "ControlAI blog, America’s Security Depends on Stopping Superintelligence",
+      "url": "https://controlai.org/blog/americas-security-depends-on-stopping-superintelligence",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We still have time to prevent superintelligence, but the clock is ticking.",
+      "date": "2026-07-01",
+      "venue": "ControlAI blog, America’s Security Depends on Stopping Superintelligence",
+      "url": "https://controlai.org/blog/americas-security-depends-on-stopping-superintelligence",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "If a superintelligence is built, humanity will lose control over its future.",
+      "date": "2026-04-15",
+      "venue": "Testimony, Canadian Senate transport and communications committee",
+      "url": "https://sencanada.ca/en/content/sen/committee/451/trcm/28ev-57613-e",
+      "verified": "2026-10-03"
+    }
+  ]
+}

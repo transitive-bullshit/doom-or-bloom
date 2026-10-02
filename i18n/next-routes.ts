@@ -23,6 +23,8 @@ const unlocalizedSegments = [
 // Route handlers outside app/[locale] that share a page's URL prefix.
 const unlocalizedRoutes = [
   'users/[^/]+/opengraph-image',
+  'blog/[^/]+/opengraph-image',
+  'blog/rss\\.xml',
   'public/assessments/[^/]+/data',
   'public/assessments/[^/]+/social-image\\.png'
 ]

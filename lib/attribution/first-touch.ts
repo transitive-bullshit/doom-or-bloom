@@ -15,6 +15,8 @@ const landings = [
   'share_link',
   'assessment',
   'about',
+  'pdoom',
+  'blog',
   'other'
 ] as const
 
@@ -70,6 +72,8 @@ function landingKind(pathname: string): FirstTouch['landing'] {
   if (pathname === '/assessment' || pathname.startsWith('/assessments'))
     return 'assessment'
   if (pathname === '/about') return 'about'
+  if (pathname === '/p-doom') return 'pdoom'
+  if (pathname === '/blog' || pathname.startsWith('/blog/')) return 'blog'
   return 'other'
 }
 

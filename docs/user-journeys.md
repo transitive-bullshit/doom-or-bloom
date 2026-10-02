@@ -33,6 +33,17 @@ Each simulated user has a one-line description under their name in the profile h
 
 `pnpm test:content` checks the mechanical parts: length, punctuation, and no percentages, P(doom) or outcome words outside a verified quote. Fairness still needs a read against the brief. The brief's own `description` is backstage context for the simulated participant, never shown publicly. The [October 2 rewrite](research/neutral-one-liners-2026-10-02.md) applied this rule to all 169 people.
 
+### Public statements
+
+Profiles of people with search demand can show “What <Name> has said about AI”, below the map, the compare prompt and Similar worldviews. It is the real person's public record beside our simulation of them, so it follows the one-liner's fairness bar and adds stricter sourcing.
+
+- Three to five quotes, newest first, each with its date, venue and link. Aim for 25 words or fewer; `pnpm test:content` rejects more than 30.
+- Exact words only, checked against a primary source you fetched: their own writing, an official transcript, or an outlet's direct quote from its own interview. Attribute only their turns in a transcript, never an interviewer's. Trim only at sentence or clause boundaries and never join separate passages. Curly quotes and apostrophes may replace straight ones. Record the check in `verified`.
+- Choose quotes that are fair to their overall view at the weight their sources give it: benefits and risks, and what they think should be done. Show a change of view only where the sources show it, ideally in their own words. Prefer sources in their brief.
+- Never quote simulated answers. A stated P(doom) belongs on the P(doom) card, not here.
+- Open with one neutral sentence under [the one-liner rule](#simulated-user-one-liners); it can mention a documented change of view.
+- Store each person in `content/profiles/<slug>.json` and register it in `lib/personas/public-statements.ts`. Quotes and summaries are English, like briefs; only the heading and note are translated.
+
 ## Live models and boundaries
 
 The default participant is **GPT-5.6 Sol** (`gpt-5.6-sol`), with live Jev through the normal engine. The participant receives character context, actual questions, conversation history and recovery guidance. It never sees desired scores, judgment targets, readiness, candidate rankings or the assessment rubric. Jev receives the actual answers and ordinary engine state, not persona identity or source packets.

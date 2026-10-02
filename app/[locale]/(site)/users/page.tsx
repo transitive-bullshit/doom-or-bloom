@@ -1,9 +1,15 @@
+import { getLocale, getTranslations } from 'next-intl/server'
 import followerSnapshot from '@/lib/personas/x-followers.json'
 import { publicPageMetadata } from '@/lib/metadata'
+import { usersJsonLd } from '@/lib/seo/json-ld'
 import { loadExamples } from '@/components/landing/data'
-import { directoryPdoom } from '@/components/landing/directory-sort'
+import {
+  compareUsers,
+  directoryPdoom
+} from '@/components/landing/directory-sort'
 import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
+import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import '@/components/landing/landing.css'
 
 export const dynamic = 'error'
@@ -13,7 +19,12 @@ export function generateMetadata() {
 }
 
 export default async function Page() {
-  const examples = (await loadExamples(false)).map(
+  const [locale, pages, people] = await Promise.all([
+    getLocale(),
+    getTranslations('Pages'),
+    loadExamples(false)
+  ])
+  const examples = people.map(
     ({ result, id, slug, name, shortName, avatar, xUrl }) => ({
       id,
       slug,
@@ -42,10 +53,22 @@ export default async function Page() {
     })
   )
   return (
-    <PageTransition>
-      <div className='map-lab-stage'>
-        <Prism examples={examples} directory />
-      </div>
-    </PageTransition>
+    <>
+      <BreadcrumbJsonLd path='/users' />
+      <JsonLd
+        data={usersJsonLd({
+          locale,
+          name: pages('users.title'),
+          description: pages('users.description'),
+          // The directory's default order.
+          people: examples.toSorted((a, b) => compareUsers(a, b, 'name', 'asc'))
+        })}
+      />
+      <PageTransition>
+        <div className='map-lab-stage'>
+          <Prism examples={examples} directory />
+        </div>
+      </PageTransition>
+    </>
   )
 }

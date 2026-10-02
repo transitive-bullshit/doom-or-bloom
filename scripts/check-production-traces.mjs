@@ -59,10 +59,13 @@ assert.equal(
   null,
   'New post-build profiles must remain reachable from the revalidated directory'
 )
+const localeCodes = ['en', 'es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id']
 for (const route of [
-  ...['en', 'es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id'].flatMap(
-    (code) => [`/${code}`, `/${code}/users`]
-  ),
+  ...localeCodes.flatMap((code) => [
+    `/${code}`,
+    `/${code}/users`,
+    `/${code}/p-doom`
+  ]),
   '/sitemap.xml',
   '/llms.txt',
   ...profilePaths,
@@ -98,6 +101,28 @@ for (const route of publicImagePaths) {
     `${route}: must be pregenerated as a 1200 × 630 PNG`
   )
 }
+// Blog posts change only with a deployment: the index and every post render
+// at build in every locale, and the feed and post cards render once.
+const posts = (await readdir('content/blog')).filter((file) =>
+  file.endsWith('.mdx')
+)
+assert(posts.length > 0, 'Build must contain the blog posts')
+for (const route of [
+  ...localeCodes.flatMap((code) => [
+    `/${code}/blog`,
+    ...posts.map((file) => `/${code}/blog/${file.slice(0, -'.mdx'.length)}`)
+  ]),
+  '/blog/rss.xml',
+  ...posts.map(
+    (file) => `/blog/${file.slice(0, -'.mdx'.length)}/opengraph-image`
+  )
+])
+  assert(manifest.routes[route], `${route}: must be pregenerated`)
+assert.equal(
+  manifest.dynamicRoutes['/[locale]/blog/[slug]'].fallback,
+  false,
+  'Unknown blog slugs must 404 without rendering'
+)
 console.log(
   `Verified ${profilePaths.size} pregenerated simulated profiles with server-rendered results and answers, and ${publicAssessmentPaths.length} cached public assessments with PNG social images`
 )
@@ -167,6 +192,20 @@ for (const page of [
     assert(
       bundled.has(path.resolve(file)),
       `${page}: authored content ${file} is missing from the bundle`
+    )
+}
+// The sitemap and llms.txt regenerate at runtime and list blog posts from
+// their frontmatter, so they bundle the post files.
+for (const route of ['sitemap.xml', 'llms.txt']) {
+  const trace = path.join(output, `server/app/${route}/route.js.nft.json`)
+  const { files } = JSON.parse(await readFile(trace, 'utf8'))
+  const bundled = new Set(
+    files.map((file) => path.resolve(path.dirname(trace), file))
+  )
+  for (const file of posts)
+    assert(
+      bundled.has(path.resolve('content/blog', file)),
+      `${route}: blog post ${file} is missing from the bundle`
     )
 }
 // Takumi never reads system fonts: card routes bundle the Noto subsets.

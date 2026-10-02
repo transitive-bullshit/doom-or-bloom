@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "Map your AI worldview, and compare it with others. Explore how public figures think AI will change our future, then discover where you land."
+      "title": "How will AI change our future? Take the 3-minute quiz",
+      "description": "Free 3-minute quiz on the future of AI. See if you lean doom or bloom, get a rough P(doom), and compare your views with Hinton, LeCun, Altman and more."
     },
     "about": {
       "title": "About",
@@ -16,8 +16,16 @@
       "description": "How Doom or Bloom stores assessments, protects private answers, handles optional accounts, and publishes results publicly."
     },
     "users": {
-      "title": "Simulated users",
-      "description": "Explore and search source-grounded simulated AI worldviews, including users beyond the featured map."
+      "title": "Where thought leaders stand on AI safety and risk",
+      "description": "Search and compare simulated AI worldviews of public figures, from Hinton and Bengio to LeCun and Andreessen, with publicly stated P(doom) where given."
+    },
+    "pdoom": {
+      "title": "What is P(doom)? Estimates from Hinton, Musk, LeCun and more",
+      "description": "P(doom) is the chance someone gives that AI ends in catastrophe for humanity. See what Hinton, Musk, Amodei, LeCun and others have said, with sources."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Plain-language writing from Doom or Bloom on P(doom), AI risk, and how people think about the future of AI."
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "About",
     "privacy": "Privacy",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "language": "Language"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "About",
     "privacy": "Privacy",
     "users": "Simulated users",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "assessments": "My assessments",
     "newAssessment": "New assessment",
     "assessment": "Assessment",
@@ -430,42 +442,6 @@
     "linkFailed": "Couldn’t create your share link. Please try again.",
     "shareAgain": "Your link is ready. Tap Share again."
   },
-  "Compare": {
-    "title": "You vs {name}",
-    "view": "Results view",
-    "justYou": "Just you",
-    "friend": "your friend",
-    "friendLabel": "A friend",
-    "bucket": {
-      "very_aligned": "Very aligned",
-      "mostly_aligned": "Mostly aligned",
-      "some_distance": "Some distance",
-      "worlds_apart": "Worlds apart"
-    },
-    "bucketUnknown": "Too early to say",
-    "outlook": {
-      "same": "Your outlooks are close",
-      "more_hopeful": "You’re more hopeful than {name}",
-      "more_worried": "You’re more worried than {name}"
-    },
-    "change": {
-      "same": "You expect about the same scale of change",
-      "more": "You expect more change than {name}",
-      "less": "You expect less change than {name}"
-    },
-    "unplaced": "One of you isn’t fully on the map yet, so some differences are still open",
-    "pdoom": "P(doom)",
-    "you": "You",
-    "pdoomMissing": "Not estimated",
-    "sharedClosest": "You both land near {closest}",
-    "simulated": "{name}’s point is simulated from public sources, not their own answers",
-    "private": "Compared in your browser. Neither of you sees the other’s answers",
-    "send": "Send them your result",
-    "sendText": "I mapped my AI worldview too. Here’s where I land",
-    "sendCopied": "Link copied. Send it back to them.",
-    "viewPersona": "See {name}’s result",
-    "gone": "This comparison link was turned off, so there’s nothing to compare"
-  },
   "Conversation": {
     "tension": "About AI, you said “{first}” and “{second}” — how do these fit together?",
     "clarification": "Our read of {topic} was: “{claim}” What would you change about that interpretation?",
@@ -689,17 +665,14 @@
     "estimate": "Estimate",
     "simulatedView": "Simulated view",
     "yourView": "Your view",
-    "theirView": "Their view",
     "marker": "{name}: {claim}",
     "markerFallback": "Simulated worldview position",
-    "otherMarker": "{name}’s position",
     "unplacedTitle": "Some dimensions are still unplaced",
     "unplacedNote": "Open regions show what we don’t yet know.",
     "unplacedCaption": "Some dimensions are still unplaced. Open regions show what we don’t yet know.",
     "centerUnresolved": "Center of unresolved range",
     "simulatedPosition": "Simulated position",
     "estimatedPosition": "Your estimated position",
-    "sharedPosition": "Their estimated position",
     "notDetermined": "Position not yet determined",
     "range": "Interpretation range",
     "axes": "{subject, select, self {Across: your expressed Doom–Bloom outlook.} his {Across: his expressed Doom–Bloom outlook.} her {Across: her expressed Doom–Bloom outlook.} other {Across: their expressed Doom–Bloom outlook.}} Up: {axis, select, influence {human influence} other {scale of transformation}}.",
@@ -715,7 +688,10 @@
     "copied": "Map copied as PNG.",
     "downloaded": "Map downloaded as PNG.",
     "copyFailed": "Couldn’t copy the image. Try downloading it instead.",
-    "downloadFailed": "Couldn’t download the image. Please try again."
+    "downloadFailed": "Couldn’t download the image. Please try again.",
+    "theirView": "Their view",
+    "otherMarker": "{name}’s position",
+    "sharedPosition": "Their estimated position"
   },
   "Feedback": {
     "aspects": {
@@ -755,12 +731,50 @@
     "sourcesTitle": "Sources",
     "sourcesUpdated": "Sources for this simulated user’s current brief.",
     "sourcesDefault": "Articles, interviews, and writings used to ground this simulated user.",
-    "profile": "Profile"
+    "profile": "Profile",
+    "similarTitle": "Similar worldviews",
+    "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s",
+    "statementsTitle": "What {name} has said about AI",
+    "statementsNote": "Word for word from the linked sources, checked {date}"
   },
   "Profiles": {
-    "userTitle": "{name}’s AI worldview",
-    "userDescription": "Explore {name}’s simulated AI worldview, map placement, and source-grounded answers. An experimental interpretation, not their own assessment.",
+    "userTitle": "{name} on AI",
+    "userTitleTopics": "{name} on {topics}",
+    "userTitleMap": {
+      "concern": "{name} on AI safety and risk",
+      "middle": "{name} on AI’s risks and benefits",
+      "bloom": "{name} on AI’s future and opportunities"
+    },
+    "titleTopic": {
+      "ai": "AI",
+      "safety": "AI safety",
+      "risk": "AI risk",
+      "regulation": "AI regulation",
+      "policy": "AI policy",
+      "ethics": "AI ethics",
+      "consciousness": "AI consciousness",
+      "bubble": "the AI bubble",
+      "jobs": "jobs",
+      "education": "education",
+      "healthcare": "healthcare",
+      "opensource": "open source",
+      "agi": "AGI",
+      "superintelligence": "superintelligence",
+      "future": "the future of AI",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "safety",
+      "risk": "risk",
+      "regulation": "regulation",
+      "policy": "policy",
+      "ethics": "ethics",
+      "consciousness": "consciousness",
+      "future": "the future"
+    },
+    "userDescription": "What does {name} think about AI? See where their simulated worldview lands between doom and bloom, with a rough P(doom) and the answers behind it.",
     "userImageAlt": "{name}’s simulated AI worldview on the Doom–Bloom and scale of transformation map",
+    "personDescription": "A simulation of {name}’s AI worldview, built from their public writing. It is an experimental interpretation, not their own assessment or an endorsement.",
     "publicTitle": "{name}’s AI worldview",
     "sharedTitle": "A shared AI worldview",
     "publicDescription": "Explore this AI worldview: expectations, risks, closest perspectives, and the answers behind the assessment.",
@@ -768,24 +782,41 @@
     "asOf": "A map of their AI worldview as of {date}.",
     "profile": "Profile"
   },
-  "Snapshot": {
-    "title": "{name} mapped their AI worldview",
-    "titleAnonymous": "A friend mapped their AI worldview",
-    "metaTitleNamed": "{name}’s AI worldview",
-    "metaTitle": "Where do you land on AI?",
-    "description": "See this AI worldview on the Doom–Bloom map, then map your own in about 3 minutes and compare.",
-    "imageAlt": "An AI worldview on the Doom–Bloom and scale of transformation map, with P(doom) and closest thought leaders",
-    "sharedOn": "Shared {date}",
-    "pdoom": "P(doom)",
-    "pdoomStated": "Their own number",
-    "pdoomInferred": "Read from their answers",
-    "pdoomMissing": "Not estimated",
-    "closest": "Closest thought leaders",
-    "closestNone": "Not enough to match yet",
-    "ctaTitle": "Where do you land?",
-    "ctaDescription": "Map your own AI worldview in about 3 minutes, then see both on one map",
-    "ctaButton": "Compare now",
-    "privacy": "This page shows only their card, never their answers. Mapping yours is free, and your answers stay private unless you share them"
+  "PdoomHub": {
+    "tableTitle": "P(doom) by thought leader",
+    "name": "Thought leader",
+    "stated": "Publicly stated P(doom)",
+    "declined": "No number",
+    "showAllSources": "Show all {count} sources",
+    "fewerSources": "Show fewer sources",
+    "cite": "Source {number}",
+    "asOf": "As of {date}",
+    "note": "Each number comes from the person’s own words, linked to where they said it. People define the outcome and time frame differently, so the numbers are not directly comparable.",
+    "allUsers": "See all {count} simulated thought leaders",
+    "allUsersDescription": "Search and sort everyone on the map, including by a rough P(doom) inferred from each simulation",
+    "scenariosTitle": "How it could happen",
+    "proponents": "Who argues it",
+    "disagreement": "Where experts disagree",
+    "sourcesTitle": "Sources",
+    "readingTitle": "Further reading",
+    "readingGroups": {
+      "start": "Start here",
+      "core": "The core argument",
+      "forecasts": "Forecasts and surveys",
+      "critiques": "Critiques"
+    },
+    "ctaTitle": "What’s your P(doom)?",
+    "ctaDescription": "Answer a few questions in about 3 minutes, then see your worldview and a rough P(doom) beside theirs",
+    "guide": "Read the guide to what P(doom) means"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Plain-language notes on P(doom), AI worldviews, and how people think about the future of AI",
+    "readingTime": "{minutes, plural, one {# min read} other {# min read}}",
+    "updated": "Updated {date}",
+    "by": "By {author}",
+    "englishOnly": "Posts are written in English",
+    "rss": "RSS feed"
   },
   "Cards": {
     "civilizational": "Civilizational change",
@@ -868,10 +899,65 @@
     "measurement2": "A random per-assessment identifier links events across resumed visits and changes for each new assessment or fork. This is pseudonymous linkage, not mathematical anonymity. Enabling PostHog requires its project-level IP-data disposal setting. Analytics credentials alone do not enable collection.",
     "publishingTitle": "Publishing and deleting",
     "publishing1": "Publishing makes your full submitted conversation and inferred results available to anyone and allows search engines to index the public page. If you publish while signed in, your profile name, photo, and profile link are included. Anonymous publications stay anonymous unless you make them private and publish again while signed in. Operational failure records remain private. Making an assessment private or deleting it removes access to its page and data. Cached social images can remain available for up to eight days, and external sites may retain previews longer. Continuing a published assessment creates a separate private copy; changing or deleting the original does not change that copy.",
-    "shareLinks": "A share link shows only your card: your map point and range, your P(doom) and your closest thought leaders, plus a first name if you add one. So that others can compare, it also carries the eight worldview scores behind your map point, as numbers. It never shows your answers or your demonstrated reasoning, and it is not indexed by search engines. Anyone with the link can see the card until you choose Stop sharing link on your result or delete the assessment; previews that other sites already fetched may remain. When someone compares their result with your link, the comparison happens in their browser: neither of you sees the other’s answers, and we don’t record which results were compared.",
     "publishing2": "Source cards may embed public X posts. Post text is fetched through this app’s server; embedded profile images, photos, and videos load from X’s media servers. Your assessment answers are not sent to X.",
     "publishing3": "Results images are generated on this app’s server from your assessment results. They contain no raw answers. Private downloads are not publicly hosted; publishing also makes a social preview available. Full reports contain your answers, evidence, and any available local diagnostics, so review them before sharing.",
     "publishing4": "Anonymous progress is tied to your browser session. Optional X sign-in, where available, lets you recover linked assessments in another browser. Clearing or expiring cookies loses anonymous access but does not delete the server records. Unsubmitted drafts do not sync across devices. Concurrent submissions are checked against the saved revision to prevent silent overwrites.",
-    "cookie": "A first-party cookie remembers how your browser first found this site: the link tag you arrived with (such as a newsletter or post), the referring website’s domain, and the kind of page you landed on. It holds no answers and no full addresses. It is saved with your anonymous or X account and sent with anonymous analytics events so we can tell which places bring people here."
+    "cookie": "A first-party cookie remembers how your browser first found this site: the link tag you arrived with (such as a newsletter or post), the referring website’s domain, and the kind of page you landed on. It holds no answers and no full addresses. It is saved with your anonymous or X account and sent with anonymous analytics events so we can tell which places bring people here.",
+    "shareLinks": "A share link shows only your card: your map point and range, your P(doom) and your closest thought leaders, plus a first name if you add one. So that others can compare, it also carries the eight worldview scores behind your map point, as numbers. It never shows your answers or your demonstrated reasoning, and it is not indexed by search engines. Anyone with the link can see the card until you choose Stop sharing link on your result or delete the assessment; previews that other sites already fetched may remain. When someone compares their result with your link, the comparison happens in their browser: neither of you sees the other’s answers, and we don’t record which results were compared."
+  },
+  "Compare": {
+    "title": "You vs {name}",
+    "view": "Results view",
+    "justYou": "Just you",
+    "friend": "your friend",
+    "friendLabel": "A friend",
+    "bucket": {
+      "very_aligned": "Very aligned",
+      "mostly_aligned": "Mostly aligned",
+      "some_distance": "Some distance",
+      "worlds_apart": "Worlds apart"
+    },
+    "bucketUnknown": "Too early to say",
+    "outlook": {
+      "same": "Your outlooks are close",
+      "more_hopeful": "You’re more hopeful than {name}",
+      "more_worried": "You’re more worried than {name}"
+    },
+    "change": {
+      "same": "You expect about the same scale of change",
+      "more": "You expect more change than {name}",
+      "less": "You expect less change than {name}"
+    },
+    "unplaced": "One of you isn’t fully on the map yet, so some differences are still open",
+    "pdoom": "P(doom)",
+    "you": "You",
+    "pdoomMissing": "Not estimated",
+    "sharedClosest": "You both land near {closest}",
+    "simulated": "{name}’s point is simulated from public sources, not their own answers",
+    "private": "Compared in your browser. Neither of you sees the other’s answers",
+    "send": "Send them your result",
+    "sendText": "I mapped my AI worldview too. Here’s where I land",
+    "sendCopied": "Link copied. Send it back to them.",
+    "viewPersona": "See {name}’s result",
+    "gone": "This comparison link was turned off, so there’s nothing to compare"
+  },
+  "Snapshot": {
+    "title": "{name} mapped their AI worldview",
+    "titleAnonymous": "A friend mapped their AI worldview",
+    "metaTitleNamed": "{name}’s AI worldview",
+    "metaTitle": "Where do you land on AI?",
+    "description": "See this AI worldview on the Doom–Bloom map, then map your own in about 3 minutes and compare.",
+    "imageAlt": "An AI worldview on the Doom–Bloom and scale of transformation map, with P(doom) and closest thought leaders",
+    "sharedOn": "Shared {date}",
+    "pdoom": "P(doom)",
+    "pdoomStated": "Their own number",
+    "pdoomInferred": "Read from their answers",
+    "pdoomMissing": "Not estimated",
+    "closest": "Closest thought leaders",
+    "closestNone": "Not enough to match yet",
+    "ctaTitle": "Where do you land?",
+    "ctaDescription": "Map your own AI worldview in about 3 minutes, then see both on one map",
+    "ctaButton": "Compare now",
+    "privacy": "This page shows only their card, never their answers. Mapping yours is free, and your answers stay private unless you share them"
   }
 }

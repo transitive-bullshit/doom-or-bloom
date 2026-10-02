@@ -38,7 +38,12 @@ export type Example = {
   profileUrl?: string
   profileLabel?: string
   sourceBriefUpdated?: boolean
-  sources?: Array<{ title: string; url: string; summary?: string }>
+  sources?: Array<{
+    title: string
+    url: string
+    summary?: string
+    publishedAt?: string
+  }>
 }
 export type VariantProps = { examples: Example[]; variant?: number }
 export type MapExample = Pick<

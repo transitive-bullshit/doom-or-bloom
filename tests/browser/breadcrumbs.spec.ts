@@ -9,6 +9,10 @@ test('shared breadcrumbs precede page content and navigate back to the library',
     ['/users', 'Simulated users'],
     ['/assessments', 'My assessments'],
     ['/users/jensenhuang', '@jensenhuang'],
+    ['/p-doom', 'P(doom)'],
+    ['/blog', 'Blog'],
+    // A post's trail ends in its title, which only its page knows.
+    ['/blog/what-is-p-doom', 'What is P(doom)?'],
     ['/questions', 'Questions'],
     ['/corpus', 'Corpus'],
     ['/user-journeys', 'User Journeys']

@@ -1,4 +1,8 @@
 import { EventEmitter } from 'node:events'
+import {
+  getDefaultAutoSelectFamilyAttemptTimeout,
+  setDefaultAutoSelectFamilyAttemptTimeout
+} from 'node:net'
 import { afterEach, expect, test, vi } from 'vitest'
 import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { getPool } from './index'
@@ -39,4 +43,16 @@ test('one pool listener reports idle-client errors without connection secrets', 
     error: { code: 'ECONNRESET' }
   })
   expect(logs[0]).not.toContain('private-credentials')
+})
+
+test('a busy event loop cannot exhaust the per-address connection attempts', () => {
+  const previous = getDefaultAutoSelectFamilyAttemptTimeout()
+  try {
+    // Node 24's default, which failed a production build's prerender.
+    setDefaultAutoSelectFamilyAttemptTimeout(250)
+    getPool()
+    expect(getDefaultAutoSelectFamilyAttemptTimeout()).toBe(2_000)
+  } finally {
+    setDefaultAutoSelectFamilyAttemptTimeout(previous)
+  }
 })

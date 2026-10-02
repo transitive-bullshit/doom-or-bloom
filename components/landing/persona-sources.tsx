@@ -17,7 +17,7 @@ export function PersonaSources({
     <section
       id='sources'
       aria-label={t('sourcesTitle')}
-      className='mt-10 flex flex-col gap-4'
+      className='mt-16 flex flex-col gap-4'
     >
       <div>
         <h2>{t('sourcesTitle')}</h2>

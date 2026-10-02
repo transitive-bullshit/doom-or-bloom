@@ -1,0 +1,34 @@
+{
+  "slug": "plinz",
+  "summary": "Bach argues that AI can extend human competence, favors open and decentralized AI and wants AI that shares purposes with people.",
+  "statements": [
+    {
+      "quote": "AI tools can reintroduce both rigor and the ability to integrate and boil down oceans of literature",
+      "date": "2026-09-24",
+      "venue": "Post on X",
+      "url": "https://x.com/Plinz/status/2103216011575234987",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The reason why academics, individuals and small startups can play with AI are open weights models.",
+      "date": "2026-09-18",
+      "venue": "Post on X",
+      "url": "https://x.com/Plinz/status/2100750969671995413",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "On the ground, I think AI is a lot safer and more equitable than I thought it would be.",
+      "date": "2026-06-08",
+      "venue": "Info-Tech Research Group, Digital Disruption podcast",
+      "url": "https://www.infotech.com/digital-disruption/joscha-bach-agi-consciousness-and-the-evolution-of-intelligence",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We will have to build AI systems that can extend our wisdom, agents that find shared purposes with us.",
+      "date": "2026-03-27",
+      "venue": "Substack essay, The age of AGE: Artificial General Experience",
+      "url": "https://joscha.substack.com/p/the-age-of-age",
+      "verified": "2026-10-03"
+    }
+  ]
+}

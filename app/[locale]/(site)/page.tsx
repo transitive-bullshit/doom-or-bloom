@@ -1,4 +1,7 @@
+import { getLocale, getTranslations } from 'next-intl/server'
 import { publicPageMetadata } from '@/lib/metadata'
+import { homeJsonLd } from '@/lib/seo/json-ld'
+import { JsonLd } from '@/components/json-ld'
 import { loadExamples } from '@/components/landing/data'
 import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
@@ -12,6 +15,7 @@ export function generateMetadata() {
 }
 
 export default async function Page() {
+  const [locale, t] = await Promise.all([getLocale(), getTranslations()])
   const examples = (await loadExamples()).map(
     ({ result, id, slug, name, shortName, avatar }) => ({
       id,
@@ -24,10 +28,19 @@ export default async function Page() {
     })
   )
   return (
-    <PageTransition>
-      <div className='map-lab-stage'>
-        <Prism examples={examples} />
-      </div>
-    </PageTransition>
+    <>
+      <JsonLd
+        data={homeJsonLd({
+          locale,
+          siteDescription: t('Metadata.siteDescription'),
+          appDescription: t('Pages.home.description')
+        })}
+      />
+      <PageTransition>
+        <div className='map-lab-stage'>
+          <Prism examples={examples} />
+        </div>
+      </PageTransition>
+    </>
   )
 }

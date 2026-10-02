@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import { publicPageMetadata } from '@/lib/metadata'
 import { serverEnv } from '@/lib/server/env'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
+import { BreadcrumbJsonLd } from '@/components/json-ld'
 export function generateMetadata() {
   return publicPageMetadata('privacy')
 }
@@ -11,6 +12,8 @@ export default async function Privacy() {
   const t = await getTranslations('Privacy')
   return (
     <article className='content-column flex flex-col gap-5 py-14 text-base leading-relaxed [&>h2]:mt-6 [&>h2]:-mb-2'>
+      {/* Hidden, so it adds no gap or margin. */}
+      <BreadcrumbJsonLd path='/privacy' />
       <h1>{t('title')}</h1>
       <p>{t('intro')}</p>
       <p>{t('storage')}</p>

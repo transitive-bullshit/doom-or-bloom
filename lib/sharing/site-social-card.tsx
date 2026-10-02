@@ -29,7 +29,8 @@ export type SiteSocialPoint = {
   portrait?: string
 }
 
-const colors = {
+/** The site card's palette, shared by the blog's post cards. */
+export const siteCardColors = {
   surface: '#fbfaf6',
   panel: '#f2f0e9',
   text: '#1d1c18',
@@ -37,6 +38,7 @@ const colors = {
   axis: 'rgb(29 28 24 / 0.16)',
   dot: 'rgb(29 28 24 / 0.2)'
 }
+const colors = siteCardColors
 // The coordinate area; the panel extends past it so edge portraits stay inside.
 const chart = { left: 622, top: 88, width: 512, height: 454 }
 const panelPadding = 46
@@ -94,7 +96,7 @@ export function siteSocialLayout(points: readonly SiteSocialPoint[]) {
   }
 }
 
-function BrandMark() {
+export function BrandMark() {
   return (
     <svg width={20} height={20} viewBox='0 0 48 48'>
       <circle cx='24' cy='24' r='24' fill='#ff786a' />

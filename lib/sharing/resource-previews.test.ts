@@ -19,7 +19,8 @@ test('resource icons are valid local WebPs, including Marginal Revolution', asyn
     expect((await image.metadata()).format).toBe('webp')
     await image.raw().toBuffer()
   }
-})
+  // Decodes every icon (hundreds and growing), so allow more than the default.
+}, 30_000)
 
 test('every authored non-tweet source has local bookmark artwork and a description', async () => {
   const catalog = previews as Record<

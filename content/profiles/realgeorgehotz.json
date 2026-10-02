@@ -1,0 +1,41 @@
+{
+  "slug": "realgeorgehotz",
+  "summary": "Hotz is enthusiastic about practical AI, doubts runaway superintelligence and argues that ordinary people should own AI, not rely on a few companies.",
+  "statements": [
+    {
+      "quote": "I love the progress. I’m so excited for the new LLMs, self driving cars, video generation models, and coding agents.",
+      "date": "2026-07-12",
+      "venue": "Blog post, I love LLMs, I hate hype",
+      "url": "https://geohot.github.io/blog/jekyll/update/2026/07/12/i-love-llms.html",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Intelligence is not the end all be all, it’s just the current bottleneck for a few things. You cannot take over the world with tokens.",
+      "date": "2026-07-11",
+      "venue": "Blog post, AI 2040 and the Cult of Intelligence",
+      "url": "https://geohot.github.io/blog/jekyll/update/2026/07/11/ai-2040.html",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "AI will be cheap, everywhere, collapse a bunch of sectors of work, wreck wage premiums, and cause a big reevaluation of status hierarchies.",
+      "date": "2026-06-11",
+      "venue": "Blog post, AI will be massively deflationary",
+      "url": "https://geohot.github.io/blog/jekyll/update/2026/06/11/ai-will-be-deflationary.html",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I’m not sure it’s possible, but if there is a bad scenario with AI, it’s a singleton with nothing that can substantially impact reality outside of it.",
+      "date": "2026-05-23",
+      "venue": "Blog post, There is only one bad AI scenario",
+      "url": "https://geohot.github.io/blog/jekyll/update/2026/05/23/one-bad-scenario.html",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The good world is where everyone has AI, and not as a revokable privilege through an API, but through hard possession.",
+      "date": "2026-04-23",
+      "venue": "Blog post, Do you really want the US to “win” AI?",
+      "url": "https://geohot.github.io/blog/jekyll/update/2026/04/23/us-win-ai.html",
+      "verified": "2026-10-03"
+    }
+  ]
+}
