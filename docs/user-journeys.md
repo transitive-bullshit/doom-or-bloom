@@ -279,3 +279,11 @@ The next eight briefs in `lib/journeys/frontier-public-personas.ts` prioritize r
 Lambert’s four primary essays include his September 19 RSI post, September 9 adoption essay, August 9 safety analysis and September 21 open-model briefing. Distinguish his forecasts from the views he quotes; his skepticism about runaway self-improvement does not imply insignificant AI benefits.
 
 The [existing-proxy source packet](research/persona-grounding-existing-2026-09-20.md) and [new-proxy source packet](research/persona-grounding-new-2026-09-20.md) record dates, sources and retrieval limitations. Some statements were retrieved through linked mirrors; distinguish verified words from editorial persona synthesis.
+
+## Acemoglu sources and Zitron fidelity — October 2, 2026
+
+The [source refresh and placement investigation](research/acemoglu-zitron-refresh-2026-10-02.md) adds seven recent Acemoglu posts and records his regenerated local journey. It traces Zitron’s upward move to a newly generated answer to the direct scale question, preserves source metadata missing from this checkout, and documents remaining simulation sensitivity. These are local selected runs; production was inspected read-only. No shared scoring rule changed.
+
+## Nick Bostrom — October 3, 2026
+
+Added the `superintelligence-philosopher` brief and `/users/nick-bostrom` presentation metadata. The [source review](research/nick-bostrom-persona-2026-10-03.md) distinguishes historical control arguments, conditional beneficial futures and the 2026 timing paper’s existing-person scope. The requested October 1 NYT interview is retained with an explicit transcript-access gap, not used for unverified beliefs. The expanded brief now has 18 source links; the [additional paper review](research/nick-bostrom-expanded-sources-2026-10-03.md) records reading scopes. A bounded local run generated four accepted answers and a selected result, verified at `/user-journeys` and `/users/nick-bostrom`. See the [run record](research/nick-bostrom-persona-2026-10-03.md#expanded-brief-and-live-run) for provenance and limits. The subsequent user-requested production import preserved the complete selected payload; the [production verification](research/nick-bostrom-persona-2026-10-03.md#production-publication) records its identity and live checks.
