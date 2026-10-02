@@ -1,6 +1,10 @@
 import { reportServerError } from '../server/error-reporting'
 import 'server-only'
 
+import {
+  getDefaultAutoSelectFamilyAttemptTimeout,
+  setDefaultAutoSelectFamilyAttemptTimeout
+} from 'node:net'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 
@@ -10,8 +14,19 @@ const globalDatabase = globalThis as typeof globalThis & {
   assessmentPool?: Pool
 }
 
+// Neon resolves to three IPv4 and three IPv6 addresses. Node 24 abandons each
+// attempt after 250ms, so a busy event loop (build prerendering) can drop every
+// IPv4 handshake on hosts without IPv6 and fail with AggregateError ETIMEDOUT.
+// connectionTimeoutMillis still bounds the whole connect.
+const connectionAttemptTimeoutMs = 2_000
+
 export function getPool() {
   if (!globalDatabase.assessmentPool) {
+    if (
+      getDefaultAutoSelectFamilyAttemptTimeout() < connectionAttemptTimeoutMs
+    ) {
+      setDefaultAutoSelectFamilyAttemptTimeout(connectionAttemptTimeoutMs)
+    }
     const pool = new Pool({
       connectionString: databaseUrl(),
       max: 5,
