@@ -86,7 +86,7 @@ export default async function Page({
           locale,
           title: t('userTitle', { name: person.name }),
           description: t('userDescription', { name: person.name }),
-          personDescription: t('personDescription', { name: person.name }),
+          disclosure: t('personDescription', { name: person.name }),
           dateModified: person.result.experiment?.generatedAt
         })}
       />

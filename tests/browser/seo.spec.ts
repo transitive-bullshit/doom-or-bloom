@@ -5,9 +5,11 @@ const site = 'https://www.doom-or-bloom.com'
 
 type Node = Record<string, unknown> & {
   '@type': string
+  '@id'?: string
   description?: string
+  sameAs?: string[]
   numberOfItems?: number
-  itemListElement?: { url?: string }[]
+  itemListElement?: { url?: string; item?: { '@id'?: string } }[]
 }
 
 /** Every JSON-LD node on the page, flattening @graph documents. */
@@ -47,9 +49,13 @@ test('the home page names the P(doom) search and describes a free web app', asyn
     creator: { '@id': `${site}/#creator` }
   })
   expect(ofType(nodes, 'Person')[0]).toMatchObject({
+    '@id': `${site}/#creator`,
     name: 'Travis Fischer',
-    url: 'https://x.com/transitive_bs'
+    url: 'https://x.com/transitive_bs',
+    sameAs: expect.arrayContaining(['https://github.com/transitive-bullshit'])
   })
+  // No URL-addressable site search, so no SearchAction.
+  expect(ofType(nodes, 'WebSite')[0]).not.toHaveProperty('potentialAction')
   // Footer links make the hub and the blog crawlable from every page.
   const footer = page.locator('footer')
   await expect(
@@ -141,14 +147,40 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   )
 
   const nodes = await structuredData(page)
+  expect(ofType(nodes, 'WebPage')[0]).toMatchObject({
+    url: `${site}/p-doom`,
+    about: expect.arrayContaining([{ '@id': `${site}/#topic-p-doom` }]),
+    breadcrumb: { '@id': `${site}/p-doom#breadcrumb` }
+  })
+  expect(ofType(nodes, 'DefinedTerm')[0]).toMatchObject({
+    '@id': `${site}/#topic-p-doom`,
+    name: 'P(doom)',
+    sameAs: expect.arrayContaining(['https://en.wikipedia.org/wiki/P(doom)'])
+  })
   expect(ofType(nodes, 'Dataset')[0]).toMatchObject({
     url: `${site}/p-doom`,
     isAccessibleForFree: true,
-    variableMeasured: ['Publicly stated P(doom)']
+    creator: { '@id': `${site}/#creator` },
+    variableMeasured: {
+      '@type': 'PropertyValue',
+      name: 'Publicly stated P(doom)'
+    },
+    isBasedOn: expect.arrayContaining([
+      expect.objectContaining({
+        '@type': 'CreativeWork',
+        url: expect.stringMatching(/^https:\/\/www\.wbur\.org\//)
+      })
+    ])
   })
   const list = ofType(nodes, 'ItemList')[0]!
   expect(list.numberOfItems).toBe(count)
-  expect(list.itemListElement?.[0]?.url).toMatch(`${site}/users/`)
+  // Rows link to the profile and name the person that profile is about.
+  const first = list.itemListElement?.[0]
+  expect(first?.url).toMatch(`${site}/users/`)
+  expect(first?.item?.['@id']).toBe(`${first?.url}#person`)
+  expect(ofType(nodes, 'BreadcrumbList')[0]).toMatchObject({
+    '@id': `${site}/p-doom#breadcrumb`
+  })
   expect(ofType(nodes, 'BreadcrumbList')).toHaveLength(1)
   await expect(
     page.getByRole('link', { name: 'Map my worldview' })
@@ -182,6 +214,16 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
 }) => {
   await page.goto('/blog')
   await expect(page).toHaveTitle('Blog | Doom or Bloom')
+  const blog = ofType(await structuredData(page), 'Blog')[0]!
+  expect(blog.blogPost).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        '@type': 'BlogPosting',
+        url: `${site}/blog/what-is-p-doom`,
+        author: expect.objectContaining({ '@id': `${site}/#creator` })
+      })
+    ])
+  )
   await page.getByRole('link', { name: 'What is P(doom)?' }).click()
   await expect(page).toHaveURL(/\/blog\/what-is-p-doom$/)
   await expect(
@@ -205,9 +247,15 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
   ).toHaveAttribute('href', '/p-doom')
 
   const nodes = await structuredData(page)
-  expect(ofType(nodes, 'Article')[0]).toMatchObject({
+  expect(ofType(nodes, 'BlogPosting')[0]).toMatchObject({
     headline: 'What is P(doom)?',
     url: `${site}/blog/what-is-p-doom`,
+    mainEntityOfPage: { '@id': `${site}/blog/what-is-p-doom` },
+    datePublished: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+    dateModified: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+    image: [
+      expect.stringMatching(`${site}/blog/what-is-p-doom/opengraph-image`)
+    ],
     inLanguage: 'en',
     author: { name: 'Travis Fischer', url: 'https://x.com/transitive_bs' }
   })
@@ -283,20 +331,73 @@ test('profiles link similar worldviews and describe the simulated person', async
 
   await page.goto('/users/geoffreyhinton')
   const nodes = await structuredData(page)
-  expect(ofType(nodes, 'ProfilePage')[0]).toMatchObject({
+  // Google reserves ProfilePage for people affiliated with the site.
+  expect(ofType(nodes, 'ProfilePage')).toHaveLength(0)
+  const profile = ofType(nodes, 'WebPage')[0]!
+  expect(profile).toMatchObject({
     url: `${site}/users/geoffreyhinton`,
-    mainEntity: { '@id': `${site}/users/geoffreyhinton#person` }
+    mainEntity: { '@id': `${site}/users/geoffreyhinton#person` },
+    about: [
+      { '@id': `${site}/users/geoffreyhinton#person` },
+      { '@id': `${site}/#topic-ai-safety` },
+      { '@id': `${site}/#topic-ai-existential-risk` },
+      { '@id': `${site}/#topic-p-doom` }
+    ],
+    citation: expect.arrayContaining([
+      expect.objectContaining({ '@type': 'CreativeWork' })
+    ])
   })
+  // The page, not the person, says the worldview is simulated.
+  expect(profile.description).toMatch(/simulation .* public writing/)
+  expect(profile.description).toContain('not their own assessment')
   const person = ofType(nodes, 'Person')[0]!
   expect(person).toMatchObject({
     name: 'Geoffrey Hinton',
     sameAs: expect.arrayContaining([
-      expect.stringMatching(/^https:\/\/x\.com\//)
+      expect.stringMatching(/^https:\/\/x\.com\//),
+      'https://en.wikipedia.org/wiki/Geoffrey_Hinton',
+      'https://www.wikidata.org/wiki/Q92894'
     ])
   })
-  expect(person.description).toMatch(/simulation .* public writing/)
-  expect(person.description).toContain('not their own assessment')
+  // The visible one-liner under their name: factual, not the simulation.
+  await expect(page.getByText(person.description!)).toBeVisible()
+  expect(ofType(nodes, 'Thing').map((topic) => topic.name)).toEqual([
+    'AI safety',
+    'Existential risk from artificial intelligence'
+  ])
   expect(ofType(nodes, 'BreadcrumbList')[0]?.itemListElement).toHaveLength(3)
+})
+
+test('the directory lists every profile, and About describes the site', async ({
+  page
+}) => {
+  await page.goto('/users')
+  const nodes = await structuredData(page)
+  expect(ofType(nodes, 'CollectionPage')[0]).toMatchObject({
+    url: `${site}/users`,
+    mainEntity: { '@id': `${site}/users#people` },
+    breadcrumb: { '@id': `${site}/users#breadcrumb` }
+  })
+  // The same profiles in the grid's default order.
+  const links = await page
+    .locator('.study-legend a')
+    .evaluateAll((anchors) =>
+      anchors.map((anchor) => anchor.getAttribute('href'))
+    )
+  const list = ofType(nodes, 'ItemList')[0]!
+  expect(list.numberOfItems).toBe(links.length)
+  expect(list.itemListElement?.map(({ url }) => url)).toEqual(
+    links.map((href) => `${site}${href}`)
+  )
+  for (const { url, item } of list.itemListElement!)
+    expect(item?.['@id']).toBe(`${url}#person`)
+  expect(ofType(nodes, 'BreadcrumbList')).toHaveLength(1)
+
+  await page.goto('/about')
+  expect(ofType(await structuredData(page), 'AboutPage')[0]).toMatchObject({
+    url: `${site}/about`,
+    about: { '@id': `${site}/#website` }
+  })
 })
 
 test('the sitemap and llms.txt list the hub and posts in English only', async ({
