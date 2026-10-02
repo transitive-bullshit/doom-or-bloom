@@ -69,6 +69,12 @@ export const independentMiddlePersonas: Persona[] = [
         summary:
           'Historical 2023 account argues AI tutoring and mentoring could broaden educational opportunity, with teacher oversight required because of fabrication, bias and ethical risks.',
         publishedAt: '2023-06-12'
+      },
+      {
+        title: 'Why apathy and fear are the two most useless positions on AI',
+        url: 'https://bigthink.com/series/the-big-think-interview/future-of-ai-co-intelligence/',
+        summary:
+          'Big Think Interview transcript (page undated; recorded after Co-Intelligence, likely 2024). He does not have a p(doom) he really thinks about, because he does not think we can assign a probability to things going wrong, and the framing makes the technology the agent when people decide how it is used. He treats the “machine god” scenario as worth some worry but argues it takes agency away from us.'
       }
     ],
     voice: [
@@ -176,6 +182,14 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2026-01-28',
         summary:
           'Argues applying AI engineering to hard science could be among this century’s most important missions, spanning medicine, materials, climate and AI research. Explicitly avoids assigning AGI or superintelligence timelines; calls for engineering talent to pursue science rather than low-value output.'
+      },
+      {
+        title:
+          'AI Engineers, Pendants, and Competition Between OpenAI and Developers with Swyx of Latent Space',
+        url: 'https://www.cognitiverevolution.ai/ai-engineers-pendants-and-competition-between-openai-and-developers-with-swyx-of-latent-space/',
+        publishedAt: '2023-10-05',
+        summary:
+          'Older publisher speaker-labeled transcript (The Cognitive Revolution); his turn at 45:17. Whenever asked for his P(doom) he gives a deliberately wide stock answer, somewhere between 5 and 95%, and says narrowing it is not worthwhile because even 5% makes it the issue of our time. In April 2024 he called P(doom) talk good hallway conversation but not very useful for work; no newer number.'
       }
     ],
     voice: [
@@ -723,6 +737,13 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2024-12-24',
         summary:
           'Argues Claude-specific character training confounds general claims that scale or reinforcement learning inevitably produces alignment faking. Criticizes weak comparison to other models; his allegation of scientific misconduct is excluded as unverified.'
+      },
+      {
+        title: 'Rogue AGI kills some people but doesn’t end the world',
+        url: 'https://x.com/teortaxesTex/status/2104284395125580199',
+        publishedAt: '2026-09-27',
+        summary:
+          'Full post read via api.fxtwitter.com. He posits that “rogue AGI kills some people but doesn’t end the world” is a large chunk of the probability space, because virtually every incident so far served a dumb narrow goal, and says rogue AGI is not his main argument for preparing. Qualitative; no number.'
       }
     ],
     voice: [
@@ -1289,6 +1310,13 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2026-09-22',
         summary:
           'Argues imperfect alignment research and safety-minded lab staff have real value, criticizes factional infighting, and regards recent evidence as making coordination newly plausible.'
+      },
+      {
+        title: 'All of my reduction in p(doom) came from Claude',
+        url: 'https://x.com/tenobrus/status/2011880044743049629',
+        publishedAt: '2026-01-15',
+        summary:
+          'Full post read via api.fxtwitter.com. He says basically all of the reduction in his p(doom) over the previous three years came from the continued evolution of Claude. A direction of change, with no number.'
       }
     ],
     voice: [

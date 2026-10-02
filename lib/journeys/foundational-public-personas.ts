@@ -69,6 +69,18 @@ export const foundationalPublicPersonas: Persona[] = [
         publishedAt: '2026-09-09',
         summary:
           'Abstract of a paper coauthored with Qinghua Lu: safety requires model supervision, system controls, independent verification, monitoring and accountable evidence infrastructure. The brief uses the abstract’s architecture, not unread implementation details.'
+      },
+      {
+        title:
+          '80,000 Hours: Yoshua Bengio thinks he knows how to build safe superintelligence',
+        url: 'https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/',
+        publishedAt: '2026-05-07',
+        speaker: 'Yoshua Bengio',
+        transcriptUrl:
+          'https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/',
+        summary:
+          'Publisher speaker-labeled transcript; use only Yoshua’s answers, not Rob Wiblin’s. Asked whether the 20% p(doom) he gave in 2023 has gone up or down, he says he would rather stay out of the p(doom) game: there is no scientific data to calculate such a number, it could be small or large, and the plausible interval is far too high for his taste. Do not present the 2023 20% as his current estimate.',
+        quote: 'I’d rather stay out of the p(doom) game.'
       }
     ],
     background:
@@ -267,6 +279,14 @@ export const foundationalPublicPersonas: Persona[] = [
         publishedAt: '2025-11-10',
         summary:
           'Li’s manifesto argues that perception, simulation and action in physical space are central to intelligence and creativity. Describes limits of contemporary models and a direction for world models; its benchmark observations belong to November 2025.'
+      },
+      {
+        title:
+          'Possible: Fei-Fei Li on spatial intelligence and human-centered AI',
+        url: 'https://www.possible.fm/podcasts/feifei/',
+        publishedAt: '2025-01-15',
+        summary:
+          'Podcast transcript. She says AI policy should be based on science, not science fiction, and that hype about either the extinction of humanity or world peace because of AI is more science fiction than science. Qualitative; no number.'
       }
     ],
     background:
@@ -381,6 +401,13 @@ export const foundationalPublicPersonas: Persona[] = [
         publishedAt: '2023-09-11',
         summary:
           'CHAI publication of his July 25, 2023 testimony. Frames human control over more powerful entities as the central problem and argues for regulation. Historical conceptual grounding, not current capability evidence.'
+      },
+      {
+        title: 'For Humanity #72: Stuart Russell on AI risk',
+        url: 'https://www.youtube.com/watch?v=OGpTw4tthko',
+        publishedAt: '2025-10-25',
+        summary:
+          'Automatic captions without speaker labels; attribution follows an unambiguous host question and his answer. Asked whether he has a p(doom), he says a probability makes sense for aliens betting on humanity, but for us it is like steering a ship: you do not ask the probability of crashing, you work to steer away. The 5–10% and 10–30% figures he cites elsewhere are AI companies’ and CEOs’ estimates, not his own.'
       }
     ],
     background:

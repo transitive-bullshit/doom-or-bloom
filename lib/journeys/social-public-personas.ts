@@ -56,6 +56,15 @@ export const socialPublicPersonas: Persona[] = [
         url: 'https://www.dair-institute.org/research/',
         summary:
           'Undated institutional project index. Documents community research, data-worker organizing, specific language tools and work on spatial apartheid. Collective work is not exclusively Gebru’s personal research.'
+      },
+      {
+        title:
+          'WIRED Big Interview: Timnit Gebru on the existential-threat narrative',
+        url: 'https://www.wired.com/story/the-big-interview-podcast-timnit-gebru/',
+        publishedAt: '2026-09-29',
+        summary:
+          'Full interview text read. Asked why she calls the “machine-god narrative” a distraction, she says it is more than a distraction: it is harmful. She argues that the funders, founders and investors who stand to profit most from the companies seeded the existential-risk narrative and fund the institutions cited as independent. WIRED’s headline wording is not hers; she gives no probability.',
+        quote: 'It’s even more than a distraction. It’s harmful.'
       }
     ],
     background:
@@ -126,6 +135,14 @@ export const socialPublicPersonas: Persona[] = [
         publishedAt: '2026-09-14',
         summary:
           'With Kapoor. Treats recent incidents as both alignment and security failures; advocates liability, monitoring and restricted permissions. Rejects imminent-catastrophe alarmism while arguing that current investment in safeguards is inadequate.'
+      },
+      {
+        title:
+          'AI existential risk probabilities are (still) too unreliable to inform policy',
+        url: 'https://www.normaltech.ai/p/p-doom',
+        publishedAt: '2026-09-28',
+        summary:
+          'Repost, with a new preface, of the July 2024 essay coauthored with Sayash Kapoor; full text read. They argue AI x-risk forecasts are far too unreliable to be useful for policy and are in fact highly misleading; the preface calls the whole p(doom) culture actively counterproductive to a broader conception of safety. A methodological refusal for policy use, not a claim that the risk is zero.'
       }
     ],
     background:
@@ -183,6 +200,14 @@ export const socialPublicPersonas: Persona[] = [
         publishedAt: '2026-09-14',
         summary:
           'Publisher’s full interview transcript. Would raise earlier economic estimates because of agents, without supplying a new calculation. Favors temporary slowing to redirect development, distinguishes that from stopping progress, and connects economically dispensable workers to weakened democracy.'
+      },
+      {
+        title:
+          'Existential Hope podcast: Daron Acemoglu on new paths for human-technology synergy',
+        url: 'https://www.existentialhope.com/podcasts/daron-acemoglu-new-paths-for-human-technology-synergy',
+        publishedAt: '2023-07-21',
+        summary:
+          'Older podcast transcript. Asked about speculative existential risks, he says that if he believed AGI posed a real existential risk of running out of control and enslaving or destroying humanity he would be very worried, but he does not think that is a major issue, and emphasizing it plays into the narrative that these technologies are amazing. Qualitative; no number.'
       }
     ],
     background:
@@ -332,6 +357,13 @@ export const socialPublicPersonas: Persona[] = [
         publishedAt: '2025-05-13',
         summary:
           'Book description and publication metadata, not full-book access. Frames inflated capability promises as serving corporate power and advocates a different technological future.'
+      },
+      {
+        title: 'Numbers are not science',
+        url: 'https://bsky.app/profile/emilymbender.bsky.social/post/3mveglfhzoz2d',
+        publishedAt: '2026-09-13',
+        summary:
+          'Bluesky post read via the public API. Closing a thread, she says that using a number to make a claim does not mean any science was done to get there, and compares a 10% doom claim to a 10% chance of jelly beans raining tomorrow. A dismissal of P(doom) figures, not a personal estimate.'
       }
     ],
     background:

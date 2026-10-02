@@ -347,6 +347,17 @@ export const worldviewWriterPersonas: Persona[] = [
         transcriptUrl: 'https://www.dwarkesh.com/p/scott-daniel',
         summary:
           'Publisher’s speaker-labeled interview with Daniel and Scott Alexander. Use Daniel’s answers only: coding automation can remove research bottlenecks, government oversight and transparency counter secrecy and power concentration, and physical deployment still has bottlenecks. Timeline references are historical.'
+      },
+      {
+        title: 'Daniel Kokotajlo on The Diary of a CEO',
+        url: 'https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/',
+        publishedAt: '2026-07-13',
+        speaker: 'Daniel Kokotajlo',
+        transcriptUrl:
+          'https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/',
+        summary:
+          'Third-party speaker-labeled transcript; use only Daniel’s answers, not Steven Bartlett’s framing. Asked whether we are heading somewhere bad if things don’t change, he says yes but he is not confident: something like 70%, because the current default path heads somewhere very scary. He corrects the host’s “70% chance of human extinction”: the figure is for AIs taking over or a comparably very big catastrophe, and AIs might take over without killing everyone. He does not think we are definitely doomed and could see it working out well.',
+        quote: '70% chance of something like AIs taking over'
       }
     ]
   },
@@ -472,6 +483,14 @@ export const worldviewWriterPersonas: Persona[] = [
         publishedAt: '2023-11-19',
         summary:
           'Historical author excerpt: expects AI more likely to lower than raise net existential risk because science improves defenses against existing threats. Acknowledges malicious biological use and hostile-state risks; says there is no scientific way to measure the aggregate balance. Not a zero-risk claim or a numerical P(doom).'
+      },
+      {
+        title:
+          'A doomsday scenario for American AI (Marginal Revolution excerpt)',
+        url: 'https://marginalrevolution.com/marginalrevolution/2026/09/a-doomsday-scenario-for-american-ai.html',
+        publishedAt: '2026-09-26',
+        summary:
+          'His own excerpt of the closing of his Free Press column, read in full. Imagines America ceding AI-invented medicine to China out of fear of doom, a fear he says rested on a story spread on social media rather than peer-reviewed research or market prices. Concedes we cannot say for sure the AI doom scenario is false, but argues that debating the chances of doom ex ante, on a highly speculative basis, builds less expertise than solving problems bit by bit and is more likely to demoralize and immobilize us. A refusal to estimate, not a zero-risk claim.'
       }
     ]
   }

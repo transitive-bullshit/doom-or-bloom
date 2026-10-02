@@ -87,6 +87,16 @@ export const frontierPublicPersonas: Persona[] = [
         publishedAt: '2026-01-22',
         summary:
           'Organizer’s transcript of his conversation with Larry Fink. Presents cheap AI and abundant robots as the route to broadly shared prosperity, with electricity constraining deployment. Acknowledges dangerous outcomes and the challenge of finding purpose when necessary labor disappears. Preserve these as his expectations.'
+      },
+      {
+        title: 'Verdict with Ted Cruz: Elon Musk at the White House, part 1',
+        url: 'https://www.youtube.com/watch?v=BDREZmpkIz8',
+        publishedAt: '2025-03-17',
+        transcriptUrl:
+          'https://singjupost.com/transcript-of-elon-musk-on-verdict-with-senator-ted-cruz-podcast-part-1/',
+        summary:
+          'Official upload; the AI exchange was read in its automatic captions and checked against a third-party transcript that garbles one word. Asked how real the prospect of killer robots annihilating humanity is, he answers “20% likely, maybe 10%” over roughly five to ten years, then turns it around: the glass is 80 to 90% full, about 80% likely extreme prosperity for all. An off-the-cuff range from March 2025. In his July 2026 Economist interview he called the risk “not zero” without restating a number.',
+        quote: '20% likely, maybe 10%'
       }
     ],
     background:
@@ -360,6 +370,16 @@ export const frontierPublicPersonas: Persona[] = [
         publishedAt: '2026-09-12',
         summary:
           'His own description says he argued that political demands for centralized control threaten open-source AI.'
+      },
+      {
+        title:
+          'David Sacks on artificial intelligence at the Politico Decoded Summit',
+        url: 'https://www.c-span.org/program/public-affairs-event/presidential-science-and-tech-adviser-david-sacks-on-artificial-intelligence/685323',
+        publishedAt: '2026-09-16',
+        speaker: 'David Sacks',
+        summary:
+          'Interview with Dasha Burns; C-SPAN caption transcript with speaker labels, read around 00:22:39–00:22:52. Asked for his probability that AI kills humanity, he first declines: he does not traffic in numbers like that. Pressed on whether it is zero, he says it is zero if we do the right things and the labs take responsibility for their products. A refusal followed by a conditional, not an unconditional zero forecast. The 20% the host mentions is someone else’s figure, not his. Earlier he calls the idea that humanity will be replaced a hoax.',
+        quote: 'I don’t traffic in numbers like that'
       }
     ],
     background:
@@ -629,6 +649,14 @@ export const frontierPublicPersonas: Persona[] = [
         publishedAt: '2026-09-21',
         summary:
           'Explicitly separates being an existential-risk doomer from the danger of current models, and favors releasing the latter. Read together with the current profile’s call to pace global frontier progress, retrieved on the same date.'
+      },
+      {
+        title: 'False precision in doom numbers',
+        url: 'https://x.com/tszzl/status/2098159022641999886',
+        publishedAt: '2026-09-10',
+        summary:
+          'Full post read via api.fxtwitter.com. He deleted a quote-post agreeing with Evan Hubinger’s >10% because he dislikes the false precision of doom numbers. He claims a quite low but real chance of human extinction from machine intelligence, still orders of magnitude above any other activity and to be taken with grave seriousness. His very low estimate depends on resources for alignment, control and coordination, how responsibly parties act and how many warning shots he expects. He thinks we are not yet at existentially dangerous levels, better models will help solve alignment, and a coordinated stop is very unlikely, though US-China pacing on the margin seems possible.',
+        quote: 'a quite low but real chance of human extinction'
       }
     ],
     background:
@@ -867,6 +895,13 @@ export const frontierPublicPersonas: Persona[] = [
         publishedAt: '2026-09-08',
         summary:
           'Coauthored small-scale experiments with Jerry Han find major contributions from improved datasets. Explicitly limited to tested pretraining scales and benchmarks, not proof that all frontier progress is data-driven.'
+      },
+      {
+        title: '#9: Dwarkesh Patel on the Theo Jaffee Podcast',
+        url: 'https://www.theojaffee.com/p/9-dwarkesh-patel',
+        publishedAt: '2023-12-03',
+        summary:
+          'Older host-published speaker-labeled transcript; use only Dwarkesh’s turns. Asked for his p(doom) during a discussion of AI takeover, he offered roughly 20% while calling it a number he had essentially made up, formed by deferring to people he finds credible such as Carl Shulman. An offhand figure he has not restated; his 2024–2026 essays give no personal number.'
       }
     ],
     background:

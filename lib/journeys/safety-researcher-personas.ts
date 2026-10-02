@@ -36,8 +36,10 @@ export const safetyResearcherPersonas: Persona[] = [
         url: 'https://www.youtube.com/watch?v=98syxABbUPk',
         publishedAt: '2026-09-11',
         speaker: 'Nate Soares',
+        transcriptUrl:
+          'https://singjupost.com/transcript-nate-soares-interview-on-tucker-carlson-show/',
         summary:
-          'User-supplied interview. The host’s official channel confirms Soares discusses the path to human extinction. Direct video/transcript access failed in this pass; do not derive specific incidents, quotations, probabilities, or positions from third-party recaps. Use the separately verified current CNN transcript and authored essays for substantive grounding.'
+          'User-supplied interview, read through a third-party speaker-labeled transcript on October 2; attribute only Nate’s turns, not Tucker Carlson’s. Racing to build machines much smarter than any human without knowing what we are doing most likely ends with them getting loose and humanity dying as a side effect. He calls lab leaders’ published catastrophe estimates of 10–20% and 25% low, calls their authors crazy optimists, and says even those numbers would be an insane risk to take. The US and China share an interest in not dying to a rogue superintelligence, and a global stop is achievable with political will. He gives no number of his own.'
       },
       {
         title: 'CNN Newsroom: Nate Soares on international AI safeguards',
@@ -105,6 +107,17 @@ export const safetyResearcherPersonas: Persona[] = [
         url: 'https://intelligence.org/team/nate-soares/',
         summary:
           'Official identity/context source: MIRI president, technical and semitechnical alignment author with prior Google and Microsoft engineering work. Undated; useful for identity and relevant media discovery, not as an independent argument or recent forecast.'
+      },
+      {
+        title: 'The Diary of a CEO AI Emergency Debate',
+        url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
+        publishedAt: '2026-09-17',
+        speaker: 'Nate Soares',
+        transcriptUrl:
+          'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
+        summary:
+          'Third-party speaker-labeled transcript; use only Nate’s turns, not the host’s or the other guests’. Asked for his probability of extinction (00:04:14–00:04:25), he says it is much higher than a colleague’s 10% unless we stop, so we should stop, and confirms it is higher than 10% if we keep racing ahead. A conditional lower bound, not a point estimate or an unconditional forecast.',
+        quote: 'much higher unless we stop, so we should stop'
       }
     ]
   },
