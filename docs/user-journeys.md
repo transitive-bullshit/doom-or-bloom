@@ -218,6 +218,10 @@ Added 25 source-grounded simulated users to balance a catalog that sat mostly ne
 
 Scoped live runs (`--persona=<id> --turns=5 --max-requests=24 --max-cost=0.3`) used 106 GPT-5.6 Sol and 550 Jev requests, for an estimated $2.72. Six final operations hit Jev timeouts or the request budget and were completed by one bounded resume each. The selected runs are persisted locally only; the local collection retains all 144 prior records unchanged.
 
+## P(doom) sources — October 2, 2026
+
+An audit of all 169 simulated users added 14 verified public P(doom) statements (30 in all) and up to two missing sources to each of 28 briefs: the statements' backers, refusals and close statements, and a rewrite of Roko Mijic's outdated brief. Those 28 users were regenerated with scoped live runs for an estimated $2.15. The six whose briefs did not change got their statement through `personas:reevaluate plan --restate`, on copies of production's September 29 runs, with no inference. The selected runs are local only. The [research record](research/pdoom-sources-2026-10-02.md) lists the statements and exclusions, the sources per user, before and after placements, the fidelity review and the import command.
+
 ## Initial public-source expansion — September 20–21, 2026
 
 This historical source-selection record explains the initial briefs. Current public-person simulations follow the fidelity rules above and the current catalog, rather than treating these early editorial labels as target outcomes.
