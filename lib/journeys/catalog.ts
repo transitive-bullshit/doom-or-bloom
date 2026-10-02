@@ -15,6 +15,7 @@ import { mcafeePublicPersona } from './mcafee-public-persona'
 import { bachPublicPersona } from './bach-public-persona'
 import { vittorioPublicPersona } from './vittorio-public-persona'
 import { naamPublicPersona } from './naam-public-persona'
+import { bostromPublicPersona } from './bostrom-public-persona'
 import { researchCriticPersonas } from './research-critic-personas'
 import { riskAdvocatePersonas } from './risk-advocate-personas'
 import { safetyPolicyPersonas } from './safety-policy-personas'
@@ -72,6 +73,7 @@ const narrativePersonas: Persona[] = [
   bachPublicPersona,
   vittorioPublicPersona,
   naamPublicPersona,
+  bostromPublicPersona,
   ...researchCriticPersonas,
   ...riskAdvocatePersonas,
   ...safetyPolicyPersonas,

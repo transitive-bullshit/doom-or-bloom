@@ -6955,5 +6955,167 @@
     "imageKind": "social",
     "imageSource": "https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/apHWSGDiydv3ivmg6/majak6vex2tdxrjg4xge",
     "icon": "/resource-previews/fc5d9d19424f-icon.webp"
+  },
+  "https://nickbostrom.com/optimal.pdf": {
+    "source": "https://nickbostrom.com/optimal.pdf",
+    "fetchedAt": "2026-10-02T18:18:30.802Z",
+    "description": "Working paper, version 1.0. Models timing from the interests of existing people, setting aside impersonal future-generation value and arcane considerations. Delay carries mortality and foregone-benefit costs. Conclusions depend on safety progress, discounting, quality of life and utility assumptions. Some models favor early capability followed by a safety pause; others favor delay. Illustrative risk parameters are not a personal P(doom), an AGI arrival forecast or an all-things-considered policy verdict.",
+    "image": "/resource-previews/c3c55f01e648-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/optimal.pdf",
+    "icon": "/resource-previews/c3c55f01e648-icon.webp"
+  },
+  "https://www.nytimes.com/2026/10/01/opinion/interesting-times-podcast-spencer-klavan-nick-bostrom.html": {
+    "source": "https://www.nytimes.com/2026/10/01/opinion/interesting-times-podcast-spencer-klavan-nick-bostrom.html",
+    "fetchedAt": "2026-10-02T18:18:35.400Z",
+    "description": "User-requested interview retained for follow-up. Episode identity is verified through publisher-distributed show metadata, but the NYT article/transcript was inaccessible on October 3, 2026. No substantive interview statements or quotations ground this simulation. Do not treat editorial framing, the headline or interviewer premises as Bostrom’s beliefs.",
+    "icon": "/resource-previews/e624c2bd0670-icon.webp",
+    "image": "/resource-previews/e624c2bd0670-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.nytimes.com/2026/10/01/opinion/interesting-times-podcast-spencer-klavan-nick-bostrom.html"
+  },
+  "https://nickbostrom.com/deep-utopia/": {
+    "source": "https://nickbostrom.com/deep-utopia/",
+    "fetchedAt": "2026-10-02T18:18:37.907Z",
+    "description": "A greyhound catching the mechanical lure—what would he actually do with it? Has he given this any thought?",
+    "image": "/resource-previews/5438e8680484-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://nickbostrom.com/deep-utopia/images/social-card--twitter.jpg",
+    "icon": "/resource-previews/5438e8680484-icon.webp"
+  },
+  "https://nickbostrom.com/superintelligentwill.pdf": {
+    "source": "https://nickbostrom.com/superintelligentwill.pdf",
+    "fetchedAt": "2026-10-02T18:18:38.602Z",
+    "description": "Conceptual argument for orthogonality between intelligence and final goals, with caveats, and for convergent instrumental incentives across many goals and situations. Does not establish the distribution of goals learned by present models or prove that every intelligent system must seek power. Historical foundations for the control problem discussed in Superintelligence, not new empirical evidence.",
+    "image": "/resource-previews/3e1f64166f21-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/superintelligentwill.pdf",
+    "icon": "/resource-previews/3e1f64166f21-icon.webp"
+  },
+  "https://global.oup.com/academic/product/superintelligence-9780198739838": {
+    "source": "https://global.oup.com/academic/product/superintelligence-9780198739838",
+    "fetchedAt": "2026-10-02T18:18:39.955Z",
+    "description": "Foundational book on the prospects and control challenges of superintelligence. Original publication year is verified on the author’s Deep Utopia page; the linked ISBN identifies a later paperback edition. Existing repository research inspected publisher metadata, description and contents only, not the full book. Do not present historical arguments as a newly verified current timeline or probability.",
+    "icon": "/resource-previews/7bf75fc2748f-icon.webp",
+    "image": "/resource-previews/7bf75fc2748f-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://global.oup.com/academic/product/superintelligence-9780198739838"
+  },
+  "https://nickbostrom.com/papers/vulnerable.pdf": {
+    "source": "https://nickbostrom.com/papers/vulnerable.pdf",
+    "fetchedAt": "2026-10-02T18:56:24.191Z",
+    "description": "Bostrom explores technologies that could make civilization vulnerable by default through cheap destructive capabilities, destabilizing incentives, or global externalities. He considers stronger preventive institutions and global coordination as possible responses, while explicitly leaving the hypothesis open and noting that other considerations are needed before drawing policy conclusions. The paper grounds concern about technological capability outrunning institutions; it does not establish that catastrophe is inevitable or supply an unconditional endorsement of surveillance or world government. Read scope: PDF pp. 1–4: abstract, policy implications, introduction, definition and explicit qualifications.",
+    "image": "/resource-previews/ff33b69f71ec-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/papers/vulnerable.pdf",
+    "icon": "/resource-previews/ff33b69f71ec-icon.webp"
+  },
+  "https://existential-risk.com/concept.pdf": {
+    "source": "https://existential-risk.com/concept.pdf",
+    "fetchedAt": "2026-10-02T18:56:25.852Z",
+    "description": "Bostrom defines existential risk to include extinction and permanent loss of humanity’s desirable future potential. Under long-term value assumptions, even small reductions in such risk can have enormous expected importance. He emphasizes uncertainty in estimates and the unprecedented character of anthropogenic hazards. His maxipok heuristic prioritizes avoiding existential catastrophe but is explicitly a rule of thumb, not an absolute moral principle. This supports attention to irreversible loss and calibrated uncertainty without inventing a current personal probability of AI catastrophe. Read scope: PDF pp. 1–2 and 5: abstract, uncertainty discussion, maxipok qualification and risk classification.",
+    "image": "/resource-previews/43cbe5cc3845-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://existential-risk.com/concept.pdf",
+    "icon": "/resource-previews/43cbe5cc3845-icon.webp"
+  },
+  "https://nickbostrom.com/papers/unilateralist.pdf": {
+    "source": "https://nickbostrom.com/papers/unilateralist.pdf",
+    "fetchedAt": "2026-10-02T18:56:27.642Z",
+    "description": "Bostrom, Thomas Douglas, and Anders Sandberg show how several well-intentioned actors, each able to impose a shared consequential decision, can collectively act too readily because the most optimistic judgment triggers action. They propose correcting this tendency through a principle of conformity and discuss multiple implementations. The argument depends on a particular unilateralist decision structure, not a general duty to obey authority; their discussion explicitly confronts the value of dissent and historical unilateral actions. It grounds consultation, coordination, and epistemic restraint. Read scope: PDF pp. 1–3 and 17–18: publication details, abstract, motivating model and discussion of conformity and dissent.",
+    "image": "/resource-previews/1697119e8b7c-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/papers/unilateralist.pdf",
+    "icon": "/resource-previews/1697119e8b7c-icon.webp"
+  },
+  "https://nickbostrom.com/papers/racing-to-the-precipice.pdf": {
+    "source": "https://nickbostrom.com/papers/racing-to-the-precipice.pdf",
+    "fetchedAt": "2026-10-02T18:56:28.425Z",
+    "description": "Stuart Armstrong, Bostrom, and Carl Shulman model teams competing to develop transformative AI, with safety precautions potentially reducing their chance of winning. Within the simplified model, rivalry, additional teams, and some information about competitors can increase risk; trust and coordination can improve outcomes. These are conditional game-theoretic results, not measurements of present laboratories. The linked text is the October 2013 technical report; Bostrom’s index also lists the 2016 AI & Society publication. It grounds concern about competitive incentives eroding safety. Read scope: PDF pp. 1–3 and 6–7: technical-report date, abstract, simplified model, coordination and information effects.",
+    "image": "/resource-previews/c5829f655756-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/papers/racing-to-the-precipice.pdf",
+    "icon": "/resource-previews/c5829f655756-icon.webp"
+  },
+  "https://nickbostrom.com/papers/propositions-concerning-digital-minds-and-society/": {
+    "source": "https://nickbostrom.com/papers/propositions-concerning-digital-minds-and-society/",
+    "fetchedAt": "2026-10-02T18:56:30.159Z",
+    "description": "Nick Bostrom and Carl Shulman put forward tentative propositions on the consciousness, moral status, interests, and governance of digital minds, and how a future society might share the world with them.",
+    "icon": "/resource-previews/55bc2ea167c2-icon.webp",
+    "image": "/resource-previews/55bc2ea167c2-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://nickbostrom.com/papers/propositions-concerning-digital-minds-and-society/"
+  },
+  "https://nickbostrom.com/papers/digital-minds.pdf": {
+    "source": "https://nickbostrom.com/papers/digital-minds.pdf",
+    "fetchedAt": "2026-10-02T18:56:35.377Z",
+    "description": "Carl Shulman and Bostrom examine digital minds that might generate unusually large welfare benefits per unit of resources or have stronger moral claims than humans. Ignoring such minds could be morally disastrous, while applying familiar norms mechanically could harm existing people. They explore institutional reform and compromise arrangements that protect human flourishing alongside digital welfare under large abundance. This is conditional analysis of possible minds, not evidence that today’s chatbots possess these traits. The inspected 2020 draft identifies its 2021 Oxford University Press publication. Read scope: PDF pp. 1–2, 4–5 and 12–14: abstract, welfare mechanisms, discrimination cautions and compromise discussion.",
+    "image": "/resource-previews/4fd80184ffd9-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/papers/digital-minds.pdf",
+    "icon": "/resource-previews/4fd80184ffd9-icon.webp"
+  },
+  "https://nickbostrom.com/ogimodel.pdf": {
+    "source": "https://nickbostrom.com/ogimodel.pdf",
+    "fetchedAt": "2026-10-02T18:56:36.180Z",
+    "description": "Bostrom proposes AGI ventures open to broad international shareholding, with protections against expropriation, stronger corporate governance, government-defined responsible-development rules, and complementary international arrangements. He compares imperfect institutional options and tentatively favors this model’s practicality and incentive compatibility, especially under short timelines. Shared stakes may reduce incentives for hostile competition while widening participation in benefits. This is not a claim that unregulated markets solve alignment or ensure fairness. The inspected working paper is version 1.15, October 2025, first circulated in July 2025. Read scope: PDF pp. 1–2 and 12–13: version, abstract, core model and discussion of benefit-sharing limitations and nationalization.",
+    "image": "/resource-previews/8ae5da755535-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/ogimodel.pdf",
+    "icon": "/resource-previews/8ae5da755535-icon.webp"
+  },
+  "https://nickbostrom.com/papers/openness.pdf": {
+    "source": "https://nickbostrom.com/papers/openness.pdf",
+    "fetchedAt": "2026-10-02T18:56:37.046Z",
+    "description": "Bostrom treats openness as several distinct choices concerning code, science, data, safety methods, capabilities, and organizational goals. He sees many short-term benefits but warns that spreading capabilities could intensify a race in which safety slows competitors. Openness about safety and goals can have different effects from indiscriminate capability sharing. The analysis is explicitly preliminary and sensitive to objectives and time horizons. It supports a differentiated stance on transparency and collaboration rather than attributing a blanket position for or against open-source AI. Read scope: PDF pp. 1–2: abstract, policy implications, introduction and distinction among forms of openness; a later notes excerpt was not used for claims.",
+    "image": "/resource-previews/8f24be1e8d0a-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/papers/openness.pdf",
+    "icon": "/resource-previews/8f24be1e8d0a-icon.webp"
+  },
+  "https://nickbostrom.com/posthuman.pdf": {
+    "source": "https://nickbostrom.com/posthuman.pdf",
+    "fetchedAt": "2026-10-02T18:56:37.745Z",
+    "description": "Bostrom argues that some possible lives with greatly extended healthspan, cognition, or emotional capacities would be deeply worthwhile, and that many humans could benefit from becoming such beings. He does not claim every posthuman state is desirable or that transformation benefits every person. His conclusion retains qualifications about how enhancements are obtained, and separates value from practical feasibility. This grounds substantial technological upside and richer flourishing than productivity alone, while preserving caution about specific pathways. The paper first circulated in 2006 and was published in 2008. Read scope: PDF pp. 1–3 and 23–24: publication information, definitions, limited theses and concluding qualifications.",
+    "image": "/resource-previews/036a748efc8d-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://nickbostrom.com/posthuman.pdf",
+    "icon": "/resource-previews/036a748efc8d-icon.webp"
+  },
+  "https://nickbostrom.com/papers/transhumanist-values/": {
+    "source": "https://nickbostrom.com/papers/transhumanist-values/",
+    "fetchedAt": "2026-10-02T18:56:40.689Z",
+    "description": "Outlines the core transhumanist value of exploring the posthuman realm, along with derived values such as individual choice and diversity.",
+    "image": "/resource-previews/d6a5e0c831ed-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://nickbostrom.com/papers/transhumanist-values/img/the-space-of-possible-modes-of-being.png",
+    "icon": "/resource-previews/d6a5e0c831ed-icon.webp"
+  },
+  "https://www.econtalk.org/purpose-pleasure-and-meaning-in-a-world-without-work-with-nicholas-bostrom/": {
+    "source": "https://www.econtalk.org/purpose-pleasure-and-meaning-in-a-world-without-work-with-nicholas-bostrom/",
+    "fetchedAt": "2026-10-02T18:56:41.066Z",
+    "description": "If you didn’t have to work to enjoy material abundance, would you do it anyway? If an algorithm or a pill could achieve better results, would you bother shopping or going to the gym? These are the kinds of questions we’ll need to ask ourselves if AI makes all human labor and other traditional ways […]",
+    "image": "/resource-previews/ae840c9998e2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.econlib.org/wp-content/uploads/2024/05/80e58525-1519-49d1-86eb-3f4ff745475f.jpeg",
+    "icon": "/resource-previews/ae840c9998e2-icon.webp"
+  },
+  "https://www.econtalk.org/nick-bostrom-on-superintelligence/": {
+    "source": "https://www.econtalk.org/nick-bostrom-on-superintelligence/",
+    "fetchedAt": "2026-10-02T18:56:43.373Z",
+    "description": "Nick Bostrom of the University of Oxford talks with EconTalk host Russ Roberts about his book, Superintelligence: Paths, Dangers, Strategies. Bostrom argues that when machines exist which dwarf human intelligence they will threaten human existence unless steps are taken now to reduce the risk. The conversation covers the likelihood of the worst scenarios, strategies that […]",
+    "image": "/resource-previews/1a676bf5143f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.econtalk.org/wp-content/uploads/2017/05/robotlightbulb.jpg",
+    "icon": "/resource-previews/1a676bf5143f-icon.webp"
+  },
+  "https://www.lemonde.fr/en/economy/article/2026/05/24/swedish-transhumanist-nick-bostrom-fears-a-pendulum-swinging-too-far-against-ai_6753767_19.html": {
+    "source": "https://www.lemonde.fr/en/economy/article/2026/05/24/swedish-transhumanist-nick-bostrom-fears-a-pendulum-swinging-too-far-against-ai_6753767_19.html",
+    "fetchedAt": "2026-10-02T18:56:44.669Z",
+    "description": "Accessible opening interview excerpts inspected; remainder is subscriber-only. Bostrom worries that discussion neglects AI’s upside, describes useful research assistance and imagines AI helping gather citizens’ preferences. He argues that inaction also leaves people facing death and compares development risk to surgery. This limited excerpt supports his emphasis on benefits and delay costs, not a complete policy program or abandonment of control concerns.",
+    "icon": "/resource-previews/c1248fcf0186-icon.webp",
+    "image": "/resource-previews/c1248fcf0186-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.lemonde.fr/en/economy/article/2026/05/24/swedish-transhumanist-nick-bostrom-fears-a-pendulum-swinging-too-far-against-ai_6753767_19.html"
   }
 }
