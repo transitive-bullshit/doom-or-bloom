@@ -6,7 +6,7 @@ import {
 } from './worldview-experiment'
 
 const question =
-  'What’s your rough gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?'
+  'What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?'
 const candidates = (...answers: string[]) =>
   Object.values(
     experimentCandidates({

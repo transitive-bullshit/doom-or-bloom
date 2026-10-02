@@ -102,7 +102,7 @@ export function mapGapQuestion(
       0) < 0.5
   )
     return 'transformation.ultimate'
-  // P(doom) is best effort; the question also accepts "no idea".
+  // P(doom) is best effort; "no idea" still counts as an answer.
   if (
     available('risk.chance') &&
     !state.prompts.some((prompt) => prompt.promptId === 'risk.catastrophe')

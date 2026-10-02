@@ -536,10 +536,10 @@
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:text": {
-      "text": "Menurut perkiraan kasar berdasarkan naluri Anda, seberapa besar kemungkinan AI menyebabkan kepunahan manusia atau bencana permanen serupa? Angka atau “tidak tahu” dapat diterima.",
-      "sourceHash": "2737b14e5892bc29",
+      "text": "Menurut firasat Anda, seberapa besar kemungkinan AI menyebabkan kepunahan manusia atau katastrofe permanen serupa?",
+      "sourceHash": "112bb17f97b73c85",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:risk.chance:reask": {
@@ -984,10 +984,10 @@
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:text": {
-      "text": "Dengan mempertimbangkan manfaat dan kerugian secara bersama-sama, dampak keseluruhan apa yang Anda perkirakan akan ditimbulkan AI?",
-      "sourceHash": "33f7d3f8a75621ee",
+      "text": "Dengan mempertimbangkan manfaat dan kerugian secara keseluruhan, dampak apa yang Anda perkirakan akan ditimbulkan AI terhadap masyarakat kita?",
+      "sourceHash": "64a2b642e8d7c18f",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:impact.overall:reask": {
@@ -1096,10 +1096,10 @@
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:text": {
-      "text": "Terlepas dari baik atau buruk: menurut Anda, pada akhirnya seberapa besar AI akan mengubah dunia—sedikit, banyak, atau sepenuhnya?",
-      "sourceHash": "c04ddec578f4e43b",
+      "text": "Menurut Anda, seberapa besar AI pada akhirnya akan mengubah dunia?",
+      "sourceHash": "124d74b12dc3527c",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:transformation.ultimate:reask": {
@@ -1124,10 +1124,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:text": {
-      "text": "Menurut Anda, apakah katastrofe merupakan hasil yang paling mungkin, atau risiko serius di samping kemungkinan-kemungkinan yang lebih baik?",
-      "sourceHash": "f36588d9ee3dc51e",
+      "text": "Apakah Anda melihat katastrofe sebagai hasil yang paling mungkin, atau memandangnya sebagai salah satu risiko serius di samping kemungkinan-kemungkinan yang lebih baik?",
+      "sourceHash": "74963ec2401bcfe1",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.0-1:reask": {
@@ -1180,10 +1180,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:text": {
-      "text": "Jika harus condong ke satu sisi, apakah Anda memperkirakan AI pada akhirnya akan lebih banyak membawa kebaikan daripada keburukan, atau apakah Anda benar-benar bimbang?",
-      "sourceHash": "023a52c97dc01113",
+      "text": "Apakah Anda cenderung berpandangan bahwa AI akan menghasilkan lebih banyak kebaikan daripada keburukan, atau apakah Anda benar-benar bimbang?",
+      "sourceHash": "94a1676dfd79b64e",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.2-3:reask": {
@@ -1208,10 +1208,10 @@
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:text": {
-      "text": "Menurut Anda, apakah manfaatnya jelas akan lebih besar daripada risikonya, atau apakah secara keseluruhan hasilnya baik dengan risiko nyata yang perlu dikelola?",
-      "sourceHash": "2717f186c55147de",
+      "text": "Apakah manfaat AI jelas akan lebih besar daripada risikonya, atau apakah secara keseluruhan AI membawa kebaikan dengan risiko nyata yang perlu dikelola?",
+      "sourceHash": "1540da303bf487ae",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:outlook.lean.3-4:reask": {
@@ -1236,10 +1236,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:text": {
-      "text": "Anda menempatkan diri sebagai lebih penuh harapan daripada yang tercermin dari jawaban Anda. Apa yang membuat Anda penuh harapan tetapi tidak terlihat dalam jawaban Anda?",
-      "sourceHash": "9aaa67777523a93e",
+      "text": "Anda menempatkan diri sebagai lebih penuh harapan daripada yang ditunjukkan jawaban Anda. Apa yang memberi Anda harapan yang terlewat oleh kami?",
+      "sourceHash": "c1b07d5b2f8a77de",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-hopeful:reask": {
@@ -1264,10 +1264,10 @@
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:text": {
-      "text": "Anda menempatkan diri sebagai lebih khawatir daripada yang tercermin dari jawaban Anda. Apa yang Anda khawatirkan yang mungkin kami lewatkan?",
-      "sourceHash": "0bcf7fdc36273697",
+      "text": "Anda menempatkan diri sebagai lebih khawatir daripada yang ditunjukkan jawaban Anda. Apa yang mengkhawatirkan Anda yang terlewat oleh kami?",
+      "sourceHash": "ea7b4ca6a41abe79",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
     "prompt:placement.more-worried:reask": {
