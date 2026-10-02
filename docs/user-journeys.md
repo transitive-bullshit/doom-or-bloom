@@ -172,7 +172,11 @@ The September 29 run re-evaluated 135 of the 144 selected simulated users from e
 
 ## Import selected simulated users
 
-`pnpm personas:import plan --env <file> --ids slug,slug` compares the named users' selected local `simulation_v1` runs with a target database such as production, which it opens read-only. `write` copies each profile and run through the persona repository without inference, under the run's original generation key, and verifies that the target selected the same snapshot digest. Repeating an import is idempotent, and generation ordering keeps a newer target selection in place. The source must be the loopback database named by `.env.development.local`. Importing into production or preview is a separate, owner-approved step; deploy afterward so portraits, previews and static profiles rebuild.
+`pnpm personas:import plan --env <file> --ids slug,slug` compares the named users' selected local `simulation_v1` runs with a target database such as production, which it opens read-only. `write` copies each profile and run through the persona repository without inference, under the run's original generation key, and verifies that the target selected the same snapshot digest. Profile metadata, including the one-liner, comes from `components/landing/people.ts` rather than the local database, so an import never restores an older description. Repeating an import is idempotent, and generation ordering keeps a newer target selection in place. The source must be the loopback database named by `.env.development.local`. Importing into production or preview is a separate, owner-approved step; deploy afterward so portraits, previews and static profiles rebuild.
+
+## Sync profile metadata
+
+`pnpm personas:sync-metadata plan --env <file> --all` (or `--ids slug,slug`) compares each profile's metadata in a target database with `components/landing/people.ts` and prints every changed field: one-liner, name, portrait, featured flag and the rest. It opens the target read-only. `write` updates the profiles that differ through the persona repository in one transaction and verifies them. It never touches source briefs, runs or selections, and skips profiles the target lacks, which arrive with their run through an import. Use it after editing presentation metadata, including on the local development database (`--env .env.development.local`). Writing to production is a separate, owner-approved step; deploy afterward so static profiles and social cards rebuild.
 
 ## Andrew McAfee — September 23, 2026
 

@@ -185,7 +185,7 @@ Simulated users are re-evaluated with `pnpm personas:reevaluate` (`scripts/reeva
 
 ## Personas and seeding
 
-Repository-authored source briefs and generation configuration remain authoring inputs. Database persona rows and selected simulations supply runtime presentation. An idempotent seed synchronizes curated identity/source metadata; it does not overwrite immutable generated snapshots.
+Repository-authored source briefs and generation configuration remain authoring inputs. Database persona rows and selected simulations supply runtime presentation. An idempotent seed synchronizes curated identity/source metadata; it does not overwrite immutable generated snapshots. `pnpm personas:sync-metadata` updates only profile metadata, such as one-liners, from `components/landing/people.ts`, leaving source briefs and selected runs untouched ([user journeys](user-journeys.md#sync-profile-metadata)).
 
 The existing canonical journey bundle has reduced projection inputs, not complete resumable Assessment states. Import only personas explicitly in the current public catalog, with their exact recorded transcripts, step results, projection inputs, source snapshots, timestamps/hashes, and sourced P(doom) overrides. Use an explicit historical payload discriminator such as `historical_journey_v1`; validate and render it through the existing persona adapter. Preserve missing fields as missing rather than manufacturing complete evidence or recovery history. Public fixture imports are published and read-only, so resumability is unnecessary.
 
