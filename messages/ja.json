@@ -432,6 +432,8 @@
   },
   "Compare": {
     "title": "あなたと{name}の比較",
+    "view": "結果表示",
+    "justYou": "あなただけ",
     "friend": "あなたの友人",
     "friendLabel": "友人",
     "bucket": {

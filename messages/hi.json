@@ -432,6 +432,8 @@
   },
   "Compare": {
     "title": "आप बनाम {name}",
+    "view": "नतीजों का दृश्य",
+    "justYou": "सिर्फ़ आप",
     "friend": "आपके दोस्त",
     "friendLabel": "एक दोस्त",
     "bucket": {

@@ -432,6 +432,8 @@
   },
   "Compare": {
     "title": "Anda vs {name}",
+    "view": "Tampilan hasil",
+    "justYou": "Hanya Anda",
     "friend": "teman Anda",
     "friendLabel": "Seorang teman",
     "bucket": {

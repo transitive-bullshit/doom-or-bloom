@@ -432,6 +432,8 @@
   },
   "Compare": {
     "title": "Vous et {name}",
+    "view": "Vue des résultats",
+    "justYou": "Vous uniquement",
     "friend": "votre ami",
     "friendLabel": "Un ami",
     "bucket": {

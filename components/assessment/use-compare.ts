@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import {
   comparedWorldviewSchema,
   readCompareTarget,
+  writeCompareTarget,
   type ComparedWorldview,
   type CompareTarget
 } from '@/lib/sharing/compare'
@@ -17,16 +18,23 @@ export type CompareState =
  * The person this participant came to compare with, if any. Loaded from
  * public data without cookies: the server never learns which assessment is
  * comparing, and nothing about the comparison is saved.
+ *
+ * `shown` is the participant's choice between just their result and the
+ * comparison, kept with the target in this browser.
  */
 export function useCompare(assessmentId: string, enabled: boolean) {
   const [state, setState] = useState<CompareState>({ status: 'none' })
+  const [shown, setShown] = useState(true)
   useEffect(() => {
     if (!enabled) return
-    const target = readCompareTarget(assessmentId)
-    if (!target) return
+    const saved = readCompareTarget(assessmentId)
+    if (!saved) return
+    const { target } = saved
     let active = true
     queueMicrotask(() => {
-      if (active) setState({ status: 'loading', target })
+      if (!active) return
+      setShown(saved.shown)
+      setState({ status: 'loading', target })
     })
     const url =
       target.kind === 'persona'
@@ -48,5 +56,10 @@ export function useCompare(assessmentId: string, enabled: boolean) {
       active = false
     }
   }, [assessmentId, enabled])
-  return state
+  const show = (next: boolean) => {
+    if (state.status === 'none') return
+    setShown(next)
+    writeCompareTarget(assessmentId, state.target, next)
+  }
+  return { ...state, shown, show }
 }

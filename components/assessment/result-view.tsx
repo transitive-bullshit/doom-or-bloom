@@ -10,6 +10,7 @@ import { shareCaption, shareUrl } from '@/lib/sharing/share-caption'
 import { shareLinkPath } from '@/lib/sharing/share-links'
 import { compareWorldviews } from '@/lib/sharing/compare'
 import { ComparisonCard } from './comparison-card'
+import { CompareToggle } from './compare-toggle'
 import { copyText } from './clipboard'
 import { useCompare } from './use-compare'
 import { useShareLink } from './use-share-link'
@@ -266,6 +267,19 @@ export function ResultView({
       setSending(false)
     }
   }
+  // Hidden when the participant chooses to see just their own result.
+  const comparisonCard =
+    compare.status === 'ready' && compare.shown && comparison ? (
+      <ComparisonCard
+        other={compare.other}
+        comparison={comparison}
+        name={otherName}
+        sending={sending}
+        onSend={
+          compare.other.kind === 'snapshot' ? () => void sendBack() : undefined
+        }
+      />
+    ) : null
   if (feedback.stage !== 'revealed')
     return (
       <div ref={resultsRoot} aria-busy={feedback.stage === 'pending'}>
@@ -312,9 +326,23 @@ export function ResultView({
         layout={layout}
         riskCompanion={<ClosestPersonas result={result} personas={personas} />}
         guess={feedback.guess}
+        mapControls={
+          compare.status === 'ready' ? (
+            <CompareToggle
+              name={otherName}
+              avatar={compare.other.avatar}
+              shown={compare.shown}
+              onShownChange={compare.show}
+            />
+          ) : compare.status === 'loading' ? (
+            // Holds the toggle's place while the other result loads.
+            <div aria-hidden='true' className='h-9.5' />
+          ) : undefined
+        }
         others={
           comparison &&
           compare.status === 'ready' &&
+          compare.shown &&
           comparison.them.x !== null &&
           comparison.them.y !== null
             ? [
@@ -328,7 +356,7 @@ export function ResultView({
             : undefined
         }
         mapNote={
-          (feedback.guess || compare.status !== 'none') && (
+          (feedback.guess || comparisonCard || compare.status === 'gone') && (
             <div className='flex flex-col gap-3'>
               {feedback.guess && (
                 <p className='text-sm text-body-foreground'>
@@ -362,19 +390,7 @@ export function ResultView({
                   </div>
                 </section>
               )}
-              {compare.status === 'ready' && comparison && (
-                <ComparisonCard
-                  other={compare.other}
-                  comparison={comparison}
-                  name={otherName}
-                  sending={sending}
-                  onSend={
-                    compare.other.kind === 'snapshot'
-                      ? () => void sendBack()
-                      : undefined
-                  }
-                />
-              )}
+              {comparisonCard}
               {compare.status === 'gone' && (
                 <p className='text-sm text-body-foreground'>
                   {root('Compare.gone')}

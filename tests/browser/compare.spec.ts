@@ -56,8 +56,31 @@ test('a thought leader’s page starts a comparison drawn on the result map', as
   await expect(marker).toHaveCount(1)
   await expect(marker).toHaveAttribute('aria-label', `${name}’s position`)
   await expect(marker.locator('image')).toHaveCount(1)
-  // Reloading keeps the comparison for this result.
+
+  // One press switches between just the participant and the comparison.
+  const view = page.getByRole('radiogroup', { name: 'Results view' })
+  const justYou = view.getByRole('radio', { name: 'Just you' })
+  const both = view.getByRole('radio', { name: `You vs ${name}` })
+  await expect(both).toHaveAttribute('aria-checked', 'true')
+  await justYou.click()
+  await expect(justYou).toHaveAttribute('aria-checked', 'true')
+  await expect(marker).toHaveCount(0)
+  await expect(comparison).toHaveCount(0)
+  // Reloading keeps the choice for this result.
   await page.reload()
+  await expect(justYou).toHaveAttribute('aria-checked', 'true')
+  await expect(marker).toHaveCount(0)
+  await expect(comparison).toHaveCount(0)
+  // The keyboard turns it back on.
+  await justYou.focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(both).toBeFocused()
+  await page.keyboard.press('Space')
+  await expect(both).toHaveAttribute('aria-checked', 'true')
+  await expect(marker).toHaveCount(1)
+  await expect(comparison).toBeVisible()
+  await page.reload()
+  await expect(both).toHaveAttribute('aria-checked', 'true')
   await expect(comparison).toBeVisible()
 })
 
@@ -140,6 +163,9 @@ test('a friend’s card-only link leads to a comparison, sent back as their own 
     await expect(comparison.getByText('Sam', { exact: true })).toBeVisible()
     const marker = recipient.locator('[data-slot="worldview-map-other"]')
     await expect(marker).toHaveAttribute('aria-label', 'Sam’s position')
+    await expect(
+      recipient.getByRole('radio', { name: 'You vs Sam' })
+    ).toHaveAttribute('aria-checked', 'true')
 
     await comparison
       .getByRole('button', { name: 'Send them your result' })
@@ -152,7 +178,10 @@ test('a friend’s card-only link leads to a comparison, sent back as their own 
     expect(back.pathname).not.toBe(shared.pathname)
     expect(back.searchParams.get('ref')).toBe('compare')
 
-    // A returning visitor compares an existing result from the library.
+    // A returning visitor compares an existing result from the library,
+    // which shows a comparison they had hidden.
+    await recipient.getByRole('radio', { name: 'Just you' }).click()
+    await expect(comparison).toHaveCount(0)
     await recipient.goto(shared.pathname)
     await recipient
       .getByRole('region', { name: 'Where do you land?' })
@@ -172,6 +201,9 @@ test('a friend’s card-only link leads to a comparison, sent back as their own 
       recipient.getByText('This comparison link was turned off')
     ).toBeVisible()
     await expect(comparison).toHaveCount(0)
+    await expect(
+      recipient.getByRole('radiogroup', { name: 'Results view' })
+    ).toHaveCount(0)
   } finally {
     await cleanup(friend, baseURL!)
     await friend.close()

@@ -2054,6 +2054,18 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "Compare.view": {
+      "sourceHash": "b4ed342aa7a71a07",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
+    "Compare.justYou": {
+      "sourceHash": "aeed20a96ee36e83",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-02",
+      "reviewStatus": "machine"
+    },
     "Compare.friend": {
       "sourceHash": "ac3a0c19799bc50e",
       "model": "gpt-5.6-sol",

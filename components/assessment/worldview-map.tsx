@@ -5,7 +5,8 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type PointerEvent
+  type PointerEvent,
+  type ReactNode
 } from 'react'
 import Image, { getImageProps } from 'next/image'
 import { useTranslations } from 'next-intl'
@@ -29,6 +30,7 @@ export function Map({
   subject,
   guess,
   others = [],
+  controls,
   pick
 }: {
   horizontal: Component
@@ -42,6 +44,8 @@ export function Map({
   // Someone to compare with: a thought leader (with a portrait) or a friend's
   // shared card (a diamond), each labeled.
   others?: Array<{ x: number; y: number; label: string; avatar?: string }>
+  // Controls under the heading, such as showing or hiding a comparison.
+  controls?: ReactNode
   // Self-placement mode: the result stays hidden and a tap places the guess.
   pick?: (point: { x: number; y: number }) => void
 }) {
@@ -161,11 +165,14 @@ export function Map({
           'lg:relative lg:left-1/2 lg:w-[min(54rem,calc(100vw-4rem))] lg:-translate-x-1/2'
       )}
     >
-      <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
-        <h2 className='col-start-2 text-center'>{t('question', { axis })}</h2>
-        <div className='col-start-3 justify-self-end'>
-          {!pick && <MapActions svg={svg} />}
+      <div className='flex flex-col gap-3'>
+        <div className='grid grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-start gap-2'>
+          <h2 className='col-start-2 text-center'>{t('question', { axis })}</h2>
+          <div className='col-start-3 justify-self-end'>
+            {!pick && <MapActions svg={svg} />}
+          </div>
         </div>
+        {controls && <div className='flex justify-center'>{controls}</div>}
       </div>
       <svg
         ref={svg}

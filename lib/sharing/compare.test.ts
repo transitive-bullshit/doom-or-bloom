@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-import { expect, test } from 'vitest'
+import { afterEach, expect, test, vi } from 'vitest'
 import type { JourneySuite } from '@/lib/journeys/schema'
 import type { PersonaComparison } from '@/lib/assessment/persona-matches'
 import {
@@ -8,6 +8,8 @@ import {
   compareParam,
   compareWorldviews,
   parseCompareTarget,
+  readCompareTarget,
+  writeCompareTarget,
   type ComparedWorldview
 } from './compare'
 import { personaComparison, shareLinkComparison } from './compare-data'
@@ -50,6 +52,48 @@ test('reads persona and share link targets and rejects anything else', () => {
   expect(compareParam({ kind: 'persona', slug: 'karpathy' })).toBe(
     'persona:karpathy'
   )
+})
+
+afterEach(() => vi.unstubAllGlobals())
+
+test('keeps the target and whether it is shown in this browser, per result', () => {
+  const store = new Map<string, string>()
+  vi.stubGlobal('localStorage', {
+    getItem: (key: string) => store.get(key) ?? null,
+    setItem: (key: string, value: string) => void store.set(key, value)
+  })
+  const persona = { kind: 'persona', slug: 'karpathy' } as const
+  const friend = { kind: 'snapshot', id: 'AbCdEfGh_jKl-123' } as const
+  expect(readCompareTarget('a')).toBeNull()
+  // Arriving from a compare link shows the comparison.
+  writeCompareTarget('a', persona)
+  expect(readCompareTarget('a')).toEqual({ target: persona, shown: true })
+  writeCompareTarget('a', persona, false)
+  expect(readCompareTarget('a')).toEqual({ target: persona, shown: false })
+  expect(readCompareTarget('b')).toBeNull()
+  // Comparing this result again, from the library, shows it again.
+  writeCompareTarget('a', friend)
+  expect(readCompareTarget('a')).toEqual({ target: friend, shown: true })
+  for (const value of [
+    'persona:karpathy',
+    'not json',
+    '{"target":"persona:karpathy"}',
+    '{"target":"https://example.com","shown":true}'
+  ]) {
+    store.set('doom-or-bloom:compare:a', value)
+    expect(readCompareTarget('a')).toBeNull()
+  }
+  // Blocked storage shows no comparison instead of failing.
+  vi.stubGlobal('localStorage', {
+    getItem: () => {
+      throw new Error('blocked')
+    },
+    setItem: () => {
+      throw new Error('blocked')
+    }
+  })
+  expect(() => writeCompareTarget('a', persona, false)).not.toThrow()
+  expect(readCompareTarget('a')).toBeNull()
 })
 
 test('buckets the weighted distance at the calibrated thresholds', () => {

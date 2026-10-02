@@ -161,25 +161,43 @@ export function compareWorldviews(
   }
 }
 
-// The compare target rides from the start link into the new draft. It lives in
-// this browser only, keyed by assessment, like unsubmitted drafts.
+// The compare target rides from the start link into the new draft, together
+// with whether the participant shows it. It lives in this browser only, keyed
+// by assessment, like unsubmitted drafts.
 const storageKey = (assessmentId: string) =>
   `doom-or-bloom:compare:${assessmentId}`
 
+const savedCompareSchema = z.strictObject({
+  target: z.string(),
+  shown: z.boolean()
+})
+
+export type SavedCompare = { target: CompareTarget; shown: boolean }
+
+/** Arriving from a compare link shows the comparison until it is hidden. */
 export function writeCompareTarget(
   assessmentId: string,
-  target: CompareTarget
+  target: CompareTarget,
+  shown = true
 ) {
   try {
-    localStorage.setItem(storageKey(assessmentId), compareParam(target))
+    localStorage.setItem(
+      storageKey(assessmentId),
+      JSON.stringify({ target: compareParam(target), shown })
+    )
   } catch {
     /* Storage is optional; the result simply shows no comparison. */
   }
 }
 
-export function readCompareTarget(assessmentId: string) {
+export function readCompareTarget(assessmentId: string): SavedCompare | null {
   try {
-    return parseCompareTarget(localStorage.getItem(storageKey(assessmentId)))
+    const saved = savedCompareSchema.safeParse(
+      JSON.parse(localStorage.getItem(storageKey(assessmentId)) ?? 'null')
+    )
+    if (!saved.success) return null
+    const target = parseCompareTarget(saved.data.target)
+    return target ? { target, shown: saved.data.shown } : null
   } catch {
     return null
   }

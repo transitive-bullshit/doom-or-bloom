@@ -432,6 +432,8 @@
   },
   "Compare": {
     "title": "你与{name}",
+    "view": "结果视图",
+    "justYou": "仅你自己",
     "friend": "你的朋友",
     "friendLabel": "一个朋友",
     "bucket": {
