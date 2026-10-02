@@ -738,7 +738,40 @@
     "statementsNote": "Wörtlich aus den verlinkten Quellen, geprüft am {date}"
   },
   "Profiles": {
-    "userTitle": "Die Ansichten von {name} zu KI und P(doom)",
+    "userTitle": "{name} über KI",
+    "userTitleTopics": "{name} über {topics}",
+    "userTitleMap": {
+      "concern": "{name} über KI-Sicherheit und -Risiken",
+      "middle": "{name} über Risiken und Vorteile von KI",
+      "bloom": "{name} über die Zukunft und die Chancen von KI"
+    },
+    "titleTopic": {
+      "ai": "KI",
+      "safety": "KI-Sicherheit",
+      "risk": "KI-Risiko",
+      "regulation": "KI-Regulierung",
+      "policy": "KI-Politik",
+      "ethics": "KI-Ethik",
+      "consciousness": "Bewusstsein von KI",
+      "bubble": "die KI-Blase",
+      "jobs": "Arbeitsplätze",
+      "education": "Bildung",
+      "healthcare": "Gesundheitsversorgung",
+      "opensource": "Open Source",
+      "agi": "AGI",
+      "superintelligence": "Superintelligenz",
+      "future": "die Zukunft von KI",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "Sicherheit",
+      "risk": "Risiko",
+      "regulation": "Regulierung",
+      "policy": "Politik",
+      "ethics": "Ethik",
+      "consciousness": "Bewusstsein",
+      "future": "die Zukunft"
+    },
     "userDescription": "Was denkt {name} über KI? Sieh, wo die simulierte Weltsicht dieser Person zwischen Doom und Bloom liegt, mit einer groben P(doom)-Schätzung und den zugrunde liegenden Antworten.",
     "userImageAlt": "{name}s simulierte KI-Weltsicht auf der Karte zu Doom–Bloom und dem Ausmaß der Transformation",
     "personDescription": "Eine Simulation der KI-Weltsicht von {name}, die auf öffentlichen Beiträgen dieser Person basiert. Sie ist eine experimentelle Interpretation, nicht die eigene Einschätzung dieser Person oder eine Empfehlung.",

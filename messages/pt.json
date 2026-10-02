@@ -738,7 +738,40 @@
     "statementsNote": "Citações literais das fontes indicadas, verificadas em {date}"
   },
   "Profiles": {
-    "userTitle": "Visões de {name} sobre a IA e P(doom)",
+    "userTitle": "{name} sobre IA",
+    "userTitleTopics": "{name} sobre {topics}",
+    "userTitleMap": {
+      "concern": "{name} sobre segurança e risco da IA",
+      "middle": "{name} sobre os riscos e benefícios da IA",
+      "bloom": "{name} sobre o futuro e as oportunidades da IA"
+    },
+    "titleTopic": {
+      "ai": "IA",
+      "safety": "segurança da IA",
+      "risk": "risco da IA",
+      "regulation": "regulamentação da IA",
+      "policy": "políticas para IA",
+      "ethics": "ética da IA",
+      "consciousness": "consciência da IA",
+      "bubble": "a bolha da IA",
+      "jobs": "empregos",
+      "education": "educação",
+      "healthcare": "saúde",
+      "opensource": "código aberto",
+      "agi": "AGI",
+      "superintelligence": "superinteligência",
+      "future": "o futuro da IA",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "segurança",
+      "risk": "risco",
+      "regulation": "regulamentação",
+      "policy": "políticas",
+      "ethics": "ética",
+      "consciousness": "consciência",
+      "future": "o futuro"
+    },
     "userDescription": "O que {name} pensa sobre a IA? Veja onde a visão de mundo simulada dessa pessoa se situa entre doom e bloom, com uma P(doom) aproximada e as respostas por trás dela.",
     "userImageAlt": "Visão de mundo simulada de {name} sobre IA no mapa Doom–Bloom e de escala da transformação",
     "personDescription": "Uma simulação da visão de mundo de {name} sobre a IA, construída com base em seus textos públicos. É uma interpretação experimental, não uma avaliação feita pela própria pessoa nem um endosso.",

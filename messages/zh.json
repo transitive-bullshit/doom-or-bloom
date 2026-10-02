@@ -738,7 +738,40 @@
     "statementsNote": "逐字引自所链接的出处，核对于 {date}"
   },
   "Profiles": {
-    "userTitle": "{name}对AI和P(doom)的看法",
+    "userTitle": "{name}谈AI",
+    "userTitleTopics": "{name}谈{topics}",
+    "userTitleMap": {
+      "concern": "{name}谈AI安全与风险",
+      "middle": "{name}谈AI的风险与益处",
+      "bloom": "{name}谈AI的未来与机遇"
+    },
+    "titleTopic": {
+      "ai": "AI",
+      "safety": "AI安全",
+      "risk": "AI风险",
+      "regulation": "AI监管",
+      "policy": "AI政策",
+      "ethics": "AI伦理",
+      "consciousness": "AI意识",
+      "bubble": "AI泡沫",
+      "jobs": "就业",
+      "education": "教育",
+      "healthcare": "医疗保健",
+      "opensource": "开源",
+      "agi": "AGI",
+      "superintelligence": "超级智能",
+      "future": "AI的未来",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "安全",
+      "risk": "风险",
+      "regulation": "监管",
+      "policy": "政策",
+      "ethics": "伦理",
+      "consciousness": "意识",
+      "future": "未来"
+    },
     "userDescription": "{name}对AI有何看法？查看其模拟世界观在Doom与Bloom之间的立场位置，以及粗略的P(doom)和这一结果背后的回答。",
     "userImageAlt": "{name} 的模拟 AI 世界观在 Doom–Bloom 与变革规模地图上的位置",
     "personDescription": "根据 {name} 的公开文章构建的 AI 世界观模拟。这是一种实验性解读，并非其本人的评估，也不代表其认可。",

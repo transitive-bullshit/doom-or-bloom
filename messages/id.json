@@ -738,7 +738,40 @@
     "statementsNote": "Dikutip kata demi kata dari sumber yang ditautkan, diperiksa pada {date}"
   },
   "Profiles": {
-    "userTitle": "Pandangan {name} tentang AI dan P(doom)",
+    "userTitle": "{name} tentang AI",
+    "userTitleTopics": "{name} tentang {topics}",
+    "userTitleMap": {
+      "concern": "{name} tentang keamanan dan risiko AI",
+      "middle": "{name} tentang risiko dan manfaat AI",
+      "bloom": "{name} tentang masa depan dan peluang AI"
+    },
+    "titleTopic": {
+      "ai": "AI",
+      "safety": "keamanan AI",
+      "risk": "risiko AI",
+      "regulation": "regulasi AI",
+      "policy": "kebijakan AI",
+      "ethics": "etika AI",
+      "consciousness": "kesadaran AI",
+      "bubble": "gelembung AI",
+      "jobs": "pekerjaan",
+      "education": "pendidikan",
+      "healthcare": "layanan kesehatan",
+      "opensource": "sumber terbuka",
+      "agi": "AGI",
+      "superintelligence": "superinteligensi",
+      "future": "masa depan AI",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "keamanan",
+      "risk": "risiko",
+      "regulation": "regulasi",
+      "policy": "kebijakan",
+      "ethics": "etika",
+      "consciousness": "kesadaran",
+      "future": "masa depan"
+    },
     "userDescription": "Apa pendapat {name} tentang AI? Lihat di mana posisi pandangan dunia simulasinya di antara Doom dan Bloom, beserta perkiraan kasar P(doom) dan jawaban yang mendasarinya.",
     "userImageAlt": "Pandangan dunia AI simulasi {name} pada peta Doom–Bloom dan skala transformasi",
     "personDescription": "Simulasi pandangan dunia AI {name}, yang dibuat berdasarkan tulisan publik mereka. Ini adalah interpretasi eksperimental, bukan penilaian mereka sendiri ataupun bentuk dukungan.",
