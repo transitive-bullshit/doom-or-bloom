@@ -6,18 +6,32 @@ Open `/user-journeys` at the Portless development URL. The development-only insp
 
 Fictional participants deliberately stress-test divergent positions, rhetoric and reasoning. Public-person simulations instead seek fidelity to their dated source briefs. Generated answers are fictional, not quotations or endorsements. Preserve supported certainty, uncertainty, contradictions and style without adding ideal reasoning to improve a score. Missing source evidence is a research gap, not proof that the person is uncertain.
 
-`lib/journeys/catalog.ts` assembles the current catalog from narrative briefs in `lib/journeys/`; `components/landing/people.ts` owns public presentation and featured status. The participant receives source summaries, short quoted anchors and voice guidance, not just URLs. The separate fixed personal transcript is a diagnostic replay. Catalog membership changes; dated expansion notes below record historical counts.
+`lib/journeys/catalog.ts` assembles the current catalog from narrative briefs in `lib/journeys/`; `components/landing/people.ts` owns public presentation and featured status, and `components/landing/one-liners.ts` the [one-liner](#simulated-user-one-liners) under each name. The participant receives source summaries, short quoted anchors and voice guidance, not just URLs. The separate fixed personal transcript is a diagnostic replay. Catalog membership changes; dated expansion notes below record historical counts.
 
 Persistence is implemented. Public pages read each profile's selected immutable Postgres run. Ignored `work/journeys/` files serve local diagnostics, provenance and import; they are not the public-page runtime source. See [database-backed curated publication](#database-backed-curated-publication-2026-09-23).
 
 For a focused edit:
 
-1. Update the person's source brief and presentation metadata as needed. Preserve speaker attribution, dates, conditional claims and research gaps; [AUTHORING.md](AUTHORING.md#simulated-user-source-briefs) captures the source-audit lessons.
+1. Update the person's source brief and presentation metadata as needed, including their [one-liner](#simulated-user-one-liners). Preserve speaker attribution, dates, conditional claims and research gaps; [AUTHORING.md](AUTHORING.md#simulated-user-source-briefs) captures the source-audit lessons.
 2. Run relevant free checks from [testing.md](testing.md), and `pnpm resources:previews` when source URLs change.
 3. If the task calls for new simulated answers, generate only the affected `--persona=<id>` or explicit group with bounded live spend. Successful public-person generation also publishes/selects its new run in the configured database; confirm the intended local environment before running.
 4. Inspect the saved answers, routing, readiness and source snapshot at `/user-journeys`, then the selected result at `/users/<username>`. Compare fidelity to the brief, not desired coordinates. Source-only changes do not rewrite a saved simulation.
 
 The [diagnostic improvement loop](diagnostic-improvement-loop.md) records why the fixed transcript replay was added and why expressed outlook is separate from net-impact forecasts.
+
+### Simulated-user one-liners
+
+Each simulated user has a one-line description under their name on the profile header, on their social card and in the profile's metadata. It is our description of a real third party, framed as a simulation of them, so it must be something they would likely accept as fair. All of them live in `components/landing/one-liners.ts`, keyed by slug; write one when adding a person, and revisit it when their brief changes.
+
+- Describe what the person is publicly known to argue or work on, in neutral, conservative terms. Don't push them toward Doom or Bloom, and don't single out one scenario, project or number as their view.
+- Keep both sides of a view at the weight their sources give them. Use neutral verbs (argues, studies, builds, calls for), not loaded ones or labels (dismisses, cheers, doomer, hype).
+- Make only claims their sources clearly support across their public writing, not one interview, post or project, unless that work is what they are known for, such as their book or company.
+- Quote only words that are verbatim, short, checked against a source in their brief and genuinely sum up their overall view, such as a book title or a thesis they state themselves. Record each in `verifiedOneLinerQuotes` with its URL. Otherwise paraphrase.
+- No P(doom) numbers or catastrophe outcomes (extinction, takeover, everyone dying) unless they are the core of the person's public identity and a verified quote supports them. Describe what risk advocates call for or study instead. The P(doom) card already shows a stated number with its outcome and source.
+- Shape: "<plain role> who <argues, writes about, builds or calls for …>." Name an organization only when the brief, its research record or the person's own current profile states it. One sentence, or two very short ones, of 60–150 characters, ending with a period, in plain language and the same tone as the others. Describe pseudonymous accounts as accounts ("Pseudonymous account that …") and a pen name as a pseudonymous writer, never by a guessed identity.
+- English only, like the briefs; one-liners are not translated.
+
+`pnpm test:content` checks the mechanical parts: length, punctuation, and no percentages, P(doom) or outcome words outside a verified quote. Fairness still needs a read against the brief. The brief's own `description` is backstage context for the simulated participant, never shown publicly. The [October 2 rewrite](research/neutral-one-liners-2026-10-02.md) applied this rule to all 169 people.
 
 ## Live models and boundaries
 
@@ -225,6 +239,10 @@ Scoped live runs (`--persona=<id> --turns=5 --max-requests=24 --max-cost=0.3`) u
 ## P(doom) sources — October 2, 2026
 
 An audit of all 169 simulated users added 14 verified public P(doom) statements (30 in all) and up to two missing sources to each of 28 briefs: the statements' backers, refusals and close statements, and a rewrite of Roko Mijic's outdated brief. Those 28 users were regenerated with scoped live runs for an estimated $2.15. The six whose briefs did not change got their statement through `personas:reevaluate plan --restate`, on copies of production's September 29 runs, with no inference. The selected runs are local only. The [research record](research/pdoom-sources-2026-10-02.md) lists the statements and exclusions, the sources per user, before and after placements, the fidelity review and the import command.
+
+## Neutral one-liners — October 2, 2026
+
+All 169 one-liners were rewritten under [the one-liner rule](#simulated-user-one-liners) after Travis found them too terse and tilted toward doom. Each now names a role and what the person argues or works on; P(doom) numbers and outcome claims are gone except inside five verified quotes, such as Yudkowsky's book title. No interview was regenerated. The [research record](research/neutral-one-liners-2026-10-02.md) lists the largest changes, the least certain lines and the production metadata sync.
 
 ## Initial public-source expansion — September 20–21, 2026
 

@@ -26,6 +26,12 @@ import {
   type L10nKind
 } from '../lib/content/l10n'
 import { readL10n, readRelease, readRubric } from '../lib/content/l10n-loader'
+import { people } from '../components/landing/people'
+import {
+  oneLiners,
+  verifiedOneLinerQuotes
+} from '../components/landing/one-liners'
+import { oneLinerProblems } from '../lib/personas/one-liner-rules'
 const bundle = loadBundle()
 const drafts = loadDraftReferences()
 const context = loadAuthoringContext(bundle)
@@ -85,6 +91,29 @@ console.log(
 console.log(
   `Validated ${context.taxonomy.riskFamilies.length} risk families, ${context.taxonomy.safetyConcepts.length} concepts, ${context.development.journeys.length} draft development journeys and ${context.intake.sources.length} source intake records. Authoring context is outside runtime scoring.`
 )
+
+// Simulated-user one-liners describe real people: the mechanical part of
+// docs/user-journeys.md#simulated-user-one-liners.
+const slugs = new Set(people.map((person) => person.slug))
+const oneLinerErrors = [
+  ...Object.keys(oneLiners)
+    .filter((slug) => !slugs.has(slug))
+    .map((slug) => `${slug}: one-liner for no simulated user`),
+  ...Object.keys(verifiedOneLinerQuotes)
+    .filter((slug) => !slugs.has(slug))
+    .map((slug) => `${slug}: verified quote for no simulated user`),
+  ...people.flatMap((person) =>
+    oneLinerProblems(
+      person.description,
+      verifiedOneLinerQuotes[person.slug]
+    ).map((problem) => `${person.slug}: ${problem}`)
+  )
+]
+if (oneLinerErrors.length)
+  throw new Error(
+    `Simulated-user one-liners break the rule in docs/user-journeys.md#simulated-user-one-liners:\n${oneLinerErrors.join('\n')}`
+  )
+console.log(`Validated ${people.length} simulated-user one-liners.`)
 
 // Committed translations. Every enabled locale needs complete, current
 // translations of every supported release and the rubric; any other

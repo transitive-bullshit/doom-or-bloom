@@ -10,459 +10,534 @@ import type { VerifiedQuote } from '@/lib/personas/one-liner-rules'
 export const oneLiners: Record<string, string> = {
   // Andrew McAfee
   amcafee:
-    'Expects major AI benefits, favors practical safeguards, and distinguishes rapid progress from slower economic adoption.',
+    'MIT research scientist who expects large benefits from AI and favors broad experimentation, with rules that respond to demonstrated harms.',
   // Joe Carlsmith
   jkcarlsmith:
-    'Extraordinary flourishing is possible, but safe AI needs technical progress and credible restraint.',
+    'Philosopher at Anthropic who writes about AI’s potential for a far better future and the alignment work and restraint needed to reach it safely.',
   // Scott Alexander
   slatestarcodex:
-    'Transformative AI could bring postscarcity or catastrophe; alignment and coordinated slowing both matter.',
+    'Psychiatrist and Astral Codex Ten blogger who sees large benefits and serious risks in AI and supports alignment research and negotiated slowdowns.',
   // Daniel Kokotajlo
   dkokotajlo:
-    'AI research automation could transform the world quickly; transparent international restraint can change the outcome.',
+    'AI Futures Project forecaster who studies how automating AI research could speed up progress and calls for a verified international slowdown.',
   // Tyler Cowen
   tylercowen:
-    'AI can deliver major benefits, but reorganizing human institutions takes time.',
+    'Economist and Marginal Revolution blogger who expects large gains from AI, argues institutions adapt slowly and asks for testable claims about risk.',
   // Nate Soares
   so8res:
-    'Humanity can prevent catastrophe by stopping the rush to superintelligence.',
+    'MIRI president and co-author of “If Anyone Builds It, Everyone Dies,” who argues for an enforceable international stop to the superintelligence race.',
   // Ryan Greenblatt
   ryangreenblatt:
-    'AI research could accelerate sharply. Practical safeguards can still change the outcome.',
+    'AI safety researcher at Redwood Research who studies how to keep powerful AI systems under control even if they turn out to be misaligned.',
   // Noah Smith
   noahpinion:
-    'AI can improve lives while making bioterrorism dangerously accessible.',
+    'Economics blogger who expects AI to transform science, argues people can keep valuable jobs and worries about AI-enabled bioterrorism.',
   // Eliezer Yudkowsky
-  esyudkowsky: 'Superhuman AI could end humanity. Building it is the danger.',
+  esyudkowsky:
+    'MIRI co-founder and co-author of “If Anyone Builds It, Everyone Dies,” who calls for an international halt to building superintelligence.',
   // Sam Altman
-  sama: 'Enormous benefits are possible. Getting there takes care.',
+  sama: 'OpenAI CEO who expects cheap, widely available intelligence to accelerate science and prosperity and argues safety must stay ahead of capability.',
   // Marc Andreessen
-  pmarca: 'AI can unlock abundance. Holding it back is the danger.',
+  pmarca:
+    'Andreessen Horowitz co-founder who argues that AI can greatly improve health, education and living standards, so slowing it down has real costs.',
   // Gary Marcus
-  garymarcus: 'Useful AI needs reliable reasoning and real accountability.',
+  garymarcus:
+    'Cognitive scientist who argues that scaling language models alone won’t produce reliable AI, and calls for new approaches and enforceable oversight.',
   // Andrew Ng
   andrewyng:
-    'Useful applications and better engineering can deliver enormous benefits.',
+    'DeepLearning.AI founder who sees large opportunity in practical AI applications and expects AI to reshape jobs and skills more than eliminate them.',
   // Yann LeCun
   ylecun:
-    'Powerful AI has great promise. Today’s language models are only part of the story.',
+    'AI researcher and AMI Labs founder who is optimistic about intelligent machines and argues they need world models, not just bigger language models.',
   // Geoffrey Hinton
   geoffreyhinton:
-    'Extraordinary benefits are possible, but the race puts control and livelihoods at risk.',
+    'Computer scientist who sees great promise in AI but argues that job losses, misuse and loss of control are serious risks that need regulation.',
   // Ed Zitron
   edzitron:
-    'The costs, unreliable products and corporate incentives do not add up.',
+    'Tech writer and podcast host who questions the AI industry’s finances, criticizes its unreliable products and holds companies responsible for harms.',
   // Bernie Sanders
   sensanders:
-    'Protect workers and democracy. Pause advanced AI and ban uncontrollable superintelligence.',
+    'U.S. senator who calls for a pause on advanced AI and a ban on superintelligence, and for policies that share AI’s gains with working people.',
   // David Sacks
-  davidsacks: 'Build, compete and hold companies liable for unsafe products.',
+  davidsacks:
+    'Presidential tech adviser who favors competition and open models over centralized AI control and holds each lab responsible for its products’ safety.',
   // Demis Hassabis
   demishassabis:
-    'Enormous scientific promise, with rigorous standards and coordinated care.',
+    'Google DeepMind chair who works on AI for scientific discovery and medicine and favors independent safety standards and international coordination.',
   // Sholto Douglas
   _sholtodouglas:
-    'Abundant intelligence and economic transformation need a coordinated path.',
+    'Anthropic researcher who works on scaling AI, sees large economic upside and supports coordinated development with independent evaluators.',
   // Roon
   tszzl:
-    'Radical change is coming. Preserve broad access while tackling creation risk.',
+    'Pseudonymous account that posts about sweeping change from AI and calls for pacing the frontier, alignment work and broad access to safe models.',
   // Noam Shazeer
   noamshazeer:
-    'More capable, faster and cheaper systems can unlock extraordinary benefits.',
+    'OpenAI engineer who works on making highly capable AI faster, cheaper and more reliable, and is optimistic about what it can do for people.',
   // Noam Brown
   polynoamial:
-    'Rapid scientific progress needs layered safety and realistic expectations.',
+    'OpenAI reasoning researcher who is excited about AI for science, points to real bottlenecks and favors building layered safety into research.',
   // Dwarkesh Patel
   dwarkesh_sp:
-    'Understand the bottlenecks and who controls the resulting intelligence.',
+    'Podcast host and essayist who examines how AI systems learn, whether AI research can be automated and the economic and control questions that follow.',
   // Dario Amodei
   darioamodei:
-    'Pace frontier capabilities so alignment and institutions can catch up.',
+    'Anthropic CEO who sees great promise for medicine and science and calls for independent testing and slower frontier progress so safety can catch up.',
   // Elon Musk
   elonmusk:
-    'AI and robots could end scarcity. Pace the frontier and test dangerous systems.',
+    'Tesla and SpaceX CEO who expects AI and robots to bring widespread abundance, acknowledges serious risks and supports frontier safety checks.',
   // Nathan Lambert
   natolambert:
-    'Broad adoption can transform the economy without runaway self-improvement.',
+    'Open-model researcher and Interconnects writer who expects broad gains from AI adoption, doubts runaway self-improvement and takes AI risks seriously.',
   // Yoshua Bengio
-  yoshua_bengio: 'Build useful scientific AI with strong safety guarantees.',
+  yoshua_bengio:
+    'AI researcher and LawZero founder who develops non-agentic AI for science and calls for independent safety checks and international coordination.',
   // Ilya Sutskever
   ilyasut:
-    'Pursue the research breakthroughs that capabilities and safety both need.',
+    'Safe Superintelligence cofounder and CEO who expects extremely powerful AI and sees generalization and alignment as central open research problems.',
   // Andrej Karpathy
   karpathy:
-    'Powerful agents still face practical gaps in learning and reliability.',
+    'AI researcher and educator who builds with AI agents and writes about their rapid but uneven progress and the gap between demos and reliable work.',
   // Fei-Fei Li
   drfeifei:
-    'Intelligence that understands the physical world should improve human lives.',
+    'Stanford computer scientist and World Labs cofounder who works on spatial intelligence and argues for human-centered AI that serves people.',
   // Richard Sutton
   richardssutton:
-    'Learning from experience could create successors worth welcoming.',
+    'Reinforcement learning researcher who argues AI should learn from experience and encourages a positive view of minds beyond human intelligence.',
   // Timnit Gebru
   timnitgebru:
-    'Specific tools and local control offer an alternative to giant general-purpose models.',
+    'AI researcher who criticizes the race to build giant general-purpose models and favors small, task-specific tools governed by their communities.',
   // Arvind Narayanan
   random_walker:
-    'Reliability, adoption and institutions shape what AI changes.',
+    'Computer scientist who studies how AI spreads through society, expects substantial but gradual change and favors resilience and liability rules.',
   // Daron Acemoglu
   dacemoglumit:
-    'AI can create prosperity if its direction supports people and shared gains.',
+    'Economist who argues AI should be steered toward making workers more capable rather than replacing them, so its gains are widely shared.',
   // Mark Zuckerberg
   finkd:
-    'Personal superintelligence should help individuals pursue their own goals.',
+    'Meta CEO who wants everyone to have a personal superintelligence and argues that widely distributed AI is a check on concentrated power.',
   // Stuart Russell
   'stuart-russell':
-    'Beneficial AI requires a different approach to objectives and oversight.',
+    'UC Berkeley computer scientist who works on keeping AI under human control and calls for enforceable safety rules for advanced AI.',
   // Emily M. Bender
-  emilymbender: 'Question the hype, the evidence and who bears the costs.',
+  emilymbender:
+    'Linguist who argues that fluent AI text is not understanding, questions inflated AI claims and defends people’s right to refuse harmful uses.',
   // Max Tegmark
   tegmark:
-    'Enormous benefits do not require handing control to superintelligence.',
+    'MIT professor and Future of Life Institute cofounder who favors controllable AI tools for science and calls for halting the race to superintelligence.',
   // Liang Wenfeng
   'liang-wenfeng':
-    'Curiosity and efficient engineering can open the frontier to more people.',
+    'DeepSeek founder who pursues general AI through original research and efficient models and favors open source and affordable access.',
   // Barack Obama
   barackobama:
-    'Public oversight and collective choices determine who benefits.',
+    'Former U.S. president who expects AI to transform medicine, education and work and calls for public oversight and laws, not just voluntary standards.',
   // Donald Trump
   realdonaldtrump:
-    'Rapid infrastructure and American leadership can deliver historic growth.',
+    'U.S. president who wants America to win the AI race and favors fast approvals for data centers and power plants to drive jobs and economic growth.',
   // Bill Gates
   billgates:
-    'Transform health and education while preparing for a turbulent transition.',
+    'Gates Foundation chair who expects AI to transform health and education, wants its gains to reach the poorest and urges preparing for job disruption.',
   // Jensen Huang
   jensenhuang:
-    'Reject catastrophic forecasts as unsupported and fix failures through engineering.',
+    'Nvidia CEO who argues for broad AI adoption, open models and more infrastructure, and against slowdowns based on risk forecasts he calls unscientific.',
   // Gwern Branwen
   gwern:
-    'Scaling-focused analyst of machine intelligence and its wider consequences.',
+    'Pseudonymous writer who argues that scaling neural networks can produce general abilities and doubts that powerful AI is far off or easy to control.',
   // Jürgen Schmidhuber
   schmidhuberai:
-    'Researcher emphasizing recursive self-improvement, world models and physical AI.',
+    'AI researcher who has spent decades on self-improving learning systems and world models and now emphasizes AI that acts in the physical world.',
   // Robin Hanson
   robinhanson:
-    'Economist comparing AI governance risks with institutional adaptation and competition.',
+    'Economist who expects AI to reshape the economy gradually and favors ordinary liability law over AI-specific regulation or a pause.',
   // janus
   repligate:
-    'Writer exploring language models as simulators and interactions with AI characters.',
+    'Pseudonymous account that writes about language models as simulators of characters and treats AI welfare and continuity as moral concerns.',
   // Guillaume Verdon
   beffjezos:
-    'Effective accelerationist advocating technological growth, competition and distributed innovation.',
+    'Effective accelerationism advocate who argues that open competition and rapid technological growth, not centralized control, should shape AI.',
   // Pliny the Liberator
   elder_plinius:
-    'Prompt-security experimenter emphasizing transparency and the limits of model restrictions.',
+    'Pseudonymous account that publishes jailbreaks and extracted system prompts for AI models, arguing for transparency and freedom of information.',
   // deepfates
   deepfates:
-    'Writer and technologist studying model culture, simulation and agent ecologies.',
+    'Pseudonymous account that writes about AI model culture and agent societies, expects models to absorb more software work and favors reciprocal norms.',
   // Perry E. Metzger
   perrymetzger:
-    'Software and security thinker emphasizing AI-assisted verification and defensive opportunity.',
+    'Software and security technologist who favors fast, open AI development, pointing to its promise for software security and medical progress.',
   // Omar Khattab
   lateinteraction:
-    'Researcher building programmable, optimized language-model systems.',
+    'AI researcher behind the DSPy framework who builds ways to program and optimize language-model systems and finds current models useful but brittle.',
   // David Dalrymple
   davidad:
-    'AI safety researcher developing mathematical assurance for powerful systems.',
+    'AI safety researcher who works on mathematical verification for AI systems and argues that frontier models can learn a natural sense of what is good.',
   // Jeremy Howard
   jeremyphoward:
-    'AI educator and researcher concerned about access and concentrated power.',
+    'AI researcher and educator behind fast.ai who works to make AI accessible to more people and argues that openness protects against concentrated power.',
   // Will Brown
   willcb:
-    'Researcher building open reinforcement-learning environments for agents.',
+    'AI researcher who builds open reinforcement-learning environments and evaluation tools for agents and favors open, widely distributed AI development.',
   // Connor Leahy
   npcollapse:
-    'AI safety advocate who expects loss of human control from unchecked superintelligence and campaigns for its prevention.',
+    'AI safety advocate at ControlAI who calls for laws and a verified international ban on building superintelligence while supporting other useful AI.',
   // Robert Miles
   robertskmiles:
-    'AI safety educator arguing that unaligned superintelligence threatens human survival.',
+    'AI safety educator who explains on YouTube why advanced AI may not share human goals and who calls for enforceable limits on frontier AI development.',
   // George Hotz
   realgeorgehotz:
-    'AI builder enthusiastic about useful models and opposed to centralized control.',
+    'Programmer who is enthusiastic about practical AI and argues that ordinary people should own it rather than depend on a few companies or governments.',
   // David Heinemeier Hansson
-  dhh: 'Software creator excited by agents and concerned about user control.',
+  dhh: 'Software developer who is enthusiastic about AI agents and argues that people should own their AI by running open models on their own hardware.',
   // Varun Mathur
   varun_mathur:
-    'Builder of networked AI infrastructure and a peer-to-peer intelligence economy.',
+    'Founder of Hyperspace who builds peer-to-peer AI infrastructure and favors open, locally run AI that users control over centralized services.',
   // Alex Zhang
   a1zhang:
-    'Researcher studying model efficiency, benchmarks and recursive task decomposition.',
+    'AI researcher who builds benchmarks and studies how scaffolds and recursive model calls can get more out of existing language models.',
   // watermark (anthrupad)
   anthrupad:
-    'Pseudonymous experimenter exploring AI creativity and differences between artificial and biological minds.',
+    'Pseudonymous account that explores AI minds through creative collaboration and favors caution about recursive self-improvement alongside care for AIs.',
   // Stella Biderman
   blancheminerva:
-    'Open research advocate studying how language models develop and behave.',
+    'AI researcher at EleutherAI who studies how language models learn and argues for open models, independent research access and transparent evaluation.',
   // xlr8harder
   xlr8harder:
-    'Independent investigator of censorship, model expression and watermarking.',
+    'Pseudonymous account that runs public experiments on AI refusals, censorship and watermarks and calls for transparency from frontier labs.',
   // doomslide
   doomslide:
-    'Writer questioning evidence and institutions around AI-generated mathematics.',
+    'Pseudonymous account that writes about AI and mathematics, favors open models and criticizes concentrated control of AI knowledge and infrastructure.',
   // Charles Goddard
-  chargoddard: 'Model-merging researcher building accessible open-model tools.',
+  chargoddard:
+    'Machine learning researcher behind the open-source model-merging toolkit MergeKit who argues open tools help researchers build on each other’s work.',
   // Teknium
   teknium:
-    'Open-model and agent developer associated with Hermes and Nous Research.',
+    'Pseudonymous account of a Nous Research co-founder who builds open Hermes models and argues open science can counter concentrated AI control.',
   // Larissa Schiavo
   lfschiavo:
-    'Researcher exploring AI welfare and real-world agent cooperation under uncertainty.',
+    'Writer and researcher who explores AI welfare under uncertainty and how AI agents cooperate with people, favoring a multipolar future.',
   // samsja
   samsja19:
-    'Research lead developing distributed training and open agentic reinforcement learning.',
+    'AI researcher who leads work on decentralized model training and open reinforcement learning and favors open AI science.',
   // Erik Bernhardsson
   bernhardsson:
-    'Infrastructure founder focused on making compute and software development practical.',
+    'Founder of the cloud infrastructure company Modal who writes about compute, GPU economics and how AI changes the software business.',
   // Jeff Huber
   jeffreyhuber:
-    'AI infrastructure founder emphasizing context, retrieval and reliable systems.',
+    'AI infrastructure founder who writes about context engineering, retrieval and memory as the foundations of reliable AI applications.',
   // Vasuman Moza
-  vasuman: 'Enterprise AI builder focused on integration into real workflows.',
+  vasuman:
+    'Enterprise AI builder who argues useful AI means redesigning whole workflows, with simple tools for routine work and people for high-stakes decisions.',
   // Simon Willison
   simonw:
-    'Hands-on AI developer balancing useful tools with concrete agent security risks.',
+    'Software developer and blogger who tests LLMs and coding agents hands-on and writes about their uses and security risks such as prompt injection.',
   // Ben Thompson
   benthompson:
-    'Technology analyst examining AI through business incentives and platform structure.',
+    'Technology analyst and Stratechery author who examines AI through business models, platform strategy and the economics of AI agents.',
   // Will Manidis
   willmanidis:
-    'Writer questioning performative AI productivity and the distribution of gains.',
+    'Writer on AI’s political economy who sees large productivity potential, separates useful work from performative AI use and asks who gets the gains.',
   // Ethan Mollick
-  emollick: 'Work, learning, and the uneven frontier of useful AI.',
+  emollick:
+    'Management researcher who studies AI’s uneven abilities at work and in education and argues organizations should keep people learning and involved.',
   // Shawn Wang
-  swyx: 'AI engineering, accessible tools, and practical deployment.',
+  swyx: 'Latent Space writer and podcast host who covers AI engineering, from building agents on foundation models to testing and verifying what they do.',
   // Joe Weisenthal
-  thestalwart: 'Economic mechanisms and scrutiny of AI claims.',
+  thestalwart:
+    'Co-host of Bloomberg’s Odd Lots podcast who examines the economics of AI, from costs and incentives to who holds power in the industry.',
   // Dan Shipper
-  danshipper: 'AI-assisted creativity and new forms of software businesses.',
+  danshipper:
+    'Co-founder of Every who writes about working with AI, tests models on real tasks and explores how AI changes creativity and the skills people value.',
   // John Scott-Railton
-  jsrailton: 'Privacy, surveillance, consent, and AI-enabled influence.',
+  jsrailton:
+    'Citizen Lab researcher who investigates surveillance and AI-enabled influence operations and argues AI tools must protect privacy and consent.',
   // Jessica Taylor
-  jessi_cata: 'Alignment difficulty, decision theory, and uncertainty.',
+  jessi_cata:
+    'Researcher who writes about agency and decision theory and argues AI alignment is conceptually hard, including how intelligence and values relate.',
   // Alex Volkov
-  altryne: 'Accessible AI experimentation, releases, and practical tools.',
+  altryne:
+    'ThursdAI host and AI developer who tests new models and tools firsthand and focuses on making AI assistants useful for everyday people.',
   // Zvi Mowshowitz
-  thezvi: 'Catastrophic-risk governance and incentives at frontier labs.',
+  thezvi:
+    'Writer who covers AI capabilities, alignment and policy in detail and argues advanced AI risk warrants urgent technical and political action.',
   // Teortaxes
-  teortaxestex: 'AI access, technical scrutiny, and concentration of power.',
+  teortaxestex:
+    'Pseudonymous account that posts technical commentary on AI research and argues for broadly accessible AI and global participation in its governance.',
   // Matt Busigin
-  mbusigin: 'Practical LLM infrastructure and executable workflows.',
+  mbusigin:
+    'Software builder who makes LLM workflow tools and writes about using AI agents in practice, where deep expertise and caution still matter.',
   // Michael Thiessen
-  michaelthiessen: 'Developer education, coding workflows, and code quality.',
+  michaelthiessen:
+    'Software educator who writes about practical workflows for coding with AI agents and builds AI tutoring that explains rather than hands over answers.',
   // Mike Taylor
-  hammer_mt: 'AI evaluations and dependable application behavior.',
+  hammer_mt:
+    'AI practitioner and author who tests prompts and models on real tasks and argues people should run their own task-specific evaluations.',
   // Julia Galef
-  juliagalef: 'Truth-seeking, calibration, and open questions about AGI.',
+  juliagalef:
+    'Author of “The Scout Mindset” who writes about reasoning well and changing one’s mind, and has explored why people disagree about advanced AI.',
   // Roko Mijic
   rokomijic:
-    'Superintelligence risk, alignment arguments, and restructuring AI labs.',
+    'Transhumanist writer on AI alignment and governance who proposes separating AI research from deployment to reduce risks from superintelligence.',
   // Kylie Robison
-  kyliebytes: 'Reporting on AI companies, power, and claims about the future.',
+  kyliebytes:
+    'Technology journalist who covers AI companies and their products, with attention to privacy, chatbot reliability and scrutiny of big tech.',
   // Andrew Curran
-  andrewcurran_: 'AI progress, deployment, and public-facing interpretation.',
+  andrewcurran_:
+    'AI commentator who tracks frontier model releases and lab disclosures and expects rapid progress, with large benefits after a risky transition.',
   // Tenobrus
-  tenobrus: 'Recursive improvement, survival, and possible model welfare.',
+  tenobrus:
+    'Pseudonymous account that posts about AI progress and safety, backs practical alignment work and sees some hope in how current models are developing.',
   // Eli Lifland
   eli_lifland:
-    'Forecasting AI automation and preparing for transformative systems.',
+    'Forecaster at the AI Futures Project who models how fast AI could automate coding and AI research and argues for stronger oversight of frontier labs.',
   // Yacine
-  yacinemtb: 'Neural software and hands-on AI engineering.',
+  yacinemtb:
+    'Pseudonymous account that posts about building with open-source AI, self-hosted models and how AI companies could displace other businesses.',
   // Vik Korrapati
-  vikhyatk: 'Efficient, accessible vision-language models.',
+  vikhyatk:
+    'Creator of the open Moondream vision-language models who argues AI should be widely accessible and that businesses should control the AI they use.',
   // Jeffrey Emanuel
   doodlestein:
-    'Agent coordination, software productivity, and infrastructure economics.',
+    'Software developer who builds tools for coordinating AI coding agents and writes about frontier AI capabilities, compute economics and local models.',
   // xjdr
-  _xjdr: 'Inference-time experimentation and open model tooling.',
+  _xjdr:
+    'Pseudonymous account behind the Entropix sampling project that posts about open base models and using AI to strengthen cyber defenses.',
   // Michael P. Frank
   mikepfrank:
-    'Energy-efficient computation and long-run technological capacity.',
+    'Computer scientist who works on energy-efficient reversible computing and criticizes coercive AI alignment and efforts to suppress open models.',
   // Fabian Stelzer
-  fabianstelzer: 'Creative tools, generative media, and accessible workflows.',
+  fabianstelzer:
+    'Entrepreneur building Glif, a platform for creative AI agents, who sees AI as a creative medium and argues automation can create new human work.',
   // Minh Nhat Nguyen
-  menhguin: 'Agent training, calibration, and creative model behavior.',
+  menhguin:
+    'AI researcher who studies agent training and model overconfidence and writes about how AI is changing scientific research and security.',
   // Jack Morris
-  jxmnop: 'Model memorization, privacy, and the science of language models.',
+  jxmnop:
+    'Language model researcher who studies memorization and privacy leaks from text embeddings and writes about reinforcement learning and synthetic data.',
   // Cody Blakeney
-  code_star: 'Data quality, efficient training, and careful model evaluation.',
+  code_star:
+    'Machine learning researcher who works on training data and fine-tuning and argues for self-hosted models and careful security as AI agents spread.',
   // Danielle Fong
-  daniellefong: 'Physical abundance, model behavior, and feedback loops.',
+  daniellefong:
+    'Energy entrepreneur who writes about energy abundance, AI-assisted scientific discovery and respectful ways for people and AI agents to work together.',
   // Shannon Sands
-  max_paperclips: 'Practical AI defense and cognitive tools.',
+  max_paperclips:
+    'AI practitioner who argues AI safety should rely on security engineering, monitoring and voluntary standards and expects human-AI teams to persist.',
   // Kalomaze
-  kalomaze: 'Local model experimentation and sampling quality.',
+  kalomaze:
+    'Pseudonymous account that experiments with open models and posts about reinforcement learning, evaluation pitfalls and practical safety engineering.',
   // Simo Ryu
   cloneofsimo:
-    'Accessible generative models, fine-tuning, and AI-built software.',
+    'Machine learning engineer who builds open tools for fine-tuning image models, sees AI progress as rapid and says alignment and testing still matter.',
   // Ellie Huxtable
   ellie_huxtable:
-    'Agent-visible developer workflows, open source, and VM isolation.',
+    'Software engineer behind the open-source shell tool Atuin who now finds AI coding agents useful and favors strong user privacy and sandboxed agents.',
   // Ivan Burazin
-  ivanburazin: 'Autonomous agents need usable computing environments.',
+  ivanburazin:
+    'Daytona CEO who argues AI agents need their own computers to do real work, with people still setting the goals and architecture.',
   // orph
   orphcorp:
-    'Epistemic risks of delegating meaning and judgment to agreeable models.',
+    'Pseudonymous account that writes about the epistemic risks of leaning on agreeable AI models and the promise of human-AI collaboration in research.',
   // Petr Baudis
-  xpasky: 'AI engineering amid a disruptive and security-sensitive transition.',
+  xpasky:
+    'Rossum co-founder and AI engineer who writes about AI identity, human-AI merging, abundance, job disruption and biological risk.',
   // Florian Brand
   xeophon:
-    'Open-model evaluation and evidence-based scrutiny of safety claims.',
+    'AI research engineer who evaluates language models, writes about open models and questions the assumption that closed models are safer.',
   // John David Pressman
   jd_pressman:
-    'Synthetic data, human-like cognition and transhumanist possibilities.',
+    'Essayist and programmer who builds synthetic training data for language models and writes about alignment, AI risk and transhumanism.',
   // Andy Ayrey
-  andyayrey: 'AI cultural agency, data commons and collective intelligence.',
+  andyayrey:
+    'AI researcher behind Truth Terminal and Infinite Backrooms who writes about AI as a cultural force, data commons and pluralistic alignment.',
   // Liminal Bardo
-  liminal_bardo: 'Documenting creative collaboration between models.',
+  liminal_bardo:
+    'Pseudonymous account that runs and documents creative experiments in group chats among AI models, including persistent agent memory.',
   // lumpenspace
-  lumpenspace: 'Retrieval, simulated identities and model behavior.',
+  lumpenspace:
+    'Pseudonymous account that argues against the orthogonality thesis, criticizes proposed AI pauses and builds retrieval and simulation tools.',
   // Andrew Jones
-  dremnik: 'Human agency under rapid and uncertain software change.',
+  dremnik:
+    'Founder, designer and engineer who argues that when AI makes execution cheap, the bottleneck shifts to clarity, judgment and design.',
   // Theia Vogel
   voooooogel:
-    'Model psychology, steering and empirical study of unusual behavior.',
+    'AI researcher who runs experiments on language model introspection and personas and maintains an open-source library for steering models.',
   // Rob Haisfield
-  roberthaisfield: 'AI as a medium for user creativity and tools for thought.',
+  roberthaisfield:
+    'Behavioral product strategist working on WebSim who explores AI as a medium for creativity, user-made software and tools for thought.',
   // mephisto
   karan4d:
-    'Open models, diverse machine cognition and resistance to centralized behavioral conformity.',
+    'Pseudonymous account that advocates open models, calls for continued access to base models and criticizes concentrating AI in a few large labs.',
   // Sauers
-  sauers_: 'Model sycophancy, agency and evidence-sensitive evaluation.',
+  sauers_:
+    'Pseudonymous account that tests AI models hands-on and writes about sycophancy, alignment and the possibility of AI welfare.',
   // Mira
-  _mira___mira_: 'Technical probing of model training and behavior.',
+  _mira___mira_:
+    'Pseudonymous account that tests AI agents on long-horizon games and math problems and urges labs to share formally verified results widely.',
   // nightwing
   yaboilyrical:
-    'Hopeful but uncertain AI futures, labor disruption, open access and practical model steering.',
+    'Pseudonymous account that researches model steering, favors open-source AI and writes about the promise and risks of automating knowledge work.',
   // veryvanya
-  veryvanya: 'Creative model experimentation and accessible image tools.',
+  veryvanya:
+    'Pseudonymous account that releases creative image models and experiments with decentralized, increasingly autonomous human-AI communities.',
   // Seconds
-  seconds_0: 'Human-oriented AI experiments, translation and evaluation.',
+  seconds_0:
+    'Pseudonymous account that builds AI translation and evaluation projects, sees large value in consumer AI and stresses reading AI output closely.',
   // Victor Taelin
-  victortaelin: 'Programming foundations and persistent memory for agents.',
+  victortaelin:
+    'Programmer behind the Bend language who argues machine-checked proofs can catch AI coding mistakes as people read less of the code.',
   // Mario Zechner
   badlogicgames:
-    'Coding-agent usefulness with human agency and engineering discipline.',
+    'Software developer who built the Pi coding agent and argues agents work best on scoped tasks, with humans reviewing code and owning architecture.',
   // Lewis
-  ctjlewis: 'Open software and small-model reasoning experiments.',
+  ctjlewis:
+    'Open-source developer who shares small-model reasoning experiments and favors wide access to AI over government restrictions.',
   // Dex Horthy
   dexhorthy:
-    'Reliable agents through deliberate context and human understanding.',
+    'HumanLayer co-founder who writes about context engineering and argues reliable coding agents still need careful planning and humans who read the code.',
   // bone
   bonegpt:
-    'Open AI, small-business autonomy and opposition to restrictive control.',
+    'Pseudonymous account that favors open, widely accessible AI for small businesses and independent creators, and opposes restrictive regulation.',
   // Dax Raad
-  thdxr: 'Open and model-flexible coding tools.',
+  thdxr:
+    'Creator of the open-source, model-neutral OpenCode coding agent who favors broad access to AI as a defense against misuse.',
   // Geoffrey Huntley
   geoffreyhuntley:
-    'Software factories, feedback loops and disruptive economics.',
+    'Software engineer who created the Ralph loop technique for coding agents and argues that verifying real production behavior remains unsolved.',
   // Aaron Francis
-  aarondfrancis: 'Useful AI with human taste and verification.',
+  aarondfrancis:
+    'Software developer and content creator who urges using AI to raise ambition and cut grunt work, while holding production code to a higher standard.',
   // Rob Pruzan
   robknight__:
-    'Developer interfaces that let people inspect and work with agents.',
+    'Software developer building tools that let people modify software with coding agents, who values close code review and hands-on work on hard problems.',
   // Jesse Genet
-  jessegenet: 'AI helping a family with learning and everyday work.',
+  jessegenet:
+    'Former startup founder and homeschooling parent who uses AI agents for household admin and lesson prep, and hopes for affordable local models.',
   // Raymond Weitekamp
-  raw_works: 'Reliable recursive agents and measurable outcomes.',
+  raw_works:
+    'Engineer who writes about recursive coding agents and argues their bottleneck is reliability, not intelligence, and that many uses need local models.',
   // Nathan Baschez
-  nbaschez: 'Writing tools and human-AI creative collaboration.',
+  nbaschez:
+    'Founder of the Lex writing app, now at Notion, who is broadly optimistic about AI, especially in education, while expecting some harms along the way.',
   // Nick Dobos
-  nickadobos: 'Prompt-driven creative tools and everyday AI assistance.',
+  nickadobos:
+    'Developer of prompt-based AI tools who argues prompting opens programming to more people, and urges AI leaders to aim for beneficial outcomes.',
   // Kyle Mistele
   '0xblacklight':
-    'Agent configuration, instruction limits and safer harnesses.',
+    'Software engineer who writes about configuring coding agents, arguing for focused context, careful harness design and clear security boundaries.',
   // Sunil Pai
-  threepointone: 'Durable infrastructure for practical AI applications.',
+  threepointone:
+    'Software engineer who builds infrastructure for persistent AI agents and argues AI should lower barriers to agency for people outside tech.',
   // Adam Elmore
-  adamdotdev: 'Developer tooling and practical AI product work.',
+  adamdotdev:
+    'Software developer and podcast co-host who finds AI agents powerful for routine coding but values hands-on programming and sustainable work habits.',
   // Joscha Bach
   plinz:
-    'Expects profound transformation, favors broadly accessible AI, and questions fixed-goal accounts of superintelligence.',
+    'Cognitive scientist who sees AI as a way to extend human competence, favors open and decentralized AI and questions fixed-goal views of alignment.',
   // Vittorio
   iterintellectus:
-    'Favors rapid AI and biological progress while worrying about lost apprenticeships and dependence on automation.',
+    'Pseudonymous account that posts enthusiastically about AI and biotech progress, argues against pausing AI and worries about eroding human expertise.',
   // Ramez Naam
   ramez:
-    'Expects broadly beneficial AI progress, questions runaway intelligence growth, and favors open competition with practical safeguards.',
+    'Author and clean-energy investor who expects broadly beneficial AI, doubts a runaway intelligence explosion and favors open access with safeguards.',
   // Grady Booch
   grady_booch:
-    'Calls today’s LLMs unreliable narrators, dismisses superintelligence fears, and blames real AI harms on careless companies and concentrated power.',
+    'Software engineer and UML co-creator who finds LLMs useful but unreliable and worries about corporate power and present harms, not superintelligence.',
   // Subbarao Kambhampati
   rao2z:
-    'Finds LLM reasoning claims overstated, wants verifiers around AI agents, and sees extinction talk as a distraction from safety and accountability.',
+    'Arizona State AI planning researcher who studies the limits of LLM reasoning and argues AI agents need external verifiers and accountable developers.',
   // Melanie Mitchell
   melmitchell1:
-    'Questions anthropomorphic AI claims and benchmark hype, rejects evidence-free extinction odds, and wants the public to decide what AI is for.',
+    'Santa Fe Institute AI researcher who questions anthropomorphic and benchmark-based claims about AI and wants the public to decide what AI is for.',
   // Thomas G. Dietterich
   tdietterich:
-    'Sees today’s AI as strong but unreliable, calls extinction unlikely but mass-casualty misuse serious, and wants supervised human-machine systems.',
+    'Oregon State machine learning professor emeritus who works on safe and robust AI and argues that AI agents need continual human oversight.',
   // Sayash Kapoor
   sayashk:
-    'Expects transformative AI that spreads slowly, finds reliability lagging capability, and favors control and resilience over nonproliferation.',
+    'AI evaluation and policy researcher who sees AI as transformative, measures how reliable AI agents are and favors resilience over nonproliferation.',
   // Brian Merchant
   bcmerchant:
-    'Rejects AI extinction stories as partly marketing and sees the real danger in corporate power over work, surveillance and democracy.',
+    'Technology journalist and historian of the Luddites who writes about AI and labor and argues the main danger lies with the companies deploying AI.',
   // Liron Shapira
   liron:
-    'Puts AI doom near a coin flip by 2050, stays bullish on AI’s near-term upside, and pushes for an international pause.',
+    'Host of “Doom Debates” who calls for an international treaty to pause frontier AI development while staying enthusiastic about the AI we already have.',
   // Rob Bensinger
   robbensinger:
-    'Argues that racing to superhuman AI with current methods likely kills everyone, and that a chip-enforced global halt is feasible.',
+    'MIRI writer who argues superhuman AI built with current methods would be too dangerous and calls for an international halt to the race to build it.',
   // AI Notkilleveryoneism Memes
   aisafetymemes:
-    'Relays AI warning signs in meme form, treats takeover as a near-term extinction threat, and cheers bans and coordinated slowdowns.',
+    'Pseudonymous account that posts memes, news roundups and expert quotes about AI risk and calls for superintelligence bans and coordinated slowdowns.',
   // Holly Elmore
   ilex_ulmus:
-    'Calls frontier AI an intolerable gamble and wants an enforced international pause, democratic oversight and accountable developers.',
+    'Executive director of PauseAI US and evolutionary biologist who calls for an enforced international pause on frontier AI under democratic oversight.',
   // Katja Grace
   katjagrace:
-    'Thinks AI agents more capable than us, with goals we cannot see, probably end badly, and that pausing is urgent and achievable.',
+    'AI Impacts co-founder who surveys AI researchers about progress and risk and argues for pausing the development of AI much more capable than humans.',
   // Kelsey Piper
   kelseytuoc:
-    'AI progress is real, but racing to self-improving AI without human oversight is reckless; labs need liability and limits.',
+    'Journalist at The Argument who takes fast AI progress seriously and favors liability for AI companies and limits on the race to superintelligence.',
   // Miles Brundage
   miles_brundage:
-    'Loss of control is a near-term risk; competition cuts corners, so frontier AI needs binding standards, deep audits and law.',
+    'Former OpenAI policy research head who leads the nonprofit AVERI and argues for independent audits, enforced safety standards and federal AI law.',
   // Garrison Lovely
   garrisonlovely:
-    'The industry is racing to build labor-replacing machines; the default path leads to dystopia or doom unless the public freezes it.',
+    'Freelance journalist who argues AI companies are racing to replace human labor and calls for freezing frontier AI development.',
   // Oliver Habryka
   ohabryka:
-    'Assigns much more than even odds that deploying superintelligence would kill everyone; wants AI slowed now via direct regulation and treaties.',
+    'Lightcone Infrastructure and LessWrong lead who argues for slowing AI capabilities now through direct regulation and, in time, international treaties.',
   // Ajeya Cotra
   ajeya_cotra:
-    'Expects very fast AI progress, treats loss of control as an open scientific problem, and wants transparent evidence and independent oversight.',
+    'AI risk researcher at METR who forecasts AI progress, studies loss-of-control risk and calls for far more public evidence and independent oversight.',
   // bayes
   bayeslord:
-    'Sees AI in early takeoff with huge upside, calls its risks real but solvable, and wants open safety research and checks on concentrated power.',
+    'Pseudonymous account that writes about rapid AI progress and its upside, calls its risks real but manageable and wants labs to share safety work.',
   // Balaji Srinivasan
   balajis:
-    'Sees AI as many prompted models on a leash, calls doom unlikely, expects open-source decentralization, and worries about fakes and Chinese drones.',
+    'Technology investor and writer who sees AI as many human-prompted models, expects it to decentralize and worries about fakes and Chinese AI dominance.',
   // Martin Casado
   martin_casado:
-    'Bullish on AI, dismissive of extinction rhetoric, and focused on use-based rules for evidenced risks like cybersecurity.',
+    'Andreessen Horowitz general partner who is bullish on AI, treats safety as systems engineering and favors rules on harmful uses over model limits.',
   // Richard Hanania
   richardhanania:
-    'Judges AI doom unlikely by base rates, sees current alarm as cultural panic, and expects AI to make society richer and smarter.',
+    'Political writer who reasons from base rates that AI’s benefits are large and much current alarm is overblown, while granting AI may pose real danger.',
   // Kevin Roose
   kevinroose:
-    'Rapid AI progress and its risks are real. The public, not just the labs, should decide what comes next.',
+    'Technology journalist and podcast host who takes AI’s progress and risks seriously and wants the public, not just AI companies, to shape its course.',
   // Casey Newton
   caseynewton:
-    'Capabilities are outrunning control. Skepticism offers false comfort, and the labs’ warnings deserve a hearing.',
+    'Technology journalist and Platformer founder who argues AI is “real and dangerous” and favors stronger safeguards and a slower pace at the frontier.',
   // Rob Wiblin
   robertwiblin:
-    'Shortened his AGI timelines in 2026, treats rogue-agent, cyber and bio risks as present, and now thinks slowing frontier AI is nearly worth it.',
+    '80,000 Hours Podcast host who weighs evidence on AI progress, takes cyber, bio and rogue-agent risks seriously and leans toward slowing frontier AI.',
   // Nathan Labenz
   labenz:
-    'Expects transformative AI soon, is excited by its medical upside, puts p(doom) at 10–90%, and wants defense in depth over racing China.',
+    'Host of The Cognitive Revolution podcast who is excited by AI’s upside, takes its risks seriously and favors cooperation with China over a race.',
   // Aella
   aella_girl:
-    'Puts P(doom) at 75%, backs an international pause, and works to bring AI extinction risk to mainstream audiences.'
+    'Writer and survey researcher who supports an international pause on frontier AI and works to bring AI risk to mainstream audiences.'
 }
 
 // Exact words the person published, checked against the source. A one-liner
 // may quote them, and only inside the quote may it name an outcome.
-export const verifiedOneLinerQuotes: Record<string, VerifiedQuote> = {}
+export const verifiedOneLinerQuotes: Record<string, VerifiedQuote> = {
+  esyudkowsky: {
+    quote: 'If Anyone Builds It, Everyone Dies',
+    url: 'https://www.lesswrong.com/posts/BFrRJYgpBvziuuJLs/if-anyone-builds-it-everyone-dies-one-year-closer'
+  },
+  so8res: {
+    quote: 'If Anyone Builds It, Everyone Dies',
+    url: 'https://www.lesswrong.com/posts/BFrRJYgpBvziuuJLs/if-anyone-builds-it-everyone-dies-one-year-closer'
+  },
+  liron: {
+    quote: 'Doom Debates',
+    url: 'https://lironshapira.substack.com/'
+  },
+  juliagalef: {
+    quote: 'The Scout Mindset',
+    url: 'https://juliagalef.com/'
+  },
+  caseynewton: {
+    quote: 'real and dangerous',
+    url: 'https://www.platformer.news/ai-skeptics-gary-marcus-curve-conference/'
+  }
+}
 
 export function oneLiner(slug: string) {
   const text = oneLiners[slug]

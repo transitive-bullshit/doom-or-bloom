@@ -184,7 +184,7 @@ Resource conditions may explicitly use `basis: topic` when relevance requires su
 
 ## Simulated-user source briefs
 
-For simulated-user research or regeneration, follow [user-journeys.md](user-journeys.md#purpose-and-authoring). Briefs in `lib/journeys/` describe supported beliefs and voice; presentation metadata lives in `components/landing/people.ts`. Saved selected results live in Postgres. Updating a brief does not reinterpret an immutable run.
+For simulated-user research or regeneration, follow [user-journeys.md](user-journeys.md#purpose-and-authoring). Briefs in `lib/journeys/` describe supported beliefs and voice; presentation metadata lives in `components/landing/people.ts`, and the public one-liner under each name in `components/landing/one-liners.ts`, written to [the one-liner rule](user-journeys.md#simulated-user-one-liners). Saved selected results live in Postgres. Updating a brief does not reinterpret an immutable run.
 
 Preserve the lessons from source and interview audits: attribute only the named speaker's turns; distinguish satire, quoted model output and interviewer premises from personal beliefs; keep dated changes and conditional forecasts explicit. Missing source evidence establishes a research gap, not that the person holds an uncertain or moderate view. Technical work or enthusiasm for one tool does not establish an overall societal forecast. Narrative inputs must never prescribe desired assessment scores.
 
