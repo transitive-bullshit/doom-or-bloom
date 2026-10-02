@@ -33,7 +33,16 @@ function apply(rules: Rule[], path: string, cookie?: string) {
 }
 
 describe('locale rewrites', () => {
-  const rewrite = (path: string) => apply(localeRewrites(), path)
+  const { beforeFiles, afterFiles } = localeRewrites()
+  const rewrite = (path: string) => apply([...beforeFiles, ...afterFiles], path)
+
+  it('rewrites the root before the platform maps RSC requests to files', () => {
+    // `/` would otherwise reach afterFiles as /index.rsc or /index.segments/….
+    expect(apply(beforeFiles, '/')).toBe('/en')
+    // Every other path waits for static files, such as /robots.txt.
+    for (const path of ['/about', '/robots.txt', '/_next/static/chunk.js'])
+      expect({ path, to: apply(beforeFiles, path) }).toEqual({ path, to: null })
+  })
 
   it('serves unprefixed page URLs from the English tree', () => {
     expect(rewrite('/')).toBe('/en')

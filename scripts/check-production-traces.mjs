@@ -259,8 +259,16 @@ assert.deepEqual(
   [],
   'Locale routing must not add a proxy function'
 )
+// The root rewrites before Vercel maps RSC requests to prerendered files;
+// see localeRewrites in i18n/next-routes.ts.
 assert(
-  routes.rewrites.afterFiles.some((entry) => entry.destination === '/en'),
+  routes.rewrites.beforeFiles.some(
+    (entry) => entry.source === '/' && entry.destination === '/en'
+  ),
+  'The home page must be served from the English tree before files'
+)
+assert(
+  routes.rewrites.afterFiles.some((entry) => entry.destination === '/en/:path'),
   'Unprefixed URLs must be served from the English tree'
 )
 console.log('Locale routing uses static rewrites without a proxy function')
