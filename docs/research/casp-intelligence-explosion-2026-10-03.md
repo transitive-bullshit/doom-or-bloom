@@ -39,3 +39,16 @@ Verification on the existing dirty working tree:
 - `pnpm resources:previews --url=https://casp.ac/reports/intelligence-explosion --concurrency=1` cached the report bookmark; all 778 source images are present. The generated title card and PDF author page were visually inspected.
 
 No content review, frozen release, deployment or publication is implied.
+
+## Requested regeneration and production import
+
+After source commit `bcfe0157`, the user explicitly requested regeneration locally and in production. Verified the generation database was `localhost/doom_bloom_dev`. Generated only `scientist-ai-advocate` and `concerned-pioneer`, sequentially, each with `--turns=8 --max-requests=48 --max-cost=1`. Both completed automatically after four accepted answers; each used four GPT-5.6 Sol requests and 21 Jev requests, with engine 0.7.4 and content 0.4.0-draft. Estimated costs were $0.084267234 and $0.081988668 respectively, $0.166255902 total. No benchmark references were regenerated.
+
+Read all eight answers against the updated briefs. Both incorporate conditional AI R&D acceleration and potential bottlenecks, alongside benefits, control risks and governance. Bengio declines a numerical probability; his displayed approximately 23% remains an inference from fictional answers, not a new public statement. Hinton distinguishes his historical 10–20% gut estimate from calibrated measurement; the existing dated public-statement override remains intact. These are simulated answers, not new quotations or endorsements.
+
+Ran `personas:import plan` then `personas:import write --env <production-settings> --ids yoshua_bengio,geoffreyhinton`. The import selected the exact local runs without further inference. Read-only comparisons verified complete payload, selected digest, source brief and profile metadata equality, plus current authored-source equality. Older runs remain immutable.
+
+- `yoshua_bengio`: run `1790979247785-719db82d-ee77-47c1-bbd6-c312623ce371`; production assessment `58517906-c307-45ef-b542-690c27434fb1`; digest `aa192484169c0b16de0f7b01b84941c43a7116ceb71030290d6ea34f57318315`. Four answers and 9 source links. Observed outlook 25.75/100 and transformation 84/100; no target scores were supplied.
+- `geoffreyhinton`: run `1790979323874-e16eca93-a255-445b-9596-45d39a6ba93f`; production assessment `18568d3f-1369-4e39-89f7-87e510953af1`; digest `cf97ffb9f24d39ce6cf68d9e256c41981d83897bda54d9e665a5490b90c38caa`. Four answers and 8 source links. Observed outlook 25/100 and transformation 83.25/100; no target scores were supplied.
+
+Verification on the committed source tree: formatting, lint, types, content and unused-code checks passed. The full unit run passed 562 tests but its two image-validation tests exceeded the default five-second timeout under local load; both passed in a scoped rerun with `--testTimeout=30000` (3.57 seconds for the two tests). No test implementation or default timeout changed. Production page rebuild and live verification follow the database import.
