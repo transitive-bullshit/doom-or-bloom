@@ -85,6 +85,15 @@ The server copies the cookie onto a new owner when Better Auth creates one, whet
 
 Tag every link we post with `?ref=`, using a lowercase slug: a platform (`x`, `hn`, `lw`, `ph`, `reddit-<subreddit>`), a newsletter or podcast (`nl-<name>`, `pod-<name>`), outreach to a simulated person (`sim-<handle>`), or a share surface (`share-x`, `share-threads`, `share-bluesky`, `share-linkedin`, `share-native`, `share-copy-link`; the share bar adds these automatically). A result sent back from a comparison is tagged `compare`. Share links keep their ID in the path, which first touch never stores. Use `utm_campaign` to group a launch. Tags describe a channel, never a person who clicked.
 
+## Search engines
+
+Google Search Console and Bing Webmaster Tools measure how people find the site in search, which neither analytics product sees. Both were set up on October 2, 2026 under the owner's accounts:
+
+- **Google Search Console** has a domain property for `doom-or-bloom.com`, covering every subdomain and protocol. It is verified by a `google-site-verification` TXT record at the apex in Vercel DNS; removing the record drops verification.
+- **Bing Webmaster Tools** has `https://www.doom-or-bloom.com/`, verified by a `545d227d8ab453efdd8e9cde25b8a31f` CNAME to `verify.bing.com` in Vercel DNS. Bing's index also feeds ChatGPT search and Copilot.
+- Both have `https://www.doom-or-bloom.com/sitemap.xml` submitted.
+- **IndexNow** tells Bing and other participating engines about changed pages at once. The key is public by design and served at `/<key>.txt` from `public/` (`lib/seo/indexnow.ts`). After a production deploy that adds or changes public pages, or a simulated-user import, run `pnpm seo:indexnow` to submit every sitemap URL, or `pnpm seo:indexnow --url <url>` for specific pages. It checks that the key file is live first, and `--dry-run` prints what it would send.
+
 ## Experimental success
 
 The project is exploratory. Do not impose a single vanity KPI. Read evidence across:
