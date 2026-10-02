@@ -30,7 +30,7 @@ test('/es renders Spanish chrome and keeps links in Spanish', async ({
   await page.goto('/es')
   await expect(page.locator('html')).toHaveAttribute('lang', 'es')
   await expect(page).toHaveTitle(
-    '¿Cuál es tu P(doom)? Mapea tu visión de la IA | Doom or Bloom'
+    '¿Cómo cambiará la IA nuestro futuro? Haz el cuestionario de 3 minutos | Doom or Bloom'
   )
   await expect(
     page.getByRole('heading', { name: '¿Cómo cambiará la IA nuestro futuro?' })
