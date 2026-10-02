@@ -181,7 +181,7 @@ After an engine upgrade that changes interpretation, an operator can re-read sav
 - A published assessment moves its published pointer with its head, so its public page shows the new result. Its `updated_at`, which dates the publication, is unchanged. Published pages are pre-rendered at build, so redeploy after a write to refresh them.
 - Feedback rows keep the snapshot and result they rated.
 
-Simulated users are re-evaluated with `pnpm personas:reevaluate` (`scripts/reevaluate-personas.ts`). Each selected run's recorded questions and answers are replayed through the journey runner with the current engine, and no answer is generated. `write` publishes each replay through the ordinary generation records as a new public simulation, which the persona then selects because it is newer. Earlier runs stay frozen at their own URLs. See [user journeys](user-journeys.md#re-evaluate-selected-simulated-users--september-29-2026).
+Simulated users are re-evaluated with `pnpm personas:reevaluate` (`scripts/reevaluate-personas.ts`). Each selected run's recorded questions and answers are replayed through the journey runner with the current engine, and no answer is generated. `write` publishes each replay through the ordinary generation records as a new public simulation, which the persona then selects because it is newer. Earlier runs stay frozen at their own URLs. `plan --restate` instead copies each selected `simulation_v1` run and applies the persona's current verified public P(doom) statement, with no inference; answers, scores and map coordinates are unchanged. See [user journeys](user-journeys.md#re-evaluate-selected-simulated-users--september-29-2026).
 
 ## Personas and seeding
 

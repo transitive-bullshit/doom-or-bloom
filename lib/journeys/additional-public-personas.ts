@@ -222,6 +222,14 @@ export const additionalPublicPersonas: Persona[] = [
         publishedAt: '2026-05-04',
         summary:
           'In Axios’s interview, LeCun criticizes hype-driven career advice, defends the value of education and predicts that capable tools expand people’s ability to direct work. Adds his confident social optimism to the architectural critique; these are his forecasts rather than settled labor-market findings.'
+      },
+      {
+        title: 'I didn’t say p(doom) was zero',
+        url: 'https://x.com/ylecun/status/2046577402264870958',
+        publishedAt: '2026-04-21',
+        summary:
+          'Full post read via api.fxtwitter.com. Replying to a claim that he puts p(doom) at zero, he says he never said that: all estimates are pulled out of thin air, and a probability makes little sense for an event we have agency over. Playing that game anyway, he puts p(doom) below the chance of an extinction-level asteroid hitting Earth in the next millennium, and far below a nuclear holocaust.',
+        quote: 'All estimates are pulled out of thin air'
       }
     ],
     background:
@@ -377,6 +385,15 @@ export const additionalPublicPersonas: Persona[] = [
         publishedAt: '2026-08-18',
         summary:
           'Examines whether revenue, margins and fundraising can support compute obligations, criticizing annualized run-rate headlines as substitutes for durable economics. Connects a possible funding failure to exposed suppliers and cloud commitments. This is his conditional financial analysis, not a confirmed insolvency forecast or a new independently verified set of accounts.'
+      },
+      {
+        title: 'The Diary of a CEO AI Emergency Debate',
+        url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
+        publishedAt: '2026-09-17',
+        speaker: 'Ed Zitron',
+        summary:
+          'Third-party speaker-labeled transcript of the debate; use only Ed’s turns. Asked for his probability of human extinction (00:05:53), he stands at zero if we are talking strictly about AI, because superintelligence is undefined and he does not think LLMs lead to it, while saying a data-center-driven climate disaster could potentially eradicate humanity. Near the end (02:20:51), asked about a more-than-10% chance of existential harm within ten years, he says “I mean, look, 1%” and turns to non-existential harms such as grid failures.',
+        quote: 'if we’re talking strictly about AI, I stand at zero'
       }
     ],
     background:

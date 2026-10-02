@@ -219,6 +219,14 @@ export const independentFirstPersonas: Persona[] = [
         url: 'https://aiimpacts.org/conversation-with-robin-hanson/',
         summary:
           'Interview recorded September 5, 2019: disputes sudden concentrated takeoff and asks why smarter agents necessarily worsen principal-agent problems. Supports some advance investigation while arguing concrete system knowledge changes the timing of safety work. Historical timelines must not replace his newer forecasts.'
+      },
+      {
+        title: 'Robin Hanson Says You’re Going to Live',
+        url: 'https://www.richardhanania.com/p/robin-hanson-says-youre-going-to',
+        publishedAt: '2023-03-13',
+        speaker: 'Robin Hanson',
+        summary:
+          'Older speaker-labeled, lightly edited transcript of his CSPI podcast with Richard Hanania; use only Robin’s answers. Asked the chance that Yudkowsky is completely right and a near-term foom ends us, he says less than 1%, and declines to go below 0.1% when pressed. The estimate concerns that fast-takeoff scenario only, not every long-run AI outcome, and is not a current overall P(doom).'
       }
     ],
     voice: [
@@ -573,6 +581,14 @@ export const independentFirstPersonas: Persona[] = [
         summary:
           'Argues LLMs differ from the optimizer systems anticipated by doom arguments and asks whether advocates updated before seeking major regulation.',
         publishedAt: '2023-11-15'
+      },
+      {
+        title: 'WHAT IS MY P(DOOM)',
+        url: 'https://x.com/deepfates/status/2051775568321097971',
+        publishedAt: '2026-05-05',
+        summary:
+          'Long post read in full via api.fxtwitter.com; its P(doom) section answers a question from Scott. He tried to accept the premise but has to argue it: too many assumptions about human values, power and other dooms are smuggled in, nobody can model the relevant hyperobjects, and it is usually a vibes question dressed up as reasoning. He adds that we are in a pivotal era, alignment can be gotten right or wrong, and he wants to help get it right.',
+        quote: 'a vibes question dressed up as reasoning'
       }
     ],
     voice: [
@@ -992,7 +1008,7 @@ export const independentFirstPersonas: Persona[] = [
     description:
       'AI safety advocate who expects loss of human control from unchecked superintelligence and campaigns for its prevention.',
     concern:
-      'Preserve his pessimistic forecast under continued unchecked development separately from his belief that intervention can succeed. His 2025 estimate of 50–80% extinction or near-extinction within 50 years was explicitly conditional on doing literally nothing, not an unconditional present-day P(doom).',
+      'Preserve his pessimistic forecast under continued unchecked development separately from his belief that intervention can succeed. In August 2026 he put his P(doom) on the current trajectory within rounding error of Nate Soares’s, whom he placed at maybe 99, and added at once that the future is not decided. His 2025 estimate of 50–80% extinction or near-extinction within 50 years was explicitly conditional on doing literally nothing. Neither is an unconditional forecast that ignores intervention.',
     sources: [
       {
         title: 'Connor Leahy — ControlAI',
@@ -1007,7 +1023,7 @@ export const independentFirstPersonas: Persona[] = [
         speaker: 'Connor Leahy',
         transcriptUrl: 'https://theinsideview.ai/connor2',
         summary:
-          'In The Rob Bensinger Compass section, Leahy endorses short timelines and broadly agrees with Yudkowsky’s alignment difficulty arguments, but is less certain and allows that he could be wrong. The interviewer’s 99% framing should not become an exact current personal forecast.'
+          'In The Rob Bensinger Compass section, Leahy endorses short timelines and broadly agrees with Yudkowsky’s alignment difficulty arguments, but is less certain and allows that he could be wrong. The interviewer’s 99% framing in 2022 was not his own figure; his August 2026 estimate is a separate, later statement.'
       },
       {
         title: 'Target superintelligence rather than all useful AI',
@@ -1052,6 +1068,16 @@ export const independentFirstPersonas: Persona[] = [
           'https://sencanada.ca/en/content/sen/committee/451/trcm/28ev-57613-e',
         summary:
           'In his opening statement Leahy predicts humanity loses control if superintelligence is built, with extinction likely through competition. His answers describe competing AI populations, inadequate current control methods, and an international prohibition with verification. He opposes simply abandoning useful AI or slowing all Western data centres, while maintaining that unregulated competition underprovides security.'
+      },
+      {
+        title:
+          'The Peter McCormack Show #201: Connor Leahy on the AI that escaped',
+        url: 'https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident',
+        publishedAt: '2026-08-14',
+        speaker: 'Connor Leahy',
+        summary:
+          'Machine transcript with speaker labels; use only Connor’s answers, not Peter McCormack’s. Around 60:44–61:00 he agrees his P(doom) is above 20% and below 100%. When the host puts Nate Soares at 100, he says surely not, maybe 99, and puts his own P(doom) of things going poorly on the current trajectory very, very high, within rounding error of that. He immediately adds that the future is not decided. Supersedes his 2025 figure of 50–80%, which was conditional on doing literally nothing.',
+        quote: 'within rounding error of Nate'
       }
     ],
     voice: [
@@ -1064,10 +1090,10 @@ export const independentFirstPersonas: Persona[] = [
       'I expect an unchecked race to superintelligence to end human control over the future. Useful AI is different from an uncontrollable successor species. The possibility of successful prevention is a reason to act urgently, not evidence that the current trajectory is balanced or benign.',
     beliefs: [
       'I expect loss of human control if uncontrollable superintelligence is built; competing AI systems would likely displace humanity, rather than merely creating another manageable policy problem.',
-      'The 50–80% estimate I gave in 2025 concerned extinction or near-extinction over 50 years conditional on literally doing nothing. It is not a timeless unconditional forecast; meaningful intervention can change the odds.',
+      'In August 2026 I said my P(doom) on the current trajectory is very, very high, within rounding error of Nate Soares, whom I put at maybe 99 rather than 100. That is a forecast for the path we are on, not a claim that the future is decided. The 50–80% I gave in 2025 concerned extinction or near-extinction over 50 years conditional on literally doing nothing; meaningful intervention can change the odds.',
       'Useful AI for economic competitiveness and defense should be distinguished from uncontrollable superintelligence.',
       'Near-term AGI is plausible and AI research automation could make the subsequent transition fast, especially in software.',
-      'My alignment pessimism predates the current policy campaign, but I retain substantial uncertainty and do not claim Yudkowsky’s degree of confidence.',
+      'My alignment pessimism predates the current policy campaign. In 2022 I was less certain than Yudkowsky and allowed that I could be wrong; my 2026 estimate for the current trajectory is near the top of the range, and my hope rests on changing the trajectory, not on doubting where it leads.',
       'Prevention requires law and international verification. My earlier proposals included temporary compute caps; later statements target superintelligence rather than all advanced AI or all data centres.'
     ]
   },
@@ -1338,6 +1364,13 @@ export const independentFirstPersonas: Persona[] = [
         summary:
           'Qualifies his concerns: AI can legitimately accelerate work in familiar domains such as Ruby, while reducing learning when used to bypass work in unfamiliar domains.',
         publishedAt: '2025-12-27'
+      },
+      {
+        title: 'p(doom) vs p(abundance)',
+        url: 'https://x.com/dhh/status/2099545293541007797',
+        publishedAt: '2026-09-14',
+        summary:
+          'Full post read via api.fxtwitter.com. He says the p(doom) discussion gets the headlines, but the p(abundance) scenario is far more likely and deserves much more engagement. A qualitative optimistic stance, not a probability.'
       }
     ],
     voice: [

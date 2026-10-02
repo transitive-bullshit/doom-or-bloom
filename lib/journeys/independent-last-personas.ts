@@ -336,6 +336,14 @@ export const independentLastPersonas: Persona[] = [
         summary:
           'November 1 and 23 posts reject inevitability of doom and describe human-trained LLM agents as comparatively benign, while identifying generalization as the relevant alignment challenge.',
         publishedAt: '2023-11-23'
+      },
+      {
+        title: 'Varieties Of Doom',
+        url: 'https://www.lesswrong.com/posts/apHWSGDiydv3ivmg6/varieties-of-doom',
+        publishedAt: '2025-11-17',
+        summary:
+          'Full essay read. He says that in private conversations he would sometimes give his p(doom) as 12%, with the caveat that “doom” is nebulous and conflates several outcomes, and that he declined to give a public p(doom) until he could explain those layers, which the essay then separates. He puts a “paperclipper” successor that keeps nothing of value in the sub-1% range. The essay does not restate 12% as a fresh all-things-considered estimate.',
+        quote: 'In private conversations I’d sometimes give my p(doom) as 12%'
       }
     ],
     voice: [

@@ -233,7 +233,7 @@ Use the same experimental result component in participant results, results after
 
 The P(doom) card distinguishes inferred estimates from stated or sourced estimates when those are available in a simulated-user result. Its single-axis line shows both the estimated point and interpretation range, using the same styling as other single-axis outputs. Keep its prose short.
 
-- A sourced public statement shows the number, then the person’s own words as a short quote, then one line with the outcome (plus the horizon when it names a time), then the source title linked with its month and year. Review notes and caveats stay in the report.
+- A sourced public statement shows the number, then the person’s own words as a short quote, then one line with the outcome (plus the horizon when it names a time), then the source title linked with its month and year. Review notes and caveats stay in the report. A stated range or bound without a stated point (10–90%, ≥10%) shows only its band on the axis line, never a midpoint dot.
 - Inferred and stated estimates get a single sentence naming where the number comes from, with the plausible range for inferred ones. Simulated-user results show the timeline, which groups selected timing statements by milestone, including unknown and conditional timing; it does not invent chronological spacing from ambiguous dates. Their assumptions view pairs exact excerpts with authored reflection prompts, without claiming to have performed evidence-grounded Socratic tutoring.
 
 ### Provisional result points and reasoning

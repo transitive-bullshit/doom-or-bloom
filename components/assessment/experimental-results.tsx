@@ -156,7 +156,13 @@ export function ExperimentalResults({
               <div>
                 <AxisRange
                   range={risk.bounds}
-                  value={risk.estimate ?? (risk.bounds[0] + risk.bounds[1]) / 2}
+                  // A publicly stated range or bound has no point to plot.
+                  value={
+                    risk.estimate ??
+                    (risk.source === 'public-statement'
+                      ? null
+                      : (risk.bounds[0] + risk.bounds[1]) / 2)
+                  }
                 />
                 <div className='mt-2 flex justify-between text-xs text-muted-foreground'>
                   <span>0%</span>

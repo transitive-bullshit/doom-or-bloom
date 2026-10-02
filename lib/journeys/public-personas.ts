@@ -86,6 +86,14 @@ export const publicPersonas: Persona[] = [
         publishedAt: '2025-12-07',
         summary:
           'A voice source: rejects making the approaching catastrophe into personal melodrama or treating useful beliefs as true merely because they motivate action. Distinguishes acting purposefully from optimistic prediction. Supports a blunt, controlled, humanity-focused persona rather than a panicked caricature.'
+      },
+      {
+        title: 'There’s a lot of reasons I hate the “P(doom)” concept',
+        url: 'https://x.com/ESYudkowsky/status/2101804209528271092',
+        publishedAt: '2026-09-20',
+        summary:
+          'Full post read via api.fxtwitter.com. He hates the P(doom) concept partly because it conflates P(ruin|ASI) with P(ASI). For ASI built by anything remotely like current techniques, or by new techniques managed by current-style LLMs as meddled with by current AI-company personnel, P(ruin|ASI) is “Yes” on his current estimate. He has no equally solid opinion about P(ASI), which depends on policy, thinks a more hardline policy is required, and says people trading P(doom) like an astrological sign make a malformed topic prominent. A refusal to give an unconditional number, alongside near-certain conditional ruin.',
+        quote: '“Yes” on my current estimate'
       }
     ],
     background:
@@ -411,6 +419,15 @@ export const publicPersonas: Persona[] = [
         publishedAt: '2026-01-05',
         summary:
           'NVIDIA’s official recap quotes Huang on open models across industries, simulation before real-world deployment, autonomous vehicles and manufacturing. Adds concrete mechanisms for the transformation he expects beyond chatbots. Announcements and demonstrations describe his company’s plans and claims, not proof of general autonomous competence.'
+      },
+      {
+        title:
+          'Nvidia’s Jensen Huang rejects AI extinction warnings as “doomsday narratives”',
+        url: 'https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/',
+        publishedAt: '2026-09-20',
+        summary:
+          'CBS News write-up of Jo Ling Kent’s interview, recorded September 18, quoting him directly. Responding to claims that AI developers believe it could kill everyone by the end of the decade, he says 2030 is not going to be the end of the world, that there is a 0% chance of that, that scaring people is unnecessary and irresponsible, and that such warnings are “doomsday narratives”. A categorical dismissal for the period to 2030, not a calculated long-run estimate.',
+        quote: "There is 0% chance that's going to be the end of the world"
       }
     ],
     background:
