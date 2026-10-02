@@ -62,3 +62,13 @@ Observed map: expressed outlook about **51/100**, transformation about **100/100
 Verified the saved journey, stopping state and readiness in the browser at `/user-journeys`, and visually checked the selected result, portrait, four answers, inferred-probability disclosure and all 18 source links at `https://doom-or-bloom.localhost/users/nick-bostrom`.
 
 Validation: source previews completed (777 URLs, none missing). Formatting, lint and types passed during `pnpm test`. Its only failure was the existing all-icons validation exceeding the default five-second timeout; all **563 tests across 100 files passed** with `pnpm test:unit --testTimeout=15000` (the icon check took 7.2 seconds). Content validation and unused-code checks passed separately. No test implementation or timeout default was changed.
+
+## Production publication
+
+The user explicitly requested commit, push and production publication after the local review. Commit `e0ca9a3fedab9305232919e4403d9c421c645a38` contains only the Bostrom addition and its research/assets; unrelated working-tree edits were preserved. It was pushed to `main` after fast-forwarding the already merged remote changes. [GitHub CI](https://github.com/transitive-bullshit/doom-or-bloom/actions/runs/37055340840) passed with the standard test command, and Vercel production deployment `dpl_e1yx1svQKLF4mKXTmS8GvS1cdcCF` reached READY with the canonical domain assigned. Content validation and `pnpm build:local`, including production trace checks, also passed from an archive of that exact commit against local PostgreSQL.
+
+Used `personas:import plan` followed by `personas:import write --env <production-settings> --ids nick-bostrom`, with the write executed from the committed archive. No inference or schema migration was needed. Read-only comparison verified exact equality of local and production profile metadata, source brief, selected digest and complete simulation payload.
+
+- Production assessment: `0820d894-b3a8-4c47-83b0-a2fddb38d12b`, public, origin `simulation`.
+- Selected digest: `3d881c3111bf054d0f7fcf44a22c6cf939b3cd6c83b273f84d2257c53cedde38`.
+- Browser verification: [live Bostrom profile](https://www.doom-or-bloom.com/users/nick-bostrom) displays the portrait, four questions and answers, saved results, explicitly inferred P(doom), and exactly 18 source links. The scope was this persona only; no other selected persona was imported.
