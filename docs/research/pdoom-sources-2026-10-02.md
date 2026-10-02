@@ -35,7 +35,7 @@ Twenty-eight briefs gained at most two sources each, attributed to the person's 
 
 - **Backers of the new statements:** Kokotajlo, Musk, Leahy, Zitron, LeCun, Huang and Pressman. Leahy's beliefs now carry the August 2026 estimate beside the conditional 2025 one.
 - **Context with no displayed number:** Soares (the DOAC debate; his existing Tucker Carlson source also gained its transcript), Sacks, Hanson and Yudkowsky.
-- **Refusals and close statements:** Bengio, Russell, Roon, Cowen, Narayanan, deepfates, Mollick, DHH, Bender, Gebru, Acemoglu, Fei-Fei Li, Teortaxes and Tenobrus, plus the stale numbers from Dwarkesh and swyx, labeled as such.
+- **Refusals and close statements:** Bengio, Russell, Roon, Cowen, Narayanan, deepfates, Mollick, DHH, Bender, Gebru, Acemoglu, Fei-Fei Li, Teortaxes and Tenobrus, plus Dwarkesh's stale number, labeled as such.
 - **Not added:** Sam Altman's brief already has the Fortune interview with his refusal, and Barack Obama's already has the September 14 thread that the audit's PC Gamer article quotes.
 
 **Roko Mijic's brief was rewritten.** It framed alignment as comparatively easy, from a February 2026 livestream. His September 25 post and replies give 35–40% with a determined effort, about 95% on the laissez-faire trajectory and most of the risk within 15 years, and his September 26 Plan R+ post proposes splitting labs and giving well-behaved AIs political representation. The summary, beliefs and voice follow those posts and keep the February view as history.
@@ -73,7 +73,8 @@ Each regenerated interview was read in full against its brief and new sources:
 
 - **Stated numbers appear only where a verified statement exists.** Kokotajlo, Leahy, Roko, Zitron and Huang give their sourced figures with the conditions attached, and Pressman calls his 12% a historical figure he would not present as current. Musk declines a fresh number ("not zero"), as in his July 2026 Economist interview, and the page shows his sourced March 2025 range.
 - **Refusals are represented as refusals.** All 20 context users decline a number or scope it: Bengio stays out of "the p(doom) game", Russell steers the ship, Yudkowsky rejects the unconditional figure, and Sacks does not traffic in numbers before giving a conditional zero. The engine recorded none of their answers as a stated percentage.
-- **No interview was unfaithful, so none was regenerated again.** Interviewer premises are not adopted, and no dates, quotations or experiences are invented. Two inferred values are artifacts worth knowing about. swyx's stock "5–95%" reads as ≈25% (it was ≈7%), and deepfates' "no idea", with alignment as pivotal, reads as ≈16%.
+- **No interview was unfaithful, so none was regenerated again.** Interviewer premises are not adopted, and no dates, quotations or experiences are invented. Two inferred values are artifacts worth knowing about. swyx's stock "5–95%" read as ≈25% (it was ≈7%), and deepfates' "no idea", with alignment as pivotal, reads as ≈16%.
+- **swyx was reverted in review.** Travis, who knows him, judged ≈7% far more accurate, so the deliberately wide 2023 "5–95%" source was removed from his brief and he is not imported. Production keeps his earlier run.
 
 New stated numbers:
 
@@ -101,7 +102,7 @@ Refusals and close statements added:
 | David Sacks | 90.8 / 65.9 | ≈3% (inferred) | 94.0 / 63.0 | <1% (inferred) | `1790900515288-2a01a07b-742a-40bc-b993-ae4fddaae6a1` |
 | Robin Hanson | 75.0 / 65.2 | ≈6% (inferred) | 75.0 / 66.8 | ≈2% (inferred) | `1790900572881-1dfbe2b9-0aa4-4175-a29d-5f9a6f855ea0` |
 | Eliezer Yudkowsky | 0.3 / 100.0 | ≈90% (inferred) | 0.3 / 100.0 | ≈90% (inferred) | `1790900631933-96f07b6d-1b9f-44df-9fac-4b6b693c804b` |
-| Shawn Wang (swyx) | 75.0 / 52.0 | ≈7% (inferred) | 74.7 / 59.3 | ≈25% (inferred) | `1790900691528-b1e57180-bc6f-4b09-9adf-6cf9fa3de0e2` |
+| Shawn Wang (swyx), reverted in review | 75.0 / 52.0 | ≈7% (inferred) | not imported | — | `1790900691528-b1e57180-bc6f-4b09-9adf-6cf9fa3de0e2` |
 | Dwarkesh Patel | 52.8 / 83.8 | ≈23% (inferred) | 52.3 / 81.1 | ≈19% (inferred) | `1790900899236-d66926fe-8786-402f-bce5-970eaf2b7e75` |
 | Yoshua Bengio | 30.8 / 68.3 | ≈24% (inferred) | 26.5 / 72.5 | ≈21% (inferred) | `1790900967700-4af1f763-c287-4912-a1e6-0fabf2beb758` |
 | Stuart Russell | 44.5 / 72.1 | ≈30% (inferred) | 29.0 / 79.7 | ≈28% (inferred) | `1790901035509-d076be6c-f5d4-46f0-89cb-4528c378d15b` |
@@ -142,7 +143,7 @@ Commands ran on this branch, using the disposable `doom_bloom_pdoomsrc_test` dat
 This work changed only the local database. Importing it is a separate, owner-approved step; see [importing selected simulated users](../user-journeys.md#import-selected-simulated-users).
 
 ```sh
-IDS=dkokotajlo,elonmusk,npcollapse,edzitron,ylecun,jensenhuang,jd_pressman,jkcarlsmith,thezvi,eli_lifland,davidad,robertskmiles,natolambert,so8res,davidsacks,robinhanson,esyudkowsky,swyx,dwarkesh_sp,yoshua_bengio,stuart-russell,tszzl,tylercowen,random_walker,deepfates,emollick,dhh,emilymbender,timnitgebru,dacemoglumit,drfeifei,teortaxestex,tenobrus,rokomijic
+IDS=dkokotajlo,elonmusk,npcollapse,edzitron,ylecun,jensenhuang,jd_pressman,jkcarlsmith,thezvi,eli_lifland,davidad,robertskmiles,natolambert,so8res,davidsacks,robinhanson,esyudkowsky,dwarkesh_sp,yoshua_bengio,stuart-russell,tszzl,tylercowen,random_walker,deepfates,emollick,dhh,emilymbender,timnitgebru,dacemoglumit,drfeifei,teortaxestex,tenobrus,rokomijic
 pnpm personas:import plan --env .env.production.local --ids $IDS
 pnpm personas:import write --env .env.production.local --ids $IDS
 ```

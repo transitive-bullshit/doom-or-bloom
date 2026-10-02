@@ -182,14 +182,6 @@ export const independentMiddlePersonas: Persona[] = [
         publishedAt: '2026-01-28',
         summary:
           'Argues applying AI engineering to hard science could be among this century’s most important missions, spanning medicine, materials, climate and AI research. Explicitly avoids assigning AGI or superintelligence timelines; calls for engineering talent to pursue science rather than low-value output.'
-      },
-      {
-        title:
-          'AI Engineers, Pendants, and Competition Between OpenAI and Developers with Swyx of Latent Space',
-        url: 'https://www.cognitiverevolution.ai/ai-engineers-pendants-and-competition-between-openai-and-developers-with-swyx-of-latent-space/',
-        publishedAt: '2023-10-05',
-        summary:
-          'Older publisher speaker-labeled transcript (The Cognitive Revolution); his turn at 45:17. Whenever asked for his P(doom) he gives a deliberately wide stock answer, somewhere between 5 and 95%, and says narrowing it is not worthwhile because even 5% makes it the issue of our time. In April 2024 he called P(doom) talk good hallway conversation but not very useful for work; no newer number.'
       }
     ],
     voice: [
