@@ -47,7 +47,7 @@ export async function siteSocialPoints(
 let renderer: Promise<Renderer> | undefined
 
 // The typeface is checked in (SIL OFL) so every machine renders the same image.
-function siteRenderer() {
+export function siteRenderer() {
   return (renderer ??= (async () => {
     const instance = new Renderer()
     await instance.registerFont({

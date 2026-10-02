@@ -1,0 +1,34 @@
+{
+  "slug": "pmarca",
+  "summary": "Andreessen argues that AI will greatly raise productivity and what people can build, and disputes predictions that it will eliminate programming jobs.",
+  "statements": [
+    {
+      "quote": "Software has been eating the world at the speed of human hands. It is about to eat the world at the speed of compute.",
+      "date": "2026-09-09",
+      "venue": "Essay, Investing in Cognition",
+      "url": "https://www.a16z.news/p/investing-in-cognition",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Every time programmers get more leverage, doomers predict the end of software engineering.",
+      "date": "2026-09-09",
+      "venue": "Essay, Investing in Cognition",
+      "url": "https://www.a16z.news/p/investing-in-cognition",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "AI coding, this is the biggest earthquake to hit software in certainly my life, maybe since the invention of software.",
+      "date": "2025-01-26",
+      "venue": "Lex Fridman Podcast",
+      "url": "https://lexfridman.com/marc-andreessen-2-transcript/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "My guess is we’ll have more coding jobs probably by an order of magnitude 10 years from now.",
+      "date": "2025-01-26",
+      "venue": "Lex Fridman Podcast",
+      "url": "https://lexfridman.com/marc-andreessen-2-transcript/",
+      "verified": "2026-10-03"
+    }
+  ]
+}

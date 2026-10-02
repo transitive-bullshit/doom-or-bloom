@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "Mapea tu visión de la IA y compárala con la de otras personas. Explora cómo creen figuras públicas que la IA cambiará nuestro futuro y descubre dónde te ubicas."
+      "title": "¿Cómo cambiará la IA nuestro futuro? Haz el cuestionario de 3 minutos",
+      "description": "Cuestionario gratuito de 3 minutos sobre el futuro de la IA. Descubre si te inclinas por Doom o Bloom, obtén una estimación aproximada de P(doom) y compara tus opiniones con las de Hinton, LeCun, Altman y otros."
     },
     "about": {
       "title": "Acerca de",
@@ -16,8 +16,16 @@
       "description": "Cómo Doom or Bloom guarda las evaluaciones, protege las respuestas privadas, gestiona las cuentas opcionales y publica los resultados."
     },
     "users": {
-      "title": "Usuarios simulados",
-      "description": "Explora y busca visiones simuladas sobre la IA basadas en fuentes, incluidos usuarios que no aparecen en el mapa destacado."
+      "title": "Qué opinan los líderes de opinión sobre la seguridad y los riesgos de la IA",
+      "description": "Busca y compara visiones simuladas de la IA de figuras públicas, desde Hinton y Bengio hasta LeCun y Andreessen, con su P(doom) declarada públicamente cuando esté disponible."
+    },
+    "pdoom": {
+      "title": "¿Qué es P(doom)? Estimaciones de Hinton, Musk, LeCun y otros",
+      "description": "P(doom) es la probabilidad que alguien asigna a que la IA termine en una catástrofe para la humanidad. Descubre qué han dicho Hinton, Musk, Amodei, LeCun y otros, con fuentes."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Textos en lenguaje claro de Doom or Bloom sobre P(doom), el riesgo de la IA y cómo piensa la gente sobre el futuro de la IA."
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "Acerca de",
     "privacy": "Privacidad",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "language": "Idioma"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "Acerca de",
     "privacy": "Privacidad",
     "users": "Usuarios simulados",
+    "pdoom": "P(doom)",
+    "blog": "Blog",
     "assessments": "Mis evaluaciones",
     "newAssessment": "Nueva evaluación",
     "assessment": "Evaluación",
@@ -430,42 +442,6 @@
     "linkFailed": "No se pudo crear tu enlace para compartir. Inténtalo de nuevo.",
     "shareAgain": "Tu enlace está listo. Toca Compartir de nuevo."
   },
-  "Compare": {
-    "title": "Tú frente a {name}",
-    "view": "Vista de resultados",
-    "justYou": "Solo tú",
-    "friend": "tu amigo",
-    "friendLabel": "Un amigo",
-    "bucket": {
-      "very_aligned": "Muy alineados",
-      "mostly_aligned": "Mayormente alineados",
-      "some_distance": "Algo distanciados",
-      "worlds_apart": "En mundos distintos"
-    },
-    "bucketUnknown": "Es demasiado pronto para saberlo",
-    "outlook": {
-      "same": "Sus perspectivas son similares",
-      "more_hopeful": "Tienes más esperanza que {name}",
-      "more_worried": "Sientes más inquietud que {name}"
-    },
-    "change": {
-      "same": "Esperan aproximadamente la misma escala de cambio",
-      "more": "Esperas más cambios que {name}",
-      "less": "Esperas menos cambios que {name}"
-    },
-    "unplaced": "Uno de los dos aún no está ubicado por completo en el mapa, por lo que algunas diferencias siguen sin resolverse",
-    "pdoom": "P(doom)",
-    "you": "Tú",
-    "pdoomMissing": "Sin estimar",
-    "sharedClosest": "Ambos se ubican cerca de {closest}",
-    "simulated": "El punto de {name} se simula a partir de fuentes públicas, no de sus propias respuestas",
-    "private": "La comparación se realiza en tu navegador. Ninguno de los dos ve las respuestas del otro",
-    "send": "Envíale tu resultado",
-    "sendText": "Yo también mapeé mi visión de la IA. Aquí es donde me ubico",
-    "sendCopied": "Enlace copiado. Envíalo como respuesta.",
-    "viewPersona": "Ver el resultado de {name}",
-    "gone": "Este enlace de comparación se desactivó, así que no hay nada que comparar"
-  },
   "Conversation": {
     "tension": "Sobre la IA, dijiste “{first}” y “{second}”. ¿Cómo encajan ambas ideas?",
     "clarification": "Nuestra lectura sobre {topic} fue: “{claim}” ¿Qué cambiarías de esa interpretación?",
@@ -689,17 +665,14 @@
     "estimate": "Estimación",
     "simulatedView": "Visión simulada",
     "yourView": "Tu visión",
-    "theirView": "Su visión",
     "marker": "{name}: {claim}",
     "markerFallback": "Posición de la visión simulada",
-    "otherMarker": "Posición de {name}",
     "unplacedTitle": "Algunas dimensiones aún no están ubicadas",
     "unplacedNote": "Las zonas abiertas muestran lo que aún no sabemos.",
     "unplacedCaption": "Algunas dimensiones aún no están ubicadas. Las zonas abiertas muestran lo que aún no sabemos.",
     "centerUnresolved": "Centro del rango sin resolver",
     "simulatedPosition": "Posición simulada",
     "estimatedPosition": "Tu posición estimada",
-    "sharedPosition": "Su posición estimada",
     "notDetermined": "Posición aún sin determinar",
     "range": "Rango de interpretación",
     "axes": "{subject, select, self {Horizontal: tu perspectiva Doom–Bloom expresada.} other {Horizontal: su perspectiva Doom–Bloom expresada.}} Vertical: {axis, select, influence {influencia humana} other {escala de la transformación}}.",
@@ -715,7 +688,10 @@
     "copied": "Se copió el mapa como PNG.",
     "downloaded": "Se descargó el mapa como PNG.",
     "copyFailed": "No se pudo copiar la imagen. Prueba a descargarla.",
-    "downloadFailed": "No se pudo descargar la imagen. Inténtalo de nuevo."
+    "downloadFailed": "No se pudo descargar la imagen. Inténtalo de nuevo.",
+    "theirView": "Su visión",
+    "otherMarker": "Posición de {name}",
+    "sharedPosition": "Su posición estimada"
   },
   "Feedback": {
     "aspects": {
@@ -755,12 +731,50 @@
     "sourcesTitle": "Fuentes",
     "sourcesUpdated": "Fuentes del resumen actual de este usuario simulado.",
     "sourcesDefault": "Artículos, entrevistas y textos usados para fundamentar a este usuario simulado.",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "similarTitle": "Visiones similares",
+    "similarDescription": "Líderes de opinión cuyas visiones simuladas son las más cercanas a la de {name}",
+    "statementsTitle": "Lo que {name} ha dicho sobre la IA",
+    "statementsNote": "Citas textuales de las fuentes enlazadas, comprobadas el {date}"
   },
   "Profiles": {
-    "userTitle": "La visión de la IA de {name}",
-    "userDescription": "Explora la visión simulada de la IA de {name}, su ubicación en el mapa y sus respuestas basadas en fuentes. Una interpretación experimental, no su propia evaluación.",
+    "userTitle": "{name} sobre la IA",
+    "userTitleTopics": "{name} sobre {topics}",
+    "userTitleMap": {
+      "concern": "{name} sobre la seguridad y el riesgo de la IA",
+      "middle": "{name} sobre los riesgos y beneficios de la IA",
+      "bloom": "{name} sobre el futuro y las oportunidades de la IA"
+    },
+    "titleTopic": {
+      "ai": "IA",
+      "safety": "seguridad de la IA",
+      "risk": "riesgo de la IA",
+      "regulation": "regulación de la IA",
+      "policy": "políticas sobre la IA",
+      "ethics": "ética de la IA",
+      "consciousness": "consciencia de la IA",
+      "bubble": "la burbuja de la IA",
+      "jobs": "empleo",
+      "education": "educación",
+      "healthcare": "atención médica",
+      "opensource": "código abierto",
+      "agi": "IAG",
+      "superintelligence": "superinteligencia",
+      "future": "el futuro de la IA",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "seguridad",
+      "risk": "riesgo",
+      "regulation": "regulación",
+      "policy": "políticas",
+      "ethics": "ética",
+      "consciousness": "consciencia",
+      "future": "el futuro"
+    },
+    "userDescription": "¿Qué piensa {name} sobre la IA? Mira dónde se ubica su visión simulada entre Doom y Bloom, junto con una P(doom) aproximada y las respuestas en las que se basa.",
     "userImageAlt": "La visión simulada de la IA de {name} en el mapa de Doom–Bloom y escala de la transformación",
+    "personDescription": "Una simulación de la visión de {name} sobre la IA, creada a partir de sus textos públicos. Es una interpretación experimental, no su propia evaluación ni un respaldo.",
     "publicTitle": "La visión de la IA de {name}",
     "sharedTitle": "Una visión de la IA compartida",
     "publicDescription": "Explora esta visión de la IA: expectativas, riesgos, perspectivas más cercanas y las respuestas detrás de la evaluación.",
@@ -768,24 +782,41 @@
     "asOf": "Un mapa de su visión de la IA a fecha de {date}.",
     "profile": "Perfil"
   },
-  "Snapshot": {
-    "title": "{name} mapeó su visión de la IA",
-    "titleAnonymous": "Un amigo mapeó su visión de la IA",
-    "metaTitleNamed": "La visión de la IA de {name}",
-    "metaTitle": "¿Dónde te ubicas respecto a la IA?",
-    "description": "Mira esta visión de la IA en el mapa Doom–Bloom, luego mapea la tuya en unos 3 minutos y compáralas.",
-    "imageAlt": "Una visión de la IA en el mapa Doom–Bloom y de escala de la transformación, con P(doom) y los líderes de opinión más cercanos",
-    "sharedOn": "Compartido el {date}",
-    "pdoom": "P(doom)",
-    "pdoomStated": "Su propia cifra",
-    "pdoomInferred": "Inferida de sus respuestas",
-    "pdoomMissing": "Sin estimar",
-    "closest": "Líderes de opinión más cercanos",
-    "closestNone": "Aún no hay suficiente información para encontrar coincidencias",
-    "ctaTitle": "¿Dónde te ubicas?",
-    "ctaDescription": "Mapea tu propia visión de la IA en unos 3 minutos y luego mira ambas en un mismo mapa",
-    "ctaButton": "Comparar ahora",
-    "privacy": "Esta página solo muestra su tarjeta, nunca sus respuestas. Mapear la tuya es gratis y tus respuestas permanecen privadas a menos que las compartas"
+  "PdoomHub": {
+    "tableTitle": "P(doom) por líder de opinión",
+    "name": "Líder de opinión",
+    "stated": "P(doom) declarado públicamente",
+    "declined": "Sin cifra",
+    "showAllSources": "Mostrar las {count} fuentes",
+    "fewerSources": "Mostrar menos fuentes",
+    "cite": "Fuente {number}",
+    "asOf": "A fecha de {date}",
+    "note": "Cada cifra proviene de las propias palabras de la persona, con un enlace al lugar donde la expresó. Las personas definen el resultado y el plazo de manera diferente, por lo que las cifras no son directamente comparables.",
+    "allUsers": "Ver los {count} líderes de opinión simulados",
+    "allUsersDescription": "Busca y ordena a todas las personas del mapa, incluso según una estimación aproximada de P(doom) inferida de cada simulación",
+    "scenariosTitle": "Cómo podría ocurrir",
+    "proponents": "Quién lo sostiene",
+    "disagreement": "En qué discrepan los expertos",
+    "sourcesTitle": "Fuentes",
+    "readingTitle": "Lecturas adicionales",
+    "readingGroups": {
+      "start": "Empieza aquí",
+      "core": "El argumento central",
+      "forecasts": "Pronósticos y encuestas",
+      "critiques": "Críticas"
+    },
+    "ctaTitle": "¿Cuál es tu P(doom)?",
+    "ctaDescription": "Responde unas pocas preguntas en unos 3 minutos y luego consulta tu visión y una estimación aproximada de P(doom) junto a las suyas",
+    "guide": "Lee la guía sobre qué significa P(doom)"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Notas en lenguaje claro sobre P(doom), las visiones de la IA y cómo piensa la gente sobre el futuro de la IA",
+    "readingTime": "{minutes, plural, one {# min de lectura} other {# min de lectura}}",
+    "updated": "Actualizado el {date}",
+    "by": "Por {author}",
+    "englishOnly": "Las publicaciones están escritas en inglés",
+    "rss": "Canal RSS"
   },
   "Cards": {
     "civilizational": "Cambio civilizatorio",
@@ -868,10 +899,65 @@
     "measurement2": "Un identificador aleatorio por evaluación vincula los eventos entre visitas retomadas y cambia con cada evaluación nueva o duplicada. Es una vinculación seudónima, no un anonimato matemático. Activar PostHog requiere su ajuste de descarte de datos de IP a nivel de proyecto. Las credenciales de analítica por sí solas no activan la recopilación.",
     "publishingTitle": "Publicar y eliminar",
     "publishing1": "Publicar pone tu conversación enviada completa y los resultados inferidos al alcance de cualquier persona y permite que los buscadores indexen la página pública. Si publicas con la sesión iniciada, se incluyen el nombre, la foto y el enlace de tu perfil. Las publicaciones anónimas siguen siendo anónimas, salvo que las hagas privadas y vuelvas a publicarlas con la sesión iniciada. Los registros de fallos operativos siguen siendo privados. Hacer privada una evaluación o eliminarla retira el acceso a su página y a sus datos. Las imágenes para redes sociales en caché pueden seguir disponibles hasta ocho días, y los sitios externos pueden conservar las vistas previas por más tiempo. Continuar una evaluación publicada crea una copia privada aparte; cambiar o eliminar la original no modifica esa copia.",
-    "shareLinks": "Un enlace para compartir muestra solo tu tarjeta: el punto y el rango de tu mapa, tu P(doom) y los líderes de opinión más cercanos a tu visión, además de tu nombre si decides añadirlo. Para que otras personas puedan comparar, también incluye, en forma de números, las ocho puntuaciones de visión de la IA en las que se basa el punto de tu mapa. Nunca muestra tus respuestas ni tu razonamiento demostrado, y los motores de búsqueda no lo indexan. Cualquier persona que tenga el enlace puede ver la tarjeta hasta que elijas Dejar de compartir el enlace en tu resultado o elimines la evaluación; es posible que permanezcan las vistas previas que otros sitios ya hayan obtenido. Cuando alguien compara su resultado con tu enlace, la comparación se realiza en su navegador: ninguno de los dos ve las respuestas del otro, y no registramos qué resultados se compararon.",
     "publishing2": "Las tarjetas de fuentes pueden incrustar publicaciones públicas de X. El texto de las publicaciones se obtiene a través del servidor de esta aplicación; las imágenes de perfil, las fotos y los videos incrustados se cargan desde los servidores de medios de X. Las respuestas de tu evaluación no se envían a X.",
     "publishing3": "Las imágenes de resultados se generan en el servidor de esta aplicación a partir de los resultados de tu evaluación. No contienen tus respuestas tal cual. Las descargas privadas no se alojan públicamente; publicar también hace disponible una vista previa para redes sociales. Los informes completos contienen tus respuestas, la evidencia y los diagnósticos locales disponibles, así que revísalos antes de compartirlos.",
     "publishing4": "El progreso anónimo está ligado a la sesión de tu navegador. El inicio de sesión opcional con X, donde esté disponible, te permite recuperar las evaluaciones vinculadas en otro navegador. Si borras las cookies o caducan, pierdes el acceso anónimo, pero no se eliminan los registros del servidor. Los borradores sin enviar no se sincronizan entre dispositivos. Los envíos simultáneos se comparan con la revisión guardada para evitar sobrescrituras silenciosas.",
-    "cookie": "Una cookie propia recuerda cómo llegó tu navegador a este sitio por primera vez: la etiqueta del enlace con el que llegaste (por ejemplo, un boletín o una publicación), el dominio del sitio web de procedencia y el tipo de página en la que aterrizaste. No guarda respuestas ni direcciones completas. Se guarda con tu cuenta anónima o de X y se envía con eventos de analítica anónimos para que sepamos qué lugares traen visitantes."
+    "cookie": "Una cookie propia recuerda cómo llegó tu navegador a este sitio por primera vez: la etiqueta del enlace con el que llegaste (por ejemplo, un boletín o una publicación), el dominio del sitio web de procedencia y el tipo de página en la que aterrizaste. No guarda respuestas ni direcciones completas. Se guarda con tu cuenta anónima o de X y se envía con eventos de analítica anónimos para que sepamos qué lugares traen visitantes.",
+    "shareLinks": "Un enlace para compartir muestra solo tu tarjeta: el punto y el rango de tu mapa, tu P(doom) y los líderes de opinión más cercanos a tu visión, además de tu nombre si decides añadirlo. Para que otras personas puedan comparar, también incluye, en forma de números, las ocho puntuaciones de visión de la IA en las que se basa el punto de tu mapa. Nunca muestra tus respuestas ni tu razonamiento demostrado, y los motores de búsqueda no lo indexan. Cualquier persona que tenga el enlace puede ver la tarjeta hasta que elijas Dejar de compartir el enlace en tu resultado o elimines la evaluación; es posible que permanezcan las vistas previas que otros sitios ya hayan obtenido. Cuando alguien compara su resultado con tu enlace, la comparación se realiza en su navegador: ninguno de los dos ve las respuestas del otro, y no registramos qué resultados se compararon."
+  },
+  "Compare": {
+    "title": "Tú frente a {name}",
+    "view": "Vista de resultados",
+    "justYou": "Solo tú",
+    "friend": "tu amigo",
+    "friendLabel": "Un amigo",
+    "bucket": {
+      "very_aligned": "Muy alineados",
+      "mostly_aligned": "Mayormente alineados",
+      "some_distance": "Algo distanciados",
+      "worlds_apart": "En mundos distintos"
+    },
+    "bucketUnknown": "Es demasiado pronto para saberlo",
+    "outlook": {
+      "same": "Sus perspectivas son similares",
+      "more_hopeful": "Tienes más esperanza que {name}",
+      "more_worried": "Sientes más inquietud que {name}"
+    },
+    "change": {
+      "same": "Esperan aproximadamente la misma escala de cambio",
+      "more": "Esperas más cambios que {name}",
+      "less": "Esperas menos cambios que {name}"
+    },
+    "unplaced": "Uno de los dos aún no está ubicado por completo en el mapa, por lo que algunas diferencias siguen sin resolverse",
+    "pdoom": "P(doom)",
+    "you": "Tú",
+    "pdoomMissing": "Sin estimar",
+    "sharedClosest": "Ambos se ubican cerca de {closest}",
+    "simulated": "El punto de {name} se simula a partir de fuentes públicas, no de sus propias respuestas",
+    "private": "La comparación se realiza en tu navegador. Ninguno de los dos ve las respuestas del otro",
+    "send": "Envíale tu resultado",
+    "sendText": "Yo también mapeé mi visión de la IA. Aquí es donde me ubico",
+    "sendCopied": "Enlace copiado. Envíalo como respuesta.",
+    "viewPersona": "Ver el resultado de {name}",
+    "gone": "Este enlace de comparación se desactivó, así que no hay nada que comparar"
+  },
+  "Snapshot": {
+    "title": "{name} mapeó su visión de la IA",
+    "titleAnonymous": "Un amigo mapeó su visión de la IA",
+    "metaTitleNamed": "La visión de la IA de {name}",
+    "metaTitle": "¿Dónde te ubicas respecto a la IA?",
+    "description": "Mira esta visión de la IA en el mapa Doom–Bloom, luego mapea la tuya en unos 3 minutos y compáralas.",
+    "imageAlt": "Una visión de la IA en el mapa Doom–Bloom y de escala de la transformación, con P(doom) y los líderes de opinión más cercanos",
+    "sharedOn": "Compartido el {date}",
+    "pdoom": "P(doom)",
+    "pdoomStated": "Su propia cifra",
+    "pdoomInferred": "Inferida de sus respuestas",
+    "pdoomMissing": "Sin estimar",
+    "closest": "Líderes de opinión más cercanos",
+    "closestNone": "Aún no hay suficiente información para encontrar coincidencias",
+    "ctaTitle": "¿Dónde te ubicas?",
+    "ctaDescription": "Mapea tu propia visión de la IA en unos 3 minutos y luego mira ambas en un mismo mapa",
+    "ctaButton": "Comparar ahora",
+    "privacy": "Esta página solo muestra su tarjeta, nunca sus respuestas. Mapear la tuya es gratis y tus respuestas permanecen privadas a menos que las compartas"
   }
 }

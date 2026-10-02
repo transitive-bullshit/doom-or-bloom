@@ -13,12 +13,13 @@ Translated:
 - the About and Privacy pages and the legacy `/assessment` start page;
 - the whole assessment interface: the interview, readiness, recovery and error copy, toasts and aria-labels, self-placement, the result (map, P(doom) card, closest worldviews, details, feedback, share bar and captions), the publish dialog and the library;
 - simulated-user and public assessment page chrome, their metadata, and their social images;
+- the chrome of the P(doom) hub (table and section headings, labels, the “As of” line, the comparability note, the directory link and CTA) and of the blog (index heading, bylines, reading times), and their metadata;
 - share link pages (`/s/<id>`), their metadata and cards, and the comparison card;
 - the downloaded share card, the map image and the Markdown report;
 - text that `lib/` code builds: result reasons, P(doom) ranges, claim scopes and readings, facet and experimental-axis labels and levels, milestone and hinge labels, self-placement comparisons, share captions, tension and correction prompts and API error messages;
 - authored assessment content from `content/`: questions (including the placement and split-outlook questions), their recovery copy, findings, resources and rubric level texts ([Authored content](#authored-content)).
 
-Not translated: participant answers and simulated answers (Jev reads answers as written; see [Jev and the participant's language](#jev-and-the-participants-language)), persona descriptions, admin, local review tools, debug panels (including the JSON inspector that About and simulated-user pages embed), the fixture-mode badge, llms.txt (English, with a Languages section) and API error bodies. The library page's report download keeps authored text in English; the report from the interview page translates it.
+Not translated: blog posts and their social cards and feed, the P(doom) hub’s explainer, table notes and quotes, scenarios, sources and readings ([BLOG.md](BLOG.md#languages)), participant answers and simulated answers (Jev reads answers as written; see [Jev and the participant's language](#jev-and-the-participants-language)), persona descriptions, admin, local review tools, debug panels (including the JSON inspector that About and simulated-user pages embed), the fixture-mode badge, llms.txt (English, with a Languages section) and API error bodies. The library page's report download keeps authored text in English; the report from the interview page translates it.
 
 All translations other than the Spanish UI catalog are machine translations. Native review is required only for the root question, the recovery and retry copy and the wording of result claims ([Review](#review)); it does not block a release.
 
@@ -37,7 +38,7 @@ English URLs are unchanged. Every other locale adds a `/<code>` prefix (`localeP
 
 - Pages live under `app/[locale]/`. `app/[locale]/layout.tsx` is the root layout: it sets `<html lang>` and generates every enabled locale. The locale is a root param read through `next/root-params` in `i18n/request.ts`, so pages stay static; `setRequestLocale` is not used.
 - `app/[locale]/(site)/layout.tsx` returns a 404 when the first segment is not a locale, e.g. `/api/about` matching `[locale]=api`.
-- Outside the locale tree: `app/api/`, `app/(internal)/` (admin, `/questions`, `/corpus`, `/user-journeys`, `/prototypes`, English-only with its own root layout and no language selector), `llms.txt`, `robots.txt`, `sitemap.xml`, `/public/assessments/<id>/data`, the English `/public/assessments/<id>/social-image.png` and `/users/<slug>/opengraph-image`.
+- Outside the locale tree: `app/api/`, `app/(internal)/` (admin, `/questions`, `/corpus`, `/user-journeys`, `/prototypes`, English-only with its own root layout and no language selector), `llms.txt`, `robots.txt`, `sitemap.xml`, `/public/assessments/<id>/data`, the English `/public/assessments/<id>/social-image.png`, `/users/<slug>/opengraph-image`, `/blog/rss.xml` and `/blog/<slug>/opengraph-image`.
 - There is no proxy function. `i18n/next-routes.ts` generates `next.config.ts` rules, which Vercel applies in its routing layer before the cache:
   - an `afterFiles` rewrite serves unprefixed page URLs from `/en/…`. It runs after static files and non-dynamic routes and before dynamic routes;
   - redirects drop the `/en` prefix and apply the [explicit choice](#persistence-of-the-choice). They run after the legacy `/assessment/<id>` and WebP image redirects, so a remembered language applies to the new URL.
@@ -56,7 +57,7 @@ The footer selector writes a `NEXT_LOCALE` cookie in the browser: one year, `Pat
 
 ## Static rendering and caching
 
-- `/`, `/about`, `/privacy`, `/users`, `/assessment` and the sitemap are generated for every enabled locale with their existing revalidation intervals.
+- `/`, `/about`, `/privacy`, `/users`, `/p-doom`, `/assessment` and the sitemap are generated for every enabled locale with their existing revalidation intervals. The blog index and every post are generated for every enabled locale at build, without revalidation: posts change only with a deployment.
 - Simulated-user profiles and published participant pages are pregenerated in English only. Other locales render on their first request, then cache and revalidate like English. Next 16.3 disables pregeneration for the whole route if `generateStaticParams` returns an empty list for any parent locale, so these pages return `{ locale: 'en', … }` for every parent and the duplicates collapse.
 - Share link pages (`/s/<id>`) and their cards (`/s/<id>/social-image.png`) live only under `app/[locale]`: every language, English included through the `/en` rewrite, renders on its first request, then caches like a public page. Revoking a link or deleting its assessment expires the public URL and every `/<locale>/s/<id>` page and image ([PERSISTENCE.md](PERSISTENCE.md#share-links)). A link is warmed in the language it was created in. Its card renders in the page's language, so a link shared from `/es/…` previews in Spanish.
 - A published participant page outside English advertises its own social card at `/<code>/public/assessments/<id>/social-image.png` (`app/[locale]/(site)/public/assessments/[id]/social-image.png/route.tsx`). It renders on its first request and caches like the English image. Publication changes expire the public URL and each `/<locale>/public/assessments/<id>` rendering, the English image and each other locale's image. Warmup fetches the English page and image only ([PERSISTENCE.md](PERSISTENCE.md#public-pages-and-social-images)).
@@ -68,7 +69,7 @@ The footer selector writes a `NEXT_LOCALE` cookie in the browser: one year, `Pat
 `pageMetadata` in `lib/metadata.ts` takes the page's `locale` and whether its main content is `translated`:
 
 - Translated pages (`translated: true` in `publicPages`: `/`, `/about`, `/privacy` and `/users`) canonicalize to themselves. They list every enabled locale as an hreflang alternate keyed by its language tag, with English as `x-default`, and set `og:locale` and its alternates.
-- Simulated-user profiles and public assessments are noindex outside English. Their answers stay in their original language, so they canonicalize to the English URL and advertise no alternates, following Google's guidance against boilerplate-only translations.
+- Simulated-user profiles, public assessments, the P(doom) hub (`translated: false`), the blog index and posts are noindex outside English. Their main content stays in its original language, so they canonicalize to the English URL and advertise no alternates, following Google's guidance against boilerplate-only translations. Their English body is marked `lang="en"` under the localized `<html lang>`.
 
 The sitemap lists every locale URL of a translated page with `alternates.languages`, and only the English URL of other pages. `llms.txt` stays English and ends with a Languages section.
 

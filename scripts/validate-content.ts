@@ -26,12 +26,18 @@ import {
   type L10nKind
 } from '../lib/content/l10n'
 import { readL10n, readRelease, readRubric } from '../lib/content/l10n-loader'
+import { blogDirectory, blogPosts } from '../lib/blog/posts'
+import { blogDataSchema, periodHeadings } from '../lib/blog/schema'
 import { people } from '../components/landing/people'
 import {
   oneLiners,
   verifiedOneLinerQuotes
 } from '../components/landing/one-liners'
 import { oneLinerProblems } from '../lib/personas/one-liner-rules'
+import {
+  publicStatementProblems,
+  publicStatements
+} from '../lib/personas/public-statements'
 const bundle = loadBundle()
 const drafts = loadDraftReferences()
 const context = loadAuthoringContext(bundle)
@@ -115,6 +121,40 @@ if (oneLinerErrors.length)
   )
 console.log(`Validated ${people.length} simulated-user one-liners.`)
 
+// What each real person has said about AI, shown on their profile:
+// docs/user-journeys.md#public-statements. Every file must be registered.
+const statementsDirectory = path.join(process.cwd(), 'content/profiles')
+const statementFiles = existsSync(statementsDirectory)
+  ? readdirSync(statementsDirectory).filter((file) => file.endsWith('.json'))
+  : []
+const statementErrors = [
+  ...statementFiles
+    .filter((file) => !publicStatements.has(file.slice(0, -'.json'.length)))
+    .map(
+      (file) => `${file}: not registered in lib/personas/public-statements.ts`
+    ),
+  ...[...publicStatements.values()].flatMap((file) => [
+    ...(slugs.has(file.slug)
+      ? []
+      : [`${file.slug}: statements for no simulated user`]),
+    ...(statementFiles.includes(`${file.slug}.json`)
+      ? []
+      : [
+          `${file.slug}: registered without content/profiles/${file.slug}.json`
+        ]),
+    ...publicStatementProblems(file).map(
+      (problem) => `${file.slug}: ${problem}`
+    )
+  ])
+]
+if (statementErrors.length)
+  throw new Error(
+    `Public statements break the rule in docs/user-journeys.md#public-statements:\n${statementErrors.join('\n')}`
+  )
+console.log(
+  `Validated public statements for ${publicStatements.size} simulated users.`
+)
+
 // Committed translations. Every enabled locale needs complete, current
 // translations of every supported release and the rubric; any other
 // translation file that exists must be current too.
@@ -193,4 +233,29 @@ if (l10nErrors.length)
   )
 console.log(
   `Validated ${l10nFiles.size} authored-content translation files and ${messageLocales.length - 1} message catalogs against English.`
+)
+
+// Blog posts: frontmatter, headings without trailing periods, and chart data
+// with an allowed provenance (docs/BLOG.md).
+const posts = blogPosts()
+const blogErrors = posts.flatMap((post) =>
+  periodHeadings(
+    readFileSync(path.join(blogDirectory, `${post.slug}.mdx`), 'utf8')
+  ).map((heading) => `${post.slug}.mdx: heading ends with a period: ${heading}`)
+)
+const blogData = path.join(blogDirectory, 'data')
+const dataFiles = existsSync(blogData)
+  ? readdirSync(blogData).filter((file) => file.endsWith('.json'))
+  : []
+for (const file of dataFiles) {
+  const parsed = blogDataSchema.safeParse(
+    JSON.parse(readFileSync(path.join(blogData, file), 'utf8'))
+  )
+  if (!parsed.success)
+    blogErrors.push(`data/${file}: ${parsed.error.issues[0]?.message}`)
+}
+if (blogErrors.length)
+  throw new Error(`Invalid blog content:\n${blogErrors.join('\n')}`)
+console.log(
+  `Validated the blog: ${posts.length} posts and ${dataFiles.length} data files.`
 )

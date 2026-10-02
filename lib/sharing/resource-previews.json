@@ -6794,23 +6794,183 @@
     "imageSource": "https://substackcdn.com/image/fetch/$s_!dTZ_!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F5153180e-36ea-4a1c-aff3-70457d671717_1024x1024.png",
     "icon": "/resource-previews/dc714e8031bb-icon.webp"
   },
-  "https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/": {
-    "source": "https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/",
-    "fetchedAt": "2026-10-02T00:13:52.262Z",
-    "description": "Third-party speaker-labeled transcript; use only Daniel’s answers, not Steven Bartlett’s framing. Asked whether we are heading somewhere bad if things don’t change, he says yes but he is not confident: something like 70%, because the current default path heads somewhere very scary. He corrects the host’s “70% chance of human extinction”: the figure is for AIs taking over or a comparably very big catastrophe, and AIs might take over without killing everyone. He does not think we are definitely doomed and could see it working out well.",
-    "image": "/resource-previews/34cdf36c427f-image.webp",
-    "imageKind": "article",
-    "imageSource": "https://singjupost.com/wp-content/uploads/2026/07/Daniel_Kokotajlo_Interview_Captioned.jpg",
-    "icon": "/resource-previews/34cdf36c427f-icon.webp"
-  },
   "https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/": {
     "source": "https://www.cbsnews.com/news/jensen-huang-nvidia-rejects-ai-extinction-warnings/",
-    "fetchedAt": "2026-10-02T00:13:52.270Z",
+    "fetchedAt": "2026-10-02T00:07:04.536Z",
+    "icon": "/resource-previews/80abc09fcf94-icon.webp",
     "description": "Predictions that AI could destroy humanity in a few years are irresponsible and not based on science, Nvidia&#039;s co-founder told CBS News.",
     "image": "/resource-previews/80abc09fcf94-image.webp",
     "imageKind": "social",
-    "imageSource": "https://assets1.cbsnewsstatic.com/hub/i/r/2026/09/18/ca887747-0cd6-4acb-870e-b58cabc4ed91/thumbnail/1200x630/0d4d71c1177f0f6aa26fc8e06dac60fd/cbsn-fusion-nvidia-ceo-jensen-huang-ai-safety-concerns-2030-not-end-of-world-thumbnail.jpg",
-    "icon": "/resource-previews/80abc09fcf94-icon.webp"
+    "imageSource": "https://assets1.cbsnewsstatic.com/hub/i/r/2026/09/18/ca887747-0cd6-4acb-870e-b58cabc4ed91/thumbnail/1200x630/0d4d71c1177f0f6aa26fc8e06dac60fd/cbsn-fusion-nvidia-ceo-jensen-huang-ai-safety-concerns-2030-not-end-of-world-thumbnail.jpg"
+  },
+  "https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/": {
+    "source": "https://singjupost.com/transcript-of-daniel-kokotajlo-interview-diary-of-a-ceo-podcast/",
+    "fetchedAt": "2026-10-02T00:07:03.825Z",
+    "icon": "/resource-previews/34cdf36c427f-icon.webp",
+    "description": "Third-party speaker-labeled transcript; use only Daniel’s answers, not Steven Bartlett’s framing. Asked whether we are heading somewhere bad if things don’t change, he says yes but he is not confident: something like 70%, because the current default path heads somewhere very scary. He corrects the host’s “70% chance of human extinction”: the figure is for AIs taking over or a comparably very big catastrophe, and AIs might take over without killing everyone. He does not think we are definitely doomed and could see it working out well.",
+    "image": "/resource-previews/34cdf36c427f-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://singjupost.com/wp-content/uploads/2026/07/Daniel_Kokotajlo_Interview_Captioned.jpg"
+  },
+  "https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident": {
+    "source": "https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident",
+    "fetchedAt": "2026-10-02T00:07:04.280Z",
+    "icon": "/resource-previews/70853eea50f7-icon.webp",
+    "description": "Connor Leahy has spent his career at the frontier of AI, from reverse-engineering GPT-2 as a student and co-founding EleutherAI to building the AI safety compan",
+    "image": "/resource-previews/70853eea50f7-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://assets.pippa.io/shows/69d4f193b76468caacc5068f/1786721585058-4b8219ec-8d7d-4408-8cc7-6a16aec105d5.jpeg"
+  },
+  "https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/": {
+    "source": "https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/",
+    "fetchedAt": "2026-10-02T00:07:03.511Z",
+    "icon": "/resource-previews/9c69a3d7ebc1-icon.webp",
+    "description": "Publisher speaker-labeled transcript; use only Yoshua’s answers, not Rob Wiblin’s. Asked whether the 20% p(doom) he gave in 2023 has gone up or down, he says he would rather stay out of the p(doom) game: there is no scientific data to calculate such a number, it could be small or large, and the plausible interval is far too high for his taste. Do not present the 2023 20% as his current estimate.",
+    "image": "/resource-previews/9c69a3d7ebc1-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://80000hours.org/wp-content/uploads/2026/05/Bengio-WP-thumb-scaled.jpg"
+  },
+  "https://www.tobyord.com/writing/the-precipice-revisited": {
+    "source": "https://www.tobyord.com/writing/the-precipice-revisited",
+    "fetchedAt": "2026-10-02T00:07:04.429Z",
+    "icon": "/resource-previews/d7fa98b6e3d9-icon.webp"
+  },
+  "https://forecastingresearch.org/pdf/existential-risk-persuasion-tournament.pdf": {
+    "source": "https://forecastingresearch.org/pdf/existential-risk-persuasion-tournament.pdf",
+    "fetchedAt": "2026-10-02T00:07:04.488Z",
+    "icon": "/resource-previews/492978b43dce-icon.webp"
+  },
+  "https://arxiv.org/abs/2206.13353": {
+    "source": "https://arxiv.org/abs/2206.13353",
+    "fetchedAt": "2026-10-02T00:07:04.521Z",
+    "icon": "/resource-previews/6e597a4dc1f6-icon.webp"
+  },
+  "https://www.littlebrown.com/titles/eliezer-yudkowsky/if-anyone-builds-it-everyone-dies/9780316595643/": {
+    "source": "https://www.littlebrown.com/titles/eliezer-yudkowsky/if-anyone-builds-it-everyone-dies/9780316595643/",
+    "fetchedAt": "2026-10-02T00:07:07.534Z",
+    "icon": "/resource-previews/9df8ca5cbb0b-icon.webp"
+  },
+  "https://optimists.ai/2023/11/28/ai-is-easy-to-control/": {
+    "source": "https://optimists.ai/2023/11/28/ai-is-easy-to-control/",
+    "fetchedAt": "2026-10-02T00:07:04.932Z",
+    "icon": "/resource-previews/1ca8992c58e5-icon.webp"
+  },
+  "https://arxiv.org/abs/2501.16946": {
+    "source": "https://arxiv.org/abs/2501.16946",
+    "fetchedAt": "2026-10-02T00:07:04.818Z",
+    "icon": "/resource-previews/e6e162eaede3-icon.webp"
+  },
+  "https://www.alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like": {
+    "source": "https://www.alignmentforum.org/posts/HBxe6wdjxK239zajf/what-failure-looks-like",
+    "fetchedAt": "2026-10-02T00:07:06.192Z",
+    "icon": "/resource-previews/6807a8a8f2fd-icon.webp",
+    "iconKind": "monogram"
+  },
+  "https://arxiv.org/abs/2401.07836": {
+    "source": "https://arxiv.org/abs/2401.07836",
+    "fetchedAt": "2026-10-02T00:07:05.026Z",
+    "icon": "/resource-previews/987dd3f6f56b-icon.webp"
+  },
+  "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026": {
+    "source": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+    "fetchedAt": "2026-10-02T00:07:06.762Z",
+    "icon": "/resource-previews/1c56e1957f91-icon.webp"
+  },
+  "https://www.forethought.org/research/ai-enabled-coups-how-a-small-group-could-use-ai-to-seize-power": {
+    "source": "https://www.forethought.org/research/ai-enabled-coups-how-a-small-group-could-use-ai-to-seize-power",
+    "fetchedAt": "2026-10-02T00:07:05.712Z",
+    "icon": "/resource-previews/a52c1e263cec-icon.webp"
+  },
+  "https://www.forethought.org/research/preparing-for-the-intelligence-explosion": {
+    "source": "https://www.forethought.org/research/preparing-for-the-intelligence-explosion",
+    "fetchedAt": "2026-10-02T00:07:08.576Z",
+    "icon": "/resource-previews/6f3dc2083064-icon.webp"
+  },
+  "https://situational-awareness.ai/": {
+    "source": "https://situational-awareness.ai/",
+    "fetchedAt": "2026-10-02T00:07:07.777Z",
+    "icon": "/resource-previews/1befe71d79c4-icon.webp"
+  },
+  "https://arxiv.org/abs/2503.05628": {
+    "source": "https://arxiv.org/abs/2503.05628",
+    "fetchedAt": "2026-10-02T00:07:07.912Z",
+    "icon": "/resource-previews/a15589d5e604-icon.webp"
+  },
+  "https://www.lesswrong.com/posts/oJQnRDbgSS8i6DwNu/the-hopium-wars-the-agi-entente-delusion": {
+    "source": "https://www.lesswrong.com/posts/oJQnRDbgSS8i6DwNu/the-hopium-wars-the-agi-entente-delusion",
+    "fetchedAt": "2026-10-02T00:07:09.398Z",
+    "icon": "/resource-previews/bd7ebe6054f9-icon.webp"
+  },
+  "https://slatestarcodex.com/2014/07/30/meditations-on-moloch/": {
+    "source": "https://slatestarcodex.com/2014/07/30/meditations-on-moloch/",
+    "fetchedAt": "2026-10-02T00:07:10.795Z",
+    "icon": "/resource-previews/c1ea94e3153e-icon.webp"
+  },
+  "https://www.forethought.org/research/agi-and-lock-in": {
+    "source": "https://www.forethought.org/research/agi-and-lock-in",
+    "fetchedAt": "2026-10-02T00:07:09.118Z",
+    "icon": "/resource-previews/0115b3047845-icon.webp"
+  },
+  "https://www.overcomingbias.com/p/ai-fear-is-mostly-fear-of-future": {
+    "source": "https://www.overcomingbias.com/p/ai-fear-is-mostly-fear-of-future",
+    "fetchedAt": "2026-10-02T00:07:09.539Z",
+    "icon": "/resource-previews/54b1d0d0caec-icon.webp"
+  },
+  "https://ifanyonebuildsit.com/": {
+    "source": "https://ifanyonebuildsit.com/",
+    "fetchedAt": "2026-10-02T00:07:09.776Z",
+    "icon": "/resource-previews/1620ba6869a8-icon.webp"
+  },
+  "https://theprecipice.com/": {
+    "source": "https://theprecipice.com/",
+    "fetchedAt": "2026-10-02T00:07:10.238Z",
+    "icon": "/resource-previews/3b9fccf15651-icon.webp"
+  },
+  "https://safe.ai/work/statement-on-ai-extinction-risk": {
+    "source": "https://safe.ai/work/statement-on-ai-extinction-risk",
+    "fetchedAt": "2026-10-02T00:07:10.351Z",
+    "icon": "/resource-previews/e414396f7b73-icon.webp"
+  },
+  "https://global.oup.com/academic/product/superintelligence-9780198739838": {
+    "source": "https://global.oup.com/academic/product/superintelligence-9780198739838",
+    "fetchedAt": "2026-10-02T00:07:11.266Z",
+    "icon": "/resource-previews/7bf75fc2748f-icon.webp"
+  },
+  "https://www.penguinrandomhouse.com/books/566677/human-compatible-by-stuart-russell/": {
+    "source": "https://www.penguinrandomhouse.com/books/566677/human-compatible-by-stuart-russell/",
+    "fetchedAt": "2026-10-02T00:07:12.877Z",
+    "icon": "/resource-previews/253b2714af61-icon.webp"
+  },
+  "https://www.alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities": {
+    "source": "https://www.alignmentforum.org/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities",
+    "fetchedAt": "2026-10-02T00:07:13.032Z",
+    "icon": "/resource-previews/0aea2d39b828-icon.webp",
+    "iconKind": "monogram"
+  },
+  "https://arxiv.org/abs/2306.12001": {
+    "source": "https://arxiv.org/abs/2306.12001",
+    "fetchedAt": "2026-10-02T00:07:12.366Z",
+    "icon": "/resource-previews/8b90a137d973-icon.webp"
+  },
+  "https://arxiv.org/abs/2401.02843": {
+    "source": "https://arxiv.org/abs/2401.02843",
+    "fetchedAt": "2026-10-02T00:07:12.444Z",
+    "icon": "/resource-previews/420c48ee4c61-icon.webp"
+  },
+  "https://forecastingresearch.org/research/existential-risk-persuasion-tournament": {
+    "source": "https://forecastingresearch.org/research/existential-risk-persuasion-tournament",
+    "fetchedAt": "2026-10-02T00:07:12.683Z",
+    "icon": "/resource-previews/f609c22b742d-icon.webp"
+  },
+  "https://www.normaltech.ai/p/ai-existential-risk-probabilities": {
+    "source": "https://www.normaltech.ai/p/ai-existential-risk-probabilities",
+    "fetchedAt": "2026-10-02T00:07:13.238Z",
+    "icon": "/resource-previews/1e20b7fd9278-icon.webp"
+  },
+  "https://aiimpacts.org/counterarguments-to-the-basic-ai-x-risk-case/": {
+    "source": "https://aiimpacts.org/counterarguments-to-the-basic-ai-x-risk-case/",
+    "fetchedAt": "2026-10-02T00:07:14.455Z",
+    "icon": "/resource-previews/e2769b69aca0-icon.webp"
   },
   "https://www.youtube.com/watch?v=BDREZmpkIz8": {
     "source": "https://www.youtube.com/watch?v=BDREZmpkIz8",
@@ -6838,15 +6998,6 @@
     "imageKind": "social",
     "imageSource": "https://i.scdn.co/image/ab6765630000ba8acad0a8ea81f37ff23ca18807",
     "icon": "/resource-previews/a01389775efb-icon.webp"
-  },
-  "https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/": {
-    "source": "https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/",
-    "fetchedAt": "2026-10-02T00:13:57.922Z",
-    "description": "Publisher speaker-labeled transcript; use only Yoshua’s answers, not Rob Wiblin’s. Asked whether the 20% p(doom) he gave in 2023 has gone up or down, he says he would rather stay out of the p(doom) game: there is no scientific data to calculate such a number, it could be small or large, and the plausible interval is far too high for his taste. Do not present the 2023 20% as his current estimate.",
-    "image": "/resource-previews/9c69a3d7ebc1-image.webp",
-    "imageKind": "social",
-    "imageSource": "https://80000hours.org/wp-content/uploads/2026/05/Bengio-WP-thumb-scaled.jpg",
-    "icon": "/resource-previews/9c69a3d7ebc1-icon.webp"
   },
   "https://www.possible.fm/podcasts/feifei/": {
     "source": "https://www.possible.fm/podcasts/feifei/",
@@ -6910,15 +7061,6 @@
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!zT-V!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F37934be4-169b-427e-a8dd-fa6f750b24da_722x978.png",
     "icon": "/resource-previews/5578a85474b9-icon.webp"
-  },
-  "https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident": {
-    "source": "https://pod.wave.co/podcast/the-peter-mccormack-show/201-connor-leahy-the-ai-that-escaped-inside-openais-rogue-agent-incident",
-    "fetchedAt": "2026-10-02T00:14:06.127Z",
-    "description": "Connor Leahy has spent his career at the frontier of AI, from reverse-engineering GPT-2 as a student and co-founding EleutherAI to building the AI safety compan",
-    "image": "/resource-previews/70853eea50f7-image.webp",
-    "imageKind": "social",
-    "imageSource": "https://assets.pippa.io/shows/69d4f193b76468caacc5068f/1786721585058-4b8219ec-8d7d-4408-8cc7-6a16aec105d5.jpeg",
-    "icon": "/resource-previews/70853eea50f7-icon.webp"
   },
   "https://bigthink.com/series/the-big-think-interview/future-of-ai-co-intelligence/": {
     "source": "https://bigthink.com/series/the-big-think-interview/future-of-ai-co-intelligence/",

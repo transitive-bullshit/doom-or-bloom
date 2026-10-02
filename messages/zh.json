@@ -4,8 +4,8 @@
   },
   "Pages": {
     "home": {
-      "title": "Doom or Bloom",
-      "description": "描绘你的 AI 世界观，并将其与其他人的观点进行比较。探索公众人物认为 AI 将如何改变我们的未来，然后发现你的立场在哪里。"
+      "title": "AI将如何改变我们的未来？参加这个3分钟测验",
+      "description": "关于AI未来的免费3分钟测验。看看你更倾向于 Doom 还是 Bloom，获得一个粗略的 P(doom)，并将你的观点与 Hinton、LeCun、Altman 等人进行比较。"
     },
     "about": {
       "title": "关于",
@@ -16,8 +16,16 @@
       "description": "Doom or Bloom 如何存储评估、保护非公开回答、处理可选账户，以及公开发布结果。"
     },
     "users": {
-      "title": "模拟用户",
-      "description": "探索并搜索基于来源模拟的 AI 世界观，包括精选地图之外的用户。"
+      "title": "意见领袖在AI安全与风险问题上的立场",
+      "description": "搜索并比较公众人物的模拟AI世界观，从 Hinton 和 Bengio 到 LeCun 和 Andreessen，并查看他们公开表明的 P(doom)（如有）。"
+    },
+    "pdoom": {
+      "title": "P(doom) 是什么？Hinton、Musk、LeCun 等人的估计",
+      "description": "P(doom) 是某人认为AI最终会给人类带来灾难的概率。查看 Hinton、Musk、Amodei、LeCun 等人的公开说法及其来源。"
+    },
+    "blog": {
+      "title": "博客",
+      "description": "Doom or Bloom 关于 P(doom)、AI 风险以及人们如何看待 AI 未来的通俗文章。"
     }
   },
   "Header": {
@@ -35,6 +43,8 @@
   "Footer": {
     "about": "关于",
     "privacy": "隐私",
+    "pdoom": "P(doom)",
+    "blog": "博客",
     "language": "语言"
   },
   "Breadcrumbs": {
@@ -43,6 +53,8 @@
     "about": "关于",
     "privacy": "隐私",
     "users": "模拟用户",
+    "pdoom": "P(doom)",
+    "blog": "博客",
     "assessments": "我的评估",
     "newAssessment": "新评估",
     "assessment": "评估",
@@ -430,42 +442,6 @@
     "linkFailed": "无法创建你的分享链接。请重试。",
     "shareAgain": "你的链接已准备好。再次点击分享。"
   },
-  "Compare": {
-    "title": "你与{name}",
-    "view": "结果视图",
-    "justYou": "仅你自己",
-    "friend": "你的朋友",
-    "friendLabel": "一个朋友",
-    "bucket": {
-      "very_aligned": "非常一致",
-      "mostly_aligned": "大体一致",
-      "some_distance": "存在一些差异",
-      "worlds_apart": "截然不同"
-    },
-    "bucketUnknown": "现在下结论还太早",
-    "outlook": {
-      "same": "你们的前景看法接近",
-      "more_hopeful": "你比{name}更抱有希望",
-      "more_worried": "你比{name}更担忧"
-    },
-    "change": {
-      "same": "你们预期的变革规模大致相同",
-      "more": "你预期的变革比{name}更多",
-      "less": "你预期的变革比{name}更少"
-    },
-    "unplaced": "你们中有一人尚未在地图上完全定位，因此有些差异仍未确定",
-    "pdoom": "P(doom)",
-    "you": "你",
-    "pdoomMissing": "未估计",
-    "sharedClosest": "你们的位置都接近{closest}",
-    "simulated": "{name}的位置是根据公开来源模拟的，并非来自其本人回答",
-    "private": "比较在你的浏览器中进行。你们都看不到对方的回答",
-    "send": "将你的结果发给对方",
-    "sendText": "我也描绘了自己的AI世界观。这是我的立场",
-    "sendCopied": "链接已复制。把它发回给对方。",
-    "viewPersona": "查看{name}的结果",
-    "gone": "此比较链接已关闭，因此没有可比较的内容"
-  },
   "Conversation": {
     "tension": "关于 AI，你说过“{first}”和“{second}”——这两者如何相互契合？",
     "clarification": "我们对{topic}的理解是：“{claim}”你会如何修改这一解读？",
@@ -689,17 +665,14 @@
     "estimate": "估计",
     "simulatedView": "模拟观点",
     "yourView": "你的观点",
-    "theirView": "他们的观点",
     "marker": "{name}：{claim}",
     "markerFallback": "模拟世界观位置",
-    "otherMarker": "{name}的位置",
     "unplacedTitle": "部分维度仍未定位",
     "unplacedNote": "空白区域表示我们尚不了解的部分。",
     "unplacedCaption": "部分维度仍未定位。空白区域表示我们尚不了解的部分。",
     "centerUnresolved": "未确定范围的中心",
     "simulatedPosition": "模拟位置",
     "estimatedPosition": "你的估计位置",
-    "sharedPosition": "他们的估计位置",
     "notDetermined": "位置尚未确定",
     "range": "解读范围",
     "axes": "{subject, select, self {横向：你表达的 Doom–Bloom 前景看法。} his {横向：他表达的 Doom–Bloom 前景看法。} her {横向：她表达的 Doom–Bloom 前景看法。} other {横向：他们表达的 Doom–Bloom 前景看法。}} 纵向：{axis, select, influence {人类影响力} other {变革程度}}。",
@@ -715,7 +688,10 @@
     "copied": "地图已复制为 PNG。",
     "downloaded": "地图已下载为 PNG。",
     "copyFailed": "无法复制图片。请尝试改为下载。",
-    "downloadFailed": "无法下载图片。请重试。"
+    "downloadFailed": "无法下载图片。请重试。",
+    "theirView": "他们的观点",
+    "otherMarker": "{name}的位置",
+    "sharedPosition": "他们的估计位置"
   },
   "Feedback": {
     "aspects": {
@@ -755,12 +731,50 @@
     "sourcesTitle": "来源",
     "sourcesUpdated": "此模拟用户当前简介的来源。",
     "sourcesDefault": "用于为此模拟用户提供事实依据的文章、访谈和著述。",
-    "profile": "个人资料"
+    "profile": "个人资料",
+    "similarTitle": "相似的世界观",
+    "similarDescription": "模拟世界观与 {name} 最接近的意见领袖",
+    "statementsTitle": "{name}关于AI说过的话",
+    "statementsNote": "逐字引自所链接的出处，核对于 {date}"
   },
   "Profiles": {
-    "userTitle": "{name} 的 AI 世界观",
-    "userDescription": "探索 {name} 的模拟 AI 世界观、地图位置和基于来源的回答。这是一种实验性解读，并非其本人的评估。",
+    "userTitle": "{name}谈AI",
+    "userTitleTopics": "{name}谈{topics}",
+    "userTitleMap": {
+      "concern": "{name}谈AI安全与风险",
+      "middle": "{name}谈AI的风险与益处",
+      "bloom": "{name}谈AI的未来与机遇"
+    },
+    "titleTopic": {
+      "ai": "AI",
+      "safety": "AI安全",
+      "risk": "AI风险",
+      "regulation": "AI监管",
+      "policy": "AI政策",
+      "ethics": "AI伦理",
+      "consciousness": "AI意识",
+      "bubble": "AI泡沫",
+      "jobs": "就业",
+      "education": "教育",
+      "healthcare": "医疗保健",
+      "opensource": "开源",
+      "agi": "AGI",
+      "superintelligence": "超级智能",
+      "future": "AI的未来",
+      "pdoom": "P(doom)"
+    },
+    "titleTopicAfterAi": {
+      "safety": "安全",
+      "risk": "风险",
+      "regulation": "监管",
+      "policy": "政策",
+      "ethics": "伦理",
+      "consciousness": "意识",
+      "future": "未来"
+    },
+    "userDescription": "{name}对AI有何看法？查看其模拟世界观在Doom与Bloom之间的立场位置，以及粗略的P(doom)和这一结果背后的回答。",
     "userImageAlt": "{name} 的模拟 AI 世界观在 Doom–Bloom 与变革规模地图上的位置",
+    "personDescription": "根据 {name} 的公开文章构建的 AI 世界观模拟。这是一种实验性解读，并非其本人的评估，也不代表其认可。",
     "publicTitle": "{name} 的 AI 世界观",
     "sharedTitle": "分享的 AI 世界观",
     "publicDescription": "探索这一 AI 世界观：预期、风险、最接近的观点，以及评估所依据的回答。",
@@ -768,24 +782,41 @@
     "asOf": "截至 {date} 的 AI 世界观地图。",
     "profile": "个人资料"
   },
-  "Snapshot": {
-    "title": "{name}描绘了自己的AI世界观",
-    "titleAnonymous": "一位朋友描绘了他们的AI世界观",
-    "metaTitleNamed": "{name}的AI世界观",
-    "metaTitle": "你对AI的立场在哪里？",
-    "description": "在 Doom–Bloom 地图上查看这一AI世界观，然后用大约3分钟描绘你自己的世界观并进行比较。",
-    "imageAlt": "Doom–Bloom 与变革规模地图上的一个AI世界观，包含 P(doom) 和最接近的意见领袖",
-    "sharedOn": "分享于{date}",
-    "pdoom": "P(doom)",
-    "pdoomStated": "他们自己给出的数值",
-    "pdoomInferred": "根据他们的回答推断",
-    "pdoomMissing": "未估计",
-    "closest": "最接近的意见领袖",
-    "closestNone": "目前信息不足，无法匹配",
-    "ctaTitle": "你的立场在哪里？",
-    "ctaDescription": "用大约3分钟描绘你自己的AI世界观，然后在同一张地图上查看两者",
-    "ctaButton": "立即比较",
-    "privacy": "此页面仅显示他们的卡片，绝不会显示他们的回答。描绘你的世界观是免费的，除非你主动分享，否则你的回答会保持私密"
+  "PdoomHub": {
+    "tableTitle": "各意见领袖的 P(doom)",
+    "name": "意见领袖",
+    "stated": "公开表述的 P(doom)",
+    "declined": "未提供数字",
+    "showAllSources": "显示全部 {count} 个来源",
+    "fewerSources": "显示较少来源",
+    "cite": "来源 {number}",
+    "asOf": "截至 {date}",
+    "note": "每个数字都来自当事人的原话，并链接至其发表该言论的出处。不同人对结果和时间范围的定义不同，因此这些数字不能直接比较。",
+    "allUsers": "查看全部 {count} 位模拟意见领袖",
+    "allUsersDescription": "搜索地图上的所有人并进行排序，包括按从每次模拟中推断出的粗略 P(doom) 排序",
+    "scenariosTitle": "这种情况可能如何发生",
+    "proponents": "谁主张这一观点",
+    "disagreement": "专家的分歧所在",
+    "sourcesTitle": "来源",
+    "readingTitle": "延伸阅读",
+    "readingGroups": {
+      "start": "从这里开始",
+      "core": "核心论点",
+      "forecasts": "预测与调查",
+      "critiques": "批评"
+    },
+    "ctaTitle": "你的 P(doom) 是多少？",
+    "ctaDescription": "用大约3分钟回答几个问题，然后将你的世界观和粗略的 P(doom) 与他们的放在一起查看",
+    "guide": "阅读 P(doom) 含义指南"
+  },
+  "Blog": {
+    "title": "博客",
+    "intro": "关于 P(doom)、AI 世界观以及人们如何看待 AI 未来的通俗说明",
+    "readingTime": "{minutes, plural, other {阅读需 # 分钟}}",
+    "updated": "更新于 {date}",
+    "by": "作者：{author}",
+    "englishOnly": "文章以英文撰写",
+    "rss": "RSS 订阅源"
   },
   "Cards": {
     "civilizational": "文明级变革",
@@ -868,10 +899,65 @@
     "measurement2": "一个按评估随机生成的标识符会将恢复访问后的事件关联起来，并会在每次创建新评估或分支时更改。这是使用假名的关联方式，并非数学意义上的匿名。启用 PostHog 需要开启其项目级 IP 数据弃置设置。仅有分析凭据不会启用数据收集。",
     "publishingTitle": "发布和删除",
     "publishing1": "发布后，你提交的完整对话和推断结果将对任何人可见，搜索引擎也可将公开页面编入索引。如果你在登录状态下发布，你的个人资料名称、照片和个人资料链接也会包含在内。匿名发布的内容会保持匿名，除非你先将其设为私密，然后在登录状态下再次发布。运行故障记录会保持私密。将评估设为私密或将其删除，会移除对其页面和数据的访问权限。缓存的社交媒体图片最多可能继续保留八天，外部网站保留预览的时间可能更长。继续进行已发布的评估会创建一个单独的私密副本；更改或删除原评估不会改变该副本。",
-    "shareLinks": "分享链接只会显示你的卡片：你的地图位置和范围、你的 P(doom) 和与你观点最接近的思想领袖；如果你添加了名字，还会显示名字。为了让其他人能够比较，链接还会以数字形式包含你的地图位置所依据的八项世界观评分。它绝不会显示你的回答或你展现出的推理能力，也不会被搜索引擎收录。任何获得链接的人都可以查看该卡片，直到你在结果页面选择“停止分享链接”或删除该评估；其他网站已经获取的预览可能仍会保留。当有人通过你的链接将其结果与你的结果进行比较时，比较会在其浏览器中进行：你们双方都看不到对方的回答，我们也不会记录比较了哪些结果。",
     "publishing2": "来源卡片可能会嵌入 X 上的公开帖子。帖子文本会通过此应用的服务器获取；嵌入的个人资料图片、照片和视频则从 X 的媒体服务器加载。你的评估回答不会发送给 X。",
     "publishing3": "结果图片根据你的评估结果在此应用的服务器上生成，其中不包含原始回答。私密下载的内容不会公开托管；发布后还会提供社交分享预览。完整报告包含你的回答、证据和任何可用的本地诊断信息，因此请在分享前查看。",
     "publishing4": "匿名进度与你的浏览器会话关联。在可用的情况下，你可以选择使用 X 登录，以便在其他浏览器中恢复已关联的评估。清除 Cookie 或 Cookie 过期会导致你失去匿名访问权限，但不会删除服务器记录。未提交的草稿不会跨设备同步。系统会根据已保存的修订版本检查并发提交，以防止在无提示的情况下被覆盖。",
-    "cookie": "第一方 Cookie 会记录你的浏览器最初通过何种方式找到此网站：你访问时所用链接的标签（例如简报或帖子）、引荐网站的域名，以及你进入的页面类型。它不包含任何回答或完整地址。它会与你的匿名账户或 X 账户一同保存，并随匿名分析事件发送，以便我们了解哪些来源为此网站带来了访问者。"
+    "cookie": "第一方 Cookie 会记录你的浏览器最初通过何种方式找到此网站：你访问时所用链接的标签（例如简报或帖子）、引荐网站的域名，以及你进入的页面类型。它不包含任何回答或完整地址。它会与你的匿名账户或 X 账户一同保存，并随匿名分析事件发送，以便我们了解哪些来源为此网站带来了访问者。",
+    "shareLinks": "分享链接只会显示你的卡片：你的地图位置和范围、你的 P(doom) 和与你观点最接近的思想领袖；如果你添加了名字，还会显示名字。为了让其他人能够比较，链接还会以数字形式包含你的地图位置所依据的八项世界观评分。它绝不会显示你的回答或你展现出的推理能力，也不会被搜索引擎收录。任何获得链接的人都可以查看该卡片，直到你在结果页面选择“停止分享链接”或删除该评估；其他网站已经获取的预览可能仍会保留。当有人通过你的链接将其结果与你的结果进行比较时，比较会在其浏览器中进行：你们双方都看不到对方的回答，我们也不会记录比较了哪些结果。"
+  },
+  "Compare": {
+    "title": "你与{name}",
+    "view": "结果视图",
+    "justYou": "仅你自己",
+    "friend": "你的朋友",
+    "friendLabel": "一个朋友",
+    "bucket": {
+      "very_aligned": "非常一致",
+      "mostly_aligned": "大体一致",
+      "some_distance": "存在一些差异",
+      "worlds_apart": "截然不同"
+    },
+    "bucketUnknown": "现在下结论还太早",
+    "outlook": {
+      "same": "你们的前景看法接近",
+      "more_hopeful": "你比{name}更抱有希望",
+      "more_worried": "你比{name}更担忧"
+    },
+    "change": {
+      "same": "你们预期的变革规模大致相同",
+      "more": "你预期的变革比{name}更多",
+      "less": "你预期的变革比{name}更少"
+    },
+    "unplaced": "你们中有一人尚未在地图上完全定位，因此有些差异仍未确定",
+    "pdoom": "P(doom)",
+    "you": "你",
+    "pdoomMissing": "未估计",
+    "sharedClosest": "你们的位置都接近{closest}",
+    "simulated": "{name}的位置是根据公开来源模拟的，并非来自其本人回答",
+    "private": "比较在你的浏览器中进行。你们都看不到对方的回答",
+    "send": "将你的结果发给对方",
+    "sendText": "我也描绘了自己的AI世界观。这是我的立场",
+    "sendCopied": "链接已复制。把它发回给对方。",
+    "viewPersona": "查看{name}的结果",
+    "gone": "此比较链接已关闭，因此没有可比较的内容"
+  },
+  "Snapshot": {
+    "title": "{name}描绘了自己的AI世界观",
+    "titleAnonymous": "一位朋友描绘了他们的AI世界观",
+    "metaTitleNamed": "{name}的AI世界观",
+    "metaTitle": "你对AI的立场在哪里？",
+    "description": "在 Doom–Bloom 地图上查看这一AI世界观，然后用大约3分钟描绘你自己的世界观并进行比较。",
+    "imageAlt": "Doom–Bloom 与变革规模地图上的一个AI世界观，包含 P(doom) 和最接近的意见领袖",
+    "sharedOn": "分享于{date}",
+    "pdoom": "P(doom)",
+    "pdoomStated": "他们自己给出的数值",
+    "pdoomInferred": "根据他们的回答推断",
+    "pdoomMissing": "未估计",
+    "closest": "最接近的意见领袖",
+    "closestNone": "目前信息不足，无法匹配",
+    "ctaTitle": "你的立场在哪里？",
+    "ctaDescription": "用大约3分钟描绘你自己的AI世界观，然后在同一张地图上查看两者",
+    "ctaButton": "立即比较",
+    "privacy": "此页面仅显示他们的卡片，绝不会显示他们的回答。描绘你的世界观是免费的，除非你主动分享，否则你的回答会保持私密"
   }
 }

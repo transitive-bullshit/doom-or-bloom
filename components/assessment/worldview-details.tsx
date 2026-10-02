@@ -47,7 +47,7 @@ export function WorldviewDetails({
     })
   if (!impacts.length && !positions.length) return null
   return (
-    <section aria-label={t('title')} className='mt-5 flex flex-col gap-4'>
+    <section aria-label={t('title')} className='mt-10 flex flex-col gap-4'>
       <h4>{t('title')}</h4>
       {impacts.length > 0 && (
         <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-3'>

@@ -1,0 +1,41 @@
+{
+  "slug": "so8res",
+  "summary": "Soares argues that superintelligence built with current methods would escape control and calls for an enforceable global halt that spares narrow AI.",
+  "statements": [
+    {
+      "quote": "I think many of these are good steps. I think that ultimately, however, the solution to this problem is a global one.",
+      "date": "2026-09-21",
+      "venue": "CNN Newsroom",
+      "url": "https://transcripts.cnn.com/show/cnr/date/2026-09-21/segment/20",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Leaders around the world must coordinate a global stop to the A.I. race.",
+      "date": "2026-08-13",
+      "venue": "The New York Times, guest essay",
+      "url": "https://www.nytimes.com/2026/08/13/opinion/ai-danger-openai-anthropic-models.html",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "It gives me hope that if the world just notices, we could stop on a dime.",
+      "date": "2026-08-07",
+      "venue": "Vox, Future Perfect interview",
+      "url": "https://www.vox.com/future-perfect/498412/artificial-intelligence-nate-soares-ai-safety-openai-anthropic-hacking",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "It’s not that the AI hates us; it’s just trying to do some weird thing with no concern for us, grabbing the resources we need to live.",
+      "date": "2026-08-07",
+      "venue": "Vox, Future Perfect interview",
+      "url": "https://www.vox.com/future-perfect/498412/artificial-intelligence-nate-soares-ai-safety-openai-anthropic-hacking",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "There is no need to ban continued development of limited AIs specialized for purposes like revolutionizing medical research.",
+      "date": "2026-06-26",
+      "venue": "The Hill, op-ed",
+      "url": "https://thehill.com/opinion/technology/5940771-ai-superintelligence-threatens-humanity/",
+      "verified": "2026-10-03"
+    }
+  ]
+}

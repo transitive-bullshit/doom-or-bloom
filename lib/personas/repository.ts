@@ -236,8 +236,10 @@ export function personaRepository(pool: Pool) {
         return id
       })
     },
-    // Comparison consumers need identity and directional values, not result prose.
-    async selectedComparisons() {
+    // Comparison consumers need identity and directional values, not result
+    // prose. Participants compare with featured users; similar-worldview lists
+    // on profiles compare across the whole catalog.
+    async selectedComparisons(featuredOnly = true) {
       const rows = await db
         .select({
           id: sql<string>`${personas.metadata}->>'id'`,
@@ -275,7 +277,12 @@ export function personaRepository(pool: Pool) {
           assessmentSnapshots,
           eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
         )
-        .where(and(publicSimulation, eq(personas.featured, true)))
+        .where(
+          and(
+            publicSimulation,
+            featuredOnly ? eq(personas.featured, true) : undefined
+          )
+        )
         .orderBy(asc(personas.slug))
       return usableRows(
         rows.sort((a, b) => a.order - b.order),

@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { publicPageMetadata } from '@/lib/metadata'
 import { Link } from '@/i18n/navigation'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
+import { aboutJsonLd } from '@/lib/seo/json-ld'
+import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 
 // The example assessment is public persona data, refreshed with the page.
 export const dynamic = 'error'
@@ -29,14 +31,25 @@ const external = (href: string, rel = 'noopener noreferrer') =>
 
 export default async function About() {
   const personaId = 'abundance-risk-taker'
-  const [examples, assessment, t] = await Promise.all([
+  const [examples, assessment, t, pages, locale] = await Promise.all([
     loadExamples(),
     loadPersonaAssessment(personaId),
-    getTranslations('About')
+    getTranslations('About'),
+    getTranslations('Pages'),
+    getLocale()
   ])
   const person = examples.find((example) => example.id === personaId)
   return (
     <article className='content-column space-y-10 py-14 text-base leading-relaxed'>
+      {/* Hidden, so it adds no gap or margin. */}
+      <BreadcrumbJsonLd path='/about' />
+      <JsonLd
+        data={aboutJsonLd({
+          locale,
+          name: pages('about.title'),
+          description: pages('about.description')
+        })}
+      />
       <header className='space-y-5'>
         <h1>{t('title')}</h1>
         <p>{t('question')}</p>

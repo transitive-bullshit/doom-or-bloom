@@ -33,10 +33,12 @@ export function worldviewValues(result: {
   )
 }
 
+/** The `limit` nearest personas, closest first. */
 export function closestPersonas(
   result: Pick<Result, 'components'> &
     Partial<Pick<Result, 'evidenceRevision' | 'horizontal' | 'experiment'>>,
-  personas: PersonaComparison[]
+  personas: PersonaComparison[],
+  limit = 3
 ) {
   const values = worldviewValues(result)
   const point = result.horizontal
@@ -92,5 +94,5 @@ export function closestPersonas(
         b.dimensions - a.dimensions ||
         a.id.localeCompare(b.id)
     )
-    .slice(0, 3)
+    .slice(0, limit)
 }
