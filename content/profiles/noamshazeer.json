@@ -1,0 +1,27 @@
+{
+  "slug": "noamshazeer",
+  "summary": "Shazeer expects rapid AI progress and large gains in health and wealth, and says more care is needed as systems grow more powerful.",
+  "statements": [
+    {
+      "quote": "It turns out the best way to solve hard problems is still to think about them.",
+      "date": "2026-02-12",
+      "venue": "Post on X",
+      "url": "https://x.com/NoamShazeer/status/2021988459519652089",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I think we’re going to see orders of magnitude of improvements in GDP, health, wealth, and anything else you can think of.",
+      "date": "2025-02-12",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/jeff-dean-and-noam-shazeer",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "As these systems do get more powerful, you have to be more and more careful.",
+      "date": "2025-02-12",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/jeff-dean-and-noam-shazeer",
+      "verified": "2026-10-03"
+    }
+  ]
+}

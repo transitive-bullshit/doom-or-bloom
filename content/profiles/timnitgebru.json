@@ -1,0 +1,41 @@
+{
+  "slug": "timnitgebru",
+  "summary": "Gebru criticizes the race to build giant general-purpose AI models and calls for small, task-specific tools and accountability from their builders.",
+  "statements": [
+    {
+      "quote": "Before you put something out there, you should be able to tell us where all the data came from and actually document it.",
+      "date": "2026-09-29",
+      "venue": "WIRED, The Big Interview",
+      "url": "https://www.wired.com/story/the-big-interview-podcast-timnit-gebru/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The path we’re on right now was never a preordained path that we had to be on.",
+      "date": "2026-08-13",
+      "venue": "Democracy Now! interview",
+      "url": "https://www.democracynow.org/2026/8/13/timnit_gebru",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I’m in the field of AI, and in my field, I would describe it as corporate-driven and sloppy.",
+      "date": "2026-06-16",
+      "venue": "Scientific American interview",
+      "url": "https://www.scientificamerican.com/article/timnit-gebru/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "It’s just that people came along and decided that they want to build a machine god and then claimed that they are doing it.",
+      "date": "2026-02",
+      "venue": "AI Now Institute, Reframing Impact interview",
+      "url": "https://ainowinstitute.org/wp-content/uploads/2026/02/Reframing-Impact_Frugal-AI_Timnit-Gebru.pdf",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "You want to create a specific tool for a specific context.",
+      "date": "2026-02",
+      "venue": "AI Now Institute, Reframing Impact interview",
+      "url": "https://ainowinstitute.org/wp-content/uploads/2026/02/Reframing-Impact_Frugal-AI_Timnit-Gebru.pdf",
+      "verified": "2026-10-03"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "slatestarcodex",
+  "summary": "Scott Alexander writes that AI could bring large benefits and serious risks, and he supports alignment research and a negotiated slowdown.",
+  "statements": [
+    {
+      "quote": "Plan A is still speculation, and still-speculative strong action is a perfectly reasonable response to still-speculative threats.",
+      "date": "2026-07-15",
+      "venue": "Astral Codex Ten, AI Chip Regulation Is Not A Dystopian Surveillance State",
+      "url": "https://www.astralcodexten.com/p/ai-chip-regulation-is-not-a-dystopian",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The key insight is that if powerful AI is really as close and transformative as we think, then there’s a massive surplus that can satisfy everyone.",
+      "date": "2026-07-09",
+      "venue": "Astral Codex Ten, Introducing Plan A",
+      "url": "https://www.astralcodexten.com/p/introducing-plan-a",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "It’s increasingly clear that nobody has a plan for if this AI thing turns out to be real.",
+      "date": "2026-07-09",
+      "venue": "Astral Codex Ten, Introducing Plan A",
+      "url": "https://www.astralcodexten.com/p/introducing-plan-a",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I find myself more optimistic about alignment than the average person who thinks about AI safety at all (although still more pessimistic than the average member of the population)",
+      "date": "2026-06-11",
+      "venue": "Astral Codex Ten, My AI Opinions",
+      "url": "https://www.astralcodexten.com/p/my-ai-opinions",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "A good pause strategy would involve both sides being able to monitor the other’s data centers to prevent illegal training",
+      "date": "2026-06-11",
+      "venue": "Astral Codex Ten, My AI Opinions",
+      "url": "https://www.astralcodexten.com/p/my-ai-opinions",
+      "verified": "2026-10-03"
+    }
+  ]
+}

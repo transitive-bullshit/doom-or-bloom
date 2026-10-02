@@ -1,0 +1,41 @@
+{
+  "slug": "balajis",
+  "summary": "Srinivasan describes AI as many human-prompted models and expects it to decentralize. He warns about fakes, eroding trust and Chinese AI dominance.",
+  "statements": [
+    {
+      "quote": "AI, like every technology, has both costs and benefits. It’s going to create a lot of wealth (already has), but it’s also going to create a lot of costs.",
+      "date": "2026-05-22",
+      "venue": "Post on X",
+      "url": "https://x.com/balajis/status/2057895170444845079",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "It’s possible technology changes this. But right now, AI agents aren’t truly autonomous. They are built for the prompt, bots on a leash.",
+      "date": "2026-05-19",
+      "venue": "Post on X",
+      "url": "https://x.com/balajis/status/2056677657715286132",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The problem is one of Chinese AI domination, rather than AI doom. The solution is likely Internet AI decentralization, again rather than AI doom.",
+      "date": "2026-02-28",
+      "venue": "Post on X",
+      "url": "https://x.com/balajis/status/2027736772768366740",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "In short, AI may radically increase productivity within tribes but also radically reduce trust between tribes. Costs for verification, proctoring, and vetting are soaring.",
+      "date": "2026-02-25",
+      "venue": "Post on X",
+      "url": "https://x.com/balajis/status/2026629513568797035",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "We have many models from many factions that have all converged on similar capabilities, rather than a huge lead between the best model and the rest.",
+      "date": "2025-08-03",
+      "venue": "Essay, AI is polytheistic, not monotheistic",
+      "url": "https://balajis.com/p/ai-is-polytheistic-not-monotheistic",
+      "verified": "2026-10-03"
+    }
+  ]
+}

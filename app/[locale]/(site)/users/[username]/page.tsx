@@ -15,6 +15,8 @@ import {
 } from '@/components/landing/data'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { profileJsonLd } from '@/lib/seo/json-ld'
+import { publicStatements } from '@/lib/personas/public-statements'
+import { profileTitle } from '@/lib/seo/profile-titles'
 
 export const dynamic = 'force-static'
 export const dynamicParams = true
@@ -34,6 +36,18 @@ export async function generateStaticParams() {
   }))
 }
 
+// Titles name the topics people search with the person, else where they land
+// on the map (docs/SEO.md#profile-titles).
+const titleSubject = (person: {
+  slug: string
+  name: string
+  result: { horizontal: { value: number | null } }
+}) => ({
+  slug: person.slug,
+  name: person.name,
+  outlook: person.result.horizontal.value
+})
+
 export async function generateMetadata({
   params
 }: {
@@ -43,15 +57,16 @@ export async function generateMetadata({
   const profile = await loadPersona(username)
   if (!profile) notFound()
   const { person } = profile
-  const [locale, t] = await Promise.all([
+  const [locale, t, root] = await Promise.all([
     getLocale(),
-    getTranslations('Profiles')
+    getTranslations('Profiles'),
+    getTranslations()
   ])
   return pageMetadata({
     locale,
     translated: false,
     path: `/users/${person.slug}`,
-    title: t('userTitle', { name: person.name }),
+    title: profileTitle(root, locale, titleSubject(person)),
     description: t('userDescription', { name: person.name }),
     // Change the image URL so social crawlers do not reuse the earlier WebP.
     // Other languages add theirs, so a shared link previews in that language.
@@ -69,10 +84,11 @@ export default async function Page({
   const profile = await loadPersona(slug)
   if (!profile) notFound()
   const { person, assessment } = profile
-  const [locale, similar, t] = await Promise.all([
+  const [locale, similar, t, root] = await Promise.all([
     getLocale(),
     loadSimilarWorldviews(person),
-    getTranslations('Profiles')
+    getTranslations('Profiles'),
+    getTranslations()
   ])
   const authored = authoredTextFor(locale, person.result.versions, {
     promptIds: assessment.answers.map(({ promptId }) => promptId)
@@ -84,7 +100,7 @@ export default async function Page({
         data={profileJsonLd({
           person,
           locale,
-          title: t('userTitle', { name: person.name }),
+          title: profileTitle(root, locale, titleSubject(person)),
           description: t('userDescription', { name: person.name }),
           personDescription: t('personDescription', { name: person.name }),
           dateModified: person.result.experiment?.generatedAt
@@ -99,6 +115,7 @@ export default async function Page({
                 person={person}
                 assessment={assessment}
                 similar={similar}
+                statements={publicStatements.get(person.slug)}
               />
             </AuthoredTextProvider>
           </SurfaceMessages>

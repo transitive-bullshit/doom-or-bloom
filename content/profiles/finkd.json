@@ -1,0 +1,41 @@
+{
+  "slug": "finkd",
+  "summary": "Zuckerberg wants everyone to have a personal superintelligence and argues that widely distributed AI is a check on concentrated power.",
+  "statements": [
+    {
+      "quote": "My view is that trust and alignment are quickly becoming the most important capabilities that will differentiate agents and models.",
+      "date": "2026-09-15",
+      "venue": "Post on X",
+      "url": "https://x.com/finkd/status/2099997096896274533",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Rather than centralizing superintelligence, we should distribute it widely and give every person the ability to direct it.",
+      "date": "2026-08-10",
+      "venue": "Essay, The Future is for Everyone",
+      "url": "https://www.meta.com/thefutureisforeveryone/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Invention, not automation, will be the greatest contribution of superintelligence.",
+      "date": "2026-08-10",
+      "venue": "Essay, The Future is for Everyone",
+      "url": "https://www.meta.com/thefutureisforeveryone/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I am extremely optimistic that superintelligence will help humanity accelerate our pace of progress.",
+      "date": "2025-07-30",
+      "venue": "Letter, Personal Superintelligence",
+      "url": "https://www.meta.com/superintelligence/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "That said, superintelligence will raise novel safety concerns. We’ll need to be rigorous about mitigating these risks and careful about what we choose to open source.",
+      "date": "2025-07-30",
+      "venue": "Letter, Personal Superintelligence",
+      "url": "https://www.meta.com/superintelligence/",
+      "verified": "2026-10-03"
+    }
+  ]
+}

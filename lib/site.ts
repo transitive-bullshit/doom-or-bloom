@@ -2,6 +2,10 @@ import type { Messages } from 'next-intl'
 
 export const siteUrl = 'https://www.doom-or-bloom.com'
 
+/** A page's full title: the site name follows every title but its own. */
+export const siteTitle = (title: string) =>
+  title === 'Doom or Bloom' ? title : `${title} | Doom or Bloom`
+
 /** The site's author, credited in structured data and on blog posts. */
 export const siteCreator = {
   name: 'Travis Fischer',

@@ -1,0 +1,41 @@
+{
+  "slug": "andrewyng",
+  "summary": "Ng argues that AI’s benefits far outweigh its risks and that safety is an engineering problem, and he opposes pausing AI development.",
+  "statements": [
+    {
+      "quote": "We still have hard research and engineering work ahead to improve AI safety, but the beneficial applications continue to vastly outweigh the risks, and we should keep building.",
+      "date": "2026-09-18",
+      "venue": "The Batch letter, Who’s Responsible for Irresponsible AI?",
+      "url": "https://www.deeplearning.ai/the-batch/whos-responsible-for-irresponsible-ai",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Today’s agentic systems are not predictable, but I see no reason why, by applying sound engineering practices, we won’t be able to make them extremely safe to use.",
+      "date": "2026-09-18",
+      "venue": "The Batch letter, Who’s Responsible for Irresponsible AI?",
+      "url": "https://www.deeplearning.ai/the-batch/whos-responsible-for-irresponsible-ai",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "In the case of AI, I am glad the U.S. government is taking cybersecurity seriously.",
+      "date": "2026-06-05",
+      "venue": "The Batch letter, AI Regulations Must Balance Innovation and Risk",
+      "url": "https://www.deeplearning.ai/the-batch/ai-regulations-must-balance-innovation-and-risk",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "To be clear, I recognize that AI is causing a lot of people’s work to change. This is hard. This is stressful.",
+      "date": "2026-05-08",
+      "venue": "The Batch letter, AI Will Not Destroy the Job Market",
+      "url": "https://www.deeplearning.ai/the-batch/ai-will-not-destroy-the-job-market",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Let’s support limiting applications — those that use AI, and those that don’t — that harm people.",
+      "date": "2026-03-27",
+      "venue": "The Batch letter, How Anti-AI Propaganda Hurts the Public",
+      "url": "https://www.deeplearning.ai/the-batch/how-anti-ai-propaganda-hurts-the-public",
+      "verified": "2026-10-03"
+    }
+  ]
+}

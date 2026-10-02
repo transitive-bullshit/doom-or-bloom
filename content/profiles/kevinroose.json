@@ -1,0 +1,41 @@
+{
+  "slug": "kevinroose",
+  "summary": "Roose writes that AI is advancing fast and that its risks are real, and he calls for the public, not just AI companies, to shape its course.",
+  "statements": [
+    {
+      "quote": "I think what is true, incontrovertibly, is that these systems are very capable.",
+      "date": "2026-10-01",
+      "venue": "CBS News interview",
+      "url": "https://www.cbsnews.com/news/kevin-roose-ai-book-agi-chronicles-charming-sociopaths/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I think the technology may be inevitable, but our response to it is not.",
+      "date": "2026-09-21",
+      "venue": "Info-Tech, Digital Disruption podcast",
+      "url": "https://www.infotech.com/digital-disruption/ai-researchers-are-panicking-what-comes-next-is-worse-than-nuclear-bombs",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I think we’re left now with this world where the benefits are still a little ways off. But the risks are here right now.",
+      "date": "2026-09-21",
+      "venue": "Info-Tech, Digital Disruption podcast",
+      "url": "https://www.infotech.com/digital-disruption/ai-researchers-are-panicking-what-comes-next-is-worse-than-nuclear-bombs",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I’m very heartened that people outside the bubble are waking up. AI is too important to be left to the labs!",
+      "date": "2026-09-18",
+      "venue": "Post on X",
+      "url": "https://x.com/kevinroose/status/2101010588570951956",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The problem with the view that we should ignore the scary sci-fi AI risks in favor of the immediate problems is that the scary sci-fi risks keep becoming immediate problems.",
+      "date": "2026-09-11",
+      "venue": "Post on X",
+      "url": "https://x.com/kevinroose/status/2098219631647568365",
+      "verified": "2026-10-03"
+    }
+  ]
+}

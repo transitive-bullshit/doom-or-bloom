@@ -1,0 +1,41 @@
+{
+  "slug": "tegmark",
+  "summary": "Tegmark calls for safety standards and a halt to the race toward superintelligence while backing controllable AI tools for medicine and science.",
+  "statements": [
+    {
+      "quote": "Let’s build tools not beings & keep humans in charge.",
+      "date": "2026-09-21",
+      "venue": "Post on X",
+      "url": "https://x.com/tegmark/status/2102049649955680583",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "There has to be a red line, that nobody is allowed to do recursive self-improvement.",
+      "date": "2026-07-30",
+      "venue": "Democracy Now! interview",
+      "url": "https://www.democracynow.org/2026/7/30/max_tegmark",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "All AI systems should be under meaningful human control. This is especially true for those that could be used in the taking of human lives.",
+      "date": "2026-02-27",
+      "venue": "Future of Life Institute statement",
+      "url": "https://futureoflife.org/ai/tegmark-statement-on-dow-ultimatum/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "AI has enormous potential for improving medical treatments, curing cancer and so on. This is not in the future; it’s in the past already.",
+      "date": "2026-02-02",
+      "venue": "Testimony, Canadian House of Commons ethics committee",
+      "url": "https://www.ourcommons.ca/DocumentViewer/en/45-1/ETHI/meeting-25/evidence",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I think right now we’re closer to figuring out how to build superintelligence than we are figuring out how to control it.",
+      "date": "2025-11-21",
+      "venue": "Doom Debates, debate with Dean Ball",
+      "url": "https://lironshapira.substack.com/p/max-tegmark-vs-dean-ball-debate-ban-superintelligence",
+      "verified": "2026-10-03"
+    }
+  ]
+}

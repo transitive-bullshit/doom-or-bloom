@@ -1,0 +1,41 @@
+{
+  "slug": "karpathy",
+  "summary": "Karpathy builds with AI agents and writes about their rapid but uneven progress and the gap between impressive demos and reliable work.",
+  "statements": [
+    {
+      "quote": "When you hand a computer terminal to one of these models, you can now watch them melt programming problems that you’d normally expect to take days/weeks of work.",
+      "date": "2026-04-09",
+      "venue": "Post on X",
+      "url": "https://x.com/karpathy/status/2042334451611693415",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I’ve never felt this much behind as a programmer. The profession is being dramatically refactored as the bits contributed by the programmer are increasingly sparse and between.",
+      "date": "2025-12-26",
+      "venue": "Post on X",
+      "url": "https://x.com/karpathy/status/2004607146781278521",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "LLMs are emerging as a new kind of intelligence, simultaneously a lot smarter than I expected and a lot dumber than I expected.",
+      "date": "2025-12-19",
+      "venue": "Essay, 2025 LLM Year in Review",
+      "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "My personal big fear is that a lot of this stuff happens on the side of humanity, and that humanity gets disempowered by it.",
+      "date": "2025-10-17",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/andrej-karpathy",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "In my mind, this is more accurately described as the decade of agents.",
+      "date": "2025-10-17",
+      "venue": "Dwarkesh Podcast",
+      "url": "https://www.dwarkesh.com/p/andrej-karpathy",
+      "verified": "2026-10-03"
+    }
+  ]
+}

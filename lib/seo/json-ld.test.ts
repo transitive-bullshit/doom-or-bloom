@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import { englishTranslator } from '@/i18n/translators'
 import { breadcrumbTrail } from '@/lib/breadcrumbs'
+import { profileTitle } from './profile-titles'
 import {
   articleJsonLd,
   blogJsonLd,
@@ -125,7 +126,11 @@ describe('structured data', () => {
         xUrl: 'https://x.com/geoffreyhinton'
       },
       locale: 'en',
-      title: t('userTitle', { name: 'Geoffrey Hinton' }),
+      title: profileTitle(englishTranslator(), 'en', {
+        slug: 'geoffreyhinton',
+        name: 'Geoffrey Hinton',
+        outlook: 0.25
+      }),
       description: t('userDescription', { name: 'Geoffrey Hinton' }),
       personDescription: t('personDescription', { name: 'Geoffrey Hinton' }),
       dateModified: '2026-09-21T21:10:20.265Z'
@@ -134,7 +139,7 @@ describe('structured data', () => {
       .object({
         '@type': z.literal('ProfilePage'),
         url: z.literal(`${site}/users/geoffreyhinton`),
-        name: z.literal('Geoffrey Hinton’s views on AI and P(doom)'),
+        name: z.literal('Geoffrey Hinton on AI safety, risk and P(doom)'),
         description: z.string().includes('simulated worldview'),
         mainEntity: ref
       })

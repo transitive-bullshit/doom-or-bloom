@@ -1,0 +1,41 @@
+{
+  "slug": "edzitron",
+  "summary": "Zitron argues that AI spending far outstrips its value, that LLMs suit only small supervised tasks, and that companies should answer for harms.",
+  "statements": [
+    {
+      "quote": "LLMs do not have to be conscious or powerful AI to be incredibly dangerous.",
+      "date": "2026-09-14",
+      "venue": "Where’s Your Ed At, AI Is Already In Dangerous Hands",
+      "url": "https://www.wheresyoured.at/ai-is-already-in-dangerous-hands/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "There is nothing ‘anti-progress’ about opposing AI data centers, and nobody has a compelling explanation as to why we need more of them.",
+      "date": "2026-09-01",
+      "venue": "Where’s Your Ed At, Hyperscale Normalization",
+      "url": "https://www.wheresyoured.at/hyperscale-normalization/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "There is no AGI coming. There is no conscious computer.",
+      "date": "2026-08-25",
+      "venue": "Where’s Your Ed At, The AI Hater’s Manifesto",
+      "url": "https://www.wheresyoured.at/the-ai-haters-manifesto/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Nothing about LLMs is worth a trillion dollars, or even $100 billion.",
+      "date": "2026-08-25",
+      "venue": "Where’s Your Ed At, The AI Hater’s Manifesto",
+      "url": "https://www.wheresyoured.at/the-ai-haters-manifesto/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "As a way of speeding up small units of work in ways that are manageable both technically and cognitively, LLMs can be useful.",
+      "date": "2026-08-25",
+      "venue": "Where’s Your Ed At, The AI Hater’s Manifesto",
+      "url": "https://www.wheresyoured.at/the-ai-haters-manifesto/",
+      "verified": "2026-10-03"
+    }
+  ]
+}
