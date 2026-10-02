@@ -1,27 +1,47 @@
 import { z } from 'zod'
 import { oneLinerProblems } from './one-liner-rules'
 import aellaGirl from '@/content/profiles/aella_girl.json'
+import andrewyng from '@/content/profiles/andrewyng.json'
 import balajis from '@/content/profiles/balajis.json'
+import barackobama from '@/content/profiles/barackobama.json'
+import billgates from '@/content/profiles/billgates.json'
 import dacemoglumit from '@/content/profiles/dacemoglumit.json'
 import darioamodei from '@/content/profiles/darioamodei.json'
+import davidsacks from '@/content/profiles/davidsacks.json'
+import demishassabis from '@/content/profiles/demishassabis.json'
+import dhh from '@/content/profiles/dhh.json'
 import dkokotajlo from '@/content/profiles/dkokotajlo.json'
+import drfeifei from '@/content/profiles/drfeifei.json'
 import dwarkeshSp from '@/content/profiles/dwarkesh_sp.json'
+import edzitron from '@/content/profiles/edzitron.json'
+import elonmusk from '@/content/profiles/elonmusk.json'
+import esyudkowsky from '@/content/profiles/esyudkowsky.json'
+import finkd from '@/content/profiles/finkd.json'
 import garymarcus from '@/content/profiles/garymarcus.json'
 import geoffreyhinton from '@/content/profiles/geoffreyhinton.json'
+import ilyasut from '@/content/profiles/ilyasut.json'
+import jensenhuang from '@/content/profiles/jensenhuang.json'
+import karpathy from '@/content/profiles/karpathy.json'
 import kevinroose from '@/content/profiles/kevinroose.json'
 import liangWenfeng from '@/content/profiles/liang-wenfeng.json'
+import noamshazeer from '@/content/profiles/noamshazeer.json'
 import npcollapse from '@/content/profiles/npcollapse.json'
 import plinz from '@/content/profiles/plinz.json'
+import pmarca from '@/content/profiles/pmarca.json'
+import realdonaldtrump from '@/content/profiles/realdonaldtrump.json'
 import realgeorgehotz from '@/content/profiles/realgeorgehotz.json'
 import richardhanania from '@/content/profiles/richardhanania.json'
 import richardssutton from '@/content/profiles/richardssutton.json'
+import sama from '@/content/profiles/sama.json'
 import schmidhuberai from '@/content/profiles/schmidhuberai.json'
+import sensanders from '@/content/profiles/sensanders.json'
 import slatestarcodex from '@/content/profiles/slatestarcodex.json'
 import so8res from '@/content/profiles/so8res.json'
 import tegmark from '@/content/profiles/tegmark.json'
 import timnitgebru from '@/content/profiles/timnitgebru.json'
 import tylercowen from '@/content/profiles/tylercowen.json'
 import ylecun from '@/content/profiles/ylecun.json'
+import yoshuaBengio from '@/content/profiles/yoshua_bengio.json'
 
 // What a simulated user's real person has said about AI: short, dated quotes
 // in their own words, each checked against the page it links to. Shown on the
@@ -82,27 +102,47 @@ export function publicStatementProblems(file: PublicStatements) {
 
 const files = [
   aellaGirl,
+  andrewyng,
   balajis,
+  barackobama,
+  billgates,
   dacemoglumit,
   darioamodei,
+  davidsacks,
+  demishassabis,
+  dhh,
   dkokotajlo,
+  drfeifei,
   dwarkeshSp,
+  edzitron,
+  elonmusk,
+  esyudkowsky,
+  finkd,
   garymarcus,
   geoffreyhinton,
+  ilyasut,
+  jensenhuang,
+  karpathy,
   kevinroose,
   liangWenfeng,
+  noamshazeer,
   npcollapse,
   plinz,
+  pmarca,
+  realdonaldtrump,
   realgeorgehotz,
   richardhanania,
   richardssutton,
+  sama,
   schmidhuberai,
+  sensanders,
   slatestarcodex,
   so8res,
   tegmark,
   timnitgebru,
   tylercowen,
-  ylecun
+  ylecun,
+  yoshuaBengio
 ].map((file) => publicStatementsSchema.parse(file))
 
 /** Every profile with sourced statements, keyed by slug. */
