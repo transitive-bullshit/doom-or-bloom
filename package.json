@@ -77,7 +77,8 @@
     "l10n:translate": "node --conditions=react-server --import tsx scripts/l10n-translate.ts",
     "l10n:review": "node --conditions=react-server --import tsx scripts/l10n-review.ts",
     "eval:smoke:languages": "node --env-file=.env.development.local --conditions=react-server --import tsx scripts/smoke-jev-languages.ts",
-    "fonts:subset": "node --import tsx scripts/subset-card-fonts.ts"
+    "fonts:subset": "node --import tsx scripts/subset-card-fonts.ts",
+    "seo:indexnow": "node --import tsx scripts/indexnow.ts"
   },
   "dependencies": {
     "@tanstack/react-table": "^9.2.4",
