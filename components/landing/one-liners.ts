@@ -98,7 +98,7 @@ export const oneLiners: Record<string, string> = {
     'Safe Superintelligence cofounder and CEO who expects extremely powerful AI and sees generalization and alignment as central open research problems.',
   // Andrej Karpathy
   karpathy:
-    'AI researcher and educator who builds with AI agents and writes about their rapid but uneven progress and the gap between demos and reliable work.',
+    'Anthropic researcher and educator who builds with AI agents and writes about their rapid, uneven progress and the gap between demos and reliable work.',
   // Fei-Fei Li
   drfeifei:
     'Stanford computer scientist and World Labs cofounder who works on spatial intelligence and argues for human-centered AI that serves people.',
