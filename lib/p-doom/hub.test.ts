@@ -1,8 +1,10 @@
+import { access } from 'node:fs/promises'
 import { describe, expect, test } from 'vitest'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
 import { segments, type HubSource } from './citations'
 import { curatedPeople } from './curated'
-import { hubContent, hubRows } from './hub'
+import { sourceIcon } from './favicons'
+import { hubContent, hubRows, hubSourceUrls } from './hub'
 import { readingGroups } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
 
@@ -188,5 +190,15 @@ describe('sources and readings', () => {
     for (const { readings } of readingGroups)
       for (const reading of readings)
         expect(reading.description).not.toMatch(/\.$/)
+  })
+
+  test('show a committed local favicon for every page the hub links', async () => {
+    const icons = hubSourceUrls().map((url) => ({ url, icon: sourceIcon(url) }))
+    expect(
+      icons.filter(
+        ({ icon }) => !/^\/resource-previews\/[\w-]+\.webp$/.test(icon ?? '')
+      )
+    ).toEqual([])
+    await Promise.all(icons.map(({ icon }) => access(`public${icon}`)))
   })
 })

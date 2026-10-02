@@ -6,6 +6,7 @@ import {
   type HubSource
 } from './citations'
 import { curatedPeople, statementPublishers } from './curated'
+import { readingGroups } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
 
 type Statements = typeof publicPdoomStatements
@@ -110,4 +111,21 @@ export function hubContent(
     disagreement: prose(scenario.disagreement)
   }))
   return { rows, intro, scenarios: cited, footnotes }
+}
+
+/** Every page the hub can link to, for prefetching favicons. */
+export function hubSourceUrls(statements: Statements = publicPdoomStatements) {
+  return [
+    ...new Set([
+      ...curatedPeople.flatMap((entry) =>
+        'declined' in entry
+          ? [entry.declined.source.url]
+          : statements[entry.id]
+            ? [statements[entry.id]!.url]
+            : []
+      ),
+      ...Object.values(scenarioSources).map(({ url }) => url),
+      ...readingGroups.flatMap(({ readings }) => readings.map(({ url }) => url))
+    ])
+  ]
 }

@@ -20,6 +20,7 @@ import {
   bookmarkSiteMark
 } from '../lib/authoring/bookmark-title-card'
 import { personas } from '../lib/journeys/catalog'
+import { hubSourceUrls } from '../lib/p-doom/hub'
 import { tweetIdFromUrl } from '../lib/sharing/tweet-url'
 import {
   previewImages,
@@ -84,7 +85,11 @@ const unique = new Map(
     )
     .map((resource) => [resource.url, resource])
 )
-const urls = only ? [only] : [...unique.keys()]
+// The P(doom) hub shows only a favicon beside each source and reading.
+const iconOnly = new Set(
+  hubSourceUrls().filter((url) => !unique.has(url) && !tweetIdFromUrl(url))
+)
+const urls = only ? [only] : [...unique.keys(), ...iconOnly]
 await mkdir('public/resource-previews', { recursive: true })
 const request = (url: string) =>
   upstreamFetch(
@@ -153,6 +158,24 @@ const writeIcon = async (data: Buffer, key: string) => {
 }
 const saveIcon = async (url: string, key: string) =>
   writeIcon((await bytes(url)).data, key)
+// The page's own icons first, then Google's favicon service.
+const publisherIcon = async (
+  html: string,
+  baseUrl: string,
+  url: string,
+  key: string
+) => {
+  for (const iconUrl of [
+    ...previewIcons(html, baseUrl),
+    `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=128`
+  ]) {
+    try {
+      return await saveIcon(iconUrl, key)
+    } catch {
+      /* Try publisher-icon fallback. */
+    }
+  }
+}
 
 // Repair old assets without fetching or changing article previews.
 if (process.argv.includes('--icons-only')) {
@@ -208,6 +231,34 @@ const entries = await pMap(
       ...previous[url],
       source: url,
       fetchedAt: previous[url]?.fetchedAt ?? new Date().toISOString()
+    }
+    if (iconOnly.has(url)) {
+      if (entry.icon && entry.iconKind !== 'monogram' && !refresh)
+        return [url, entry] as const
+      let html = ''
+      let baseUrl = url
+      try {
+        const response = await request(url)
+        baseUrl = response.url
+        if (
+          response.ok &&
+          response.headers.get('content-type')?.includes('text/html')
+        )
+          html = await response.text()
+      } catch {
+        /* Bot-protected pages still get Google's favicon. */
+      }
+      entry.fetchedAt = new Date().toISOString()
+      const icon = await publisherIcon(html, baseUrl, url, key)
+      if (icon) {
+        entry.icon = icon
+        delete entry.iconKind
+      } else if (!entry.icon) {
+        entry.icon = await writeIcon(Buffer.from(bookmarkSiteMark(url)), key)
+        entry.iconKind = 'monogram'
+      }
+      console.log(`icon ${url}`)
+      return [url, entry] as const
     }
     if (!entry.description)
       entry.description =
@@ -327,19 +378,7 @@ const entries = await pMap(
         }
       }
     }
-    if (!entry.icon) {
-      for (const iconUrl of [
-        ...previewIcons(html, baseUrl),
-        `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=128`
-      ]) {
-        try {
-          entry.icon = await saveIcon(iconUrl, key)
-          break
-        } catch {
-          /* Try publisher-icon fallback. */
-        }
-      }
-    }
+    if (!entry.icon) entry.icon = await publisherIcon(html, baseUrl, url, key)
     if (!entry.description)
       entry.description =
         unique.get(url)?.summary || unique.get(url)?.question || null
