@@ -37,7 +37,7 @@ export function SimilarWorldviews({
             <Link
               href={`/users/${person.slug}`}
               prefetch={false}
-              className='flex h-full items-center gap-2.5 rounded-lg border p-2.5 sm:gap-3 sm:p-3 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
+              className='flex h-full min-w-0 items-center gap-2.5 overflow-hidden rounded-lg border p-2.5 sm:gap-3 sm:p-3 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring'
             >
               <Image
                 src={person.avatar}
@@ -48,7 +48,9 @@ export function SimilarWorldviews({
                 quality={90}
                 className='image-outline size-10 shrink-0 rounded-full object-cover'
               />
-              <span className='min-w-0 text-sm font-medium text-pretty'>
+              {/* Long single-word names (pseudonymous accounts) break and
+                  clamp instead of overflowing the card. */}
+              <span className='line-clamp-2 min-w-0 text-sm font-medium text-pretty wrap-anywhere'>
                 {person.name}
               </span>
             </Link>
