@@ -143,3 +143,7 @@ Karpathy's September 12 X post backing Amodei's frontier-pacing essay was delete
 ## Cultural, civic and economic coverage — October 3, 2026
 
 Added source-grounded simulations and real quotation sections for Cory Doctorow, Ha-Joon Chang, Ted Chiang, Paul Krugman, Naomi Klein, Jon Stewart and Elizabeth Warren. Each has at least five substantive inspected sources; Chang’s limited recent AI record and older/contextual material are explicitly documented. Their bounded selected local journeys and fidelity review are recorded in the [expansion audit](cultural-civic-persona-expansion-2026-10-03.md), with links to individual source audits. They remain in the general directory. Simon Willison, Joe Weisenthal, Mario Zechner and Jesse Genet are now featured using their existing selected runs. The [Ed Zitron answer audit](ed-zitron-answer-audit-2026-10-03.md) records the risk-endpoint repair and second-pass correction of an overly low transformation narrative, with a selected 35/100 result and 0–50 interpretation range. None of these changes manually prescribes map coordinates or interpretation ranges.
+
+## Jesse Genet unfeatured — October 4, 2026
+
+At Travis's request, Jesse Genet was removed from the featured set; her simulation and `/users/jessegenet` profile stay in the general directory. The production featured flag was synced with `personas:sync-metadata`, and the site social image was regenerated from the snapshot without her point. No interview was regenerated.
