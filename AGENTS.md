@@ -4,7 +4,7 @@ Doom or Bloom helps participants articulate their AI worldview through a bounded
 
 ## Start here
 
-- Run `git fetch` and compare your checkout with `origin/main` before reading briefs, catalogs, docs or data; the root checkout and older worktrees often lag by dozens of commits.
+- If your checkout may be stale, compare it with `origin/main` before relying on its state.
 - Use [docs/README.md](docs/README.md) to select the contract for your task. For initial orientation or work across modules, read [docs/architecture.md](docs/architecture.md) for the request flow, code ownership, and decision rationale.
 - Setup and environment selection: [CONTRIBUTING.md](CONTRIBUTING.md). Choose checks by the changed boundary in [docs/testing.md](docs/testing.md).
 - Update the relevant current contract when behavior changes. Implementation plans and dated research record decisions and verification; completed checkpoints are history, not a new task list. When working an open plan task, mark it `[x]` only after verification and commit at its checkpoint.
