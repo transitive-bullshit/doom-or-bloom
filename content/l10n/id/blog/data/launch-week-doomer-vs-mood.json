@@ -1,0 +1,106 @@
+{
+  "title": "Proporsi doomer yang sama, suasana hati yang berbeda",
+  "source": "Garis menunjukkan interval 95%. Nilai p berasal dari Fisher’s exact test. Satu hasil per orang.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Gelombang Hacker News, 25–26 Sep",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "Gelombang X, 27–28 Sep",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Pandangan terbaca sebagai “memperkirakan katastrofe”",
+      "group": "Ukuran doomer",
+      "note": "p = 0,54",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41,
+          "ci": [0.047, 0.085]
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13,
+          "ci": [0.029, 0.083]
+        }
+      }
+    },
+    {
+      "label": "P(doom) yang ditampilkan sebesar 10% atau lebih",
+      "group": "Ukuran doomer",
+      "note": "p = 0,82",
+      "values": {
+        "hn": {
+          "share": 0.382,
+          "count": 240,
+          "ci": [0.344, 0.42]
+        },
+        "x": {
+          "share": 0.391,
+          "count": 101,
+          "ci": [0.334, 0.452]
+        }
+      }
+    },
+    {
+      "label": "P(doom) yang ditampilkan sebesar 30% atau lebih",
+      "group": "Ukuran doomer",
+      "note": "p = 0,07",
+      "values": {
+        "hn": {
+          "share": 0.218,
+          "count": 137,
+          "ci": [0.187, 0.252]
+        },
+        "x": {
+          "share": 0.163,
+          "count": 42,
+          "ci": [0.123, 0.213]
+        }
+      }
+    },
+    {
+      "label": "Pandangan terbaca sebagai “terutama memperkirakan kerugian”",
+      "group": "Suasana hati",
+      "note": "p < 0,001",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311,
+          "ci": [0.442, 0.518]
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48,
+          "ci": [0.142, 0.235]
+        }
+      }
+    },
+    {
+      "label": "Pandangan terbaca sebagai “antusias”",
+      "group": "Suasana hati",
+      "note": "p < 0,001",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34,
+          "ci": [0.038, 0.072]
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73,
+          "ci": [0.229, 0.337]
+        }
+      }
+    }
+  ]
+}

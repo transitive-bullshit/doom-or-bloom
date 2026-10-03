@@ -1,0 +1,99 @@
+{
+  "title": "Perguntas antigas e novas, por onda",
+  "source": "As entrevistas iniciadas antes do lançamento de 27 de set fizeram as perguntas antigas. Um resultado por pessoa.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "intervals",
+  "scale": {
+    "min": 0,
+    "max": 1,
+    "ticks": [0, 0.25, 0.5, 0.75, 1]
+  },
+  "interval": "Intervalo de 95%",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Onda do Hacker News, 25–26 de set",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "Onda do X, 27–28 de set",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Onda do Hacker News, perguntas antigas",
+      "group": "Perspectiva mediana, de Doom (0) a Bloom (1)",
+      "values": {
+        "hn": {
+          "value": 0.335,
+          "low": 0.307,
+          "high": 0.37,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "Onda do X, perguntas antigas",
+      "group": "Perspectiva mediana, de Doom (0) a Bloom (1)",
+      "values": {
+        "x": {
+          "value": 0.725,
+          "low": 0.526,
+          "high": 0.798,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "Onda do X, perguntas novas",
+      "group": "Perspectiva mediana, de Doom (0) a Bloom (1)",
+      "values": {
+        "x": {
+          "value": 0.733,
+          "low": 0.635,
+          "high": 0.758,
+          "n": 209
+        }
+      }
+    },
+    {
+      "label": "Onda do Hacker News, perguntas antigas",
+      "group": "Escala mediana da mudança, de gradual (0) a civilizacional (1)",
+      "values": {
+        "hn": {
+          "value": 0.658,
+          "low": 0.633,
+          "high": 0.682,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "Onda do X, perguntas antigas",
+      "group": "Escala mediana da mudança, de gradual (0) a civilizacional (1)",
+      "values": {
+        "x": {
+          "value": 0.767,
+          "low": 0.667,
+          "high": 0.841,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "Onda do X, perguntas novas",
+      "group": "Escala mediana da mudança, de gradual (0) a civilizacional (1)",
+      "values": {
+        "x": {
+          "value": 0.925,
+          "low": 0.837,
+          "high": 0.958,
+          "n": 209
+        }
+      }
+    }
+  ]
+}

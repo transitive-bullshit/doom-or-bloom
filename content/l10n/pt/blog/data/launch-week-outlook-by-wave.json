@@ -1,0 +1,86 @@
+{
+  "title": "Cada onda por nível de perspectiva",
+  "source": "Um resultado por pessoa que concluiu: 648 pessoas na onda do Hacker News e 261 na onda do X.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Onda do Hacker News, 25–26 de set",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "Onda do X, 27–28 de set",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Espera uma catástrofe",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13
+        }
+      }
+    },
+    {
+      "label": "Espera principalmente danos",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48
+        }
+      }
+    },
+    {
+      "label": "Perspectiva mista ou indecisa",
+      "values": {
+        "hn": {
+          "share": 0.196,
+          "count": 127
+        },
+        "x": {
+          "share": 0.188,
+          "count": 49
+        }
+      }
+    },
+    {
+      "label": "Tende à esperança",
+      "values": {
+        "hn": {
+          "share": 0.208,
+          "count": 135
+        },
+        "x": {
+          "share": 0.299,
+          "count": 78
+        }
+      }
+    },
+    {
+      "label": "Entusiasmado",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "title": "Visiteurs orientés vers le site par jour, Hacker News contre X",
+  "source": "Visiteurs du site orientés par Hacker News ou X (t.co et x.com), d’après Vercel Web Analytics. Il s’agit de visiteurs, et non de participants.",
+  "asOf": "2026-10-01",
+  "provenance": "site-traffic",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X",
+      "tone": "blue"
+    }
+  ],
+  "stacked": true,
+  "rows": [
+    {
+      "label": "25 sept",
+      "values": {
+        "hn": {
+          "share": 0.987,
+          "count": 3972
+        },
+        "x": {
+          "share": 0.013,
+          "count": 53
+        }
+      }
+    },
+    {
+      "label": "26 sept",
+      "values": {
+        "hn": {
+          "share": 0.889,
+          "count": 426
+        },
+        "x": {
+          "share": 0.111,
+          "count": 53
+        }
+      }
+    },
+    {
+      "label": "27 sept",
+      "values": {
+        "hn": {
+          "share": 0.114,
+          "count": 51
+        },
+        "x": {
+          "share": 0.886,
+          "count": 397
+        }
+      }
+    },
+    {
+      "label": "28 sept",
+      "values": {
+        "hn": {
+          "share": 0.207,
+          "count": 44
+        },
+        "x": {
+          "share": 0.793,
+          "count": 169
+        }
+      }
+    }
+  ]
+}

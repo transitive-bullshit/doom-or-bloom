@@ -26,7 +26,8 @@ import {
   type L10nKind
 } from '../lib/content/l10n'
 import { readL10n, readRelease, readRubric } from '../lib/content/l10n-loader'
-import { blogDirectory, blogPosts } from '../lib/blog/posts'
+import { blogDirectory, blogPosts, isTranslated } from '../lib/blog/posts'
+import { blogTranslationProblems } from '../lib/blog/translation-check'
 import { blogDataSchema, periodHeadings } from '../lib/blog/schema'
 import { people } from '../components/landing/people'
 import {
@@ -256,6 +257,13 @@ for (const file of dataFiles) {
 }
 if (blogErrors.length)
   throw new Error(`Invalid blog content:\n${blogErrors.join('\n')}`)
+// Translated posts and their data files: complete, current and structurally
+// the same as the English.
+const blogTranslationErrors = blogTranslationProblems()
+if (blogTranslationErrors.length)
+  throw new Error(
+    `Blog translations are incomplete or stale:\n${blogTranslationErrors.slice(0, 40).join('\n')}\nRun pnpm l10n:translate --locale=<code> --scope=blog --only-stale (docs/BLOG.md#languages).`
+  )
 console.log(
-  `Validated the blog: ${posts.length} posts and ${dataFiles.length} data files.`
+  `Validated the blog: ${posts.length} posts, ${posts.filter((post) => isTranslated(post.slug)).length} translated, and ${dataFiles.length} data files.`
 )

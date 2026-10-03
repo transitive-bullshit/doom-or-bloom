@@ -1,0 +1,86 @@
+{
+  "title": "各波次的展望等级",
+  "source": "每位完成人员计一项结果：Hacker News 一波648人，X 一波261人。",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News 一波，9月25日至26日",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X 一波，9月27日至28日",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "预期会发生灾难",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13
+        }
+      }
+    },
+    {
+      "label": "主要预期会有危害",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48
+        }
+      }
+    },
+    {
+      "label": "看法不一或尚未决定",
+      "values": {
+        "hn": {
+          "share": 0.196,
+          "count": 127
+        },
+        "x": {
+          "share": 0.188,
+          "count": 49
+        }
+      }
+    },
+    {
+      "label": "倾向于抱有希望",
+      "values": {
+        "hn": {
+          "share": 0.208,
+          "count": 135
+        },
+        "x": {
+          "share": 0.299,
+          "count": 78
+        }
+      }
+    },
+    {
+      "label": "热情",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73
+        }
+      }
+    }
+  ]
+}

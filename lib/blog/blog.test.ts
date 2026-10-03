@@ -6,11 +6,27 @@ import { describe, expect, it } from 'vitest'
 import { personas } from '@/lib/journeys/catalog'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
 import { renderBlogSocialImage } from '@/lib/sharing/blog-social-card'
+import { blogCardPath } from '@/lib/sharing/blog-social-card'
+import {
+  dataStrings,
+  dataTranslationProblems,
+  digitRuns,
+  postTranslationProblems,
+  translateData
+} from './l10n'
+import {
+  participantAggregatesSchema,
+  participantCharts,
+  referrersSchema
+} from './participant-charts'
 import { blogDirectory, blogPost, blogPosts } from './posts'
 import { blogFeed } from './rss'
 import {
+  barsDataSchema,
   blogDataSchema,
   countWords,
+  dataProvenances,
+  mapDataSchema,
   periodHeadings,
   postFrontmatterSchema,
   rangeDataSchema,
@@ -88,16 +104,146 @@ describe('blog posts', () => {
     ).toBe(4)
     expect(readingMinutes(0)).toBe(1)
     expect(readingMinutes(1150)).toBe(5)
+    // Languages written without spaces count words, not runs of letters.
+    expect(countWords('人工智能会改变世界', 'zh-Hans')).toBeGreaterThan(2)
+  })
+})
+
+describe('post translations', () => {
+  const english = [
+    "import x from './data/x.json'",
+    '',
+    'See [the map](/users) and <DataBars data={x} />.',
+    '',
+    '## Why P(doom) varies',
+    '',
+    '- 48% of 1,221 people, median 0.34'
+  ].join('\n')
+
+  it('keep imports, components, site links, headings and numbers', () => {
+    const spanish = english
+      .replace('See [the map]', 'Mira [el mapa]')
+      .replace('Why P(doom) varies', 'Por qué varía P(doom)')
+      .replace(
+        '48% of 1,221 people, median 0.34',
+        '48 % de 1.221 personas, mediana 0,34'
+      )
+    expect(postTranslationProblems(english, spanish)).toEqual([])
+    expect(digitRuns(spanish)).toEqual(digitRuns(english))
+    expect(
+      postTranslationProblems(
+        english,
+        spanish.replace('(/users)', '(/es/users)')
+      )
+    ).toEqual(['site links differ from the English'])
+    expect(
+      postTranslationProblems(english, spanish.replace('## Por', 'Por'))
+    ).toEqual(['heading levels differ from the English'])
+    expect(
+      postTranslationProblems(
+        english,
+        spanish.replace('P(doom)', 'P(perdición)')
+      )
+    ).toEqual(['"P(doom)" must stay untranslated'])
+  })
+
+  it('translate only the text of a data file', () => {
+    const data = readData('launch-week-outlook-by-wave.json')
+    const strings = dataStrings(data)
+    expect(strings.map(([at]) => at)).toContain('.title')
+    expect(strings.map(([at]) => at)).toContain('.rows[0].label')
+    const translated = translateData(
+      data,
+      new Map(strings.map(([at, text]) => [at, `«${text}»`]))
+    )
+    expect(dataTranslationProblems(data, translated)).toEqual([])
+    const changed = structuredClone(translated) as {
+      rows: { values: { hn: { share: number } } }[]
+    }
+    changed.rows[0]!.values.hn.share = 0.5
+    expect(dataTranslationProblems(data, changed)).toEqual([
+      '.rows[0].values.hn.share: 0.5 differs'
+    ])
+  })
+
+  it('advertise a card in the post’s language', () => {
+    const post = { slug: 'a-post', title: 'A post' }
+    expect(blogCardPath(post)).toMatch(/^\/blog\/a-post\/opengraph-image\?v=/u)
+    expect(blogCardPath(post, 'ja')).toMatch(
+      /^\/ja\/blog\/a-post\/opengraph-image\?v=/u
+    )
   })
 })
 
 describe('blog data', () => {
-  it('validates every committed data file and never holds participant data', () => {
+  it('validates every committed data file', () => {
     expect(dataFiles.length).toBeGreaterThan(0)
     for (const file of dataFiles)
-      expect(['public-statements', 'simulated-users']).toContain(
-        blogDataSchema.parse(readData(file)).provenance
+      expect(dataProvenances(blogDataSchema.parse(readData(file)))).not.toEqual(
+        []
       )
+  })
+
+  it('builds the participant charts from the committed aggregates', () => {
+    const charts = participantCharts(
+      participantAggregatesSchema.parse(
+        JSON.parse(
+          readFileSync('content/blog/aggregates/participants.json', 'utf8')
+        )
+      ),
+      referrersSchema.parse(
+        JSON.parse(
+          readFileSync('content/blog/aggregates/referrers.json', 'utf8')
+        )
+      )
+    )
+    // `pnpm blog:data --charts-only` rewrites them; a hand edit fails here.
+    for (const [file, chart] of Object.entries(charts))
+      expect({ file, chart: readData(file) }).toEqual({ file, chart })
+  })
+
+  it('shows participant numbers only for groups of at least 10', () => {
+    const bars = (values: Record<string, unknown>) => ({
+      kind: 'bars',
+      title: 'A chart',
+      source: 'Aggregates.',
+      asOf: '2026-10-01',
+      provenance: 'participants',
+      series: [{ key: 'people', label: 'People' }],
+      rows: [{ label: 'A row', values: { people: values } }]
+    })
+    const valid = (values: Record<string, unknown>) =>
+      barsDataSchema.safeParse(bars(values)).success
+    expect(valid({ share: 0.4, count: 12 })).toBe(true)
+    expect(valid({ share: null })).toBe(true)
+    expect(valid({ share: 0.04, count: 9 })).toBe(false)
+    expect(valid({ share: 0.4 })).toBe(false)
+    expect(valid({ share: null, count: 4 })).toBe(false)
+    // Simulated profiles are public and need no minimum.
+    expect(
+      barsDataSchema.safeParse({
+        ...bars({ share: 0.04, count: 5 }),
+        provenance: 'simulated-users'
+      }).success
+    ).toBe(true)
+    const map = {
+      kind: 'map',
+      title: 'A map',
+      source: 'Aggregates.',
+      asOf: '2026-10-01',
+      provenance: 'participants',
+      cells: [
+        { outlook: [0, 0.5], transformation: [0, 1], share: 0.6, count: 30 },
+        { outlook: [0.5, 1], transformation: [0, 1], share: null }
+      ]
+    }
+    expect(mapDataSchema.safeParse(map).success).toBe(true)
+    expect(
+      mapDataSchema.safeParse({
+        ...map,
+        cells: [{ ...map.cells[0], count: 3 }]
+      }).success
+    ).toBe(false)
   })
 
   it('matches the verified public P(doom) statements it charts', () => {

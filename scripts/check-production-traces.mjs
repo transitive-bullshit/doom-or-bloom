@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { existsSync } from 'node:fs'
 import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 
@@ -107,10 +108,21 @@ const posts = (await readdir('content/blog')).filter((file) =>
   file.endsWith('.mdx')
 )
 assert(posts.length > 0, 'Build must contain the blog posts')
+// A translated post (content/l10n/<code>/blog/<slug>.mdx) has a card in each
+// language too.
+const translatedPosts = posts.filter((file) =>
+  existsSync(path.join('content/l10n/es/blog', file))
+)
 for (const route of [
   ...localeCodes.flatMap((code) => [
     `/${code}/blog`,
-    ...posts.map((file) => `/${code}/blog/${file.slice(0, -'.mdx'.length)}`)
+    ...posts.map((file) => `/${code}/blog/${file.slice(0, -'.mdx'.length)}`),
+    ...(code === 'en'
+      ? []
+      : translatedPosts.map(
+          (file) =>
+            `/${code}/blog/${file.slice(0, -'.mdx'.length)}/opengraph-image`
+        ))
   ]),
   '/blog/rss.xml',
   ...posts.map(
@@ -207,6 +219,13 @@ for (const route of ['sitemap.xml', 'llms.txt']) {
       bundled.has(path.resolve('content/blog', file)),
       `${route}: blog post ${file} is missing from the bundle`
     )
+  // The sitemap lists translated posts in every locale.
+  if (route === 'sitemap.xml')
+    for (const file of translatedPosts)
+      assert(
+        bundled.has(path.resolve('content/l10n/ja/blog', file)),
+        `${route}: translation ja/${file} is missing from the bundle`
+      )
 }
 // Takumi never reads system fonts: card routes bundle the Noto subsets.
 const cardFonts = (await readdir('lib/sharing/fonts')).filter((file) =>

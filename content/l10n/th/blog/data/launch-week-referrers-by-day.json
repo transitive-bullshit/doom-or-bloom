@@ -1,0 +1,74 @@
+{
+  "title": "ผู้เข้าชมที่ได้รับการส่งต่อในแต่ละวัน Hacker News เทียบกับ X",
+  "source": "ผู้เข้าชมเว็บไซต์ที่ได้รับการส่งต่อจาก Hacker News หรือ X (t.co และ x.com) จาก Vercel Web Analytics คนเหล่านี้คือผู้เข้าชม ไม่ใช่ผู้เข้าร่วม",
+  "asOf": "2026-10-01",
+  "provenance": "site-traffic",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X",
+      "tone": "blue"
+    }
+  ],
+  "stacked": true,
+  "rows": [
+    {
+      "label": "25 ก.ย",
+      "values": {
+        "hn": {
+          "share": 0.987,
+          "count": 3972
+        },
+        "x": {
+          "share": 0.013,
+          "count": 53
+        }
+      }
+    },
+    {
+      "label": "26 ก.ย",
+      "values": {
+        "hn": {
+          "share": 0.889,
+          "count": 426
+        },
+        "x": {
+          "share": 0.111,
+          "count": 53
+        }
+      }
+    },
+    {
+      "label": "27 ก.ย",
+      "values": {
+        "hn": {
+          "share": 0.114,
+          "count": 51
+        },
+        "x": {
+          "share": 0.886,
+          "count": 397
+        }
+      }
+    },
+    {
+      "label": "28 ก.ย",
+      "values": {
+        "hn": {
+          "share": 0.207,
+          "count": 44
+        },
+        "x": {
+          "share": 0.793,
+          "count": 169
+        }
+      }
+    }
+  ]
+}

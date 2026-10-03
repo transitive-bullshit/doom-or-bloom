@@ -4,22 +4,24 @@ import { notFound } from 'next/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { defaultLocale, languageTag } from '@/i18n/config'
 import { pageMetadata } from '@/lib/metadata'
-import { blogPost, blogPosts } from '@/lib/blog/posts'
+import { blogPost, blogPosts, postTranslation } from '@/lib/blog/posts'
 import { postDate } from '@/lib/blog/format'
 import { breadcrumbTrail } from '@/lib/breadcrumbs'
 import { articleJsonLd } from '@/lib/seo/json-ld'
 import { profileMentions } from '@/lib/personas/mentions'
 import { blogCardPath } from '@/lib/sharing/blog-social-card'
 import { loadProfileNames } from '@/components/landing/data'
-import { profileLinkComponents } from '@/components/blog/mdx'
+import { chartText } from '@/components/blog/chart-parts'
+import { postComponents } from '@/components/blog/mdx'
 import { BreadcrumbTrail } from '@/components/breadcrumb-trail'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 
-// Every post renders at build in every locale; unknown slugs are 404s. The
-// post body is English everywhere: other locales translate the chrome, are
-// noindex and canonicalize to the English post (see docs/BLOG.md). Names link
-// to the profiles published when the post was built.
+// Every post renders at build in every locale; unknown slugs are 404s. A
+// translated post renders its translation in each locale, canonicalizes to
+// itself and lists its languages. Other posts stay English under translated
+// chrome, noindex outside English (docs/BLOG.md#languages). Names link to the
+// profiles published when the post was built.
 export const dynamic = 'error'
 export const dynamicParams = false
 export function generateStaticParams() {
@@ -27,17 +29,31 @@ export function generateStaticParams() {
 }
 
 type Props = { params: Promise<{ slug: string }> }
+type Post = ComponentType<{ components?: MDXComponents }>
+
+/** The post as this locale reads it: its translation, or the English. */
+async function localizedPost(slug: string) {
+  const post = blogPost(slug)
+  if (!post) notFound()
+  const locale = await getLocale()
+  const translation = postTranslation(slug, locale)
+  return {
+    post: { ...post, ...translation },
+    locale,
+    contentLocale: translation ? locale : defaultLocale,
+    translated: Boolean(translation)
+  }
+}
 
 export async function generateMetadata({ params }: Props) {
-  const post = blogPost((await params).slug)
-  if (!post) notFound()
+  const { post, locale, translated } = await localizedPost((await params).slug)
   return pageMetadata({
-    locale: await getLocale(),
-    translated: false,
+    locale,
+    translated,
     path: `/blog/${post.slug}`,
     title: post.title,
     description: post.description,
-    image: blogCardPath(post),
+    image: blogCardPath(post, translated ? locale : defaultLocale),
     imageAlt: post.title,
     article: {
       publishedTime: post.date,
@@ -49,19 +65,26 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Page({ params }: Props) {
-  const post = blogPost((await params).slug)
-  if (!post) notFound()
-  const [{ default: Post }, locale, t, crumbs, profiles] = await Promise.all([
-    import(`@/content/blog/${post.slug}.mdx`) as Promise<{
-      default: ComponentType<{ components?: MDXComponents }>
-    }>,
-    getLocale(),
-    getTranslations('Blog'),
-    getTranslations('Breadcrumbs'),
-    loadProfileNames()
-  ])
+  const { post, locale, contentLocale, translated } = await localizedPost(
+    (await params).slug
+  )
+  const [{ default: Post }, t, charts, map, crumbs, profiles] =
+    await Promise.all([
+      (translated
+        ? import(`@/content/l10n/${contentLocale}/blog/${post.slug}.mdx`)
+        : import(`@/content/blog/${post.slug}.mdx`)) as Promise<{
+        default: Post
+      }>,
+      getTranslations('Blog'),
+      getTranslations({ locale: contentLocale, namespace: 'BlogCharts' }),
+      getTranslations({ locale: contentLocale, namespace: 'Map' }),
+      getTranslations('Breadcrumbs'),
+      loadProfileNames()
+    ])
   const tag = languageTag(locale)
+  const contentTag = languageTag(contentLocale)
   const path = `/blog/${post.slug}`
+  const image = blogCardPath(post, contentLocale)
   return (
     <>
       <BreadcrumbTrail
@@ -69,10 +92,16 @@ export default async function Page({ params }: Props) {
         ariaLabel={crumbs('label')}
       />
       <article className='content-column flex flex-col gap-8 py-14 text-base leading-relaxed'>
-        <JsonLd data={articleJsonLd({ ...post, image: blogCardPath(post) })} />
+        <JsonLd
+          data={articleJsonLd({
+            ...post,
+            image,
+            locale: contentLocale
+          })}
+        />
         <BreadcrumbJsonLd path={path} title={post.title} />
         <header className='flex flex-col gap-3'>
-          <h1 lang='en'>{post.title}</h1>
+          <h1 lang={contentTag}>{post.title}</h1>
           <p className='text-sm text-muted-foreground'>
             {t('by', { author: post.author })}
             {' · '}
@@ -88,16 +117,21 @@ export default async function Page({ params }: Props) {
               </>
             )}
           </p>
-          {locale !== defaultLocale && (
+          {contentLocale !== locale && (
             <p className='text-sm text-muted-foreground'>{t('englishOnly')}</p>
           )}
         </header>
         <div
-          lang='en'
+          lang={contentTag}
           data-slot='blog-post-body'
           className='flex flex-col gap-5 [&>h2]:mt-6 [&>h2]:-mb-1 [&>h3]:mt-2'
         >
-          <Post components={profileLinkComponents(profileMentions(profiles))} />
+          <Post
+            components={postComponents({
+              mention: profileMentions(profiles),
+              text: chartText(charts, map, contentTag)
+            })}
+          />
         </div>
       </article>
       <div className='content-column pb-14'>

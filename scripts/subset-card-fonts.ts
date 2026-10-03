@@ -12,7 +12,13 @@
 // Needs Python fontTools and brotli, run through uv (`uv run --with
 // fonttools --with brotli`); set UV_OFFLINE=1 to use uv's cache only.
 import { execFileSync } from 'node:child_process'
-import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { parseArgs } from 'node:util'
@@ -39,6 +45,15 @@ function catalogText(locale: CatalogCode) {
     for (const file of readdirSync(directory))
       text += readFileSync(path.join(directory, file), 'utf8')
   }
+  // Translated blog posts' titles, which their cards show.
+  const blog = path.join(root, 'content/l10n', locale, 'blog')
+  if (existsSync(blog))
+    for (const file of readdirSync(blog).filter((name) =>
+      name.endsWith('.mdx')
+    ))
+      text += readFileSync(path.join(blog, file), 'utf8').match(
+        /^title: (.*)$/mu
+      )?.[1]
   // Card dates, and the Chinese numerals of a typed P(doom) like 百分之三十.
   for (let month = 0; month < 12; month++)
     text += new Intl.DateTimeFormat(languageTag(locale), {

@@ -1,0 +1,99 @@
+{
+  "title": "各波次的旧问题与新问题",
+  "source": "9月27日发布前开始的访谈使用旧问题。每人计一项结果。",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "intervals",
+  "scale": {
+    "min": 0,
+    "max": 1,
+    "ticks": [0, 0.25, 0.5, 0.75, 1]
+  },
+  "interval": "95%区间",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News 一波，9月25日至26日",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X 一波，9月27日至28日",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Hacker News 一波，旧问题",
+      "group": "展望中位数，从 Doom（0）到 Bloom（1）",
+      "values": {
+        "hn": {
+          "value": 0.335,
+          "low": 0.307,
+          "high": 0.37,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "X 一波，旧问题",
+      "group": "展望中位数，从 Doom（0）到 Bloom（1）",
+      "values": {
+        "x": {
+          "value": 0.725,
+          "low": 0.526,
+          "high": 0.798,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "X 一波，新问题",
+      "group": "展望中位数，从 Doom（0）到 Bloom（1）",
+      "values": {
+        "x": {
+          "value": 0.733,
+          "low": 0.635,
+          "high": 0.758,
+          "n": 209
+        }
+      }
+    },
+    {
+      "label": "Hacker News 一波，旧问题",
+      "group": "变化规模中位数，从渐进式（0）到文明层面（1）",
+      "values": {
+        "hn": {
+          "value": 0.658,
+          "low": 0.633,
+          "high": 0.682,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "X 一波，旧问题",
+      "group": "变化规模中位数，从渐进式（0）到文明层面（1）",
+      "values": {
+        "x": {
+          "value": 0.767,
+          "low": 0.667,
+          "high": 0.841,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "X 一波，新问题",
+      "group": "变化规模中位数，从渐进式（0）到文明层面（1）",
+      "values": {
+        "x": {
+          "value": 0.925,
+          "low": 0.837,
+          "high": 0.958,
+          "n": 209
+        }
+      }
+    }
+  ]
+}

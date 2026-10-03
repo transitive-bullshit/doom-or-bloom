@@ -1,10 +1,10 @@
 # Blog
 
-The blog publishes plain-language posts about P(doom), AI worldviews and the ideas behind Doom or Bloom at `/blog`. This document owns how posts are written, rendered and charted. [SEO.md](SEO.md) owns titles, structured data and crawl files.
+The blog publishes plain-language posts about P(doom), AI worldviews and the ideas behind Doom or Bloom at `/blog`. This document owns how posts are written, rendered, translated and charted, and the rules for publishing participant data. [SEO.md](SEO.md) owns titles, structured data and crawl files.
 
 ## Writing a post
 
-A post is one MDX file, `content/blog/<slug>.mdx`. The file name is the URL slug: lowercase words joined by hyphens.
+A post is one MDX file, `content/blog/<slug>.mdx`. The file name is the URL slug: lowercase words joined by hyphens. Keep slugs free of numbers that change, such as participant counts.
 
 ```mdx
 ---
@@ -24,9 +24,9 @@ Opening paragraph…
 ```
 
 - Frontmatter is validated by `postFrontmatterSchema` (`lib/blog/schema.ts`): `title` without a trailing period, a `description` of 50–200 characters, `date` and an optional `updated` (YYYY-MM-DD). The author is the site creator.
-- Headings never end with a period. `pnpm test:content` and the unit tests fail on one.
-- Write in a plain, candid voice without hype. Personas are "thought leaders"; the interview takes "about 3 minutes". Say when a number is inferred or simulated, and that simulations are not endorsements.
-- Use typographic quotes and apostrophes, like the rest of the site's copy.
+- Headings never end with a period. `pnpm test:content` and the unit tests fail on one. List items, chart titles, labels and captions have no trailing period either.
+- Write in a plain, candid voice without hype. Personas are "thought leaders"; the interview takes "about 3 minutes". Say when a number is inferred, and call simulated thought leaders simulated, without foregrounding disclaimers: a line in the methods section is enough. Summarize a real person's views conservatively, and quote only their exact words.
+- Use typographic quotes and apostrophes, like the rest of the site's copy. In MDX, write a literal `<` before a digit or space as `\<`.
 - Link to site pages with root-relative URLs (`[the P(doom) table](/p-doom)`); they keep the reader's language prefix. Other links open in a new tab.
 - Write people's full names. The first mention of anyone with a published profile in each paragraph, list item or table cell links to their profile automatically ([SEO.md](SEO.md#internal-links)). Names in headings, links and bold or italic text stay as written, and single-word names (Roon, Aella) need an explicit link such as `[Roon](/users/tszzl)`.
 - Reading time is computed from the prose (230 words a minute); you do not set it.
@@ -36,26 +36,72 @@ Check a post with `pnpm dev`, then run `pnpm test`, `pnpm check:browser tests/br
 
 ## Rendering
 
-Posts are compiled by `@next/mdx` (configured in `next.config.ts`, with `remark-frontmatter` to keep the YAML out of the page and `remark-gfm` for tables). `mdx-components.tsx` maps elements and data components (`components/blog/mdx.tsx`). `lib/blog/posts.ts` reads the frontmatter with gray-matter for the index, metadata, sitemap, llms.txt and RSS feed.
+Posts are compiled by `@next/mdx` (configured in `next.config.ts`, with `remark-frontmatter` to keep the YAML out of the page and `remark-gfm` for tables). `mdx-components.tsx` maps elements and data components (`components/blog/mdx.tsx`); a post's page binds the charts to the post's language and the profile links (`postComponents`). `lib/blog/posts.ts` reads the frontmatter with gray-matter for the index, metadata, sitemap, llms.txt and RSS feed.
 
-Posts change only with a deployment. The index and every post are generated at build in every locale; unknown slugs are 404s. The feed (`/blog/rss.xml`, summaries only) and the post cards are generated once at build. The sitemap and llms.txt regenerate every 48 hours and bundle `content/blog/*.mdx`; `scripts/check-production-traces.mjs` asserts all of this.
+Posts change only with a deployment. The index and every post are generated at build in every locale; unknown slugs are 404s. The feed (`/blog/rss.xml`, summaries only) and the post cards are generated once at build. The sitemap and llms.txt regenerate every 48 hours and bundle `content/blog/*.mdx` (the sitemap also bundles translations); `scripts/check-production-traces.mjs` asserts all of this.
 
 ## Languages
 
-Posts are English. Other locales serve the same English post under translated chrome (header, footer, breadcrumbs, byline, the "Posts are written in English" note) rather than redirecting: a remembered language sends unprefixed URLs to `/<code>/…`, so a redirect back to English would loop. These pages are noindex and canonicalize to the English post, the same policy as other English-bodied pages ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#search-metadata)). The sitemap, llms.txt and the feed list only English URLs. Translating posts is deferred.
+A post is English, or translated into every enabled locale; never some of them. Translations are committed and machine-made like other authored content ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#authored-content)):
+
+```
+content/l10n/<code>/blog/<slug>.mdx          # title, description and body
+content/l10n/<code>/blog/data/<file>.json     # the text of each chart the post imports
+content/l10n/<code>/blog/meta.json            # provenance: the English hash, model, date and review status per file
+```
+
+- A translation keeps the English post's import lines, components, site links and heading levels, and its data files keep every number; only text a reader sees changes (`lib/blog/l10n.ts`). Dates, the author and the slug come from the English.
+- `pnpm test:content` fails when a post is translated into only some locales, a translation is stale (its English changed), or its structure differs from the English (`lib/blog/translation-check.ts`).
+- `pnpm l10n:translate --locale=<code> --scope=blog --post=<slug> --allow-paid --max-cost=<usd>` starts a post's translation; after that, `--only-stale` keeps it current with the rest of the locale ([translation tooling](INTERNATIONALIZATION.md#translation-tooling)). Use `--concurrency=2` with a small cap: each call reserves its worst case against the cap. Read a sample back before committing.
+- Charts take their labels from the translated data file and their chrome (the "As of" line, "Fewer than 10", axis poles) from `BlogCharts` and `Map` in the post's language.
+
+A translated post renders its translation in each locale, with `lang` on its title and body. It canonicalizes to itself, lists every locale as an hreflang alternate, and advertises a card in its language at `/<code>/blog/<slug>/opengraph-image` (`app/[locale]/(site)/blog/[slug]/opengraph-image`), which uses the share cards' Noto fonts for Hindi, Thai, Chinese and Japanese. Its `BlogPosting` gives the locale URL, `inLanguage` and `translationOfWork`. The sitemap lists every locale URL of a translated post with its alternates.
+
+An English-only post serves the same English body in every locale under translated chrome (header, footer, breadcrumbs, byline and a "This post is written in English" note) rather than redirecting: a remembered language sends unprefixed URLs to `/<code>/…`, so a redirect back to English would loop. Those pages are noindex and canonicalize to the English post, like other English-bodied pages ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#search-metadata)). The index lists each post in the reader's language where it is translated, and marks the others "In English".
+
+The feed and llms.txt stay English.
 
 ## Data components
 
-Charts render from committed aggregate JSON in `content/blog/data/`. A post imports the file and passes it to a component, which validates it with `blogDataSchema` when the page builds:
+Charts render from committed JSON in `content/blog/data/`. A post imports the file and passes it to a component, which validates it with `blogDataSchema` when the page builds:
 
 | Component | Data (`kind`) | Renders |
 | --- | --- | --- |
 | `<DataRanges data={…} />` | `ranges`: rows with a `label`, a `token` as written ("10–20%"), `low` and `high` probabilities, an optional `note` and source `href` | A table with one range bar per row on a 0–100% scale. A label naming someone with a profile links to it; `href` records the number’s source, which the chart doesn’t link. Leave `note` off rows about people: a one-line gloss can misrepresent a third party’s views, and the source link carries the context |
-| `<DataMap data={…} />` | `map`: points with `outlook` (Doom 0 to Bloom 1), `transformation` (incremental 0 to civilizational 1), an optional `label` and a relative `weight` | The result map's Prism field and geometry with sized points, plus an equivalent screen-reader table |
+| `<DataBars data={…} />` | `bars`: one or two `series` and rows of shares per series, each with its group size (`count`) and an optional 95% interval (`ci`); `stacked` draws each row as one bar to 100%. Rows may share a `group` heading and carry a `note`, such as a p-value | Horizontal bars with the value at each bar's end, so the chart reads without its bars. A share of `null` reads "Fewer than 10" beside a hatched swatch. Names with a profile link to it |
+| `<DataIntervals data={…} />` | `intervals`: a value per row and series, with `low` and `high` and the group size `n`, on a linear or log `scale`; `interval` names what the line shows ("95% interval", "Middle half") | A dot and its interval per row, with the value as text and ticks under each group |
+| `<DataMap data={…} />` | `map`: aggregate `cells` (outlook and transformation spans with a `share` and `count`) and points with `outlook` (Doom 0 to Bloom 1), `transformation` (incremental 0 to civilizational 1), an optional `label`, `name` and relative `weight` | Cells: a square grid shaded by share, with groups under the minimum hatched and labelled "\<10". Points only: the result map's Prism field and geometry with sized points. Both include an equivalent screen-reader table |
 | `<Definition />` | none | The quotable P(doom) definition shared with the `/p-doom` hub (`lib/p-doom/copy.ts`) |
 
-Every data file also carries a `title` (no trailing period), a `source` sentence shown under the chart, an `asOf` date and a `provenance`. Keep the numbers in the file reproducible from their source: `public-pdoom-statements.json` is checked against the verified statements in `lib/journeys/public-pdoom-statements.ts` by `lib/blog/blog.test.ts`.
+Every data file also carries a `title` (no trailing period), a `source` sentence shown under the chart, an `asOf` date and a `provenance`. Series take the chart colors blue, then coral (`--chart-blue`, `--chart-coral` in `app/globals.css`, checked for contrast and color-vision separation in both themes); a series can name its `tone` so the same entity keeps its color across charts. Keep the numbers in each file reproducible from their source: `public-pdoom-statements.json` is checked against the verified statements in `lib/journeys/public-pdoom-statements.ts`, and the participant charts are rebuilt from the committed aggregates by `lib/blog/blog.test.ts`.
 
-## No participant data until approved
+## Provenance
 
-The allowed provenances are `public-statements` (numbers people said in public, each linked) and `simulated-users` (our public simulated profiles). Participant assessments are private by default and published ones belong to their publishers. Do not compute, export or commit anything derived from participant assessments, including counts, averages or map densities, until the owner approves publishing aggregates and the privacy policy, minimum group sizes and a `participants` provenance are added here. Production reads for blog data are limited to simulated-user records ([admin.md](admin.md)).
+| `provenance` | What it is | Rules |
+| --- | --- | --- |
+| `public-statements` | Numbers people said in public | Each linked to its source |
+| `simulated-users` | Our public simulated profiles | Call them simulated |
+| `participants` | Aggregates of participant results | [Participant data](#participant-data) |
+| `site-traffic` | Aggregate site analytics, such as referred visitors per day | Visitors, not participants; say so in the `source` |
+
+A chart that mixes sources lists them all and names each series' `provenance`.
+
+## Participant data
+
+Participant assessments are private by default, so posts publish aggregates only. The repository is public: anything committed is published.
+
+- **Aggregates only:** counts, shares, medians, intervals and binned map cells. Never answer text or quotes, assessment, owner or user IDs, per-person timestamps, or anything else that could identify someone.
+- **A minimum group of 10.** Every count, share or statistic describes at least 10 people. `blogDataSchema` enforces it on participant series and cells: each shown value carries its group size, and that size is at least 10.
+- **Small groups stay visible.** A group under 10 is not dropped. It shows as "Fewer than 10" (a hatched map cell labelled "\<10", or a hatched swatch in place of a bar) without a number, because where so few people land is a finding in itself. Prose follows the same rule.
+- **Who counts:** one result per person (the earliest assessment of each owner that reached a result, by the current version of that result), leaving out simulated users, forks and the site owner's own test account. An assessment has finished when its current snapshot has a result.
+- **Date every number:** the data's `asOf` shows under each chart, and the prose says "as of" the same date.
+
+### Regenerating the numbers
+
+`pnpm blog:data` (`scripts/blog-participant-data.ts`) is the pipeline. It reads the database read-only, the way the [admin tooling](admin.md) does, keeps per-person rows in memory, and pipes them to `scripts/blog-participant-data.py` (numpy and scipy through `uv`) for the statistics. Only aggregates leave it:
+
+1. `pnpm blog:data --production` reads production with `default_transaction_read_only=on`. The owner has given standing approval for read-only, aggregate-only reads like this one.
+2. It writes `content/blog/aggregates/participants.json`, every aggregate the posts cite, suppressed below 10, and rebuilds the charts of published posts, `content/blog/data/launch-week-*.json`, from it (`lib/blog/participant-charts.ts`). Builders for draft posts stay in that file; a chart is written once its name is in `publishedCharts`. Site traffic lives in `content/blog/aggregates/referrers.json`, copied by hand from Vercel Web Analytics.
+3. Update the prose and the "as of" dates from the new aggregates, rerun `pnpm l10n:translate --locale=<code> --scope=blog --post=<slug> --only-stale --allow-paid --max-cost=1.5 --concurrency=2` for each locale, and run the blog checks. Each request reserves about $0.28 up front, so a lower cap or higher concurrency stops before spending; a whole post costs about $0.15 per locale.
+
+`pnpm blog:data --out=<file>` runs the pipeline against the local database to check it, and `pnpm blog:data --charts-only` rebuilds the charts after a change to the chart builder. The current numbers are as of October 3, 2026, and leave forks out.

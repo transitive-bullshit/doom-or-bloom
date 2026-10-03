@@ -1,15 +1,25 @@
-// Translates the UI message catalog and the authored assessment content into
-// one locale with an LLM, ahead of time. The output is committed and reviewed
-// like any other content; nothing is translated at runtime.
+// Translates the UI message catalog, the authored assessment content and
+// translated blog posts into one locale with an LLM, ahead of time. The output
+// is committed and reviewed like any other content; nothing is translated at
+// runtime.
 //
-//   pnpm l10n:translate --locale=<code> [--only-stale] [--scope=all|messages|content]
+//   pnpm l10n:translate --locale=<code> [--only-stale]
+//                       [--scope=all|messages|content|blog] [--post=<slug>…]
 //                       (--dry-run | --allow-paid --max-cost=<usd>)
 //
 // Without --only-stale, every entry is translated again except current
 // entries a native speaker has reviewed. With it, only missing entries and
-// entries whose English changed. The OpenAI key comes from the environment;
-// run it from a login shell that has it. See docs/INTERNATIONALIZATION.md.
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+// entries whose English changed. Blog posts are translated once they have a
+// translation in any locale; --post=<slug> starts one (docs/BLOG.md#languages).
+// The OpenAI key comes from the environment; run it from a login shell that
+// has it. See docs/INTERNATIONALIZATION.md.
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync
+} from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 import { parseArgs } from 'node:util'
@@ -42,11 +52,22 @@ import {
 } from '../lib/content/l10n'
 import { readL10n, readRelease, readRubric } from '../lib/content/l10n-loader'
 import { createMeter, openaiText } from '../lib/benchmark/providers'
+import {
+  blogL10nDirectory,
+  blogMetaPath,
+  blogMetaSchema,
+  dataStrings,
+  digitRuns,
+  postTranslationProblems,
+  translateData,
+  type BlogMeta
+} from '../lib/blog/l10n'
 
 const { values } = parseArgs({
   options: {
     locale: { type: 'string' },
     scope: { type: 'string', default: 'all' },
+    post: { type: 'string', multiple: true, default: [] },
     'only-stale': { type: 'boolean', default: false },
     'dry-run': { type: 'boolean', default: false },
     'allow-paid': { type: 'boolean', default: false },
@@ -60,8 +81,10 @@ if (!catalogCodes.includes(locale) || locale === defaultLocale)
   throw new Error(
     `--locale must be one of ${catalogCodes.filter((code) => code !== defaultLocale).join(', ')}`
   )
-if (!['all', 'messages', 'content'].includes(values.scope!))
-  throw new Error('--scope must be all, messages or content')
+if (!['all', 'messages', 'content', 'blog'].includes(values.scope!))
+  throw new Error('--scope must be all, messages, content or blog')
+const inScope = (scope: 'messages' | 'content' | 'blog') =>
+  values.scope === 'all' || values.scope === scope
 if (values['dry-run'] === values['allow-paid'])
   throw new Error('Choose --dry-run or --allow-paid --max-cost=<usd>')
 const maxCost = Number(values['max-cost'])
@@ -139,6 +162,15 @@ Rules:
 8. Use the glossary's translations for the same English terms.
 9. Reply with a JSON object with exactly the given keys, each value the translation of that key's text.`
 
+// Blog posts are long-form prose with charts and links.
+const blogRules = `Blog post rules:
+a. Keep the MDX exactly: JSX tags such as <DataBars data={outlookByWave} />, Markdown link targets (the URL in parentheses; translate only the link text), and the Markdown structure: headings (#), list items (-, 1.), tables (|), bold (**), italics (*) and blank lines between paragraphs.
+b. Keep every number's value. Write numbers the way ${language} normally does (decimal separator, percent sign), with the digits 0–9. Dates keep their day and year.
+c. Keep people's names, "Hacker News", "X", "Jev", and the names of statistical methods (Mann–Whitney, Fisher, k-means, bootstrap, Wilson) as written.
+d. Use ${language}'s typographic quotation marks.
+e. Headings, list items, chart titles and labels have no final period.
+f. The author writes in the first person in a plain, candid voice; keep it. Simulated thought leaders are simulations of public figures, not the people themselves.`
+
 // Context for each kind of authored entry.
 const contentKinds: Record<string, string> = {
   text: 'Interview question shown to the participant.',
@@ -166,7 +198,11 @@ const contentKind = (key: string) => {
 }
 
 // ── Plan ────────────────────────────────────────────────────────────────
-type Job = { key: string; source: string; scope: 'messages' | 'content' }
+type Job = {
+  key: string
+  source: string
+  scope: 'messages' | 'content' | 'blog'
+}
 
 const englishCatalog = readJson(`messages/${defaultLocale}.json`) as Catalog
 const english = flattenMessages(englishCatalog)
@@ -192,14 +228,13 @@ const keep = (
   current(entry, source) &&
   (onlyStale || entry?.reviewStatus === 'reviewed')
 
-const messageJobs: Job[] =
-  values.scope === 'content'
-    ? []
-    : [...english].flatMap(([key, source]) =>
-        keep(meta.entries[key], source, translatedCatalog.has(key))
-          ? []
-          : [{ key, source, scope: 'messages' as const }]
-      )
+const messageJobs: Job[] = !inScope('messages')
+  ? []
+  : [...english].flatMap(([key, source]) =>
+      keep(meta.entries[key], source, translatedCatalog.has(key))
+        ? []
+        : [{ key, source, scope: 'messages' as const }]
+    )
 
 type Target = {
   kind: L10nKind
@@ -207,24 +242,23 @@ type Target = {
   sources: L10nSource[]
   file: L10nFile | null
 }
-const targets: Target[] =
-  values.scope === 'messages'
-    ? []
-    : [
-        ...supportedContentVersions.map((version) => ({
-          kind: 'release' as const,
-          version,
-          sources: releaseSources(readRelease(version))
-        })),
-        {
-          kind: 'rubric' as const,
-          version: versions.rubric,
-          sources: rubricSources(readRubric(versions.rubric))
-        }
-      ].map((target) => ({
-        ...target,
-        file: readL10n(locale, target.kind, target.version)
-      }))
+const targets: Target[] = !inScope('content')
+  ? []
+  : [
+      ...supportedContentVersions.map((version) => ({
+        kind: 'release' as const,
+        version,
+        sources: releaseSources(readRelease(version))
+      })),
+      {
+        kind: 'rubric' as const,
+        version: versions.rubric,
+        sources: rubricSources(readRubric(versions.rubric))
+      }
+    ].map((target) => ({
+      ...target,
+      file: readL10n(locale, target.kind, target.version)
+    }))
 // One translation per distinct English string. Current entries of any file
 // are reused for the same English.
 const memory = new Map<string, L10nEntry>()
@@ -244,14 +278,127 @@ const contentJobs = [
       ])
   ).values()
 ]
-const sourceChars = [...messageJobs, ...contentJobs].reduce(
+// Blog posts translate whole: title, description and body sections, plus the
+// text of the data files they import. A post joins once it has a translation
+// in any locale, or by --post (lib/blog/l10n.ts).
+const blogDirectory = 'content/blog'
+const blogMetaFile = blogMetaPath(locale)
+const blogMeta: BlogMeta = existsSync(path.join(root, blogMetaFile))
+  ? blogMetaSchema.parse(readJson(blogMetaFile))
+  : { locale, kind: 'blog', entries: {} }
+const readText = (file: string) => readFileSync(path.join(root, file), 'utf8')
+const translatedSomewhere = (slug: string) =>
+  catalogCodes.some((code) =>
+    existsSync(path.join(root, blogL10nDirectory(code), `${slug}.mdx`))
+  )
+const blogPosts = !inScope('blog')
+  ? []
+  : readdirSync(path.join(root, blogDirectory))
+      .filter((file) => file.endsWith('.mdx'))
+      .map((file) => file.slice(0, -'.mdx'.length))
+      .filter(
+        (slug) => values.post!.includes(slug) || translatedSomewhere(slug)
+      )
+for (const slug of values.post!)
+  if (!blogPosts.includes(slug))
+    throw new Error(`--post=${slug}: no content/blog/${slug}.mdx`)
+const blogCurrent = (file: string) =>
+  existsSync(path.join(root, blogL10nDirectory(locale), file)) &&
+  keep(blogMeta.entries[file], readText(path.join(blogDirectory, file)), true)
+
+/** A post's frontmatter, import lines and body sections, split at `## `. */
+function postParts(slug: string) {
+  const source = readText(path.join(blogDirectory, `${slug}.mdx`))
+  const [, frontmatter = '', body = ''] =
+    source.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/u) ?? []
+  const field = (name: string) => {
+    const value = frontmatter.match(new RegExp(`^${name}:\\s*(.*)$`, 'mu'))?.[1]
+    if (!value) throw new Error(`${slug}.mdx has no ${name}`)
+    return value.replace(/^(['"])(.*)\1$/u, '$2')
+  }
+  const imports = body.match(/^import\s.*$/gmu) ?? []
+  const prose = body.replace(/^import\s.*$\n?/gmu, '').trim()
+  const sections = prose.split(/\n(?=## )/u).map((section) => section.trim())
+  const data = imports.flatMap(
+    (line) => line.match(/from\s+'\.\/(data\/[^']+)'/u)?.[1] ?? []
+  )
+  return {
+    title: field('title'),
+    description: field('description'),
+    imports,
+    sections,
+    data
+  }
+}
+const blogPlans = blogPosts.map((slug) => ({
+  slug,
+  parts: postParts(slug),
+  translate: !blogCurrent(`${slug}.mdx`)
+}))
+const blogData = [...new Set(blogPlans.flatMap((plan) => plan.parts.data))].map(
+  (file) => {
+    const data = readJson(path.join(blogDirectory, file))
+    return { file, data, translate: !blogCurrent(file) }
+  }
+)
+const blogKinds: Record<string, string> = {
+  title: 'Title of the blog post (a headline: no final period).',
+  description:
+    'Summary of the post for search results, social cards and the blog index.',
+  section:
+    'A section of the post body, in MDX (Markdown with JSX components). Keep every import line, JSX tag such as <DataBars data={…} />, link target and Markdown structure exactly; translate only the prose, link text and table text.',
+  data: 'Text of a chart in the post: a chart title, a source note under it (full sentences that keep their final punctuation), a legend or axis label, a row label, a group heading or a test note. Titles and labels have no final period.'
+}
+const blogJobs: Job[] = [
+  ...blogPlans
+    .filter((plan) => plan.translate)
+    .flatMap(({ slug, parts }) => [
+      {
+        key: `blog:${slug}:title`,
+        source: parts.title,
+        scope: 'blog' as const
+      },
+      {
+        key: `blog:${slug}:description`,
+        source: parts.description,
+        scope: 'blog' as const
+      },
+      ...parts.sections.map((source, index) => ({
+        key: `blog:${slug}:section:${index}`,
+        source,
+        scope: 'blog' as const
+      }))
+    ]),
+  // One translation per distinct chart string.
+  ...new Map(
+    blogData
+      .filter(({ translate }) => translate)
+      .flatMap(({ file, data }) =>
+        dataStrings(data).map(([at, source]) => [
+          source,
+          {
+            key: `blog:data:${file.slice('data/'.length, -'.json'.length)}${at}`,
+            source,
+            scope: 'blog' as const
+          }
+        ])
+      )
+  ).values()
+]
+const blogKind = (key: string) =>
+  blogKinds[key.startsWith('blog:data:') ? 'data' : key.split(':')[2]!]!
+
+const sourceChars = [...messageJobs, ...contentJobs, ...blogJobs].reduce(
   (sum, job) => sum + job.source.length,
   0
 )
 console.log(
-  `${language}: ${messageJobs.length} of ${english.size} messages and ${contentJobs.length} distinct authored strings to translate (${sourceChars} English characters).`
+  `${language}: ${messageJobs.length} of ${english.size} messages, ${contentJobs.length} distinct authored strings and ${blogJobs.length} blog parts to translate (${sourceChars} English characters).`
 )
-if (values['dry-run'] || (!messageJobs.length && !contentJobs.length))
+if (
+  values['dry-run'] ||
+  (!messageJobs.length && !contentJobs.length && !blogJobs.length)
+)
   process.exit(0)
 
 // ── Translate ───────────────────────────────────────────────────────────
@@ -292,7 +439,36 @@ function checkTranslation(job: Job, text: string): string | null {
       return `"${term}" must stay untranslated`
   if (locale === 'zh' && /[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(text))
     return 'Japanese kana in Simplified Chinese'
+  if (job.scope === 'blog') {
+    const problems = postTranslationProblems(job.source, text)
+    if (problems.length) return problems.join('; ')
+    // Every number survives (dates may gain a month number). A single digit
+    // may be written as a word ("4 to 1").
+    const numbers = digitRuns(text)
+    const missing = digitRuns(job.source).filter((run) => {
+      if (run.length === 1) return false
+      const index = numbers.indexOf(run)
+      if (index < 0) return true
+      numbers.splice(index, 1)
+      return false
+    })
+    if (missing.length)
+      return `numbers changed or dropped: ${missing.join(', ')}`
+    if (job.key.endsWith(':title') && /[.。．।]\s*$/u.test(text))
+      return 'a title ends without a period'
+  }
   return null
+}
+
+// A chart's source note is prose followed by its date, so it keeps the
+// English final period in the language's own form.
+function keepSentenceEnd(job: Job, text: string) {
+  if (!job.key.endsWith('.source') || !job.source.trimEnd().endsWith('.'))
+    return text
+  const end = { zh: '。', ja: '。', hi: '।', th: '' }[locale as string] ?? '.'
+  return /[.。．।!?！？]$/u.test(text.trimEnd())
+    ? text
+    : `${text.trimEnd()}${end}`
 }
 
 // When the English has no final period, neither does the translation.
@@ -318,20 +494,34 @@ async function translateBatch(batch: Job[], attempt: number) {
             batch.map((job) => [job.key, job.source])
           )
         }
-      : {
-          about:
-            'Authored assessment content. Each item gives where it appears and its English text.',
-          glossary: Object.fromEntries(glossary),
-          items: Object.fromEntries(
-            batch.map((job) => [
-              job.key,
-              { appears: contentKind(job.key), text: job.source }
-            ])
-          )
-        }
+      : scope === 'blog'
+        ? {
+            about:
+              'Parts of a blog post on the Doom or Bloom website, by its creator, about aggregate results of its interview. Each item gives what it is and its English text.',
+            glossary: Object.fromEntries(glossary),
+            items: Object.fromEntries(
+              batch.map((job) => [
+                job.key,
+                { appears: blogKind(job.key), text: job.source }
+              ])
+            )
+          }
+        : {
+            about:
+              'Authored assessment content. Each item gives where it appears and its English text.',
+            glossary: Object.fromEntries(glossary),
+            items: Object.fromEntries(
+              batch.map((job) => [
+                job.key,
+                { appears: contentKind(job.key), text: job.source }
+              ])
+            )
+          }
   const retryNote = batch
     .filter((job) => failures.has(job.key))
     .map((job) => `${job.key}: ${failures.get(job.key)}`)
+  const rules =
+    scope === 'blog' ? `${instructions}\n\n${blogRules}` : instructions
   const text = await openaiText(
     {
       model,
@@ -339,8 +529,8 @@ async function translateBatch(batch: Job[], attempt: number) {
       reasoning: { effort: 'low' },
       max_output_tokens: 10_000,
       instructions: retryNote.length
-        ? `${instructions}\n\nAn earlier attempt was rejected; fix these problems:\n${retryNote.join('\n')}`
-        : instructions,
+        ? `${rules}\n\nAn earlier attempt was rejected; fix these problems:\n${retryNote.join('\n')}`
+        : rules,
       input: JSON.stringify(input),
       text: {
         format: {
@@ -363,7 +553,10 @@ async function translateBatch(batch: Job[], attempt: number) {
   )
   const output = JSON.parse(text) as Record<string, string>
   for (const job of batch) {
-    const translation = matchEnding(job.source, output[job.key] ?? '')
+    const translation = keepSentenceEnd(
+      job,
+      matchEnding(job.source, output[job.key] ?? '')
+    )
     const problem = checkTranslation(job, translation)
     if (problem) failures.set(job.key, problem)
     else {
@@ -377,7 +570,7 @@ async function translateBatch(batch: Job[], attempt: number) {
 // paragraphs (About, Privacy) never crowd a reply's output limit.
 function batches(jobs: Job[], size: number) {
   const all: Job[][] = []
-  for (const scope of ['messages', 'content'] as const) {
+  for (const scope of ['messages', 'content', 'blog'] as const) {
     let batch: Job[] = []
     let chars = 0
     for (const job of jobs.filter((item) => item.scope === scope)) {
@@ -401,7 +594,8 @@ const concurrency = Number(values.concurrency)
 const first = messageJobs.filter((job) => glossaryKeys.test(job.key))
 const rest = [
   ...messageJobs.filter((job) => !glossaryKeys.test(job.key)),
-  ...contentJobs
+  ...contentJobs,
+  ...blogJobs
 ]
 const run = async (jobs: Job[], attempt: number, size: number) =>
   pMap(batches(jobs, size), (batch) => translateBatch(batch, attempt), {
@@ -441,10 +635,7 @@ function writeOutputs(results: Map<string, string>) {
     translatedAt: today,
     reviewStatus: 'machine'
   })
-  if (
-    values.scope !== 'content' &&
-    (messageJobs.length || existsSync(catalogFile))
-  ) {
+  if (inScope('messages') && (messageJobs.length || existsSync(catalogFile))) {
     const build = (node: Catalog, prefix = ''): Catalog =>
       Object.fromEntries(
         Object.entries(node).flatMap(
@@ -491,6 +682,71 @@ function writeOutputs(results: Map<string, string>) {
     writeJson(location, file)
     written.push(location)
   }
+  written.push(...writeBlog(results))
   if (written.length)
     execFileSync('pnpm', ['exec', 'oxfmt', ...written], { stdio: 'ignore' })
+}
+
+// A post or data file is written only when every part of it translated.
+function writeBlog(results: Map<string, string>) {
+  if (!blogJobs.length) return []
+  const written: string[] = []
+  const directory = blogL10nDirectory(locale)
+  const provenance = (file: string) => ({
+    sourceHash: sourceHash(readText(path.join(blogDirectory, file))),
+    model,
+    translatedAt: today,
+    reviewStatus: 'machine' as const
+  })
+  const entries = { ...blogMeta.entries }
+  for (const { slug, parts, translate } of blogPlans) {
+    if (!translate) continue
+    const part = (name: string) => results.get(`blog:${slug}:${name}`)
+    const sections = parts.sections.map((_, index) => part(`section:${index}`))
+    const title = part('title')
+    const description = part('description')
+    if (!title || !description || sections.some((text) => !text)) continue
+    const file = path.join(directory, `${slug}.mdx`)
+    mkdirSync(path.dirname(path.join(root, file)), { recursive: true })
+    writeFileSync(
+      path.join(root, file),
+      [
+        `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify(description)}\n---`,
+        parts.imports.join('\n'),
+        ...sections
+      ].join('\n\n') + '\n'
+    )
+    entries[`${slug}.mdx`] = provenance(`${slug}.mdx`)
+    written.push(file)
+  }
+  const bySource = new Map(
+    blogJobs
+      .filter((job) => job.key.startsWith('blog:data:'))
+      .flatMap((job) =>
+        results.has(job.key) ? [[job.source, results.get(job.key)!]] : []
+      )
+  )
+  for (const { file, data, translate } of blogData) {
+    if (!translate) continue
+    const strings = dataStrings(data)
+    if (strings.some(([, source]) => !bySource.has(source))) continue
+    const location = path.join(directory, file)
+    writeJson(
+      location,
+      translateData(
+        data,
+        new Map(strings.map(([at, source]) => [at, bySource.get(source)!]))
+      )
+    )
+    entries[file] = provenance(file)
+    written.push(location)
+  }
+  writeJson(blogMetaFile, {
+    locale,
+    kind: 'blog',
+    entries: Object.fromEntries(
+      Object.entries(entries).toSorted(([a], [b]) => a.localeCompare(b))
+    )
+  })
+  return [...written, blogMetaFile]
 }
