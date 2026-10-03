@@ -2,6 +2,7 @@
 title: Hacker News is gloomier about AI than X
 description: The Hacker News crowd landed far more pessimistic on our map than the X crowd two days later, yet both had the same small share of true doomers.
 date: 2026-10-03
+updated: 2026-10-04
 ---
 
 import outlookByWave from './data/launch-week-outlook-by-wave.json'
@@ -9,7 +10,7 @@ import doomerVsMood from './data/launch-week-doomer-vs-mood.json'
 import referrersByDay from './data/launch-week-referrers-by-day.json'
 import oldVsNewQuestions from './data/launch-week-old-vs-new-questions.json'
 
-**People who took Doom or Bloom during our Hacker News wave (Sep 25–26, 2026) landed at a median outlook of 0.34 on a scale from 0 (Doom) to 1 (Bloom), against 0.73 for the X wave two days later (Sep 27–28). Yet both crowds had the same 5–6% who expect catastrophe, and the same 38–39% with a P(doom) of 10% or more.**
+**People who took Doom or Bloom during our Hacker News wave (Sep 25–26, 2026) landed at a median outlook of 0.32 on a scale from 0 (Doom) to 1 (Bloom), against 0.68 for the X wave two days later (Sep 27–28). Yet both crowds had about the same 6% who expect catastrophe, and the same 38–40% with a P(doom) of 10% or more.**
 
 I launched [Doom or Bloom](/) on September 25. It’s a short adaptive interview (about 3 minutes) that places you on a map: how good or bad you expect AI to turn out, from Doom to Bloom, and how much you expect it to change the world. You also get a P(doom), either the one you type or a rough one we infer.
 
@@ -19,14 +20,14 @@ Launch week came in two distinct waves. First, a Hacker News post sent almost al
 
 <DataBars data={outlookByWave} />
 
-The Hacker News wave’s most common reading was “mainly expects harm”: 48% of them, against 18% of the X wave. The X wave piled up on the other side: 28% read as “enthusiastic”, against 5% on Hacker News.
+The Hacker News wave’s most common reading was “mainly expects harm”: 51% of them, against 20% of the X wave. The X wave piled up on the other side: 30% read as “enthusiastic”, against 5% on Hacker News.
 
 In numbers:
 
-- **Median outlook:** 0.34 on Hacker News (95% interval 0.31–0.37) against 0.73 on X (0.65–0.76). The difference is 0.40 (0.31–0.44)
-- **Doom side (outlook below 0.4):** 57% on Hacker News against 25% on X
-- **Bloom side (above 0.6):** 27% on Hacker News against 59% on X
-- **Pick one person from each wave at random**, and the X person is more Bloom 72% of the time (Mann–Whitney p \< 10⁻²⁴, rank-biserial effect size 0.44)
+- **Median outlook:** 0.32 on Hacker News (95% interval 0.30–0.35) against 0.68 on X (0.59–0.73). The difference is 0.36 (0.27–0.41)
+- **Doom side (outlook below 0.4):** 59% on Hacker News against 28% on X
+- **Bloom side (above 0.6):** 24% on Hacker News against 56% on X
+- **Pick one person from each wave at random**, and the X person is more Bloom 71% of the time (Mann–Whitney p \< 10⁻²³, rank-biserial effect size 0.43)
 
 ## But Hacker News isn’t more doomer
 
@@ -34,14 +35,16 @@ This is the part I didn’t expect. If “doomer” means expecting catastrophe,
 
 <DataBars data={doomerVsMood} />
 
-- **Expects catastrophe as the default outcome:** 6.3% on Hacker News against 5.0% on X (Fisher p = 0.54)
-- **Shown P(doom) of 10% or more:** 38% against 39% (p = 0.82)
-- **Shown P(doom) of 30% or more:** 22% against 16% (p = 0.07, a maybe at most)
-- **Median shown P(doom):** 5.8% against 6.5%
+- **Expects catastrophe as the default outcome:** 6.5% on Hacker News against 5.7% on X (Fisher p = 0.76)
+- **Shown P(doom) of 10% or more:** 38% against 40% (p = 0.60)
+- **Shown P(doom) of 30% or more:** 22% against 17% (p = 0.10, not significant)
+- **Median shown P(doom):** 6.0% against 6.3%
 
 One caveat: almost everyone in the Hacker News wave got an _inferred_ P(doom), because the interview didn’t ask for a number yet, and inferred values are rough and squeezed toward the middle. So the P(doom) rows are weaker evidence than the catastrophe row, which comes from the same reading as the outlook itself.
 
-So the gap isn’t about extinction. It’s about mood. The Hacker News crowd mostly expects AI to do more harm than good, in ordinary rather than catastrophic ways. The X crowd mostly expects it to do more good than harm. Both have the same small core of people who think it could end badly for everyone.
+The finer map adds one detail. Since October 4 it places people between its five outlook levels rather than on them, and within “mainly expects harm” the Hacker News crowd leans further toward the catastrophe end: 13% of them sit below 0.125 on the outlook axis, against 8% of the X wave (p = 0.02). So a few more of them are near that edge, even though the same share expect catastrophe outright.
+
+So the gap is mostly not about extinction. It’s about mood. The Hacker News crowd mostly expects AI to do more harm than good, in ordinary rather than catastrophic ways. The X crowd mostly expects it to do more good than harm. Both have the same small core of people who think it could end badly for everyone.
 
 So Hacker News isn’t more _doomer_ than X. It’s gloomier.
 
@@ -49,8 +52,8 @@ So Hacker News isn’t more _doomer_ than X. It’s gloomier.
 
 At the end of the interview we show the three popular thought leaders whose simulated worldviews sit closest to yours. The most common closest matches tell the story better than any median:
 
-- **Hacker News wave:** Ed Zitron (16%), Bernie Sanders (12%), Geoffrey Hinton (10%), Nathan Lambert (10%), Daron Acemoglu (7%)
-- **X wave:** Elon Musk (10%), Roon (7%), Sholto Douglas (7%), Jensen Huang (5%), Yann LeCun (5%)
+- **Hacker News wave:** Bernie Sanders (16%), Ed Zitron (15%), Nathan Lambert (7%), Geoffrey Hinton (5%), Mario Zechner (5%)
+- **X wave:** Elon Musk (8%), Sholto Douglas (6%), Yann LeCun (6%), Geoffrey Hinton (5%), [Roon](/users/tszzl) (5%)
 
 ## Is the difference real?
 
@@ -66,13 +69,13 @@ Luckily, 52 people in the X wave took the _old_ interview on Sep 27, before the 
 
 <DataIntervals data={oldVsNewQuestions} />
 
-- **X wave, old questions:** median outlook 0.73 (52 people)
-- **X wave, new questions:** also 0.73 (209 people), statistically identical (p = 0.98)
-- **Hacker News wave, the same old questions:** 0.34
+- **X wave, old questions:** median outlook 0.69 (52 people)
+- **X wave, new questions:** 0.67 (209 people), statistically indistinguishable (p = 0.83)
+- **Hacker News wave, the same old questions:** 0.32
 
-So the outlook gap is about who showed up, not what I asked. The **scale** axis is a different story. The X wave also expects much bigger change (median 0.88 against 0.66), but part of that is the new direct question: X-wave people on the old interview sit at 0.77, and on the new one at 0.93. I wouldn’t read much into the scale difference.
+So the outlook gap is about who showed up, not what I asked. The **scale** axis is a different story. The X wave also expects much bigger change (median 0.82 against 0.59), but part of that is the new direct question: X-wave people on the old interview sit at 0.70, and on the new one at 0.85. I wouldn’t read much into the scale difference.
 
-**Time of day and geography?** The Hacker News wave was concentrated in the US afternoon (84% started between 18:00 and 23:59 UTC), while the X wave was spread around the clock. But within each wave the median barely moves across times of day (Hacker News 0.25–0.36, X 0.67–0.75). Among referred visitors, 47% of Hacker News’s were in the US against 40% of X’s, which is not a big enough shift to explain a gap of 0.4.
+**Time of day and geography?** The Hacker News wave was concentrated in the US afternoon (84% started between 18:00 and 23:59 UTC), while the X wave was spread around the clock. But within each wave the median stays far from the other wave’s at every time of day (Hacker News 0.21–0.35, X 0.62–0.73). Among referred visitors, 47% of Hacker News’s were in the US against 40% of X’s, which is not a big enough shift to explain a gap of 0.4.
 
 **Where did people land?** About 97% of referred visitors from both sources landed on the homepage, so nobody arrived through a particular thought leader’s page.
 
@@ -82,11 +85,12 @@ What I _can’t_ rule out: these are two self-selected audiences reacting to two
 
 ## What I take from it
 
-The usual framing puts everyone on a single line from doomer to accelerationist. This data suggests at least two separate things are going on. One is whether you expect AI to make life better or worse in ordinary ways. The other is whether you think it could end in catastrophe. Hacker News and X disagree a lot on the first and hardly at all on the second.
+The usual framing puts everyone on a single line from doomer to accelerationist. This data suggests at least two separate things are going on. One is whether you expect AI to make life better or worse in ordinary ways. The other is whether you think it could end in catastrophe. Hacker News and X disagree a lot on the first and much less on the second.
 
 ## How we measured this
 
-- **Data:** a read-only extract of Doom or Bloom’s production database on October 3, 2026, using the current version of each result after our Sep 27 re-evaluation of saved results with the current reader
+- **Data:** a read-only extract of Doom or Bloom’s production database on October 3, 2026 (UTC), using the current version of each result, after we re-read every saved result with the current reader (algorithm 0.7.5)
+- **Updated October 4, 2026:** rerun on those re-read results, which place people between the map’s five outlook levels instead of on them. The headline gap is a little smaller (0.36 rather than 0.40), the closest matches changed, and the finer map adds the catastrophe-end detail above. Level shares (“expects catastrophe”, “mainly expects harm”, “enthusiastic”) count each person’s level reading
 - **Who counts:** one result per person, their first interview that reached a result. I left out my own test account and the simulated thought leaders. 655 people in the Hacker News wave and 263 in the X wave had a result (648 and 261 with a placed outlook)
 - **Waves:** UTC dates, Sep 25–26 and Sep 27–28, inferred from timing and site-wide referrer data rather than a per-person referrer
 - **Statistics:** medians with bootstrap 95% intervals (10,000 resamples), two-sided Mann–Whitney U tests, a permutation test on the median difference, and Fisher’s exact test for shares

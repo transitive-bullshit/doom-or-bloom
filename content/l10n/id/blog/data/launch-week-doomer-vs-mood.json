@@ -18,75 +18,75 @@
   ],
   "rows": [
     {
-      "label": "Pandangan terbaca sebagai “memperkirakan katastrofe”",
+      "label": "Pandangan terbaca “memperkirakan katastrofe”",
       "group": "Ukuran doomer",
-      "note": "p = 0,54",
+      "note": "p = 0,76",
       "values": {
         "hn": {
-          "share": 0.063,
-          "count": 41,
-          "ci": [0.047, 0.085]
+          "share": 0.065,
+          "count": 42,
+          "ci": [0.048, 0.086]
         },
         "x": {
-          "share": 0.05,
-          "count": 13,
-          "ci": [0.029, 0.083]
+          "share": 0.057,
+          "count": 15,
+          "ci": [0.035, 0.093]
         }
       }
     },
     {
       "label": "P(doom) yang ditampilkan sebesar 10% atau lebih",
       "group": "Ukuran doomer",
-      "note": "p = 0,82",
+      "note": "p = 0,60",
       "values": {
         "hn": {
-          "share": 0.382,
-          "count": 240,
-          "ci": [0.344, 0.42]
+          "share": 0.377,
+          "count": 236,
+          "ci": [0.34, 0.416]
         },
         "x": {
-          "share": 0.391,
-          "count": 101,
-          "ci": [0.334, 0.452]
+          "share": 0.396,
+          "count": 103,
+          "ci": [0.339, 0.457]
         }
       }
     },
     {
       "label": "P(doom) yang ditampilkan sebesar 30% atau lebih",
       "group": "Ukuran doomer",
-      "note": "p = 0,07",
+      "note": "p = 0,10",
       "values": {
         "hn": {
-          "share": 0.218,
-          "count": 137,
-          "ci": [0.187, 0.252]
+          "share": 0.216,
+          "count": 135,
+          "ci": [0.185, 0.25]
         },
         "x": {
-          "share": 0.163,
-          "count": 42,
-          "ci": [0.123, 0.213]
+          "share": 0.165,
+          "count": 43,
+          "ci": [0.125, 0.215]
         }
       }
     },
     {
-      "label": "Pandangan terbaca sebagai “terutama memperkirakan kerugian”",
+      "label": "Pandangan terbaca “terutama memperkirakan kerugian”",
       "group": "Suasana hati",
       "note": "p < 0,001",
       "values": {
         "hn": {
-          "share": 0.48,
-          "count": 311,
-          "ci": [0.442, 0.518]
+          "share": 0.514,
+          "count": 333,
+          "ci": [0.475, 0.552]
         },
         "x": {
-          "share": 0.184,
-          "count": 48,
-          "ci": [0.142, 0.235]
+          "share": 0.199,
+          "count": 52,
+          "ci": [0.155, 0.252]
         }
       }
     },
     {
-      "label": "Pandangan terbaca sebagai “antusias”",
+      "label": "Pandangan terbaca “antusias”",
       "group": "Suasana hati",
       "note": "p < 0,001",
       "values": {
@@ -96,9 +96,9 @@
           "ci": [0.038, 0.072]
         },
         "x": {
-          "share": 0.28,
-          "count": 73,
-          "ci": [0.229, 0.337]
+          "share": 0.299,
+          "count": 78,
+          "ci": [0.247, 0.357]
         }
       }
     }
