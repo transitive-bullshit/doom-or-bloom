@@ -35,6 +35,7 @@ export async function siteSocialPoints(
     )
   return Promise.all(
     placed.map(async ({ slug, avatar, outlook, transformation }) => ({
+      slug,
       outlook,
       transformation,
       portrait: siteSocialFaces.includes(slug)

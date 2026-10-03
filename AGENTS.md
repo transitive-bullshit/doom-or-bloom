@@ -18,6 +18,7 @@ Doom or Bloom helps participants articulate their AI worldview through a bounded
 - Use native local PostgreSQL and a separate disposable test database; no Docker. Database/auth/publication changes follow [PERSISTENCE.md](docs/PERSISTENCE.md).
 - Use credential-free fixtures for routine checks. Live journeys make paid OpenAI and Jev calls; follow the bounded workflow in [user-journeys.md](docs/user-journeys.md). Paid pressure testing is excluded.
 - Development work is local by default. Deployment, production migrations, and production persona imports are separate tasks; a Git push to production-tracking `main` can deploy the site.
+- Before creating or updating a PR, fetch the remote and rebase the task branch onto the latest PR base (normally `origin/main`) when behind. Preserve local work and reconcile remote contributions, resolve conflicts, run the affected checks, and push rewritten history with `--force-with-lease` without waiting for a reminder.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

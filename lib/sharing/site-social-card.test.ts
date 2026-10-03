@@ -44,12 +44,31 @@ test('featured people become portraits and everyone else a dot', () => {
     { outlook: 0.5, transformation: 0.5 }
   ])
   expect(layout.portraits).toEqual([
-    { x: 622, y: 88, portrait: 'data:image/jpeg;base64,' }
+    { x: 579, y: 95, portrait: 'data:image/jpeg;base64,' }
   ])
   expect(layout.dots).toEqual([
-    { x: 1134, y: 542 },
-    { x: 878, y: 315 }
+    { x: 1089, y: 535 },
+    { x: 834, y: 315 }
   ])
+})
+
+test('portrait art direction preserves saved points and horizontal outlook', () => {
+  const points = [
+    { slug: 'garymarcus', outlook: 0, transformation: 1, portrait: 'marcus' },
+    {
+      slug: 'geoffreyhinton',
+      outlook: 1,
+      transformation: 0,
+      portrait: 'hinton'
+    }
+  ]
+  const saved = structuredClone(points)
+  const layout = siteSocialLayout(points)
+  expect(layout.portraits).toEqual([
+    { x: 579, y: 185.8, portrait: 'marcus' },
+    { x: 1089, y: 580.4, portrait: 'hinton' }
+  ])
+  expect(points).toEqual(saved)
 })
 
 test('every featured face is a public simulated user with a portrait', () => {
@@ -69,6 +88,7 @@ test('points use presented map positions and leave unplaced users off', async ()
     siteSocialFaces.length
   )
   expect(points.at(-1)).toEqual({
+    slug: other.slug,
     outlook: shown.horizontal.value,
     transformation: shown.experiment?.transformation.value,
     portrait: undefined
