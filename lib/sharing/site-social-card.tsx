@@ -51,7 +51,9 @@ const colors = {
   dot: '#8c9987'
 }
 const absolute: CSSProperties = { position: 'absolute' }
-const portraitSize = 94
+const portraitSize = 85
+// Keep the approved portrait centers while reducing their visual prominence.
+const portraitSpacing = 94
 const chartPanel = { x: 532, y: 48, width: 604, height: 534 }
 const plot = { x: 579, y: 95, width: 510, height: 440 }
 
@@ -96,7 +98,7 @@ export function siteSocialLayout(points: readonly SiteSocialPoint[]) {
     y: plot.y + (1 - point.transformation) * plot.height
   })
   const featured = points.filter((point) => point.portrait)
-  const spots = separateVertically(featured.map(position), portraitSize)
+  const spots = separateVertically(featured.map(position), portraitSpacing)
   return {
     dots: points.filter((point) => !point.portrait).map(position),
     portraits: featured.map((point, index) => ({
