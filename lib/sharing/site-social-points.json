@@ -1,0 +1,266 @@
+[
+  {
+    "slug": "amcafee",
+    "avatar": "/personas/mcafee.jpg",
+    "outlook": 0.9475,
+    "transformation": 0.5244565217391304
+  },
+  {
+    "slug": "jkcarlsmith",
+    "avatar": "/personas/carlsmith.jpg",
+    "outlook": 0.28500000000000003,
+    "transformation": 0.9974999999999999
+  },
+  {
+    "slug": "slatestarcodex",
+    "avatar": "/personas/alexander.jpg",
+    "outlook": 0.7474999999999999,
+    "transformation": 0.99
+  },
+  {
+    "slug": "dkokotajlo",
+    "avatar": "/personas/kokotajlo.jpg",
+    "outlook": 0.105,
+    "transformation": 0.9974999999999999
+  },
+  {
+    "slug": "tylercowen",
+    "avatar": "/personas/cowen.jpg",
+    "outlook": 0.7525,
+    "transformation": 0.735
+  },
+  {
+    "slug": "so8res",
+    "avatar": "/personas/soares.jpg",
+    "outlook": 0.01,
+    "transformation": 1
+  },
+  {
+    "slug": "ryangreenblatt",
+    "avatar": "/personas/greenblatt.jpg",
+    "outlook": 0.2925,
+    "transformation": 0.96
+  },
+  {
+    "slug": "noahpinion",
+    "avatar": "/personas/smith.jpg",
+    "outlook": 0.7175,
+    "transformation": 0.8257575757575758
+  },
+  {
+    "slug": "esyudkowsky",
+    "avatar": "/personas/yudkowsky.jpg",
+    "outlook": 0.0025,
+    "transformation": 1
+  },
+  {
+    "slug": "sama",
+    "avatar": "/personas/altman.jpg",
+    "outlook": 0.7825,
+    "transformation": 0.7424242424242425
+  },
+  {
+    "slug": "pmarca",
+    "avatar": "/personas/andreessen.jpg",
+    "outlook": 1,
+    "transformation": 0.7225
+  },
+  {
+    "slug": "garymarcus",
+    "avatar": "/personas/marcus.jpg",
+    "outlook": 0.5225,
+    "transformation": 0.6197916666666667
+  },
+  {
+    "slug": "andrewyng",
+    "avatar": "/personas/ng.jpg",
+    "outlook": 0.865,
+    "transformation": 0.5178571428571428
+  },
+  {
+    "slug": "ylecun",
+    "avatar": "/personas/lecun.jpg",
+    "outlook": 0.92,
+    "transformation": 0.7025
+  },
+  {
+    "slug": "geoffreyhinton",
+    "avatar": "/personas/hinton.jpg",
+    "outlook": 0.25,
+    "transformation": 0.8325
+  },
+  {
+    "slug": "edzitron",
+    "avatar": "/personas/zitron.jpg",
+    "outlook": 0.255,
+    "transformation": 0.515
+  },
+  {
+    "slug": "sensanders",
+    "avatar": "/personas/sanders.jpg",
+    "outlook": 0.245,
+    "transformation": 0.8463541666666667
+  },
+  {
+    "slug": "davidsacks",
+    "avatar": "/personas/sacks.jpg",
+    "outlook": 0.94,
+    "transformation": 0.63
+  },
+  {
+    "slug": "demishassabis",
+    "avatar": "/personas/hassabis.jpg",
+    "outlook": 0.7525,
+    "transformation": 0.763157894736842
+  },
+  {
+    "slug": "_sholtodouglas",
+    "avatar": "/personas/douglas.jpg",
+    "outlook": 0.7325,
+    "transformation": 0.81
+  },
+  {
+    "slug": "tszzl",
+    "avatar": "/personas/roon.jpg",
+    "outlook": 0.7375,
+    "transformation": 0.9974999999999999
+  },
+  {
+    "slug": "noamshazeer",
+    "avatar": "/personas/shazeer.jpg",
+    "outlook": 0.7975000000000001,
+    "transformation": 0.6581632653061226
+  },
+  {
+    "slug": "polynoamial",
+    "avatar": "/personas/brown.jpg",
+    "outlook": 0.7525,
+    "transformation": 0.5994623655913978
+  },
+  {
+    "slug": "dwarkesh_sp",
+    "avatar": "/personas/patel.jpg",
+    "outlook": 0.5227272727272727,
+    "transformation": 0.8112244897959183
+  },
+  {
+    "slug": "darioamodei",
+    "avatar": "/personas/amodei.jpg",
+    "outlook": 0.5800000000000001,
+    "transformation": 0.8802083333333335
+  },
+  {
+    "slug": "elonmusk",
+    "avatar": "/personas/musk.jpg",
+    "outlook": 0.9299999999999999,
+    "transformation": 0.9874999999999999
+  },
+  {
+    "slug": "natolambert",
+    "avatar": "/personas/lambert.jpg",
+    "outlook": 0.755,
+    "transformation": 0.4449999999999999
+  },
+  {
+    "slug": "yoshua_bengio",
+    "avatar": "/personas/bengio.jpg",
+    "outlook": 0.2575,
+    "transformation": 0.84
+  },
+  {
+    "slug": "ilyasut",
+    "avatar": "/personas/sutskever.jpg",
+    "outlook": 0.5225,
+    "transformation": 0.7576530612244898
+  },
+  {
+    "slug": "karpathy",
+    "avatar": "/personas/karpathy.jpg",
+    "outlook": 0.7525000000000001,
+    "transformation": 0.64
+  },
+  {
+    "slug": "drfeifei",
+    "avatar": "/personas/li.jpg",
+    "outlook": 0.7625,
+    "transformation": 0.555
+  },
+  {
+    "slug": "richardssutton",
+    "avatar": "/personas/sutton.jpg",
+    "outlook": 0.8525,
+    "transformation": 0.9821428571428572
+  },
+  {
+    "slug": "timnitgebru",
+    "avatar": "/personas/gebru.jpg",
+    "outlook": 0.27,
+    "transformation": 0.5901162790697674
+  },
+  {
+    "slug": "random_walker",
+    "avatar": "/personas/narayanan.jpg",
+    "outlook": 0.72,
+    "transformation": 0.7275
+  },
+  {
+    "slug": "dacemoglumit",
+    "avatar": "/personas/acemoglu.jpg",
+    "outlook": 0.2575,
+    "transformation": 0.63
+  },
+  {
+    "slug": "finkd",
+    "avatar": "/personas/zuckerberg.jpg",
+    "outlook": 0.985,
+    "transformation": 0.69
+  },
+  {
+    "slug": "stuart-russell",
+    "avatar": "/personas/russell.jpg",
+    "outlook": 0.29,
+    "transformation": 0.7973684210526316
+  },
+  {
+    "slug": "emilymbender",
+    "avatar": "/personas/bender.jpg",
+    "outlook": 0.2575,
+    "transformation": 0.5378787878787878
+  },
+  {
+    "slug": "tegmark",
+    "avatar": "/personas/tegmark.jpg",
+    "outlook": 0.494949494949495,
+    "transformation": 0.9253246753246752
+  },
+  {
+    "slug": "liang-wenfeng",
+    "avatar": "/personas/liang.jpg",
+    "outlook": 0.8300000000000001,
+    "transformation": 0.6275510204081632
+  },
+  {
+    "slug": "barackobama",
+    "avatar": "/personas/obama.jpg",
+    "outlook": 0.635,
+    "transformation": 0.6868686868686867
+  },
+  {
+    "slug": "realdonaldtrump",
+    "avatar": "/personas/trump.jpg",
+    "outlook": 1,
+    "transformation": 0.6489898989898989
+  },
+  {
+    "slug": "billgates",
+    "avatar": "/personas/gates.jpg",
+    "outlook": 0.6975,
+    "transformation": 0.7625
+  },
+  {
+    "slug": "jensenhuang",
+    "avatar": "/personas/huang.jpg",
+    "outlook": 1,
+    "transformation": 0.7025
+  }
+]

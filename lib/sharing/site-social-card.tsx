@@ -1,7 +1,9 @@
+import type { CSSProperties } from 'react'
+
 /**
  * The site-wide social image: the question beside a quiet version of the
- * featured map. A few recognizable people appear as portraits at their saved
- * positions; everyone else on the featured map is a dot. Generated explicitly
+ * featured map. Recognizable people appear as circular portraits; everyone else
+ * is a dot. Generated explicitly
  * with `pnpm social-image:generate`, never at request time.
  */
 
@@ -18,9 +20,11 @@ export const siteSocialFaces = [
 ]
 
 export const siteSocialAlt =
-  'How will AI change our future? Doom or Bloom’s map of simulated AI worldviews, with portraits of a few public figures placed by outlook and scale of transformation.'
+  'How will AI change our future? Doom or Bloom’s map of simulated AI worldviews, with portraits of public figures and Doom and Bloom axis labels.'
 
 export type SiteSocialPoint = {
+  /** Public simulated-user identity, used only for image art direction. */
+  slug?: string
   /** Expressed outlook: 0 is doom, 1 is bloom. */
   outlook: number
   /** Expected transformation: 0 is incremental, 1 is civilizational. */
@@ -29,7 +33,7 @@ export type SiteSocialPoint = {
   portrait?: string
 }
 
-/** The site card's palette, shared by the blog's post cards. */
+/** The original editorial palette, retained by the blog post cards. */
 export const siteCardColors = {
   surface: '#fbfaf6',
   panel: '#f2f0e9',
@@ -38,12 +42,18 @@ export const siteCardColors = {
   axis: 'rgb(29 28 24 / 0.16)',
   dot: 'rgb(29 28 24 / 0.2)'
 }
-const colors = siteCardColors
-// The coordinate area; the panel extends past it so edge portraits stay inside.
-const chart = { left: 622, top: 88, width: 512, height: 454 }
-const panelPadding = 46
-const portraitSize = 82
-const dotSize = 10
+const colors = {
+  surface: '#ffffff',
+  panel: '#eef1ed',
+  text: '#2c352e',
+  muted: '#717a70',
+  line: '#8f9b8b',
+  dot: '#8c9987'
+}
+const absolute: CSSProperties = { position: 'absolute' }
+const portraitSize = 94
+const chartPanel = { x: 532, y: 48, width: 604, height: 534 }
+const plot = { x: 579, y: 95, width: 510, height: 440 }
 
 /**
  * Keep portraits on their saved coordinates. Only portraits that would cover
@@ -82,8 +92,8 @@ export function separateVertically(
 
 export function siteSocialLayout(points: readonly SiteSocialPoint[]) {
   const position = (point: SiteSocialPoint) => ({
-    x: chart.left + point.outlook * chart.width,
-    y: chart.top + (1 - point.transformation) * chart.height
+    x: plot.x + point.outlook * plot.width,
+    y: plot.y + (1 - point.transformation) * plot.height
   })
   const featured = points.filter((point) => point.portrait)
   const spots = separateVertically(featured.map(position), portraitSize)
@@ -91,6 +101,15 @@ export function siteSocialLayout(points: readonly SiteSocialPoint[]) {
     dots: points.filter((point) => !point.portrait).map(position),
     portraits: featured.map((point, index) => ({
       ...spots[index]!,
+      // Approved image-only offsets, applied after collision spacing. The
+      // original 454px plot is the basis; saved worldview coordinates stay intact.
+      y:
+        spots[index]!.y +
+        (point.slug === 'garymarcus'
+          ? 90.8
+          : point.slug === 'geoffreyhinton'
+            ? 45.4
+            : 0),
       portrait: point.portrait!
     }))
   }
@@ -106,18 +125,52 @@ export function BrandMark() {
   )
 }
 
+function MapSurface() {
+  const centerX = chartPanel.x + chartPanel.width / 2
+  const centerY = chartPanel.y + chartPanel.height / 2
+  return (
+    <>
+      <div
+        style={{
+          ...absolute,
+          left: chartPanel.x,
+          top: chartPanel.y,
+          width: chartPanel.width,
+          height: chartPanel.height,
+          borderRadius: 16,
+          backgroundColor: colors.panel,
+          boxShadow: '0 3px 16px rgb(55 67 48 / 0.08)'
+        }}
+      />
+      <svg width={1200} height={630} viewBox='0 0 1200 630' style={absolute}>
+        <path
+          d={`M${chartPanel.x} ${centerY}H${chartPanel.x + chartPanel.width}M${centerX} ${chartPanel.y}V${chartPanel.y + chartPanel.height}`}
+          stroke={colors.line}
+          strokeOpacity={0.2}
+          strokeWidth='1'
+          fill='none'
+        />
+        <rect
+          x={chartPanel.x + 2.5}
+          y={chartPanel.y + 2.5}
+          width={chartPanel.width - 5}
+          height={chartPanel.height - 5}
+          rx={13.5}
+          stroke='#ffffff'
+          strokeWidth='5'
+          fill='none'
+        />
+      </svg>
+    </>
+  )
+}
+
 export function SiteSocialCard({
   points
 }: {
   points: readonly SiteSocialPoint[]
 }) {
   const { dots, portraits } = siteSocialLayout(points)
-  const panel = {
-    left: chart.left - panelPadding,
-    top: chart.top - panelPadding,
-    width: chart.width + panelPadding * 2,
-    height: chart.height + panelPadding * 2
-  }
   return (
     <div
       style={{
@@ -130,32 +183,67 @@ export function SiteSocialCard({
         fontFamily: 'Inter Tight'
       }}
     >
-      <div
+      <MapSurface />
+      <svg
+        width={36}
+        height={24}
+        viewBox='0 0 36 24'
         style={{
-          position: 'absolute',
-          left: 62,
-          top: 178,
-          display: 'flex',
-          flexDirection: 'column',
-          fontSize: 82,
-          lineHeight: 1.02,
-          fontWeight: 500,
-          letterSpacing: -2.5
+          ...absolute,
+          left: 64,
+          // The circles' visible stroke begins 1.35px inside the SVG box.
+          top: chartPanel.y - 1.35
         }}
       >
-        {['How will AI', 'change our', 'future?'].map((line) => (
-          <span key={line}>{line}</span>
-        ))}
+        <g strokeWidth='1.3'>
+          <circle
+            cx='12'
+            cy='12'
+            r='10'
+            stroke={colors.muted}
+            fill='none'
+            fillOpacity='0.5'
+            strokeOpacity='0.8'
+          />
+          <circle
+            cx='24'
+            cy='12'
+            r='10'
+            stroke={colors.muted}
+            fill='none'
+            fillOpacity='0.5'
+            strokeOpacity='0.8'
+          />
+        </g>
+      </svg>
+      <div
+        style={{
+          ...absolute,
+          left: 64,
+          top: 176,
+          display: 'flex',
+          flexDirection: 'column',
+          fontSize: 80,
+          fontWeight: 500,
+          letterSpacing: -2.6,
+          lineHeight: 1.04
+        }}
+      >
+        <span>How will AI</span>
+        <span>change our</span>
+        <span>future?</span>
       </div>
       <div
         style={{
-          position: 'absolute',
-          left: 66,
-          top: 560,
+          ...absolute,
+          left: 64,
+          top: chartPanel.y + chartPanel.height - 20,
+          height: 20,
+          lineHeight: '20px',
           display: 'flex',
           alignItems: 'center',
-          gap: 8,
-          fontSize: 17,
+          gap: 10,
+          fontSize: 18,
           fontWeight: 500,
           color: colors.muted
         }}
@@ -163,45 +251,18 @@ export function SiteSocialCard({
         <BrandMark />
         <span>Doom or Bloom</span>
       </div>
-      <div
-        style={{
-          position: 'absolute',
-          ...panel,
-          borderRadius: 18,
-          backgroundColor: colors.panel
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: panel.left,
-          top: chart.top + chart.height / 2,
-          width: panel.width,
-          height: 1.5,
-          backgroundColor: colors.axis
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: chart.left + chart.width / 2,
-          top: panel.top,
-          width: 1.5,
-          height: panel.height,
-          backgroundColor: colors.axis
-        }}
-      />
       {dots.map(({ x, y }, index) => (
         <div
           key={`dot-${index}`}
           style={{
-            position: 'absolute',
-            left: x - dotSize / 2,
-            top: y - dotSize / 2,
-            width: dotSize,
-            height: dotSize,
-            borderRadius: dotSize / 2,
-            backgroundColor: colors.dot
+            ...absolute,
+            left: x - 4.5,
+            top: y - 4.5,
+            width: 9,
+            height: 9,
+            borderRadius: 5,
+            backgroundColor: colors.dot,
+            opacity: 0.6
           }}
         />
       ))}
@@ -213,17 +274,41 @@ export function SiteSocialCard({
           width={portraitSize}
           height={portraitSize}
           style={{
-            position: 'absolute',
+            ...absolute,
             left: x - portraitSize / 2,
             top: y - portraitSize / 2,
             width: portraitSize,
             height: portraitSize,
             borderRadius: portraitSize / 2,
-            border: `3px solid ${colors.surface}`,
-            boxShadow: '0 2px 8px rgb(34 51 34 / 0.14)',
+            border: '3px solid #ffffff',
+            boxShadow: '0 3px 8px rgb(36 49 35 / 0.18)',
             objectFit: 'cover'
           }}
         />
+      ))}
+      {['Doom', 'Bloom'].map((label, index) => (
+        <div
+          key={label}
+          style={{
+            ...absolute,
+            left: chartPanel.x + index * chartPanel.width - 49,
+            top: chartPanel.y + chartPanel.height / 2 - 19,
+            width: 98,
+            height: 38,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 19,
+            backgroundColor: colors.surface,
+            color: colors.muted,
+            fontSize: 22,
+            fontWeight: 500,
+            lineHeight: 1,
+            boxShadow: '0 1px 5px rgb(34 51 34 / 0.12)'
+          }}
+        >
+          {label}
+        </div>
       ))}
     </div>
   )
