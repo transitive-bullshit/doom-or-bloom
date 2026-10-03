@@ -1,5 +1,5 @@
 {
-  "title": "Setiap gelombang berdasarkan tingkat pandangan",
+  "title": "Setiap gelombang menurut tingkat pandangan",
   "source": "Satu hasil per orang yang menyelesaikannya: 648 orang dalam gelombang Hacker News dan 261 dalam gelombang X.",
   "asOf": "2026-10-03",
   "provenance": "participants",
@@ -21,12 +21,12 @@
       "label": "Memperkirakan katastrofe",
       "values": {
         "hn": {
-          "share": 0.063,
-          "count": 41
+          "share": 0.065,
+          "count": 42
         },
         "x": {
-          "share": 0.05,
-          "count": 13
+          "share": 0.057,
+          "count": 15
         }
       }
     },
@@ -34,12 +34,12 @@
       "label": "Terutama memperkirakan kerugian",
       "values": {
         "hn": {
-          "share": 0.48,
-          "count": 311
+          "share": 0.514,
+          "count": 333
         },
         "x": {
-          "share": 0.184,
-          "count": 48
+          "share": 0.199,
+          "count": 52
         }
       }
     },
@@ -47,12 +47,12 @@
       "label": "Campuran atau belum memutuskan",
       "values": {
         "hn": {
-          "share": 0.196,
-          "count": 127
+          "share": 0.136,
+          "count": 88
         },
         "x": {
-          "share": 0.188,
-          "count": 49
+          "share": 0.157,
+          "count": 41
         }
       }
     },
@@ -60,12 +60,12 @@
       "label": "Cenderung penuh harapan",
       "values": {
         "hn": {
-          "share": 0.208,
-          "count": 135
+          "share": 0.233,
+          "count": 151
         },
         "x": {
-          "share": 0.299,
-          "count": 78
+          "share": 0.287,
+          "count": 75
         }
       }
     },
@@ -77,8 +77,8 @@
           "count": 34
         },
         "x": {
-          "share": 0.28,
-          "count": 73
+          "share": 0.299,
+          "count": 78
         }
       }
     }

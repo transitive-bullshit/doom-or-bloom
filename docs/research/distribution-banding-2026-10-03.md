@@ -5,7 +5,7 @@ The Doom–Bloom map showed people in five columns. This note records why, what 
 ## Decisions
 
 - **Place both map axes with the map ladder.** Nine yes/no comparisons per axis (four boundaries between neighbouring levels, five level centres), each asked forward and mirrored, averaged so Jev's lean toward "no" cancels. The level choice still decides placement, readiness and the stated level; the ladder moves the point at most half a level from it. No constants are fitted.
-- **Saved results keep their positions.** The ladder needs new judgments, so it cannot be a render-time upgrade. Re-reading saved participant results is a separate decision.
+- **Re-read saved results with the ladder.** It needs new judgments, so it cannot be a render-time upgrade. Saved participant results and simulated users were re-read on October 4 ([rollout](#rollout-october-4-2026)).
 - **Inferred P(doom) is unchanged.** It is not banded: log-odds averaging over 11 bands already gives continuous values.
 
 ## Why the map banded
@@ -64,7 +64,18 @@ All 178 simulated users, same Jev pass:
 
 About $10 of a $20 budget: $5.64 of gpt-5.6-sol for the simulated nudges, $2.11 of Jev for the experiments and $2.47 for the replay. The ladder adds about $0.001 per result in a request that runs beside the projection.
 
+## Rollout, October 4, 2026
+
+[PR #42](https://github.com/transitive-bullshit/doom-or-bloom/pull/42) merged and deployed `0.7.5`. With the owner's approval, production and the local database were then re-read ($7.35 of Jev):
+
+- **Simulated users.** `personas:reevaluate` replayed 170 of 178 in production and locally ($2.60 each) and published them as the selected runs. The other 8 are on engine `0.6.1` and get no result under current readiness, so they keep their positions.
+- **Participant results.** `results:reevaluate` re-read 973 of 998 saved results ($2.13). The other 25 get no result under the current engine and keep theirs. Every placed map stayed placed; outlooks moved a median 0.04 and at most 0.15, and the displayed P(doom) a median 0.05 in log-odds.
+- **Production participants, before and after.** Within 0.03 of an outlook level: 52% → 22%; of a scale level: 42% → 20%. The largest group sharing one exact outlook fell from 43 to 6.
+- **Public pages.** A redeploy refreshed the pre-rendered landing map, profiles and published results. The site social image and its snapshot were regenerated from production.
+- **Blog.** The Hacker News vs X post was rerun on the re-read results. Its outlook level shares now count each person's level reading rather than a slice of the axis, since the two no longer coincide; the finer map also showed more of the Hacker News wave near the catastrophe end (13% below 0.125, against 8%).
+- **Tooling.** The 998-result plan reached 540 MB, past Node's string limit, so it was written in chunks; [PR #44](https://github.com/transitive-bullshit/doom-or-bloom/pull/44) now streams plans.
+
 ## Open
 
 - The human-influence axis is the same five-level choice and would band the same way; it has no independent reference to validate a ladder against yet.
-- Publishing the replayed simulated users (`personas:reevaluate write`) follows the deploy.
+- Check the first real `0.7.5` interviews for banding, agreement with self-placement, Jev spend and `D: map placement` failures.

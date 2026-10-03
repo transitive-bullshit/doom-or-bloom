@@ -2,289 +2,289 @@
   {
     "slug": "amcafee",
     "avatar": "/personas/mcafee.jpg",
-    "outlook": 0.9475,
-    "transformation": 0.5244565217391304
+    "outlook": 0.88625,
+    "transformation": 0.515625
   },
   {
     "slug": "jkcarlsmith",
     "avatar": "/personas/carlsmith.jpg",
-    "outlook": 0.28500000000000003,
-    "transformation": 0.9974999999999999
+    "outlook": 0.26875,
+    "transformation": 0.93625
   },
   {
     "slug": "slatestarcodex",
     "avatar": "/personas/alexander.jpg",
-    "outlook": 0.7474999999999999,
-    "transformation": 0.99
+    "outlook": 0.6437499999999998,
+    "transformation": 0.9281249999999999
   },
   {
     "slug": "dkokotajlo",
     "avatar": "/personas/kokotajlo.jpg",
-    "outlook": 0.105,
-    "transformation": 0.9974999999999999
+    "outlook": 0.10562500000000002,
+    "transformation": 0.9612499999999999
   },
   {
     "slug": "tylercowen",
     "avatar": "/personas/cowen.jpg",
-    "outlook": 0.7525,
-    "transformation": 0.735
+    "outlook": 0.7418750000000001,
+    "transformation": 0.686875
   },
   {
     "slug": "so8res",
     "avatar": "/personas/soares.jpg",
-    "outlook": 0.01,
-    "transformation": 1
+    "outlook": 0.048125000000000015,
+    "transformation": 0.961875
   },
   {
     "slug": "ryangreenblatt",
     "avatar": "/personas/greenblatt.jpg",
-    "outlook": 0.2925,
-    "transformation": 0.96
+    "outlook": 0.27937500000000004,
+    "transformation": 0.906875
   },
   {
     "slug": "noahpinion",
     "avatar": "/personas/smith.jpg",
-    "outlook": 0.7175,
-    "transformation": 0.8257575757575758
+    "outlook": 0.6543749999999999,
+    "transformation": 0.7881250000000001
   },
   {
     "slug": "esyudkowsky",
     "avatar": "/personas/yudkowsky.jpg",
-    "outlook": 0.0025,
-    "transformation": 1
+    "outlook": 0.03625000000000002,
+    "transformation": 0.9637499999999999
   },
   {
     "slug": "sama",
     "avatar": "/personas/altman.jpg",
-    "outlook": 0.7825,
-    "transformation": 0.7424242424242425
+    "outlook": 0.803125,
+    "transformation": 0.74875
   },
   {
     "slug": "pmarca",
     "avatar": "/personas/andreessen.jpg",
-    "outlook": 1,
-    "transformation": 0.7225
+    "outlook": 0.975625,
+    "transformation": 0.7493750000000001
   },
   {
     "slug": "garymarcus",
     "avatar": "/personas/marcus.jpg",
-    "outlook": 0.5225,
-    "transformation": 0.6197916666666667
+    "outlook": 0.45562499999999995,
+    "transformation": 0.6250000000000001
   },
   {
     "slug": "andrewyng",
     "avatar": "/personas/ng.jpg",
-    "outlook": 0.865,
-    "transformation": 0.5178571428571428
+    "outlook": 0.87625,
+    "transformation": 0.5
   },
   {
     "slug": "ylecun",
     "avatar": "/personas/lecun.jpg",
-    "outlook": 0.92,
-    "transformation": 0.7025
+    "outlook": 0.8937500000000002,
+    "transformation": 0.73
   },
   {
     "slug": "geoffreyhinton",
     "avatar": "/personas/hinton.jpg",
-    "outlook": 0.25,
-    "transformation": 0.8325
+    "outlook": 0.174375,
+    "transformation": 0.8849999999999999
   },
   {
     "slug": "edzitron",
     "avatar": "/personas/zitron.jpg",
-    "outlook": 0.25,
-    "transformation": 0.35
+    "outlook": 0.15625,
+    "transformation": 0.3818750000000001
   },
   {
     "slug": "sensanders",
     "avatar": "/personas/sanders.jpg",
-    "outlook": 0.245,
-    "transformation": 0.8463541666666667
+    "outlook": 0.15750000000000003,
+    "transformation": 0.7956249999999999
   },
   {
     "slug": "davidsacks",
     "avatar": "/personas/sacks.jpg",
-    "outlook": 0.94,
-    "transformation": 0.63
+    "outlook": 0.910625,
+    "transformation": 0.5987499999999999
   },
   {
     "slug": "demishassabis",
     "avatar": "/personas/hassabis.jpg",
-    "outlook": 0.7525,
-    "transformation": 0.763157894736842
+    "outlook": 0.731875,
+    "transformation": 0.7350000000000001
   },
   {
     "slug": "_sholtodouglas",
     "avatar": "/personas/douglas.jpg",
-    "outlook": 0.7325,
-    "transformation": 0.81
+    "outlook": 0.6875,
+    "transformation": 0.8156249999999999
   },
   {
     "slug": "tszzl",
     "avatar": "/personas/roon.jpg",
-    "outlook": 0.7375,
-    "transformation": 0.9974999999999999
+    "outlook": 0.649375,
+    "transformation": 0.954375
   },
   {
     "slug": "noamshazeer",
     "avatar": "/personas/shazeer.jpg",
-    "outlook": 0.7975000000000001,
-    "transformation": 0.6581632653061226
+    "outlook": 0.86125,
+    "transformation": 0.6431249999999998
   },
   {
     "slug": "polynoamial",
     "avatar": "/personas/brown.jpg",
-    "outlook": 0.7525,
-    "transformation": 0.5994623655913978
+    "outlook": 0.7549999999999999,
+    "transformation": 0.6275000000000001
   },
   {
     "slug": "dwarkesh_sp",
     "avatar": "/personas/patel.jpg",
-    "outlook": 0.5227272727272727,
-    "transformation": 0.8112244897959183
+    "outlook": 0.4262500000000001,
+    "transformation": 0.8187500000000001
   },
   {
     "slug": "darioamodei",
     "avatar": "/personas/amodei.jpg",
-    "outlook": 0.5800000000000001,
-    "transformation": 0.8802083333333335
+    "outlook": 0.485625,
+    "transformation": 0.821875
   },
   {
     "slug": "elonmusk",
     "avatar": "/personas/musk.jpg",
-    "outlook": 0.9299999999999999,
-    "transformation": 0.9874999999999999
+    "outlook": 0.86125,
+    "transformation": 0.9468749999999999
   },
   {
     "slug": "natolambert",
     "avatar": "/personas/lambert.jpg",
-    "outlook": 0.755,
-    "transformation": 0.4449999999999999
+    "outlook": 0.740625,
+    "transformation": 0.46875
   },
   {
     "slug": "yoshua_bengio",
     "avatar": "/personas/bengio.jpg",
-    "outlook": 0.2575,
-    "transformation": 0.84
+    "outlook": 0.23812500000000003,
+    "transformation": 0.848125
   },
   {
     "slug": "ilyasut",
     "avatar": "/personas/sutskever.jpg",
-    "outlook": 0.5225,
-    "transformation": 0.7576530612244898
+    "outlook": 0.5125000000000001,
+    "transformation": 0.77125
   },
   {
     "slug": "karpathy",
     "avatar": "/personas/karpathy.jpg",
-    "outlook": 0.7525000000000001,
-    "transformation": 0.64
+    "outlook": 0.745625,
+    "transformation": 0.6575
   },
   {
     "slug": "drfeifei",
     "avatar": "/personas/li.jpg",
-    "outlook": 0.7625,
-    "transformation": 0.555
+    "outlook": 0.8125,
+    "transformation": 0.6125
   },
   {
     "slug": "richardssutton",
     "avatar": "/personas/sutton.jpg",
-    "outlook": 0.8525,
-    "transformation": 0.9821428571428572
+    "outlook": 0.88,
+    "transformation": 0.9000000000000001
   },
   {
     "slug": "timnitgebru",
     "avatar": "/personas/gebru.jpg",
-    "outlook": 0.27,
-    "transformation": 0.5901162790697674
+    "outlook": 0.3125,
+    "transformation": 0.5225
   },
   {
     "slug": "random_walker",
     "avatar": "/personas/narayanan.jpg",
-    "outlook": 0.72,
-    "transformation": 0.7275
+    "outlook": 0.5937499999999999,
+    "transformation": 0.690625
   },
   {
     "slug": "dacemoglumit",
     "avatar": "/personas/acemoglu.jpg",
-    "outlook": 0.2575,
-    "transformation": 0.63
+    "outlook": 0.309375,
+    "transformation": 0.6206250000000001
   },
   {
     "slug": "finkd",
     "avatar": "/personas/zuckerberg.jpg",
-    "outlook": 0.985,
-    "transformation": 0.69
+    "outlook": 0.9237500000000001,
+    "transformation": 0.6981249999999999
   },
   {
     "slug": "stuart-russell",
     "avatar": "/personas/russell.jpg",
-    "outlook": 0.29,
-    "transformation": 0.7973684210526316
+    "outlook": 0.2675,
+    "transformation": 0.795
   },
   {
     "slug": "emilymbender",
     "avatar": "/personas/bender.jpg",
-    "outlook": 0.2575,
-    "transformation": 0.5378787878787878
+    "outlook": 0.281875,
+    "transformation": 0.53625
   },
   {
     "slug": "tegmark",
     "avatar": "/personas/tegmark.jpg",
-    "outlook": 0.494949494949495,
-    "transformation": 0.9253246753246752
+    "outlook": 0.42750000000000005,
+    "transformation": 0.8040123456790123
   },
   {
     "slug": "liang-wenfeng",
     "avatar": "/personas/liang.jpg",
-    "outlook": 0.8300000000000001,
-    "transformation": 0.6275510204081632
+    "outlook": 0.8700000000000001,
+    "transformation": 0.5775
   },
   {
     "slug": "barackobama",
     "avatar": "/personas/obama.jpg",
-    "outlook": 0.635,
-    "transformation": 0.6868686868686867
+    "outlook": 0.595625,
+    "transformation": 0.665
   },
   {
     "slug": "realdonaldtrump",
     "avatar": "/personas/trump.jpg",
-    "outlook": 1,
-    "transformation": 0.6489898989898989
+    "outlook": 0.9768749999999999,
+    "transformation": 0.6849999999999999
   },
   {
     "slug": "billgates",
     "avatar": "/personas/gates.jpg",
-    "outlook": 0.6975,
-    "transformation": 0.7625
+    "outlook": 0.5650000000000001,
+    "transformation": 0.7668750000000001
   },
   {
     "slug": "jensenhuang",
     "avatar": "/personas/huang.jpg",
-    "outlook": 1,
-    "transformation": 0.7025
+    "outlook": 0.965625,
+    "transformation": 0.6806249999999999
   },
   {
     "slug": "simonw",
     "avatar": "/personas/independent-simonw.jpg",
-    "outlook": 0.7474999999999999,
-    "transformation": 0.29444444444444445
+    "outlook": 0.684375,
+    "transformation": 0.30375
   },
   {
     "slug": "thestalwart",
     "avatar": "/personas/independent-thestalwart.jpg",
-    "outlook": 0.6212121212121212,
-    "transformation": 0.4634831460674157
+    "outlook": 0.5912499999999999,
+    "transformation": 0.4125
   },
   {
     "slug": "badlogicgames",
     "avatar": "/personas/independent-badlogicgames.jpg",
-    "outlook": 0.4770408163265306,
-    "transformation": 0.2191011235955056
+    "outlook": 0.421875,
+    "transformation": 0.21437500000000004
   },
   {
     "slug": "jessegenet",
     "avatar": "/personas/independent-jessegenet.jpg",
-    "outlook": 0.7474999999999999,
-    "transformation": 0.2526041666666667
+    "outlook": 0.7006249999999999,
+    "transformation": 0.23687499999999995
   }
 ]

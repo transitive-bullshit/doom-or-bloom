@@ -1,5 +1,5 @@
 {
-  "title": "Pertanyaan lama dan baru, berdasarkan gelombang",
+  "title": "Pertanyaan lama dan baru, menurut gelombang",
   "source": "Wawancara yang dimulai sebelum rilis 27 Sep menggunakan pertanyaan lama. Satu hasil per orang.",
   "asOf": "2026-10-03",
   "provenance": "participants",
@@ -28,9 +28,9 @@
       "group": "Median pandangan, dari Doom (0) hingga Bloom (1)",
       "values": {
         "hn": {
-          "value": 0.335,
-          "low": 0.307,
-          "high": 0.37,
+          "value": 0.323,
+          "low": 0.302,
+          "high": 0.353,
           "n": 648
         }
       }
@@ -40,9 +40,9 @@
       "group": "Median pandangan, dari Doom (0) hingga Bloom (1)",
       "values": {
         "x": {
-          "value": 0.725,
-          "low": 0.526,
-          "high": 0.798,
+          "value": 0.694,
+          "low": 0.527,
+          "high": 0.792,
           "n": 52
         }
       }
@@ -52,45 +52,45 @@
       "group": "Median pandangan, dari Doom (0) hingga Bloom (1)",
       "values": {
         "x": {
-          "value": 0.733,
-          "low": 0.635,
-          "high": 0.758,
+          "value": 0.666,
+          "low": 0.589,
+          "high": 0.733,
           "n": 209
         }
       }
     },
     {
       "label": "Gelombang Hacker News, pertanyaan lama",
-      "group": "Median skala perubahan, dari bertahap (0) hingga peradaban (1)",
+      "group": "Median skala perubahan, dari bertahap (0) hingga berskala peradaban (1)",
       "values": {
         "hn": {
-          "value": 0.658,
-          "low": 0.633,
-          "high": 0.682,
+          "value": 0.586,
+          "low": 0.566,
+          "high": 0.607,
           "n": 648
         }
       }
     },
     {
       "label": "Gelombang X, pertanyaan lama",
-      "group": "Median skala perubahan, dari bertahap (0) hingga peradaban (1)",
+      "group": "Median skala perubahan, dari bertahap (0) hingga berskala peradaban (1)",
       "values": {
         "x": {
-          "value": 0.767,
-          "low": 0.667,
-          "high": 0.841,
+          "value": 0.702,
+          "low": 0.606,
+          "high": 0.776,
           "n": 52
         }
       }
     },
     {
       "label": "Gelombang X, pertanyaan baru",
-      "group": "Median skala perubahan, dari bertahap (0) hingga peradaban (1)",
+      "group": "Median skala perubahan, dari bertahap (0) hingga berskala peradaban (1)",
       "values": {
         "x": {
-          "value": 0.925,
-          "low": 0.837,
-          "high": 0.958,
+          "value": 0.851,
+          "low": 0.805,
+          "high": 0.872,
           "n": 209
         }
       }

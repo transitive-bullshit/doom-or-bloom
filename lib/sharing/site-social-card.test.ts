@@ -7,6 +7,7 @@ import type { JourneySuite } from '@/lib/journeys/schema'
 import { loadSocialPortrait } from './portraits'
 import { renderSiteSocialImage, siteSocialPoints } from './render-site-social'
 import {
+  keepInside,
   separateVertically,
   siteSocialFaces,
   siteSocialLayout
@@ -35,6 +36,24 @@ test('portraits stay on their coordinates unless they would cover each other', (
   expect([left!.x, right!.x]).toEqual([300, 310])
   expect(left!.y + right!.y).toBeCloseTo(210)
   expect(Math.hypot(right!.x - left!.x, right!.y - left!.y)).toBeCloseTo(84)
+})
+
+test('a stack pushed past the frame moves back inside as one piece', () => {
+  const [top, middle, lone] = keepInside(
+    [
+      { x: 100, y: 20 },
+      { x: 110, y: 104 },
+      { x: 400, y: 30 }
+    ],
+    80,
+    50,
+    500,
+    4
+  )
+  // The touching pair keeps its spacing and outlook; the lone face is clamped.
+  expect([top!.y, middle!.y]).toEqual([50, 134])
+  expect([top!.x, middle!.x]).toEqual([100, 110])
+  expect(lone).toEqual({ x: 400, y: 50 })
 })
 
 test('featured people become portraits and everyone else a dot', () => {
@@ -66,7 +85,7 @@ test('portrait art direction preserves saved points and horizontal outlook', () 
   const layout = siteSocialLayout(points)
   expect(layout.portraits).toEqual([
     { x: 579, y: 185.8, portrait: 'marcus' },
-    { x: 1089, y: 580.4, portrait: 'hinton' }
+    { x: 1089, y: 535, portrait: 'hinton' }
   ])
   expect(points).toEqual(saved)
 })
