@@ -1,5 +1,6 @@
 import { limits } from '@/lib/assessment/schema'
 import type { Provider } from '@/lib/server/provider'
+import { EvaluationRequestBudgetExhausted } from '@/lib/server/provider'
 
 export function paidRequestBudget(args: string[]) {
   const budgetArg = args.find((arg) => arg.startsWith('--max-requests='))
@@ -37,7 +38,7 @@ export function budgetedProvider(
         maximum - reserved
       )
       if (!Number.isInteger(granted) || granted < 1)
-        throw new Error('Evaluation request budget exhausted')
+        throw new EvaluationRequestBudgetExhausted()
       // Reserve before awaiting to cover concurrent stages. On failure retain
       // the reservation because the physical request count may be unknown.
       reserved += granted

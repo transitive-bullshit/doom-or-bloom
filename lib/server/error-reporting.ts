@@ -3,6 +3,7 @@ import { createHash, randomUUID } from 'node:crypto'
 import { APIError } from '@typesafe-ai/sdk'
 import { ZodError } from 'zod'
 import { JevBudgetExhausted, providerErrorType } from './jev-budget'
+import { EvaluationRequestBudgetExhausted } from './provider'
 
 export function isContextOverflow(error: unknown, depth = 0): boolean {
   if (!(error instanceof Error) || depth > 4) return false
@@ -38,18 +39,20 @@ export function errorDetails(
       : undefined
   const code = isContextOverflow(error)
     ? 'max_tokens_exceeded'
-    : error instanceof JevBudgetExhausted
-      ? error.block
-      : (systemCode ??
-        (error instanceof ZodError
-          ? 'validation_failed'
-          : error.name === 'AbortError'
-            ? 'request_aborted'
-            : error.name === 'TimeoutError'
-              ? 'request_timeout'
-              : error instanceof APIError
-                ? `provider_http_${error.status}`
-                : 'unexpected_error'))
+    : error instanceof EvaluationRequestBudgetExhausted
+      ? 'evaluation_request_budget_exhausted'
+      : error instanceof JevBudgetExhausted
+        ? error.block
+        : (systemCode ??
+          (error instanceof ZodError
+            ? 'validation_failed'
+            : error.name === 'AbortError'
+              ? 'request_aborted'
+              : error.name === 'TimeoutError'
+                ? 'request_timeout'
+                : error instanceof APIError
+                  ? `provider_http_${error.status}`
+                  : 'unexpected_error'))
   const wrapper = [
     'AssessmentFailure',
     'EvaluationFailure',
