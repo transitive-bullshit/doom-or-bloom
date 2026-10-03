@@ -91,7 +91,7 @@ A chart that mixes sources lists them all and names each series' `provenance`.
 Participant assessments are private by default, so posts publish aggregates only. The repository is public: anything committed is published.
 
 - **Aggregates only:** counts, shares, medians, intervals and binned map cells. Never answer text or quotes, assessment, owner or user IDs, per-person timestamps, or anything else that could identify someone.
-- **A minimum group of 10.** Every count, share or statistic describes at least 10 people. `blogDataSchema` enforces it on participant series and cells: each shown value carries its group size, and that size is at least 10.
+- **A minimum group of 10.** Every count, share or statistic describes at least 10 people. `blogDataSchema` enforces it on participant series and cells: each shown value carries its group size, and that size is at least 10. Shapes without a group size (`ranges` rows and map points) cannot carry participant numbers, and the committed aggregates never hold a group size under 10, whether a count or a denominator.
 - **Small groups stay visible.** A group under 10 is not dropped. It shows as "Fewer than 10" (a hatched map cell labelled "\<10", or a hatched swatch in place of a bar) without a number, because where so few people land is a finding in itself. Prose follows the same rule.
 - **Who counts:** one result per person (the earliest assessment of each owner that reached a result, by the current version of that result), leaving out simulated users, forks and the site owner's own test account. An assessment has finished when its current snapshot has a result.
 - **Date every number:** the data's `asOf` shows under each chart, and the prose says "as of" the same date.

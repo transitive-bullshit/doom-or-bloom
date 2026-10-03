@@ -244,6 +244,33 @@ describe('blog data', () => {
         cells: [{ ...map.cells[0], count: 3 }]
       }).success
     ).toBe(false)
+    // Shapes without a group size cannot carry participant numbers.
+    const points = [{ outlook: 0.2, transformation: 0.8 }]
+    expect(
+      mapDataSchema.safeParse({ ...map, cells: undefined, points }).success
+    ).toBe(false)
+    expect(
+      mapDataSchema.safeParse({
+        ...map,
+        provenance: ['participants', 'simulated-users'],
+        points
+      }).success
+    ).toBe(true)
+    const ranges = {
+      kind: 'ranges',
+      title: 'Ranges',
+      source: 'Aggregates.',
+      asOf: '2026-10-01',
+      rows: [{ label: 'A row', token: '10–20%', low: 0.1, high: 0.2 }]
+    }
+    expect(
+      rangeDataSchema.safeParse({ ...ranges, provenance: 'participants' })
+        .success
+    ).toBe(false)
+    expect(
+      rangeDataSchema.safeParse({ ...ranges, provenance: 'public-statements' })
+        .success
+    ).toBe(true)
   })
 
   it('matches the verified public P(doom) statements it charts', () => {

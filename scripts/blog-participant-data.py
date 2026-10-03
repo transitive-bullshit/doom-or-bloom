@@ -166,7 +166,8 @@ def wilson(k, n):
 
 def share(k, n):
     if k < MIN_N or n < MIN_N:
-        return {'n': n, 'count': None, 'share': None, 'ci95': [None, None], 'note': '<10'}
+        # A denominator under the minimum is itself a small group: hide it too.
+        return {'n': n if n >= MIN_N else None, 'count': None, 'share': None, 'ci95': [None, None], 'note': '<10'}
     return {'n': n, 'count': k, 'share': r3(k / n), 'ci95': wilson(k, n)}
 
 

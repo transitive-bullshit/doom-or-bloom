@@ -160,27 +160,37 @@ function checkSeries<Value>(
     }
 }
 
-export const rangeDataSchema = z.strictObject({
-  ...dataBase,
-  kind: z.literal('ranges'),
-  rows: z
-    .array(
-      z.strictObject({
-        label: z.string().min(1),
-        /** As written, e.g. "10–20%". */
-        token: z.string().min(1),
-        low: probability,
-        high: probability,
-        note: z.string().optional(),
-        href: z.url().optional()
+export const rangeDataSchema = z
+  .strictObject({
+    ...dataBase,
+    kind: z.literal('ranges'),
+    rows: z
+      .array(
+        z.strictObject({
+          label: z.string().min(1),
+          /** As written, e.g. "10–20%". */
+          token: z.string().min(1),
+          low: probability,
+          high: probability,
+          note: z.string().optional(),
+          href: z.url().optional()
+        })
+      )
+      .min(1)
+      .refine(
+        (rows) => rows.every((row) => row.low <= row.high),
+        'Each row needs low <= high'
+      )
+  })
+  .superRefine((chart, ctx) => {
+    // A range row names no group size, so it cannot pass the minimum check.
+    if (provenanceList(chart.provenance).includes('participants'))
+      ctx.addIssue({
+        code: 'custom',
+        message:
+          'Ranges carry no group size; chart participant numbers as bars, intervals or map cells'
       })
-    )
-    .min(1)
-    .refine(
-      (rows) => rows.every((row) => row.low <= row.high),
-      'Each row needs low <= high'
-    )
-})
+  })
 
 const span = z
   .tuple([probability, probability])
@@ -229,6 +239,18 @@ export const mapDataSchema = z
   .superRefine((chart, ctx) => {
     if (!chart.points.length && !chart.cells?.length)
       ctx.addIssue({ code: 'custom', message: 'A map needs points or cells' })
+    // Points are individual people, so they come from another provenance:
+    // participants only ever show as cells over groups of 10 or more.
+    if (
+      chart.points.length &&
+      provenanceList(chart.provenance).every(
+        (source) => source === 'participants'
+      )
+    )
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Map points are individuals; participant numbers show as cells'
+      })
     if (!chart.cells) return
     if (!provenanceList(chart.provenance).includes('participants'))
       ctx.addIssue({

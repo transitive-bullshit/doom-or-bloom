@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { blogDataSchema, type BlogData } from './schema'
+import { blogDataSchema, minimumGroupSize, type BlogData } from './schema'
 
 // The data posts' charts, built from committed aggregates: participant
 // numbers from `pnpm blog:data` (content/blog/aggregates/participants.json)
@@ -8,12 +8,21 @@ import { blogDataSchema, type BlogData } from './schema'
 // See docs/BLOG.md#participant-data.
 
 const count = z.int().nonnegative()
-const shareStat = z.object({
-  n: count,
-  count: count.nullable(),
-  share: z.number().nullable(),
-  ci95: z.tuple([z.number().nullable(), z.number().nullable()])
-})
+// Aggregates are committed publicly, so no group under the minimum may appear
+// with its size: neither a count nor a denominator.
+const atLeastMinimum = (value: number | null) =>
+  value === null || value >= minimumGroupSize
+const shareStat = z
+  .object({
+    n: count.nullable(),
+    count: count.nullable(),
+    share: z.number().nullable(),
+    ci95: z.tuple([z.number().nullable(), z.number().nullable()])
+  })
+  .refine(
+    (stat) => atLeastMinimum(stat.n) && atLeastMinimum(stat.count),
+    `A share's group sizes must be null or at least ${minimumGroupSize}`
+  )
 const medianStat = z.object({
   n: count.nullable(),
   median: z.number().nullable(),
