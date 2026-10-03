@@ -1,0 +1,74 @@
+{
+  "title": "हर दिन रेफ़र किए गए विज़िटर, Hacker News बनाम X",
+  "source": "Vercel Web Analytics के अनुसार Hacker News या X (t.co और x.com) से रेफ़र किए गए साइट विज़िटर। ये विज़िटर हैं, प्रतिभागी नहीं।",
+  "asOf": "2026-10-01",
+  "provenance": "site-traffic",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X",
+      "tone": "blue"
+    }
+  ],
+  "stacked": true,
+  "rows": [
+    {
+      "label": "25 सितंबर",
+      "values": {
+        "hn": {
+          "share": 0.987,
+          "count": 3972
+        },
+        "x": {
+          "share": 0.013,
+          "count": 53
+        }
+      }
+    },
+    {
+      "label": "26 सितंबर",
+      "values": {
+        "hn": {
+          "share": 0.889,
+          "count": 426
+        },
+        "x": {
+          "share": 0.111,
+          "count": 53
+        }
+      }
+    },
+    {
+      "label": "27 सितंबर",
+      "values": {
+        "hn": {
+          "share": 0.114,
+          "count": 51
+        },
+        "x": {
+          "share": 0.886,
+          "count": 397
+        }
+      }
+    },
+    {
+      "label": "28 सितंबर",
+      "values": {
+        "hn": {
+          "share": 0.207,
+          "count": 44
+        },
+        "x": {
+          "share": 0.793,
+          "count": 169
+        }
+      }
+    }
+  ]
+}

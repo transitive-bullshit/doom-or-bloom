@@ -1,0 +1,97 @@
+---
+title: 'Hacker News sieht KI düsterer als X'
+description: 'Die Hacker-News-Nutzer landeten auf unserer Karte deutlich pessimistischer als die X-Nutzer zwei Tage später, doch bei beiden war der Anteil echter Untergangspessimisten gleich gering.'
+---
+
+import outlookByWave from './data/launch-week-outlook-by-wave.json'
+import doomerVsMood from './data/launch-week-doomer-vs-mood.json'
+import referrersByDay from './data/launch-week-referrers-by-day.json'
+import oldVsNewQuestions from './data/launch-week-old-vs-new-questions.json'
+
+**Menschen, die während unserer Hacker-News-Welle (25.–26. Sept. 2026) an Doom or Bloom teilnahmen, landeten bei einer medianen Einschätzung von 0,34 auf einer Skala von 0 (Doom) bis 1 (Bloom), gegenüber 0,73 bei der X-Welle zwei Tage später (27.–28. Sept.). Doch in beiden Gruppen erwarteten dieselben 5–6 % eine Katastrophe, und dieselben 38–39 % hatten eine P(doom) von 10 % oder mehr.**
+
+Ich habe [Doom or Bloom](/) am 25. September gestartet. Es ist ein kurzes adaptives Interview (etwa 3 Minuten), das dich auf einer Karte einordnet: wie gut oder schlecht sich KI deiner Erwartung nach entwickeln wird, von Doom bis Bloom, und wie stark sie deiner Erwartung nach die Welt verändern wird. Du erhältst außerdem eine P(doom), entweder die, die du eingibst, oder eine grobe, die wir ableiten.
+
+Die Startwoche verlief in zwei klar voneinander getrennten Wellen. Zuerst brachte ein Beitrag auf Hacker News am 25.–26. Sept. fast den gesamten Traffic. Nachdem dieser abgeklungen war, kam am 27.–28. Sept. eine Welle von X. Die beiden Gruppen sahen auf der Karte so unterschiedlich aus, dass ich prüfen wollte, ob das tatsächlich so war oder ob ich dazwischen einfach etwas kaputtgemacht hatte. Diese Zahlen entsprechen dem Stand vom 3. Oktober 2026.
+
+## Der auffälligste Unterschied
+
+<DataBars data={outlookByWave} />
+
+Die häufigste Einordnung in der Hacker-News-Welle war „erwartet hauptsächlich Schäden“: 48 % von ihnen, gegenüber 18 % in der X-Welle. Die X-Welle konzentrierte sich auf der anderen Seite: 28 % wurden als „begeistert“ eingeordnet, gegenüber 5 % auf Hacker News.
+
+In Zahlen:
+
+- **Mediane Einschätzung:** 0,34 auf Hacker News (95-%-Intervall 0,31–0,37) gegenüber 0,73 auf X (0,65–0,76). Der Unterschied beträgt 0,40 (0,31–0,44)
+- **Doom-Seite (Einschätzung unter 0,4):** 57 % auf Hacker News gegenüber 25 % auf X
+- **Bloom-Seite (über 0,6):** 27 % auf Hacker News gegenüber 59 % auf X
+- **Wählt man zufällig eine Person aus jeder Welle aus**, liegt die Person von X in 72 % der Fälle näher an Bloom (Mann–Whitney p \< 10⁻²⁴, rang-biseriale Effektstärke 0,44)
+
+## Aber Hacker News ist nicht stärker auf Doom ausgerichtet
+
+Diesen Teil hatte ich nicht erwartet. Wenn „Doomer“ bedeutet, eine Katastrophe zu erwarten oder eine hohe P(doom) anzugeben, sind die beiden Gruppen im Grunde gleich.
+
+<DataBars data={doomerVsMood} />
+
+- **Erwartet eine Katastrophe als wahrscheinlichsten Ausgang:** 6,3 % auf Hacker News gegenüber 5,0 % auf X (Fisher p = 0,54)
+- **Angezeigte P(doom) von 10 % oder mehr:** 38 % gegenüber 39 % (p = 0,82)
+- **Angezeigte P(doom) von 30 % oder mehr:** 22 % gegenüber 16 % (p = 0,07, höchstens ein Vielleicht)
+- **Median der angezeigten P(doom):** 5,8 % gegenüber 6,5 %
+
+Eine Einschränkung: Fast alle in der Hacker-News-Welle erhielten eine _abgeleitete_ P(doom), weil im Interview noch nicht nach einer Zahl gefragt wurde und abgeleitete Werte grob sind und zur Mitte hin zusammengedrängt werden. Daher sind die P(doom)-Zeilen schwächere Belege als die Katastrophenzeile, die auf derselben Auswertung beruht wie die Einschätzung selbst.
+
+Bei der Kluft geht es also nicht um Auslöschung. Es geht um die Stimmung. Die Hacker-News-Gruppe erwartet mehrheitlich, dass KI mehr schadet als nützt, und zwar auf gewöhnliche statt auf katastrophale Weise. Die X-Gruppe erwartet mehrheitlich, dass sie mehr nützt als schadet. Beide haben denselben kleinen Kern von Menschen, die glauben, dass es für alle schlimm enden könnte.
+
+Hacker News ist also nicht stärker auf _Doom_ ausgerichtet als X. Dort ist die Stimmung düsterer.
+
+## Wem die jeweilige Gruppe am nächsten kam
+
+Am Ende des Interviews zeigen wir die drei bekannten Meinungsführer, deren simulierte Weltsichten deiner am nächsten sind. Die häufigsten nächsten Übereinstimmungen erzählen die Geschichte besser als jeder Median:
+
+- **Hacker-News-Welle:** Ed Zitron (16 %), Bernie Sanders (12 %), Geoffrey Hinton (10 %), Nathan Lambert (10 %), Daron Acemoglu (7 %)
+- **X-Welle:** Elon Musk (10 %), Roon (7 %), Sholto Douglas (7 %), Jensen Huang (5 %), Yann LeCun (5 %)
+
+## Ist der Unterschied real?
+
+Während der Launch-Woche habe ich nicht erfasst, woher die einzelnen Personen kamen: Das First-Touch-Tracking pro Person begann erst am 1. Oktober. Daher sind die Wellen nach Datum definiert, und alles andere, was sich zwischen diesen Daten verändert hat, kommt als Ursache infrage. Folgendes habe ich überprüft.
+
+**Waren die Wellen wirklich Hacker News und X?** Die Website-Analysen erfassen Referrer für Seitenaufrufe, nicht für einzelne Teilnehmende. Am 25. Sep. kamen 99 % der von Hacker News oder X weitergeleiteten Besucher von Hacker News, am 26. Sep. waren es 89 %. Dann kehrte sich das Verhältnis um: Am 27. Sep. kamen 89 % von X und am 28. Sep. 79 %.
+
+<DataBars data={referrersByDay} />
+
+**Habe ich das Interview dazwischen geändert?** Ja, und das ist der wichtigste Punkt. Am 27. Sep. veröffentlichte ich am frühen Nachmittag UTC eine neue Version der Engine mit neuen direkten Fragen zu den insgesamt erwarteten Auswirkungen, zum Ausmaß der Transformation und zu P(doom). Jedes gespeicherte Ergebnis wurde mit demselben aktualisierten Reader erneut gelesen, aber die Fragen, die die Personen tatsächlich beantworteten, unterscheiden sich.
+
+Zum Glück absolvierten 52 Personen aus der X-Welle am 27. Sep. vor der Veröffentlichung das _alte_ Interview, als die Verweise von X die von Hacker News bereits um mehr als 4 zu 1 übertrafen. Das ermöglicht einen saubereren Vergleich:
+
+<DataIntervals data={oldVsNewQuestions} />
+
+- **X-Welle, alte Fragen:** mediane Einschätzung 0,73 (52 Personen)
+- **X-Welle, neue Fragen:** ebenfalls 0,73 (209 Personen), statistisch identisch (p = 0,98)
+- **Hacker-News-Welle, dieselben alten Fragen:** 0,34
+
+Die Lücke bei der Einschätzung liegt also daran, wer teilgenommen hat, nicht daran, was ich gefragt habe. Bei der Achse zum **Ausmaß der Transformation** sieht es anders aus. Die X-Welle erwartet ebenfalls eine deutlich größere Veränderung (Median 0,88 gegenüber 0,66), aber das liegt teilweise an der neuen direkten Frage: Personen aus der X-Welle liegen beim alten Interview bei 0,77 und beim neuen bei 0,93. Ich würde nicht viel in den Unterschied beim Ausmaß hineinlesen.
+
+**Tageszeit und Geografie?** Die Hacker-News-Welle konzentrierte sich auf den Nachmittag in den USA (84 % begannen zwischen 18:00 und 23:59 UTC), während die X-Welle über den ganzen Tag verteilt war. Doch innerhalb der einzelnen Wellen verändert sich der Median über die Tageszeiten hinweg kaum (Hacker News 0,25–0,36, X 0,67–0,75). Unter den weitergeleiteten Besuchern befanden sich 47 % der Besucher von Hacker News in den USA, gegenüber 40 % der Besucher von X. Das ist keine ausreichend große Verschiebung, um eine Lücke von 0,4 zu erklären.
+
+**Wo landeten die Leute?** Etwa 97 % der von beiden Quellen weitergeleiteten Besucher landeten auf der Startseite, niemand kam also über die Seite eines bestimmten Meinungsführers.
+
+**Antwortlänge, Duplikate, Abgrenzungen?** Die Antworten umfassten bei Hacker News im Median 24 Wörter, gegenüber 21 bei X. Wenn jedes Interview statt nur eines pro Person gezählt wird, die X-Welle am 27. Sep. mittags beginnt oder nur die Spitzenzeiten von Hacker News verwendet werden, verschieben sich die Mediane jeweils um weniger als 0,02.
+
+Was ich _nicht_ ausschließen kann: Das sind zwei selbst ausgewählte Gruppen, die auf zwei unterschiedliche Posts reagierten. Die Hacker-News-Gruppe kam über einen Launch-Thread und die dazugehörige Diskussion. Die X-Gruppe kam größtenteils über Posts in meiner Ecke von X, die meiner Vermutung nach eher Menschen erreicht, die mit KI arbeiten. Ich kann „Hacker-News-Leser“ nicht von „Menschen, die an diesem Tag genau diesen Thread gelesen haben“ trennen. Aber genau darum geht es gewissermaßen. Dein Feed prägt die Gruppe, und die Gruppe prägt, was als „normal“ erscheint.
+
+## Was ich daraus mitnehme
+
+Die übliche Darstellung ordnet alle auf einer einzigen Linie vom Doomer bis zum Akzelerationisten ein. Diese Daten deuten darauf hin, dass mindestens zwei verschiedene Dinge eine Rolle spielen. Das eine ist, ob du erwartest, dass KI das Leben auf gewöhnliche Weise besser oder schlechter macht. Das andere ist, ob du glaubst, dass sie in einer Katastrophe enden könnte. Hacker News und X unterscheiden sich beim ersten Punkt stark und beim zweiten kaum.
+
+## Wie wir das gemessen haben
+
+- **Daten:** ein schreibgeschützter Auszug aus der Produktionsdatenbank von Doom or Bloom vom 3. Oktober 2026, wobei nach unserer Neubewertung der gespeicherten Ergebnisse am 27. Sep mit dem aktuellen Auswerter die aktuelle Version jedes Ergebnisses verwendet wurde
+- **Wer zählt:** ein Ergebnis pro Person, und zwar ihr erstes Interview, das zu einem Ergebnis führte. Mein eigenes Testkonto und die simulierten Meinungsführer habe ich ausgeschlossen. 655 Personen in der Hacker-News-Welle und 263 in der X-Welle hatten ein Ergebnis (648 beziehungsweise 261 mit einer eingeordneten Einschätzung)
+- **Wellen:** UTC-Daten, 25.–26. Sep und 27.–28. Sep, abgeleitet aus dem zeitlichen Verlauf und den websiteweiten Referrer-Daten statt aus einem Referrer pro Person
+- **Statistik:** Mediane mit 95-%-Bootstrap-Intervallen (10.000 Stichprobenwiederholungen), zweiseitige Mann–Whitney-U-Tests, ein Permutationstest für die Mediandifferenz und Fisher’s exact test für Anteile
+- **Datenschutz:** Hier erscheinen nur aggregierte Daten, und jede Zahl beschreibt mindestens 10 Personen. Für diesen Beitrag wurden keine Antworttexte gelesen
+- **Einschränkungen:** Dies ist keine Umfrage unter Nutzern von Hacker News oder X. Es sind diejenigen, die geklickt und das Interview abgeschlossen haben. Einschätzung und P(doom) sind die Auswertungen unseres Modells für kurze schriftliche Antworten, keine validierten Messgrößen, und ein abgeleitetes P(doom) ist grob. Die Meinungsführer werden anhand öffentlicher Texte und Interviews simuliert
+
+## Wo stehst du?
+
+Ich würde gern eine dritte Gruppe sehen. [Mach das Interview](/) (etwa 3 Minuten, keine Registrierung), finde heraus, wo du stehst, und schick es jemandem, der anderswo landen wird.

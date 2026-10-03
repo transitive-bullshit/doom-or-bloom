@@ -1,0 +1,50 @@
+{
+  "description": "Externally referred site visitors per UTC day, from Vercel Web Analytics: site traffic, not participants. Visitors with no referrer are excluded, and one visitor can appear under several referrers.",
+  "asOf": "2026-10-01",
+  "hackerNewsHosts": [
+    "news.ycombinator.com",
+    "hckrnews.com",
+    "hackerweb.app",
+    "hn.premii.com"
+  ],
+  "xHosts": ["t.co", "x.com"],
+  "byDay": [
+    {
+      "day": "2026-09-25",
+      "hackerNewsFamily": 3972,
+      "x": 53
+    },
+    {
+      "day": "2026-09-26",
+      "hackerNewsFamily": 426,
+      "x": 53
+    },
+    {
+      "day": "2026-09-27",
+      "hackerNewsFamily": 51,
+      "x": 397
+    },
+    {
+      "day": "2026-09-28",
+      "hackerNewsFamily": 44,
+      "x": 169
+    },
+    {
+      "day": "2026-09-29",
+      "hackerNewsFamily": 16,
+      "x": 12
+    }
+  ],
+  "sep27Before13utc": {
+    "x": 119,
+    "hackerNewsFamily": 26
+  },
+  "homepageLandingShare": {
+    "hackerNewsReferred_sep25_26": 0.975,
+    "xReferred_sep27_28": 0.974
+  },
+  "usShare": {
+    "hackerNewsReferred_sep25_26": 0.47,
+    "xReferred_sep27_28": 0.396
+  }
+}

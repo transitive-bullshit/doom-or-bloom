@@ -84,8 +84,9 @@ const config: NextConfig = {
     '/*/assessments/*': authoredContent,
     '/*/public/assessments/*': authoredContent,
     '/*/users/*': authoredContent,
-    // Regenerated at runtime: they list blog posts from their frontmatter.
-    '/sitemap.xml': ['content/blog/*.mdx'],
+    // Regenerated at runtime: they list blog posts from their frontmatter,
+    // and the sitemap lists translated posts in every locale.
+    '/sitemap.xml': ['content/blog/*.mdx', 'content/l10n/*/blog/*.mdx'],
     '/llms.txt': ['content/blog/*.mdx']
   },
   experimental: {

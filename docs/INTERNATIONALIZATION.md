@@ -13,13 +13,14 @@ Translated:
 - the About and Privacy pages and the legacy `/assessment` start page;
 - the whole assessment interface: the interview, readiness, recovery and error copy, toasts and aria-labels, self-placement, the result (map, P(doom) card, closest worldviews, details, feedback, share bar and captions), the publish dialog and the library;
 - simulated-user and public assessment page chrome, their metadata, and their social images;
-- the chrome of the P(doom) hub (table and section headings, labels, the “As of” line, the comparability note, the directory link and CTA) and of the blog (index heading, bylines, reading times), and their metadata;
+- the chrome of the P(doom) hub (table and section headings, labels, the “As of” line, the comparability note, the directory link and CTA) and of the blog (index heading, bylines, reading times, chart chrome), and their metadata;
+- blog posts that opt in, with their charts' text and social cards ([BLOG.md](BLOG.md#languages));
 - share link pages (`/s/<id>`), their metadata and cards, and the comparison card;
 - the downloaded share card, the map image and the Markdown report;
 - text that `lib/` code builds: result reasons, P(doom) ranges, claim scopes and readings, facet and experimental-axis labels and levels, milestone and hinge labels, self-placement comparisons, share captions, tension and correction prompts and API error messages;
 - authored assessment content from `content/`: questions (including the placement and split-outlook questions), their recovery copy, findings, resources and rubric level texts ([Authored content](#authored-content)).
 
-Not translated: blog posts and their social cards and feed, the P(doom) hub’s explainer, table notes and quotes, scenarios, sources and readings ([BLOG.md](BLOG.md#languages)), participant answers and simulated answers (Jev reads answers as written; see [Jev and the participant's language](#jev-and-the-participants-language)), persona descriptions, admin, local review tools, debug panels (including the JSON inspector that About and simulated-user pages embed), the fixture-mode badge, llms.txt (English, with a Languages section) and API error bodies. The library page's report download keeps authored text in English; the report from the interview page translates it.
+Not translated: other blog posts and their social cards, the blog feed, the P(doom) hub’s explainer, table notes and quotes, scenarios, sources and readings ([BLOG.md](BLOG.md#languages)), participant answers and simulated answers (Jev reads answers as written; see [Jev and the participant's language](#jev-and-the-participants-language)), persona descriptions, admin, local review tools, debug panels (including the JSON inspector that About and simulated-user pages embed), the fixture-mode badge, llms.txt (English, with a Languages section) and API error bodies. The library page's report download keeps authored text in English; the report from the interview page translates it.
 
 All translations other than the Spanish UI catalog are machine translations. Native review is required only for the root question, the recovery and retry copy and the wording of result claims ([Review](#review)); it does not block a release.
 
@@ -38,7 +39,7 @@ English URLs are unchanged. Every other locale adds a `/<code>` prefix (`localeP
 
 - Pages live under `app/[locale]/`. `app/[locale]/layout.tsx` is the root layout: it sets `<html lang>` and generates every enabled locale. The locale is a root param read through `next/root-params` in `i18n/request.ts`, so pages stay static; `setRequestLocale` is not used.
 - `app/[locale]/(site)/layout.tsx` returns a 404 when the first segment is not a locale, e.g. `/api/about` matching `[locale]=api`.
-- Outside the locale tree: `app/api/`, `app/(internal)/` (admin, `/questions`, `/corpus`, `/user-journeys`, `/prototypes`, English-only with its own root layout and no language selector), `llms.txt`, `robots.txt`, `sitemap.xml`, `/public/assessments/<id>/data`, the English `/public/assessments/<id>/social-image.png`, `/users/<slug>/opengraph-image`, `/blog/rss.xml` and `/blog/<slug>/opengraph-image`.
+- Outside the locale tree: `app/api/`, `app/(internal)/` (admin, `/questions`, `/corpus`, `/user-journeys`, `/prototypes`, English-only with its own root layout and no language selector), `llms.txt`, `robots.txt`, `sitemap.xml`, `/public/assessments/<id>/data`, the English `/public/assessments/<id>/social-image.png`, `/users/<slug>/opengraph-image`, `/blog/rss.xml` and the English `/blog/<slug>/opengraph-image` (a translated post's card is `/<code>/blog/<slug>/opengraph-image`, inside the locale tree).
 - There is no proxy function. `i18n/next-routes.ts` generates `next.config.ts` rules, which Vercel applies in its routing layer before the cache:
   - rewrites serve unprefixed page URLs from `/en/…`: `/` in `beforeFiles`, every other path in `afterFiles` (after static files and non-dynamic routes, before dynamic routes). Between the two, Vercel maps RSC requests and segment prefetches to prerendered files by pathname. `/users` becomes `/users.rsc`, which the `afterFiles` rewrite carries to `/en/users.rsc`, but `/` becomes `/index.rsc` or `/index.segments/…`, which no `afterFiles` rewrite can send to `/en`. `next start` routes RSC requests by header instead, so `check:prefetch` models Vercel's order on the build output;
   - redirects drop the `/en` prefix and apply the [explicit choice](#persistence-of-the-choice). They run after the legacy `/assessment/<id>` and WebP image redirects, so a remembered language applies to the new URL.
@@ -69,7 +70,8 @@ The footer selector writes a `NEXT_LOCALE` cookie in the browser: one year, `Pat
 `pageMetadata` in `lib/metadata.ts` takes the page's `locale` and whether its main content is `translated`:
 
 - Translated pages (`translated: true` in `publicPages`: `/`, `/about`, `/privacy` and `/users`) canonicalize to themselves. They list every enabled locale as an hreflang alternate keyed by its language tag, with English as `x-default`, and set `og:locale` and its alternates.
-- Simulated-user profiles, public assessments, the P(doom) hub (`translated: false`), the blog index and posts are noindex outside English. Their main content stays in its original language, so they canonicalize to the English URL and advertise no alternates, following Google's guidance against boilerplate-only translations. Their English body is marked `lang="en"` under the localized `<html lang>`.
+- Translated blog posts canonicalize to themselves and list every locale as an alternate, like translated pages ([BLOG.md](BLOG.md#languages)).
+- Simulated-user profiles, public assessments, the P(doom) hub (`translated: false`), the blog index and English-only posts are noindex outside English. Their main content stays in its original language, so they canonicalize to the English URL and advertise no alternates, following Google's guidance against boilerplate-only translations. Their English body is marked `lang="en"` under the localized `<html lang>`.
 
 The sitemap lists every locale URL of a translated page with `alternates.languages`, and only the English URL of other pages. `llms.txt` stays English and ends with a Languages section.
 
@@ -111,6 +113,7 @@ Authored assessment text is translated ahead of time and committed; nothing is t
 content/l10n/<code>/releases/<contentVersion>.json   # questions, recovery copy, findings, resources
 content/l10n/<code>/rubrics/<rubricVersion>.json     # rubric level texts, including catastrophic risk
 content/l10n/<code>/messages.json                    # provenance of messages/<code>.json (no text)
+content/l10n/<code>/blog/                            # translated posts, their chart text and provenance (BLOG.md#languages)
 ```
 
 - Entries are keyed by stable ID: `prompt:<id>:text|reask|clarification|exhausted`, `finding:<id>`, `resource:<id>:title|purpose|question|effort` and `level:<vector>:<index>`. Each records the text, `sourceHash` (the first 16 hex digits of the SHA-256 of the English it translates), `model`, `translatedAt`, `reviewStatus` (`machine` or `reviewed`) and, once reviewed, `reviewer`. The Spanish UI catalog predates the tool, so its provenance says `model: "unrecorded"`.
@@ -129,18 +132,18 @@ content/l10n/<code>/messages.json                    # provenance of messages/<c
 ### Translation tooling
 
 ```
-pnpm l10n:translate --locale=<code> [--only-stale] [--scope=all|messages|content] (--dry-run | --allow-paid --max-cost=<usd>)
+pnpm l10n:translate --locale=<code> [--only-stale] [--scope=all|messages|content|blog] [--post=<slug>…] (--dry-run | --allow-paid --max-cost=<usd>)
 pnpm l10n:review --locale=<code> [--back-translate --allow-paid --max-cost=<usd>]
 pnpm l10n:review --locale=<code> --approve=<reviewer>
 ```
 
-- `l10n:translate` translates `messages/<code>.json` and the content files with OpenAI (`gpt-5.6-sol`, low reasoning). With `--only-stale` it translates only missing entries and entries whose English changed; without it, everything except current reviewed entries. Each distinct English string is translated once and reused across versions. It writes the files in English key order, records provenance and formats them.
+- `l10n:translate` translates `messages/<code>.json` and the content files with OpenAI (`gpt-5.6-sol`, low reasoning). With `--only-stale` it translates only missing entries and entries whose English changed; without it, everything except current reviewed entries. Each distinct English string is translated once and reused across versions. It writes the files in English key order, records provenance and formats them. The `blog` scope (part of `all`) translates posts that already have a translation, and those named with `--post`, section by section, and checks each section keeps the English imports, components, links, headings and numbers ([BLOG.md](BLOG.md#languages)).
 - The instructions carry the glossary and copy rules: Doom, Bloom, Doom or Bloom and P(doom) untranslated; a per-language term for AI; "thought leaders"; a plain, neutral register that never adds, drops or intensifies a premise; no final period where the English has none; "about 3 minutes"; and unchanged ICU placeholders and tags. Short labels (`Claims.labels`, `Map`, `Cta`, `Header`) are translated first and given to every later batch as a glossary. Every reply is checked (ICU structure, placeholders, untranslated brand terms, kana in Chinese), trailing periods are removed where the English has none, and failures are retried with the problem named.
 - It needs `--allow-paid` and a `--max-cost` of at most $15 per run, and appends each call to `eval/runs/l10n-<code>-<time>.jsonl`. The OpenAI key exists only in the owner's login shell: run `bash -lc 'pnpm l10n:translate …'`, and never print the key.
 - Read a sample back before committing. A useful audit: the target script is present (hi, th, zh, ja), Latin-script translations are not left identical to English, Doom, Bloom and P(doom) survive, and the register is consistent.
 - After translating characters a card font lacks, run `pnpm fonts:subset` ([Fonts](#fonts)).
 
-The phase 3 run (October 1, 2026) cost $5.81 for the eight new languages' messages and content and Spanish content, and $0.80 for back-translated review packets.
+The phase 3 run (October 1, 2026) cost $5.81 for the eight new languages' messages and content and Spanish content, and $0.80 for back-translated review packets. Translating the four launch-week data posts and their chart messages into nine languages (October 3, 2026) cost $5.93, including $0.61 for a run that stopped at its cap.
 
 ### Review
 

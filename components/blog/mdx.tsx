@@ -4,6 +4,9 @@ import { Link } from '@/i18n/navigation'
 import { pdoomDefinition } from '@/lib/p-doom/copy'
 import type { ProfileMentions } from '@/lib/personas/mentions'
 import { MentionText } from '@/components/mention-text'
+import type { ChartText } from './chart-parts'
+import { DataBars } from './data-bars'
+import { DataIntervals } from './data-intervals'
 import { DataMap } from './data-map'
 import { DataRanges } from './data-ranges'
 
@@ -56,17 +59,34 @@ export const blogComponents = {
     />
   ),
   hr: () => <hr className='my-4' />,
+  table: (props) => (
+    <div className='overflow-x-auto'>
+      <table className='w-full text-left text-sm' {...props} />
+    </div>
+  ),
+  th: (props) => (
+    <th className='border-b px-2 py-2 align-bottom font-semibold' {...props} />
+  ),
+  DataBars,
+  DataIntervals,
   DataMap,
   DataRanges,
   Definition
 } satisfies MDXComponents
 
 /**
- * Links people with a published profile: the first mention of each in a
- * paragraph, list item or table cell, and every name in a chart. Text inside
- * headings, links and emphasis stays as written.
+ * A post's page bindings. Links people with a published profile: the first
+ * mention of each in a paragraph, list item or table cell, and every name in a
+ * chart. Text inside headings, links and emphasis stays as written. Charts
+ * label and format in the post's language.
  */
-export function profileLinkComponents(mention: ProfileMentions): MDXComponents {
+export function postComponents({
+  mention,
+  text
+}: {
+  mention: ProfileMentions
+  text: ChartText
+}): MDXComponents {
   const linkNames = (children: ReactNode) => {
     const linked = new Set<string>()
     return Children.map(children, (child) =>
@@ -80,9 +100,22 @@ export function profileLinkComponents(mention: ProfileMentions): MDXComponents {
   return {
     p: ({ children, ...props }) => <p {...props}>{linkNames(children)}</p>,
     li: ({ children, ...props }) => <li {...props}>{linkNames(children)}</li>,
-    td: ({ children, ...props }) => <td {...props}>{linkNames(children)}</td>,
+    td: ({ children, ...props }) => (
+      <td className='border-b px-2 py-2 align-top tabular-nums' {...props}>
+        {linkNames(children)}
+      </td>
+    ),
     DataRanges: (props: ComponentProps<typeof DataRanges>) => (
-      <DataRanges {...props} mention={mention} />
+      <DataRanges {...props} mention={mention} text={text} />
+    ),
+    DataBars: (props: ComponentProps<typeof DataBars>) => (
+      <DataBars {...props} mention={mention} text={text} />
+    ),
+    DataIntervals: (props: ComponentProps<typeof DataIntervals>) => (
+      <DataIntervals {...props} text={text} />
+    ),
+    DataMap: (props: ComponentProps<typeof DataMap>) => (
+      <DataMap {...props} text={text} />
     )
   }
 }

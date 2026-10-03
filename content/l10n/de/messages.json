@@ -4053,15 +4053,147 @@
       "reviewStatus": "machine"
     },
     "Blog.englishOnly": {
-      "sourceHash": "3562c6d26b864392",
+      "sourceHash": "445147a9b699630b",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "Blog.inEnglish": {
+      "sourceHash": "278e2655789ec743",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
       "reviewStatus": "machine"
     },
     "Blog.rss": {
       "sourceHash": "8058db69f14b9313",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.asOf": {
+      "sourceHash": "bd3feb8a76ac1693",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.fewerThan": {
+      "sourceHash": "cd170029ccf79a51",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.fewerThanPeople": {
+      "sourceHash": "0f2bea64498b2865",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.rangeScale": {
+      "sourceHash": "bce69dd3f3c75170",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.who": {
+      "sourceHash": "c17b94b8c9394d40",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.estimate": {
+      "sourceHash": "558ecb0fd23a9e3c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.category": {
+      "sourceHash": "292c06f0045a45d0",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.series": {
+      "sourceHash": "a8295e08ff7a961c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.share": {
+      "sourceHash": "29887a5ff9846ccc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.count": {
+      "sourceHash": "37bac4952becf21a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.value": {
+      "sourceHash": "8e37953d23daca5f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.people": {
+      "sourceHash": "7db20897053bb278",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.outlook": {
+      "sourceHash": "4179fb4eba716348",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.scale": {
+      "sourceHash": "ce37c6cf5b0b30be",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.point": {
+      "sourceHash": "2fc0c524431a9236",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.weight": {
+      "sourceHash": "81d27ef6d5033c3e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.lowShare": {
+      "sourceHash": "2f5b266ffddf8413",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.highShare": {
+      "sourceHash": "95baf92809bbd9e3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.mapSummary": {
+      "sourceHash": "382bde67bbd03038",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.interval": {
+      "sourceHash": "4b265a72bec37963",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "BlogCharts.range": {
+      "sourceHash": "c31aaea64ca519f2",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
       "reviewStatus": "machine"
     },
     "Cards.civilizational": {

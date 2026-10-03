@@ -1,0 +1,99 @@
+{
+  "title": "Alte und neue Fragen nach Welle",
+  "source": "In Interviews, die vor der Veröffentlichung am 27. Sep begonnen wurden, wurden die alten Fragen gestellt. Ein Ergebnis pro Person.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "intervals",
+  "scale": {
+    "min": 0,
+    "max": 1,
+    "ticks": [0, 0.25, 0.5, 0.75, 1]
+  },
+  "interval": "95-%-Intervall",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker-News-Welle, 25.–26. Sep",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X-Welle, 27.–28. Sep",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Hacker-News-Welle, alte Fragen",
+      "group": "Mediane Einschätzung, von Doom (0) bis Bloom (1)",
+      "values": {
+        "hn": {
+          "value": 0.335,
+          "low": 0.307,
+          "high": 0.37,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "X-Welle, alte Fragen",
+      "group": "Mediane Einschätzung, von Doom (0) bis Bloom (1)",
+      "values": {
+        "x": {
+          "value": 0.725,
+          "low": 0.526,
+          "high": 0.798,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "X-Welle, neue Fragen",
+      "group": "Mediane Einschätzung, von Doom (0) bis Bloom (1)",
+      "values": {
+        "x": {
+          "value": 0.733,
+          "low": 0.635,
+          "high": 0.758,
+          "n": 209
+        }
+      }
+    },
+    {
+      "label": "Hacker-News-Welle, alte Fragen",
+      "group": "Medianes Ausmaß der Veränderung, von schrittweise (0) bis zivilisatorisch (1)",
+      "values": {
+        "hn": {
+          "value": 0.658,
+          "low": 0.633,
+          "high": 0.682,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "X-Welle, alte Fragen",
+      "group": "Medianes Ausmaß der Veränderung, von schrittweise (0) bis zivilisatorisch (1)",
+      "values": {
+        "x": {
+          "value": 0.767,
+          "low": 0.667,
+          "high": 0.841,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "X-Welle, neue Fragen",
+      "group": "Medianes Ausmaß der Veränderung, von schrittweise (0) bis zivilisatorisch (1)",
+      "values": {
+        "x": {
+          "value": 0.925,
+          "low": 0.837,
+          "high": 0.958,
+          "n": 209
+        }
+      }
+    }
+  ]
+}

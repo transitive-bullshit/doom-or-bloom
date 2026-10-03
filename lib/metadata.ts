@@ -79,7 +79,10 @@ export function pageMetadata({
       description,
       alternates: {
         canonical: url(canonical),
-        languages: languageAlternates(siteUrl, path)
+        languages: languageAlternates(siteUrl, path),
+        ...(feed && {
+          types: { 'application/rss+xml': `${siteUrl}/blog/rss.xml` }
+        })
       },
       openGraph,
       twitter

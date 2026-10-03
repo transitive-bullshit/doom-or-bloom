@@ -1,15 +1,26 @@
-import { readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { describe, expect, test } from 'vitest'
 import coverage from './fonts/coverage.json'
 import { cardFontFamilies, cardFonts } from './card-fonts'
 import { cardRenderOptions, wrappable } from './card-renderer'
 
-/** Every character of a locale's catalog and authored translations. */
+/**
+ * Every character of a locale's catalog and authored translations, and the
+ * titles of its translated blog posts, which their cards show.
+ */
 function catalogCharacters(locale: string) {
   let text = readFileSync(`messages/${locale}.json`, 'utf8')
   for (const kind of ['releases', 'rubrics'])
     for (const file of readdirSync(`content/l10n/${locale}/${kind}`))
       text += readFileSync(`content/l10n/${locale}/${kind}/${file}`, 'utf8')
+  const blog = `content/l10n/${locale}/blog`
+  if (existsSync(blog))
+    for (const file of readdirSync(blog).filter((name) =>
+      name.endsWith('.mdx')
+    ))
+      text += readFileSync(`${blog}/${file}`, 'utf8').match(
+        /^title: (.*)$/mu
+      )?.[1]
   return new Set(text)
 }
 

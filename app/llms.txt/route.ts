@@ -45,7 +45,7 @@ export async function GET() {
     '',
     '## Blog',
     '',
-    `Posts are written in English. RSS: ${siteUrl}/blog/rss.xml`,
+    `Posts are written in English, and some are translated. RSS: ${siteUrl}/blog/rss.xml`,
     '',
     ...blogPosts().map(
       ({ slug, title, description }) =>
@@ -54,7 +54,7 @@ export async function GET() {
     '',
     '## Languages',
     '',
-    'English pages have unprefixed URLs; other languages add a prefix. The site, the assessment interface and its questions, results, About and Privacy are translated (authored assessment text is machine-translated, with native review of the root question, recovery copy and result claims). Simulated answers and participant answers stay as written, so simulated-user and published assessment pages are indexed in English only. The P(doom) explainer and blog posts are written in English and are also indexed in English only.',
+    'English pages have unprefixed URLs; other languages add a prefix. The site, the assessment interface and its questions, results, About and Privacy are translated (authored assessment text is machine-translated, with native review of the root question, recovery copy and result claims). Simulated answers and participant answers stay as written, so simulated-user and published assessment pages are indexed in English only. The P(doom) explainer is written in English and also indexed in English only. Blog posts are written in English; translated posts are indexed in every language.',
     '',
     ...localeOptions.map(
       ({ code, tag, endonym }) =>

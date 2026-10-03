@@ -356,27 +356,36 @@ export type ArticleInput = {
   words: number
   minutes: number
   image: string
+  /** The post's language: a translation describes its own URL. */
+  locale?: Locale
 }
 
 const blogId = `${pageUrl('/blog')}#blog`
-const postUrl = (slug: string) => pageUrl(`/blog/${slug}`)
+const postUrl = (slug: string, locale?: Locale) =>
+  pageUrl(`/blog/${slug}`, locale)
 /** A post as both its page and the blog index describe it. */
 const blogPosting = (post: Omit<ArticleInput, 'words' | 'minutes'>): Node => ({
   '@type': 'BlogPosting',
-  '@id': `${postUrl(post.slug)}#article`,
+  '@id': `${postUrl(post.slug, post.locale)}#article`,
   headline: post.title,
   description: post.description,
-  url: postUrl(post.slug),
+  url: postUrl(post.slug, post.locale),
   image: [absolute(post.image)],
   datePublished: post.date,
   dateModified: post.updated ?? post.date,
   author: creator(),
-  inLanguage: 'en'
+  inLanguage: languageTag(post.locale ?? defaultLocale),
+  ...(post.locale &&
+    post.locale !== defaultLocale && {
+      translationOfWork: ref(`${postUrl(post.slug)}#article`)
+    })
 })
 
-/** A blog post. Posts are written in English by the site's creator. */
+/**
+ * A blog post, written in English by the site's creator, or its translation.
+ */
 export function articleJsonLd(post: ArticleInput): JsonLdDocument {
-  const url = postUrl(post.slug)
+  const url = postUrl(post.slug, post.locale)
   return {
     '@context': context,
     ...blogPosting(post),

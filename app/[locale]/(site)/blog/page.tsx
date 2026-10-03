@@ -2,14 +2,15 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import { defaultLocale, languageTag } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
 import { publicPageMetadata } from '@/lib/metadata'
-import { blogPosts } from '@/lib/blog/posts'
+import { blogPosts, postTranslation } from '@/lib/blog/posts'
 import { postDate } from '@/lib/blog/format'
 import { blogJsonLd } from '@/lib/seo/json-ld'
 import { blogCardPath } from '@/lib/sharing/blog-social-card'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 
-// Posts are English and change only with a deployment. Other locales translate
-// the chrome and defer to the English index in search (see docs/BLOG.md).
+// Posts change only with a deployment. Other locales list each post in its
+// translation, or in English with a note, and defer to the English index in
+// search (see docs/BLOG.md).
 export const dynamic = 'error'
 export function generateMetadata() {
   return publicPageMetadata('blog', { feed: true })
@@ -37,33 +38,41 @@ export default async function Page() {
         <header className='flex flex-col gap-3'>
           <h1>{t('title')}</h1>
           <p className='text-body-foreground'>{t('intro')}</p>
-          {locale !== defaultLocale && (
-            <p className='text-sm text-muted-foreground'>{t('englishOnly')}</p>
-          )}
         </header>
         <ol className='flex flex-col gap-10'>
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <article className='flex flex-col gap-2'>
-                <h2 lang='en'>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className='underline-offset-4 hover:underline'
-                  >
-                    {post.title}
-                  </Link>
-                </h2>
-                <p lang='en' className='text-body-foreground'>
-                  {post.description}
-                </p>
-                <p className='text-sm text-muted-foreground'>
-                  <time dateTime={post.date}>{postDate(post.date, tag)}</time>
-                  {' · '}
-                  {t('readingTime', { minutes: post.minutes })}
-                </p>
-              </article>
-            </li>
-          ))}
+          {posts.map((post) => {
+            const translation = postTranslation(post.slug, locale)
+            const shown = translation ?? post
+            const lang = languageTag(translation ? locale : defaultLocale)
+            return (
+              <li key={post.slug}>
+                <article className='flex flex-col gap-2'>
+                  <h2 lang={lang}>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className='underline-offset-4 hover:underline'
+                    >
+                      {shown.title}
+                    </Link>
+                  </h2>
+                  <p lang={lang} className='text-body-foreground'>
+                    {shown.description}
+                  </p>
+                  <p className='text-sm text-muted-foreground'>
+                    <time dateTime={post.date}>{postDate(post.date, tag)}</time>
+                    {' · '}
+                    {t('readingTime', { minutes: shown.minutes })}
+                    {!translation && locale !== defaultLocale && (
+                      <>
+                        {' · '}
+                        {t('inEnglish')}
+                      </>
+                    )}
+                  </p>
+                </article>
+              </li>
+            )
+          })}
         </ol>
         <p className='text-sm'>
           <a

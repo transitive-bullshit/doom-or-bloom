@@ -1,0 +1,86 @@
+{
+  "title": "Each wave by outlook level",
+  "source": "One result per person who finished: 648 people in the Hacker News wave and 261 in the X wave.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News wave, Sep 25–26",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X wave, Sep 27–28",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Expects catastrophe",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13
+        }
+      }
+    },
+    {
+      "label": "Mainly expects harm",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48
+        }
+      }
+    },
+    {
+      "label": "Mixed or undecided",
+      "values": {
+        "hn": {
+          "share": 0.196,
+          "count": 127
+        },
+        "x": {
+          "share": 0.188,
+          "count": 49
+        }
+      }
+    },
+    {
+      "label": "Leans hopeful",
+      "values": {
+        "hn": {
+          "share": 0.208,
+          "count": 135
+        },
+        "x": {
+          "share": 0.299,
+          "count": 78
+        }
+      }
+    },
+    {
+      "label": "Enthusiastic",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73
+        }
+      }
+    }
+  ]
+}

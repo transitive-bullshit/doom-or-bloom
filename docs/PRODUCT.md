@@ -170,7 +170,7 @@ Participants can continue answering on a private assessment. Published assessmen
 
   Favicons are local files from `pnpm resources:previews`, which fetches an icon for every page the hub links; nothing is loaded from a third-party host at runtime. The explainer, notes, quotes, scenarios, sources and readings are English; headings and labels are translated.
 
-- `/blog` lists posts, newest first; `/blog/<slug>` shows one post ([BLOG.md](BLOG.md)). Posts are English under translated chrome.
+- `/blog` lists posts, newest first; `/blog/<slug>` shows one post ([BLOG.md](BLOG.md)). A post is translated into every language or stays English under translated chrome.
 - `/about` explains methodology, simplifications, known biases, versioning, tips, and the project’s goals.
 - A concise privacy policy explains server retention, operator access, optional account recovery, whole-conversation publication, card-only share links and comparisons, browser drafts and pseudonymous analytics.
 - Keep extended caveats on About/methodology and in the full report. The main flow uses compact visual uncertainty cues and a methodology link rather than repeated disclaimers.

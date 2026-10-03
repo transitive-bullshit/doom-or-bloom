@@ -1,0 +1,99 @@
+{
+  "title": "Preguntas antiguas y nuevas, por oleada",
+  "source": "Las entrevistas iniciadas antes del lanzamiento del 27 de septiembre plantearon las preguntas antiguas. Un resultado por persona.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "intervals",
+  "scale": {
+    "min": 0,
+    "max": 1,
+    "ticks": [0, 0.25, 0.5, 0.75, 1]
+  },
+  "interval": "Intervalo del 95 %",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Oleada de Hacker News, 25–26 de septiembre",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "Oleada de X, 27–28 de septiembre",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Oleada de Hacker News, preguntas antiguas",
+      "group": "Perspectiva mediana, de Doom (0) a Bloom (1)",
+      "values": {
+        "hn": {
+          "value": 0.335,
+          "low": 0.307,
+          "high": 0.37,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "Oleada de X, preguntas antiguas",
+      "group": "Perspectiva mediana, de Doom (0) a Bloom (1)",
+      "values": {
+        "x": {
+          "value": 0.725,
+          "low": 0.526,
+          "high": 0.798,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "Oleada de X, preguntas nuevas",
+      "group": "Perspectiva mediana, de Doom (0) a Bloom (1)",
+      "values": {
+        "x": {
+          "value": 0.733,
+          "low": 0.635,
+          "high": 0.758,
+          "n": 209
+        }
+      }
+    },
+    {
+      "label": "Oleada de Hacker News, preguntas antiguas",
+      "group": "Escala mediana del cambio, de incremental (0) a civilizatorio (1)",
+      "values": {
+        "hn": {
+          "value": 0.658,
+          "low": 0.633,
+          "high": 0.682,
+          "n": 648
+        }
+      }
+    },
+    {
+      "label": "Oleada de X, preguntas antiguas",
+      "group": "Escala mediana del cambio, de incremental (0) a civilizatorio (1)",
+      "values": {
+        "x": {
+          "value": 0.767,
+          "low": 0.667,
+          "high": 0.841,
+          "n": 52
+        }
+      }
+    },
+    {
+      "label": "Oleada de X, preguntas nuevas",
+      "group": "Escala mediana del cambio, de incremental (0) a civilizatorio (1)",
+      "values": {
+        "x": {
+          "value": 0.925,
+          "low": 0.837,
+          "high": 0.958,
+          "n": 209
+        }
+      }
+    }
+  ]
+}

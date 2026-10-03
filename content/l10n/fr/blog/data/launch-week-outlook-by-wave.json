@@ -1,0 +1,86 @@
+{
+  "title": "Chaque vague par niveau de perspective",
+  "source": "Un résultat par personne ayant terminé : 648 personnes dans la vague Hacker News et 261 dans la vague X.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Vague Hacker News, 25–26 septembre",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "Vague X, 27–28 septembre",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "S’attend à une catastrophe",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13
+        }
+      }
+    },
+    {
+      "label": "S’attend principalement à des dommages",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48
+        }
+      }
+    },
+    {
+      "label": "Partagé ou indécis",
+      "values": {
+        "hn": {
+          "share": 0.196,
+          "count": 127
+        },
+        "x": {
+          "share": 0.188,
+          "count": 49
+        }
+      }
+    },
+    {
+      "label": "Penche vers l’optimisme",
+      "values": {
+        "hn": {
+          "share": 0.208,
+          "count": 135
+        },
+        "x": {
+          "share": 0.299,
+          "count": 78
+        }
+      }
+    },
+    {
+      "label": "Enthousiaste",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73
+        }
+      }
+    }
+  ]
+}

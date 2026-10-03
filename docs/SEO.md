@@ -10,7 +10,7 @@ This document owns how pages present themselves to search engines and AI crawler
 | Metadata assembly | `pageMetadata` and `publicPageMetadata` in `lib/metadata.ts`: the title suffix, canonical URL, hreflang alternates, noindex outside English for English-bodied pages, Open Graph (`article` for posts) and the RSS alternate |
 | Structured data | Pure builders in `lib/seo/json-ld.ts`, rendered by `JsonLd` and `BreadcrumbJsonLd` in `components/json-ld.tsx`; shapes are tested in `lib/seo/json-ld.test.ts` |
 | Breadcrumbs | `breadcrumbTrail` in `lib/breadcrumbs.ts`, shared by the visible breadcrumbs and their BreadcrumbList |
-| Social images | The checked-in site card (`app/opengraph-image.png`), profile cards (`/users/<slug>/opengraph-image`), public assessment cards ([PERSISTENCE.md](PERSISTENCE.md#public-pages-and-social-images)) and blog post cards (`/blog/<slug>/opengraph-image`, `lib/sharing/blog-social-card.tsx`) |
+| Social images | The checked-in site card (`app/opengraph-image.png`), profile cards (`/users/<slug>/opengraph-image`), public assessment cards ([PERSISTENCE.md](PERSISTENCE.md#public-pages-and-social-images)) and blog post cards (`/blog/<slug>/opengraph-image`, and `/<code>/blog/<slug>/opengraph-image` for a translated post; `lib/sharing/blog-social-card.tsx`) |
 | Crawl files | `app/sitemap.ts`, `app/robots.ts`, `app/llms.txt/route.ts` and the blog feed `app/blog/rss.xml/route.ts` |
 
 ## Titles and descriptions
@@ -20,7 +20,7 @@ Write titles for what people search, not for the site's internal names: "How wil
 - No trailing period on a title. Descriptions are one or two full sentences and keep their periods.
 - Pages about a simulated user call the worldview simulated in the description; the title names topics, not the simulation. The structured data adds that it is a simulation from public writing, not their own assessment; don't lead search snippets with that disclaimer. Inferred P(doom) is described as rough.
 - Personas are "thought leaders"; the interview takes "about 3 minutes".
-- Translate every title and description through the catalogs ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#adding-a-string)). Post titles are English, like their posts.
+- Translate every title and description through the catalogs ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#adding-a-string)). Post titles come from each post's frontmatter, and a translated post's from its translation ([BLOG.md](BLOG.md#languages)).
 
 ### Profile titles
 
@@ -44,7 +44,7 @@ Every title must fit Google's desktop limit of about 600px of 20px Arial with " 
 | `/p-doom` | `WebPage` about P(doom), whose `mainEntity` is the `Dataset` of the curated table: `variableMeasured` (a `PropertyValue`), `creator`, `dateModified`, `temporalCoverage`, `isAccessibleForFree` and `isBasedOn` the sources of its numbers and quoted refusals. No `license` is stated for the table, so none is claimed. An `ItemList` of its profiles in table order |
 | `/about` | `AboutPage` about the `WebSite` |
 | `/blog` | `Blog` with each post as a `BlogPosting` in `blogPost` |
-| `/blog/<slug>` | `BlogPosting`: headline, dates, author and publisher (the creator), the post card, `mainEntityOfPage`, `wordCount` and `timeRequired` |
+| `/blog/<slug>` | `BlogPosting`: headline, dates, author and publisher (the creator), the post card, `mainEntityOfPage`, `wordCount`, `timeRequired` and `inLanguage`; a translation gives its own URL and `translationOfWork` |
 | Every page with breadcrumbs | `BreadcrumbList` matching the visible trail, in the page's locale; pages with a `WebPage` node link it as `breadcrumb` |
 
 - **Simulated people.** A profile is a `WebPage`, not a `ProfilePage`, which Google reserves for people affiliated with the site. The `Person`'s `description` is their one-liner, never the simulation's result. The page's `description` adds that the worldview is a simulation from public writing, not their own assessment, after the search description, so snippets don't lead with it.
@@ -57,7 +57,7 @@ Render JSON-LD with `JsonLd`, which escapes `<` so text cannot close the script 
 ## Indexing and canonical URLs
 
 - Pages translated in every locale (`translated: true` in `publicPages`) canonicalize to themselves and list hreflang alternates.
-- Pages whose main content stays English (simulated users, public assessments, the P(doom) hub, the blog index and posts) translate their chrome, canonicalize to the English URL and are noindex outside English. The sitemap lists only their English URL.
+- Pages whose main content stays English (simulated users, public assessments, the P(doom) hub, the blog index and English-only posts) translate their chrome, canonicalize to the English URL and are noindex outside English. The sitemap lists only their English URL. Translated posts are indexed in every locale, like translated pages.
 - Owner routes are disallowed in robots.txt under every prefix and are never in the sitemap.
 - `scripts/audit-seo.ts <origin> <output> --check` fetches every sitemap URL and checks titles, canonicals, Open Graph and Twitter tags and social images against a running server.
 

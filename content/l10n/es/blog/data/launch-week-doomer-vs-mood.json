@@ -1,0 +1,106 @@
+{
+  "title": "La misma proporción de catastrofistas, distintos estados de ánimo",
+  "source": "Las líneas muestran intervalos del 95 %. Los valores p proceden de la prueba exacta de Fisher. Un resultado por persona.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Oleada de Hacker News, 25–26 de septiembre",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "Oleada de X, 27–28 de septiembre",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "La perspectiva indica «espera una catástrofe»",
+      "group": "Medidas de catastrofismo",
+      "note": "p = 0,54",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41,
+          "ci": [0.047, 0.085]
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13,
+          "ci": [0.029, 0.083]
+        }
+      }
+    },
+    {
+      "label": "P(doom) mostrada del 10 % o más",
+      "group": "Medidas de catastrofismo",
+      "note": "p = 0,82",
+      "values": {
+        "hn": {
+          "share": 0.382,
+          "count": 240,
+          "ci": [0.344, 0.42]
+        },
+        "x": {
+          "share": 0.391,
+          "count": 101,
+          "ci": [0.334, 0.452]
+        }
+      }
+    },
+    {
+      "label": "P(doom) mostrada del 30 % o más",
+      "group": "Medidas de catastrofismo",
+      "note": "p = 0,07",
+      "values": {
+        "hn": {
+          "share": 0.218,
+          "count": 137,
+          "ci": [0.187, 0.252]
+        },
+        "x": {
+          "share": 0.163,
+          "count": 42,
+          "ci": [0.123, 0.213]
+        }
+      }
+    },
+    {
+      "label": "La perspectiva indica «espera principalmente daños»",
+      "group": "Estado de ánimo",
+      "note": "p < 0,001",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311,
+          "ci": [0.442, 0.518]
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48,
+          "ci": [0.142, 0.235]
+        }
+      }
+    },
+    {
+      "label": "La perspectiva indica «entusiasta»",
+      "group": "Estado de ánimo",
+      "note": "p < 0,001",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34,
+          "ci": [0.038, 0.072]
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73,
+          "ci": [0.229, 0.337]
+        }
+      }
+    }
+  ]
+}

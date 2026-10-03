@@ -1,0 +1,86 @@
+{
+  "title": "दृष्टिकोण के स्तर के अनुसार हर समूह",
+  "source": "इंटरव्यू पूरा करने वाले हर व्यक्ति का एक परिणाम: Hacker News समूह में 648 लोग और X समूह में 261।",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News समूह, 25–26 सितंबर",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X समूह, 27–28 सितंबर",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "विनाश की उम्मीद",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13
+        }
+      }
+    },
+    {
+      "label": "मुख्यतः नुकसान की उम्मीद",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48
+        }
+      }
+    },
+    {
+      "label": "मिली-जुली राय या अनिर्णीत",
+      "values": {
+        "hn": {
+          "share": 0.196,
+          "count": 127
+        },
+        "x": {
+          "share": 0.188,
+          "count": 49
+        }
+      }
+    },
+    {
+      "label": "आशा की ओर झुकाव",
+      "values": {
+        "hn": {
+          "share": 0.208,
+          "count": 135
+        },
+        "x": {
+          "share": 0.299,
+          "count": 78
+        }
+      }
+    },
+    {
+      "label": "उत्साहित",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73
+        }
+      }
+    }
+  ]
+}

@@ -47,6 +47,10 @@
   /* The logo's coral, kept for sparing editorial emphasis (PRODUCT.md#coral-accent).
      The same in both themes, like the map colors. */
   --coral: #ff786a;
+  /* Blog chart series, validated for contrast and color-vision separation
+     against the card surface in each theme (docs/BLOG.md#data-components). */
+  --chart-blue: #2a6cc4;
+  --chart-coral: #e5604f;
 }
 .dark {
   --background: oklch(0.17 0.006 90);
@@ -68,6 +72,8 @@
   --json-string: oklch(0.8 0.1 155);
   --json-number: oklch(0.82 0.1 55);
   --json-boolean: oklch(0.79 0.12 300);
+  --chart-blue: #4d82dc;
+  --chart-coral: #e05a4b;
   --sidebar: var(--card);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
@@ -94,6 +100,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-coral: var(--coral);
+  --color-chart-blue: var(--chart-blue);
+  --color-chart-coral: var(--chart-coral);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -629,4 +637,13 @@
   max-width: calc(var(--content-width) + 3rem);
   margin-inline: auto;
   padding-inline: 1.5rem;
+}
+
+/* Blog charts mark groups under the minimum size with a hatch, never a bar. */
+@utility chart-hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--muted-foreground) 45%, transparent) 0 1px,
+    transparent 1px 5px
+  );
 }

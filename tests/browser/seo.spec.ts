@@ -1,7 +1,15 @@
+import { readFileSync } from 'node:fs'
 import type { Page } from '@playwright/test'
+import matter from 'gray-matter'
 import { expect, test } from './fixtures'
 
 const site = 'https://www.doom-or-bloom.com'
+const spanish = JSON.parse(readFileSync('messages/es.json', 'utf8')) as {
+  Blog: { englishOnly: string; inEnglish: string }
+}
+const spanishPost = matter(
+  readFileSync('content/l10n/es/blog/hacker-news-vs-x.mdx', 'utf8')
+).data as { title: string }
 
 type Node = Record<string, unknown> & {
   '@type': string
@@ -290,17 +298,91 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
     `<link>${site}/blog/what-is-p-doom</link>`
   )
 
-  // Posts are English: other locales translate the chrome only.
+  // An English-only post: other locales translate the chrome only.
   await page.goto('/es/blog/what-is-p-doom')
   await expect(page.locator('html')).toHaveAttribute('lang', 'es')
-  await expect(
-    page.getByText('Las publicaciones están escritas en inglés')
-  ).toBeVisible()
+  await expect(page.getByText(spanish.Blog.englishOnly)).toBeVisible()
   expect(await canonicalAndRobots(page)).toEqual({
     canonical: `${site}/blog/what-is-p-doom`,
     robots: 'noindex, follow'
   })
   expect((await page.goto('/blog/no-such-post'))?.status()).toBe(404)
+})
+
+test('a data post charts participant aggregates with their date', async ({
+  page
+}) => {
+  await page.goto('/blog/hacker-news-vs-x')
+  const body = page.locator('[data-slot="blog-post-body"]')
+  // Group-size suppression itself is covered by the data schema's unit tests.
+  await expect(body.locator('[data-slot="blog-data-bars"]')).toHaveCount(3)
+  await expect(
+    body
+      .locator('[data-slot="blog-data-bars"]')
+      .filter({ hasText: 'Each wave by outlook level' })
+      .getByText(/As of October 3, 2026/)
+  ).toBeVisible()
+  await expect(body.locator('[data-slot="blog-data-intervals"]')).toHaveCount(1)
+  for (const heading of await body.locator('h2').allTextContents())
+    expect(heading).not.toMatch(/\.$/)
+})
+
+test('a translated post renders, indexes and shares in each language', async ({
+  page,
+  request
+}) => {
+  const path = '/blog/hacker-news-vs-x'
+  await page.goto(`/es${path}`)
+  const { title } = spanishPost
+  await expect(page.locator('html')).toHaveAttribute('lang', 'es')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(title)
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAttribute(
+    'lang',
+    'es'
+  )
+  await expect(page.locator('[data-slot="blog-post-body"]')).toHaveAttribute(
+    'lang',
+    'es'
+  )
+  await expect(page.getByText(spanish.Blog.englishOnly)).toHaveCount(0)
+  // Charts take their text from the translated data and chrome.
+  await expect(
+    page.locator('[data-slot="blog-data-bars"]').first()
+  ).toContainText(/A fecha de 3 de octubre de 2026/)
+  const head = page.locator('head')
+  expect(await canonicalAndRobots(page)).toEqual({
+    canonical: `${site}/es${path}`,
+    robots: 'index, follow'
+  })
+  for (const [hreflang, href] of [
+    ['en', `${site}${path}`],
+    ['ja', `${site}/ja${path}`],
+    ['x-default', `${site}${path}`]
+  ] as const)
+    await expect(
+      head.locator(`link[rel="alternate"][hreflang="${hreflang}"]`)
+    ).toHaveAttribute('href', href)
+  expect(ofType(await structuredData(page), 'BlogPosting')[0]).toMatchObject({
+    headline: title,
+    url: `${site}/es${path}`,
+    inLanguage: 'es',
+    translationOfWork: { '@id': `${site}${path}#article` }
+  })
+  const image = new URL(
+    (await head.locator('meta[property="og:image"]').getAttribute('content'))!
+  )
+  expect(image.pathname).toBe(`/es${path}/opengraph-image`)
+  const card = await request.get(image.pathname + image.search)
+  expect(card.status()).toBe(200)
+  expect(card.headers()['content-type']).toBe('image/png')
+
+  // The index lists it in Spanish, and English-only posts as such.
+  await page.goto('/es/blog')
+  await expect(page.getByRole('link', { name: title })).toHaveAttribute(
+    'href',
+    `/es${path}`
+  )
+  await expect(page.getByText(spanish.Blog.inEnglish).first()).toBeVisible()
 })
 
 test('profiles link similar worldviews and describe the simulated person', async ({
@@ -433,14 +515,17 @@ test('the directory lists every profile, and About describes the site', async ({
   })
 })
 
-test('the sitemap and llms.txt list the hub and posts in English only', async ({
+test('the sitemap lists English-only pages in English and translated posts in every language', async ({
   request
 }) => {
   const sitemap = await (await request.get('/sitemap.xml')).text()
   for (const path of ['/p-doom', '/blog', '/blog/what-is-p-doom'])
     expect(sitemap).toContain(`<loc>${site}${path}</loc>`)
   expect(sitemap).not.toContain(`${site}/es/p-doom`)
-  expect(sitemap).not.toContain(`${site}/es/blog`)
+  expect(sitemap).not.toContain(`<loc>${site}/es/blog</loc>`)
+  expect(sitemap).not.toContain(`${site}/es/blog/what-is-p-doom`)
+  for (const code of ['', '/es', '/ja'])
+    expect(sitemap).toContain(`<loc>${site}${code}/blog/hacker-news-vs-x</loc>`)
   const llms = await (await request.get('/llms.txt')).text()
   expect(llms).toContain('## Blog')
   expect(llms).toContain(`- [What is P(doom)?](${site}/blog/what-is-p-doom)`)

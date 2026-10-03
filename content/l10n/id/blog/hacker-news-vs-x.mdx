@@ -1,0 +1,97 @@
+---
+title: 'Hacker News lebih suram tentang AI daripada X'
+description: 'Kelompok Hacker News berada pada posisi yang jauh lebih pesimistis di peta kami daripada kelompok X dua hari kemudian, tetapi keduanya memiliki pangsa kecil penganut Doom sejati yang sama.'
+---
+
+import outlookByWave from './data/launch-week-outlook-by-wave.json'
+import doomerVsMood from './data/launch-week-doomer-vs-mood.json'
+import referrersByDay from './data/launch-week-referrers-by-day.json'
+import oldVsNewQuestions from './data/launch-week-old-vs-new-questions.json'
+
+**Orang-orang yang mengikuti Doom or Bloom selama gelombang Hacker News kami (25–26 Sep 2026) memiliki median pandangan 0,34 pada skala dari 0 (Doom) hingga 1 (Bloom), dibandingkan dengan 0,73 untuk gelombang X dua hari kemudian (27–28 Sep). Namun, kedua kelompok sama-sama memiliki 5–6% orang yang memperkirakan katastrofe, dan 38–39% orang dengan P(doom) sebesar 10% atau lebih.**
+
+Saya meluncurkan [Doom or Bloom](/) pada 25 September. Ini adalah wawancara adaptif singkat (sekitar 3 menit) yang menempatkan Anda pada sebuah peta: seberapa baik atau buruk Anda memperkirakan hasil akhir AI, dari Doom hingga Bloom, dan seberapa besar Anda memperkirakan AI akan mengubah dunia. Anda juga mendapatkan P(doom), baik yang Anda masukkan sendiri maupun estimasi kasar yang kami simpulkan.
+
+Pekan peluncuran berlangsung dalam dua gelombang yang berbeda. Pertama, sebuah unggahan Hacker News mendatangkan hampir seluruh lalu lintas pada 25–26 Sep. Kemudian, setelah gelombang itu mereda, sebuah gelombang datang dari X pada 27–28 Sep. Kedua kelompok tampak sangat berbeda di peta sehingga saya ingin memeriksa apakah perbedaan itu nyata, atau hanya akibat sesuatu yang saya rusak di antara keduanya. Angka-angka ini adalah per 3 Oktober 2026.
+
+## Perbedaan utama
+
+<DataBars data={outlookByWave} />
+
+Hasil pembacaan paling umum untuk gelombang Hacker News adalah “terutama memperkirakan kerugian”: 48% dari mereka, dibandingkan dengan 18% dari gelombang X. Gelombang X menumpuk di sisi lain: 28% terbaca sebagai “antusias”, dibandingkan dengan 5% di Hacker News.
+
+Dalam angka:
+
+- **Median pandangan:** 0,34 di Hacker News (interval 95% 0,31–0,37) dibandingkan dengan 0,73 di X (0,65–0,76). Perbedaannya adalah 0,40 (0,31–0,44)
+- **Sisi Doom (pandangan di bawah 0,4):** 57% di Hacker News dibandingkan dengan 25% di X
+- **Sisi Bloom (di atas 0,6):** 27% di Hacker News dibandingkan dengan 59% di X
+- **Pilih satu orang secara acak dari setiap gelombang**, dan orang dari X lebih condong ke Bloom dalam 72% kasus (Mann–Whitney p \< 10⁻²⁴, ukuran efek rank-biserial 0,44)
+
+## Namun Hacker News tidak lebih doomer
+
+Ini bagian yang tidak saya duga. Jika “doomer” berarti memperkirakan katastrofe, atau memberikan P(doom) yang tinggi, kedua kelompok ini pada dasarnya sama.
+
+<DataBars data={doomerVsMood} />
+
+- **Memperkirakan katastrofe sebagai hasil yang paling mungkin:** 6,3% di Hacker News dibandingkan dengan 5,0% di X (Fisher p = 0,54)
+- **P(doom) yang ditampilkan sebesar 10% atau lebih:** 38% dibandingkan dengan 39% (p = 0,82)
+- **P(doom) yang ditampilkan sebesar 30% atau lebih:** 22% dibandingkan dengan 16% (p = 0,07, paling-paling mungkin)
+- **Median P(doom) yang ditampilkan:** 5,8% dibandingkan dengan 6,5%
+
+Satu catatan: hampir semua orang dalam gelombang Hacker News mendapat P(doom) yang _disimpulkan_, karena saat itu wawancara belum meminta sebuah angka, dan nilai yang disimpulkan bersifat kasar serta terdorong ke arah tengah. Jadi, baris-baris P(doom) merupakan bukti yang lebih lemah daripada baris katastrofe, yang berasal dari pembacaan yang sama dengan pandangan itu sendiri.
+
+Jadi, kesenjangan ini bukan soal kepunahan. Ini soal suasana hati. Kelompok Hacker News sebagian besar memperkirakan AI akan lebih banyak menimbulkan kerugian daripada manfaat, melalui cara-cara biasa alih-alih katastrofik. Kelompok X sebagian besar memperkirakan AI akan lebih banyak memberikan manfaat daripada menimbulkan kerugian. Keduanya memiliki kelompok inti kecil yang sama, yaitu orang-orang yang berpikir bahwa AI dapat berakhir buruk bagi semua orang.
+
+Jadi, Hacker News tidak lebih _doomer_ daripada X. Hacker News lebih muram.
+
+## Tokoh yang pandangannya paling dekat dengan masing-masing kelompok
+
+Pada akhir wawancara, kami menampilkan tiga pemimpin opini populer yang pandangan dunia simulasinya paling dekat dengan pandangan Anda. Kecocokan terdekat yang paling umum menggambarkan ceritanya dengan lebih baik daripada median mana pun:
+
+- **Gelombang Hacker News:** Ed Zitron (16%), Bernie Sanders (12%), Geoffrey Hinton (10%), Nathan Lambert (10%), Daron Acemoglu (7%)
+- **Gelombang X:** Elon Musk (10%), Roon (7%), Sholto Douglas (7%), Jensen Huang (5%), Yann LeCun (5%)
+
+## Apakah perbedaannya nyata?
+
+Saya tidak mencatat dari mana setiap orang berasal selama pekan peluncuran: pelacakan sentuhan pertama per orang baru dimulai pada 1 Oktober. Jadi, gelombang ditentukan berdasarkan tanggal, dan perubahan lain apa pun di antara tanggal-tanggal tersebut patut dicurigai. Berikut yang saya periksa.
+
+**Apakah gelombang tersebut benar-benar berasal dari Hacker News dan X?** Analitik situs mencatat perujuk untuk lalu lintas halaman, bukan untuk masing-masing peserta. Pada 25 Sep, 99% pengunjung yang dirujuk oleh Hacker News atau X berasal dari Hacker News, dan pada 26 Sep, 89%. Kemudian keadaan berbalik: pada 27 Sep, 89% berasal dari X, dan pada 28 Sep, 79%.
+
+<DataBars data={referrersByDay} />
+
+**Apakah saya mengubah wawancaranya di antara kedua gelombang tersebut?** Ya, dan itu faktor terbesarnya. Pada 27 Sep, pada awal sore UTC, saya merilis versi mesin baru dengan pertanyaan langsung baru tentang dampak keseluruhan, skala, dan P(doom). Setiap hasil yang disimpan dibaca ulang dengan pembaca terbaru yang sama, tetapi pertanyaan yang benar-benar dijawab orang berbeda.
+
+Untungnya, 52 orang dalam gelombang X mengikuti wawancara _lama_ pada 27 Sep, sebelum perilisan, ketika rujukan dari X sudah lebih banyak daripada Hacker News dengan rasio lebih dari 4 banding 1. Ini memberikan perbandingan yang lebih bersih:
+
+<DataIntervals data={oldVsNewQuestions} />
+
+- **Gelombang X, pertanyaan lama:** median pandangan 0,73 (52 orang)
+- **Gelombang X, pertanyaan baru:** juga 0,73 (209 orang), identik secara statistik (p = 0,98)
+- **Gelombang Hacker News, pertanyaan lama yang sama:** 0,34
+
+Jadi, kesenjangan pandangan disebabkan oleh siapa yang datang, bukan apa yang saya tanyakan. Sumbu **skala** berbeda ceritanya. Gelombang X juga memperkirakan perubahan yang jauh lebih besar (median 0,88 dibandingkan dengan 0,66), tetapi sebagian dari perbedaan itu disebabkan oleh pertanyaan langsung yang baru: peserta gelombang X yang mengikuti wawancara lama berada di 0,77, dan yang mengikuti wawancara baru berada di 0,93. Saya tidak akan terlalu memaknai perbedaan skala tersebut.
+
+**Waktu dan geografi?** Gelombang Hacker News terkonsentrasi pada sore hari di AS (84% mulai antara 18:00 dan 23:59 UTC), sedangkan gelombang X tersebar sepanjang hari. Namun, dalam setiap gelombang, median nyaris tidak berubah berdasarkan waktu (Hacker News 0,25–0,36, X 0,67–0,75). Di antara pengunjung yang dirujuk, 47% pengunjung Hacker News berada di AS dibandingkan dengan 40% pengunjung X, yang bukan pergeseran cukup besar untuk menjelaskan kesenjangan sebesar 0,4.
+
+**Di mana orang tiba?** Sekitar 97% pengunjung yang dirujuk dari kedua sumber tiba di halaman beranda, jadi tidak ada yang datang melalui halaman pemimpin opini tertentu.
+
+**Panjang jawaban, duplikat, batasan?** Median panjang jawaban adalah 24 kata di Hacker News dibandingkan dengan 21 di X. Menghitung setiap wawancara alih-alih satu per orang, memulai gelombang X pada tengah hari tanggal 27 Sep, atau hanya menggunakan jam-jam puncak Hacker News masing-masing menggeser median kurang dari 0,02.
+
+Hal yang _tidak dapat_ saya kesampingkan: ini adalah dua audiens yang menyeleksi diri sendiri dan bereaksi terhadap dua kiriman berbeda. Kelompok Hacker News datang melalui utas peluncuran dan diskusinya. Kelompok X kebanyakan datang melalui kiriman di sudut X saya, yang menurut perkiraan saya cenderung terdiri atas orang-orang yang membangun sesuatu dengan AI. Saya tidak dapat memisahkan “pembaca Hacker News” dari “orang-orang yang membaca utas tertentu itu pada hari tersebut”. Namun, kurang lebih itulah intinya. Feed Anda membentuk kelompoknya, dan kelompok tersebut membentuk seperti apa yang dianggap “normal”.
+
+## Yang saya simpulkan darinya
+
+Pembingkaian yang biasa menempatkan semua orang pada satu garis dari doomer hingga akselerasionis. Data ini menunjukkan bahwa setidaknya ada dua hal terpisah yang terjadi. Yang pertama adalah apakah Anda memperkirakan AI akan membuat kehidupan lebih baik atau lebih buruk dengan cara-cara biasa. Yang kedua adalah apakah menurut Anda AI dapat berakhir dengan katastrofe. Hacker News dan X sangat berbeda pendapat mengenai hal pertama dan hampir tidak berbeda sama sekali mengenai hal kedua.
+
+## Cara kami mengukurnya
+
+- **Data:** ekstrak hanya-baca dari basis data produksi Doom or Bloom pada 3 Oktober 2026, menggunakan versi terkini dari setiap hasil setelah evaluasi ulang kami pada 27 Sep terhadap hasil yang disimpan dengan pembaca saat ini
+- **Siapa yang dihitung:** satu hasil per orang, yaitu wawancara pertama mereka yang mencapai hasil. Saya mengecualikan akun pengujian saya sendiri dan para pemimpin opini simulasi. 655 orang dalam gelombang Hacker News dan 263 dalam gelombang X memiliki hasil (648 dan 261 dengan pandangan yang telah ditempatkan)
+- **Gelombang:** tanggal UTC, 25–26 Sep dan 27–28 Sep, disimpulkan dari waktu dan data perujuk seluruh situs, bukan dari perujuk per orang
+- **Statistik:** median dengan interval bootstrap 95% (10.000 pengambilan sampel ulang), uji Mann–Whitney U dua sisi, uji permutasi atas selisih median, dan Fisher’s exact test untuk proporsi
+- **Privasi:** hanya data agregat yang ditampilkan di sini, dan setiap angka menggambarkan setidaknya 10 orang. Tidak ada teks jawaban yang dibaca untuk menyusun tulisan ini
+- **Catatan:** ini bukan survei terhadap pengguna Hacker News atau X. Ini mencakup siapa pun yang mengeklik dan menyelesaikannya. Pandangan dan P(doom) adalah pembacaan model kami atas jawaban tertulis yang singkat, bukan ukuran yang telah divalidasi, dan P(doom) yang disimpulkan bersifat kasar. Para pemimpin opini disimulasikan dari tulisan dan wawancara publik
+
+## Di mana posisi Anda?
+
+Saya ingin sekali melihat kelompok ketiga. [Ikuti wawancara](/) (sekitar 3 menit, tanpa pendaftaran), lihat di mana posisi Anda, lalu kirimkan kepada seseorang yang akan berada di posisi lain.

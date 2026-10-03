@@ -1,0 +1,106 @@
+{
+  "title": "Same share of doomers, different moods",
+  "source": "Lines show 95% intervals. p-values are from Fisher’s exact test. One result per person.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Hacker News wave, Sep 25–26",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "X wave, Sep 27–28",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Outlook reads “expects catastrophe”",
+      "group": "Doomer measures",
+      "note": "p = 0.54",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41,
+          "ci": [0.047, 0.085]
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13,
+          "ci": [0.029, 0.083]
+        }
+      }
+    },
+    {
+      "label": "Shown P(doom) of 10% or more",
+      "group": "Doomer measures",
+      "note": "p = 0.82",
+      "values": {
+        "hn": {
+          "share": 0.382,
+          "count": 240,
+          "ci": [0.344, 0.42]
+        },
+        "x": {
+          "share": 0.391,
+          "count": 101,
+          "ci": [0.334, 0.452]
+        }
+      }
+    },
+    {
+      "label": "Shown P(doom) of 30% or more",
+      "group": "Doomer measures",
+      "note": "p = 0.07",
+      "values": {
+        "hn": {
+          "share": 0.218,
+          "count": 137,
+          "ci": [0.187, 0.252]
+        },
+        "x": {
+          "share": 0.163,
+          "count": 42,
+          "ci": [0.123, 0.213]
+        }
+      }
+    },
+    {
+      "label": "Outlook reads “mainly expects harm”",
+      "group": "Mood",
+      "note": "p < 0.001",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311,
+          "ci": [0.442, 0.518]
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48,
+          "ci": [0.142, 0.235]
+        }
+      }
+    },
+    {
+      "label": "Outlook reads “enthusiastic”",
+      "group": "Mood",
+      "note": "p < 0.001",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34,
+          "ci": [0.038, 0.072]
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73,
+          "ci": [0.229, 0.337]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "locale": "th",
+  "kind": "blog",
+  "entries": {
+    "data/launch-week-doomer-vs-mood.json": {
+      "sourceHash": "1b27744bf4aef54e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "data/launch-week-old-vs-new-questions.json": {
+      "sourceHash": "af51d2c614a2fc63",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "data/launch-week-outlook-by-wave.json": {
+      "sourceHash": "bd2c97dff0e6104b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "data/launch-week-referrers-by-day.json": {
+      "sourceHash": "3f420b76d305b6db",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    },
+    "hacker-news-vs-x.mdx": {
+      "sourceHash": "43e86f61c638b569",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-03",
+      "reviewStatus": "machine"
+    }
+  }
+}

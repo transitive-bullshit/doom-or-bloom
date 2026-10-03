@@ -1,6 +1,9 @@
 import { createHash } from 'node:crypto'
 import { render } from 'takumi-js'
+import { defaultLocale, localizedPath, type Locale } from '@/i18n/config'
 import { PrismField } from '@/components/worldview/prism-field'
+import { cardFontFamilies } from './card-fonts'
+import { cardRenderOptions, wrappable } from './card-renderer'
 import { siteRenderer } from './render-site-social'
 import { BrandMark, siteCardColors as colors } from './site-social-card'
 
@@ -12,13 +15,19 @@ import { BrandMark, siteCardColors as colors } from './site-social-card'
 /** Bump when the card design changes, so social networks refetch it. */
 const blogCardRevision = 1
 
-/** The versioned image URL a post advertises. */
-export function blogCardPath(post: { slug: string; title: string }) {
+/**
+ * The versioned image URL a post advertises. A translated post's card is in
+ * its language, under the locale prefix.
+ */
+export function blogCardPath(
+  post: { slug: string; title: string },
+  locale: Locale = defaultLocale
+) {
   const version = createHash('sha256')
     .update(`${blogCardRevision}\n${post.title}`)
     .digest('hex')
     .slice(0, 10)
-  return `/blog/${post.slug}/opengraph-image?v=${version}`
+  return `${localizedPath(`/blog/${post.slug}`, locale)}/opengraph-image?v=${version}`
 }
 
 // Shorter titles get the site card's display size; longer ones step down.
@@ -33,11 +42,16 @@ const field = { left: 640, top: 96, width: 480, height: 400 }
 
 function BlogSocialCard({
   title,
-  meta
+  meta,
+  label,
+  fontFamily
 }: {
   title: string
   /** Date and reading time, e.g. "October 1, 2026 · 5 min read". */
   meta: string
+  /** "Blog", in the card's language. */
+  label: string
+  fontFamily: string
 }) {
   const panel = {
     left: field.left - 40,
@@ -54,7 +68,7 @@ function BlogSocialCard({
         height: 630,
         backgroundColor: colors.surface,
         color: colors.text,
-        fontFamily: 'Inter Tight'
+        fontFamily
       }}
     >
       <div
@@ -67,7 +81,7 @@ function BlogSocialCard({
           color: colors.muted
         }}
       >
-        Blog
+        {label}
       </div>
       <div
         style={{
@@ -163,15 +177,35 @@ function BlogSocialCard({
   )
 }
 
-export async function renderBlogSocialImage(post: {
+/**
+ * Latin-script cards use the site card's Inter Tight. Hindi, Thai, Chinese
+ * and Japanese use the share cards' Noto subsets (lib/sharing/card-fonts.ts).
+ */
+export async function renderBlogSocialImage({
+  title,
+  meta,
+  label = 'Blog',
+  locale = defaultLocale
+}: {
   title: string
   meta: string
+  label?: string
+  locale?: Locale
 }) {
-  return render(BlogSocialCard(post), {
+  const families = cardFontFamilies(locale)
+  const card = BlogSocialCard({
+    title: wrappable(title, locale),
+    meta,
+    label,
+    fontFamily: families.length ? families.join(', ') : 'Inter Tight'
+  })
+  return render(card, {
     width: 1200,
     height: 630,
     format: 'png',
-    renderer: await siteRenderer(),
+    ...(families.length
+      ? await cardRenderOptions(locale)
+      : { renderer: await siteRenderer() }),
     signal: AbortSignal.timeout(10_000)
   })
 }

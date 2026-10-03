@@ -2,6 +2,7 @@ import { postDate } from '@/lib/blog/format'
 import { rangeDataSchema } from '@/lib/blog/schema'
 import type { ProfileMentions } from '@/lib/personas/mentions'
 import { MentionText } from '@/components/mention-text'
+import { englishChartText, type ChartText } from './chart-parts'
 
 /**
  * A probability range per row, such as stated P(doom) estimates, from a
@@ -10,9 +11,11 @@ import { MentionText } from '@/components/mention-text'
  */
 export function DataRanges({
   data,
-  mention = (text) => [{ text }]
+  text = englishChartText(),
+  mention = (label) => [{ text: label }]
 }: {
   data: unknown
+  text?: ChartText
   mention?: ProfileMentions
 }) {
   const chart = rangeDataSchema.parse(data)
@@ -25,8 +28,8 @@ export function DataRanges({
       <table className='w-full table-fixed text-sm'>
         <thead className='sr-only'>
           <tr>
-            <th scope='col'>Who</th>
-            <th scope='col'>Estimate</th>
+            <th scope='col'>{text.t('who')}</th>
+            <th scope='col'>{text.t('estimate')}</th>
           </tr>
         </thead>
         <tbody>
@@ -67,8 +70,8 @@ export function DataRanges({
         </tbody>
       </table>
       <p className='text-xs text-muted-foreground'>
-        Bars run from 0% to 100%. {chart.source} As of{' '}
-        {postDate(chart.asOf, 'en')}
+        {text.t('rangeScale')} {chart.source}{' '}
+        {text.t('asOf', { date: postDate(chart.asOf, text.tag) })}
       </p>
     </figure>
   )

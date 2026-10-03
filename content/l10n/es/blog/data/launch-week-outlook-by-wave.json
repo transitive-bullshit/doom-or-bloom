@@ -1,0 +1,86 @@
+{
+  "title": "Cada oleada por nivel de perspectiva",
+  "source": "Un resultado por persona que terminó: 648 personas en la oleada de Hacker News y 261 en la oleada de X.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "hn",
+      "label": "Oleada de Hacker News, 25–26 de septiembre",
+      "tone": "coral"
+    },
+    {
+      "key": "x",
+      "label": "Oleada de X, 27–28 de septiembre",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Espera una catástrofe",
+      "values": {
+        "hn": {
+          "share": 0.063,
+          "count": 41
+        },
+        "x": {
+          "share": 0.05,
+          "count": 13
+        }
+      }
+    },
+    {
+      "label": "Espera principalmente daños",
+      "values": {
+        "hn": {
+          "share": 0.48,
+          "count": 311
+        },
+        "x": {
+          "share": 0.184,
+          "count": 48
+        }
+      }
+    },
+    {
+      "label": "Mixta o sin decidir",
+      "values": {
+        "hn": {
+          "share": 0.196,
+          "count": 127
+        },
+        "x": {
+          "share": 0.188,
+          "count": 49
+        }
+      }
+    },
+    {
+      "label": "Se inclina hacia la esperanza",
+      "values": {
+        "hn": {
+          "share": 0.208,
+          "count": 135
+        },
+        "x": {
+          "share": 0.299,
+          "count": 78
+        }
+      }
+    },
+    {
+      "label": "Entusiasta",
+      "values": {
+        "hn": {
+          "share": 0.052,
+          "count": 34
+        },
+        "x": {
+          "share": 0.28,
+          "count": 73
+        }
+      }
+    }
+  ]
+}
