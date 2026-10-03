@@ -124,9 +124,11 @@ export async function runPersona(
     kind: source.kind,
     async evaluate(...args) {
       const questions = args[1]
+      // The map ladder runs beside the projection, as part of that stage.
+      const ladder = Object.keys(questions).some((id) => id.startsWith('map:'))
       currentStage = questions.disposition
         ? 'interpret'
-        : Object.keys(questions).some((id) => id.endsWith(':score'))
+        : ladder || Object.keys(questions).some((id) => id.endsWith(':score'))
           ? 'project'
           : 'route'
       const started = performance.now()
@@ -136,11 +138,13 @@ export async function runPersona(
           name:
             currentStage === 'interpret'
               ? 'A: interpret'
-              : currentStage === 'project'
-                ? 'D: projection'
-                : questions.tension_pair
-                  ? 'C: clarify tension'
-                  : 'C: route',
+              : ladder
+                ? 'D: map placement'
+                : currentStage === 'project'
+                  ? 'D: projection'
+                  : questions.tension_pair
+                    ? 'C: clarify tension'
+                    : 'C: route',
           state: args[0],
           questions,
           answers: result.answers,

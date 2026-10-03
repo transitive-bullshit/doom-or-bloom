@@ -574,11 +574,21 @@ test('shared text occurs once per stage and judgments use answer-level support w
     createFixtureProvider(),
     true
   )
-  expect(projected.debug!.stages).toHaveLength(1)
+  expect(projected.debug!.stages.map((stage) => stage.name)).toEqual([
+    'D: projection',
+    'D: map placement'
+  ])
   const stage = projected.debug!.stages.find(
     (stage) => stage.name === 'D: projection'
   )!
   expect(Object.keys(stage.questions)).toHaveLength(52)
+  // The map ladder: 9 mirrored comparisons for each map axis.
+  const ladder = projected.debug!.stages.find(
+    (stage) => stage.name === 'D: map placement'
+  )!
+  expect(Object.keys(ladder.questions)).toHaveLength(36)
+  expect(JSON.stringify(ladder.state).split(text)).toHaveLength(2)
+  expect(JSON.stringify(ladder.questions)).not.toContain(text)
   expect(JSON.stringify(stage.state).split(text)).toHaveLength(2)
   expect(JSON.stringify(stage.questions)).not.toContain(text)
   expect(
@@ -702,7 +712,11 @@ test('failed operations expose completed stages and failed input without seriali
   expect(failure).toBeInstanceOf(AssessmentFailure)
   if (!(failure instanceof AssessmentFailure))
     throw new Error('Expected a diagnostic failure')
-  expect(failure.trace.stages.map((s) => s.name)).toEqual(['D: projection'])
+  // The map ladder runs beside the failed projection and settles first.
+  expect(failure.trace.stages.map((s) => s.name)).toEqual([
+    'D: projection',
+    'D: map placement'
+  ])
   expect(failure.trace.stages[0]!.answers).toEqual({})
   expect(failure.trace.stages[0]!.state).toHaveProperty(
     'completeParticipantEvidence'

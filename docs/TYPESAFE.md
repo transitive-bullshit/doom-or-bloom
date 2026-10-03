@@ -16,7 +16,7 @@ Live responses are validated strictly. The one tolerance: a Score value may diff
 
 Independent questions in a batch cannot consume one another’s outputs. Later stages receive earlier results only through code. Question IDs are application bookkeeping: supply the actual dimension meaning in instructions/criteria or named shared state. Never equate a category probability with the participant’s event probability, or interpretation confidence with forecast correctness.
 
-## Current local workflow — algorithm 0.7.4
+## Current local workflow — algorithm 0.7.5
 
 ### Participant language
 
@@ -46,6 +46,8 @@ Jev independently judges coverage gain, projection usefulness, consequential nov
 
 Supply the complete accepted transcript once, active whole-answer support, dimension definitions, correction scopes, coverage, unresolved issues and versions. Prior interpretations are not independent evidence. Independently judge dimension status/score, worldview direction, catastrophic risk, scoped facets (expressed outlook, overall expected impact, capability ceiling, development pace, deployment policy and access policy), and central basis. Routing evaluates only the map outputs, overall expected impact and central basis; it does not construct the full result. Result generation runs on explicit request, automatic routing completion, or the prompt cap. At the cap, every assessment with a substantive answer gets the full projection, and it is insufficient only when both map coordinates cannot be placed. Debug mode does not generate extra results. The map uses the separate expressed-outlook facet (`outlook_orientation`), rather than a benefit/harm average or net-impact forecast.
 
+Beside the projection, a separate `D: map placement` request asks the 36 map-ladder Nouls (nine mirrored comparisons for each map axis) over the same projection input; both requests settle before any failure is raised. They place the outlook and scale between the level descriptions ([ASSESSMENT.md](ASSESSMENT.md#placement-between-levels)); the level choices still decide placement and readiness.
+
 Consume scores only on supported branches. Explicit unknowns remain unplaced. Code normalizes authored scales, calculates the map and interpretation ranges, chooses conservative authored findings and curated resources, and retains whole-answer provenance. Reuse a result when its evidence revision is unchanged, including historical results with their original version.
 
 ### Experimental worldview views — `worldview-v8`
@@ -66,7 +68,7 @@ Keep corpus assets, source provenance, curated reading recommendations and `/cor
 
 Physical exchanges require server and operation capture enabled. The participant client requests capture independently of its Debug visibility toggle. Browser IndexedDB stores traces separately from server-authoritative progress; failed operations may return safe stage diagnostics without committing an assessment revision. Preserve actual recorded evaluator questions and payloads rather than explaining historical judgments with today’s rubric. [Local debugging](local-debugging.md) defines trace retention, inspection, downloads and sanitized server diagnostics.
 
-New operations use the current assessment algorithm from `lib/assessment/schema.ts` (`0.7.4`); content, rubric and model versions remain pinned to the assessment. Preserve historical payloads and reuse cached results when their evidence revision is unchanged. Storage schema, algorithm and experiment versions are separate compatibility boundaries.
+New operations use the current assessment algorithm from `lib/assessment/schema.ts` (`0.7.5`); content, rubric and model versions remain pinned to the assessment. Preserve historical payloads and reuse cached results when their evidence revision is unchanged. Storage schema, algorithm and experiment versions are separate compatibility boundaries.
 
 ## Failure bounds and paid evaluation
 

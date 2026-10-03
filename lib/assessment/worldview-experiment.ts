@@ -14,9 +14,10 @@ import type {
   Question,
   WorldviewExperiment
 } from './schema'
+import { mapPosition } from './map-ladder'
 import { emptyComponent, quantile } from './projections'
 
-export const experimentVersion = 'worldview-v8' as const
+export const experimentVersion = 'worldview-v9' as const
 
 export const experimentInputSchema = z.object({
   completeParticipantEvidence: z.array(
@@ -428,13 +429,18 @@ export function buildWorldviewExperiment(
       (sum, [k, p]) => sum + (Number(k) / 4) * p,
       0
     )
+    // The map's scale is placed between and within the levels.
+    const position =
+      id === 'transformation'
+        ? mapPosition(answers, 'transformation', directional)
+        : directional
     // Weak directional evidence shrinks toward the center of the open range.
     // Explicit indecision uses a reference point, never a claim of moderation.
     const value = unsettled
       ? 0.5
       : tentative
-        ? directional * mass + 0.5 * (1 - mass)
-        : directional
+        ? position * mass + 0.5 * (1 - mass)
+        : position
     return {
       ...empty,
       value,

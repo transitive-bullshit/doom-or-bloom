@@ -71,7 +71,11 @@ import {
   profileGapPolicy
 } from '@/lib/assessment/prompt-policy'
 import { tensionCandidates, tensionText } from '@/lib/assessment/tension'
-import { facetQuestions, facetComponents } from '@/lib/assessment/facets'
+import {
+  facetQuestions,
+  facetComponents,
+  facets
+} from '@/lib/assessment/facets'
 import { selectPresentation } from '@/lib/assessment/presentation'
 import { questionObjective } from '@/lib/assessment/question-objectives'
 import { placementQuestion, resultPoint } from '@/lib/assessment/self-placement'
@@ -86,8 +90,10 @@ import {
   experimentQuestions,
   experimentVerificationQuestions,
   experimentVerificationCandidates,
-  buildWorldviewExperiment
+  buildWorldviewExperiment,
+  experimentalAxes
 } from '@/lib/assessment/worldview-experiment'
+import { mapLadderQuestions } from '@/lib/assessment/map-ladder'
 import {
   supportedClaim,
   isAuthoredClaim,
@@ -850,17 +856,35 @@ export async function runAssessment(
           mode === 'persona' || statedPdoom
         )
       )
-      const evaluation = await evaluate(
-        'D: projection',
-        mode === 'persona' || statedPdoom
-          ? { ...input, experimentCandidates: candidates }
-          : input,
-        questions
-      )
+      const outlook = facets.find((f) => f.id === 'outlook_orientation')!
+      const scale = experimentalAxes.transformation
+      const placementQuestions: StageQuestions = {
+        ...mapLadderQuestions('outlook', outlook.meaning, outlook.levels),
+        ...mapLadderQuestions('transformation', scale.meaning, scale.levels)
+      }
+      // The map ladder reads the same state independently, so it runs beside
+      // the projection rather than after it. Both settle before a failure is
+      // raised, so the trace and request budget never miss a call in flight.
+      const [projection, placement] = await Promise.allSettled([
+        evaluate(
+          'D: projection',
+          mode === 'persona' || statedPdoom
+            ? { ...input, experimentCandidates: candidates }
+            : input,
+          questions
+        ),
+        evaluate('D: map placement', input, placementQuestions)
+      ])
+      if (projection.status === 'rejected') throw projection.reason
+      if (placement.status === 'rejected') throw placement.reason
+      const evaluation = {
+        ...projection.value,
+        answers: { ...projection.value.answers, ...placement.value.answers }
+      }
       addJudgments(
         'project',
         `result:${state.evidenceRevision}`,
-        questions,
+        { ...questions, ...placementQuestions },
         evaluation.answers,
         evaluation.model
       )

@@ -5,6 +5,7 @@ import type {
   Question,
   VectorId
 } from './schema'
+import { mapPosition } from './map-ladder'
 import { emptyComponent, quantile } from './projections'
 
 /** The stored claim for an explicitly unsettled facet. */
@@ -171,15 +172,20 @@ export function facetComponents(
     // Quantiles describe interpretation of the expressed view. Missing mass
     // adds a continuous ignorance margin, not an all-or-nothing full-width box.
     const missingMass = Math.max(0, 1 - mass)
+    const level = Object.entries(conditional).reduce(
+      (sum, [level, probability]) =>
+        sum + (Number(level) / maximum) * probability,
+      0
+    )
     return {
       ...empty,
       evidenceIds,
       distribution: answer.probabilities,
-      value: Object.entries(conditional).reduce(
-        (sum, [level, probability]) =>
-          sum + (Number(level) / maximum) * probability,
-        0
-      ),
+      // The map's outlook is placed between and within the levels.
+      value:
+        facet.id === 'outlook_orientation'
+          ? mapPosition(answers, 'outlook', level)
+          : level,
       range: [
         Math.max(0, quantile(conditional, 0.1, maximum) - missingMass),
         Math.min(1, quantile(conditional, 0.9, maximum) + missingMass)
