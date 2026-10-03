@@ -8,8 +8,9 @@ const datedRecords = new Set(['production-readiness.md'])
 
 const month =
   'January|February|March|April|May|June|July|August|September|October|November|December'
+// "October 3, 2026", "September 20–21, 2026", "September 2026" or "2026-10-03".
 const date = new RegExp(
-  `\\b(?:${month})\\s+\\d{1,2}(?:\\s*[–-]\\s*\\d{1,2})?,\\s+\\d{4}\\b|\\b\\d{4}-\\d{2}-\\d{2}\\b`,
+  `\\b(?:${month})(?:\\s+\\d{1,2}(?:\\s*[–-]\\s*\\d{1,2})?,)?\\s+\\d{4}\\b|\\b\\d{4}-\\d{2}-\\d{2}\\b`,
   'u'
 )
 

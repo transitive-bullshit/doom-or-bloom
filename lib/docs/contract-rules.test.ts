@@ -44,13 +44,15 @@ describe('datedHeadings', () => {
           '## Nick Bostrom — October 3, 2026',
           '## Initial expansion — September 20–21, 2026',
           '### Directory (2026-09-23)',
+          '## Additional September 2026 X evidence',
           'Run on October 3, 2026 in body text.'
         ].join('\n')
       )
     ).toEqual([
       '## Nick Bostrom — October 3, 2026',
       '## Initial expansion — September 20–21, 2026',
-      '### Directory (2026-09-23)'
+      '### Directory (2026-09-23)',
+      '## Additional September 2026 X evidence'
     ])
   })
 
