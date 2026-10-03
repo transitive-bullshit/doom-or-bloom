@@ -9,7 +9,7 @@
 //   results:reevaluate plan --env <file> --out <plan.jsonl> [--ids a,b] [--limit n]
 //   results:reevaluate write --env <file> --plan <plan.jsonl> [--ids a,b]
 import { randomUUID } from 'node:crypto'
-import { appendFileSync, existsSync, readFileSync } from 'node:fs'
+import { appendFileSync, readFileSync } from 'node:fs'
 import { parseArgs, parseEnv } from 'node:util'
 import pMap from 'p-map'
 import { Pool } from 'pg'
@@ -25,6 +25,7 @@ import { restoreLocalInteraction } from '../lib/assessment/transport'
 import { fingerprint } from '../lib/assessments/repository'
 import { loadBundle } from '../lib/content/loader'
 import { databaseUrl } from '../lib/db/config'
+import { readJsonl } from '../lib/jsonl'
 import { runAssessment } from '../lib/server/engine'
 import { createLiveProvider } from '../lib/server/live-provider'
 import type { Provider } from '../lib/server/provider'
@@ -109,13 +110,10 @@ function pool(write: boolean) {
   })
 }
 
-function entries(file: string): PlanEntry[] {
-  if (!existsSync(file)) return []
-  return readFileSync(file, 'utf8')
-    .split('\n')
-    .filter(Boolean)
-    .map((line) => JSON.parse(line) as PlanEntry)
-}
+// Plans are streamed: each entry holds the stored result and the whole new
+// assessment, so a plan over every participant can exceed the longest string
+// Node can read at once.
+const entries = (file: string) => readJsonl<PlanEntry>(file)
 
 function metered(provider: Provider, usage: { tokens: number }): Provider {
   return {
@@ -213,7 +211,8 @@ async function plan() {
   if (!args.out) throw new Error('Pass --out for the plan file.')
   const out = args.out
   const db = pool(false)
-  const done = new Set(entries(out).map((entry) => entry.id))
+  const done = new Set<string>()
+  for await (const entry of entries(out)) done.add(entry.id)
   const { rows } = await db.query<{
     id: string
     visibility: PlanEntry['visibility']
@@ -256,11 +255,16 @@ async function plan() {
     { concurrency: Number(args.concurrency) }
   )
   await db.end()
-  const all = entries(out)
-  const counts = Object.groupBy(all, (entry) => entry.reason ?? entry.decision)
+  let planned = 0
+  const counts: Record<string, number> = {}
+  for await (const entry of entries(out)) {
+    const key = entry.reason ?? entry.decision
+    counts[key] = (counts[key] ?? 0) + 1
+    planned++
+  }
   console.log(
-    `Planned ${all.length}: ${Object.entries(counts)
-      .map(([reason, list]) => `${reason} ${list!.length}`)
+    `Planned ${planned}: ${Object.entries(counts)
+      .map(([reason, n]) => `${reason} ${n}`)
       .join(', ')}. This run spent $${spent.toFixed(3)}.`
   )
 }
@@ -400,24 +404,23 @@ async function write() {
   const db = pool(true)
   const log = `${args.plan}.written.jsonl`
   // A re-run resumes: assessments already written from this plan are skipped.
-  const written = new Set(
-    (existsSync(log) ? readFileSync(log, 'utf8').split('\n') : [])
-      .filter(Boolean)
-      .map((line) => JSON.parse(line) as { id: string; status: string })
-      .filter((line) => line.status === 'written')
-      .map((line) => line.id)
-  )
-  const selected = entries(args.plan).filter(
-    (entry) =>
-      entry.decision === 'update' &&
-      !written.has(entry.id) &&
-      (!ids || ids.has(entry.id))
-  )
+  const written = new Set<string>()
+  for await (const line of readJsonl<{ id: string; status: string }>(log))
+    if (line.status === 'written') written.add(line.id)
+  const selected = (entry: PlanEntry) =>
+    entry.decision === 'update' &&
+    !written.has(entry.id) &&
+    (!ids || ids.has(entry.id))
+  // Read the whole plan before the first commit, so a damaged plan writes nothing.
+  let total = 0
+  for await (const entry of entries(args.plan)) if (selected(entry)) total++
   const outcomes: Record<string, number> = {}
-  // Each commit locks only its own assessment, so commits run in parallel.
+  // Each commit locks only its own assessment, so commits run in parallel, and
+  // the plan streams through them rather than being held in memory.
   await pMap(
-    selected,
+    entries(args.plan),
     async (entry) => {
+      if (!selected(entry)) return
       const outcome = await commit(db, entry)
       const key =
         'reason' in outcome
@@ -437,7 +440,7 @@ async function write() {
   )
   await db.end()
   console.log(
-    `Wrote ${selected.length} planned updates: ${Object.entries(outcomes)
+    `Wrote ${total} planned updates: ${Object.entries(outcomes)
       .map(([key, n]) => `${key} ${n}`)
       .join(', ')}. Log: ${log}`
   )

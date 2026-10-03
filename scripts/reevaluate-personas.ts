@@ -11,7 +11,7 @@
 //   personas:reevaluate plan --env <file> --out <plan.jsonl> [--ids slug,slug] [--restate]
 //   personas:reevaluate write --env <file> --plan <plan.jsonl> [--ids slug,slug]
 import { createHash } from 'node:crypto'
-import { appendFileSync, existsSync, readFileSync } from 'node:fs'
+import { appendFileSync, readFileSync } from 'node:fs'
 import { parseArgs, parseEnv } from 'node:util'
 import pMap from 'p-map'
 import { Pool } from 'pg'
@@ -24,6 +24,7 @@ import { personas as catalog } from '../lib/journeys/catalog'
 import { restatePublicPdoom } from '../lib/journeys/public-pdoom'
 import { journeyHashes, runPersona } from '../lib/journeys/runner'
 import type { Journey } from '../lib/journeys/schema'
+import { readJsonl } from '../lib/jsonl'
 import { personaGeneration } from '../lib/personas/generation'
 import { simulationPayload } from '../lib/personas/payload'
 import { createLiveProvider } from '../lib/server/live-provider'
@@ -119,13 +120,8 @@ function pool(write: boolean) {
   })
 }
 
-function entries(file: string): PlanEntry[] {
-  if (!existsSync(file)) return []
-  return readFileSync(file, 'utf8')
-    .split('\n')
-    .filter(Boolean)
-    .map((line) => JSON.parse(line) as PlanEntry)
-}
+// Plans are streamed, since each entry holds a full replayed journey.
+const entries = (file: string) => readJsonl<PlanEntry>(file)
 
 function metered(provider: Provider, usage: { tokens: number }): Provider {
   return {
@@ -145,7 +141,8 @@ async function plan() {
   const bundle = loadBundle()
   const { engineHash, contentHash } = journeyHashes(bundle, [])
   const runId = `reevaluate-${versions.assessment}-${Date.now()}`
-  const done = new Set(entries(out).map((entry) => entry.slug))
+  const done = new Set<string>()
+  for await (const entry of entries(out)) done.add(entry.slug)
   const { rows } = await db.query<{
     id: string
     slug: string
@@ -337,11 +334,16 @@ async function plan() {
     { concurrency: Number(args.concurrency) }
   )
   await db.end()
-  const all = entries(out)
-  const counts = Object.groupBy(all, (entry) => entry.reason ?? entry.decision)
+  let planned = 0
+  const counts: Record<string, number> = {}
+  for await (const entry of entries(out)) {
+    const key = entry.reason ?? entry.decision
+    counts[key] = (counts[key] ?? 0) + 1
+    planned++
+  }
   console.log(
-    `Planned ${all.length}: ${Object.entries(counts)
-      .map(([reason, list]) => `${reason} ${list!.length}`)
+    `Planned ${planned}: ${Object.entries(counts)
+      .map(([reason, n]) => `${reason} ${n}`)
       .join(', ')}. This run spent $${spent.toFixed(3)}.`
   )
 }
@@ -358,21 +360,21 @@ async function write() {
     throw new Error('This database role cannot publish simulations.')
   const generations = personaGeneration(db)
   const log = `${args.plan}.written.jsonl`
-  const written = new Set(
-    entries(log)
-      .filter((e) => (e as unknown as { status: string }).status === 'selected')
-      .map((e) => e.slug)
-  )
-  const selected = entries(args.plan).filter(
-    (entry) =>
-      entry.decision === 'update' &&
-      !written.has(entry.slug) &&
-      (!slugs || slugs.has(entry.slug))
-  )
+  const written = new Set<string>()
+  for await (const line of readJsonl<{ slug: string; status: string }>(log))
+    if (line.status === 'selected') written.add(line.slug)
+  const selected = (entry: PlanEntry) =>
+    entry.decision === 'update' &&
+    !written.has(entry.slug) &&
+    (!slugs || slugs.has(entry.slug))
+  // Read the whole plan before the first write, so a damaged plan writes nothing.
+  let total = 0
+  for await (const entry of entries(args.plan)) if (selected(entry)) total++
   const outcomes: Record<string, number> = {}
   await pMap(
-    selected,
+    entries(args.plan),
     async (entry) => {
+      if (!selected(entry)) return
       let status: string
       let id: string | null = null
       try {
@@ -411,7 +413,7 @@ async function write() {
   )
   await db.end()
   console.log(
-    `Wrote ${selected.length} planned re-evaluations: ${Object.entries(outcomes)
+    `Wrote ${total} planned re-evaluations: ${Object.entries(outcomes)
       .map(([key, n]) => `${key} ${n}`)
       .join(', ')}. Log: ${log}`
   )
