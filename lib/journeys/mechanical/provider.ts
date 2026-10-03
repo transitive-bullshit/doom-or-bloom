@@ -15,6 +15,21 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
       throw new Error(`Authored synthetic option ${option} no longer exists`)
     return fixtureAnswer(q, option)
   }
+  // Scripted map levels: outlook from benefits against harms, scale from the
+  // capability expectation. Null when the script leaves it unknown.
+  const outlookLevel = () => {
+    const benefits = persona.levels.beneficial_potential
+    const harm = persona.levels.risk_landscape
+    return benefits === null || harm === null
+      ? null
+      : Math.round((((benefits ?? 0) + 3 - (harm ?? 0)) / 6) * 4)
+  }
+  const scaleLevel = () => {
+    const level = persona.levels.capability_trajectory
+    return level === null || level === undefined
+      ? null
+      : Math.round((level / 3) * 4)
+  }
   const provider: Provider = {
     kind: 'fixture',
     evaluate: async (input, questions) => {
@@ -117,19 +132,38 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
           return fixtureAnswer(q, undefined, level)
         }
         if (id === 'central_basis') return { type: 'noul', noul: 1 }
+        // The map ladder agrees exactly with the scripted level, so a scripted
+        // view squarely at level k reads k/4.
+        if (id.startsWith('map:')) {
+          const [, axis, side, step] = id.split(':')
+          const level =
+            axis === 'outlook'
+              ? outlookLevel()
+              : supported.has('capability_trajectory')
+                ? scaleLevel()
+                : null
+          if (level === null) return { type: 'noul', noul: 0.5 }
+          const k = Number(step!.slice(1))
+          const past = step!.startsWith('b') ? level >= k : level > k
+          const before = level < k
+          return {
+            type: 'noul',
+            noul: (side === 'past' ? past : before) ? 1 : 0
+          }
+        }
         // Mechanical cases do not author beliefs for the new experiment.
         if (id === 'experiment:pdoom:band') return pick(q, 'unknown')
         if (id === 'experiment:pdoom:basis') return pick(q, 'absent')
         // Scale follows the scripted capability expectation once expressed.
         if (id === 'experiment:transformation') {
-          const level = persona.levels.capability_trajectory
+          const level = scaleLevel()
           return pick(
             q,
             !supported.has('capability_trajectory')
               ? 'not_expressed'
-              : level === null || level === undefined
+              : level === null
                 ? 'explicitly_unknown'
-                : String(Math.round((level / 3) * 4))
+                : String(level)
           )
         }
         if (id.startsWith('experiment:'))
@@ -144,17 +178,14 @@ export function scriptedProvider(persona: MechanicalCase, bundle: Bundle) {
             id === 'facet:overall_outlook' ||
             id === 'facet:outlook_orientation'
           ) {
-            const benefits = persona.levels.beneficial_potential
-            const harm = persona.levels.risk_landscape
+            const level = outlookLevel()
             return pick(
               q,
-              benefits === null || harm === null
+              level === null
                 ? id === 'facet:outlook_orientation'
                   ? '2'
                   : 'explicitly_unknown'
-                : String(
-                    Math.round((((benefits ?? 0) + 3 - (harm ?? 0)) / 6) * 4)
-                  )
+                : String(level)
             )
           }
           return pick(q, 'not_expressed')

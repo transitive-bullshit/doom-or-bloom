@@ -110,6 +110,7 @@ test('OpenAI text is submitted unchanged through real engine routing; both trans
     'A: interpret',
     'C: route',
     'D: projection',
+    'D: map placement',
     'D: result evidence'
   ])
   expect(journey.result).toEqual(journey.steps[1]!.result)

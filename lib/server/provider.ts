@@ -97,18 +97,21 @@ export function createFixtureProvider(): Provider {
       model: 'fixture-v1',
       usage: { input_tokens: 0, output_tokens: 0 },
       attempts: 1,
+      // Fixtures author no map ladder, so the map uses the level reading.
       answers: Object.fromEntries(
-        Object.entries(questions).map(([id, question]) => [
-          id,
-          [
-            'horizon',
-            'horizon_unknown',
-            'conviction',
-            'tension_present'
-          ].includes(id) && question.type === 'noul'
-            ? { type: 'noul', noul: 0 }
-            : fixtureAnswer(question)
-        ])
+        Object.entries(questions)
+          .filter(([id]) => !id.startsWith('map:'))
+          .map(([id, question]) => [
+            id,
+            [
+              'horizon',
+              'horizon_unknown',
+              'conviction',
+              'tension_present'
+            ].includes(id) && question.type === 'noul'
+              ? { type: 'noul', noul: 0 }
+              : fixtureAnswer(question)
+          ])
       )
     })
   }

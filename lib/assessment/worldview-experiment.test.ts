@@ -427,7 +427,7 @@ it.each([
         'experiment:pdoom:basis': 'direct'
       }
     )
-    expect(result.version).toBe('worldview-v8')
+    expect(result.version).toBe('worldview-v9')
     expect(result.pdoom?.adjustment?.method).toBe('logodds-v1')
     expect(result.pdoom?.adjustment?.rawEstimate).toBeCloseTo(midpoint)
     expect(result.pdoom?.estimate).toBeCloseTo(

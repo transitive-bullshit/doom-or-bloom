@@ -3,7 +3,7 @@ import { loadBundle } from '@/lib/content/loader'
 import { assessmentSchema, limits } from '@/lib/assessment/schema'
 import { createAssessment, currentPrompt } from '@/lib/assessment/state'
 import { runAssessment } from './engine'
-import { createFixtureProvider } from './provider'
+import { createFixtureProvider, fixtureAnswer } from './provider'
 import type { Provider } from './provider'
 import { createLiveProvider } from './live-provider'
 import type { Question } from '@/lib/assessment/schema'
@@ -23,7 +23,14 @@ test('ordinary five-answer interviews do not trigger large-history batching', as
       questions: Record<string, Question>
     }
     const response = await fixture.evaluate(body.state, body.questions)
-    return Response.json({ ...response, model: body.model })
+    // The live API answers every question, including the map ladder.
+    const answers = Object.fromEntries(
+      Object.entries(body.questions).map(([id, question]) => [
+        id,
+        response.answers[id] ?? fixtureAnswer(question)
+      ])
+    )
+    return Response.json({ ...response, answers, model: body.model })
   })
   try {
     for (let i = 0; i < 5; i++) {
@@ -58,7 +65,10 @@ test('ordinary five-answer interviews do not trigger large-history batching', as
       bundle,
       true
     )
-    expect(projected.debug!.stages).toHaveLength(1)
+    expect(projected.debug!.stages.map((stage) => stage.name)).toEqual([
+      'D: projection',
+      'D: map placement'
+    ])
     const result = projected.assessment.result!
     expect(result.fingerprint.map((c) => c.vector)).toEqual([
       'timeline',
@@ -220,7 +230,10 @@ test('eight answers retain the complete transcript without corpus inference', as
     bundle,
     true
   )
-  expect(result.debug!.stages).toHaveLength(1)
+  expect(result.debug!.stages.map((stage) => stage.name)).toEqual([
+    'D: projection',
+    'D: map placement'
+  ])
   const projection = result.debug!.stages.find(
     (stage) => stage.name === 'D: projection'
   )!

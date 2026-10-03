@@ -549,7 +549,8 @@ test('runtime keeps full answers and core results without generating excerpt req
   )
   expect(stages).toEqual(['projection'])
   expect(response.debug!.stages.map((stage) => stage.name)).toEqual([
-    'D: projection'
+    'D: projection',
+    'D: map placement'
   ])
   const result = response.assessment.result!
   expect(result.experiment!.milestones).toEqual([])
