@@ -507,6 +507,16 @@ export const frontierPublicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title: 'American Optimist Ep 164 — Sholto Douglas’s selected remarks',
+        url: 'https://www.youtube.com/watch?v=6D1wC95htTM',
+        transcriptUrl:
+          'https://blog.joelonsdale.com/p/ep-164-inside-anthropic-with-sholto',
+        publishedAt: '2026-10-02',
+        speaker: 'Sholto Douglas',
+        summary:
+          'Publisher-hosted transcript, selected text-reviewed turns only; timestamps are Substack audio, not verified YouTube offsets; automatic speaker IDs contain interviewer contamination and have not been audio-verified. Recorded about a month before publication, so this does not supersede September pacing statements merely because it was published later. At 09:12–09:16 and 09:17–09:34 Douglas expects broadly human-level or greater computer-work capabilities within a couple of years, with physical-world work conditional on robotics; exclude the intervening host question. At 09:46–10:02 he pairs potentially compressed scientific progress with major risks. At 19:55–20:19 he takes unemployment concerns seriously while expecting a much better world if the right actions are taken. At 30:38–31:19 he supports open source subject to the same capability-based safety bar as closed models. Do not attribute Marwell’s career advice or Lonsdale’s political and economic premises to Douglas.'
+      },
+      {
         title:
           'Independent evaluators need expertise, integrity and broad trust',
         url: 'https://x.com/_sholtodouglas/status/2098861626548219937',
@@ -570,6 +580,8 @@ export const frontierPublicPersonas: Persona[] = [
       'There is an enormous amount of headroom. We are getting systems that can work on harder problems for longer, and that starts to change how research and the economy work. With capable enough AI and large robot fleets, economic doublings in the 2030s are worth taking seriously. The upside is fantastic. That does not mean an unmitigated race is sensible. One serious mistake could be disastrous. The path I favor is coordinated development as fast as we can safely manage it.',
     beliefs: [
       'Independent evaluators should form a distributed ecosystem with technical depth, integrity and enough variety of backgrounds to earn broad trust. Coordination cannot just mean trusting the same small group.',
+      'In an interview recorded around September 2026, I expected broadly human-level or greater computer-work capabilities within a couple of years, with physical work dependent on robotics. That opportunity comes with major risks, not a guarantee of beneficial outcomes.',
+      'I support open source, with closed and open models held to the same capability-based safety bar. This does not imply unrestricted release of dangerous capabilities.',
       'Calling increasingly capable AI merely a tool will not remain a credible account of the future. The autonomy and impact matter even if the phrase sounds reassuring.',
       'Reinforcement learning and better engineering can extend useful task horizons. Research automation is powerful even before every model has the intuition of the best scientist.',
       'An absolute pause is not necessarily stable: compute capacity can accumulate while political tensions grow, setting up a compressed future race.',

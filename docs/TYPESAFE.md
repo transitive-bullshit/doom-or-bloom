@@ -76,6 +76,12 @@ All stages share a 120-second operation deadline; stages have a 45-second deadli
 
 Use credential-free fixtures for workflow/boundary checks. No paid pressure testing. Optional evaluation commands require `--allow-paid --max-requests=N` (1–24), with a shared physical-request allowance, reserved before stages and retained when failed-call cost is unknown. These flags do not replace agreement on a small reviewed suite and cost budget.
 
+## Physical request budgets
+
+The live provider counts every HTTP attempt, including SDK retries and byte-limited batches. The assessment engine permits at most 32 attempts per operation. Offline persona generation additionally wraps the whole run in a 1536-request backstop (or a lower explicit `--max-requests`), alongside its dollar cap; see [journey budgets](user-journeys.md#budgets-and-storage). These scopes are separate from participant daily/monthly spend.
+
+A physical limit throws the locally authored `EvaluationRequestBudgetExhausted` reason, preserved through SDK wrapping and logged as `evaluation_request_budget_exhausted`. Actual cancellation and timeout errors keep their own classification. A successful first batch followed by a blocked second batch is a budget failure, not evidence of a provider outage.
+
 ## Spend budget
 
 TypeSafe is prepaid with auto-recharge and has no monthly cap, so the app enforces its own ceiling on participant Jev spend (`lib/server/jev-budget.ts` for the rules, `lib/server/jev-budget-store.ts` for Postgres).

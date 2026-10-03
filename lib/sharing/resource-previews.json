@@ -7268,5 +7268,14 @@
     "image": "/resource-previews/b4f19348ce95-image.webp",
     "imageKind": "title-card",
     "imageSource": "https://casp.ac/reports/intelligence-explosion"
+  },
+  "https://www.youtube.com/watch?v=6D1wC95htTM": {
+    "source": "https://www.youtube.com/watch?v=6D1wC95htTM",
+    "fetchedAt": "2026-10-03T02:31:52.478Z",
+    "description": "Anthropic is one of the fastest-growing companies in history and sits at the forefront of the AI race. This week, we're joined by two key leaders on Anthropi...",
+    "image": "/resource-previews/6c2847111bb6-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/6D1wC95htTM/hqdefault.jpg",
+    "icon": "/resource-previews/6c2847111bb6-icon.webp"
   }
 }

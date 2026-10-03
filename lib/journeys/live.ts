@@ -1,10 +1,9 @@
 import 'server-only'
 import { randomUUID } from 'node:crypto'
 import { versions } from '@/lib/assessment/schema'
-import { budgetedProvider } from '@/lib/evaluation/budget'
 import { createLiveProvider } from '@/lib/server/live-provider'
 import { createOpenAIParticipant } from './participant'
-import { liveJourneyBudget, meterJev } from './live-budget'
+import { budgetedJourneyProvider, liveJourneyBudget } from './live-budget'
 import { runJourneySuite, runPersona, journeyHashes } from './runner'
 import { projectJourneyStore } from './store'
 import type { Journey } from './schema'
@@ -47,14 +46,10 @@ export async function runLiveJourneys({
   if (!process.env.TYPESAFE_API_KEY?.trim())
     throw new Error('Missing TYPESAFE_API_KEY')
   const budget = liveJourneyBudget(maxCost ?? (personaId ? 2 : 5))
-  const paid = budgetedProvider(
-    meterJev(createLiveProvider(versions.model), budget),
-    maxRequests ??
-      Math.min(
-        1536,
-        (personaIds?.length ?? (personaId ? 1 : personas.length + 1)) * 24
-      ),
-    1536
+  const paid = budgetedJourneyProvider(
+    createLiveProvider(versions.model),
+    budget,
+    maxRequests
   )
   const participant = createOpenAIParticipant({
     budget,
@@ -86,7 +81,7 @@ export async function runLiveJourneys({
 export async function resumeLiveJourney({
   runId,
   personaId,
-  maxRequests = 24,
+  maxRequests,
   maxCost = 0.5
 }: {
   runId: string
@@ -114,10 +109,10 @@ export async function resumeLiveJourney({
       'Resume requires unchanged authored content and model; use the matching checkout'
     )
   const budget = liveJourneyBudget(maxCost ?? (personaId ? 2 : 5))
-  const paid = budgetedProvider(
-    meterJev(createLiveProvider(versions.model), budget),
-    maxRequests,
-    24
+  const paid = budgetedJourneyProvider(
+    createLiveProvider(versions.model),
+    budget,
+    maxRequests
   )
   const id = `${Date.now()}-${randomUUID()}`
   const createdAt = new Date().toISOString()
