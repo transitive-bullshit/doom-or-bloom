@@ -3,19 +3,19 @@
   "kind": "blog",
   "entries": {
     "data/launch-week-doomer-vs-mood.json": {
-      "sourceHash": "1b27744bf4aef54e",
+      "sourceHash": "83fe32877396e7d8",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-03",
       "reviewStatus": "machine"
     },
     "data/launch-week-old-vs-new-questions.json": {
-      "sourceHash": "af51d2c614a2fc63",
+      "sourceHash": "c36d74b73869ab8b",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-03",
       "reviewStatus": "machine"
     },
     "data/launch-week-outlook-by-wave.json": {
-      "sourceHash": "bd2c97dff0e6104b",
+      "sourceHash": "b67331dacacaaec7",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-03",
       "reviewStatus": "machine"
@@ -27,7 +27,7 @@
       "reviewStatus": "machine"
     },
     "hacker-news-vs-x.mdx": {
-      "sourceHash": "43e86f61c638b569",
+      "sourceHash": "261bb1c781ad5605",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-03",
       "reviewStatus": "machine"

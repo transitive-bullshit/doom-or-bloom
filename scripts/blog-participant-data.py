@@ -180,6 +180,16 @@ def band_of(x):
     return next(name for name, lo, hi in OUTLOOK_BANDS if lo <= x < hi)
 
 
+# Since algorithm 0.7.5 the map places people between and within the five
+# outlook levels, so a level is the reading itself (the description shown),
+# not a slice of the axis. Older results sat on their level, so both agree there.
+LEVEL_NAMES = [name for name, _, _ in OUTLOOK_BANDS]
+
+
+def levels_of(g):
+    return [p['outlookLevel'] for p in g if x_of(p) is not None and p.get('outlookLevel') is not None]
+
+
 def pd_band(v):
     return next(name for name, lo, hi in PD_BANDS if lo <= v < hi)
 
@@ -237,14 +247,16 @@ def summary(g):
     pd_all = [pdoom_of(p) for p in g if pdoom_of(p) is not None]
     pd_inf = [pdoom_of(p, 'inferred') for p in g if pdoom_of(p, 'inferred') is not None]
     pd_st = [pdoom_of(p, 'stated') for p in g if pdoom_of(p, 'stated') is not None]
-    bands = C.Counter(band_of(x) for x in xs)
+    bands = C.Counter(LEVEL_NAMES[level] for level in levels_of(g))
+    ranges = C.Counter(band_of(x) for x in xs)
     words = [float(np.median(p['words'])) for p in g if p['words']]
     return {
         'peopleWithResult': len(g),
         'outlook': {**median_of(xs), 'doomSide_x_below_0_4': share(regions(g)[0], len(xs)),
                     'middle_0_4_to_0_6': share(regions(g)[1], len(xs)),
                     'bloomSide_x_above_0_6': share(regions(g)[2], len(xs)),
-                    'byOutlookBand': {name: share(bands[name], len(xs)) for name, _, _ in OUTLOOK_BANDS}},
+                    'byOutlookBand': {name: share(bands[name], len(levels_of(g))) for name in LEVEL_NAMES},
+                    'byOutlookRange': {name: share(ranges[name], len(xs)) for name in LEVEL_NAMES}},
         'scale': {**median_of(ys), 'top_0_9_or_more': share(sum(1 for y in ys if y >= .9), len(ys))},
         'pdoomShown': median_of(pd_all),
         'pdoomInferred': {**median_of(pd_inf),
@@ -274,9 +286,11 @@ tests = {
     'pdoomShown': compare(hp, xp, 'shown P(doom)'),
     'regions_chi2': {'chi2': r3(chi.statistic), 'dof': int(chi.dof), 'p': float(chi.pvalue),
                      'cramersV': r3(math.sqrt(chi.statistic / (len(hx) + len(xx))))},
-    'catastropheBand': fisher(hx, xx, lambda v: v < .125, 'outlook reads "catastrophe" (x < 0.125)'),
-    'mainlyHarmBand': fisher(hx, xx, lambda v: .125 <= v < .375, 'outlook reads "mainly expects harm"'),
-    'enthusiasticBand': fisher(hx, xx, lambda v: v >= .875, 'outlook reads "enthusiastic" (x ≥ 0.875)'),
+    'catastropheBand': fisher(levels_of(G['hn']), levels_of(G['x']), lambda v: v == 0, 'outlook level reads "catastrophe"'),
+    'mainlyHarmBand': fisher(levels_of(G['hn']), levels_of(G['x']), lambda v: v == 1, 'outlook level reads "mainly expects harm"'),
+    'enthusiasticBand': fisher(levels_of(G['hn']), levels_of(G['x']), lambda v: v == 4, 'outlook level reads "enthusiastic"'),
+    'catastropheEnd': fisher(hx, xx, lambda v: v < .125, 'outlook position below 0.125 (the catastrophe end of the axis)'),
+    'enthusiasticEnd': fisher(hx, xx, lambda v: v >= .875, 'outlook position 0.875 or more (the enthusiastic end of the axis)'),
     'pdoomShownAtLeast10': fisher(hp, xp, lambda v: v >= .1, 'shown P(doom) of 10% or more'),
     'pdoomShownAtLeast30': fisher(hp, xp, lambda v: v >= .3, 'shown P(doom) of 30% or more'),
 }

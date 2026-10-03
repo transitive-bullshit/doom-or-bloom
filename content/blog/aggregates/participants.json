@@ -9,14 +9,14 @@
   "suppression": "Every count, share or statistic describes at least 10 people; smaller groups are null or \"<10\".",
   "volume": {
     "description": "People who started and finished. Started: an owner whose counted assessment was created that UTC day. Finished: that person reached a result, counted on the day of their first result.",
-    "n": 1243,
+    "n": 1250,
     "funnel": {
-      "participantAssessments": 1286,
+      "participantAssessments": 1293,
       "excludedOwnerTestAccount": 14,
       "excludedForks": "<10",
       "excludedRepeatAssessmentsBySameOwner": 26,
-      "people": 1243,
-      "peopleWithResult": 957
+      "people": 1250,
+      "peopleWithResult": 963
     },
     "byDay": [
       {
@@ -41,15 +41,15 @@
       },
       {
         "day": "2026-09-29 to 2026-10-03",
-        "started": 46,
-        "completed": 40
+        "started": 53,
+        "completed": 46
       }
     ],
     "completion": {
-      "n": 1243,
-      "count": 957,
+      "n": 1250,
+      "count": 963,
       "share": 0.77,
-      "ci95": [0.746, 0.792]
+      "ci95": [0.746, 0.793]
     },
     "completionByWave": {
       "hn": {
@@ -67,11 +67,11 @@
         "ci95": [0.816, 0.894]
       },
       "later": {
-        "started": 46,
-        "n": 46,
-        "count": 39,
-        "share": 0.848,
-        "ci95": [0.718, 0.924]
+        "started": 53,
+        "n": 53,
+        "count": 45,
+        "share": 0.849,
+        "ci95": [0.729, 0.921]
       }
     }
   },
@@ -83,50 +83,50 @@
       "peopleWithResult": 655,
       "outlook": {
         "n": 648,
-        "median": 0.335,
-        "median_ci95": [0.307, 0.369],
+        "median": 0.323,
+        "median_ci95": [0.303, 0.354],
         "doomSide_x_below_0_4": {
           "n": 648,
-          "count": 371,
-          "share": 0.573,
-          "ci95": [0.534, 0.61]
+          "count": 381,
+          "share": 0.588,
+          "ci95": [0.55, 0.625]
         },
         "middle_0_4_to_0_6": {
           "n": 648,
-          "count": 105,
-          "share": 0.162,
-          "ci95": [0.136, 0.192]
+          "count": 111,
+          "share": 0.171,
+          "ci95": [0.144, 0.202]
         },
         "bloomSide_x_above_0_6": {
           "n": 648,
-          "count": 172,
-          "share": 0.265,
-          "ci95": [0.233, 0.301]
+          "count": 156,
+          "share": 0.241,
+          "ci95": [0.209, 0.275]
         },
         "byOutlookBand": {
           "catastrophe": {
             "n": 648,
-            "count": 41,
-            "share": 0.063,
-            "ci95": [0.047, 0.085]
+            "count": 42,
+            "share": 0.065,
+            "ci95": [0.048, 0.086]
           },
           "mainly harm": {
             "n": 648,
-            "count": 311,
-            "share": 0.48,
-            "ci95": [0.442, 0.518]
+            "count": 333,
+            "share": 0.514,
+            "ci95": [0.475, 0.552]
           },
           "mixed": {
             "n": 648,
-            "count": 127,
-            "share": 0.196,
-            "ci95": [0.167, 0.228]
+            "count": 88,
+            "share": 0.136,
+            "ci95": [0.112, 0.164]
           },
           "leans hopeful": {
             "n": 648,
-            "count": 135,
-            "share": 0.208,
-            "ci95": [0.179, 0.241]
+            "count": 151,
+            "share": 0.233,
+            "ci95": [0.202, 0.267]
           },
           "enthusiastic": {
             "n": 648,
@@ -134,52 +134,84 @@
             "share": 0.052,
             "ci95": [0.038, 0.072]
           }
+        },
+        "byOutlookRange": {
+          "catastrophe": {
+            "n": 648,
+            "count": 85,
+            "share": 0.131,
+            "ci95": [0.107, 0.159]
+          },
+          "mainly harm": {
+            "n": 648,
+            "count": 277,
+            "share": 0.427,
+            "ci95": [0.39, 0.466]
+          },
+          "mixed": {
+            "n": 648,
+            "count": 143,
+            "share": 0.221,
+            "ci95": [0.19, 0.254]
+          },
+          "leans hopeful": {
+            "n": 648,
+            "count": 116,
+            "share": 0.179,
+            "ci95": [0.151, 0.21]
+          },
+          "enthusiastic": {
+            "n": 648,
+            "count": 27,
+            "share": 0.042,
+            "ci95": [0.029, 0.06]
+          }
         }
       },
       "scale": {
         "n": 648,
-        "median": 0.658,
-        "median_ci95": [0.633, 0.682],
+        "median": 0.586,
+        "median_ci95": [0.566, 0.606],
         "top_0_9_or_more": {
           "n": 648,
-          "count": 101,
-          "share": 0.156,
-          "ci95": [0.13, 0.186]
+          "count": 39,
+          "share": 0.06,
+          "ci95": [0.044, 0.081]
         }
       },
       "pdoomShown": {
-        "n": 629,
-        "median": 0.058,
-        "median_ci95": [0.053, 0.068]
+        "n": 626,
+        "median": 0.06,
+        "median_ci95": [0.052, 0.067]
       },
       "pdoomInferred": {
-        "n": 621,
-        "median": 0.058,
-        "median_ci95": [0.053, 0.067],
+        "n": 618,
+        "median": 0.059,
+        "median_ci95": [0.052, 0.066],
         "byBand": {
           "under 2%": {
-            "n": 621,
-            "count": 104,
-            "share": 0.167,
-            "ci95": [0.14, 0.199]
+            "n": 618,
+            "count": 109,
+            "share": 0.176,
+            "ci95": [0.148, 0.208]
           },
           "2–10%": {
-            "n": 621,
-            "count": 281,
-            "share": 0.452,
-            "ci95": [0.414, 0.492]
+            "n": 618,
+            "count": 277,
+            "share": 0.448,
+            "ci95": [0.409, 0.488]
           },
           "10–30%": {
-            "n": 621,
-            "count": 101,
-            "share": 0.163,
-            "ci95": [0.136, 0.194]
+            "n": 618,
+            "count": 99,
+            "share": 0.16,
+            "ci95": [0.133, 0.191]
           },
           "30% or more": {
-            "n": 621,
-            "count": 135,
-            "share": 0.217,
-            "ci95": [0.187, 0.252]
+            "n": 618,
+            "count": 133,
+            "share": 0.215,
+            "ci95": [0.185, 0.249]
           }
         }
       },
@@ -213,103 +245,135 @@
       "peopleWithResult": 263,
       "outlook": {
         "n": 261,
-        "median": 0.733,
-        "median_ci95": [0.645, 0.758],
+        "median": 0.678,
+        "median_ci95": [0.589, 0.732],
         "doomSide_x_below_0_4": {
           "n": 261,
-          "count": 65,
-          "share": 0.249,
-          "ci95": [0.2, 0.305]
+          "count": 74,
+          "share": 0.284,
+          "ci95": [0.232, 0.341]
         },
         "middle_0_4_to_0_6": {
           "n": 261,
-          "count": 41,
-          "share": 0.157,
-          "ci95": [0.118, 0.206]
+          "count": 42,
+          "share": 0.161,
+          "ci95": [0.121, 0.21]
         },
         "bloomSide_x_above_0_6": {
           "n": 261,
-          "count": 155,
-          "share": 0.594,
-          "ci95": [0.533, 0.652]
+          "count": 145,
+          "share": 0.556,
+          "ci95": [0.495, 0.615]
         },
         "byOutlookBand": {
           "catastrophe": {
             "n": 261,
-            "count": 13,
-            "share": 0.05,
-            "ci95": [0.029, 0.083]
+            "count": 15,
+            "share": 0.057,
+            "ci95": [0.035, 0.093]
           },
           "mainly harm": {
             "n": 261,
-            "count": 48,
-            "share": 0.184,
-            "ci95": [0.142, 0.235]
+            "count": 52,
+            "share": 0.199,
+            "ci95": [0.155, 0.252]
           },
           "mixed": {
+            "n": 261,
+            "count": 41,
+            "share": 0.157,
+            "ci95": [0.118, 0.206]
+          },
+          "leans hopeful": {
+            "n": 261,
+            "count": 75,
+            "share": 0.287,
+            "ci95": [0.236, 0.345]
+          },
+          "enthusiastic": {
+            "n": 261,
+            "count": 78,
+            "share": 0.299,
+            "ci95": [0.247, 0.357]
+          }
+        },
+        "byOutlookRange": {
+          "catastrophe": {
+            "n": 261,
+            "count": 20,
+            "share": 0.077,
+            "ci95": [0.05, 0.115]
+          },
+          "mainly harm": {
             "n": 261,
             "count": 49,
             "share": 0.188,
             "ci95": [0.145, 0.24]
           },
+          "mixed": {
+            "n": 261,
+            "count": 51,
+            "share": 0.195,
+            "ci95": [0.152, 0.248]
+          },
           "leans hopeful": {
             "n": 261,
-            "count": 78,
-            "share": 0.299,
-            "ci95": [0.247, 0.357]
+            "count": 90,
+            "share": 0.345,
+            "ci95": [0.29, 0.404]
           },
           "enthusiastic": {
             "n": 261,
-            "count": 73,
-            "share": 0.28,
-            "ci95": [0.229, 0.337]
+            "count": 51,
+            "share": 0.195,
+            "ci95": [0.152, 0.248]
           }
         }
       },
       "scale": {
         "n": 261,
-        "median": 0.883,
-        "median_ci95": [0.81, 0.94],
+        "median": 0.819,
+        "median_ci95": [0.771, 0.853],
         "top_0_9_or_more": {
           "n": 261,
-          "count": 129,
-          "share": 0.494,
-          "ci95": [0.434, 0.555]
+          "count": 78,
+          "share": 0.299,
+          "ci95": [0.247, 0.357]
         }
       },
       "pdoomShown": {
-        "n": 258,
-        "median": 0.065,
-        "median_ci95": [0.05, 0.083]
+        "n": 260,
+        "median": 0.063,
+        "median_ci95": [0.05, 0.078]
       },
       "pdoomInferred": {
-        "n": 167,
+        "n": 169,
         "median": 0.051,
-        "median_ci95": [0.043, 0.065],
+        "median_ci95": [0.042, 0.06],
         "byBand": {
           "under 2%": {
-            "n": 167,
-            "count": 45,
-            "share": 0.269,
-            "ci95": [0.208, 0.341]
+            "n": 169,
+            "count": 50,
+            "share": 0.296,
+            "ci95": [0.232, 0.369]
           },
           "2–10%": {
-            "n": 167,
-            "count": 75,
-            "share": 0.449,
-            "ci95": [0.376, 0.525]
+            "n": 169,
+            "count": 70,
+            "share": 0.414,
+            "ci95": [0.343, 0.49]
           },
           "10–30%": {
-            "n": 167,
-            "count": 29,
-            "share": 0.174,
-            "ci95": [0.124, 0.238]
+            "n": 169,
+            "count": 30,
+            "share": 0.178,
+            "ci95": [0.127, 0.242]
           },
           "30% or more": {
-            "n": 167,
-            "count": 18,
-            "share": 0.108,
-            "ci95": [0.069, 0.164]
+            "n": 169,
+            "count": 19,
+            "share": 0.112,
+            "ci95": [0.073, 0.169]
           }
         }
       },
@@ -337,11 +401,11 @@
     },
     "later": {
       "label": "Since Sep 29",
-      "peopleWithResult": 39,
+      "peopleWithResult": 45,
       "outlook": {
-        "n": 39,
-        "median": 0.455,
-        "median_ci95": [0.27, 0.698]
+        "n": 45,
+        "median": 0.495,
+        "median_ci95": [0.288, 0.629]
       }
     },
     "tests": {
@@ -349,90 +413,90 @@
         "measure": "outlook x (0 doom, 1 bloom)",
         "nA": 648,
         "nB": 261,
-        "medianA": 0.335,
-        "medianA_ci95": [0.307, 0.37],
-        "medianB": 0.733,
-        "medianB_ci95": [0.645, 0.758],
-        "medianDiff": 0.398,
-        "medianDiff_ci95": [0.308, 0.436],
-        "mannWhitneyU": 121688.5,
-        "mannWhitneyP": 3.5008404961804875e-25,
-        "probabilityOfSuperiority": 0.72,
-        "rankBiserial": 0.439,
+        "medianA": 0.323,
+        "medianA_ci95": [0.302, 0.355],
+        "medianB": 0.678,
+        "medianB_ci95": [0.589, 0.732],
+        "medianDiff": 0.355,
+        "medianDiff_ci95": [0.267, 0.413],
+        "mannWhitneyU": 120786,
+        "mannWhitneyP": 4.7820567894326905e-24,
+        "probabilityOfSuperiority": 0.714,
+        "rankBiserial": 0.428,
         "permutationP_medianDiff": 0.0001999600079984003
       },
       "scale": {
         "measure": "scale y (0 incremental, 1 civilizational)",
         "nA": 648,
         "nB": 261,
-        "medianA": 0.658,
-        "medianA_ci95": [0.633, 0.682],
-        "medianB": 0.883,
-        "medianB_ci95": [0.81, 0.94],
-        "medianDiff": 0.225,
-        "medianDiff_ci95": [0.149, 0.288],
-        "mannWhitneyU": 120641.5,
-        "mannWhitneyP": 7.136577074917136e-24,
-        "probabilityOfSuperiority": 0.713,
-        "rankBiserial": 0.427,
+        "medianA": 0.586,
+        "medianA_ci95": [0.566, 0.607],
+        "medianB": 0.819,
+        "medianB_ci95": [0.771, 0.855],
+        "medianDiff": 0.233,
+        "medianDiff_ci95": [0.182, 0.275],
+        "mannWhitneyU": 125303,
+        "mannWhitneyP": 5.5427935326816014e-30,
+        "probabilityOfSuperiority": 0.741,
+        "rankBiserial": 0.482,
         "permutationP_medianDiff": 0.0001999600079984003
       },
       "pdoomShown": {
         "measure": "shown P(doom)",
-        "nA": 629,
-        "nB": 258,
-        "medianA": 0.058,
-        "medianA_ci95": [0.053, 0.068],
-        "medianB": 0.065,
-        "medianB_ci95": [0.05, 0.083],
-        "medianDiff": 0.008,
-        "medianDiff_ci95": [-0.012, 0.024],
-        "mannWhitneyU": 75865.5,
-        "mannWhitneyP": 0.12795799806689379,
+        "nA": 626,
+        "nB": 260,
+        "medianA": 0.06,
+        "medianA_ci95": [0.052, 0.067],
+        "medianB": 0.063,
+        "medianB_ci95": [0.05, 0.078],
+        "medianDiff": 0.003,
+        "medianDiff_ci95": [-0.012, 0.022],
+        "mannWhitneyU": 75956,
+        "mannWhitneyP": 0.11790266529305517,
         "probabilityOfSuperiority": 0.467,
-        "rankBiserial": -0.065,
-        "permutationP_medianDiff": 0.4305138972205559
+        "rankBiserial": -0.067,
+        "permutationP_medianDiff": 0.7368526294741051
       },
       "regions_chi2": {
-        "chi2": 96.413,
+        "chi2": 90.258,
         "dof": 2,
-        "p": 1.1591354581025236e-21,
-        "cramersV": 0.326
+        "p": 2.5163953742968182e-20,
+        "cramersV": 0.315
       },
       "catastropheBand": {
-        "measure": "outlook reads \"catastrophe\" (x < 0.125)",
+        "measure": "outlook level reads \"catastrophe\"",
         "hn": {
           "n": 648,
-          "count": 41,
-          "share": 0.063,
-          "ci95": [0.047, 0.085]
+          "count": 42,
+          "share": 0.065,
+          "ci95": [0.048, 0.086]
         },
         "x": {
           "n": 261,
-          "count": 13,
-          "share": 0.05,
-          "ci95": [0.029, 0.083]
+          "count": 15,
+          "share": 0.057,
+          "ci95": [0.035, 0.093]
         },
-        "fisherP": 0.5354756878937257
+        "fisherP": 0.7634401241152677
       },
       "mainlyHarmBand": {
-        "measure": "outlook reads \"mainly expects harm\"",
+        "measure": "outlook level reads \"mainly expects harm\"",
         "hn": {
           "n": 648,
-          "count": 311,
-          "share": 0.48,
-          "ci95": [0.442, 0.518]
+          "count": 333,
+          "share": 0.514,
+          "ci95": [0.475, 0.552]
         },
         "x": {
           "n": 261,
-          "count": 48,
-          "share": 0.184,
-          "ci95": [0.142, 0.235]
+          "count": 52,
+          "share": 0.199,
+          "ci95": [0.155, 0.252]
         },
-        "fisherP": 1.7297233118893882e-17
+        "fisherP": 6.380082757755561e-19
       },
       "enthusiasticBand": {
-        "measure": "outlook reads \"enthusiastic\" (x ≥ 0.875)",
+        "measure": "outlook level reads \"enthusiastic\"",
         "hn": {
           "n": 648,
           "count": 34,
@@ -441,80 +505,112 @@
         },
         "x": {
           "n": 261,
-          "count": 73,
-          "share": 0.28,
-          "ci95": [0.229, 0.337]
+          "count": 78,
+          "share": 0.299,
+          "ci95": [0.247, 0.357]
         },
-        "fisherP": 1.1723555591136577e-19
+        "fisherP": 4.9900324988896275e-22
+      },
+      "catastropheEnd": {
+        "measure": "outlook position below 0.125 (the catastrophe end of the axis)",
+        "hn": {
+          "n": 648,
+          "count": 85,
+          "share": 0.131,
+          "ci95": [0.107, 0.159]
+        },
+        "x": {
+          "n": 261,
+          "count": 20,
+          "share": 0.077,
+          "ci95": [0.05, 0.115]
+        },
+        "fisherP": 0.02147430093520156
+      },
+      "enthusiasticEnd": {
+        "measure": "outlook position 0.875 or more (the enthusiastic end of the axis)",
+        "hn": {
+          "n": 648,
+          "count": 27,
+          "share": 0.042,
+          "ci95": [0.029, 0.06]
+        },
+        "x": {
+          "n": 261,
+          "count": 51,
+          "share": 0.195,
+          "ci95": [0.152, 0.248]
+        },
+        "fisherP": 2.6724950208010552e-12
       },
       "pdoomShownAtLeast10": {
         "measure": "shown P(doom) of 10% or more",
         "hn": {
-          "n": 629,
-          "count": 240,
-          "share": 0.382,
-          "ci95": [0.344, 0.42]
+          "n": 626,
+          "count": 236,
+          "share": 0.377,
+          "ci95": [0.34, 0.416]
         },
         "x": {
-          "n": 258,
-          "count": 101,
-          "share": 0.391,
-          "ci95": [0.334, 0.452]
+          "n": 260,
+          "count": 103,
+          "share": 0.396,
+          "ci95": [0.339, 0.457]
         },
-        "fisherP": 0.8197425498686488
+        "fisherP": 0.5960536602769568
       },
       "pdoomShownAtLeast30": {
         "measure": "shown P(doom) of 30% or more",
         "hn": {
-          "n": 629,
-          "count": 137,
-          "share": 0.218,
-          "ci95": [0.187, 0.252]
+          "n": 626,
+          "count": 135,
+          "share": 0.216,
+          "ci95": [0.185, 0.25]
         },
         "x": {
-          "n": 258,
-          "count": 42,
-          "share": 0.163,
-          "ci95": [0.123, 0.213]
+          "n": 260,
+          "count": 43,
+          "share": 0.165,
+          "ci95": [0.125, 0.215]
         },
-        "fisherP": 0.06594727996394559
+        "fisherP": 0.09759167613487565
       }
     },
     "engineVersion": {
       "hnWave_oldInterview": {
         "outlook": {
           "n": 648,
-          "median": 0.335,
-          "median_ci95": [0.307, 0.37]
+          "median": 0.323,
+          "median_ci95": [0.302, 0.353]
         },
         "scale": {
           "n": 648,
-          "median": 0.658,
-          "median_ci95": [0.633, 0.682]
+          "median": 0.586,
+          "median_ci95": [0.566, 0.607]
         }
       },
       "xWave_oldInterview": {
         "outlook": {
           "n": 52,
-          "median": 0.725,
-          "median_ci95": [0.526, 0.798]
+          "median": 0.694,
+          "median_ci95": [0.527, 0.792]
         },
         "scale": {
           "n": 52,
-          "median": 0.767,
-          "median_ci95": [0.667, 0.841]
+          "median": 0.702,
+          "median_ci95": [0.606, 0.776]
         }
       },
       "xWave_newInterview": {
         "outlook": {
           "n": 209,
-          "median": 0.733,
-          "median_ci95": [0.635, 0.758]
+          "median": 0.666,
+          "median_ci95": [0.589, 0.733]
         },
         "scale": {
           "n": 209,
-          "median": 0.925,
-          "median_ci95": [0.837, 0.958]
+          "median": 0.851,
+          "median_ci95": [0.805, 0.872]
         }
       },
       "tests": {
@@ -522,65 +618,65 @@
           "measure": "outlook, same old interview",
           "nA": 648,
           "nB": 52,
-          "medianA": 0.335,
-          "medianA_ci95": [0.307, 0.37],
-          "medianB": 0.725,
-          "medianB_ci95": [0.526, 0.798],
-          "medianDiff": 0.39,
-          "medianDiff_ci95": [0.187, 0.473],
-          "mannWhitneyU": 24195.5,
-          "mannWhitneyP": 1.6288988689963074e-7,
+          "medianA": 0.323,
+          "medianA_ci95": [0.302, 0.352],
+          "medianB": 0.694,
+          "medianB_ci95": [0.525, 0.792],
+          "medianDiff": 0.371,
+          "medianDiff_ci95": [0.197, 0.47],
+          "mannWhitneyU": 24180.5,
+          "mannWhitneyP": 1.732624676035072e-7,
           "probabilityOfSuperiority": 0.718,
-          "rankBiserial": 0.436,
+          "rankBiserial": 0.435,
           "permutationP_medianDiff": 0.0001999600079984003
         },
         "xOld_vs_xNew_outlook": {
           "measure": "outlook within the X wave, old vs new interview",
           "nA": 52,
           "nB": 209,
-          "medianA": 0.725,
-          "medianA_ci95": [0.526, 0.798],
-          "medianB": 0.733,
-          "medianB_ci95": [0.635, 0.758],
-          "medianDiff": 0.007,
-          "medianDiff_ci95": [-0.113, 0.206],
-          "mannWhitneyU": 5422,
-          "mannWhitneyP": 0.981157250156334,
-          "probabilityOfSuperiority": 0.499,
-          "rankBiserial": -0.002,
-          "permutationP_medianDiff": 0.9194161167766447
+          "medianA": 0.694,
+          "medianA_ci95": [0.525, 0.792],
+          "medianB": 0.666,
+          "medianB_ci95": [0.589, 0.733],
+          "medianDiff": -0.028,
+          "medianDiff_ci95": [-0.147, 0.17],
+          "mannWhitneyU": 5329.5,
+          "mannWhitneyP": 0.8309362728399988,
+          "probabilityOfSuperiority": 0.49,
+          "rankBiserial": -0.019,
+          "permutationP_medianDiff": 0.8362327534493101
         },
         "xOld_vs_xNew_scale": {
           "measure": "scale within the X wave, old vs new interview",
           "nA": 52,
           "nB": 209,
-          "medianA": 0.767,
-          "medianA_ci95": [0.662, 0.84],
-          "medianB": 0.925,
-          "medianB_ci95": [0.837, 0.958],
-          "medianDiff": 0.158,
-          "medianDiff_ci95": [0.062, 0.264],
-          "mannWhitneyU": 6783.5,
-          "mannWhitneyP": 0.005550638483196856,
-          "probabilityOfSuperiority": 0.624,
-          "rankBiserial": 0.248,
-          "permutationP_medianDiff": 0.02299540091981604
+          "medianA": 0.702,
+          "medianA_ci95": [0.599, 0.776],
+          "medianB": 0.851,
+          "medianB_ci95": [0.805, 0.872],
+          "medianDiff": 0.149,
+          "medianDiff_ci95": [0.063, 0.249],
+          "mannWhitneyU": 7124,
+          "mannWhitneyP": 0.0005236282485179633,
+          "probabilityOfSuperiority": 0.656,
+          "rankBiserial": 0.311,
+          "permutationP_medianDiff": 0.0007998400319936012
         },
         "hn_vs_xOld_scale": {
           "measure": "scale, same old interview",
           "nA": 648,
           "nB": 52,
-          "medianA": 0.658,
-          "medianA_ci95": [0.633, 0.682],
-          "medianB": 0.767,
-          "medianB_ci95": [0.667, 0.84],
-          "medianDiff": 0.11,
-          "medianDiff_ci95": [0.005, 0.186],
-          "mannWhitneyU": 20893,
-          "mannWhitneyP": 0.00394149297362839,
-          "probabilityOfSuperiority": 0.62,
-          "rankBiserial": 0.24,
-          "permutationP_medianDiff": 0.01259748050389922
+          "medianA": 0.586,
+          "medianA_ci95": [0.566, 0.607],
+          "medianB": 0.702,
+          "medianB_ci95": [0.606, 0.776],
+          "medianDiff": 0.116,
+          "medianDiff_ci95": [0.011, 0.194],
+          "mannWhitneyU": 21058.5,
+          "mannWhitneyP": 0.002693408758188674,
+          "probabilityOfSuperiority": 0.625,
+          "rankBiserial": 0.25,
+          "permutationP_medianDiff": 0.0033993201359728054
         }
       }
     },
@@ -642,45 +738,45 @@
       "hn": {
         "00-05 UTC": {
           "n": 57,
-          "median": 0.313,
-          "median_ci95": [0.266, 0.492]
+          "median": 0.321,
+          "median_ci95": [0.216, 0.436]
         },
         "06-11 UTC": {
           "n": 24,
-          "median": 0.355,
-          "median_ci95": [0.25, 0.665]
+          "median": 0.345,
+          "median_ci95": [0.192, 0.585]
         },
         "12-17 UTC": {
           "n": 20,
-          "median": 0.253,
-          "median_ci95": [0.244, 0.323]
+          "median": 0.211,
+          "median_ci95": [0.175, 0.32]
         },
         "18-23 UTC": {
           "n": 547,
-          "median": 0.343,
-          "median_ci95": [0.31, 0.378]
+          "median": 0.327,
+          "median_ci95": [0.306, 0.359]
         }
       },
       "x": {
         "00-05 UTC": {
           "n": 70,
-          "median": 0.71,
-          "median_ci95": [0.514, 0.788]
+          "median": 0.622,
+          "median_ci95": [0.458, 0.777]
         },
         "06-11 UTC": {
           "n": 45,
-          "median": 0.728,
-          "median_ci95": [0.573, 0.758]
+          "median": 0.686,
+          "median_ci95": [0.541, 0.75]
         },
         "12-17 UTC": {
           "n": 63,
-          "median": 0.672,
-          "median_ci95": [0.528, 0.798]
+          "median": 0.645,
+          "median_ci95": [0.473, 0.804]
         },
         "18-23 UTC": {
           "n": 83,
-          "median": 0.752,
-          "median_ci95": [0.637, 0.792]
+          "median": 0.725,
+          "median_ci95": [0.589, 0.776]
         }
       }
     },
@@ -688,76 +784,76 @@
       "everyAssessmentNoOwnerDedup": {
         "hn": {
           "n": 660,
-          "median": 0.336,
-          "median_ci95": [0.307, 0.37]
+          "median": 0.323,
+          "median_ci95": [0.303, 0.356]
         },
         "x": {
           "n": 267,
-          "median": 0.723,
-          "median_ci95": [0.637, 0.752]
+          "median": 0.666,
+          "median_ci95": [0.589, 0.726]
         }
       },
       "xWaveFromSep27Noon": {
         "n": 218,
-        "median": 0.735,
-        "median_ci95": [0.637, 0.76]
+        "median": 0.682,
+        "median_ci95": [0.6, 0.736]
       },
       "hnWavePeakHoursOnly": {
         "n": 539,
-        "median": 0.346,
-        "median_ci95": [0.312, 0.379]
+        "median": 0.328,
+        "median_ci95": [0.308, 0.362]
       }
     }
   },
   "map": {
     "description": "Where participants sit on the Doom–Bloom (x) × scale of change (y) map, with the simulated thought leaders. One point per person.",
-    "n": 947,
+    "n": 953,
     "overall": {
       "outlook": {
-        "n": 947,
-        "median": 0.428,
-        "median_ci95": [0.389, 0.467]
+        "n": 953,
+        "median": 0.405,
+        "median_ci95": [0.369, 0.447]
       },
       "scale": {
-        "n": 947,
-        "median": 0.707,
-        "median_ci95": [0.688, 0.725]
+        "n": 953,
+        "median": 0.642,
+        "median_ci95": [0.622, 0.662]
       },
       "doomSide_x_below_0_4": {
-        "n": 947,
-        "count": 453,
-        "share": 0.478,
-        "ci95": [0.447, 0.51]
+        "n": 953,
+        "count": 475,
+        "share": 0.498,
+        "ci95": [0.467, 0.53]
       },
       "middle": {
-        "n": 947,
-        "count": 151,
-        "share": 0.159,
-        "ci95": [0.138, 0.184]
+        "n": 953,
+        "count": 159,
+        "share": 0.167,
+        "ci95": [0.145, 0.192]
       },
       "bloomSide_x_above_0_6": {
-        "n": 947,
-        "count": 343,
-        "share": 0.362,
-        "ci95": [0.332, 0.393]
+        "n": 953,
+        "count": 319,
+        "share": 0.335,
+        "ci95": [0.305, 0.365]
       },
       "lowerHalf_y_below_0_5": {
-        "n": 947,
-        "count": 200,
-        "share": 0.211,
-        "ci95": [0.186, 0.238]
+        "n": 953,
+        "count": 261,
+        "share": 0.274,
+        "ci95": [0.247, 0.303]
       },
       "topEdge_y_0_9_or_more": {
-        "n": 947,
-        "count": 242,
-        "share": 0.256,
-        "ci95": [0.229, 0.284]
+        "n": 953,
+        "count": 125,
+        "share": 0.131,
+        "ci95": [0.111, 0.154]
       },
       "expectsCatastrophe_x_below_0_125": {
-        "n": 947,
-        "count": 59,
-        "share": 0.062,
-        "ci95": [0.049, 0.08]
+        "n": 953,
+        "count": 112,
+        "share": 0.118,
+        "ci95": [0.099, 0.14]
       }
     },
     "grid": {
@@ -784,104 +880,104 @@
           "x1": 0.2,
           "y0": 0.4,
           "y1": 0.6,
-          "count": null,
-          "share": null
+          "count": 38,
+          "share": 0.04
         },
         {
           "x0": 0,
           "x1": 0.2,
           "y0": 0.6,
           "y1": 0.8,
-          "count": null,
-          "share": null
-        },
-        {
-          "x0": 0,
-          "x1": 0.2,
-          "y0": 0.8,
-          "y1": 1,
-          "count": 76,
-          "share": 0.08
-        },
-        {
-          "x0": 0.2,
-          "x1": 0.4,
-          "y0": 0,
-          "y1": 0.2,
-          "count": 28,
-          "share": 0.03
-        },
-        {
-          "x0": 0.2,
-          "x1": 0.4,
-          "y0": 0.2,
-          "y1": 0.4,
-          "count": 31,
-          "share": 0.033
-        },
-        {
-          "x0": 0.2,
-          "x1": 0.4,
-          "y0": 0.4,
-          "y1": 0.6,
-          "count": 61,
-          "share": 0.064
-        },
-        {
-          "x0": 0.2,
-          "x1": 0.4,
-          "y0": 0.6,
-          "y1": 0.8,
-          "count": 158,
-          "share": 0.167
-        },
-        {
-          "x0": 0.2,
-          "x1": 0.4,
-          "y0": 0.8,
-          "y1": 1,
           "count": 87,
-          "share": 0.092
+          "share": 0.091
         },
         {
-          "x0": 0.4,
-          "x1": 0.6,
+          "x0": 0,
+          "x1": 0.2,
+          "y0": 0.8,
+          "y1": 1,
+          "count": 89,
+          "share": 0.093
+        },
+        {
+          "x0": 0.2,
+          "x1": 0.4,
           "y0": 0,
           "y1": 0.2,
           "count": 14,
           "share": 0.015
         },
         {
+          "x0": 0.2,
+          "x1": 0.4,
+          "y0": 0.2,
+          "y1": 0.4,
+          "count": 34,
+          "share": 0.036
+        },
+        {
+          "x0": 0.2,
+          "x1": 0.4,
+          "y0": 0.4,
+          "y1": 0.6,
+          "count": 75,
+          "share": 0.079
+        },
+        {
+          "x0": 0.2,
+          "x1": 0.4,
+          "y0": 0.6,
+          "y1": 0.8,
+          "count": 75,
+          "share": 0.079
+        },
+        {
+          "x0": 0.2,
+          "x1": 0.4,
+          "y0": 0.8,
+          "y1": 1,
+          "count": 53,
+          "share": 0.056
+        },
+        {
+          "x0": 0.4,
+          "x1": 0.6,
+          "y0": 0,
+          "y1": 0.2,
+          "count": 19,
+          "share": 0.02
+        },
+        {
           "x0": 0.4,
           "x1": 0.6,
           "y0": 0.2,
           "y1": 0.4,
-          "count": 16,
-          "share": 0.017
+          "count": 26,
+          "share": 0.027
         },
         {
           "x0": 0.4,
           "x1": 0.6,
           "y0": 0.4,
           "y1": 0.6,
-          "count": 45,
-          "share": 0.048
+          "count": 54,
+          "share": 0.057
         },
         {
           "x0": 0.4,
           "x1": 0.6,
           "y0": 0.6,
           "y1": 0.8,
-          "count": 40,
-          "share": 0.042
+          "count": 34,
+          "share": 0.036
         },
         {
           "x0": 0.4,
           "x1": 0.6,
           "y0": 0.8,
           "y1": 1,
-          "count": 36,
-          "share": 0.038
+          "count": 26,
+          "share": 0.027
         },
         {
           "x0": 0.6,
@@ -896,32 +992,32 @@
           "x1": 0.8,
           "y0": 0.2,
           "y1": 0.4,
-          "count": 35,
-          "share": 0.037
+          "count": 39,
+          "share": 0.041
         },
         {
           "x0": 0.6,
           "x1": 0.8,
           "y0": 0.4,
           "y1": 0.6,
-          "count": 57,
-          "share": 0.06
+          "count": 56,
+          "share": 0.059
         },
         {
           "x0": 0.6,
           "x1": 0.8,
           "y0": 0.6,
           "y1": 0.8,
-          "count": 66,
-          "share": 0.07
+          "count": 44,
+          "share": 0.046
         },
         {
           "x0": 0.6,
           "x1": 0.8,
           "y0": 0.8,
           "y1": 1,
-          "count": 32,
-          "share": 0.034
+          "count": 30,
+          "share": 0.031
         },
         {
           "x0": 0.8,
@@ -936,124 +1032,124 @@
           "x1": 1,
           "y0": 0.2,
           "y1": 0.4,
-          "count": null,
-          "share": null
+          "count": 10,
+          "share": 0.01
         },
         {
           "x0": 0.8,
           "x1": 1,
           "y0": 0.4,
           "y1": 0.6,
-          "count": 18,
-          "share": 0.019
+          "count": 28,
+          "share": 0.029
         },
         {
           "x0": 0.8,
           "x1": 1,
           "y0": 0.6,
           "y1": 0.8,
-          "count": 38,
-          "share": 0.04
+          "count": 37,
+          "share": 0.039
         },
         {
           "x0": 0.8,
           "x1": 1,
           "y0": 0.8,
           "y1": 1,
-          "count": 89,
-          "share": 0.094
+          "count": 70,
+          "share": 0.073
         }
       ],
-      "suppressedCells": 7
+      "suppressedCells": 4
     },
     "levelSnapping": {
       "description": "Share within 0.03 of one of the five outlook levels (0, 0.25, 0.5, 0.75, 1); an even spread would put about 24% there.",
       "participants": {
-        "n": 947,
-        "count": 487,
-        "share": 0.514,
-        "ci95": [0.482, 0.546]
+        "n": 953,
+        "count": 217,
+        "share": 0.228,
+        "ci95": [0.202, 0.255]
       },
       "simulated": {
-        "n": 171,
-        "count": 110
+        "n": 178,
+        "count": 53
       }
     },
     "horseshoe": [
       {
         "outlookBand": "catastrophe",
-        "n": 947,
-        "count": 59,
-        "share": 0.062,
-        "ci95": [0.049, 0.08],
-        "medianScale": 0.997,
-        "medianShownPdoom": 0.948,
-        "simulated": 11
+        "n": 953,
+        "count": 112,
+        "share": 0.118,
+        "ci95": [0.099, 0.14],
+        "medianScale": 0.854,
+        "medianShownPdoom": 0.725,
+        "simulated": 12
       },
       {
         "outlookBand": "mainly harm",
-        "n": 947,
-        "count": 371,
-        "share": 0.392,
-        "ci95": [0.361, 0.423],
-        "medianScale": 0.703,
-        "medianShownPdoom": 0.089,
-        "simulated": 27
+        "n": 953,
+        "count": 339,
+        "share": 0.356,
+        "ci95": [0.326, 0.387],
+        "medianScale": 0.632,
+        "medianShownPdoom": 0.088,
+        "simulated": 32
       },
       {
         "outlookBand": "mixed",
-        "n": 947,
-        "count": 182,
-        "share": 0.192,
-        "ci95": [0.168, 0.219],
-        "medianScale": 0.609,
-        "medianShownPdoom": 0.067,
-        "simulated": 33
+        "n": 953,
+        "count": 201,
+        "share": 0.211,
+        "ci95": [0.186, 0.238],
+        "medianScale": 0.544,
+        "medianShownPdoom": 0.056,
+        "simulated": 45
       },
       {
         "outlookBand": "leans hopeful",
-        "n": 947,
-        "count": 225,
-        "share": 0.238,
-        "ci95": [0.212, 0.266],
-        "medianScale": 0.629,
+        "n": 953,
+        "count": 220,
+        "share": 0.231,
+        "ci95": [0.205, 0.259],
+        "medianScale": 0.596,
         "medianShownPdoom": 0.041,
-        "simulated": 89
+        "simulated": 77
       },
       {
         "outlookBand": "enthusiastic",
-        "n": 947,
-        "count": 110,
-        "share": 0.116,
-        "ci95": [0.097, 0.138],
-        "medianScale": 0.959,
-        "medianShownPdoom": 0.019,
-        "simulated": 11
+        "n": 953,
+        "count": 81,
+        "share": 0.085,
+        "ci95": [0.069, 0.104],
+        "medianScale": 0.864,
+        "medianShownPdoom": 0.009,
+        "simulated": 12
       }
     ],
     "directScaleAnswer": {
-      "n": 239,
+      "n": 245,
       "categories": {
         "completely": {
-          "n": 239,
-          "count": 138,
-          "share": 0.577,
-          "ci95": [0.514, 0.638]
+          "n": 245,
+          "count": 139,
+          "share": 0.567,
+          "ci95": [0.505, 0.628]
         },
         "a lot": {
-          "n": 239,
-          "count": 62,
-          "share": 0.259,
-          "ci95": [0.208, 0.318]
+          "n": 245,
+          "count": 63,
+          "share": 0.257,
+          "ci95": [0.206, 0.315]
         },
         "other": {
-          "n": 239,
-          "count": 30,
-          "share": 0.126,
-          "ci95": [0.089, 0.174]
+          "n": 245,
+          "count": 34,
+          "share": 0.139,
+          "ci95": [0.101, 0.188]
         },
         "a little": {
-          "n": 239,
+          "n": 245,
           "count": null,
           "share": null,
           "ci95": [null, null],
@@ -1063,87 +1159,87 @@
     },
     "catalogCoverage": {
       "withinDistance0_1OfAnySimulatedUser": {
-        "n": 947,
-        "count": 855,
-        "share": 0.903,
-        "ci95": [0.882, 0.92]
+        "n": 953,
+        "count": 847,
+        "share": 0.889,
+        "ci95": [0.867, 0.907]
       },
       "withinDistance0_1OfAFeaturedThoughtLeader": {
-        "n": 947,
-        "count": 728,
+        "n": 953,
+        "count": 733,
         "share": 0.769,
-        "ci95": [0.741, 0.794]
+        "ci95": [0.741, 0.795]
       },
-      "simulatedUsers": 171,
-      "featuredThoughtLeaders": 44
+      "simulatedUsers": 178,
+      "featuredThoughtLeaders": 48
     },
     "groups": {
-      "participantsInClustering": 923,
-      "simulatedInClustering": 149,
+      "participantsInClustering": 928,
+      "simulatedInClustering": 156,
       "groups": [
         {
           "group": 1,
-          "n": 923,
-          "count": 166,
-          "share": 0.18,
-          "ci95": [0.156, 0.206],
-          "medianOutlook": 0.221,
-          "medianScale": 0.977,
-          "medianPdoom": 0.659,
-          "simulated": 19,
-          "simulatedShare": 0.128,
+          "n": 928,
+          "count": 176,
+          "share": 0.19,
+          "ci95": [0.166, 0.216],
+          "medianOutlook": 0.133,
+          "medianScale": 0.869,
+          "medianPdoom": 0.638,
+          "simulated": 21,
+          "simulatedShare": 0.135,
           "label": "Worried, catastrophe-scale stakes"
         },
         {
           "group": 2,
-          "n": 923,
-          "count": 297,
-          "share": 0.322,
-          "ci95": [0.292, 0.353],
-          "medianOutlook": 0.263,
-          "medianScale": 0.682,
-          "medianPdoom": 0.078,
+          "n": 928,
+          "count": 279,
+          "share": 0.301,
+          "ci95": [0.272, 0.331],
+          "medianOutlook": 0.252,
+          "medianScale": 0.622,
+          "medianPdoom": 0.079,
           "simulated": 29,
-          "simulatedShare": 0.195,
+          "simulatedShare": 0.186,
           "label": "Concerned, expects big change"
         },
         {
           "group": 3,
-          "n": 923,
-          "count": 98,
-          "share": 0.106,
-          "ci95": [0.088, 0.128],
-          "medianOutlook": 0.367,
-          "medianScale": 0.212,
-          "medianPdoom": 0.023,
-          "simulated": 2,
-          "simulatedShare": 0.013,
+          "n": 928,
+          "count": 110,
+          "share": 0.119,
+          "ci95": [0.099, 0.141],
+          "medianOutlook": 0.376,
+          "medianScale": 0.264,
+          "medianPdoom": 0.026,
+          "simulated": 4,
+          "simulatedShare": 0.026,
           "label": "Skeptics: little change, somewhat negative"
         },
         {
           "group": 4,
-          "n": 923,
-          "count": 187,
-          "share": 0.203,
-          "ci95": [0.178, 0.23],
-          "medianOutlook": 0.74,
-          "medianScale": 0.532,
-          "medianPdoom": 0.032,
-          "simulated": 73,
-          "simulatedShare": 0.49,
+          "n": 928,
+          "count": 198,
+          "share": 0.213,
+          "ci95": [0.188, 0.241],
+          "medianOutlook": 0.701,
+          "medianScale": 0.485,
+          "medianPdoom": 0.031,
+          "simulated": 71,
+          "simulatedShare": 0.455,
           "label": "Pragmatic optimists"
         },
         {
           "group": 5,
-          "n": 923,
-          "count": 175,
-          "share": 0.19,
-          "ci95": [0.166, 0.216],
-          "medianOutlook": 0.885,
-          "medianScale": 0.958,
-          "medianPdoom": 0.05,
-          "simulated": 26,
-          "simulatedShare": 0.174,
+          "n": 928,
+          "count": 165,
+          "share": 0.178,
+          "ci95": [0.155, 0.204],
+          "medianOutlook": 0.846,
+          "medianScale": 0.867,
+          "medianPdoom": 0.048,
+          "simulated": 31,
+          "simulatedShare": 0.199,
           "label": "Transformative optimists"
         }
       ]
@@ -1151,41 +1247,41 @@
   },
   "pdoom": {
     "description": "P(doom) numbers participants typed, and the values the model inferred for everyone else. A typed range shows its midpoint.",
-    "n": 925,
+    "n": 930,
     "typed": {
-      "n": 115,
+      "n": 117,
       "median": 0.125,
       "median_ci95": [0.1, 0.2],
       "quantiles": {
         "p10": 0.005,
-        "p25": 0.048,
+        "p25": 0.05,
         "p50": 0.125,
         "p75": 0.3,
-        "p90": 0.68
+        "p90": 0.67
       },
-      "mean": 0.234,
+      "mean": 0.236,
       "atLeast10pct": {
-        "n": 115,
-        "count": 70,
-        "share": 0.609,
-        "ci95": [0.517, 0.693]
+        "n": 117,
+        "count": 72,
+        "share": 0.615,
+        "ci95": [0.525, 0.699]
       },
       "atLeast25pct": {
-        "n": 115,
-        "count": 37,
-        "share": 0.322,
-        "ci95": [0.243, 0.412]
+        "n": 117,
+        "count": 38,
+        "share": 0.325,
+        "ci95": [0.247, 0.414]
       },
       "atLeast50pct": {
-        "n": 115,
+        "n": 117,
         "count": 21,
-        "share": 0.183,
-        "ci95": [0.123, 0.263]
+        "share": 0.179,
+        "ci95": [0.12, 0.259]
       },
       "bins": [
         {
           "bin": "0%",
-          "n": 115,
+          "n": 117,
           "count": null,
           "share": null,
           "ci95": [null, null],
@@ -1193,120 +1289,120 @@
         },
         {
           "bin": "0.1–4%",
-          "n": 115,
+          "n": 117,
           "count": 20,
-          "share": 0.174,
-          "ci95": [0.115, 0.253]
+          "share": 0.171,
+          "ci95": [0.113, 0.249]
         },
         {
           "bin": "5–9%",
-          "n": 115,
+          "n": 117,
           "count": 16,
-          "share": 0.139,
-          "ci95": [0.087, 0.214]
+          "share": 0.137,
+          "ci95": [0.086, 0.211]
         },
         {
           "bin": "10–19%",
-          "n": 115,
+          "n": 117,
           "count": 22,
-          "share": 0.191,
-          "ci95": [0.13, 0.273]
+          "share": 0.188,
+          "ci95": [0.128, 0.268]
         },
         {
           "bin": "20–39%",
-          "n": 115,
-          "count": 25,
-          "share": 0.217,
-          "ci95": [0.152, 0.301]
+          "n": 117,
+          "count": 26,
+          "share": 0.222,
+          "ci95": [0.156, 0.306]
         },
         {
           "bin": "40–69%",
-          "n": 115,
-          "count": 11,
-          "share": 0.096,
-          "ci95": [0.054, 0.163]
+          "n": 117,
+          "count": 12,
+          "share": 0.103,
+          "ci95": [0.06, 0.171]
         },
         {
           "bin": "70–100%",
-          "n": 115,
+          "n": 117,
           "count": 12,
-          "share": 0.104,
-          "ci95": [0.061, 0.174]
+          "share": 0.103,
+          "ci95": [0.06, 0.171]
         }
       ],
       "byBand": {
         "under 2%": {
-          "n": 115,
+          "n": 117,
           "count": 24,
-          "share": 0.209,
-          "ci95": [0.144, 0.292]
+          "share": 0.205,
+          "ci95": [0.142, 0.287]
         },
         "2–10%": {
-          "n": 115,
+          "n": 117,
           "count": 21,
-          "share": 0.183,
-          "ci95": [0.123, 0.263]
+          "share": 0.179,
+          "ci95": [0.12, 0.259]
         },
         "10–30%": {
-          "n": 115,
+          "n": 117,
           "count": 37,
-          "share": 0.322,
-          "ci95": [0.243, 0.412]
+          "share": 0.316,
+          "ci95": [0.239, 0.405]
         },
         "30% or more": {
-          "n": 115,
-          "count": 33,
-          "share": 0.287,
-          "ci95": [0.212, 0.375]
+          "n": 117,
+          "count": 35,
+          "share": 0.299,
+          "ci95": [0.224, 0.387]
         }
       },
       "roundNumbers": {
-        "n": 115,
-        "count": 95,
-        "share": 0.826,
-        "ci95": [0.747, 0.885]
+        "n": 117,
+        "count": 98,
+        "share": 0.838,
+        "ci95": [0.76, 0.894]
       },
       "exactly0_1_5_10_20_or_50pct": {
-        "n": 115,
-        "count": 55,
-        "share": 0.478,
-        "ci95": [0.389, 0.569]
+        "n": 117,
+        "count": 56,
+        "share": 0.479,
+        "ci95": [0.39, 0.568]
       }
     },
     "inferred": {
-      "n": 810,
+      "n": 813,
       "median": 0.056,
-      "median_ci95": [0.051, 0.065],
+      "median_ci95": [0.051, 0.063],
       "quantiles": {
         "p10": 0.01,
-        "p25": 0.025,
+        "p25": 0.026,
         "p50": 0.056,
-        "p75": 0.193,
-        "p90": 0.588
+        "p75": 0.191,
+        "p90": 0.607
       },
       "mean": 0.176,
       "atLeast10pct": {
-        "n": 810,
-        "count": 289,
-        "share": 0.357,
-        "ci95": [0.325, 0.39]
+        "n": 813,
+        "count": 288,
+        "share": 0.354,
+        "ci95": [0.322, 0.388]
       },
       "atLeast25pct": {
-        "n": 810,
-        "count": 172,
-        "share": 0.212,
-        "ci95": [0.186, 0.242]
+        "n": 813,
+        "count": 171,
+        "share": 0.21,
+        "ci95": [0.184, 0.24]
       },
       "atLeast50pct": {
-        "n": 810,
-        "count": 99,
-        "share": 0.122,
-        "ci95": [0.101, 0.147]
+        "n": 813,
+        "count": 101,
+        "share": 0.124,
+        "ci95": [0.103, 0.149]
       },
       "bins": [
         {
           "bin": "0%",
-          "n": 810,
+          "n": 813,
           "count": null,
           "share": null,
           "ci95": [null, null],
@@ -1314,256 +1410,256 @@
         },
         {
           "bin": "0.1–4%",
-          "n": 810,
-          "count": 327,
-          "share": 0.404,
-          "ci95": [0.37, 0.438]
+          "n": 813,
+          "count": 335,
+          "share": 0.412,
+          "ci95": [0.379, 0.446]
         },
         {
           "bin": "5–9%",
-          "n": 810,
-          "count": 177,
-          "share": 0.219,
-          "ci95": [0.191, 0.248]
+          "n": 813,
+          "count": 176,
+          "share": 0.216,
+          "ci95": [0.19, 0.246]
         },
         {
           "bin": "10–19%",
-          "n": 810,
-          "count": 102,
-          "share": 0.126,
-          "ci95": [0.105, 0.151]
+          "n": 813,
+          "count": 97,
+          "share": 0.119,
+          "ci95": [0.099, 0.143]
         },
         {
           "bin": "20–39%",
-          "n": 810,
-          "count": 78,
-          "share": 0.096,
-          "ci95": [0.078, 0.119]
+          "n": 813,
+          "count": 74,
+          "share": 0.091,
+          "ci95": [0.073, 0.113]
         },
         {
           "bin": "40–69%",
-          "n": 810,
-          "count": 51,
-          "share": 0.063,
-          "ci95": [0.048, 0.082]
+          "n": 813,
+          "count": 58,
+          "share": 0.071,
+          "ci95": [0.056, 0.091]
         },
         {
           "bin": "70–100%",
-          "n": 810,
-          "count": 70,
-          "share": 0.086,
-          "ci95": [0.069, 0.108]
+          "n": 813,
+          "count": 68,
+          "share": 0.084,
+          "ci95": [0.067, 0.105]
         }
       ],
       "byBand": {
         "under 2%": {
-          "n": 810,
-          "count": 154,
-          "share": 0.19,
-          "ci95": [0.165, 0.219]
+          "n": 813,
+          "count": 164,
+          "share": 0.202,
+          "ci95": [0.176, 0.231]
         },
         "2–10%": {
-          "n": 810,
-          "count": 367,
-          "share": 0.453,
-          "ci95": [0.419, 0.488]
+          "n": 813,
+          "count": 361,
+          "share": 0.444,
+          "ci95": [0.41, 0.478]
         },
         "10–30%": {
-          "n": 810,
-          "count": 133,
-          "share": 0.164,
-          "ci95": [0.14, 0.191]
+          "n": 813,
+          "count": 132,
+          "share": 0.162,
+          "ci95": [0.139, 0.189]
         },
         "30% or more": {
-          "n": 810,
+          "n": 813,
           "count": 156,
-          "share": 0.193,
-          "ci95": [0.167, 0.221]
+          "share": 0.192,
+          "ci95": [0.166, 0.22]
         }
       }
     },
     "askedDirectQuestion": {
-      "n": 239,
+      "n": 245,
       "typedANumber": {
-        "n": 239,
-        "count": 107,
-        "share": 0.448,
-        "ci95": [0.386, 0.511]
+        "n": 245,
+        "count": 109,
+        "share": 0.445,
+        "ci95": [0.384, 0.508]
       }
     },
     "bySide": [
       {
         "side": "doom side (x<0.4)",
         "typed": {
-          "n": 42,
-          "median": 0.287,
-          "iqr": [0.131, 0.637]
+          "n": 48,
+          "median": 0.275,
+          "iqr": [0.144, 0.613]
         },
         "inferred": {
-          "n": 402,
-          "median": 0.108,
-          "iqr": [0.043, 0.439]
+          "n": 413,
+          "median": 0.114,
+          "iqr": [0.045, 0.448]
         }
       },
       {
         "side": "middle (0.4–0.6)",
         "typed": {
-          "n": 12,
-          "median": 0.275,
-          "iqr": [0.15, 0.335]
+          "n": 11,
+          "median": 0.3,
+          "iqr": [0.088, 0.315]
         },
         "inferred": {
-          "n": 128,
-          "median": 0.058,
-          "iqr": [0.033, 0.156]
+          "n": 140,
+          "median": 0.051,
+          "iqr": [0.029, 0.124]
         }
       },
       {
         "side": "bloom side (x>0.6)",
         "typed": {
-          "n": 60,
+          "n": 57,
           "median": 0.05,
-          "iqr": [0.01, 0.131]
+          "iqr": [0.01, 0.125]
         },
         "inferred": {
-          "n": 280,
-          "median": 0.034,
-          "iqr": [0.013, 0.061]
+          "n": 260,
+          "median": 0.03,
+          "iqr": [0.012, 0.057]
         }
       }
     ]
   },
   "resonance": {
     "description": "Self-placement before the reveal against the result, and the one-tap \"Does this feel right?\" rating. Both exist since the 0.7.0 release on Sep 27.",
-    "n": 240,
+    "n": 245,
     "meanPlacedMinusGuess": {
-      "x": 0.006,
-      "y": 0.036
+      "x": 0.004,
+      "y": 0.039
     },
     "gapBuckets": {
       "close (≤0.10)": {
-        "n": 240,
+        "n": 245,
         "count": 56,
-        "share": 0.233,
-        "ci95": [0.184, 0.291]
+        "share": 0.229,
+        "ci95": [0.18, 0.285]
       },
       "moderate (0.10–0.25)": {
-        "n": 240,
+        "n": 245,
         "count": 106,
-        "share": 0.442,
-        "ci95": [0.38, 0.505]
+        "share": 0.433,
+        "ci95": [0.372, 0.495]
       },
       "far (>0.25)": {
-        "n": 240,
-        "count": 78,
-        "share": 0.325,
-        "ci95": [0.269, 0.387]
+        "n": 245,
+        "count": 83,
+        "share": 0.339,
+        "ci95": [0.282, 0.4]
       }
     },
     "guessNearOutlookLevel": {
-      "n": 240,
-      "count": 100,
-      "share": 0.417,
-      "ci95": [0.356, 0.48]
+      "n": 245,
+      "count": 102,
+      "share": 0.416,
+      "ci95": [0.356, 0.479]
     },
     "feelsRight": {
       "yes": {
-        "n": 79,
-        "count": 67,
-        "share": 0.848,
-        "ci95": [0.753, 0.911]
+        "n": 80,
+        "count": 68,
+        "share": 0.85,
+        "ci95": [0.756, 0.912]
       },
       "notQuite": {
-        "n": 79,
+        "n": 80,
         "count": 12,
-        "share": 0.152,
-        "ci95": [0.089, 0.247]
+        "share": 0.15,
+        "ci95": [0.088, 0.244]
       }
     }
   },
   "closest": {
     "description": "The simulated thought leader each person landed closest to, with the app’s own matching against the featured profiles.",
-    "n": 943,
+    "n": 950,
     "top": [
-      {
-        "name": "Ed Zitron",
-        "slug": "edzitron",
-        "n": 943,
-        "count": 109,
-        "share": 0.116,
-        "ci95": [0.097, 0.138]
-      },
       {
         "name": "Bernie Sanders",
         "slug": "sensanders",
-        "n": 943,
-        "count": 87,
-        "share": 0.092,
-        "ci95": [0.075, 0.112]
+        "n": 950,
+        "count": 119,
+        "share": 0.125,
+        "ci95": [0.106, 0.148]
       },
       {
-        "name": "Geoffrey Hinton",
-        "slug": "geoffreyhinton",
-        "n": 943,
-        "count": 80,
-        "share": 0.085,
-        "ci95": [0.069, 0.104]
+        "name": "Ed Zitron",
+        "slug": "edzitron",
+        "n": 950,
+        "count": 100,
+        "share": 0.105,
+        "ci95": [0.087, 0.126]
       },
       {
         "name": "Nathan Lambert",
         "slug": "natolambert",
-        "n": 943,
-        "count": 75,
-        "share": 0.08,
-        "ci95": [0.064, 0.099]
+        "n": 950,
+        "count": 54,
+        "share": 0.057,
+        "ci95": [0.044, 0.073]
+      },
+      {
+        "name": "Geoffrey Hinton",
+        "slug": "geoffreyhinton",
+        "n": 950,
+        "count": 50,
+        "share": 0.053,
+        "ci95": [0.04, 0.069]
       },
       {
         "name": "Daron Acemoglu",
         "slug": "dacemoglumit",
-        "n": 943,
-        "count": 51,
-        "share": 0.054,
-        "ci95": [0.041, 0.07]
+        "n": 950,
+        "count": 38,
+        "share": 0.04,
+        "ci95": [0.029, 0.054]
       },
       {
         "name": "Gary Marcus",
         "slug": "garymarcus",
-        "n": 943,
-        "count": 44,
-        "share": 0.047,
-        "ci95": [0.035, 0.062]
-      },
-      {
-        "name": "Andrej Karpathy",
-        "slug": "karpathy",
-        "n": 943,
+        "n": 950,
         "count": 36,
         "share": 0.038,
-        "ci95": [0.028, 0.052]
+        "ci95": [0.027, 0.052]
       },
       {
-        "name": "Elon Musk",
-        "slug": "elonmusk",
-        "n": 943,
+        "name": "Mario Zechner",
+        "slug": "badlogicgames",
+        "n": 950,
+        "count": 34,
+        "share": 0.036,
+        "ci95": [0.026, 0.05]
+      },
+      {
+        "name": "Emily M. Bender",
+        "slug": "emilymbender",
+        "n": 950,
         "count": 32,
         "share": 0.034,
-        "ci95": [0.024, 0.048]
+        "ci95": [0.024, 0.047]
+      },
+      {
+        "name": "Timnit Gebru",
+        "slug": "timnitgebru",
+        "n": 950,
+        "count": 32,
+        "share": 0.034,
+        "ci95": [0.024, 0.047]
       },
       {
         "name": "Eliezer Yudkowsky",
         "slug": "esyudkowsky",
-        "n": 943,
+        "n": 950,
         "count": 30,
         "share": 0.032,
         "ci95": [0.022, 0.045]
-      },
-      {
-        "name": "Sholto Douglas",
-        "slug": "_sholtodouglas",
-        "n": 943,
-        "count": 29,
-        "share": 0.031,
-        "ci95": [0.021, 0.044]
       }
     ],
     "byWave": {
@@ -1571,93 +1667,93 @@
         "n": 645,
         "top": [
           {
-            "name": "Ed Zitron",
-            "slug": "edzitron",
-            "n": 645,
-            "count": 101,
-            "share": 0.157,
-            "ci95": [0.131, 0.187]
-          },
-          {
             "name": "Bernie Sanders",
             "slug": "sensanders",
             "n": 645,
-            "count": 74,
-            "share": 0.115,
-            "ci95": [0.092, 0.142]
+            "count": 102,
+            "share": 0.158,
+            "ci95": [0.132, 0.188]
           },
           {
-            "name": "Geoffrey Hinton",
-            "slug": "geoffreyhinton",
+            "name": "Ed Zitron",
+            "slug": "edzitron",
             "n": 645,
-            "count": 64,
-            "share": 0.099,
-            "ci95": [0.078, 0.125]
+            "count": 96,
+            "share": 0.149,
+            "ci95": [0.123, 0.178]
           },
           {
             "name": "Nathan Lambert",
             "slug": "natolambert",
             "n": 645,
-            "count": 61,
-            "share": 0.095,
-            "ci95": [0.074, 0.12]
-          },
-          {
-            "name": "Daron Acemoglu",
-            "slug": "dacemoglumit",
-            "n": 645,
             "count": 43,
             "share": 0.067,
             "ci95": [0.05, 0.089]
+          },
+          {
+            "name": "Geoffrey Hinton",
+            "slug": "geoffreyhinton",
+            "n": 645,
+            "count": 35,
+            "share": 0.054,
+            "ci95": [0.039, 0.075]
+          },
+          {
+            "name": "Mario Zechner",
+            "slug": "badlogicgames",
+            "n": 645,
+            "count": 31,
+            "share": 0.048,
+            "ci95": [0.034, 0.067]
           }
         ]
       },
       "x": {
-        "n": 259,
+        "n": 260,
         "top": [
           {
             "name": "Elon Musk",
             "slug": "elonmusk",
-            "n": 259,
-            "count": 25,
-            "share": 0.097,
-            "ci95": [0.066, 0.139]
-          },
-          {
-            "name": "Roon",
-            "slug": "tszzl",
-            "n": 259,
-            "count": 18,
-            "share": 0.069,
-            "ci95": [0.044, 0.107]
+            "n": 260,
+            "count": 21,
+            "share": 0.081,
+            "ci95": [0.053, 0.12]
           },
           {
             "name": "Sholto Douglas",
             "slug": "_sholtodouglas",
-            "n": 259,
-            "count": 17,
-            "share": 0.066,
-            "ci95": [0.041, 0.103]
-          },
-          {
-            "name": "Jensen Huang",
-            "slug": "jensenhuang",
-            "n": 259,
-            "count": 14,
-            "share": 0.054,
-            "ci95": [0.032, 0.089]
+            "n": 260,
+            "count": 15,
+            "share": 0.058,
+            "ci95": [0.035, 0.093]
           },
           {
             "name": "Yann LeCun",
             "slug": "ylecun",
-            "n": 259,
-            "count": 14,
-            "share": 0.054,
-            "ci95": [0.032, 0.089]
+            "n": 260,
+            "count": 15,
+            "share": 0.058,
+            "ci95": [0.035, 0.093]
+          },
+          {
+            "name": "Geoffrey Hinton",
+            "slug": "geoffreyhinton",
+            "n": 260,
+            "count": 13,
+            "share": 0.05,
+            "ci95": [0.029, 0.084]
+          },
+          {
+            "name": "Roon",
+            "slug": "tszzl",
+            "n": 260,
+            "count": 13,
+            "share": 0.05,
+            "ci95": [0.029, 0.084]
           }
         ]
       }
     },
-    "featuredCatalogSize": 44
+    "featuredCatalogSize": 48
   }
 }

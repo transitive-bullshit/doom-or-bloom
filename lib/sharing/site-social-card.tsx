@@ -92,26 +92,59 @@ export function separateVertically(
   return placed
 }
 
+/**
+ * Move each stack of separated portraits back inside the plot as one piece,
+ * so its spacing holds and no face crosses the frame. Only vertical image
+ * positions change; outlook stays exact.
+ */
+export function keepInside(
+  points: readonly { x: number; y: number }[],
+  diameter: number,
+  top: number,
+  bottom: number,
+  gap = 4
+) {
+  const placed = points.map((point) => ({ ...point }))
+  const clearance = diameter + gap
+  const group = placed.map((_, i) => i)
+  const root = (i: number): number =>
+    group[i] === i ? i : (group[i] = root(group[i]!))
+  for (let i = 0; i < placed.length; i++)
+    for (let j = i + 1; j < placed.length; j++)
+      if (
+        Math.abs(placed[i]!.x - placed[j]!.x) < clearance &&
+        Math.abs(placed[i]!.y - placed[j]!.y) < clearance + 0.5
+      )
+        group[root(i)] = root(j)
+  const stacks = Map.groupBy(placed, (_, i) => root(i))
+  for (const stack of stacks.values()) {
+    const high = Math.min(...stack.map((point) => point.y))
+    const low = Math.max(...stack.map((point) => point.y))
+    const shift = high < top ? top - high : low > bottom ? bottom - low : 0
+    for (const point of stack) point.y += shift
+  }
+  return placed
+}
+
 export function siteSocialLayout(points: readonly SiteSocialPoint[]) {
   const position = (point: SiteSocialPoint) => ({
     x: plot.x + point.outlook * plot.width,
     y: plot.y + (1 - point.transformation) * plot.height
   })
   const featured = points.filter((point) => point.portrait)
-  const spots = separateVertically(featured.map(position), portraitSpacing)
+  const spots = keepInside(
+    separateVertically(featured.map(position), portraitSpacing),
+    portraitSpacing,
+    plot.y,
+    plot.y + plot.height
+  )
   return {
     dots: points.filter((point) => !point.portrait).map(position),
     portraits: featured.map((point, index) => ({
       ...spots[index]!,
       // Approved image-only offsets, applied after collision spacing. The
       // original 454px plot is the basis; saved worldview coordinates stay intact.
-      y:
-        spots[index]!.y +
-        (point.slug === 'garymarcus'
-          ? 90.8
-          : point.slug === 'geoffreyhinton'
-            ? 45.4
-            : 0),
+      y: spots[index]!.y + (point.slug === 'garymarcus' ? 90.8 : 0),
       portrait: point.portrait!
     }))
   }

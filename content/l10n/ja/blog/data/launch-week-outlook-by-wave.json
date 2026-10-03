@@ -1,6 +1,6 @@
 {
-  "title": "見通しのレベル別に見た各波",
-  "source": "完了した人1人につき1件の結果です。Hacker Newsの波は648人、Xの波は261人です。",
+  "title": "波ごとの見通しレベル",
+  "source": "完了した人1人につき1つの結果です。Hacker Newsの波は648人、Xの波は261人です。",
   "asOf": "2026-10-03",
   "provenance": "participants",
   "kind": "bars",
@@ -21,12 +21,12 @@
       "label": "破局を予想",
       "values": {
         "hn": {
-          "share": 0.063,
-          "count": 41
+          "share": 0.065,
+          "count": 42
         },
         "x": {
-          "share": 0.05,
-          "count": 13
+          "share": 0.057,
+          "count": 15
         }
       }
     },
@@ -34,25 +34,25 @@
       "label": "主に害を予想",
       "values": {
         "hn": {
-          "share": 0.48,
-          "count": 311
+          "share": 0.514,
+          "count": 333
         },
         "x": {
-          "share": 0.184,
-          "count": 48
+          "share": 0.199,
+          "count": 52
         }
       }
     },
     {
-      "label": "見方が混在または未決定",
+      "label": "見解が混在または未決定",
       "values": {
         "hn": {
-          "share": 0.196,
-          "count": 127
+          "share": 0.136,
+          "count": 88
         },
         "x": {
-          "share": 0.188,
-          "count": 49
+          "share": 0.157,
+          "count": 41
         }
       }
     },
@@ -60,25 +60,25 @@
       "label": "期待寄り",
       "values": {
         "hn": {
-          "share": 0.208,
-          "count": 135
+          "share": 0.233,
+          "count": 151
         },
         "x": {
-          "share": 0.299,
-          "count": 78
+          "share": 0.287,
+          "count": 75
         }
       }
     },
     {
-      "label": "熱意あり",
+      "label": "熱狂的",
       "values": {
         "hn": {
           "share": 0.052,
           "count": 34
         },
         "x": {
-          "share": 0.28,
-          "count": 73
+          "share": 0.299,
+          "count": 78
         }
       }
     }

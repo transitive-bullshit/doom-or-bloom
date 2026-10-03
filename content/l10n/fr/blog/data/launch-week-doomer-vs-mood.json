@@ -1,70 +1,70 @@
 {
-  "title": "Même proportion de doomers, états d’esprit différents",
-  "source": "Les lignes représentent les intervalles à 95 %. Les valeurs p proviennent du test exact de Fisher. Un résultat par personne.",
+  "title": "Même part de doomers, états d’esprit différents",
+  "source": "Les lignes indiquent les intervalles à 95 %. Les valeurs p proviennent du test exact de Fisher. Un résultat par personne.",
   "asOf": "2026-10-03",
   "provenance": "participants",
   "kind": "bars",
   "series": [
     {
       "key": "hn",
-      "label": "Vague Hacker News, 25–26 septembre",
+      "label": "Vague Hacker News, 25–26 sept",
       "tone": "coral"
     },
     {
       "key": "x",
-      "label": "Vague X, 27–28 septembre",
+      "label": "Vague X, 27–28 sept",
       "tone": "blue"
     }
   ],
   "rows": [
     {
       "label": "La perspective indique « s’attend à une catastrophe »",
-      "group": "Mesures de doomer",
-      "note": "p = 0,54",
+      "group": "Mesures du catastrophisme",
+      "note": "p = 0,76",
       "values": {
         "hn": {
-          "share": 0.063,
-          "count": 41,
-          "ci": [0.047, 0.085]
+          "share": 0.065,
+          "count": 42,
+          "ci": [0.048, 0.086]
         },
         "x": {
-          "share": 0.05,
-          "count": 13,
-          "ci": [0.029, 0.083]
+          "share": 0.057,
+          "count": 15,
+          "ci": [0.035, 0.093]
         }
       }
     },
     {
       "label": "P(doom) affichée de 10 % ou plus",
-      "group": "Mesures de doomer",
-      "note": "p = 0,82",
+      "group": "Mesures du catastrophisme",
+      "note": "p = 0,60",
       "values": {
         "hn": {
-          "share": 0.382,
-          "count": 240,
-          "ci": [0.344, 0.42]
+          "share": 0.377,
+          "count": 236,
+          "ci": [0.34, 0.416]
         },
         "x": {
-          "share": 0.391,
-          "count": 101,
-          "ci": [0.334, 0.452]
+          "share": 0.396,
+          "count": 103,
+          "ci": [0.339, 0.457]
         }
       }
     },
     {
       "label": "P(doom) affichée de 30 % ou plus",
-      "group": "Mesures de doomer",
-      "note": "p = 0,07",
+      "group": "Mesures du catastrophisme",
+      "note": "p = 0,10",
       "values": {
         "hn": {
-          "share": 0.218,
-          "count": 137,
-          "ci": [0.187, 0.252]
+          "share": 0.216,
+          "count": 135,
+          "ci": [0.185, 0.25]
         },
         "x": {
-          "share": 0.163,
-          "count": 42,
-          "ci": [0.123, 0.213]
+          "share": 0.165,
+          "count": 43,
+          "ci": [0.125, 0.215]
         }
       }
     },
@@ -74,14 +74,14 @@
       "note": "p < 0,001",
       "values": {
         "hn": {
-          "share": 0.48,
-          "count": 311,
-          "ci": [0.442, 0.518]
+          "share": 0.514,
+          "count": 333,
+          "ci": [0.475, 0.552]
         },
         "x": {
-          "share": 0.184,
-          "count": 48,
-          "ci": [0.142, 0.235]
+          "share": 0.199,
+          "count": 52,
+          "ci": [0.155, 0.252]
         }
       }
     },
@@ -96,9 +96,9 @@
           "ci": [0.038, 0.072]
         },
         "x": {
-          "share": 0.28,
-          "count": 73,
-          "ci": [0.229, 0.337]
+          "share": 0.299,
+          "count": 78,
+          "ci": [0.247, 0.357]
         }
       }
     }
