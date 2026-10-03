@@ -92,8 +92,8 @@
   {
     "slug": "edzitron",
     "avatar": "/personas/zitron.jpg",
-    "outlook": 0.255,
-    "transformation": 0.515
+    "outlook": 0.25,
+    "transformation": 0.35
   },
   {
     "slug": "sensanders",
@@ -262,5 +262,29 @@
     "avatar": "/personas/huang.jpg",
     "outlook": 1,
     "transformation": 0.7025
+  },
+  {
+    "slug": "simonw",
+    "avatar": "/personas/independent-simonw.jpg",
+    "outlook": 0.7474999999999999,
+    "transformation": 0.29444444444444445
+  },
+  {
+    "slug": "thestalwart",
+    "avatar": "/personas/independent-thestalwart.jpg",
+    "outlook": 0.6212121212121212,
+    "transformation": 0.4634831460674157
+  },
+  {
+    "slug": "badlogicgames",
+    "avatar": "/personas/independent-badlogicgames.jpg",
+    "outlook": 0.4770408163265306,
+    "transformation": 0.2191011235955056
+  },
+  {
+    "slug": "jessegenet",
+    "avatar": "/personas/independent-jessegenet.jpg",
+    "outlook": 0.7474999999999999,
+    "transformation": 0.2526041666666667
   }
 ]

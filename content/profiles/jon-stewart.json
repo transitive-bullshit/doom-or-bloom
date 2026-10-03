@@ -1,0 +1,34 @@
+{
+  "slug": "jon-stewart",
+  "summary": "Stewart questions AI’s effects on work and power, explores useful applications, and described a slight shift toward optimism in July 2026.",
+  "statements": [
+    {
+      "quote": "And I recently read a book that changed my perspective slightly.",
+      "date": "2026-07-29",
+      "venue": "The Weekly Show, Cory Doctorow interview",
+      "url": "https://www.youtube.com/watch?v=-dAIJRjb-Bw",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "But it's hard to imagine it will remain our assistant.",
+      "date": "2026-05-12",
+      "venue": "The Daily Show, Josh Tyrangiel interview",
+      "url": "https://www.youtube.com/watch?v=kolVzstukgs",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "AI is a human expertise laundering machine.",
+      "date": "2026-04-22",
+      "venue": "The Weekly Show, David Autor and Daron Acemoglu interview",
+      "url": "https://www.youtube.com/watch?v=RB_WmoH5nQ4",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "my guess is, like any technology, there's going to be some incredible positives.",
+      "date": "2025-10-09",
+      "venue": "The Weekly Show, Geoffrey Hinton interview",
+      "url": "https://www.youtube.com/watch?v=jrK3PsD3APk",
+      "verified": "2026-10-03"
+    }
+  ]
+}

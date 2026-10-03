@@ -7277,5 +7277,492 @@
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/6D1wC95htTM/hqdefault.jpg",
     "icon": "/resource-previews/6c2847111bb6-icon.webp"
+  },
+  "https://pluralistic.net/2026/09/18/surprise/": {
+    "source": "https://pluralistic.net/2026/09/18/surprise/",
+    "fetchedAt": "2026-10-03T07:15:47.375Z",
+    "description": "Accepts statistical extrapolation as useful and finds the plausibility of generated language genuinely surprising. Argues that theory-free extrapolation has hard limits: statistical regularity is not understanding, and unexpected situations require a theory of what is happening. Criticizes diminishing returns, resource consumption and replacing workers with defective chatbots. The argument concerns these methods, not an experimentally established ceiling on every possible AI architecture. Main essay inspected.",
+    "image": "/resource-previews/7711d807c179-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/18Sep2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/7711d807c179-icon.webp"
+  },
+  "https://pluralistic.net/2026/09/16/beggar-thy-neighbor/": {
+    "source": "https://pluralistic.net/2026/09/16/beggar-thy-neighbor/",
+    "fetchedAt": "2026-10-03T07:15:49.772Z",
+    "description": "Argues low switching costs and competing open-weight models undermine hyperscalers’ ability to recover investments. Even granting improved unit economics for argument’s sake does not solve continuous competition. Suspects superintelligence restrictions could excuse incumbent collusion and prohibit alternatives. Calls for investigating concrete misconduct rather than blessing restraints of trade. These are his economic and political claims, not audited company accounts or a comprehensive position on every possible pause. Main essay inspected.",
+    "image": "/resource-previews/e349983ce8e8-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/16Sep2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/e349983ce8e8-icon.webp"
+  },
+  "https://pluralistic.net/2026/09/12/god-in-the-box/": {
+    "source": "https://pluralistic.net/2026/09/12/god-in-the-box/",
+    "fetchedAt": "2026-10-03T07:15:51.263Z",
+    "description": "Adopts a distinction between actual language-model hacking tools and stories that models woke up or set new goals. Interprets the Hugging Face incident as foreseeable behavior of an inadequately supervised hacking workflow. Still calls automated malicious software dangerous, especially against fragile infrastructure. Wants better sandboxes, supervision and a prohibition on government vulnerability hoarding. Executives’ quoted 10% extinction claim is not his estimate. Main essay inspected; incident forensics and linked podcast not independently audited.",
+    "image": "/resource-previews/9f2e5f47f246-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/12Sep2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/9f2e5f47f246-icon.webp"
+  },
+  "https://pluralistic.net/2026/07/28/hitl-ers/": {
+    "source": "https://pluralistic.net/2026/07/28/hitl-ers/",
+    "fetchedAt": "2026-10-03T07:15:52.641Z",
+    "description": "Describes using a local, offline LLM to find typos, retaining his own editorial judgment. Cannot evaluate a sophisticated mathematics dialogue and refuses to mistake its impressive appearance for verified validity. Distinguishes expert checking from asking a chatbot to teach unfamiliar material. Suggests teachers could generate and validate fresh test questions rather than be replaced by bots. Considers retrieving his own essays with a local model, but describes that as an idea, not a deployed system. Main essay inspected.",
+    "image": "/resource-previews/097b74574b94-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/28Jul2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/097b74574b94-icon.webp"
+  },
+  "https://pluralistic.net/2026/07/02/canonization/": {
+    "source": "https://pluralistic.net/2026/07/02/canonization/",
+    "fetchedAt": "2026-10-03T07:15:54.416Z",
+    "description": "Accepts personal utilities and disposable software as useful even when they are not maintainable production systems. Distinguishes worker-directed centaurs from workers forced to serve automation. Endorses the importance of making code legible and reusable for future teams, while warning investment imperatives reward replacement and cleanup is undervalued. Reports programmers’ divergent experiences without treating either as universal. Main essay inspected.",
+    "image": "/resource-previews/cbf003ece0fc-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/02Jul2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/cbf003ece0fc-icon.webp"
+  },
+  "https://pluralistic.net/2026/03/12/normal-technology/": {
+    "source": "https://pluralistic.net/2026/03/12/normal-technology/",
+    "fetchedAt": "2026-10-03T07:15:56.707Z",
+    "description": "Calls AI normal technology and the bubble exceptional. Criticizes investors, bosses and critics who amplify exceptionalism. Accepts skilled practitioners’ modest enthusiasm for useful automation plugins, while retaining serious resource, labor and political concerns. Main essay inspected.",
+    "image": "/resource-previews/80ef9dcdd3a5-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/12Mar2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/80ef9dcdd3a5-icon.webp"
+  },
+  "https://pluralistic.net/2026/03/03/its-a-trap-2/": {
+    "source": "https://pluralistic.net/2026/03/03/its-a-trap-2/",
+    "fetchedAt": "2026-10-03T07:15:58.057Z",
+    "description": "Argues noncopyrightability of machine output protects human creative labor, whereas a new training right could be assigned to concentrated employers and used to replace workers. Favors sectoral bargaining and cites writers’ negotiated ability to choose AI use without being forced. Allows brainstorming when generated words stay out of the final work. His legal interpretation is not independently validated here. Main essay inspected.",
+    "image": "/resource-previews/05a70c06a108-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/03Mar2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/05a70c06a108-icon.webp"
+  },
+  "https://pluralistic.net/2026/01/06/1000x-liability/": {
+    "source": "https://pluralistic.net/2026/01/06/1000x-liability/",
+    "fetchedAt": "2026-10-03T07:16:00.754Z",
+    "description": "Distinguishes writing working code from engineering legible systems that fail gracefully amid changing context. Warns that maximizing code output produces maintenance liabilities and chained agents compound reliability problems. Accepts validated routine code and isolated, one-off utilities. His digital-asbestos analogy predicts lasting cleanup burdens, not a measured job forecast or guaranteed employment program. Main essay inspected.",
+    "image": "/resource-previews/4656e9aabcb7-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/06Jan2026.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/4656e9aabcb7-icon.webp"
+  },
+  "https://pluralistic.net/2025/10/16/post-ai-ai/": {
+    "source": "https://pluralistic.net/2025/10/16/post-ai-ai/",
+    "fetchedAt": "2026-10-03T07:16:03.708Z",
+    "description": "Expects a damaging investment crash but productive residue: skilled people, inexpensive hardware and open models, with more optimization possible. Praises local transcription, image generation, data conversion and privacy-preserving voice assistance. Does not know how many giant foundation models would survive; zero is a possibility rather than a certainty. Main essay inspected.",
+    "image": "/resource-previews/12580d51b6d7-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://i0.wp.com/craphound.com/images/16Oct2025.jpg?w=840&ssl=1",
+    "icon": "/resource-previews/12580d51b6d7-icon.webp"
+  },
+  "https://www.gamereactor.eu/the-science-the-fiction-and-the-thought-an-interview-with-ted-chiang-1753213/": {
+    "source": "https://www.gamereactor.eu/the-science-the-fiction-and-the-thought-an-interview-with-ted-chiang-1753213/",
+    "fetchedAt": "2026-10-03T07:16:07.012Z",
+    "description": "We sit down with the celebrated writer to discuss the challenges of adapting fiction, the strengths of different storytelling media, the misconceptions surrounding generative AI, and science-fiction as a vehicle for philosophical dialogue.",
+    "image": "/resource-previews/bdf5926e330c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.gamereactor.eu/media/89/science_fiction_thought_4958933_1600x900.jpg",
+    "icon": "/resource-previews/bdf5926e330c-icon.webp"
+  },
+  "https://www.elespanol.com/el-cultural/letras/20260716/ted-chiang-astro-ciencia-ficcion-ia-utiliza-reducir-autonomia-personas/1003744322917_0.amp.html": {
+    "source": "https://www.elespanol.com/el-cultural/letras/20260716/ted-chiang-astro-ciencia-ficcion-ia-utiliza-reducir-autonomia-personas/1003744322917_0.amp.html",
+    "fetchedAt": "2026-10-03T07:16:08.033Z",
+    "description": "Artífice del relato que inspiró 'La llegada' de Denis Villeneuve, es uno de los platos fuertes de la nueva edición del Festival Celsius 232 de Avilés. Más información: El retorno de 'Akira', la película que abrió las puertas de la animación japonesa a Occidente",
+    "image": "/resource-previews/264de3cec7eb-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://s3.elespanol.com/k/imgp/cms/elespanol/11316637.jpg?p=f:jpeg/c:917:517:nowe:200:143/w:1706/h:960&h=2F7JCDhq",
+    "icon": "/resource-previews/264de3cec7eb-icon.webp"
+  },
+  "https://www.theatlantic.com/philosophy/2026/06/no-artificial-intelligence-is-not-conscious/687378/?utm_source=apple_news": {
+    "source": "https://www.theatlantic.com/philosophy/2026/06/no-artificial-intelligence-is-not-conscious/687378/?utm_source=apple_news",
+    "fetchedAt": "2026-10-03T07:16:10.335Z",
+    "description": "Rejects current LLM consciousness while preserving possible usefulness and economic impact. Demands human responsibility; conscious Claude is a counterfactual thought experiment. Full publisher text inspected via its Apple News URL.",
+    "icon": "/resource-previews/fee7712a5abe-icon.webp",
+    "image": "/resource-previews/fee7712a5abe-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.theatlantic.com/philosophy/2026/06/no-artificial-intelligence-is-not-conscious/687378/?utm_source=apple_news"
+  },
+  "https://www.theoccidentalnews.com/culture/2025/10/01/ai-and-art-in-college-settings-qa-with-author-ted-chiang/2915668": {
+    "source": "https://www.theoccidentalnews.com/culture/2025/10/01/ai-and-art-in-college-settings-qa-with-author-ted-chiang/2915668",
+    "fetchedAt": "2026-10-03T07:16:13.112Z",
+    "description": "Pushes back on messages that young people’s effort will become pointless. Says education develops capacities through exertion whose benefits may take time. Distinguishes productivity for people hiring artists from artists’ own goals. Does not claim to know what genuinely artist-serving future software would be. Entire Q&A inspected.",
+    "icon": "/resource-previews/de89ddd913aa-icon.webp",
+    "image": "/resource-previews/de89ddd913aa-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.theoccidentalnews.com/culture/2025/10/01/ai-and-art-in-college-settings-qa-with-author-ted-chiang/2915668"
+  },
+  "https://cdh.princeton.edu/blog/ted-chiang/": {
+    "source": "https://cdh.princeton.edu/blog/ted-chiang/",
+    "fetchedAt": "2026-10-03T07:16:19.726Z",
+    "description": "The Incompatibilities Between Generative AI and Art: Q&A with Ted Chiang",
+    "image": "/resource-previews/b138146c411a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdh.princeton.edu/media/images/ted-chiang-qa-banner_oZEnp1l.2b60c179.fill-1200x627.webp",
+    "icon": "/resource-previews/b138146c411a-icon.webp"
+  },
+  "https://tu-dresden.de/gsw/schauflerlab/ressourcen/dateien/interview-ted-chain": {
+    "source": "https://tu-dresden.de/gsw/schauflerlab/ressourcen/dateien/interview-ted-chain",
+    "fetchedAt": "2026-10-03T07:16:22.569Z",
+    "description": "Edited transcript on authorship, expert pattern detection, brainstorming, resistance to manipulation and conditional artificial-person development. All 13 pages inspected, attributing named answers only. Institutional announcement appeared January 22, 2026; the PDF dates the conversation June 18, 2025. Fictional and hypothetical scenarios remain separate from forecasts.",
+    "image": "/resource-previews/5d5e54185855-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://tu-dresden.de/gsw/schauflerlab/ressourcen/dateien/interview-ted-chain",
+    "icon": "/resource-previews/5d5e54185855-icon.webp"
+  },
+  "https://www.northcountrypublicradio.org/news/npr/g-s1-37521/": {
+    "source": "https://www.northcountrypublicradio.org/news/npr/g-s1-37521/",
+    "fetchedAt": "2026-10-03T07:16:30.601Z",
+    "description": "Distinguishes generative AI from fictional robot minds. Anticipates massive repercussions from cost-cutting deployment even without fundamental technological transformation: companies may damage industries and employment before realizing the tools disappoint. Requires control of artistic decisions rather than short-prompt delegation. Edited highlights and the named broadcast transcript inspected on NPR’s syndication page.",
+    "icon": "/resource-previews/21a7f97de179-icon.webp",
+    "image": "/resource-previews/21a7f97de179-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.northcountrypublicradio.org/news/npr/g-s1-37521/"
+  },
+  "https://www.newyorker.com/culture/the-weekend-essay/why-ai-isnt-going-to-make-art": {
+    "source": "https://www.newyorker.com/culture/the-weekend-essay/why-ai-isnt-going-to-make-art",
+    "fetchedAt": "2026-10-03T07:16:31.293Z",
+    "description": "Ted Chiang on how artificial intelligence still isn’t as intelligent as it is perceived to be and how its profound limitations should temper our fears about it replacing real art-making.",
+    "image": "/resource-previews/b1d28e74ccb2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.newyorker.com/photos/66d2199a855934acb4b4bfca/16:9/w_1280,c_limit/RoombaTest_final.png",
+    "icon": "/resource-previews/b1d28e74ccb2-icon.webp"
+  },
+  "https://www.ykeith.com/p/ha-joon-chang-on-why-we-need-to-rethink": {
+    "source": "https://www.ykeith.com/p/ha-joon-chang-on-why-we-need-to-rethink",
+    "fetchedAt": "2026-10-03T07:16:32.204Z",
+    "description": "(Why Neoliberal Economics Isn't The Way To Go)",
+    "image": "/resource-previews/96d8a233f626-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!SWMb!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F02f52aab-9450-43db-9a9c-3c1dc6c0ac84_1456x1048.png",
+    "icon": "/resource-previews/96d8a233f626-icon.webp"
+  },
+  "https://www.penguin.co.uk/books/468070/the-ai-con-by-hanna-emily-m-bender-and-alex/9781529949896": {
+    "source": "https://www.penguin.co.uk/books/468070/the-ai-con-by-hanna-emily-m-bender-and-alex/9781529949896",
+    "fetchedAt": "2026-10-03T07:16:32.776Z",
+    "description": "'Essential reading' BRIAN ENO A smart, incisive take-down of the bogus claims being made about so-called ‘artificial intelligence’, exposing the real harm these technologies do to our jobs, health, society and environment, who stands to gain from them, and how to fight back. 'A truly eye-opening book for those who want to fight for a more humane economy and a better society' HA-JOON CHANG 'A must-read for those who don't want to believe the hype' ALEX KROTOSKI Is AI going to take over the world? Have scientists created an artificial lifeform that can think on its own? Is it going to replace all our jobs, even creative ones, like doctors, teachers and care-workers? Are we about to enter an age where computers are better than humans at everything? The answers to these questions, as the expert authors of The AI Con make clear, are 'no', 'they wish', 'LOL', and 'definitely not'. In fact, these fears are all symptoms of the hype being used by tech corporations to justify data theft, motivate surveillance capitalism, and devalue human creativity so they can replace meaningful work with jobs that treat people like machines. Meanwhile, across healthcare, education, media, government and law-enforcement, ‘AI’ products are already being introduced that are unreliable, ineffective, unjust and dangerous. Packed with real-world examples, pithy arguments and expert insights, The AI Con arms you to spot AI hype in all its guises, expose the exploitation and power-grabs it aims to hide, and push back against it at work and in your daily life.",
+    "image": "/resource-previews/cd3dbdc05c7d-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn.penguin.co.uk/dam-assets/books/9781529949896/9781529949896-jacket-large.jpg",
+    "icon": "/resource-previews/cd3dbdc05c7d-icon.webp"
+  },
+  "https://buenosairesherald.com/economics/ha-joon-chang-unless-you-devalue-you-cannot-increase-your-exports": {
+    "source": "https://buenosairesherald.com/economics/ha-joon-chang-unless-you-devalue-you-cannot-increase-your-exports",
+    "fetchedAt": "2026-10-03T07:16:35.252Z",
+    "description": "The economist visited Argentina and talked to the Herald about the IMF, trade policy, and the global economic context",
+    "image": "/resource-previews/e46fb606d89f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i0.wp.com/buenosairesherald.com/wp-content/uploads/2023/05/Ha-Joon_Chang-UNSAM-scaled.jpg?fit=2560%2C1706&ssl=1",
+    "icon": "/resource-previews/e46fb606d89f-icon.webp"
+  },
+  "https://krytykapolityczna.pl/gospodarka/ekonomia-na-talerzu-ha-joon-chang-limonki-truskawki-czekolada-sztuczna-inteligencja/": {
+    "source": "https://krytykapolityczna.pl/gospodarka/ekonomia-na-talerzu-ha-joon-chang-limonki-truskawki-czekolada-sztuczna-inteligencja/",
+    "fetchedAt": "2026-10-03T07:16:42.581Z",
+    "description": "Rozmowa z Ha-Joon Changiem, autorem książki „Ekonomia na talerzu”.",
+    "image": "/resource-previews/e0900d3ecf8f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://krytykapolityczna.pl/wp-content/uploads/2023/06/Ha-Joon-Chang.jpg",
+    "icon": "/resource-previews/e0900d3ecf8f-icon.webp"
+  },
+  "https://hajoonchang.net/assets/papers/Economics-pluralism-and-democracy-interview.pdf": {
+    "source": "https://hajoonchang.net/assets/papers/Economics-pluralism-and-democracy-interview.pdf",
+    "fetchedAt": "2026-10-03T07:16:46.328Z",
+    "description": "Author-hosted full interview inspected selectively: PDF pages 1–3, 20–22 and 31–33. Methodology and democratic-governance context, not an AI forecast. He supports empirical work while questioning which theories decide what is measured: GDP omits unpaid care. Narrow studies need broader historical and institutional analysis. Experts contribute technical knowledge, but citizens should determine political goals. Publication date confirmed in SOAS repository.",
+    "image": "/resource-previews/58d52993c4c1-image.webp",
+    "imageKind": "document",
+    "imageSource": "https://hajoonchang.net/assets/papers/Economics-pluralism-and-democracy-interview.pdf",
+    "icon": "/resource-previews/58d52993c4c1-icon.webp",
+    "iconKind": "monogram"
+  },
+  "https://www.imf.org/en/publications/fandd/issues/2026/09/cafe-economics-nurture-then-prosper-ha-joon-chang-bruce-edwards": {
+    "source": "https://www.imf.org/en/publications/fandd/issues/2026/09/cafe-economics-nurture-then-prosper-ha-joon-chang-bruce-edwards",
+    "fetchedAt": "2026-10-03T07:16:52.923Z",
+    "description": "Edited IMF-hosted interview inspected. Recent institutional-policy context, not an AI forecast. Managed trade and disciplined infant-industry support build productive capabilities; protection can be misused. Innovation depends on public research and collective inputs. Growth must also be politically, socially and environmentally sustainable, and economic literacy enables meaningful democratic participation. This supports his policy lens without assigning AI-specific prescriptions he did not state.",
+    "icon": "/resource-previews/23e345221f11-icon.webp",
+    "image": "/resource-previews/23e345221f11-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.imf.org/en/publications/fandd/issues/2026/09/cafe-economics-nurture-then-prosper-ha-joon-chang-bruce-edwards"
+  },
+  "https://paulkrugman.substack.com/p/one-more-reason-americans-hate-ai": {
+    "source": "https://paulkrugman.substack.com/p/one-more-reason-americans-hate-ai",
+    "fetchedAt": "2026-10-03T07:16:54.839Z",
+    "description": "Trillions of dollars in spending, higher interest rates, hardly any jobs",
+    "image": "/resource-previews/16d48796b8bc-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!EH3O!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7a1ea34f-6218-4c26-9b7e-0666b0bd35b8_1498x610.png",
+    "icon": "/resource-previews/16d48796b8bc-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/why-is-trump-still-boosting-ai": {
+    "source": "https://paulkrugman.substack.com/p/why-is-trump-still-boosting-ai",
+    "fetchedAt": "2026-10-03T07:16:55.635Z",
+    "description": "Because it’s the only thing he has left",
+    "image": "/resource-previews/63ec654ee8aa-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!mLZH!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0b41a153-dd2f-411f-ab5c-6577245b66fa_1240x626.png",
+    "icon": "/resource-previews/63ec654ee8aa-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/the-maga-plots-to-destroy-humanity": {
+    "source": "https://paulkrugman.substack.com/p/the-maga-plots-to-destroy-humanity",
+    "fetchedAt": "2026-10-03T07:16:56.242Z",
+    "description": "On AI and climate, it’s the same story of mass destruction",
+    "image": "/resource-previews/c292b36fd55a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!SCS_!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9b269331-a7de-457d-8f26-76d2c3249343_1536x1024.jpeg",
+    "icon": "/resource-previews/c292b36fd55a-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/ai-in-an-age-of-oligarchy": {
+    "source": "https://paulkrugman.substack.com/p/ai-in-an-age-of-oligarchy",
+    "fetchedAt": "2026-10-03T07:16:56.784Z",
+    "description": "Why extreme inequality will magnify the social, political and economic downside of technology",
+    "image": "/resource-previews/36552a6c15a8-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!7Fiv!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0bb0d1f6-d648-45a2-8807-f2b653c4f226_1240x858.png",
+    "icon": "/resource-previews/36552a6c15a8-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/what-will-ai-do-to-our-minds": {
+    "source": "https://paulkrugman.substack.com/p/what-will-ai-do-to-our-minds",
+    "fetchedAt": "2026-10-03T07:16:57.501Z",
+    "description": "Cognitive damage, not productivity gains, may be the most important consequence",
+    "image": "/resource-previews/0f198953ef71-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!8jy9!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Faa6caef8-e655-44ee-b8e7-1dc078c2fad3_700x700.png",
+    "icon": "/resource-previews/0f198953ef71-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/the-plot-against-intelligence-human": {
+    "source": "https://paulkrugman.substack.com/p/the-plot-against-intelligence-human",
+    "fetchedAt": "2026-10-03T07:16:58.250Z",
+    "description": "Reverse DEI comes for Claude",
+    "image": "/resource-previews/e0771a8e1313-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!owrE!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0df449bd-3de0-49f7-8019-d38d1ba057d9_1312x808.png",
+    "icon": "/resource-previews/e0771a8e1313-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/talking-with-paul-kedrosky": {
+    "source": "https://paulkrugman.substack.com/p/talking-with-paul-kedrosky",
+    "fetchedAt": "2026-10-03T07:16:59.285Z",
+    "description": "So, about this AI thing ...",
+    "image": "/resource-previews/c415a9e8d5dd-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!l_22!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Faf5e4f51-d80a-418f-ae0c-a0799e89b918_1280x720.heic",
+    "icon": "/resource-previews/c415a9e8d5dd-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/talking-ai-with-martin-wolf": {
+    "source": "https://paulkrugman.substack.com/p/talking-ai-with-martin-wolf",
+    "fetchedAt": "2026-10-03T07:17:00.106Z",
+    "description": "In which we admit to being confused",
+    "image": "/resource-previews/08c15b2be78f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!zu9Y!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6be7b3a2-e37e-462e-bbf9-c4c142a796ca_1080x1080.jpeg",
+    "icon": "/resource-previews/08c15b2be78f-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/what-happens-if-ai-hits-an-energy": {
+    "source": "https://paulkrugman.substack.com/p/what-happens-if-ai-hits-an-energy",
+    "fetchedAt": "2026-10-03T07:17:01.084Z",
+    "description": "The technology driving the economy has some big problems",
+    "image": "/resource-previews/a9e53f8c67d0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!wJcD!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd9185157-9635-417b-a092-51cf0792969d_1350x960.png",
+    "icon": "/resource-previews/a9e53f8c67d0-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/ai-is-power-hungry": {
+    "source": "https://paulkrugman.substack.com/p/ai-is-power-hungry",
+    "fetchedAt": "2026-10-03T07:17:01.936Z",
+    "description": "And consumers are paying the price",
+    "image": "/resource-previews/4f9b29c4b3dc-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!8MPN!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F88ea6589-a09e-4a7f-8fa3-4f4a0a6c9d26_750x502.webp",
+    "icon": "/resource-previews/4f9b29c4b3dc-icon.webp"
+  },
+  "https://paulkrugman.substack.com/p/how-should-we-think-about-the-economics": {
+    "source": "https://paulkrugman.substack.com/p/how-should-we-think-about-the-economics",
+    "fetchedAt": "2026-10-03T07:17:02.718Z",
+    "description": "A conversation with Erik Brynjolfsson",
+    "image": "/resource-previews/b67157416dd1-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!vi42!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fpaulkrugman.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1457094178%26version%3D9",
+    "icon": "/resource-previews/b67157416dd1-icon.webp"
+  },
+  "https://naomiklein.substack.com/p/big-tech-and-big-oil-have-fused-call": {
+    "source": "https://naomiklein.substack.com/p/big-tech-and-big-oil-have-fused-call",
+    "fetchedAt": "2026-10-03T07:17:03.284Z",
+    "description": "Final sneak peak before launch day of my latest book with Astra Taylor",
+    "image": "/resource-previews/03b3038224cf-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!lDNo!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9b28b1b1-cc8c-429d-839f-4466cb6a1e59_4893x3262.jpeg",
+    "icon": "/resource-previews/03b3038224cf-icon.webp"
+  },
+  "https://www.democracynow.org/2026/9/15/klein_taylor_end_times_fascism": {
+    "source": "https://www.democracynow.org/2026/9/15/klein_taylor_end_times_fascism",
+    "fetchedAt": "2026-10-03T07:17:04.301Z",
+    "description": "Naomi Klein and Astra Taylor launch their new book, End Times Fascism: And the Fight for the Living World on Democracy Now! It examines how wealthy elites are preparing for “the end of the world,” even as they contribute to growing inequality, political instability and the climate crisis. The rise of modern-day fascism is “not simply a rerun,” explains Klein. “We don’t believe that history repeats on a loop. We believe that we’re in something more like a sequel, where the logics of fascism,",
+    "image": "/resource-previews/242e178d7311-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.democracynow.org/images/story/56/83556/full_hd/SEG1-guest-split-highres-book.jpg",
+    "icon": "/resource-previews/242e178d7311-icon.webp"
+  },
+  "https://naomiklein.substack.com/p/welcome-to-my-substack": {
+    "source": "https://naomiklein.substack.com/p/welcome-to-my-substack",
+    "fetchedAt": "2026-10-03T07:17:07.789Z",
+    "description": "Intellectual scaffolding for our age of serial shocks",
+    "image": "/resource-previews/323f3f1cfe53-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!MLhO!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F557268bc-8319-417d-bfc5-4ba301d9164f_2000x1500.jpeg",
+    "icon": "/resource-previews/323f3f1cfe53-icon.webp"
+  },
+  "https://www.democracynow.org/2026/7/31/naomi_klein_ai_quote": {
+    "source": "https://www.democracynow.org/2026/7/31/naomi_klein_ai_quote",
+    "fetchedAt": "2026-10-03T07:17:08.928Z",
+    "description": "During Thursday’s segment about the risks of artificial intelligence, we shared a quote from author Naomi Klein that we later discovered was AI-generated. Klein has written about the proliferation of the fake quote on her Substack and joins Democracy Now! to discuss the growing difficulty of verifying online information. “These companies are creating digital doppelgangers of us, trying to monetize our identities,” says Klein. “One wonders how we’re ever going to get out of this house of mirrors",
+    "image": "/resource-previews/b8f5ef05a3c0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.democracynow.org/images/story/75/82975/full_hd/SEG4-guest-split.jpg",
+    "icon": "/resource-previews/b8f5ef05a3c0-icon.webp"
+  },
+  "https://capitalandmain.com/we-are-in-a-moment-of-unparalleled-peril-an-interview-with-naomi-klein": {
+    "source": "https://capitalandmain.com/we-are-in-a-moment-of-unparalleled-peril-an-interview-with-naomi-klein",
+    "fetchedAt": "2026-10-03T07:17:10.735Z",
+    "description": "The author and academic spoke with Capital & Main about an apocalyptic future and strategies for survival.",
+    "image": "/resource-previews/dbcf45fe8df3-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://capitalandmain.com/wp-content/uploads/2025/05/GettyImages-2156786804-1000x600.jpg",
+    "icon": "/resource-previews/dbcf45fe8df3-icon.webp"
+  },
+  "https://www.democracynow.org/2025/5/5/naomi_klein_trump_silicon_valley": {
+    "source": "https://www.democracynow.org/2025/5/5/naomi_klein_trump_silicon_valley",
+    "fetchedAt": "2026-10-03T07:17:14.048Z",
+    "description": "An alliance between the far right and Silicon Valley oligarchs has given rise to a form of “end times fascism,” says journalist Naomi Klein, who details in a recent essay co-authored with Astra Taylor how many wealthy elites are preparing for the end of the world even as they contribute to growing inequality, political instability and the climate crisis. Klein says that while billionaires dream of escaping to bunkered enclaves or even to space, President Donald Trump and other right-wing leaders",
+    "image": "/resource-previews/17bcdb0c277d-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.democracynow.org/images/story/47/77047/full_hd/seg2-Naomi-Trump-Musk.jpg",
+    "icon": "/resource-previews/17bcdb0c277d-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=-dAIJRjb-Bw": {
+    "source": "https://www.youtube.com/watch?v=-dAIJRjb-Bw",
+    "fetchedAt": "2026-10-03T07:17:16.501Z",
+    "description": "With billions pouring into AI based on its promises, Jon is joined by Cory Doctorow, author of “The Reverse Centaur's Guide to Life After AI,” to separate th...",
+    "image": "/resource-previews/c04ed2cde7b9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/-dAIJRjb-Bw/hqdefault.jpg",
+    "icon": "/resource-previews/c04ed2cde7b9-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=kolVzstukgs": {
+    "source": "https://www.youtube.com/watch?v=kolVzstukgs",
+    "fetchedAt": "2026-10-03T07:17:17.675Z",
+    "description": "Josh Tyrangiel, staff writer at The Atlantic and author of “AI for Good: How Real People Are Using Artificial Intelligence to Fix Things That Matter” joins J...",
+    "image": "/resource-previews/9c6f9f308aa0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/kolVzstukgs/hqdefault.jpg",
+    "icon": "/resource-previews/9c6f9f308aa0-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=RB_WmoH5nQ4": {
+    "source": "https://www.youtube.com/watch?v=RB_WmoH5nQ4",
+    "fetchedAt": "2026-10-03T07:17:21.440Z",
+    "description": "As artificial intelligence continues to integrate into the workforce, Jon is joined by MIT economists David Autor and Daron Acemoglu, recipient of the 2024 N...",
+    "image": "/resource-previews/bd243aaba4eb-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/RB_WmoH5nQ4/hqdefault.jpg",
+    "icon": "/resource-previews/bd243aaba4eb-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=NAWjXmsNiPU": {
+    "source": "https://www.youtube.com/watch?v=NAWjXmsNiPU",
+    "fetchedAt": "2026-10-03T07:17:22.492Z",
+    "description": "As reports emerge of AI-powered weapons systems deployed in strikes on Iran, we’re joined by Dr. Sarah Shoker, Senior Research Scholar at UC Berkeley, and Pa...",
+    "image": "/resource-previews/51be3c787518-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/NAWjXmsNiPU/hqdefault.jpg",
+    "icon": "/resource-previews/51be3c787518-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=jrK3PsD3APk": {
+    "source": "https://www.youtube.com/watch?v=jrK3PsD3APk",
+    "fetchedAt": "2026-10-03T07:17:23.896Z",
+    "description": "As artificial intelligence advances at unprecedented speed, Jon is joined by Geoffrey Hinton, Professor Emeritus at the University of Toronto and the “Godfat...",
+    "image": "/resource-previews/71b9bc833c10-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/jrK3PsD3APk/hqdefault.jpg",
+    "icon": "/resource-previews/71b9bc833c10-icon.webp"
+  },
+  "https://www.warren.senate.gov/newsroom/press-releases/senator-warren-calls-for-pause-in-advanced-ai-development/": {
+    "source": "https://www.warren.senate.gov/newsroom/press-releases/senator-warren-calls-for-pause-in-advanced-ai-development/",
+    "fetchedAt": "2026-10-03T07:17:24.893Z",
+    "description": "Senator Warren Calls for Pause in Advanced AI Development - Senator Elizabeth Warren",
+    "icon": "/resource-previews/141b77394c21-icon.webp",
+    "image": "/resource-previews/141b77394c21-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.warren.senate.gov/newsroom/press-releases/senator-warren-calls-for-pause-in-advanced-ai-development/"
+  },
+  "https://www.warren.senate.gov/newsroom/press-releases/warren-for-time-tax-ai-and-invest-in-people/": {
+    "source": "https://www.warren.senate.gov/newsroom/press-releases/warren-for-time-tax-ai-and-invest-in-people/",
+    "fetchedAt": "2026-10-03T07:17:26.471Z",
+    "description": "Warren for TIME: Tax AI and Invest in People - Senator Elizabeth Warren",
+    "icon": "/resource-previews/20e1305ea9fd-icon.webp",
+    "image": "/resource-previews/20e1305ea9fd-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.warren.senate.gov/newsroom/press-releases/warren-for-time-tax-ai-and-invest-in-people/"
+  },
+  "https://www.banking.senate.gov/newsroom/minority/warren-remarks-at-vanderbilt-policy-accelerator-event-highlighting-economic-and-financial-risks-of-potential-ai-crash": {
+    "source": "https://www.banking.senate.gov/newsroom/minority/warren-remarks-at-vanderbilt-policy-accelerator-event-highlighting-economic-and-financial-risks-of-potential-ai-crash",
+    "fetchedAt": "2026-10-03T07:17:29.989Z",
+    "description": "The Official website of The United States Committee on Banking, Housing, and Urban Affairs",
+    "icon": "/resource-previews/d757daa41452-icon.webp",
+    "image": "/resource-previews/d757daa41452-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.banking.senate.gov/newsroom/minority/warren-remarks-at-vanderbilt-policy-accelerator-event-highlighting-economic-and-financial-risks-of-potential-ai-crash"
+  },
+  "https://www.warren.senate.gov/newsroom/press-releases/warren-hawley-lead-bipartisan-push-for-mandatory-energy-use-reporting-requirements-for-data-centers/": {
+    "source": "https://www.warren.senate.gov/newsroom/press-releases/warren-hawley-lead-bipartisan-push-for-mandatory-energy-use-reporting-requirements-for-data-centers/",
+    "fetchedAt": "2026-10-03T07:17:33.684Z",
+    "description": "Warren, Hawley Lead Bipartisan Push For Mandatory Energy Use Reporting Requirements for Data Centers - Senator Elizabeth Warren",
+    "icon": "/resource-previews/97a0351601e3-icon.webp",
+    "image": "/resource-previews/97a0351601e3-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.warren.senate.gov/newsroom/press-releases/warren-hawley-lead-bipartisan-push-for-mandatory-energy-use-reporting-requirements-for-data-centers/"
+  },
+  "https://www.warren.senate.gov/newsroom/press-releases/warren-opens-investigation-into-pentagons-designation-of-anthropic-as-national-security-risk-new-openai-contract/": {
+    "source": "https://www.warren.senate.gov/newsroom/press-releases/warren-opens-investigation-into-pentagons-designation-of-anthropic-as-national-security-risk-new-openai-contract/",
+    "fetchedAt": "2026-10-03T07:17:37.874Z",
+    "description": "Warren Opens Investigation into Pentagon’s Designation of Anthropic As National Security Risk, New OpenAI Contract - Senator Elizabeth Warren",
+    "icon": "/resource-previews/484d5bb316f0-icon.webp",
+    "image": "/resource-previews/484d5bb316f0-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.warren.senate.gov/newsroom/press-releases/warren-opens-investigation-into-pentagons-designation-of-anthropic-as-national-security-risk-new-openai-contract/"
+  },
+  "https://www.warren.senate.gov/newsroom/press-releases/warren-presses-openai-ceo-on-spending-commitments-and-bailout-requests-after-cfo-suggests-government-backstop/": {
+    "source": "https://www.warren.senate.gov/newsroom/press-releases/warren-presses-openai-ceo-on-spending-commitments-and-bailout-requests-after-cfo-suggests-government-backstop/",
+    "fetchedAt": "2026-10-03T07:17:39.907Z",
+    "description": "Warren Presses OpenAI CEO on Spending Commitments and Bailout Requests After CFO Suggests Government “Backstop” - Senator Elizabeth Warren",
+    "icon": "/resource-previews/c1f588354579-icon.webp",
+    "image": "/resource-previews/c1f588354579-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.warren.senate.gov/newsroom/press-releases/warren-presses-openai-ceo-on-spending-commitments-and-bailout-requests-after-cfo-suggests-government-backstop/"
+  },
+  "https://www.warren.senate.gov/newsroom/press-releases/warren-schmitt-renew-bipartisan-fight-for-more-competition-in-pentagons-ai-and-cloud-contracting/": {
+    "source": "https://www.warren.senate.gov/newsroom/press-releases/warren-schmitt-renew-bipartisan-fight-for-more-competition-in-pentagons-ai-and-cloud-contracting/",
+    "fetchedAt": "2026-10-03T07:17:43.282Z",
+    "description": "Warren, Schmitt Renew Bipartisan Fight for More Competition in Pentagon’s AI and Cloud Contracting - Senator Elizabeth Warren",
+    "icon": "/resource-previews/de6a647922e1-icon.webp",
+    "image": "/resource-previews/de6a647922e1-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.warren.senate.gov/newsroom/press-releases/warren-schmitt-renew-bipartisan-fight-for-more-competition-in-pentagons-ai-and-cloud-contracting/"
+  },
+  "https://www.warren.senate.gov/newsroom/press-releases/warren-wyden-launch-investigation-into-google-microsoft-partnerships-with-ai-developers-anthropic-openai/": {
+    "source": "https://www.warren.senate.gov/newsroom/press-releases/warren-wyden-launch-investigation-into-google-microsoft-partnerships-with-ai-developers-anthropic-openai/",
+    "fetchedAt": "2026-10-03T07:17:44.034Z",
+    "description": "Warren, Wyden Launch Investigation into Google, Microsoft Partnerships with AI Developers Anthropic, OpenAI - Senator Elizabeth Warren",
+    "icon": "/resource-previews/fad756d7234a-icon.webp",
+    "image": "/resource-previews/fad756d7234a-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://www.warren.senate.gov/newsroom/press-releases/warren-wyden-launch-investigation-into-google-microsoft-partnerships-with-ai-developers-anthropic-openai/"
+  },
+  "https://www.wheresyoured.at/dead-money/": {
+    "source": "https://www.wheresyoured.at/dead-money/",
+    "fetchedAt": "2026-10-03T08:13:11.337Z",
+    "description": "If you liked this piece, you should subscribe to my premium newsletter, and you can subscribe on the following links: $70 a year, $18 a quarter, or $7 a month. In return you get a weekly premium newsletter including vast, detailed analyses of NVIDIA, Anthropic and OpenAI’s finances, and",
+    "image": "/resource-previews/39e030be2db0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://storage.ghost.io/c/24/d8/24d8fcec-dfba-4f40-a467-823d2941ae46/content/images/2024/01/wyea--1.jpeg",
+    "icon": "/resource-previews/39e030be2db0-icon.webp"
   }
 }

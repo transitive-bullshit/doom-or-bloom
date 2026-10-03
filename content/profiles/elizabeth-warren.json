@@ -1,0 +1,41 @@
+{
+  "slug": "elizabeth-warren",
+  "summary": "Warren recognizes AI’s promise while calling for an advanced-development pause, public safeguards and a fair distribution of benefits and costs.",
+  "statements": [
+    {
+      "quote": "We should immediately press pause on the development of advanced AI while lawmakers and regulators put systems in place to keep people safe.",
+      "date": "2026-09-16",
+      "venue": "Official Senate statement",
+      "url": "https://www.warren.senate.gov/newsroom/press-releases/senator-warren-calls-for-pause-in-advanced-ai-development/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "The American people deserve to share in the success of this technology.",
+      "date": "2026-05-27",
+      "venue": "TIME op-ed, reproduced by Senate office",
+      "url": "https://www.warren.senate.gov/newsroom/press-releases/warren-for-time-tax-ai-and-invest-in-people/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I cannot say what the future of this technology will hold—what new inventions or expanded capacities will bring.",
+      "date": "2026-04-22",
+      "venue": "Prepared Vanderbilt Policy Accelerator remarks",
+      "url": "https://www.banking.senate.gov/newsroom/minority/warren-remarks-at-vanderbilt-policy-accelerator-event-highlighting-economic-and-financial-risks-of-potential-ai-crash",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Meaningful constraints to prevent civilian harm in warfare are a moral, legal, and strategic necessity",
+      "date": "2026-03-23",
+      "venue": "Letter to OpenAI, Senate office publication",
+      "url": "https://www.warren.senate.gov/newsroom/press-releases/warren-opens-investigation-into-pentagons-designation-of-anthropic-as-national-security-risk-new-openai-contract/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "But these tools should not be deployed in a way that asks taxpayers to shoulder the risks while enriching company executives and investors.",
+      "date": "2026-01-29",
+      "venue": "Letter to OpenAI, Senate office publication",
+      "url": "https://www.warren.senate.gov/newsroom/press-releases/warren-presses-openai-ceo-on-spending-commitments-and-bailout-requests-after-cfo-suggests-government-backstop/",
+      "verified": "2026-10-03"
+    }
+  ]
+}

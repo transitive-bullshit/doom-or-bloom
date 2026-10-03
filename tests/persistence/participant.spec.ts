@@ -319,7 +319,7 @@ test('publish, fork, and revoke preserve independent assessments and deny public
     ).toEqual(ownerMatchLinks)
     await expect(publicPage.getByRole('heading', { level: 1 })).toHaveCSS(
       'font-size',
-      '30px'
+      '36px'
     )
     await expect(
       publicPage.getByRole('heading', {

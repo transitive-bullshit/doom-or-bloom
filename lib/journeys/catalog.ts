@@ -23,6 +23,9 @@ import { safetyPolicyPersonas } from './safety-policy-personas'
 import { builderCommentatorPersonas } from './builder-commentator-personas'
 import { mediaHostPersonas } from './media-host-personas'
 import { independentPersonas } from './independent-personas'
+import { culturalWriterPersonas } from './cultural-writer-personas'
+import { politicalEconomyPersonas } from './political-economy-personas'
+import { civicCulturalPersonas } from './civic-cultural-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
@@ -84,6 +87,9 @@ const narrativePersonas: Persona[] = [
   ...safetyResearcherPersonas,
   ...worldviewWriterPersonas,
   ...independentPersonas,
+  ...culturalWriterPersonas,
+  ...politicalEconomyPersonas,
+  ...civicCulturalPersonas,
   {
     id: 'worried-novice',
     voice: [

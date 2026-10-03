@@ -935,12 +935,130 @@ const catalog = [
     stance: 'Pause the race. Say it plainly.',
     tone: 'doom' as const,
     featured: false
+  },
+  {
+    id: 'cory-doctorow-public',
+    name: 'Cory Doctorow',
+    shortName: 'Cory Doctorow',
+    slug: 'cory-doctorow',
+    xUsername: null,
+    xUrl: null,
+    profileUrl: 'https://craphound.com/',
+    profileLabel: 'Author website',
+    avatar: '/personas/doctorow.jpg',
+    initials: 'CD',
+    possessivePronoun: 'his' as const,
+    stance: 'Useful tools. Worker power. Corporate accountability.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
+    id: 'ha-joon-chang-public',
+    name: 'Ha-Joon Chang',
+    shortName: 'Ha-Joon Chang',
+    slug: 'ha-joon-chang',
+    xUsername: null,
+    xUrl: null,
+    profileUrl: 'https://www.soas.ac.uk/about/ha-joon-chang',
+    profileLabel: 'SOAS',
+    avatar: '/personas/chang.jpg',
+    initials: 'HC',
+    possessivePronoun: 'his' as const,
+    stance: 'Public choices should shape AI’s uses and benefits.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
+    id: 'ted-chiang-public',
+    name: 'Ted Chiang',
+    shortName: 'Ted Chiang',
+    slug: 'ted-chiang',
+    xUsername: null,
+    xUrl: null,
+    avatar: '/personas/chiang.jpg',
+    initials: 'TC',
+    possessivePronoun: 'his' as const,
+    stance: 'Human choices, creativity and responsibility.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
+    id: 'paul-krugman-public',
+    name: 'Paul Krugman',
+    shortName: 'Paul Krugman',
+    slug: 'paul-krugman',
+    xUsername: null,
+    xUrl: null,
+    profileUrl: 'https://paulkrugman.substack.com/',
+    profileLabel: 'Newsletter',
+    avatar: '/personas/krugman.jpg',
+    initials: 'PK',
+    possessivePronoun: 'his' as const,
+    stance: 'Economic returns, public welfare and AI safeguards.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
+    id: 'naomi-klein-public',
+    name: 'Naomi Klein',
+    shortName: 'Naomi Klein',
+    slug: 'naomi-klein',
+    xUsername: null,
+    xUrl: null,
+    profileUrl: 'https://naomiklein.org/',
+    profileLabel: 'Author website',
+    avatar: '/personas/klein.jpg',
+    initials: 'NK',
+    possessivePronoun: 'her' as const,
+    stance: 'Protect people, democratic power and the climate.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
+    id: 'jon-stewart-public',
+    name: 'Jon Stewart',
+    shortName: 'Jon Stewart',
+    slug: 'jon-stewart',
+    xUsername: null,
+    xUrl: null,
+    profileUrl: 'https://www.cc.com/shows/the-daily-show',
+    profileLabel: 'The Daily Show',
+    avatar: '/personas/stewart.jpg',
+    initials: 'JS',
+    possessivePronoun: 'his' as const,
+    stance: 'Who decides, who benefits, and what happens to work?',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
+    id: 'elizabeth-warren-public',
+    name: 'Elizabeth Warren',
+    shortName: 'Elizabeth Warren',
+    slug: 'elizabeth-warren',
+    xUsername: null,
+    xUrl: null,
+    profileUrl: 'https://www.warren.senate.gov/',
+    profileLabel: 'Senate website',
+    avatar: '/personas/warren.jpg',
+    initials: 'EW',
+    possessivePronoun: 'her' as const,
+    stance: 'Set safeguards. Share benefits. Protect the public.',
+    tone: 'middle' as const,
+    featured: false
   }
 ]
 
 // One-liners live in one file, under the rule that governs how we describe
 // real people.
+const featuredIndependentIds = new Set([
+  'independent-simonw',
+  'independent-thestalwart',
+  'independent-badlogicgames',
+  'independent-jessegenet'
+])
+
 export const people = catalog.map((person) => ({
   ...person,
+  featured: person.featured || featuredIndependentIds.has(person.id),
   description: oneLiner(person.slug)
 }))

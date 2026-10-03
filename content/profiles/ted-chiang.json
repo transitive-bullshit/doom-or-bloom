@@ -1,0 +1,41 @@
+{
+  "slug": "ted-chiang",
+  "summary": "Chiang examines how AI affects human agency, creative work and education, while distinguishing current systems from fictional minds.",
+  "statements": [
+    {
+      "quote": "I don’t think there’s a good philosophical argument for simply rolling over in the face of corporate power.",
+      "date": "2026-07-29",
+      "venue": "Interview with Gamereactor",
+      "url": "https://www.gamereactor.eu/the-science-the-fiction-and-the-thought-an-interview-with-ted-chiang-1753213/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Generative AI is harmful enough when we understand it as a conventional technology",
+      "date": "2026-06-03",
+      "venue": "The Atlantic, No, Artificial Intelligence Is Not Conscious",
+      "url": "https://www.theatlantic.com/philosophy/2026/06/no-artificial-intelligence-is-not-conscious/687378/?utm_source=apple_news",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Your job is not to turn in completed assignments; it’s to learn how to think.",
+      "date": "2025-08-12",
+      "venue": "Q&A with Princeton Center for Digital Humanities",
+      "url": "https://cdh.princeton.edu/blog/ted-chiang/",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "I’m not trying to argue against the use of generative AI as a brainstorming tool.",
+      "date": "2025-06-18",
+      "venue": "Conversation with Andrew Erickson, Schaufler Lab at TU Dresden",
+      "url": "https://tu-dresden.de/gsw/schauflerlab/ressourcen/dateien/interview-ted-chain",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "And it costs thousands or millions of people their jobs.",
+      "date": "2024-12-10",
+      "venue": "NPR All Things Considered interview",
+      "url": "https://www.northcountrypublicradio.org/news/npr/g-s1-37521/",
+      "verified": "2026-10-03"
+    }
+  ]
+}
