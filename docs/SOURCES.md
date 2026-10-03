@@ -55,51 +55,9 @@ Before a local release, recheck contemporary model/evaluation entries older than
 
 The former 100/100/100 target is a coverage guide, not a reason to pad the corpus with dated or weak entries. Incorporating every required source and achieving balanced, reviewed topical coverage takes precedence over symmetrical counts. Document actual counts, overlaps, exclusions of optional candidates and any required-source blockers.
 
-## Latest local source addition — 2026-10-03
+## Coverage and history
 
-CASP's [What if automating AI R&D triggers an intelligence explosion?](https://casp.ac/reports/intelligence-explosion) is included as a required active draft publication. The [research record](research/casp-intelligence-explosion-2026-10-03.md) documents the supplied September 2026 PDF, including its internal supplement and endnotes, full joint authorship and conditional modeling limits. The current corpus now has 141 references and 114 of 120 required URLs mapped; mapping does not confer human review. No reading recommendation is added and runtime corpus grounding remains paused.
-
-## Local source additions — 2026-09-30
-
-Scott Sumner's [Wanna bet?](https://scottsumner.substack.com/p/wanna-bet) is included in the active draft corpus and reading resources, with a required intake mapping, title/author retrieval aliases and an entry in the generated source-coverage index. The [intake record](research/source-additions-2026-09-30.md) documents access scope and verification. Inclusion retains draft status and the pause on runtime corpus grounding. The September 17 counts below describe the earlier assembly checkpoint.
-
-LessWrong's [AI Risk Skepticism](https://www.lesswrong.com/w/ai-risk-skepticism) is also included as a required draft wiki/discovery-hub snapshot. Its [intake record](research/source-additions-2026-09-30.md#lesswrong--ai-risk-skepticism) limits coverage to the definition, editor metadata and initial visible post listings; linked essays require separate reading and review.
-
-## Local draft integration — 2026-09-17
-
-New assessments use `0.4.0-draft`, with 138 reference identities: the earlier 135 plus three contemporary event drafts. All 117 currently required-mapped snapshot identities, representing 111 required URLs, are present in the local corpus. The three unmapped originals and all partial-access scopes remain open; assembly confers no new review. Prompts, rubrics, findings and the 14 recommendations keep their existing semantics. Saved `0.2.0-draft` and `0.3.0-draft` assessments retain their original 42- and 135-reference corpora for those saved records. Starting a new assessment uses the current release and preserves earlier records.
-
-The [release provenance](../content/releases/0.4.0-draft/provenance.json) records source paths, original content versions and hashes. Earlier provenance retains the deliberate reuse of two older required publications. Each intake hash records the registry at assembly time; later authoring mappings do not rewrite that historical record. Of the 130 original authoring copies, 96 have current-release copies: there are 172 distinct identities across the two populations. Original authoring notes describe their earlier inclusion state; the current manifest and generated index identify runtime copies. No content/rubric release has been frozen.
-
-The [contemporary event pass](research/contemporary-event-authoring.md) drafts three incident/demonstration identities from selected primary HTML sections: one scoped intrusion, one induced agent conflict and one human-directed misuse case. Their current-release copies complement publication identities without multiplying independent evidence. Occurrence dates remain separate from report dates, including unknown exact experiment dates. Four source-informed journey variants exercise narrow support versus overgeneralization as draft development cases. Compatible draft inclusion is complete; individual review remains open.
-
-Required-source review and balanced genre/topical coverage remain explicit gates. Freeze now refuses any required original without compatible reviewed snapshot mappings, in addition to the ordinary complete-asset review/hash checks.
-
-## Historical research and authoring checkpoints
-
-Use the [source coverage and review index](research/source-coverage-2026-09-17.md) to find every required original, mapped asset, research heading, access gate, overlapping identity and current subject counts. `pnpm content:coverage` regenerates the index from repository metadata; its counts do not confer review or prove topical balance.
-
-All 114 required records now link to scoped research notes in the intake registry. That records what was accessible and actually inspected; it does not claim full-text access or corpus completion. Intake statuses are 96 scoped drafts, 17 partial-access records and one blocked record. One hundred eleven required URLs map to active or separate draft snapshots; none of these mappings records new editorial approval.
-
-Follow-up notes inspect selected current developer cards behind the three required [system-card hubs](research/required-current-system-cards.md), preserving checkpoint, induced-behavior and inherited-assessment limitations. [Economic methods notes](research/required-economic-methods.md) cover accessible current related primary versions, causal scope and disclosures; the exact NBER originals remain blocked. Research depth does not change review status or silently replace required URLs.
-
-The [recent-source inventory](research/required-recent-reports.md) links the 18 contemporary draft snapshots first integrated with 24 background entries. The two earlier publication batches remain historical authoring candidates, with two required identities selected into the expanded release. Travis approved the [revised direction](current-context-review-packet.md) and prioritized an end-to-end demo before further reassessment. Individual review remains open. At that seed checkpoint the demo contained 42 references and 14 reading suggestions; older entries support explicitly named history or mechanisms.
-
-The [required perspective batch](research/required-perspectives-batch-01.md) authored 25 separate essay/scenario/testimony drafts: 16 dated 2026, eight older influential or conceptual sources and one undated scenario with a current changelog. Their findings remain attributed rather than promoted into measurements. The unread SAGE chapter and limited Noah Smith preview remain unresolved. The original batch preceded integration and conferred no individual asset review.
-
-The [measurement/disclosure batch](research/required-measurement-batch-01.md) authored 15 separate drafts and mapped 12 required URLs, retaining three original developer hubs alongside separately pinned September cards. Dashboard success rates, evidence vintages, inherited assessments, private test conditions and organizational disclosures remain explicit. That authoring checkpoint retained the earlier 42-reference demo. [Workforce follow-up](research/required-workforce-evidence.md) further distinguishes descriptive payroll signals from randomized workplace interventions and preserves the blocked exact HBS working-paper version; it is research, not asset review.
-
-The [workforce batch](research/required-workforce-batch-01.md) authored six scoped snapshots, retaining causal versus descriptive estimands, percentage-point versus relative-percent differences and intervention/evidence vintages. Four related-version mappings retain partial access for the exact required HBS/NBER originals; a mapped source is not necessarily completed. No new asset was individually reviewed at that checkpoint.
-
-The [conceptual batch](research/required-foundations-batch-01.md) adds 13 required historical/abstract/publisher-scope drafts, keeping objective mismatch, learned goals, strategic concealment, alignment generalization and containment distinct. Thought experiments, human roleplay and advertised book theses are explicitly separated from contemporary observed evidence. The existing Off-Switch identity is reused, and three partial-access records remain partial.
-
-The [governance/control/scenario batch](research/required-governance-batch-01.md) authored 11 scoped drafts, including a [pinned RSP policy follow-up](research/required-rsp-policy-followup.md). Written provisions, conditional scenarios and ontologies remain distinct from compliance or demonstrated capability. The [social/video batch](research/required-social-batch-01.md) authored nine verified-root or selected-caption publications, retaining unverified empirical claims, quote/edit dependencies and attribution limits. These batches were separate from the demo at authoring and remain unreviewed after draft integration.
-
-The [perspective/discovery batch](research/required-perspective-hubs-batch-01.md) adds 12 scoped drafts, preserving competing adoption/acceleration arguments, historical theory, named practitioner examples and discovery-only hub identities. Four access-limited records remain partial. Subject tags on this and the governance/social batches reflect actual content. Existing mapped draft snapshots have been reconciled to intake `draft` status; none becomes reviewed.
-
-Three required URLs still have no snapshot: the blocked Reuters article (`source.required-005`), unread SAGE chapter (`source.required-028`) and preview-only Noah Smith essay (`source.required-042`). The other 15 partial-access records have limited-scope mappings; this does not clear their access gates or prove full required-source incorporation.
-
-Partial access includes publisher abstracts/previews, selected hub sections and the requested Epoch graph configuration. The Reuters article remains blocked. A [bounded limited-access follow-up](research/required-limited-access-followup.md) found no change to the unread SAGE chapter or Noah Smith preview-only essay; a later essay is not silently substituted. Read each record's scope before extending its claims. Preserve these requirements and resolve access or obtain verifiable publisher material before counting the full required library complete.
+`pnpm content:coverage` regenerates the [source coverage and review index](research/source-coverage-2026-09-17.md) from repository metadata: every required original, mapped asset, research heading, access gate, overlapping identity and current counts. Its counts do not confer review or prove topical balance. Dated intake, integration and research batches are recorded in the [corpus source log](research/corpus-source-log.md).
 
 ## Execution checklist
 
