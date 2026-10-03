@@ -39,6 +39,7 @@ import {
   publicStatementProblems,
   publicStatements
 } from '../lib/personas/public-statements'
+import { contractDocs, datedHeadings } from '../lib/docs/contract-rules'
 const bundle = loadBundle()
 const drafts = loadDraftReferences()
 const context = loadAuthoringContext(bundle)
@@ -267,3 +268,20 @@ if (blogTranslationErrors.length)
 console.log(
   `Validated the blog: ${posts.length} posts, ${posts.filter((post) => isTranslated(post.slug)).length} translated, and ${dataFiles.length} data files.`
 )
+
+// Contracts describe current behavior. Dated records of additions, runs and
+// verification go to docs/research/ (docs/README.md#maintaining-these-docs).
+const docsDirectory = path.join(process.cwd(), 'docs')
+const contracts = contractDocs(
+  readFileSync(path.join(docsDirectory, 'README.md'), 'utf8')
+)
+const contractErrors = contracts.flatMap((file) =>
+  datedHeadings(readFileSync(path.join(docsDirectory, file), 'utf8')).map(
+    (heading) => `docs/${file}: ${heading}`
+  )
+)
+if (contractErrors.length)
+  throw new Error(
+    `Contract docs have dated sections. Move each to a record in docs/research/ and link it (docs/README.md#maintaining-these-docs):\n${contractErrors.join('\n')}`
+  )
+console.log(`Validated ${contracts.length} contract docs.`)

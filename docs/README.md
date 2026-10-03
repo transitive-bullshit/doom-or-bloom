@@ -25,16 +25,20 @@ Look up current versions and limits in [lib/assessment/schema.ts](../lib/assessm
 | Product scope, participant experience, map or result UI | [PRODUCT.md](PRODUCT.md) |
 | Languages, locale URLs, translated copy and content, translation tooling and review, or the language selector | [INTERNATIONALIZATION.md](INTERNATIONALIZATION.md) |
 | Page titles and descriptions, structured data (JSON-LD), canonical URLs, sitemap, robots.txt or llms.txt | [SEO.md](SEO.md) |
+| The site social image, or profile, share and blog cards | [SEO.md](SEO.md#site-social-image), [PERSISTENCE.md](PERSISTENCE.md#public-pages-and-social-images) |
 | Blog posts, their data charts and feed, or the P(doom) hub's shared copy | [BLOG.md](BLOG.md) |
 | Domain names or distinctions between identity, evidence, judgments and results | [CONTEXT.md](CONTEXT.md) |
-| Dimensions, routing, recovery, readiness, projections or corrections | [ASSESSMENT.md](ASSESSMENT.md) |
+| Dimensions, routing, recovery, readiness, projections or corrections, and which code computes each result output | [ASSESSMENT.md](ASSESSMENT.md) |
 | Jev inputs, semantic/code boundaries, batching or inference failure handling | [TYPESAFE.md](TYPESAFE.md) |
 | Database state, ownership, lazy drafts, operation recovery, public access, caching, forks or X auth | [PERSISTENCE.md](PERSISTENCE.md) |
+| Databases, staging (Vercel Preview), hosted migrations or direct SQL | [PERSISTENCE.md](PERSISTENCE.md#databases-and-environments) |
+| Re-scoring saved results or simulated users without new answers | [PERSISTENCE.md](PERSISTENCE.md#re-evaluating-saved-results), [user-journeys.md](user-journeys.md#re-evaluate-selected-simulated-users) |
 | Prompts, rubrics, findings, recommendations or versioned releases | [AUTHORING.md](AUTHORING.md) |
-| Source intake, access limits, freshness or balanced coverage | [SOURCES.md](SOURCES.md) |
+| Assessment-corpus source intake, access limits, freshness or balanced coverage (not simulated-user briefs) | [SOURCES.md](SOURCES.md) |
 | Opinion coverage, argument maps or safety terminology | [JOURNEYS.md](JOURNEYS.md) |
+| Adding or updating a simulated user: brief, sources, portrait, one-liner, featured flag, generation, or publishing to staging or production | [user-journeys.md](user-journeys.md#add-or-update-a-simulated-user) |
 | Simulated-user research, generation, storage or review | [user-journeys.md](user-journeys.md) |
-| Analytics, privacy or assessment validity | [MEASUREMENT.md](MEASUREMENT.md), [evaluation-protocol.md](evaluation-protocol.md) |
+| Analytics, traffic and referrer sources, privacy or assessment validity | [MEASUREMENT.md](MEASUREMENT.md), [evaluation-protocol.md](evaluation-protocol.md) |
 | Interview regression benchmark or participant feedback review | [benchmark.md](benchmark.md) |
 | Local diagnostics, provider failures or internal review tools | [local-debugging.md](local-debugging.md) |
 | Read-only local/production inspection | [admin.md](admin.md) |
@@ -48,14 +52,14 @@ Look up current versions and limits in [lib/assessment/schema.ts](../lib/assessm
 - [Original MVP plan](mvp-implementation-plan.md): implementation history and unfinished editorial/evaluation gates. Its browser-only architecture and original scope are superseded.
 - [Persistence plan](persistence-implementation-plan.md): completed implementation checkpoints and later dated change/verification records. Use the current contracts above for behavior.
 - [Current-context editorial packet](current-context-review-packet.md): approved authoring direction; [prompt-quality review](prompt-quality-review.md): question wording and routing findings.
-- [Source coverage index](research/source-coverage-2026-09-17.md): required-source intake and access gaps. Research reports under `docs/research/` retain dated evidence, source scopes, and run provenance.
-- [Simulated-user workflow](user-journeys.md): links to persona cohorts, source refreshes, fidelity audits, and regeneration records. Use these reports when changing the affected briefs, not as current catalog counts.
+- [Source coverage index](research/source-coverage-2026-09-17.md): required-source intake and access gaps, with dated corpus batches in the [corpus source log](research/corpus-source-log.md). Research reports under `docs/research/` retain dated evidence, source scopes, and run provenance.
+- [Simulated-user log](research/simulated-user-log.md): dated cohorts, source refreshes, fidelity audits, regenerations and imports, each linking its research record. Use these reports when changing the affected briefs, not as current catalog counts or commands.
 
 ## Maintaining these docs
 
 The canonical contracts describe agreed behavior; code and tests show what is implemented. When they disagree, verify the intended decision and fix the stale description or implementation explicitly. A dated report or completed plan does not override a current contract. Label proposals and unimplemented work where they appear.
 
-Keep this index as a task router. Put new verification evidence in the relevant plan/research record and link enduring lessons from the architecture guide. Update a rule at its owning contract rather than appending competing overrides to several docs. Keep exact dependency versions, catalog counts, and script inventories in their executable sources unless a dated measurement needs them.
+Keep this index as a task router. Put new verification evidence in the relevant plan/research record and link enduring lessons from the architecture guide. Update a rule at its owning contract rather than appending competing overrides to several docs. Keep exact dependency versions, catalog counts, and script inventories in their executable sources unless a dated measurement needs them. Contracts carry no dated sections: record an addition, run or verification in `docs/research/`, append a line to the relevant log, and link it. `pnpm test:content` fails on a dated heading in any contract routed above except the production-readiness log.
 
 ## Locked product language
 

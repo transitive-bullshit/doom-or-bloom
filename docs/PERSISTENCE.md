@@ -93,6 +93,25 @@ Ordinary answer processing interprets evidence and routes follow-ups, without co
 - Deleting an assessment cascades to its owned records. Source lineage references on surviving forks become null while `is_fork` and inherited-history markers remain, so deletion does not turn copied history into an apparently independent sample. Restrict deletion of a currently selected persona run until its pointer is cleared or replaced.
 - Reject updates to snapshot payloads through the application repository. Verify this boundary in database integration tests; choose database enforcement or restricted application privileges where feasible without obstructing explicit deletion.
 
+## Databases and environments
+
+| Environment | Database | Connection settings | Migrations |
+| --- | --- | --- | --- |
+| Local development | `doom_bloom_dev` on Postgres.app | `DATABASE_URL` (optional direct `DATABASE_MIGRATION_URL`) in `.env.development.local` | `pnpm db:migrate` |
+| Local test | `doom_bloom_test`; the name must end in `_test` | `TEST_DATABASE_URL` in `.env.development.local` | `pnpm db:migrate:test` |
+| Vercel Preview, also called staging | Neon project `doom-or-bloom-preview` (`jolly-frog-41412992`), branch `main` (`br-blue-field-avdsx870`), database `doom_bloom_preview` | Vercel Preview variables only, with no local env file. They are sensitive, so `vercel env pull` returns placeholders; get a connection string for that project and branch from Neon. | Owner-approved, before redeploying ([Preview isolation](#vercel-preview-isolation)) |
+| Production | Neon project `doom-or-bloom` (`jolly-dew-73357244`), branch `production`, database `neondb` | Pooled `DATABASE_URL` and direct `DATABASE_MIGRATION_URL` in `.env.production.local` | A separate, owner-approved deployment task |
+
+Builds never run migrations. `scripts/migrate-db.ts` applies pending `drizzle/` migrations to the loaded `DATABASE_MIGRATION_URL`, else `DATABASE_URL`; values already in the shell override the env file. Drizzle records applied migrations in `drizzle.__drizzle_migrations`; compare them with `drizzle/meta/_journal.json` to see what a target lacks. Record each hosted migration in [production readiness](production-readiness.md).
+
+Tools that take `--env <file>` (`personas:import`, `personas:sync-metadata`, `personas:reevaluate`, `results:reevaluate`) reach Preview through a temporary env file outside the repository holding its `DATABASE_URL` and `DATABASE_MIGRATION_URL`; delete it afterward. Read-only inspection of local or production uses `pnpm admin:<target>`, `pnpm db:studio:production` or `scripts/inspection-env.ts`, which has no Preview target; see [admin](admin.md).
+
+When querying directly:
+
+- `assessments.publishedSnapshotId` is stored as `final_snapshot_id`. Every other column is its field name in snake case.
+- Quote the Better Auth table: `"user"`. Assessment `owner_id` is text, not a UUID.
+- There is no completion column. An assessment has a result when its current snapshot does: join `assessment_snapshots s on s.id = a.current_snapshot_id` and filter `s.has_result`. Participants are `a.origin = 'participant'`.
+
 ## Synchronous execution and idempotency
 
 Treat each answer, next-question, or result operation as one bounded unit executed by the main POST request. The request waits for the evaluator and returns success or failure. No Workflow SDK, async job system, worker, queue, outbox, dispatcher, scheduler, or automatic post-restart execution is included.
@@ -181,7 +200,7 @@ After an engine upgrade that changes interpretation, an operator can re-read sav
 - A published assessment moves its published pointer with its head, so its public page shows the new result. Its `updated_at`, which dates the publication, is unchanged. Published pages are pre-rendered at build, so redeploy after a write to refresh them.
 - Feedback rows keep the snapshot and result they rated.
 
-Simulated users are re-evaluated with `pnpm personas:reevaluate` (`scripts/reevaluate-personas.ts`). Each selected run's recorded questions and answers are replayed through the journey runner with the current engine, and no answer is generated. `write` publishes each replay through the ordinary generation records as a new public simulation, which the persona then selects because it is newer. Earlier runs stay frozen at their own URLs. `plan --restate` instead copies each selected `simulation_v1` run and applies the persona's current verified public P(doom) statement, with no inference; answers, scores and map coordinates are unchanged. See [user journeys](user-journeys.md#re-evaluate-selected-simulated-users--september-29-2026).
+Simulated users are re-evaluated with `pnpm personas:reevaluate` (`scripts/reevaluate-personas.ts`). Each selected run's recorded questions and answers are replayed through the journey runner with the current engine, and no answer is generated. `write` publishes each replay through the ordinary generation records as a new public simulation, which the persona then selects because it is newer. Earlier runs stay frozen at their own URLs. `plan --restate` instead copies each selected `simulation_v1` run and applies the persona's current verified public P(doom) statement, with no inference; answers, scores and map coordinates are unchanged. See [user journeys](user-journeys.md#re-evaluate-selected-simulated-users).
 
 ## Personas and seeding
 
@@ -205,7 +224,7 @@ Publishing exposes the complete frozen assessment resource: submitted conversati
 
 Generate 1200 × 630 PNG social images with the installed Takumi renderer. Do not serve WebP previews: X's post composer showed only a generic icon for fresh WebP cards while PNG and JPEG cards rendered (September 25 and 27, 2026). Public assessment metadata advertises the absolute URL `/public/assessments/<id>/social-image.png?v=<version>` with `image/png`; outside English it advertises `/<locale>/public/assessments/<id>/social-image.png?v=<version>`, a card in that language rendered on its first request ([INTERNATIONALIZATION.md](INTERNATIONALIZATION.md#static-rendering-and-caching)). Social networks cache previews by image URL, so the version hashes everything that determines the rendered card: presented result, closest-persona matches, title, simulated label and `shareCardRevision`. Bump that constant when the card design changes. The route ignores `v`, and earlier `social-image.webp` URLs permanently redirect to it. Profile previews at `/users/<slug>/opengraph-image?v=png-1` (a route handler outside the locale tree; profile metadata outside English adds `&locale=<code>` for a card in that language) use PNG with matching `image/png` metadata; the image URL version separates them from earlier cached WebP previews. A normal participant card uses its actual result and neutral assessment title, without a synthetic label or automatic X identity. Persona cards retain their simulated label and portrait. Keep existing participant PNG downloads available.
 
-The site-wide default image is a checked-in static file, `app/opengraph-image.png`, never a request-time route. The approved white card pairs the landing question with a muted featured map, circular portraits and Doom/Bloom pills. `pnpm social-image:generate` reproduces it offline from the checked-in public simulated-user snapshot; optional `--local` and `--production` refresh positions over a read-only connection. Review and commit the image with `app/opengraph-image.alt.txt`. The renderer uses Takumi and checked-in Inter Tight (SIL Open Font License). Horizontal outlook positions remain exact; collision spacing and approved image-only vertical offsets do not alter saved results. See [the site image contract](SEO.md#site-social-image) for the design and regeneration details. Page metadata imports the file, so its content-hashed URL changes whenever the image does.
+The site-wide default image is a checked-in static file, `app/opengraph-image.png`, never a request-time route. Page metadata imports the file, so its content-hashed URL changes whenever the image does. [The site image contract](SEO.md#site-social-image) owns its design and regeneration with `pnpm social-image:generate`.
 
 [Share links](#share-links) follow the same cache and revocation model at `/s/<id>`, rendered on first request rather than at build.
 
@@ -259,7 +278,7 @@ Preview authentication derives its exact allowed HTTPS origins from Vercel's `VE
 
 X OAuth is intentionally not configured for Preview. Production and local development retain their own X credentials and callback URLs. Anonymous creation, persistence, and sharing remain available in previews. Schema changes must be migrated against the preview database before redeploying; deployment builds do not run migrations automatically.
 
-### Simulated-user directory (September 25, 2026)
+### Simulated-user directory
 
 Authored presentation fixtures supply `featured` explicitly. Both profile imports and live generation persist that value; they must never unconditionally promote all profiles to featured. Historical metadata without the field defaults to true for compatibility with the original curated collection. `/users` reads all selected public simulations, while `/` and participant comparisons read only featured simulations. New unfeatured simulations retain the same detail, export, and source provenance behavior. `/users` and `/` use the same build-time generation and 48-hour revalidation policy as simulated profiles, as described above.
 
