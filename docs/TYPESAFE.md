@@ -109,8 +109,8 @@ The authenticated `/api/assessments` endpoints load server snapshots through `li
 
 The repository verifies ownership for private reads and mutations; HTTP handlers resolve ownership from Better Auth and require an exact configured origin for writes. Public reading uses a separate publication-checked serializer and never starts inference or anonymous sessions. The old full-state endpoint returns HTTP 410. Browser tests cover creation, draft recovery, saved answers, and lost-response recovery. No background assessment execution is involved.
 
-## Verified upstream limits and diagnostics (2026-09-26)
+## Verified upstream limits and diagnostics
 
-The [model documentation](https://docs.typesafe.ai/models) specifies 64k tokens for state plus all questions and 32k for state plus the longest question. These are token limits, not JSON byte limits. Controlled live probes returned HTTP 400 with `{"detail":{"error_type":"max_tokens_exceeded"}}` for overflow, while the investigated production 403 payload replay succeeded at 7,155 input tokens. See the [investigation and reproduction](research/jev-403-investigation-2026-09-26.md). An HTTP 403 alone does not establish context overflow.
+Verified on 2026-09-26. The [model documentation](https://docs.typesafe.ai/models) specifies 64k tokens for state plus all questions and 32k for state plus the longest question. These are token limits, not JSON byte limits. Controlled live probes returned HTTP 400 with `{"detail":{"error_type":"max_tokens_exceeded"}}` for overflow, while the investigated production 403 payload replay succeeded at 7,155 input tokens. See the [investigation and reproduction](research/jev-403-investigation-2026-09-26.md). An HTTP 403 alone does not establish context overflow.
 
 The SDK preserves parsed error `body`, `message`, response `headers` and `requestId` from `x-typesafe-request-id`. Capture sanitized HTTP diagnostics before SDK parsing so text/HTML firewall errors and alternate correlation headers survive. General error serialization intentionally omits raw exception messages and bodies.

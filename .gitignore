@@ -48,7 +48,7 @@ yarn-error.log*
 
 # local
 .content-sync-*
-/work/
+/work
 
 # generated meme-skill comparison reports
 /docs/skills/ai-safety-meme-creator/archive-ab-comparison*.html
