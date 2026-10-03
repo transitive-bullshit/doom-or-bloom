@@ -1053,8 +1053,7 @@ const catalog = [
 const featuredIndependentIds = new Set([
   'independent-simonw',
   'independent-thestalwart',
-  'independent-badlogicgames',
-  'independent-jessegenet'
+  'independent-badlogicgames'
 ])
 
 export const people = catalog.map((person) => ({

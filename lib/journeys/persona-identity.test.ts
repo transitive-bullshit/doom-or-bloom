@@ -25,16 +25,11 @@ test('public persona navigation uses unique lowercase X usernames or named fallb
   )
 })
 
-test('Independent 100 preserves original users and features the four selected additions', async () => {
+test('Independent 100 preserves original users and features the three selected additions', async () => {
   const { default: directory } =
     await import('../../docs/research/independent-100-accounts-2026-09-25.json')
   const aliases: Record<string, string> = { alltheyud: 'esyudkowsky' }
-  const featuredAdditions = new Set([
-    'simonw',
-    'thestalwart',
-    'badlogicgames',
-    'jessegenet'
-  ])
+  const featuredAdditions = new Set(['simonw', 'thestalwart', 'badlogicgames'])
   for (const account of directory.accounts) {
     const handle = account.handle.toLowerCase()
     const matching = people.filter(
@@ -51,5 +46,5 @@ test('Independent 100 preserves original users and features the four selected ad
   expect(
     people.filter((person) => person.id.startsWith('independent-'))
   ).toHaveLength(97)
-  expect(people.filter((person) => person.featured)).toHaveLength(48)
+  expect(people.filter((person) => person.featured)).toHaveLength(47)
 })
