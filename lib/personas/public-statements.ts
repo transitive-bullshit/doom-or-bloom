@@ -42,6 +42,13 @@ import timnitgebru from '@/content/profiles/timnitgebru.json'
 import tylercowen from '@/content/profiles/tylercowen.json'
 import ylecun from '@/content/profiles/ylecun.json'
 import yoshuaBengio from '@/content/profiles/yoshua_bengio.json'
+import coryDoctorow from '@/content/profiles/cory-doctorow.json'
+import haJoonChang from '@/content/profiles/ha-joon-chang.json'
+import tedChiang from '@/content/profiles/ted-chiang.json'
+import paulKrugman from '@/content/profiles/paul-krugman.json'
+import naomiKlein from '@/content/profiles/naomi-klein.json'
+import jonStewart from '@/content/profiles/jon-stewart.json'
+import elizabethWarren from '@/content/profiles/elizabeth-warren.json'
 
 // What a simulated user's real person has said about AI: short, dated quotes
 // in their own words, each checked against the page it links to. Shown on the
@@ -142,7 +149,14 @@ const files = [
   timnitgebru,
   tylercowen,
   ylecun,
-  yoshuaBengio
+  yoshuaBengio,
+  coryDoctorow,
+  haJoonChang,
+  tedChiang,
+  paulKrugman,
+  naomiKlein,
+  jonStewart,
+  elizabethWarren
 ].map((file) => publicStatementsSchema.parse(file))
 
 /** Every profile with sourced statements, keyed by slug. */

@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto'
 import { spawn, execFileSync, type ChildProcess } from 'node:child_process'
 import { once } from 'node:events'
 import { setTimeout as delay } from 'node:timers/promises'
-import { chromium, expect } from '@playwright/test'
+import { chromium, expect, request } from '@playwright/test'
 import { Pool } from 'pg'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { migrate } from 'drizzle-orm/node-postgres/migrator'
@@ -91,10 +91,10 @@ async function start() {
     try {
       if (
         (
-          await fetch(`${origin}/assessment`, {
-            signal: AbortSignal.timeout(1000)
+          await probe.get(`${origin}/assessment`, {
+            timeout: 1000
           })
-        ).ok
+        ).ok()
       )
         return
     } catch {
@@ -105,6 +105,8 @@ async function start() {
   throw new Error(`Test server readiness timed out: ${log}`)
 }
 const browser = await chromium.launch()
+// The local Portless proxy uses its own CA, as in the browser suites.
+const probe = await request.newContext({ ignoreHTTPSErrors: true })
 let created = false
 try {
   await admin.query(`CREATE DATABASE ${name}`)
@@ -122,7 +124,7 @@ try {
   )
   assert.deepEqual(await seedPersonas(pool), await seedPersonas(pool))
   await start()
-  const context = await browser.newContext()
+  const context = await browser.newContext({ ignoreHTTPSErrors: true })
   let page = await context.newPage()
   await page.goto(`${origin}/assessment`)
   await page
@@ -228,6 +230,7 @@ try {
   }
 } finally {
   await stop()
+  await probe.dispose()
   await browser.close()
   await pool?.end()
   if (created) await admin.query(`DROP DATABASE ${name} WITH (FORCE)`)

@@ -8,6 +8,20 @@ import type { VerifiedQuote } from '@/lib/personas/one-liner-rules'
 // catastrophe outcomes, and no quotes unless verified below.
 // `pnpm test:content` checks the mechanical parts. English only, like briefs.
 export const oneLiners: Record<string, string> = {
+  'cory-doctorow':
+    'Novelist and public-interest technology writer who argues for useful tools, worker power and limits on corporate control.',
+  'ha-joon-chang':
+    'Development economist who argues that public choices and institutions should shape AI’s uses and benefits.',
+  'ted-chiang':
+    'Science-fiction writer who examines AI, creativity and human agency, and argues that its uses reflect political and economic choices.',
+  'paul-krugman':
+    'Economist who writes about AI’s economic returns, inequality, infrastructure costs and risks to society.',
+  'naomi-klein':
+    'Author and climate advocate who links AI expansion to corporate power, labor and environmental harms.',
+  'jon-stewart':
+    'Comedian and interviewer who questions AI’s effects on work and power while exploring its useful applications.',
+  'elizabeth-warren':
+    'Senator who calls for AI safeguards and public oversight, and argues that people should share its benefits.',
   the_marwell:
     'Anthropic researcher who works on reinforcement learning and discusses AI’s benefits, labor disruption and safeguards against misuse.',
   'nick-bostrom':

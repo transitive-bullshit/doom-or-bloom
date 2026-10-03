@@ -108,3 +108,15 @@ Each account was verified through the X users API (`/2/users/by`) on October 1, 
 - `aella.jpg`: Aella’s public [X profile](https://x.com/Aella_Girl), [portrait](https://pbs.twimg.com/profile_images/1908328831485669376/Jo1ipjZJ_400x400.jpg), account ID `795885295`.
 
 Nick Bostrom, retrieved October 3, 2026: official author portrait from [Deep Utopia](https://nickbostrom.com/deep-utopia/), https://nickbostrom.com/deep-utopia/images/author-photo.jpg?v=2, stored as `bostrom.jpg`. Identifies a fictional simulation, not an endorsement.
+
+## Cultural, economic and civic personas — October 3, 2026
+
+Official or publisher photographs identify fictional simulations, not participation or endorsement. Downloaded October 3, 2026, visually inspected, cropped to individual portraits and encoded as 384×384 JPEGs.
+
+- `doctorow.jpg`: Cory Doctorow’s [official biography](https://craphound.com/bio/), [portrait](https://i0.wp.com/farm9.staticflickr.com/8366/8537324028_d0b98ecfd2_z.jpg?w=580&ssl=1). Credit: Jonathan Worth, [photographer](http://jonathanworth.com). The biography explicitly supplies this credited publicity image. The newer Flickr publicity asset failed twice with HTTP 502 and was not used.
+- `chang.jpg`: Ha-Joon Chang’s [SOAS profile](https://www.soas.ac.uk/about/ha-joon-chang), [portrait](https://www.soas.ac.uk/sites/default/files/styles/16_9_media_medium/public/2023-05/Ha-Joon%20Chang%20HC33.jpg?h=f2fcf546&itok=kZTMhenO).
+- `chiang.jpg`: Ted Chiang’s [Gamereactor interview](https://www.gamereactor.eu/the-science-the-fiction-and-the-thought-an-interview-with-ted-chiang-1753213/), [publisher image](https://www.gamereactor.eu/media/89/science_fiction_thought_4958933_1600x900.jpg). Original photograph credited by publisher to Alan Berner; crop uses the right-hand portrait, excluding the interview graphic. Princeton’s wider lecture photograph was inspected but not used.
+- `krugman.jpg`: Paul Krugman’s [CUNY profile](https://www.gc.cuny.edu/people/paul-krugman), [portrait](https://www.gc.cuny.edu/sites/default/files/styles/300x370/public/2022-07/Paul_Krugman_480px_590px.jpg?h=238e99b9&itok=TTZx0vrl).
+- `klein.jpg`: Naomi Klein’s [official biography](https://naomiklein.org/about/), [portrait](https://naomiklein.org/wp-content/uploads/2024/07/03KBialous-20230719-109_1600_c.jpg), cropped to head and shoulders.
+- `stewart.jpg`: Jon Stewart’s [official Daily Show page](https://www.cc.com/shows/the-daily-show), [cast photograph](https://images.paramount.tech/uri/mgid:arc:imageassetref:ws.cc.com:d23e1db7-8f17-4e38-85eb-87cf04cc82aa?quality=0.7&gen=ntrn&format=jpg&width=1200&height=630&crop=true). Only Stewart, at the center, is selected for the portrait crop.
+- `warren.jpg`: Elizabeth Warren’s [official Senate biography](https://www.warren.senate.gov/about/about-elizabeth), [photograph](https://www.warren.senate.gov/wp-content/uploads/2026/02/Warren_About_Banner.jpg).

@@ -1,0 +1,41 @@
+{
+  "slug": "paul-krugman",
+  "summary": "Krugman separates uncertain economic returns from AI’s growing political, cognitive and safety risks.",
+  "statements": [
+    {
+      "quote": "And we should be afraid – very afraid.",
+      "date": "2026-09-30",
+      "venue": "Essay, One More Reason Americans Hate AI: It Does Nothing for Them",
+      "url": "https://paulkrugman.substack.com/p/one-more-reason-americans-hate-ai",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Will AI transform the economy? The jury is still out on that one",
+      "date": "2026-09-15",
+      "venue": "Essay, Why Is Trump Still Boosting AI?",
+      "url": "https://paulkrugman.substack.com/p/why-is-trump-still-boosting-ai",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "AI is clearly a major technological shock, and it may take years before we fully understand its economic and social impacts.",
+      "date": "2026-07-12",
+      "venue": "Essay, AI in an Age of Oligarchy",
+      "url": "https://paulkrugman.substack.com/p/ai-in-an-age-of-oligarchy",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "My concern here isn’t about testing; it’s about learning.",
+      "date": "2026-06-28",
+      "venue": "Essay, What Will AI Do To Our Minds?",
+      "url": "https://paulkrugman.substack.com/p/what-will-ai-do-to-our-minds",
+      "verified": "2026-10-03"
+    },
+    {
+      "quote": "Indeed, requiring that the AI industry take responsibility for the costs it imposes makes a lot of sense.",
+      "date": "2025-08-18",
+      "venue": "Essay, AI Is Power-Hungry",
+      "url": "https://paulkrugman.substack.com/p/ai-is-power-hungry",
+      "verified": "2026-10-03"
+    }
+  ]
+}
