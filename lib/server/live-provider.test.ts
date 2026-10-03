@@ -1,10 +1,18 @@
 import { expectDiagnostics } from '@/tests/helpers/diagnostics'
 import { afterEach, expect, test, vi } from 'vitest'
 import { createLiveProvider, validateEvaluation } from './live-provider'
-import { EvaluationFailure, fixtureAnswer } from './provider'
+import {
+  EvaluationFailure,
+  EvaluationRequestBudgetExhausted,
+  fixtureAnswer
+} from './provider'
 import { isProviderOutOfCredits } from './jev-budget'
 import { limits } from '@/lib/assessment/schema'
 import { providerFailure } from '@/lib/journeys/failure'
+import {
+  budgetedJourneyProvider,
+  liveJourneyBudget
+} from '@/lib/journeys/live-budget'
 import type { Question } from '@/lib/assessment/schema'
 const question: Question = {
   type: 'choice',
@@ -155,6 +163,81 @@ test('large batches retain the exact complete state and aggregate physical usage
   for (const [, init] of fetch.mock.calls)
     expect(requestBody(init).state).toEqual(state)
 })
+test('offline defaults complete five multi-batch answers beyond 24 successful requests', async () => {
+  const { provider, fetch } = mockedProvider(async (_url, init) =>
+    successfulResponse(init)
+  )
+  const cost = liveJourneyBudget(2)
+  const run = budgetedJourneyProvider(provider, cost)
+  // Long answers split each of these stages into two physical requests.
+  const questions = Object.fromEntries(
+    Array.from({ length: 9 }, (_, i) => [`q${i}`, question])
+  )
+  for (let answer = 0; answer < 5; answer++) {
+    for (let stage = 0; stage < 3; stage++) {
+      const result = await run.provider.evaluate(
+        { text: 'x'.repeat(90_001) },
+        questions
+      )
+      expect(Object.keys(result.answers)).toEqual(Object.keys(questions))
+    }
+  }
+  expect(fetch).toHaveBeenCalledTimes(30)
+  expect(run.report()).toEqual({ maximum: 1536, usedOrReserved: 30 })
+  expect(cost.report()).toMatchObject({
+    maximumUsd: 2,
+    usage: { jev: { requests: 30 } }
+  })
+})
+
+test('an explicit offline request cap reports budget exhaustion, not a timeout', async () => {
+  expectDiagnostics({
+    event: 'jev_batch_failed',
+    severity: 'error',
+    error: { code: 'evaluation_request_budget_exhausted' }
+  })
+  const { provider, fetch } = mockedProvider(async (_url, init) =>
+    successfulResponse(init)
+  )
+  const run = budgetedJourneyProvider(provider, liveJourneyBudget(2), 2)
+  const questions = Object.fromEntries(
+    Array.from({ length: 17 }, (_, i) => [`q${i}`, question])
+  )
+  await expect(
+    run.provider.evaluate(
+      { text: 'x'.repeat(90_001) },
+      questions,
+      undefined,
+      undefined,
+      true
+    )
+  ).rejects.toMatchObject({
+    message: 'Jev: request budget.',
+    evaluation: {
+      attempts: 2,
+      requests: [
+        expect.objectContaining({ status: 200 }),
+        expect.objectContaining({ status: 200 })
+      ]
+    }
+  })
+  expect(fetch).toHaveBeenCalledTimes(2)
+  await expect(
+    run.provider.evaluate({}, { q: question })
+  ).rejects.toBeInstanceOf(EvaluationRequestBudgetExhausted)
+  expect(fetch).toHaveBeenCalledTimes(2)
+})
+
+test('the offline dollar cap still blocks calls with request capacity remaining', async () => {
+  const { provider, fetch } = mockedProvider(async (_url, init) =>
+    successfulResponse(init)
+  )
+  const run = budgetedJourneyProvider(provider, liveJourneyBudget(0.001))
+  await expect(
+    run.provider.evaluate({ text: 'x'.repeat(90_001) }, { q: question })
+  ).rejects.toThrow('Journey cost budget exhausted')
+  expect(fetch).not.toHaveBeenCalled()
+})
 test('context overflow is permanent and never triggers recursive splitting', async () => {
   expectDiagnostics(
     {
@@ -196,7 +279,10 @@ test('transient batch retries respect the physical ceiling and remaining operati
     {
       event: 'jev_batch_failed',
       severity: 'error',
-      error: { type: 'ApplicationError', code: 'unexpected_error' }
+      error: {
+        type: 'ApplicationError',
+        code: 'evaluation_request_budget_exhausted'
+      }
     }
   )
   let calls = 0

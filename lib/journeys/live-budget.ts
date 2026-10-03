@@ -2,6 +2,11 @@ import 'server-only'
 import type { Provider } from '@/lib/server/provider'
 import { limits } from '@/lib/assessment/schema'
 import { JourneyFailure, providerFailure } from './failure'
+import { budgetedProvider } from '@/lib/evaluation/budget'
+
+// Offline runs already have a dollar cap. The request guard is a backstop,
+// not a small allowance that ordinary per-answer projections can exhaust.
+const journeyRequestLimit = 1536
 
 // Published USD per million tokens, checked 2026-09-20. Cached input is
 // deliberately charged at the full rate in this development estimate.
@@ -47,6 +52,18 @@ export function liveJourneyBudget(maximumUsd = 2) {
   }
 }
 export type LiveJourneyBudget = ReturnType<typeof liveJourneyBudget>
+
+export function budgetedJourneyProvider(
+  provider: Provider,
+  budget: LiveJourneyBudget,
+  maximum = journeyRequestLimit
+) {
+  return budgetedProvider(
+    meterJev(provider, budget),
+    maximum,
+    journeyRequestLimit
+  )
+}
 
 export function meterJev(
   provider: Provider,

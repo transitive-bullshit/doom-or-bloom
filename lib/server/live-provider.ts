@@ -10,7 +10,7 @@ import {
   questionSchema
 } from '@/lib/assessment/schema'
 import type { DebugRequest, Question } from '@/lib/assessment/schema'
-import { EvaluationFailure } from './provider'
+import { EvaluationFailure, EvaluationRequestBudgetExhausted } from './provider'
 import type { Evaluation, Provider } from './provider'
 
 export function validateEvaluation(
@@ -116,7 +116,7 @@ export function createLiveProvider(
         },
         fetch: async (url, init) => {
           if (attempts >= Math.min(limits.providerAttempts, attemptBudget)) {
-            requestBudget.abort()
+            requestBudget.abort(new EvaluationRequestBudgetExhausted())
             requestBudget.signal.throwIfAborted()
           }
           attempts++
@@ -225,7 +225,12 @@ export function createLiveProvider(
             }
           results.push(result)
         } catch (err) {
-          reportServerError('jev_batch_failed', err, {
+          // The SDK wraps fetch exceptions. Preserve our locally authored
+          // budget reason instead of reporting it as a transport cancellation.
+          const failure = requestBudget.signal.aborted
+            ? requestBudget.signal.reason
+            : err
+          reportServerError('jev_batch_failed', failure, {
             ...diagnosticContext,
             boundary: 'provider_adapter',
             provider: 'TypeSafe',
@@ -237,7 +242,7 @@ export function createLiveProvider(
           })
           // Batches are planned before calling Jev. A permanent overflow fails
           // the operation; recursively splitting it would add another retry layer.
-          throw err
+          throw failure
         }
       }
       try {

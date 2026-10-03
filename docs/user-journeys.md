@@ -55,7 +55,7 @@ Occasional paid development runs are authorized. This is not authorization for u
 ## Answer-only journeys and per-answer results
 
 ```sh
-pnpm journeys:generate --persona=control-alarmist --turns=5 --max-requests=24 --max-cost=2
+pnpm journeys:generate --persona=control-alarmist --turns=5 --max-cost=2
 pnpm journeys:mechanical:check
 ```
 
@@ -75,7 +75,7 @@ Flat or tiny gains are an elicitation review signal: inspect whether the questio
 
 ## Budgets and storage
 
-Defaults are five answer opportunities (CLI accepts 1–12), at most one OpenAI call per opportunity, and 24 physical Jev requests per selected entry, capped at 1536 for the batch. The request limit is shared across a batch, not a per-person hard ceiling. Estimated cost limits default to $2 for one persona and $5 for a group/full catalog. Running `pnpm journeys:generate` without a selector processes the full catalog plus the fixed replay. Prefer a scoped run for a local change; set explicit limits for longer runs. Automatic results end the simulation without opting into deeper exploration. `lib/journeys/live.ts` owns selection/defaults, and `live-budget.ts` records the dated pricing estimate. Failed usage may remain reserved and cached input is charged in full; the estimate is not a provider invoice.
+Defaults are five answer opportunities (CLI accepts 1–12), at most one OpenAI call per opportunity, and a 1536-physical-request Jev backstop for the whole run. The request limit is shared across a batch, not a per-person hard ceiling. `--max-requests` can explicitly lower it. The dollar cap is the primary offline spending control; a five-answer interview can legitimately need more than 24 requests because each answer is interpreted, routed and projected in multiple batches. Estimated cost limits default to $2 for one persona and $5 for a group/full catalog. Running `pnpm journeys:generate` without a selector processes the full catalog plus the fixed replay. Prefer a scoped run for a local change; set explicit limits for longer runs. Automatic results end the simulation without opting into deeper exploration. `lib/journeys/live.ts` owns selection, and `live-budget.ts` owns the offline request backstop and dated pricing estimate. Failed usage may remain reserved and cached input is charged in full; the estimate is not a provider invoice.
 
 Set server-only `OPENAI_API_KEY` and `TYPESAFE_API_KEY` in the environment or `.env.development.local`. The ordinary participant app still uses only Jev.
 
@@ -83,7 +83,7 @@ Local diagnostic artifacts live in ignored `work/journeys/`; public-person runs 
 
 A fresh checkout contains authored personas and a small two-user test sample at `lib/journeys/__fixtures__/sample-journeys.json`, plus the mechanical regression baseline. It has no generated live results. Run `pnpm journeys:generate --persona=<id>` (or `--group=independent`) to generate local results; these use paid live providers. Import an existing saved collection without inference with `pnpm journeys:migrate --file=<saved-suite.json>`, which preserves the original and verifies each imported record. Run `pnpm db:seed` only after the required local results exist. Unit tests do not require local results or paid generation; local integration checks that import all personas require a populated local collection.
 
-Reads and writes are schema-checked, with a 32 MB per-user bound and a 1 MB manifest bound for up to 256 users. Manifests are published only after their user files are complete; same-process concurrent saves are serialized. Run generation/import from one process per workspace. Local records are retained until explicitly removed; there is no automatic cleanup of historical per-user versions. The absolute request ceiling remains 1536, with the ordinary single-person default still 24.
+Reads and writes are schema-checked, with a 32 MB per-user bound and a 1 MB manifest bound for up to 256 users. Manifests are published only after their user files are complete; same-process concurrent saves are serialized. Run generation/import from one process per workspace. Local records are retained until explicitly removed; there is no automatic cleanup of historical per-user versions. The absolute and default request ceiling is 1536 for both new generation and saved-operation resume. Participant operations retain their separate 32-request limit.
 
 A latest-results collection can combine independent generation batches. Its optional `sourceRuns` records each included persona’s original run, date and input/engine/content hashes. Top-level hashes then identify the assembled catalog; they do not imply every journey was regenerated simultaneously. Exact answers, traces and source snapshots remain intact. Current save/merge metadata reports the newest paid batch, not the lifetime cost of every retained user. Source IDs are provenance metadata, not retained historical runs.
 
@@ -102,10 +102,10 @@ The checked-in `eval/development/mechanical-journey-baseline.json` tests determi
 ## Resume a failed operation
 
 ```sh
-pnpm journeys:generate --resume=<run-id> --persona=<persona-id> --max-requests=24 --max-cost=0.5
+pnpm journeys:generate --resume=<run-id> --persona=<persona-id> --max-cost=0.5
 ```
 
-Resume retries exactly the saved operation with a fresh bounded budget and no new OpenAI reply. A failed per-answer inspection projection resumes on the same answer, without replaying that accepted answer or adding a project step. It does not automatically finish the remaining interview. Source content and model must match. Saving the resumed run updates the selected local collection while retaining immutable previous records. Raw error bodies, headers and credentials are excluded.
+Resume retries exactly the saved operation with a fresh bounded budget and no new OpenAI reply. Its default cost limit is $0.50. A deliberately exhausted request count is reported as a request-budget failure, not a provider timeout. A failed per-answer inspection projection resumes on the same answer, without replaying that accepted answer or adding a project step. It does not automatically finish the remaining interview. Source content and model must match. Saving the resumed run updates the selected local collection while retaining immutable previous records. Raw error bodies, headers and credentials are excluded.
 
 ### Response detail
 
@@ -294,6 +294,10 @@ The [existing-proxy source packet](research/persona-grounding-existing-2026-09-2
 ## Acemoglu sources and Zitron fidelity — October 2, 2026
 
 The [source refresh and placement investigation](research/acemoglu-zitron-refresh-2026-10-02.md) adds seven recent Acemoglu posts and records his regenerated local journey. It traces Zitron’s upward move to a newly generated answer to the direct scale question, preserves source metadata missing from this checkout, and documents remaining simulation sensitivity. These are local selected runs; production was inspected read-only. No shared scoring rule changed.
+
+## Sholto Douglas and Nick Marwell — October 3, 2026
+
+Added the requested American Optimist interview to Sholto’s brief and created Nick Marwell’s `frontier-diffusion-researcher` brief with `/users/the_marwell` presentation metadata. The [source review](research/sholto-marwell-interview-2026-10-03.md) records separate, bounded passages for each guest. The publisher supplies lightweight transcript JSON, but its generic speaker labels misattribute some host questions. Only text-reviewed passages are included; attribution remains contextual rather than audio-verified. Do not feed an entire speaker-ID bucket into a persona. Publication on October 2 does not make this recording newer than Sholto’s September pacing statements. Sholto was subsequently regenerated at the user’s request; both selected five-answer simulations were imported to production with the new source. The research record includes the confirmed local request-budget exhaustion and successful saved-operation retries.
 
 ## Nick Bostrom — October 3, 2026
 

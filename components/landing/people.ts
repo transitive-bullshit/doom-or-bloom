@@ -531,6 +531,20 @@ const catalog = [
     featured: false
   },
   {
+    id: 'frontier-diffusion-researcher',
+    name: 'Nick Marwell',
+    shortName: 'Nick Marwell',
+    slug: 'the_marwell',
+    xUsername: 'the_marwell',
+    xUrl: 'https://x.com/the_marwell',
+    avatar: '/personas/marwell.jpg',
+    initials: 'NM',
+    possessivePronoun: 'his' as const,
+    stance: 'Realize the benefits while preparing for a difficult transition.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  {
     id: 'joscha-bach',
     name: 'Joscha Bach',
     shortName: 'Joscha Bach',

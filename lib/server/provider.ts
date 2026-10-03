@@ -10,6 +10,12 @@ export type Evaluation = {
   attempts: number
   requests?: DebugRequest[]
 }
+export class EvaluationRequestBudgetExhausted extends Error {
+  constructor() {
+    super('Evaluation request budget exhausted')
+    this.name = 'EvaluationRequestBudgetExhausted'
+  }
+}
 // Carries only typed diagnostics; the original error remains transient and is never serialized.
 export class EvaluationFailure extends Error {
   readonly status?: number
