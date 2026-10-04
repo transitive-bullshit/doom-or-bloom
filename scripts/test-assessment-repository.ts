@@ -75,6 +75,30 @@ try {
   const id = firstRun.find((r) => r.id !== null)!.id!
   ids.push(id)
   assert.equal(firstRun.filter((r) => r.id).length, 1)
+  const located = await repo.create(
+    owner,
+    randomUUID(),
+    versions.model,
+    false,
+    'JP'
+  )
+  ids.push(located.id!)
+  const countries = await pool.query(
+    'SELECT id, country FROM assessments WHERE id = ANY($1::uuid[])',
+    [[id, located.id]]
+  )
+  assert.deepEqual(
+    Object.fromEntries(countries.rows.map((row) => [row.id, row.country])),
+    { [id]: null, [located.id!]: 'JP' }
+  )
+  await assert.rejects(
+    pool.query('UPDATE assessments SET country=$1 WHERE id=$2', [
+      'jpn',
+      located.id
+    ]),
+    /assessment_country/
+  )
+  await repo.remove(owner, located.id!)
   assert.equal((await repo.list(owner)).length, 1)
   assert.equal((await repo.list(owner))[0]!.title, 'Your AI worldview #1')
   assert.equal((await repo.list(stranger)).length, 0)

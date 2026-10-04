@@ -16,6 +16,7 @@ import {
   refreshShareLinks
 } from '@/lib/assessments/public-cache'
 import { isBudgetFailure } from '@/lib/assessments/operation-failure'
+import { requestCountry } from '@/lib/server/request-country'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 150
@@ -59,7 +60,8 @@ export async function POST(
       input,
       evaluateAssessment,
       request.signal,
-      initial.unsaved ? initial.assessment : undefined
+      initial.unsaved ? initial.assessment : undefined,
+      requestCountry(request)
     )
     if (initial.unsaved) {
       const cookieStore = await cookies()

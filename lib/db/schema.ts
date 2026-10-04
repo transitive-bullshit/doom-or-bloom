@@ -79,6 +79,8 @@ export const assessments = pgTable(
     createRequestKey: text('create_request_key').notNull(),
     createFingerprint: text('create_fingerprint').notNull(),
     seedKey: text('seed_key').unique(),
+    /** ISO 3166-1 alpha-2 country the record was created from; never the IP. */
+    country: text('country'),
     createdAt: time('created_at'),
     updatedAt: time('updated_at')
   },
@@ -99,6 +101,10 @@ export const assessments = pgTable(
     check(
       'assessment_budget',
       sql`${t.inheritedPromptCount} >= 0 and ${t.promptCeiling} between 1 and 30 and ${t.inheritedPromptCount} <= ${t.promptCeiling}`
+    ),
+    check(
+      'assessment_country',
+      sql`${t.country} is null or ${t.country} ~ '^[A-Z]{2}$'`
     )
   ]
 )

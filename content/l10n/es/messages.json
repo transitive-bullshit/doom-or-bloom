@@ -4971,9 +4971,9 @@
       "reviewStatus": "machine"
     },
     "Privacy.storage": {
-      "sourceHash": "c261fa27978c86a4",
-      "model": "unrecorded",
-      "translatedAt": "2026-10-01",
+      "sourceHash": "861357d3cc5f0b58",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
     },
     "Privacy.answersTitle": {
@@ -5019,9 +5019,9 @@
       "reviewStatus": "machine"
     },
     "Privacy.measurement2": {
-      "sourceHash": "7c279b5d1f5995a7",
-      "model": "unrecorded",
-      "translatedAt": "2026-10-01",
+      "sourceHash": "68d779748f1bda1f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
     },
     "Privacy.publishingTitle": {
