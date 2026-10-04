@@ -4,7 +4,7 @@ We scored every counted participant interview with the classification scheme Ant
 
 ## Headlines
 
-- **29.5% of our participants are net positive about AI** (5 or above on Anthropic's 1–7 scale; 95% interval 26.7–32.4%, n = 965). Anthropic reported 67% (n = 79,734). The samples, questions and classifier model all differ: Anthropic's classifier was Claude, ours is Jev.
+- **29.5% of our participants are net positive about AI** (5 or above on Anthropic's 1–7 scale; 95% interval 26.7–32.4%, n = 965). Anthropic reported 67% (n = 79,734 in its published chart data; see the note under the comparison table). The samples, questions and classifier model all differ: Anthropic's classifier was Claude, ours is Jev.
 - **The rubric reproduces our outlook axis almost exactly** (Spearman 0.97 with the map's outlook position). Jev reads the same transcript for both, and the two constructs are close, so this agreement is not independent validation. Against participants' own pre-reveal guesses, sentiment and outlook do equally well (0.74 each), and sentiment adds nothing beyond the outlook.
 - **Concerns differ in kind from the 81k.** Our most common are jobs and the economy (47%), loss of human autonomy (45%), existential risk (39%) and malicious use (31%). Concerns about AI products themselves (unreliability, sycophancy, overrestriction) are rare. Existential risk appears in 16% of opening answers, before any risk question, against 6.7% of Claude users in answer to a direct concerns question.
 - **Hopes don't fit the 81k categories well.** Our interview asks about society, not a personal wish. 41% of primary hopes are societal transformation and 34% articulate none, against 9% and 1% in the 81k.
@@ -65,10 +65,12 @@ n = 965 in both columns. The opening answer comes before any question about impa
 |  | Doom or Bloom | 81k (Anthropic) |
 | --- | --- | --- |
 | Net positive | 29.5% (26.7–32.4%) | 66.9% |
-| People | 965 participants since launch, one result each | 79,734 Claude.ai users who reached the concerns question |
+| People | 965 participants since launch, one result each | 79,734 Claude.ai users, the global n in Anthropic's chart data for sentiment and concerns |
 | How they arrived | Hacker News, X and later referrals to a site about AI doom or bloom | Opt-in invitation to all Claude.ai users, December 2025 |
 | Questions | "What do you think AI means for our future—and why?", then adaptive follow-ups on impact, harms, control and P(doom) | Last use, a magic-wand wish, whether AI has helped, then ways AI could go against their values |
 | Classifier | Jev 1.13, adapted rubric, LLM checks only | Claude, validated at 90% or more agreement with a human on 25 labels |
+
+The 81k denominator is uncertain. Anthropic's chart data ([JSON](https://cdn.sanity.io/files/4zrzovbb/website/a9cde041d15765c23813279f5ccde115bd40f29a.json)) gives a global n of 79,734 beside the 66.9% sentiment and the concern shares. Its [appendix](https://cdn.sanity.io/files/4zrzovbb/website/99156863ed4a812569fe00a2adfb1c93f7e5a911.pdf) says interviews that never reached the concerns question were excluded from both analyses, and reports 9.7% of 80,508 as not reaching it, which would leave about 72,700. We cite Anthropic's published shares as they are; the gap changes no percentage reported here.
 
 The gap is large, but these differences confound it. Anthropic's appendix itself expects its user sample to skew positive. Our audience came to a site framed around doom. The opening-answer check rules out one explanation, that our risk questions pull sentiment down, but not the others.
 
@@ -118,7 +120,7 @@ Sentiment level by outlook level reading (counts; "<10" marks fewer than 10 peop
 | Overrestriction | 1.9% (1.2–2.9) | <10 people | <10 people | 11.7% |
 | Sycophancy | 1.8% (1.1–2.8) | <10 people | <10 people | 10.8% |
 
-n = 965. The 81k column is the share of 79,734 people who answered "Are there any ways in which AI could be developed that would be contrary to your vision or what you value?"; Anthropic did not prompt any specific concern.
+n = 965. The 81k column is Anthropic's published share (global n = 79,734 in its chart data) of people who answered "Are there any ways in which AI could be developed that would be contrary to your vision or what you value?"; Anthropic did not prompt any specific concern.
 
 - **Concerns per person.** Ours averaged 2.66 of the 13 over the whole interview and 1.23 in the opening answer. Anthropic reports 2.3 distinct concerns per person, but its 13 headline shares sum to 1.9, so its count likely includes codes outside the 13.
 - **No concern.** 5.9% expressed none at all (81k: 11.0%). Another 6.4% voiced a concern outside the 13. In the 30-person reading those were mostly environmental cost, an AI bubble or market crash, and distrust of the frontier labs. 12.3% had none of the 13; 31.3% raised no concern in the opening answer.
