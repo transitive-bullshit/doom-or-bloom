@@ -589,7 +589,27 @@ export async function runAssessment(
         // Five fixed profile and map questions share the batch budget.
         Math.floor((limits.questions - 5) / (state.unresolved.length ? 6 : 4))
       )
-    if (!eligibleCandidates.length) return false
+    if (!eligibleCandidates.length) {
+      // Continue asks for more questions, so a pending personal question is
+      // still offered when no ranked candidate is left for it to displace.
+      // Otherwise routing ends here, as without it.
+      const personal = explore
+        ? bundle.prompts.find(
+            (prompt) => prompt.id === personalQuestion(state, bundle.prompts)
+          )
+        : undefined
+      if (!personal) return false
+      trace.decisions.push({
+        action: 'personal question',
+        detail: { id: personal.id, displaced: null }
+      })
+      state = issuePrompt(state, promptDisplay(personal))
+      trace.decisions.push({
+        action: 'prompt issued',
+        detail: { id: personal.id, deterministic }
+      })
+      return true
+    }
     let selected: Prompt
     if (deterministic || state.answers.length === 0)
       selected =

@@ -229,6 +229,44 @@ test('forks inherit the personal question, so it is asked at most once across th
   expect(asked(continued).at(-1)).toBe(personalPrompt)
 })
 
+test('Continue still offers the personal question when no ranked candidate is left', async () => {
+  const { provider } = judgments({ balance: true })
+  // Only the core map questions and the personal question remain, as in an
+  // older assessment that has used up every other candidate.
+  const core = [
+    'root',
+    'impact.overall',
+    'transformation.ultimate',
+    'risk.chance',
+    personalPrompt
+  ]
+  const exhausted: Bundle = {
+    ...bundle,
+    prompts: bundle.prompts.filter((prompt) => core.includes(prompt.id))
+  }
+  let state = await answerAll(
+    createAssessment('exhausted'),
+    replies.slice(0, autoStopFloor),
+    provider,
+    exhausted
+  )
+  expect(state.status).toBe('results')
+  expect(timesAsked(state)).toBe(0)
+  state = await run(state, { type: 'continue' }, provider, exhausted)
+  expect(state.status).toBe('answering')
+  expect(asked(state).at(-1)).toBe(personalPrompt)
+  state = await run(
+    state,
+    { type: 'answer', text: replies[3]! },
+    provider,
+    exhausted
+  )
+  // With nothing left to ask, a further Continue returns to the result.
+  state = await run(state, { type: 'continue' }, provider, exhausted)
+  expect(state.status).toBe('results')
+  expect(timesAsked(state)).toBe(1)
+})
+
 test('a skipped personal question is not asked again', async () => {
   const { provider } = judgments({ balance: false })
   let state = await answerAll(
