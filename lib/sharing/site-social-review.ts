@@ -20,14 +20,15 @@ const files = [
   'before.png',
   'after.png',
   'before-points.json',
-  'after-points.json'
+  'after-points.json',
+  'before-alt.txt',
+  'after-alt.txt'
 ] as const
 const hash = (bytes: Uint8Array) =>
   createHash('sha256').update(bytes).digest('hex')
 const reviewSchema = z.strictObject({
   source: z.enum(['local', 'production']),
   capturedAt: z.string(),
-  alt: z.string(),
   hashes: z.record(z.string(), z.string()),
   changes: z.array(
     z.strictObject({
@@ -65,7 +66,9 @@ export async function createSiteSocialReview(
     'before.png': await readFile(path.join(root, targets.image)),
     'after.png': await renderSiteSocialImage(await snapshotSocialPoints(after)),
     'before-points.json': beforeBytes,
-    'after-points.json': Buffer.from(`${JSON.stringify(after, null, 2)}\n`)
+    'after-points.json': Buffer.from(`${JSON.stringify(after, null, 2)}\n`),
+    'before-alt.txt': await readFile(path.join(root, targets.alt)),
+    'after-alt.txt': Buffer.from(`${siteSocialAlt}\n`)
   }
   await mkdir(path.dirname(directory), { recursive: true })
   // A review is never overwritten; a new capture gets a new directory.
@@ -75,7 +78,6 @@ export async function createSiteSocialReview(
   const review = {
     source,
     capturedAt: new Date().toISOString(),
-    alt: siteSocialAlt,
     hashes: Object.fromEntries(
       files.map((file) => [file, hash(contents[file])])
     ),
@@ -103,6 +105,11 @@ export async function applySiteSocialReview(
       throw new Error(`Review file changed: ${file}`)
     contents.set(file, bytes)
   }
+  const alt = contents.get('after-alt.txt')!
+  if (!alt.equals(Buffer.from(`${siteSocialAlt}\n`)))
+    throw new Error(
+      'Review alt text no longer matches the current design; capture a new review'
+    )
   const snapshot = siteSocialSnapshotSchema.parse(
     JSON.parse(contents.get('after-points.json')!.toString())
   )
@@ -121,11 +128,12 @@ export async function applySiteSocialReview(
     )
   for (const [target, before] of [
     [targets.points, 'before-points.json'],
-    [targets.image, 'before.png']
+    [targets.image, 'before.png'],
+    [targets.alt, 'before-alt.txt']
   ] as const) {
     if (hash(await readFile(path.join(root, target))) !== review.hashes[before])
       throw new Error(
-        'Approved social image or snapshot changed; capture a new review'
+        'Approved social image, snapshot or alt text changed; capture a new review'
       )
   }
   await writeFile(
@@ -133,5 +141,5 @@ export async function applySiteSocialReview(
     contents.get('after-points.json')!
   )
   await writeFile(path.join(root, targets.image), image)
-  await writeFile(path.join(root, targets.alt), `${review.alt}\n`)
+  await writeFile(path.join(root, targets.alt), alt)
 }
