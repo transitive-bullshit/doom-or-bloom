@@ -1,7 +1,8 @@
 'use client'
 // Prototype progress indicators for the interview, selected with
-// `?progress=bar|steps|range|dock`. Exploration only: the copy is English and
-// the default (`current`) leaves the shipped interview unchanged.
+// `?progress=bar|steps|range|dock` (remembered for the tab; `current` resets).
+// Exploration only: the copy is English and the default leaves the shipped
+// interview unchanged.
 import { useEffect, useState } from 'react'
 import { CheckIcon, FlagIcon } from 'lucide-react'
 import type { Assessment } from '@/lib/assessment/schema'
@@ -16,7 +17,15 @@ type ProgressVariant = (typeof progressVariants)[number]
 export function useProgressVariant(): ProgressVariant {
   const [variant, setVariant] = useState<ProgressVariant>('current')
   useEffect(() => {
-    const value = new URLSearchParams(window.location.search).get('progress')
+    // The choice sticks for this tab, so new interviews keep the prototype.
+    const key = 'doom-or-bloom:progress-prototype'
+    let value = new URLSearchParams(window.location.search).get('progress')
+    try {
+      if (value) sessionStorage.setItem(key, value)
+      else value = sessionStorage.getItem(key)
+    } catch {
+      /* The query parameter alone still works. */
+    }
     const match = progressVariants.find((item) => item === value)
     if (match) queueMicrotask(() => setVariant(match))
   }, [])
@@ -89,14 +98,16 @@ function ResultsLink({
   )
 }
 
-function Label({ state, busy, onViewResults }: Props) {
+function Label({ variant, state, busy, onViewResults }: Props) {
   const p = progress(state, false)
+  // The dock carries its own results button.
+  const link = variant !== 'dock'
   return (
-    <p className='mb-5 text-xs text-muted-foreground'>
+    <p data-progress-ui className='mb-5 text-xs text-muted-foreground'>
       {p.followUp ? (
         <>
           Follow-up question
-          {p.ready && (
+          {p.ready && link && (
             <>
               {' · '}Your results are ready{' · '}
               <ResultsLink onViewResults={onViewResults} busy={busy}>
@@ -125,6 +136,7 @@ function TopBar({ state, busy }: Props) {
       aria-valuemin={0}
       aria-valuemax={p.core}
       aria-valuenow={Math.min(p.answered, p.core)}
+      data-progress-ui
       className='fixed inset-x-0 top-0 z-50 h-1 bg-border/70'
     >
       <div
@@ -139,7 +151,7 @@ function Steps({ state, busy, onViewResults }: Props) {
   const p = progress(state, busy)
   const followUps = Math.max(0, p.answered - p.core + 1)
   return (
-    <div className='mb-5 flex flex-col gap-2'>
+    <div data-progress-ui className='mb-5 flex flex-col gap-2'>
       <div
         className='flex items-center gap-1.5'
         role='progressbar'
@@ -214,7 +226,7 @@ function Range({ state, busy, onViewResults }: Props) {
   const ticks = Array.from({ length: p.limit }, (_, i) => i + 1)
   const inZone = (n: number) => n >= usualResults.from && n <= usualResults.to
   return (
-    <div className='mb-5 flex flex-col gap-2'>
+    <div data-progress-ui className='mb-5 flex flex-col gap-2'>
       <div
         className='relative flex items-center justify-between gap-1 py-2'
         role='progressbar'
@@ -270,7 +282,10 @@ function Range({ state, busy, onViewResults }: Props) {
 function Dock({ state, busy, onViewResults }: Props) {
   const p = progress(state, busy)
   return (
-    <div className='fixed inset-x-0 bottom-0 z-40 border-t bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75'>
+    <div
+      data-progress-ui
+      className='fixed inset-x-0 bottom-0 z-40 border-t bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75'
+    >
       <div className='content-column flex min-h-14 items-center justify-between gap-4 py-2'>
         <div className='flex min-w-0 items-center gap-3'>
           <div
