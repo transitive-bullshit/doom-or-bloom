@@ -19,4 +19,4 @@ export const surveySources = {
 } satisfies Record<string, HubSource>
 
 export const surveyComparison =
-  'In AI Impacts’ 2024 Expert Survey on Progress in AI, researchers who had published at six leading AI venues were asked nearly the same question: the chance that future AI advances cause “human extinction or similarly permanent and severe disempowerment of the human species”, with no time frame. The 1,580 who responded, about one in ten of those invited, gave a median of 10% and a mean of 18%, and just over half said 10% or more.[^espai-2024] It was the first time the survey’s median reached 10%, up from 5% in 2023.'
+  'In AI Impacts’ 2024 Expert Survey on Progress in AI, 1,580 researchers who had published at six leading AI venues responded, about one in ten of those invited. The 744 of them given nearly the same question as ours, the chance that future AI advances cause “human extinction or similarly permanent and severe disempowerment of the human species” with no time frame, gave a median of 10% and a mean of 18%, and just over half said 10% or more.[^espai-2024] It was the first time the survey’s median reached 10%, up from 5% in 2023.'

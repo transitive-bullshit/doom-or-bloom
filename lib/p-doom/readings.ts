@@ -145,7 +145,7 @@ export const readingGroups: {
         year: 2026,
         kind: 'Survey',
         description:
-          'The 2024 Expert Survey on Progress in AI: 1,580 published AI researchers gave a median 10% chance of human extinction or similarly permanent and severe disempowerment, up from 5% in 2023.'
+          'The 2024 Expert Survey on Progress in AI: of 1,580 published AI researchers who responded, the 744 asked about human extinction or similarly permanent and severe disempowerment, with no time frame, gave a median 10% chance, up from 5% in 2023.'
       },
       {
         title: 'Thousands of AI Authors on the Future of AI',
