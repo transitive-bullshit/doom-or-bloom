@@ -5,11 +5,14 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 import { personas } from '@/lib/journeys/catalog'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
+import { locales } from '@/i18n/config'
 import {
   blogCardPath,
   blogSocialImageResponse,
+  fitTitle,
   renderBlogSocialImage
 } from '@/lib/sharing/blog-social-card'
+import { wrappable } from '@/lib/sharing/card-renderer'
 import {
   dataStrings,
   dataTranslationProblems,
@@ -356,6 +359,32 @@ describe('feed and social image', () => {
       expect((await blogSocialImageResponse(slug, 'ja')).status).toBe(
         postTranslation(slug, 'ja') ? 200 : 404
       )
+  })
+
+  it('fits every post title on its card without breaking words', async () => {
+    for (const post of blogPosts())
+      for (const locale of locales) {
+        const { title } = postTranslation(post.slug, locale) ?? post
+        expect(
+          await fitTitle(wrappable(title, locale), locale),
+          `${locale}: ${title}`
+        ).not.toHaveProperty('maxLines')
+      }
+  })
+
+  it('shrinks titles to their longest word, and clamps words that never fit', async () => {
+    const compound = await fitTitle(
+      'Warum die Sicherheitsforschungsgemeinschaft Umfragen misstraut',
+      'de'
+    )
+    expect(compound.fontSize).toBeLessThan(100)
+    expect(compound).not.toHaveProperty('maxLines')
+    expect(
+      await fitTitle(
+        'Antidisestablishmentarianismsupercalifragilisticexpialidociousness',
+        'en'
+      )
+    ).toEqual({ fontSize: 48, maxLines: 5 })
   })
 
   it('renders each post card as a 1200 × 630 PNG', async () => {

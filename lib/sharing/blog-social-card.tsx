@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import type { CSSProperties } from 'react'
 import { render } from 'takumi-js'
 import { fromJsx } from 'takumi-js/helpers/jsx'
 import {
@@ -63,38 +64,75 @@ const titleSizes = [100, 92, 84, 76, 68, 60, 54, 48]
 
 // Latin titles take the display tracking of the site's hero. Negative tracking
 // crowds Han and kana, and stacked Thai and Devanagari marks need taller lines.
-function titleStyle(locale: Locale, fontSize: number) {
+const titleType = (locale: Locale) =>
+  ['hi', 'th'].includes(locale)
+    ? { lineHeight: 1.32, tracking: 0 }
+    : ['ja', 'zh'].includes(locale)
+      ? { lineHeight: 1.2, tracking: 0 }
+      : { lineHeight: 1.06, tracking: -0.03 }
+
+/** A title's size, and the lines it is cut to when even the smallest overflows. */
+type TitleFit = { fontSize: number; maxLines?: number }
+
+function titleStyle(
+  locale: Locale,
+  { fontSize, maxLines }: TitleFit
+): CSSProperties {
+  const { lineHeight, tracking } = titleType(locale)
   return {
     width: titleWidth,
     fontSize,
     fontWeight: 600,
+    lineHeight,
+    letterSpacing: tracking * fontSize,
     textWrap: 'balance',
-    ...(['hi', 'th'].includes(locale)
-      ? { lineHeight: 1.32 }
-      : ['ja', 'zh'].includes(locale)
-        ? { lineHeight: 1.2 }
-        : { lineHeight: 1.06, letterSpacing: -0.03 * fontSize })
-  } as const
+    ...(maxLines && {
+      overflowWrap: 'anywhere',
+      lineClamp: maxLines,
+      textOverflow: 'ellipsis'
+    })
+  }
 }
 
-/** The largest title size whose lines fit the title's box, as Takumi sets them. */
-async function titleSize(title: string, locale: Locale) {
+/**
+ * The largest size at which the title's lines fit its box, as Takumi sets
+ * them: no taller than the box, and no word wider than it. Past the smallest
+ * size, words break anywhere and the title ends in an ellipsis, so it never
+ * overlaps the byline. `lib/blog/blog.test.ts` checks every post's title fits
+ * before that.
+ */
+export async function fitTitle(
+  title: string,
+  locale: Locale
+): Promise<TitleFit> {
   const options = await interTightRenderOptions(locale)
-  for (const size of titleSizes) {
+  for (const fontSize of titleSizes) {
     const { node } = await fromJsx(
       <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-        <div style={titleStyle(locale, size)}>{title}</div>
+        <div style={titleStyle(locale, { fontSize })}>{title}</div>
       </div>
     )
-    const measured = await options.renderer.measure(node, {
-      width,
-      height,
-      lang: options.lang,
-      fontFamilies: options.fontFamilies
-    })
-    if (measured.children[0]!.height <= titleHeight) return size
+    const [box] = (
+      await options.renderer.measure(node, {
+        width,
+        height,
+        lang: options.lang,
+        fontFamilies: options.fontFamilies
+      })
+    ).children
+    if (
+      box!.height <= titleHeight &&
+      box!.runs.every((run) => run.x + run.width <= titleWidth + 0.5)
+    )
+      return { fontSize }
   }
-  return titleSizes.at(-1)!
+  const fontSize = titleSizes.at(-1)!
+  return {
+    fontSize,
+    maxLines: Math.floor(
+      titleHeight / (fontSize * titleType(locale).lineHeight)
+    )
+  }
 }
 
 function Chevron() {
@@ -114,13 +152,13 @@ function Chevron() {
 
 function BlogSocialCard({
   title,
-  titleSize,
+  fit,
   meta,
   label,
   locale
 }: {
   title: string
-  titleSize: number
+  fit: TitleFit
   /** Byline, date and reading time, e.g. "By … · October 1, 2026 · 5 min read". */
   meta: string
   /** "Blog", in the card's language. */
@@ -182,7 +220,7 @@ function BlogSocialCard({
           <span style={{ color: colors.muted, fontWeight: 500 }}>{label}</span>
         </div>
         <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center' }}>
-          <div style={titleStyle(locale, titleSize)}>{title}</div>
+          <div style={titleStyle(locale, fit)}>{title}</div>
         </div>
         <div
           style={{
@@ -220,7 +258,7 @@ export async function renderBlogSocialImage({
   return render(
     BlogSocialCard({
       title: text,
-      titleSize: await titleSize(text, locale),
+      fit: await fitTitle(text, locale),
       meta,
       label,
       locale
