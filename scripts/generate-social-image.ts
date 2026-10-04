@@ -2,19 +2,24 @@
 // Optional database refreshes read only public simulated-user profiles.
 import { writeFile } from 'node:fs/promises'
 import { parseArgs } from 'node:util'
+import path from 'node:path'
 import { Pool } from 'pg'
 import { personaRepository } from '../lib/personas/repository'
 import {
   renderSiteSocialImage,
-  siteSocialPoints
+  siteSocialSnapshot,
+  snapshotSocialPoints
 } from '../lib/sharing/render-site-social'
-import { loadSocialPortrait } from '../lib/sharing/portraits'
 import snapshot from '../lib/sharing/site-social-points.json'
-import { siteSocialAlt, siteSocialFaces } from '../lib/sharing/site-social-card'
+import { siteSocialAlt } from '../lib/sharing/site-social-card'
+import {
+  applySiteSocialReview,
+  createSiteSocialReview
+} from '../lib/sharing/site-social-review'
 import { inspectionDatabaseUrl } from './inspection-env'
 
 const usage =
-  'Usage: pnpm social-image:generate [--local | --production]\nDefaults to the approved, checked-in public map snapshot; flags refresh from a read-only database.'
+  'Usage: pnpm social-image:generate [--local | --production] [--out=<new-review-directory>]\n       pnpm social-image:generate --apply=<review-directory>\nDefault: regenerate offline. Database flags capture a before/after review without changing approved files; --apply updates the snapshot and image together.'
 function fail(message: string): never {
   console.error(`${message}\n${usage}`)
   process.exit(1)
@@ -25,6 +30,8 @@ const { values } = (() => {
       options: {
         local: { type: 'boolean' },
         production: { type: 'boolean' },
+        out: { type: 'string' },
+        apply: { type: 'string' },
         help: { type: 'boolean' }
       }
     })
@@ -38,6 +45,10 @@ if (values.help) {
   process.exit(0)
 }
 if (values.local && values.production) fail('Choose only one database source')
+if (values.apply && (values.local || values.production || values.out))
+  fail('--apply cannot be combined with database or output flags')
+if (values.out && !values.local && !values.production)
+  fail('--out requires --local or --production')
 
 async function databasePoints(target: 'local' | 'production') {
   const url = (() => {
@@ -61,7 +72,7 @@ async function databasePoints(target: 'local' | 'production') {
   try {
     // The same featured users, in the same order, as the landing map.
     const summaries = await personaRepository(pool).selectedSummaries(true)
-    const points = await siteSocialPoints(
+    const points = siteSocialSnapshot(
       summaries.map(({ metadata, result }) => ({
         slug: metadata.slug,
         avatar: metadata.avatar,
@@ -74,26 +85,33 @@ async function databasePoints(target: 'local' | 'production') {
   }
 }
 
-const target = values.local
-  ? 'local'
-  : values.production
-    ? 'production'
-    : 'snapshot'
-const points =
-  target === 'snapshot'
-    ? await Promise.all(
-        snapshot.map(async ({ slug, avatar, outlook, transformation }) => ({
-          slug,
-          outlook,
-          transformation,
-          portrait: siteSocialFaces.includes(slug)
-            ? await loadSocialPortrait(avatar)
-            : undefined
-        }))
-      )
-    : await databasePoints(target)
-await writeFile('app/opengraph-image.png', await renderSiteSocialImage(points))
-await writeFile('app/opengraph-image.alt.txt', `${siteSocialAlt}\n`)
-console.log(
-  `Wrote app/opengraph-image.png from ${target} data: ${points.length} featured users, ${siteSocialFaces.length} portraits`
-)
+if (values.apply) {
+  await applySiteSocialReview(path.resolve(values.apply))
+  console.log(
+    'Applied reviewed snapshot, PNG and alt text. Review the Git diff before committing.'
+  )
+} else if (values.local || values.production) {
+  const target = values.local ? 'local' : 'production'
+  const directory = path.resolve(
+    values.out ??
+      `work/social-images/${new Date().toISOString().replaceAll(/[:.]/g, '-')}`
+  )
+  const review = await createSiteSocialReview(
+    directory,
+    await databasePoints(target),
+    target
+  )
+  console.log(
+    `Review: ${directory}\n${review.changes.length} changed points. Inspect before.png, after.png and review.json, then apply with --apply=${directory}`
+  )
+} else {
+  const points = await snapshotSocialPoints(snapshot)
+  await writeFile(
+    'app/opengraph-image.png',
+    await renderSiteSocialImage(points)
+  )
+  await writeFile('app/opengraph-image.alt.txt', `${siteSocialAlt}\n`)
+  console.log(
+    `Wrote app/opengraph-image.png from the approved snapshot: ${points.length} featured users`
+  )
+}

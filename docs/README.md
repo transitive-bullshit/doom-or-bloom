@@ -4,7 +4,7 @@ Doom or Bloom helps people understand their AI worldview and the reasoning behin
 
 ## Get oriented
 
-1. Read [architecture.md](architecture.md) for the request flow, module boundaries, domain objects, and reasons behind the design.
+1. For initial orientation or a change across modules, read [architecture.md](architecture.md) for the request flow, module boundaries, domain objects, and reasons behind the design.
 2. Use [CONTRIBUTING.md](../CONTRIBUTING.md) to run the app. It covers environment selection, native Postgres, and the generated persona data a fresh checkout may lack.
 3. Read the contract for the area you are changing below, then use [testing.md](testing.md) to choose validation. There is no need to read every plan or research report before making a change.
 
@@ -35,6 +35,7 @@ Look up current versions and limits in [lib/assessment/schema.ts](../lib/assessm
 | Re-scoring saved results or simulated users without new answers | [PERSISTENCE.md](PERSISTENCE.md#re-evaluating-saved-results), [user-journeys.md](user-journeys.md#re-evaluate-selected-simulated-users) |
 | Prompts, rubrics, findings, recommendations or versioned releases | [AUTHORING.md](AUTHORING.md) |
 | Assessment-corpus source intake, access limits, freshness or balanced coverage (not simulated-user briefs) | [SOURCES.md](SOURCES.md) |
+| Adding one source to the assessment corpus | [SOURCES.md](SOURCES.md#add-a-corpus-source) |
 | Opinion coverage, argument maps or safety terminology | [JOURNEYS.md](JOURNEYS.md) |
 | Adding or updating a simulated user: brief, sources, portrait, one-liner, featured flag, generation, or publishing to staging or production | [user-journeys.md](user-journeys.md#add-or-update-a-simulated-user) |
 | Simulated-user research, generation, storage or review | [user-journeys.md](user-journeys.md) |
