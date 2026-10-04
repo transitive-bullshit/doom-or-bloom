@@ -1,0 +1,375 @@
+{
+  "kind": "trend",
+  "title": "How Americans feel about AI, survey by survey",
+  "source": "Pew Research Center’s American Trends Panel (June 2026 topline; party and age from its September 16 and August 18, 2026 reports), the Bentley-Gallup Business in Society survey (Gallup, July 2026) and YouGov (daily questions of US adults in April 2023 and September 2026, smaller surveys of US adult citizens in between). Each point is a survey’s last day of fieldwork.",
+  "asOf": "2026-10-04",
+  "provenance": "published-research",
+  "from": "2021-01-01",
+  "to": "2026-12-31",
+  "hint": "Hover, tap or focus a panel, then use the arrow keys, to read every survey",
+  "events": [
+    {
+      "date": "2022-11-30",
+      "label": "ChatGPT released"
+    }
+  ],
+  "panels": [
+    {
+      "key": "pew",
+      "title": "More concerned than excited",
+      "note": "Pew: “Overall, would you say the increased use of artificial intelligence (AI) in daily life makes you feel…”",
+      "scale": {
+        "min": 0,
+        "max": 0.7,
+        "unit": "percent",
+        "ticks": [0, 0.2, 0.4, 0.6]
+      },
+      "series": [
+        {
+          "key": "concerned",
+          "label": "More concerned than excited",
+          "tone": "blue",
+          "points": [
+            {
+              "date": "2021-11-07",
+              "value": 0.37
+            },
+            {
+              "date": "2022-12-18",
+              "value": 0.38
+            },
+            {
+              "date": "2023-08-06",
+              "value": 0.52
+            },
+            {
+              "date": "2024-08-18",
+              "value": 0.51,
+              "note": "n = 5,410"
+            },
+            {
+              "date": "2025-06-15",
+              "value": 0.5,
+              "note": "n = 5,023"
+            },
+            {
+              "date": "2026-06-28",
+              "value": 0.52,
+              "note": "n = 3,488"
+            }
+          ]
+        },
+        {
+          "key": "excited",
+          "label": "More excited than concerned",
+          "tone": "blue",
+          "dashed": true,
+          "points": [
+            {
+              "date": "2021-11-07",
+              "value": 0.18
+            },
+            {
+              "date": "2022-12-18",
+              "value": 0.15
+            },
+            {
+              "date": "2023-08-06",
+              "value": 0.1
+            },
+            {
+              "date": "2024-08-18",
+              "value": 0.11,
+              "note": "n = 5,410"
+            },
+            {
+              "date": "2025-06-15",
+              "value": 0.1,
+              "note": "n = 5,023"
+            },
+            {
+              "date": "2026-06-28",
+              "value": 0.09,
+              "note": "n = 3,488"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "gallup",
+      "title": "AI does more harm than good",
+      "note": "Gallup: does AI do more good than harm, more harm than good, or equal amounts of each",
+      "scale": {
+        "min": 0,
+        "max": 0.7,
+        "unit": "percent",
+        "ticks": [0, 0.2, 0.4, 0.6]
+      },
+      "series": [
+        {
+          "key": "harm",
+          "label": "More harm than good",
+          "tone": "blue",
+          "points": [
+            {
+              "date": "2023-05-15",
+              "value": 0.4,
+              "note": "n = 5,458"
+            },
+            {
+              "date": "2024-05-06",
+              "value": 0.31,
+              "note": "n = 5,835"
+            },
+            {
+              "date": "2025-05-12",
+              "value": 0.31,
+              "note": "n = 3,007"
+            },
+            {
+              "date": "2026-05-11",
+              "value": 0.39,
+              "note": "n = 3,270"
+            }
+          ]
+        },
+        {
+          "key": "good",
+          "label": "More good than harm",
+          "tone": "blue",
+          "dashed": true,
+          "points": [
+            {
+              "date": "2023-05-15",
+              "value": 0.1,
+              "note": "n = 5,458"
+            },
+            {
+              "date": "2024-05-06",
+              "value": 0.13,
+              "note": "n = 5,835"
+            },
+            {
+              "date": "2025-05-12",
+              "value": 0.12,
+              "note": "n = 3,007"
+            },
+            {
+              "date": "2026-05-11",
+              "value": 0.09,
+              "note": "n = 3,270"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "yougov",
+      "title": "Concerned AI could end the human race",
+      "note": "YouGov: “How concerned, if at all, are you about the possibility that AI will cause the end of the human race on Earth?” Very or somewhat",
+      "scale": {
+        "min": 0,
+        "max": 0.7,
+        "unit": "percent",
+        "ticks": [0, 0.2, 0.4, 0.6]
+      },
+      "series": [
+        {
+          "key": "concerned",
+          "label": "Very or somewhat concerned",
+          "tone": "blue",
+          "points": [
+            {
+              "date": "2023-04-03",
+              "value": 0.46,
+              "note": "n = 20,810"
+            },
+            {
+              "date": "2024-03-18",
+              "value": 0.39,
+              "note": "n = 1,073"
+            },
+            {
+              "date": "2024-12-03",
+              "value": 0.36,
+              "note": "n = 1,110"
+            },
+            {
+              "date": "2025-03-07",
+              "value": 0.37,
+              "note": "n = 1,132"
+            },
+            {
+              "date": "2025-06-30",
+              "value": 0.43,
+              "note": "n = 1,112"
+            },
+            {
+              "date": "2026-07-09",
+              "value": 0.47,
+              "note": "n = 1,095"
+            },
+            {
+              "date": "2026-09-14",
+              "value": 0.5,
+              "note": "n = 18,238"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "party",
+      "title": "More concerned than excited, by party",
+      "note": "Pew, the same question, Democrats and Republicans including independents who lean to each",
+      "scale": {
+        "min": 0,
+        "max": 0.7,
+        "unit": "percent",
+        "ticks": [0, 0.2, 0.4, 0.6]
+      },
+      "series": [
+        {
+          "key": "democrats",
+          "label": "Democrats",
+          "tone": "blue",
+          "points": [
+            {
+              "date": "2021-11-07",
+              "value": 0.31
+            },
+            {
+              "date": "2022-12-18",
+              "value": 0.31
+            },
+            {
+              "date": "2023-08-06",
+              "value": 0.46
+            },
+            {
+              "date": "2024-08-18",
+              "value": 0.46
+            },
+            {
+              "date": "2025-06-15",
+              "value": 0.51
+            },
+            {
+              "date": "2026-06-28",
+              "value": 0.56
+            }
+          ]
+        },
+        {
+          "key": "republicans",
+          "label": "Republicans",
+          "tone": "blue",
+          "dashed": true,
+          "points": [
+            {
+              "date": "2021-11-07",
+              "value": 0.45
+            },
+            {
+              "date": "2022-12-18",
+              "value": 0.45
+            },
+            {
+              "date": "2023-08-06",
+              "value": 0.59
+            },
+            {
+              "date": "2024-08-18",
+              "value": 0.55
+            },
+            {
+              "date": "2025-06-15",
+              "value": 0.5
+            },
+            {
+              "date": "2026-06-28",
+              "value": 0.49
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "age",
+      "title": "More concerned than excited, by age",
+      "note": "Pew, the same question, the youngest and oldest age groups",
+      "scale": {
+        "min": 0,
+        "max": 0.7,
+        "unit": "percent",
+        "ticks": [0, 0.2, 0.4, 0.6]
+      },
+      "series": [
+        {
+          "key": "under-30",
+          "label": "Ages 18 to 29",
+          "tone": "blue",
+          "points": [
+            {
+              "date": "2021-11-07",
+              "value": 0.31
+            },
+            {
+              "date": "2022-12-18",
+              "value": 0.29
+            },
+            {
+              "date": "2023-08-06",
+              "value": 0.42
+            },
+            {
+              "date": "2024-08-18",
+              "value": 0.39
+            },
+            {
+              "date": "2025-06-15",
+              "value": 0.47
+            },
+            {
+              "date": "2026-06-28",
+              "value": 0.55
+            }
+          ]
+        },
+        {
+          "key": "over-65",
+          "label": "Ages 65 and older",
+          "tone": "blue",
+          "dashed": true,
+          "points": [
+            {
+              "date": "2021-11-07",
+              "value": 0.43
+            },
+            {
+              "date": "2022-12-18",
+              "value": 0.45
+            },
+            {
+              "date": "2023-08-06",
+              "value": 0.61
+            },
+            {
+              "date": "2024-08-18",
+              "value": 0.59
+            },
+            {
+              "date": "2025-06-15",
+              "value": 0.56
+            },
+            {
+              "date": "2026-06-28",
+              "value": 0.59
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

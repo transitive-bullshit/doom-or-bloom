@@ -24,7 +24,6 @@ Ranked by value for effort. None is implemented; each needs the owner's decision
 
 Also: watch for Anthropic's public transcripts from the September study. An aggregate-only reading of a large outside sample would support comparison posts without headlining our own sample size.
 
-
 ## 1. Anthropic Interviewer
 
 ### The tool
@@ -104,7 +103,7 @@ Nothing personal in the 81k study beyond the interviewer's closing recap and a l
 
 ## 2. Side by side
 
-| | Anthropic Interviewer (81k) | Doom or Bloom |
+|  | Anthropic Interviewer (81k) | Doom or Bloom |
 | --- | --- | --- |
 | Question | What do you want from AI, and what do you fear? (personal, experiential) | What does AI mean for our future, and why? (societal, predictive) |
 | Format | Claude-led conversation, 4 core questions plus free probes, ~15 min | 1 fixed root plus authored adaptive prompts chosen by code, 12-prompt cap, ~3 min |
@@ -130,7 +129,7 @@ About 60 surveys were catalogued; the ones below are those a Doom or Bloom artic
 
 **Wording and format dominate.** The share "worried about AI extinction" ranges from about 4% (single most likely extinction cause) to 77% ("threat to humanity") across US polls. The same college-graduate sample gave AI extinction by 2100 a 2% median in a text box and 1 in 30 million on a "1-in-X" scale with reference events. Concern items run far above likelihood items (YouGov GB, September 2026: 66% say AI could end civilization, 23% think it likely). Unprompted, 9% of Britons named AI as an extinction risk; from a list, 17%. Explicit middle options absorb 37–57% of respondents; Doom or Bloom's middle holds 16.7%.
 
-**Samples.** Self-selected samples differ systematically, and not always toward worry: a Prolific sample perceived lower AI risk than a representative Ipsos sample on the same items ([AIMS 2024](https://www.sentienceinstitute.org/aims-survey-2024)), while an audience at a talk on *If Anyone Builds It, Everyone Dies* started at a 50% median. Our own Hacker News and X waves differed by 0.36 on the outlook axis. AAPOR's rule: a margin of sampling error applies only to probability samples; report bootstrap intervals as within-sample uncertainty only.
+**Samples.** Self-selected samples differ systematically, and not always toward worry: a Prolific sample perceived lower AI risk than a representative Ipsos sample on the same items ([AIMS 2024](https://www.sentienceinstitute.org/aims-survey-2024)), while an audience at a talk on _If Anyone Builds It, Everyone Dies_ started at a 50% median. Our own Hacker News and X waves differed by 0.36 on the outlook axis. AAPOR's rule: a margin of sampling error applies only to probability samples; report bootstrap intervals as within-sample uncertainty only.
 
 ## 4. Prior art: methods, deliberation platforms and interactive tools
 

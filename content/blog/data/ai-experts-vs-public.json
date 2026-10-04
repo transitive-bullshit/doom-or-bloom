@@ -1,0 +1,45 @@
+{
+  "kind": "bars",
+  "title": "Experts expect more good from AI, until you ask about harm",
+  "source": "Pew Research Center (US adults, August 2024, n = 5,410; 1,013 US-based authors and presenters at 21 AI conferences, August–October 2024, unweighted) and the Forecasting Research Institute’s Longitudinal Expert AI Panel (wave 8, April–May 2026: 205 experts and 601 US adults, reweighted). The two surveys define experts differently.",
+  "asOf": "2026-10-04",
+  "provenance": "published-research",
+  "series": [
+    { "key": "experts", "label": "Experts", "tone": "teal" },
+    { "key": "public", "label": "US adults", "tone": "blue" }
+  ],
+  "rows": [
+    {
+      "group": "Pew Research Center, 2024",
+      "label": "AI’s impact on the US over the next 20 years will be positive",
+      "values": {
+        "experts": { "share": 0.56, "count": 1013 },
+        "public": { "share": 0.17, "count": 5410 }
+      }
+    },
+    {
+      "group": "Pew Research Center, 2024",
+      "label": "AI in daily life makes them more excited than concerned",
+      "values": {
+        "experts": { "share": 0.47, "count": 1013 },
+        "public": { "share": 0.11, "count": 5410 }
+      }
+    },
+    {
+      "group": "Pew Research Center, 2024",
+      "label": "AI will very or extremely likely cause major harm to humans in the next 20 years",
+      "values": {
+        "experts": { "share": 0.2, "count": 1013 },
+        "public": { "share": 0.35, "count": 5410 }
+      }
+    },
+    {
+      "group": "Forecasting Research Institute, 2026",
+      "label": "AI’s impact on the US over the next 20 years will be positive",
+      "values": {
+        "experts": { "share": 0.575, "count": 205 },
+        "public": { "share": 0.42, "count": 601 }
+      }
+    }
+  ]
+}

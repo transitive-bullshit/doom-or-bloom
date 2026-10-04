@@ -1,0 +1,113 @@
+{
+  "kind": "landscape",
+  "title": "How people answer, and what they get back",
+  "source": "Placement is my reading of each project’s published method. Sources: Pew Research Center, AI Impacts, the Forecasting Research Institute, Anthropic, the Computational Democracy Project, the Collective Intelligence Project, Awad et al. in Nature (2018), the neoneye P(doom) calculator’s public reports, Moreira et al. (arXiv, 2025) and Doom or Bloom’s own aggregates as of October 3, 2026.",
+  "asOf": "2026-10-04",
+  "provenance": ["published-research", "participants"],
+  "x": {
+    "title": "How people answer",
+    "start": "Fixed choices",
+    "end": "Free text, adaptive"
+  },
+  "y": {
+    "title": "What they get back",
+    "start": "Nothing personal",
+    "end": "A personal result"
+  },
+  "hint": "Hover, tap or focus a project to see how it works and how many took part",
+  "points": [
+    {
+      "key": "polls",
+      "label": "Polls",
+      "x": 0.04,
+      "y": 0.05,
+      "method": "Pew, Gallup, AP-NORC, YouGov and others ask fixed questions with fixed answers of samples weighted to match the population. Respondents get nothing personal back; everyone else gets toplines with the exact wording.",
+      "reach": "Usually 1,000 to 5,000 adults a wave. Pew’s June 2026 wave reached 3,488 US adults.",
+      "href": "https://www.pewresearch.org/wp-content/uploads/sites/20/2026/09/SR_09.16_26_ai-partisan-views_topline.pdf",
+      "provenance": "published-research"
+    },
+    {
+      "key": "expert-surveys",
+      "label": "Expert and forecaster surveys",
+      "x": 0.2,
+      "y": 0.17,
+      "method": "AI researchers, experts and forecasters type probabilities and dates into fixed questions. AI Impacts assigns wording variants at random; the Forecasting Research Institute asks its panel again in regular waves.",
+      "reach": "1,580 researchers in AI Impacts’ 2024 survey. Hundreds of experts, dozens of superforecasters and about 600 members of the public in each LEAP wave.",
+      "href": "https://aiimpacts.org/wp-content/uploads/2026/09/ESPAI2024.pdf",
+      "provenance": "published-research"
+    },
+    {
+      "key": "moral-machine",
+      "label": "MIT Moral Machine",
+      "x": 0.06,
+      "y": 0.55,
+      "method": "Forced choices between two outcomes of a self-driving car’s crash. You see how your choices compare with everyone else’s.",
+      "reach": "40 million decisions in 10 languages from 233 countries and territories, in the 2018 paper.",
+      "href": "https://www.nature.com/articles/s41586-018-0637-6",
+      "provenance": "published-research"
+    },
+    {
+      "key": "calculators",
+      "label": "P(doom) calculators",
+      "x": 0.17,
+      "y": 0.78,
+      "method": "Sliders for each step of an argument, multiplied into one number. You set every answer yourself, often starting from a suggested value.",
+      "reach": "The calculator that publishes its data logged 365 submissions in a year.",
+      "href": "https://neoneye.github.io/pdoom-calculator/",
+      "provenance": "published-research"
+    },
+    {
+      "key": "polis",
+      "label": "Polis and Collective Constitutional AI",
+      "x": 0.48,
+      "y": 0.38,
+      "method": "People write short statements and vote on each other’s. The software finds opinion groups and the statements every group agrees with, and shows people where they sit. Anthropic used it in 2023 to draft a constitution for a model.",
+      "reach": "Collective Constitutional AI: about 1,000 Americans cast 38,252 votes on 1,127 statements.",
+      "href": "https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input",
+      "provenance": "published-research"
+    },
+    {
+      "key": "global-dialogues",
+      "label": "Global Dialogues",
+      "x": 0.6,
+      "y": 0.22,
+      "method": "Recruited participants answer fixed and open questions about AI and vote on each other’s answers, every couple of months. Each round repeats a core of questions, and most rounds report how representative they were.",
+      "reach": "About 1,000 people a round from 63 to 80 countries; the May 2026 round had 1,024 from 69.",
+      "href": "https://globaldialogues.ai/methodology",
+      "provenance": "published-research"
+    },
+    {
+      "key": "anthropic-interviewer",
+      "label": "Anthropic Interviewer",
+      "x": 0.94,
+      "y": 0.1,
+      "side": "left",
+      "method": "Claude holds a conversation of about 15 minutes around four core questions and writes its own follow-ups; Claude-powered classifiers code the transcripts afterwards. Participants got a closing recap and, later, the published findings.",
+      "reach": "80,508 Claude users in 159 countries and 70 languages, interviewed in December 2025.",
+      "href": "https://www.anthropic.com/features/81k-interviews",
+      "provenance": "published-research"
+    },
+    {
+      "key": "hall-of-fears-and-hopes",
+      "label": "The Hall of AI Fears and Hopes",
+      "x": 0.52,
+      "y": 0.72,
+      "method": "A 2025 study. People rated their fear and hope about AI from 0 to 10, wrote what they fear and hope for, and saw their portrait placed among TIME’s 100 most influential people in AI.",
+      "reach": "330 Americans, sampled to match the census on age, sex, ethnicity and politics.",
+      "href": "https://arxiv.org/abs/2504.06016",
+      "provenance": "published-research"
+    },
+    {
+      "key": "doom-or-bloom",
+      "label": "Doom or Bloom",
+      "x": 0.9,
+      "y": 0.93,
+      "side": "left",
+      "highlight": true,
+      "method": "Answers in your own words to authored questions, picked one at a time to fill gaps in what you’ve said. You get a place on a map, a P(doom) and the simulated thought leaders closest to you.",
+      "reach": "About 950 placed results as of October 3, 2026, most from two launch-week crowds.",
+      "href": "https://www.doom-or-bloom.com/about",
+      "provenance": "participants"
+    }
+  ]
+}

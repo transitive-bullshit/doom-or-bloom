@@ -55,7 +55,17 @@ const translatableKeys = new Set([
   'note',
   'interval',
   'cellsLabel',
-  'pointsLabel'
+  'pointsLabel',
+  // Axis ends, how-to hints, project methods and reach, criteria details,
+  // estimates as written and the questions behind them.
+  'start',
+  'end',
+  'hint',
+  'method',
+  'reach',
+  'detail',
+  'figure',
+  'wording'
 ])
 
 /** Every translatable string in a data file, by its JSON path. */
