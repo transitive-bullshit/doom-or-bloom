@@ -12,7 +12,7 @@ import type { AdminFilters } from './filters'
 // for the selected assessment, never for the whole dashboard.
 const summary = sql`with records as (
   select a.id, a.owner_id, a.title, a.origin, a.visibility, a.is_fork,
-    a.created_at, a.updated_at, a.revision, a.inherited_prompt_count, a.country,
+    a.created_at, a.updated_at, a.revision, a.inherited_prompt_count,
     u.name, u.is_anonymous, u.x_username,
     s.has_result,
     coalesce(s.payload->>'status', s.payload->'assessment'->>'status', case when s.has_result then 'results' else 'answering' end) as engine_status,
@@ -38,7 +38,6 @@ export type AdminAssessmentRow = {
   updated_at: string
   revision: number
   inherited_prompt_count: number
-  country: string | null
   name: string
   is_anonymous: boolean | null
   x_username: string | null

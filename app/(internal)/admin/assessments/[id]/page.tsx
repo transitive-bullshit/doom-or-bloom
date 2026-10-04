@@ -125,8 +125,6 @@ export default async function Page({
             <dd>
               <AdminDate value={new Date(row.created_at)} showZone />
             </dd>
-            <dt>Country</dt>
-            <dd>{row.country ?? 'Not recorded'}</dd>
             <dt>Engine state</dt>
             <dd>{state?.status ?? row.engine_status}</dd>
             <dt>Fork</dt>
