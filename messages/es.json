@@ -961,7 +961,7 @@
         "feelsRightLabel": "«¿Te parece acertado?»",
         "feelsRight": "{yes} de {total} personas dijeron que sí ({share}).<aggregates></aggregates> Interprétalo como un límite superior: las personas tienden a estar de acuerdo con la interpretación que hace una IA de ellas. En un estudio de NORC, los codificadores independientes respaldaron las codificaciones de una IA aproximadamente un 20% menos de veces que los propios encuestados.<confirmation></confirmation>",
         "pdoomLabel": "P(doom) inferida",
-        "pdoom": "Aproximada. Al contrastarla con {typed} cifras introducidas por las personas, manteniendo ocultas esas cifras, quedó dentro de un factor de 2× solo el {within} de las veces, sin superar una estimación de {guess} para todos. Sí ordena a las personas de forma razonable, y una cifra que introduzcas siempre tiene prioridad.<review></review>",
+        "pdoom": "Aproximada. Al contrastarla con {typed} cifras introducidas por personas, manteniendo esas cifras ocultas, interpretó {readings} de ellas y quedó dentro de un factor de 2 solo el {within} de las veces, sin superar el resultado de estimar {guess} para todo el mundo. Sí ordena a las personas de manera razonable, y cualquier cifra que introduzcas siempre tiene prioridad.<review></review>",
         "gapsLabel": "Aún no se ha hecho",
         "gaps": "Aún no tenemos un conjunto de prueba ciego etiquetado por revisores independientes, como exige nuestro plan de evaluación.<protocol></protocol> Hasta entonces, todas las comprobaciones aquí comparan las interpretaciones con autoubicaciones, nuevas ejecuciones u otros modelos. Todavía no se han comparado los resultados entre los distintos idiomas de la entrevista."
       },

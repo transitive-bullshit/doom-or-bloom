@@ -180,6 +180,7 @@ export function Methodology({
               text: t.rich('evidence.pdoom', {
                 ...cites,
                 typed: count(pdoom.typed),
+                readings: count(pdoom.readings),
                 within: percent(pdoom.within2x),
                 guess: percent(pdoom.constantGuess)
               })

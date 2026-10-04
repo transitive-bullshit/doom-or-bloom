@@ -961,7 +961,7 @@
         "feelsRightLabel": "“Apakah ini terasa tepat?”",
         "feelsRight": "{yes} dari {total} orang menjawab ya ({share}).<aggregates></aggregates> Anggap itu sebagai batas atas: orang cenderung setuju dengan pembacaan AI tentang diri mereka. Dalam sebuah studi NORC, para pengode independen mendukung pengodean AI sekitar 20% lebih jarang daripada para responden.<confirmation></confirmation>",
         "pdoomLabel": "P(doom) yang disimpulkan",
-        "pdoom": "Perkiraan kasar. Ketika diperiksa terhadap {typed} angka yang diketik orang, dengan angka-angka tersebut disembunyikan, hasilnya hanya berada dalam rentang 2× sebanyak {within}, tidak lebih baik daripada memperkirakan {guess} untuk semua orang. Namun, hasilnya mengurutkan orang secara masuk akal, dan angka yang Anda ketik selalu didahulukan.<review></review>",
+        "pdoom": "Ini masih kasar. Ketika diuji terhadap {typed} angka yang dimasukkan orang, dengan angka-angka tersebut disembunyikan, sistem ini membaca {readings} di antaranya dan hanya berada dalam kisaran 2× sebanyak {within} dari waktu, tidak lebih baik daripada menebak {guess} untuk semua orang. Sistem ini memang mengurutkan orang secara masuk akal, dan angka yang Anda masukkan selalu diutamakan.<review></review>",
         "gapsLabel": "Belum dilakukan",
         "gaps": "Kami belum memiliki set pengujian tersamar yang diberi label oleh peninjau independen, sebagaimana disyaratkan oleh rencana evaluasi kami.<protocol></protocol> Hingga saat itu, setiap pemeriksaan di sini membandingkan hasil pembacaan dengan penempatan diri, pengulangan, atau model lain. Hasil dalam berbagai bahasa wawancara juga belum dibandingkan."
       },

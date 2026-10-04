@@ -961,7 +961,7 @@
         "feelsRightLabel": "„Fühlt sich das stimmig an?“",
         "feelsRight": "{yes} von {total} Personen sagten Ja ({share}).<aggregates></aggregates> Das ist als Obergrenze zu verstehen: Menschen neigen dazu, der Einschätzung einer KI über sie zuzustimmen. In einer NORC-Studie bestätigten unabhängige Codierende die Codierungen einer KI etwa 20% seltener als die Befragten selbst.<confirmation></confirmation>",
         "pdoomLabel": "Abgeleitete P(doom)",
-        "pdoom": "Grobe Schätzung. Beim Abgleich mit {typed} von Personen eingegebenen Zahlen, wobei diese Zahlen verborgen waren, lag sie nur in {within} der Fälle innerhalb des Faktors 2× und damit nicht besser als die Schätzung {guess} für alle. Sie ordnet Personen jedoch sinnvoll in eine Rangfolge ein, und eine von dir eingegebene Zahl hat immer Vorrang.<review></review>",
+        "pdoom": "Grob. Im Abgleich mit den von Personen eingegebenen {typed} Zahlen, wobei diese Zahlen verborgen waren, las es {readings} davon aus und lag nur in {within} der Fälle innerhalb von 2× – nicht besser, als für alle {guess} zu schätzen. Die Personen ordnet es jedoch sinnvoll ein, und eine von dir eingegebene Zahl hat immer Vorrang.<review></review>",
         "gapsLabel": "Noch ausstehend",
         "gaps": "Wir haben noch keinen verblindeten Testsatz, der von unabhängigen Prüfenden gekennzeichnet wurde, obwohl unser Evaluierungsplan dies vorsieht.<protocol></protocol> Bis dahin vergleicht jede hier aufgeführte Prüfung die Auswertungen mit Selbsteinordnungen, erneuten Durchläufen oder anderen Modellen. Die Ergebnisse in verschiedenen Interviewsprachen wurden noch nicht verglichen."
       },

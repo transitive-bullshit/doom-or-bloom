@@ -166,6 +166,8 @@ export const reviewFindings = {
   /** Inferred P(doom) against numbers people typed, with those hidden. */
   pdoom: {
     typed: 113,
+    /** Jev gave a reading for 96 of them; the 2× rate is out of those. */
+    readings: 96,
     within2x: 0.22,
     constantGuess: 0.125
   }

@@ -961,7 +961,7 @@
         "feelsRightLabel": "“Isso parece certo?”",
         "feelsRight": "{yes} de {total} pessoas disseram que sim ({share}).<aggregates></aggregates> Interprete isso como um teto: as pessoas tendem a concordar com a leitura que uma IA faz delas. Em um estudo da NORC, avaliadores independentes corroboraram as classificações de uma IA cerca de 20% menos vezes do que os próprios respondentes.<confirmation></confirmation>",
         "pdoomLabel": "P(doom) inferida",
-        "pdoom": "Aproximada. Comparada a {typed} números digitados pelas pessoas, mantendo esses números ocultos, ela ficou dentro de uma margem de 2× em apenas {within} das vezes, sem superar o palpite de {guess} para todos. Ainda assim, ela ordena as pessoas de forma sensata, e um número que você digita sempre tem precedência.<review></review>",
+        "pdoom": "Imprecisa. Quando verificada em relação a {typed} números digitados pelas pessoas, com esses números ocultos, ela identificou {readings} deles e ficou dentro de um fator de 2 em apenas {within} dos casos, sem ser melhor do que estimar {guess} para todos. Ela de fato classifica as pessoas de forma coerente, e um número que você digita sempre tem precedência.<review></review>",
         "gapsLabel": "Ainda não concluído",
         "gaps": "Ainda não temos um conjunto de teste cego rotulado por avaliadores independentes, como exige nosso plano de avaliação.<protocol></protocol> Até lá, cada verificação aqui compara as leituras com autoposicionamentos, novas execuções ou outros modelos. Os resultados entre os diferentes idiomas da entrevista ainda não foram comparados."
       },

@@ -961,7 +961,7 @@
         "feelsRightLabel": "“这感觉准确吗？”",
         "feelsRight": "{total} 人中有 {yes} 人回答是（{share}）。<aggregates></aggregates>应将其视为上限：人们往往会认同 AI 对自己的解读。在一项 NORC 研究中，独立编码者认可 AI 编码的频率比受访者低约 20%。<confirmation></confirmation>",
         "pdoomLabel": "推断的 P(doom)",
-        "pdoom": "粗略估计。将其与人们输入的 {typed} 个数字进行核对，并对模型隐藏这些数字后，仅有 {within} 的结果在 2 倍范围内，并不优于对所有人都猜测 {guess}。它确实能合理地对人们进行排序，而且你输入的数字始终优先。<review></review>",
+        "pdoom": "较粗略。在隐藏人们输入的 {typed} 个数字后用这些数字进行核验时，它读取了其中 {readings} 个，结果只有 {within} 的情况下与实际值相差不超过 2×，并不比对所有人都猜测 {guess} 更好。它确实能合理地对人们进行排序，而且你输入的数字始终优先采用。<review></review>",
         "gapsLabel": "尚未完成",
         "gaps": "我们还没有按照评估计划的要求，建立由独立评审者标注的盲测集。<protocol></protocol>在此之前，这里的每项检验都是将解读结果与自我定位、重新运行的结果或其他模型进行比较。不同访谈语言的结果也尚未进行比较。"
       },
