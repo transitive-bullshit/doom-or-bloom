@@ -47,6 +47,9 @@
   /* The logo's coral, kept for sparing editorial emphasis (PRODUCT.md#coral-accent).
      The same in both themes, like the map colors. */
   --coral: #ff786a;
+  /* Selected text tints whatever it sits on with the coral, so one translucent
+     value reads in both themes and on the always-dark map. */
+  --selection: color-mix(in oklab, var(--coral) 35%, transparent);
   /* Blog chart series, validated for contrast and color-vision separation
      against the card surface in each theme (docs/BLOG.md#data-components). */
   --chart-blue: #2a6cc4;
@@ -172,6 +175,10 @@
 
   * {
     @apply border-border;
+  }
+  /* Background only: selected text keeps its own color. */
+  ::selection {
+    background-color: var(--selection);
   }
   body {
     @apply bg-background text-foreground;
