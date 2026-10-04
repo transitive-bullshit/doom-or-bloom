@@ -76,7 +76,7 @@ Analytics are off by default and disabled in fixture mode. Enabling analytics re
 
 Use modern TypeScript without semicolons, oxfmt (`pnpm fix:format`) and oxlint (`pnpm fix:lint`). Reuse shadcn/ui primitives. Follow the installed Next.js docs as directed by [AGENTS.md](AGENTS.md).
 
-Run `pnpm test` for formatting, lint, types, Vitest, content validation and unused-code checks. It needs no local secrets, database or live generation. GitHub Actions runs this core command only. Run the additional checks required by the [change and release gates](docs/testing.md#local-change-and-release-gates); browser/database checks and production builds remain local responsibilities.
+Run `pnpm test` for formatting, lint, types, Vitest, content validation and unused-code checks. It needs no local secrets, database or live generation. GitHub Actions runs this core command; failed same-repository PR CI can also trigger a paid Codex repair proposal as described in the [CI contract](docs/testing.md#github-actions-budget). Run the additional checks required by the [change and release gates](docs/testing.md#local-change-and-release-gates); browser/database checks and production builds remain local responsibilities.
 
 For production-mode verification use `pnpm build:local` and `pnpm start:local`. Run build and type generation sequentially because they share generated Next files. Deployment and production migrations are separate work.
 
