@@ -433,6 +433,8 @@ export const landscapeDataSchema = z
           method: z.string().min(1),
           /** How many took part, as the project reports it. */
           reach: z.string().min(1),
+          /** The group size behind a participant point's `reach`. */
+          n: z.number().int().positive().optional(),
           /** Where the method is described. */
           href: z.url(),
           /** Draws the label left of the point instead of right. */
@@ -449,6 +451,20 @@ export const landscapeDataSchema = z
   .superRefine((chart, ctx) => {
     checkKeys(chart.points, 'point', ctx)
     checkProvenance(chart, chart.points, ctx)
+    const listed = provenanceList(chart.provenance)
+    for (const point of chart.points) {
+      const source =
+        point.provenance ?? (listed.length === 1 ? listed[0] : undefined)
+      // A participant count in prose still has to meet the minimum group.
+      if (
+        source === 'participants' &&
+        !(point.n && point.n >= minimumGroupSize)
+      )
+        ctx.addIssue({
+          code: 'custom',
+          message: `${point.label} needs a group size n of at least ${minimumGroupSize}`
+        })
+    }
     if (chart.points.filter((point) => point.highlight).length > 1)
       ctx.addIssue({ code: 'custom', message: 'Highlight one point at most' })
   })

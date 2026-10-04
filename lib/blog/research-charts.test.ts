@@ -183,6 +183,41 @@ describe('landscape charts', () => {
   })
   const ok = valid(landscapeDataSchema)
 
+  it('carry a group size of 10 or more for participant points', () => {
+    const ours = {
+      ...point,
+      key: 'ours',
+      label: 'Ours',
+      provenance: 'participants'
+    }
+    const mixed = (entry: unknown) => ({
+      ...chart([point, entry]),
+      provenance: ['published-research', 'participants']
+    })
+    const polls = { ...point, provenance: 'published-research' }
+    expect(
+      ok({
+        ...mixed({ ...ours, n: 953 }),
+        points: [polls, { ...ours, n: 953 }]
+      })
+    ).toBe(true)
+    expect(ok({ ...mixed(ours), points: [polls, ours] })).toBe(false)
+    expect(ok({ ...mixed(ours), points: [polls, { ...ours, n: 8 }] })).toBe(
+      false
+    )
+  })
+
+  it('count our point from the committed aggregates', () => {
+    const aggregates = JSON.parse(
+      readFileSync('content/blog/aggregates/participants.json', 'utf8')
+    ) as { map: { overall: { outlook: { n: number } } } }
+    const parsed = landscapeDataSchema.parse(
+      readData('ai-opinion-landscape.json')
+    )
+    const ours = parsed.points.filter((p) => p.provenance === 'participants')
+    expect(ours.map((p) => p.n)).toEqual([aggregates.map.overall.outlook.n])
+  })
+
   it('need distinct points, on the unit square, with one highlight at most', () => {
     const other = { ...point, key: 'quizzes', label: 'Quizzes' }
     expect(ok(chart([point, other]))).toBe(true)

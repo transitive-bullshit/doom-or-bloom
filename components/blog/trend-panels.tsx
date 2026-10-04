@@ -321,7 +321,11 @@ function Panel({
             fill='transparent'
             onPointerMove={onPointer}
             onPointerDown={onPointer}
-            onPointerLeave={() => setIndex(null)}
+            // A finger lifting also fires pointerleave; keep a tapped survey
+            // selected and reset only when a mouse leaves.
+            onPointerLeave={(event) => {
+              if (event.pointerType === 'mouse') setIndex(null)
+            }}
           />
         </svg>
       </div>
