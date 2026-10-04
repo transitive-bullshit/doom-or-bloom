@@ -792,6 +792,7 @@
     "cite": "Fonte {number}",
     "asOf": "Em {date}",
     "note": "Cada número vem das próprias palavras da pessoa, com um link para onde ela o declarou. As pessoas definem o resultado e o horizonte temporal de maneiras diferentes, por isso os números não são diretamente comparáveis.",
+    "surveyTitle": "Para comparação: pesquisadores de IA",
     "allUsers": "Ver todos os {count} líderes de opinião simulados",
     "allUsersDescription": "Pesquise e ordene todas as pessoas no mapa, inclusive por uma estimativa aproximada de P(doom) inferida de cada simulação",
     "scenariosTitle": "Como isso poderia acontecer",

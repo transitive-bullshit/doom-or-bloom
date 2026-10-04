@@ -7,6 +7,7 @@ import { sourceIcon } from './favicons'
 import { hubContent, hubRows, hubSourceUrls } from './hub'
 import { readingGroups } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
+import { surveySources } from './survey'
 
 const person = (id: string) => ({
   id,
@@ -118,18 +119,29 @@ describe('citations', () => {
     ])
   })
 
-  test('number sources by first citation across the table and scenarios', () => {
-    const { rows, intro, scenarios: cited, footnotes } = hubContent(everyone)
+  test('number sources by first citation across the table, survey and scenarios', () => {
+    const {
+      rows,
+      survey,
+      intro,
+      scenarios: cited,
+      footnotes
+    } = hubContent(everyone)
     expect(footnotes.map((note) => note.number)).toEqual(
       footnotes.map((_, index) => index + 1)
     )
-    // The table cites first, then the scenarios in reading order.
+    // The table cites first, then the survey beside it, then the scenarios in
+    // reading order.
     expect(rows.map((row) => row.citation.number)).toEqual(
       rows.map((_, index) => index + 1)
     )
+    expect(survey.filter((part) => 'number' in part)).toEqual([
+      { number: rows.length + 1, id: `cite-${rows.length + 1}` }
+    ])
+    expect(footnotes[rows.length]).toMatchObject(surveySources['espai-2024'])
     expect(intro.find((part) => 'number' in part)).toEqual({
-      number: rows.length + 1,
-      id: `cite-${rows.length + 1}`
+      number: rows.length + 2,
+      id: `cite-${rows.length + 2}`
     })
     // A repeated source keeps its number, and only its first marker is an anchor.
     const markers = cited

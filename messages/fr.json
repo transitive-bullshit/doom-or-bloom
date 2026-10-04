@@ -792,6 +792,7 @@
     "cite": "Source {number}",
     "asOf": "Au {date}",
     "note": "Chaque nombre provient des propres propos de la personne, avec un lien vers l’endroit où elle l’a indiqué. Les personnes définissent différemment l’issue et l’horizon temporel, de sorte que les nombres ne sont pas directement comparables.",
+    "surveyTitle": "À titre de comparaison : chercheurs en IA",
     "allUsers": "Voir les {count} leaders d’opinion simulés",
     "allUsersDescription": "Recherchez et triez toutes les personnes figurant sur la carte, notamment selon une estimation approximative de P(doom) déduite de chaque simulation",
     "scenariosTitle": "Comment cela pourrait se produire",

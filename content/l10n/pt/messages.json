@@ -3938,6 +3938,12 @@
       "translatedAt": "2026-10-02",
       "reviewStatus": "machine"
     },
+    "PdoomHub.surveyTitle": {
+      "sourceHash": "b39137f5bc8a0db8",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
     "PdoomHub.allUsers": {
       "sourceHash": "f7d3857935a08065",
       "model": "gpt-5.6-sol",
