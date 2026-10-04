@@ -9,10 +9,17 @@ import { cardFontFamilies, cardFonts } from './card-fonts'
 let renderer: Promise<Renderer> | undefined
 
 // Takumi never reads system fonts. Its built-in font covers Latin text; the
-// committed Noto subsets cover Devanagari, Thai, Japanese and Chinese.
+// committed Noto subsets cover Devanagari, Thai, Japanese and Chinese. Inter
+// Tight, the site social image's typeface, serves cards that name it.
 function cardRenderer() {
   return (renderer ??= (async () => {
     const instance = new Renderer()
+    await instance.registerFont({
+      name: 'Inter Tight',
+      data: await readFile(
+        path.join(process.cwd(), 'lib/sharing/fonts/InterTight.woff2')
+      )
+    })
     for (const font of cardFonts)
       for (const face of font.faces)
         await instance.registerFont({
@@ -43,6 +50,18 @@ export async function cardRenderOptions(locale: CatalogCode) {
     renderer: await cardRenderer(),
     lang: languageTag(locale),
     fontFamilies
+  }
+}
+
+/**
+ * Takumi options for a card set in Inter Tight, in every locale. Letters
+ * Inter Tight lacks fall back to the locale's own Noto subset, then the rest.
+ */
+export async function interTightRenderOptions(locale: CatalogCode) {
+  return {
+    renderer: await cardRenderer(),
+    lang: languageTag(locale),
+    fontFamilies: ['Inter Tight', ...cardFontFamilies(locale)]
   }
 }
 

@@ -33,15 +33,6 @@ export type SiteSocialPoint = {
   portrait?: string
 }
 
-/** The original editorial palette, retained by the blog post cards. */
-export const siteCardColors = {
-  surface: '#fbfaf6',
-  panel: '#f2f0e9',
-  text: '#1d1c18',
-  muted: '#77746b',
-  axis: 'rgb(29 28 24 / 0.16)',
-  dot: 'rgb(29 28 24 / 0.2)'
-}
 const colors = {
   surface: '#ffffff',
   panel: '#eef1ed',
@@ -150,9 +141,9 @@ export function siteSocialLayout(points: readonly SiteSocialPoint[]) {
   }
 }
 
-export function BrandMark() {
+export function BrandMark({ size = 20 }: { size?: number }) {
   return (
-    <svg width={20} height={20} viewBox='0 0 48 48'>
+    <svg width={size} height={size} viewBox='0 0 48 48'>
       <circle cx='24' cy='24' r='24' fill='#ff786a' />
       <path d='M24 0a24 24 0 0 1 0 48c13-13 13-35 0-48' fill='#aaffbd' />
       <path d='M24 0c-13 13-13 35 0 48c13-13 13-35 0-48' fill='#f7f5ef' />

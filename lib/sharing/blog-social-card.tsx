@@ -1,185 +1,209 @@
 import { createHash } from 'node:crypto'
 import { render } from 'takumi-js'
-import { defaultLocale, localizedPath, type Locale } from '@/i18n/config'
+import { fromJsx } from 'takumi-js/helpers/jsx'
+import {
+  defaultLocale,
+  languageTag,
+  localizedPath,
+  type Locale
+} from '@/i18n/config'
+import { translatorFor } from '@/i18n/translators'
 import { PrismField } from '@/components/worldview/prism-field'
-import { cardFontFamilies } from './card-fonts'
-import { cardRenderOptions, wrappable } from './card-renderer'
-import { siteRenderer } from './render-site-social'
-import { BrandMark, siteCardColors as colors } from './site-social-card'
+import { postDate } from '@/lib/blog/format'
+import { blogPost, postTranslation } from '@/lib/blog/posts'
+import { interTightRenderOptions, wrappable } from './card-renderer'
+import { publicImageCacheHeaders } from './image-cache'
+import { BrandMark } from './site-social-card'
 
 /**
- * A blog post's social image, in the site card's style: the title beside the
- * Prism field. Rendered by Takumi at build time.
+ * A blog post's social image: the post's header (breadcrumb, title and byline)
+ * on a page laid over the landing map's Prism field. Every post gets one from
+ * its frontmatter, rendered by Takumi at build.
  */
 
-/** Bump when the card design changes, so social networks refetch it. */
-const blogCardRevision = 1
+/** Bump when the card design or its labels change, so networks refetch it. */
+const blogCardRevision = 2
 
 /**
  * The versioned image URL a post advertises. A translated post's card is in
  * its language, under the locale prefix.
  */
 export function blogCardPath(
-  post: { slug: string; title: string },
+  post: { slug: string; title: string; date: string; minutes: number },
   locale: Locale = defaultLocale
 ) {
   const version = createHash('sha256')
-    .update(`${blogCardRevision}\n${post.title}`)
+    .update([blogCardRevision, post.title, post.date, post.minutes].join('\n'))
     .digest('hex')
     .slice(0, 10)
   return `${localizedPath(`/blog/${post.slug}`, locale)}/opengraph-image?v=${version}`
 }
 
-// Shorter titles get the site card's display size; longer ones step down.
-function blogTitleSize(title: string) {
-  if (title.length <= 24) return 76
-  if (title.length <= 48) return 60
-  if (title.length <= 80) return 48
-  return 40
+const width = 1200
+const height = 630
+// The light theme's page tokens (app/globals.css) and the Prism field's.
+const colors = { page: '#fafaf9', text: '#181611', muted: '#605d57' }
+const prism = {
+  coral: '#ff786a',
+  peach: '#ffb88b',
+  lime: '#e6ff80',
+  mint: '#aaffbd',
+  violet: '#bcb1ff',
+  veilOpacity: 0.5,
+  // The map's midpoint axes show only in the frame around the page.
+  grid: '#25392b30',
+  border: 'transparent'
+}
+const inset = 40
+const padding = { top: 48, right: 60, bottom: 52, left: 60 }
+const titleWidth = width - 2 * inset - padding.left - padding.right
+// Two lines at the largest size, three below it; four for the longest titles.
+const titleHeight = 300
+const titleSizes = [100, 92, 84, 76, 68, 60, 54, 48]
+
+// Latin titles take the display tracking of the site's hero. Negative tracking
+// crowds Han and kana, and stacked Thai and Devanagari marks need taller lines.
+function titleStyle(locale: Locale, fontSize: number) {
+  return {
+    width: titleWidth,
+    fontSize,
+    fontWeight: 600,
+    textWrap: 'balance',
+    ...(['hi', 'th'].includes(locale)
+      ? { lineHeight: 1.32 }
+      : ['ja', 'zh'].includes(locale)
+        ? { lineHeight: 1.2 }
+        : { lineHeight: 1.06, letterSpacing: -0.03 * fontSize })
+  } as const
 }
 
-const field = { left: 640, top: 96, width: 480, height: 400 }
+/** The largest title size whose lines fit the title's box, as Takumi sets them. */
+async function titleSize(title: string, locale: Locale) {
+  const options = await interTightRenderOptions(locale)
+  for (const size of titleSizes) {
+    const { node } = await fromJsx(
+      <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+        <div style={titleStyle(locale, size)}>{title}</div>
+      </div>
+    )
+    const measured = await options.renderer.measure(node, {
+      width,
+      height,
+      lang: options.lang,
+      fontFamilies: options.fontFamilies
+    })
+    if (measured.children[0]!.height <= titleHeight) return size
+  }
+  return titleSizes.at(-1)!
+}
+
+function Chevron() {
+  return (
+    <svg width={22} height={22} viewBox='0 0 24 24'>
+      <path
+        d='m9 18 6-6-6-6'
+        fill='none'
+        stroke={colors.muted}
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
 
 function BlogSocialCard({
   title,
+  titleSize,
   meta,
   label,
-  fontFamily
+  locale
 }: {
   title: string
-  /** Date and reading time, e.g. "October 1, 2026 · 5 min read". */
+  titleSize: number
+  /** Byline, date and reading time, e.g. "By … · October 1, 2026 · 5 min read". */
   meta: string
   /** "Blog", in the card's language. */
   label: string
-  fontFamily: string
+  locale: Locale
 }) {
-  const panel = {
-    left: field.left - 40,
-    top: field.top - 40,
-    width: field.width + 80,
-    height: field.height + 80
-  }
   return (
     <div
       style={{
         position: 'relative',
         display: 'flex',
-        width: 1200,
-        height: 630,
-        backgroundColor: colors.surface,
+        width,
+        height,
         color: colors.text,
-        fontFamily
+        fontFamily: 'Inter Tight'
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          left: 66,
-          top: 72,
-          fontSize: 22,
-          fontWeight: 500,
-          color: colors.muted
-        }}
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        style={{ position: 'absolute', left: 0, top: 0 }}
       >
-        {label}
-      </div>
+        <PrismField
+          id='blog-card'
+          plot={{ left: 0, top: 0, width, height }}
+          radius={0}
+          colors={prism}
+        />
+      </svg>
       <div
         style={{
           position: 'absolute',
-          left: 62,
-          top: 130,
-          width: 500,
-          height: 360,
+          left: inset,
+          top: inset,
+          width: width - 2 * inset,
+          height: height - 2 * inset,
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          gap: 24
+          padding: `${padding.top}px ${padding.right}px ${padding.bottom}px ${padding.left}px`,
+          borderRadius: 24,
+          backgroundColor: colors.page,
+          boxShadow: '0 8px 32px rgb(40 30 20 / 0.12)'
         }}
       >
         <div
           style={{
-            fontSize: blogTitleSize(title),
-            lineHeight: 1.04,
-            fontWeight: 500,
-            letterSpacing: -2
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            height: 34,
+            fontSize: 26,
+            fontWeight: 600
           }}
         >
-          {title}
+          <BrandMark size={32} />
+          <span>Doom or Bloom</span>
+          <Chevron />
+          <span style={{ color: colors.muted, fontWeight: 500 }}>{label}</span>
         </div>
-        <div style={{ fontSize: 22, color: colors.muted }}>{meta}</div>
-      </div>
-      <div
-        style={{
-          position: 'absolute',
-          left: 66,
-          top: 560,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          fontSize: 17,
-          fontWeight: 500,
-          color: colors.muted
-        }}
-      >
-        <BrandMark />
-        <span>Doom or Bloom</span>
-      </div>
-      <div
-        style={{
-          position: 'absolute',
-          ...panel,
-          borderRadius: 18,
-          backgroundColor: colors.panel
-        }}
-      />
-      <svg
-        width={panel.width}
-        height={panel.height}
-        viewBox={`${panel.left} ${panel.top} ${panel.width} ${panel.height}`}
-        style={{ position: 'absolute', left: panel.left, top: panel.top }}
-      >
-        <PrismField
-          id='blog-card'
-          plot={field}
-          radius={12}
-          colors={{
-            coral: '#ff786a',
-            peach: '#ffb88b',
-            lime: '#e6ff80',
-            mint: '#aaffbd',
-            violet: '#bcb1ff',
-            veilOpacity: 0.5,
-            grid: '#25392b35',
-            border: '#25392b22'
+        <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center' }}>
+          <div style={titleStyle(locale, titleSize)}>{title}</div>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            height: 32,
+            fontSize: 26,
+            fontWeight: 500,
+            color: colors.muted
           }}
-        />
-        <text
-          x={field.left + 18}
-          y={field.top + field.height / 2 - 12}
-          fill={colors.text}
-          fontSize='20'
-          fontWeight='600'
         >
-          Doom
-        </text>
-        <text
-          x={field.left + field.width - 18}
-          y={field.top + field.height / 2 - 12}
-          textAnchor='end'
-          fill={colors.text}
-          fontSize='20'
-          fontWeight='600'
-        >
-          Bloom
-        </text>
-      </svg>
+          {meta}
+        </div>
+      </div>
     </div>
   )
 }
 
 /**
- * Latin-script cards use the site card's Inter Tight. Hindi, Thai, Chinese
- * and Japanese use the share cards' Noto subsets (lib/sharing/card-fonts.ts).
+ * Inter Tight in every language; Hindi, Thai, Chinese and Japanese letters
+ * fall back to the share cards' Noto subsets (lib/sharing/card-fonts.ts).
  */
 export async function renderBlogSocialImage({
   title,
@@ -192,20 +216,47 @@ export async function renderBlogSocialImage({
   label?: string
   locale?: Locale
 }) {
-  const families = cardFontFamilies(locale)
-  const card = BlogSocialCard({
-    title: wrappable(title, locale),
-    meta,
-    label,
-    fontFamily: families.length ? families.join(', ') : 'Inter Tight'
+  const text = wrappable(title, locale)
+  return render(
+    BlogSocialCard({
+      title: text,
+      titleSize: await titleSize(text, locale),
+      meta,
+      label,
+      locale
+    }),
+    {
+      width,
+      height,
+      format: 'png',
+      ...(await interTightRenderOptions(locale)),
+      signal: AbortSignal.timeout(10_000)
+    }
+  )
+}
+
+/**
+ * The opengraph-image route response for a post in a locale: its translation's
+ * card, or the English card. Unknown posts and untranslated locales are 404s.
+ */
+export async function blogSocialImageResponse(slug: string, locale: Locale) {
+  const post = blogPost(slug)
+  const translation = postTranslation(slug, locale)
+  if (!post || (locale !== defaultLocale && !translation))
+    return new Response(null, { status: 404 })
+  const { title, minutes } = translation ?? post
+  const t = await translatorFor(locale)
+  const image = await renderBlogSocialImage({
+    title,
+    meta: [
+      t('Blog.by', { author: post.author }),
+      postDate(post.date, languageTag(locale)),
+      t('Blog.readingTime', { minutes })
+    ].join(' · '),
+    label: t('Blog.title'),
+    locale
   })
-  return render(card, {
-    width: 1200,
-    height: 630,
-    format: 'png',
-    ...(families.length
-      ? await cardRenderOptions(locale)
-      : { renderer: await siteRenderer() }),
-    signal: AbortSignal.timeout(10_000)
+  return new Response(new Uint8Array(image), {
+    headers: { 'Content-Type': 'image/png', ...publicImageCacheHeaders }
   })
 }

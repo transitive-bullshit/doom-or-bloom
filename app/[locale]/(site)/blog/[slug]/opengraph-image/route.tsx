@@ -1,14 +1,6 @@
-import { defaultLocale, isLocale, languageTag, locales } from '@/i18n/config'
-import { translatorFor } from '@/i18n/translators'
-import {
-  blogPost,
-  blogPosts,
-  isTranslated,
-  postTranslation
-} from '@/lib/blog/posts'
-import { postDate } from '@/lib/blog/format'
-import { publicImageCacheHeaders } from '@/lib/sharing/image-cache'
-import { renderBlogSocialImage } from '@/lib/sharing/blog-social-card'
+import { defaultLocale, isLocale, locales } from '@/i18n/config'
+import { blogPosts, isTranslated } from '@/lib/blog/posts'
+import { blogSocialImageResponse } from '@/lib/sharing/blog-social-card'
 
 // A translated post's social card, in its language: /<code>/blog/<slug>/
 // opengraph-image. English cards are app/blog/[slug]/opengraph-image. Posts
@@ -30,17 +22,7 @@ export async function GET(
   { params }: { params: Promise<{ locale: string; slug: string }> }
 ) {
   const { locale, slug } = await params
-  const post = blogPost(slug)
-  if (!post || !isLocale(locale)) return new Response(null, { status: 404 })
-  const { title, minutes } = postTranslation(slug, locale) ?? post
-  const t = await translatorFor(locale)
-  const image = await renderBlogSocialImage({
-    title,
-    meta: `${postDate(post.date, languageTag(locale))} · ${t('Blog.readingTime', { minutes })}`,
-    label: t('Blog.title'),
-    locale
-  })
-  return new Response(new Uint8Array(image), {
-    headers: { 'Content-Type': 'image/png', ...publicImageCacheHeaders }
-  })
+  if (!isLocale(locale) || locale === defaultLocale)
+    return new Response(null, { status: 404 })
+  return blogSocialImageResponse(slug, locale)
 }
