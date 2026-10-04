@@ -1,0 +1,159 @@
+{
+  "kind": "bars",
+  "title": "One worry, asked many ways",
+  "source": "Anthropic (“What 81,000 people want from AI”, interviews of Claude users, December 2025; Anthropic Public Record, YouGov, November–December 2025, whose chart condenses the item), Rethink Priorities (US, April 2023; Britain, July–August 2024), YouGov (US, August 2025, December 2025 and September 2026; Britain, September 2026), Yahoo News/YouGov (October 2025), Monmouth University (January 2023), a YouGov poll of registered voters for Lionheart Ventures (July 2023) and Quinnipiac University (September 2026). Quoted words are as printed by each pollster.",
+  "asOf": "2026-10-04",
+  "provenance": "published-research",
+  "series": [
+    {
+      "key": "share",
+      "label": "Share who say so",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "group": "Raised it without being asked",
+      "label": "Claude users who brought up existential risk in an open interview",
+      "note": "Anthropic, 80,508 Claude users, 2025",
+      "values": {
+        "share": {
+          "share": 0.067,
+          "count": 80508
+        }
+      }
+    },
+    {
+      "group": "Raised it without being asked",
+      "label": "Britons who named AI when asked to list three likely causes of human extinction",
+      "note": "Rethink Priorities, 2024",
+      "values": {
+        "share": {
+          "share": 0.09,
+          "count": 1452
+        }
+      }
+    },
+    {
+      "group": "Picked AI from a list",
+      "label": "AI is the single most likely cause of human extinction",
+      "note": "Rethink Priorities, US, 2023",
+      "values": {
+        "share": {
+          "share": 0.04,
+          "count": 2444
+        }
+      }
+    },
+    {
+      "group": "Picked AI from a list",
+      "label": "AI is among the three most likely causes of human extinction",
+      "note": "YouGov, US, August 2025",
+      "values": {
+        "share": {
+          "share": 0.16,
+          "count": 1128
+        }
+      }
+    },
+    {
+      "group": "Picked AI from a list",
+      "label": "The same question, in Britain a year later",
+      "note": "YouGov, Britain, September 2026",
+      "values": {
+        "share": {
+          "share": 0.34,
+          "count": 2089
+        }
+      }
+    },
+    {
+      "group": "Asked how likely",
+      "label": "AI has the potential to “bring about the end of human civilisation”, and it is likely",
+      "note": "YouGov, Britain, September 2026",
+      "values": {
+        "share": {
+          "share": 0.23,
+          "count": 2083
+        }
+      }
+    },
+    {
+      "group": "Asked how likely",
+      "label": "“AI will destroy humanity” is somewhat or very likely to come true at some point",
+      "note": "Yahoo News/YouGov, US, October 2025",
+      "values": {
+        "share": {
+          "share": 0.53,
+          "count": 1770
+        }
+      }
+    },
+    {
+      "group": "Asked how worried",
+      "label": "Worried AI will go rogue and end civilization",
+      "note": "Anthropic Public Record, US, 2025",
+      "values": {
+        "share": {
+          "share": 0.27,
+          "count": 51993
+        }
+      }
+    },
+    {
+      "group": "Asked how worried",
+      "label": "Concerned “AI will cause the end of the human race on Earth”",
+      "note": "YouGov, US, September 2026",
+      "values": {
+        "share": {
+          "share": 0.5,
+          "count": 18238
+        }
+      }
+    },
+    {
+      "group": "Asked how worried",
+      "label": "Worried “machines with artificial intelligence could eventually pose a threat to the existence of the human race”",
+      "note": "Monmouth, US, January 2023",
+      "values": {
+        "share": {
+          "share": 0.55,
+          "count": 805
+        }
+      }
+    },
+    {
+      "group": "Asked how worried",
+      "label": "Concerned “future AI systems could potentially threaten human survival”",
+      "note": "Quinnipiac, US, September 2026",
+      "values": {
+        "share": {
+          "share": 0.73,
+          "count": 1202
+        }
+      }
+    },
+    {
+      "group": "Asked how worried",
+      "label": "The Monmouth question again, without a “not too worried” answer",
+      "note": "YouGov, US voters, July 2023",
+      "values": {
+        "share": {
+          "share": 0.76,
+          "count": 1001
+        }
+      }
+    },
+    {
+      "group": "Asked how worried",
+      "label": "Concerned that AI could pose a threat to humanity",
+      "note": "YouGov, US, December 2025",
+      "values": {
+        "share": {
+          "share": 0.77,
+          "count": 1287
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "kind": "estimates",
+  "title": "Chances of an AI catastrophe, by who answered and what they were asked",
+  "source": "AI Impacts (2024 survey, published September 2026), the Forecasting Research Institute (LEAP wave 9, May–June 2026, and its 2022 tournament), Rethink Priorities (June 2023), the statements linked from each thought leader’s profile and Doom or Bloom’s aggregates as of October 3, 2026. The outcomes and time frames differ, so read each number with its question.",
+  "asOf": "2026-10-04",
+  "provenance": ["published-research", "public-statements", "participants"],
+  "scale": {
+    "min": 0.001,
+    "max": 1,
+    "ticks": [
+      {
+        "value": 0.001
+      },
+      {
+        "value": 0.01
+      },
+      {
+        "value": 0.1
+      },
+      {
+        "value": 1
+      }
+    ]
+  },
+  "legend": [
+    {
+      "tone": "teal",
+      "label": "AI researchers, experts and forecasters"
+    },
+    {
+      "tone": "blue",
+      "label": "The public"
+    },
+    {
+      "tone": "ink",
+      "mark": "range",
+      "label": "Thought leaders, as stated"
+    },
+    {
+      "tone": "coral",
+      "label": "Doom or Bloom participants"
+    },
+    {
+      "tone": "coral",
+      "mark": "hollow",
+      "label": "Inferred by our model"
+    }
+  ],
+  "rows": [
+    {
+      "group": "AI researchers",
+      "label": "Authors at six top AI venues",
+      "figure": "10%",
+      "value": 0.1,
+      "wording": "What probability do you put on future AI advances causing human extinction or similarly permanent and severe disempowerment of the human species?",
+      "detail": "Median of the 744 asked this way, AI Impacts, December 2024",
+      "tone": "teal",
+      "n": 744,
+      "provenance": "published-research",
+      "href": "https://aiimpacts.org/wp-content/uploads/2026/09/ESPAI2024.pdf"
+    },
+    {
+      "group": "Experts and forecasters",
+      "label": "Experts on the LEAP panel",
+      "figure": "5%",
+      "value": 0.05,
+      "wording": "A catastrophic event caused primarily by artificial intelligence systems in which more than 10% of the people alive at the start of a five-year period die by the end of that period",
+      "detail": "Chance by 2100, median of 192 experts, May–June 2026",
+      "tone": "teal",
+      "n": 192,
+      "provenance": "published-research",
+      "href": "https://leap.forecastingresearch.org/reports/wave9"
+    },
+    {
+      "group": "Experts and forecasters",
+      "label": "Superforecasters on the LEAP panel",
+      "figure": "2.4%",
+      "value": 0.024,
+      "detail": "The same question, median of 53 superforecasters",
+      "tone": "teal",
+      "n": 53,
+      "provenance": "published-research",
+      "href": "https://leap.forecastingresearch.org/reports/wave9"
+    },
+    {
+      "group": "Experts and forecasters",
+      "label": "AI experts in the 2022 forecasting tournament",
+      "figure": "3%",
+      "value": 0.03,
+      "wording": "reduction of the global population to less than 5,000",
+      "detail": "The tournament’s definition of extinction; chance AI causes it by 2100, median of its AI domain experts, June–October 2022",
+      "tone": "teal",
+      "provenance": "published-research",
+      "href": "https://forecastingresearch.org/pdf/existential-risk-persuasion-tournament.pdf"
+    },
+    {
+      "group": "Experts and forecasters",
+      "label": "Superforecasters in the same tournament",
+      "figure": "0.38%",
+      "value": 0.0038,
+      "detail": "The same question, median of 88 superforecasters",
+      "tone": "teal",
+      "n": 88,
+      "provenance": "published-research",
+      "href": "https://forecastingresearch.org/pdf/existential-risk-persuasion-tournament.pdf"
+    },
+    {
+      "group": "The public",
+      "label": "US adults on the LEAP panel",
+      "figure": "7%",
+      "value": 0.07,
+      "detail": "LEAP’s catastrophe question, by 2100, median of 612 adults reweighted to the US population, May–June 2026",
+      "tone": "blue",
+      "n": 612,
+      "provenance": "published-research",
+      "href": "https://leap.forecastingresearch.org/reports/wave9"
+    },
+    {
+      "group": "The public",
+      "label": "US adults, Rethink Priorities",
+      "figure": "15%",
+      "value": 0.15,
+      "wording": "percentage likelihood that AI would cause human extinction by the year 2100",
+      "detail": "Median of 2,407 adults recruited online and modeled to the US population, June 2023",
+      "tone": "blue",
+      "n": 2407,
+      "provenance": "published-research",
+      "href": "https://rethinkpriorities.org/research-area/us-public-perception-of-cais-statement-and-the-risk-of-extinction/"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Andrew McAfee",
+      "figure": "≈0%",
+      "low": 0,
+      "high": 0,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Gary Marcus",
+      "figure": "≈3%",
+      "low": 0.03,
+      "high": 0.03,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://garymarcus.substack.com/p/why-my-pdoom-has-risen-dramatically"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Noah Smith",
+      "figure": "≈10%",
+      "low": 0.1,
+      "high": 0.1,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://www.noahpinion.blog/p/heres-how-were-all-going-to-die"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Geoffrey Hinton",
+      "figure": "10–20%",
+      "low": 0.1,
+      "high": 0.2,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Scott Alexander",
+      "figure": "20%",
+      "low": 0.2,
+      "high": 0.2,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://www.astralcodexten.com/p/my-ai-opinions"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Dario Amodei",
+      "figure": "25%",
+      "low": 0.25,
+      "high": 0.25,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Ryan Greenblatt",
+      "figure": "35–40%",
+      "low": 0.35,
+      "high": 0.4,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://www.dwarkesh.com/p/ryan-greenblatt"
+    },
+    {
+      "group": "Thought leaders, in their own words",
+      "label": "Max Tegmark",
+      "figure": ">90%",
+      "low": 0.9,
+      "high": 1,
+      "tone": "ink",
+      "provenance": "public-statements",
+      "href": "https://lironshapira.substack.com/p/max-tegmark-vs-dean-ball-debate-ban-superintelligence"
+    },
+    {
+      "group": "Doom or Bloom participants",
+      "label": "Typed their own number",
+      "figure": "12.5%",
+      "value": 0.125,
+      "wording": "What’s your gut-feel chance that AI causes human extinction or a similarly permanent catastrophe?",
+      "detail": "Median of the 117 people who typed a number, as of October 3, 2026",
+      "tone": "coral",
+      "n": 117,
+      "provenance": "participants"
+    },
+    {
+      "group": "Doom or Bloom participants",
+      "label": "Inferred from their answers",
+      "figure": "5.6%",
+      "value": 0.056,
+      "detail": "Median of the 813 people whose number our model read from the whole interview; a rough reading, not a stated belief",
+      "tone": "coral",
+      "inferred": true,
+      "n": 813,
+      "provenance": "participants"
+    }
+  ]
+}

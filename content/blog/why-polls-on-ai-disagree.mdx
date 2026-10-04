@@ -1,0 +1,194 @@
+---
+title: Why polls on AI disagree
+description: Polls, researcher surveys, AI-led interviews and quizzes ask about AI in very different ways and get very different answers. How they compare, what changed, and what a better measure needs.
+date: 2026-10-04
+---
+
+import landscape from './data/ai-opinion-landscape.json'
+import scorecard from './data/ai-opinion-scorecard.json'
+import wording from './data/ai-extinction-wording.json'
+import format from './data/ai-extinction-format.json'
+import expertsVsPublic from './data/ai-experts-vs-public.json'
+import trend from './data/ai-opinion-trend.json'
+import researchersTrend from './data/ai-researchers-trend.json'
+import estimates from './data/ai-extinction-estimates.json'
+
+Ask Americans whether they’re concerned that AI could pose a threat to humanity, and 77% say yes. Ask them to pick the single most likely cause of human extinction, and 4% pick AI. Both numbers come from real polls of US adults, and neither is wrong.
+
+That gap isn’t noise. People who study what the world thinks about AI measure it in very different ways: who they ask, how they ask, and what, if anything, they give back. Those choices move the answers more than most headlines admit.
+
+I build [Doom or Bloom](/), a short interview that maps your view of AI’s future, so I went through about 60 of these studies, from Pew’s trackers to Anthropic’s 81,000 AI-led interviews. This post lays out the landscape: how each approach works, what they find, where they agree and where they flatly contradict each other, how opinion has shifted, and what an ideal measure would look like. Then I hold Doom or Bloom to the same standard. Every number below comes from a primary source listed at the end, and every chart carries the date it was checked.
+
+## The landscape
+
+Two questions separate the approaches more than any other: how much room people get to answer in their own words, and whether they get anything back for their time.
+
+<DataLandscape data={landscape} />
+
+The bottom left holds the polls. They are the most authoritative numbers we have, because they reach samples built to stand for a population and ask everyone the same fixed questions. Respondents get nothing back.
+
+The bottom right holds Anthropic’s interviews: rich, open conversations led by Claude, at a scale no human team could manage. Participants get a recap and, later, the published findings.
+
+The top left holds quizzes and calculators. They give you something instantly, a number or a type, but from sliders and fixed choices, with no room for why.
+
+The top right is nearly empty. The closest academic work, The Hall of AI Fears and Hopes, asked 330 Americans to rate and explain their fears and hopes, then placed each of them among TIME’s 100 most influential people in AI. In my search I didn’t find another public tool that starts from free text, adapts its questions to what you say, and hands back a personal result. That’s the corner Doom or Bloom is trying to fill, and the rest of this post is partly a look at what it can learn from everyone else.
+
+## Six ways to ask
+
+Each approach is good at something the others miss. Here is how they compare on eight things a good measure of opinion should do.
+
+<DataScorecard data={scorecard} />
+
+**Polls** from Pew, Gallup, AP-NORC and YouGov ask the same fixed questions of samples weighted to match the population. Pew and Gallup recruit their panels by mail and phone, so their numbers are the closest thing to “what Americans think”. YouGov weights a large opt-in online panel, which is faster and cheaper but less certain. Polls print their exact wording and repeat it for years, which makes them the only reliable way to track change. What they can’t do is hear reasons: you learn that 52% are more concerned than excited, not why.
+
+**Expert and forecaster surveys** ask people who study AI or forecasting for numbers. AI Impacts’ Expert Survey on Progress in AI, led by Katja Grace, surveyed authors at the top AI venues in 2016, 2022, 2023 and 2024, repeating its core questions; its newest wave reached 1,580 researchers. The Forecasting Research Institute (FRI) ran a 2022 tournament in which experts and superforecasters argued their cases for months, and now runs a panel of experts, superforecasters and members of the public, called LEAP, that answers new questions every month or so. Their weakness is the sample: only about one in ten invited researchers answered AI Impacts’ survey, and its authors note that researchers at AI companies are almost certainly underweighted, because those companies largely stopped publishing at the venues it draws on.
+
+**AI-led interviews** are the newest approach. In December 2025, Anthropic, the company Dario Amodei runs, invited every Claude user to a conversation with an AI interviewer built on Claude; 80,508 people in 159 countries and 70 languages gave usable interviews. Four core questions anchored each conversation, and Claude wrote the follow-ups. Classifiers, also built on Claude, then coded each transcript. The result is the largest qualitative study of its kind, with real depth. It also has the limits you’d expect: the sample is Claude users who chose to take part, the interview asked about hopes before concerns, and each classifier was checked against one human on 25 labels.
+
+**Deliberation platforms** let people write statements and vote on each other’s. Polis finds opinion groups and the statements every group agrees with; Anthropic and the Collective Intelligence Project used it in 2023 to draft a constitution for a model from the votes of about 1,000 Americans. The Collective Intelligence Project’s Global Dialogues recruits about 1,000 people a round from around 70 countries, repeats a core of questions, and reports how representative most rounds were. Deliberation is the best tool for finding common ground; it isn’t built to tell you where one person stands.
+
+**P(doom) calculators** multiply sliders for each step of an argument into one number, the structure Joe Carlsmith used in his 2022 report on power-seeking AI. They’re quick and give you a number of your own. They also show how much the frame matters: on the one calculator that publishes its data, 36% of quiz-takers kept the number it suggested, and most of those who moved it went down. It logged 365 submissions in a year, so this is a small niche.
+
+**The Hall of AI Fears and Hopes** is the closest relative of Doom or Bloom. Its 330 participants, sampled to match the US census, rated their fear and hope from 0 to 10, wrote out what they fear and hope for, and saw their portrait placed among the influencers they resembled most. Its headline finding is a useful reminder that experts and the public worry about different things: “The public fears AI getting out of control, while influencers emphasize regulation”.
+
+## Where the numbers agree
+
+Despite the noise, a few findings hold up across approaches.
+
+- **The public is more worried than excited.** Recent US polls lean clearly negative: 52% more concerned than excited against 9% more excited (Pew, June 2026), 39% saying AI does more harm than good against 9% more good (Gallup, May 2026), and 39% calling AI’s impact on society negative against 11% positive (Reuters/Ipsos, September 2026)
+- **Many people hold both views at once.** When a poll offers a middle option, it draws a big share: 37% are equally concerned and excited (Pew), and 52% say AI does equal amounts of harm and good (Gallup). Anthropic found the same inside individual conversations: hope and alarm “didn’t divide people into camps, so much as coexist as tensions within each person”
+- **Catastrophe is a minority expectation, not a fringe one.** No group’s median expects it, but almost every group gives it real odds, from 2.4% among superforecasters to 10% among AI researchers. Individual thought leaders spread much wider, from near zero for Yann LeCun to over 90% for Max Tegmark
+- **Experts are more optimistic about AI overall.** That holds whether “experts” means conference authors (Pew) or FRI’s broader panel
+
+## Where they conflict
+
+Then there are the places where two credible sources seem to say opposite things. Almost every one of them comes down to the question, the format or the sample.
+
+### The wording
+
+How many people worry that AI could end humanity? Depending on how you ask, between 4% and 77%.
+
+<DataBars data={wording} />
+
+The lowest numbers come from asking people to name causes of extinction themselves, or to pick one from a list. The highest come from asking how worried or concerned they are. Concern isn’t the same as expectation: in September 2026, 66% of Britons said AI has the potential to end civilization, but only 23% thought that likely.
+
+Small details matter too. Monmouth and a July 2023 YouGov poll asked the same question about machines with AI threatening “the existence of the human race”. Monmouth offered “not too worried” as an answer and found 55% worried; the YouGov poll offered no such step and found 76%. The polls also differed in mode, sample and year, so not all of that gap comes from the scale. The same YouGov poll told people that Geoffrey Hinton, Sam Altman and Bill Gates had signed a statement that mitigating the risk of extinction from AI should be a global priority, and 57% said that made them more concerned.
+
+### The format
+
+Numbers people type are even less stable than words they choose. In FRI’s 2022 study, the same college graduates gave two very different answers about the chance of AI-caused extinction by 2100, depending on how they were asked.
+
+<DataEstimates data={format} />
+
+Typing a percentage, they said 1.5%. Shown examples of rare events and asked to fill in “1 in X”, they said 1 in 40 million, a number about 600,000 times smaller. Neither answer is the “real” one. Small probabilities are hard to think about, and people lean on whatever the question gives them. Across everyone who answered each version, the medians were 2% and 1 in 30 million.
+
+### Prompted or unprompted
+
+When Anthropic let Claude users talk about what they want from AI, only 6.7% brought up existential risk on their own. When the Anthropic Public Record asked 51,993 people in the US directly, 27% said they were at least a little worried that AI will go rogue and end civilization. Rethink Priorities saw the same pattern in Britain in 2024: 9% named AI unprompted as a likely cause of extinction, against about 17% who picked it from a YouGov list. One possibility they offer is that people rarely think of AI risk on their own but “find it plausible when prompted”. Asking about catastrophe makes it salient.
+
+### Experts and the public
+
+Experts are much more positive about AI than the public, but not about everything.
+
+<DataBars data={expertsVsPublic} />
+
+In Pew’s 2024 survey, 56% of AI experts expected AI to have a positive impact on the US over 20 years, against 17% of US adults. Yet when FRI’s LEAP panel asked the same kind of question in 2026, 42% of its US public sample expected a positive impact. That gap is too big to be wording alone: the samples and the weighting differ, and Pew also offers a “not sure” answer. It’s a good reason not to splice one pollster’s numbers onto another’s trend line.
+
+On harm, the order can flip. The public was more likely than experts to call major harm to humans very or extremely likely in the next 20 years (35% against 20%). On LEAP’s catastrophe question, the public’s median (7%) sat above the experts’ (5%). But AI researchers in AI Impacts’ survey gave a higher number than either, 10%, to a broader outcome with no deadline.
+
+### Claude users and everyone else
+
+Anthropic coded 67% of its interviews as net positive about AI. Pew finds 9% of Americans more excited than concerned, and a 13% median across 37 countries. Both can be true. One is a reading of whole conversations with people who already use an AI chatbot by choice, scored by Claude; the other is a single closed question asked of a random sample.
+
+## How views have shifted
+
+The trend lines are clearer than any single number.
+
+<DataTrend data={trend} />
+
+The share of Americans more concerned than excited about AI in daily life jumped from 38% to 52% between Pew’s December 2022 survey, a few weeks after ChatGPT was released, and its summer 2023 survey. It has stayed near half since. Gallup’s “more harm than good” fell after 2023 and then climbed back to 39% in 2026.
+
+The groups changed even more than the totals. In 2021, Republicans were the more worried party (45% against 31%); by June 2026 it had flipped, with Democrats at 56% and Republicans at 49%. Adults under 30 were the least concerned age group in 2021, at 31%; in 2026, 55% of them are more concerned than excited, close to the 59% of people 65 and older.
+
+Concern about AI ending the human race rose too. YouGov’s question fell from 46% in April 2023 to 36% at the end of 2024, then climbed to 50% in September 2026, its highest reading so far. That month brought a run of high readings: 73% concerned about AI threatening human survival (Quinnipiac) and 34% of Britons naming AI among the three likeliest causes of extinction, up from 15% a year earlier (YouGov). They came during a news cycle about leaders of several AI companies calling for a slowdown, which 69% of Americans had heard about (Reuters/Ipsos), and Doom or Bloom launched in the middle of it on September 25. Pew’s and Gallup’s latest waves were fielded before it.
+
+AI researchers moved as well.
+
+<DataTrend data={researchersTrend} />
+
+In AI Impacts’ survey, the median researcher’s chance of extinction or permanent disempowerment from AI doubled from 5% in 2023 to 10% in its December 2024 wave, published last month. Their forecast for human-level AI moved from 2061 in 2016 to 2042, “about 3.4 years closer for each year that passed”.
+
+## The P(doom) numbers, side by side
+
+[P(doom)](/blog/what-is-p-doom) is shorthand for the chance that AI ends in catastrophe for humanity. Here are the numbers from the sources above that asked for one, with the question each group actually answered.
+
+<DataEstimates data={estimates} />
+
+The closest match to our own question is AI Impacts’. Its wording, “human extinction or similarly permanent and severe disempowerment of the human species”, with no deadline, is almost the same as Doom or Bloom’s question about “human extinction or a similarly permanent catastrophe”. Among participants who typed a number, the median is 12.5%, a little above the AI researchers’ 10%. That group chose the site and then chose to answer, so it says more about who shows up than about the public. The median our model infers for everyone else is lower, 5.6%, and it’s a rough reading of what people wrote, not a number they gave. We never pool the two.
+
+Most of the rest ask about something else. FRI’s panel asks about a catastrophe that kills more than 10% of people within five years, by 2100; its tournament asked about extinction, by 2100. Those differences matter as much as who answered. The thought leaders’ numbers, linked to the sources on their profiles, each come with their own definitions and time frames; the [P(doom) table](/p-doom) lists what each one means.
+
+## What a better measure would look like
+
+Put the evidence together and a few principles fall out. None of them is new; no single approach above follows all of them.
+
+1. **Know who you’re hearing from.** Reach a sample built to stand for a population, or say plainly who it does stand for, and report results by group
+2. **Ask neutrally, and in a fixed order where it counts.** Wording, answer scales and order move results by tens of points. An AI interviewer that writes its own questions can move them too: in a 2026 experiment, following a closed question with an AI-led interview polarized later answers
+3. **Ask open and closed questions.** Open questions show what people bring up unprompted; closed ones make answers comparable. You need both, and you should report them apart
+4. **Show the exact wording next to every number.** It’s the only way a reader can tell 4% from 77%
+5. **Give people something back.** A result of their own respects people’s time and helps them think. It is also what made the Moral Machine spread by word of mouth
+6. **Let people check the reading.** When a person or a model interprets free text, show the interpretation and let people correct it. Expect the confirmations to run high: in one study, human coders judged AI codings correct about 20% less often than respondents did
+7. **Keep stated and inferred numbers apart.** A number someone typed and a number a model read from their words are different measurements. Label them and never average them together
+8. **Open the methods and the data.** Publish the questions, the code and the rules that turn answers into results, and as much data as privacy allows
+9. **Ask again, the same way.** Trends need a fixed core of questions asked in regular waves, with any change of wording noted
+10. **Ask in people’s own languages.** Views differ widely by country, and most studies hear from very few of them
+
+## How Doom or Bloom measures up
+
+Doom or Bloom is built around several of these principles, and falls short on others.
+
+What it does: everyone starts with the same open question, “What do you think AI means for our future—and why?”, and then gets authored questions picked one at a time to fill gaps in what they’ve said, about 3 minutes in all. The model only interprets answers; it never writes the questions.
+
+Before the reveal you can guess where you’ll land, and if the guess and the result differ a lot, you’re asked what the reading missed. You can trace each reading back to your own words and say whether it feels right. The result labels a P(doom) as typed or inferred, and never mixes the two. The interview runs in 10 languages, the questions and code are public, and posts like this one publish only aggregates of 10 or more people.
+
+And you get something back: a place on the map, a P(doom) and the simulated thought leaders closest to you. As of October 3, the most common closest matches were Bernie Sanders, Ed Zitron, Nathan Lambert and Geoffrey Hinton.
+
+What it doesn’t do yet:
+
+- **The sample is self-selected.** About 950 people have been placed so far, most from two launch-week crowds, one from Hacker News and one from X, which [landed far apart on the map](/blog/hacker-news-vs-x). That makes our numbers a picture of who came, not of the public, and I report them that way
+- **The reading isn’t yet checked against human coders.** People can confirm or correct it, but as the research above shows, confirmations run high. A human-coded check in every language is on the list
+- **Inferred P(doom) is rough.** It’s our model’s reading of short answers, shown with a range, and so far its median runs lower than the numbers people type
+- **The order adapts.** That’s what keeps the interview short, but it means no single question is asked at the same point for everyone, which makes it hard to set any one answer beside a poll
+- **It’s new.** There is no trend line yet, and every result is tied to the engine version that produced it, so changes can be traced
+
+If you want to see where you land among all of this, [take the interview](/) (about 3 minutes, no sign-up). For the numbers people have stated in public, see the [P(doom) table](/p-doom), and for how the interview and the map work, the [about page](/about).
+
+## How I put this together
+
+- **Sources:** about 60 surveys, studies and tools, each read from its primary source (pollster toplines, reports and papers) on October 4, 2026, with the exact wording recorded. I left out figures I could only find in secondary coverage
+- **Placement:** the positions on the landscape and the marks on the scorecard are my editorial reading of each approach’s published methods, not a measurement
+- **Comparisons:** different questions, samples and dates, shown side by side so the differences are visible, not to rank them
+- **Our numbers:** Doom or Bloom’s production aggregates as of October 3, 2026: the earliest result of each person, leaving out simulated users, forks and my own test account, with every number describing at least 10 people. The thought leaders on Doom or Bloom are simulated from their public writing and interviews; their stated numbers above are their own words, linked from their profiles
+
+## Sources
+
+- Pew Research Center, [June 2026 survey topline](https://www.pewresearch.org/wp-content/uploads/sites/20/2026/09/SR_09.16_26_ai-partisan-views_topline.pdf), [“Democrats are now more worried than Republicans about AI”](https://www.pewresearch.org/short-reads/2026/09/16/democrats-are-now-more-worried-than-republicans-about-ai-and-its-impact-on-jobs/) and [“Young adults in the US are increasingly wary of AI”](https://www.pewresearch.org/short-reads/2026/08/18/young-adults-in-the-us-are-increasingly-wary-of-ai-concerned-it-will-take-jobs/) (2026)
+- Pew Research Center, [“How the U.S. Public and AI Experts View Artificial Intelligence”](https://www.pewresearch.org/internet/2025/04/03/how-the-us-public-and-ai-experts-view-artificial-intelligence/) (2025) and [“Globally, more people expect AI to cause job loss than growth”](https://www.pewresearch.org/global/2026/09/17/globally-more-people-expect-ai-to-cause-job-loss-than-growth/) (2026)
+- Gallup, [“Americans cool toward AI”](https://news.gallup.com/poll/712751/americans-cool-toward.aspx) (Bentley-Gallup Business in Society, 2026)
+- Reuters/Ipsos, [September 2026 core political topline](https://www.ipsos.com/sites/default/files/ct/news/documents/2026-09/Reuters%20Ipsos%20September%20Core%20Political%20Topline.pdf)
+- Quinnipiac University Poll, [September 30, 2026 release](https://poll.qu.edu/images/polling/us/us09302026_uruk99.pdf)
+- YouGov, [“Liberals are increasingly likely to worry about AI ending humanity”](https://yougov.com/en-us/articles/55558-liberals-are-increasingly-likely-to-worry-about-ai-ending-humanity) (2026), [“Most Americans use AI but still don’t trust it”](https://yougov.com/en-us/articles/53701-most-americans-use-ai-but-still-dont-trust-it) (2025), [August 2025 results](https://d3nkl3psvxxpe9.cloudfront.net/documents/Artificial_Intelligence_poll_results_lFSW7V8.pdf), [July 2026 results](https://d3nkl3psvxxpe9.cloudfront.net/documents/AI_poll_results.pdf), and its earlier extinction-concern articles from [April 2023](https://yougov.com/en-us/articles/45565-ai-nuclear-weapons-world-war-humanity-poll), [April 2024](https://yougov.com/en-us/articles/49099-americans-2024-poll-ai-top-feeling-caution), [January 2025](https://yougov.com/en-us/articles/51368-do-americans-think-ai-will-have-positive-or-negative-impact-society-artificial-intelligence-poll), [March 2025](https://yougov.com/en-us/articles/51803-americans-increasingly-skeptical-about-ai-artificial-intelligence-effects-poll) and [July 2025](https://yougov.com/en-us/articles/52615-americans-increasingly-likely-say-ai-artificial-intelligence-negatively-affect-society-poll)
+- YouGov (Britain), [“Britons are increasingly worried about the impact of AI”](https://yougov.com/en-gb/articles/55587-britons-are-increasingly-worried-about-the-impact-of-ai) and [results for September 16–17, 2026](https://ygo-assets-websites-editorial-emea.yougov.net/documents/Internal_AI_Results_260917_w.pdf)
+- Yahoo News/YouGov, [“Poll: Most Americans think AI will destroy humanity someday”](https://www.yahoo.com/news/article/poll-most-americans-think-ai-will-destroy-humanity-someday-212132958.html) (2025)
+- Monmouth University Poll, [February 15, 2023 release](https://www.monmouth.edu/polling-institute/reports/monmouthpoll_us_021523/)
+- YouGov for Lionheart Ventures, [July 2023 toplines](https://moratorium.ai/content/YouGov_Blue_lionheart_ai_research_toplines_AI_items_s2.pdf)
+- Rethink Priorities, [“US public opinion of AI policy and risk”](https://rethinkpriorities.org/research-area/us-public-opinion-of-ai-policy-and-risk/) and [“US public perception of CAIS statement and the risk of extinction”](https://rethinkpriorities.org/research-area/us-public-perception-of-cais-statement-and-the-risk-of-extinction/) (2023), and [“British public perception of existential risks”](https://rethinkpriorities.org/research-area/british-public-perception-of-existential-risks/) (2024)
+- Anthropic, [“What 81,000 people want from AI”](https://www.anthropic.com/features/81k-interviews) and its [methods appendix](https://cdn.sanity.io/files/4zrzovbb/website/99156863ed4a812569fe00a2adfb1c93f7e5a911.pdf) (2026), [Anthropic Public Record](https://www.anthropic.com/news/anthropic-public-record) (2026) and [Collective Constitutional AI](https://www.anthropic.com/research/collective-constitutional-ai-aligning-a-language-model-with-public-input) (2023)
+- Grace et al., [“Advanced AI according to 1,580 researchers”](https://aiimpacts.org/wp-content/uploads/2026/09/ESPAI2024.pdf) (AI Impacts, 2026) and [“Thousands of AI Authors on the Future of AI”](https://arxiv.org/abs/2401.02843) (2023)
+- Forecasting Research Institute, [“Forecasting Existential Risks”](https://forecastingresearch.org/pdf/existential-risk-persuasion-tournament.pdf) (2023) and the Longitudinal Expert AI Panel, waves [8](https://leap.forecastingresearch.org/reports/wave8) and [9](https://leap.forecastingresearch.org/reports/wave9) (2026)
+- Computational Democracy Project, [Polis](https://compdemocracy.org/polis/); Collective Intelligence Project, [Global Dialogues methodology](https://globaldialogues.ai/methodology)
+- Awad et al., [“The Moral Machine experiment”](https://www.nature.com/articles/s41586-018-0637-6), Nature (2018)
+- neoneye, [P(doom) Calculator](https://neoneye.github.io/pdoom-calculator/) and its [October 2026 submissions report](https://neoneye.github.io/pdoom-calculator/reports/submissions-2026-10-01.html)
+- Moreira et al., [“The Hall of AI Fears and Hopes”](https://arxiv.org/abs/2504.06016) (2025)
+- Carlsmith, [“Is Power-Seeking AI an Existential Risk?”](https://arxiv.org/abs/2206.13353) (2022)
+- Barari et al., [“AI-Assisted Conversational Interviewing”](https://arxiv.org/abs/2504.13908) (2025) and Austin et al., [“An Experimental Comparison of AI-Enabled Semi-Structured Interviews and Fixed Surveys”](https://academic.oup.com/poq/advance-article/doi/10.1093/poq/nfag063/8762750), Public Opinion Quarterly (2026)

@@ -54,6 +54,9 @@
      against the card surface in each theme (docs/BLOG.md#data-components). */
   --chart-blue: #2a6cc4;
   --chart-coral: #e5604f;
+  --chart-teal: #1b9e77;
+  /* Neutral marks that are not a series, such as people's stated numbers. */
+  --chart-ink: oklch(0.48 0.01 90);
 }
 .dark {
   --background: oklch(0.17 0.006 90);
@@ -77,6 +80,8 @@
   --json-boolean: oklch(0.79 0.12 300);
   --chart-blue: #4d82dc;
   --chart-coral: #e05a4b;
+  --chart-teal: #2aa88a;
+  --chart-ink: oklch(0.76 0.006 90);
   --sidebar: var(--card);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
@@ -105,6 +110,8 @@
   --color-coral: var(--coral);
   --color-chart-blue: var(--chart-blue);
   --color-chart-coral: var(--chart-coral);
+  --color-chart-teal: var(--chart-teal);
+  --color-chart-ink: var(--chart-ink);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -644,6 +651,16 @@
   max-width: calc(var(--content-width) + 3rem);
   margin-inline: auto;
   padding-inline: 1.5rem;
+}
+
+/* Estimates rows stack on phones and become text, track and number columns
+   (set inline) from the sm breakpoint. */
+@utility estimate-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  @variant sm {
+    grid-template-columns: var(--estimate-template);
+  }
 }
 
 /* Blog charts mark groups under the minimum size with a hatch, never a bar. */

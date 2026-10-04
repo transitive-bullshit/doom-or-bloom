@@ -1,0 +1,344 @@
+{
+  "kind": "scorecard",
+  "title": "What each approach does well, and what it misses",
+  "source": "My reading of each approach’s published methods: Pew Research Center, Gallup and YouGov methodology statements, AI Impacts (2024), the Forecasting Research Institute (2023 and 2026), Anthropic’s 81k methods appendix (2026), the Computational Democracy Project, the Collective Intelligence Project, the neoneye P(doom) calculator’s reports, Moreira et al. (2025) and Doom or Bloom’s about page.",
+  "asOf": "2026-10-04",
+  "provenance": "published-research",
+  "hint": "Hover, tap or focus a mark to see why it scores that way",
+  "levels": [
+    {
+      "key": "yes",
+      "label": "Does this"
+    },
+    {
+      "key": "partly",
+      "label": "Partly"
+    },
+    {
+      "key": "no",
+      "label": "Doesn’t"
+    },
+    {
+      "key": "na",
+      "label": "Not needed"
+    }
+  ],
+  "columns": [
+    {
+      "key": "sample",
+      "label": "Sample",
+      "detail": "Does it reach people who stand for a wider population, rather than whoever shows up?"
+    },
+    {
+      "key": "wording",
+      "label": "Wording",
+      "detail": "Does everyone get the same neutral questions, in an order that doesn’t lead?"
+    },
+    {
+      "key": "reasons",
+      "label": "Reasons",
+      "detail": "Can people say why, in their own words?"
+    },
+    {
+      "key": "gives-back",
+      "label": "Gives back",
+      "detail": "Does each person get something back for their time?"
+    },
+    {
+      "key": "checks",
+      "label": "Checks",
+      "detail": "When someone or something interprets the answers, can people see and correct the reading?"
+    },
+    {
+      "key": "open",
+      "label": "Openness",
+      "detail": "Are the exact wording, the methods and the data public?"
+    },
+    {
+      "key": "over-time",
+      "label": "Over time",
+      "detail": "Is it repeated with the same questions, so change shows up?"
+    },
+    {
+      "key": "languages",
+      "label": "Languages",
+      "detail": "Can people take part in their own language?"
+    }
+  ],
+  "rows": [
+    {
+      "key": "polls",
+      "label": "Polls",
+      "detail": "Pew, Gallup, AP-NORC, YouGov",
+      "cells": {
+        "sample": {
+          "level": "yes",
+          "note": "Pew and Gallup recruit panels by mail or phone and weight them to the census; YouGov weights an opt-in online panel"
+        },
+        "wording": {
+          "level": "yes",
+          "note": "The same fixed wording for everyone, with answer options rotated to spread order effects"
+        },
+        "reasons": {
+          "level": "partly",
+          "note": "Mostly closed questions; Pew sometimes adds open-ended follow-ups"
+        },
+        "gives-back": {
+          "level": "no",
+          "note": "Nothing personal; the public gets the toplines"
+        },
+        "checks": {
+          "level": "na",
+          "note": "Closed answers need no interpreting"
+        },
+        "open": {
+          "level": "yes",
+          "note": "Toplines print the exact wording, sample sizes and methods"
+        },
+        "over-time": {
+          "level": "yes",
+          "note": "Pew has asked the same concern question since 2021, Gallup its harm-or-good question since 2023"
+        },
+        "languages": {
+          "level": "partly",
+          "note": "Most polls cover one country; Pew’s global survey asks the same question in dozens"
+        }
+      }
+    },
+    {
+      "key": "expert-surveys",
+      "label": "Expert and forecaster surveys",
+      "detail": "AI Impacts, Forecasting Research Institute",
+      "cells": {
+        "sample": {
+          "level": "partly",
+          "note": "A defined group, such as authors at top AI venues, but about one in ten answers and researchers at AI companies are underweighted"
+        },
+        "wording": {
+          "level": "yes",
+          "note": "Exact wording is published, and AI Impacts assigns wording variants at random to measure their effect"
+        },
+        "reasons": {
+          "level": "partly",
+          "note": "Mostly numbers; the forecasting tournament also had participants argue their cases in writing"
+        },
+        "gives-back": {
+          "level": "partly",
+          "note": "Payment or a donation for researchers’ time; no personal result"
+        },
+        "checks": {
+          "level": "na",
+          "note": "Numbers are taken as given"
+        },
+        "open": {
+          "level": "yes",
+          "note": "Full questions, methods and results are published with each report"
+        },
+        "over-time": {
+          "level": "yes",
+          "note": "AI Impacts asked in 2016, 2022, 2023 and 2024; FRI’s panel reports wave after wave"
+        },
+        "languages": {
+          "level": "no",
+          "note": "English"
+        }
+      }
+    },
+    {
+      "key": "ai-interviews",
+      "label": "AI-led interviews",
+      "detail": "Anthropic Interviewer",
+      "cells": {
+        "sample": {
+          "level": "no",
+          "note": "Claude users who chose to take part; Anthropic checked the mix against its own users, not the public"
+        },
+        "wording": {
+          "level": "partly",
+          "note": "Four fixed core questions, with follow-ups Claude writes. Hopes came before concerns, which Anthropic notes could prime answers"
+        },
+        "reasons": {
+          "level": "yes",
+          "note": "Long answers in people’s own words"
+        },
+        "gives-back": {
+          "level": "partly",
+          "note": "A closing recap and, later, the published findings; the 2026 study lets people publish their interview"
+        },
+        "checks": {
+          "level": "no",
+          "note": "Classifiers code the transcripts afterwards, each checked against one human on 25 labels; participants don’t see their coding"
+        },
+        "open": {
+          "level": "partly",
+          "note": "A methods appendix with two classifier prompts and selected quotes; full interviews only from the 2026 study, by choice"
+        },
+        "over-time": {
+          "level": "partly",
+          "note": "Several studies on one tool, each asking different questions"
+        },
+        "languages": {
+          "level": "yes",
+          "note": "70 languages"
+        }
+      }
+    },
+    {
+      "key": "deliberation",
+      "label": "Deliberation platforms",
+      "detail": "Polis, Global Dialogues, Collective Constitutional AI",
+      "cells": {
+        "sample": {
+          "level": "partly",
+          "note": "Global Dialogues and Collective Constitutional AI recruit to quotas, and Global Dialogues reports how representative most rounds were; open Polis conversations take whoever comes"
+        },
+        "wording": {
+          "level": "partly",
+          "note": "Organizers set the prompt; participants write most of the statements everyone votes on"
+        },
+        "reasons": {
+          "level": "yes",
+          "note": "Statements in people’s own words"
+        },
+        "gives-back": {
+          "level": "partly",
+          "note": "You see the opinion groups and where you sit, not a personal result"
+        },
+        "checks": {
+          "level": "partly",
+          "note": "Votes, not an interpreter, decide which statements rise; machine summaries are newer and less tested"
+        },
+        "open": {
+          "level": "yes",
+          "note": "Polis is open source; Collective Constitutional AI released its votes and analysis; Global Dialogues publishes its data and code"
+        },
+        "over-time": {
+          "level": "partly",
+          "note": "Global Dialogues repeats a core of questions every round; most Polis conversations run once"
+        },
+        "languages": {
+          "level": "partly",
+          "note": "Global Dialogues runs in several languages; most Polis conversations in one"
+        }
+      }
+    },
+    {
+      "key": "calculators",
+      "label": "P(doom) calculators",
+      "detail": "Sliders multiplied into one number",
+      "cells": {
+        "sample": {
+          "level": "no",
+          "note": "Whoever finds the page"
+        },
+        "wording": {
+          "level": "partly",
+          "note": "Fixed steps, but each calculator picks the steps, and suggested starting values stick: on one, 36% of quiz-takers kept the number it proposed"
+        },
+        "reasons": {
+          "level": "no",
+          "note": "Sliders only"
+        },
+        "gives-back": {
+          "level": "yes",
+          "note": "A number of your own, instantly"
+        },
+        "checks": {
+          "level": "na",
+          "note": "You set every value yourself"
+        },
+        "open": {
+          "level": "partly",
+          "note": "One publishes every submission; most publish nothing"
+        },
+        "over-time": {
+          "level": "no",
+          "note": "No fixed waves"
+        },
+        "languages": {
+          "level": "no",
+          "note": "English"
+        }
+      }
+    },
+    {
+      "key": "hall-of-fears-and-hopes",
+      "label": "The Hall of AI Fears and Hopes",
+      "detail": "Research study, 2025",
+      "cells": {
+        "sample": {
+          "level": "partly",
+          "note": "330 Americans from an online panel, sampled to match the census"
+        },
+        "wording": {
+          "level": "yes",
+          "note": "The same questions for everyone"
+        },
+        "reasons": {
+          "level": "yes",
+          "note": "People wrote out their fears and hopes"
+        },
+        "gives-back": {
+          "level": "yes",
+          "note": "A portrait among TIME’s 100 most influential people in AI, next to the three most like you"
+        },
+        "checks": {
+          "level": "no",
+          "note": "The placement is computed; the paper describes no way to check or change it"
+        },
+        "open": {
+          "level": "partly",
+          "note": "Methods and results in an open paper"
+        },
+        "over-time": {
+          "level": "no",
+          "note": "Run once"
+        },
+        "languages": {
+          "level": "no",
+          "note": "English, US only"
+        }
+      }
+    },
+    {
+      "key": "doom-or-bloom",
+      "label": "Doom or Bloom",
+      "detail": "This site",
+      "highlight": true,
+      "cells": {
+        "sample": {
+          "level": "no",
+          "note": "Whoever chooses to take it; so far mostly two launch-week crowds, from Hacker News and from X"
+        },
+        "wording": {
+          "level": "partly",
+          "note": "Everyone starts with the same open question and draws on the same authored questions, but the order adapts to each person"
+        },
+        "reasons": {
+          "level": "yes",
+          "note": "Every answer is in your own words"
+        },
+        "gives-back": {
+          "level": "yes",
+          "note": "A place on the map, a P(doom) and the simulated thought leaders closest to you"
+        },
+        "checks": {
+          "level": "partly",
+          "note": "You place yourself before seeing the result, can trace each reading back to your answers and say whether it feels right; not yet checked against human coders"
+        },
+        "open": {
+          "level": "partly",
+          "note": "The questions and code are public; data only as aggregates of 10 or more people, and conversations people choose to publish"
+        },
+        "over-time": {
+          "level": "partly",
+          "note": "Runs continuously, with each result tied to a version of the engine, but only since September 2026"
+        },
+        "languages": {
+          "level": "yes",
+          "note": "10 languages"
+        }
+      }
+    }
+  ]
+}

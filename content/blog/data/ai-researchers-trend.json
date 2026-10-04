@@ -1,0 +1,59 @@
+{
+  "kind": "trend",
+  "title": "AI researchers moved both numbers",
+  "source": "AI Impacts’ Expert Survey on Progress in AI: Grace et al., “Thousands of AI Authors on the Future of AI” (2023 and 2022 waves) and “Advanced AI according to 1,580 researchers” (2024 wave, published September 2026). The 2024 report gives the 2022 year as 2059; the 2023 paper recomputed it as 2060. Each point is a survey’s last day of fieldwork.",
+  "asOf": "2026-10-04",
+  "provenance": "published-research",
+  "from": "2016-01-01",
+  "to": "2025-12-31",
+  "hint": "Hover, tap or focus a panel, then use the arrow keys, to read every survey",
+  "panels": [
+    {
+      "key": "extinction",
+      "title": "Median chance of extinction or permanent disempowerment",
+      "note": "“What probability do you put on future AI advances causing human extinction or similarly permanent and severe disempowerment of the human species?”",
+      "scale": {
+        "min": 0,
+        "max": 0.2,
+        "unit": "percent",
+        "ticks": [0, 0.05, 0.1, 0.15, 0.2]
+      },
+      "series": [
+        {
+          "key": "median",
+          "label": "Median researcher",
+          "tone": "teal",
+          "points": [
+            { "date": "2022-08-03", "value": 0.05, "note": "n = 149" },
+            { "date": "2023-10-24", "value": 0.05, "note": "n = 1,321" },
+            { "date": "2024-12-24", "value": 0.1, "note": "n = 744" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "hlmi",
+      "title": "Year with even odds of human-level AI",
+      "note": "When “unaided machines can accomplish every task better and more cheaply than human workers”, all respondents’ forecasts combined",
+      "scale": {
+        "min": 2030,
+        "max": 2070,
+        "unit": "year",
+        "ticks": [2030, 2040, 2050, 2060, 2070]
+      },
+      "series": [
+        {
+          "key": "year",
+          "label": "50% year",
+          "tone": "teal",
+          "points": [
+            { "date": "2016-06-28", "value": 2061 },
+            { "date": "2022-08-03", "value": 2059 },
+            { "date": "2023-10-24", "value": 2047 },
+            { "date": "2024-12-24", "value": 2042 }
+          ]
+        }
+      ]
+    }
+  ]
+}

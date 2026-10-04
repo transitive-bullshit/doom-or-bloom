@@ -6,9 +6,13 @@ import type { ProfileMentions } from '@/lib/personas/mentions'
 import { MentionText } from '@/components/mention-text'
 import type { ChartText } from './chart-parts'
 import { DataBars } from './data-bars'
+import { DataEstimates } from './data-estimates'
 import { DataIntervals } from './data-intervals'
+import { DataLandscape } from './data-landscape'
 import { DataMap } from './data-map'
 import { DataRanges } from './data-ranges'
+import { DataScorecard } from './data-scorecard'
+import { DataTrend } from './data-trend'
 
 // Elements and components every post can use. Pages lay posts out in the
 // shared reading column; these add only element-level styling.
@@ -68,9 +72,13 @@ export const blogComponents = {
     <th className='border-b px-2 py-2 align-bottom font-semibold' {...props} />
   ),
   DataBars,
+  DataEstimates,
   DataIntervals,
+  DataLandscape,
   DataMap,
   DataRanges,
+  DataScorecard,
+  DataTrend,
   Definition
 } satisfies MDXComponents
 
@@ -116,6 +124,18 @@ export function postComponents({
     ),
     DataMap: (props: ComponentProps<typeof DataMap>) => (
       <DataMap {...props} text={text} />
+    ),
+    DataEstimates: (props: ComponentProps<typeof DataEstimates>) => (
+      <DataEstimates {...props} mention={mention} text={text} />
+    ),
+    DataLandscape: (props: ComponentProps<typeof DataLandscape>) => (
+      <DataLandscape {...props} text={text} />
+    ),
+    DataScorecard: (props: ComponentProps<typeof DataScorecard>) => (
+      <DataScorecard {...props} text={text} />
+    ),
+    DataTrend: (props: ComponentProps<typeof DataTrend>) => (
+      <DataTrend {...props} text={text} />
     )
   }
 }

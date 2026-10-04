@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import type { Translator } from '@/i18n/translator'
 import { englishTranslator } from '@/i18n/translators'
 import { postDate } from '@/lib/blog/format'
-import { minimumGroupSize } from '@/lib/blog/schema'
+import { minimumGroupSize, type tones } from '@/lib/blog/schema'
 
 // Pieces every blog chart shares: the frame, legend, number formats and the
 // text of the post's language (which may differ from the page's chrome).
@@ -33,14 +33,18 @@ export function chartText(
 export const englishChartText = () =>
   chartText(englishTranslator('BlogCharts'), englishTranslator('Map'), 'en')
 
-export type Tone = 'blue' | 'coral'
+export type Tone = (typeof tones)[number]
 export const toneBackground: Record<Tone, string> = {
   blue: 'bg-chart-blue',
-  coral: 'bg-chart-coral'
+  coral: 'bg-chart-coral',
+  teal: 'bg-chart-teal'
 }
-const toneColor: Record<Tone, string> = {
+/** Series colors, plus `ink` for marks that stand apart from every series. */
+export const toneColor: Record<Tone | 'ink', string> = {
   blue: 'var(--chart-blue)',
-  coral: 'var(--chart-coral)'
+  coral: 'var(--chart-coral)',
+  teal: 'var(--chart-teal)',
+  ink: 'var(--chart-ink)'
 }
 /** Series take blue, then coral, unless they name a tone. */
 export const seriesTone = (series: { tone?: Tone }, index: number): Tone =>

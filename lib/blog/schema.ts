@@ -67,7 +67,8 @@ const provenances = [
   'public-statements',
   'simulated-users',
   'participants',
-  'site-traffic'
+  'site-traffic',
+  'published-research'
 ] as const
 const provenance = z.enum(provenances)
 export type Provenance = z.infer<typeof provenance>
@@ -85,11 +86,18 @@ const dataBase = {
 const provenanceList = (value: Provenance | Provenance[]) =>
   Array.isArray(value) ? value : [value]
 
+/**
+ * Series colors (`--chart-*` in app/globals.css). Unnamed series take blue,
+ * then coral. A post keeps one color per kind of respondent across its charts.
+ */
+export const tones = ['blue', 'coral', 'teal'] as const
+const tone = z.enum(tones)
+
 /** A legend entry. Charts color series in order: blue, then coral. */
 const seriesSchema = z.strictObject({
   key: z.string().min(1),
   label: z.string().min(1),
-  tone: z.enum(['blue', 'coral']).optional(),
+  tone: tone.optional(),
   /** Required when the file lists several provenances. */
   provenance: provenance.optional()
 })
@@ -350,11 +358,392 @@ export const intervalsDataSchema = z
     }))
   })
 
+const key = z
+  .string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, 'Keys are kebab-case')
+const unit = z.number().min(0).max(1)
+
+/** Keys a list repeats, so lookups by key stay unambiguous. */
+function duplicateKeys(items: { key: string }[]) {
+  const seen = new Set<string>()
+  return items.flatMap(({ key }) => {
+    if (seen.has(key)) return [key]
+    seen.add(key)
+    return []
+  })
+}
+
+function checkKeys(
+  items: { key: string }[],
+  where: string,
+  ctx: z.RefinementCtx
+) {
+  for (const repeated of duplicateKeys(items))
+    ctx.addIssue({
+      code: 'custom',
+      message: `${where}: ${repeated} appears twice`
+    })
+}
+
+/** Rows and points name their provenance when the file lists several. */
+function checkProvenance(
+  chart: { provenance: Provenance | Provenance[] },
+  items: { label: string; provenance?: Provenance }[],
+  ctx: z.RefinementCtx
+) {
+  const listed = provenanceList(chart.provenance)
+  for (const item of items) {
+    const source =
+      item.provenance ?? (listed.length === 1 ? listed[0] : undefined)
+    if (!source || !listed.includes(source))
+      ctx.addIssue({
+        code: 'custom',
+        message: `${item.label} needs a provenance the file lists`
+      })
+  }
+}
+
+/** One end of a chart axis: its title and the words at each end. */
+const axisSchema = z.strictObject({
+  title: z.string().min(1),
+  start: z.string().min(1),
+  end: z.string().min(1)
+})
+
+/**
+ * Projects placed on two editorial axes, such as how people answer against
+ * what they get back. Each point opens its method, reach and source.
+ */
+export const landscapeDataSchema = z
+  .strictObject({
+    ...dataBase,
+    kind: z.literal('landscape'),
+    x: axisSchema,
+    y: axisSchema,
+    /** How to open a point's details, e.g. "Hover, tap or focus a project". */
+    hint: z.string().min(1),
+    points: z
+      .array(
+        z.strictObject({
+          key,
+          label: z.string().min(1),
+          x: unit,
+          y: unit,
+          /** How people take part and what they get back. */
+          method: z.string().min(1),
+          /** How many took part, as the project reports it. */
+          reach: z.string().min(1),
+          /** The group size behind a participant point's `reach`. */
+          n: z.number().int().positive().optional(),
+          /** Where the method is described. */
+          href: z.url(),
+          /** Draws the label left of the point instead of right. */
+          side: z.enum(['left', 'right']).optional(),
+          /** Nudges the label up (negative) or down, in pixels. */
+          shift: z.number().min(-24).max(24).optional(),
+          /** The project the chart is about, drawn in coral. */
+          highlight: z.boolean().optional(),
+          provenance: provenance.optional()
+        })
+      )
+      .min(2)
+  })
+  .superRefine((chart, ctx) => {
+    checkKeys(chart.points, 'point', ctx)
+    checkProvenance(chart, chart.points, ctx)
+    const listed = provenanceList(chart.provenance)
+    for (const point of chart.points) {
+      const source =
+        point.provenance ?? (listed.length === 1 ? listed[0] : undefined)
+      // A participant count in prose still has to meet the minimum group.
+      if (
+        source === 'participants' &&
+        !(point.n && point.n >= minimumGroupSize)
+      )
+        ctx.addIssue({
+          code: 'custom',
+          message: `${point.label} needs a group size n of at least ${minimumGroupSize}`
+        })
+    }
+    if (chart.points.filter((point) => point.highlight).length > 1)
+      ctx.addIssue({ code: 'custom', message: 'Highlight one point at most' })
+  })
+
+export const scorecardLevels = ['yes', 'partly', 'no', 'na'] as const
+const level = z.enum(scorecardLevels)
+
+/**
+ * Approaches (rows) rated against criteria (columns): yes, partly, no or not
+ * needed, each with a one-line note that says why.
+ */
+export const scorecardDataSchema = z
+  .strictObject({
+    ...dataBase,
+    kind: z.literal('scorecard'),
+    hint: z.string().min(1),
+    /** Legend text for each level, e.g. "Does this", "Partly". */
+    levels: z
+      .array(z.strictObject({ key: level, label: z.string().min(1) }))
+      .length(scorecardLevels.length),
+    columns: z
+      .array(
+        z.strictObject({
+          key,
+          label: z.string().min(1),
+          /** What the criterion asks, shown with its cells. */
+          detail: z.string().min(1)
+        })
+      )
+      .min(2)
+      .max(10),
+    rows: z
+      .array(
+        z.strictObject({
+          key,
+          label: z.string().min(1),
+          /** Examples, e.g. "Pew, Gallup, AP-NORC". */
+          detail: z.string().optional(),
+          highlight: z.boolean().optional(),
+          cells: z.record(
+            z.string(),
+            z.strictObject({ level, note: z.string().min(1) })
+          )
+        })
+      )
+      .min(1)
+  })
+  .superRefine((chart, ctx) => {
+    checkKeys(chart.columns, 'column', ctx)
+    checkKeys(chart.rows, 'row', ctx)
+    const levels = new Set(chart.levels.map((entry) => entry.key))
+    if (levels.size !== scorecardLevels.length)
+      ctx.addIssue({ code: 'custom', message: 'Label every level once' })
+    const columns = chart.columns.map((column) => column.key)
+    for (const row of chart.rows) {
+      const cells = Object.keys(row.cells)
+      for (const column of columns)
+        if (!cells.includes(column))
+          ctx.addIssue({
+            code: 'custom',
+            message: `${row.label}: no cell for ${column}`
+          })
+      for (const cell of cells)
+        if (!columns.includes(cell))
+          ctx.addIssue({
+            code: 'custom',
+            message: `${row.label}: unknown column ${cell}`
+          })
+    }
+  })
+
+const trendPoint = z.strictObject({
+  /** The last day of fieldwork. */
+  date: day,
+  value: z.number(),
+  /** Shown with the value, e.g. "n = 3,488". */
+  note: z.string().optional()
+})
+
+/**
+ * Small multiples of measures over time on one shared date axis: each panel
+ * one question with its own scale, one or two series.
+ */
+export const trendDataSchema = z
+  .strictObject({
+    ...dataBase,
+    kind: z.literal('trend'),
+    /** The shared date axis. */
+    from: day,
+    to: day,
+    hint: z.string().min(1),
+    /** Dated markers drawn across every panel, e.g. a product launch. */
+    events: z
+      .array(z.strictObject({ date: day, label: z.string().min(1) }))
+      .default([]),
+    panels: z
+      .array(
+        z.strictObject({
+          key,
+          title: headline,
+          /** The question as asked, or who answered it. */
+          note: z.string().optional(),
+          scale: z.strictObject({
+            min: z.number(),
+            max: z.number(),
+            /** Percent values are shares from 0 to 1. */
+            unit: z.enum(['percent', 'year']),
+            ticks: z.array(z.number()).min(2)
+          }),
+          series: z
+            .array(
+              z.strictObject({
+                key,
+                label: z.string().min(1),
+                tone: tone.optional(),
+                /** A dashed line, for a second series in the same color. */
+                dashed: z.boolean().optional(),
+                points: z.array(trendPoint).min(2)
+              })
+            )
+            .min(1)
+            .max(2)
+        })
+      )
+      .min(1)
+  })
+  .superRefine((chart, ctx) => {
+    // Trend values carry no group size, so they cannot be participant numbers.
+    if (provenanceList(chart.provenance).includes('participants'))
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Trends carry no group size; chart participants another way'
+      })
+    if (chart.from >= chart.to)
+      ctx.addIssue({ code: 'custom', message: 'A trend runs from before to' })
+    checkKeys(chart.panels, 'panel', ctx)
+    for (const event of chart.events)
+      if (event.date < chart.from || event.date > chart.to)
+        ctx.addIssue({
+          code: 'custom',
+          message: `${event.label}: outside the date axis`
+        })
+    for (const panel of chart.panels) {
+      checkKeys(panel.series, panel.title, ctx)
+      const { min, max } = panel.scale
+      if (min >= max)
+        ctx.addIssue({ code: 'custom', message: `${panel.title}: min < max` })
+      for (const series of panel.series)
+        series.points.forEach((point, index) => {
+          const where = `${panel.title}, ${series.label}, ${point.date}`
+          if (point.date < chart.from || point.date > chart.to)
+            ctx.addIssue({
+              code: 'custom',
+              message: `${where}: outside the date axis`
+            })
+          if (point.value < min || point.value > max)
+            ctx.addIssue({
+              code: 'custom',
+              message: `${where}: outside the scale`
+            })
+          if (index && point.date <= series.points[index - 1]!.date)
+            ctx.addIssue({
+              code: 'custom',
+              message: `${where}: points run in date order`
+            })
+        })
+    }
+  })
+
+/** Who gave an estimate, which sets its color across a post. */
+const estimateTones = ['blue', 'coral', 'teal', 'ink'] as const
+
+/**
+ * Probability estimates side by side on one log scale, each with the question
+ * as worded: a median as a dot, a stated range as a bar, or both.
+ */
+export const estimatesDataSchema = z
+  .strictObject({
+    ...dataBase,
+    kind: z.literal('estimates'),
+    scale: z.strictObject({
+      /** The smallest value drawn; anything lower sits at the edge. */
+      min: z.number().positive(),
+      max: z.number().max(1),
+      ticks: z
+        .array(
+          z.strictObject({
+            value: z.number().positive(),
+            /** Defaults to the value as a percentage. */
+            label: z.string().optional()
+          })
+        )
+        .min(2)
+    }),
+    legend: z
+      .array(
+        z.strictObject({
+          tone: z.enum(estimateTones),
+          /** A dot, a hollow dot for inferred values, or a range bar. */
+          mark: z.enum(['dot', 'hollow', 'range']).default('dot'),
+          label: z.string().min(1)
+        })
+      )
+      .default([]),
+    rows: z
+      .array(
+        z.strictObject({
+          label: z.string().min(1),
+          group: z.string().optional(),
+          /** The number as published or said, e.g. "10%", "≈0%", "1 in 30 million". */
+          figure: z.string().min(1),
+          /** A median or single estimate, drawn as a dot. */
+          value: probability.optional(),
+          /** A stated range, drawn as a bar. */
+          low: probability.optional(),
+          high: probability.optional(),
+          /** The question as asked. */
+          wording: z.string().optional(),
+          /** Who answered, when and how many. */
+          detail: z.string().optional(),
+          tone: z.enum(estimateTones),
+          /** Read from answers rather than stated, drawn hollow. */
+          inferred: z.boolean().optional(),
+          /** People behind the value. Participant rows must give it. */
+          n: people.optional(),
+          provenance: provenance.optional(),
+          href: z.url().optional()
+        })
+      )
+      .min(1)
+  })
+  .superRefine((chart, ctx) => {
+    const { min, max } = chart.scale
+    if (min >= max)
+      ctx.addIssue({ code: 'custom', message: 'Scale needs min < max' })
+    checkProvenance(chart, chart.rows, ctx)
+    const listed = provenanceList(chart.provenance)
+    for (const row of chart.rows) {
+      const ranged = row.low !== undefined || row.high !== undefined
+      if (ranged && (row.low === undefined || row.high === undefined))
+        ctx.addIssue({
+          code: 'custom',
+          message: `${row.label}: a range needs low and high`
+        })
+      if (row.value === undefined && !ranged)
+        ctx.addIssue({
+          code: 'custom',
+          message: `${row.label}: needs a value or a range`
+        })
+      if (
+        row.low !== undefined &&
+        row.high !== undefined &&
+        (row.low > row.high ||
+          (row.value !== undefined &&
+            (row.value < row.low || row.value > row.high)))
+      )
+        ctx.addIssue({
+          code: 'custom',
+          message: `${row.label}: low <= value <= high`
+        })
+      const source = row.provenance ?? (listed.length === 1 ? listed[0] : null)
+      if (source === 'participants')
+        for (const message of groupProblems(
+          { shown: true, people: row.n },
+          row.label
+        ))
+          ctx.addIssue({ code: 'custom', message })
+    }
+  })
+
 export const blogDataSchema = z.discriminatedUnion('kind', [
   rangeDataSchema,
   mapDataSchema,
   barsDataSchema,
-  intervalsDataSchema
+  intervalsDataSchema,
+  landscapeDataSchema,
+  scorecardDataSchema,
+  trendDataSchema,
+  estimatesDataSchema
 ])
 export type BlogData = z.infer<typeof blogDataSchema>
 
