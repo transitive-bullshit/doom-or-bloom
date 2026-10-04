@@ -5,6 +5,12 @@ import { cn } from 'cn'
 import type { Assessment } from '@/lib/assessment/schema'
 import { autoStopFloor } from '@/lib/assessment/readiness'
 import { eligible, promptLimit } from '@/lib/assessment/state'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+
+// Both flag states share these overrides, so the pill keeps one size.
+const flagClass =
+  'inline-grid h-auto shrink-0 rounded-full border px-2 py-0.5 text-[11px] leading-none font-medium *:col-start-1 *:row-start-1 *:inline-flex *:items-center *:justify-center *:gap-1'
 
 /**
  * Interview progress: one segment per answer up to the automatic-results
@@ -12,9 +18,6 @@ import { eligible, promptLimit } from '@/lib/assessment/state'
  * so their number is unknown; each one fills half of what remains of the last
  * segment, which stays short of full while questions keep coming.
  */
-const flagClass =
-  'inline-grid shrink-0 rounded-full border px-2 py-0.5 text-[11px] leading-none font-medium *:col-start-1 *:row-start-1 *:inline-flex *:items-center *:justify-center *:gap-1'
-
 export function InterviewProgress({
   state,
   busy,
@@ -91,27 +94,32 @@ export function InterviewProgress({
           ))}
         </div>
         {ready ? (
-          <button
+          <Button
             type='button'
+            variant='ghost'
+            size='xs'
             disabled={busy}
             onClick={onViewResults}
             className={cn(
               flagClass,
-              'border-primary/40 text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:opacity-50'
+              'border-primary/40 text-foreground hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary'
             )}
           >
             <span>{flag(true)}</span>
             <span className='invisible' aria-hidden='true'>
               {flag(false)}
             </span>
-          </button>
+          </Button>
         ) : (
-          <span className={cn(flagClass, 'text-muted-foreground')}>
+          <Badge
+            variant='outline'
+            className={cn(flagClass, 'text-muted-foreground')}
+          >
             <span>{flag(false)}</span>
             <span className='invisible' aria-hidden='true'>
               {flag(true)}
             </span>
-          </span>
+          </Badge>
         )}
       </div>
       <p className='text-xs text-muted-foreground'>{label}</p>
