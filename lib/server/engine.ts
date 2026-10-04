@@ -40,6 +40,7 @@ import {
 } from '@/lib/assessment/state'
 import {
   candidatePrompts,
+  hasUninvestigatedIssue,
   mapGapQuestion,
   personalQuestion,
   rankCandidates,
@@ -742,29 +743,7 @@ export async function runAssessment(
           unresolved: state.unresolved.length
         }
       })
-      const uninvestigatedIssue = state.unresolved.some((issue) => {
-        const originatingAnswer = state.answers.findIndex((answer) =>
-          issue.id.startsWith(`${answer.id}:`)
-        )
-        const origin = state.answers[originatingAnswer]
-        if (
-          origin &&
-          state.prompts.some(
-            (prompt) =>
-              prompt.id === origin.promptInstanceId &&
-              prompt.variant === 'tension'
-          )
-        )
-          return false
-        return !state.answers.slice(originatingAnswer + 1).some((answer) => {
-          const issued = state.prompts.find(
-            (prompt) => prompt.id === answer.promptInstanceId
-          )
-          return bundle.prompts
-            .find((prompt) => prompt.id === issued?.promptId)
-            ?.targets.includes(issue.vector)
-        })
-      })
+      const uninvestigatedIssue = hasUninvestigatedIssue(state, bundle.prompts)
       if (
         !explore &&
         eligible(state) &&
@@ -776,9 +755,15 @@ export async function runAssessment(
       // Routing continues, so the personal question takes this ordinary
       // follow-up slot if it has not been asked. It is chosen after the stop
       // decision, so it is never itself a reason to withhold results.
-      const personal = bundle.prompts.find(
-        (prompt) => prompt.id === personalQuestion(state, bundle.prompts)
-      )
+      // At the last slot a pending follow-up or open issue keeps it, since
+      // nothing would come one question later.
+      const lastSlot = state.prompts.length + 1 >= promptLimit(state)
+      const personal =
+        lastSlot && (worthwhile.length || uninvestigatedIssue)
+          ? undefined
+          : bundle.prompts.find(
+              (prompt) => prompt.id === personalQuestion(state, bundle.prompts)
+            )
       if (personal)
         trace.decisions.push({
           action: 'personal question',

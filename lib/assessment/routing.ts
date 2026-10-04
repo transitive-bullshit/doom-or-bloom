@@ -177,6 +177,40 @@ export function personalQuestion(state: Assessment, prompts: Prompt[]) {
     : null
 }
 
+/**
+ * Whether an unresolved issue still awaits a later answer to a question that
+ * targets its dimension. Issues raised by a tension prompt count as handled.
+ * The personal question never counts as investigating an issue: it targets
+ * broad dimensions, and an answer about one's own life or work rarely settles
+ * a specific ambiguity.
+ */
+export function hasUninvestigatedIssue(state: Assessment, prompts: Prompt[]) {
+  return state.unresolved.some((issue) => {
+    const originatingAnswer = state.answers.findIndex((answer) =>
+      issue.id.startsWith(`${answer.id}:`)
+    )
+    const origin = state.answers[originatingAnswer]
+    if (
+      origin &&
+      state.prompts.some(
+        (prompt) =>
+          prompt.id === origin.promptInstanceId && prompt.variant === 'tension'
+      )
+    )
+      return false
+    return !state.answers.slice(originatingAnswer + 1).some((answer) => {
+      const issued = state.prompts.find(
+        (prompt) => prompt.id === answer.promptInstanceId
+      )
+      const prompt = prompts.find((entry) => entry.id === issued?.promptId)
+      return (
+        prompt?.trigger !== 'first_follow_up' &&
+        Boolean(prompt?.targets.includes(issue.vector))
+      )
+    })
+  })
+}
+
 export function rankCandidates(
   state: Assessment,
   prompts: Prompt[],

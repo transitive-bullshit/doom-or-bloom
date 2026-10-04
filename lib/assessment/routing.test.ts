@@ -2,6 +2,7 @@ import { expect, test } from 'vitest'
 import { createAssessment } from './state'
 import {
   candidatePrompts,
+  hasUninvestigatedIssue,
   mapGapQuestion,
   personalPrompt,
   personalQuestion,
@@ -454,4 +455,50 @@ test('the personal question is offered once, only where the catalog has it, and 
     promptId: personalPrompt
   })
   expect(personalQuestion(state, prompts)).toBeNull()
+})
+
+test('the personal question never counts as investigating an open issue', () => {
+  const prompts = loadBundle().prompts
+  const state = createAssessment('personal-issue')
+  const base = {
+    promptText: state.prompts[0]!.text,
+    substantive: true,
+    hasConviction: false,
+    hasHorizon: false
+  }
+  state.answers.push({
+    ...base,
+    id: 'opening',
+    promptInstanceId: state.prompts[0]!.id,
+    text: 'AI could go either way.'
+  })
+  state.unresolved.push({
+    id: 'opening:risk_landscape',
+    vector: 'risk_landscape',
+    evidenceIds: [],
+    kind: 'ambiguity'
+  })
+  expect(hasUninvestigatedIssue(state, prompts)).toBe(true)
+  const issue = (promptId: string, id: string) => {
+    const prompt = prompts.find((entry) => entry.id === promptId)!
+    state.prompts.push({
+      ...state.prompts[0]!,
+      id,
+      promptId,
+      text: prompt.text,
+      family: prompt.family,
+      ordinal: state.prompts.length + 1
+    })
+    state.answers.push({
+      ...base,
+      id: `${id}-answer`,
+      promptInstanceId: id,
+      promptText: prompt.text,
+      text: 'An answer.'
+    })
+  }
+  issue(personalPrompt, 'personal')
+  expect(hasUninvestigatedIssue(state, prompts)).toBe(true)
+  issue('risk.general', 'risk')
+  expect(hasUninvestigatedIssue(state, prompts)).toBe(false)
 })

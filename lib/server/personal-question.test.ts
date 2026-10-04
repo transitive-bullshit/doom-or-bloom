@@ -241,3 +241,22 @@ test('a skipped personal question is not asked again', async () => {
   expect(asked(state).at(-1)).not.toBe(personalPrompt)
   expect(timesAsked(state)).toBe(1)
 })
+
+test('at the last slot a pending worthwhile follow-up keeps it', async () => {
+  const { provider, control } = judgments({ balance: false })
+  // A ceiling of four leaves one slot after the core map questions.
+  let state = createAssessment('last-slot')
+  state.promptCeiling = autoStopFloor
+  state = await answerAll(state, replies.slice(0, 2), provider)
+  control.pending = true
+  for (const text of replies.slice(2))
+    if (state.status === 'answering')
+      state = await run(state, { type: 'answer', text }, provider)
+  expect(asked(state)).toEqual([
+    'root',
+    'transformation.ultimate',
+    'risk.chance',
+    control.id
+  ])
+  expect(timesAsked(state)).toBe(0)
+})
