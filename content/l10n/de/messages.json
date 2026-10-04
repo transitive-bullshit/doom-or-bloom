@@ -4713,7 +4713,7 @@
       "reviewStatus": "machine"
     },
     "About.methodology.evidence.stability": {
-      "sourceHash": "25b0e09eb019547a",
+      "sourceHash": "76183c81f6ac9667",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
@@ -4749,7 +4749,7 @@
       "reviewStatus": "machine"
     },
     "About.methodology.evidence.pdoom": {
-      "sourceHash": "aad814e60ab7d292",
+      "sourceHash": "55b7a397ae00ba62",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
