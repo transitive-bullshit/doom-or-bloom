@@ -540,7 +540,14 @@
     "updatedDraftTitle": "Hay un borrador actualizado",
     "updatedDraftDescription": "Tu evaluación guardada conservará su versión anterior. Empieza una evaluación nueva para probar el borrador actualizado.",
     "questionOf": "Pregunta {ordinal} de {limit}",
-    "questionProgress": "Pregunta {ordinal} · la mayoría ve sus resultados después de 4 a 8",
+    "progress": {
+      "label": "Progreso de la entrevista",
+      "start": "Pregunta 1 de {total} · unos 3 minutos",
+      "question": "Pregunta {step} de {total}",
+      "followUp": "Pregunta de seguimiento · afina tu resultado",
+      "results": "Resultados",
+      "resultsReady": "Resultados listos"
+    },
     "unavailableTitle": "Esta pregunta ya no está disponible",
     "unavailableDescription": "Tu historial y tu borrador se conservan. Elige otra pregunta abajo para continuar.",
     "limitTitle": "Te acercas al límite",
@@ -563,10 +570,8 @@
     "differentQuestion": "Probar otra pregunta",
     "reflecting": "Reflexionando sobre tu respuesta",
     "continue": "Continuar",
-    "duration": "4 preguntas breves; normalmente lleva unos 3 minutos.",
     "privacy": "Tus respuestas son privadas a menos que decidas publicarlas al final.",
     "busy": "Leyendo la evidencia y eligiendo un siguiente paso útil…",
-    "keepExploring": "Ya puedes ver tu resultado o seguir explorando.",
     "notices": {
       "draftUnsaved": "Lo que escribes sin enviar no se puede guardar en este navegador. El progreso enviado se guarda en el servidor.",
       "loadFailed": "No se pudo cargar tu evaluación. Actualiza la página.",

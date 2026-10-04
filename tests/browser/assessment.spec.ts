@@ -496,9 +496,13 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
     if (/typesafe\.ai|posthog/.test(request.url())) requests.push(request.url())
   })
   await startAssessment(page)
-  await expect(
-    page.getByRole('region', { name: 'What your result needs' })
-  ).toHaveCount(0)
+  const progress = page.getByRole('progressbar', {
+    name: 'Interview progress'
+  })
+  await expect(progress).toHaveAttribute(
+    'aria-valuetext',
+    'Question 1 of 4 · about 3 minutes'
+  )
   await expect(
     page.getByRole('button', { name: 'View my results' })
   ).toHaveCount(0)
@@ -509,11 +513,12 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
       30
     )
   )
-  const needs = page.getByRole('region', { name: 'What your result needs' })
-  await expect(
-    needs.getByText('Your results are available', { exact: true })
-  ).toBeVisible()
-  await expect(needs.getByRole('listitem')).toHaveCount(3)
+  // Results are one click away, but the bar still counts toward four answers.
+  await expect(progress).toHaveAttribute('aria-valuetext', 'Question 2 of 4')
+  await expect(progress).toHaveAttribute('aria-valuenow', '25')
+  await expect(page.getByRole('button', { name: 'Results ready' })).toHaveCount(
+    0
+  )
   await expect(
     page.getByRole('button', { name: 'View my results' })
   ).toBeEnabled()
@@ -521,7 +526,7 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
   const state = await savedAssessment(page)
   expect(state.answers).toHaveLength(1)
   expect(state.prompts).toHaveLength(2)
-  await page.getByRole('button', { name: 'view your results now' }).click()
+  await page.getByRole('button', { name: 'View my results' }).click()
   await skipSelfPlacement(page)
   await expect(
     page.locator('[data-slot="worldview-map"]').first()
@@ -530,4 +535,26 @@ test('a well-covered first answer offers results while ordinary follow-ups remai
     page.locator('[data-slot="worldview-map"]').first()
   ).toContainText('interpretation coordinates, not event probabilities')
   expect(requests).toEqual([])
+})
+test('progress counts four answers, then follow-ups fill the last segment without finishing it', async ({
+  page
+}) => {
+  await startAssessment(page)
+  const progress = page.getByRole('progressbar', {
+    name: 'Interview progress'
+  })
+  for (let i = 0; i < 4; i++) {
+    await expect(progress).toHaveAttribute('aria-valuenow', String(i * 25))
+    await submit(page, `Relevant synthetic answer ${i}.`)
+  }
+  // Fixture routing keeps asking after four answers.
+  await expect(progress).toHaveAttribute(
+    'aria-valuetext',
+    'Follow-up question · sharpens your result'
+  )
+  await expect(progress).toHaveAttribute('aria-valuenow', '88')
+  await submit(page, 'Relevant synthetic answer 4.')
+  await expect(progress).toHaveAttribute('aria-valuenow', '94')
+  await page.getByRole('button', { name: 'Results ready' }).click()
+  await skipSelfPlacement(page)
 })

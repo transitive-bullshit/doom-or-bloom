@@ -540,7 +540,14 @@
     "updatedDraftTitle": "Aktualisierter Entwurf verfügbar",
     "updatedDraftDescription": "Deine gespeicherte Einschätzung behält ihre frühere Version. Starte eine neue Einschätzung, um den aktualisierten Entwurf auszuprobieren.",
     "questionOf": "Frage {ordinal} von {limit}",
-    "questionProgress": "Frage {ordinal} · die meisten sehen ihre Ergebnisse nach 4–8 Fragen",
+    "progress": {
+      "label": "Interviewfortschritt",
+      "start": "Frage 1 von {total} · etwa 3 Minuten",
+      "question": "Frage {step} von {total}",
+      "followUp": "Anschlussfrage · präzisiert dein Ergebnis",
+      "results": "Ergebnisse",
+      "resultsReady": "Ergebnisse verfügbar"
+    },
     "unavailableTitle": "Diese Frage ist nicht mehr verfügbar",
     "unavailableDescription": "Dein Verlauf und dein Entwurf bleiben erhalten. Wähle unten eine andere Frage aus, um fortzufahren.",
     "limitTitle": "Du näherst dich dem Limit",
@@ -563,10 +570,8 @@
     "differentQuestion": "Eine andere Frage versuchen",
     "reflecting": "Deine Antwort wird ausgewertet",
     "continue": "Weiter",
-    "duration": "4 kurze Fragen; die Beantwortung dauert normalerweise etwa 3 Minuten.",
     "privacy": "Deine Antworten bleiben privat, es sei denn, du entscheidest dich am Ende dafür, sie zu veröffentlichen.",
     "busy": "Die Belege werden gelesen und ein hilfreicher nächster Schritt wird ausgewählt …",
-    "keepExploring": "Du kannst dein Ergebnis jetzt ansehen oder noch weitere Fragen beantworten.",
     "notices": {
       "draftUnsaved": "Noch nicht abgesendete Eingaben können in diesem Browser nicht gespeichert werden. Abgesendete Fortschritte werden auf dem Server gespeichert.",
       "loadFailed": "Deine Einschätzung konnte nicht geladen werden. Bitte aktualisiere die Seite.",

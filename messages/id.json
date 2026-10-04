@@ -540,7 +540,14 @@
     "updatedDraftTitle": "Draf terbaru tersedia",
     "updatedDraftDescription": "Penilaian yang Anda simpan akan tetap menggunakan versi sebelumnya. Mulai penilaian baru untuk mencoba draf terbaru.",
     "questionOf": "Pertanyaan {ordinal} dari {limit}",
-    "questionProgress": "Pertanyaan {ordinal} · kebanyakan orang melihat hasil setelah 4–8",
+    "progress": {
+      "label": "Progres wawancara",
+      "start": "Pertanyaan 1 dari {total} · sekitar 3 menit",
+      "question": "Pertanyaan {step} dari {total}",
+      "followUp": "Pertanyaan lanjutan · mempertajam hasil Anda",
+      "results": "Hasil",
+      "resultsReady": "Hasil siap"
+    },
     "unavailableTitle": "Pertanyaan ini tidak lagi tersedia",
     "unavailableDescription": "Riwayat dan draf Anda tetap tersimpan. Pilih pertanyaan lain di bawah untuk melanjutkan.",
     "limitTitle": "Mendekati batas",
@@ -563,10 +570,8 @@
     "differentQuestion": "Coba pertanyaan lain",
     "reflecting": "Merenungkan jawaban Anda",
     "continue": "Lanjutkan",
-    "duration": "4 pertanyaan singkat; biasanya perlu waktu sekitar 3 menit untuk menyelesaikannya.",
     "privacy": "Jawaban Anda tetap bersifat privat kecuali Anda memilih untuk memublikasikannya di akhir.",
     "busy": "Membaca bukti dan memilih langkah selanjutnya yang berguna…",
-    "keepExploring": "Anda dapat melihat hasil Anda sekarang, atau terus menjelajah.",
     "notices": {
       "draftUnsaved": "Teks yang diketik tetapi belum dikirim tidak dapat disimpan di peramban ini. Progres yang telah dikirim disimpan di server.",
       "loadFailed": "Tidak dapat memuat penilaian Anda. Silakan muat ulang halaman.",

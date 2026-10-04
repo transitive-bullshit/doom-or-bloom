@@ -1,342 +1,100 @@
 'use client'
-// Prototype progress indicators for the interview, selected with
-// `?progress=bar|steps|range|dock` (remembered for the tab; `current` resets).
-// Exploration only: the copy is English and the default leaves the shipped
-// interview unchanged.
-import { useEffect, useState } from 'react'
-import { CheckIcon, FlagIcon } from 'lucide-react'
+import { ChevronRightIcon, FlagIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { cn } from 'cn'
 import type { Assessment } from '@/lib/assessment/schema'
 import { autoStopFloor } from '@/lib/assessment/readiness'
 import { eligible, promptLimit } from '@/lib/assessment/state'
-import { Button } from '@/components/ui/button'
-import { cn } from 'cn'
 
-const progressVariants = ['current', 'bar', 'steps', 'range', 'dock'] as const
-type ProgressVariant = (typeof progressVariants)[number]
-
-export function useProgressVariant(): ProgressVariant {
-  const [variant, setVariant] = useState<ProgressVariant>('current')
-  useEffect(() => {
-    // The choice sticks for this tab, so new interviews keep the prototype.
-    const key = 'doom-or-bloom:progress-prototype'
-    let value = new URLSearchParams(window.location.search).get('progress')
-    try {
-      if (value) sessionStorage.setItem(key, value)
-      else value = sessionStorage.getItem(key)
-    } catch {
-      /* The query parameter alone still works. */
-    }
-    const match = progressVariants.find((item) => item === value)
-    if (match) queueMicrotask(() => setVariant(match))
-  }, [])
-  return variant
-}
-
-// Most participants see results after 4–6 answers (production, Sept 28–Oct 4).
-const usualResults = { from: autoStopFloor, to: 6 }
-
-function progress(state: Assessment, busy: boolean) {
-  const answered = state.answers.length
-  // While an answer is being read, count it so the indicator moves on submit.
-  const counted = answered + (busy ? 1 : 0)
-  const core = autoStopFloor
-  return {
-    answered,
-    counted,
-    core,
-    step: answered + 1,
-    followUp: answered >= core,
-    followUpNumber: answered - core + 1,
-    remaining: Math.max(0, core - answered),
-    ready: eligible(state),
-    limit: promptLimit(state),
-    ordinal: state.prompts.length
-  }
-}
-
-type Props = {
-  variant: Exclude<ProgressVariant, 'current'>
+/**
+ * Interview progress: one segment per answer up to the automatic-results
+ * floor, ending in a Results flag. The engine decides follow-ups one at a time,
+ * so their number is unknown; each one fills half of what remains of the last
+ * segment, which stays short of full while questions keep coming.
+ */
+export function InterviewProgress({
+  state,
+  busy,
+  onViewResults
+}: {
   state: Assessment
   busy: boolean
   onViewResults: () => void
-}
-
-/** The line above the question heading. */
-export function InterviewProgressInline(props: Props) {
-  const { variant } = props
-  if (variant === 'steps') return <Steps {...props} />
-  if (variant === 'range') return <Range {...props} />
-  return <Label {...props} />
-}
-
-/** Viewport-fixed parts: the top hairline (`bar`) or bottom dock (`dock`). */
-export function InterviewProgressFixed(props: Props) {
-  if (props.variant === 'bar') return <TopBar {...props} />
-  if (props.variant === 'dock') return <Dock {...props} />
-  return null
-}
-
-function ResultsLink({
-  onViewResults,
-  busy,
-  children
-}: {
-  onViewResults: () => void
-  busy: boolean
-  children: React.ReactNode
 }) {
-  return (
-    <Button
-      type='button'
-      variant='link'
-      className='h-auto p-0 text-xs font-medium underline'
-      disabled={busy}
-      onClick={onViewResults}
-    >
-      {children}
-    </Button>
+  const t = useTranslations('Interview')
+  const answered = state.answers.length
+  const core = autoStopFloor
+  const followUp = answered >= core
+  const ready = followUp && eligible(state)
+  const ordinal = state.prompts.length
+  const limit = promptLimit(state)
+  const fills = Array.from({ length: core }, (_, i) =>
+    i < core - 1
+      ? Number(i < answered)
+      : followUp
+        ? 1 - 0.5 ** (answered - core + 1)
+        : 0
   )
-}
-
-function Label({ variant, state, busy, onViewResults }: Props) {
-  const p = progress(state, false)
-  // The dock carries its own results button.
-  const link = variant !== 'dock'
-  return (
-    <p data-progress-ui className='mb-5 text-xs text-muted-foreground'>
-      {p.followUp ? (
-        <>
-          Follow-up question
-          {p.ready && link && (
-            <>
-              {' · '}Your results are ready{' · '}
-              <ResultsLink onViewResults={onViewResults} busy={busy}>
-                See them now
-              </ResultsLink>
-            </>
-          )}
-        </>
-      ) : (
-        <>
-          Question {p.step} of {p.core}
-          {p.answered === 0 && ' · about 3 minutes'}
-        </>
-      )}
-    </p>
+  // The segment the current question will fill.
+  const active = Math.min(answered, core - 1)
+  const label =
+    ordinal >= limit - 2
+      ? t('questionOf', { ordinal, limit })
+      : followUp
+        ? t('progress.followUp')
+        : answered === 0
+          ? t('progress.start', { total: core })
+          : t('progress.question', { step: answered + 1, total: core })
+  const percent = Math.round(
+    (fills.reduce((sum, fill) => sum + fill, 0) / core) * 100
   )
-}
-
-function TopBar({ state, busy }: Props) {
-  const p = progress(state, busy)
-  const value = Math.min(p.counted, p.core) / p.core
   return (
-    <div
-      role='progressbar'
-      aria-label='Interview progress'
-      aria-valuemin={0}
-      aria-valuemax={p.core}
-      aria-valuenow={Math.min(p.answered, p.core)}
-      data-progress-ui
-      className='fixed inset-x-0 top-0 z-50 h-1 bg-border/70'
-    >
-      <div
-        className='h-full bg-primary transition-[width] duration-500 ease-(--ease-out) motion-reduce:transition-none'
-        style={{ width: `${Math.max(value * 100, 1.5)}%` }}
-      />
-    </div>
-  )
-}
-
-function Steps({ state, busy, onViewResults }: Props) {
-  const p = progress(state, busy)
-  const followUps = Math.max(0, p.answered - p.core + 1)
-  return (
-    <div data-progress-ui className='mb-5 flex flex-col gap-2'>
-      <div
-        className='flex items-center gap-1.5'
-        role='progressbar'
-        aria-label='Interview progress'
-        aria-valuemin={0}
-        aria-valuemax={p.core}
-        aria-valuenow={Math.min(p.answered, p.core)}
-      >
-        {Array.from({ length: p.core }, (_, i) => (
-          <span
-            key={i}
-            className={cn(
-              'h-1.5 flex-1 rounded-full bg-border transition-colors duration-300',
-              i < p.answered && 'bg-primary',
-              i === p.answered && busy && 'animate-pulse bg-primary/50',
-              i === p.answered && !busy && 'bg-primary/25'
-            )}
-          />
-        ))}
-        <span
-          className={cn(
-            'ml-1 inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium leading-none',
-            p.followUp && p.ready
-              ? 'border-primary bg-primary text-primary-foreground'
-              : 'text-muted-foreground'
-          )}
+    <div className='mb-5 flex flex-col gap-2'>
+      <div className='flex items-center gap-2'>
+        <div
+          role='progressbar'
+          aria-label={t('progress.label')}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={percent}
+          aria-valuetext={label}
+          className='flex flex-1 gap-1.5'
         >
-          {p.followUp && p.ready ? (
-            <CheckIcon className='size-3' aria-hidden='true' />
-          ) : (
-            <FlagIcon className='size-3' aria-hidden='true' />
-          )}
-          Results
-        </span>
-        {followUps > 0 &&
-          Array.from({ length: followUps }, (_, i) => (
+          {fills.map((fill, i) => (
             <span
-              key={`f${i}`}
+              key={i}
               className={cn(
-                'size-1.5 shrink-0 rounded-full',
-                i < followUps - 1 ? 'bg-primary' : 'bg-primary/25'
+                'h-1.5 flex-1 overflow-hidden rounded-full bg-border',
+                i === active && 'bg-primary/20',
+                i === active && busy && 'animate-pulse bg-primary/40'
               )}
-            />
-          ))}
-      </div>
-      <p className='text-xs text-muted-foreground'>
-        {p.followUp ? (
-          <>
-            Follow-up {p.followUpNumber}
-            {p.ready && (
-              <>
-                {' · '}Optional, your results are ready{' · '}
-                <ResultsLink onViewResults={onViewResults} busy={busy}>
-                  See them now
-                </ResultsLink>
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            Question {p.step} of {p.core}
-            {p.answered === 0 && ' · about 3 minutes'}
-          </>
-        )}
-      </p>
-    </div>
-  )
-}
-
-function Range({ state, busy, onViewResults }: Props) {
-  const p = progress(state, false)
-  const ticks = Array.from({ length: p.limit }, (_, i) => i + 1)
-  const inZone = (n: number) => n >= usualResults.from && n <= usualResults.to
-  return (
-    <div data-progress-ui className='mb-5 flex flex-col gap-2'>
-      <div
-        className='relative flex items-center justify-between gap-1 py-2'
-        role='progressbar'
-        aria-label='Interview progress'
-        aria-valuemin={1}
-        aria-valuemax={p.limit}
-        aria-valuenow={p.ordinal}
-        aria-valuetext={`Question ${p.ordinal} of up to ${p.limit}`}
-      >
-        <span
-          aria-hidden='true'
-          className='absolute inset-y-0 rounded-md bg-primary/8'
-          style={{
-            left: `calc(${((usualResults.from - 1) / (p.limit - 1)) * 100}% - 0.5rem)`,
-            width: `calc(${((usualResults.to - usualResults.from) / (p.limit - 1)) * 100}% + 1rem)`
-          }}
-        />
-        {ticks.map((n) => (
-          <span
-            key={n}
-            className={cn(
-              'relative z-10 rounded-full transition-colors',
-              n === p.ordinal
-                ? 'size-3 bg-primary ring-4 ring-primary/15'
-                : n < p.ordinal
-                  ? 'size-1.5 bg-primary'
-                  : inZone(n)
-                    ? 'size-1.5 bg-primary/35'
-                    : 'size-1.5 bg-border'
-            )}
-          />
-        ))}
-      </div>
-      <p className='text-xs text-muted-foreground'>
-        {p.followUp && p.ready ? (
-          <>
-            Question {p.ordinal} · Your results are ready{' · '}
-            <ResultsLink onViewResults={onViewResults} busy={busy}>
-              See them now
-            </ResultsLink>
-          </>
-        ) : (
-          <>
-            Question {p.ordinal} · most people see results after{' '}
-            {usualResults.from}–{usualResults.to}
-          </>
-        )}
-      </p>
-    </div>
-  )
-}
-
-function Dock({ state, busy, onViewResults }: Props) {
-  const p = progress(state, busy)
-  return (
-    <div
-      data-progress-ui
-      className='fixed inset-x-0 bottom-0 z-40 border-t bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75'
-    >
-      <div className='content-column flex min-h-14 items-center justify-between gap-4 py-2'>
-        <div className='flex min-w-0 items-center gap-3'>
-          <div
-            className='flex w-20 shrink-0 gap-1'
-            role='progressbar'
-            aria-label='Interview progress'
-            aria-valuemin={0}
-            aria-valuemax={p.core}
-            aria-valuenow={Math.min(p.answered, p.core)}
-          >
-            {Array.from({ length: p.core }, (_, i) => (
+            >
               <span
-                key={i}
-                className={cn(
-                  'h-1.5 flex-1 rounded-full bg-border',
-                  i < p.counted && 'bg-primary',
-                  i === p.answered && busy && 'animate-pulse'
-                )}
+                className='block h-full rounded-full bg-primary transition-[width] duration-500 ease-(--ease-out) motion-reduce:transition-none'
+                style={{ width: `${fill * 100}%` }}
               />
-            ))}
-          </div>
-          <p className='truncate text-xs text-muted-foreground'>
-            {p.followUp ? (
-              p.ready ? (
-                <>
-                  Results ready
-                  <span className='hidden sm:inline'>
-                    {' · '}follow-ups are optional
-                  </span>
-                </>
-              ) : (
-                `Follow-up ${p.followUpNumber}`
-              )
-            ) : p.remaining === 1 ? (
-              'Last question before your results'
-            ) : (
-              `${p.remaining} questions to your results`
-            )}
-          </p>
+            </span>
+          ))}
         </div>
-        {p.followUp && p.ready && (
-          <Button
+        {ready ? (
+          <button
             type='button'
-            size='sm'
             disabled={busy}
             onClick={onViewResults}
+            className='inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/40 px-2 py-0.5 text-[11px] leading-none font-medium text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:opacity-50'
           >
-            See my results
-          </Button>
+            <FlagIcon className='size-3' aria-hidden='true' />
+            {t('progress.resultsReady')}
+            <ChevronRightIcon className='-mr-0.5 size-3' aria-hidden='true' />
+          </button>
+        ) : (
+          <span className='inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] leading-none font-medium text-muted-foreground'>
+            <FlagIcon className='size-3' aria-hidden='true' />
+            {t('progress.results')}
+          </span>
         )}
       </div>
+      <p className='text-xs text-muted-foreground'>{label}</p>
     </div>
   )
 }

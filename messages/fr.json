@@ -540,7 +540,14 @@
     "updatedDraftTitle": "Une version mise à jour du brouillon est disponible",
     "updatedDraftDescription": "Votre évaluation enregistrée conservera sa version antérieure. Commencez une nouvelle évaluation pour essayer le brouillon mis à jour.",
     "questionOf": "Question {ordinal} sur {limit}",
-    "questionProgress": "Question {ordinal} · la plupart des personnes voient leurs résultats après 4–8 questions",
+    "progress": {
+      "label": "Progression de l’entretien",
+      "start": "Question 1 sur {total} · environ 3 minutes",
+      "question": "Question {step} sur {total}",
+      "followUp": "Question de suivi · affine votre résultat",
+      "results": "Résultats",
+      "resultsReady": "Résultats prêts"
+    },
     "unavailableTitle": "Cette question n’est plus disponible",
     "unavailableDescription": "Votre historique et votre brouillon sont conservés. Choisissez une autre question ci-dessous pour continuer.",
     "limitTitle": "Vous approchez de la limite",
@@ -563,10 +570,8 @@
     "differentQuestion": "Essayer une autre question",
     "reflecting": "Réflexion sur votre réponse",
     "continue": "Continuer",
-    "duration": "4 questions courtes ; il faut généralement environ 3 minutes pour terminer.",
     "privacy": "Vos réponses restent privées, sauf si vous choisissez de les publier à la fin.",
     "busy": "Lecture des éléments disponibles et choix d’une prochaine étape utile…",
-    "keepExploring": "Vous pouvez voir votre résultat maintenant ou poursuivre l’exploration.",
     "notices": {
       "draftUnsaved": "Le texte non envoyé ne peut pas être enregistré dans ce navigateur. La progression envoyée est enregistrée sur le serveur.",
       "loadFailed": "Impossible de charger votre évaluation. Veuillez actualiser la page.",

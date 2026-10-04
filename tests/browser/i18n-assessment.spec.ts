@@ -53,9 +53,7 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
   const id = new URL(page.url()).pathname.split('/').at(-1)!
   await expect(page.locator('html')).toHaveAttribute('lang', 'es')
   await expect(
-    page.getByText('4 preguntas breves; normalmente lleva unos 3 minutos.', {
-      exact: true
-    })
+    page.getByText('Pregunta 1 de 4 · unos 3 minutos', { exact: true })
   ).toBeVisible()
   // The authored root question comes from the committed translation.
   await expect(page.getByRole('heading', { level: 2 }).first()).toHaveText(
@@ -67,10 +65,9 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
     .getByRole('textbox', { name: 'Tu respuesta' })
     .fill('I expect useful tools and serious risks, depending on oversight.')
   await page.getByRole('button', { name: /^Continuar/u }).click()
-  await expect(page.getByText(/^Pregunta 2 · /u)).toBeVisible()
   await expect(
-    page.getByRole('region', { name: 'Lo que necesita tu resultado' })
-  ).toContainText('Tu perspectiva, de doom a bloom')
+    page.getByRole('progressbar', { name: 'Progreso de la entrevista' })
+  ).toHaveAttribute('aria-valuetext', 'Pregunta 2 de 4')
   await page.getByRole('button', { name: 'Ver mis resultados' }).click()
   await expect(
     page.getByRole('heading', { name: 'Tus resultados están listos' })

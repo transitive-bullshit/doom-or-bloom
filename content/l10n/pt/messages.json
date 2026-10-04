@@ -2618,10 +2618,40 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
-    "Interview.questionProgress": {
-      "sourceHash": "f12f175bde88f625",
+    "Interview.progress.label": {
+      "sourceHash": "62bec7a4df059aea",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "Interview.progress.start": {
+      "sourceHash": "c350fed9ae92b85a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "Interview.progress.question": {
+      "sourceHash": "506de8b2d3e0bdb6",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "Interview.progress.followUp": {
+      "sourceHash": "0818034456d82642",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "Interview.progress.results": {
+      "sourceHash": "219c4a6c86a716e9",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "Interview.progress.resultsReady": {
+      "sourceHash": "8602e1b7aaaf8d4b",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
     },
     "Interview.unavailableTitle": {
@@ -2744,12 +2774,6 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
-    "Interview.duration": {
-      "sourceHash": "8226f551d0444fa2",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
     "Interview.privacy": {
       "sourceHash": "efe0a163924f892a",
       "model": "gpt-5.6-sol",
@@ -2758,12 +2782,6 @@
     },
     "Interview.busy": {
       "sourceHash": "87966a5ea58c6cc1",
-      "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
-      "reviewStatus": "machine"
-    },
-    "Interview.keepExploring": {
-      "sourceHash": "49980500258920c6",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"

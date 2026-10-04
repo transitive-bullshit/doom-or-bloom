@@ -540,7 +540,14 @@
     "updatedDraftTitle": "更新されたドラフトが利用可能です",
     "updatedDraftDescription": "保存済みの評価には以前のバージョンが保持されます。更新されたドラフトを試すには、新しい評価を開始してください。",
     "questionOf": "{limit}問中{ordinal}問目",
-    "questionProgress": "{ordinal}問目 · ほとんどの人は4–8問後に結果を確認できます",
+    "progress": {
+      "label": "インタビューの進捗",
+      "start": "質問1／{total}・約3分",
+      "question": "質問{step}／{total}",
+      "followUp": "追加質問・結果の精度を高めます",
+      "results": "結果",
+      "resultsReady": "結果が出ました"
+    },
     "unavailableTitle": "この質問は利用できなくなりました",
     "unavailableDescription": "履歴とドラフトは保持されています。続行するには、以下から別の質問を選んでください。",
     "limitTitle": "上限に近づいています",
@@ -563,10 +570,8 @@
     "differentQuestion": "別の質問を試す",
     "reflecting": "回答について考察しています",
     "continue": "続ける",
-    "duration": "短い質問が4問あり、通常は完了まで約3分かかります。",
     "privacy": "最後に公開することを選ばない限り、回答は非公開のままです。",
     "busy": "根拠を読み、役立つ次のステップを選んでいます…",
-    "keepExploring": "今すぐ結果を見ることも、引き続き掘り下げることもできます。",
     "notices": {
       "draftUnsaved": "未送信の入力内容は、このブラウザでは保存できません。送信済みの進捗はサーバーに保存されています。",
       "loadFailed": "評価を読み込めませんでした。ページを再読み込みしてください。",
