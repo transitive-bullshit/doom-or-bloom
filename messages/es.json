@@ -44,6 +44,7 @@
     "about": "Acerca de",
     "privacy": "Privacidad",
     "pdoom": "P(doom)",
+    "methodology": "Metodología",
     "blog": "Blog",
     "language": "Idioma"
   },
@@ -885,12 +886,106 @@
     "whyTitle": "¿Por qué construir esto?",
     "why1": "Las posibles ventajas y los riesgos de la IA merecen una conversación cuidadosa y fundamentada. A medida que avanzan las capacidades y las decisiones tienen más consecuencias, necesitamos formas accesibles de pensar con claridad entre visiones muy distintas.",
     "why2": "Construí esto para explorar las voces del campo y ayudar a las personas a desenredar intuiciones contradictorias. Ya me ha ayudado a afinar mis propias ideas. El objetivo es representar las tuyas con fidelidad, con la menor intervención editorial posible.",
-    "interviewTitle": "Un nuevo tipo de entrevista dinámica",
-    "interview1": "Todas las entrevistas empiezan con: “¿Qué crees que significa la IA para nuestro futuro, y por qué?”. Luego, el motor busca vacíos o incertidumbre en tus respuestas y elige, de un conjunto de preguntas seleccionadas, la que tiene más probabilidades de aclarar tu visión con la menor repetición y el menor esfuerzo.",
-    "interview2": "Los resultados están disponibles cuando nuestro motor reúne suficiente evidencia para ubicarte con confianza. Esto puede ocurrir incluso después de una sola respuesta detallada, aunque la mayoría de las entrevistas duran entre 3 y 5 preguntas. También puedes rastrear las interpretaciones hasta tus respuestas y aclarar cualquier cosa que te parezca incorrecta.",
-    "jevTitle": "Con la tecnología de Jev, de TypeSafe",
-    "jev1": "<jev>Jev</jev> ayuda a interpretar tus respuestas mediante juicios pequeños y concretos: qué esperas, qué sigue siendo incierto y qué pregunta de seguimiento ayudaría. Nuestro software combina esos juicios en tu perfil y elige entre preguntas redactadas de antemano. Jev no escribe un veredicto libre sobre ti.",
-    "jev2": "Evaluar muchos juicios a la vez y reutilizar los resultados que no cambian hace que este tipo de entrevista adaptativa sea asequible. Eso permite explorar a gran escala herramientas para pensar con más claridad.",
+    "methodology": {
+      "title": "Metodología",
+      "lead": "Todo lo que determina tu resultado es de código abierto. Las notas numeradas enlazan los archivos y estudios exactos.",
+      "howTitle": "Cómo funciona la entrevista",
+      "how": "El código elige cada pregunta de seguimiento<routing></routing> de una lista fija de preguntas redactadas previamente,<questions></questions> y la mayoría de las personas ve sus resultados después de responder entre 4 y 8. <jev>Jev de TypeSafe</jev> lee tus respuestas mediante evaluaciones pequeñas y específicas basadas en una rúbrica redactada previamente<rubric></rubric> y nunca escribe una pregunta ni un veredicto sobre ti.<boundary></boundary> El código combina esas evaluaciones para generar tu mapa, sus rangos y P(doom).<outputs></outputs> Agrupar evaluaciones pequeñas permite que su ejecución sea lo bastante económica como para ofrecerla gratis.",
+      "flow": {
+        "label": "Cómo se desarrolla una entrevista",
+        "steps": {
+          "opening": {
+            "title": "Pregunta inicial",
+            "text": "La misma para todos"
+          },
+          "map": {
+            "title": "Preguntas del mapa",
+            "text": "Impacto general, escala del cambio y P(doom), cada uno preguntado como máximo una vez"
+          },
+          "followUps": {
+            "title": "Preguntas de seguimiento",
+            "text": "Preguntas redactadas previamente sobre lo que aún no está claro, hasta 12 en total"
+          },
+          "result": {
+            "title": "Tu resultado",
+            "text": "En cuanto se puede ubicar tu mapa; puedes seguir respondiendo"
+          }
+        },
+        "afterEach": "Después de cada respuesta",
+        "jev": "Jev evalúa",
+        "jevItems": {
+          "usable": "Si se puede usar",
+          "fit": "Qué descripción redactada previamente se ajusta a ella",
+          "useful": "Cuánto aclararía cada pregunta candidata"
+        },
+        "code": "El código decide",
+        "codeItems": {
+          "next": "Qué pregunta viene después",
+          "ready": "Cuándo están listos los resultados",
+          "result": "Tu posición en el mapa, los rangos y P(doom)"
+        }
+      },
+      "resultTitle": "Qué es y qué no es tu resultado",
+      "result": {
+        "mapLabel": "El mapa",
+        "map": "Nuestra interpretación de lo que escribiste, no un veredicto, una prueba ni un pronóstico. El recuadro discontinuo muestra otras interpretaciones plausibles, no la probabilidad de que tengas razón.<placement></placement>",
+        "depthLabel": "Detrás del mapa",
+        "depth": "Ocho dimensiones de la visión de la IA y siete cualidades del razonamiento, como la disposición a actualizar. Si faltan pruebas, el elemento queda sin ubicar; nunca cuenta como una puntuación baja.<outputs></outputs>",
+        "pdoomLabel": "P(doom)",
+        "pdoom": "Es el número que introdujiste o una estimación inferida de tus respuestas, y se indica cuál de los dos.<estimator></estimator>",
+        "choicesLabel": "Decisiones editoriales",
+        "choices": "Las respuestas no se verifican. Las preguntas, los criterios de evaluación e incluso el nombre implican decisiones editoriales, y el nombre puede predisponerte a pensar en el riesgo y el beneficio. Las posturas mixtas, la incertidumbre y los extremos coherentes son igualmente válidos.<neutrality></neutrality>",
+        "simulatedLabel": "Líderes de opinión",
+        "simulated": "Simulaciones: otro modelo (GPT-5.6 Sol) responde las mismas preguntas a partir de las fuentes públicas enlazadas de cada persona,<briefs></briefs> y nuestro motor lee esas respuestas sin saber de quién son.<simulations></simulations> No son respuestas ni respaldos de esas personas. Trátalas como prototipos: en una prueba de Pew de 2026, las respuestas de sustitutos de IA difirieron de las de personas reales en un promedio de 12 puntos porcentuales.<pew></pew>"
+      },
+      "evidenceTitle": "Evidencia hasta ahora",
+      "chart": {
+        "title": "A qué distancia quedan las interpretaciones de la perspectiva",
+        "readers": "Dos interpretaciones de las mismas respuestas",
+        "repeat": "Jev, leyéndolas dos veces",
+        "reworded": "Jev, tras reformularlas sin cambiar el significado",
+        "largerModel": "Jev frente a GPT-5.6 Sol",
+        "selfPlacement": "Una interpretación comparada con la propia ubicación de la persona",
+        "jev": "Jev",
+        "largerModelSelf": "GPT-5.6 Sol",
+        "sameGuess": "La misma estimación para todos",
+        "note": "Distancia media en el eje Doom–Bloom de 0–1; las barras llegan hasta {max}, y cuanto más cortas, más cercanas. A partir de 219 autoubicaciones y 60 entrevistas reformuladas, {date}"
+      },
+      "evidence": {
+        "placementLabel": "Tu propia ubicación",
+        "placement": "Las interpretaciones quedan más cerca de las propias ubicaciones de las personas que una misma estimación para todos, sin una inclinación promedio hacia la esperanza ni la inquietud.<aggregates></aggregates> Los evaluadores coinciden entre sí mucho más que con las personas, por lo que la mayor parte de la diferencia se debe a cómo escriben las personas y cómo se ven a sí mismas. Cuando ambas difieren en más de una cuarta parte de cualquiera de los ejes, tu resultado te pregunta al respecto.",
+        "stabilityLabel": "Nueva lectura y reformulación",
+        "stability": "Ninguna repetición de la entrevista ni ninguna reformulación desplazó la perspectiva más allá de nuestro límite de {limit} para respuestas que significan lo mismo.<protocol></protocol> Los rangos del mapa nunca se representan con una amplitud inferior a ±{range}, la variación observada cuando una persona simulada vuelve a realizar la entrevista.",
+        "modelsLabel": "Modelos más grandes",
+        "models": "Jev coincide con GPT-5.6 Sol dentro del margen de variación, por aproximadamente 1/{ratio} del costo.<review></review>",
+        "feelsRightLabel": "«¿Te parece acertado?»",
+        "feelsRight": "{yes} de {total} personas dijeron que sí ({share}).<aggregates></aggregates> Interprétalo como un límite superior: las personas tienden a estar de acuerdo con la interpretación que hace una IA de ellas. En un estudio de NORC, los codificadores independientes respaldaron las codificaciones de una IA aproximadamente un 20% menos de veces que los propios encuestados.<confirmation></confirmation>",
+        "pdoomLabel": "P(doom) inferida",
+        "pdoom": "Aproximada. Al contrastarla con {typed} cifras introducidas por las personas, manteniendo ocultas esas cifras, interpretó {readings} de ellas y solo quedó dentro de un factor de 2 el {within} de las veces, sin superar el resultado de estimar {guess} para todo el mundo. Sí ordena a las personas de forma razonable, y un porcentaje que introduzcas, como «20%», siempre tiene prioridad.<review></review>",
+        "gapsLabel": "Aún no se ha hecho",
+        "gaps": "Aún no tenemos un conjunto de prueba ciego etiquetado por revisores independientes, como exige nuestro plan de evaluación.<protocol></protocol> Hasta entonces, todas las comprobaciones aquí comparan las interpretaciones con autoubicaciones, nuevas ejecuciones u otros modelos. Todavía no se han comparado los resultados entre los distintos idiomas de la entrevista."
+      },
+      "sampleTitle": "Quiénes la han realizado",
+      "sample": "A fecha de {date}, {people} personas habían llegado a un resultado.<aggregates></aggregates> Decidieron participar, principalmente a través de un hilo de Hacker News ({hackerNewsDates}) y publicaciones en X ({xDates}), y las dos oleadas quedaron muy separadas: una perspectiva mediana de {hackerNews} frente a {x} en el eje Doom–Bloom de 0–1 (<post>ver la comparación</post>). Por tanto, nuestras cifras describen a quienes participaron, no al público general, y solo publicamos cifras de grupos de al menos 10 personas.",
+      "authoredTitle": "Por qué las preguntas están redactadas de antemano",
+      "authored": "Una IA podría improvisar la entrevista. Las preguntas fijas y redactadas de antemano mantienen una formulación neutral e idéntica, para que cada participante y cada líder de opinión simulado responda las mismas preguntas y la comparación tenga sentido. Las directrices de AAPOR de 2026 califican como de alto riesgo a los entrevistadores de IA que generan preguntas, cambian su formulación o influyen en el desarrollo de la entrevista.<aapor></aapor> Aquí la formulación nunca cambia, y los juicios de Jev solo alimentan el código que selecciona entre las preguntas.",
+      "versionsTitle": "Versiones y cambios",
+      "versionLabels": {
+        "assessment": "Algoritmo",
+        "content": "Preguntas",
+        "rubric": "Rúbrica",
+        "model": "Modelo"
+      },
+      "versions": "Cada resultado guardado conserva las versiones con las que se creó. Las correcciones que no requieren nuevos juicios también se aplican a los resultados anteriores cuando se muestran.",
+      "changes": {
+        "between": "Ubica a las personas entre los cinco niveles del mapa en lugar de ubicarlas solo en ellos, y vuelve a interpretar los resultados guardados",
+        "languages": "Entrevistas en 10 idiomas; Jev lee las respuestas tal como están escritas y se le indica el idioma de la entrevista",
+        "typed": "Conserva las respuestas escritas de P(doom), incluso si son tan breves como «30%», que antes se sustituían por valores inferidos, y hace una pregunta más cuando una interpretación está dividida o se aleja mucho de tu propia ubicación",
+        "direct": "Corrige cómo se muestra P(doom) (un 20% escrito había aparecido como aproximadamente 3%), pregunta directamente por la escala del cambio y P(doom), deja de retener los resultados hasta cubrir el razonamiento y vuelve a interpretar los resultados guardados"
+      },
+      "history": "Las <research>notas de investigación en GitHub</research> registran cada cambio junto con la evidencia que lo sustenta.",
+      "sourcesTitle": "Fuentes"
+    },
     "exampleTitle": "Ejemplo con Elon Musk",
     "example": "Aquí tienes algunos resultados JSON de ejemplo de la <link>evaluación simulada de Elon Musk</link>.",
     "inputTitle": "Datos de entrada de la evaluación",
@@ -899,13 +994,6 @@
     "resultTitle": "Resultados generados",
     "resultLabel": "Resultado de la evaluación simulada de Elon Musk",
     "resultNote": "La combinación de juicios que nuestra aplicación usa para inferir sus resultados.",
-    "simulatedTitle": "Personas simuladas, fuentes reales",
-    "simulated1": "Los usuarios destacados son simulaciones basadas en declaraciones públicas, ensayos y entrevistas enlazados. Un modelo distinto responde las mismas preguntas a partir de esas fuentes; nuestro motor de evaluación analiza las respuestas sin una posición objetivo en el mapa.",
-    "simulated2": "Estos ejemplos nos ayudan a mejorar las interpretaciones, afinar las preguntas de seguimiento y detectar regresiones. No son las respuestas reales de esas personas ni cuentan con su respaldo. Sus páginas te permiten revisar las respuestas simuladas y las fuentes en las que se basan.",
-    "mapTitle": "El mapa no es el territorio",
-    "map1": "El mapa destacado combina tu perspectiva general Doom–Bloom con cuán radicalmente esperas que la IA transforme la sociedad. Detrás hay ocho dimensiones que abarcan capacidades, velocidad de la transición, beneficios, daños, controlabilidad, instituciones, autonomía humana y acción. También consideramos qué tan bien explicas tus ideas, incluidas la claridad causal, la incertidumbre y la disposición a cambiar de opinión.",
-    "map2": "Dos coordenadas no pueden captar una visión completa. La evidencia que falta queda sin ubicar, y los rangos de interpretación muestran la incertidumbre sobre cómo leer tus respuestas, no la probabilidad de que tus creencias sean ciertas. Una estimación aparte de <b>P(doom)</b> se indica como declarada explícitamente o inferida.",
-    "map3": "Esto es un experimento, no una prueba de inteligencia ni un pronóstico validado. Las respuestas no se verifican de forma independiente. Las preguntas, las fuentes y las reglas de puntuación implican decisiones editoriales, y el propio nombre puede influir en tus respuestas. Las visiones mixtas, la incertidumbre y los extremos coherentes son igual de válidos; coincidir con nosotros no es el objetivo.",
     "answersTitle": "Tus respuestas son tuyas",
     "answers": "Tus respuestas y resultados son privados de forma predeterminada. Puedes publicarlos si quieres compartirlos. No hace falta registrarse. Consulta la <privacy>política de privacidad</privacy> para más detalles.",
     "nextTitle": "¿Qué sigue?",

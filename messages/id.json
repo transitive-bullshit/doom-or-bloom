@@ -44,6 +44,7 @@
     "about": "Tentang",
     "privacy": "Privasi",
     "pdoom": "P(doom)",
+    "methodology": "Metodologi",
     "blog": "Blog",
     "language": "Bahasa"
   },
@@ -885,12 +886,106 @@
     "whyTitle": "Mengapa membuat ini?",
     "why1": "Potensi manfaat dan risiko AI layak dibahas secara cermat dan berlandaskan kenyataan. Seiring meningkatnya kemampuan dan makin besarnya konsekuensi keputusan, kita membutuhkan cara yang mudah diakses untuk berpikir jernih di tengah pandangan yang sangat berbeda.",
     "why2": "Saya membuat ini untuk menjelajahi suara-suara di bidang ini dan membantu orang mengurai intuisi yang saling bertentangan. Ini telah mempertajam pandangan saya sendiri. Tujuannya adalah merepresentasikan pandangan Anda secara akurat, dengan sesedikit mungkin pengarahan editorial.",
-    "interviewTitle": "Jenis baru wawancara dinamis",
-    "interview1": "Semua wawancara dimulai dengan: \"menurut Anda, apa arti AI bagi masa depan kita—dan mengapa?\" Mesin kemudian mencari kesenjangan atau ketidakpastian dalam jawaban Anda, lalu memilih dari kumpulan pertanyaan terkurasi satu pertanyaan yang paling mungkin memperjelas pandangan dunia Anda dengan pengulangan dan upaya seminimal mungkin.",
-    "interview2": "Hasil tersedia setelah mesin kami mengumpulkan cukup bukti untuk menempatkan Anda dengan yakin. Ini dapat terjadi paling cepat setelah satu jawaban terperinci, meskipun sebagian besar wawancara berlangsung selama 3-5 pertanyaan. Anda juga dapat menelusuri interpretasi kembali ke jawaban Anda dan mengklarifikasi apa pun yang terasa keliru.",
-    "jevTitle": "Didukung oleh Jev dari TypeSafe",
-    "jev1": "<jev>Jev</jev> membantu menafsirkan jawaban Anda melalui penilaian kecil dan terfokus: apa yang Anda perkirakan, apa yang masih belum pasti, dan pertanyaan lanjutan mana yang akan membantu. Perangkat lunak kami menggabungkan penilaian tersebut menjadi profil Anda dan memilih dari pertanyaan yang telah ditulis. Jev tidak menulis kesimpulan bebas tentang Anda.",
-    "jev2": "Mengevaluasi banyak penilaian secara bersamaan dan menggunakan kembali hasil yang tidak berubah membuat wawancara adaptif semacam ini tetap ekonomis. Hal itu memungkinkan penjelajahan alat untuk berpikir lebih jernih dalam skala besar.",
+    "methodology": {
+      "title": "Metodologi",
+      "lead": "Semua hal yang membentuk hasil Anda bersifat sumber terbuka. Catatan bernomor tertaut ke berkas dan studi yang digunakan secara persis.",
+      "howTitle": "Cara kerja wawancara",
+      "how": "Kode memilih setiap pertanyaan lanjutan<routing></routing> dari daftar tetap pertanyaan yang ditulis sebelumnya,<questions></questions> dan kebanyakan orang melihat hasil setelah menjawab 4–8 pertanyaan. <jev>Jev dari TypeSafe</jev> membaca jawaban Anda melalui penilaian kecil dan terfokus berdasarkan rubrik yang ditulis sebelumnya<rubric></rubric> dan tidak pernah menulis pertanyaan atau memberikan penilaian akhir tentang Anda.<boundary></boundary> Kode menggabungkan penilaian tersebut menjadi peta Anda, rentangnya, dan P(doom).<outputs></outputs> Memproses penilaian kecil secara berkelompok membuat biayanya cukup rendah sehingga dapat dijalankan secara gratis.",
+      "flow": {
+        "label": "Cara wawancara berlangsung",
+        "steps": {
+          "opening": {
+            "title": "Pertanyaan pembuka",
+            "text": "Sama untuk semua orang"
+          },
+          "map": {
+            "title": "Pertanyaan peta",
+            "text": "Dampak keseluruhan, skala perubahan, dan P(doom), masing-masing ditanyakan paling banyak satu kali"
+          },
+          "followUps": {
+            "title": "Pertanyaan lanjutan",
+            "text": "Pertanyaan yang ditulis sebelumnya tentang hal yang masih belum jelas, seluruhnya hingga 12 pertanyaan"
+          },
+          "result": {
+            "title": "Hasil Anda",
+            "text": "Setelah posisi peta Anda dapat ditentukan; Anda dapat terus menjawab"
+          }
+        },
+        "afterEach": "Setelah setiap jawaban",
+        "jev": "Jev menilai",
+        "jevItems": {
+          "usable": "Apakah jawaban dapat digunakan",
+          "fit": "Deskripsi yang ditulis sebelumnya mana yang sesuai dengan jawaban",
+          "useful": "Seberapa jauh setiap calon pertanyaan akan memperjelas"
+        },
+        "code": "Kode memutuskan",
+        "codeItems": {
+          "next": "Pertanyaan mana yang diajukan berikutnya",
+          "ready": "Kapan hasil siap",
+          "result": "Posisi peta, rentang, dan P(doom) Anda"
+        }
+      },
+      "resultTitle": "Apa yang merupakan hasil Anda, dan apa yang bukan",
+      "result": {
+        "mapLabel": "Peta",
+        "map": "Interpretasi kami atas apa yang Anda tulis, bukan putusan, tes, atau prakiraan. Kotak bergaris putus-putus menunjukkan interpretasi lain yang masuk akal, bukan peluang bahwa Anda benar.<placement></placement>",
+        "depthLabel": "Di balik peta",
+        "depth": "Delapan dimensi pandangan dunia dan tujuh kualitas penalaran, seperti kesediaan untuk memperbarui pandangan. Jika bukti tidak tersedia, posisinya tetap belum ditempatkan; hal itu tidak pernah dihitung sebagai skor rendah.<outputs></outputs>",
+        "pdoomLabel": "P(doom)",
+        "pdoom": "Angka yang Anda masukkan atau estimasi yang disimpulkan dari jawaban Anda, dan akan disebutkan yang mana.<estimator></estimator>",
+        "choicesLabel": "Pilihan editorial",
+        "choices": "Jawaban tidak diperiksa kebenarannya. Pertanyaan, rubrik, bahkan nama melibatkan pilihan editorial, dan nama tersebut dapat mengarahkan Anda pada risiko dan manfaat. Pandangan campuran, ketidakpastian, dan pandangan ekstrem yang koheren semuanya valid.<neutrality></neutrality>",
+        "simulatedLabel": "Pemimpin opini",
+        "simulated": "Simulasi: model lain (GPT-5.6 Sol) menjawab pertanyaan yang sama berdasarkan sumber publik tertaut dari setiap orang,<briefs></briefs> dan mesin kami membaca jawaban tersebut tanpa mengetahui jawaban itu milik siapa.<simulations></simulations> Jawaban tersebut bukan jawaban atau dukungan dari orang-orang itu sendiri. Anggaplah sebagai prototipe: dalam pengujian Pew pada 2026, jawaban dari pengganti berbasis AI berbeda dari jawaban orang yang sebenarnya sebesar rata-rata 12 poin persentase.<pew></pew>"
+      },
+      "evidenceTitle": "Bukti sejauh ini",
+      "chart": {
+        "title": "Seberapa jauh perbedaan posisi hasil interpretasi pandangan",
+        "readers": "Dua interpretasi atas jawaban yang sama",
+        "repeat": "Jev, membacanya dua kali",
+        "reworded": "Jev, setelah perumusan ulang yang mempertahankan makna",
+        "largerModel": "Jev dibandingkan dengan GPT-5.6 Sol",
+        "selfPlacement": "Pembacaan dibandingkan dengan penempatan orang itu sendiri",
+        "jev": "Jev",
+        "largerModelSelf": "GPT-5.6 Sol",
+        "sameGuess": "Perkiraan yang sama untuk semua orang",
+        "note": "Jarak rata-rata pada sumbu Doom–Bloom 0–1; batang memanjang hingga {max}, dan yang lebih pendek berarti lebih dekat. Berdasarkan 219 penempatan diri dan 60 wawancara yang dirumuskan ulang, {date}"
+      },
+      "evidence": {
+        "placementLabel": "Penempatan Anda sendiri",
+        "placement": "Hasil pembacaan lebih dekat dengan penempatan orang itu sendiri daripada satu perkiraan yang sama untuk semua orang, tanpa kecenderungan rata-rata ke arah harapan atau kekhawatiran.<aggregates></aggregates> Para pembaca jauh lebih sepakat satu sama lain daripada dengan orang yang dinilai, jadi sebagian besar kesenjangan berasal dari perbedaan antara cara orang menulis dan cara mereka memandang diri sendiri. Jika keduanya berbeda lebih dari seperempat pada salah satu sumbu, hasil Anda akan menanyakannya.",
+        "stabilityLabel": "Pembacaan ulang dan perumusan ulang",
+        "stability": "Tidak ada pembacaan ulang atau perubahan kata-kata dalam wawancara yang menggeser pandangan lebih dari batas kami sebesar {limit} untuk jawaban yang bermakna sama.<protocol></protocol> Rentang peta tidak pernah digambar lebih sempit dari ±{range}, yaitu variasi yang terlihat ketika seseorang dalam simulasi mengulangi wawancara.",
+        "modelsLabel": "Model yang lebih besar",
+        "models": "Jev cocok dengan GPT-5.6 Sol dalam batas derau, dengan biaya sekitar 1/{ratio}.<review></review>",
+        "feelsRightLabel": "“Apakah ini terasa tepat?”",
+        "feelsRight": "{yes} dari {total} orang menjawab ya ({share}).<aggregates></aggregates> Anggap itu sebagai batas atas: orang cenderung setuju dengan pembacaan AI tentang diri mereka. Dalam sebuah studi NORC, para pengode independen mendukung pengodean AI sekitar 20% lebih jarang daripada para responden.<confirmation></confirmation>",
+        "pdoomLabel": "P(doom) yang disimpulkan",
+        "pdoom": "Perkiraan kasar. Ketika diperiksa terhadap {typed} angka yang diketik orang, dengan angka-angka tersebut disembunyikan, sistem ini membaca {readings} di antaranya dan hanya menghasilkan nilai dalam rentang 2× sebanyak {within} dari keseluruhan percobaan, tidak lebih baik daripada menebak {guess} untuk semua orang. Sistem ini memang memeringkat orang secara masuk akal, dan persentase yang Anda ketik, seperti “20%”, selalu diprioritaskan.<review></review>",
+        "gapsLabel": "Belum dilakukan",
+        "gaps": "Kami belum memiliki set pengujian tersamar yang diberi label oleh peninjau independen, sebagaimana disyaratkan oleh rencana evaluasi kami.<protocol></protocol> Hingga saat itu, setiap pemeriksaan di sini membandingkan hasil pembacaan dengan penempatan diri, pengulangan, atau model lain. Hasil dalam berbagai bahasa wawancara juga belum dibandingkan."
+      },
+      "sampleTitle": "Siapa yang telah mengikutinya",
+      "sample": "Per {date}, {people} orang telah mencapai hasil.<aggregates></aggregates> Mereka memilih untuk mengikutinya, sebagian besar melalui sebuah utas Hacker News ({hackerNewsDates}) dan unggahan di X ({xDates}), dan kedua gelombang tersebut berada jauh terpisah: median pandangan sebesar {hackerNews} dibandingkan dengan {x} pada sumbu Doom–Bloom 0–1 (<post>lihat perbandingannya</post>). Jadi, angka kami menggambarkan siapa yang berpartisipasi, bukan masyarakat umum, dan kami hanya memublikasikan angka untuk kelompok yang terdiri dari setidaknya 10 orang.",
+      "authoredTitle": "Mengapa pertanyaannya ditulis terlebih dahulu",
+      "authored": "AI dapat mengimprovisasi wawancara. Pertanyaan tetap yang ditulis terlebih dahulu menjaga redaksinya tetap netral dan identik, sehingga setiap peserta dan setiap pemimpin opini simulasi menjawab pertanyaan yang sama dan perbandingan di antara mereka menjadi bermakna. Pedoman AAPOR tahun 2026 menilai pewawancara AI yang menghasilkan pertanyaan, mengubah redaksinya, atau memengaruhi alurnya sebagai berisiko tinggi.<aapor></aapor> Di sini redaksinya tidak pernah berubah, dan penilaian Jev hanya menjadi masukan bagi kode yang memilih di antara pertanyaan-pertanyaan tersebut.",
+      "versionsTitle": "Versi dan perubahan",
+      "versionLabels": {
+        "assessment": "Algoritme",
+        "content": "Pertanyaan",
+        "rubric": "Rubrik",
+        "model": "Model"
+      },
+      "versions": "Setiap hasil yang disimpan menyertakan versi yang digunakan untuk membuatnya. Perbaikan yang tidak memerlukan penilaian baru juga diterapkan pada hasil lama saat ditampilkan.",
+      "changes": {
+        "between": "Menempatkan orang di antara lima tingkat pada peta, bukan hanya tepat pada tingkat tersebut, dan membaca ulang hasil yang disimpan",
+        "languages": "Wawancara dalam 10 bahasa; Jev membaca jawaban sebagaimana ditulis dan diberi tahu bahasa wawancara tersebut",
+        "typed": "Mempertahankan jawaban P(doom) yang diketik sesingkat “30%”, yang sebelumnya diganti dengan nilai hasil inferensi, dan mengajukan satu pertanyaan tambahan ketika hasil pembacaan terbagi atau jauh dari penempatan Anda sendiri",
+        "direct": "Memperbaiki cara P(doom) ditampilkan (20% yang diketik sebelumnya muncul sebagai sekitar 3%), menanyakan secara langsung tentang skala perubahan dan P(doom), tidak lagi menahan hasil demi cakupan penalaran, dan membaca ulang hasil yang disimpan"
+      },
+      "history": "<research>Catatan penelitian di GitHub</research> mencatat setiap perubahan beserta buktinya.",
+      "sourcesTitle": "Sumber"
+    },
     "exampleTitle": "Contoh menggunakan Elon Musk",
     "example": "Berikut beberapa contoh hasil JSON dari <link>penilaian simulasi Elon Musk</link>.",
     "inputTitle": "Masukan penilaian",
@@ -899,13 +994,6 @@
     "resultTitle": "Hasil yang dihasilkan",
     "resultLabel": "Hasil penilaian simulasi Elon Musk",
     "resultNote": "Kombinasi penilaian yang digunakan aplikasi kami untuk menyimpulkan hasilnya.",
-    "simulatedTitle": "Tokoh simulasi, sumber nyata",
-    "simulated1": "Pengguna yang ditampilkan adalah simulasi yang berlandaskan pernyataan publik, esai, dan wawancara yang ditautkan. Model terpisah menjawab pertanyaan yang sama berdasarkan sumber-sumber tersebut; mesin penilaian kami mengevaluasi jawabannya tanpa posisi target pada peta.",
-    "simulated2": "Contoh-contoh ini membantu kami meningkatkan interpretasi, menyempurnakan pertanyaan lanjutan, dan mendeteksi regresi. Contoh-contoh tersebut bukan jawaban atau dukungan sebenarnya dari orang-orang itu. Halaman mereka memungkinkan Anda memeriksa jawaban simulasi dan sumber yang mendasarinya.",
-    "mapTitle": "Peta bukanlah wilayah yang dipetakan",
-    "map1": "Peta yang ditampilkan memasangkan pandangan keseluruhan Doom–Bloom Anda dengan seberapa radikal Anda memperkirakan AI akan mengubah masyarakat. Di baliknya terdapat delapan dimensi yang mencakup kemampuan, kecepatan transisi, manfaat, kerugian, keterkendalian, lembaga, agensi manusia, dan tindakan. Kami juga mempertimbangkan seberapa baik Anda menjelaskan pandangan Anda, termasuk kejelasan kausal, ketidakpastian, dan kesediaan untuk memperbarui pandangan.",
-    "map2": "Dua koordinat tidak dapat menangkap keseluruhan pandangan dunia. Bukti yang tidak tersedia tetap belum ditempatkan, dan rentang interpretasi menunjukkan ketidakpastian tentang cara memahami jawaban Anda—bukan probabilitas bahwa keyakinan Anda benar. Estimasi <b>P(doom)</b> yang terpisah diberi label sebagai dinyatakan secara eksplisit atau disimpulkan.",
-    "map3": "Ini adalah eksperimen, bukan tes kecerdasan atau prakiraan yang telah divalidasi. Jawaban tidak diperiksa faktanya secara independen. Pertanyaan, sumber, dan aturan penilaian melibatkan pilihan editorial, dan nama situs ini sendiri dapat memengaruhi jawaban Anda. Pandangan campuran, ketidakpastian, dan pandangan ekstrem yang koheren semuanya valid; kesepakatan dengan kami bukanlah tujuannya.",
     "answersTitle": "Jawaban Anda tetap milik Anda",
     "answers": "Jawaban dan hasil Anda bersifat privat secara bawaan. Anda dapat memilih untuk memublikasikannya jika ingin membagikannya. Tidak perlu mendaftar. Baca <privacy>kebijakan privasi</privacy> untuk detail lebih lanjut.",
     "nextTitle": "Apa selanjutnya?",

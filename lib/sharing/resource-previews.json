@@ -7764,5 +7764,15 @@
     "imageKind": "social",
     "imageSource": "https://storage.ghost.io/c/24/d8/24d8fcec-dfba-4f40-a467-823d2941ae46/content/images/2024/01/wyea--1.jpeg",
     "icon": "/resource-previews/39e030be2db0-icon.webp"
+  },
+  "https://www.pewresearch.org/data-labs/2026/09/30/can-ai-stand-in-for-human-survey-takers-not-really/": {
+    "source": "https://www.pewresearch.org/data-labs/2026/09/30/can-ai-stand-in-for-human-survey-takers-not-really/",
+    "fetchedAt": "2026-10-04T06:23:11.398Z",
+    "icon": "/resource-previews/23f6d3c1f0c2-icon.webp"
+  },
+  "https://aapor.org/wp-content/uploads/2026/05/Responsible-AI-Integration-In-Survey-Research.pdf": {
+    "source": "https://aapor.org/wp-content/uploads/2026/05/Responsible-AI-Integration-In-Survey-Research.pdf",
+    "fetchedAt": "2026-10-04T06:23:14.803Z",
+    "icon": "/resource-previews/0da628829657-icon.webp"
   }
 }

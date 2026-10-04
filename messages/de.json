@@ -44,6 +44,7 @@
     "about": "Über Doom or Bloom",
     "privacy": "Datenschutz",
     "pdoom": "P(doom)",
+    "methodology": "Methodik",
     "blog": "Blog",
     "language": "Sprache"
   },
@@ -885,12 +886,106 @@
     "whyTitle": "Warum wurde das entwickelt?",
     "why1": "Die potenziellen Vorteile und Risiken von KI verdienen eine sorgfältige, fundierte Diskussion. Wenn die Fähigkeiten zunehmen und Entscheidungen folgenreicher werden, brauchen wir leicht zugängliche Möglichkeiten, um über sehr unterschiedliche Sichtweisen hinweg klar nachzudenken.",
     "why2": "Ich habe dies entwickelt, um die Stimmen in diesem Feld zu erkunden und Menschen dabei zu helfen, widersprüchliche Intuitionen zu entwirren. Es hat meine eigenen Ansichten bereits geschärft. Ziel ist es, deine Ansichten so getreu wie möglich und mit so wenig redaktioneller Lenkung wie möglich wiederzugeben.",
-    "interviewTitle": "Eine neue Art des dynamischen Interviews",
-    "interview1": "Alle Interviews beginnen mit: „Was bedeutet KI deiner Meinung nach für unsere Zukunft – und warum?“ Anschließend sucht das System nach Lücken oder Unsicherheiten in deinen Antworten und wählt aus einem kuratierten Fragenpool die Frage aus, die deine Weltsicht voraussichtlich mit möglichst wenig Wiederholung und Aufwand am besten klärt.",
-    "interview2": "Ergebnisse werden verfügbar, sobald unser System genügend Belege gesammelt hat, um dich zuverlässig einzuordnen. Das kann bereits nach einer ausführlichen Antwort geschehen, die meisten Interviews umfassen jedoch 3-5 Fragen. Du kannst außerdem Interpretationen zu deinen Antworten zurückverfolgen und alles klarstellen, was sich falsch anfühlt.",
-    "jevTitle": "Unterstützt durch Jev von TypeSafe",
-    "jev1": "<jev>Jev</jev> hilft dabei, deine Antworten anhand kleiner, gezielter Beurteilungen zu interpretieren: was du erwartest, was ungewiss bleibt und welche Nachfrage helfen würde. Unsere Software fasst diese Beurteilungen zu deinem Profil zusammen und wählt aus redaktionell erstellten Fragen aus. Jev verfasst kein frei formuliertes Urteil über dich.",
-    "jev2": "Viele Beurteilungen gemeinsam auszuwerten und unveränderte Ergebnisse wiederzuverwenden, macht diese Art des adaptiven Interviews wirtschaftlich. Dadurch lassen sich Werkzeuge für klareres Denken in großem Maßstab erkunden.",
+    "methodology": {
+      "title": "Methodik",
+      "lead": "Alles, was dein Ergebnis beeinflusst, ist Open Source. Die nummerierten Anmerkungen verlinken die genauen Dateien und Studien.",
+      "howTitle": "So funktioniert das Interview",
+      "how": "Der Code wählt jede Folgefrage<routing></routing> aus einer festen Liste redaktionell erstellter Fragen aus,<questions></questions> und die meisten Menschen sehen nach 4–8 davon Ergebnisse. <jev>Jev von TypeSafe</jev> liest deine Antworten anhand kleiner, gezielter Bewertungen nach einem redaktionell erstellten Kriterienkatalog<rubric></rubric> und verfasst weder Fragen noch ein Urteil über dich.<boundary></boundary> Der Code kombiniert diese Bewertungen zu deiner Karte, ihren Bereichen und P(doom).<outputs></outputs> Die gebündelte Verarbeitung kleiner Bewertungen hält die Kosten niedrig genug, um das kostenlos anzubieten.",
+      "flow": {
+        "label": "So läuft ein Interview ab",
+        "steps": {
+          "opening": {
+            "title": "Einstiegsfrage",
+            "text": "Für alle gleich"
+          },
+          "map": {
+            "title": "Fragen zur Karte",
+            "text": "Insgesamt erwartete Auswirkungen, Ausmaß der Transformation und P(doom), jeweils höchstens einmal abgefragt"
+          },
+          "followUps": {
+            "title": "Folgefragen",
+            "text": "Redaktionell erstellte Fragen zu noch ungeklärten Punkten, insgesamt bis zu 12"
+          },
+          "result": {
+            "title": "Dein Ergebnis",
+            "text": "Sobald deine Position auf der Karte bestimmt werden kann; du kannst weiter antworten"
+          }
+        },
+        "afterEach": "Nach jeder Antwort",
+        "jev": "Jev bewertet",
+        "jevItems": {
+          "usable": "Ob sie verwertbar ist",
+          "fit": "Welche redaktionell erstellte Beschreibung dazu passt",
+          "useful": "Wie stark jede mögliche Frage zur Klärung beitragen würde"
+        },
+        "code": "Der Code entscheidet",
+        "codeItems": {
+          "next": "Welche Frage als Nächstes kommt",
+          "ready": "Wann die Ergebnisse bereit sind",
+          "result": "Deine Position auf der Karte, die Bereiche und P(doom)"
+        }
+      },
+      "resultTitle": "Was dein Ergebnis ist – und was nicht",
+      "result": {
+        "mapLabel": "Die Karte",
+        "map": "Unsere Interpretation dessen, was du geschrieben hast – kein Urteil, kein Test und keine Prognose. Das gestrichelte Feld zeigt andere plausible Interpretationen, nicht die Wahrscheinlichkeit, dass du richtigliegst.<placement></placement>",
+        "depthLabel": "Hinter der Karte",
+        "depth": "Acht Dimensionen der Weltsicht und sieben Qualitäten der Argumentation, etwa die Bereitschaft zur Aktualisierung. Fehlende Belege bleiben nicht eingeordnet; sie zählen niemals als niedrige Bewertung.<outputs></outputs>",
+        "pdoomLabel": "P(doom)",
+        "pdoom": "Entweder die von dir eingegebene Zahl oder eine aus deinen Antworten abgeleitete Schätzung; es wird angegeben, um welche es sich handelt.<estimator></estimator>",
+        "choicesLabel": "Redaktionelle Entscheidungen",
+        "choices": "Die Antworten werden nicht auf Fakten geprüft. Die Fragen, das Bewertungsschema und sogar der Name beruhen auf redaktionellen Entscheidungen, und der Name kann dich gedanklich auf Risiken und Vorteile ausrichten. Gemischte Sichtweisen, Unsicherheit und in sich schlüssige Extrempositionen sind gleichermaßen gültig.<neutrality></neutrality>",
+        "simulatedLabel": "Meinungsführer",
+        "simulated": "Simulationen: Ein anderes Modell (GPT-5.6 Sol) beantwortet dieselben Fragen anhand der verlinkten öffentlichen Quellen jeder Person,<briefs></briefs> und unsere Engine liest diese Antworten, ohne zu wissen, von wem sie stammen.<simulations></simulations> Es sind weder die eigenen Antworten der Personen noch deren Zustimmung. Betrachte sie als Prototypen: In einem Test von Pew aus dem Jahr 2026 wichen die Antworten von KI-Stellvertretern im Durchschnitt um 12 Prozentpunkte von denen echter Menschen ab.<pew></pew>"
+      },
+      "evidenceTitle": "Bisherige Evidenz",
+      "chart": {
+        "title": "Wie weit die Einordnungen des Ausblicks auseinanderliegen",
+        "readers": "Zwei Einordnungen derselben Antworten",
+        "repeat": "Jev bei zweimaliger Auswertung",
+        "reworded": "Jev nach einer Umformulierung bei gleichbleibender Bedeutung",
+        "largerModel": "Jev im Vergleich mit GPT-5.6 Sol",
+        "selfPlacement": "Eine Auswertung im Vergleich zur eigenen Einordnung der Person",
+        "jev": "Jev",
+        "largerModelSelf": "GPT-5.6 Sol",
+        "sameGuess": "Dieselbe Einschätzung für alle",
+        "note": "Mittlere Distanz auf der 0–1-Doom–Bloom-Achse; die Balken reichen bis {max}, und kürzer bedeutet näher. Basierend auf 219 Selbsteinordnungen und 60 umformulierten Interviews, {date}"
+      },
+      "evidence": {
+        "placementLabel": "Deine eigene Einordnung",
+        "placement": "Die Auswertungen liegen näher an den eigenen Einordnungen der Personen als eine einzige Einschätzung für alle, ohne im Durchschnitt zu Hoffnung oder Sorge zu tendieren.<aggregates></aggregates> Die Auswerter stimmen untereinander deutlich stärker überein als mit den Personen, daher liegt der größte Teil der Abweichung zwischen der Art, wie Menschen schreiben, und der Art, wie sie sich selbst sehen. Wenn sich beides auf einer der Achsen um mehr als ein Viertel unterscheidet, wird in deinem Ergebnis danach gefragt.",
+        "stabilityLabel": "Erneutes Auswerten und Umformulieren",
+        "stability": "Bei keinem erneuten Lesen und keiner umformulierten Version des Interviews verschob sich der Ausblick bei gleichbedeutenden Antworten um mehr als unseren Grenzwert von {limit}.<protocol></protocol> Kartenbereiche werden nie schmaler als ±{range} dargestellt – das entspricht der Abweichung, die auftritt, wenn eine simulierte Person das Interview erneut durchläuft.",
+        "modelsLabel": "Größere Modelle",
+        "models": "Jev stimmt innerhalb der statistischen Schwankungsbreite mit GPT-5.6 Sol überein, bei etwa 1/{ratio} der Kosten.<review></review>",
+        "feelsRightLabel": "„Fühlt sich das stimmig an?“",
+        "feelsRight": "{yes} von {total} Personen sagten Ja ({share}).<aggregates></aggregates> Das ist als Obergrenze zu verstehen: Menschen neigen dazu, der Einschätzung einer KI über sie zuzustimmen. In einer NORC-Studie bestätigten unabhängige Codierende die Codierungen einer KI etwa 20% seltener als die Befragten selbst.<confirmation></confirmation>",
+        "pdoomLabel": "Abgeleitete P(doom)",
+        "pdoom": "Grob. Beim Abgleich mit {typed} von Personen eingegebenen Zahlen, wobei diese Zahlen verborgen waren, wertete es {readings} davon aus und lag nur in {within} der Fälle innerhalb des Faktors 2 – nicht besser, als für alle {guess} zu schätzen. Es ordnet Personen jedoch sinnvoll ein, und eine von dir eingegebene Prozentzahl wie „20%“ hat immer Vorrang.<review></review>",
+        "gapsLabel": "Noch ausstehend",
+        "gaps": "Wir haben noch keinen verblindeten Testsatz, der von unabhängigen Prüfenden gekennzeichnet wurde, obwohl unser Evaluierungsplan dies vorsieht.<protocol></protocol> Bis dahin vergleicht jede hier aufgeführte Prüfung die Auswertungen mit Selbsteinordnungen, erneuten Durchläufen oder anderen Modellen. Die Ergebnisse in verschiedenen Interviewsprachen wurden noch nicht verglichen."
+      },
+      "sampleTitle": "Wer teilgenommen hat",
+      "sample": "Bis zum {date} hatten {people} Personen ein Ergebnis erreicht.<aggregates></aggregates> Sie entschieden sich für die Teilnahme, hauptsächlich über einen Hacker News-Thread ({hackerNewsDates}) und Beiträge auf X ({xDates}), und die beiden Wellen lagen weit auseinander: ein Median der Einschätzungen von {hackerNews} gegenüber {x} auf der 0–1-Doom–Bloom-Achse (<post>Vergleich ansehen</post>). Unsere Zahlen beschreiben daher, wer teilgenommen hat, nicht die Öffentlichkeit, und wir veröffentlichen Zahlen nur für Gruppen von mindestens 10 Personen.",
+      "authoredTitle": "Warum die Fragen redaktionell erstellt sind",
+      "authored": "Eine KI könnte das Interview improvisieren. Feste, redaktionell erstellte Fragen halten die Formulierung neutral und identisch, sodass alle Teilnehmenden und alle simulierten Meinungsführer dieselben Fragen beantworten und ein Vergleich aussagekräftig ist. In den Leitlinien von AAPOR aus dem Jahr 2026 werden KI-Interviewer, die Fragen erzeugen, deren Formulierung ändern oder den Ablauf beeinflussen, als hochriskant eingestuft.<aapor></aapor> Hier ändert sich die Formulierung nie, und Jevs Bewertungen fließen nur in den Code ein, der aus den Fragen auswählt.",
+      "versionsTitle": "Versionen und Änderungen",
+      "versionLabels": {
+        "assessment": "Algorithmus",
+        "content": "Fragen",
+        "rubric": "Bewertungsraster",
+        "model": "Modell"
+      },
+      "versions": "Jedes gespeicherte Ergebnis enthält die Versionen, mit denen es erstellt wurde. Korrekturen, die keine neuen Beurteilungen erfordern, werden bei der Anzeige auch auf ältere Ergebnisse angewendet.",
+      "changes": {
+        "between": "Ordnet Menschen zwischen den fünf Stufen der Karte ein statt nur direkt auf ihnen und wertet gespeicherte Ergebnisse erneut aus",
+        "languages": "Interviews in 10 Sprachen; Jev liest Antworten so, wie sie geschrieben wurden, und erhält die Information, in welcher Sprache das Interview geführt wird",
+        "typed": "Behält eingegebene P(doom)-Antworten bei, selbst wenn sie so kurz wie „30 %“ sind, statt sie durch abgeleitete Werte zu ersetzen, und stellt eine weitere Frage, wenn eine Auswertung uneindeutig ist oder stark von deiner eigenen Einordnung abweicht",
+        "direct": "Korrigiert die Anzeige von P(doom) (eingegebene 20 % waren als etwa 3 % erschienen), fragt direkt nach dem Ausmaß der Veränderung und P(doom), hält Ergebnisse nicht mehr zurück, um alle Argumentationsbereiche abzudecken, und wertet gespeicherte Ergebnisse erneut aus"
+      },
+      "history": "<research>Forschungsnotizen auf GitHub</research> dokumentieren jede Änderung zusammen mit den zugehörigen Belegen.",
+      "sourcesTitle": "Quellen"
+    },
     "exampleTitle": "Beispiel mit Elon Musk",
     "example": "Hier sind einige beispielhafte JSON-Ergebnisse aus der <link>simulierten Einschätzung von Elon Musk</link>.",
     "inputTitle": "Eingabe für die Einschätzung",
@@ -899,13 +994,6 @@
     "resultTitle": "Generierte Ergebnisse",
     "resultLabel": "Ergebnis der simulierten Einschätzung von Elon Musk",
     "resultNote": "Die Kombination der Beurteilungen, aus denen unsere App ihre Ergebnisse ableitet.",
-    "simulatedTitle": "Simulierte Personen, echte Quellen",
-    "simulated1": "Die vorgestellten Nutzer sind Simulationen, die auf verlinkten öffentlichen Aussagen, Essays und Interviews basieren. Ein separates Modell beantwortet anhand dieser Quellen dieselben Fragen; unsere Bewertungssoftware wertet die Antworten aus, ohne eine Zielposition auf der Karte vorzugeben.",
-    "simulated2": "Diese Beispiele helfen uns, Interpretationen zu verbessern, Folgefragen zu verfeinern und Regressionen zu erkennen. Sie sind weder die tatsächlichen Antworten dieser Personen noch deren Befürwortung. Auf ihren Seiten kannst du die simulierten Antworten und die zugrunde liegenden Quellen einsehen.",
-    "mapTitle": "Die Karte ist nicht das Gebiet",
-    "map1": "Die vorgestellte Karte stellt deine allgemeine Doom–Bloom-Einschätzung dem Ausmaß gegenüber, in dem KI deiner Erwartung nach die Gesellschaft grundlegend verändern wird. Dahinter stehen acht Dimensionen, die Fähigkeiten, Geschwindigkeit des Übergangs, Vorteile, Schäden, Kontrollierbarkeit, Institutionen, menschliche Handlungsfähigkeit und Handeln abdecken. Wir berücksichtigen auch, wie gut du deine Sichtweisen erklärst, einschließlich kausaler Klarheit, Unsicherheit und Bereitschaft zur Aktualisierung.",
-    "map2": "Zwei Koordinaten können keine ganze Weltsicht erfassen. Fehlende Belege bleiben nicht eingeordnet, und Interpretationsbereiche zeigen die Unsicherheit darüber, wie deine Antworten zu verstehen sind – nicht die Wahrscheinlichkeit, dass deine Überzeugungen zutreffen. Eine separate Schätzung der <b>P(doom)</b> wird entweder als ausdrücklich angegeben oder als abgeleitet gekennzeichnet.",
-    "map3": "Dies ist ein Experiment, kein Intelligenztest und keine validierte Prognose. Die Antworten werden nicht unabhängig auf Fakten geprüft. Fragen, Quellen und Bewertungsregeln beruhen auf redaktionellen Entscheidungen, und schon der Name selbst kann deine Antworten beeinflussen. Gemischte Sichtweisen, Unsicherheit und in sich schlüssige Extrempositionen sind alle gültig; Übereinstimmung mit uns ist nicht das Ziel.",
     "answersTitle": "Deine Antworten bleiben deine",
     "answers": "Deine Antworten und Ergebnisse sind standardmäßig privat. Du kannst sie veröffentlichen, wenn du sie teilen möchtest. Eine Registrierung ist nicht erforderlich. Weitere Einzelheiten findest du in der <privacy>Datenschutzerklärung</privacy>.",
     "nextTitle": "Wie geht es weiter?",
