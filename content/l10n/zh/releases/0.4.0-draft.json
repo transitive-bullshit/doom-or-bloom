@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "你预计AI会如何改变你自己的生活或工作？",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "我无法将这个回答与问题联系起来。用几个词说说你的看法就够了——想再试一次吗？",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "我不太确定该如何理解。你能再多说一点你的意思吗？",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "我们先在这里暂停。你可以尝试另一个问题，暂时停止，或重新开始。",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "你排除了无论有什么证据都改变这一信念的可能性。试着指出一项会让你重新考虑的观察结果，以及你会改变什么。",
       "sourceHash": "a2f6cee65ef18d20",

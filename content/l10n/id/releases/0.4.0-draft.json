@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "Menurut Anda, bagaimana AI akan mengubah kehidupan atau pekerjaan Anda sendiri?",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "Saya tidak dapat menghubungkan jawaban itu dengan pertanyaan ini. Beberapa kata tentang pandangan Anda sudah cukup—ingin mencoba lagi?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "Saya tidak yakin bagaimana memahami jawaban itu. Bisakah Anda menjelaskan sedikit lagi apa yang Anda maksud?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "Mari berhenti sejenak di sini. Anda dapat mencoba pertanyaan lain, berhenti untuk saat ini, atau memulai kembali.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "Anda mengesampingkan kemungkinan untuk mengubah keyakinan ini terlepas dari bukti apa pun. Cobalah sebutkan satu pengamatan yang akan membuat Anda mempertimbangkannya kembali, serta apa yang akan Anda ubah.",
       "sourceHash": "a2f6cee65ef18d20",

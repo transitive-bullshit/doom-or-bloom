@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "आपको क्या लगता है, एआई आपके अपने जीवन या काम को कैसे बदलेगा?",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "मैं उस उत्तर को इस सवाल से नहीं जोड़ पाया। आपके दृष्टिकोण के बारे में कुछ शब्द ही काफ़ी हैं—क्या आप फिर से कोशिश करना चाहेंगे?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "मुझे ठीक से समझ नहीं आया कि इसका क्या अर्थ निकालूँ। क्या आप अपनी बात के बारे में थोड़ा और बता सकते हैं?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "आइए यहाँ रुकते हैं। आप कोई दूसरा सवाल आज़मा सकते हैं, अभी के लिए रुक सकते हैं या फिर से शुरू कर सकते हैं।",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "आपने इस विश्वास को बदलने की संभावना को खारिज कर दिया, चाहे कोई भी प्रमाण मिले। ऐसी एक बात बताने की कोशिश करें जिसे देखने पर आप फिर से विचार करेंगे, और यह भी कि आप क्या बदलेंगे।",
       "sourceHash": "a2f6cee65ef18d20",

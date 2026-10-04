@@ -157,6 +157,26 @@ export function splitOutlook(answer: ModelAnswer | undefined) {
   return `${low}-${low + 1}` as (typeof splitOutlookPairs)[number]
 }
 
+// No other question asks about the participant's own life or work
+// (docs/research/personal-question-2026-10-04.md). Once the core map questions
+// are settled and routing has decided to continue, this question takes the
+// next ordinary follow-up slot, once per assessment including inherited
+// history. It is not a ranked candidate, so it is never itself a reason to
+// withhold results; a pending worthwhile follow-up comes one question later.
+export const personalPrompt = 'personal.life-work'
+
+/** The personal question, when routing next issues an ordinary follow-up. */
+export function personalQuestion(state: Assessment, prompts: Prompt[]) {
+  return prompts.some(
+    (prompt) =>
+      prompt.id === personalPrompt &&
+      prompt.trigger === 'first_follow_up' &&
+      !prompt.retired
+  ) && !state.prompts.some((issued) => issued.promptId === personalPrompt)
+    ? personalPrompt
+    : null
+}
+
 export function rankCandidates(
   state: Assessment,
   prompts: Prompt[],

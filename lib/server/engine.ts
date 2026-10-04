@@ -41,6 +41,7 @@ import {
 import {
   candidatePrompts,
   mapGapQuestion,
+  personalQuestion,
   rankCandidates,
   worthwhileCandidates,
   followUpNoveltyThreshold
@@ -772,7 +773,21 @@ export async function runAssessment(
         state.answers.length >= autoStopFloor
       )
         return false
-      selected = (worthwhile[0] ?? ranking[0])!.prompt
+      // Routing continues, so the personal question takes this ordinary
+      // follow-up slot if it has not been asked. It is chosen after the stop
+      // decision, so it is never itself a reason to withhold results.
+      const personal = bundle.prompts.find(
+        (prompt) => prompt.id === personalQuestion(state, bundle.prompts)
+      )
+      if (personal)
+        trace.decisions.push({
+          action: 'personal question',
+          detail: {
+            id: personal.id,
+            displaced: (worthwhile[0] ?? ranking[0])?.prompt.id ?? null
+          }
+        })
+      selected = personal ?? (worthwhile[0] ?? ranking[0])!.prompt
     }
     state = issuePrompt(state, promptDisplay(selected))
     trace.decisions.push({

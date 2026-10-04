@@ -3,6 +3,8 @@ import { createAssessment } from './state'
 import {
   candidatePrompts,
   mapGapQuestion,
+  personalPrompt,
+  personalQuestion,
   rankCandidates,
   splitOutlook
 } from './routing'
@@ -99,8 +101,9 @@ test('deleted questions are absent for every saved corpus and confidence questio
       state.coverage[vector as keyof typeof state.coverage] = 'assessed'
     const candidates = candidatePrompts(state, bundle.prompts)
     // 0.4.0 adds the direct scale and P(doom) anchors from the 2026-09-27
-    // audit and eight triggered questions from the 2026-09-29 review.
-    expect(bundle.prompts).toHaveLength(version === '0.4.0-draft' ? 48 : 38)
+    // audit, eight triggered questions from the 2026-09-29 review and the
+    // personal question from 2026-10-04.
+    expect(bundle.prompts).toHaveLength(version === '0.4.0-draft' ? 49 : 38)
     for (const id of removed) {
       expect(bundle.prompts.some((prompt) => prompt.id === id)).toBe(false)
       expect(candidates.some((candidate) => candidate.prompt.id === id)).toBe(
@@ -425,8 +428,30 @@ test('a split outlook reading gets one resolving question after the core map que
   const triggered = candidatePrompts(state, prompts).filter(
     (c) => c.prompt.trigger
   )
-  expect(triggered).toHaveLength(8)
+  expect(triggered).toHaveLength(9)
   expect(
     triggered.every((c) => c.reason === 'issued only by its trigger')
   ).toBe(true)
+})
+
+test('the personal question is offered once, only where the catalog has it, and is never ranked', () => {
+  const { prompts } = loadBundle()
+  const state = createAssessment('personal')
+  expect(personalQuestion(state, prompts)).toBe(personalPrompt)
+  expect(prompts.find((prompt) => prompt.id === personalPrompt)?.text).toBe(
+    'How do you expect AI to change your own life or work?'
+  )
+  expect(
+    candidatePrompts(state, prompts).find(
+      (candidate) => candidate.prompt.id === personalPrompt
+    )?.reason
+  ).toBe('issued only by its trigger')
+  // Saved assessments on earlier catalogs never get it.
+  expect(personalQuestion(state, loadBundle('0.3.0-draft').prompts)).toBeNull()
+  state.prompts.push({
+    ...state.prompts[0]!,
+    id: 'personal-issued',
+    promptId: personalPrompt
+  })
+  expect(personalQuestion(state, prompts)).toBeNull()
 })

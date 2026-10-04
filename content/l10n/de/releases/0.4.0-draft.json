@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "Wie erwartest du, dass KI dein eigenes Leben oder deine Arbeit verändern wird?",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "Ich konnte diese Antwort nicht mit der Frage in Verbindung bringen. Ein paar Worte zu deiner Sichtweise reichen – möchtest du es noch einmal versuchen?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "Ich bin nicht sicher, wie ich das verstehen soll. Könntest du etwas genauer sagen, was du meinst?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "Lass uns hier eine Pause machen. Du kannst eine andere Frage versuchen, vorerst aufhören oder neu beginnen.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "Du hast ausgeschlossen, diese Überzeugung aufgrund von Belegen zu ändern. Versuche, eine Beobachtung zu nennen, die dich zum Umdenken bewegen würde, und was du ändern würdest.",
       "sourceHash": "a2f6cee65ef18d20",
