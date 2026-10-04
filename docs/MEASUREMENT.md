@@ -11,7 +11,7 @@ For storage, ownership and publication behavior, use [PERSISTENCE.md](PERSISTENC
 - Do not send raw answers, answer excerpts, full reports, private assessment URLs, query strings, or free-form clarification text to analytics. The only exception is the normalized link tags described under [Acquisition attribution](#acquisition-attribution).
 - Do not enable session replay, heatmaps, autocapture, automatic exception payloads, or person profiles for MVP.
 - Configure PostHog's project-level IP-data disposal; the deprecated client `ip: false` option is not sufficient.
-- Each participant assessment stores the country it was created from, a two-letter code from Vercel's `x-vercel-ip-country` header, never the IP address ([PERSISTENCE.md](PERSISTENCE.md#constraints-and-indexes)). Publish it only in aggregates of 10 or more, like any participant statistic ([BLOG.md](BLOG.md#participant-data)); public pages and share cards never show it.
+- Each participant assessment stores the country it was created from, a two-letter code from Vercel's `x-vercel-ip-country` header, never the IP address ([PERSISTENCE.md](PERSISTENCE.md#constraints-and-indexes)). Publish it only in aggregates of 10 or more, like any participant statistic ([BLOG.md](BLOG.md#participant-data)); public pages, share cards and the admin assessment view never show it, because the privacy page promises group statistics only.
 - PostHog's GeoIP enrichment adds an approximate location (country, region, city, postal code and coordinates) to every event before the IP is discarded, so `$geoip_*` properties exist even with IP-data disposal on. The privacy page says so.
 - Explain accurately that this is pseudonymous per-assessment event linkage, not mathematical anonymity.
 
