@@ -1,8 +1,8 @@
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { cp, mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import os from 'node:os'
 import path from 'node:path'
-import { expect, test } from 'vitest'
+import { afterAll, beforeAll, beforeEach, expect, test } from 'vitest'
 import snapshot from './site-social-points.json'
 import {
   applySiteSocialReview,
@@ -13,116 +13,137 @@ import {
   snapshotSocialPoints
 } from './render-site-social'
 
-test('refresh captures a review, rejects stale or changed bundles, and applies replayable inputs and pixels', async () => {
-  const root = await mkdtemp(path.join(os.tmpdir(), 'site-social-review-'))
-  try {
-    await mkdir(path.join(root, 'app'))
-    await mkdir(path.join(root, 'lib/sharing'), { recursive: true })
-    const pointsFile = path.join(root, 'lib/sharing/site-social-points.json')
-    const imageFile = path.join(root, 'app/opengraph-image.png')
-    const altFile = path.join(root, 'app/opengraph-image.alt.txt')
-    const beforePoints = await readFile('lib/sharing/site-social-points.json')
-    const beforeImage = await readFile('app/opengraph-image.png')
-    const beforeAlt = await readFile('app/opengraph-image.alt.txt')
-    await writeFile(pointsFile, beforePoints)
-    await writeFile(imageFile, beforeImage)
-    await writeFile(altFile, beforeAlt)
-    const after = structuredClone(snapshot)
-    after[0]!.transformation = 0.25
-    const directory = path.join(root, 'review')
-    const review = await createSiteSocialReview(directory, after, 'local', root)
-    expect(review.changes).toEqual([
-      { slug: after[0]!.slug, before: snapshot[0], after: after[0] }
-    ])
-    expect(await readFile(pointsFile)).toEqual(beforePoints)
-    expect(await readFile(imageFile)).toEqual(beforeImage)
-    expect(await readFile(altFile)).toEqual(beforeAlt)
-    expect(await readFile(path.join(directory, 'before-alt.txt'))).toEqual(
-      beforeAlt
-    )
-    const afterImage = await readFile(path.join(directory, 'after.png'))
+const targets = {
+  points: 'lib/sharing/site-social-points.json',
+  image: 'app/opengraph-image.png',
+  alt: 'app/opengraph-image.alt.txt'
+}
+const after = structuredClone(snapshot)
+after[0]!.transformation = 0.25
+let suiteRoot: string
+let template: string
+let root: string
+let directory: string
+let before: Record<keyof typeof targets, Buffer>
 
-    await writeFile(pointsFile, 'changed base')
+// Render one immutable review; each test gets its own approved files and bundle.
+beforeAll(async () => {
+  suiteRoot = await mkdtemp(path.join(os.tmpdir(), 'site-social-review-'))
+  template = path.join(suiteRoot, 'template')
+  await mkdir(path.join(template, 'app'), { recursive: true })
+  await mkdir(path.join(template, 'lib/sharing'), { recursive: true })
+  before = {
+    points: await readFile(targets.points),
+    image: await readFile(targets.image),
+    alt: await readFile(targets.alt)
+  }
+  for (const [key, file] of Object.entries(targets))
+    await writeFile(
+      path.join(template, file),
+      before[key as keyof typeof targets]
+    )
+  await createSiteSocialReview(
+    path.join(template, 'review'),
+    after,
+    'local',
+    template
+  )
+})
+beforeEach(async () => {
+  root = await mkdtemp(path.join(suiteRoot, 'apply-'))
+  await cp(template, root, { recursive: true })
+  directory = path.join(root, 'review')
+})
+afterAll(async () => {
+  if (suiteRoot) await rm(suiteRoot, { recursive: true, force: true })
+})
+async function expectApproved(overrides: Partial<typeof before> = {}) {
+  for (const [key, file] of Object.entries(targets)) {
+    const name = key as keyof typeof targets
+    expect(await readFile(path.join(root, file))).toEqual(
+      overrides[name] ?? before[name]
+    )
+  }
+}
+async function replaceReviewedFile(file: string, bytes: Buffer) {
+  const manifest = path.join(directory, 'review.json')
+  const review = JSON.parse(await readFile(manifest, 'utf8'))
+  review.hashes[file] = createHash('sha256').update(bytes).digest('hex')
+  await writeFile(path.join(directory, file), bytes)
+  await writeFile(manifest, JSON.stringify(review))
+}
+
+test('capture records changes and hashed alt artifacts without changing approved files', async () => {
+  const review = JSON.parse(
+    await readFile(path.join(directory, 'review.json'), 'utf8')
+  )
+  expect(review.changes).toEqual([
+    { slug: after[0]!.slug, before: snapshot[0], after: after[0] }
+  ])
+  expect(await readFile(path.join(directory, 'before-alt.txt'))).toEqual(
+    before.alt
+  )
+  await expectApproved()
+})
+
+test.each(['points', 'image', 'alt'] as const)(
+  'apply preserves a changed approved %s file',
+  async (target) => {
+    const correction = Buffer.from('An approved correction\n')
+    await writeFile(path.join(root, targets[target]), correction)
     await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
       'capture a new review'
     )
-    expect(await readFile(imageFile)).toEqual(beforeImage)
-    await writeFile(pointsFile, beforePoints)
-    await writeFile(path.join(directory, 'after.png'), 'corrupt')
-    await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
-      'Review file changed'
-    )
-    expect(await readFile(pointsFile)).toEqual(beforePoints)
-    await writeFile(path.join(directory, 'after.png'), afterImage)
-
-    const correctedAlt = Buffer.from('An accessibility copy fix\n')
-    await writeFile(altFile, correctedAlt)
-    await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
-      'alt text changed'
-    )
-    expect(await readFile(pointsFile)).toEqual(beforePoints)
-    expect(await readFile(imageFile)).toEqual(beforeImage)
-    expect(await readFile(altFile)).toEqual(correctedAlt)
-    await writeFile(altFile, beforeAlt)
-
-    const reviewedManifest = await readFile(path.join(directory, 'review.json'))
-    const reviewedPoints = await readFile(
-      path.join(directory, 'after-points.json')
-    )
-    const reviewedAlt = await readFile(path.join(directory, 'after-alt.txt'))
-    const staleAlt = Buffer.from('An obsolete design description\n')
-    await writeFile(path.join(directory, 'after-alt.txt'), staleAlt)
-    await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
-      'Review file changed: after-alt.txt'
-    )
-    await writeFile(
-      path.join(directory, 'review.json'),
-      JSON.stringify({
-        ...review,
-        hashes: {
-          ...review.hashes,
-          'after-alt.txt': createHash('sha256').update(staleAlt).digest('hex')
-        }
-      })
-    )
-    await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
-      'alt text no longer matches'
-    )
-    expect(await readFile(pointsFile)).toEqual(beforePoints)
-    expect(await readFile(imageFile)).toEqual(beforeImage)
-    expect(await readFile(altFile)).toEqual(beforeAlt)
-    await writeFile(path.join(directory, 'after-alt.txt'), reviewedAlt)
-    await writeFile(path.join(directory, 'review.json'), reviewedManifest)
-    const mismatchedPoints = Buffer.from(JSON.stringify(snapshot))
-    await writeFile(path.join(directory, 'after-points.json'), mismatchedPoints)
-    await writeFile(
-      path.join(directory, 'review.json'),
-      JSON.stringify({
-        ...review,
-        hashes: {
-          ...review.hashes,
-          'after-points.json': createHash('sha256')
-            .update(mismatchedPoints)
-            .digest('hex')
-        }
-      })
-    )
-    await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
-      'no longer matches'
-    )
-    expect(await readFile(pointsFile)).toEqual(beforePoints)
-    expect(await readFile(imageFile)).toEqual(beforeImage)
-    await writeFile(path.join(directory, 'after-points.json'), reviewedPoints)
-    await writeFile(path.join(directory, 'review.json'), reviewedManifest)
-
-    await applySiteSocialReview(directory, root)
-    expect(JSON.parse(await readFile(pointsFile, 'utf8'))).toEqual(after)
-    expect(await readFile(imageFile)).toEqual(afterImage)
-    expect(await readFile(altFile)).toEqual(reviewedAlt)
-    expect(
-      await renderSiteSocialImage(await snapshotSocialPoints(after))
-    ).toEqual(afterImage)
-  } finally {
-    await rm(root, { recursive: true, force: true })
+    await expectApproved({ [target]: correction })
   }
+)
+
+test.each(['after.png', 'after-alt.txt'])(
+  'apply rejects a corrupt %s artifact',
+  async (file) => {
+    await writeFile(path.join(directory, file), 'corrupt')
+    await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
+      `Review file changed: ${file}`
+    )
+    await expectApproved()
+  }
+)
+
+test('apply rejects obsolete alt text even with a matching hash', async () => {
+  await replaceReviewedFile(
+    'after-alt.txt',
+    Buffer.from('An obsolete design description\n')
+  )
+  await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
+    'alt text no longer matches'
+  )
+  await expectApproved()
+})
+
+test('apply rejects points that no longer reproduce the reviewed PNG', async () => {
+  await replaceReviewedFile(
+    'after-points.json',
+    Buffer.from(JSON.stringify(snapshot))
+  )
+  await expect(applySiteSocialReview(directory, root)).rejects.toThrow(
+    'no longer matches'
+  )
+  await expectApproved()
+})
+
+test('apply copies exact reviewed inputs and pixels that replay offline', async () => {
+  await applySiteSocialReview(directory, root)
+  expect(
+    JSON.parse(await readFile(path.join(root, targets.points), 'utf8'))
+  ).toEqual(after)
+  for (const [target, file] of [
+    ['image', 'after.png'],
+    ['alt', 'after-alt.txt']
+  ] as const)
+    expect(await readFile(path.join(root, targets[target]))).toEqual(
+      await readFile(path.join(directory, file))
+    )
+  expect(
+    await renderSiteSocialImage(await snapshotSocialPoints(after))
+  ).toEqual(await readFile(path.join(directory, 'after.png')))
 })

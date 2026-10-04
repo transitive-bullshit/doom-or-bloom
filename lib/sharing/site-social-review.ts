@@ -110,6 +110,16 @@ export async function applySiteSocialReview(
     throw new Error(
       'Review alt text no longer matches the current design; capture a new review'
     )
+  for (const [target, before] of [
+    [targets.points, 'before-points.json'],
+    [targets.image, 'before.png'],
+    [targets.alt, 'before-alt.txt']
+  ] as const) {
+    if (hash(await readFile(path.join(root, target))) !== review.hashes[before])
+      throw new Error(
+        'Approved social image, snapshot or alt text changed; capture a new review'
+      )
+  }
   const snapshot = siteSocialSnapshotSchema.parse(
     JSON.parse(contents.get('after-points.json')!.toString())
   )
@@ -126,16 +136,6 @@ export async function applySiteSocialReview(
     throw new Error(
       'Review image no longer matches its points and current design; capture a new review'
     )
-  for (const [target, before] of [
-    [targets.points, 'before-points.json'],
-    [targets.image, 'before.png'],
-    [targets.alt, 'before-alt.txt']
-  ] as const) {
-    if (hash(await readFile(path.join(root, target))) !== review.hashes[before])
-      throw new Error(
-        'Approved social image, snapshot or alt text changed; capture a new review'
-      )
-  }
   await writeFile(
     path.join(root, targets.points),
     contents.get('after-points.json')!
