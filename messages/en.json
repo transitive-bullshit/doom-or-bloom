@@ -540,7 +540,14 @@
     "updatedDraftTitle": "Updated draft available",
     "updatedDraftDescription": "Your saved assessment will keep its earlier version. Start a new assessment to try the updated draft.",
     "questionOf": "Question {ordinal} of {limit}",
-    "questionProgress": "Question {ordinal} · most people see results after 4–8",
+    "progress": {
+      "label": "Interview progress",
+      "start": "Question 1 of {total} · about 3 minutes",
+      "question": "Question {step} of {total}",
+      "followUp": "Follow-up question · sharpens your result",
+      "results": "Results",
+      "resultsReady": "Results ready"
+    },
     "unavailableTitle": "This question is no longer available",
     "unavailableDescription": "Your history and draft are preserved. Choose a different question below to continue.",
     "limitTitle": "Approaching the limit",
@@ -563,10 +570,8 @@
     "differentQuestion": "Try a different question",
     "reflecting": "Reflecting on your answer",
     "continue": "Continue",
-    "duration": "4 short questions; usually takes about 3 minutes to complete.",
     "privacy": "Your answers remain private unless you choose to publish them at the end.",
     "busy": "Reading the evidence and choosing a useful next step…",
-    "keepExploring": "You can see your result now, or keep exploring.",
     "notices": {
       "draftUnsaved": "Unsubmitted typing cannot be saved in this browser. Submitted progress is saved on the server.",
       "loadFailed": "Couldn’t load your assessment. Please refresh the page.",

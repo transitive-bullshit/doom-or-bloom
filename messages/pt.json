@@ -540,7 +540,14 @@
     "updatedDraftTitle": "Rascunho atualizado disponível",
     "updatedDraftDescription": "Sua avaliação salva manterá a versão anterior. Inicie uma nova avaliação para experimentar o rascunho atualizado.",
     "questionOf": "Pergunta {ordinal} de {limit}",
-    "questionProgress": "Pergunta {ordinal} · a maioria das pessoas vê os resultados após 4–8",
+    "progress": {
+      "label": "Progresso da entrevista",
+      "start": "Pergunta 1 de {total} · cerca de 3 minutos",
+      "question": "Pergunta {step} de {total}",
+      "followUp": "Pergunta de acompanhamento · refina seu resultado",
+      "results": "Resultados",
+      "resultsReady": "Resultados prontos"
+    },
     "unavailableTitle": "Esta pergunta não está mais disponível",
     "unavailableDescription": "Seu histórico e rascunho foram preservados. Escolha outra pergunta abaixo para continuar.",
     "limitTitle": "Você está se aproximando do limite",
@@ -563,10 +570,8 @@
     "differentQuestion": "Tentar outra pergunta",
     "reflecting": "Refletindo sobre sua resposta",
     "continue": "Continuar",
-    "duration": "4 perguntas curtas; geralmente leva cerca de 3 minutos para concluir.",
     "privacy": "Suas respostas permanecem privadas, a menos que você decida publicá-las ao final.",
     "busy": "Lendo as evidências e escolhendo um próximo passo útil…",
-    "keepExploring": "Você pode ver seu resultado agora ou continuar explorando.",
     "notices": {
       "draftUnsaved": "O texto digitado e não enviado não pode ser salvo neste navegador. O progresso enviado é salvo no servidor.",
       "loadFailed": "Não foi possível carregar sua avaliação. Atualize a página.",

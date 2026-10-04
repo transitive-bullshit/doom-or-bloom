@@ -540,7 +540,14 @@
     "updatedDraftTitle": "有更新后的草稿可用",
     "updatedDraftDescription": "你已保存的评估将保留其较早版本。开始一项新评估以尝试更新后的草稿。",
     "questionOf": "第 {ordinal} 题，共 {limit} 题",
-    "questionProgress": "第 {ordinal} 题 · 大多数人会在回答 4–8 题后看到结果",
+    "progress": {
+      "label": "访谈进度",
+      "start": "第 1 题，共 {total} 题 · 大约3分钟",
+      "question": "第 {step} 题，共 {total} 题",
+      "followUp": "后续问题 · 让你的结果更精准",
+      "results": "结果",
+      "resultsReady": "结果已生成"
+    },
     "unavailableTitle": "此问题已不可用",
     "unavailableDescription": "你的历史记录和草稿均已保留。请在下方选择其他问题以继续。",
     "limitTitle": "即将达到上限",
@@ -563,10 +570,8 @@
     "differentQuestion": "尝试其他问题",
     "reflecting": "正在思考你的答案",
     "continue": "继续",
-    "duration": "4 个简短问题；通常约 3 分钟即可完成。",
     "privacy": "除非你选择在最后发布，否则你的答案将保持私密。",
     "busy": "正在阅读依据并选择一个有用的后续步骤……",
-    "keepExploring": "你现在可以查看结果，也可以继续探索。",
     "notices": {
       "draftUnsaved": "此浏览器无法保存尚未提交的输入内容。已提交的进度会保存在服务器上。",
       "loadFailed": "无法加载你的评估。请刷新页面。",
