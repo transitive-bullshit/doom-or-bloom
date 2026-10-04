@@ -42,6 +42,11 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import type { DimensionDefinition } from '@/lib/debug/json-help'
 import { ReadinessMeter } from './readiness-meter'
+import {
+  InterviewProgressFixed,
+  InterviewProgressInline,
+  useProgressVariant
+} from './interview-progress'
 import { toast } from 'sonner'
 import { emitEvent } from '@/lib/analytics/client'
 import { makeEvent } from '@/lib/analytics/events'
@@ -310,11 +315,23 @@ export function Interview({
       </>
     )
   const currentTurn = turns[turns.length - 1]!
+  const progressVariant = useProgressVariant()
+  const prototype = progressVariant === 'current' ? null : progressVariant
   return (
     <AnswerNavigationProvider
       answerIds={state.answers.map((answer) => answer.id)}
     >
-      <section className='content-column relative flex flex-1 flex-col justify-center py-10'>
+      <section
+        className={`content-column relative flex flex-1 flex-col justify-center py-10${prototype === 'dock' && !showResult ? ' pb-28' : ''}`}
+      >
+        {prototype && !showResult && (
+          <InterviewProgressFixed
+            variant={prototype}
+            state={state}
+            busy={busy}
+            onViewResults={() => void act({ type: 'project' })}
+          />
+        )}
         {state.recovery.paperclipActive && (
           <Paperclips dismiss={() => void act({ type: 'dismiss' })} />
         )}
@@ -413,15 +430,24 @@ export function Interview({
             ) : (
               <>
                 <div>
-                  {state.answers.length > 0 && (
-                    <p className='mb-5 text-xs text-muted-foreground'>
-                      {p.ordinal >= promptLimit(state) - 2
-                        ? t('questionOf', {
-                            ordinal: p.ordinal,
-                            limit: promptLimit(state)
-                          })
-                        : t('questionProgress', { ordinal: p.ordinal })}
-                    </p>
+                  {prototype ? (
+                    <InterviewProgressInline
+                      variant={prototype}
+                      state={state}
+                      busy={busy}
+                      onViewResults={() => void act({ type: 'project' })}
+                    />
+                  ) : (
+                    state.answers.length > 0 && (
+                      <p className='mb-5 text-xs text-muted-foreground'>
+                        {p.ordinal >= promptLimit(state) - 2
+                          ? t('questionOf', {
+                              ordinal: p.ordinal,
+                              limit: promptLimit(state)
+                            })
+                          : t('questionProgress', { ordinal: p.ordinal })}
+                      </p>
+                    )
                   )}
                   <h2 className='text-pretty'>
                     {promptText(root, p, authored)}
@@ -593,10 +619,10 @@ export function Interview({
                   </FieldGroup>
                 </form>
                 <div className='space-y-2 text-xs leading-relaxed text-muted-foreground'>
-                  <p>{t('duration')}</p>
+                  {!prototype && <p>{t('duration')}</p>}
                   <p>{t('privacy')}</p>
                 </div>
-                {state.answers.length > 0 && (
+                {!prototype && state.answers.length > 0 && (
                   <ReadinessMeter
                     state={state}
                     debug={debugMode}
@@ -609,7 +635,7 @@ export function Interview({
                     {t('busy')}
                   </p>
                 )}
-                {state.answers.length >= 6 && (
+                {!prototype && state.answers.length >= 6 && (
                   <p className='text-sm text-muted-foreground'>
                     {t('keepExploring')}
                   </p>
