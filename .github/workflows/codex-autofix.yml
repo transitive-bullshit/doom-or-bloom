@@ -27,7 +27,7 @@ jobs:
       pr_number: ${{ steps.target.outputs.pr_number }}
     steps:
       # workflow_run has secrets even for fork CI. Resolve an open, current,
-      # same-repository PR and a trusted actor before checking out any code.
+      # same-repository Codex PR and a trusted actor before checking out code.
       - name: Resolve eligible PR
         id: target
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
@@ -45,12 +45,19 @@ jobs:
             const pulls = await github.paginate(github.rest.pulls.list, {
               ...repo, state: 'open', head: `${repo.owner}:${run.head_branch}`
             })
+            const isCodexPr = pr => {
+              const labels = pr.labels.map(label => label.name.toLowerCase())
+              const branch = pr.head.ref
+              return !/^claude\//i.test(branch) &&
+                !labels.some(label => ['claude', 'claude-code'].includes(label)) &&
+                (branch.startsWith('codex/') || labels.includes('codex-autofix'))
+            }
             const pr = pulls.find(pr =>
               pr.head.repo?.full_name === `${repo.owner}/${repo.repo}` &&
-              pr.head.sha === run.head_sha
+              pr.head.sha === run.head_sha && isCodexPr(pr)
             )
             if (!pr) {
-              core.info('Skipping CI without an open PR at the failed commit')
+              core.info('Skipping CI without an eligible open Codex PR at the failed commit')
               return
             }
             core.setOutput('pr_number', pr.number)
@@ -70,12 +77,17 @@ jobs:
             const { data: pr } = await github.rest.pulls.get({
               ...context.repo, pull_number: Number(process.env.PR_NUMBER)
             })
+            const labels = pr.labels.map(label => label.name.toLowerCase())
+            const branch = pr.head.ref
+            const isCodexPr = !/^claude\//i.test(branch) &&
+              !labels.some(label => ['claude', 'claude-code'].includes(label)) &&
+              (branch.startsWith('codex/') || labels.includes('codex-autofix'))
             if (pr.state === 'open' &&
                 pr.head.repo?.full_name === context.payload.repository.full_name &&
-                pr.head.sha === context.payload.workflow_run.head_sha) {
+                pr.head.sha === context.payload.workflow_run.head_sha && isCodexPr) {
               core.setOutput('eligible', 'true')
             } else {
-              core.info('Local work advanced or closed the PR; no remote repair needed')
+              core.info('PR advanced, closed, or is no longer Codex-owned; skipping remote repair')
             }
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -171,10 +183,15 @@ jobs:
             const { data: pr } = await github.rest.pulls.get({
               ...context.repo, pull_number: Number(process.env.PR_NUMBER)
             })
+            const labels = pr.labels.map(label => label.name.toLowerCase())
+            const branch = pr.head.ref
+            const isCodexPr = !/^claude\//i.test(branch) &&
+              !labels.some(label => ['claude', 'claude-code'].includes(label)) &&
+              (branch.startsWith('codex/') || labels.includes('codex-autofix'))
             if (pr.state !== 'open' ||
                 pr.head.repo?.full_name !== context.payload.repository.full_name ||
-                pr.head.sha !== context.payload.workflow_run.head_sha) {
-              core.info('Skipping obsolete repair')
+                pr.head.sha !== context.payload.workflow_run.head_sha || !isCodexPr) {
+              core.info('Skipping obsolete repair or PR no longer owned by Codex')
               return
             }
             core.setOutput('branch', pr.head.ref)
