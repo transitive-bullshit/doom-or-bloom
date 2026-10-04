@@ -214,7 +214,8 @@ export function assessmentRepository(pool: Pool) {
       ownerId: string,
       requestKey: string,
       model: string,
-      onlyIfEmpty = false
+      onlyIfEmpty = false,
+      country: string | null = null
     ) {
       const digest = fingerprint({ model, onlyIfEmpty })
       return db.transaction(async (tx) => {
@@ -263,7 +264,8 @@ export function assessmentRepository(pool: Pool) {
           currentSnapshotId: snapshotId,
           versions: state.versions,
           createRequestKey: requestKey,
-          createFingerprint: digest
+          createFingerprint: digest,
+          country
         })
         await tx.insert(assessmentSnapshots).values({
           id: snapshotId,
@@ -357,7 +359,8 @@ export function assessmentRepository(pool: Pool) {
       input: Submission,
       evaluate: Evaluator,
       signal?: AbortSignal,
-      draft?: Assessment
+      draft?: Assessment,
+      country: string | null = null
     ): Promise<OperationOutcome> {
       const digest = fingerprint({
         expectedRevision: input.expectedRevision,
@@ -386,7 +389,8 @@ export function assessmentRepository(pool: Pool) {
               currentSnapshotId: snapshotId,
               versions: draft.versions,
               createRequestKey: `draft:${draft.id}`,
-              createFingerprint: fingerprint(draft)
+              createFingerprint: fingerprint(draft),
+              country
             })
             await tx.insert(assessmentSnapshots).values({
               id: snapshotId,
@@ -709,7 +713,12 @@ export function assessmentRepository(pool: Pool) {
         { isolationLevel: 'repeatable read', accessMode: 'read only' }
       )
     },
-    async fork(ownerId: string, sourceId: string, requestKey: string) {
+    async fork(
+      ownerId: string,
+      sourceId: string,
+      requestKey: string,
+      country: string | null = null
+    ) {
       return db.transaction(async (tx) => {
         const [owner] = await tx
           .select({ id: user.id })
@@ -770,7 +779,8 @@ export function assessmentRepository(pool: Pool) {
           sourceAssessmentId: sourceId,
           sourceSnapshotId: source.publishedSnapshotId,
           inheritedPromptCount: inherited.prompts.length,
-          promptCeiling: state.promptCeiling
+          promptCeiling: state.promptCeiling,
+          country
         })
         await tx.insert(assessmentSnapshots).values({
           id: snapshotId,

@@ -78,6 +78,8 @@ test('unsubmitted drafts survive history and reload without database rows; first
     } finally {
       await stranger.close()
     }
+    // Vercel's edge adds the requester's country; only the code is stored.
+    await context.setExtraHTTPHeaders({ 'x-vercel-ip-country': 'DE' })
     await page.getByRole('button', { name: 'Continue', exact: true }).click()
     await expect
       .poll(
@@ -92,8 +94,9 @@ test('unsubmitted drafts survive history and reload without database rows; first
       )
     ).toEqual([id])
     expect(
-      (await pool.query('SELECT id FROM assessments WHERE id=$1', [id])).rows
-    ).toHaveLength(1)
+      (await pool.query('SELECT country FROM assessments WHERE id=$1', [id]))
+        .rows
+    ).toEqual([{ country: 'DE' }])
     await page.request.delete(`/api/assessments/${id}`, {
       headers: { origin: baseURL! }
     })

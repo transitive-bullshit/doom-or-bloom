@@ -129,9 +129,9 @@ try {
   assert.equal('draft' in published.assessment, false)
   const key = randomUUID()
   await assert.rejects(repo.fork(stranger, id, key), /not found/)
-  const fork = await repo.fork(owner, id, key)
+  const fork = await repo.fork(owner, id, key, 'BR')
   ids.push(fork.id)
-  assert.deepEqual(await repo.fork(owner, id, key), fork)
+  assert.deepEqual(await repo.fork(owner, id, key, 'BR'), fork)
   const first = await repo.load(owner, fork.id)
   assert.equal(promptLimit(first.assessment), 24)
   assert.equal(first.visibility, 'private')
@@ -147,14 +147,16 @@ try {
   await repo.remove(owner, id)
   const lineage = (
     await pool.query(
-      'SELECT is_fork, source_assessment_id, source_snapshot_id FROM assessments WHERE id=$1',
+      'SELECT is_fork, source_assessment_id, source_snapshot_id, country FROM assessments WHERE id=$1',
       [fork.id]
     )
   ).rows[0]
+  // A fork records the country it was created from, not its source's.
   assert.deepEqual(lineage, {
     is_fork: true,
     source_assessment_id: null,
-    source_snapshot_id: null
+    source_snapshot_id: null,
+    country: 'BR'
   })
   await project(fork.id, 24)
   await repo.setVisibility(owner, fork.id, 1, 'public')

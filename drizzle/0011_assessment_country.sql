@@ -1,0 +1,2 @@
+ALTER TABLE "assessments" ADD COLUMN "country" text;--> statement-breakpoint
+ALTER TABLE "assessments" ADD CONSTRAINT "assessment_country" CHECK ("assessments"."country" is null or "assessments"."country" ~ '^[A-Z]{2}$');
