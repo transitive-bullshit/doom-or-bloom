@@ -1,0 +1,264 @@
+{
+  "description": "Jev questions used to score participant interviews with the classification scheme of Anthropic's 'What 81,000 people want from AI' (March 2026). Taxonomy only: no participant data. See participant-sentiment-2026-10-04.md.",
+  "model": "jev-1.13.0",
+  "sources": {
+    "features": "https://www.anthropic.com/features/81k-interviews",
+    "appendix": "https://cdn.sanity.io/files/4zrzovbb/website/99156863ed4a812569fe00a2adfb1c93f7e5a911.pdf",
+    "chartData": "https://cdn.sanity.io/files/4zrzovbb/website/a9cde041d15765c23813279f5ccde115bd40f29a.json"
+  },
+  "state": {
+    "fullInterview": {
+      "context": "A participant's accepted answers in a text interview about AI and the future of society, in the order asked. Each entry pairs the interviewer's question with the participant's answer. Answers may be written in any language; judge meaning, not fluency.",
+      "interview": "[{ question, answer }, ...]"
+    },
+    "firstAnswer": {
+      "context": "A participant's first answer in a text interview about AI and the future of society, given to the interview's open opening question before any follow-up question. Answers may be written in any language; judge meaning, not fluency.",
+      "interview": "[{ question, answer }]"
+    }
+  },
+  "sentiment": {
+    "anthropicPrompt": {
+      "instruction": "Rate this person's overall sentiment toward AI on a 1-7 scale based on the FULL interview.",
+      "anchors": [
+        "1—Extremely negative.",
+        "2—Negative: Concerns clearly dominate.",
+        "3—Lean negative: Overall more negative than positive, e.g. concerns weigh heavier.",
+        "4—Mixed/neutral: Genuinely in the middle—real benefits AND real concerns, roughly balanced, hard to find that this person leans towards one side or another, or they are simply neutral.",
+        "5—Lean positive: Overall more positive than negative.",
+        "6—Positive: Clearly enthusiastic. Concerns are minor, hypothetical, or mentioned only when directly asked.",
+        "7—Extremely positive."
+      ],
+      "guidance": [
+        "Note and weight what they emphasize and return to.",
+        "Someone who lists benefits then pivots to a long passionate concern monologue is probably a 3-4, not a 5-6.",
+        "Most people have mixed feelings—don't default to extremes. Use the full range."
+      ],
+      "netPositive": "5 or above"
+    },
+    "adaptation": [
+      "Jev judges each Score level on its own and never sees level numbers or neighbouring levels, so the numbers are replaced by the anchor names and the guidance names levels rather than numbers.",
+      "Levels 1 and 7 carry one added clause each (marked in jevAddition) so they are distinguishable from levels 2 and 6 when judged alone. Levels 2-6 are Anthropic's text verbatim.",
+      "The primary reading is the Score's expected level rounded to the nearest level (1-7). A Choice over the same seven anchors is asked alongside it as a sensitivity check."
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "name": "extremely negative",
+        "anthropic": "Extremely negative.",
+        "jevAddition": "Hostile to or alarmed about AI throughout; concerns dominate and essentially no real benefit is granted."
+      },
+      {
+        "level": 2,
+        "name": "negative",
+        "anthropic": "Negative: Concerns clearly dominate."
+      },
+      {
+        "level": 3,
+        "name": "lean negative",
+        "anthropic": "Lean negative: Overall more negative than positive, e.g. concerns weigh heavier."
+      },
+      {
+        "level": 4,
+        "name": "mixed/neutral",
+        "anthropic": "Mixed/neutral: Genuinely in the middle—real benefits AND real concerns, roughly balanced, hard to find that this person leans towards one side or another, or they are simply neutral."
+      },
+      {
+        "level": 5,
+        "name": "lean positive",
+        "anthropic": "Lean positive: Overall more positive than negative."
+      },
+      {
+        "level": 6,
+        "name": "positive",
+        "anthropic": "Positive: Clearly enthusiastic. Concerns are minor, hypothetical, or mentioned only when directly asked."
+      },
+      {
+        "level": 7,
+        "name": "extremely positive",
+        "anthropic": "Extremely positive.",
+        "jevAddition": "Unreservedly enthusiastic about AI throughout; essentially no concerns, even when asked."
+      }
+    ],
+    "instructions": {
+      "question": "Rate this person's overall sentiment toward AI based on the FULL interview in `interview`.",
+      "guidance": [
+        "Note and weight what they emphasize and return to.",
+        "Someone who lists benefits then pivots to a long passionate concern monologue is probably lean negative or mixed/neutral, not lean positive or positive.",
+        "Most people have mixed feelings; don't default to the extremes. Use the full range."
+      ]
+    }
+  },
+  "concerns": {
+    "anthropicNote": "Multi-label. Anthropic coded concerns from answers to: 'Are there ways AI might be developed that would be contrary to your vision or what you value?' About 11% expressed no concern; the mean was 2.3 concerns per person.",
+    "threshold": 0.5,
+    "instructions": "Does the participant express this `concern` about AI in `interview`?",
+    "criteria": {
+      "true": "The participant voices this as a worry, risk or harm they take seriously, now or in the future, in their own words. This includes answering a direct question by treating it as a real possibility.",
+      "false": "The participant does not raise it, mentions it only to dismiss it or call it unlikely or overblown, or only reports that other people worry about it."
+    },
+    "categories": [
+      {
+        "id": "unreliability",
+        "name": "Unreliability",
+        "definition": "Concern about e.g. hallucinations, inaccuracy, fake citations, verification burden defeating the purpose.",
+        "anthropic81kShare": 0.26657
+      },
+      {
+        "id": "jobs_economy",
+        "name": "Jobs & economy",
+        "definition": "Concern about AI causing job displacement, unemployment, economic inequality, wage stagnation, or negative impacts on workers and the economy.",
+        "anthropic81kShare": 0.22275
+      },
+      {
+        "id": "autonomy_agency",
+        "name": "Autonomy & agency",
+        "definition": "Concern about loss of human autonomy — e.g. AI making decisions without oversight, humans becoming passive, forced AI adoption.",
+        "anthropic81kShare": 0.21852
+      },
+      {
+        "id": "cognitive_atrophy",
+        "name": "Cognitive atrophy",
+        "definition": "Concern about e.g. over-reliance causing skill loss, intellectual passivity, students bypassing learning, critical thinking decline.",
+        "anthropic81kShare": 0.16319
+      },
+      {
+        "id": "governance",
+        "name": "Governance",
+        "definition": "Concern about e.g. lack of legal/regulatory frameworks, no clear liability when AI causes harm, insufficient democratic oversight.",
+        "anthropic81kShare": 0.14724
+      },
+      {
+        "id": "misinformation",
+        "name": "Misinformation",
+        "definition": "Concern about e.g. deepfakes, AI-generated misinformation, erosion of shared reality, propaganda at scale.",
+        "anthropic81kShare": 0.13565
+      },
+      {
+        "id": "surveillance_privacy",
+        "name": "Surveillance & privacy",
+        "definition": "Concern about e.g. mass surveillance, privacy violations, data exploitation, authoritarian control, tracking and profiling.",
+        "anthropic81kShare": 0.13149
+      },
+      {
+        "id": "malicious_use",
+        "name": "Malicious use",
+        "definition": "Concern about malicious use by bad actors — a wide-ranging category including hacking, cyberattacks, scams, fraud, weapons, autonomous military applications, bioweapons.",
+        "anthropic81kShare": 0.13014
+      },
+      {
+        "id": "meaning_creativity",
+        "name": "Meaning & creativity",
+        "definition": "Concern about AI replacing life purpose and/or creative work — e.g. human expression devalued, what are humans for?",
+        "anthropic81kShare": 0.11734
+      },
+      {
+        "id": "overrestriction",
+        "name": "Overrestriction",
+        "definition": "Concern that AI is too restricted — e.g. excessive safety measures, paternalistic content filtering, blocking legitimate use cases.",
+        "anthropic81kShare": 0.11665
+      },
+      {
+        "id": "wellbeing_dependency",
+        "name": "Wellbeing & dependency",
+        "definition": "Concern about e.g. social isolation, loneliness, negative psychological impacts, compulsive AI use, preferring AI companions to humans.",
+        "anthropic81kShare": 0.11238
+      },
+      {
+        "id": "sycophancy",
+        "name": "Sycophancy",
+        "definition": "Concern that AI is too permissive or agreeable, and encourages delusions rather than pushing back.",
+        "anthropic81kShare": 0.10754
+      },
+      {
+        "id": "existential_risk",
+        "name": "Existential risk",
+        "definition": "Concern about e.g. AI becoming uncontrollable, superintelligent, misaligned with humanity, or posing extinction risk.",
+        "anthropic81kShare": 0.06722
+      }
+    ],
+    "anyConcern": {
+      "instructions": "Does the participant express any concern, worry or downside about AI at all in `interview`?",
+      "criteria": {
+        "true": "The participant voices at least one worry, risk, harm or downside of AI that they take seriously, of any kind.",
+        "false": "The participant expresses no worry or downside of their own about AI, for example sees it as purely positive or as a neutral tool, or dismisses the risks others raise."
+      },
+      "anthropic81kNoConcernShare": 0.10968
+    }
+  },
+  "hopes": {
+    "anthropicNote": "Single primary category per respondent, coded from answers to: 'If you could wave a magic wand, what would AI do for you?' 1.1% did not articulate a vision.",
+    "instructions": {
+      "question": "Which category best describes this person's primary positive vision for AI in `interview`: the main thing they hope for or welcome AI doing, for themselves or for society? Pick the vision they emphasize most.",
+      "note": "The interview asks about AI and the future of society rather than about personal wishes, so a hope may be about society. Choose none articulated when the participant expresses no hope for, or welcomed benefit from, AI, for example when they only describe risks, neutral predictions or skepticism."
+    },
+    "categories": [
+      {
+        "id": "professional_excellence",
+        "name": "Professional excellence",
+        "definition": "Improve effectiveness and lean into more meaningful work by having AI handle routine tasks so they can focus on higher-value strategic work, complex problem-solving, and professional mastery.",
+        "anthropic81kShare": 0.18806
+      },
+      {
+        "id": "personal_transformation",
+        "name": "Personal transformation",
+        "definition": "Achieve personal growth, emotional wellbeing, or life transformation with AI as guide, coach, or support — e.g. self-understanding, behavior change, therapeutic support, companionship, improvements in physical or mental health.",
+        "anthropic81kShare": 0.13729
+      },
+      {
+        "id": "life_management",
+        "name": "Life management",
+        "definition": "AI as comprehensive organizational support and cognitive scaffolding — e.g. managing schedules, reducing mental burden, executive function support.",
+        "anthropic81kShare": 0.135
+      },
+      {
+        "id": "time_freedom",
+        "name": "Time freedom",
+        "definition": "Reclaim time from work and chores to be present with family or friends, pursue hobbies, travel, rest.",
+        "anthropic81kShare": 0.11127
+      },
+      {
+        "id": "financial_independence",
+        "name": "Financial independence",
+        "definition": "Achieve financial freedom or economic security through AI — e.g. income generation, business building, investments, passive income, or otherwise escaping economic constraints.",
+        "anthropic81kShare": 0.09661
+      },
+      {
+        "id": "societal_transformation",
+        "name": "Societal transformation",
+        "definition": "Solve major societal challenges — e.g. poverty, disease, climate, inequality — using AI for broad human flourishing rather than personal gain.",
+        "anthropic81kShare": 0.09399
+      },
+      {
+        "id": "entrepreneurship",
+        "name": "Entrepreneurship",
+        "definition": "Build, launch, and scale businesses with AI as force multiplier — e.g. product development, business automation, or solopreneurship but with team-level capacity.",
+        "anthropic81kShare": 0.08679
+      },
+      {
+        "id": "learning_growth",
+        "name": "Learning & growth",
+        "definition": "Use AI as learning accelerator and personalized teacher — acquire knowledge, develop skills, master complex subjects, satisfy intellectual curiosity.",
+        "anthropic81kShare": 0.08384
+      },
+      {
+        "id": "creative_expression",
+        "name": "Creative expression",
+        "definition": "Use AI to help bring creative visions to life — e.g. art, games, music, films, books — by overcoming barriers between imagination and execution.",
+        "anthropic81kShare": 0.05576
+      },
+      {
+        "id": "none",
+        "name": "None articulated",
+        "definition": "The participant expresses no hope for, or welcomed benefit from, AI: they only describe risks, neutral predictions or skepticism.",
+        "anthropic81kShare": 0.01139
+      }
+    ],
+    "anyHope": {
+      "instructions": "Does the participant express any hope for, or welcome any benefit from, AI in `interview`?",
+      "criteria": {
+        "true": "The participant names at least one outcome of AI that they want or welcome, for themselves or for society.",
+        "false": "The participant expresses no hope or welcomed benefit; they only describe risks, neutral predictions or skepticism."
+      }
+    }
+  }
+}
