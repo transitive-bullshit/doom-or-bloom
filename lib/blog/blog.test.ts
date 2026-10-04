@@ -176,6 +176,7 @@ describe('post translations', () => {
     const post = {
       slug: 'a-post',
       title: 'A post',
+      author: 'Travis Fischer',
       date: '2026-10-01',
       minutes: 4
     }
@@ -189,16 +190,18 @@ describe('post translations', () => {
     const post = {
       slug: 'a-post',
       title: 'A post',
+      author: 'Travis Fischer',
       date: '2026-10-01',
       minutes: 4
     }
     const urls = new Set([
       blogCardPath(post),
       blogCardPath({ ...post, title: 'Another post' }),
+      blogCardPath({ ...post, author: 'Another author' }),
       blogCardPath({ ...post, date: '2026-10-02' }),
       blogCardPath({ ...post, minutes: 5 })
     ])
-    expect(urls.size).toBe(4)
+    expect(urls.size).toBe(5)
   })
 })
 

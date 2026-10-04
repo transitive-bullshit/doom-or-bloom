@@ -30,11 +30,21 @@ const blogCardRevision = 2
  * its language, under the locale prefix.
  */
 export function blogCardPath(
-  post: { slug: string; title: string; date: string; minutes: number },
+  post: {
+    slug: string
+    title: string
+    author: string
+    date: string
+    minutes: number
+  },
   locale: Locale = defaultLocale
 ) {
   const version = createHash('sha256')
-    .update([blogCardRevision, post.title, post.date, post.minutes].join('\n'))
+    .update(
+      [blogCardRevision, post.title, post.author, post.date, post.minutes].join(
+        '\n'
+      )
+    )
     .digest('hex')
     .slice(0, 10)
   return `${localizedPath(`/blog/${post.slug}`, locale)}/opengraph-image?v=${version}`
