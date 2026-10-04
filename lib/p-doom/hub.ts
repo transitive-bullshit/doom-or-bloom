@@ -10,6 +10,7 @@ import {
 import { curatedPeople, statementPublishers } from './curated'
 import { readingGroups, type Reading } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
+import { surveyComparison, surveySources } from './survey'
 
 type Statements = typeof publicPdoomStatements
 type Person = { id: string; slug: string; name: string; avatar: string }
@@ -84,10 +85,16 @@ export function hubRows(
  */
 export type CitedProse = (MentionPart | { emphasis: string } | Citation)[]
 
+const citedSources: Record<string, HubSource> = {
+  ...scenarioSources,
+  ...surveySources
+}
+
 /**
  * Everything the hub cites, numbered in reading order: the table's sources,
- * then the scenarios. Names of people with a published profile link to it:
- * the first mention in each paragraph, and every name in a byline or list.
+ * the survey benchmark beside it, then the scenarios. Names of people with a
+ * published profile link to it: the first mention in each paragraph, and every
+ * name in a byline or list.
  */
 export function hubContent(
   people: readonly Person[],
@@ -104,11 +111,12 @@ export function hubContent(
     return segments(text).flatMap((part): CitedProse => {
       if ('text' in part) return mention(part.text, linked)
       if ('emphasis' in part) return [part]
-      const source = (scenarioSources as Record<string, HubSource>)[part.cite]
-      if (!source) throw new Error(`Unknown scenario source [^${part.cite}]`)
+      const source = citedSources[part.cite]
+      if (!source) throw new Error(`Unknown hub source [^${part.cite}]`)
       return [cite(source)]
     })
   }
+  const survey = prose(surveyComparison)
   const intro = prose(scenariosIntro)
   const cited = scenarios.map((scenario) => ({
     id: scenario.id,
@@ -122,6 +130,7 @@ export function hubContent(
   }))
   return {
     rows,
+    survey,
     intro,
     scenarios: cited,
     footnotes: footnotes.map((footnote): HubFootnote => ({
@@ -158,6 +167,7 @@ export function hubSourceUrls(statements: Statements = publicPdoomStatements) {
             ? [statements[entry.id]!.url]
             : []
       ),
+      ...Object.values(surveySources).map(({ url }) => url),
       ...Object.values(scenarioSources).map(({ url }) => url),
       ...readingGroups.flatMap(({ readings }) => readings.map(({ url }) => url))
     ])

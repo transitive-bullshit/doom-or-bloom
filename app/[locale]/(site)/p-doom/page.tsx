@@ -7,6 +7,7 @@ import { loadExamples } from '@/components/landing/data'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { CompareCta } from '@/components/compare-cta'
 import { Button } from '@/components/ui/button'
+import { CitedText } from '@/components/p-doom/citation'
 import { HubTable } from '@/components/p-doom/hub-table'
 import { Scenarios } from '@/components/p-doom/scenarios'
 import { Footnotes, ReadingList } from '@/components/p-doom/sources'
@@ -32,7 +33,8 @@ export default async function Page() {
     loadExamples(false)
   ])
   const tag = languageTag(locale)
-  const { rows, intro, scenarios, footnotes, readings } = hubContent(people)
+  const { rows, survey, intro, scenarios, footnotes, readings } =
+    hubContent(people)
   // The page is generated at most every 48 hours.
   const asOf = new Date()
   return (
@@ -100,6 +102,15 @@ export default async function Page() {
           </div>
           <HubTable rows={rows} />
           <p className='text-sm text-muted-foreground'>{t('note')}</p>
+          <aside
+            aria-labelledby='pdoom-survey-title'
+            className='flex flex-col gap-2 border-l-2 border-coral pl-4'
+          >
+            <h3 id='pdoom-survey-title'>{t('surveyTitle')}</h3>
+            <p lang='en' className='text-body-foreground'>
+              <CitedText prose={survey} />
+            </p>
+          </aside>
           <div className='flex flex-col items-start gap-2 rounded-xl border bg-card px-5 py-4 sm:flex-row sm:items-center sm:justify-between'>
             <p className='text-sm text-muted-foreground'>
               {t('allUsersDescription')}

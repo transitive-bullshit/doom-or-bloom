@@ -792,6 +792,7 @@
     "cite": "来源 {number}",
     "asOf": "截至 {date}",
     "note": "每个数字都来自当事人的原话，并链接至其发表该言论的出处。不同人对结果和时间范围的定义不同，因此这些数字不能直接比较。",
+    "surveyTitle": "用于比较：AI研究人员",
     "allUsers": "查看全部 {count} 位模拟意见领袖",
     "allUsersDescription": "搜索地图上的所有人并进行排序，包括按从每次模拟中推断出的粗略 P(doom) 排序",
     "scenariosTitle": "这种情况可能如何发生",

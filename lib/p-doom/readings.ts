@@ -2,8 +2,8 @@ import type { HubSource } from './citations'
 
 // The P(doom) hub's reading list: the essential case that AI could end in
 // catastrophe, then the strongest critiques. Every link was loaded on
-// 2026-10-02. Group headings are translated (`PdoomHub.readingGroups`); the
-// entries stay English.
+// 2026-10-02, and the 2024 expert survey on 2026-10-04. Group headings are
+// translated (`PdoomHub.readingGroups`); the entries stay English.
 
 export type Reading = HubSource & {
   kind:
@@ -138,13 +138,23 @@ export const readingGroups: {
     id: 'forecasts',
     readings: [
       {
+        title:
+          'Advanced AI according to 1,580 researchers: uncertain, unsafe, and sooner than we thought',
+        url: 'https://aiimpacts.org/wp-content/uploads/2026/09/ESPAI2024.pdf',
+        by: 'Katja Grace et al., AI Impacts',
+        year: 2026,
+        kind: 'Survey',
+        description:
+          'The 2024 Expert Survey on Progress in AI: of 1,580 published AI researchers who responded, the 744 asked about human extinction or similarly permanent and severe disempowerment, with no time frame, gave a median 10% chance, up from 5% in 2023.'
+      },
+      {
         title: 'Thousands of AI Authors on the Future of AI',
         url: 'https://arxiv.org/abs/2401.02843',
         by: 'Katja Grace et al.',
         year: 2024,
         kind: 'Survey',
         description:
-          'Of 2,778 published AI researchers surveyed, between 38% and 51% gave at least a 10% chance of outcomes as bad as human extinction.'
+          'Of 2,778 published AI researchers surveyed in 2023, between 38% and 51% gave at least a 10% chance of outcomes as bad as human extinction.'
       },
       {
         title:

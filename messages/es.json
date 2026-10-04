@@ -792,6 +792,7 @@
     "cite": "Fuente {number}",
     "asOf": "A fecha de {date}",
     "note": "Cada cifra proviene de las propias palabras de la persona, con un enlace al lugar donde la expresó. Las personas definen el resultado y el plazo de manera diferente, por lo que las cifras no son directamente comparables.",
+    "surveyTitle": "A modo de comparación: investigadores de IA",
     "allUsers": "Ver los {count} líderes de opinión simulados",
     "allUsersDescription": "Busca y ordena a todas las personas del mapa, incluso según una estimación aproximada de P(doom) inferida de cada simulación",
     "scenariosTitle": "Cómo podría ocurrir",
