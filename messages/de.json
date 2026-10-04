@@ -1025,6 +1025,7 @@
       },
       "versions": "Jedes gespeicherte Ergebnis enthält die Versionen, mit denen es erstellt wurde. Korrekturen, die keine neuen Beurteilungen erfordern, werden bei der Anzeige auch auf ältere Ergebnisse angewendet.",
       "changes": {
+        "personal": "Fragt einmal danach, wie KI dein eigenes Leben oder deine Arbeit verändern wird, und zwar in der ersten Anschlussfrage nach den Kernfragen",
         "between": "Ordnet Menschen zwischen den fünf Stufen der Karte ein statt nur direkt auf ihnen und wertet gespeicherte Ergebnisse erneut aus",
         "languages": "Interviews in 10 Sprachen; Jev liest Antworten so, wie sie geschrieben wurden, und erhält die Information, in welcher Sprache das Interview geführt wird",
         "typed": "Behält eingegebene P(doom)-Antworten bei, selbst wenn sie so kurz wie „30 %“ sind, statt sie durch abgeleitete Werte zu ersetzen, und stellt eine weitere Frage, wenn eine Auswertung uneindeutig ist oder stark von deiner eigenen Einordnung abweicht",
