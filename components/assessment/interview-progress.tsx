@@ -1,5 +1,5 @@
 'use client'
-import { ChevronRightIcon, FlagIcon } from 'lucide-react'
+import { FlagIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { cn } from 'cn'
 import type { Assessment } from '@/lib/assessment/schema'
@@ -60,9 +60,6 @@ export function InterviewProgress({
     <>
       <FlagIcon className='size-3' aria-hidden='true' />
       {isReady ? t('progress.resultsReady') : t('progress.results')}
-      {isReady && (
-        <ChevronRightIcon className='-mr-0.5 size-3' aria-hidden='true' />
-      )}
     </>
   )
   const percent = Math.round(
