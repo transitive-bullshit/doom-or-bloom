@@ -928,13 +928,13 @@
       "resultTitle": "Ce que votre résultat est, et n’est pas",
       "result": {
         "mapLabel": "La carte",
-        "map": "Notre interprétation de ce que vous avez écrit, et non un verdict, un test ou une prévision. Le cadre en pointillés montre d’autres interprétations plausibles, et non la probabilité que vous ayez raison.",
+        "map": "Notre interprétation de ce que vous avez écrit, et non un verdict, un test ou une prévision. Le cadre en pointillés montre d’autres interprétations plausibles, et non la probabilité que vous ayez raison.<placement></placement>",
         "depthLabel": "Derrière la carte",
         "depth": "Huit dimensions de la vision du monde et sept qualités de raisonnement, comme la capacité de révision. Les éléments sans preuves suffisantes restent non positionnés ; ils ne sont jamais considérés comme un score faible.<outputs></outputs>",
         "pdoomLabel": "P(doom)",
-        "pdoom": "Soit le nombre que vous avez saisi, soit une estimation déduite de vos réponses, avec une indication précisant lequel des deux.",
+        "pdoom": "Soit le nombre que vous avez saisi, soit une estimation déduite de vos réponses, avec une indication précisant lequel des deux.<estimator></estimator>",
         "choicesLabel": "Choix éditoriaux",
-        "choices": "Les réponses ne font pas l’objet d’une vérification factuelle. Les questions, la grille d’évaluation et même le nom impliquent des choix éditoriaux, et le nom peut vous orienter vers les risques et les bénéfices. Les points de vue nuancés, l’incertitude et les positions extrêmes cohérentes sont tous valides.",
+        "choices": "Les réponses ne sont pas vérifiées. Les questions, la grille d’évaluation et même le nom relèvent de choix éditoriaux, et le nom peut vous orienter vers les risques et les bénéfices. Les points de vue nuancés, l’incertitude et les positions extrêmes cohérentes sont tous valables.<neutrality></neutrality>",
         "simulatedLabel": "Leaders d’opinion",
         "simulated": "Simulations : un autre modèle (GPT-5.6 Sol) répond aux mêmes questions à partir des sources publiques de chaque personne accessibles par des liens,<briefs></briefs> et notre moteur lit ces réponses sans savoir de qui elles proviennent.<simulations></simulations> Il ne s’agit ni des réponses des personnes elles-mêmes ni d’une approbation de leur part. Considérez-les comme des prototypes : lors d’un test de Pew en 2026, les réponses de substituts fondés sur l’IA différaient en moyenne de 12 points de pourcentage de celles des personnes réelles.<pew></pew>"
       },

@@ -928,13 +928,13 @@
       "resultTitle": "Apa yang merupakan hasil Anda, dan apa yang bukan",
       "result": {
         "mapLabel": "Peta",
-        "map": "Interpretasi kami atas apa yang Anda tulis, bukan penilaian akhir, tes, atau prakiraan. Kotak bergaris putus-putus menunjukkan interpretasi lain yang masuk akal, bukan peluang bahwa Anda benar.",
+        "map": "Interpretasi kami atas apa yang Anda tulis, bukan putusan, tes, atau prakiraan. Kotak bergaris putus-putus menunjukkan interpretasi lain yang masuk akal, bukan peluang bahwa Anda benar.<placement></placement>",
         "depthLabel": "Di balik peta",
         "depth": "Delapan dimensi pandangan dunia dan tujuh kualitas penalaran, seperti kesediaan untuk memperbarui pandangan. Jika bukti tidak tersedia, posisinya tetap belum ditempatkan; hal itu tidak pernah dihitung sebagai skor rendah.<outputs></outputs>",
         "pdoomLabel": "P(doom)",
-        "pdoom": "Angka yang Anda masukkan atau estimasi yang disimpulkan dari jawaban Anda, dan hasilnya menyebutkan mana yang digunakan.",
+        "pdoom": "Angka yang Anda masukkan atau estimasi yang disimpulkan dari jawaban Anda, dan akan disebutkan yang mana.<estimator></estimator>",
         "choicesLabel": "Pilihan editorial",
-        "choices": "Jawaban tidak diperiksa faktanya. Pertanyaan, rubrik, dan bahkan nama situs melibatkan pilihan editorial, dan nama tersebut dapat mengarahkan Anda pada risiko dan manfaat. Pandangan campuran, ketidakpastian, dan pandangan ekstrem yang koheren semuanya valid.",
+        "choices": "Jawaban tidak diperiksa kebenarannya. Pertanyaan, rubrik, bahkan nama melibatkan pilihan editorial, dan nama tersebut dapat mengarahkan Anda pada risiko dan manfaat. Pandangan campuran, ketidakpastian, dan pandangan ekstrem yang koheren semuanya valid.<neutrality></neutrality>",
         "simulatedLabel": "Pemimpin opini",
         "simulated": "Simulasi: model lain (GPT-5.6 Sol) menjawab pertanyaan yang sama berdasarkan sumber publik tertaut dari setiap orang,<briefs></briefs> dan mesin kami membaca jawaban tersebut tanpa mengetahui jawaban itu milik siapa.<simulations></simulations> Jawaban tersebut bukan jawaban atau dukungan dari orang-orang itu sendiri. Anggaplah sebagai prototipe: dalam pengujian Pew pada 2026, jawaban dari pengganti berbasis AI berbeda dari jawaban orang yang sebenarnya sebesar rata-rata 12 poin persentase.<pew></pew>"
       },

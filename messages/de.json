@@ -928,13 +928,13 @@
       "resultTitle": "Was dein Ergebnis ist – und was nicht",
       "result": {
         "mapLabel": "Die Karte",
-        "map": "Unsere Interpretation dessen, was du geschrieben hast – kein Urteil, Test oder keine Prognose. Der gestrichelte Rahmen zeigt andere plausible Interpretationen, nicht die Wahrscheinlichkeit, dass du recht hast.",
+        "map": "Unsere Interpretation dessen, was du geschrieben hast – kein Urteil, kein Test und keine Prognose. Das gestrichelte Feld zeigt andere plausible Interpretationen, nicht die Wahrscheinlichkeit, dass du richtigliegst.<placement></placement>",
         "depthLabel": "Hinter der Karte",
         "depth": "Acht Dimensionen der Weltsicht und sieben Qualitäten der Argumentation, etwa die Bereitschaft zur Aktualisierung. Fehlende Belege bleiben nicht eingeordnet; sie zählen niemals als niedrige Bewertung.<outputs></outputs>",
         "pdoomLabel": "P(doom)",
-        "pdoom": "Entweder die von dir eingegebene Zahl oder eine aus deinen Antworten abgeleitete Schätzung; es wird angegeben, um welche es sich handelt.",
+        "pdoom": "Entweder die von dir eingegebene Zahl oder eine aus deinen Antworten abgeleitete Schätzung; es wird angegeben, um welche es sich handelt.<estimator></estimator>",
         "choicesLabel": "Redaktionelle Entscheidungen",
-        "choices": "Antworten werden nicht auf Fakten geprüft. Die Fragen, der Kriterienkatalog und selbst der Name beruhen auf redaktionellen Entscheidungen, und der Name kann dich auf Risiken und Vorteile einstimmen. Gemischte Sichtweisen, Unsicherheit und in sich schlüssige Extrempositionen sind alle legitim.",
+        "choices": "Die Antworten werden nicht auf Fakten geprüft. Die Fragen, das Bewertungsschema und sogar der Name beruhen auf redaktionellen Entscheidungen, und der Name kann dich gedanklich auf Risiken und Vorteile ausrichten. Gemischte Sichtweisen, Unsicherheit und in sich schlüssige Extrempositionen sind gleichermaßen gültig.<neutrality></neutrality>",
         "simulatedLabel": "Meinungsführer",
         "simulated": "Simulationen: Ein anderes Modell (GPT-5.6 Sol) beantwortet dieselben Fragen anhand der verlinkten öffentlichen Quellen jeder Person,<briefs></briefs> und unsere Engine liest diese Antworten, ohne zu wissen, von wem sie stammen.<simulations></simulations> Es sind weder die eigenen Antworten der Personen noch deren Zustimmung. Betrachte sie als Prototypen: In einem Test von Pew aus dem Jahr 2026 wichen die Antworten von KI-Stellvertretern im Durchschnitt um 12 Prozentpunkte von denen echter Menschen ab.<pew></pew>"
       },

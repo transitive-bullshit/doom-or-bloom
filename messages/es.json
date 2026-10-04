@@ -928,13 +928,13 @@
       "resultTitle": "Qué es y qué no es tu resultado",
       "result": {
         "mapLabel": "El mapa",
-        "map": "Nuestra interpretación de lo que escribiste, no un veredicto, una prueba ni un pronóstico. El recuadro discontinuo muestra otras interpretaciones plausibles, no la probabilidad de que tengas razón.",
+        "map": "Nuestra interpretación de lo que escribiste, no un veredicto, una prueba ni un pronóstico. El recuadro discontinuo muestra otras interpretaciones plausibles, no la probabilidad de que tengas razón.<placement></placement>",
         "depthLabel": "Detrás del mapa",
         "depth": "Ocho dimensiones de la visión de la IA y siete cualidades del razonamiento, como la disposición a actualizar. Si faltan pruebas, el elemento queda sin ubicar; nunca cuenta como una puntuación baja.<outputs></outputs>",
         "pdoomLabel": "P(doom)",
-        "pdoom": "Es el número que introdujiste o una estimación inferida de tus respuestas, e indica cuál de los dos es.",
+        "pdoom": "Es el número que introdujiste o una estimación inferida de tus respuestas, y se indica cuál de los dos.<estimator></estimator>",
         "choicesLabel": "Decisiones editoriales",
-        "choices": "Las respuestas no se verifican. Las preguntas, la rúbrica e incluso el nombre implican decisiones editoriales, y el nombre puede predisponerte a pensar en el riesgo y el beneficio. Las visiones mixtas, la incertidumbre y los extremos coherentes son igualmente válidos.",
+        "choices": "Las respuestas no se verifican. Las preguntas, los criterios de evaluación e incluso el nombre implican decisiones editoriales, y el nombre puede predisponerte a pensar en el riesgo y el beneficio. Las posturas mixtas, la incertidumbre y los extremos coherentes son igualmente válidos.<neutrality></neutrality>",
         "simulatedLabel": "Líderes de opinión",
         "simulated": "Simulaciones: otro modelo (GPT-5.6 Sol) responde las mismas preguntas a partir de las fuentes públicas enlazadas de cada persona,<briefs></briefs> y nuestro motor lee esas respuestas sin saber de quién son.<simulations></simulations> No son respuestas ni respaldos de esas personas. Trátalas como prototipos: en una prueba de Pew de 2026, las respuestas de sustitutos de IA difirieron de las de personas reales en un promedio de 12 puntos porcentuales.<pew></pew>"
       },

@@ -928,13 +928,13 @@
       "resultTitle": "O que seu resultado é e o que não é",
       "result": {
         "mapLabel": "O mapa",
-        "map": "Nossa interpretação do que você escreveu, não um veredito, teste ou previsão. A caixa tracejada mostra outras interpretações plausíveis, não a probabilidade de você estar certo.",
+        "map": "Nossa interpretação do que você escreveu, não um veredito, um teste nem uma previsão. A caixa tracejada mostra outras interpretações plausíveis, não a probabilidade de você estar certo.<placement></placement>",
         "depthLabel": "Por trás do mapa",
         "depth": "Oito dimensões da visão de mundo e sete qualidades de raciocínio, como a disposição para se atualizar. Evidências ausentes permanecem sem posicionamento; nunca contam como pontuação baixa.<outputs></outputs>",
         "pdoomLabel": "P(doom)",
-        "pdoom": "Ou o número que você digitou ou uma estimativa inferida de suas respostas, com a indicação de qual dos dois é.",
+        "pdoom": "É o número que você digitou ou uma estimativa inferida de suas respostas, com indicação de qual dos dois.<estimator></estimator>",
         "choicesLabel": "Escolhas editoriais",
-        "choices": "As respostas não são verificadas. As perguntas, a rubrica e até o nome envolvem escolhas editoriais, e o nome pode predispor você a pensar em risco e benefícios. Visões mistas, incerteza e posições extremas coerentes são todas válidas.",
+        "choices": "As respostas não são verificadas quanto aos fatos. As perguntas, os critérios de avaliação e até mesmo o nome envolvem escolhas editoriais, e o nome pode predispor você a pensar em riscos e benefícios. Visões mistas, incerteza e extremos coerentes são todos válidos.<neutrality></neutrality>",
         "simulatedLabel": "Formadores de opinião",
         "simulated": "Simulações: outro modelo (GPT-5.6 Sol) responde às mesmas perguntas com base nas fontes públicas vinculadas de cada pessoa,<briefs></briefs> e nosso mecanismo lê essas respostas sem saber de quem são.<simulations></simulations> Elas não são respostas nem endossos das próprias pessoas. Trate-as como protótipos: em um teste da Pew de 2026, as respostas de representantes de IA diferiram das respostas de pessoas reais em uma média de 12 pontos percentuais.<pew></pew>"
       },

@@ -52,6 +52,25 @@ export const methodologySources = {
     by: code,
     year: 2026
   },
+  placement: {
+    title: 'How the map is placed and what its ranges mean',
+    url: onMain('docs/ASSESSMENT.md#participant-facing-projections'),
+    by: code,
+    year: 2026
+  },
+  estimator: {
+    title:
+      'How P(doom) is read: a typed number, or an estimate from your answers',
+    url: onMain('docs/ASSESSMENT.md#pdoom-estimator--worldview-v8'),
+    by: code,
+    year: 2026
+  },
+  neutrality: {
+    title: 'Procedural neutrality and the framing choices we accept',
+    url: onMain('docs/ASSESSMENT.md#procedural-neutrality'),
+    by: code,
+    year: 2026
+  },
   briefs: {
     title:
       'Example source briefs for simulated thought leaders, including Elon Musk',

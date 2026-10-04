@@ -4575,7 +4575,7 @@
       "reviewStatus": "machine"
     },
     "About.methodology.result.map": {
-      "sourceHash": "41f8a2fe02f53c3e",
+      "sourceHash": "26681aae10022c07",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
@@ -4599,7 +4599,7 @@
       "reviewStatus": "machine"
     },
     "About.methodology.result.pdoom": {
-      "sourceHash": "251f30807e6dae42",
+      "sourceHash": "069b5f901b7ba574",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
@@ -4611,7 +4611,7 @@
       "reviewStatus": "machine"
     },
     "About.methodology.result.choices": {
-      "sourceHash": "fb8f806e2466634d",
+      "sourceHash": "58d30c2215ea66d9",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-04",
       "reviewStatus": "machine"

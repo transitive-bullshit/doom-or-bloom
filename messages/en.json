@@ -928,13 +928,13 @@
       "resultTitle": "What your result is, and isn’t",
       "result": {
         "mapLabel": "The map",
-        "map": "Our reading of what you wrote, not a verdict, a test or a forecast. The dashed box shows other plausible readings, not the chance that you’re right.",
+        "map": "Our reading of what you wrote, not a verdict, a test or a forecast. The dashed box shows other plausible readings, not the chance that you’re right.<placement></placement>",
         "depthLabel": "Behind the map",
         "depth": "Eight worldview dimensions and seven qualities of reasoning, such as willingness to update. Missing evidence stays unplaced; it never counts as a low score.<outputs></outputs>",
         "pdoomLabel": "P(doom)",
-        "pdoom": "Either the number you typed or an estimate inferred from your answers, and it says which.",
+        "pdoom": "Either the number you typed or an estimate inferred from your answers, and it says which.<estimator></estimator>",
         "choicesLabel": "Editorial choices",
-        "choices": "Answers aren’t fact-checked. The questions, the rubric and even the name involve editorial choices, and the name may prime you toward risk and upside. Mixed views, uncertainty and coherent extremes are all valid.",
+        "choices": "Answers aren’t fact-checked. The questions, the rubric and even the name involve editorial choices, and the name may prime you toward risk and upside. Mixed views, uncertainty and coherent extremes are all valid.<neutrality></neutrality>",
         "simulatedLabel": "Thought leaders",
         "simulated": "Simulations: another model (GPT-5.6 Sol) answers the same questions from each person’s linked public sources,<briefs></briefs> and our engine reads those answers without knowing whose they are.<simulations></simulations> They aren’t the people’s own answers or endorsements. Treat them as prototypes: in a 2026 Pew test, answers from AI stand-ins differed from real people’s by 12 percentage points on average.<pew></pew>"
       },
