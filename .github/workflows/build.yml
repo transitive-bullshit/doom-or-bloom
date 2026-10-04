@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  push:
+  # GITHUB_TOKEN pushes do not start CI; the Codex repair workflow dispatches it.
+  workflow_dispatch:
 
 # Browser, database and release checks run locally; see docs/testing.md.
 permissions:

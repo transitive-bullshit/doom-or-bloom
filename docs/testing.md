@@ -22,6 +22,8 @@ Continue running relevant heavyweight checks locally for changes and releases th
 
 The single Node 24 job installs the locked dependencies and runs `pnpm test`. It has a five-minute timeout and cancels superseded runs on the same branch. It needs no secrets, `.env.*` files, database, browser installation, Portless proxy, or application build. A timeout is a signal to inspect cost, not automatically raise the limit.
 
+The [Codex repair workflow](../.github/workflows/codex-autofix.yml) responds to failed CI for current, open PRs on same-repository branches started by a user with repository write access. It uses the repository's `OPENAI_API_KEY` Actions secret through `openai/codex-action` in a read-only GitHub job, runs the same locked install and `pnpm test`, and uploads a patch only after validation passes. A separate job opens a repair PR against the original PR branch and explicitly dispatches core CI, since `GITHUB_TOKEN` pushes do not trigger it. Review and merge that repair to update the original PR; repairs are never automatically merged. Forks, obsolete commits, rerun attempts, and `codex/auto-fix-*` branches are skipped to bound paid API use and prevent repair loops. Workflow and agent-instruction changes are excluded. GitHub Actions must be allowed to create PRs in repository settings; default token permissions remain read-only.
+
 ## Local change and release gates
 
 Use native PostgreSQL and the dedicated `TEST_DATABASE_URL` ending in `_test`; never production data. See [Contributing](../CONTRIBUTING.md) for setup and environment precedence. Install Chromium once with `pnpm exec playwright install chromium`.
