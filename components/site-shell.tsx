@@ -60,6 +60,7 @@ export function SiteShell({
             <Link href='/p-doom'>{t('pdoom')}</Link>
             <Link href='/blog'>{t('blog')}</Link>
             <Link href='/privacy'>{t('privacy')}</Link>
+            <Link href='/about#methodology'>{t('methodology')}</Link>
           </div>
           <div className='flex flex-wrap items-center justify-center gap-1'>
             <SiteSocialLinks />

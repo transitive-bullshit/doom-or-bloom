@@ -44,6 +44,7 @@
     "about": "About",
     "privacy": "Privacy",
     "pdoom": "P(doom)",
+    "methodology": "Methodology",
     "blog": "Blog",
     "language": "Language"
   },
@@ -885,12 +886,106 @@
     "whyTitle": "Why build this?",
     "why1": "AI’s potential upsides and risks deserve careful, grounded discussion. As capabilities advance and decisions become more consequential, we need accessible ways to think clearly across very different views.",
     "why2": "I built this to explore the field’s voices and help people untangle conflicting intuitions. It has already sharpened my own views. The aim is to represent yours faithfully, with as little editorial steering as possible.",
-    "interviewTitle": "A new type of dynamic interview",
-    "interview1": "All interviews start with: \"what you think AI means for our future—and why?\" The engine then looks for gaps or uncertainty in your answers, and chooses from a pool of curated questions the one most likely to clarify your worldview with the least repetition and effort.",
-    "interview2": "Results become available when our engine has gathered enough evidence to confidently place you. This can happen as early as after one detailed answer, though most interviews last between 3-5 questions. You can also trace interpretations back to your answers and clarify anything that feels wrong.",
-    "jevTitle": "Powered by TypeSafe’s Jev",
-    "jev1": "<jev>Jev</jev> helps interpret your answers through small, focused judgments: what you expect, what remains uncertain, and which follow-up would help. Our software combines those judgments into your profile and selects from authored questions. Jev does not write a free-form verdict about you.",
-    "jev2": "Evaluating many judgments together and reusing unchanged results keeps this kind of adaptive interviewing economical. That makes it possible to explore tools for clearer thinking at scale.",
+    "methodology": {
+      "title": "Methodology",
+      "lead": "Everything that shapes your result is open source. The numbered notes link the exact files and studies.",
+      "howTitle": "How the interview works",
+      "how": "Code picks each follow-up<routing></routing> from a fixed list of authored questions,<questions></questions> and most people see results after 4–8 of them. <jev>TypeSafe’s Jev</jev> reads your answers through small, focused judgments against an authored rubric<rubric></rubric> and never writes a question or a verdict about you.<boundary></boundary> Code combines those judgments into your map, its ranges and P(doom).<outputs></outputs> Batching small judgments keeps this cheap enough to run for free.",
+      "flow": {
+        "label": "How an interview runs",
+        "steps": {
+          "opening": {
+            "title": "Opening question",
+            "text": "The same for everyone"
+          },
+          "map": {
+            "title": "Map questions",
+            "text": "Overall impact, scale of change and P(doom), each asked at most once"
+          },
+          "followUps": {
+            "title": "Follow-ups",
+            "text": "Authored questions about what’s still unclear, up to 12 in all"
+          },
+          "result": {
+            "title": "Your result",
+            "text": "Once your map can be placed; you can keep answering"
+          }
+        },
+        "afterEach": "After every answer",
+        "jev": "Jev judges",
+        "jevItems": {
+          "usable": "Whether it’s usable",
+          "fit": "Which authored description fits it",
+          "useful": "How much each candidate question would clarify"
+        },
+        "code": "Code decides",
+        "codeItems": {
+          "next": "Which question comes next",
+          "ready": "When results are ready",
+          "result": "Your map position, ranges and P(doom)"
+        }
+      },
+      "resultTitle": "What your result is, and isn’t",
+      "result": {
+        "mapLabel": "The map",
+        "map": "Our reading of what you wrote, not a verdict, a test or a forecast. The dashed box shows other plausible readings, not the chance that you’re right.",
+        "depthLabel": "Behind the map",
+        "depth": "Eight worldview dimensions and seven qualities of reasoning, such as willingness to update. Missing evidence stays unplaced; it never counts as a low score.<outputs></outputs>",
+        "pdoomLabel": "P(doom)",
+        "pdoom": "Either the number you typed or an estimate inferred from your answers, and it says which.",
+        "choicesLabel": "Editorial choices",
+        "choices": "Answers aren’t fact-checked. The questions, the rubric and even the name involve editorial choices, and the name may prime you toward risk and upside. Mixed views, uncertainty and coherent extremes are all valid.",
+        "simulatedLabel": "Thought leaders",
+        "simulated": "Simulations: another model (GPT-5.6 Sol) answers the same questions from each person’s linked public sources,<briefs></briefs> and our engine reads those answers without knowing whose they are.<simulations></simulations> They aren’t the people’s own answers or endorsements. Treat them as prototypes: in a 2026 Pew test, answers from AI stand-ins differed from real people’s by 12 percentage points on average.<pew></pew>"
+      },
+      "evidenceTitle": "Evidence so far",
+      "chart": {
+        "title": "How far apart readings of the outlook land",
+        "readers": "Two readings of the same answers",
+        "repeat": "Jev, reading them twice",
+        "reworded": "Jev, after rewording that keeps the meaning",
+        "largerModel": "Jev against GPT-5.6 Sol",
+        "selfPlacement": "A reading against the person’s own placement",
+        "jev": "Jev",
+        "largerModelSelf": "GPT-5.6 Sol",
+        "sameGuess": "The same guess for everyone",
+        "note": "Mean distance on the 0–1 Doom–Bloom axis; bars run to {max}, and shorter is closer. From 219 self-placements and 60 reworded interviews, {date}"
+      },
+      "evidence": {
+        "placementLabel": "Your own placement",
+        "placement": "Readings land closer to people’s own placements than one guess for everyone would, with no average lean toward hope or worry.<aggregates></aggregates> Readers agree with each other far more than with people, so most of the gap is between how people write and how they see themselves. Where the two differ by more than a quarter of either axis, your result asks about it.",
+        "stabilityLabel": "Rereading and rewording",
+        "stability": "No reread or reworded interview moved more than our limit of {limit} for answers that mean the same.<protocol></protocol> Map ranges are never drawn narrower than ±{range}, the variation seen when a simulated person retakes the interview.",
+        "modelsLabel": "Bigger models",
+        "models": "Jev matches GPT-5.6 Sol within the noise, for about 1/{ratio} of the cost.<review></review>",
+        "feelsRightLabel": "“Does this feel right?”",
+        "feelsRight": "{yes} of {total} people said yes ({share}).<aggregates></aggregates> Read that as a ceiling: people tend to agree with an AI’s reading of them. In a NORC study, independent coders backed an AI’s codings about 20% less often than the respondents did.<confirmation></confirmation>",
+        "pdoomLabel": "Inferred P(doom)",
+        "pdoom": "Rough. Checked against {typed} numbers people typed, with those numbers hidden, it came within 2× only {within} of the time, no better than guessing {guess} for everyone. It does rank people sensibly, and a number you type always takes precedence.<review></review>",
+        "gapsLabel": "Not done yet",
+        "gaps": "We don’t yet have a blinded test set labeled by independent reviewers, which our evaluation plan calls for.<protocol></protocol> Until then, every check here compares readings with self-placements, reruns or other models. Results across interview languages haven’t been compared yet."
+      },
+      "sampleTitle": "Who has taken it",
+      "sample": "As of {date}, {people} people had reached a result.<aggregates></aggregates> They chose to take it, mostly through a Hacker News thread ({hackerNewsDates}) and posts on X ({xDates}), and the two waves landed far apart: a median outlook of {hackerNews} against {x} on the 0–1 Doom–Bloom axis (<post>see the comparison</post>). So our numbers describe who showed up, not the public, and we publish figures only for groups of at least 10 people.",
+      "authoredTitle": "Why the questions are authored",
+      "authored": "An AI could improvise the interview. Fixed, authored questions keep the wording neutral and identical, so every participant and every simulated thought leader answers the same questions and comparing them means something. AAPOR’s 2026 guidance rates AI interviewers that generate questions, change their wording or influence the flow as high risk.<aapor></aapor> Here the wording never changes, and Jev’s judgments only feed the code that picks among the questions.",
+      "versionsTitle": "Versions and changes",
+      "versionLabels": {
+        "assessment": "Algorithm",
+        "content": "Questions",
+        "rubric": "Rubric",
+        "model": "Model"
+      },
+      "versions": "Each saved result keeps the versions it was made with. Fixes that need no new judgments also reach older results when they’re shown.",
+      "changes": {
+        "between": "Places people between the map’s five levels instead of only on them, and re-reads saved results",
+        "languages": "Interviews in 10 languages; Jev reads answers as written and is told the interview language",
+        "typed": "Keeps typed P(doom) answers as short as “30%”, which had been replaced by inferred values, and asks one more question when a reading is split or far from your own placement",
+        "direct": "Fixes how P(doom) is shown (a typed 20% had appeared as about 3%), asks directly about the scale of change and P(doom), stops holding results back for reasoning coverage, and re-reads saved results"
+      },
+      "history": "<research>Research notes on GitHub</research> record each change with its evidence.",
+      "sourcesTitle": "Sources"
+    },
     "exampleTitle": "Example using Elon Musk",
     "example": "Here are some example JSON results from <link>Elon Musk’s simulated assessment</link>.",
     "inputTitle": "Assessment input",
@@ -899,13 +994,6 @@
     "resultTitle": "Generated results",
     "resultLabel": "Elon Musk simulated assessment result",
     "resultNote": "The combination of judgments our app uses to infer its results.",
-    "simulatedTitle": "Simulated people, real sources",
-    "simulated1": "The featured users are simulations grounded in linked public statements, essays, and interviews. A separate model answers the same questions from those sources; our assessment engine evaluates the answers without a target map position.",
-    "simulated2": "These examples help us improve interpretations, refine follow-up questions, and catch regressions. They are not those people’s actual answers or endorsements. Their pages let you inspect the simulated answers and the sources behind them.",
-    "mapTitle": "The map is not the territory",
-    "map1": "The featured map pairs your overall Doom–Bloom outlook with how radically you expect AI to transform society. Behind it are eight dimensions covering capabilities, transition speed, benefits, harms, controllability, institutions, human agency, and action. We also consider how well you explain your views, including causal clarity, uncertainty, and willingness to update.",
-    "map2": "Two coordinates cannot capture a whole worldview. Missing evidence stays unplaced, and interpretation ranges show uncertainty about how to read your answers—not the probability that your beliefs are true. A separate <b>P(doom)</b> estimate is labeled as either explicitly stated or inferred.",
-    "map3": "This is an experiment, not an intelligence test or a validated forecast. Answers are not independently fact-checked. Questions, sources, and scoring rules involve editorial choices, and the name itself may influence your answers. Mixed views, uncertainty, and coherent extremes are all valid; agreement with us is not the goal.",
     "answersTitle": "Your answers stay yours",
     "answers": "Your answers and results are private by default. You can choose to publish them if you want to share them. No sign-up is required. Read the <privacy>privacy policy</privacy> for more details.",
     "nextTitle": "What’s next?",

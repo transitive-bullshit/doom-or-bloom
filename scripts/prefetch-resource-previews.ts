@@ -21,6 +21,7 @@ import {
 } from '../lib/authoring/bookmark-title-card'
 import { personas } from '../lib/journeys/catalog'
 import { hubSourceUrls } from '../lib/p-doom/hub'
+import { methodologySourceUrls } from '../lib/about/methodology'
 import { tweetIdFromUrl } from '../lib/sharing/tweet-url'
 import {
   previewImages,
@@ -85,9 +86,12 @@ const unique = new Map(
     )
     .map((resource) => [resource.url, resource])
 )
-// The P(doom) hub shows only a favicon beside each source and reading.
+// The P(doom) hub and About's methodology show only a favicon beside each
+// source and reading.
 const iconOnly = new Set(
-  hubSourceUrls().filter((url) => !unique.has(url) && !tweetIdFromUrl(url))
+  [...hubSourceUrls(), ...methodologySourceUrls()].filter(
+    (url) => !unique.has(url) && !tweetIdFromUrl(url)
+  )
 )
 const urls = only ? [only] : [...unique.keys(), ...iconOnly]
 await mkdir('public/resource-previews', { recursive: true })

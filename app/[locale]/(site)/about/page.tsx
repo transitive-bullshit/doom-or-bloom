@@ -7,6 +7,9 @@ import { JsonViewer } from '@/components/debug/json-viewer'
 import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 import { aboutJsonLd } from '@/lib/seo/json-ld'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
+import { Methodology } from '@/components/about/methodology'
+import { Footnotes } from '@/components/p-doom/sources'
+import { methodologyCitations, repositoryUrl } from '@/lib/about/methodology'
 
 // The example assessment is public persona data, refreshed with the page.
 export const dynamic = 'error'
@@ -39,6 +42,7 @@ export default async function About() {
     getLocale()
   ])
   const person = examples.find((example) => example.id === personaId)
+  const { numbers, footnotes } = methodologyCitations()
   return (
     <article className='content-column space-y-10 py-14 text-base leading-relaxed'>
       {/* Hidden, so it adds no gap or margin. */}
@@ -55,9 +59,7 @@ export default async function About() {
         <p>{t('question')}</p>
         <p>
           {t.rich('intro', {
-            source: external(
-              'https://github.com/transitive-bullshit/doom-or-bloom'
-            )
+            source: external(repositoryUrl)
           })}
         </p>
       </header>
@@ -68,73 +70,56 @@ export default async function About() {
         <p>{t('why2')}</p>
       </section>
 
-      <section className='space-y-3'>
-        <h2>{t('interviewTitle')}</h2>
-        <p>{t('interview1')}</p>
-        <p>{t('interview2')}</p>
-      </section>
-
-      <section className='space-y-4'>
-        <h2>{t('jevTitle')}</h2>
-        <p>{t.rich('jev1', { jev: external('https://typesafe.ai') })}</p>
-        <p>{t('jev2')}</p>
-      </section>
-
-      {person && assessment?.finalState && (
-        <section className='space-y-4'>
-          <h2>{t('exampleTitle')}</h2>
-          <p>
-            {t.rich('example', {
-              link: (chunks) => (
-                <Link
-                  className='underline underline-offset-4'
-                  href={`/users/${person.slug}`}
-                  prefetch={true}
-                >
-                  {chunks}
-                </Link>
-              )
-            })}
-          </p>
-          <div className='grid min-w-0 grid-cols-1 gap-5'>
-            <div className='min-w-0 space-y-2'>
-              <h3>{t('inputTitle')}</h3>
-              <JsonViewer
-                label={t('inputLabel')}
-                value={assessment.finalState}
-                initialExpandedDepth={1}
-              />
-              <p className='text-xs text-muted-foreground'>{t('inputNote')}</p>
-            </div>
-            <div className='min-w-0 space-y-2'>
-              <h3>{t('resultTitle')}</h3>
-              <JsonViewer
-                label={t('resultLabel')}
-                value={person.result}
-                initialExpandedDepth={1}
-              />
-              <p className='text-xs text-muted-foreground'>{t('resultNote')}</p>
-            </div>
-          </div>
-        </section>
-      )}
-
-      <section className='space-y-3'>
-        <h2>{t('simulatedTitle')}</h2>
-        <p>{t('simulated1')}</p>
-        <p>{t('simulated2')}</p>
-      </section>
-
-      <section className='space-y-3'>
-        <h2>{t('mapTitle')}</h2>
-        <p>{t('map1')}</p>
-        <p>
-          {t.rich('map2', {
-            b: (chunks) => <span className='font-bold'>{chunks}</span>
-          })}
-        </p>
-        <p>{t('map3')}</p>
-      </section>
+      <Methodology
+        numbers={numbers}
+        example={
+          person &&
+          assessment?.finalState && (
+            <section aria-labelledby='example' className='flex flex-col gap-4'>
+              <h3 id='example' className='scroll-mt-24'>
+                {t('exampleTitle')}
+              </h3>
+              <p>
+                {t.rich('example', {
+                  link: (chunks) => (
+                    <Link
+                      className='underline underline-offset-4'
+                      href={`/users/${person.slug}`}
+                      prefetch={true}
+                    >
+                      {chunks}
+                    </Link>
+                  )
+                })}
+              </p>
+              <div className='grid min-w-0 grid-cols-1 gap-5'>
+                <div className='min-w-0 space-y-2'>
+                  <h4>{t('inputTitle')}</h4>
+                  <JsonViewer
+                    label={t('inputLabel')}
+                    value={assessment.finalState}
+                    initialExpandedDepth={1}
+                  />
+                  <p className='text-xs text-muted-foreground'>
+                    {t('inputNote')}
+                  </p>
+                </div>
+                <div className='min-w-0 space-y-2'>
+                  <h4>{t('resultTitle')}</h4>
+                  <JsonViewer
+                    label={t('resultLabel')}
+                    value={person.result}
+                    initialExpandedDepth={1}
+                  />
+                  <p className='text-xs text-muted-foreground'>
+                    {t('resultNote')}
+                  </p>
+                </div>
+              </div>
+            </section>
+          )
+        }
+      />
 
       <section className='space-y-3'>
         <h2>{t('answersTitle')}</h2>
@@ -154,11 +139,19 @@ export default async function About() {
         <p>{t('next1')}</p>
         <p>
           {t.rich('next2', {
-            feedback: external(
-              'https://github.com/transitive-bullshit/doom-or-bloom/issues'
-            )
+            feedback: external(`${repositoryUrl}/issues`)
           })}
         </p>
+      </section>
+
+      <section
+        aria-labelledby='sources'
+        className='reference-breakout flex flex-col gap-5 border-t pt-10'
+      >
+        <h2 id='sources' className='scroll-mt-24'>
+          {t('methodology.sourcesTitle')}
+        </h2>
+        <Footnotes footnotes={footnotes} />
       </section>
 
       <footer className='border-t pt-8 text-base text-muted-foreground flex flex-col gap-2'>
@@ -182,9 +175,7 @@ export default async function About() {
         </p>
         <p>
           {t.rich('source', {
-            github: external(
-              'https://github.com/transitive-bullshit/doom-or-bloom'
-            )
+            github: external(repositoryUrl)
           })}
         </p>
       </footer>
