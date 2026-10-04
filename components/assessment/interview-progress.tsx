@@ -12,6 +12,9 @@ import { eligible, promptLimit } from '@/lib/assessment/state'
  * so their number is unknown; each one fills half of what remains of the last
  * segment, which stays short of full while questions keep coming.
  */
+const flagClass =
+  'inline-grid shrink-0 rounded-full border px-2 py-0.5 text-[11px] leading-none font-medium *:col-start-1 *:row-start-1 *:inline-flex *:items-center *:justify-center *:gap-1'
+
 export function InterviewProgress({
   state,
   busy,
@@ -45,6 +48,17 @@ export function InterviewProgress({
         : answered === 0
           ? t('progress.start', { total: core })
           : t('progress.question', { step: answered + 1, total: core })
+  // Both labels share one grid cell, so the flag keeps its width and the
+  // segments don't shrink when it turns into a button.
+  const flag = (isReady: boolean) => (
+    <>
+      <FlagIcon className='size-3' aria-hidden='true' />
+      {isReady ? t('progress.resultsReady') : t('progress.results')}
+      {isReady && (
+        <ChevronRightIcon className='-mr-0.5 size-3' aria-hidden='true' />
+      )}
+    </>
+  )
   const percent = Math.round(
     (fills.reduce((sum, fill) => sum + fill, 0) / core) * 100
   )
@@ -81,16 +95,22 @@ export function InterviewProgress({
             type='button'
             disabled={busy}
             onClick={onViewResults}
-            className='inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/40 px-2 py-0.5 text-[11px] leading-none font-medium text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:opacity-50'
+            className={cn(
+              flagClass,
+              'border-primary/40 text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none disabled:opacity-50'
+            )}
           >
-            <FlagIcon className='size-3' aria-hidden='true' />
-            {t('progress.resultsReady')}
-            <ChevronRightIcon className='-mr-0.5 size-3' aria-hidden='true' />
+            <span>{flag(true)}</span>
+            <span className='invisible' aria-hidden='true'>
+              {flag(false)}
+            </span>
           </button>
         ) : (
-          <span className='inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] leading-none font-medium text-muted-foreground'>
-            <FlagIcon className='size-3' aria-hidden='true' />
-            {t('progress.results')}
+          <span className={cn(flagClass, 'text-muted-foreground')}>
+            <span>{flag(false)}</span>
+            <span className='invisible' aria-hidden='true'>
+              {flag(true)}
+            </span>
           </span>
         )}
       </div>
