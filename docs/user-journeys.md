@@ -35,7 +35,7 @@ Every person has two keys. The **id** (lowercase words and hyphens, such as `sup
 4. Inspect the answers, routing, readiness and source snapshot at `/user-journeys`, then the result at `/users/<slug>`. Compare fidelity to the brief, not desired coordinates.
 5. Commit, then publish with the owner's approval: `pnpm personas:import plan --env <file> --ids <slug>`, then `write` ([import](#import-selected-simulated-users)). Production uses `.env.production.local`; staging is Vercel Preview, reached through a temporary env file ([databases](PERSISTENCE.md#databases-and-environments)). Deploy afterward so portraits, previews and static profiles rebuild.
 6. For presentation-only changes (one-liner, name, portrait, featured flag), run `pnpm personas:sync-metadata plan --env <file> --ids <slug>`, then `write` ([sync](#sync-profile-metadata)). Sync `--all` after inserting someone mid-file in `people.ts`, since every later profile's order shifts.
-7. If the featured set changed, regenerate the [site social image](SEO.md#site-social-image). If the person is in a benchmark set and their brief changed, rebuild their paid R2 and R3 references ([benchmark](benchmark.md)).
+7. If the featured set changed, capture and inspect a before/after review, then apply both the frozen points and [site social image](SEO.md#site-social-image). Offline regeneration alone keeps the previous distribution. If the person is in a benchmark set and their brief changed, rebuild their paid R2 and R3 references ([benchmark](benchmark.md)).
 8. Add an entry to the [simulated-user log](research/simulated-user-log.md) linking the research record.
 
 ### Source changes and publication
@@ -156,7 +156,7 @@ The 2026-09-20 replay was explicitly approved and covers all 45 saved result sna
 
 Current results include inferred P(doom). Live generation writes fresh results for selected users and merges them into the local collection; a historical overlay is unnecessary for those new runs. Only final results are expanded by default.
 
-Every results view includes a separate demonstrated-reasoning axis. The v4 map interpretation preserves tentative points and labels dominant indecision as unsettled. Influence and transformation questions compete through ordinary routing; missing axes are not guaranteed a direct probe before automatic stopping. See [current projections](ASSESSMENT.md#participant-facing-projections).
+Saved per-answer views use the same presentation rules as final results. For map placement, core questions, tentative readings and explicit indecision, use [current projections](ASSESSMENT.md#participant-facing-projections).
 
 ## Publicly stated P(doom) overrides
 

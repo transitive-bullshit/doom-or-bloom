@@ -17,7 +17,20 @@ This document owns how pages present themselves to search engines and AI crawler
 
 The site-wide card is the approved white portrait-first design: 1200 × 630, 85px circular color portraits with 3px white borders, a muted map and Doom/Bloom pills. Its margins are 64px horizontally and 48px vertically; the Bloom pill intentionally overlaps the right margin. The Venn icon and brand align with the chart’s top and bottom. Portrait spacing retains the original 94px diameter so the smaller faces keep their reviewed centers and give the question more visual prominence.
 
-`pnpm social-image:generate` recreates `app/opengraph-image.png` and its alt text offline from `lib/sharing/site-social-points.json`, the frozen public simulated-user map refreshed on October 4, 2026 after the `0.7.5` re-read. The JSX lives in `lib/sharing/site-social-card.tsx`. Portraits that would cover each other move apart vertically, and a stack pushed past the top or bottom of the plot moves back inside as one piece; Gary Marcus then has an image-only vertical offset of 90.8px. None of this changes saved results, outlook positions or the site’s interactive map. Regeneration uses checked-in portraits and Inter Tight, with no inference or network calls. Optional `--local` or `--production` reads fresh public simulated-user positions through a read-only database connection; review the resulting image before committing a refresh.
+`pnpm social-image:generate` recreates `app/opengraph-image.png` and its alt text offline from `lib/sharing/site-social-points.json`, the approved frozen public simulated-user map. The JSX lives in `lib/sharing/site-social-card.tsx`. Portraits that would cover each other move apart vertically, and a stack pushed past the top or bottom of the plot moves back inside as one piece; Gary Marcus then has an image-only vertical offset of 90.8px. None of this changes saved results, outlook positions or the site’s interactive map. Dots retain the presented worldview coordinates. Regeneration uses checked-in portraits and Inter Tight, with no inference or network calls.
+
+To refresh the distribution, capture a review from an explicit read-only database target, then apply it:
+
+```sh
+pnpm social-image:generate --production --out=work/social-images/<new-review>
+# Or use --local for the local development database.
+# Inspect before.png, after.png and review.json in that directory, then:
+pnpm social-image:generate --apply=work/social-images/<new-review>
+```
+
+Database capture changes no approved files. The review contains before/after images, point snapshots and alt text, capture target/time, hashes and the added, removed or changed points. Inspect the full distribution as well as the eight editorial portraits; their selection, collision spacing and Gary's offset remain controlled by the card component, separately from the raw coordinates. To change those controls, edit the component before creating a new review. A capture does not overwrite an existing directory. Omitting `--out` creates a timestamped review under ignored `work/social-images/`.
+
+Apply checks the bundle hashes, verifies the PNG reproduces from its points and current design, and requires the reviewed alt text to match the current design. It refuses a changed approved snapshot, image or alt file. It then copies the exact reviewed PNG, points and alt text into their checked-in locations, with no database access or inference. Commit those files together; default offline regeneration then reproduces the same pixels. Bundles created without the hashed alt files must be captured again. The commands do not commit, push or deploy. `--local` and `--production` capture reviews, rather than directly replacing the root image.
 
 ## Titles and descriptions
 
