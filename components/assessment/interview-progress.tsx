@@ -8,6 +8,9 @@ import { eligible, promptLimit } from '@/lib/assessment/state'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
+// Follow-ups leave a visible gap, so the reported value never rounds to 100%.
+const maxFollowUpFill = 0.95
+
 // Both flag states share these overrides, so the pill keeps one size.
 const flagClass =
   'inline-grid h-auto shrink-0 rounded-full border px-2 py-0.5 text-[11px] leading-none font-medium *:col-start-1 *:row-start-1 *:inline-flex *:items-center *:justify-center *:gap-1'
@@ -38,7 +41,7 @@ export function InterviewProgress({
     i < core - 1
       ? Number(i < answered)
       : followUp
-        ? 1 - 0.5 ** (answered - core + 1)
+        ? Math.min(maxFollowUpFill, 1 - 0.5 ** (answered - core + 1))
         : 0
   )
   // The segment the current question will fill.

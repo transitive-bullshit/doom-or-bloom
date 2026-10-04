@@ -555,6 +555,10 @@ test('progress counts four answers, then follow-ups fill the last segment withou
   await expect(progress).toHaveAttribute('aria-valuenow', '88')
   await submit(page, 'Relevant synthetic answer 4.')
   await expect(progress).toHaveAttribute('aria-valuenow', '94')
+  // The last segment stops at 95%, so progress never reads as complete.
+  for (let i = 5; i < 9; i++)
+    await submit(page, `Relevant synthetic answer ${i}.`)
+  await expect(progress).toHaveAttribute('aria-valuenow', '99')
   await page.getByRole('button', { name: 'Results ready' }).click()
   await skipSelfPlacement(page)
 })

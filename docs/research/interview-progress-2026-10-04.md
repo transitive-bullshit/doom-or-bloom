@@ -25,6 +25,6 @@ Four prototypes ran in the real interview behind a query parameter and were capt
 - twelve ticks for the prompt cap, with the usual results range shaded;
 - a bottom dock with a results button.
 
-The owner chose the segments. Instead of adding dots for follow-ups after the flag, follow-ups fill the last segment without completing it, as a gentle nudge to answer them. Results stay one click away. Routing decides follow-ups one at a time, and the client does not know how many remain, so each follow-up fills half of what remains of that segment. An exact per-follow-up fill would need routing to persist an estimate of remaining worthwhile questions; this was not built.
+The owner chose the segments. Instead of adding dots for follow-ups after the flag, follow-ups fill the last segment without completing it, as a gentle nudge to answer them. Results stay one click away. Routing decides follow-ups one at a time, and the client does not know how many remain, so each follow-up fills half of what remains of that segment, up to 95%, which keeps a visible gap and the reported value below 100%. An exact per-follow-up fill would need routing to persist an estimate of remaining worthwhile questions; this was not built.
 
 The checklist remains in debug mode.
