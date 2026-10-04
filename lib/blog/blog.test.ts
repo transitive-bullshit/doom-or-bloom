@@ -5,8 +5,14 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 import { personas } from '@/lib/journeys/catalog'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
-import { renderBlogSocialImage } from '@/lib/sharing/blog-social-card'
-import { blogCardPath } from '@/lib/sharing/blog-social-card'
+import { locales } from '@/i18n/config'
+import {
+  blogCardPath,
+  blogSocialImageResponse,
+  fitTitle,
+  renderBlogSocialImage
+} from '@/lib/sharing/blog-social-card'
+import { wrappable } from '@/lib/sharing/card-renderer'
 import {
   dataStrings,
   dataTranslationProblems,
@@ -19,7 +25,7 @@ import {
   participantCharts,
   referrersSchema
 } from './participant-charts'
-import { blogDirectory, blogPost, blogPosts } from './posts'
+import { blogDirectory, blogPost, blogPosts, postTranslation } from './posts'
 import { blogFeed } from './rss'
 import {
   barsDataSchema,
@@ -167,11 +173,35 @@ describe('post translations', () => {
   })
 
   it('advertise a card in the post’s language', () => {
-    const post = { slug: 'a-post', title: 'A post' }
+    const post = {
+      slug: 'a-post',
+      title: 'A post',
+      author: 'Travis Fischer',
+      date: '2026-10-01',
+      minutes: 4
+    }
     expect(blogCardPath(post)).toMatch(/^\/blog\/a-post\/opengraph-image\?v=/u)
     expect(blogCardPath(post, 'ja')).toMatch(
       /^\/ja\/blog\/a-post\/opengraph-image\?v=/u
     )
+  })
+
+  it('version the card URL by everything the card shows', () => {
+    const post = {
+      slug: 'a-post',
+      title: 'A post',
+      author: 'Travis Fischer',
+      date: '2026-10-01',
+      minutes: 4
+    }
+    const urls = new Set([
+      blogCardPath(post),
+      blogCardPath({ ...post, title: 'Another post' }),
+      blogCardPath({ ...post, author: 'Another author' }),
+      blogCardPath({ ...post, date: '2026-10-02' }),
+      blogCardPath({ ...post, minutes: 5 })
+    ])
+    expect(urls.size).toBe(5)
   })
 })
 
@@ -316,6 +346,48 @@ describe('feed and social image', () => {
     )
     expect(feed('item > pubDate').text()).toBe('Thu, 01 Oct 2026 00:00:00 GMT')
     expect(xml).not.toContain('<b>')
+  })
+
+  it('serves every post’s card, and translated cards only for translations', async () => {
+    const [post] = blogPosts()
+    const response = await blogSocialImageResponse(post!.slug, 'en')
+    expect(response.headers.get('Content-Type')).toBe('image/png')
+    expect(
+      await sharp(Buffer.from(await response.arrayBuffer())).metadata()
+    ).toMatchObject({ format: 'png', width: 1200, height: 630 })
+    expect((await blogSocialImageResponse('no-such-post', 'en')).status).toBe(
+      404
+    )
+    for (const { slug } of blogPosts())
+      expect((await blogSocialImageResponse(slug, 'ja')).status).toBe(
+        postTranslation(slug, 'ja') ? 200 : 404
+      )
+  })
+
+  it('fits every post title on its card without breaking words', async () => {
+    for (const post of blogPosts())
+      for (const locale of locales) {
+        const { title } = postTranslation(post.slug, locale) ?? post
+        expect(
+          await fitTitle(wrappable(title, locale), locale),
+          `${locale}: ${title}`
+        ).not.toHaveProperty('maxLines')
+      }
+  })
+
+  it('shrinks titles to their longest word, and clamps words that never fit', async () => {
+    const compound = await fitTitle(
+      'Warum die Sicherheitsforschungsgemeinschaft Umfragen misstraut',
+      'de'
+    )
+    expect(compound.fontSize).toBeLessThan(100)
+    expect(compound).not.toHaveProperty('maxLines')
+    expect(
+      await fitTitle(
+        'Antidisestablishmentarianismsupercalifragilisticexpialidociousness',
+        'en'
+      )
+    ).toEqual({ fontSize: 48, maxLines: 5 })
   })
 
   it('renders each post card as a 1200 × 630 PNG', async () => {

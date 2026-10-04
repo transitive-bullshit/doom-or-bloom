@@ -1,11 +1,10 @@
-import { englishTranslator } from '@/i18n/translators'
-import { blogPost, blogPosts } from '@/lib/blog/posts'
-import { postMeta } from '@/lib/blog/format'
-import { publicImageCacheHeaders } from '@/lib/sharing/image-cache'
-import { renderBlogSocialImage } from '@/lib/sharing/blog-social-card'
+import { defaultLocale } from '@/i18n/config'
+import { blogPosts } from '@/lib/blog/posts'
+import { blogSocialImageResponse } from '@/lib/sharing/blog-social-card'
 
-// Outside app/[locale] at its published URL, like profile previews. Posts are
-// English and change only with a deployment, so every card renders at build.
+// Outside app/[locale] at its published URL, like profile previews. Posts
+// change only with a deployment, so every card renders at build. Translated
+// cards are app/[locale]/(site)/blog/[slug]/opengraph-image.
 export const runtime = 'nodejs'
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -18,13 +17,5 @@ export async function GET(
   _request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  const post = blogPost((await params).slug)
-  if (!post) return new Response(null, { status: 404 })
-  const image = await renderBlogSocialImage({
-    title: post.title,
-    meta: postMeta(englishTranslator('Blog'), 'en', post)
-  })
-  return new Response(new Uint8Array(image), {
-    headers: { 'Content-Type': 'image/png', ...publicImageCacheHeaders }
-  })
+  return blogSocialImageResponse((await params).slug, defaultLocale)
 }
