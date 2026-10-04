@@ -961,14 +961,14 @@
         "feelsRightLabel": "“这感觉准确吗？”",
         "feelsRight": "{total} 人中有 {yes} 人回答是（{share}）。<aggregates></aggregates>应将其视为上限：人们往往会认同 AI 对自己的解读。在一项 NORC 研究中，独立编码者认可 AI 编码的频率比受访者低约 20%。<confirmation></confirmation>",
         "pdoomLabel": "推断的 P(doom)",
-        "pdoom": "粗略估计。在隐藏人们输入的 {typed} 个数字后用这些数字进行检验时，它解读了其中 {readings} 个，且仅有 {within} 的时候落在 2× 范围内，并不比对所有人都猜测 {guess} 更好。它确实能合理地对人们进行排序，而你输入的百分比（如“20%”）始终优先采用。<review></review>",
+        "pdoom": "粗略估计。在隐藏人们输入的 {typed} 个数值后，用这些数值检验时，它解读了其中的 {readings} 个，但按赔率计算，结果在 2× 范围内的情况仅占 {within}，并不比对所有人都猜测 {guess} 更准确。它确实能合理地对人们进行排序，而你输入的百分比（例如“20%”）始终优先采用。<review></review>",
         "gapsLabel": "尚未完成",
         "gaps": "我们还没有按照评估计划的要求，建立由独立评审者标注的盲测集。<protocol></protocol>在此之前，这里的每项检验都是将解读结果与自我定位、重新运行的结果或其他模型进行比较。不同访谈语言的结果也尚未进行比较。"
       },
       "sampleTitle": "哪些人参加过",
       "sample": "截至 {date}，已有 {people} 人得出了结果。<aggregates></aggregates>他们选择参加评估，主要是通过 Hacker News 上的一个讨论帖（{hackerNewsDates}）和 X 上的帖子（{xDates}），而这两批人的结果相差很大：在 0–1 Doom–Bloom 轴上，前者的展望中位数为 {hackerNews}，后者为 {x}（<post>查看比较</post>）。因此，我们的数据描述的是参与者，而不是公众；并且我们只公布人数至少为 10 的群体的数据。",
       "authoredTitle": "为什么问题由人工编写",
-      "authored": "AI 可以即兴生成访谈。采用固定且由人工编写的问题，可以确保措辞中立且完全一致，使每位参与者和每位模拟意见领袖都回答相同的问题，从而让比较具有意义。AAPOR 的 2026 年指南将生成问题、更改问题措辞或影响访谈流程的 AI 访谈员评为高风险。<aapor></aapor>这里的措辞从不改变，Jev 的判断只会提供给在问题中进行选择的代码。",
+      "authored": "AI 可以即兴进行访谈。采用固定的人工编写问题，可以让措辞保持中立且完全一致，使每位参与者和每位模拟的意见领袖都回答相同的问题，从而使比较具有意义。AAPOR 的 2026 年指南将生成问题、改变问题措辞或影响访谈流程的 AI 访谈员评为高风险。<aapor></aapor>在这里，措辞从不改变，而 Jev 仅通过判断来影响流程，代码会根据这些判断从问题中进行选择。",
       "versionsTitle": "版本和变更",
       "versionLabels": {
         "assessment": "算法",
