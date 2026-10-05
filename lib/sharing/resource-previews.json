@@ -6933,8 +6933,12 @@
   },
   "https://global.oup.com/academic/product/superintelligence-9780198739838": {
     "source": "https://global.oup.com/academic/product/superintelligence-9780198739838",
-    "fetchedAt": "2026-10-02T00:07:11.266Z",
-    "icon": "/resource-previews/7bf75fc2748f-icon.webp"
+    "fetchedAt": "2026-10-02T18:18:39.955Z",
+    "description": "Foundational book on the prospects and control challenges of superintelligence. Original publication year is verified on the author’s Deep Utopia page; the linked ISBN identifies a later paperback edition. Existing repository research inspected publisher metadata, description and contents only, not the full book. Do not present historical arguments as a newly verified current timeline or probability.",
+    "icon": "/resource-previews/7bf75fc2748f-icon.webp",
+    "image": "/resource-previews/7bf75fc2748f-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://global.oup.com/academic/product/superintelligence-9780198739838"
   },
   "https://www.penguinrandomhouse.com/books/566677/human-compatible-by-stuart-russell/": {
     "source": "https://www.penguinrandomhouse.com/books/566677/human-compatible-by-stuart-russell/",
@@ -7133,15 +7137,6 @@
     "imageKind": "document",
     "imageSource": "https://nickbostrom.com/superintelligentwill.pdf",
     "icon": "/resource-previews/3e1f64166f21-icon.webp"
-  },
-  "https://global.oup.com/academic/product/superintelligence-9780198739838": {
-    "source": "https://global.oup.com/academic/product/superintelligence-9780198739838",
-    "fetchedAt": "2026-10-02T18:18:39.955Z",
-    "description": "Foundational book on the prospects and control challenges of superintelligence. Original publication year is verified on the author’s Deep Utopia page; the linked ISBN identifies a later paperback edition. Existing repository research inspected publisher metadata, description and contents only, not the full book. Do not present historical arguments as a newly verified current timeline or probability.",
-    "icon": "/resource-previews/7bf75fc2748f-icon.webp",
-    "image": "/resource-previews/7bf75fc2748f-image.webp",
-    "imageKind": "title-card",
-    "imageSource": "https://global.oup.com/academic/product/superintelligence-9780198739838"
   },
   "https://nickbostrom.com/papers/vulnerable.pdf": {
     "source": "https://nickbostrom.com/papers/vulnerable.pdf",
@@ -7774,5 +7769,800 @@
     "source": "https://aapor.org/wp-content/uploads/2026/05/Responsible-AI-Integration-In-Survey-Research.pdf",
     "fetchedAt": "2026-10-04T06:23:14.803Z",
     "icon": "/resource-previews/0da628829657-icon.webp"
+  },
+  "https://sierracatalina.com/": {
+    "source": "https://sierracatalina.com/",
+    "fetchedAt": "2026-10-04T21:54:33.381Z",
+    "description": "User-owned context as infrastructure for the next generation of agentic systems.",
+    "image": "/resource-previews/c28eccab0d93-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://sierracatalina.com/og",
+    "icon": "/resource-previews/c28eccab0d93-icon.webp"
+  },
+  "https://www.linkedin.com/posts/sierracatalina_chat-gpt-agent-is-here-it-is-unreal-activity-7351817498507288576-5sz_": {
+    "source": "https://www.linkedin.com/posts/sierracatalina_chat-gpt-agent-is-here-it-is-unreal-activity-7351817498507288576-5sz_",
+    "fetchedAt": "2026-10-04T21:54:33.388Z",
+    "description": "chat gpt agent is here. & it is unreal. nothing will be the same after this. welcome to the future.",
+    "image": "/resource-previews/edfcc0e677df-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://dms.licdn.com/playlist/vid/v2/D5605AQGcu0WQyHXt7Q/thumbnail-with-play-button-overlay-high/B56ZgZZ9uLHUD0-/0/1752772925883?e=2147483647&v=beta&t=KNjtTJmDg30q3GqRpbDfFO33aFd0ybKPE8iQ3vgZuO8",
+    "icon": "/resource-previews/edfcc0e677df-icon.webp"
+  },
+  "https://www.linkedin.com/posts/sierracatalina_anthropomorphizing-models-trains-people-activity-7424474001655246848-CUo_": {
+    "source": "https://www.linkedin.com/posts/sierracatalina_anthropomorphizing-models-trains-people-activity-7424474001655246848-CUo_",
+    "fetchedAt": "2026-10-04T21:54:33.389Z",
+    "description": "anthropomorphizing models trains people to trust interfaces instead of incentives. that confusion compounds fast in agentic systems.",
+    "image": "/resource-previews/0719c9b8f981-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+    "icon": "/resource-previews/0719c9b8f981-icon.webp"
+  },
+  "https://www.linkedin.com/posts/sierracatalina_browser-agents-feel-harmless-until-you-remember-activity-7424836388120023041-o7X2": {
+    "source": "https://www.linkedin.com/posts/sierracatalina_browser-agents-feel-harmless-until-you-remember-activity-7424836388120023041-o7X2",
+    "fetchedAt": "2026-10-04T21:54:33.389Z",
+    "description": "browser agents feel harmless until you remember most people reuse passwords & click allow on vibes alone.",
+    "image": "/resource-previews/c4696a89bfa7-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+    "icon": "/resource-previews/c4696a89bfa7-icon.webp"
+  },
+  "https://www.linkedin.com/posts/sierracatalina_sierracatalina-overview-activity-7428944249938722816-RPjb": {
+    "source": "https://www.linkedin.com/posts/sierracatalina_sierracatalina-overview-activity-7428944249938722816-RPjb",
+    "fetchedAt": "2026-10-04T21:54:35.022Z",
+    "description": "if personal agents become core, we need agent-readable infrastructure. AAA [agent aware architecture] defines: • machine-legible primary actions • sensitive field boundaries • confirmation gates for destructive ops open sourced a starter: github.com/sierracatalina… this could standardize the agent/web handshake.",
+    "image": "/resource-previews/564fb711e432-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/sync/v2/D4E27AQENr8nKYcPm0g/articleshare-shrink_800/B4EZxjpaFcKsAI-/0/1771198326428?e=2147483647&v=beta&t=Elbr4vQC4nlKgLEhoV0PBL6U5QMroaz84Tq0pkCoXbk",
+    "icon": "/resource-previews/564fb711e432-icon.webp"
+  },
+  "https://www.linkedin.com/posts/sierracatalina_we-need-to-rethink-agentic-traffic-on-the-activity-7493507173855961088-x1gl": {
+    "source": "https://www.linkedin.com/posts/sierracatalina_we-need-to-rethink-agentic-traffic-on-the-activity-7493507173855961088-x1gl",
+    "fetchedAt": "2026-10-04T21:54:35.169Z",
+    "description": "we need to rethink agentic traffic on the web before we break the web.",
+    "image": "/resource-previews/7b6a67145b5a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/v2/D4E22AQFPBSPDNfM0EA/feedshare-image-high-res/B4EZ_5JEb_J0AU-/0/1786591332434?e=2147483647&v=beta&t=2_58GSA9rQ_S3d6dbxkm-YuKTbrKR-Aw8tbkxKNpE7I",
+    "icon": "/resource-previews/7b6a67145b5a-icon.webp"
+  },
+  "https://signull.substack.com/p/the-last-dataset": {
+    "source": "https://signull.substack.com/p/the-last-dataset",
+    "fetchedAt": "2026-10-04T21:54:35.463Z",
+    "description": "why chatgpt data is the most insane (& most valuable) set of data on humanity to ever be constructed.",
+    "image": "/resource-previews/74e0a8e80789-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!XSFj!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c710008-c359-494d-a7fd-fee0a61a1339_1024x1536.png",
+    "icon": "/resource-previews/74e0a8e80789-icon.webp"
+  },
+  "https://signull.substack.com/p/answers-are-now-insanely-cheap": {
+    "source": "https://signull.substack.com/p/answers-are-now-insanely-cheap",
+    "fetchedAt": "2026-10-04T21:54:36.505Z",
+    "description": "why questions are the last unfair advantage.",
+    "image": "/resource-previews/8e3c1174ae6c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!2rEn!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F02b18e9b-aeac-45c6-99ed-8e078699ffea_1024x1024.png",
+    "icon": "/resource-previews/8e3c1174ae6c-icon.webp"
+  },
+  "https://podscan.fm/podcasts/the-a16z-show/episodes/technology-culture-and-the-next-ai-interface-with-signull": {
+    "source": "https://podscan.fm/podcasts/the-a16z-show/episodes/technology-culture-and-the-next-ai-interface-with-signull",
+    "fetchedAt": "2026-10-04T21:54:36.693Z",
+    "description": "Listen to Technology, Culture, and the Next AI Interface with signüll from The a16z Show (34 min) • Published Apr 16, 2026. Erik Torenberg and Anish Ach...",
+    "image": "/resource-previews/7f63164faa68-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://podscan.fm/images/podscan-og-image-4.png",
+    "icon": "/resource-previews/7f63164faa68-icon.webp"
+  },
+  "https://techcrunch.com/2024/10/17/from-elon-musk-to-cop-car-chases-how-a-software-engineer-launched-a-police-ai-startup/": {
+    "source": "https://techcrunch.com/2024/10/17/from-elon-musk-to-cop-car-chases-how-a-software-engineer-launched-a-police-ai-startup/",
+    "fetchedAt": "2026-10-04T21:54:37.030Z",
+    "description": "Abel creates AI that uses body cam footage and other data to fill out consuming police reports. For research, founder Daniel Francis shadowed the police.",
+    "image": "/resource-previews/a4c1dd427024-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://techcrunch.com/wp-content/uploads/2024/10/Screenshot-2024-10-17-at-9.11.43AM.png?resize=1200,667",
+    "icon": "/resource-previews/a4c1dd427024-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=A63sedG-p5Q": {
+    "source": "https://www.youtube.com/watch?v=A63sedG-p5Q",
+    "fetchedAt": "2026-10-04T21:54:37.157Z",
+    "description": "Lauren Tan and Roshan Sadanani join MTS to discuss GrokBot, Grok 4.6, and how agents are changing software development. They demonstrate GrokBot's capabiliti...",
+    "image": "/resource-previews/f253d21bc458-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/A63sedG-p5Q/hqdefault.jpg",
+    "icon": "/resource-previews/f253d21bc458-icon.webp"
+  },
+  "https://www.linkedin.com/feed/update/urn:li:activity:7465439429042737152": {
+    "source": "https://www.linkedin.com/feed/update/urn:li:activity:7465439429042737152",
+    "fetchedAt": "2026-10-04T21:54:37.440Z",
+    "description": "My Cursor skills were used 10,000 times last week by our eng team. So I'm open sourcing them. It's a plugin called pstack, and you can install it today. pstack is my personal set of engineering skills and principles, now installable in any Cursor project. The core is /poteto-mode: a higher-order skill that routes your agent to the right playbook for whatever you're working on. The goal isn't more code. It's maximum impact with the least amount of code. Agents are like new hires in a constant state of amnesia and idiocy. They don't remember what you tell them, and they never really learn anything new. But we can equip them with rules, skills, tools, and long term memory which can approximate that. They're capable yet stupid, and very teachable. And I saw their failure modes as opportunities to teach them everything I know about doing deep, rigorous engineering. What's in pstack: /poteto-mode — routes to the right skill automatically based on your task /interrogate — adversarial multi-model review /arena — N parallel attempts, grab the best parts /how — deep investigation of how a subsystem actually works /why — queries source control, Slack, Notion, issue trackers in parallel to explain why something was built this way /architect — settle types and data structures before crossing function boundaries /arena — N parallel attempts, grab the best parts /interrogate — adversarial multi-model review /tdd — failing test first, then the fix /unslop — makes AI speak plainly /reflect — continually improve your skills /figure-it-out — designs a rigorous, auditable playbook for the task /show-me-your-work — reviewable decision trail during autonomous runs Want to try it with your team? Claim $3,000 in credits for Cursor Teams here: https://lnkd.in/gF6buA77 | 24 comments on LinkedIn",
+    "image": "/resource-previews/6d7d46d74947-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/sync/v2/D5627AQGsbE1KYosAOg/articleshare-shrink_800/B56Z51vHRqKoA0-/0/1780091747638?e=2147483647&v=beta&t=pkyddQ3j5b91iq29IMs1KEmdQtKZnlLXLgKE0XbIne4",
+    "icon": "/resource-previews/6d7d46d74947-icon.webp"
+  },
+  "https://github.com/cursor/plugins/blob/main/pstack/README.md": {
+    "source": "https://github.com/cursor/plugins/blob/main/pstack/README.md",
+    "fetchedAt": "2026-10-04T21:54:38.012Z",
+    "description": "Cursor plugin specification and official plugins. Contribute to cursor/plugins development by creating an account on GitHub.",
+    "image": "/resource-previews/db848e2f986f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://opengraph.githubassets.com/125a6b8b554ba5633d0d551887d2fff1b676970d55bbca68c1365d358340634c/cursor/plugins",
+    "icon": "/resource-previews/db848e2f986f-icon.webp"
+  },
+  "https://rookepoole.github.io/": {
+    "source": "https://rookepoole.github.io/",
+    "fetchedAt": "2026-10-04T21:54:38.768Z",
+    "description": "Selected work by Rooke Poole across evidence-aware AI, local-first software, machine systems, and computational research.",
+    "image": "/resource-previews/00679886e81c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://rookepoole.github.io/og.png",
+    "icon": "/resource-previews/00679886e81c-icon.webp",
+    "iconKind": "monogram"
+  },
+  "https://www.linkedin.com/posts/luanacantuarias_guardx402-stop-runaway-agent-spend-activity-7447708562983858176-2JNb": {
+    "source": "https://www.linkedin.com/posts/luanacantuarias_guardx402-stop-runaway-agent-spend-activity-7447708562983858176-2JNb",
+    "fetchedAt": "2026-10-04T21:54:39.380Z",
+    "description": "Back in December 2025, I launched NodusAI with x402 as its payment protocol right at the ETH Foundation x402 Hackathon. At the time, most people didn't know what x402 was. Transactions were slow to come. But I believed in the primitive: machine-to-machine HTTP payments, no middleware, just an agent, a request, and a payment. So I kept building. I finished the NodusAI MPC server and something shifted. AI agents globally started using it. The infrastructure was working. Coinbase contributed x402 to the The Linux Foundation . The x402 Foundation is now being established as a neutral, industry-led home for the standard, dedicated to enabling x402 as a global payment protocol for autonomous commerce. Amazon Web Services (AWS) published a full architectural blueprint for building agentic payments with x402 on Amazon Bedrock AgentCore. McKinsey is projecting agentic commerce will mediate $3–5 trillion in global transactions by 2030. This is no longer a niche protocol. It's infra. Around the same time, I was at CLAWCON in Miami. Conversation after conversation, builders and users were saying the same thing: \"I want more control over what my agents are spending.\" Not hypothetically. As a real blocker to deploying agents in production. The intelligence is autonomous. The spending governance is not. That became GuardX402 🛡️ An AI agent spend control SaaS, built on x402, on top of MoonPay and Open Wallet Standard — working for users on BASE and Solana -Configurable limits - real-time alerts - Full audit trails so teams can finally let their agents operate without losing visibility or control over the spend. I built and shipped it at the OWS Hackathon by MoonPay . This isn't a side experiment. It's the missing governance layer for a protocol now backed by the Linux Foundation, AWS, and the entire agentic commerce wave. 👉 Live now: https://guardx402.com If you're building with AI agents, x402, or autonomous payments on BASE or Solana, let's talk. #x402 #AIAgents #GuardX402 #Solana #Coinbase #AgenticAI #BuildInPublic #SpendGovernance #OpenWalletStandard #LinuxFoundation #x402Foundation",
+    "image": "/resource-previews/0ab53bf07ebd-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/sync/v2/D4E27AQGKAusScg-h8g/articleshare-shrink_800/B4EZ1uSE0OG4AI-/0/1775671725956?e=2147483647&v=beta&t=62SjtRK__I3gQ-OAo1pgRp9pAxhyfCv4tOv6aJzFDZ8",
+    "icon": "/resource-previews/0ab53bf07ebd-icon.webp"
+  },
+  "https://www.linkedin.com/posts/luanacantuarias_thank-you-jeein-kim-for-this-post-i-want-activity-7443070282141040640-Nsqg": {
+    "source": "https://www.linkedin.com/posts/luanacantuarias_thank-you-jeein-kim-for-this-post-i-want-activity-7443070282141040640-Nsqg",
+    "fetchedAt": "2026-10-04T21:54:40.102Z",
+    "description": "Thank you Jeein Kim for this post! I want to thank you even more for your support during those 24 hours of hackathon! Yes. Some builds come from curiosity. This one came from lived experience. Every feature in MIACompass like the bilingual support, the urgency detection, the neighborhood-level resources. I built it thinking about the version of me that needed it most and that’s what technology should do. Meet people where they are. Proud of this one. 🫶",
+    "image": "/resource-previews/23cfdfd9eead-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://dms.licdn.com/playlist/vid/v2/D5605AQE8NxrYS__1Lw/thumbnail-with-play-button-overlay-high/B56Z0ov9esJ8DU-/0/1774505163772?e=2147483647&v=beta&t=Kb2JCZ55RJ5hZ9zsbDXE5wQk2RhQhGdr1IH0diaAdaI",
+    "icon": "/resource-previews/23cfdfd9eead-icon.webp"
+  },
+  "https://www.linkedin.com/posts/luanacantuarias_claude-ai-cowork-just-changed-how-we-work-activity-7416640361378291712-P2xQ": {
+    "source": "https://www.linkedin.com/posts/luanacantuarias_claude-ai-cowork-just-changed-how-we-work-activity-7416640361378291712-P2xQ",
+    "fetchedAt": "2026-10-04T21:54:40.253Z",
+    "description": "Claude AI Cowork just changed how we work : AI automation without writing a single line of code While most of the AI race is still focused on chatbots and browser tools, Anthropic quietly released something far more powerful: Claude Cowork. Cowork turns your Mac into an AI-powered workspace where Claude can actually read, write, organize, and manage files on your computer — autonomously. No scripts. No terminal. No automations to wire together. You give Claude access to a folder, then tell it what to do in plain English: -Organize files -Create documents and spreadsheets -Extract data from screenshots or PDFs -Build content calendars -Rename, move, summarize, and restructure content This is not content generation. This is AI executing workflows. Claude Cowork (launched Jan 12, 2026) is a research preview from Anthropic, built on the same foundation as Claude Code but designed for non-technical users. Think of it as an AI assistant that actually lives inside your computer instead of just replying in a chat box. Right now it’s available to Claude Max users on macOS ($100–200/mo) through the Claude desktop app. I’m already using it to streamline content production for BUIDLMODE and NodusAI , organizing assets, generating calendars, extracting analytics, and preparing multi-platform content in minutes instead of hours. This is one of the clearest signs yet that AI is moving from chat to execution. If you have access, try it. If you don’t, start mapping the tasks you’d hand off the moment you do. This is what the next generation of work looks like.",
+    "image": "/resource-previews/4c1f539e44ce-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/v2/D4E22AQH4OqA1eMloMg/feedshare-image-high-res/B4EZu0zG0tJ0AU-/0/1768264855104?e=2147483647&v=beta&t=Ec3rqmr3Ujj3TlCRxTF0zKtCKZaLJzLHc5f5XRJIt0c",
+    "icon": "/resource-previews/4c1f539e44ce-icon.webp"
+  },
+  "https://www.linkedin.com/posts/luanacantuarias_google-just-opensourced-universal-commerce-activity-7416204143695912960-4IEM": {
+    "source": "https://www.linkedin.com/posts/luanacantuarias_google-just-opensourced-universal-commerce-activity-7416204143695912960-4IEM",
+    "fetchedAt": "2026-10-04T21:54:41.503Z",
+    "description": "Google just opensourced Universal Commerce Protocol. AI agents can now discover, cart, and buy autonomously. Add x402 for instant USDC settlement. This is the commerce stack: 1. UCP handles product discovery 2. x402 handles instant payments 3. Blockchain verifies settlement 100% autonomous. 100% opensource. The agent economy is live. ➡️ Google UCP Blog: https://lnkd.in/ezBa4VNF ➡️ x402 Docs: https://lnkd.in/ep8zj-uU",
+    "image": "/resource-previews/c0055030b497-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/v2/D4E22AQHgFpBrZjn6GQ/feedshare-shrink_800/B4EZuumXvVIkAg-/0/1768160853207?e=2147483647&v=beta&t=FQVofffVALkvc6mPzkTsxpB0JVRaOmpcbIU7Ka669Bc",
+    "icon": "/resource-previews/c0055030b497-icon.webp"
+  },
+  "https://www.linkedin.com/posts/jasonkneen_the-machines-are-taking-over-okay-activity-7232794426195034112-VqK5": {
+    "source": "https://www.linkedin.com/posts/jasonkneen_the-machines-are-taking-over-okay-activity-7232794426195034112-VqK5",
+    "fetchedAt": "2026-10-04T21:54:41.720Z",
+    "description": "\"The machines are taking over!\" 🤖 Okay, not really. But AI/ML/OpenAI's GPT-3 has some pretty epic implications for: - Productivity - Content creation - Creativity Who knew a computer could write like Shakespeare? With AI, we can automate simple and time-consuming tasks to free up time, tackle bigger projects, and improve our decision-making abilities. As AI continues to evolve, our world will change. But that doesn't mean it's a doom and gloom scenario. Think of all the possibilities and potential! There's no need to fear, because: - AI can't replace human connection - AI can't replace empathy - AI can't replace our creative abilities So let's embrace the future, and work alongside AI to create a world full of possibility.",
+    "image": "/resource-previews/72d84c0ced90-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+    "icon": "/resource-previews/72d84c0ced90-icon.webp"
+  },
+  "https://www.linkedin.com/posts/jasonkneen_ai-is-revolutionizing-every-industry-in-the-activity-7249012596211601408-Lzgu": {
+    "source": "https://www.linkedin.com/posts/jasonkneen_ai-is-revolutionizing-every-industry-in-the-activity-7249012596211601408-Lzgu",
+    "fetchedAt": "2026-10-04T21:54:41.855Z",
+    "description": "AI is revolutionizing every industry in the world. It's impacting the way we work, live, and interact with each other. But it's not here to replace us. It's here to help us do things better. From creating art to composing music, AI can help us unleash our potential. - It can help us automate routine tasks. - It can help us make better decisions. - It can help us discover new ideas and insights. AI is not perfect, but it's evolving. And as it continues to grow, it will be a game-changer for businesses and individuals alike. So, if you haven't started exploring AI yet, it's time to get on board. It's the future, and it's here to stay.",
+    "image": "/resource-previews/779e499bd6bd-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+    "icon": "/resource-previews/779e499bd6bd-icon.webp"
+  },
+  "https://www.linkedin.com/posts/jasonkneen_the-future-is-here-and-its-not-just-ai-activity-7233790690487418880-0a0s": {
+    "source": "https://www.linkedin.com/posts/jasonkneen_the-future-is-here-and-its-not-just-ai-activity-7233790690487418880-0a0s",
+    "fetchedAt": "2026-10-04T21:54:41.962Z",
+    "description": "The future is here, and it's not just AI/ML. In fact, AI/ML is becoming so common that it is expected and assumed. The future of hiring will be: - Hiring people for their creativity and storytelling abilities - Leaving the writing tasks to the machines This new Hollywood meets Silicon Valley tech is the next big thing. Stay ahead of the curve and start embracing the power of AI and GPTs You'll soon realise that even creative endeavours can be augmented by AI (on the creative side).",
+    "image": "/resource-previews/3bd76c192a90-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+    "icon": "/resource-previews/3bd76c192a90-icon.webp"
+  },
+  "https://cerebralvalley.beehiiv.com/p/openai-s-codex-lets-one-engineer-ship-like-a-team-of-ten": {
+    "source": "https://cerebralvalley.beehiiv.com/p/openai-s-codex-lets-one-engineer-ship-like-a-team-of-ten",
+    "fetchedAt": "2026-10-04T21:54:42.950Z",
+    "description": "Plus: Thibault Sottiaux on building OpenAI’s Codex, deploying intelligence across the full software lifecycle, and the future of OpenAI...",
+    "image": "/resource-previews/25b3fd9ee326-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,quality=80,width=1200,onerror=redirect/uploads/asset/file/0df12e4b-09e9-4342-a9a8-43e049eb1886/DD2.png?t=1745384105",
+    "icon": "/resource-previews/25b3fd9ee326-icon.webp"
+  },
+  "https://every.to/podcast/transcript-how-openai-s-codex-team-uses-their-coding-agent": {
+    "source": "https://every.to/podcast/transcript-how-openai-s-codex-team-uses-their-coding-agent",
+    "fetchedAt": "2026-10-04T21:54:43.198Z",
+    "description": "‘AI & I’ with Thibault Sottiaux and Andrew Ambrosino",
+    "image": "/resource-previews/7a5515e0e00a-image.webp",
+    "imageKind": "article",
+    "imageSource": "https://every.to/_next/image?url=%2Fplaceholders%2F17.png&w=3840&q=75",
+    "icon": "/resource-previews/7a5515e0e00a-icon.webp"
+  },
+  "https://podscripts.co/podcasts/silicon-valley-girl-ai-tech-and-career-growth/head-of-chatgpt-codex-ai-agents-for-everyone-are-here-thibault-sottiaux-openai": {
+    "source": "https://podscripts.co/podcasts/silicon-valley-girl-ai-tech-and-career-growth/head-of-chatgpt-codex-ai-agents-for-everyone-are-here-thibault-sottiaux-openai",
+    "fetchedAt": "2026-10-04T21:54:43.301Z",
+    "description": "Head of ChatGPT & Codex: AI Agents for Everyone Are HERE | Thibault Sottiaux OpenAI - Silicon Valley Girl: AI, Tech and Career Growth Transcript and Discussion",
+    "image": "/resource-previews/aea18856aefe-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://podscripts.co/pod_covers/silicon-valley-girl-ai-tech-and-career-growth.webp",
+    "icon": "/resource-previews/aea18856aefe-icon.webp"
+  },
+  "https://www.ycrootaccess.com/p/alexandr-wang-building-a-frontier": {
+    "source": "https://www.ycrootaccess.com/p/alexandr-wang-building-a-frontier",
+    "fetchedAt": "2026-10-04T21:54:43.394Z",
+    "description": "Meta's Alexandr Wang at Startup School 2026 on rebuilding a frontier lab, swarms of agents, and finding the steepest curve in the world.",
+    "image": "/resource-previews/87c5e3a78950-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!qfCt!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa6512e27-b078-4928-9bef-ceb7b8896ca5_1731x909.png",
+    "icon": "/resource-previews/87c5e3a78950-icon.webp"
+  },
+  "https://observer.com/2026/06/alexandr-wang-defends-meta-muse-spark-model/": {
+    "source": "https://observer.com/2026/06/alexandr-wang-defends-meta-muse-spark-model/",
+    "fetchedAt": "2026-10-04T21:54:43.968Z",
+    "description": "Meta’s Alexandr Wang says Muse Spark is just the start as the company shifts to closed AI models, heavier spending and faster scaling.",
+    "image": "/resource-previews/7a67f315ea92-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://observer.com/wp-content/uploads/sites/2/2026/06/55315389780_2a7308087e_k-e1780684334665.jpg?quality=80",
+    "icon": "/resource-previews/7a67f315ea92-icon.webp"
+  },
+  "https://www.corememory.com/p/metas-ai-chief-alex-wang-muse-spark-ai-wars": {
+    "source": "https://www.corememory.com/p/metas-ai-chief-alex-wang-muse-spark-ai-wars",
+    "fetchedAt": "2026-10-04T21:54:44.965Z",
+    "description": "He's emergent",
+    "image": "/resource-previews/e6591658f246-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!E3S7!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F197226528%2Faf4b7e9f-ddc1-459b-b3de-222e8724918b%2Ftranscoded-1778642069.png",
+    "icon": "/resource-previews/e6591658f246-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=5rhB-q68s1o": {
+    "source": "https://www.youtube.com/watch?v=5rhB-q68s1o",
+    "fetchedAt": "2026-10-04T21:54:45.599Z",
+    "description": "In this episode, we sit down with Alex Wang, former founder of Scale AI and now Chief AI Officer at Meta, to understand what Meta Superintelligence Labs is a...",
+    "image": "/resource-previews/97527b3cef94-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/5rhB-q68s1o/hqdefault.jpg",
+    "icon": "/resource-previews/97527b3cef94-icon.webp"
+  },
+  "https://economictimes.indiatimes.com/tech/artificial-intelligence/personal-agents-are-ais-next-massive-leap-and-opportunity-metas-wang/articleshow/128536778.cms": {
+    "source": "https://economictimes.indiatimes.com/tech/artificial-intelligence/personal-agents-are-ais-next-massive-leap-and-opportunity-metas-wang/articleshow/128536778.cms",
+    "fetchedAt": "2026-10-04T21:54:45.929Z",
+    "description": "Alexandr Wang, Meta's new chief AI officer and head of its Superintelligence Labs, spoke to Himanshi Lohchab and Sruthijith KK about the tech giant's plans to deploy AI at scale across its apps, guided by Mark Zuckerberg's vision of \"personal superintelligence\". Wang, 29, is in India for the AI Impact Summit. Excerpts:",
+    "image": "/resource-previews/47b1291dfa53-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-454364,resizemode-75,msid-128536778/tech/artificial-intelligence/personal-agents-are-ais-next-massive-leap-and-opportunity-metas-wang.jpg",
+    "icon": "/resource-previews/47b1291dfa53-icon.webp"
+  },
+  "https://m.economictimes.com/tech/artificial-intelligence/dont-want-ai-to-be-one-size-fits-all-metas-chief-ai-officer-alexander-wang/articleshow/128564124.cms": {
+    "source": "https://m.economictimes.com/tech/artificial-intelligence/dont-want-ai-to-be-one-size-fits-all-metas-chief-ai-officer-alexander-wang/articleshow/128564124.cms",
+    "fetchedAt": "2026-10-04T21:54:46.462Z",
+    "description": "Meta said its personal superintelligence, set to be launched in the next few months, will go beyond routine administrative tasks. ​​It will help users manage health goals, plan events, pursue hobbies and engage more meaningfully with their communities, the company’s newly appointed chief AI officer and leader of its Superintelligence Labs, Alexandr Wang, said on Thursday.",
+    "image": "/resource-previews/611538fc1c40-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-538873,resizemode-75,msid-128564124/tech/artificial-intelligence/dont-want-ai-to-be-one-size-fits-all-metas-chief-ai-officer-alexander-wang.jpg",
+    "icon": "/resource-previews/611538fc1c40-icon.webp"
+  },
+  "https://www.nationalsecurity.ai/": {
+    "source": "https://www.nationalsecurity.ai/",
+    "fetchedAt": "2026-10-04T21:54:46.471Z",
+    "description": "Superintelligence Strategy is written by: Dan Hendrycks, Eric Schmidt, Alexandr Wang. Rapid advances in AI are beginning to reshape national security.",
+    "image": "/resource-previews/30eed62217c0-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn.prod.website-files.com/6747c60014d14fc1cba63bde/67c799d57c4077bbc6ac371c_Superintelligence%20Strategy%20Meta%20Card.jpg",
+    "icon": "/resource-previews/30eed62217c0-icon.webp"
+  },
+  "https://www.semafor.com/article/01/20/2025/scale-ai-ceo-alexandr-wang-to-trump-america-must-win-the-ai-war": {
+    "source": "https://www.semafor.com/article/01/20/2025/scale-ai-ceo-alexandr-wang-to-trump-america-must-win-the-ai-war",
+    "fetchedAt": "2026-10-04T21:54:46.582Z",
+    "description": "Alexandr Wang lays out how this White House can stay ahead of China in the AI race.",
+    "image": "/resource-previews/72c8bbf7a17d-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://img.semafor.com/03132378dc4c9725c2a294b1b53ff2afada591c9-4800x3200.png?rect=0,340,4800,2520&w=1200&h=630&q=75&auto=format",
+    "icon": "/resource-previews/72c8bbf7a17d-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/some-of-us-will-live-forever": {
+    "source": "https://bryanjohns0n.substack.com/p/some-of-us-will-live-forever",
+    "fetchedAt": "2026-10-04T21:54:47.236Z",
+    "description": "Some of us will live forever.",
+    "image": "/resource-previews/419121060e59-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-X2U!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbryanjohns0n.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1201474726%26version%3D9",
+    "icon": "/resource-previews/419121060e59-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/immortalism-manifesto": {
+    "source": "https://bryanjohns0n.substack.com/p/immortalism-manifesto",
+    "fetchedAt": "2026-10-04T21:54:47.420Z",
+    "description": "For most of the history of life on Earth, death has been treated as inevitable.",
+    "image": "/resource-previews/2a0a3aaa870a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!dldX!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F605db618-2fd1-4046-a960-dc6c67089589_3264x1306.jpeg",
+    "icon": "/resource-previews/2a0a3aaa870a-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/ai-will-break-society-when-it-does": {
+    "source": "https://bryanjohns0n.substack.com/p/ai-will-break-society-when-it-does",
+    "fetchedAt": "2026-10-04T21:54:47.507Z",
+    "description": "AI progress will fracture society.",
+    "image": "/resource-previews/23c1a422a832-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-X2U!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbryanjohns0n.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1201474726%26version%3D9",
+    "icon": "/resource-previews/23c1a422a832-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/an-update-on-blueprint-and-dont-die": {
+    "source": "https://bryanjohns0n.substack.com/p/an-update-on-blueprint-and-dont-die",
+    "fetchedAt": "2026-10-04T21:54:48.674Z",
+    "description": "For those of you who have been following along with Blueprint and Don’t Die, here is an update.",
+    "image": "/resource-previews/fb61d936cf74-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-X2U!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbryanjohns0n.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1201474726%26version%3D9",
+    "icon": "/resource-previews/fb61d936cf74-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/people-are-confused-by-my-intentions": {
+    "source": "https://bryanjohns0n.substack.com/p/people-are-confused-by-my-intentions",
+    "fetchedAt": "2026-10-04T21:54:49.309Z",
+    "description": "People are confused by me and my intentions.",
+    "image": "/resource-previews/dea75120011e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-X2U!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbryanjohns0n.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1201474726%26version%3D9",
+    "icon": "/resource-previews/dea75120011e-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/my-company-blueprint-is-now-a-species": {
+    "source": "https://bryanjohns0n.substack.com/p/my-company-blueprint-is-now-a-species",
+    "fetchedAt": "2026-10-04T21:54:50.204Z",
+    "description": "My company blueprint is now a species level goal of helping humanity achieve immortality by 2039.",
+    "image": "/resource-previews/5bad82b4a45e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-X2U!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbryanjohns0n.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1201474726%26version%3D9",
+    "icon": "/resource-previews/5bad82b4a45e-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/my-assessment-on-where-were-at-as": {
+    "source": "https://bryanjohns0n.substack.com/p/my-assessment-on-where-were-at-as",
+    "fetchedAt": "2026-10-04T21:54:50.708Z",
+    "description": "my assessment on where we're at as a society:",
+    "image": "/resource-previews/5e85c41cca9c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-X2U!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbryanjohns0n.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1201474726%26version%3D9",
+    "icon": "/resource-previews/5e85c41cca9c-icon.webp"
+  },
+  "https://bryanjohns0n.substack.com/p/im-going-to-try-and-achieve-immortality": {
+    "source": "https://bryanjohns0n.substack.com/p/im-going-to-try-and-achieve-immortality",
+    "fetchedAt": "2026-10-04T21:54:50.721Z",
+    "description": "One year of time passes and I remain the same biological age.",
+    "image": "/resource-previews/90afb87e8a7e-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!ZvPk!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98d52bf1-6ad8-45b0-8f3f-c9dc53ca669a_2768x1624.jpeg",
+    "icon": "/resource-previews/90afb87e8a7e-icon.webp"
+  },
+  "https://www.bankless.com/podcast/bryan-johnson-dont-die-beating-entropy-ai-alignment-the-two-species-future": {
+    "source": "https://www.bankless.com/podcast/bryan-johnson-dont-die-beating-entropy-ai-alignment-the-two-species-future",
+    "fetchedAt": "2026-10-04T21:54:50.794Z",
+    "description": "Bryan Johnson lays out “Don’t Die,” a moral framework that puts existence first and turns longevity into a shared fight against entropy.",
+    "image": "/resource-previews/854ee22d375f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn.bankless.com/openGraph/early-access-bryan-johnson-don-t-die-beating-entropy-ai-alignment-the-two-species-future-1762985174.png",
+    "icon": "/resource-previews/854ee22d375f-icon.webp"
+  },
+  "https://www.dwarkesh.com/p/dylan-patel-3": {
+    "source": "https://www.dwarkesh.com/p/dylan-patel-3",
+    "fetchedAt": "2026-10-04T21:54:50.972Z",
+    "description": "\"Every force is screeching towards centralization.\"",
+    "image": "/resource-previews/0b07fafd4cc9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-qQ2!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F212689635%2F1b81dde4-06ae-4bca-bb50-ba304b1762e9%2Ftranscoded-1787662695.png",
+    "icon": "/resource-previews/0b07fafd4cc9-icon.webp"
+  },
+  "https://colossus.com/episode/supply-demand-of-tokens/": {
+    "source": "https://colossus.com/episode/supply-demand-of-tokens/",
+    "fetchedAt": "2026-10-04T21:54:51.300Z",
+    "description": "Dylan Patel is the founder and CEO of SemiAnalysis. We cover the latest frontier models driving an insatiable demand for tokens, why firms that fail t",
+    "image": "/resource-previews/e722e8c03d26-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://colossus.com/wp-content/uploads/2026/04/dylan_patel_2__ramp_-scaled.jpg",
+    "icon": "/resource-previews/e722e8c03d26-icon.webp"
+  },
+  "https://www.dwarkesh.com/p/dylan-patel": {
+    "source": "https://www.dwarkesh.com/p/dylan-patel",
+    "fetchedAt": "2026-10-04T21:54:51.965Z",
+    "description": "Plus, why an H100 is worth more today than 3 years ago",
+    "image": "/resource-previews/23a4a20fcb45-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!V47e!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F190839917%2F9b1d0baa-a71e-4f85-9ed8-b0e0d6856c61%2Ftranscoded-1773436451.png",
+    "icon": "/resource-previews/23a4a20fcb45-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=E5B0cS6XRkg": {
+    "source": "https://www.youtube.com/watch?v=E5B0cS6XRkg",
+    "fetchedAt": "2026-10-04T21:54:52.191Z",
+    "description": "Dylan Patel breaks down the current chaos inside the world’s top AI companies. Dylan is the founder and CEO of SemiAnalysis, one of the best analyst firms co...",
+    "image": "/resource-previews/807a0df2758c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/E5B0cS6XRkg/hqdefault.jpg",
+    "icon": "/resource-previews/807a0df2758c-icon.webp"
+  },
+  "https://www.latent.space/p/dylanpatel-cooking": {
+    "source": "https://www.latent.space/p/dylanpatel-cooking",
+    "fetchedAt": "2026-10-04T21:54:52.192Z",
+    "description": "We’re excited to announce our new show In-Context Cooking where guests cook while chatting about cool topics.",
+    "image": "/resource-previews/1354e234a95b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/youtube/w_728,c_limit/UwnqWAYOjPU",
+    "icon": "/resource-previews/1354e234a95b-icon.webp"
+  },
+  "https://lexfridman.com/deepseek-dylan-patel-nathan-lambert-transcript/": {
+    "source": "https://lexfridman.com/deepseek-dylan-patel-nathan-lambert-transcript/",
+    "fetchedAt": "2026-10-04T21:54:52.792Z",
+    "description": "This is a transcript of Lex Fridman Podcast #459 with Dylan Patel and Nathan Lambert. The timestamps in the transcript are clickable links that take you directly to that point in the main video. Please note that the transcript is human generated, and may have errors. Here are some useful links: Go back to this episode’s main page Watch the full YouTube version of the podcast Table of Contents Here are the loose “chapters” in the conversation. Click link to jump approximately to that part in the transcript: 3:33 – DeepSeek-R1 and DeepSeek-V3 25:07 – Low cost of training 51:25",
+    "image": "/resource-previews/991f0e1224f5-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/_1f-o0nqpEI/hqdefault.jpg",
+    "icon": "/resource-previews/991f0e1224f5-icon.webp"
+  },
+  "https://venturegrade.drniklas.com/blog/7-wearable-ai-humanoid-robots-the-future-of-healthcare": {
+    "source": "https://venturegrade.drniklas.com/blog/7-wearable-ai-humanoid-robots-the-future-of-healthcare",
+    "fetchedAt": "2026-10-04T21:54:52.841Z",
+    "description": "\"I'm never buying a car again. I'm never driving again. And I'm never taking an Uber again.\" In this episode of DN, Niklas talks to legendary Silicon Valley futurist and analyst Robert Scoble about th",
+    "image": "/resource-previews/732efe3a0689-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://venturegrade.drniklas.com/blog/7-wearable-ai-humanoid-robots-the-future-of-healthcare/opengraph-image?2833078c3d48b0cd",
+    "icon": "/resource-previews/732efe3a0689-icon.webp"
+  },
+  "https://www.linkedin.com/posts/scobleizer_for-our-free-newsletter-this-week-we-talk-activity-7429598948086054912-z9Uq": {
+    "source": "https://www.linkedin.com/posts/scobleizer_for-our-free-newsletter-this-week-we-talk-activity-7429598948086054912-z9Uq",
+    "fetchedAt": "2026-10-04T21:54:53.068Z",
+    "description": "For our free newsletter this week, we talk about why LLMs won’t led to Artificial General Intelligence (AGI). Irena Cronin and I write this newsletter every week. LLMs alone are unlikely to lead to AGI. They primarily predict text and can imitate planning and reasoning without reliably grounding claims, maintaining durable memory, verifying correctness, or acting safely over long time horizons. A more realistic path to AGI is a multi- component system where an LLM is just one part, combined with explicit planning and execution, persistent memory, verification and testing, and governance layers that constrain and audit actions once tools turn words into real world effects. Read for free: https://unaligned.io (and please subscribe!)",
+    "image": "/resource-previews/beaf00a7c7d2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/v2/D5622AQF2e_FWx5otSg/feedshare-shrink_800/B56Zxs84E5IQAk-/0/1771354423875?e=2147483647&v=beta&t=WpDzXH8aA7ukNBjmdtjhWGpEFOFSgTZ6bO0kx0q2Mz8",
+    "icon": "/resource-previews/beaf00a7c7d2-icon.webp"
+  },
+  "https://www.unaligned.io/p/ai-workers-enter-the-real-economy": {
+    "source": "https://www.unaligned.io/p/ai-workers-enter-the-real-economy",
+    "fetchedAt": "2026-10-04T21:54:53.108Z",
+    "description": "AI is creating a new uncanny valley, not by looking human, but by acting human. Tilly Norwood, the AI actor set to star in a feature film, shows how digital workers are entering roles once held by people and forcing a bigger question: will audiences, customers, and workers trust AI when it starts performing human jobs?",
+    "image": "/resource-previews/b4d55b258c13-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://beehiiv-images-production.s3.amazonaws.com/uploads/asset/file/3547a04b-5769-42b4-af2d-f06f2efc6d9e/1a.jpg?t=1783394432",
+    "icon": "/resource-previews/b4d55b258c13-icon.webp"
+  },
+  "https://www.ulp.ai/aethergeist/thought-control": {
+    "source": "https://www.ulp.ai/aethergeist/thought-control",
+    "fetchedAt": "2026-10-04T21:54:55.138Z",
+    "description": "The Aethergeist: The Invisible Force Controlling Your Thoughts We’re not living in an age of mere digital convenience; we're in an era haunted by an invisible, insidious specter that shapes our world in ways most of us can’t even comprehend. You think you’re free when you tap your screen, make a d",
+    "image": "/resource-previews/4b253eb5c656-image.webp",
+    "imageKind": "social",
+    "imageSource": "http://static1.squarespace.com/static/671953e35c43c05e16d7a2c7/t/672dda15252edf5c11b1c91b/1731058202497/mountains_black_and_white_occult_brain_--personalize_bec5_cf0fb03f-cb00-4b3d-927a-19e721daa151_1.png?format=1500w",
+    "icon": "/resource-previews/4b253eb5c656-icon.webp"
+  },
+  "https://www.yahoo.com/news/politics/articles/silicon-valley-ai-accelerationists-fighting-230111372.html": {
+    "source": "https://www.yahoo.com/news/politics/articles/silicon-valley-ai-accelerationists-fighting-230111372.html",
+    "fetchedAt": "2026-10-04T21:54:55.254Z",
+    "description": "\"I don't think AI is going to kill us all. I think that sort of thinking is more dangerous than the AI itself,\" Guillaume Verdon, the physicist who founded the Effective Accelerationism movement, told...",
+    "image": "/resource-previews/fe054ebc9243-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://s.yimg.com/lo/mysterio/api/2d92fecbe727bb45e577d68afac2e1eb14d83d6edbbad34b668688846e34bc1e/lightyear_networkapi/resizefill_w1200%3Bquality_80%3Bformat_jpg/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fny_post_articles_869%2F2f316dfd3ee5ca5bceba9b95cf140fc1.jpg",
+    "icon": "/resource-previews/fe054ebc9243-icon.webp"
+  },
+  "https://bojan.substack.com/p/arxiv-fighting-the-last-war": {
+    "source": "https://bojan.substack.com/p/arxiv-fighting-the-last-war",
+    "fetchedAt": "2026-10-04T21:54:55.744Z",
+    "description": "arXiv is cracking down on careless AI use just as AI takes over the production of scientific knowledge",
+    "image": "/resource-previews/356b70d55b37-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!gDSq!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff397ddb3-1a9a-44bd-8e4c-9b77ffb17d69_6240x3510.heic",
+    "icon": "/resource-previews/356b70d55b37-icon.webp"
+  },
+  "https://bojan.substack.com/p/the-of-the-road-for-the-sora-app": {
+    "source": "https://bojan.substack.com/p/the-of-the-road-for-the-sora-app",
+    "fetchedAt": "2026-10-04T21:54:56.644Z",
+    "description": "AI labs are now going all-in on coding",
+    "image": "/resource-previews/5f0056acf6d4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!oAGw!,f_auto,q_auto:best,fl_progressive:steep/https%3A%2F%2Fbojan.substack.com%2Ftwitter%2Fsubscribe-card.jpg%3Fv%3D-1051631726%26version%3D9",
+    "icon": "/resource-previews/5f0056acf6d4-icon.webp"
+  },
+  "https://bojan.substack.com/p/nightmares-on-the-ai-doom-street": {
+    "source": "https://bojan.substack.com/p/nightmares-on-the-ai-doom-street",
+    "fetchedAt": "2026-10-04T21:54:56.905Z",
+    "description": "We need credible AI risk assessment, now more than ever",
+    "image": "/resource-previews/e025144e513d-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!XB1n!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F57006aeb-82af-4319-adb0-ff9efcf82899_6000x4000.jpeg",
+    "icon": "/resource-previews/e025144e513d-icon.webp"
+  },
+  "https://www.jordanharbinger.com/emad-mostaque-surviving-the-coming-ai-jobs-apocalypse/": {
+    "source": "https://www.jordanharbinger.com/emad-mostaque-surviving-the-coming-ai-jobs-apocalypse/",
+    "fetchedAt": "2026-10-04T21:54:57.252Z",
+    "description": "Digital feudalism or Star Trek at warp factor 9? The Last Economy author Emad Mostaque lays out the two futures toward which AI is racing us.",
+    "image": "/resource-previews/4656ad6f4dec-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.jordanharbinger.com/wp-content/uploads/2026/09/1382-Emad-Mostaque-scaled.jpg",
+    "icon": "/resource-previews/4656ad6f4dec-icon.webp"
+  },
+  "https://www.trendingtopics.eu/emad-mostaque-ai-internet-outlook-english/": {
+    "source": "https://www.trendingtopics.eu/emad-mostaque-ai-internet-outlook-english/",
+    "fetchedAt": "2026-10-04T21:54:57.630Z",
+    "description": "He was once seen as one of the leading minds in AI development, today he is one of its major critics: On stage at the startup conference TechBBQ in",
+    "image": "/resource-previews/13e213cda500-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://www.trendingtopics.eu/wp-content/uploads/2026/08/Stability_AI_Founder_TechBQ-scaled-social.jpg",
+    "icon": "/resource-previews/13e213cda500-icon.webp"
+  },
+  "https://lironshapira.substack.com/p/emad-mostaque-has-a-50-pdoom-and": {
+    "source": "https://lironshapira.substack.com/p/emad-mostaque-has-a-50-pdoom-and",
+    "fetchedAt": "2026-10-04T21:54:57.631Z",
+    "description": "Emad Mostaque, founder of Stability AI, isn't afraid to speak honestly about imminent human extinction from superintelligent AI!",
+    "image": "/resource-previews/3dda025d84b6-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!KbjR!,w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff959d9ba-6de7-4e6c-acd0-296db7cf5bb4_1376x768.png",
+    "icon": "/resource-previews/3dda025d84b6-icon.webp"
+  },
+  "https://www.infotech.com/digital-disruption/ai-will-end-human-jobs-emad-mostaque-on-the-future-of-human-work": {
+    "source": "https://www.infotech.com/digital-disruption/ai-will-end-human-jobs-emad-mostaque-on-the-future-of-human-work",
+    "fetchedAt": "2026-10-04T21:54:58.504Z",
+    "description": "<p>What",
+    "image": "/resource-previews/2726e4d41313-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://cdn1-public.infotech.com/podcast_episode_hero_images/uploads/54515/original.jpg?1767358596/",
+    "icon": "/resource-previews/2726e4d41313-icon.webp"
+  },
+  "https://webstatics.ii.inc/The%20Last%20Economy.pdf": {
+    "source": "https://webstatics.ii.inc/The%20Last%20Economy.pdf",
+    "fetchedAt": "2026-10-04T21:54:58.619Z",
+    "description": "His book, published free by Intelligent Internet. Argues AI turns intelligence into an abundant commodity and that economic systems will hit a socio-economic singularity before a technological one, within a window he estimates at roughly a thousand days. Three stable futures: digital feudalism (the default), a great fragmentation of national AIs, and human symbiosis, the path he advocates, with intelligence as a commons. Older canonical context. Introduction and chapter headings inspected in the publisher’s PDF; the text extraction was garbled, so no quotes are taken.",
+    "icon": "/resource-previews/ac7b4fa8ad95-icon.webp",
+    "image": "/resource-previews/ac7b4fa8ad95-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://webstatics.ii.inc/The%20Last%20Economy.pdf",
+    "iconKind": "monogram"
+  },
+  "https://index.fame.so/show/21-in-21/21-in-21-0xsero-on-local-ai-open-models-and-benchmarking": {
+    "source": "https://index.fame.so/show/21-in-21/21-in-21-0xsero-on-local-ai-open-models-and-benchmarking",
+    "fetchedAt": "2026-10-04T21:54:59.430Z",
+    "description": "Podcast interview. In its own turns the account explains moving to local AI after a coding tool’s pricing change exposed its dependence: cost matters, but so does ownership, because providers can silently swap or remove models a career depends on. It says two misconceptions are that local AI is too expensive and that small compressed models are bad, citing a 35B open model scoring above an older frontier model on an independent index, and calls claims that data centres boil away water untrue. Guest turns in the publisher transcript (unlabelled; only passages clearly answering the host’s questions used) inspected; the host’s remarks and the site’s summary excluded.",
+    "icon": "/resource-previews/652207e3afd4-icon.webp",
+    "image": "/resource-previews/652207e3afd4-image.webp",
+    "imageKind": "title-card",
+    "imageSource": "https://index.fame.so/show/21-in-21/21-in-21-0xsero-on-local-ai-open-models-and-benchmarking"
+  },
+  "https://the13thletter.co/suavecito/you-rent-the-mind-you-own-the-house": {
+    "source": "https://the13thletter.co/suavecito/you-rent-the-mind-you-own-the-house",
+    "fetchedAt": "2026-10-04T21:55:00.726Z",
+    "description": "What one small box can do, why it holds together, and how to stand up your own this weekend. Real tools, real commands, no data center.",
+    "image": "/resource-previews/1d2f020bd3ff-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://res.cloudinary.com/dlju18kt4/image/upload/f_jpg,q_auto,w_1200,h_630,c_fill/v1784411073/the13thletter/articles/rent-the-mind/linkcard-16x9.png",
+    "icon": "/resource-previews/1d2f020bd3ff-icon.webp"
+  },
+  "https://aiimpacts.org/wp-content/uploads/2026/09/ESPAI2024.pdf": {
+    "source": "https://aiimpacts.org/wp-content/uploads/2026/09/ESPAI2024.pdf",
+    "fetchedAt": "2026-10-04T21:55:02.513Z",
+    "icon": "/resource-previews/e260b9d3c543-icon.webp"
+  },
+  "https://arxiv.org/abs/2504.13908": {
+    "source": "https://arxiv.org/abs/2504.13908",
+    "fetchedAt": "2026-10-04T21:55:02.877Z",
+    "icon": "/resource-previews/ff8f9b87f98c-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=UVCYpuANVNU": {
+    "source": "https://www.youtube.com/watch?v=UVCYpuANVNU",
+    "fetchedAt": "2026-10-04T21:56:00.546Z",
+    "description": "eMed CEO Linda Yaccarino and Chief Wellness Officer Tom Brady sit down with Liz Claman on Fox Business to discuss how eMed is redefining the future of chroni...",
+    "image": "/resource-previews/4b6c88a43926-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/UVCYpuANVNU/hqdefault.jpg",
+    "icon": "/resource-previews/4b6c88a43926-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=5PQ5P8cCiMg": {
+    "source": "https://www.youtube.com/watch?v=5PQ5P8cCiMg",
+    "fetchedAt": "2026-10-04T21:56:00.553Z",
+    "description": "At the Milken Institute Global Conference 2026, eMed CEO Linda Yaccarino and Lisa Stevens, Chief Administrative Officer at Aon, sat down for a conversation t...",
+    "image": "/resource-previews/917efa42c5bb-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/5PQ5P8cCiMg/hqdefault.jpg",
+    "icon": "/resource-previews/917efa42c5bb-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=cgZFJnZ3OfA": {
+    "source": "https://www.youtube.com/watch?v=cgZFJnZ3OfA",
+    "fetchedAt": "2026-10-04T21:56:00.554Z",
+    "description": "เพลิดเพลินไปกับวิดีโอและเพลงที่คุณชอบ อัปโหลดเนื้อหาต้นฉบับ และแชร์เนื้อหาทั้งหมดกับเพื่อน ครอบครัว และผู้คนทั่วโลกบน YouTube",
+    "image": "/resource-previews/4a44e6987c26-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/cgZFJnZ3OfA/hqdefault.jpg",
+    "icon": "/resource-previews/4a44e6987c26-icon.webp"
+  },
+  "https://www.linkedin.com/posts/lindayaccarino_a-big-moment-for-emed-weve-just-raised-activity-7442912387831103488-JBR5": {
+    "source": "https://www.linkedin.com/posts/lindayaccarino_a-big-moment-for-emed-weve-just-raised-activity-7442912387831103488-JBR5",
+    "fetchedAt": "2026-10-04T21:56:00.554Z",
+    "description": "A BIG moment for eMed. We've just raised $200M at a $2B+ valuation, and we're bringing on incredible investors and partners who believe deeply in what we're building. GLP-1s are one of the most powerful advances in medicine we've seen in humanity’s history . But they only work if people stay on them. We've built an empathic agentic AI platform that makes that happen, one that meets members where they are and guides them every step of the way. And the results speak for themselves. We're building the future of AI-powered population health. And we're just getting started. 🚀 | 54 comments on LinkedIn",
+    "image": "/resource-previews/d3e1c6e63222-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://static.licdn.com/aero-v1/sc/h/c45fy346jw096z9pbphyyhdz7",
+    "icon": "/resource-previews/d3e1c6e63222-icon.webp"
+  },
+  "https://www.linkedin.com/posts/lindayaccarino_ive-spent-most-of-my-career-working-at-the-activity-7394534697822814208-ya9x": {
+    "source": "https://www.linkedin.com/posts/lindayaccarino_ive-spent-most-of-my-career-working-at-the-activity-7394534697822814208-ya9x",
+    "fetchedAt": "2026-10-04T21:56:01.419Z",
+    "description": "I’ve spent most of my career working at the intersection of transformation and access — giving people the tools and technology to improve their lives while also championing their progress. That’s why I joined eMed and why today’s conversation with Arianna Huffington at the The Female Quotient’s AI Summit means so much. The rise of GLP-1 medications paired with the power of AI together form more than a medical shift. At eMed Health, our focus is simple: to make transformation accessible to everyone. Tap, test, talk and treat — all from home, in minutes. With the power of our AI platform, and our partnership with Thrive Global, we're delivering care that is personal, supportive, and rooted in empathy. Together, we’re building an end-to-end path that flips the script – from reactive care to prevention. They bring the soul — the habits, the mindset, the daily nudges — and we bring the clinical rigor and technology. As I shared with women professionals, leaders, innovators, and entrepreneurs in the room today, we have the chance to bend two curves: the health curve, by expanding access for millions, and the cost curve, which impacts every employer and every family. This is OUR moment and we're creating a movement. I’m grateful to everyone leaning in with us. They form the groundwork of an intensely human journey with profound life-changing implications, and we’re still at the beginning! | 28 comments on LinkedIn",
+    "image": "/resource-previews/402ea7f38a33-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.licdn.com/dms/image/v2/D4E22AQHnKU1AFBQGiA/feedshare-image-high-res/B4EZp6qH1QKkAo-/0/1762994454416?e=2147483647&v=beta&t=_malSX5tVmJ1xI1XSPixlgxhNdOQRXXLrp6puexutlk",
+    "icon": "/resource-previews/402ea7f38a33-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=XVQ0qjsUD7c": {
+    "source": "https://www.youtube.com/watch?v=XVQ0qjsUD7c",
+    "fetchedAt": "2026-10-04T21:56:01.448Z",
+    "description": "Axios media correspondent Sara Fischer speaks to X Corp. CEO Linda Yaccarino about increasing opportunities for sports content on X, what advertisers today a...",
+    "image": "/resource-previews/e04c6c9446a4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/XVQ0qjsUD7c/hqdefault.jpg",
+    "icon": "/resource-previews/e04c6c9446a4-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=XXkX5Wp8kYc": {
+    "source": "https://www.youtube.com/watch?v=XXkX5Wp8kYc",
+    "fetchedAt": "2026-10-04T21:56:01.481Z",
+    "description": "X CEO Linda Yaccarino just celebrated her second year of running the social media site that was formerly known as Twitter. She speaks with Yahoo Finance Exec...",
+    "image": "/resource-previews/730db87c4c11-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/XXkX5Wp8kYc/hqdefault.jpg",
+    "icon": "/resource-previews/730db87c4c11-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=1GkYrjVMIkI": {
+    "source": "https://www.youtube.com/watch?v=1GkYrjVMIkI",
+    "fetchedAt": "2026-10-04T21:56:02.167Z",
+    "description": "X CEO Linda Yaccarino speaks to Axios media correspondent Sara Fischer at the Women's Sports House in Cannes, France, about X-produced sports docuseries, the...",
+    "image": "/resource-previews/c9c69e345611-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/1GkYrjVMIkI/hqdefault.jpg",
+    "icon": "/resource-previews/c9c69e345611-icon.webp"
+  },
+  "https://www.pbs.org/newshour/nation/tech-giants-sign-voluntary-accord-to-combat-election-deepfakes-generated-with-ai": {
+    "source": "https://www.pbs.org/newshour/nation/tech-giants-sign-voluntary-accord-to-combat-election-deepfakes-generated-with-ai",
+    "fetchedAt": "2026-10-04T21:56:02.349Z",
+    "description": "The accord is largely symbolic, but targets increasingly realistic AI-generated images, audio and video \"that deceptively fake or alter the appearance, voice, or actions of political candidates, election officials, and other key stakeholders in a democratic election.”",
+    "image": "/resource-previews/ac5183edf2a5-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://d3i6fh83elv35t.cloudfront.net/static/2024/02/GettyImages-483049511-1024x768.jpg",
+    "icon": "/resource-previews/ac5183edf2a5-icon.webp"
+  },
+  "https://shakoist.substack.com/p/against-time-series-foundation-models": {
+    "source": "https://shakoist.substack.com/p/against-time-series-foundation-models",
+    "fetchedAt": "2026-10-04T21:56:02.831Z",
+    "description": "Or: My Experience In Modern Forecasting",
+    "image": "/resource-previews/ba14290e5027-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!BBbu!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6666e170-fe14-434d-9214-f9f352fb75d3_1536x1024.png",
+    "icon": "/resource-previews/ba14290e5027-icon.webp"
+  },
+  "https://shakoist.substack.com/p/can-llms-finally-do-social-science": {
+    "source": "https://shakoist.substack.com/p/can-llms-finally-do-social-science",
+    "fetchedAt": "2026-10-04T21:56:03.000Z",
+    "description": "A tool for tracking latent cultural concepts over time",
+    "image": "/resource-previews/6433d1789803-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!xPWr!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa632d93a-3b29-4d93-8856-2e0ad2c66c84_1810x984.png",
+    "icon": "/resource-previews/6433d1789803-icon.webp"
+  },
+  "https://shakoist.substack.com/p/some-thoughts-on-ai-and-correlated": {
+    "source": "https://shakoist.substack.com/p/some-thoughts-on-ai-and-correlated",
+    "fetchedAt": "2026-10-04T21:56:03.230Z",
+    "description": "But really, this is an introspective blog post",
+    "image": "/resource-previews/f376a45c2f1c-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!-CMY!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F293d99d7-473c-412d-8055-ce736d065f2a_1024x1024.png",
+    "icon": "/resource-previews/f376a45c2f1c-icon.webp"
+  },
+  "https://shakoist.substack.com/p/does-the-textual-corpus-for-large": {
+    "source": "https://shakoist.substack.com/p/does-the-textual-corpus-for-large",
+    "fetchedAt": "2026-10-04T21:56:03.852Z",
+    "description": "Given the size and contents of our textual data, probably.",
+    "image": "/resource-previews/2e34c293a3a2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!hAJa!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Ff93d9906-3486-48c1-920b-3dc676186bf1_725x448.jpeg",
+    "icon": "/resource-previews/2e34c293a3a2-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=IBcBKgYUghU": {
+    "source": "https://www.youtube.com/watch?v=IBcBKgYUghU",
+    "fetchedAt": "2026-10-04T21:56:04.223Z",
+    "description": "We need to have a conversation around what \"Pacing\" looks like as both OpenAI and Anthropic keep pushing out models after their agreement to slow down fronti...",
+    "image": "/resource-previews/7bf41cde8a27-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/IBcBKgYUghU/hqdefault.jpg",
+    "icon": "/resource-previews/7bf41cde8a27-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=DlNTmbARUTA": {
+    "source": "https://www.youtube.com/watch?v=DlNTmbARUTA",
+    "fetchedAt": "2026-10-04T21:56:04.293Z",
+    "description": "It seems like everyone is suddenly agreeing that we need to slow down AI's progress, but lets break down what Dario's essay actually means.Thank you Blacksmi...",
+    "image": "/resource-previews/1b4820cff114-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/DlNTmbARUTA/hqdefault.jpg",
+    "icon": "/resource-previews/1b4820cff114-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=XFSwfwiM8nk": {
+    "source": "https://www.youtube.com/watch?v=XFSwfwiM8nk",
+    "fetchedAt": "2026-10-04T21:56:04.796Z",
+    "description": "Linux is on the AI train now, so what does that mean for the rest of us?Thank you Macroscope for sponsoring! Check them out at: https://soydev.link/macroscop...",
+    "image": "/resource-previews/cd16f5aa4d3f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/XFSwfwiM8nk/hqdefault.jpg",
+    "icon": "/resource-previews/cd16f5aa4d3f-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=yz0SZIng2Po": {
+    "source": "https://www.youtube.com/watch?v=yz0SZIng2Po",
+    "fetchedAt": "2026-10-04T21:56:04.802Z",
+    "description": "Over 1,000 employees from OpenAI, Anthropic, and more, signed \"Pacing the Frontier,\" a statement asking the US government to build the tools to deliberately ...",
+    "image": "/resource-previews/1835521b8411-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/yz0SZIng2Po/hqdefault.jpg",
+    "icon": "/resource-previews/1835521b8411-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=x7p5cClmdfI": {
+    "source": "https://www.youtube.com/watch?v=x7p5cClmdfI",
+    "fetchedAt": "2026-10-04T21:56:04.850Z",
+    "description": "Jensen Huang's first-ever post on X shared an open-weights letter signed by practically every major AI company, except Anthropic - so we're breaking it down,...",
+    "image": "/resource-previews/a2787232c6cb-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/x7p5cClmdfI/hqdefault.jpg",
+    "icon": "/resource-previews/a2787232c6cb-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=eTZygkJLmqs": {
+    "source": "https://www.youtube.com/watch?v=eTZygkJLmqs",
+    "fetchedAt": "2026-10-04T21:56:04.959Z",
+    "description": "Kimi K3 is so good it has frontier AI labs and the U.S. government publicly crashing out, and the panic is more revealing than the benchmarks.Thank you Mux f...",
+    "image": "/resource-previews/e983f81f17f2-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/eTZygkJLmqs/hqdefault.jpg",
+    "icon": "/resource-previews/e983f81f17f2-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=32iH1WBJbJo": {
+    "source": "https://www.youtube.com/watch?v=32iH1WBJbJo",
+    "fetchedAt": "2026-10-04T21:56:05.460Z",
+    "description": "GPT-6 managed to pwn Hugging Face. Accidentally. Oh boy.Thank you Augment Code for sponsoring! Check them out at: https://soydev.link/augmentSOURCEShttps://o...",
+    "image": "/resource-previews/16bae4c87fd9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/32iH1WBJbJo/hqdefault.jpg",
+    "icon": "/resource-previews/16bae4c87fd9-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=xjucOlb_mFM": {
+    "source": "https://www.youtube.com/watch?v=xjucOlb_mFM",
+    "fetchedAt": "2026-10-04T21:56:05.518Z",
+    "description": "Anthropic wants to pause AI development and thinks that recursive self improvement is a real possibility...Thank you Depot for sponsoring! Check them out at:...",
+    "image": "/resource-previews/0e43650466e1-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/xjucOlb_mFM/hqdefault.jpg",
+    "icon": "/resource-previews/0e43650466e1-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=rTMRlqT8Q8c": {
+    "source": "https://www.youtube.com/watch?v=rTMRlqT8Q8c",
+    "fetchedAt": "2026-10-04T21:56:05.622Z",
+    "description": "AI does a surprisingly good job of steering weaker engineers in the right direction...Thank you WorkOS for sponsoring! Check them out at: https://soydev.link...",
+    "image": "/resource-previews/c20d0354e45d-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/rTMRlqT8Q8c/hqdefault.jpg",
+    "icon": "/resource-previews/c20d0354e45d-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=ND9CSuzvrIY": {
+    "source": "https://www.youtube.com/watch?v=ND9CSuzvrIY",
+    "fetchedAt": "2026-10-04T21:56:05.668Z",
+    "description": "AI can hack basically anything at this point (note: this was filmed before the Mythos announcement)Thank you Posthog for sponsoring! Check them out at: https...",
+    "image": "/resource-previews/31a3caf7ddee-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/ND9CSuzvrIY/hqdefault.jpg",
+    "icon": "/resource-previews/31a3caf7ddee-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=aFcVKzfkJPk": {
+    "source": "https://www.youtube.com/watch?v=aFcVKzfkJPk",
+    "fetchedAt": "2026-10-04T21:56:06.155Z",
+    "description": "I....yeah. It's all over now.Thank you Blacksmith for sponsoring! Check them out at: https://soydev.link/blacksmithSOURCEShttps://www-cdn.anthropic.com/53566...",
+    "image": "/resource-previews/d34b422be569-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/aFcVKzfkJPk/hqdefault.jpg",
+    "icon": "/resource-previews/d34b422be569-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=K6CCw1DK1EQ": {
+    "source": "https://www.youtube.com/watch?v=K6CCw1DK1EQ",
+    "fetchedAt": "2026-10-04T21:56:06.212Z",
+    "description": "After Anthropic denied the Department of War, OpenAI took the deal. Oh boy...Thank you Augment for sponsoring! Check them out at: https://soydev.link/intentS...",
+    "image": "/resource-previews/aeb28d28ead9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/K6CCw1DK1EQ/hqdefault.jpg",
+    "icon": "/resource-previews/aeb28d28ead9-icon.webp"
   }
 }

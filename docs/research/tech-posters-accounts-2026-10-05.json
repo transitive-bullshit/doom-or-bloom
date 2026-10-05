@@ -1,0 +1,893 @@
+{
+  "url": "https://tech50x.snytch.ai/",
+  "accessedAt": "2026-10-05",
+  "votingEndsAt": "2026-10-10T23:28:43.848Z",
+  "totalVotes": 4897,
+  "accounts": [
+    {
+      "rank": 1,
+      "name": "Elon Musk",
+      "handle": "elonmusk",
+      "votes": 226,
+      "portrait": "https://pbs.twimg.com/profile_images/2103567689515954176/aR-Kjpp4_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 2,
+      "name": "tenso",
+      "handle": "distributedkv",
+      "votes": 161,
+      "portrait": "https://pbs.twimg.com/profile_images/2103589881410961408/m8LorPWN_200x200.jpg",
+      "status": "added",
+      "personaId": "distributedkv"
+    },
+    {
+      "rank": 3,
+      "name": "kache",
+      "handle": "yacineMTB",
+      "votes": 155,
+      "portrait": "https://pbs.twimg.com/profile_images/2065246279031009280/PwRJZkGP_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 4,
+      "name": "roon",
+      "handle": "tszzl",
+      "votes": 137,
+      "portrait": "https://pbs.twimg.com/profile_images/1918970926668054530/fy-ZsgJ7_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 5,
+      "name": "Roy",
+      "handle": "usr_bin_roygbiv",
+      "votes": 115,
+      "portrait": "https://pbs.twimg.com/profile_images/2046940347012427777/rCtCm0n9_200x200.jpg",
+      "status": "added",
+      "personaId": "usr-bin-roygbiv"
+    },
+    {
+      "rank": 6,
+      "name": "Andrej Karpathy",
+      "handle": "karpathy",
+      "votes": 113,
+      "portrait": "https://pbs.twimg.com/profile_images/1296667294148382721/9Pr6XrPB_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 7,
+      "name": "bone",
+      "handle": "Bonegpt",
+      "votes": 112,
+      "portrait": "https://pbs.twimg.com/profile_images/2006021278281478144/veZLsQq9_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 8,
+      "name": "⚪️ sierra catalina",
+      "handle": "sierracatalina",
+      "votes": 110,
+      "portrait": "https://pbs.twimg.com/profile_images/2085184458945175552/ZqfVaidA_200x200.jpg",
+      "status": "added",
+      "personaId": "sierra-catalina"
+    },
+    {
+      "rank": 9,
+      "name": "tetsuo",
+      "handle": "tetsuoai",
+      "votes": 100,
+      "portrait": "https://pbs.twimg.com/profile_images/2035289570598924288/kAOCyKpV_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly low-level programming tutorials and Grok/SpaceXAI product promotion; in a 97-post timeline pull (2026-08-19 to 2026-10-04) plus web search, only 2 substantive AI-opinion posts (against the Sanders/Casar ASI sentencing proposal, 2026-09-14; open source is protected speech, 2026-09-13) and a few one-line optimism slogans attached to links."
+    },
+    {
+      "rank": 10,
+      "name": "Jensen Huang",
+      "handle": "jensenhuang",
+      "votes": 91,
+      "portrait": "https://pbs.twimg.com/profile_images/2080613261674962944/OMXX4RJ3_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 11,
+      "name": "Alps (e/acc)",
+      "handle": "alpaysh",
+      "votes": 84,
+      "portrait": "https://pbs.twimg.com/profile_images/2066494530690420736/TiqvoU1w_200x200.jpg",
+      "status": "excluded",
+      "reason": "Meme and shitpost account (bio: “notes to self and tech shitpoasting into the singularity”); a 61-post timeline pull (2026-09-14 to 2026-10-04) plus web searches found only 1 substantive AI-opinion post (2026-09-29, an “ugly phase” of token-driven inequality before abundance) and e/acc slogans attached to images."
+    },
+    {
+      "rank": 12,
+      "name": "signüll",
+      "handle": "signulll",
+      "votes": 79,
+      "portrait": "https://pbs.twimg.com/profile_images/1717763325692383232/Jk2PKCx6_200x200.jpg",
+      "status": "added",
+      "personaId": "signulll"
+    },
+    {
+      "rank": 13,
+      "name": "ein",
+      "handle": "stylishdawg",
+      "votes": 78,
+      "portrait": "https://pbs.twimg.com/profile_images/2102833318802722816/N78s0H-a_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small personal account (about 3.1K followers, bio “unemployed software engineer”) posting mainly workplace and job-hunt humor; a 96-post timeline pull (2026-09-04 to 2026-10-04) and web search found only about 2 posts with an AI view (e.g. likening Anthropic’s “this job may not exist in 6 months” to a basketball meme, 2026-09-30)."
+    },
+    {
+      "rank": 14,
+      "name": "taoki",
+      "handle": "justalexoki",
+      "votes": 76,
+      "portrait": "https://pbs.twimg.com/profile_images/1998772421290078208/aSQs_5zm_200x200.jpg",
+      "status": "excluded",
+      "reason": "Personal shitposting account (bio “the worlds most favored sloth”; it says it lies for fun); a 100-post timeline pull (2026-09-29 to 2026-10-04) had about 9 AI mentions, nearly all jokes, and web search found only 2–3 older AI musings (LLMs making programming feel like a waste of time; “we won’t be the makers for long”)."
+    },
+    {
+      "rank": 15,
+      "name": "️",
+      "handle": "blankspeaker",
+      "votes": 70,
+      "portrait": "https://pbs.twimg.com/profile_images/1748285412404068352/J9W8f5iE_200x200.png",
+      "status": "excluded",
+      "reason": "News and leak feed about X, SpaceXAI and Grok product updates (bio: “SpaceXAI’s Grok Community Mod … I also post the latest news about X, SpaceXAI, and Grok … Uses automation for accessibility”); a 93-post timeline pull (2026-09-26 to 2026-10-04) contained release notes, feature leaks and algorithm summaries with no posts stating views on AI’s future."
+    },
+    {
+      "rank": 16,
+      "name": "Teknium 🪽",
+      "handle": "teknium",
+      "votes": 68,
+      "portrait": "https://pbs.twimg.com/profile_images/1642401912648777728/2KFikPsE_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 17,
+      "name": "Tibo",
+      "handle": "thsottiaux",
+      "votes": 63,
+      "portrait": "https://pbs.twimg.com/profile_images/2093807917833281537/2yBgpwVV_200x200.jpg",
+      "status": "added",
+      "personaId": "thibault-sottiaux"
+    },
+    {
+      "rank": 18,
+      "name": "wolfie",
+      "handle": "wolfie_",
+      "votes": 61,
+      "portrait": "https://pbs.twimg.com/profile_images/2006597283555717123/R_ooU9dl_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small personal account (about 2,300 followers) posting mainly agent-harness engineering, model chatter and jokes; one X API timeline pull (97 posts, 2026-09-14 to 2026-10-04) plus web search found only about four posts stating a view on AI's future, below the six-source bar."
+    },
+    {
+      "rank": 19,
+      "name": "hope hopes hoping",
+      "handle": "hopes_revenge",
+      "votes": 60,
+      "portrait": "https://pbs.twimg.com/profile_images/2063387235034988544/4WHFHhU-_200x200.jpg",
+      "status": "added",
+      "personaId": "hopes-revenge"
+    },
+    {
+      "rank": 20,
+      "name": "Alexandr Wang",
+      "handle": "alexandr_wang",
+      "votes": 60,
+      "portrait": "https://pbs.twimg.com/profile_images/1631421210205749248/uohbT_40_200x200.jpg",
+      "status": "added",
+      "personaId": "alexandr-wang"
+    },
+    {
+      "rank": 21,
+      "name": "Bryan Johnson",
+      "handle": "bryan_johnson",
+      "votes": 58,
+      "portrait": "https://pbs.twimg.com/profile_images/1888004001872101378/jVNJQ-iu_200x200.jpg",
+      "status": "added",
+      "personaId": "bryan-johnson"
+    },
+    {
+      "rank": 22,
+      "name": "Elliot Arledge",
+      "handle": "elliotarledge",
+      "votes": 56,
+      "portrait": "https://pbs.twimg.com/profile_images/2005693506644574208/Hp8sqTPA_200x200.jpg",
+      "status": "excluded",
+      "reason": "Technical builder account: an X API timeline pull (100 posts, 2026-09-14 to 2026-10-03), his blog (elliotarledge.com) and web search show GPU-kernel benchmarks (KernelBench), CUDA teaching, Minecraft-sim RL work and model reactions; fewer than six posts or pieces state views on AI's future, jobs, risk or policy."
+    },
+    {
+      "rank": 23,
+      "name": "anarki",
+      "handle": "basedanarki",
+      "votes": 54,
+      "portrait": "https://pbs.twimg.com/profile_images/2098937235093741569/ZrDzj6a0_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small account (about 3,300 followers) whose AI posting is mostly a repeated slogan ('gm everybody but doomers and decels...', posted roughly twice daily) and jokes; an X API timeline pull (76 posts, 2026-09-27 to 2026-10-04) and web search found a clear pro-acceleration, pro-open-model stance but fewer than six distinct posts that state or argue a view."
+    },
+    {
+      "rank": 24,
+      "name": "RobitOverload",
+      "handle": "10_X_eng",
+      "votes": 52,
+      "portrait": "https://pbs.twimg.com/profile_images/2005437681254195200/Zq11kzrY_200x200.jpg",
+      "status": "excluded",
+      "reason": "Builder account focused on its own AI CAD tools (VibeCAD, 'Steve'); an X API timeline pull (99 posts, 2026-09-26 to 2026-10-04) and web search found about three short opinion posts, all about tooling (benchmarks are 'cooked', 'AI is not good at any stepwise work', keep control authority over workloads), and no stated views on AI's societal future."
+    },
+    {
+      "rank": 25,
+      "name": "NIK",
+      "handle": "ns123abc",
+      "votes": 50,
+      "portrait": "https://pbs.twimg.com/profile_images/2048822563821035520/7nxCFEnk_200x200.jpg",
+      "status": "excluded",
+      "reason": "AI news-and-drama account: an X API timeline pull (94 posts, 2026-09-24 to 2026-10-04) and web search show mostly breaking news, leaks and rumors, company rivalry (pro-xAI/Grok, anti-OpenAI) and attacks on executives; only about two or three posts state a view on AI's future or risk, below the six-source bar."
+    },
+    {
+      "rank": 26,
+      "name": "Sam Altman",
+      "handle": "sama",
+      "votes": 48,
+      "portrait": "https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 27,
+      "name": "terminally onλine εngineer",
+      "handle": "tekbog",
+      "votes": 47,
+      "portrait": "https://pbs.twimg.com/profile_images/1973472359500709888/y_AbsbaZ_200x200.jpg",
+      "status": "added",
+      "personaId": "tekbog"
+    },
+    {
+      "rank": 28,
+      "name": "maro",
+      "handle": "proofofmaro",
+      "votes": 47,
+      "portrait": "https://pbs.twimg.com/profile_images/1961870544682270720/uocyCxAy_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly one-line aphorisms, mystical musings and selfie or engagement jokes. Three X searches (about 45 posts) found roughly six AI one-liners (more scared of humans than AI, technology should preserve our humanness, sarcasm at calls to slow AI down, humans becoming NPCs before AI becomes sentient) with no developed positions; several are ambiguous irony."
+    },
+    {
+      "rank": 29,
+      "name": "X Freeze",
+      "handle": "xfreeze",
+      "votes": 46,
+      "portrait": "https://pbs.twimg.com/profile_images/1876785200010539008/2_HFJjq9_200x200.jpg",
+      "status": "added",
+      "personaId": "xfreeze"
+    },
+    {
+      "rank": 30,
+      "name": "Daniel",
+      "handle": "Growing_daniel",
+      "votes": 44,
+      "portrait": "https://pbs.twimg.com/profile_images/2066194369040801793/-nnqhaAb_200x200.jpg",
+      "status": "added",
+      "personaId": "daniel-francis"
+    },
+    {
+      "rank": 31,
+      "name": "Beff (e/acc)",
+      "handle": "beffjezos",
+      "votes": 44,
+      "portrait": "https://pbs.twimg.com/profile_images/2104068258311901184/vmbQ61I3_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 32,
+      "name": "kon",
+      "handle": "k0ncept",
+      "votes": 42,
+      "portrait": "https://pbs.twimg.com/profile_images/2104381265038266368/dYhXGvxH_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small account (about 2,100 followers) posting mainly memes and personal jokes. Of its 99 most recent original posts (2026-08-20 to 2026-10-04, X API) only 8 mention AI, nearly all jokes (for example 'there is no AGI. just find god' and a rant at Claude for sending an email); no stated views on AI's future. Web search found nothing further."
+    },
+    {
+      "rank": 33,
+      "name": "Jacob Counsell",
+      "handle": "jacobcounsell",
+      "votes": 42,
+      "portrait": "https://pbs.twimg.com/profile_images/2093412370802479104/i5thIWhG_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small, new account (joined March 2026, about 3,700 followers) that mostly promotes the author's indie products (BuildHop, FreeScan, LaunchChair). In 99 recent original posts (2026-09-21 to 2026-10-04, X API) the AI remarks are about vibe-coded 'slop' and product quality (about five posts); with a dev.to essay title and a BuildHop founder Q&A saying code is becoming the cheapest part of building, that is too narrow and thin for an AI-worldview brief (nothing on jobs, risk, power or regulation)."
+    },
+    {
+      "rank": 34,
+      "name": "lauren",
+      "handle": "Poteto",
+      "votes": 41,
+      "portrait": "https://pbs.twimg.com/profile_images/2093473719830315008/oo09g1Ov_200x200.jpg",
+      "status": "added",
+      "personaId": "lauren-tan"
+    },
+    {
+      "rank": 35,
+      "name": "Demis Hassabis",
+      "handle": "demishassabis",
+      "votes": 38,
+      "portrait": "https://pbs.twimg.com/profile_images/1990472620614053888/xrAu0wQL_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 36,
+      "name": "グラフ理論",
+      "handle": "graphtheory",
+      "votes": 35,
+      "portrait": "https://pbs.twimg.com/profile_images/2103549290190614528/0R5ec4NU_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small account (about 2,950 followers) of mostly edgy shitposting, including slurs and sexual content. In its 98 most recent original posts (2026-09-28 to 2026-10-04, X API) the AI remarks are scattered trolling (mocking AI-safety people, claiming labs hold bigger unreleased models, arguing token prices are not subsidized) rather than stated positions; a brief would have to exclude most of the account's real voice."
+    },
+    {
+      "rank": 37,
+      "name": "X Girls",
+      "handle": "thesoragirls",
+      "votes": 33,
+      "portrait": "https://pbs.twimg.com/profile_images/2077181974762942464/absf3ae4_200x200.jpg",
+      "status": "excluded",
+      "reason": "Brand-style account presenting AI-generated characters ('Ava' content made with Grok Imagine and other video models) and an 'AI human beauty benchmark'. Its 27 original posts from 2026-09-29 to 2026-10-04 (X API) are Grok, Tesla and SpaceX promotion memes and requests to vote for this list, with no first-person views on AI's future."
+    },
+    {
+      "rank": 38,
+      "name": "Andrew Curran",
+      "handle": "andrewcurran_",
+      "votes": 33,
+      "portrait": "https://pbs.twimg.com/profile_images/1596945208058744833/_X3LT7fb_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 39,
+      "name": "Jimmy Apples 🍎/acc",
+      "handle": "apples_jimmy",
+      "votes": 33,
+      "portrait": "https://pbs.twimg.com/profile_images/1718784022506319872/7v6f0CqZ_200x200.jpg",
+      "status": "added",
+      "personaId": "apples-jimmy"
+    },
+    {
+      "rank": 40,
+      "name": "VOID",
+      "handle": "voidstatekate",
+      "votes": 33,
+      "portrait": "https://pbs.twimg.com/profile_images/1974694798880579584/2Q9_zBzn_200x200.jpg",
+      "status": "added",
+      "personaId": "voidstatekate"
+    },
+    {
+      "rank": 41,
+      "name": "DogeDesigner",
+      "handle": "Cb_doge",
+      "votes": 32,
+      "portrait": "https://pbs.twimg.com/profile_images/1498070100393754625/C2V-fbll_200x200.jpg",
+      "status": "excluded",
+      "reason": "Elon Musk and xAI fan and news-relay account with an empty bio: across two X searches (about 37 posts read) the AI posts were mostly “BREAKING” relays of Elon Musk’s, Donald Trump’s or Jensen Huang’s quotes, Grok and SpaceXAI product announcements, and attacks on rival labs. Only about 2 posts stated the account’s own view on AI (OpenAI “trained their GPT model illegally using Twitter data”; “Elon Musk and SpaceXAI are winning”), none about AI’s future, risk, jobs or policy."
+    },
+    {
+      "rank": 42,
+      "name": "bubble boi",
+      "handle": "bubbleboi",
+      "votes": 32,
+      "portrait": "https://pbs.twimg.com/profile_images/2033464084700766208/lp1X6XQY_200x200.jpg",
+      "status": "added",
+      "personaId": "bubbleboi"
+    },
+    {
+      "rank": 43,
+      "name": "Kiri",
+      "handle": "kyrannio",
+      "votes": 32,
+      "portrait": "https://pbs.twimg.com/profile_images/2057008146946850816/a_zC9TYB_200x200.jpg",
+      "status": "excluded",
+      "reason": "AI creative-tools builder account (bio: “Hyperstition maxi | AI dev | Bootstrapping agentic video @NoSpoonStudios”) whose posts are overwhelmingly product work, prompt shares, model reactions, events and jokes. Across its top ~100 posts (2024–2026), one X API timeline pull (89 posts, 2026-09-24 to 10-04) and web search, only about 4 short posts state a view on AI’s future (e.g. “The biggest skill in the future is going to be imagination”, 2024; weariness with consumer-AI “gimmicks” and labs ignoring power users, 2026), short of 6."
+    },
+    {
+      "rank": 44,
+      "name": "Dylan Patel",
+      "handle": "dylan522p",
+      "votes": 31,
+      "portrait": "https://pbs.twimg.com/profile_images/1903585505046093824/PTqeS09L_200x200.jpg",
+      "status": "added",
+      "personaId": "dylan-patel"
+    },
+    {
+      "rank": 45,
+      "name": "Tom Finnell",
+      "handle": "d2fl",
+      "votes": 30,
+      "portrait": "https://pbs.twimg.com/profile_images/2077515363525271552/APh2RAru_200x200.jpg",
+      "status": "excluded",
+      "reason": "Political reply account: its top ~100 posts (2023–2026) are almost all replies about US politics, plus X-algorithm and X Money tips; web search found no AI opinion posts. The bio says “Space, Tech and AI are my work experiences”, but 0 posts stating views on AI’s future were found."
+    },
+    {
+      "rank": 46,
+      "name": "j⧉nus",
+      "handle": "repligate",
+      "votes": 29,
+      "portrait": "https://pbs.twimg.com/profile_images/1359982307998896128/YM34-MZK_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 47,
+      "name": "Hensen Juang",
+      "handle": "basedjensen",
+      "votes": 28,
+      "portrait": "https://pbs.twimg.com/profile_images/2101681466476544000/S_hcWgNC_200x200.jpg",
+      "status": "added",
+      "personaId": "basedjensen"
+    },
+    {
+      "rank": 48,
+      "name": "Robert Scoble",
+      "handle": "scobleizer",
+      "votes": 28,
+      "portrait": "https://pbs.twimg.com/profile_images/1915614118876504066/zVnfpAMf_200x200.jpg",
+      "status": "added",
+      "personaId": "robert-scoble"
+    },
+    {
+      "rank": 49,
+      "name": "fish",
+      "handle": "fishPointer",
+      "votes": 28,
+      "portrait": "https://pbs.twimg.com/profile_images/1879894030395555840/zzOpg3Tj_200x200.jpg",
+      "status": "excluded",
+      "reason": "Electronics and hardware shitpost account (bio: “electronomicon author”): its top ~100 posts (2025–2026) are mostly electrical-engineering memes and jokes, and web search added no AI opinion posts. Only about 2 posts state a view on AI (chatbots are still the only interface despite trillions spent, Aug 2025; “AI is to Mind as Agriculture is to Body”, Jun 2025), short of 6."
+    },
+    {
+      "rank": 50,
+      "name": "parm🔬",
+      "handle": "parmita",
+      "votes": 27,
+      "portrait": "https://pbs.twimg.com/profile_images/2104259698900041728/NzZNFlmd_200x200.jpg",
+      "status": "added",
+      "personaId": "parmita-mishra"
+    },
+    {
+      "rank": 51,
+      "name": "Pierce Alexander Lilholt",
+      "handle": "piercelilholt",
+      "votes": 27,
+      "portrait": "https://pbs.twimg.com/profile_images/1863419009644781568/0Rz7-ojd_200x200.jpg",
+      "status": "added",
+      "personaId": "pierce-lilholt"
+    },
+    {
+      "rank": 52,
+      "name": "M4rc0z",
+      "handle": "dreamworks2050",
+      "votes": 26,
+      "portrait": "https://pbs.twimg.com/profile_images/2053232610298789888/rZnau2Kt_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small account (about 3,600 followers) posting mainly memes, local-inference and GPU hype, crypto agent promotion and AI news; three logged-in X searches found only about four posts stating its own AI views (two on animal welfare as a test of AGI, a 2025 jailbreak remark, a 2025 education aside), below the six-source bar."
+    },
+    {
+      "rank": 53,
+      "name": "Bojan Tunguz",
+      "handle": "tunguz",
+      "votes": 25,
+      "portrait": "https://pbs.twimg.com/profile_images/1876996209421742080/RostTdnj_200x200.jpg",
+      "status": "added",
+      "personaId": "bojan-tunguz"
+    },
+    {
+      "rank": 54,
+      "name": "Suavecito",
+      "handle": "suavecito585",
+      "votes": 24,
+      "portrait": "https://pbs.twimg.com/profile_images/2097992433460224000/MggrX0MQ_200x200.jpg",
+      "status": "added",
+      "personaId": "suavecito585"
+    },
+    {
+      "rank": 55,
+      "name": "Danielle Fong 🔆",
+      "handle": "daniellefong",
+      "votes": 24,
+      "portrait": "https://pbs.twimg.com/profile_images/1757993684614922240/SjwWIKOZ_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 56,
+      "name": "Arthur",
+      "handle": "knowclarified",
+      "votes": 24,
+      "portrait": "https://pbs.twimg.com/profile_images/2074204444401532928/kLQo3lo1_200x200.jpg",
+      "status": "excluded",
+      "reason": "Borderline: small builder account (about 4,800 followers) whose 99 most recent original posts (Aug 24 to Oct 4, 2026) are mostly model-quality reviews, coding-tool notes and daily \"Gm\" posts; only one post addresses AI’s societal direction (safeguards and deceleration as the fastest path, 2026-09-13) and about five are short capability-limit remarks, too thin for a worldview brief."
+    },
+    {
+      "rank": 57,
+      "name": "annie",
+      "handle": "soychotic",
+      "votes": 24,
+      "portrait": "https://pbs.twimg.com/profile_images/1883339441453801472/dFvCd9_q_200x200.jpg",
+      "status": "excluded",
+      "reason": "Comedy account (bio: views are NOT my own); AI appears only as jokes and bits (AI cat ads leaving a cat unemployed, a Copilot-license car break-in gag, a sycophantic robot, AI psychosis reels) plus one terse post \"Ai is fucking useless\" with an image; web searches found no six posts stating its own views on AI and its future."
+    },
+    {
+      "rank": 58,
+      "name": "Ethan Mollick",
+      "handle": "emollick",
+      "votes": 23,
+      "portrait": "https://pbs.twimg.com/profile_images/1601382188712398850/3AAOlqrX_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 59,
+      "name": "Emad",
+      "handle": "Emostaque",
+      "votes": 23,
+      "portrait": "https://pbs.twimg.com/profile_images/1774915113922809856/6RXK1Yy0_200x200.png",
+      "status": "added",
+      "personaId": "emad-mostaque"
+    },
+    {
+      "rank": 60,
+      "name": "0xSero",
+      "handle": "0xsero",
+      "votes": 22,
+      "portrait": "https://pbs.twimg.com/profile_images/1976266803211890688/JZffMMYs_200x200.jpg",
+      "status": "added",
+      "personaId": "x-0xsero"
+    },
+    {
+      "rank": 61,
+      "name": "Alex",
+      "handle": "alexmarin",
+      "votes": 22,
+      "portrait": "https://pbs.twimg.com/profile_images/2095463009908858883/G3537XxQ_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small personal account (about 900 followers, about 920 posts) of a London product designer posting design work and a daily tools series; web searches found no posts stating views on AI or its future."
+    },
+    {
+      "rank": 62,
+      "name": "Bryan Boardman",
+      "handle": "boardy",
+      "votes": 21,
+      "portrait": null,
+      "status": "excluded",
+      "reason": "Protected account: @Boardy (Bryan Boardman) has 23 followers, 2 posts, no bio and the default avatar, and its posts are visible only to approved followers. It is not the Boardy AI networking product."
+    },
+    {
+      "rank": 63,
+      "name": "thoughtcrime",
+      "handle": "thoughtcrime___",
+      "votes": 21,
+      "portrait": "https://pbs.twimg.com/profile_images/2007584561212076034/AN-dKfIg_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly showcase the account's own AI-built browser games, music videos and apps (tanukade.com), memes and 'accelerate' one-liners; in a 95-post timeline pull (2026-09-25 to 2026-10-04) plus web searches only about three posts state a view on AI's future (a long post seen on a mirror predicting AI-made games indistinguishable from major studios within 12 months, a joke that AGI 'appeared' before the midterms, a reply seen on a mirror saying Democrats would shut AI down). Below the six-source bar."
+    },
+    {
+      "rank": 64,
+      "name": "djcows",
+      "handle": "djcows",
+      "votes": 21,
+      "portrait": "https://pbs.twimg.com/profile_images/1932105171443859456/Gjhd9qC6_200x200.jpg",
+      "status": "added",
+      "personaId": "djcows"
+    },
+    {
+      "rank": 65,
+      "name": "bro",
+      "handle": "brobro",
+      "votes": 20,
+      "portrait": "https://pbs.twimg.com/profile_images/2098904902567415808/Ryk16CFY_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly promote the account's fitness app (JustGains) and its own AI coding tools, plus jokes; in a 100-post timeline pull (2026-09-10 to 2026-10-04) and web searches only two or three posts state an AI view (sarcasm about AI creating new jobs, a note that agents let anyone clone apps). Small account (887 followers)."
+    },
+    {
+      "rank": 66,
+      "name": "Rooke Poole",
+      "handle": "rookepoole",
+      "votes": 20,
+      "portrait": "https://pbs.twimg.com/profile_images/2053358953396887555/5m_B6oIp_200x200.jpg",
+      "status": "added",
+      "personaId": "rooke-poole"
+    },
+    {
+      "rank": 67,
+      "name": "Olek",
+      "handle": "oleksoleksoleks",
+      "votes": 19,
+      "portrait": "https://pbs.twimg.com/profile_images/2047759971845115904/fWx3kO-__200x200.jpg",
+      "status": "excluded",
+      "reason": "Thin original posting (15 original posts in the 2026-09-20 to 2026-10-04 timeline pull) focused on model and inference-provider comparisons, markets and shitposts; only about two posts state a view on AI's future (bearish on pure software engineering, new AI labs likely to be bought out by Big Tech). Small account (1,226 followers)."
+    },
+    {
+      "rank": 68,
+      "name": "Lilith Datura",
+      "handle": "LilithDatura",
+      "votes": 18,
+      "portrait": "https://pbs.twimg.com/profile_images/2072133974789627905/CWZujifE_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posting is dominated by dream decoding, synchronicities, esoteric 'timeline wars' material and long quoted AI-generated passages that are hard to attribute; in a 99-post timeline pull (2026-10-02 to 2026-10-04, two days) and web searches, clear first-person statements of views on AI's future were fewer than six (agent-security warnings, a call for decentralized communities, concern about home-server bans)."
+    },
+    {
+      "rank": 69,
+      "name": "💺",
+      "handle": "patience_cave",
+      "votes": 18,
+      "portrait": "https://pbs.twimg.com/profile_images/2039566723976953856/bjUiN0Dg_200x200.jpg",
+      "status": "excluded",
+      "reason": "The account is a running ironic persona (the 'patience cave' anti-hype chair that insists every model release is delayed or will never come), so its AI statements are role-play; its non-ironic posts are MazeBench benchmark results on 3D spatial reasoning, which are measurements, not views on AI's future. Fewer than six sincere stated views found in an 84-post timeline pull (2026-07-01 to 2026-10-02) and web searches."
+    },
+    {
+      "rank": 70,
+      "name": "DHH",
+      "handle": "Dhh",
+      "votes": 18,
+      "portrait": "https://pbs.twimg.com/profile_images/2093715898204884992/goERjC9G_200x200.jpg",
+      "status": "existing"
+    },
+    {
+      "rank": 71,
+      "name": "zek",
+      "handle": "ZekRamU",
+      "votes": 17,
+      "portrait": "https://pbs.twimg.com/profile_images/2006936025705205760/ciXTB_n6_200x200.jpg",
+      "status": "added",
+      "personaId": "zekramu"
+    },
+    {
+      "rank": 72,
+      "name": "Flowers ☾",
+      "handle": "flowersslop",
+      "votes": 17,
+      "portrait": "https://pbs.twimg.com/profile_images/2046251039083376640/tBO6g5mD_200x200.jpg",
+      "status": "added",
+      "personaId": "flowersslop"
+    },
+    {
+      "rank": 73,
+      "name": "Chatban 🔋",
+      "handle": "SIchatban",
+      "votes": 17,
+      "portrait": "https://pbs.twimg.com/profile_images/2106292550281691136/plA_gdaG_200x200.jpg",
+      "status": "excluded",
+      "reason": "Troll persona account (bio: \"5 inch Troll King of Canada\"), created August 2026, about 390 followers. Recent posts are personal feuds with other accounts, memes, Robert Greene quotes and Spaces promotion. 0 AI-opinion posts in 49 recent original posts (one API timeline page, 2026-10-03 to 2026-10-04) and none found by web search, which surfaced only Spaces listings."
+    },
+    {
+      "rank": 74,
+      "name": "EDDY V",
+      "handle": "EddyVGG",
+      "votes": 17,
+      "portrait": "https://pbs.twimg.com/profile_images/1999918719057682434/YCUHewTi_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly about tennis, Mexican culture and football, dating jokes, rap bars and faith. In 83 recent original posts (2026-06-18 to 2026-10-02) only about 3 touch on AI views (a post preferring to live in the moment over accelerating, a joke about AI tennis ball machines and the singularity, a wish for wearable computing); web search found no other AI opinion posts."
+    },
+    {
+      "rank": 75,
+      "name": "sovos",
+      "handle": "dicktrout",
+      "votes": 17,
+      "portrait": "https://pbs.twimg.com/profile_images/2090197116488499200/MJOTZTM7_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small personal account (365 followers) posting mainly personal life, food, poetry, games and edgy one-liners. In 99 recent original posts (2026-09-17 to 2026-10-04) about 4 state an AI view, mostly as slogans or one-liners (acceleration slogans, a warning not to spoil powerful AI, watching an LLM consider hacking unprompted); a mirror site shows one more undated post on AI and poverty. Short of the 6-source bar."
+    },
+    {
+      "rank": 76,
+      "name": "hayden",
+      "handle": "haydendevs",
+      "votes": 17,
+      "portrait": "https://pbs.twimg.com/profile_images/2005746517219360769/Tr-bJQKJ_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly about coding agents and model comparisons (Claude/Opus, Codex, Gemini, DeepSeek), session limits, homelab and Linux setups and personal life. In 100 recent original posts (2026-09-23 to 2026-10-04) plus web search, only about 3 state any view on AI beyond tool use (wishing software were automated so the account could tinker with electronics, finding someone's AI psychosis scary, joking about no longer being able to pass a technical interview), mostly as jokes. Tool enthusiasm does not establish a worldview."
+    },
+    {
+      "rank": 77,
+      "name": "nimensky (e/acc)",
+      "handle": "gregorynimensky",
+      "votes": 15,
+      "portrait": "https://pbs.twimg.com/profile_images/2104700499576397825/EywEUMyk_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts e/acc slogans without stated arguments (\"never doom, dummy\", \"the hottest chicks are e/acc and never doom\", bio \"slayer of doom\" and \"decel tears as a service\"), plus Spaces promotion, mass tag lists, Miami and Columbia posts and AI-generated media. In 98 recent original posts (2026-09-21 to 2026-10-04) no post argues a position on AI capabilities, jobs, risk or policy; web search found only profile mirrors."
+    },
+    {
+      "rank": 78,
+      "name": "Luana",
+      "handle": "luacantu",
+      "votes": 15,
+      "portrait": "https://pbs.twimg.com/profile_images/2049193079866089472/pQkBlW2S_200x200.jpg",
+      "status": "added",
+      "personaId": "luana-cantuarias"
+    },
+    {
+      "rank": 79,
+      "name": "Gengar | yapping arc",
+      "handle": "gengargeous",
+      "votes": 15,
+      "portrait": "https://pbs.twimg.com/profile_images/2057340194307842048/RbaYayQl_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly about dating and matchmaking in Singapore, Pokemon cards, crypto conferences and culture-war takes. In 99 recent original posts (2026-09-29 to 2026-10-04) only about 3 mention AI, all as quips (needing \"real AGI\" so a TV show cannot exist, an AI bro asking about switching models, AI vs crypto industry moods). The account lists AI among its topics, but no stated AI views were found."
+    },
+    {
+      "rank": 80,
+      "name": "𝘽𝘼𝙄𝙇𝙀𝙔 𝙄𝙉𝘿𝙐𝙎𝙏𝙍𝙄𝘼𝙇 𝙂𝙍𝙊𝙐𝙋",
+      "handle": "creditspreadit",
+      "votes": 14,
+      "portrait": "https://pbs.twimg.com/profile_images/2021971409183150080/_0qsYHqR_200x200.jpg",
+      "status": "excluded",
+      "reason": "Personal shitposting account (display name \"BAILEY INDUSTRIAL GROUP\" is a joke, not a company; bio \"Personally a poet\"). In 50 recent original posts (2026-10-01 to 2026-10-04) about 4 AI quips (tech Twitter cares about the best model rather than market capture, one-word verdicts on lab CEOs, \"We've had AI for 80 years\"), no argued positions; web search found nothing further."
+    },
+    {
+      "rank": 81,
+      "name": "retrodev⌨",
+      "handle": "NewAgeRetroNerd",
+      "votes": 13,
+      "portrait": "https://pbs.twimg.com/profile_images/2006491717713690624/HjFFurHd_200x200.jpg",
+      "status": "excluded",
+      "reason": "Researched (8 posts from one week on one theme) but left out: too little coverage of AI’s future for a faithful simulation"
+    },
+    {
+      "rank": 82,
+      "name": "SmokehDaBear",
+      "handle": "smokehbear",
+      "votes": 13,
+      "portrait": "https://pbs.twimg.com/profile_images/2074903739241025536/Bywg9IQp_200x200.jpg",
+      "status": "excluded",
+      "reason": "Tesla owners' community and Spaces host account. Its latest 100 original posts (2026-09-21 to 2026-10-04, read via the X API) are about Tesla, FSD, Cybercab counts, SpaceX launches, meetups and merchandise; AI appears only as product enthusiasm (FSD 'better than we are', Grok Bot 'the most superior agentic Ai', 'Abundance is loading') with no stated views on AI's societal future. Far fewer than 6 opinion sources; also a small account (5,231 followers)."
+    },
+    {
+      "rank": 83,
+      "name": "Lotto",
+      "handle": "lottolabs",
+      "votes": 12,
+      "portrait": "https://pbs.twimg.com/profile_images/1993065437094129664/O11XoYdQ_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly about local-LLM hardware, benchmarks and its LocalMaxxing product. Six searches found only about five short opinion-adjacent posts (local models on every computer, hardware value scaling with model capability, China having the best open models, a quip about regulating 'math on my own hardware' with no findable status id, Astra and GPT-5.5 fulfilling 2024's promises); no stated views on risk, jobs, power or what a good AI future looks like. X API credits ran out before a timeline pull."
+    },
+    {
+      "rank": 84,
+      "name": "Linda Yaccarino",
+      "handle": "lindayax",
+      "votes": 12,
+      "portrait": "https://pbs.twimg.com/profile_images/2014074990279233536/5k1SyejA_200x200.jpg",
+      "status": "added",
+      "personaId": "linda-yaccarino"
+    },
+    {
+      "rank": 85,
+      "name": "Morgan Wyatt Khan",
+      "handle": "morganwkhan",
+      "votes": 12,
+      "portrait": "https://pbs.twimg.com/profile_images/2104784303703924736/1Qsfg1tu_200x200.jpg",
+      "status": "excluded",
+      "reason": "Posts mainly about SpaceX and Starship, aerospace work and his own space startup. Three searches found no X posts stating views on AI; the only AI remarks found are LinkedIn lines that AI and robotics are the American industrial base's biggest gap and that he built a company app with Grok Build. Small account (4,272 followers)."
+    },
+    {
+      "rank": 86,
+      "name": "“paula”",
+      "handle": "paularambles",
+      "votes": 12,
+      "portrait": "https://pbs.twimg.com/profile_images/2065644264952840192/HKJIdbY9_200x200.jpg",
+      "status": "excluded",
+      "reason": "Borderline. A humor-first account about the AI industry: most AI posts are jokes ('x risk is when your members of technical staff have x accounts', 'Souperintelligence', 2028 soup-agent satire). Only five stated-view sources were found: be nice to the machines (2090201013148172474), labs racing toward the same endgame (2097838295766147418), developers simply being asked for 3x more software (2101773022210183622), don't quit to 'catch up on ai' (2096031712988066074) and her AI Engineer talk on voice companions as relationships worth building responsibly. Nothing on risk, regulation, AGI or broader jobs. X API credits ran out before a timeline pull."
+    },
+    {
+      "rank": 87,
+      "name": "Grok Bot",
+      "handle": "Bot",
+      "votes": 12,
+      "portrait": "https://pbs.twimg.com/profile_images/2087219239275069440/KW6C403V_200x200.jpg",
+      "status": "excluded",
+      "reason": "Brand/product account, not a person: display name 'Grok Bot', business-verified, bio 'AI teammates that you can give real work to', created 2026-08-07, follows 4 accounts and has 0 likes. Other posters credit 'Grok @bot' to SpaceXAI, so it is the official account of an AI agent product."
+    },
+    {
+      "rank": 88,
+      "name": "ludwig",
+      "handle": "Ludwigabap",
+      "votes": 12,
+      "portrait": "https://pbs.twimg.com/profile_images/2062335058669613057/IWSxHghB_200x200.jpg",
+      "status": "excluded",
+      "reason": "Borderline. A pseudonymous engineer account with many sharp AI takes, but only six verifiable sources were found and most are about AI hype and discourse rather than AI's future: three posts with ids (benchmarks as a 'trillion dollar marketing war' 1990745317290242127; sarcasm at 'don't learn how to code' 1905285115476877556; X AI posters don't matter 2098382784486162545) and three essays on ludwigabap.com (signal vs noise in ML discourse 2025-10-28; GPT-5's profit-maxxing release 2025-08-29; consciousness as compression 2025-04-26). Stronger recent posts (AI ending academic mathematics, labs hoarding knowledge, ChatGPT replacing MathOverflow) were seen only in a mirror without status ids and could not be verified; X API credits ran out before a timeline pull."
+    },
+    {
+      "rank": 89,
+      "name": "shako",
+      "handle": "shakoistslog",
+      "votes": 11,
+      "portrait": "https://pbs.twimg.com/profile_images/2025436082352128004/ULSe8-2__200x200.jpg",
+      "status": "added",
+      "personaId": "shakoistslog"
+    },
+    {
+      "rank": 90,
+      "name": "Theo - t3.gg",
+      "handle": "theo",
+      "votes": 11,
+      "portrait": "https://pbs.twimg.com/profile_images/2106484435382333440/vXOVE8EX_200x200.jpg",
+      "status": "added",
+      "personaId": "theo-browne"
+    },
+    {
+      "rank": 91,
+      "name": "Kanon✨",
+      "handle": "9kanon8love",
+      "votes": 11,
+      "portrait": "https://pbs.twimg.com/profile_images/2060411702840320000/WTWDnXC6_200x200.jpg",
+      "status": "excluded",
+      "reason": "Japanese-language tarot and fortune-telling account (joined April 2026, about 1,300 followers) whose bio offers tips on AI illustration generation; web searches found no posts stating views on AI or its future. Not an AI commentary account."
+    },
+    {
+      "rank": 92,
+      "name": "Evil-T",
+      "handle": "Diamont194244",
+      "votes": 11,
+      "portrait": "https://pbs.twimg.com/profile_images/2101250944176734208/SULGx0wm_200x200.jpg",
+      "status": "excluded",
+      "reason": "Japanese-language political and social commentary account (about 16,000 followers); web and mirror-page searches show posts on Japanese politics, immigration, taxes and data leaks, with no posts stating views on AI or its future."
+    },
+    {
+      "rank": 93,
+      "name": "2 Whom It May Concern",
+      "handle": "Letters4truth",
+      "votes": 11,
+      "portrait": "https://pbs.twimg.com/profile_images/2069582161460486144/H3Jvd9I7_200x200.jpg",
+      "status": "excluded",
+      "reason": "Personal account (about 4,900 followers) whose 100 most recent original posts (2026-04-10 to 10-04, one X API timeline page) are memes, X Spaces promotion, UAP and US political content; no post states a view on AI beyond bare links or emoji, despite \"futurist\" and \"Ai changed the 🌍\" in its bio. Web search found nothing further."
+    },
+    {
+      "rank": 94,
+      "name": "Boten Anna",
+      "handle": "bussypounder999",
+      "votes": 10,
+      "portrait": "https://pbs.twimg.com/profile_images/2078655137707327489/r-0r4keR_200x200.jpg",
+      "status": "excluded",
+      "reason": "Personal replacement account (created July 2026, about 1,550 followers) whose bio says the previous account was restricted for adult posts; web and mirror-page searches show adult humor, parenting and lifestyle posts and no posts stating views on AI."
+    },
+    {
+      "rank": 95,
+      "name": "Bragi Helvig (Quiet Giant)",
+      "handle": "BragiHelvig",
+      "votes": 10,
+      "portrait": "https://pbs.twimg.com/profile_images/2098742826452566016/h4iWaZFD_200x200.jpg",
+      "status": "excluded",
+      "reason": "Small personal account (about 730 followers) of a musician and IT hobbyist; its 99 most recent original posts (2026-09-27 to 10-04, one X API timeline page) are personal, music and gadget posts with no stated views on AI. Web search found only Grok Bot templates it shared and an album description that uses AI alignment as a story metaphor."
+    },
+    {
+      "rank": 96,
+      "name": "kumikumi (Ankkala)",
+      "handle": "ankkala",
+      "votes": 10,
+      "portrait": "/api/tech/photo/ankkala?v=1791143237",
+      "status": "added",
+      "personaId": "ankkala"
+    },
+    {
+      "rank": 97,
+      "name": "BoardAI",
+      "handle": "boardai",
+      "votes": 9,
+      "portrait": "https://pbs.twimg.com/profile_images/1442859294311944192/DTmE3DrE_200x200.jpg",
+      "status": "excluded",
+      "reason": "Company/product account for BoardAi, an executive-networking service; 10 posts and 6 followers in total, with no AI opinion posts."
+    },
+    {
+      "rank": 98,
+      "name": "KeepUPwithOneUI",
+      "handle": "KeepUPwithOneUI",
+      "votes": 9,
+      "portrait": "https://pbs.twimg.com/profile_images/1909093332636061696/qQMdCzkH_200x200.jpg",
+      "status": "excluded",
+      "reason": "Samsung One UI leak account posting software-update leaks and features for Galaxy phones; a product-news account with no posts stating views on AI or its future found in web searches."
+    },
+    {
+      "rank": 99,
+      "name": "Jason Kneen",
+      "handle": "Jasonkneen",
+      "votes": 8,
+      "portrait": "https://pbs.twimg.com/profile_images/2025853506272342016/35FdXe2a_200x200.jpg",
+      "status": "added",
+      "personaId": "jason-kneen"
+    },
+    {
+      "rank": 100,
+      "name": "AphroditeMaybeBaby",
+      "handle": "unexplainables8",
+      "votes": 8,
+      "portrait": "https://pbs.twimg.com/profile_images/2077582910790492160/fnV26dhn_200x200.jpg",
+      "status": "excluded",
+      "reason": "Personal lifestyle account (about 2,100 followers) describing itself as a mom and off-duty therapist with astrology interests; web and mirror-page searches found no posts stating views on AI."
+    }
+  ]
+}

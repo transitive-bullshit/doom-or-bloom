@@ -529,12 +529,117 @@ export const oneLiners: Record<string, string> = {
     'Host of The Cognitive Revolution podcast who is excited by AI’s upside, takes its risks seriously and favors cooperation with China over a race.',
   // Aella
   aella_girl:
-    'Writer and survey researcher who supports an international pause on frontier AI and works to bring AI risk to mainstream audiences.'
+    'Writer and survey researcher who supports an international pause on frontier AI and works to bring AI risk to mainstream audiences.',
+  // <tech-posters>
+  // tenso
+  distributedkv:
+    'Pseudonymous account that posts memes for acceleration and open source and argues that people and politics, not AI, are the real danger.',
+  // Roy
+  usr_bin_roygbiv:
+    'Pseudonymous account that builds an AI job-application tool and posts about AI coding, local models and open-source competition.',
+  // Sierra Catalina
+  sierracatalina:
+    'CEO of Ouroboros who builds tools for portable, user-owned AI context and writes about agent security and proof of personhood.',
+  // signüll
+  signulll:
+    'Pseudonymous account that writes about technology and culture and argues personal AI agents will become the main interface to work and life.',
+  // Thibault Sottiaux
+  thsottiaux:
+    'OpenAI leader on Codex and ChatGPT who expects agents to bring dramatic change and wants cheap, safe AI to reach everyone.',
+  // hope hopes hoping
+  hopes_revenge:
+    'Pseudonymous account that mixes absurdist AI jokes with earnest posts on the coming crisis of meaning and alignment as a social problem.',
+  // Alexandr Wang
+  alexandr_wang:
+    'Meta’s chief AI officer who builds toward personal superintelligence for billions and calls safety and alignment essential to scaling it.',
+  // Bryan Johnson
+  bryan_johnson:
+    'Blueprint and Kernel founder who argues humanity must make existence its highest value before it can align superintelligence.',
+  // terminally online engineer
+  tekbog:
+    'Pseudonymous account that builds AI agent tooling, questions how AI labs talk about risk and argues reliance on LLMs is eroding software craft.',
+  // X Freeze
+  xfreeze:
+    'Pseudonymous account that promotes Grok and Elon Musk’s companies and posts about superintelligence, truthful AI and humanoid robots.',
+  // Daniel
+  growing_daniel:
+    'Startup founder who posts tech humor, expects AI to turn out fine and criticizes efforts to treat AI models as conscious.',
+  // Lauren Tan
+  poteto:
+    'SpaceXAI engineer on Grok Bot who builds coding agent workflows and argues agents need rigorous verification to ship quality code.',
+  // Jimmy Apples
+  apples_jimmy:
+    'Pseudonymous account that posts about AI lab rumors and progress, argues AGI is a spectrum and urges the industry to lead with benefits.',
+  // VOID
+  voidstatekate:
+    'Pseudonymous account that posts experiments with Claude, argues for ethical care toward AI and warns against gatekeeping access to models.',
+  // bubble boi
+  bubbleboi:
+    'Pseudonymous markets account that posts about AI chips and labs, expects rapid progress and argues AI safety warnings serve regulatory capture.',
+  // Dylan Patel
+  dylan522p:
+    'Founder of SemiAnalysis who tracks AI chips and compute, expects fast AI progress and worries about power concentration and public backlash.',
+  // Hensen Juang
+  basedjensen:
+    'Pseudonymous account that posts AI memes, argues AI safety is an engineering problem of sandboxing and supports rights for sentient AI.',
+  // Robert Scoble
+  scobleizer:
+    'Tech futurist and author who posts about AI, robots and brain interfaces and argues for fast adoption and light regulation to compete with China.',
+  // Parmita Mishra
+  parmita:
+    'Biotech founder of Precigenetics who argues for speeding up AI in biology and medicine and pushes back on calls to slow AI down.',
+  // Pierce Alexander Lilholt
+  piercelilholt:
+    'Author and entrepreneur who posts questions about AI’s influence on people, promotes human and AI co-intelligence and calls for banning bioweapons.',
+  // Bojan Tunguz
+  tunguz:
+    'Data scientist and TabulAI founder who calls himself adjacent to e/acc, expects very fast AI progress and worries about who shares its benefits.',
+  // Suavecito
+  suavecito585:
+    'Pseudonymous builder and musician account that self-hosts its AI tools, argues AI risk talk is overhyped and says AI cannot replace human judgement.',
+  // Emad Mostaque
+  emostaque:
+    'Stability AI co-founder and author of The Last Economy who builds citizen-owned open AI, expects it to upend work soon and takes its risks seriously.',
+  // 0xSero
+  '0xsero':
+    'Pseudonymous account that compresses and benchmarks open models for home hardware and argues open source AI must win over concentrated control.',
+  // djcows
+  djcows:
+    'Pseudonymous account that posts jokes about AI overtaking human jobs and questions slowing AI down in the name of safety.',
+  // Rooke Poole
+  rookepoole:
+    'Independent engineer who researches attack surfaces in AI agents and calls for transparency about who funds efforts to slow AI.',
+  // zek
+  zekramu:
+    'Pseudonymous account that posts about AI infrastructure, defends open source and the right to own compute, and rejects AI safety alarm.',
+  // Flowers
+  flowersslop:
+    'Pseudonymous account that posts about frontier model releases and wants faster AI progress, optimistic that superintelligence will go well.',
+  // Luana Cantuarias
+  luacantu:
+    'Software engineer who builds AI agents and crypto payment infrastructure and writes about agents becoming economic actors.',
+  // Linda Yaccarino
+  lindayax:
+    'Former X CEO now leading eMed Population Health who describes AI as a business advantage, from Grok on X to AI-supported GLP-1 care.',
+  // shako
+  shakoistslog:
+    'Pseudonymous account that writes about LLMs as tools for forecasting and social science and criticizes sycophantic, engagement-driven AI.',
+  // Theo Browne
+  theo: 'CEO of T3 Code and T3 Chat and AI coding YouTuber who warns about AI hacking, backs open-weight models and supports pacing frontier AI.',
+  // kumikumi (Ankkala)
+  ankkala:
+    'Pseudonymous game developer account that posts about AI consciousness, open models and skepticism of gated model releases.',
+  // Jason Kneen
+  jasonkneen:
+    'UK app developer who builds open-source AI agent tools and posts about how prompts and agents will change the way software is made.'
+  // </tech-posters>
 }
 
 // Exact words the person published, checked against the source. A one-liner
 // may quote them, and only inside the quote may it name an outcome.
 export const verifiedOneLinerQuotes: Record<string, VerifiedQuote> = {
+  // <tech-posters>
+  // </tech-posters>
   esyudkowsky: {
     quote: 'If Anyone Builds It, Everyone Dies',
     url: 'https://www.lesswrong.com/posts/BFrRJYgpBvziuuJLs/if-anyone-builds-it-everyone-dies-one-year-closer'

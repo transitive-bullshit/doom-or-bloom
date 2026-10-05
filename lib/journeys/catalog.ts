@@ -26,6 +26,7 @@ import { independentPersonas } from './independent-personas'
 import { culturalWriterPersonas } from './cultural-writer-personas'
 import { politicalEconomyPersonas } from './political-economy-personas'
 import { civicCulturalPersonas } from './civic-cultural-personas'
+import { techPosterPersonas } from './tech-poster-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
@@ -90,6 +91,7 @@ const narrativePersonas: Persona[] = [
   ...culturalWriterPersonas,
   ...politicalEconomyPersonas,
   ...civicCulturalPersonas,
+  ...techPosterPersonas,
   {
     id: 'worried-novice',
     voice: [
