@@ -5,7 +5,7 @@ const suite = (await createLocalJourneyStore(
   process.cwd()
 ).latest()) as JourneySuite
 
-// A profile without sourced statements, whose simulated answers start open.
+// A profile without sourced statements; its simulated answers still start closed.
 const journey = suite.journeys.find(
   (journey) => journey.personaId === 'permissionless-innovation-optimist'
 )!
@@ -47,10 +47,9 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
     name: /View questions and simulated answers/
   })
   const answers = journey.steps.filter((step) => step.answer !== null)
-  await expect(assessmentToggle).toHaveAttribute('aria-expanded', 'true')
-  await expect(assessment.locator('article')).toHaveCount(answers.length)
-  await assessmentToggle.click()
   await expect(assessmentToggle).toHaveAttribute('aria-expanded', 'false')
+  // Closed answers stay in the page's HTML.
+  await expect(assessment.locator('article')).toHaveCount(answers.length)
   await expect(assessment.locator('article').first()).toBeHidden()
   const positions = await Promise.all(
     [
