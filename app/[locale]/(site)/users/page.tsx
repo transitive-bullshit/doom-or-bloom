@@ -12,6 +12,15 @@ import { PageTransition } from '@/components/page-transition'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import '@/components/landing/landing.css'
 
+const followerAccounts: Record<
+  string,
+  { followers: number; capturedAt?: string } | undefined
+> = followerSnapshot.accounts
+const followerAccount = (xUrl: string | null | undefined) =>
+  xUrl
+    ? followerAccounts[new URL(xUrl).pathname.slice(1).toLowerCase()]
+    : undefined
+
 export const dynamic = 'error'
 export const revalidate = 172800
 export function generateMetadata() {
@@ -33,11 +42,10 @@ export default async function Page() {
       avatar,
       outlook: result.horizontal.value,
       transformation: result.experiment?.transformation.value ?? null,
-      followers:
-        (followerSnapshot.accounts as Record<string, { followers: number }>)[
-          xUrl ? new URL(xUrl).pathname.slice(1).toLowerCase() : ''
-        ]?.followers ?? null,
-      followersCapturedAt: followerSnapshot.capturedAt,
+      followers: followerAccount(xUrl)?.followers ?? null,
+      // Accounts added after a full capture carry their own date.
+      followersCapturedAt:
+        followerAccount(xUrl)?.capturedAt ?? followerSnapshot.capturedAt,
       reasoning: result.vertical.value,
       upside:
         result.components.find(

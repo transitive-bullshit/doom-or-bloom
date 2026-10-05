@@ -22,6 +22,7 @@ import {
   compareUsers,
   directorySorts,
   directoryValue,
+  followersCapturedLabel,
   type DirectorySort
 } from './directory-sort'
 import { Input } from '@/components/ui/input'
@@ -350,7 +351,7 @@ export function Prism({
                 aria-hidden={sort !== 'followers'}
               >
                 {t('followersNote', {
-                  date: examples[0]?.followersCapturedAt?.slice(0, 10) ?? ''
+                  date: followersCapturedLabel(examples)
                 })}
               </p>
               <p
