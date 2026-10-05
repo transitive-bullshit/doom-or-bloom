@@ -95,6 +95,7 @@ export default async function Page({
                 sourceBriefUpdated: false
               }}
               assessment={presentation.assessment}
+              answersOpen
             />
           </AuthoredTextProvider>
         </SurfaceMessages>

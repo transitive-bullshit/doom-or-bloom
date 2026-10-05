@@ -30,7 +30,8 @@ export function PersonaPageContent({
   person,
   assessment,
   similar = [],
-  statements
+  statements,
+  answersOpen = false
 }: {
   person: Pick<
     Example,
@@ -50,6 +51,11 @@ export function PersonaPageContent({
   similar?: SimilarWorldview[]
   /** What the real person has said, below the map and its follow-ups. */
   statements?: Statements
+  /**
+   * Whether the questions and answers start expanded. Simulated answers start
+   * closed, one click away; published participant pages open their own.
+   */
+  answersOpen?: boolean
 }) {
   const t = useTranslations('Persona')
   return (
@@ -86,10 +92,7 @@ export function PersonaPageContent({
         className='mt-20 flex flex-col gap-4'
       >
         <h2>{t('simulatedAssessment')}</h2>
-        {/* With the real person's own words above, the simulated answers
-            start closed, one click away. Participant pages pass no
-            statements, so their answers stay open. */}
-        <PersonaAnswers assessment={assessment} defaultOpen={!statements} />
+        <PersonaAnswers assessment={assessment} defaultOpen={answersOpen} />
         <section aria-label={t('debugInfo')}>
           <Collapsible>
             <DisclosureTrigger>{t('debugInfo')}</DisclosureTrigger>

@@ -164,8 +164,7 @@ test('persona probability uses a dated public statement with its outcome and sou
 test('persona answer references open the transcript and navigate to the exact answer', async ({
   page
 }) => {
-  // With the person's own statements above them, the simulated answers start
-  // closed; a reference in the results still opens them.
+  // Simulated answers start closed; a reference in the results opens them.
   await page.goto('/users/geoffreyhinton')
   const disclosure = page.getByRole('button', {
     name: /View questions and simulated answers/
