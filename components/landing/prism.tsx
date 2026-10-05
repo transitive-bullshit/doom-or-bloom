@@ -20,12 +20,18 @@ import type { MapExample } from '@/components/landing/shared'
 import { NativeSelect } from '@/components/ui/native-select'
 import {
   compareUsers,
+  directoryFilters,
+  directoryPageSize,
   directorySorts,
   directoryValue,
   followersCapturedLabel,
+  matchesFilter,
+  type DirectoryFilter,
   type DirectorySort
 } from './directory-sort'
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
 const featuredOrder = [
   'alignment-maximalist',
@@ -79,9 +85,10 @@ const rank = (id: string) => featuredRanks.get(id) ?? featuredOrder.length
 const directoryPreferencesKey = 'doom-or-bloom:directory-sort:v1'
 
 type DirectoryPreferences = { sort: DirectorySort; direction: 'asc' | 'desc' }
+// Most followed first, so the people visitors most likely know lead the list.
 const defaultDirectoryPreferences: DirectoryPreferences = {
-  sort: 'name',
-  direction: 'asc'
+  sort: 'followers',
+  direction: 'desc'
 }
 const subscribePreferences = (notify: () => void) => {
   window.addEventListener('storage', notify)
@@ -136,12 +143,17 @@ export function Prism({
     serverPreferences
   )
   const [selection, setSelection] = useState<DirectoryPreferences | null>(null)
+  const [query, setQuery] = useState('')
+  const [filter, setFilter] = useState<DirectoryFilter>('all')
+  // The list grows by a page at a time; changing what it shows starts over.
+  const [shown, setShown] = useState(directoryPageSize)
   const { sort, direction } = selection ?? parsePreferences(storedPreferences)
   const selectOrder = (
     nextSort: DirectorySort,
     nextDirection: 'asc' | 'desc'
   ) => {
     setSelection({ sort: nextSort, direction: nextDirection })
+    setShown(directoryPageSize)
     try {
       localStorage.setItem(
         directoryPreferencesKey,
@@ -151,7 +163,6 @@ export function Prism({
       // Sorting still works when the browser disallows persistence.
     }
   }
-  const [query, setQuery] = useState('')
   const [portraits, setPortraits] = useState<
     Record<string, 'loaded' | 'failed'>
   >({})
@@ -162,13 +173,60 @@ export function Prism({
         .sort((a, b) => a.outlook! - b.outlook!),
     [examples]
   )
-  const portraitsReady = plotted.every((p) => portraits[p.avatar])
+  const search = query.trim().toLowerCase().replace(/^@/, '')
+  const legend = useMemo(
+    () =>
+      [...examples]
+        .filter(
+          (person) =>
+            !directory ||
+            (matchesFilter(person, filter) &&
+              `${person.name} ${person.shortName} ${person.slug}`
+                .toLowerCase()
+                .includes(search))
+        )
+        .sort((a, b) =>
+          directory
+            ? compareUsers(a, b, sort, direction)
+            : rank(a.id) - rank(b.id)
+        ),
+    [examples, directory, filter, search, sort, direction]
+  )
+  const listed = useMemo(
+    () => (directory ? legend.slice(0, shown) : legend),
+    [directory, legend, shown]
+  )
+  // The directory map shows portraits for the people listed and a dot for
+  // everyone else, so a few hundred users stay readable.
+  const pictured = useMemo(() => {
+    const ids = new Set(listed.map((p) => p.id))
+    return plotted.filter((p) => ids.has(p.id))
+  }, [plotted, listed])
+  const markers = useMemo(() => {
+    if (!directory) return []
+    const pictureIds = new Set(pictured.map((p) => p.id))
+    const matchIds = new Set(legend.map((p) => p.id))
+    return plotted
+      .filter((p) => !pictureIds.has(p.id))
+      .map((p) => ({ ...p, matches: matchIds.has(p.id) }))
+  }, [directory, plotted, pictured, legend])
+  const filterCounts = useMemo(
+    () =>
+      Object.fromEntries(
+        directoryFilters.map((key) => [
+          key,
+          examples.filter((person) => matchesFilter(person, key)).length
+        ])
+      ) as Record<DirectoryFilter, number>,
+    [examples]
+  )
+  const portraitsReady = pictured.every((p) => portraits[p.avatar])
   const chartRef = usePortraitLayout(
-    plotted,
+    pictured,
     portraitsReady,
     directory ? 'directory' : 'featured'
   )
-  const highlightRef = usePortraitHighlight(plotted)
+  const highlightRef = usePortraitHighlight(pictured)
   const prefetch = usePersonaPrefetch(highlightRef)
   const settlePortrait = (src: string, status: 'loaded' | 'failed') => {
     setPortraits((current) =>
@@ -179,24 +237,6 @@ export function Prism({
     unavailable: t('metricUnavailable'),
     followers: (count: number) => t('metricFollowers', { count })
   }
-  const search = query.trim().toLowerCase().replace(/^@/, '')
-  const legend = useMemo(
-    () =>
-      [...examples]
-        .filter(
-          (person) =>
-            !directory ||
-            `${person.name} ${person.shortName} ${person.slug}`
-              .toLowerCase()
-              .includes(search)
-        )
-        .sort((a, b) =>
-          directory
-            ? compareUsers(a, b, sort, direction)
-            : rank(a.id) - rank(b.id)
-        ),
-    [examples, directory, search, sort, direction]
-  )
   return (
     <section
       className='map-study study-prism prism-theme'
@@ -222,7 +262,26 @@ export function Prism({
         <div className='study-cross-y' />
         <span className='study-doom'>Doom</span>
         <span className='study-bloom'>Bloom</span>
-        {plotted.map((p, i) => (
+        {markers.map((p) => (
+          <PersonaLink
+            key={p.id}
+            intent={prefetch}
+            prefetchKey={`marker:${p.slug}`}
+            href={userHref(p.slug)}
+            className='study-marker'
+            style={{
+              left: `${p.outlook! * 100}%`,
+              top: `${(1 - p.transformation!) * 100}%`
+            }}
+            // The list reaches everyone, so markers stay out of the tab order.
+            tabIndex={-1}
+            data-matches={p.matches}
+            aria-label={t('viewResults', { name: p.name })}
+          >
+            <span>{p.name}</span>
+          </PersonaLink>
+        ))}
+        {pictured.map((p, i) => (
           <span
             key={p.id}
             className='study-dot'
@@ -231,12 +290,12 @@ export function Prism({
               {
                 left: `${p.outlook! * 100}%`,
                 top: `${(1 - p.transformation!) * 100}%`,
-                '--order': i / Math.max(1, plotted.length - 1)
+                '--order': i / Math.max(1, pictured.length - 1)
               } as CSSProperties
             }
           />
         ))}
-        {plotted.map((p) => (
+        {pictured.map((p) => (
           <PersonaLink
             key={p.id}
             intent={prefetch}
@@ -270,6 +329,29 @@ export function Prism({
       <div className='study-axis-bottom'>{t('axisBottom')}</div>
       {directory && (
         <div className='directory-controls mt-8 flex w-full flex-col gap-2 text-left'>
+          <ToggleGroup
+            type='single'
+            variant='outline'
+            size='sm'
+            spacing={2}
+            value={filter}
+            onValueChange={(value) => {
+              if (!value) return
+              setFilter(value as DirectoryFilter)
+              setShown(directoryPageSize)
+            }}
+            aria-label={t('filterLabel')}
+            className='directory-filters'
+          >
+            {directoryFilters.map((key) => (
+              <ToggleGroupItem key={key} value={key}>
+                {t(`filters.${key}`)}
+                <span className='directory-filter-count'>
+                  {filterCounts[key]}
+                </span>
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
           <div className='directory-controls-row'>
             <div className='flex min-w-0 flex-1 flex-col gap-1'>
               <label htmlFor='user-search'>{t('search')}</label>
@@ -278,7 +360,10 @@ export function Prism({
                 type='search'
                 placeholder={t('searchPlaceholder')}
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => {
+                  setQuery(event.target.value)
+                  setShown(directoryPageSize)
+                }}
                 aria-controls='simulated-users'
               />
             </div>
@@ -342,7 +427,7 @@ export function Prism({
           </div>
           <div className='directory-summary'>
             <p className='directory-count text-muted-foreground' role='status'>
-              {t('count', { shown: legend.length, total: examples.length })}
+              {t('count', { shown: listed.length, total: legend.length })}
             </p>
             <div className='directory-help'>
               <p
@@ -370,7 +455,7 @@ export function Prism({
         className='landing-map-legend study-legend'
         data-directory={directory}
       >
-        {legend.map((p) => (
+        {listed.map((p) => (
           <PersonaLink
             key={p.id}
             intent={prefetch}
@@ -398,6 +483,21 @@ export function Prism({
           </PersonaLink>
         ))}
       </div>
+      {directory && listed.length < legend.length && (
+        <div className='directory-more'>
+          <Button
+            variant='outline'
+            onClick={() => setShown((count) => count + directoryPageSize)}
+          >
+            {t('showMore', {
+              count: Math.min(directoryPageSize, legend.length - listed.length)
+            })}
+          </Button>
+          <Button variant='link' onClick={() => setShown(legend.length)}>
+            {t('showAll', { count: legend.length })}
+          </Button>
+        </div>
+      )}
       {directory && legend.length === 0 && (
         <p className='study-note'>{t('noMatches', { query })}</p>
       )}

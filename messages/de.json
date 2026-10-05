@@ -83,6 +83,14 @@
     "searchPlaceholder": "Namen oder @Handles durchsuchen",
     "sortBy": "Sortieren nach",
     "order": "Reihenfolge",
+    "filterLabel": "Simulierte Personen filtern",
+    "filters": {
+      "all": "Alle",
+      "doom": "Richtung Doom",
+      "mixed": "Gemischt",
+      "bloom": "Richtung Bloom",
+      "stated": "P(doom) angegeben"
+    },
     "nameAscending": "A–Z",
     "nameDescending": "Z–A",
     "doomFirst": "Doom zuerst",
@@ -90,6 +98,8 @@
     "lowToHigh": "Aufsteigend",
     "highToLow": "Absteigend",
     "count": "{shown} von {total} simulierten Nutzern",
+    "showMore": "Weitere {count} anzeigen",
+    "showAll": "Alle {count} anzeigen",
     "followersNote": "X-Zahlen erfasst am {date}. Nicht verfügbare Zahlen erscheinen zuletzt.",
     "scoresNote": "Die Bewertungen beschreiben simulierte Antworten. Fehlende Bewertungen erscheinen zuletzt.",
     "noMatches": "Keine Nutzer entsprechen „{query}“. Versuche es mit einem anderen Namen oder Nutzernamen.",

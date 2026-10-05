@@ -83,6 +83,14 @@
     "searchPlaceholder": "Cari nama atau @handle",
     "sortBy": "Urutkan berdasarkan",
     "order": "Urutan",
+    "filterLabel": "Filter pengguna simulasi",
+    "filters": {
+      "all": "Semua orang",
+      "doom": "Cenderung ke Doom",
+      "mixed": "Campuran",
+      "bloom": "Cenderung ke Bloom",
+      "stated": "Menyatakan P(doom)"
+    },
     "nameAscending": "A–Z",
     "nameDescending": "Z–A",
     "doomFirst": "Doom terlebih dahulu",
@@ -90,6 +98,8 @@
     "lowToHigh": "Rendah ke tinggi",
     "highToLow": "Tinggi ke rendah",
     "count": "{shown} dari {total} pengguna simulasi",
+    "showMore": "Tampilkan {count} lagi",
+    "showAll": "Tampilkan semua {count}",
     "followersNote": "Jumlah di X dicatat pada {date}. Jumlah yang tidak tersedia muncul terakhir.",
     "scoresNote": "Skor menggambarkan jawaban simulasi. Skor yang tidak tersedia muncul terakhir.",
     "noMatches": "Tidak ada pengguna yang cocok dengan “{query}”. Coba nama atau nama pengguna lain.",

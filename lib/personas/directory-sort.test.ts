@@ -4,7 +4,9 @@ import {
   directoryPdoom,
   directoryValue,
   directorySorts,
-  followersCapturedLabel
+  followersCapturedLabel,
+  matchesFilter,
+  outlookSide
 } from '@/components/landing/directory-sort'
 import type { Example, MapExample } from '@/components/landing/shared'
 import { resultSchema } from '@/lib/assessment/schema'
@@ -112,4 +114,24 @@ test('the follower note spans the capture dates of the counts it shows', () => {
     ])
   ).toBe('2026-09-25–2026-10-05')
   expect(followersCapturedLabel([person('a', null)])).toBe('')
+})
+
+test('directory filters split the map by nearest outlook level and stated P(doom)', () => {
+  expect([0, 0.37, 0.375, 0.6, 0.625, 1].map(outlookSide)).toEqual([
+    'doom',
+    'doom',
+    'mixed',
+    'mixed',
+    'bloom',
+    'bloom'
+  ])
+  expect(outlookSide(null)).toBeNull()
+  const person = (outlook: number | null, pdoomStated?: boolean) =>
+    ({ id: 'a', outlook, pdoomStated }) as MapExample
+  expect(matchesFilter(person(0.2), 'all')).toBe(true)
+  expect(matchesFilter(person(0.2), 'doom')).toBe(true)
+  expect(matchesFilter(person(0.2), 'bloom')).toBe(false)
+  expect(matchesFilter(person(null), 'mixed')).toBe(false)
+  expect(matchesFilter(person(0.9, true), 'stated')).toBe(true)
+  expect(matchesFilter(person(0.9), 'stated')).toBe(false)
 })

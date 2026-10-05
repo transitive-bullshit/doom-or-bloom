@@ -30,6 +30,8 @@ export type Example = {
   followersCapturedAt?: string
   pdoom?: number | null
   pdoomLabel?: string
+  /** The P(doom) is the real person's verified public statement. */
+  pdoomStated?: boolean
   reasoning?: number | null
   upside?: number | null
   harm?: number | null
@@ -59,6 +61,7 @@ export type MapExample = Pick<
   | 'followersCapturedAt'
   | 'pdoom'
   | 'pdoomLabel'
+  | 'pdoomStated'
   | 'reasoning'
   | 'upside'
   | 'harm'

@@ -44,6 +44,32 @@ export function compareUsers(
   if (right === null) return -1
   return (direction === 'asc' ? left - right : right - left) || byName
 }
+/** The directory lists this many people at first and per “Show more”. */
+export const directoryPageSize = 48
+
+// Labels live in messages/<locale>.json under Landing.filters.
+export const directoryFilters = [
+  'all',
+  'doom',
+  'mixed',
+  'bloom',
+  'stated'
+] as const
+export type DirectoryFilter = (typeof directoryFilters)[number]
+/**
+ * The side of the map an outlook falls on, by its nearest outlook level:
+ * concern-leaning or below, mixed, or benefit-leaning or above.
+ */
+export function outlookSide(outlook: number | null) {
+  if (outlook === null) return null
+  return outlook < 0.375 ? 'doom' : outlook < 0.625 ? 'mixed' : 'bloom'
+}
+export function matchesFilter(person: MapExample, filter: DirectoryFilter) {
+  if (filter === 'all') return true
+  if (filter === 'stated') return person.pdoomStated === true
+  return outlookSide(person.outlook) === filter
+}
+
 /** The date, or the span of dates, on which the shown X counts were captured. */
 export function followersCapturedLabel(people: MapExample[]) {
   const dates = people

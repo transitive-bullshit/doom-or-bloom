@@ -83,6 +83,14 @@
     "searchPlaceholder": "搜索姓名或 @用户名",
     "sortBy": "排序依据",
     "order": "顺序",
+    "filterLabel": "筛选模拟用户",
+    "filters": {
+      "all": "所有人",
+      "doom": "偏向 Doom",
+      "mixed": "混合",
+      "bloom": "偏向 Bloom",
+      "stated": "给出了 P(doom)"
+    },
     "nameAscending": "A–Z",
     "nameDescending": "Z–A",
     "doomFirst": "Doom 优先",
@@ -90,6 +98,8 @@
     "lowToHigh": "从低到高",
     "highToLow": "从高到低",
     "count": "{total} 个模拟用户中的 {shown} 个",
+    "showMore": "再显示 {count} 个",
+    "showAll": "显示全部 {count} 个",
     "followersNote": "X 粉丝数采集于 {date}。无法获取的粉丝数排在最后。",
     "scoresNote": "分数描述的是模拟回答。缺失分数排在最后。",
     "noMatches": "没有用户匹配“{query}”。请尝试其他姓名或用户名。",

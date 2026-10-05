@@ -493,7 +493,10 @@ test('the directory lists every profile, and About describes the site', async ({
     mainEntity: { '@id': `${site}/users#people` },
     breadcrumb: { '@id': `${site}/users#breadcrumb` }
   })
-  // The same profiles in the grid's default order.
+  // Every profile in the full grid, listed alphabetically by name.
+  await page.getByLabel('Sort by', { exact: true }).selectOption('name')
+  await page.getByLabel('Order', { exact: true }).selectOption('asc')
+  await page.getByRole('button', { name: /^Show all/ }).click()
   const links = await page
     .locator('.study-legend a')
     .evaluateAll((anchors) =>

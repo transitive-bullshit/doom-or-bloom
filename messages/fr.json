@@ -83,6 +83,14 @@
     "searchPlaceholder": "Rechercher des noms ou des identifiants @",
     "sortBy": "Trier par",
     "order": "Ordre",
+    "filterLabel": "Filtrer les utilisateurs simulés",
+    "filters": {
+      "all": "Tout le monde",
+      "doom": "Vers Doom",
+      "mixed": "Mitigé",
+      "bloom": "Vers Bloom",
+      "stated": "A indiqué une P(doom)"
+    },
     "nameAscending": "A–Z",
     "nameDescending": "Z–A",
     "doomFirst": "Doom en premier",
@@ -90,6 +98,8 @@
     "lowToHigh": "Du plus bas au plus élevé",
     "highToLow": "Du plus élevé au plus bas",
     "count": "{shown} sur {total} utilisateurs simulés",
+    "showMore": "Afficher {count} de plus",
+    "showAll": "Afficher les {count}",
     "followersNote": "Nombre d’abonnés sur X relevé le {date}. Les nombres indisponibles apparaissent en dernier.",
     "scoresNote": "Les scores décrivent des réponses simulées. Les scores manquants apparaissent en dernier.",
     "noMatches": "Aucun utilisateur ne correspond à « {query} ». Essayez un autre nom ou identifiant.",

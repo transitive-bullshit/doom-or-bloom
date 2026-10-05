@@ -83,6 +83,14 @@
     "searchPlaceholder": "ค้นหาชื่อหรือ @handle",
     "sortBy": "เรียงตาม",
     "order": "ลำดับ",
+    "filterLabel": "กรองผู้ใช้จำลอง",
+    "filters": {
+      "all": "ทุกคน",
+      "doom": "ไปทาง Doom",
+      "mixed": "ผสม",
+      "bloom": "ไปทาง Bloom",
+      "stated": "ระบุ P(doom)"
+    },
     "nameAscending": "A–Z",
     "nameDescending": "Z–A",
     "doomFirst": "Doom ก่อน",
@@ -90,6 +98,8 @@
     "lowToHigh": "ต่ำไปสูง",
     "highToLow": "สูงไปต่ำ",
     "count": "ผู้ใช้จำลอง {shown} จาก {total} ราย",
+    "showMore": "แสดงเพิ่มอีก {count}",
+    "showAll": "แสดงทั้งหมด {count}",
     "followersNote": "จำนวนบน X บันทึกเมื่อ {date} จำนวนที่ไม่มีข้อมูลจะแสดงท้ายสุด",
     "scoresNote": "คะแนนอธิบายคำตอบจำลอง คะแนนที่ไม่มีข้อมูลจะแสดงท้ายสุด",
     "noMatches": "ไม่พบผู้ใช้ที่ตรงกับ “{query}” ลองใช้ชื่อหรือชื่อบัญชีอื่น",

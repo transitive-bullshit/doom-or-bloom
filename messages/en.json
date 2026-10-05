@@ -83,6 +83,14 @@
     "searchPlaceholder": "Search names or @handles",
     "sortBy": "Sort by",
     "order": "Order",
+    "filterLabel": "Filter simulated users",
+    "filters": {
+      "all": "Everyone",
+      "doom": "Toward doom",
+      "mixed": "Mixed",
+      "bloom": "Toward bloom",
+      "stated": "Stated a P(doom)"
+    },
     "nameAscending": "A–Z",
     "nameDescending": "Z–A",
     "doomFirst": "Doom first",
@@ -90,6 +98,8 @@
     "lowToHigh": "Low to high",
     "highToLow": "High to low",
     "count": "{shown} of {total} simulated users",
+    "showMore": "Show {count} more",
+    "showAll": "Show all {count}",
     "followersNote": "X counts captured {date}. Unavailable counts appear last.",
     "scoresNote": "Scores describe simulated answers. Missing scores appear last.",
     "noMatches": "No users match “{query}”. Try another name or handle.",

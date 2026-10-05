@@ -83,6 +83,14 @@
     "searchPlaceholder": "名前または@ハンドルを検索",
     "sortBy": "並べ替え基準",
     "order": "順序",
+    "filterLabel": "シミュレーションされたユーザーを絞り込む",
+    "filters": {
+      "all": "全員",
+      "doom": "Doom寄り",
+      "mixed": "混合",
+      "bloom": "Bloom寄り",
+      "stated": "P(doom)を明示"
+    },
     "nameAscending": "A–Z",
     "nameDescending": "Z–A",
     "doomFirst": "Doomを先に表示",
@@ -90,6 +98,8 @@
     "lowToHigh": "低い順",
     "highToLow": "高い順",
     "count": "シミュレーションされたユーザー{total}人中{shown}人",
+    "showMore": "さらに{count}件表示",
+    "showAll": "{count}件すべて表示",
     "followersNote": "Xのカウントは{date}時点です。取得できないカウントは最後に表示されます。",
     "scoresNote": "スコアはシミュレーションされた回答を示します。スコアがない場合は最後に表示されます。",
     "noMatches": "「{query}」に一致するユーザーはいません。別の名前またはハンドル名をお試しください。",
