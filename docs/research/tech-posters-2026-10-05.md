@@ -128,4 +128,4 @@ pnpm personas:import plan --env .env.production.local --ids $IDS
 pnpm personas:import write --env .env.production.local --ids $IDS
 ```
 
-Follower counts for the new accounts are not yet in `lib/personas/x-followers.json`; `node --import tsx scripts/refresh-x-followers.ts` adds them once X API credits return.
+Follower counts for the 34 come from one paced `bird` read per account on October 5: a post each account wrote, whose author record carries its exact `followers_count` and account ID (Theo's came from his timeline's first post). All 34 account IDs match the research. As with batch 1, they join the September 25 snapshot in `lib/personas/x-followers.json` without recapturing the other accounts; `scripts/refresh-x-followers.ts` recaptures everyone on one date once X API credits return.
