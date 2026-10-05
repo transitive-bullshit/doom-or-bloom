@@ -121,6 +121,8 @@ Official or publisher photographs identify fictional simulations, not participat
 - `stewart.jpg`: Jon Stewart’s [official Daily Show page](https://www.cc.com/shows/the-daily-show), [cast photograph](https://images.paramount.tech/uri/mgid:arc:imageassetref:ws.cc.com:d23e1db7-8f17-4e38-85eb-87cf04cc82aa?quality=0.7&gen=ntrn&format=jpg&width=1200&height=630&crop=true). Only Stewart, at the center, is selected for the portrait crop.
 - `warren.jpg`: Elizabeth Warren’s [official Senate biography](https://www.warren.senate.gov/about/about-elizabeth), [photograph](https://www.warren.senate.gov/wp-content/uploads/2026/02/Warren_About_Banner.jpg).
 
+- `spartz.jpg`: Drew Spartz’s public [X profile](https://x.com/AISpecies), [portrait](https://pbs.twimg.com/profile_images/2106633227645648896/M0fsAhcy_400x400.jpg), account ID `1809057908237479936`, downloaded October 5, 2026. The avatar is his photo inside a temporary “SLOW DOWN AI #TEAMHUMAN” campaign ring; the portrait is cropped to the photo.
+
 <!-- tech-posters:start -->
 
 Top tech posters, added October 5, 2026: current X avatars at `_400x400`, recorded by the research for each account and re-encoded as JPEG. They identify public accounts from the [top tech posters vote](https://tech50x.snytch.ai/) (snapshot in `docs/research/tech-posters-accounts-2026-10-05.json`) and do not imply participation or endorsement.

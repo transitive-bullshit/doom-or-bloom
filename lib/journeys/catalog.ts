@@ -17,6 +17,7 @@ import { vittorioPublicPersona } from './vittorio-public-persona'
 import { naamPublicPersona } from './naam-public-persona'
 import { bostromPublicPersona } from './bostrom-public-persona'
 import { marwellPublicPersona } from './marwell-public-persona'
+import { spartzPublicPersona } from './spartz-public-persona'
 import { researchCriticPersonas } from './research-critic-personas'
 import { riskAdvocatePersonas } from './risk-advocate-personas'
 import { safetyPolicyPersonas } from './safety-policy-personas'
@@ -92,6 +93,7 @@ const narrativePersonas: Persona[] = [
   ...politicalEconomyPersonas,
   ...civicCulturalPersonas,
   ...techPosterPersonas,
+  spartzPublicPersona,
   {
     id: 'worried-novice',
     voice: [

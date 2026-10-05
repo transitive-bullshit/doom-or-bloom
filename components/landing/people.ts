@@ -1068,7 +1068,21 @@ const catalog = [
     stance: 'A simulated worldview grounded in public sources.',
     tone: 'middle' as const,
     featured: false
-  }))
+  })),
+  {
+    id: 'drew-spartz',
+    name: 'Drew Spartz',
+    shortName: 'Drew Spartz',
+    slug: 'aispecies',
+    xUsername: 'aispecies',
+    xUrl: 'https://x.com/AISpecies',
+    avatar: '/personas/spartz.jpg',
+    initials: 'DS',
+    possessivePronoun: 'his' as const,
+    stance: 'A simulated worldview grounded in public sources.',
+    tone: 'middle' as const,
+    featured: false
+  }
 ]
 
 // One-liners live in one file, under the rule that governs how we describe
