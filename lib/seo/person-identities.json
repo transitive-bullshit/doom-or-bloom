@@ -3,6 +3,10 @@
     "wikipedia": "https://en.wikipedia.org/wiki/Aella_(writer)",
     "wikidata": "https://www.wikidata.org/wiki/Q116761435"
   },
+  "alexandr_wang": {
+    "wikipedia": "https://en.wikipedia.org/wiki/Alexandr_Wang",
+    "wikidata": "https://www.wikidata.org/wiki/Q112629173"
+  },
   "amcafee": {
     "wikipedia": "https://en.wikipedia.org/wiki/Andrew_McAfee",
     "wikidata": "https://www.wikidata.org/wiki/Q15109666"
@@ -34,6 +38,10 @@
   "billgates": {
     "wikipedia": "https://en.wikipedia.org/wiki/Bill_Gates",
     "wikidata": "https://www.wikidata.org/wiki/Q5284"
+  },
+  "bryan_johnson": {
+    "wikipedia": "https://en.wikipedia.org/wiki/Bryan_Johnson",
+    "wikidata": "https://www.wikidata.org/wiki/Q16730341"
   },
   "caseynewton": {
     "wikipedia": "https://en.wikipedia.org/wiki/Casey_Newton",
@@ -90,6 +98,10 @@
   "emollick": {
     "wikipedia": "https://en.wikipedia.org/wiki/Ethan_Mollick",
     "wikidata": "https://www.wikidata.org/wiki/Q109621287"
+  },
+  "emostaque": {
+    "wikipedia": "https://en.wikipedia.org/wiki/Emad_Mostaque",
+    "wikidata": "https://www.wikidata.org/wiki/Q114049362"
   },
   "esyudkowsky": {
     "wikipedia": "https://en.wikipedia.org/wiki/Eliezer_Yudkowsky",
@@ -150,6 +162,10 @@
   "liang-wenfeng": {
     "wikipedia": "https://en.wikipedia.org/wiki/Liang_Wenfeng",
     "wikidata": "https://www.wikidata.org/wiki/Q131847088"
+  },
+  "lindayax": {
+    "wikipedia": "https://en.wikipedia.org/wiki/Linda_Yaccarino",
+    "wikidata": "https://www.wikidata.org/wiki/Q115655652"
   },
   "martin_casado": {
     "wikipedia": "https://en.wikipedia.org/wiki/Martin_Casado",
@@ -219,6 +235,10 @@
     "wikipedia": "https://en.wikipedia.org/wiki/J%C3%BCrgen_Schmidhuber",
     "wikidata": "https://www.wikidata.org/wiki/Q92735"
   },
+  "scobleizer": {
+    "wikipedia": "https://en.wikipedia.org/wiki/Robert_Scoble",
+    "wikidata": "https://www.wikidata.org/wiki/Q1086204"
+  },
   "sensanders": {
     "wikipedia": "https://en.wikipedia.org/wiki/Bernie_Sanders",
     "wikidata": "https://www.wikidata.org/wiki/Q359442"
@@ -250,6 +270,10 @@
   "thezvi": {
     "wikipedia": "https://en.wikipedia.org/wiki/Zvi_Mowshowitz",
     "wikidata": "https://www.wikidata.org/wiki/Q8075542"
+  },
+  "thsottiaux": {
+    "wikipedia": "https://en.wikipedia.org/wiki/Thibault_Sottiaux",
+    "wikidata": "https://www.wikidata.org/wiki/Q141464944"
   },
   "timnitgebru": {
     "wikipedia": "https://en.wikipedia.org/wiki/Timnit_Gebru",

@@ -147,3 +147,11 @@ Added source-grounded simulations and real quotation sections for Cory Doctorow,
 ## Jesse Genet unfeatured — October 4, 2026
 
 At Travis's request, Jesse Genet was removed from the featured set; her simulation and `/users/jessegenet` profile stay in the general directory. The production featured flag was synced with `personas:sync-metadata`, and the site social image was regenerated from the snapshot without her point. No interview was regenerated.
+
+## Top tech posters — October 5, 2026
+
+Added 34 source-grounded simulated users from the top 100 of the [Top 50 Tech Posters on X](https://tech50x.snytch.ai/) vote; 15 listed accounts were already simulated and 51 were researched and excluded, each with a recorded reason. Briefs average about 11.5 inspected sources from the accounts' own words. X browsing in the logged-in web app stopped partway when X rate-limited the account; the rest came from web search, X's public embed endpoint and, sparingly, the X API. One verified P(doom) statement was recorded (Emad Mostaque, ≈20%). Each batch generated as `--group=tech-posters-<letter>` for an estimated $3.47 in all; a fidelity review fixed two briefs and regenerated those users. The selected runs are local only; all are in the directory with `featured: false`. The [batch record](tech-posters-2026-10-05.md) links the nine research records and gives placements, coverage limits, verification and the import command.
+
+## Drew Spartz (@AISpecies) — October 5, 2026
+
+At Travis's request, added [Drew Spartz](ai-species-persona-2026-10-05.md) at `/users/aispecies`, who makes the Species YouTube channel about AI risk. The brief has 12 sources, nine of them his own video narration (transcripts only, with quoted clips, scenarios and other people's estimates excluded) and three X posts; he states no P(doom) of his own. One local run placed him concern-leaning (outlook 11.2) for an estimated $0.12. The run is local only, with `featured: false`.

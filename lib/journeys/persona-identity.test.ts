@@ -48,3 +48,41 @@ test('Independent 100 preserves original users and features the three selected a
   ).toHaveLength(97)
   expect(people.filter((person) => person.featured)).toHaveLength(47)
 })
+
+test('top tech posters map to one existing or added user, or a recorded exclusion', async () => {
+  const { default: directory } =
+    await import('../../docs/research/tech-posters-accounts-2026-10-05.json')
+  const rows = directory.accounts.map((account) => {
+    const matching = people.filter(
+      (person) => person.xUsername === account.handle.toLowerCase()
+    )
+    const brief = personas.find((entry) => entry.id === matching[0]?.id)
+    return {
+      handle: account.handle,
+      status: account.status,
+      matches: matching.length,
+      reason: account.status === 'excluded' && Boolean(account.reason),
+      addedAs: account.status === 'added' ? matching[0]?.id : undefined,
+      featured: account.status === 'added' ? matching[0]?.featured : undefined,
+      sources: account.status === 'added' ? (brief?.sources.length ?? 0) : 0
+    }
+  })
+  const excluded = rows.filter((row) => row.status === 'excluded')
+  const kept = rows.filter((row) => row.status !== 'excluded')
+  const added = directory.accounts.filter(
+    (account) => account.status === 'added'
+  )
+  expect(excluded.filter((row) => row.matches || !row.reason)).toEqual([])
+  expect(kept.filter((row) => row.matches !== 1)).toEqual([])
+  expect(
+    kept.filter((row) => !['existing', 'added'].includes(row.status))
+  ).toEqual([])
+  expect(
+    rows.filter((row) => row.status === 'added').map((row) => row.addedAs)
+  ).toEqual(added.map((account) => account.personaId))
+  expect(
+    rows.filter(
+      (row) => row.status === 'added' && (row.featured || row.sources < 6)
+    )
+  ).toEqual([])
+})

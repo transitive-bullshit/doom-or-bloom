@@ -17,6 +17,7 @@ import { vittorioPublicPersona } from './vittorio-public-persona'
 import { naamPublicPersona } from './naam-public-persona'
 import { bostromPublicPersona } from './bostrom-public-persona'
 import { marwellPublicPersona } from './marwell-public-persona'
+import { spartzPublicPersona } from './spartz-public-persona'
 import { researchCriticPersonas } from './research-critic-personas'
 import { riskAdvocatePersonas } from './risk-advocate-personas'
 import { safetyPolicyPersonas } from './safety-policy-personas'
@@ -26,6 +27,7 @@ import { independentPersonas } from './independent-personas'
 import { culturalWriterPersonas } from './cultural-writer-personas'
 import { politicalEconomyPersonas } from './political-economy-personas'
 import { civicCulturalPersonas } from './civic-cultural-personas'
+import { techPosterPersonas } from './tech-poster-personas'
 
 // Narrative context only. Answers and assessment judgments are generated live.
 export const personaSchema = z.strictObject({
@@ -90,6 +92,8 @@ const narrativePersonas: Persona[] = [
   ...culturalWriterPersonas,
   ...politicalEconomyPersonas,
   ...civicCulturalPersonas,
+  ...techPosterPersonas,
+  spartzPublicPersona,
   {
     id: 'worried-novice',
     voice: [

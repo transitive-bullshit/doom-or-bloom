@@ -44,6 +44,17 @@ export function compareUsers(
   if (right === null) return -1
   return (direction === 'asc' ? left - right : right - left) || byName
 }
+/** The date, or the span of dates, on which the shown X counts were captured. */
+export function followersCapturedLabel(people: MapExample[]) {
+  const dates = people
+    .filter((person) => person.followers != null && person.followersCapturedAt)
+    .map((person) => person.followersCapturedAt!.slice(0, 10))
+    .sort()
+  if (!dates.length) return ''
+  const first = dates[0]!
+  const last = dates.at(-1)!
+  return first === last ? first : `${first}–${last}`
+}
 const englishText = {
   unavailable: 'Not available',
   followers: (count: number) => `${count.toLocaleString('en-US')} followers`

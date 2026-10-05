@@ -3,9 +3,10 @@ import {
   compareUsers,
   directoryPdoom,
   directoryValue,
-  directorySorts
+  directorySorts,
+  followersCapturedLabel
 } from '@/components/landing/directory-sort'
-import type { Example } from '@/components/landing/shared'
+import type { Example, MapExample } from '@/components/landing/shared'
 import { resultSchema } from '@/lib/assessment/schema'
 import recorded from '@/lib/journeys/__fixtures__/sample-journeys.json'
 
@@ -89,4 +90,26 @@ test('numeric sorts preserve zero, put missing values last in both directions, a
         .map((p) => p.id)
     ).toEqual(['a', 'b', 'zero', 'missing'])
   }
+})
+
+test('the follower note spans the capture dates of the counts it shows', () => {
+  const person = (
+    id: string,
+    followers: number | null,
+    followersCapturedAt?: string
+  ) => ({ id, followers, followersCapturedAt }) as MapExample
+  expect(
+    followersCapturedLabel([
+      person('a', 10, '2026-09-25T10:53:48.171Z'),
+      person('b', 20, '2026-09-25T10:53:48.171Z')
+    ])
+  ).toBe('2026-09-25')
+  expect(
+    followersCapturedLabel([
+      person('a', 10, '2026-10-05'),
+      person('b', 20, '2026-09-25T10:53:48.171Z'),
+      person('c', null, '2026-10-09')
+    ])
+  ).toBe('2026-09-25–2026-10-05')
+  expect(followersCapturedLabel([person('a', null)])).toBe('')
 })

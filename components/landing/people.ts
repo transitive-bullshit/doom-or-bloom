@@ -1,5 +1,9 @@
 import { personaIdentity } from '@/lib/journeys/persona-identity'
 import { independentPersonas } from '@/lib/journeys/independent-personas'
+import {
+  techPosterPersonas,
+  techPosterPronouns
+} from '@/lib/journeys/tech-poster-personas'
 import { oneLiner } from './one-liners'
 
 const profiles = [
@@ -1043,6 +1047,39 @@ const catalog = [
     initials: 'EW',
     possessivePronoun: 'her' as const,
     stance: 'Set safeguards. Share benefits. Protect the public.',
+    tone: 'middle' as const,
+    featured: false
+  },
+  ...techPosterPersonas.map((person) => ({
+    id: person.id,
+    name: person.name,
+    shortName: person.shortName ?? person.name,
+    slug: person.slug!,
+    xUsername: person.xUsername!,
+    xUrl: `https://x.com/${person.xUsername}`,
+    avatar: `/personas/${person.slug}.jpg`,
+    initials: person.name
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part[0])
+      .join('')
+      .toUpperCase(),
+    possessivePronoun: techPosterPronouns[person.slug!] ?? ('their' as const),
+    stance: 'A simulated worldview grounded in public sources.',
+    tone: 'middle' as const,
+    featured: false
+  })),
+  {
+    id: 'drew-spartz',
+    name: 'Drew Spartz',
+    shortName: 'Drew Spartz',
+    slug: 'aispecies',
+    xUsername: 'aispecies',
+    xUrl: 'https://x.com/AISpecies',
+    avatar: '/personas/spartz.jpg',
+    initials: 'DS',
+    possessivePronoun: 'his' as const,
+    stance: 'A simulated worldview grounded in public sources.',
     tone: 'middle' as const,
     featured: false
   }

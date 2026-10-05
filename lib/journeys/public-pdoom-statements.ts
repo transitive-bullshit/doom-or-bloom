@@ -429,5 +429,19 @@ export const publicPdoomStatements: Record<
     conditions:
       'Self-reported figure he says he would sometimes give in private conversations, disclosed in his own essay with the caveat that “doom” is nebulous. In the same passage he says he had declined to give anything interpretable as a p(doom) in public until he could explain the layers of doom, which this essay sets out to do; the essay does not restate 12% as a fresh all-things-considered number. Separately he puts the “paperclipper” (successor that retains nothing of value) outcome in the sub-1% range. LessWrong publication date; a blog copy is dated 2025-10-27.',
     quote: "In private conversations I'd sometimes give my p(doom) as 12%"
+  },
+  'emad-mostaque': {
+    token: '≈20%',
+    bounds: [0.2, 0.2],
+    estimate: 0.2,
+    title: 'Intelligence isn’t a crime',
+    url: 'https://x.com/EMostaque/status/2098909197265985802',
+    publishedAt: '2026-09-12',
+    outcome:
+      'His “long-term p(Doom)”, not further defined here. Earlier, when he gave 50%, he described doom as more capable AI systems wiping humanity out',
+    horizon: 'Long-term; no calendar horizon given for the 20%',
+    conditions:
+      'Revised down from the 50% he gave from December 2024 through April 2026 interviews; he says he first gave 20% on that week’s Moonshots episode, which was not inspected, and promised more detail. Stated in his own X article responding to Dario Amodei’s frontier-pacing essay; full text read via the X API.',
+    quote: "down to 20% now as said on this week's Moonshots"
   }
 }
