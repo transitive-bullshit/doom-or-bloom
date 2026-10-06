@@ -8,62 +8,62 @@ import doomerVsMood from './data/launch-week-doomer-vs-mood.json'
 import referrersByDay from './data/launch-week-referrers-by-day.json'
 import oldVsNewQuestions from './data/launch-week-old-vs-new-questions.json'
 
-**Orang-orang yang mengikuti Doom or Bloom selama gelombang Hacker News kami (25–26 Sep 2026) memiliki median pandangan 0,32 pada skala dari 0 (Doom) hingga 1 (Bloom), dibandingkan dengan 0,68 untuk gelombang X dua hari kemudian (27–28 Sep). Namun, kedua kelompok sama-sama memiliki sekitar 6% orang yang memperkirakan terjadinya bencana besar, dan 38–40% orang dengan P(doom) sebesar 10% atau lebih.**
+**Orang-orang yang mengikuti Doom or Bloom selama gelombang Hacker News kami (25–26 Sep 2026) memiliki median pandangan 0,32 pada skala dari 0 (Doom) hingga 1 (Bloom), dibandingkan dengan 0,68 untuk gelombang X dua hari kemudian (27–28 Sep). Namun, kedua kelompok memiliki sekitar 6% orang yang memperkirakan katastrofe, dan persentase yang sama sebesar 38–40% dengan P(doom) 10% atau lebih.**
 
-Kami meluncurkan [Doom or Bloom](/) pada 25 September. Ini adalah wawancara adaptif singkat (sekitar 3 menit) yang menempatkan Anda pada sebuah peta: seberapa baik atau buruk Anda memperkirakan dampak akhir AI, dari Doom hingga Bloom, dan seberapa besar Anda memperkirakan AI akan mengubah dunia. Anda juga mendapatkan P(doom), baik yang Anda masukkan sendiri maupun estimasi kasar yang kami simpulkan.
+Kami meluncurkan [Doom or Bloom](/) pada 25 September. Ini adalah wawancara adaptif singkat (sekitar 3 menit) yang menempatkan Anda di sebuah peta: seberapa baik atau buruk AI menurut perkiraan Anda pada akhirnya, dari Doom hingga Bloom, dan seberapa besar AI menurut perkiraan Anda akan mengubah dunia. Anda juga mendapatkan P(doom), baik yang Anda masukkan sendiri maupun estimasi kasar yang kami simpulkan.
 
-Pekan peluncuran berlangsung dalam dua gelombang berbeda. Pertama, sebuah unggahan Hacker News mendatangkan hampir seluruh lalu lintas pada 25–26 Sep. Kemudian, setelah gelombang itu mereda, gelombang lain datang dari X pada 27–28 Sep. Kedua kelompok tampak begitu berbeda di peta sehingga kami ingin memeriksa apakah perbedaan itu nyata, atau sekadar akibat sesuatu yang kami rusak di antara keduanya. Angka-angka ini berlaku per 3 Oktober 2026.
+Pekan peluncuran berlangsung dalam dua gelombang yang berbeda. Pertama, sebuah kiriman Hacker News mendatangkan hampir seluruh lalu lintas pada 25–26 Sep. Kemudian, setelah gelombang itu mereda, sebuah gelombang datang dari X pada 27–28 Sep. Kedua kelompok tampak begitu berbeda di peta sehingga kami ingin memeriksa apakah perbedaan itu nyata, atau sekadar akibat sesuatu yang kami rusak di antaranya. Angka-angka ini berlaku per 3 Oktober 2026.
 
-## Perbedaan utama
+## Perbedaan utamanya
 
 <DataBars data={outlookByWave} />
 
-Hasil interpretasi yang paling umum untuk gelombang Hacker News adalah “terutama memperkirakan kerugian”: 51% dari mereka, dibandingkan dengan 20% dari gelombang X. Gelombang X menumpuk di sisi sebaliknya: 30% diinterpretasikan sebagai “antusias”, dibandingkan dengan 5% di Hacker News.
+Pembacaan yang paling umum untuk gelombang Hacker News adalah “terutama memperkirakan kerugian”: 51% dari mereka, dibandingkan dengan 20% dari gelombang X. Gelombang X menumpuk di sisi lain: 30% terbaca sebagai “antusias”, dibandingkan dengan 5% di Hacker News.
 
 Dalam angka:
 
-- **Median pandangan:** 0,32 di Hacker News (interval 95% 0,30–0,35), dibandingkan dengan 0,68 di X (0,59–0,73). Perbedaannya adalah 0,36 (0,27–0,41)
-- **Sisi Doom (pandangan di bawah 0,4):** 59% di Hacker News, dibandingkan dengan 28% di X
-- **Sisi Bloom (di atas 0,6):** 24% di Hacker News, dibandingkan dengan 56% di X
+- **Median pandangan:** 0,32 di Hacker News (interval 95% 0,30–0,35) dibandingkan dengan 0,68 di X (0,59–0,73). Selisihnya adalah 0,36 (0,27–0,41)
+- **Sisi Doom (pandangan di bawah 0,4):** 59% di Hacker News dibandingkan dengan 28% di X
+- **Sisi Bloom (di atas 0,6):** 24% di Hacker News dibandingkan dengan 56% di X
 - **Pilih secara acak satu orang dari setiap gelombang**, dan orang dari X lebih condong ke Bloom dalam 71% kasus (Mann–Whitney p \< 10⁻²³, ukuran efek rank-biserial 0,43)
 
 ## Namun Hacker News tidak lebih doomer
 
-Ini bagian yang tidak kami duga. Jika “doomer” berarti memperkirakan bencana, atau memberikan P(doom) yang tinggi, kedua kelompok pada dasarnya sama.
+Ini bagian yang tidak kami perkirakan. Jika “doomer” berarti memperkirakan katastrofe, atau memberikan P(doom) yang tinggi, kedua kelompok tersebut pada dasarnya sama.
 
 <DataBars data={doomerVsMood} />
 
-- **Memperkirakan bencana sebagai hasil yang paling mungkin:** 6,5% di Hacker News dibandingkan dengan 5,7% di X (Fisher p = 0,76)
+- **Memperkirakan katastrofe sebagai hasil yang paling mungkin:** 6,5% di Hacker News dibandingkan dengan 5,7% di X (Fisher p = 0,76)
 - **P(doom) yang ditampilkan sebesar 10% atau lebih:** 38% dibandingkan dengan 40% (p = 0,60)
 - **P(doom) yang ditampilkan sebesar 30% atau lebih:** 22% dibandingkan dengan 17% (p = 0,10, tidak signifikan)
 - **Median P(doom) yang ditampilkan:** 6,0% dibandingkan dengan 6,3%
 
-Satu catatan: hampir semua orang dalam gelombang Hacker News mendapatkan P(doom) yang _diinferensikan_, karena saat itu wawancara belum meminta angka, dan nilai yang diinferensikan bersifat kasar serta cenderung terdorong ke tengah. Jadi, baris P(doom) merupakan bukti yang lebih lemah daripada baris bencana, yang berasal dari pembacaan yang sama dengan pandangan itu sendiri.
+Satu catatan: hampir semua orang dalam gelombang Hacker News mendapatkan P(doom) yang _disimpulkan_, karena saat itu wawancara belum meminta angka, dan nilai yang disimpulkan bersifat kasar serta cenderung terdesak ke tengah. Jadi, baris P(doom) merupakan bukti yang lebih lemah daripada baris katastrofe, yang berasal dari interpretasi yang sama dengan pandangan itu sendiri.
 
-Peta yang lebih terperinci menambahkan satu detail. Sejak 4 Oktober, peta tersebut menempatkan orang di antara kelima tingkat pandangannya, bukan tepat pada tingkat-tingkat itu, dan dalam kategori “terutama memperkirakan kerugian”, kelompok Hacker News lebih condong ke ujung bencana: 13% dari mereka berada di bawah 0,125 pada sumbu pandangan, dibandingkan dengan 8% dari gelombang X (p = 0,02). Jadi, sedikit lebih banyak dari mereka berada di dekat ujung tersebut, meskipun proporsi yang secara langsung memperkirakan bencana tetap sama.
+Peta yang lebih terperinci menambahkan satu detail. Sejak 4 Oktober, peta itu menempatkan orang di antara kelima tingkat pandangannya, bukan tepat pada tingkat-tingkat tersebut, dan di dalam kategori “terutama memperkirakan kerugian”, kelompok Hacker News lebih condong ke arah ujung katastrofe: 13% dari mereka berada di bawah 0,125 pada sumbu pandangan, dibandingkan dengan 8% dari gelombang X (p = 0,02). Jadi, sedikit lebih banyak dari mereka berada di dekat ujung tersebut, meskipun proporsi yang secara tegas memperkirakan katastrofe tetap sama.
 
-Jadi, perbedaannya sebagian besar bukan tentang kepunahan. Perbedaannya adalah suasana hati. Kelompok Hacker News sebagian besar memperkirakan AI akan lebih banyak membawa kerugian daripada manfaat, dengan cara-cara biasa, bukan katastrofik. Kelompok X sebagian besar memperkirakan AI akan lebih banyak membawa manfaat daripada kerugian. Keduanya memiliki kelompok inti kecil dengan ukuran yang sama yang berpikir bahwa hal itu bisa berakhir buruk bagi semua orang.
+Jadi, perbedaannya sebagian besar bukan tentang kepunahan. Perbedaannya terletak pada suasana hati. Kelompok Hacker News sebagian besar memperkirakan AI akan lebih banyak membawa kerugian daripada manfaat, dengan cara-cara biasa, bukan katastrofik. Kelompok X sebagian besar memperkirakan AI akan lebih banyak membawa manfaat daripada kerugian. Keduanya memiliki kelompok inti kecil dengan ukuran yang sama, yang berpikir bahwa AI dapat berakhir buruk bagi semua orang.
 
-Jadi, Hacker News tidak lebih _doomer_ daripada X. Kelompok itu lebih muram.
+Jadi, Hacker News tidak lebih _doomer_ daripada X. Hacker News lebih muram.
 
-## Tokoh yang paling dekat dengan posisi masing-masing kelompok
+## Tokoh yang pandangannya paling dekat dengan setiap kelompok
 
-Di akhir wawancara, kami menampilkan tiga pemimpin opini populer yang pandangan dunia simulasinya paling dekat dengan pandangan Anda. Tokoh yang paling sering menjadi kecocokan terdekat menggambarkan kisahnya dengan lebih baik daripada median mana pun:
+Pada akhir wawancara, kami menampilkan tiga pemimpin opini populer yang pandangan dunia simulasinya paling dekat dengan pandangan Anda. Kecocokan terdekat yang paling umum menggambarkan situasinya dengan lebih baik daripada median mana pun:
 
 - **Gelombang Hacker News:** Bernie Sanders (16%), Ed Zitron (15%), Nathan Lambert (7%), Geoffrey Hinton (5%), Mario Zechner (5%)
 - **Gelombang X:** Elon Musk (8%), Sholto Douglas (6%), Yann LeCun (6%), Geoffrey Hinton (5%), [Roon](/users/tszzl) (5%)
 
 ## Apakah perbedaannya nyata?
 
-Kami tidak mencatat dari mana setiap orang berasal selama pekan peluncuran: pelacakan sumber interaksi pertama per orang baru dimulai pada 1 Oktober. Jadi, gelombang ditentukan berdasarkan tanggal, dan hal lain apa pun yang berubah di antara tanggal-tanggal tersebut patut dicurigai. Berikut yang kami periksa.
+Kami tidak mencatat dari mana setiap orang berasal selama pekan peluncuran: pelacakan sentuhan pertama per orang baru dimulai pada 1 Oktober. Jadi, gelombang ditentukan berdasarkan tanggal, dan apa pun hal lain yang berubah di antara tanggal-tanggal tersebut patut dicurigai. Berikut yang kami periksa.
 
-**Apakah gelombang tersebut benar-benar berasal dari Hacker News dan X?** Analitik situs mencatat perujuk untuk lalu lintas halaman, bukan untuk peserta individual. Pada 25 Sep, 99% pengunjung yang dirujuk oleh Hacker News atau X berasal dari Hacker News, dan pada 26 Sep, 89%. Kemudian keadaannya berbalik: pada 27 Sep, 89% berasal dari X, dan pada 28 Sep, 79%.
+**Apakah gelombang tersebut benar-benar berasal dari Hacker News dan X?** Analitik situs mencatat perujuk untuk lalu lintas halaman, bukan untuk masing-masing peserta. Pada 25 Sep, 99% pengunjung yang dirujuk oleh Hacker News atau X berasal dari Hacker News, dan pada 26 Sep, 89%. Kemudian keadaan berbalik: pada 27 Sep, 89% berasal dari X, dan pada 28 Sep, 79%.
 
 <DataBars data={referrersByDay} />
 
-**Apakah kami mengubah wawancaranya di antara kedua gelombang?** Ya, dan itulah faktor besarnya. Pada 27 Sep, pada awal sore UTC, kami merilis versi mesin baru dengan pertanyaan langsung baru tentang dampak keseluruhan, skala, dan P(doom). Setiap hasil yang disimpan dibaca ulang dengan pembaca terbaru yang sama, tetapi pertanyaan yang benar-benar dijawab orang berbeda.
+**Apakah kami mengubah wawancaranya di antara kedua gelombang tersebut?** Ya, dan itulah faktor besarnya. Pada 27 Sep, pada awal sore hari UTC, kami meluncurkan versi mesin baru dengan pertanyaan langsung baru tentang dampak keseluruhan, skala, dan P(doom). Setiap hasil yang disimpan dibaca ulang dengan pembaca terbaru yang sama, tetapi pertanyaan yang benar-benar dijawab orang berbeda.
 
-Untungnya, 52 orang dalam gelombang X mengikuti wawancara _lama_ pada 27 Sep, sebelum perilisan, ketika rujukan dari X sudah lebih banyak daripada Hacker News dengan perbandingan lebih dari 4 banding 1. Hal itu memberikan perbandingan yang lebih bersih:
+Untungnya, 52 orang dalam gelombang X mengikuti wawancara _lama_ pada 27 Sep, sebelum peluncuran versi tersebut, ketika rujukan X sudah melebihi Hacker News dengan perbandingan lebih dari 4 banding 1. Hal itu memberikan perbandingan yang lebih jelas:
 
 <DataIntervals data={oldVsNewQuestions} />
 
@@ -71,30 +71,30 @@ Untungnya, 52 orang dalam gelombang X mengikuti wawancara _lama_ pada 27 Sep, se
 - **Gelombang X, pertanyaan baru:** 0,67 (209 orang), secara statistik tidak dapat dibedakan (p = 0,83)
 - **Gelombang Hacker News, pertanyaan lama yang sama:** 0,32
 
-Jadi, kesenjangan pandangan berkaitan dengan siapa yang datang, bukan apa yang kami tanyakan. Sumbu **skala** berbeda ceritanya. Gelombang X juga memperkirakan perubahan yang jauh lebih besar (median 0,82 dibandingkan 0,59), tetapi sebagian dari itu disebabkan oleh pertanyaan langsung yang baru: orang-orang dari gelombang X yang mengikuti wawancara lama berada pada 0,70, dan yang mengikuti wawancara baru pada 0,85. Kami tidak akan terlalu memaknai perbedaan skala tersebut.
+Jadi, kesenjangan pandangan berkaitan dengan siapa yang datang, bukan apa yang kami tanyakan. Sumbu **skala** adalah persoalan berbeda. Gelombang X juga memperkirakan perubahan yang jauh lebih besar (median 0,82 dibandingkan 0,59), tetapi sebagian dari hal itu disebabkan oleh pertanyaan langsung yang baru: orang-orang dalam gelombang X yang mengikuti wawancara lama berada pada 0,70, sedangkan yang mengikuti wawancara baru berada pada 0,85. Kami tidak akan terlalu memaknai perbedaan skala tersebut.
 
-**Waktu dan geografi?** Gelombang Hacker News terkonsentrasi pada sore hari di AS (84% dimulai antara pukul 18:00 dan 23:59 UTC), sedangkan gelombang X tersebar sepanjang hari. Namun, dalam setiap gelombang, mediannya tetap jauh dari median gelombang lain pada setiap waktu (Hacker News 0,21–0,35, X 0,62–0,73). Di antara pengunjung yang dirujuk, 47% pengunjung Hacker News berada di AS dibandingkan dengan 40% pengunjung X, yang bukan pergeseran cukup besar untuk menjelaskan kesenjangan sebesar 0,4.
+**Waktu dan lokasi geografis?** Gelombang Hacker News terkonsentrasi pada sore hari di AS (84% memulai antara pukul 18:00 dan 23:59 UTC), sedangkan gelombang X tersebar sepanjang hari. Namun, dalam setiap gelombang, mediannya tetap jauh dari median gelombang lainnya pada setiap waktu (Hacker News 0,21–0,35, X 0,62–0,73). Di antara pengunjung yang dirujuk, 47% pengunjung Hacker News berada di AS dibandingkan dengan 40% pengunjung X, yang bukan pergeseran cukup besar untuk menjelaskan kesenjangan sebesar 0,4.
 
-**Di halaman mana orang tiba?** Sekitar 97% pengunjung yang dirujuk dari kedua sumber tiba di beranda, jadi tidak ada yang datang melalui halaman pemimpin opini tertentu.
+**Di halaman mana orang tiba?** Sekitar 97% pengunjung yang dirujuk dari kedua sumber tiba di halaman beranda, sehingga tidak ada yang datang melalui halaman pemimpin opini tertentu.
 
-**Panjang jawaban, duplikat, batasan?** Median panjang jawaban adalah 24 kata di Hacker News dibandingkan dengan 21 di X. Menghitung setiap wawancara alih-alih satu per orang, memulai gelombang X pada tengah hari tanggal 27 Sep, atau hanya menggunakan jam-jam puncak Hacker News masing-masing mengubah median kurang dari 0,02.
+**Panjang jawaban, duplikat, batasan?** Median panjang jawaban adalah 24 kata di Hacker News dibandingkan dengan 21 di X. Menghitung setiap wawancara alih-alih satu per orang, memulai gelombang X pada tengah hari 27 Sep, atau hanya menggunakan jam-jam puncak Hacker News masing-masing menggeser median kurang dari 0,02.
 
-Hal yang _tidak dapat_ kami singkirkan: ini adalah dua audiens yang memilih sendiri untuk berpartisipasi dan bereaksi terhadap dua unggahan berbeda. Kelompok Hacker News datang melalui utas peluncuran dan diskusinya. Kelompok X terutama datang melalui unggahan di lingkaran kami di X, yang menurut perkiraan kami cenderung berisi orang-orang yang berkarya dengan AI. Kami tidak dapat memisahkan “pembaca Hacker News” dari “orang-orang yang membaca utas tertentu itu pada hari tersebut”. Namun, itu kurang lebih justru intinya. Umpan Anda membentuk kelompok yang hadir, dan kelompok tersebut membentuk seperti apa sesuatu yang dianggap “normal”.
+Yang _tidak dapat_ kami kesampingkan: ini adalah dua audiens yang memilih sendiri, yang bereaksi terhadap dua unggahan berbeda. Kelompok Hacker News datang melalui utas peluncuran dan diskusinya. Kelompok X sebagian besar datang melalui unggahan di sudut X kami, yang menurut dugaan kami lebih condong kepada orang-orang yang membuat sesuatu dengan AI. Kami tidak dapat memisahkan “pembaca Hacker News” dari “orang-orang yang membaca utas tertentu itu pada hari tersebut”. Namun, kurang lebih itulah intinya. Umpan Anda membentuk kelompoknya, dan kelompok tersebut membentuk seperti apa yang dianggap “normal”.
 
 ## Apa yang kami simpulkan
 
-Kerangka yang lazim menempatkan semua orang pada satu garis dari doomer hingga accelerationist. Data ini menunjukkan bahwa setidaknya ada dua hal berbeda yang terjadi. Yang pertama adalah apakah Anda memperkirakan AI akan membuat kehidupan menjadi lebih baik atau lebih buruk dalam hal-hal biasa. Yang kedua adalah apakah Anda berpikir AI dapat berakhir dengan katastrofe. Hacker News dan X sangat berbeda pendapat mengenai yang pertama dan jauh lebih sedikit berbeda pendapat mengenai yang kedua.
+Kerangka yang lazim menempatkan semua orang pada satu garis dari doomer hingga akselerasionis. Data ini menunjukkan bahwa setidaknya ada dua hal berbeda yang terjadi. Yang pertama adalah apakah Anda memperkirakan AI akan membuat kehidupan menjadi lebih baik atau lebih buruk dalam hal-hal biasa. Yang kedua adalah apakah menurut Anda AI dapat berujung pada katastrofe. Hacker News dan X sangat berbeda pendapat tentang yang pertama dan jauh lebih sedikit berbeda pendapat tentang yang kedua.
 
-## Bagaimana kami mengukurnya
+## Cara kami mengukurnya
 
-- **Data:** ekstrak hanya-baca dari basis data produksi Doom or Bloom pada 3 Oktober 2026 (UTC), menggunakan versi terkini dari setiap hasil, setelah kami membaca ulang setiap hasil yang disimpan dengan pembaca terkini (algoritma 0.7.5)
-- **Diperbarui 4 Oktober 2026:** dijalankan ulang pada hasil yang telah dibaca ulang tersebut, yang menempatkan orang di antara lima tingkat pandangan pada peta, bukan tepat pada tingkat-tingkat itu. Selisih utamanya sedikit lebih kecil (0,36 alih-alih 0,40), kecocokan terdekat berubah, dan peta yang lebih terperinci menambahkan detail sisi katastrofe di atas. Proporsi tingkat (“memperkirakan katastrofe”, “terutama memperkirakan kerugian”, “antusias”) menghitung pembacaan tingkat setiap orang
-- **Siapa yang dihitung:** satu hasil per orang, yaitu wawancara pertama mereka yang mencapai hasil. Kami mengecualikan akun pengujian kami sendiri dan pemimpin opini simulasi. 655 orang dalam gelombang Hacker News dan 263 dalam gelombang X memiliki hasil (648 dan 261 dengan pandangan yang telah ditempatkan)
-- **Gelombang:** tanggal UTC, 25–26 Sep dan 27–28 Sep, disimpulkan dari waktu dan data perujuk di seluruh situs, bukan dari perujuk per orang
+- **Data:** ekstrak hanya-baca dari basis data produksi Doom or Bloom pada 3 Oktober 2026 (UTC), menggunakan versi terkini dari setiap hasil, setelah kami membaca ulang setiap hasil yang tersimpan dengan pembaca terkini (algoritma 0.7.5)
+- **Diperbarui 4 Oktober 2026:** dijalankan ulang pada hasil yang telah dibaca ulang tersebut, yang menempatkan orang di antara lima tingkat pandangan pada peta alih-alih tepat pada tingkat tersebut. Selisih utama sedikit lebih kecil (0,36 alih-alih 0,40), kecocokan terdekat berubah, dan peta yang lebih terperinci menambahkan detail sisi katastrofe di atas. Proporsi tingkat (“memperkirakan katastrofe”, “terutama memperkirakan kerugian”, “antusias”) menghitung pembacaan tingkat setiap orang
+- **Siapa yang dihitung:** satu hasil per orang, yaitu wawancara pertama mereka yang mencapai hasil. Kami mengecualikan akun pengujian kami sendiri dan para pemimpin opini simulasi. 655 orang dalam gelombang Hacker News dan 263 dalam gelombang X memperoleh hasil (648 dan 261 dengan pandangan yang telah ditempatkan)
+- **Gelombang:** tanggal UTC, 25–26 Sep dan 27–28 Sep, disimpulkan dari waktu dan data perujuk seluruh situs, bukan dari perujuk per orang
 - **Statistik:** median dengan interval bootstrap 95% (10.000 pengambilan sampel ulang), uji U Mann–Whitney dua sisi, uji permutasi pada selisih median, dan uji eksak Fisher untuk proporsi
-- **Privasi:** hanya agregat yang ditampilkan di sini, dan setiap angka menggambarkan setidaknya 10 orang. Tidak ada teks jawaban yang dibaca untuk menyusun tulisan ini
-- **Catatan:** ini bukan survei terhadap pengguna Hacker News atau X. Ini mencakup siapa pun yang mengeklik dan menyelesaikannya. Pandangan dan P(doom) adalah pembacaan model kami atas jawaban tertulis singkat, bukan ukuran yang telah divalidasi, dan P(doom) yang disimpulkan merupakan perkiraan kasar. Para pemimpin opini disimulasikan berdasarkan tulisan dan wawancara publik
+- **Privasi:** hanya agregat yang ditampilkan di sini, dan setiap angka menggambarkan setidaknya 10 orang. Tidak ada teks jawaban yang dibaca untuk membuat tulisan ini
+- **Catatan:** ini bukan survei terhadap pengguna Hacker News atau X. Ini mencakup siapa pun yang mengeklik dan menyelesaikannya. Pandangan dan P(doom) adalah pembacaan model kami atas jawaban tertulis singkat, bukan ukuran yang tervalidasi, dan P(doom) yang disimpulkan merupakan perkiraan kasar. Para pemimpin opini disimulasikan dari tulisan dan wawancara publik
 
 ## Di mana posisi Anda?
 
-Kami ingin melihat kelompok ketiga. [Ikuti wawancara](/) (sekitar 3 menit, tanpa pendaftaran), lihat di mana posisi Anda, lalu kirimkan kepada seseorang yang akan berada di posisi lain.
+Kami ingin sekali melihat kelompok ketiga. [Ikuti wawancara](/) (sekitar 3 menit, tanpa pendaftaran), lihat di mana posisi Anda, lalu kirimkan kepada seseorang yang akan berada di posisi lain.

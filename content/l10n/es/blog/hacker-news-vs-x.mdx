@@ -8,93 +8,93 @@ import doomerVsMood from './data/launch-week-doomer-vs-mood.json'
 import referrersByDay from './data/launch-week-referrers-by-day.json'
 import oldVsNewQuestions from './data/launch-week-old-vs-new-questions.json'
 
-**Quienes hicieron Doom or Bloom durante nuestra oleada de Hacker News (25–26 de sep. de 2026) se ubicaron en una perspectiva mediana de 0,32 en una escala de 0 (Doom) a 1 (Bloom), frente a 0,68 en la oleada de X dos días después (27–28 de sep.). Sin embargo, ambas comunidades tenían aproximadamente el mismo 6 % que espera una catástrofe y el mismo 38–40 % con una P(doom) del 10 % o más.**
+**Las personas que hicieron Doom or Bloom durante nuestra oleada de Hacker News (25–26 de septiembre de 2026) obtuvieron una perspectiva mediana de 0,32 en una escala de 0 (Doom) a 1 (Bloom), frente a 0,68 para la oleada de X dos días después (27–28 de septiembre). Sin embargo, ambas comunidades tenían aproximadamente el mismo 6 % que espera una catástrofe y el mismo 38–40 % con una P(doom) del 10 % o más.**
 
-Lanzamos [Doom or Bloom](/) el 25 de septiembre. Es una breve entrevista adaptativa (unos 3 minutos) que te ubica en un mapa: qué tan bueno o malo esperas que sea el resultado de la IA, de Doom a Bloom, y cuánto esperas que cambie el mundo. También obtienes una P(doom), ya sea la que introduces o una aproximada que inferimos.
+Lanzamos [Doom or Bloom](/) el 25 de septiembre. Es una breve entrevista adaptativa (unos 3 minutos) que te ubica en un mapa: qué tan bueno o malo esperas que resulte el impacto de la IA, de Doom a Bloom, y cuánto esperas que cambie el mundo. También obtienes una P(doom), ya sea la que introduces o una aproximada que inferimos.
 
-La semana del lanzamiento tuvo dos oleadas diferenciadas. Primero, una publicación en Hacker News generó casi todo el tráfico del 25–26 de sep. Después, cuando perdió impulso, llegó una oleada desde X el 27–28 de sep. Las dos comunidades se veían tan distintas en el mapa que quisimos comprobar si la diferencia era real o solo algo que habíamos estropeado entre ambas oleadas. Estas cifras corresponden al 3 de octubre de 2026.
+La semana del lanzamiento tuvo dos oleadas bien diferenciadas. Primero, una publicación en Hacker News generó casi todo el tráfico del 25–26 de septiembre. Luego, cuando perdió impulso, llegó una oleada desde X el 27–28 de septiembre. Las dos comunidades se veían tan diferentes en el mapa que quisimos comprobar si era real o solo algo que habíamos estropeado entre ambas oleadas. Estos datos corresponden al 3 de octubre de 2026.
 
 ## La diferencia principal
 
 <DataBars data={outlookByWave} />
 
-La lectura más común de la oleada de Hacker News fue «principalmente espera daño»: el 51 % de sus integrantes, frente al 20 % de la oleada de X. La oleada de X se concentró en el otro lado: el 30 % se interpretó como «entusiasta», frente al 5 % en Hacker News.
+El resultado más común de la oleada de Hacker News fue «espera principalmente daños»: el 51 % de sus integrantes, frente al 20 % de la oleada de X. La oleada de X se concentró en el otro lado: el 30 % obtuvo el resultado «entusiasta», frente al 5 % en Hacker News.
 
 En cifras:
 
 - **Perspectiva mediana:** 0,32 en Hacker News (intervalo del 95 %: 0,30–0,35), frente a 0,68 en X (0,59–0,73). La diferencia es de 0,36 (0,27–0,41)
-- **Lado Doom (perspectiva inferior a 0,4):** 59 % en Hacker News frente a 28 % en X
-- **Lado Bloom (superior a 0,6):** 24 % en Hacker News frente a 56 % en X
-- **Elige al azar a una persona de cada oleada** y la persona de X se sitúa más hacia Bloom el 71 % de las veces (Mann–Whitney p \< 10⁻²³, tamaño del efecto biserial por rangos de 0,43)
+- **Lado Doom (perspectiva inferior a 0,4):** 59 % en Hacker News, frente a 28 % en X
+- **Lado Bloom (superior a 0,6):** 24 % en Hacker News, frente a 56 % en X
+- **Elige al azar a una persona de cada oleada** y la persona de X está más del lado de Bloom el 71 % de las veces (Mann–Whitney p \< 10⁻²³, tamaño del efecto biserial por rangos de 0,43)
 
-## Pero Hacker News no es más «doomer»
+## Pero Hacker News no es más catastrofista
 
-Esta es la parte que no esperábamos. Si «doomer» significa esperar una catástrofe o asignar una P(doom) alta, los dos grupos son básicamente iguales.
+Esta es la parte que no esperábamos. Si «catastrofista» significa esperar una catástrofe o asignar una P(doom) alta, los dos grupos son básicamente iguales.
 
 <DataBars data={doomerVsMood} />
 
-- **Espera una catástrofe como resultado por defecto:** 6,5 % en Hacker News frente a 5,7 % en X (Fisher p = 0,76)
-- **P(doom) mostrada del 10 % o más:** 38 % frente a 40 % (p = 0,60)
-- **P(doom) mostrada del 30 % o más:** 22 % frente a 17 % (p = 0,10, no significativo)
+- **Espera una catástrofe como resultado predeterminado:** 6,5 % en Hacker News frente a 5,7 % en X (Fisher p = 0,76)
+- **P(doom) mostrada de 10 % o más:** 38 % frente a 40 % (p = 0,60)
+- **P(doom) mostrada de 30 % o más:** 22 % frente a 17 % (p = 0,10, no significativo)
 - **Mediana de la P(doom) mostrada:** 6,0 % frente a 6,3 %
 
-Una salvedad: casi todas las personas de la oleada de Hacker News obtuvieron una P(doom) _inferida_, porque la entrevista todavía no pedía una cifra, y los valores inferidos son aproximados y están comprimidos hacia el centro. Por eso, las filas de P(doom) constituyen evidencia más débil que la fila sobre la catástrofe, que procede de la misma interpretación que la propia perspectiva.
+Una salvedad: casi todos los participantes de la oleada de Hacker News obtuvieron una P(doom) _inferida_, porque la entrevista aún no pedía una cifra, y los valores inferidos son aproximados y están comprimidos hacia el centro. Por tanto, las filas de P(doom) aportan evidencia más débil que la fila de catástrofe, que procede de la misma interpretación que la propia perspectiva.
 
-El mapa más detallado añade un matiz. Desde el 4 de octubre, ubica a las personas entre sus cinco niveles de perspectiva, en lugar de sobre ellos, y dentro de «espera principalmente daño», el grupo de Hacker News se inclina más hacia el extremo de la catástrofe: el 13 % se sitúa por debajo de 0,125 en el eje de perspectiva, frente al 8 % de la oleada de X (p = 0,02). Así que hay algunas personas más cerca de ese extremo, aunque la misma proporción espera directamente una catástrofe.
+El mapa más detallado añade un dato. Desde el 4 de octubre, sitúa a las personas entre sus cinco niveles de perspectiva, en lugar de sobre ellos, y dentro de «espera principalmente daño», el grupo de Hacker News se inclina más hacia el extremo de la catástrofe: el 13 % se sitúa por debajo de 0,125 en el eje de perspectiva, frente al 8 % de la oleada de X (p = 0,02). Así que algunos más están cerca de ese extremo, aunque la misma proporción espera una catástrofe sin reservas.
 
-Así que la diferencia no tiene que ver principalmente con la extinción. Tiene que ver con el estado de ánimo. El grupo de Hacker News espera mayoritariamente que la IA cause más daño que beneficio, de maneras corrientes y no catastróficas. El grupo de X espera mayoritariamente que cause más beneficio que daño. Ambos tienen el mismo pequeño núcleo de personas que creen que podría acabar mal para todos.
+Así que la diferencia, en su mayor parte, no tiene que ver con la extinción. Tiene que ver con el ánimo. El grupo de Hacker News espera, en su mayoría, que la IA cause más daño que beneficio, de maneras corrientes y no catastróficas. El grupo de X espera, en su mayoría, que cause más beneficio que daño. Ambos tienen el mismo pequeño núcleo de personas que creen que podría acabar mal para todos.
 
-Así que Hacker News no es más _doomer_ que X. Es más pesimista.
+Así que Hacker News no es más _catastrofista_ que X. Es más pesimista.
 
 ## A quién se acercó más cada grupo
 
-Al final de la entrevista mostramos los tres líderes de opinión populares cuyas visiones simuladas se acercan más a la tuya. Las coincidencias más cercanas y frecuentes cuentan la historia mejor que cualquier mediana:
+Al final de la entrevista mostramos los tres líderes de opinión populares cuyas visiones simuladas son las más cercanas a la tuya. Las coincidencias más frecuentes cuentan la historia mejor que cualquier mediana:
 
 - **Oleada de Hacker News:** Bernie Sanders (16 %), Ed Zitron (15 %), Nathan Lambert (7 %), Geoffrey Hinton (5 %), Mario Zechner (5 %)
 - **Oleada de X:** Elon Musk (8 %), Sholto Douglas (6 %), Yann LeCun (6 %), Geoffrey Hinton (5 %), [Roon](/users/tszzl) (5 %)
 
 ## ¿Es real la diferencia?
 
-No registramos de dónde venía cada persona durante la semana del lanzamiento: el seguimiento del primer contacto por persona no comenzó hasta el 1 de octubre. Así que las oleadas se definen por fecha, y cualquier otra cosa que cambiara entre esas fechas es sospechosa. Esto es lo que comprobamos.
+No registramos de dónde venía cada persona durante la semana del lanzamiento: el seguimiento del primer contacto por persona no empezó hasta el 1 de octubre. Por eso, las oleadas se definen por fecha, y cualquier otra cosa que cambiara entre esas fechas es sospechosa. Esto es lo que comprobamos.
 
-**¿Las oleadas eran realmente de Hacker News y X?** Las analíticas del sitio registran las fuentes de referencia del tráfico de las páginas, no las de participantes individuales. El 25 de septiembre, el 99 % de los visitantes remitidos por Hacker News o X procedía de Hacker News, y el 26 de septiembre, el 89 %. Después se invierte: el 27 de septiembre, el 89 % procedía de X, y el 28 de septiembre, el 79 %.
+**¿Las oleadas eran realmente de Hacker News y X?** Las analíticas del sitio registran los sitios de referencia del tráfico de las páginas, no los de participantes individuales. El 25 de sep, el 99 % de los visitantes remitidos por Hacker News o X provenía de Hacker News, y el 26 de sep, el 89 %. Después se invierte: el 27 de sep, el 89 % provenía de X, y el 28 de sep, el 79 %.
 
 <DataBars data={referrersByDay} />
 
-**¿Cambiamos la entrevista entre una oleada y otra?** Sí, y ese es el factor principal. El 27 de septiembre, a primera hora de la tarde en UTC, lanzamos una nueva versión del motor con nuevas preguntas directas sobre el impacto general, la escala y P(doom). Todos los resultados guardados se volvieron a interpretar con el mismo lector actualizado, pero las preguntas que las personas respondieron realmente son distintas.
+**¿Cambiamos la entrevista entre una oleada y otra?** Sí, y ese es el factor principal. El 27 de sep, a primera hora de la tarde UTC, lanzamos una nueva versión del motor con nuevas preguntas directas sobre el impacto general, la escala y P(doom). Cada resultado guardado se volvió a leer con el mismo lector actualizado, pero las preguntas que las personas respondieron realmente son distintas.
 
-Por suerte, 52 personas de la oleada de X hicieron la entrevista _antigua_ el 27 de septiembre, antes del lanzamiento, cuando las referencias desde X ya superaban a las de Hacker News en más de 4 a 1. Esto permite una comparación más clara:
+Por suerte, 52 personas de la oleada de X hicieron la entrevista _antigua_ el 27 de sep, antes del lanzamiento, cuando las visitas remitidas por X ya superaban a las de Hacker News en una proporción de más de 4 a 1. Eso permite una comparación más limpia:
 
 <DataIntervals data={oldVsNewQuestions} />
 
-- **Oleada de X, preguntas antiguas:** mediana de la perspectiva 0,69 (52 personas)
+- **Oleada de X, preguntas antiguas:** perspectiva mediana de 0,69 (52 personas)
 - **Oleada de X, preguntas nuevas:** 0,67 (209 personas), estadísticamente indistinguible (p = 0,83)
 - **Oleada de Hacker News, las mismas preguntas antiguas:** 0,32
 
-Así que la brecha entre perspectivas se debe a quién participó, no a lo que preguntamos. El eje de **escala** es otra historia. La oleada de X también espera un cambio mucho mayor (mediana de 0,82 frente a 0,59), pero parte de eso se debe a la nueva pregunta directa: las personas de la oleada de X que hicieron la entrevista antigua se sitúan en 0,70, y las que hicieron la nueva, en 0,85. No le daríamos mucha importancia a la diferencia de escala.
+Así que la diferencia de perspectiva se debe a quién apareció, no a lo que preguntamos. El eje de la **escala** es otra historia. La oleada de X también espera un cambio mucho mayor (mediana de 0,82 frente a 0,59), pero parte de eso se debe a la nueva pregunta directa: las personas de la oleada de X que hicieron la entrevista antigua se sitúan en 0,70, y las que hicieron la nueva, en 0,85. No sacaríamos grandes conclusiones de la diferencia en la escala.
 
-**¿Hora del día y ubicación geográfica?** La oleada de Hacker News se concentró en la tarde de Estados Unidos (el 84 % comenzó entre las 18:00 y las 23:59 UTC), mientras que la oleada de X se distribuyó a lo largo de todo el día. Pero, dentro de cada oleada, la mediana se mantiene muy alejada de la de la otra oleada a cualquier hora del día (Hacker News 0,21–0,35, X 0,62–0,73). Entre los visitantes remitidos, el 47 % de los de Hacker News estaba en Estados Unidos, frente al 40 % de los de X, lo que no supone un cambio lo bastante grande como para explicar una brecha de 0,4.
+**¿Hora del día y ubicación geográfica?** La oleada de Hacker News se concentró en la tarde de Estados Unidos (el 84 % empezó entre las 18:00 y las 23:59 UTC), mientras que la oleada de X se distribuyó a lo largo de todo el día. Pero, dentro de cada oleada, la mediana se mantiene muy alejada de la de la otra oleada a cualquier hora del día (Hacker News, 0,21–0,35; X, 0,62–0,73). Entre los visitantes remitidos, el 47 % de los de Hacker News estaba en Estados Unidos, frente al 40 % de los de X, un cambio que no es lo bastante grande como para explicar una diferencia de 0,4.
 
 **¿A dónde llegaron las personas?** Alrededor del 97 % de los visitantes remitidos desde ambas fuentes llegó a la página de inicio, así que nadie llegó a través de la página de un líder de opinión concreto.
 
-**¿Extensión de las respuestas, duplicados y límites?** Las respuestas tuvieron una mediana de 24 palabras en Hacker News, frente a 21 en X. Contar todas las entrevistas en vez de una por persona, situar el inicio de la oleada de X al mediodía del 27 de septiembre o usar solo las horas de mayor actividad de Hacker News cambia las medianas en menos de 0,02 en cada caso.
+**¿Longitud de las respuestas, duplicados y límites?** Las respuestas tuvieron una mediana de 24 palabras en Hacker News, frente a 21 en X. Contar todas las entrevistas en lugar de una por persona, fijar el inicio de la oleada de X al mediodía del 27 de sep o usar solo las horas punta de Hacker News cambia las medianas en menos de 0,02 en cada caso.
 
-Lo que _no podemos_ descartar: se trata de dos audiencias autoseleccionadas que reaccionaron a dos publicaciones diferentes. El público de Hacker News llegó a través de un hilo de lanzamiento y su discusión. El público de X llegó principalmente a través de publicaciones en nuestro rincón de X, que suponemos que tiende a atraer a personas que desarrollan con IA. No podemos separar a «los lectores de Hacker News» de «las personas que leyeron ese hilo concreto ese día». Sin embargo, en cierto modo, de eso se trata. Tu feed da forma al público, y el público da forma a lo que parece «normal».
+Lo que _no podemos_ descartar: son dos audiencias autoseleccionadas que reaccionaron a dos publicaciones distintas. La audiencia de Hacker News llegó a través de un hilo de lanzamiento y su discusión. La audiencia de X llegó principalmente a través de publicaciones de nuestro rincón de X, que suponemos que tiende a atraer a personas que crean con IA. No podemos separar a «los lectores de Hacker News» de «las personas que leyeron ese hilo concreto ese día». Aunque, en cierto modo, esa es la idea. Tu feed moldea a la audiencia, y la audiencia moldea lo que parece «normal».
 
 ## Qué concluimos
 
-El enfoque habitual sitúa a todo el mundo en una sola línea que va de catastrofista a aceleracionista. Estos datos sugieren que están ocurriendo al menos dos cosas distintas. Una es si esperas que la IA mejore o empeore la vida de formas cotidianas. La otra es si crees que podría acabar en una catástrofe. Hacker News y X discrepan mucho sobre la primera y mucho menos sobre la segunda.
+El enfoque habitual sitúa a todo el mundo en una única línea que va de catastrofista a aceleracionista. Estos datos sugieren que están ocurriendo al menos dos cosas distintas. Una es si esperas que la IA mejore o empeore la vida de maneras ordinarias. La otra es si crees que podría acabar en una catástrofe. Hacker News y X discrepan mucho sobre la primera y mucho menos sobre la segunda.
 
 ## Cómo medimos esto
 
-- **Datos:** una extracción de solo lectura de la base de datos de producción de Doom or Bloom del 3 de octubre de 2026 (UTC), usando la versión actual de cada resultado, después de volver a leer cada resultado guardado con el lector actual (algoritmo 0.7.5)
-- **Actualizado el 4 de octubre de 2026:** repetimos el análisis con esos resultados releídos, que sitúan a las personas entre los cinco niveles de perspectiva del mapa en lugar de exactamente en ellos. La diferencia principal es un poco menor (0,36 en lugar de 0,40), las coincidencias más cercanas cambiaron y el mapa más detallado añade la información anterior sobre el extremo catastrófico. Las proporciones por nivel («espera una catástrofe», «espera principalmente daño», «entusiasta») cuentan la clasificación de nivel de cada persona
-- **Quién cuenta:** un resultado por persona, el de su primera entrevista que llegó a un resultado. Excluimos nuestras propias cuentas de prueba y a los líderes de opinión simulados. 655 personas de la oleada de Hacker News y 263 de la oleada de X tuvieron un resultado (648 y 261 con una perspectiva ubicada)
-- **Oleadas:** fechas UTC, 25–26 de septiembre y 27–28 de septiembre, inferidas a partir del momento de participación y de los datos de procedencia de todo el sitio, en lugar de una procedencia por persona
-- **Estadísticas:** medianas con intervalos bootstrap del 95 % (10.000 remuestreos), pruebas U de Mann–Whitney bilaterales, una prueba de permutación sobre la diferencia de medianas y la prueba exacta de Fisher para las proporciones
+- **Datos:** una copia de solo lectura de la base de datos de producción de Doom or Bloom del 3 de octubre de 2026 (UTC), usando la versión actual de cada resultado, después de volver a procesar cada resultado guardado con el lector actual (algoritmo 0.7.5)
+- **Actualizado el 4 de octubre de 2026:** volvimos a ejecutar el análisis sobre esos resultados reprocesados, que sitúan a las personas entre los cinco niveles de perspectiva del mapa en lugar de exactamente en ellos. La diferencia principal es un poco menor (0,36 en lugar de 0,40), las coincidencias más cercanas cambiaron y el mapa más detallado añade el desglose anterior sobre el extremo catastrófico. Las proporciones por nivel («espera una catástrofe», «espera principalmente daño», «entusiasta») cuentan la lectura del nivel de cada persona
+- **Quién cuenta:** un resultado por persona, correspondiente a su primera entrevista que llegó a un resultado. Excluimos nuestra propia cuenta de prueba y a los líderes de opinión simulados. 655 personas de la oleada de Hacker News y 263 de la oleada de X obtuvieron un resultado (648 y 261 con una perspectiva ubicada)
+- **Oleadas:** fechas UTC, 25–26 de septiembre y 27–28 de septiembre, inferidas a partir del momento de participación y de los datos de referencia de todo el sitio, en lugar de una referencia por persona
+- **Estadísticas:** medianas con intervalos bootstrap del 95 % (10.000 remuestreos), pruebas U de Mann–Whitney bilaterales, una prueba de permutación sobre la diferencia entre medianas y la prueba exacta de Fisher para las proporciones
 - **Privacidad:** aquí solo aparecen datos agregados y cada número describe al menos a 10 personas. No se leyó el texto de ninguna respuesta para esta publicación
 - **Advertencias:** esto no es una encuesta a los usuarios de Hacker News ni de X. Son quienes hicieron clic y terminaron. La perspectiva y la P(doom) son las interpretaciones de nuestro modelo de respuestas escritas breves, no medidas validadas, y una P(doom) inferida es aproximada. Los líderes de opinión son simulaciones basadas en escritos y entrevistas públicos
 
 ## ¿Dónde te ubicas?
 
-Nos encantaría ver un tercer grupo. [Haz la entrevista](/) (unos 3 minutos, sin registrarte), descubre dónde te ubicas y envíasela a alguien que se ubicará en otro lugar.
+Nos encantaría ver a un tercer grupo. [Haz la entrevista](/) (unos 3 minutos, sin registrarte), mira dónde te ubicas y envíasela a alguien que se ubicará en otro lugar.

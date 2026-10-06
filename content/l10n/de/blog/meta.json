@@ -27,7 +27,7 @@
       "reviewStatus": "machine"
     },
     "hacker-news-vs-x.mdx": {
-      "sourceHash": "bd302edaf052fe3e",
+      "sourceHash": "1fab42acce25cfdb",
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
