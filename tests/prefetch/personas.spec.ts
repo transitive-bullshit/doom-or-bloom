@@ -197,6 +197,8 @@ test('keyboard focus warms a directory profile without viewport prefetching', as
     route.fulfill({ json: null })
   )
   await page.goto('/users')
+  // The directory lists 48 people at first; Simon Willison may be further down.
+  await page.getByRole('button', { name: /^Show all/ }).click()
   const link = page.locator('.study-legend a[href="/users/simonw"]')
   const warmed = page.waitForResponse(
     (response) =>
@@ -241,6 +243,7 @@ test('data saver suppresses speculative profile requests', async ({ page }) => {
       requests.push(request.url())
   })
   await page.goto('/users')
+  await page.getByRole('button', { name: /^Show all/ }).click()
   await page.locator('.study-legend a[href="/users/simonw"]').hover()
   await page.waitForTimeout(500)
   expect(requests).toEqual([])

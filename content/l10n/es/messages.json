@@ -344,6 +344,42 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "Landing.filterLabel": {
+      "sourceHash": "482b6653aa807f45",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
+    "Landing.filters.all": {
+      "sourceHash": "da2e5dc515b188dc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
+    "Landing.filters.doom": {
+      "sourceHash": "14f3b3de8edcdb4c",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
+    "Landing.filters.mixed": {
+      "sourceHash": "f340b6d6edeff462",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
+    "Landing.filters.bloom": {
+      "sourceHash": "516eb45dcd54be37",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
+    "Landing.filters.stated": {
+      "sourceHash": "d415b41941ad19b3",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
     "Landing.nameAscending": {
       "sourceHash": "f9f6c8502eb0f6c9",
       "model": "unrecorded",
@@ -386,6 +422,18 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "Landing.showMore": {
+      "sourceHash": "e372f20a52883cff",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
+    "Landing.showAll": {
+      "sourceHash": "a6c3860c56d7523f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-05",
+      "reviewStatus": "machine"
+    },
     "Landing.followersNote": {
       "sourceHash": "02d007152c991cfb",
       "model": "unrecorded",
@@ -411,9 +459,9 @@
       "reviewStatus": "machine"
     },
     "Landing.metricFollowers": {
-      "sourceHash": "b569e848d2465910",
-      "model": "unrecorded",
-      "translatedAt": "2026-10-01",
+      "sourceHash": "85eaa0ba0b26a762",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
     },
     "Landing.sort.name": {

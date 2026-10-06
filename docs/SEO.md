@@ -59,7 +59,7 @@ Every title must fit Google's desktop limit of about 600px of 20px Arial with " 
 | --- | --- |
 | `/` | `WebSite` (no `SearchAction`: the directory's search is not addressable by URL), `WebApplication` (free: `isAccessibleForFree` and a zero-price `Offer`) and the creator `Person`, Travis Fischer, with `sameAs` his X, GitHub and website |
 | `/users/<slug>` | `WebPage` about the real person: `mainEntity` and the first `about` are the `Person`, followed by the shared topics; `citation` lists the profile's sources as `CreativeWork`s (dated when the source brief records a date). The `Person` has a name, portrait, the factual one-liner as `description` and `sameAs` their X or profile link, plus English Wikipedia and Wikidata where `lib/seo/person-identities.json` has them |
-| `/users` | `CollectionPage` whose `mainEntity` is an `ItemList` of every profile in the directory's default order (by name) |
+| `/users` | `CollectionPage` whose `mainEntity` is an `ItemList` of every profile, alphabetical by name |
 | `/p-doom` | `WebPage` about P(doom), whose `mainEntity` is the `Dataset` of the curated table: `variableMeasured` (a `PropertyValue`), `creator`, `dateModified`, `temporalCoverage`, `isAccessibleForFree` and `isBasedOn` the sources of its numbers and quoted refusals. No `license` is stated for the table, so none is claimed. An `ItemList` of its profiles in table order |
 | `/about` | `AboutPage` about the `WebSite` |
 | `/blog` | `Blog` with each post as a `BlogPosting` in `blogPost` |

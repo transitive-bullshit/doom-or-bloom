@@ -4,7 +4,10 @@ import {
   directoryPdoom,
   directoryValue,
   directorySorts,
-  followersCapturedLabel
+  followerCount,
+  followersCapturedLabel,
+  matchesFilter,
+  outlookSide
 } from '@/components/landing/directory-sort'
 import type { Example, MapExample } from '@/components/landing/shared'
 import { resultSchema } from '@/lib/assessment/schema'
@@ -112,4 +115,34 @@ test('the follower note spans the capture dates of the counts it shows', () => {
     ])
   ).toBe('2026-09-25–2026-10-05')
   expect(followersCapturedLabel([person('a', null)])).toBe('')
+})
+
+test('directory filters split the map by nearest outlook level and stated P(doom)', () => {
+  expect([0, 0.37, 0.375, 0.6, 0.625, 1].map(outlookSide)).toEqual([
+    'doom',
+    'doom',
+    'mixed',
+    'mixed',
+    'bloom',
+    'bloom'
+  ])
+  expect(outlookSide(null)).toBeNull()
+  const person = (outlook: number | null, pdoomStated?: boolean) =>
+    ({ id: 'a', outlook, pdoomStated }) as MapExample
+  expect(matchesFilter(person(0.2), 'all')).toBe(true)
+  expect(matchesFilter(person(0.2), 'doom')).toBe(true)
+  expect(matchesFilter(person(0.2), 'bloom')).toBe(false)
+  expect(matchesFilter(person(null), 'mixed')).toBe(false)
+  expect(matchesFilter(person(0.9, true), 'stated')).toBe(true)
+  expect(matchesFilter(person(0.9), 'stated')).toBe(false)
+})
+
+test('follower counts read like X: exact below 10,000, then compact', () => {
+  expect(
+    [7975, 10_000, 12_345, 344_446, 2_195_259, 241_680_205].map((count) =>
+      followerCount(count)
+    )
+  ).toEqual(['7,975', '10K', '12.3K', '344.4K', '2.2M', '241.7M'])
+  // Each locale keeps its own abbreviation and spacing.
+  expect(followerCount(2_195_259, 'de')).toMatch(/^2,2\sMio\.$/u)
 })

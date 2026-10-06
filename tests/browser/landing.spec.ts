@@ -447,7 +447,7 @@ test('hovering a featured portrait keeps its map position and tooltip anchor sta
   await expect(portrait.locator('span')).toHaveCSS('opacity', '1')
 })
 
-test('all-users directory filters names and handles without filtering the full map', async ({
+test('all-users directory lists the most followed first, a page at a time, and keeps everyone on the map', async ({
   page
 }) => {
   await page.goto('/')
@@ -459,34 +459,77 @@ test('all-users directory filters names and handles without filtering the full m
   ).toHaveCount(0)
   await page.getByRole('link', { name: 'Explore all simulated users' }).click()
   await expect(page).toHaveURL(/\/users$/)
-  await expect(page.locator('.study-legend a')).toHaveCount(people.length)
+  const page1 = Math.min(48, people.length)
+  await expect(page.locator('.study-legend a')).toHaveCount(page1)
   await expect(page.locator('.study-chart')).toHaveAttribute(
     'data-layout-ready',
     'true'
   )
-  const mapCount = await page.locator('.study-point').count()
-  const names = page.locator('.study-legend .study-person-name')
-  const alphabetical = await names.allTextContents()
-  await page.getByLabel('Order', { exact: true }).selectOption('desc')
-  await expect(names.first()).toHaveText(alphabetical.at(-1)!)
-  await page.getByLabel('Sort by', { exact: true }).selectOption('followers')
+  // Listed people get portraits; everyone else stays on the map as a dot.
+  await expect(page.locator('.study-point')).toHaveCount(page1)
+  const mapCount =
+    (await page.locator('.study-point').count()) +
+    (await page.locator('.study-marker').count())
+  // Most followed first by default.
   await expect(page.locator('.directory-metric').first()).toContainText(
     'followers'
   )
   const followerValues = await page
     .locator('.directory-metric')
     .allTextContents()
+  // Counts read like X: 7,975, then 12.3K, 2.2M.
+  const scale: Record<string, number> = { K: 1e3, M: 1e6, B: 1e9 }
   const counts = followerValues
     .filter((value) => value !== 'Not available')
-    .map((value) => Number(value.replace(/[^0-9]/g, '')))
+    .map((value) => {
+      const [, digits, unit] = value.match(/^([\d.,]+)([KMB]?) followers$/)!
+      return Number(digits!.replaceAll(',', '')) * (scale[unit!] ?? 1)
+    })
   expect(counts).toEqual([...counts].sort((a, b) => b - a))
+  expect(followerValues[0]).toMatch(/^\d+(\.\d)?M followers$/)
+  if (people.length > page1) {
+    await page.getByRole('button', { name: /^Show \d+ more$/ }).click()
+    await expect(page.locator('.study-legend a')).toHaveCount(
+      Math.min(96, people.length)
+    )
+    await page.getByRole('button', { name: /^Show all/ }).click()
+  }
+  await expect(page.locator('.study-legend a')).toHaveCount(people.length)
+  await page.getByLabel('Sort by', { exact: true }).selectOption('name')
+  // Changing the order starts the list over.
+  await expect(page.locator('.study-legend a')).toHaveCount(page1)
+  // Names sort by full name; the grid shows short names.
+  const byName = people.toSorted(
+    (a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id)
+  )
+  const names = page.locator('.study-legend .study-person-name')
+  await expect(names.first()).toHaveText(byName[0]!.shortName)
+  await page.getByLabel('Order', { exact: true }).selectOption('desc')
+  await expect(names.first()).toHaveText(byName.at(-1)!.shortName)
   await page.getByLabel('Sort by', { exact: true }).selectOption('reasoning')
   await expect(page.locator('.directory-metric').first()).toContainText('/ 100')
+  // A filter narrows the list and fades everyone else's dot.
+  const doom = page.getByRole('radio', { name: /^Toward doom/ })
+  const doomCount = Number(
+    (await doom.locator('.directory-filter-count').textContent()) ?? 0
+  )
+  await doom.click()
+  await expect(page.locator('.study-legend a')).toHaveCount(
+    Math.min(48, doomCount)
+  )
+  await expect(page.locator('.study-marker[data-matches="true"]')).toHaveCount(
+    Math.max(0, doomCount - 48)
+  )
+  await page.getByRole('radio', { name: /^Everyone/ }).click()
   const search = page.getByLabel('Find a simulated user')
   await search.fill('@SIMONW')
   await expect(page.locator('.study-legend a')).toHaveCount(1)
   await expect(page.locator('.study-legend a')).toContainText('Simon Willison')
-  await expect(page.locator('.study-point')).toHaveCount(mapCount)
+  await expect(page.locator('.study-point')).toHaveCount(1)
+  expect(
+    (await page.locator('.study-point').count()) +
+      (await page.locator('.study-marker').count())
+  ).toBe(mapCount)
   await search.fill('no such simulated user')
   await expect(page.getByText(/No users match/)).toBeVisible()
   await search.fill('Simon Willison')

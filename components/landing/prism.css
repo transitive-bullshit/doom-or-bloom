@@ -420,3 +420,71 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
+
+/* Directory people beyond the listed page stay on the map as small dots. */
+.study-marker {
+  position: absolute;
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+}
+.study-marker::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--study-portrait-ring);
+  box-shadow:
+    0 0 0 1px var(--study-chart-outline),
+    0 1px 3px var(--study-portrait-shadow);
+}
+.study-marker[data-matches='false'] {
+  opacity: 0.25;
+}
+.study-marker span {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  padding: 3px 6px;
+  background: var(--study-surface);
+  border-radius: 3px;
+  pointer-events: none;
+  opacity: 0;
+}
+.study-marker:hover {
+  z-index: 10;
+  opacity: 1;
+}
+.study-marker:hover span {
+  opacity: 1;
+}
+.map-study[data-highlighting='true'] .study-marker {
+  opacity: 0.25;
+}
+@media (max-width: 520px) {
+  .study-marker::before {
+    inset: 5px;
+  }
+}
+
+.directory-filters {
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.directory-filter-count {
+  color: var(--study-muted);
+  font-variant-numeric: tabular-nums;
+}
+.directory-more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 20px;
+}

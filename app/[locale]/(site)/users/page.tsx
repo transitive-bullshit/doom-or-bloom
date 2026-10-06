@@ -57,7 +57,8 @@ export default async function Page() {
         )?.value ?? null,
       influence: result.experiment?.influence.value ?? null,
       pdoom: directoryPdoom(result),
-      pdoomLabel: result.experiment?.pdoom?.token
+      pdoomLabel: result.experiment?.pdoom?.token,
+      pdoomStated: result.experiment?.pdoom?.source === 'public-statement'
     })
   )
   return (
@@ -68,7 +69,7 @@ export default async function Page() {
           locale,
           name: pages('users.title'),
           description: pages('users.description'),
-          // The directory's default order.
+          // Alphabetical, independent of the directory's interactive order.
           people: examples.toSorted((a, b) => compareUsers(a, b, 'name', 'asc'))
         })}
       />
