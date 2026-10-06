@@ -75,7 +75,7 @@ export const publicStatementsSchema = z.strictObject({
   slug: z.string().regex(/^[a-z0-9_-]{1,80}$/),
   /** One neutral sentence under the one-liner rule. */
   summary: z.string(),
-  statements: z.array(publicStatementSchema).min(3).max(5)
+  statements: z.array(publicStatementSchema).min(3).max(7)
 })
 export type PublicStatements = z.infer<typeof publicStatementsSchema>
 

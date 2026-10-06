@@ -69,10 +69,24 @@ it('holds the summary to the one-liner rule', () => {
   ).toContain('summary states a P(doom) or percentage')
 })
 
-it('needs three to five sourced statements', () => {
+it('needs three to seven sourced statements', () => {
   expect(
     publicStatementsSchema.safeParse(
       file({ statements: [statement('2026-01'), statement('2025-01')] })
+    ).success
+  ).toBe(false)
+  expect(
+    publicStatementsSchema.safeParse(
+      file({
+        statements: Array.from({ length: 7 }, () => statement('2026-01'))
+      })
+    ).success
+  ).toBe(true)
+  expect(
+    publicStatementsSchema.safeParse(
+      file({
+        statements: Array.from({ length: 8 }, () => statement('2026-01'))
+      })
     ).success
   ).toBe(false)
 })

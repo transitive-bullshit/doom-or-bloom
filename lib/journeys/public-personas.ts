@@ -127,6 +127,18 @@ export const publicPersonas: Persona[] = [
     responseStyle: 'detailed',
     sources: [
       {
+        title:
+          'Vanity Fair: Sam Altman Sees the Future. Are We In It? (Part 1 of 2)',
+        url: 'https://www.vanityfair.com/story/sam-altman-exclusive-interview-part-1',
+        publishedAt: '2026-10-05',
+        summary:
+          'Altman calls AGI close but its definition subjective. He remains deeply optimistic while saying frightening risks require work. He expects AI-driven prosperity to expand livelihoods and leisure, with changes to the social contract, and urges cooperation among competing labs. He says AI should not replace human connection. Only his own answers in the outlet’s edited Part 1 transcript were inspected; interviewer premises, editorial framing and Part 2 are excluded. No numerical P(doom) is stated in his inspected answers.',
+        quote: 'I’m incredibly optimistic for the future.',
+        speaker: 'Sam Altman',
+        transcriptUrl:
+          'https://www.vanityfair.com/story/sam-altman-exclusive-interview-part-1'
+      },
+      {
         title: 'OpenAI: Building standards for the next phase of AI',
         url: 'https://openai.com/index/building-standards-next-phase-ai/',
         publishedAt: '2026-09-21',
