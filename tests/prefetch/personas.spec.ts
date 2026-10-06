@@ -232,6 +232,34 @@ test('keyboard focus warms a directory profile without viewport prefetching', as
   ).toBeVisible()
 })
 
+test('directory paging moves focus but warms a profile only for visible focus', async ({
+  page
+}) => {
+  await page.route('**/api/auth/get-session*', (route) =>
+    route.fulfill({ json: null })
+  )
+  const requests: string[] = []
+  page.on('request', (request) => {
+    const url = new URL(request.url())
+    if (url.pathname.startsWith('/users/') && request.headers().rsc === '1')
+      requests.push(url.pathname)
+  })
+  const links = page.locator('.study-legend a')
+  const all = page.getByRole('button', { name: /^Show all/ })
+  await page.goto('/users')
+  await all.click()
+  await expect(links.nth(48)).toBeFocused()
+  await page.waitForTimeout(400)
+  expect(requests).toEqual([])
+
+  await page.goto('/users')
+  await all.focus()
+  await page.keyboard.press('Enter')
+  await expect(links.nth(48)).toBeFocused()
+  const first = await links.nth(48).getAttribute('href')
+  await expect.poll(() => [...new Set(requests)]).toEqual([first])
+})
+
 test('data saver suppresses speculative profile requests', async ({ page }) => {
   await page.addInitScript(() => {
     Object.defineProperty(navigator, 'connection', {

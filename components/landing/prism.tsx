@@ -8,9 +8,11 @@ import { getPathname, Link } from '@/i18n/navigation'
 import {
   useSyncExternalStore,
   useMemo,
+  useRef,
   useState,
   type CSSProperties
 } from 'react'
+import { flushSync } from 'react-dom'
 import './prism.css'
 import { usePortraitHighlight } from './use-portrait-highlight'
 import { usePortraitLayout } from './use-portrait-layout'
@@ -197,6 +199,17 @@ export function Prism({
     () => (directory ? legend.slice(0, shown) : legend),
     [directory, legend, shown]
   )
+  const legendRef = useRef<HTMLDivElement>(null)
+  // Listing every match removes the paging buttons, so focus on one moves to
+  // the first newly listed person instead of falling back to the page.
+  const showUpTo = (count: number, button: HTMLButtonElement) => {
+    const first = listed.length
+    const focused = document.activeElement === button
+    const focusVisible = button.matches(':focus-visible')
+    flushSync(() => setShown(count))
+    if (focused && !button.isConnected)
+      legendRef.current?.querySelectorAll('a')[first]?.focus({ focusVisible })
+  }
   // The directory map shows portraits for the people listed and a dot for
   // everyone else, so a few hundred users stay readable.
   const pictured = useMemo(() => {
@@ -454,6 +467,7 @@ export function Prism({
       )}
       <div
         id='simulated-users'
+        ref={legendRef}
         className='landing-map-legend study-legend'
         data-directory={directory}
       >
@@ -489,13 +503,18 @@ export function Prism({
         <div className='directory-more'>
           <Button
             variant='outline'
-            onClick={() => setShown((count) => count + directoryPageSize)}
+            onClick={(event) =>
+              showUpTo(shown + directoryPageSize, event.currentTarget)
+            }
           >
             {t('showMore', {
               count: Math.min(directoryPageSize, legend.length - listed.length)
             })}
           </Button>
-          <Button variant='link' onClick={() => setShown(legend.length)}>
+          <Button
+            variant='link'
+            onClick={(event) => showUpTo(legend.length, event.currentTarget)}
+          >
             {t('showAll', { count: legend.length })}
           </Button>
         </div>
