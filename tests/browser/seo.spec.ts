@@ -106,7 +106,7 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   ).toHaveAttribute('href', '/blog/why-p-doom-estimates-vary')
 
   // A curated table, not the whole catalog: stated numbers as written, each
-  // with a footnote and the person's exact words, then refusals quoted
+  // with the person's exact words and their footnote, then refusals quoted
   // instead of a number.
   const table = page.locator('[data-slot="pdoom-table"]')
   const rows = table.locator('tbody tr')
@@ -128,7 +128,12 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   await expect(
     hinton.getByRole('link', { name: 'Geoffrey Hinton' })
   ).toHaveAttribute('href', '/users/geoffreyhinton')
-  const marker = hinton.getByRole('link', { name: /^Source \d+$/ })
+  // The footnote follows the quote it sources, not the number.
+  const quote = hinton.locator('q').locator('xpath=..')
+  const marker = quote.getByRole('link', { name: /^Source \d+$/ })
+  await expect(hinton.getByRole('link', { name: /^Source \d+$/ })).toHaveCount(
+    1
+  )
   const footnote = (await marker.getAttribute('href'))!
   expect(footnote).toMatch(/^#source-\d+$/)
   await expect(

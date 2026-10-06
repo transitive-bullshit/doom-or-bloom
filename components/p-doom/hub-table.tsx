@@ -15,9 +15,9 @@ import { Citation } from './citation'
 
 /**
  * Curated thought leaders, lowest stated P(doom) first, then those who decline
- * to give one. Each row shows the number or "No number" with its footnote, the
- * person's exact words from that source, and a note on what the number is a
- * chance of. Ranges and lower bounds keep their order and are never reduced
+ * to give one. Each row shows the number or "No number", then the person's
+ * exact words with the footnote for their source. A row with nothing to quote
+ * footnotes the number instead and adds a note on what it is a chance of. Ranges and lower bounds keep their order and are never reduced
  * to a midpoint; the sortable catalog is /users.
  */
 export function HubTable({
@@ -79,23 +79,25 @@ export function HubTable({
                   }
                 >
                   {row.token ?? t('declined')}
-                  <Citation {...row.citation} />
+                  {/* Without a quote, the number carries the footnote. */}
+                  {!row.quote && <Citation {...row.citation} />}
                 </span>
                 {row.quote && (
-                  <q
-                    lang='en'
-                    cite={row.source.url}
-                    className='border-l-2 border-coral pl-3 text-pretty text-body-foreground italic'
-                  >
-                    {row.quote}
-                  </q>
+                  <span className='border-l-2 border-coral pl-3 text-pretty text-body-foreground'>
+                    <q lang='en' cite={row.source.url} className='italic'>
+                      {row.quote}
+                    </q>
+                    <Citation {...row.citation} />
+                  </span>
                 )}
-                <span
-                  lang='en'
-                  className='text-sm text-pretty text-muted-foreground'
-                >
-                  {row.note}
-                </span>
+                {row.note && (
+                  <span
+                    lang='en'
+                    className='text-sm text-pretty text-muted-foreground'
+                  >
+                    {row.note}
+                  </span>
+                )}
               </div>
             </TableCell>
           </TableRow>
