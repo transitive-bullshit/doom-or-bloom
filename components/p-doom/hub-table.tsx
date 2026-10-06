@@ -9,9 +9,9 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import type { Citation as CitationData } from '@/lib/p-doom/citations'
+import type { Citation as CitationData } from '@/lib/sources/citations'
 import type { HubRow } from '@/lib/p-doom/hub'
-import { Citation } from './citation'
+import { Citation } from '@/components/sources/citation'
 
 /**
  * Curated thought leaders, lowest stated P(doom) first, then those who decline

@@ -1,7 +1,10 @@
 import participants from '@/content/blog/aggregates/participants.json'
 import { versions } from '@/lib/assessment/schema'
-import { footnoteRegistry, type HubSource } from '@/lib/p-doom/citations'
-import type { HubFootnote } from '@/lib/p-doom/hub'
+import {
+  footnoteRegistry,
+  withBylines,
+  type Source
+} from '@/lib/sources/citations'
 
 // The About page's methodology section: what it cites and the numbers it
 // shows. Numbers from the participant aggregates follow that file; the rest
@@ -133,7 +136,7 @@ export const methodologySources = {
     by: notes,
     year: 2026
   }
-} as const satisfies Record<string, HubSource>
+} as const satisfies Record<string, Source>
 
 export type MethodologySource = keyof typeof methodologySources
 
@@ -157,10 +160,7 @@ export function methodologyCitations() {
   ) as Record<MethodologySource, number>
   return {
     numbers,
-    footnotes: footnotes.map((footnote): HubFootnote => ({
-      ...footnote,
-      byline: [{ text: footnote.by }]
-    }))
+    footnotes: withBylines(footnotes)
   }
 }
 

@@ -164,7 +164,7 @@ Rules:
 
 // Blog posts are long-form prose with charts and links.
 const blogRules = `Blog post rules:
-a. Keep the MDX exactly: JSX tags such as <DataBars data={outlookByWave} />, Markdown link targets (the URL in parentheses; translate only the link text), and the Markdown structure: headings (#), list items (-, 1.), tables (|), bold (**), italics (*) and blank lines between paragraphs.
+a. Keep the MDX exactly: JSX tags such as <DataBars data={outlookByWave} />, Markdown link targets (the URL in parentheses; translate only the link text), citation markers such as [^bostrom-2002] (unchanged, after the same claim), and the Markdown structure: headings (#), list items (-, 1.), tables (|), bold (**), italics (*) and blank lines between paragraphs.
 b. Keep every number's value. Write numbers the way ${language} normally does (decimal separator, percent sign), with the digits 0–9. Dates keep their day and year.
 c. Keep people's names, "Hacker News", "X", "Jev", and the names of statistical methods (Mann–Whitney, Fisher, k-means, bootstrap, Wilson) as written.
 d. Use ${language}'s typographic quotation marks.
@@ -346,7 +346,7 @@ const blogKinds: Record<string, string> = {
   description:
     'Summary of the post for search results, social cards and the blog index.',
   section:
-    'A section of the post body, in MDX (Markdown with JSX components). Keep every import line, JSX tag such as <DataBars data={…} />, link target and Markdown structure exactly; translate only the prose, link text and table text.',
+    'A section of the post body, in MDX (Markdown with JSX components). Keep every import line, JSX tag such as <DataBars data={…} />, link target, [^key] citation marker and Markdown structure exactly; translate only the prose, link text and table text.',
   data: 'Text of a chart in the post: a chart title, a source note under it (full sentences that keep their final punctuation), a legend or axis label, a row label, a group heading or a test note. Titles and labels have no final period.'
 }
 const blogJobs: Job[] = [

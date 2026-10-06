@@ -15,12 +15,29 @@ const headline = z
   .max(110)
   .refine((text) => !/\.\s*$/u.test(text), 'Headlines end without a period')
 
+/** A work a post cites (lib/sources/citations.ts `Source`). */
+const sourceSchema = z.strictObject({
+  title: z.string().min(1),
+  url: z.url({ protocol: /^https?$/u }),
+  /** Author or organization, as the byline shows it. */
+  by: z.string().min(1),
+  year: z.int().min(1000).max(2100),
+  published: day.optional()
+})
+
 export const postFrontmatterSchema = z.strictObject({
   title: headline,
   /** One or two sentences for search results, social cards and the index. */
   description: z.string().min(50).max(200),
   date: day,
-  updated: day.optional()
+  updated: day.optional(),
+  /**
+   * The works the post cites, keyed by the name its `[^key]` markers use
+   * (docs/BLOG.md#citing-sources).
+   */
+  sources: z
+    .record(z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u), sourceSchema)
+    .optional()
 })
 export type PostFrontmatter = z.infer<typeof postFrontmatterSchema>
 
@@ -36,6 +53,7 @@ const wordsPerMinute = 230
 export function countWords(body: string, tag?: string) {
   const text = body
     .replace(/^---[\s\S]*?\n---/u, ' ')
+    .replace(/\[\^[a-z0-9-]+\]/gu, ' ')
     .replace(/```[\s\S]*?```/gu, ' ')
     .replace(/^(?:import|export)\s.*$/gmu, ' ')
     .replace(/<[^>]*>/gu, ' ')
@@ -423,6 +441,12 @@ export const landscapeDataSchema = z
     y: axisSchema,
     /** How to open a point's details, e.g. "Hover, tap or focus a project". */
     hint: z.string().min(1),
+    /**
+     * Where the axes cross: at the bottom left edge (the default), or in the
+     * middle like the site's map, which puts the vertical axis title over the
+     * middle line.
+     */
+    axes: z.enum(['edge', 'middle']).optional(),
     points: z
       .array(
         z.strictObject({

@@ -1,7 +1,7 @@
 {
   "kind": "landscape",
   "title": "Where the words point",
-  "source": "Placement is my reading of each word’s definition, not a measurement, and the map places words, never people. Sources: aisafety.info, Nick Bostrom (1998 and 2002), Reid Hoffman on X (2025), the 2022 e/acc newsletter post, Morris et al. at Google DeepMind (2023), Vernor Vinge (1993) and Merriam-Webster.",
+  "source": "Placement is our reading of each word’s definition, not a measurement, and the map places words, never people. Sources: aisafety.info, Nick Bostrom (1998 and 2002), Reid Hoffman on X (2025), the 2022 e/acc newsletter post, Morris et al. at Google DeepMind (2023), Vernor Vinge (1993) and Merriam-Webster.",
   "asOf": "2026-10-06",
   "provenance": "published-writing",
   "x": {
@@ -15,6 +15,7 @@
     "end": "Civilizational change"
   },
   "hint": "Hover, tap or focus a word to see what it means and where it comes from",
+  "axes": "middle",
   "points": [
     {
       "key": "ai-doomer",

@@ -220,6 +220,15 @@ describe('landscape charts', () => {
     expect(ours.map((p) => p.n)).toEqual([aggregates.map.overall.outlook.n])
   })
 
+  it('cross their axes at the edge or, like the site’s map, in the middle', () => {
+    const other = { ...point, key: 'quizzes', label: 'Quizzes' }
+    expect(ok({ ...chart([point, other]), axes: 'middle' })).toBe(true)
+    expect(ok({ ...chart([point, other]), axes: 'center' })).toBe(false)
+    expect(
+      landscapeDataSchema.parse(readData('ai-debate-words-map.json')).axes
+    ).toBe('middle')
+  })
+
   it('tint the highlighted point’s quadrant, or none without a highlight', () => {
     const point = { x: 0.9, y: 0.93 }
     expect(highlightQuadrant([point, { ...point, highlight: true }])).toEqual({

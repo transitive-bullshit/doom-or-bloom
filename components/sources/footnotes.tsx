@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import { GlobeIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { footnoteId } from '@/lib/p-doom/citations'
-import type { HubFootnote, HubReading } from '@/lib/p-doom/hub'
+import { footnoteId, type SourceFootnote } from '@/lib/sources/citations'
+import { sourceIcon } from '@/lib/sources/favicons'
 import { MentionText } from '@/components/mention-text'
 import { MoreSources } from './more-sources'
-import { sourceIcon } from '@/lib/p-doom/favicons'
 
 /** The cited site's locally stored favicon, or a globe. */
 function SiteIcon({ url }: { url: string }) {
@@ -25,7 +24,7 @@ function SiteIcon({ url }: { url: string }) {
 }
 
 /** A source's title, linked, after its favicon. */
-function SourceLink({ title, url }: { title: string; url: string }) {
+export function SourceLink({ title, url }: { title: string; url: string }) {
   return (
     <a
       href={url}
@@ -53,7 +52,7 @@ function FootnoteList({
   footnotes,
   start = 1
 }: {
-  footnotes: HubFootnote[]
+  footnotes: SourceFootnote[]
   start?: number
 }) {
   return (
@@ -87,8 +86,8 @@ function FootnoteList({
  * Numbered footnotes in citation order. The first few show; the rest open on
  * demand, or when a reader follows a marker to one of them.
  */
-export function Footnotes({ footnotes }: { footnotes: HubFootnote[] }) {
-  const t = useTranslations('PdoomHub')
+export function Footnotes({ footnotes }: { footnotes: SourceFootnote[] }) {
+  const t = useTranslations('Sources')
   const shown = footnotes.slice(0, visibleFootnotes)
   const more = footnotes.slice(visibleFootnotes)
   return (
@@ -96,31 +95,12 @@ export function Footnotes({ footnotes }: { footnotes: HubFootnote[] }) {
       <FootnoteList footnotes={shown} />
       {more.length > 0 && (
         <MoreSources
-          showLabel={t('showAllSources', { count: footnotes.length })}
-          hideLabel={t('fewerSources')}
+          showLabel={t('showAll', { count: footnotes.length })}
+          hideLabel={t('showFewer')}
         >
           <FootnoteList footnotes={more} start={visibleFootnotes + 1} />
         </MoreSources>
       )}
     </div>
-  )
-}
-
-/** Recommended readings, each with its site's favicon and a one-line reason. */
-export function ReadingList({ readings }: { readings: HubReading[] }) {
-  return (
-    <ul className='flex flex-col gap-4 text-sm leading-relaxed'>
-      {readings.map(({ title, url, byline, year, kind, blurb }) => (
-        <li key={url} className='flex flex-col gap-1'>
-          <SourceLink title={title} url={url} />
-          <p className='pl-6 text-muted-foreground'>
-            <MentionText parts={byline} /> · {year} · {kind}
-          </p>
-          <p className='pl-6 text-body-foreground'>
-            <MentionText parts={blurb} />
-          </p>
-        </li>
-      ))}
-    </ul>
   )
 }

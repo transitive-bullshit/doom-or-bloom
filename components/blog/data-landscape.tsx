@@ -30,6 +30,7 @@ export function DataLandscape({
         x={chart.x}
         y={chart.y}
         hint={chart.hint}
+        axes={chart.axes}
       />
       {/* A table ignores sr-only's 1px width, so its wrapper hides it. */}
       <div className='sr-only'>

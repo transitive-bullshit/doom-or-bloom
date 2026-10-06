@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { ArrowRightIcon, ArrowUpIcon, ArrowUpRightIcon } from 'lucide-react'
 import { highlightQuadrant } from '@/lib/blog/chart-geometry'
 
 export type LandscapePoint = {
@@ -22,18 +23,21 @@ type Axis = { title: string; start: string; end: string }
  * The interactive half of DataLandscape: points with direct labels (numbers
  * on phones, keyed in a list below), and one details panel that follows the
  * pointer, a tap or keyboard focus. Every word stays horizontal, so nothing is
- * clipped at any width.
+ * clipped at any width. With `axes` at the middle, as on the site's map, the
+ * vertical axis title sits over the middle line instead of the left edge.
  */
 export function LandscapePlot({
   points,
   x,
   y,
-  hint
+  hint,
+  axes = 'edge'
 }: {
   points: LandscapePoint[]
   x: Axis
   y: Axis
   hint: string
+  axes?: 'edge' | 'middle'
 }) {
   const initial = (points.find((point) => point.highlight) ?? points[0]!).key
   const [selected, setSelected] = useState(initial)
@@ -46,8 +50,10 @@ export function LandscapePlot({
   }
   return (
     <div className='flex flex-col gap-3'>
-      <p className='flex items-center gap-1.5 text-xs font-semibold text-body-foreground'>
-        <span aria-hidden>↑</span>
+      <p
+        className={`flex items-center gap-1 text-xs font-semibold text-body-foreground ${axes === 'middle' ? 'justify-center' : ''}`}
+      >
+        <ArrowUpIcon aria-hidden className='size-3 shrink-0' />
         {y.title}
       </p>
       <div className='relative h-80 border-b border-l border-foreground/40 sm:h-96'>
@@ -113,8 +119,9 @@ export function LandscapePlot({
       </div>
       <div className='flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-xs text-muted-foreground'>
         <span>{x.start}</span>
-        <span className='order-last basis-full text-center font-semibold text-body-foreground sm:order-none sm:basis-auto'>
-          {x.title} <span aria-hidden>→</span>
+        <span className='order-last flex basis-full items-center justify-center gap-1 font-semibold text-body-foreground sm:order-none sm:basis-auto'>
+          {x.title}
+          <ArrowRightIcon aria-hidden className='size-3 shrink-0' />
         </span>
         <span>{x.end}</span>
       </div>
@@ -128,10 +135,13 @@ export function LandscapePlot({
             href={active.href}
             target='_blank'
             rel='noreferrer'
-            className='font-semibold underline underline-offset-4'
+            className='group inline-flex items-center gap-1 self-start font-semibold'
           >
-            {active.label}
-            <span aria-hidden> ↗</span>
+            <span className='underline underline-offset-4'>{active.label}</span>
+            <ArrowUpRightIcon
+              aria-hidden
+              className='size-3 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground'
+            />
           </a>
           <p className='text-body-foreground'>{active.method}</p>
           <p className='text-muted-foreground'>{active.reach}</p>

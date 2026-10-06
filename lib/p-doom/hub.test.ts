@@ -1,9 +1,9 @@
 import { access } from 'node:fs/promises'
 import { describe, expect, test } from 'vitest'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
-import { segments, type HubSource } from './citations'
+import { segments, type Source } from '@/lib/sources/citations'
 import { curatedPeople } from './curated'
-import { sourceIcon } from './favicons'
+import { sourceIcon } from '@/lib/sources/favicons'
 import { hubContent, hubRows, hubSourceUrls } from './hub'
 import { readingGroups } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
@@ -270,7 +270,7 @@ describe('profile links', () => {
 })
 
 describe('sources and readings', () => {
-  const all: HubSource[] = [
+  const all: Source[] = [
     ...hubContent(everyone).footnotes,
     ...readingGroups.flatMap(({ readings }) => readings)
   ]

@@ -832,13 +832,11 @@
     "profile": "个人资料"
   },
   "PdoomHub": {
+    "definition": "P(doom) 是一个人认为先进 AI 给人类造成生存性灾难的概率，例如人类灭绝或永久失去对自身未来的控制。",
     "tableTitle": "各意见领袖的 P(doom)",
     "name": "意见领袖",
     "stated": "公开表述的 P(doom)",
     "declined": "未提供数字",
-    "showAllSources": "显示全部 {count} 个来源",
-    "fewerSources": "显示较少来源",
-    "cite": "来源 {number}",
     "asOf": "包括截至 {date} 的陈述",
     "note": "每个数字都来自当事人的原话，并链接至其发表该言论的出处。不同人对结果和时间范围的定义不同，因此这些数字不能直接比较。",
     "surveyTitle": "用于比较：AI研究人员",
@@ -858,6 +856,12 @@
     "ctaTitle": "你的 P(doom) 是多少？",
     "ctaDescription": "用大约3分钟回答几个问题，然后将你的世界观和粗略的 P(doom) 与他们的放在一起查看",
     "guide": "为什么 P(doom) 估计值差异如此之大，以及如何解读估计值"
+  },
+  "Sources": {
+    "title": "来源",
+    "cite": "来源 {number}",
+    "showAll": "显示全部 {count} 个来源",
+    "showFewer": "显示较少来源"
   },
   "Blog": {
     "title": "博客",

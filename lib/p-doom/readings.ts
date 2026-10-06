@@ -1,11 +1,11 @@
-import type { HubSource } from './citations'
+import type { Source } from '@/lib/sources/citations'
 
 // The P(doom) hub's reading list: the essential case that AI could end in
 // catastrophe, then the strongest critiques. Every link was loaded on
 // 2026-10-02, and the 2024 expert survey on 2026-10-04. Group headings are
 // translated (`PdoomHub.readingGroups`); the entries stay English.
 
-export type Reading = HubSource & {
+export type Reading = Source & {
   kind:
     | 'Book'
     | 'Essay'

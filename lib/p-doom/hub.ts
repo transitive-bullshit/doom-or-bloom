@@ -3,10 +3,10 @@ import { profileMentions, type MentionPart } from '@/lib/personas/mentions'
 import {
   footnoteRegistry,
   segments,
-  type Citation,
-  type Footnote,
-  type HubSource
-} from './citations'
+  withBylines,
+  type CitedProse,
+  type Source
+} from '@/lib/sources/citations'
 import { curatedPeople, statementPublishers } from './curated'
 import { readingGroups, type Reading } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
@@ -23,7 +23,7 @@ export type HubRow = Omit<Person, 'id'> & {
   quote: string | null
   /** Outcome, horizon or condition for a number, or context for a refusal. */
   note: string
-  source: HubSource
+  source: Source
 }
 
 const hostname = (url: string) => new URL(url).hostname.replace(/^www\./, '')
@@ -31,7 +31,7 @@ const hostname = (url: string) => new URL(url).hostname.replace(/^www\./, '')
 function statementSource(
   { title, url, publishedAt }: Statements[string],
   name: string
-): HubSource {
+): Source {
   const host = hostname(url)
   return {
     title,
@@ -48,7 +48,7 @@ function statementSource(
  * each counted from 1 January so it never claims a later date than the data
  * shows. It changes only when the content does.
  */
-function newestSourceDate(sources: readonly HubSource[]) {
+function newestSourceDate(sources: readonly Source[]) {
   return sources
     .map(({ published, year }) => published ?? `${year}-01-01`)
     .reduce((newest, date) => (date > newest ? date : newest), '')
@@ -92,13 +92,7 @@ export function hubRows(
   })
 }
 
-/**
- * Prose with each citation resolved to its footnote number, and the names of
- * people with a profile marked for linking.
- */
-export type CitedProse = (MentionPart | { emphasis: string } | Citation)[]
-
-const citedSources: Record<string, HubSource> = {
+const citedSources: Record<string, Source> = {
   ...scenarioSources,
   ...surveySources
 }
@@ -148,10 +142,7 @@ export function hubContent(
     survey,
     intro,
     scenarios: cited,
-    footnotes: footnotes.map((footnote): HubFootnote => ({
-      ...footnote,
-      byline: mention(footnote.by)
-    })),
+    footnotes: withBylines(footnotes, (text) => mention(text)),
     readings: readingGroups.map(({ id, readings }) => ({
       id,
       readings: readings.map((reading): HubReading => ({
@@ -163,8 +154,6 @@ export function hubContent(
   }
 }
 
-/** A footnote whose authors link to their profiles. */
-export type HubFootnote = Footnote & { byline: MentionPart[] }
 /** A recommended reading whose authors and blurb link to profiles. */
 export type HubReading = Reading & {
   byline: MentionPart[]
