@@ -750,6 +750,7 @@
     "profile": "Profile",
     "similarTitle": "Similar worldviews",
     "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s",
+    "similarPositionsDescription": "Thought leaders closest to {name}’s simulated worldview on the few positions it expresses",
     "statementsTitle": "What {name} has said about AI",
     "statementsNote": "Word for word from the linked sources, checked {date}"
   },

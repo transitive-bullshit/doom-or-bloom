@@ -1,5 +1,6 @@
 import { expect, test } from 'vitest'
 import {
+  closestOnExpressedPositions,
   closestPersonas,
   worldviewValues,
   type PersonaComparison
@@ -143,4 +144,38 @@ test('returns up to the requested number of matches for similar-worldview lists'
   expect(closestPersonas(user, candidates, 6).map((match) => match.id)).toEqual(
     ['p0.6', 'p0.5', 'p0.7', 'p0.4', 'p0.3', 'p0.2']
   )
+})
+
+test('a sparse result falls back to the positions it expresses, never an unsettled scale', () => {
+  // Only the outlook: a mixed reading, with the scale of change unsettled.
+  const sparse = {
+    ...result({}),
+    evidenceRevision: 4,
+    horizontal: { ...emptyComponent('outlook', 'Doom–Bloom'), value: 0.5 },
+    experiment: {
+      evidenceRevision: 4,
+      transformation: {
+        ...emptyComponent('transformation', 'Scale'),
+        value: 0.5,
+        interpretation: 'unsettled' as const
+      }
+    }
+  } as Parameters<typeof closestPersonas>[0]
+  const candidates = [
+    { ...persona('mixed', all(0.9)), map: { x: 0.5, y: 0.95 } },
+    { ...persona('hopeful', all(0.5)), map: { x: 0.9, y: 0.5 } },
+    { ...persona('unplaced', all(0.5)), map: { x: null, y: 0.5 } },
+    { ...persona('leaning', all(0.5)), map: { x: 0.6, y: 0.5 } }
+  ]
+  expect(closestPersonas(sparse, candidates, 6)).toEqual([])
+  const matches = closestOnExpressedPositions(sparse, candidates, 6)
+  // The outlook alone decides; nobody matches without one.
+  expect(matches.map((match) => match.id)).toEqual([
+    'mixed',
+    'leaning',
+    'hopeful'
+  ])
+  expect(matches[0]).toMatchObject({ distance: 0, dimensions: 1 })
+  // Nothing expressed, nothing to compare.
+  expect(closestOnExpressedPositions(result({}), candidates)).toEqual([])
 })

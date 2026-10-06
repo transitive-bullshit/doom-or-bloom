@@ -12,7 +12,10 @@ import { MobileCta } from '@/components/mobile-cta'
 import { DisclosureTrigger } from '@/components/disclosure-trigger'
 import { PersonaHeader } from './persona-header'
 import { PersonaSources } from './persona-sources'
-import { SimilarWorldviews, type SimilarWorldview } from './similar-worldviews'
+import {
+  SimilarWorldviews,
+  type SimilarWorldviewList
+} from './similar-worldviews'
 import { PublicStatements } from './public-statements'
 import { ExperimentalResults } from '@/components/assessment/experimental-results'
 import { ReasoningJudgments } from '@/components/assessment/reasoning-judgments'
@@ -29,7 +32,7 @@ import { useAuthoredText } from '@/components/assessment/authored-text'
 export function PersonaPageContent({
   person,
   assessment,
-  similar = [],
+  similar,
   statements,
   answersOpen = false
 }: {
@@ -48,7 +51,7 @@ export function PersonaPageContent({
   > & { result: Result }
   assessment: PersonaAssessment
   /** Nearest simulated users, linked after the compare prompt. */
-  similar?: SimilarWorldview[]
+  similar?: SimilarWorldviewList
   /** What the real person has said, below the map and its follow-ups. */
   statements?: Statements
   /**
@@ -77,9 +80,9 @@ export function PersonaPageContent({
         compare={`persona:${person.slug}`}
         className='mt-16'
       />
-      {similar.length > 0 && (
+      {similar && similar.people.length > 0 && (
         <div className='mt-10'>
-          <SimilarWorldviews name={person.name} people={similar} />
+          <SimilarWorldviews name={person.name} {...similar} />
         </div>
       )}
       {statements && (
