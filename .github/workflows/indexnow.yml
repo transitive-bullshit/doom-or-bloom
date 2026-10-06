@@ -1,0 +1,57 @@
+name: IndexNow
+
+# Tells Bing and other IndexNow engines which public pages changed, by their
+# sitemap lastmod (docs/MEASUREMENT.md#search-engines). The key is public, so
+# no secrets are needed.
+on:
+  # Vercel reports each deployment to GitHub; only successful Production ones
+  # run the job.
+  deployment_status:
+  # Data-only changes, such as a simulated-user import, reach the sitemap
+  # without a deploy within its 48-hour regeneration.
+  schedule:
+    - cron: '23 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    name: Submit changed URLs
+    if: >-
+      github.event_name != 'deployment_status' || (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # After a deploy, everything changed since the previous successful run
+      # started; a failed run leaves its URLs for the next one. The daily run
+      # looks back three days instead, which covers the sitemap's 48-hour
+      # regeneration and posts dated a day or two before they were merged.
+      - name: Choose the cutoff
+        id: cutoff
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          window=$(date -u -d '3 days ago' +%Y-%m-%dT%H:%M:%SZ)
+          since=$window
+          if [ "${{ github.event_name }}" != schedule ]; then
+            previous=$(gh run list --workflow indexnow.yml --status success \
+              --limit 1 --json startedAt --jq '.[0].startedAt // empty')
+            since=${previous:-$window}
+          fi
+          echo "since=$since" >> "$GITHUB_OUTPUT"
+      - run: pnpm seo:indexnow --changed-since "${{ steps.cutoff.outputs.since }}"

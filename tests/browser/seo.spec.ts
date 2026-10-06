@@ -531,6 +531,16 @@ test('the sitemap lists English-only pages in English and translated posts in ev
   expect(sitemap).not.toContain(`${site}/es/blog/what-is-p-doom`)
   for (const code of ['', '/es', '/ja'])
     expect(sitemap).toContain(`<loc>${site}${code}/blog/hacker-news-vs-x</loc>`)
+  // Only pages whose content gives a date carry a lastmod.
+  const lastmod = (path: string) =>
+    new RegExp(
+      `<url>\\s*<loc>${site}${path}</loc>[^]*?(?:<lastmod>([^<]+)</lastmod>[^]*?)?</url>`
+    ).exec(sitemap)?.[1]
+  expect(lastmod('/p-doom')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+  expect(lastmod('/blog')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+  expect(lastmod('/users/geoffreyhinton')).toMatch(/^\d{4}-\d{2}-\d{2}T/)
+  expect(lastmod('/')).toBeUndefined()
+  expect(lastmod('/about')).toBeUndefined()
   const llms = await (await request.get('/llms.txt')).text()
   expect(llms).toContain('## Blog')
   expect(llms).toContain(`- [What is P(doom)?](${site}/blog/what-is-p-doom)`)
