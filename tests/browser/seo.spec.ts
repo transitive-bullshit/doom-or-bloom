@@ -394,6 +394,13 @@ test('profiles link similar worldviews and describe the simulated person', async
   await expect(page).toHaveTitle(
     'Geoffrey Hinton on AI safety, risk and P(doom) | Doom or Bloom'
   )
+  // Each compare target is its own robots-disallowed start URL.
+  const compare = page.locator('a[href*="compare=persona"]')
+  expect(await compare.count()).toBeGreaterThan(0)
+  for (const rel of await compare.evaluateAll((anchors) =>
+    anchors.map((anchor) => anchor.getAttribute('rel'))
+  ))
+    expect(rel).toBe('nofollow')
   const similar = page.locator('[data-slot="similar-worldviews"]')
   await expect(
     similar.getByRole('heading', { name: 'Similar worldviews' })
