@@ -72,6 +72,8 @@ export const participantAggregatesSchema = z.object({
     n: count,
     overall: z.object({
       lowerHalf_y_below_0_5: shareStat,
+      /** Written by the pipeline since October 6, 2026; derived before. */
+      upperHalf_y_0_5_to_0_9: shareStat.optional(),
       topEdge_y_0_9_or_more: shareStat
     }),
     horseshoe: z.array(shareStat.extend({ outlookBand: z.enum(outlookBands) })),
@@ -186,32 +188,29 @@ const sideLabels = [
 ]
 /**
  * The vertical axis in three bands: the lower half, the top tenth and the
- * band between, whose count is what the other two leave of the same people.
+ * band between. Aggregates written before the pipeline counted the middle band
+ * leave it out; it is then what the other two leave of the same people. A band
+ * under the minimum shows as "Fewer than 10", like every participant bar.
  */
-function scaleBands(
-  map: ParticipantAggregates['map']
+export function scaleBands(
+  map: Pick<ParticipantAggregates['map'], 'n' | 'overall'>
 ): [string, z.infer<typeof shareStat>][] {
-  const lower = map.overall.lowerHalf_y_below_0_5
-  const top = map.overall.topEdge_y_0_9_or_more
-  if (
-    lower.n !== map.n ||
-    top.n !== map.n ||
-    lower.count === null ||
-    top.count === null
-  )
-    throw new Error('Scale bands need counts over every placed person')
-  const middle = map.n - lower.count - top.count
+  const { lowerHalf_y_below_0_5: lower, topEdge_y_0_9_or_more: top } =
+    map.overall
+  const middle = map.overall.upperHalf_y_0_5_to_0_9 ?? derivedMiddle()
+  function derivedMiddle(): z.infer<typeof shareStat> {
+    if (lower.count === null || top.count === null)
+      throw new Error(
+        'The middle scale band needs map.overall.upperHalf_y_0_5_to_0_9: rerun pnpm blog:data'
+      )
+    const count = map.n - lower.count - top.count
+    return count < minimumGroupSize
+      ? { n: map.n, count: null, share: null, ci95: [null, null] }
+      : { n: map.n, count, share: round(count / map.n), ci95: [null, null] }
+  }
   return [
     ['Lower half (below 0.5)', lower],
-    [
-      'Upper half, below the top edge (0.5–0.9)',
-      {
-        n: map.n,
-        count: middle,
-        share: round(middle / map.n),
-        ci95: [null, null]
-      }
-    ],
+    ['Upper half, below the top edge (0.5–0.9)', middle],
     ['Top edge (0.9 and up)', top]
   ]
 }

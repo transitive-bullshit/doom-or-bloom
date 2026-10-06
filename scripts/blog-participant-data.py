@@ -427,6 +427,7 @@ map_body = {
                 'middle': share(int(((xa >= .4) & (xa <= .6)).sum()), len(xa)),
                 'bloomSide_x_above_0_6': share(int((xa > .6).sum()), len(xa)),
                 'lowerHalf_y_below_0_5': share(int((ya < .5).sum()), len(ya)),
+                'upperHalf_y_0_5_to_0_9': share(int(((ya >= .5) & (ya < .9)).sum()), len(ya)),
                 'topEdge_y_0_9_or_more': share(int((ya >= .9).sum()), len(ya)),
                 'expectsCatastrophe_x_below_0_125': share(int((xa < .125).sum()), len(xa))},
     'grid': {'binsPerAxis': 5, 'cells': cells, 'suppressedCells': sum(1 for c in cells if c['count'] is None)},
