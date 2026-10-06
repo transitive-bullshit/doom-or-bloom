@@ -104,7 +104,8 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   ).toHaveAttribute('href', '/blog/what-is-p-doom')
 
   // A curated table, not the whole catalog: stated numbers as written, each
-  // with a footnote, then refusals quoted instead of a number.
+  // with a footnote and the person's exact words, then refusals quoted
+  // instead of a number.
   const table = page.locator('[data-slot="pdoom-table"]')
   const rows = table.locator('tbody tr')
   const count = await rows.count()
@@ -112,7 +113,16 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   expect(count).toBeLessThanOrEqual(25)
   await expect(table.getByRole('button')).toHaveCount(0)
   const hinton = rows.filter({ hasText: 'Geoffrey Hinton' })
-  await expect(hinton.getByRole('cell').nth(1)).toContainText('10–20%')
+  // The name heads its row, attributing the number and quote beside it.
+  await expect(hinton.getByRole('rowheader')).toHaveText('Geoffrey Hinton')
+  await expect(hinton.getByRole('cell')).toContainText('10–20%')
+  await expect(hinton.locator('q')).toHaveText(
+    '10% to 20% seemed like reasonable numbers to me'
+  )
+  await expect(hinton.locator('q')).toHaveAttribute(
+    'cite',
+    /^https:\/\/www\.wbur\.org\//
+  )
   await expect(
     hinton.getByRole('link', { name: 'Geoffrey Hinton' })
   ).toHaveAttribute('href', '/users/geoffreyhinton')

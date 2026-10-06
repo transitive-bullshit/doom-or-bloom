@@ -15,7 +15,9 @@ import { Citation } from './citation'
 
 /**
  * Curated thought leaders, lowest stated P(doom) first, then those who decline
- * to give one. Ranges and lower bounds keep their order and are never reduced
+ * to give one. Each row shows the number or "No number" with its footnote, the
+ * person's exact words from that source, and a note on what the number is a
+ * chance of. Ranges and lower bounds keep their order and are never reduced
  * to a midpoint; the sortable catalog is /users.
  */
 export function HubTable({
@@ -27,15 +29,15 @@ export function HubTable({
   return (
     <Table data-slot='pdoom-table' className='table-fixed'>
       <colgroup>
-        <col className='w-[42%] sm:w-[36%]' />
+        <col className='w-[34%] sm:w-[32%]' />
         <col />
       </colgroup>
       <TableHeader>
         <TableRow>
-          <TableHead className='h-auto py-2 whitespace-normal'>
+          <TableHead scope='col' className='h-auto py-2 whitespace-normal'>
             {t('name')}
           </TableHead>
-          <TableHead className='h-auto py-2 whitespace-normal'>
+          <TableHead scope='col' className='h-auto py-2 whitespace-normal'>
             {t('stated')}
           </TableHead>
         </TableRow>
@@ -43,11 +45,15 @@ export function HubTable({
       <TableBody>
         {rows.map((row) => (
           <TableRow key={row.slug}>
-            <TableCell className='py-3 align-top whitespace-normal'>
+            {/* The row header attributes the number and quote beside it. */}
+            <th
+              scope='row'
+              className='px-2 py-3 text-left align-top font-medium'
+            >
               <Link
                 href={`/users/${row.slug}`}
                 prefetch={false}
-                className='flex items-center gap-2 rounded-sm font-medium underline-offset-4 hover:underline sm:gap-3'
+                className='flex flex-col items-start gap-1.5 rounded-sm underline-offset-4 hover:underline sm:flex-row sm:items-center sm:gap-3'
               >
                 <Image
                   src={row.avatar}
@@ -62,9 +68,9 @@ export function HubTable({
                   {row.name}
                 </span>
               </Link>
-            </TableCell>
+            </th>
             <TableCell className='py-3 align-top whitespace-normal'>
-              <div className='flex flex-col gap-1'>
+              <div className='flex flex-col gap-1.5'>
                 <span
                   className={
                     row.token
@@ -78,12 +84,16 @@ export function HubTable({
                 {row.quote && (
                   <q
                     lang='en'
-                    className='border-l-2 border-coral pl-3 text-body-foreground italic'
+                    cite={row.source.url}
+                    className='border-l-2 border-coral pl-3 text-pretty text-body-foreground italic'
                   >
                     {row.quote}
                   </q>
                 )}
-                <span lang='en' className='text-sm text-muted-foreground'>
+                <span
+                  lang='en'
+                  className='text-sm text-pretty text-muted-foreground'
+                >
                   {row.note}
                 </span>
               </div>
