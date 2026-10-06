@@ -12,7 +12,7 @@ test('shared breadcrumbs precede page content and navigate back to the library',
     ['/p-doom', 'P(doom)'],
     ['/blog', 'Blog'],
     // A post's trail ends in its title, which only its page knows.
-    ['/blog/what-is-p-doom', 'What is P(doom)?'],
+    ['/blog/why-p-doom-estimates-vary', 'Why P(doom) estimates vary so much'],
     ['/questions', 'Questions'],
     ['/corpus', 'Corpus'],
     ['/user-journeys', 'User Journeys']

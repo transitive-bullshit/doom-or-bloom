@@ -20,7 +20,7 @@
       "description": "Pesquise e compare visões de mundo simuladas sobre a IA de figuras públicas, de Hinton e Bengio a LeCun e Andreessen, com a P(doom) declarada publicamente, quando informada."
     },
     "pdoom": {
-      "title": "O que é P(doom)? Estimativas de Hinton, Musk, LeCun e outros",
+      "title": "O que é P(doom)? Hinton, Musk, LeCun e outros",
       "description": "P(doom) é a probabilidade que alguém atribui à possibilidade de a IA resultar em uma catástrofe para a humanidade. Veja o que Hinton, Musk, Amodei, LeCun e outros disseram, com fontes."
     },
     "blog": {
@@ -363,7 +363,8 @@
       "from": "{subject, select, his {Com base nas respostas simuladas dele.} her {Com base nas respostas simuladas dela.} other {Com base nas respostas simuladas dessa pessoa.}}",
       "stated": "Você disse {token}.",
       "missing": "{subject, select, self {Não há informações suficientes sobre risco catastrófico nas suas respostas para estimá-lo.} his {Não há informações suficientes sobre risco catastrófico nas respostas simuladas dele para estimá-lo.} her {Não há informações suficientes sobre risco catastrófico nas respostas simuladas dela para estimá-lo.} other {Não há informações suficientes sobre risco catastrófico nas respostas simuladas dessa pessoa para estimá-lo.}}",
-      "addSentence": "Uma frase sobre qual probabilidade você atribui a isso acrescentaria uma estimativa."
+      "addSentence": "Uma frase sobre qual probabilidade você atribui a isso acrescentaria uma estimativa.",
+      "method": "Como estimamos P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Seu horizonte temporal de marcos} other {Horizonte temporal de marcos de {name}}}",
     "milestoneNote": "{subject, select, self {Agrupados por marco, sem espaçamento nem ordenação por datas inferidas. IAG e IA sobre-humana mantêm as suas definições.} his {Agrupados por marco, sem espaçamento nem ordenação por datas inferidas. IAG e IA sobre-humana mantêm as definições dele.} her {Agrupados por marco, sem espaçamento nem ordenação por datas inferidas. IAG e IA sobre-humana mantêm as definições dela.} other {Agrupados por marco, sem espaçamento nem ordenação por datas inferidas. IAG e IA sobre-humana mantêm as definições dessa pessoa.}}",
@@ -856,7 +857,7 @@
     },
     "ctaTitle": "Qual é o seu P(doom)?",
     "ctaDescription": "Responda a algumas perguntas em cerca de 3 minutos e veja sua visão de mundo e um P(doom) aproximado ao lado dos deles",
-    "guide": "Leia o guia sobre o que P(doom) significa"
+    "guide": "Por que as estimativas de P(doom) variam tanto e como interpretá-las"
   },
   "Blog": {
     "title": "Blog",

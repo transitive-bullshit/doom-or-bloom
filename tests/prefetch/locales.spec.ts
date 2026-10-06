@@ -84,8 +84,8 @@ test('static pages are prebuilt per locale, cached and cookie-free', async ({
     '/es/p-doom',
     '/blog',
     '/es/blog',
-    '/blog/what-is-p-doom',
-    '/ja/blog/what-is-p-doom'
+    '/blog/why-p-doom-estimates-vary',
+    '/ja/blog/why-p-doom-estimates-vary'
   ])
     for (const headers of [{}, { RSC: '1' }] as Record<string, string>[]) {
       // An RSC request first gains its `_rsc` cache-busting parameter.
@@ -102,7 +102,7 @@ test('static pages are prebuilt per locale, cached and cookie-free', async ({
   // The feed and post cards are built once, outside the locale tree.
   for (const path of [
     '/blog/rss.xml',
-    '/blog/what-is-p-doom/opengraph-image?v=build'
+    '/blog/why-p-doom-estimates-vary/opengraph-image?v=build'
   ]) {
     const response = await request.get(path)
     expect(response.status(), path).toBe(200)
@@ -126,7 +126,7 @@ test('RSC and segment prefetches reach each page’s prerendered files on Vercel
     ['/users', '/en/users'],
     ['/es/users', '/es/users'],
     ['/p-doom', '/en/p-doom'],
-    ['/blog/what-is-p-doom', '/en/blog/what-is-p-doom']
+    ['/blog/why-p-doom-estimates-vary', '/en/blog/why-p-doom-estimates-vary']
   ] as const) {
     const segments = await segmentHeaders(prerendered)
     expect(segments, prerendered).toContain('/_tree')
@@ -161,6 +161,24 @@ test('the home page serves its segment prefetches', async ({ request }) => {
   }
 })
 
+test('a renamed post redirects permanently before the cache', async ({
+  request
+}) => {
+  for (const [path, location] of [
+    ['/blog/what-is-p-doom', '/blog/why-p-doom-estimates-vary'],
+    ['/es/blog/what-is-p-doom', '/es/blog/why-p-doom-estimates-vary'],
+    [
+      '/blog/what-is-p-doom/opengraph-image?v=build',
+      '/blog/why-p-doom-estimates-vary/opengraph-image?v=build'
+    ]
+  ] as const) {
+    const response = await request.get(path, { maxRedirects: 0 })
+    expect(response.status(), path).toBe(308)
+    expect(response.headers()['location'], path).toBe(location)
+    expect(response.headers()['set-cookie'], path).toBeUndefined()
+  }
+})
+
 test('a remembered language redirects unprefixed pages before the cache', async ({
   request
 }) => {
@@ -169,7 +187,7 @@ test('a remembered language redirects unprefixed pages before the cache', async 
     ['/', '/es'],
     ['/users/simonw', '/es/users/simonw'],
     ['/about?ref=x', '/es/about?ref=x'],
-    ['/blog/what-is-p-doom', '/es/blog/what-is-p-doom']
+    ['/blog/why-p-doom-estimates-vary', '/es/blog/why-p-doom-estimates-vary']
   ] as const) {
     const response = await request.get(path, { headers, maxRedirects: 0 })
     expect(response.status()).toBe(307)

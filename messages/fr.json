@@ -20,7 +20,7 @@
       "description": "Recherchez et comparez les visions du monde simulées de personnalités publiques concernant l’IA, de Hinton et Bengio à LeCun et Andreessen, avec les P(doom) qu’elles ont déclarées publiquement, le cas échéant."
     },
     "pdoom": {
-      "title": "Qu’est-ce que P(doom) ? Estimations de Hinton, Musk, LeCun et d’autres",
+      "title": "Qu’est-ce que P(doom) ? Hinton, Musk, LeCun et d’autres",
       "description": "P(doom) est la probabilité qu’une personne attribue à une catastrophe pour l’humanité causée par l’IA. Découvrez ce qu’en ont dit Hinton, Musk, Amodei, LeCun et d’autres, avec les sources."
     },
     "blog": {
@@ -363,7 +363,8 @@
       "from": "{subject, select, his {D’après ses réponses simulées.} her {D’après ses réponses simulées.} other {D’après leurs réponses simulées.}}",
       "stated": "Vous avez indiqué {token}.",
       "missing": "{subject, select, self {Vos réponses ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.} his {Ses réponses simulées ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.} her {Ses réponses simulées ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.} other {Leurs réponses simulées ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.}}",
-      "addSentence": "Une phrase indiquant à quel point vous pensez que cela est probable permettrait d’ajouter une estimation."
+      "addSentence": "Une phrase indiquant à quel point vous pensez que cela est probable permettrait d’ajouter une estimation.",
+      "method": "Comment nous estimons P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Votre horizon temporel des jalons} other {L’horizon temporel des jalons de {name}}}",
     "milestoneNote": "{subject, select, self {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent vos définitions.} his {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent ses définitions.} her {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent ses définitions.} other {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent leurs définitions.}}",
@@ -856,7 +857,7 @@
     },
     "ctaTitle": "Quel est votre P(doom) ?",
     "ctaDescription": "Répondez à quelques questions en environ 3 minutes, puis découvrez votre vision du monde et un P(doom) approximatif à côté des leurs",
-    "guide": "Lire le guide expliquant ce que signifie le P(doom)"
+    "guide": "Pourquoi les estimations de P(doom) varient autant et comment les interpréter"
   },
   "Blog": {
     "title": "Blog",

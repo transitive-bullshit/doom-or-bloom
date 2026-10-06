@@ -20,7 +20,7 @@
       "description": "Search and compare simulated AI worldviews of public figures, from Hinton and Bengio to LeCun and Andreessen, with publicly stated P(doom) where given."
     },
     "pdoom": {
-      "title": "What is P(doom)? Estimates from Hinton, Musk, LeCun and more",
+      "title": "What is P(doom)? Hinton, Musk, LeCun and more",
       "description": "P(doom) is the chance someone gives that AI ends in catastrophe for humanity. See what Hinton, Musk, Amodei, LeCun and others have said, with sources."
     },
     "blog": {
@@ -363,7 +363,8 @@
       "from": "{subject, select, his {From his simulated answers.} her {From her simulated answers.} other {From their simulated answers.}}",
       "stated": "You said {token}.",
       "missing": "{subject, select, self {Not enough about catastrophic risk in your answers to estimate it.} his {Not enough about catastrophic risk in his simulated answers to estimate it.} her {Not enough about catastrophic risk in her simulated answers to estimate it.} other {Not enough about catastrophic risk in their simulated answers to estimate it.}}",
-      "addSentence": "A sentence about how likely you think it is would add one."
+      "addSentence": "A sentence about how likely you think it is would add one.",
+      "method": "How we estimate P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Your milestone timeline} other {{name}’s milestone timeline}}",
     "milestoneNote": "{subject, select, self {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain your definitions.} his {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain his definitions.} her {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain her definitions.} other {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain their definitions.}}",
@@ -856,7 +857,7 @@
     },
     "ctaTitle": "What’s your P(doom)?",
     "ctaDescription": "Answer a few questions in about 3 minutes, then see your worldview and a rough P(doom) beside theirs",
-    "guide": "Read the guide to what P(doom) means"
+    "guide": "Why P(doom) estimates vary so much, and how to read one"
   },
   "Blog": {
     "title": "Blog",

@@ -20,7 +20,7 @@
       "description": "搜索并比较公众人物的模拟AI世界观，从 Hinton 和 Bengio 到 LeCun 和 Andreessen，并查看他们公开表明的 P(doom)（如有）。"
     },
     "pdoom": {
-      "title": "P(doom) 是什么？Hinton、Musk、LeCun 等人的估计",
+      "title": "什么是 P(doom)？Hinton、Musk、LeCun 等人的看法",
       "description": "P(doom) 是某人认为AI最终会给人类带来灾难的概率。查看 Hinton、Musk、Amodei、LeCun 等人的公开说法及其来源。"
     },
     "blog": {
@@ -363,7 +363,8 @@
       "from": "{subject, select, his {来自他的模拟回答。} her {来自她的模拟回答。} other {来自他们的模拟回答。}}",
       "stated": "你说的是 {token}。",
       "missing": "{subject, select, self {你的回答中关于灾难性风险的信息不足，无法进行估计。} his {他的模拟回答中关于灾难性风险的信息不足，无法进行估计。} her {她的模拟回答中关于灾难性风险的信息不足，无法进行估计。} other {他们的模拟回答中关于灾难性风险的信息不足，无法进行估计。}}",
-      "addSentence": "补充一句你认为其可能性有多大，就能得出一个估计。"
+      "addSentence": "补充一句你认为其可能性有多大，就能得出一个估计。",
+      "method": "我们如何估计 P(doom)"
     },
     "milestoneTitle": "{subject, select, self {你的里程碑时间线} other {{name} 的里程碑时间线}}",
     "milestoneNote": "{subject, select, self {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留你的定义。} his {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留他的定义。} her {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留她的定义。} other {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留他们的定义。}}",
@@ -856,7 +857,7 @@
     },
     "ctaTitle": "你的 P(doom) 是多少？",
     "ctaDescription": "用大约3分钟回答几个问题，然后将你的世界观和粗略的 P(doom) 与他们的放在一起查看",
-    "guide": "阅读 P(doom) 含义指南"
+    "guide": "为什么 P(doom) 估计值差异如此之大，以及如何解读估计值"
   },
   "Blog": {
     "title": "博客",

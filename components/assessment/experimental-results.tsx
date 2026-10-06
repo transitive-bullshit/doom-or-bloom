@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { languageTag } from '@/i18n/config'
+import { Link } from '@/i18n/navigation'
 import { AnswerLink } from './answer-navigation'
 import { ReasoningJudgments } from './reasoning-judgments'
 import { ChevronDownIcon } from 'lucide-react'
@@ -21,6 +22,7 @@ import {
   milestoneLabel
 } from '@/lib/assessment/display-text'
 import type { MapPoint } from '@/lib/assessment/self-placement'
+import { pdoomMethodPath } from '@/lib/p-doom/copy'
 import { subjectArgs, type ResultSubject } from '@/lib/sharing/result-subject'
 import { AxisRange } from './axis-range'
 import { Map } from './worldview-map'
@@ -217,6 +219,19 @@ export function ExperimentalResults({
               <blockquote className='border-l-2 pl-3 text-sm whitespace-pre-wrap'>
                 {risk.text}
               </blockquote>
+            )}
+            {/* Our own reading, stated or inferred: a quiet pointer to how it
+                is made. A sourced public statement links its source instead. */}
+            {experiment && !risk?.publicStatement && (
+              <p className='text-xs text-muted-foreground'>
+                <Link
+                  href={pdoomMethodPath}
+                  prefetch={false}
+                  className='underline underline-offset-4 hover:text-foreground'
+                >
+                  {t('pdoom.method')}
+                </Link>
+              </p>
             )}
           </CardContent>
         </Card>

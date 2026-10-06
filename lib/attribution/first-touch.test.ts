@@ -50,7 +50,7 @@ describe('captureFirstTouch', () => {
       'pdoom'
     )
     expect(
-      capture('https://www.doom-or-bloom.com/es/blog/what-is-p-doom')
+      capture('https://www.doom-or-bloom.com/es/blog/why-p-doom-estimates-vary')
     ).toMatchObject({ landing: 'blog', locale: 'es' })
   })
 

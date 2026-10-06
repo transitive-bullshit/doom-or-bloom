@@ -162,6 +162,28 @@ test('persona probability uses a dated public statement with its outcome and sou
   ).toBeVisible()
   await expect(page.getByText(/· Aug 2026/)).toBeVisible()
   await expect(page.getByText(/Separately states 30%/)).toHaveCount(0)
+  // Their own number links its source, not our method.
+  await expect(
+    page.getByRole('link', { name: 'How we estimate P(doom)' })
+  ).toHaveCount(0)
+})
+
+test('a simulated P(doom) links quietly to how we estimate it', async ({
+  page
+}) => {
+  await page.goto('/users/tszzl')
+  const link = page.getByRole('link', { name: 'How we estimate P(doom)' })
+  await expect(link).toHaveAttribute(
+    'href',
+    '/blog/why-p-doom-estimates-vary#how-doom-or-bloom-estimates-pdoom'
+  )
+  await link.click()
+  await expect(page).toHaveURL(
+    /\/blog\/why-p-doom-estimates-vary#how-doom-or-bloom-estimates-pdoom$/
+  )
+  await expect(
+    page.locator('#how-doom-or-bloom-estimates-pdoom')
+  ).toBeInViewport()
 })
 
 test('persona answer references open the transcript and navigate to the exact answer', async ({
@@ -544,4 +566,59 @@ test('all-users directory lists the most followed first, a page at a time, and k
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth)
   ).toBeLessThanOrEqual(390)
+})
+
+test('directory paging keeps keyboard focus in the list when its buttons go away', async ({
+  page
+}) => {
+  // Show more must both stay (a later page remains) and go (the last page).
+  expect(people.length).toBeGreaterThan(96)
+  const links = page.locator('.study-legend a')
+  const more = page.getByRole('button', { name: /^Show \d+ more$/ })
+  const all = page.getByRole('button', { name: /^Show all/ })
+  const focusVisible = (index: number) =>
+    links.nth(index).evaluate((link) => link.matches(':focus-visible'))
+
+  await page.goto('/users')
+  await expect(links).toHaveCount(48)
+  await links.nth(47).focus()
+  await page.keyboard.press('Tab')
+  await expect(more).toBeFocused()
+  // While people remain, Show more stays put and keeps focus.
+  let listed = 48
+  while (people.length - listed > 48) {
+    await page.keyboard.press('Enter')
+    listed += 48
+    await expect(links).toHaveCount(listed)
+    await expect(more).toBeFocused()
+  }
+  // The last page removes both buttons; focus moves to its first person.
+  await page.keyboard.press('Enter')
+  await expect(links).toHaveCount(people.length)
+  await expect(more).toHaveCount(0)
+  await expect(links.nth(listed)).toBeFocused()
+  expect(await focusVisible(listed)).toBe(true)
+
+  await page.goto('/users')
+  await expect(links).toHaveCount(48)
+  await links.nth(47).focus()
+  await page.keyboard.press('Tab')
+  await page.keyboard.press('Tab')
+  await expect(all).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(links).toHaveCount(people.length)
+  await expect(links.nth(48)).toBeFocused()
+  expect(await focusVisible(48)).toBe(true)
+  // Tab continues through the newly listed people, not past the list.
+  await page.keyboard.press('Tab')
+  await expect(links.nth(49)).toBeFocused()
+
+  // A mouse click keeps the place too, without a focus ring (and so
+  // without the speculative prefetch that keyboard focus earns).
+  await page.goto('/users')
+  await expect(links).toHaveCount(48)
+  await all.click()
+  await expect(links).toHaveCount(people.length)
+  await expect(links.nth(48)).toBeFocused()
+  expect(await focusVisible(48)).toBe(false)
 })
