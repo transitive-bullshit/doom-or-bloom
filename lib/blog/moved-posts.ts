@@ -16,16 +16,21 @@ const prefixes = locales.filter((locale) => locale !== defaultLocale).join('|')
  * applies to the new URL.
  */
 export function movedPostRedirects() {
-  return Object.entries(movedPosts).flatMap(([from, to]) => [
-    {
-      source: `/blog/${from}/:rest*`,
-      destination: `/blog/${to}/:rest*`,
+  // The post and what is under it are separate rules: Vercel turns an empty
+  // `:rest*` into a trailing slash, which would cost a second redirect.
+  return Object.entries(movedPosts).flatMap(([from, to]) =>
+    [
+      [`/blog/${from}`, `/blog/${to}`],
+      [`/blog/${from}/:rest+`, `/blog/${to}/:rest+`],
+      [`/:locale(${prefixes})/blog/${from}`, `/:locale/blog/${to}`],
+      [
+        `/:locale(${prefixes})/blog/${from}/:rest+`,
+        `/:locale/blog/${to}/:rest+`
+      ]
+    ].map(([source, destination]) => ({
+      source: source!,
+      destination: destination!,
       permanent: true
-    },
-    {
-      source: `/:locale(${prefixes})/blog/${from}/:rest*`,
-      destination: `/:locale/blog/${to}/:rest*`,
-      permanent: true
-    }
-  ])
+    }))
+  )
 }

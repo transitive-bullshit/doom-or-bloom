@@ -124,7 +124,12 @@ describe('moved post redirects', () => {
 
   it('are permanent', () => {
     expect(movedPostRedirects().length).toBeGreaterThan(0)
-    for (const rule of movedPostRedirects()) expect(rule.permanent).toBe(true)
+    for (const rule of movedPostRedirects()) {
+      expect(rule.permanent).toBe(true)
+      // An optional `:rest*` becomes a trailing slash on Vercel, and with it a
+      // second redirect, so the post itself has its own rule.
+      expect(rule.destination).not.toMatch(/\*$/u)
+    }
   })
 
   it('send a renamed post’s old URLs to the new slug in every locale', () => {
