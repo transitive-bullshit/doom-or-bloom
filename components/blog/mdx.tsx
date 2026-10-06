@@ -1,6 +1,12 @@
-import { Children, type ComponentProps, type ReactNode } from 'react'
+import {
+  Children,
+  isValidElement,
+  type ComponentProps,
+  type ReactNode
+} from 'react'
 import type { MDXComponents } from 'mdx/types'
 import { Link } from '@/i18n/navigation'
+import { headingId } from '@/lib/blog/headings'
 import { pdoomDefinition } from '@/lib/p-doom/copy'
 import type { ProfileMentions } from '@/lib/personas/mentions'
 import { MentionText } from '@/components/mention-text'
@@ -82,19 +88,39 @@ export const blogComponents = {
   Definition
 } satisfies MDXComponents
 
+/** The text a heading renders, for its id. */
+const textOf = (children: ReactNode): string =>
+  Children.toArray(children)
+    .map((child) =>
+      typeof child === 'string' || typeof child === 'number'
+        ? String(child)
+        : isValidElement<{ children?: ReactNode }>(child)
+          ? textOf(child.props.children)
+          : ''
+    )
+    .join('')
+
 /**
  * A post's page bindings. Links people with a published profile: the first
  * mention of each in a paragraph, list item or table cell, and every name in a
  * chart. Text inside headings, links and emphasis stays as written. Charts
- * label and format in the post's language.
+ * label and format in the post's language. Section headings get the ids of
+ * the English headings (`headings`, from `postHeadingIds`), so a link such as
+ * `/blog/<slug>#<id>` opens the same section in every language.
  */
 export function postComponents({
   mention,
-  text
+  text,
+  headings
 }: {
   mention: ProfileMentions
   text: ChartText
+  headings: Record<string, string>
 }): MDXComponents {
+  const id = (children: ReactNode) => {
+    const heading = textOf(children)
+    return headings[heading] ?? headingId(heading)
+  }
   const linkNames = (children: ReactNode) => {
     const linked = new Set<string>()
     return Children.map(children, (child) =>
@@ -106,6 +132,16 @@ export function postComponents({
     )
   }
   return {
+    h2: ({ children, ...props }) => (
+      <h2 id={id(children)} className='scroll-mt-24' {...props}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children, ...props }) => (
+      <h3 id={id(children)} className='scroll-mt-24' {...props}>
+        {children}
+      </h3>
+    ),
     p: ({ children, ...props }) => <p {...props}>{linkNames(children)}</p>,
     li: ({ children, ...props }) => <li {...props}>{linkNames(children)}</li>,
     td: ({ children, ...props }) => (
