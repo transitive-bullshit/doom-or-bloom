@@ -6,7 +6,7 @@ This document owns how pages present themselves to search engines and AI crawler
 
 | What | Where |
 | --- | --- |
-| Page titles and descriptions | `messages/<locale>.json` under `Pages.<key>` for the pages in `publicPages` (`lib/site.ts`); `Profiles` for simulated users, whose titles `profileTitle` in `lib/seo/profile-titles.ts` builds ([Profile titles](#profile-titles)); frontmatter for blog posts |
+| Page titles and descriptions | `messages/<locale>.json` under `Pages.<key>` for the pages in `publicPages` (`lib/site.ts`); `Profiles` for simulated users, whose titles `profileTitle` in `lib/seo/profile-titles.ts` builds ([Profile titles](#profile-titles)), and for published participant results, built by `lib/seo/result-titles.ts` ([Published results](#published-results)); frontmatter for blog posts |
 | Metadata assembly | `pageMetadata` and `publicPageMetadata` in `lib/metadata.ts`: the title suffix, canonical URL, hreflang alternates, noindex outside English for English-bodied pages, Open Graph (`article` for posts) and the RSS alternate |
 | Structured data | Pure builders in `lib/seo/json-ld.ts`, rendered by `JsonLd` and `BreadcrumbJsonLd` in `components/json-ld.tsx`; shapes are tested in `lib/seo/json-ld.test.ts` |
 | Breadcrumbs | `breadcrumbTrail` in `lib/breadcrumbs.ts`, shared by the visible breadcrumbs and their BreadcrumbList |
@@ -52,6 +52,14 @@ A simulated user's title names what people search about that person, then falls 
 Titles read as a plain list, never a colon. Topics that name a kind of AI share one "AI" ("AI safety, risk and P(doom)"); without one the list starts with AI itself ("AI and P(doom)", "AI, jobs and AGI"). "The future of AI" leads a list unless another topic already names AI, when it closes it as "the future" ("AI regulation, jobs and the future"). P(doom) comes last. The vocabulary: safety, risk, regulation, policy, ethics, consciousness, the AI bubble, jobs, education, healthcare, open source, AGI, superintelligence, the future and P(doom). Stances such as optimism are not topics.
 
 Every title must fit Google's desktop limit of about 600px of 20px Arial with " | Doom or Bloom" (`googleTitleWidth` in `lib/seo/title-width.ts`). The choice is made in English: a search title drops its least searched topics until it fits, and a map title that doesn't fit falls back to "<Name> on AI". Other languages show the same choice through `Profiles.userTitleTopics`, `Profiles.userTitleMap`, `Profiles.titleTopic` and `Profiles.titleTopicAfterAi` (a topic's shorter form once AI is named), joined with the locale's list format (British English in English, so no serial comma). `lib/seo/profile-titles.test.ts` checks the grammar for every combination of topics and the width of every catalog title.
+
+### Published results
+
+A participant result published with a name keeps "<Name>’s AI worldview". An anonymous one is titled by where its point sits on the map, so hundreds of published pages don't share one title: the outlook level, then the scale of transformation, as the map's level readings show them ("Hopeful about AI, expects sweeping change", "Mixed on AI, expects modest change"). An unsettled scale reads "unsure how much changes", because its point marks the center of an open range, not a moderate view; without a placed scale the title is the outlook alone, and without a placed outlook "A shared AI worldview". `resultTitle` in `lib/seo/result-titles.ts` builds it from `Profiles.resultTitle`.
+
+- Titles never name a thought leader, whose own profile would compete with hundreds of pages named after them, and never lead with P(doom). Outlook words are symmetric (very worried, worried, mixed, hopeful, very hopeful), following the map's poles.
+- The description says only what the page shows: its P(doom), called rough when inferred and stated when the participant gave it (an unclear one is left out), and its three closest simulated thought leaders, the same featured comparison the page lists ("A participant’s AI worldview with a rough P(doom) of ≈7%, closest to the simulated worldviews of …"). Names are fine here. Participant pages don't show hinges or answer excerpts in their results, so neither appears.
+- Every English title fits the width limit with the brand; `lib/seo/result-titles.test.ts` checks every combination. Saved simulation snapshots at `/public/assessments/<id>` keep their profile's title and description.
 
 ## Structured data
 
