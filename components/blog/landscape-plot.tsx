@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { highlightQuadrant } from '@/lib/blog/chart-geometry'
 
 export type LandscapePoint = {
   key: string
@@ -38,6 +39,7 @@ export function LandscapePlot({
   const [selected, setSelected] = useState(initial)
   const [hovered, setHovered] = useState<string | null>(null)
   const active = points.find((point) => point.key === (hovered ?? selected))!
+  const corner = highlightQuadrant(points)
   const select = (key: string) => {
     setSelected(key)
     setHovered(null)
@@ -49,12 +51,14 @@ export function LandscapePlot({
         {y.title}
       </p>
       <div className='relative h-80 border-b border-l border-foreground/40 sm:h-96'>
-        {/* Midlines split the space into quadrants; the corner with free
-            answers and a personal result is tinted, since few projects reach it. */}
-        <div
-          aria-hidden
-          className='absolute top-0 right-0 h-1/2 w-1/2 bg-chart-coral/6'
-        />
+        {/* Midlines split the space into quadrants; the highlighted point's
+            quadrant is tinted, and a chart without a highlight tints none. */}
+        {corner && (
+          <div
+            aria-hidden
+            className={`absolute h-1/2 w-1/2 bg-chart-coral/6 ${corner.top ? 'top-0' : 'bottom-0'} ${corner.right ? 'right-0' : 'left-0'}`}
+          />
+        )}
         <div
           aria-hidden
           className='absolute inset-y-0 left-1/2 w-px bg-border'

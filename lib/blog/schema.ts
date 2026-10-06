@@ -68,7 +68,8 @@ const provenances = [
   'simulated-users',
   'participants',
   'site-traffic',
-  'published-research'
+  'published-research',
+  'published-writing'
 ] as const
 const provenance = z.enum(provenances)
 export type Provenance = z.infer<typeof provenance>
@@ -411,8 +412,8 @@ const axisSchema = z.strictObject({
 })
 
 /**
- * Projects placed on two editorial axes, such as how people answer against
- * what they get back. Each point opens its method, reach and source.
+ * Projects or terms placed on two editorial axes, such as how people answer
+ * against what they get back. Each point opens its method, reach and source.
  */
 export const landscapeDataSchema = z
   .strictObject({
@@ -429,9 +430,9 @@ export const landscapeDataSchema = z
           label: z.string().min(1),
           x: unit,
           y: unit,
-          /** How people take part and what they get back. */
+          /** What the point is: how a project works, or what a term means. */
           method: z.string().min(1),
-          /** How many took part, as the project reports it. */
+          /** A quieter second line: how many took part, or where a term comes from. */
           reach: z.string().min(1),
           /** The group size behind a participant point's `reach`. */
           n: z.number().int().positive().optional(),
@@ -535,6 +536,19 @@ export const scorecardDataSchema = z
           })
     }
   })
+
+/**
+ * The levels a scorecard's cells use, in legend order, so its legend leaves
+ * out a level no cell needs (such as "not needed" on a chart without one).
+ */
+export function scorecardLevelsUsed(
+  chart: Pick<z.infer<typeof scorecardDataSchema>, 'levels' | 'rows'>
+) {
+  const used = new Set(
+    chart.rows.flatMap((row) => Object.values(row.cells).map((c) => c.level))
+  )
+  return chart.levels.filter((entry) => used.has(entry.key))
+}
 
 const trendPoint = z.strictObject({
   /** The last day of fieldwork. */
