@@ -259,6 +259,8 @@ export type CitationRun = {
   startedAt: string
   finishedAt: string
   costUsd: number
+  /** Bounds of requests that got no response and may still have been billed. */
+  unresolvedUsd?: number
   results: QuestionResult[]
 }
 

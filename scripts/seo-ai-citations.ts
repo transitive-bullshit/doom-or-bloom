@@ -104,15 +104,17 @@ if (!apiKey)
 const root = process.cwd()
 mkdirSync(path.join(root, 'eval/runs'), { recursive: true })
 const ledger = `eval/runs/seo-ai-citations-${Date.now()}.jsonl`
-// Spend from usage, plus reservations for calls in flight. A call that fails
-// without a response keeps its reservation, since it may still be billed.
+// Spend from usage, plus reservations for calls in flight. A call that ends
+// without a response may still be billed, so its bound moves to `unresolved`:
+// it counts against the cap, is logged, and is reported as possible spend.
 let spent = 0
 let reserved = 0
+let unresolved = 0
 
 function record(
   question: AiQuestion,
   usd: number,
-  usage: Usage | { unreadable: true }
+  usage: Usage | { unreadable: true } | { unresolved: true }
 ) {
   appendFileSync(
     path.join(root, ledger),
@@ -148,7 +150,7 @@ async function ask(question: AiQuestion): Promise<QuestionResult> {
   })
   const body = JSON.stringify({ ...request, input: question.question })
   for (let attempt = 1; ; attempt++) {
-    if (spent + reserved + answerBound > maxCost)
+    if (spent + unresolved + reserved + answerBound > maxCost)
       return failed(`skipped to stay under the $${maxCost} cap`)
     reserved += answerBound
     const response = await fetch('https://api.openai.com/v1/responses', {
@@ -160,7 +162,12 @@ async function ask(question: AiQuestion): Promise<QuestionResult> {
       body,
       signal: AbortSignal.timeout(180_000)
     }).catch(() => null)
-    if (response) reserved -= answerBound
+    reserved -= answerBound
+    if (!response) {
+      // Timed out or dropped after it may have been accepted and billed.
+      unresolved += answerBound
+      record(question, answerBound, { unresolved: true })
+    }
     if (!response || response.status === 429 || response.status >= 500) {
       if (attempt >= 3)
         return failed(`HTTP ${response?.status ?? 'transport'} after 3 tries`)
@@ -198,24 +205,33 @@ const run: CitationRun = {
   startedAt: startedAt.toISOString(),
   finishedAt: new Date().toISOString(),
   costUsd: spent,
+  unresolvedUsd: unresolved,
   results
 }
 const directory = 'work/seo/ai-citations'
 mkdirSync(path.join(root, directory), { recursive: true })
+// Save the paid run first, so nothing below can lose it.
+const file = `${directory}/${runFileName(date, model)}`
+writeFileSync(path.join(root, file), `${JSON.stringify(run, null, 2)}\n`)
 const previousName = previousRunFile(
   readdirSync(path.join(root, directory)),
   date,
   model
 )
-const previous = previousName
-  ? (JSON.parse(
+let previous: CitationRun | null = null
+if (previousName)
+  try {
+    previous = JSON.parse(
       readFileSync(path.join(root, directory, previousName), 'utf8')
-    ) as CitationRun)
-  : null
-const file = `${directory}/${runFileName(date, model)}`
-writeFileSync(path.join(root, file), `${JSON.stringify(run, null, 2)}\n`)
+    ) as CitationRun
+  } catch {
+    console.warn(`Couldn't read ${previousName}; skipping the comparison.`)
+  }
 console.log(`\n${formatSummary(run, previous)}`)
+const possible = unresolved
+  ? ` plus up to $${unresolved.toFixed(3)} for requests that got no response`
+  : ''
 console.log(
-  `\nWrote ${file}. Spent about $${spent.toFixed(3)} (ledger ${ledger}).`
+  `\nWrote ${file}. Spent about $${spent.toFixed(3)}${possible} (ledger ${ledger}).`
 )
 if (results.some((result) => result.status === 'failed')) process.exitCode = 1
