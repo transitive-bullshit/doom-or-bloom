@@ -115,13 +115,20 @@ describe('blog posts', () => {
     ).toEqual(['One link', 'Two bold'])
     // A translation's headings take the English ids by position.
     expect(headingIds('## Uno\n### Dos', '## One\n### Two')).toEqual({
-      Uno: 'one',
-      Dos: 'two'
+      Uno: ['one'],
+      Dos: ['two']
     })
+    // Repeated headings keep one id each, numbered in order.
+    expect(
+      headingIds(
+        '## Resultados\n### Datos\n## Resultados',
+        '## Results\n### Data\n## Results'
+      )
+    ).toEqual({ Resultados: ['results', 'results-1'], Datos: ['data'] })
     for (const post of blogPosts())
       for (const locale of locales) {
-        const ids = Object.values(postHeadingIds(post.slug, locale))
-        const english = Object.values(postHeadingIds(post.slug, 'en'))
+        const ids = Object.values(postHeadingIds(post.slug, locale)).flat()
+        const english = Object.values(postHeadingIds(post.slug, 'en')).flat()
         expect({ post: post.slug, locale, ids }).toEqual({
           post: post.slug,
           locale,
@@ -147,7 +154,7 @@ describe('blog posts', () => {
     expect(guidePath).toBe(pdoomGuidePath)
     const slug = guidePath!.replace('/blog/', '')
     expect(blogPost(slug)).not.toBeNull()
-    expect(Object.values(postHeadingIds(slug, 'en'))).toContain(section)
+    expect(Object.values(postHeadingIds(slug, 'en')).flat()).toContain(section)
   })
 
   it('title the hub within Google’s width', () => {

@@ -115,11 +115,16 @@ export function postComponents({
 }: {
   mention: ProfileMentions
   text: ChartText
-  headings: Record<string, string>
+  headings: Record<string, string[]>
 }): MDXComponents {
+  // Headings render in document order, so a repeated heading takes the next of
+  // its ids. These components are built for one render of one post.
+  const seen = new Map<string, number>()
   const id = (children: ReactNode) => {
     const heading = textOf(children)
-    return headings[heading] ?? headingId(heading)
+    const index = seen.get(heading) ?? 0
+    seen.set(heading, index + 1)
+    return headings[heading]?.[index] ?? headingId(heading)
   }
   const linkNames = (children: ReactNode) => {
     const linked = new Set<string>()

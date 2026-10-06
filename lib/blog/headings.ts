@@ -31,17 +31,27 @@ export const postHeadings = (body: string) =>
       .matchAll(/^#{2,6}\s+(.+?)\s*#*\s*$/gmu)
   ].map(([, text]) => headingText(text!))
 
+/** Ids for headings in order, numbering repeats as GitHub does: "results", "results-1". */
+function uniqueHeadingIds(texts: string[]) {
+  const used = new Map<string, number>()
+  return texts.map((text) => {
+    const base = headingId(text)
+    const count = used.get(base) ?? 0
+    used.set(base, count + 1)
+    return count ? `${base}-${count}` : base
+  })
+}
+
 /**
- * Maps each heading's text as it renders in `body` to its id, taken from the
- * English heading in the same position. `english` is the English body, or
- * omitted when `body` is the English.
+ * Maps each heading's text as it renders in `body` to its ids, one per
+ * occurrence in order, taken from the English heading in the same position.
+ * `english` is the English body, or omitted when `body` is the English.
  */
 export function headingIds(body: string, english = body) {
-  const ids = postHeadings(english).map(headingId)
-  return Object.fromEntries(
-    postHeadings(body).map((text, index) => [
-      text,
-      ids[index] ?? headingId(text)
-    ])
-  )
+  const ids = uniqueHeadingIds(postHeadings(english))
+  const byText: Record<string, string[]> = {}
+  postHeadings(body).forEach((text, index) => {
+    ;(byText[text] ??= []).push(ids[index] ?? headingId(text))
+  })
+  return byText
 }

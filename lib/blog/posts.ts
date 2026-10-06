@@ -120,7 +120,8 @@ const postBody = (file: string) => matter(readFileSync(file, 'utf8')).content
 
 /**
  * Section ids for the headings of a post as `locale` reads it, keyed by their
- * text: the English heading ids, in every language (lib/blog/headings.ts).
+ * text with one id per occurrence: the English heading ids, in every language
+ * (lib/blog/headings.ts).
  */
 export function postHeadingIds(slug: string, locale: string) {
   const english = postBody(path.join(blogDirectory, `${slug}.mdx`))
