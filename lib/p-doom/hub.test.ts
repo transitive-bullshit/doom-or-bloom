@@ -216,17 +216,23 @@ describe('citations', () => {
       footnotes.map((_, index) => index + 1)
     )
     // The table cites first, then the survey beside it, then the scenarios in
-    // reading order.
+    // reading order. Rows from one source share its number: Andrew McAfee
+    // and Ed Zitron answered in the same debate.
+    const tableSources = [...new Set(rows.map((row) => row.source.url))]
+    expect(tableSources.length).toBeLessThan(rows.length)
     expect(rows.map((row) => row.citation.number)).toEqual(
-      rows.map((_, index) => index + 1)
+      rows.map((row) => tableSources.indexOf(row.source.url) + 1)
     )
+    const shared = rows.filter((row) => !row.citation.id)
+    expect(shared.map((row) => row.slug)).toEqual(['bubble-critic'])
+    const after = tableSources.length
     expect(survey.filter((part) => 'number' in part)).toEqual([
-      { number: rows.length + 1, id: `cite-${rows.length + 1}` }
+      { number: after + 1, id: `cite-${after + 1}` }
     ])
-    expect(footnotes[rows.length]).toMatchObject(surveySources['espai-2024'])
+    expect(footnotes[after]).toMatchObject(surveySources['espai-2024'])
     expect(intro.find((part) => 'number' in part)).toEqual({
-      number: rows.length + 2,
-      id: `cite-${rows.length + 2}`
+      number: after + 2,
+      id: `cite-${after + 2}`
     })
     // A repeated source keeps its number, and only its first marker is an anchor.
     const markers = cited

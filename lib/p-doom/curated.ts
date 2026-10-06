@@ -5,7 +5,9 @@ import type { HubSource } from './citations'
  * from low to high, then prominent people who decline to give one. Stated
  * numbers are read from `publicPdoomStatements` by persona id when the page
  * renders; a person without a statement there is left out. The full catalog
- * lives on /users. Chosen in the October 2026 public P(doom) audit.
+ * lives on /users. Chosen in the October 2026 public P(doom) audit; Andrew
+ * McAfee, Noah Smith and Joe Carlsmith, featured thought leaders with a
+ * verified statement, were added on October 6.
  */
 export type CuratedPerson =
   | {
@@ -40,6 +42,13 @@ export const curatedPeople: CuratedPerson[] = [
     }
   },
   {
+    id: 'permissionless-innovation-optimist',
+    note: {
+      url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
+      text: 'Chance AI causes human extinction'
+    }
+  },
+  {
     id: 'bubble-critic',
     note: {
       url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
@@ -68,6 +77,13 @@ export const curatedPeople: CuratedPerson[] = [
     }
   },
   {
+    id: 'biosecurity-abundance-optimist',
+    note: {
+      url: 'https://www.noahpinion.blog/p/heres-how-were-all-going-to-die',
+      text: 'Chance AI-enabled bioterrorism brings down civilization'
+    }
+  },
+  {
     id: 'abundance-risk-taker',
     note: {
       url: 'https://www.youtube.com/watch?v=BDREZmpkIz8',
@@ -79,6 +95,13 @@ export const curatedPeople: CuratedPerson[] = [
     note: {
       url: 'https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize',
       text: 'Chance AI causes human extinction within about 30 years'
+    }
+  },
+  {
+    id: 'alignment-philosopher',
+    note: {
+      url: 'https://joecarlsmith.com/2025/11/03/leaving-open-philanthropy-going-to-anthropic/',
+      text: 'Chance current AI development destroys humanity’s entire future'
     }
   },
   {
@@ -211,8 +234,10 @@ export const statementPublishers: Record<string, string> = {
   'cognitiverevolution.ai': 'The Cognitive Revolution',
   'dwarkesh.com': 'Dwarkesh Podcast',
   'garymarcus.substack.com': 'Marcus on AI',
+  'joecarlsmith.com': 'Joe Carlsmith',
   'infotech.com': 'Info-Tech Research Group',
   'lironshapira.substack.com': 'Doom Debates',
+  'noahpinion.blog': 'Noah Smith, Noahpinion',
   'pod.wave.co': 'Wave',
   'singjupost.com': 'The Singju Post',
   'wbur.org': 'WBUR'
