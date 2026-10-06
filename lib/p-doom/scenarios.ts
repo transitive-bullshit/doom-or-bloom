@@ -1,4 +1,4 @@
-import type { HubSource } from './citations'
+import type { Source } from '@/lib/sources/citations'
 
 // "How it could happen" on the P(doom) hub. English prose, like the explainer.
 // `[^key]` cites `scenarioSources[key]`; `*Title*` sets a book title in italics.
@@ -140,7 +140,7 @@ export const scenarioSources = {
     by: 'Robin Hanson, Overcoming Bias',
     year: 2023
   }
-} satisfies Record<string, HubSource>
+} satisfies Record<string, Source>
 
 export type Scenario = {
   id: string

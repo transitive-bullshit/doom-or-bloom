@@ -7,10 +7,11 @@ import { loadExamples } from '@/components/landing/data'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { CompareCta } from '@/components/compare-cta'
 import { Button } from '@/components/ui/button'
-import { CitedText } from '@/components/p-doom/citation'
+import { CitedText } from '@/components/sources/citation'
 import { HubTable } from '@/components/p-doom/hub-table'
 import { Scenarios } from '@/components/p-doom/scenarios'
-import { Footnotes, ReadingList } from '@/components/p-doom/sources'
+import { ReadingList } from '@/components/p-doom/reading-list'
+import { SourcesSection } from '@/components/sources/sources-section'
 import { hubContent } from '@/lib/p-doom/hub'
 import { pdoomDefinition, pdoomGuidePath } from '@/lib/p-doom/copy'
 import { pdoomJsonLd } from '@/lib/seo/json-ld'
@@ -131,13 +132,11 @@ export default async function Page() {
           <Scenarios intro={intro} scenarios={scenarios} lang={tag} />
         </section>
         <CompareCta title={t('ctaTitle')} description={t('ctaDescription')} />
-        <section
-          aria-labelledby='pdoom-sources-title'
-          className='reference-breakout flex flex-col gap-5 border-t pt-10'
-        >
-          <h2 id='pdoom-sources-title'>{t('sourcesTitle')}</h2>
-          <Footnotes footnotes={footnotes} />
-        </section>
+        <SourcesSection
+          id='pdoom-sources-title'
+          title={t('sourcesTitle')}
+          footnotes={footnotes}
+        />
         <section
           aria-labelledby='pdoom-reading-title'
           className='reference-breakout flex flex-col gap-6'

@@ -6,6 +6,7 @@ import { expect, test } from './fixtures'
 const site = 'https://www.doom-or-bloom.com'
 const spanish = JSON.parse(readFileSync('messages/es.json', 'utf8')) as {
   Blog: { englishOnly: string; inEnglish: string }
+  Sources: { title: string }
 }
 const spanishPost = matter(
   readFileSync('content/l10n/es/blog/hacker-news-vs-x.mdx', 'utf8')
@@ -376,6 +377,35 @@ test('the renamed P(doom) post redirects permanently to its new URL', async ({
     page.getByRole('heading', {
       level: 1,
       name: 'Why P(doom) estimates vary so much'
+    })
+  ).toBeVisible()
+})
+
+test('a post cites its sources with numbered footnotes, like the hub', async ({
+  page
+}) => {
+  await page.goto('/blog/ai-doomer-vs-bloomer')
+  const body = page.locator('[data-slot="blog-post-body"]')
+  // Markers number by first citation and link to the closing sources.
+  const marker = body.getByRole('link', { name: 'Source 1', exact: true })
+  await expect(marker.first()).toHaveText('[1]')
+  await expect(marker.first()).toHaveAttribute('href', '#source-1')
+  await expect(body).not.toContainText('[^')
+  const sources = page.locator('section[data-slot="sources"]')
+  await expect(sources.getByRole('heading', { name: 'Sources' })).toBeVisible()
+  await expect(sources.locator('#source-1')).toContainText('Wiktionary')
+  await expect(sources.locator('#source-1 img')).toHaveAttribute(
+    'src',
+    /^\/resource-previews\/[\w-]+\.webp$/
+  )
+  // The last footnotes fold away until a reader asks for them.
+  await sources.getByRole('button', { name: /^Show all \d+ sources$/ }).click()
+  await expect(sources.locator('li').last()).toBeVisible()
+  // In Spanish chrome the English post keeps its numbers under a Spanish heading.
+  await page.goto('/es/blog/ai-doomer-vs-bloomer')
+  await expect(
+    page.locator('section[data-slot="sources"]').getByRole('heading', {
+      name: spanish.Sources.title
     })
   ).toBeVisible()
 })

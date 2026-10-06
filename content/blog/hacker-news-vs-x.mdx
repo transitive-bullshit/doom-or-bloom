@@ -12,9 +12,9 @@ import oldVsNewQuestions from './data/launch-week-old-vs-new-questions.json'
 
 **People who took Doom or Bloom during our Hacker News wave (Sep 25–26, 2026) landed at a median outlook of 0.32 on a scale from 0 (Doom) to 1 (Bloom), against 0.68 for the X wave two days later (Sep 27–28). Yet both crowds had about the same 6% who expect catastrophe, and the same 38–40% with a P(doom) of 10% or more.**
 
-I launched [Doom or Bloom](/) on September 25. It’s a short adaptive interview (about 3 minutes) that places you on a map: how good or bad you expect AI to turn out, from Doom to Bloom, and how much you expect it to change the world. You also get a P(doom), either the one you type or a rough one we infer.
+We launched [Doom or Bloom](/) on September 25. It’s a short adaptive interview (about 3 minutes) that places you on a map: how good or bad you expect AI to turn out, from Doom to Bloom, and how much you expect it to change the world. You also get a P(doom), either the one you type or a rough one we infer.
 
-Launch week came in two distinct waves. First, a Hacker News post sent almost all of the traffic on Sep 25–26. Then, after it faded, a wave came from X on Sep 27–28. The two crowds looked so different on the map that I wanted to check whether that was real, or just something I broke in between. These numbers are as of October 3, 2026.
+Launch week came in two distinct waves. First, a Hacker News post sent almost all of the traffic on Sep 25–26. Then, after it faded, a wave came from X on Sep 27–28. The two crowds looked so different on the map that we wanted to check whether that was real, or just something we broke in between. These numbers are as of October 3, 2026.
 
 ## The headline difference
 
@@ -31,7 +31,7 @@ In numbers:
 
 ## But Hacker News isn’t more doomer
 
-This is the part I didn’t expect. If “doomer” means expecting catastrophe, or giving a high P(doom), the two crowds are basically the same.
+This is the part we didn’t expect. If “doomer” means expecting catastrophe, or giving a high P(doom), the two crowds are basically the same.
 
 <DataBars data={doomerVsMood} />
 
@@ -57,13 +57,13 @@ At the end of the interview we show the three popular thought leaders whose simu
 
 ## Is the difference real?
 
-I didn’t record where each person came from during launch week: per-person first-touch tracking only started on October 1. So the waves are defined by date, and anything else that changed between those dates is a suspect. Here’s what I checked.
+We didn’t record where each person came from during launch week: per-person first-touch tracking only started on October 1. So the waves are defined by date, and anything else that changed between those dates is a suspect. Here’s what we checked.
 
 **Were the waves really Hacker News and X?** Site analytics record referrers for page traffic, not for individual participants. On Sep 25, 99% of visitors referred by Hacker News or X came from Hacker News, and on Sep 26, 89%. Then it flips: on Sep 27, 89% came from X, and on Sep 28, 79%.
 
 <DataBars data={referrersByDay} />
 
-**Did I change the interview in between?** Yes, and that’s the big one. On Sep 27, in the early afternoon UTC, I shipped a new engine version with new direct questions about overall impact, scale and P(doom). Every saved result was re-read with the same updated reader, but the questions people actually answered differ.
+**Did we change the interview in between?** Yes, and that’s the big one. On Sep 27, in the early afternoon UTC, we shipped a new engine version with new direct questions about overall impact, scale and P(doom). Every saved result was re-read with the same updated reader, but the questions people actually answered differ.
 
 Luckily, 52 people in the X wave took the _old_ interview on Sep 27, before the release, when X referrals already outnumbered Hacker News more than 4 to 1. That gives a cleaner comparison:
 
@@ -73,7 +73,7 @@ Luckily, 52 people in the X wave took the _old_ interview on Sep 27, before the 
 - **X wave, new questions:** 0.67 (209 people), statistically indistinguishable (p = 0.83)
 - **Hacker News wave, the same old questions:** 0.32
 
-So the outlook gap is about who showed up, not what I asked. The **scale** axis is a different story. The X wave also expects much bigger change (median 0.82 against 0.59), but part of that is the new direct question: X-wave people on the old interview sit at 0.70, and on the new one at 0.85. I wouldn’t read much into the scale difference.
+So the outlook gap is about who showed up, not what we asked. The **scale** axis is a different story. The X wave also expects much bigger change (median 0.82 against 0.59), but part of that is the new direct question: X-wave people on the old interview sit at 0.70, and on the new one at 0.85. We wouldn’t read much into the scale difference.
 
 **Time of day and geography?** The Hacker News wave was concentrated in the US afternoon (84% started between 18:00 and 23:59 UTC), while the X wave was spread around the clock. But within each wave the median stays far from the other wave’s at every time of day (Hacker News 0.21–0.35, X 0.62–0.73). Among referred visitors, 47% of Hacker News’s were in the US against 40% of X’s, which is not a big enough shift to explain a gap of 0.4.
 
@@ -81,9 +81,9 @@ So the outlook gap is about who showed up, not what I asked. The **scale** axis 
 
 **Answer length, duplicates, boundaries?** Answers ran a median of 24 words on Hacker News against 21 on X. Counting every interview instead of one per person, starting the X wave at noon on Sep 27, or using only the Hacker News peak hours each moves the medians by less than 0.02.
 
-What I _can’t_ rule out: these are two self-selected audiences reacting to two different posts. The Hacker News crowd came through a launch thread and its discussion. The X crowd came mostly through posts in my corner of X, which I’d guess skews toward people who build with AI. I can’t separate “Hacker News readers” from “people who read that particular thread that day”. That’s sort of the point, though. Your feed shapes the crowd, and the crowd shapes what “normal” looks like.
+What we _can’t_ rule out: these are two self-selected audiences reacting to two different posts. The Hacker News crowd came through a launch thread and its discussion. The X crowd came mostly through posts in our corner of X, which we’d guess skews toward people who build with AI. We can’t separate “Hacker News readers” from “people who read that particular thread that day”. That’s sort of the point, though. Your feed shapes the crowd, and the crowd shapes what “normal” looks like.
 
-## What I take from it
+## What we take from it
 
 The usual framing puts everyone on a single line from doomer to accelerationist. This data suggests at least two separate things are going on. One is whether you expect AI to make life better or worse in ordinary ways. The other is whether you think it could end in catastrophe. Hacker News and X disagree a lot on the first and much less on the second.
 
@@ -91,7 +91,7 @@ The usual framing puts everyone on a single line from doomer to accelerationist.
 
 - **Data:** a read-only extract of Doom or Bloom’s production database on October 3, 2026 (UTC), using the current version of each result, after we re-read every saved result with the current reader (algorithm 0.7.5)
 - **Updated October 4, 2026:** rerun on those re-read results, which place people between the map’s five outlook levels instead of on them. The headline gap is a little smaller (0.36 rather than 0.40), the closest matches changed, and the finer map adds the catastrophe-end detail above. Level shares (“expects catastrophe”, “mainly expects harm”, “enthusiastic”) count each person’s level reading
-- **Who counts:** one result per person, their first interview that reached a result. I left out my own test account and the simulated thought leaders. 655 people in the Hacker News wave and 263 in the X wave had a result (648 and 261 with a placed outlook)
+- **Who counts:** one result per person, their first interview that reached a result. We left out our own test account and the simulated thought leaders. 655 people in the Hacker News wave and 263 in the X wave had a result (648 and 261 with a placed outlook)
 - **Waves:** UTC dates, Sep 25–26 and Sep 27–28, inferred from timing and site-wide referrer data rather than a per-person referrer
 - **Statistics:** medians with bootstrap 95% intervals (10,000 resamples), two-sided Mann–Whitney U tests, a permutation test on the median difference, and Fisher’s exact test for shares
 - **Privacy:** only aggregates appear here, and every number describes at least 10 people. No answer text was read into this post
@@ -99,4 +99,4 @@ The usual framing puts everyone on a single line from doomer to accelerationist.
 
 ## Where do you land?
 
-I’d love to see a third crowd. [Take the interview](/) (about 3 minutes, no sign-up), see where you land, and send it to someone who’ll land somewhere else.
+We’d love to see a third crowd. [Take the interview](/) (about 3 minutes, no sign-up), see where you land, and send it to someone who’ll land somewhere else.

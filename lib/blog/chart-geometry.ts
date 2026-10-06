@@ -56,3 +56,15 @@ export function unionDates(series: { points: { date: string }[] }[]) {
     ...new Set(series.flatMap((entry) => entry.points.map((p) => p.date)))
   ].toSorted()
 }
+
+/**
+ * The quadrant of a landscape that holds its highlighted point, which the
+ * chart tints. A chart without a highlight tints nothing, so no corner reads
+ * as the one that matters.
+ */
+export function highlightQuadrant(
+  points: readonly { x: number; y: number; highlight?: boolean }[]
+) {
+  const point = points.find((entry) => entry.highlight)
+  return point ? { right: point.x >= 0.5, top: point.y >= 0.5 } : null
+}

@@ -15,12 +15,30 @@ const headline = z
   .max(110)
   .refine((text) => !/\.\s*$/u.test(text), 'Headlines end without a period')
 
+/** A work a post cites (lib/sources/citations.ts `Source`). */
+const sourceSchema = z.strictObject({
+  title: z.string().min(1),
+  url: z.url({ protocol: /^https?$/u }),
+  /** Author or organization, as the byline shows it. */
+  by: z.string().min(1),
+  /** Left off for an undated page, such as a wiki or a dictionary. */
+  year: z.int().min(1000).max(2100).optional(),
+  published: day.optional()
+})
+
 export const postFrontmatterSchema = z.strictObject({
   title: headline,
   /** One or two sentences for search results, social cards and the index. */
   description: z.string().min(50).max(200),
   date: day,
-  updated: day.optional()
+  updated: day.optional(),
+  /**
+   * The works the post cites, keyed by the name its `[^key]` markers use
+   * (docs/BLOG.md#citing-sources).
+   */
+  sources: z
+    .record(z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u), sourceSchema)
+    .optional()
 })
 export type PostFrontmatter = z.infer<typeof postFrontmatterSchema>
 
@@ -36,6 +54,7 @@ const wordsPerMinute = 230
 export function countWords(body: string, tag?: string) {
   const text = body
     .replace(/^---[\s\S]*?\n---/u, ' ')
+    .replace(/\[\^[a-z0-9-]+\]/gu, ' ')
     .replace(/```[\s\S]*?```/gu, ' ')
     .replace(/^(?:import|export)\s.*$/gmu, ' ')
     .replace(/<[^>]*>/gu, ' ')
@@ -68,7 +87,8 @@ const provenances = [
   'simulated-users',
   'participants',
   'site-traffic',
-  'published-research'
+  'published-research',
+  'published-writing'
 ] as const
 const provenance = z.enum(provenances)
 export type Provenance = z.infer<typeof provenance>
@@ -479,8 +499,8 @@ const axisSchema = z.strictObject({
 })
 
 /**
- * Projects placed on two editorial axes, such as how people answer against
- * what they get back. Each point opens its method, reach and source.
+ * Projects or terms placed on two editorial axes, such as how people answer
+ * against what they get back. Each point opens its method, reach and source.
  */
 export const landscapeDataSchema = z
   .strictObject({
@@ -490,6 +510,12 @@ export const landscapeDataSchema = z
     y: axisSchema,
     /** How to open a point's details, e.g. "Hover, tap or focus a project". */
     hint: z.string().min(1),
+    /**
+     * Where the axes cross: at the bottom left edge (the default), or in the
+     * middle like the site's map, which puts the vertical axis title over the
+     * middle line.
+     */
+    axes: z.enum(['edge', 'middle']).optional(),
     points: z
       .array(
         z.strictObject({
@@ -497,9 +523,9 @@ export const landscapeDataSchema = z
           label: z.string().min(1),
           x: unit,
           y: unit,
-          /** How people take part and what they get back. */
+          /** What the point is: how a project works, or what a term means. */
           method: z.string().min(1),
-          /** How many took part, as the project reports it. */
+          /** A quieter second line: how many took part, or where a term comes from. */
           reach: z.string().min(1),
           /** The group size behind a participant point's `reach`. */
           n: z.number().int().positive().optional(),
@@ -603,6 +629,19 @@ export const scorecardDataSchema = z
           })
     }
   })
+
+/**
+ * The levels a scorecard's cells use, in legend order, so its legend leaves
+ * out a level no cell needs (such as "not needed" on a chart without one).
+ */
+export function scorecardLevelsUsed(
+  chart: Pick<z.infer<typeof scorecardDataSchema>, 'levels' | 'rows'>
+) {
+  const used = new Set(
+    chart.rows.flatMap((row) => Object.values(row.cells).map((c) => c.level))
+  )
+  return chart.levels.filter((entry) => used.has(entry.key))
+}
 
 const trendPoint = z.strictObject({
   /** The last day of fieldwork. */

@@ -22,6 +22,7 @@ import {
 import { personas } from '../lib/journeys/catalog'
 import { hubSourceUrls } from '../lib/p-doom/hub'
 import { methodologySourceUrls } from '../lib/about/methodology'
+import { blogSourceUrls } from '../lib/blog/sources'
 import { tweetIdFromUrl } from '../lib/sharing/tweet-url'
 import {
   previewImages,
@@ -86,10 +87,10 @@ const unique = new Map(
     )
     .map((resource) => [resource.url, resource])
 )
-// The P(doom) hub and About's methodology show only a favicon beside each
-// source and reading.
+// The P(doom) hub, About's methodology and blog posts show only a favicon
+// beside each source and reading.
 const iconOnly = new Set(
-  [...hubSourceUrls(), ...methodologySourceUrls()].filter(
+  [...hubSourceUrls(), ...methodologySourceUrls(), ...blogSourceUrls()].filter(
     (url) => !unique.has(url) && !tweetIdFromUrl(url)
   )
 )

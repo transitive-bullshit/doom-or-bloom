@@ -832,13 +832,11 @@
     "profile": "Profil"
   },
   "PdoomHub": {
+    "definition": "P(doom) adalah probabilitas yang ditetapkan seseorang bahwa AI canggih akan menyebabkan bencana eksistensial bagi umat manusia, seperti kepunahan manusia atau hilangnya kendali atas masa depan kita secara permanen.",
     "tableTitle": "P(doom) menurut pemimpin opini",
     "name": "Pemimpin opini",
     "stated": "P(doom) yang dinyatakan secara publik",
     "declined": "Tanpa angka",
-    "showAllSources": "Tampilkan semua {count} sumber",
-    "fewerSources": "Tampilkan lebih sedikit sumber",
-    "cite": "Sumber {number}",
     "asOf": "Mencakup pernyataan hingga {date}",
     "note": "Setiap angka berasal dari kata-kata orang tersebut sendiri, dengan tautan ke tempat mereka mengatakannya. Orang-orang mendefinisikan hasil dan kerangka waktunya secara berbeda, sehingga angka-angka tersebut tidak dapat dibandingkan secara langsung.",
     "surveyTitle": "Sebagai perbandingan: peneliti AI",
@@ -858,6 +856,12 @@
     "ctaTitle": "Berapa P(doom) Anda?",
     "ctaDescription": "Jawab beberapa pertanyaan dalam waktu sekitar 3 menit, lalu lihat pandangan dunia Anda dan perkiraan kasar P(doom) di samping pandangan dan perkiraan mereka",
     "guide": "Mengapa estimasi P(doom) sangat bervariasi, dan cara membacanya"
+  },
+  "Sources": {
+    "title": "Sumber",
+    "cite": "Sumber {number}",
+    "showAll": "Tampilkan semua {count} sumber",
+    "showFewer": "Tampilkan lebih sedikit sumber"
   },
   "Blog": {
     "title": "Blog",

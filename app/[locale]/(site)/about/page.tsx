@@ -8,7 +8,7 @@ import { loadExamples, loadPersonaAssessment } from '@/components/landing/data'
 import { aboutJsonLd } from '@/lib/seo/json-ld'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { Methodology } from '@/components/about/methodology'
-import { Footnotes } from '@/components/p-doom/sources'
+import { SourcesSection } from '@/components/sources/sources-section'
 import { methodologyCitations, repositoryUrl } from '@/lib/about/methodology'
 
 // The example assessment is public persona data, refreshed with the page.
@@ -144,15 +144,11 @@ export default async function About() {
         </p>
       </section>
 
-      <section
-        aria-labelledby='sources'
-        className='reference-breakout flex flex-col gap-5 border-t pt-10'
-      >
-        <h2 id='sources' className='scroll-mt-24'>
-          {t('methodology.sourcesTitle')}
-        </h2>
-        <Footnotes footnotes={footnotes} />
-      </section>
+      <SourcesSection
+        id='sources'
+        title={t('methodology.sourcesTitle')}
+        footnotes={footnotes}
+      />
 
       <footer className='border-t pt-8 text-base text-muted-foreground flex flex-col gap-2'>
         <p>

@@ -8,6 +8,7 @@ import {
   blogPost,
   blogPosts,
   postHeadingIds,
+  postSources,
   postTranslation
 } from '@/lib/blog/posts'
 import { postDate } from '@/lib/blog/format'
@@ -18,6 +19,7 @@ import { blogCardPath } from '@/lib/sharing/blog-social-card'
 import { loadProfileNames } from '@/components/landing/data'
 import { chartText } from '@/components/blog/chart-parts'
 import { postComponents } from '@/components/blog/mdx'
+import { SourcesSection } from '@/components/sources/sources-section'
 import { BreadcrumbTrail } from '@/components/breadcrumb-trail'
 import { BreadcrumbJsonLd, JsonLd } from '@/components/json-ld'
 import { WorldviewCtaCard } from '@/components/worldview-cta-card'
@@ -73,23 +75,36 @@ export default async function Page({ params }: Props) {
   const { post, locale, contentLocale, translated } = await localizedPost(
     (await params).slug
   )
-  const [{ default: Post }, t, charts, map, crumbs, profiles] =
-    await Promise.all([
-      (translated
-        ? import(`@/content/l10n/${contentLocale}/blog/${post.slug}.mdx`)
-        : import(`@/content/blog/${post.slug}.mdx`)) as Promise<{
-        default: Post
-      }>,
-      getTranslations('Blog'),
-      getTranslations({ locale: contentLocale, namespace: 'BlogCharts' }),
-      getTranslations({ locale: contentLocale, namespace: 'Map' }),
-      getTranslations('Breadcrumbs'),
-      loadProfileNames()
-    ])
+  const [
+    { default: Post },
+    t,
+    charts,
+    map,
+    hub,
+    sourcesText,
+    crumbs,
+    profiles
+  ] = await Promise.all([
+    (translated
+      ? import(`@/content/l10n/${contentLocale}/blog/${post.slug}.mdx`)
+      : import(`@/content/blog/${post.slug}.mdx`)) as Promise<{
+      default: Post
+    }>,
+    getTranslations('Blog'),
+    getTranslations({ locale: contentLocale, namespace: 'BlogCharts' }),
+    getTranslations({ locale: contentLocale, namespace: 'Map' }),
+    getTranslations({ locale: contentLocale, namespace: 'PdoomHub' }),
+    getTranslations('Sources'),
+    getTranslations('Breadcrumbs'),
+    loadProfileNames()
+  ])
   const tag = languageTag(locale)
   const contentTag = languageTag(contentLocale)
   const path = `/blog/${post.slug}`
   const image = blogCardPath(post, contentLocale)
+  const mention = profileMentions(profiles)
+  // Numbered by the English post, so every language shows the same numbers.
+  const citations = postSources(post.slug, (text) => mention(text))
   return (
     <>
       <BreadcrumbTrail
@@ -133,12 +148,21 @@ export default async function Page({ params }: Props) {
         >
           <Post
             components={postComponents({
-              mention: profileMentions(profiles),
+              mention,
               text: chartText(charts, map, contentTag),
-              headings: postHeadingIds(post.slug, contentLocale)
+              headings: postHeadingIds(post.slug, contentLocale),
+              citations: citations.numbers,
+              definition: hub('definition')
             })}
           />
         </div>
+        {citations.footnotes.length > 0 && (
+          <SourcesSection
+            id='sources'
+            title={sourcesText('title')}
+            footnotes={citations.footnotes}
+          />
+        )}
       </article>
       <div className='content-column pb-14'>
         <WorldviewCtaCard />

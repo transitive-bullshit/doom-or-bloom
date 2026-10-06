@@ -832,13 +832,11 @@
     "profile": "Profile"
   },
   "PdoomHub": {
+    "definition": "P(doom) is the probability a person assigns to advanced AI causing an existential catastrophe for humanity, such as human extinction or a permanent loss of control over our future.",
     "tableTitle": "P(doom) by thought leader",
     "name": "Thought leader",
     "stated": "Publicly stated P(doom)",
     "declined": "No number",
-    "showAllSources": "Show all {count} sources",
-    "fewerSources": "Show fewer sources",
-    "cite": "Source {number}",
     "asOf": "Includes statements up to {date}",
     "note": "Each number comes from the person’s own words, linked to where they said it. People define the outcome and time frame differently, so the numbers are not directly comparable.",
     "surveyTitle": "For comparison: AI researchers",
@@ -858,6 +856,12 @@
     "ctaTitle": "What’s your P(doom)?",
     "ctaDescription": "Answer a few questions in about 3 minutes, then see your worldview and a rough P(doom) beside theirs",
     "guide": "Why P(doom) estimates vary so much, and how to read one"
+  },
+  "Sources": {
+    "title": "Sources",
+    "cite": "Source {number}",
+    "showAll": "Show all {count} sources",
+    "showFewer": "Show fewer sources"
   },
   "Blog": {
     "title": "Blog",

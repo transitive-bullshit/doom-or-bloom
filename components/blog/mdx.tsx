@@ -9,7 +9,9 @@ import { Link } from '@/i18n/navigation'
 import { headingId } from '@/lib/blog/headings'
 import { pdoomDefinition } from '@/lib/p-doom/copy'
 import type { ProfileMentions } from '@/lib/personas/mentions'
+import { citationParts } from '@/lib/sources/citations'
 import { MentionText } from '@/components/mention-text'
+import { Citation } from '@/components/sources/citation'
 import type { ChartText } from './chart-parts'
 import { DataBars } from './data-bars'
 import { DataEstimates } from './data-estimates'
@@ -46,11 +48,14 @@ function Anchor({ href = '', children, ...props }: ComponentProps<'a'>) {
   )
 }
 
-/** The quotable definition the P(doom) hub opens with. */
-function Definition() {
+/**
+ * The quotable definition the P(doom) hub opens with, in the post's language
+ * (`PdoomHub.definition`; the English is `pdoomDefinition`).
+ */
+function Definition({ text = pdoomDefinition }: { text?: string }) {
   return (
     <p className='border-l-2 border-coral pl-4 text-lg leading-relaxed font-medium'>
-      {pdoomDefinition}
+      {text}
     </p>
   )
 }
@@ -105,19 +110,25 @@ const textOf = (children: ReactNode): string =>
 /**
  * A post's page bindings. Links people with a published profile: the first
  * mention of each in a paragraph, list item or table cell, and every name in a
- * chart. Text inside headings, links and emphasis stays as written. Charts
- * label and format in the post's language. Section headings get the ids of
- * the English headings (`headings`, from `postHeadingIds`), so a link such as
- * `/blog/<slug>#<id>` opens the same section in every language.
+ * chart. Text inside headings, links and emphasis stays as written. A `[^key]`
+ * marker renders as its source's footnote number (`citations`, from
+ * `postSources`). Charts and the P(doom) definition read in the post's
+ * language. Section headings get the ids of the English headings (`headings`,
+ * from `postHeadingIds`), so a link such as `/blog/<slug>#<id>` opens the same
+ * section in every language.
  */
 export function postComponents({
   mention,
   text,
-  headings
+  headings,
+  citations = {},
+  definition
 }: {
   mention: ProfileMentions
   text: ChartText
   headings: Record<string, string[]>
+  citations?: Readonly<Record<string, number>>
+  definition?: string
 }): MDXComponents {
   // Headings render in document order, so a repeated heading takes the next of
   // its ids. These components are built for one render of one post.
@@ -128,16 +139,28 @@ export function postComponents({
     seen.set(heading, index + 1)
     return headings[heading]?.[index] ?? headingId(heading)
   }
-  const linkNames = (children: ReactNode) => {
-    const linked = new Set<string>()
-    return Children.map(children, (child) =>
-      typeof child === 'string' ? (
-        <MentionText parts={mention(child, linked)} />
-      ) : (
-        child
-      )
-    )
+  const cite = (key: string, index: number) => {
+    const number = citations[key]
+    if (!number) throw new Error(`Unknown source [^${key}]`)
+    return <Citation key={index} number={number} />
   }
+  // Text with its citation markers as footnote numbers, and names linked when
+  // `linked` tracks them.
+  const prose = (children: ReactNode, linked?: Set<string>) =>
+    Children.map(children, (child) =>
+      typeof child === 'string'
+        ? citationParts(child).map((part, index) =>
+            'cite' in part ? (
+              cite(part.cite, index)
+            ) : linked ? (
+              <MentionText key={index} parts={mention(part.text, linked)} />
+            ) : (
+              part.text
+            )
+          )
+        : child
+    )
+  const linkNames = (children: ReactNode) => prose(children, new Set())
   return {
     h2: ({ children, ...props }) => (
       <h2 id={id(children)} className='scroll-mt-24' {...props}>
@@ -150,6 +173,10 @@ export function postComponents({
       </h3>
     ),
     p: ({ children, ...props }) => <p {...props}>{linkNames(children)}</p>,
+    strong: ({ children, ...props }) => (
+      <strong {...props}>{prose(children)}</strong>
+    ),
+    em: ({ children, ...props }) => <em {...props}>{prose(children)}</em>,
     li: ({ children, ...props }) => <li {...props}>{linkNames(children)}</li>,
     td: ({ children, ...props }) => (
       <td className='border-b px-2 py-2 align-top tabular-nums' {...props}>
@@ -182,6 +209,7 @@ export function postComponents({
     ),
     DataTrend: (props: ComponentProps<typeof DataTrend>) => (
       <DataTrend {...props} text={text} />
-    )
+    ),
+    Definition: () => <Definition text={definition} />
   }
 }

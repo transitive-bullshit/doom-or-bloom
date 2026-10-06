@@ -8654,5 +8654,82 @@
     "imageKind": "social",
     "imageSource": "https://media.vanityfair.com/photos/6ac01c910b7bf2b9f3f76532/16:9/w_1280,c_limit/SA_Digital3%20(1).jpg",
     "icon": "/resource-previews/0f479875a840-icon.webp"
+  },
+  "https://en.wiktionary.org/wiki/doomer": {
+    "source": "https://en.wiktionary.org/wiki/doomer",
+    "fetchedAt": "2026-10-06T09:38:05.614Z",
+    "icon": "/resource-previews/4cb59ada4311-icon.webp"
+  },
+  "https://aisafety.info/questions/NM1Z/What-is-an-AI-doomer": {
+    "source": "https://aisafety.info/questions/NM1Z/What-is-an-AI-doomer",
+    "fetchedAt": "2026-10-06T09:38:19.743Z",
+    "icon": "/resource-previews/4ad0a815b0de-icon.webp"
+  },
+  "https://www.palladiummag.com/2025/01/31/the-failed-strategy-of-artificial-intelligence-doomers/": {
+    "source": "https://www.palladiummag.com/2025/01/31/the-failed-strategy-of-artificial-intelligence-doomers/",
+    "fetchedAt": "2026-10-06T09:38:25.227Z",
+    "icon": "/resource-previews/1078b818c7a9-icon.webp"
+  },
+  "https://www.technologyreview.com/2025/12/15/1129171/the-ai-doomers-feel-undeterred/": {
+    "source": "https://www.technologyreview.com/2025/12/15/1129171/the-ai-doomers-feel-undeterred/",
+    "fetchedAt": "2026-10-06T09:38:30.902Z",
+    "icon": "/resource-previews/71103ecd60e6-icon.webp"
+  },
+  "https://knowyourmeme.com/memes/bloomer": {
+    "source": "https://knowyourmeme.com/memes/bloomer",
+    "fetchedAt": "2026-10-06T09:38:40.608Z",
+    "icon": "/resource-previews/e070b3ae9e14-icon.webp"
+  },
+  "https://news.gallup.com/poll/712751/americans-cool-toward.aspx": {
+    "source": "https://news.gallup.com/poll/712751/americans-cool-toward.aspx",
+    "fetchedAt": "2026-10-06T09:38:45.892Z",
+    "icon": "/resource-previews/3af66a80a3d7-icon.webp"
+  },
+  "https://en.wikipedia.org/wiki/Effective_accelerationism": {
+    "source": "https://en.wikipedia.org/wiki/Effective_accelerationism",
+    "fetchedAt": "2026-10-06T09:38:50.177Z",
+    "icon": "/resource-previews/e26a7a2afcf7-icon.webp"
+  },
+  "https://beff.substack.com/p/notes-on-eacc-principles-and-tenets": {
+    "source": "https://beff.substack.com/p/notes-on-eacc-principles-and-tenets",
+    "fetchedAt": "2026-10-06T09:38:54.352Z",
+    "icon": "/resource-previews/2d511d5823b5-icon.webp"
+  },
+  "https://www.forbes.com/sites/emilybaker-white/2023/12/01/who-is-basedbeffjezos-the-leader-of-effective-accelerationism-eacc/": {
+    "source": "https://www.forbes.com/sites/emilybaker-white/2023/12/01/who-is-basedbeffjezos-the-leader-of-effective-accelerationism-eacc/",
+    "fetchedAt": "2026-10-06T09:38:58.759Z",
+    "icon": "/resource-previews/610c111f589b-icon.webp"
+  },
+  "https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html": {
+    "source": "https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html",
+    "fetchedAt": "2026-10-06T09:39:19.071Z",
+    "icon": "/resource-previews/a7d97f24761f-icon.webp",
+    "iconKind": "monogram"
+  },
+  "https://www.effectivealtruism.org/articles/introduction-to-effective-altruism": {
+    "source": "https://www.effectivealtruism.org/articles/introduction-to-effective-altruism",
+    "fetchedAt": "2026-10-06T09:39:27.243Z",
+    "icon": "/resource-previews/5b046cc90c1c-icon.webp"
+  },
+  "http://incompleteideas.net/papers/Good65ultraintelligent.pdf": {
+    "source": "http://incompleteideas.net/papers/Good65ultraintelligent.pdf",
+    "fetchedAt": "2026-10-06T09:39:32.980Z",
+    "icon": "/resource-previews/bed5e5b8f617-icon.webp",
+    "iconKind": "monogram"
+  },
+  "https://sideways-view.com/2018/02/24/takeoff-speeds/": {
+    "source": "https://sideways-view.com/2018/02/24/takeoff-speeds/",
+    "fetchedAt": "2026-10-06T09:39:40.597Z",
+    "icon": "/resource-previews/d70ecd90990c-icon.webp"
+  },
+  "https://edoras.sdsu.edu/~vinge/misc/singularity.html": {
+    "source": "https://edoras.sdsu.edu/~vinge/misc/singularity.html",
+    "fetchedAt": "2026-10-06T09:39:46.156Z",
+    "icon": "/resource-previews/306bfd468dce-icon.webp"
+  },
+  "https://en.wikipedia.org/wiki/AI_alignment": {
+    "source": "https://en.wikipedia.org/wiki/AI_alignment",
+    "fetchedAt": "2026-10-06T09:39:52.603Z",
+    "icon": "/resource-previews/c799d5e1347e-icon.webp"
   }
 }

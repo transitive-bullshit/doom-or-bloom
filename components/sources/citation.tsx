@@ -1,18 +1,18 @@
 import { useTranslations } from 'next-intl'
 import {
   footnoteId,
-  type Citation as CitationData
-} from '@/lib/p-doom/citations'
-import type { CitedProse } from '@/lib/p-doom/hub'
+  type Citation as CitationData,
+  type CitedProse
+} from '@/lib/sources/citations'
 import { MentionText } from '@/components/mention-text'
 
 /** A bracketed footnote marker linking to its numbered source. */
 export function Citation({ number, id }: CitationData) {
-  const t = useTranslations('PdoomHub')
+  const t = useTranslations('Sources')
   // A word joiner keeps the marker on the line of the word it follows.
   return (
     <>
-      {'\u2060'}
+      {'⁠'}
       <sup className='scroll-mt-24 text-xs leading-none' id={id}>
         <a
           href={`#${footnoteId(number)}`}
@@ -26,7 +26,7 @@ export function Citation({ number, id }: CitationData) {
   )
 }
 
-/** Hub prose with italic titles, footnote markers and linked names. */
+/** Prose with italic titles, footnote markers and linked names. */
 export function CitedText({ prose }: { prose: CitedProse }) {
   return prose.map((part, index) =>
     'number' in part ? (

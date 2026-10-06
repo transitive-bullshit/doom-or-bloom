@@ -26,6 +26,8 @@ import {
   type L10nKind
 } from '../lib/content/l10n'
 import { readL10n, readRelease, readRubric } from '../lib/content/l10n-loader'
+import matter from 'gray-matter'
+import { postCitationProblems } from '../lib/blog/citations'
 import { blogDirectory, blogPosts, isTranslated } from '../lib/blog/posts'
 import { blogTranslationProblems } from '../lib/blog/translation-check'
 import { blogDataSchema, periodHeadings } from '../lib/blog/schema'
@@ -237,14 +239,21 @@ console.log(
   `Validated ${l10nFiles.size} authored-content translation files and ${messageLocales.length - 1} message catalogs against English.`
 )
 
-// Blog posts: frontmatter, headings without trailing periods, and chart data
-// with an allowed provenance (docs/BLOG.md).
+// Blog posts: frontmatter, headings without trailing periods, sources cited
+// with markers, and chart data with an allowed provenance (docs/BLOG.md).
 const posts = blogPosts()
-const blogErrors = posts.flatMap((post) =>
-  periodHeadings(
-    readFileSync(path.join(blogDirectory, `${post.slug}.mdx`), 'utf8')
-  ).map((heading) => `${post.slug}.mdx: heading ends with a period: ${heading}`)
-)
+const blogErrors = posts.flatMap((post) => {
+  const source = readFileSync(
+    path.join(blogDirectory, `${post.slug}.mdx`),
+    'utf8'
+  )
+  return [
+    ...periodHeadings(source).map(
+      (heading) => `heading ends with a period: ${heading}`
+    ),
+    ...postCitationProblems(post.slug, matter(source).content, post.sources)
+  ].map((problem) => `${post.slug}.mdx: ${problem}`)
+})
 const blogData = path.join(blogDirectory, 'data')
 const dataFiles = existsSync(blogData)
   ? readdirSync(blogData).filter((file) => file.endsWith('.json'))

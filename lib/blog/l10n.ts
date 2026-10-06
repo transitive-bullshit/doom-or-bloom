@@ -4,7 +4,7 @@ import { sourceHash } from '@/lib/content/l10n'
 
 // Translated blog posts (docs/BLOG.md#languages). A translated post is
 // content/l10n/<locale>/blog/<slug>.mdx with the same imports, components,
-// links and headings as the English, importing translated copies of its data
+// links, citation markers and headings as the English, importing translated copies of its data
 // files from content/l10n/<locale>/blog/data/. content/l10n/<locale>/blog/
 // meta.json records the hash of the English each file translates, so an
 // English edit makes the translation stale and `pnpm test:content` fails.
@@ -144,6 +144,8 @@ const components = (body: string) =>
   body.match(/<[A-Z][A-Za-z]*\b[^>]*\/?>/gu)?.toSorted() ?? []
 const siteLinks = (body: string) =>
   [...body.matchAll(/\]\((\/[^)\s]*)\)/gu)].map((match) => match[1]!).toSorted()
+const citations = (body: string) =>
+  body.match(/\[\^[a-z0-9-]+\]/gu)?.toSorted() ?? []
 const headings = (body: string) => body.match(/^#{1,6}\s.*$/gmu) ?? []
 const headingLevels = (body: string) =>
   headings(body).map((line) => line.match(/^#+/u)![0].length)
@@ -158,6 +160,7 @@ export function postTranslationProblems(english: string, translated: string) {
   same('import lines', importLines)
   same('components', components)
   same('site links', siteLinks)
+  same('citation markers', citations)
   same('heading levels', headingLevels)
   for (const line of headings(translated))
     if (/[.。．।]\s*$/u.test(line))
