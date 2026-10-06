@@ -119,7 +119,7 @@ export function ChartFigure({
   title: string
   legend?: ReactNode
   children: ReactNode
-  source: string
+  source?: string
   asOf: string
   text: ChartText
   /** A sentence before the source, e.g. the scale of the bars. */
@@ -135,7 +135,8 @@ export function ChartFigure({
       {children}
       <p className='text-xs text-muted-foreground'>
         {note && `${note} `}
-        {source} {text.t('asOf', { date: postDate(asOf, text.tag) })}
+        {source && `${source} `}
+        {text.t('asOf', { date: postDate(asOf, text.tag) })}
       </p>
     </figure>
   )

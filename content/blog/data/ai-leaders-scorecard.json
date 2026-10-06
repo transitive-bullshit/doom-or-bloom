@@ -1,7 +1,6 @@
 {
   "kind": "scorecard",
   "title": "Where each pair agrees and disagrees, by their simulated worldviews",
-  "source": "Each person’s simulated worldview on their Doom or Bloom profile, generated from their public writing and interviews. Agree means the same reading; partly, nearby readings or ones on the same side of the question; disagree, readings on opposite sides.",
   "asOf": "2026-10-06",
   "provenance": "simulated-users",
   "hint": "Hover, tap or focus a mark to see where each side lands",

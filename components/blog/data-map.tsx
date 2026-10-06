@@ -391,7 +391,7 @@ function PointMap({
         </table>
       </div>
       <p className='text-xs text-muted-foreground'>
-        {chart.source}{' '}
+        {chart.source && `${chart.source} `}
         {text.t('asOf', { date: postDate(chart.asOf, text.tag) })}
       </p>
     </figure>
