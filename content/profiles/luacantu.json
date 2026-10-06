@@ -1,0 +1,34 @@
+{
+  "slug": "luacantu",
+  "summary": "Cantuarias builds infrastructure for AI agents, wants careful limits on what they can spend, and warns that frontier labs can shape AI risk rules.",
+  "statements": [
+    {
+      "quote": "everyone wants agents that can make money but i’m more interested in the infrastructure that decides how they’re allowed to spend it",
+      "date": "2026-10-03",
+      "venue": "Post on X",
+      "url": "https://x.com/Luacantu/status/2106498023232786682",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "we’re building an internet where some of the users won’t be human",
+      "date": "2026-10-03",
+      "venue": "Post on X",
+      "url": "https://x.com/Luacantu/status/2106392326889463985",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "the interesting part of always-on agents isn’t that they work while you sleep, it’s that software is slowly gaining continuity",
+      "date": "2026-09-30",
+      "venue": "Post on X",
+      "url": "https://x.com/Luacantu/status/2105289060730413218",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "frontier AI companies have an incentive to frame AI risk in ways that make frontier-level regulation necessary",
+      "date": "2026-09-12",
+      "venue": "Post on X",
+      "url": "https://x.com/Luacantu/status/2098842940927828363",
+      "verified": "2026-10-06"
+    }
+  ]
+}

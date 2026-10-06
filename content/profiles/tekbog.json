@@ -1,0 +1,34 @@
+{
+  "slug": "tekbog",
+  "summary": "The terminally online engineer account questions AI hype and alarm, wants labs held accountable for their products and worries about junior roles.",
+  "statements": [
+    {
+      "quote": "many engineers that were doing ML before the AI revolution don’t get the hype",
+      "date": "2026-09-19",
+      "venue": "Post on X",
+      "url": "https://x.com/tekbog/status/2101159665560412492",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Claude is a product from Anthropic, and therefore Anthropic is held accountable for what the product does - it's not magic",
+      "date": "2026-09-15",
+      "venue": "Post on X",
+      "url": "https://x.com/tekbog/status/2099781533171368290",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "i know people wanna freak out about this and scream AGI and how we are all going to die but it’s a much simpler story than that",
+      "date": "2026-07-22",
+      "venue": "Post on X",
+      "url": "https://x.com/tekbog/status/2079739671681409290",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "entry level positions and junior roles are not being created, there’s no training to pass the knowledge",
+      "date": "2025-11-15",
+      "venue": "Post on X",
+      "url": "https://x.com/tekbog/status/1989498149254070518",
+      "verified": "2026-10-06"
+    }
+  ]
+}

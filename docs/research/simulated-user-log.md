@@ -163,3 +163,7 @@ Added the requested Vanity Fair Part 1 interview to Altman’s authored brief, t
 ## Short-interview refresh — October 6, 2026
 
 At Travis's request, freshly regenerated and imported all 96 production simulations with fewer than four answered questions, including all eight remaining `0.6.1` results. Each new run has four to six accepted answers and uses engine `0.7.5`; prior public runs remain intact. Rebuilt production and checked all 96 live profile answer counts and map coordinates. The [refresh audit](short-interview-refresh-2026-10-06.md) records the cohort, run provenance, $7.37 estimated cost, and before/after placements.
+
+## Tech posters' public statements — October 6, 2026
+
+At Travis's request, “What <Name> has said about AI” is now a default part of adding a person, when at least three quotes are especially relevant; [user-journeys.md](../user-journeys.md#public-statements) records the bar. Added the section for 29 of the 35 tech posters and Drew Spartz, with 3–5 verified quotes each, and skipped six whose statements were mostly company messaging, product talk or jokes. The [statements record](tech-posters-public-statements-2026-10-06.md) lists everyone, the sources, the skip reasons and the judgment calls. No simulations were regenerated and no production data changed.

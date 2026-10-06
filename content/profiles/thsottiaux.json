@@ -1,0 +1,41 @@
+{
+  "slug": "thsottiaux",
+  "summary": "Sottiaux says AI progress shows no sign of slowing, expects broad economic benefits and sees safe deployment and human oversight as key challenges.",
+  "statements": [
+    {
+      "quote": "We’re able to improve things at crazy speeds, and there’s no sign of it slowing down.",
+      "date": "2026-02-18",
+      "venue": "Every, AI & I podcast",
+      "url": "https://every.to/podcast/transcript-how-openai-s-codex-team-uses-their-coding-agent",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Increasingly this will become a multi-agent system and it’ll become more and more capable. You’ll have to figure out how to steer and supervise its outcome and its behavior.",
+      "date": "2026-02-18",
+      "venue": "Every, AI & I podcast",
+      "url": "https://every.to/podcast/transcript-how-openai-s-codex-team-uses-their-coding-agent",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Revolutionizing how software is built also means being part of something that will generate incredible economic value and real benefits for humanity.",
+      "date": "2026-01-13",
+      "venue": "Cerebral Valley interview",
+      "url": "https://cerebralvalley.beehiiv.com/p/openai-s-codex-lets-one-engineer-ship-like-a-team-of-ten",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "What we have seen is a shift from big teams to small teams that are able to leverage more and more intelligence.",
+      "date": "2026-01-13",
+      "venue": "Cerebral Valley interview",
+      "url": "https://cerebralvalley.beehiiv.com/p/openai-s-codex-lets-one-engineer-ship-like-a-team-of-ten",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "The true bottleneck was how we deploy this safely into the world in a new way.",
+      "date": "2026-01-13",
+      "venue": "Cerebral Valley interview",
+      "url": "https://cerebralvalley.beehiiv.com/p/openai-s-codex-lets-one-engineer-ship-like-a-team-of-ten",
+      "verified": "2026-10-06"
+    }
+  ]
+}

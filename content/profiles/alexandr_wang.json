@@ -1,0 +1,41 @@
+{
+  "slug": "alexandr_wang",
+  "summary": "Wang expects very powerful AI soon and wants it widely shared, and now stresses alignment and oversight after once ranking leadership above safety.",
+  "statements": [
+    {
+      "quote": "Racing on recursive self-improvement is one of the riskiest pathways for potential loss of control to powerful models.",
+      "date": "2026-09-15",
+      "venue": "Post on X",
+      "url": "https://x.com/alexandr_wang/status/2100011173278290347",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "We do believe alignment can be the gating factor for scaling as we get closer to the frontier.",
+      "date": "2026-09-13",
+      "venue": "Post on X",
+      "url": "https://x.com/alexandr_wang/status/2099015997525291211",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Looking back in a decade, it’ll be obvious that intelligence became abundant and that agency became abundant.",
+      "date": "2026-07-29",
+      "venue": "YC Startup School",
+      "url": "https://www.ycrootaccess.com/p/alexandr-wang-building-a-frontier",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "when we empower more and more small businesses, more creators with AI tools and AI products and AI platforms, the opportunity vastly outstrips any of the disruption.",
+      "date": "2026-02-19",
+      "venue": "The Economic Times interview",
+      "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/personal-agents-are-ais-next-massive-leap-and-opportunity-metas-wang/articleshow/128536778.cms",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Safety is not the number one goal. Leadership is the number one goal.",
+      "date": "2025-01-20",
+      "venue": "Semafor interview",
+      "url": "https://www.semafor.com/article/01/20/2025/scale-ai-ceo-alexandr-wang-to-trump-america-must-win-the-ai-war",
+      "verified": "2026-10-06"
+    }
+  ]
+}

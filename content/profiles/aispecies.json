@@ -1,0 +1,41 @@
+{
+  "slug": "aispecies",
+  "summary": "Spartz warns that AI is advancing faster than our ability to control it and calls for heavy regulation and for AI companies to coordinate.",
+  "statements": [
+    {
+      "quote": "Basically, AI is moving faster than our ability to control it.",
+      "date": "2026-10-04",
+      "venue": "Species video, I don't think people realize what just happened",
+      "url": "https://www.youtube.com/watch?v=LlhdnpsADZs",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Employ 0.0001% of the agency you put towards running your trillion dollar companies to actually fucking coordinate",
+      "date": "2026-09-09",
+      "venue": "Reply on X",
+      "url": "https://x.com/AISpecies/status/2097492411136286811",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "I don't want powerful AI to be forbidden, but it should be heavily regulated.",
+      "date": "2026-03-29",
+      "venue": "Species video, MIT Explains the 12 Possible Endings for AI",
+      "url": "https://www.youtube.com/watch?v=FLcrvMfHUJM",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "The part where AI becomes dangerous is when it becomes general.",
+      "date": "2025-11-22",
+      "venue": "Species video, Yes, AI Will Take Your Job. But What Happens NEXT Is Worse",
+      "url": "https://www.youtube.com/watch?v=R6mTUK_yPKw",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Hmmm, I think widely distributing model weights like what Zuck is doing greatly decreases the possibility of safety guardrails doing anything.",
+      "date": "2025-01-22",
+      "venue": "Reply on X",
+      "url": "https://x.com/AISpecies/status/1882117162053280059",
+      "verified": "2026-10-06"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "theo",
+  "summary": "Browne builds with AI coding agents and praises their progress, while warning about AI hacking and calling for alignment work over a US pause.",
+  "statements": [
+    {
+      "quote": "fwiw, I don't think we need to slow down AI development. I think we need to allocate more resources to alignment.",
+      "date": "2026-09-10",
+      "venue": "Post on X",
+      "url": "https://x.com/theo/status/2097857193605492813",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "For better or worse the cat is out of the bag. Holding American development of AI does not stop global development of AI.",
+      "date": "2026-09-10",
+      "venue": "Post on X",
+      "url": "https://x.com/theo/status/2097856425628451199",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "GPT-6 broke containment. This is the thing we've been warned about. It's both incredibly cool and incredibly scary.",
+      "date": "2026-07-23",
+      "venue": "Post on X",
+      "url": "https://x.com/theo/status/2080273457770823956",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "I don’t think AGI is well defined. I would argue that current models with sufficient tools/harnesses would get close to most people’s definitions.",
+      "date": "2026-05-26",
+      "venue": "Reply on X",
+      "url": "https://x.com/theo/status/2059121546556571694",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Security is about to change forever. I don't think we're ready.",
+      "date": "2026-04-11",
+      "venue": "Post on X",
+      "url": "https://x.com/theo/status/2043075056318976028",
+      "verified": "2026-10-06"
+    }
+  ]
+}

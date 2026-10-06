@@ -20,7 +20,7 @@ Every person has two keys. The **id** (lowercase words and hyphens, such as `sup
 | `components/landing/one-liners.ts` | The [one-liner](#simulated-user-one-liners), keyed by slug | New person; revisit when the brief changes |
 | `public/personas/<file>.jpg` and `public/personas/SOURCES.md` | The portrait and its provenance line | New or changed portrait; no test checks provenance |
 | `lib/sharing/resource-previews.json` and `public/resource-previews/` | Source previews from `pnpm resources:previews --url=<url>` (`--refresh` refetches) | Whenever source URLs change; tests require one for every source except X posts |
-| `content/profiles/<slug>.json`, registered in `lib/personas/public-statements.ts` | [Public statements](#public-statements) | People with search demand |
+| `content/profiles/<slug>.json`, registered in `lib/personas/public-statements.ts` | [Public statements](#public-statements) | New person, whenever at least three especially relevant quotes exist |
 | `lib/journeys/public-pdoom-statements.ts` | A [verified numerical P(doom)](#publicly-stated-pdoom-overrides); `lib/p-doom/curated.ts` can then list them on the P(doom) hub | Only with a verified statement |
 | `lib/seo/person-identities.json` | Wikipedia and Wikidata links | After checking the article ([SEO.md](SEO.md)) |
 | `docs/research/<name>-persona-<date>.md` | Sources, reading scopes, run provenance and verification | Always |
@@ -29,7 +29,7 @@ Every person has two keys. The **id** (lowercase words and hyphens, such as `sup
 
 ### Steps
 
-1. Write or edit the brief. For a new person, also register it in `catalog.ts` and add the `people.ts` entry, one-liner and portrait.
+1. Write or edit the brief. For a new person, also register it in `catalog.ts`, add the `people.ts` entry, one-liner and portrait, and add their [public statements](#public-statements) when the quotes clear the bar.
 2. Run `pnpm resources:previews --url=<url>` for each new source URL, then `pnpm test`.
 3. If the task calls for new answers, generate one person per run: `pnpm journeys:generate --persona=<id> --max-cost=<dollars>`. `--persona` takes a single id; the groups are `--group=independent` and `--group=tech-posters-<letter>`, one per [top tech posters](research/tech-posters-2026-10-05.md) research batch. Leave `--max-requests` unset unless you mean to stop below the default backstop: a five-answer interview needs more than 24 requests ([budgets](#budgets-and-storage)). Generation saves to the database named in `.env.development.local`, so confirm it is local. [Resume](#resume-a-failed-operation) a failed run rather than starting over.
 4. Inspect the answers, routing, readiness and source snapshot at `/user-journeys`, then the result at `/users/<slug>`. Compare fidelity to the brief, not desired coordinates.
@@ -68,7 +68,7 @@ Each simulated user has a one-line description under their name in the profile h
 
 ### Public statements
 
-Profiles of people with search demand can show “What <Name> has said about AI”, below the map, the compare prompt and Similar worldviews. It is the real person's public record beside our simulation of them, so it follows the one-liner's fairness bar and adds stricter sourcing.
+A profile can show “What <Name> has said about AI”, below the map, the compare prompt and Similar worldviews. It is the real person's public record beside our simulation of them, so it follows the one-liner's fairness bar and adds stricter sourcing. Adding a person includes this section by default, but only when at least three quotes are especially relevant: substantive statements of their own view on AI and its future, such as its benefits, risks, effect on work, control, power, regulation or timelines. Product announcements, jokes, irony, bait and slogans don't count. When fewer than three qualify, leave the section out and record the skip in the person's research record rather than padding it.
 
 - Three to seven quotes, newest first, each with its date, venue and link. Aim for 25 words or fewer; `pnpm test:content` rejects more than 30.
 - Exact words only, checked against a primary source you fetched: their own writing, an official transcript, or an outlet's direct quote from its own interview. Attribute only their turns in a transcript, never an interviewer's. Trim only at sentence or clause boundaries and never join separate passages. Curly quotes and apostrophes may replace straight ones. Record the check in `verified`.

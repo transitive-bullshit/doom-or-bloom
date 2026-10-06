@@ -49,6 +49,35 @@ import paulKrugman from '@/content/profiles/paul-krugman.json'
 import naomiKlein from '@/content/profiles/naomi-klein.json'
 import jonStewart from '@/content/profiles/jon-stewart.json'
 import elizabethWarren from '@/content/profiles/elizabeth-warren.json'
+import zeroxSero from '@/content/profiles/0xsero.json'
+import aispecies from '@/content/profiles/aispecies.json'
+import alexandrWang from '@/content/profiles/alexandr_wang.json'
+import ankkala from '@/content/profiles/ankkala.json'
+import applesJimmy from '@/content/profiles/apples_jimmy.json'
+import basedjensen from '@/content/profiles/basedjensen.json'
+import bryanJohnson from '@/content/profiles/bryan_johnson.json'
+import bubbleboi from '@/content/profiles/bubbleboi.json'
+import distributedkv from '@/content/profiles/distributedkv.json'
+import dylan522p from '@/content/profiles/dylan522p.json'
+import emostaque from '@/content/profiles/emostaque.json'
+import flowersslop from '@/content/profiles/flowersslop.json'
+import hopesRevenge from '@/content/profiles/hopes_revenge.json'
+import luacantu from '@/content/profiles/luacantu.json'
+import parmita from '@/content/profiles/parmita.json'
+import piercelilholt from '@/content/profiles/piercelilholt.json'
+import rookepoole from '@/content/profiles/rookepoole.json'
+import scobleizer from '@/content/profiles/scobleizer.json'
+import shakoistslog from '@/content/profiles/shakoistslog.json'
+import signulll from '@/content/profiles/signulll.json'
+import sierracatalina from '@/content/profiles/sierracatalina.json'
+import suavecito585 from '@/content/profiles/suavecito585.json'
+import tekbog from '@/content/profiles/tekbog.json'
+import theo from '@/content/profiles/theo.json'
+import thsottiaux from '@/content/profiles/thsottiaux.json'
+import tunguz from '@/content/profiles/tunguz.json'
+import voidstatekate from '@/content/profiles/voidstatekate.json'
+import xfreeze from '@/content/profiles/xfreeze.json'
+import zekramu from '@/content/profiles/zekramu.json'
 
 // What a simulated user's real person has said about AI: short, dated quotes
 // in their own words, each checked against the page it links to. Shown on the
@@ -156,7 +185,36 @@ const files = [
   paulKrugman,
   naomiKlein,
   jonStewart,
-  elizabethWarren
+  elizabethWarren,
+  zeroxSero,
+  aispecies,
+  alexandrWang,
+  ankkala,
+  applesJimmy,
+  basedjensen,
+  bryanJohnson,
+  bubbleboi,
+  distributedkv,
+  dylan522p,
+  emostaque,
+  flowersslop,
+  hopesRevenge,
+  luacantu,
+  parmita,
+  piercelilholt,
+  rookepoole,
+  scobleizer,
+  shakoistslog,
+  signulll,
+  sierracatalina,
+  suavecito585,
+  tekbog,
+  theo,
+  thsottiaux,
+  tunguz,
+  voidstatekate,
+  xfreeze,
+  zekramu
 ].map((file) => publicStatementsSchema.parse(file))
 
 /** Every profile with sourced statements, keyed by slug. */
