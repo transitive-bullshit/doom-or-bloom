@@ -41,11 +41,23 @@
     "x": "Travis no X"
   },
   "Footer": {
-    "about": "Sobre",
-    "privacy": "Privacidade",
-    "pdoom": "P(doom)",
-    "methodology": "Metodologia",
+    "tagline": "Mapeie sua visão de mundo sobre a IA, uma pergunta de cada vez.",
+    "explore": "Explorar",
+    "mapWorldview": "Mapeie sua visão de mundo",
+    "thoughtLeaders": "Líderes de opinião",
+    "pdoom": "Estimativas de P(doom)",
     "blog": "Blog",
+    "posts": {
+      "hackerNewsVsX": "Hacker News é mais pessimista em relação à IA do que X",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "Todas as publicações",
+    "project": "Projeto",
+    "about": "Sobre",
+    "methodology": "Metodologia",
+    "privacy": "Privacidade",
+    "sourceCode": "Código-fonte",
+    "madeBy": "Criado por <link>{name}</link>",
     "language": "Idioma"
   },
   "Breadcrumbs": {

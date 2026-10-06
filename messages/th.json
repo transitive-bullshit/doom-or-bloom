@@ -41,11 +41,23 @@
     "x": "Travis บน X"
   },
   "Footer": {
-    "about": "เกี่ยวกับ",
-    "privacy": "ความเป็นส่วนตัว",
-    "pdoom": "P(doom)",
-    "methodology": "ระเบียบวิธี",
+    "tagline": "ทำแผนที่โลกทัศน์เกี่ยวกับ AI ของคุณทีละคำถาม",
+    "explore": "สำรวจ",
+    "mapWorldview": "ทำแผนที่โลกทัศน์ของคุณ",
+    "thoughtLeaders": "ผู้นำทางความคิด",
+    "pdoom": "ค่าประมาณ P(doom)",
     "blog": "บล็อก",
+    "posts": {
+      "hackerNewsVsX": "Hacker News มอง AI ในแง่ร้ายกว่า X",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "โพสต์ทั้งหมด",
+    "project": "โครงการ",
+    "about": "เกี่ยวกับ",
+    "methodology": "ระเบียบวิธี",
+    "privacy": "ความเป็นส่วนตัว",
+    "sourceCode": "ซอร์สโค้ด",
+    "madeBy": "สร้างโดย <link>{name}</link>",
     "language": "ภาษา"
   },
   "Breadcrumbs": {
