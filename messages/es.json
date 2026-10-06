@@ -351,7 +351,8 @@
       "from": "{subject, select, other {A partir de sus respuestas simuladas.}}",
       "stated": "Dijiste {token}.",
       "missing": "{subject, select, self {Tus respuestas no dicen lo suficiente sobre el riesgo catastrófico para estimarlo.} other {Sus respuestas simuladas no dicen lo suficiente sobre el riesgo catastrófico para estimarlo.}}",
-      "addSentence": "Una frase sobre qué tan probable crees que es permitiría añadirlo."
+      "addSentence": "Una frase sobre qué tan probable crees que es permitiría añadirlo.",
+      "method": "Cómo estimamos P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Tu cronología de hitos} other {Cronología de hitos de {name}}}",
     "milestoneNote": "{subject, select, self {Agrupados por hito, sin espaciarlos ni ordenarlos por fechas inferidas. La IA general y la IA sobrehumana conservan tus definiciones.} other {Agrupados por hito, sin espaciarlos ni ordenarlos por fechas inferidas. La IA general y la IA sobrehumana conservan sus definiciones.}}",

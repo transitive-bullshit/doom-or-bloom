@@ -159,6 +159,28 @@ test('persona probability uses a dated public statement with its outcome and sou
   ).toBeVisible()
   await expect(page.getByText(/· Aug 2026/)).toBeVisible()
   await expect(page.getByText(/Separately states 30%/)).toHaveCount(0)
+  // Their own number links its source, not our method.
+  await expect(
+    page.getByRole('link', { name: 'How we estimate P(doom)' })
+  ).toHaveCount(0)
+})
+
+test('a simulated P(doom) links quietly to how we estimate it', async ({
+  page
+}) => {
+  await page.goto('/users/tszzl')
+  const link = page.getByRole('link', { name: 'How we estimate P(doom)' })
+  await expect(link).toHaveAttribute(
+    'href',
+    '/blog/why-p-doom-estimates-vary#how-doom-or-bloom-estimates-pdoom'
+  )
+  await link.click()
+  await expect(page).toHaveURL(
+    /\/blog\/why-p-doom-estimates-vary#how-doom-or-bloom-estimates-pdoom$/
+  )
+  await expect(
+    page.locator('#how-doom-or-bloom-estimates-pdoom')
+  ).toBeInViewport()
 })
 
 test('persona answer references open the transcript and navigate to the exact answer', async ({

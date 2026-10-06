@@ -351,7 +351,8 @@
       "from": "{subject, select, his {From his simulated answers.} her {From her simulated answers.} other {From their simulated answers.}}",
       "stated": "You said {token}.",
       "missing": "{subject, select, self {Not enough about catastrophic risk in your answers to estimate it.} his {Not enough about catastrophic risk in his simulated answers to estimate it.} her {Not enough about catastrophic risk in her simulated answers to estimate it.} other {Not enough about catastrophic risk in their simulated answers to estimate it.}}",
-      "addSentence": "A sentence about how likely you think it is would add one."
+      "addSentence": "A sentence about how likely you think it is would add one.",
+      "method": "How we estimate P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Your milestone timeline} other {{name}’s milestone timeline}}",
     "milestoneNote": "{subject, select, self {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain your definitions.} his {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain his definitions.} her {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain her definitions.} other {Grouped by milestone, not spaced or ordered by inferred dates. AGI and superhuman AI retain their definitions.}}",

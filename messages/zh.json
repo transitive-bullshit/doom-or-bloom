@@ -351,7 +351,8 @@
       "from": "{subject, select, his {来自他的模拟回答。} her {来自她的模拟回答。} other {来自他们的模拟回答。}}",
       "stated": "你说的是 {token}。",
       "missing": "{subject, select, self {你的回答中关于灾难性风险的信息不足，无法进行估计。} his {他的模拟回答中关于灾难性风险的信息不足，无法进行估计。} her {她的模拟回答中关于灾难性风险的信息不足，无法进行估计。} other {他们的模拟回答中关于灾难性风险的信息不足，无法进行估计。}}",
-      "addSentence": "补充一句你认为其可能性有多大，就能得出一个估计。"
+      "addSentence": "补充一句你认为其可能性有多大，就能得出一个估计。",
+      "method": "我们如何估计 P(doom)"
     },
     "milestoneTitle": "{subject, select, self {你的里程碑时间线} other {{name} 的里程碑时间线}}",
     "milestoneNote": "{subject, select, self {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留你的定义。} his {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留他的定义。} her {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留她的定义。} other {按里程碑分组，不按推断日期间隔或排序。AGI 和超人类 AI 保留他们的定义。}}",

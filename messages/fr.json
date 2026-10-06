@@ -351,7 +351,8 @@
       "from": "{subject, select, his {D’après ses réponses simulées.} her {D’après ses réponses simulées.} other {D’après leurs réponses simulées.}}",
       "stated": "Vous avez indiqué {token}.",
       "missing": "{subject, select, self {Vos réponses ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.} his {Ses réponses simulées ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.} her {Ses réponses simulées ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.} other {Leurs réponses simulées ne contiennent pas assez d’éléments sur le risque catastrophique pour permettre de l’estimer.}}",
-      "addSentence": "Une phrase indiquant à quel point vous pensez que cela est probable permettrait d’ajouter une estimation."
+      "addSentence": "Une phrase indiquant à quel point vous pensez que cela est probable permettrait d’ajouter une estimation.",
+      "method": "Comment nous estimons P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Votre horizon temporel des jalons} other {L’horizon temporel des jalons de {name}}}",
     "milestoneNote": "{subject, select, self {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent vos définitions.} his {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent ses définitions.} her {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent ses définitions.} other {Regroupés par jalon, sans espacement ni classement selon les dates déduites. L’IAG et l’IA surhumaine conservent leurs définitions.}}",

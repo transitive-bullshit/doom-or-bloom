@@ -9,6 +9,9 @@ const json = (file: string) => JSON.parse(readFileSync(file, 'utf8'))
 const rubric = json('content/rubrics/0.1.0-draft/rubric.json') as {
   dimensions: { id: string; levels: string[] }[]
 }
+const spanish = json('messages/es.json') as {
+  Results: { pdoom: { method: string } }
+}
 const spanishRubric = json('content/l10n/es/rubrics/0.1.0-draft.json') as {
   entries: Record<string, { text: string }>
 }
@@ -80,6 +83,13 @@ test('a Spanish interview starts, places a result and shares it in Spanish', asy
     name: 'Resultados de tu visión de la IA'
   })
   await expect(results).toContainText('Tu P(doom)')
+  // The method link keeps the Spanish prefix.
+  await expect(
+    results.getByRole('link', { name: spanish.Results.pdoom.method })
+  ).toHaveAttribute(
+    'href',
+    '/es/blog/why-p-doom-estimates-vary#how-doom-or-bloom-estimates-pdoom'
+  )
   await expect(results).toContainText('Cambio civilizatorio')
   await expect(
     page.getByRole('heading', { name: '¿Cómo cambiará la IA el mundo?' })

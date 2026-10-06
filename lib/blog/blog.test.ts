@@ -7,6 +7,7 @@ import { personas } from '@/lib/journeys/catalog'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
 import { locales } from '@/i18n/config'
 import englishMessages from '@/messages/en.json'
+import { pdoomGuidePath, pdoomMethodPath } from '@/lib/p-doom/copy'
 import { googleTitleLimit, googleTitleWidth } from '@/lib/seo/title-width'
 import { siteTitle } from '@/lib/site'
 import {
@@ -139,6 +140,14 @@ describe('blog posts', () => {
         from: Boolean(blogPost(from)),
         to: Boolean(blogPost(to))
       }).toEqual({ from: false, to: true })
+  })
+
+  it('link result cards to the guide’s section on how we estimate P(doom)', () => {
+    const [guidePath, section] = pdoomMethodPath.split('#')
+    expect(guidePath).toBe(pdoomGuidePath)
+    const slug = guidePath!.replace('/blog/', '')
+    expect(blogPost(slug)).not.toBeNull()
+    expect(Object.values(postHeadingIds(slug, 'en'))).toContain(section)
   })
 
   it('title the hub within Google’s width', () => {

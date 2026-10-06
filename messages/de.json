@@ -351,7 +351,8 @@
       "from": "{subject, select, his {Aus seinen simulierten Antworten.} her {Aus ihren simulierten Antworten.} other {Aus deren simulierten Antworten.}}",
       "stated": "Du hast {token} gesagt.",
       "missing": "{subject, select, self {Deine Antworten enthalten nicht genug zum Katastrophenrisiko, um es zu schätzen.} his {Seine simulierten Antworten enthalten nicht genug zum Katastrophenrisiko, um es zu schätzen.} her {Ihre simulierten Antworten enthalten nicht genug zum Katastrophenrisiko, um es zu schätzen.} other {Deren simulierte Antworten enthalten nicht genug zum Katastrophenrisiko, um es zu schätzen.}}",
-      "addSentence": "Ein Satz dazu, für wie wahrscheinlich du es hältst, würde eine Schätzung ermöglichen."
+      "addSentence": "Ein Satz dazu, für wie wahrscheinlich du es hältst, würde eine Schätzung ermöglichen.",
+      "method": "Wie wir P(doom) schätzen"
     },
     "milestoneTitle": "{subject, select, self {Dein Zeithorizont für Meilensteine} other {Zeithorizont für Meilensteine von {name}}}",
     "milestoneNote": "{subject, select, self {Nach Meilenstein gruppiert, nicht anhand abgeleiteter Zeitpunkte angeordnet oder mit entsprechenden Abständen dargestellt. Für AGI und übermenschliche KI gelten weiterhin deine Definitionen.} his {Nach Meilenstein gruppiert, nicht anhand abgeleiteter Zeitpunkte angeordnet oder mit entsprechenden Abständen dargestellt. Für AGI und übermenschliche KI gelten weiterhin seine Definitionen.} her {Nach Meilenstein gruppiert, nicht anhand abgeleiteter Zeitpunkte angeordnet oder mit entsprechenden Abständen dargestellt. Für AGI und übermenschliche KI gelten weiterhin ihre Definitionen.} other {Nach Meilenstein gruppiert, nicht anhand abgeleiteter Zeitpunkte angeordnet oder mit entsprechenden Abständen dargestellt. Für AGI und übermenschliche KI gelten weiterhin deren Definitionen.}}",
