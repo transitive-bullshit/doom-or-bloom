@@ -28,64 +28,54 @@ export const methodologySources = {
   routing: {
     title: 'How the next question is chosen (lib/assessment/routing.ts)',
     url: onMain('lib/assessment/routing.ts'),
-    by: code,
-    year: 2026
+    by: code
   },
   questions: {
     title: `The authored questions, content release ${versions.content}`,
     url: onMain(`content/releases/${versions.content}/prompts.json`),
-    by: code,
-    year: 2026
+    by: code
   },
   rubric: {
     title: `The rubric Jev judges answers against, version ${versions.rubric}`,
     url: onMain(`content/rubrics/${versions.rubric}/rubric.json`),
-    by: code,
-    year: 2026
+    by: code
   },
   boundary: {
     title: 'What Jev judges and what code decides',
     url: onMain('docs/TYPESAFE.md#role-and-boundaries'),
-    by: code,
-    year: 2026
+    by: code
   },
   outputs: {
     title: 'Where each part of a result comes from, with links to its code',
     url: onMain('docs/ASSESSMENT.md#where-each-output-comes-from'),
-    by: code,
-    year: 2026
+    by: code
   },
   placement: {
     title: 'How the map is placed and what its ranges mean',
     url: onMain('docs/ASSESSMENT.md#participant-facing-projections'),
-    by: code,
-    year: 2026
+    by: code
   },
   estimator: {
     title:
       'How P(doom) is read: a typed number, or an estimate from your answers',
     url: onMain('docs/ASSESSMENT.md#pdoom-estimator--worldview-v8'),
-    by: code,
-    year: 2026
+    by: code
   },
   neutrality: {
     title: 'Procedural neutrality and the framing choices we accept',
     url: onMain('docs/ASSESSMENT.md#procedural-neutrality'),
-    by: code,
-    year: 2026
+    by: code
   },
   briefs: {
     title:
       'Example source briefs for simulated thought leaders, including Elon Musk',
     url: onMain('lib/journeys/frontier-public-personas.ts'),
-    by: code,
-    year: 2026
+    by: code
   },
   simulations: {
     title: 'How simulated thought leaders are made',
     url: onMain('docs/user-journeys.md#purpose-and-authoring'),
-    by: code,
-    year: 2026
+    by: code
   },
   pew: {
     title: 'Can AI Stand In for Human Survey-Takers? Not Really',
@@ -108,8 +98,7 @@ export const methodologySources = {
   protocol: {
     title: 'Evaluation protocol and its tolerances',
     url: onMain('docs/evaluation-protocol.md'),
-    by: code,
-    year: 2026
+    by: code
   },
   confirmation: {
     title:

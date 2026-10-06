@@ -72,8 +72,12 @@ function FootnoteList({
               <span lang='en'>
                 <MentionText parts={byline} />
               </span>
-              {' · '}
-              <span className='whitespace-nowrap'>{year}</span>
+              {year !== undefined && (
+                <>
+                  {' · '}
+                  <span className='whitespace-nowrap'>{year}</span>
+                </>
+              )}
             </p>
           </div>
         </li>

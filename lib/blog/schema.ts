@@ -21,7 +21,8 @@ const sourceSchema = z.strictObject({
   url: z.url({ protocol: /^https?$/u }),
   /** Author or organization, as the byline shows it. */
   by: z.string().min(1),
-  year: z.int().min(1000).max(2100),
+  /** Left off for an undated page, such as a wiki or a dictionary. */
+  year: z.int().min(1000).max(2100).optional(),
   published: day.optional()
 })
 

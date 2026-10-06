@@ -69,11 +69,13 @@ function statementSource(
  * The newest date in what the hub cites: the table's statements by their
  * publication dates, and its refusals, survey and scenario sources by year,
  * each counted from 1 January so it never claims a later date than the data
- * shows. It changes only when the content does.
+ * shows; undated sources don't count. It changes only when the content does.
  */
 function newestSourceDate(sources: readonly Source[]) {
   return sources
-    .map(({ published, year }) => published ?? `${year}-01-01`)
+    .flatMap(({ published, year }) =>
+      published ? [published] : year ? [`${year}-01-01`] : []
+    )
     .reduce((newest, date) => (date > newest ? date : newest), '')
 }
 

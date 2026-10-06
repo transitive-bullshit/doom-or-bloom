@@ -11,7 +11,8 @@ export type Source = {
   url: string
   /** Author or organization. */
   by: string
-  year: number
+  /** Left off for an undated page, such as a wiki or a code file. */
+  year?: number
   /** The full publication date (YYYY-MM-DD), where the data records it. */
   published?: string
 }
