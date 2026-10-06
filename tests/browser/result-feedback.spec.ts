@@ -19,6 +19,8 @@ test('participants place themselves before the reveal and can say whether the re
   await expect(reveal).toBeDisabled()
   await expect(page.getByRole('img', { name: /^Doom–Bloom:/ })).toHaveCount(0)
   const map = page.locator('[data-slot="worldview-map-svg"]')
+  // Mouse clicks use viewport coordinates, so bring the whole map into view.
+  await map.scrollIntoViewIfNeeded()
   const box = (await map.boundingBox())!
   await page.mouse.click(box.x + box.width * 0.8, box.y + box.height * 0.2)
   await expect(page.locator('[data-slot="worldview-map-guess"]')).toBeVisible()
@@ -99,6 +101,8 @@ test('a large placement gap offers one question, and answering it updates the re
   // Fixture judgments place the result at the worried, low-change corner; a
   // guess in the hopeful, high-change corner is far from it on both axes.
   const map = page.locator('[data-slot="worldview-map-svg"]')
+  // Mouse clicks use viewport coordinates, so bring the whole map into view.
+  await map.scrollIntoViewIfNeeded()
   const box = (await map.boundingBox())!
   await page.mouse.click(box.x + box.width * 0.9, box.y + box.height * 0.1)
   await page.getByRole('button', { name: 'Show where I landed' }).click()
