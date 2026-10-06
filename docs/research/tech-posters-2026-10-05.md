@@ -118,14 +118,14 @@ On base `dd906de2` plus these changes:
 - `pnpm resources:previews` added previews for every new non-X source (919 of 919 current resources have images).
 - `/users` and sample profiles rendered on the local dev server with portraits, one-liners, map points and Emad Mostaque's stated P(doom) card.
 
-## Production import (not performed)
+## Publication
 
-Only the local database changed. Importing is a separate, owner-approved step; deploy afterward so portraits, previews and static profiles rebuild.
-
-```sh
-IDS=distributedkv,usr_bin_roygbiv,sierracatalina,signulll,thsottiaux,hopes_revenge,alexandr_wang,bryan_johnson,tekbog,xfreeze,growing_daniel,poteto,apples_jimmy,voidstatekate,bubbleboi,dylan522p,basedjensen,scobleizer,parmita,piercelilholt,tunguz,suavecito585,emostaque,0xsero,djcows,rookepoole,zekramu,flowersslop,luacantu,lindayax,shakoistslog,theo,ankkala,jasonkneen
-pnpm personas:import plan --env .env.production.local --ids $IDS
-pnpm personas:import write --env .env.production.local --ids $IDS
-```
+At Travis's request, all 34 and [Drew Spartz](ai-species-persona-2026-10-05.md) were imported to production on October 5 with `personas:import`, and each write verified the selected snapshot digest. The Vercel Preview (staging) database was missed then. On October 6 it received the 35, plus Nick Marwell, who was also missing. All 35 selected runs it received are the same ones production selects. Marwell's local run is a 0.7.5 re-read of the same interview under a different generation key. A `personas:sync-metadata --all` then corrected the display order of 26 staging profiles. Both databases now hold 213 simulated users, with no metadata differences from `people.ts`.
 
 Follower counts for the 34 come from one paced `bird` read per account on October 5: a post each account wrote, whose author record carries its exact `followers_count` and account ID (Theo's came from his timeline's first post). All 34 account IDs match the research. They join `lib/personas/x-followers.json` without recapturing the other accounts, each with its own `capturedAt` (2026-10-05), and batch 1's 25 accounts now carry theirs (2026-10-01); the directory's follower note shows the span of capture dates instead of labeling every count with the September 25 snapshot date. `scripts/refresh-x-followers.ts` recaptures everyone on one date once X API credits return.
+
+## djcows regeneration — October 6, 2026
+
+djcows' first run accepted only three answers. The engine marked its first two replies to the extinction-probability question as needing clarification. Both said it hadn't put a number on it, in character (“i’m an internet cow, not an actuarial table”). The question was asked again each time, so the public profile showed it three times, and the five-turn budget ran out after three accepted answers. The brief was unchanged when the run was regenerated for an estimated $0.08. The new run accepted five answers with no repeats. Its reply to the extinction-probability question (“i haven’t assigned p(doom). the cow remains cheerfully unquantified.”) was accepted on the first try.
+
+The outlook moved from 0.75 to 0.55 because of the deadpan line “whether it’s a comedy or horror hasn’t really been established”. That fits the brief's cheerful, deadpan resignation, and the uncertainty range barely changed (0.49–1 before, 0.48–1 after). The run was imported to production and staging, and both writes verified the selected digest. Production profiles are prerendered, so the live page changes with the next deploy.
