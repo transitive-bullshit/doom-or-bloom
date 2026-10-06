@@ -176,7 +176,7 @@ describe('the curated table', () => {
       ...Object.values({ ...surveySources, ...scenarioSources }).map(
         ({ year }) => year
       )
-    ]
+    ].filter((year) => year !== undefined)
     expect(asOf).toBe(
       [...dated, `${Math.max(...years)}-01-01`].toSorted().at(-1)
     )
