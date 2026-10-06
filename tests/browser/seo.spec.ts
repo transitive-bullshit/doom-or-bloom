@@ -106,7 +106,8 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   ).toHaveAttribute('href', '/blog/why-p-doom-estimates-vary')
 
   // A curated table, not the whole catalog: stated numbers as written, each
-  // with a footnote, then refusals quoted instead of a number.
+  // with the person's exact words and their footnote, then refusals quoted
+  // instead of a number.
   const table = page.locator('[data-slot="pdoom-table"]')
   const rows = table.locator('tbody tr')
   const count = await rows.count()
@@ -114,11 +115,25 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   expect(count).toBeLessThanOrEqual(25)
   await expect(table.getByRole('button')).toHaveCount(0)
   const hinton = rows.filter({ hasText: 'Geoffrey Hinton' })
-  await expect(hinton.getByRole('cell').nth(1)).toContainText('10–20%')
+  // The name heads its row, attributing the number and quote beside it.
+  await expect(hinton.getByRole('rowheader')).toHaveText('Geoffrey Hinton')
+  await expect(hinton.getByRole('cell')).toContainText('10–20%')
+  await expect(hinton.locator('q')).toHaveText(
+    '10% to 20% seemed like reasonable numbers to me'
+  )
+  await expect(hinton.locator('q')).toHaveAttribute(
+    'cite',
+    /^https:\/\/www\.wbur\.org\//
+  )
   await expect(
     hinton.getByRole('link', { name: 'Geoffrey Hinton' })
   ).toHaveAttribute('href', '/users/geoffreyhinton')
-  const marker = hinton.getByRole('link', { name: /^Source \d+$/ })
+  // The footnote follows the quote it sources, not the number.
+  const quote = hinton.locator('q').locator('xpath=..')
+  const marker = quote.getByRole('link', { name: /^Source \d+$/ })
+  await expect(hinton.getByRole('link', { name: /^Source \d+$/ })).toHaveCount(
+    1
+  )
   const footnote = (await marker.getAttribute('href'))!
   expect(footnote).toMatch(/^#source-\d+$/)
   await expect(

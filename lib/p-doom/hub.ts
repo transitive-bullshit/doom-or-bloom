@@ -15,15 +15,38 @@ import { surveyComparison, surveySources } from './survey'
 type Statements = typeof publicPdoomStatements
 type Person = { id: string; slug: string; name: string; avatar: string }
 
-/** One curated thought leader: a stated number as written, or a refusal quote. */
+/**
+ * One curated thought leader: a stated number as written with their words, or
+ * a refusal quote.
+ */
 export type HubRow = Omit<Person, 'id'> & {
   /** The stated P(doom) exactly as written; null when they decline to give one. */
   token: string | null
-  /** The refusal, quoted exactly; null when there is a number. */
+  /**
+   * Their exact words from the cited source, never trimmed: the verified
+   * statement's quote, or the refusal. Null when the statement records no
+   * quote or only a long one.
+   */
   quote: string | null
-  /** Outcome, horizon or condition for a number, or context for a refusal. */
-  note: string
+  /**
+   * Our one-line outcome, horizon or condition for a number, shown only when
+   * the row has no quote: a person's own words take its place.
+   */
+  note: string | null
   source: Source
+}
+
+/** A statement quote of this many words or more is left out, never trimmed. */
+export const quoteWordLimit = 25
+
+/**
+ * A verified quote short enough to show whole, or null. Only its apostrophes
+ * change, to the typographic form the rest of the page uses.
+ */
+function shortQuote(quote: string | undefined) {
+  const text = quote?.trim()
+  if (!text || text.split(/\s+/).length >= quoteWordLimit) return null
+  return text.replace(/(?<=\p{L})'(?=\p{L})/gu, '’')
 }
 
 const hostname = (url: string) => new URL(url).hostname.replace(/^www\./, '')
@@ -55,9 +78,9 @@ function newestSourceDate(sources: readonly Source[]) {
 }
 
 /**
- * The curated table in display order. Numbers are read from the verified
- * statements when the page renders; people without a statement, or without a
- * published profile, are left out.
+ * The curated table in display order. Numbers and their quotes are read from
+ * the verified statements when the page renders; people without a statement,
+ * or without a published profile, are left out.
  */
 export function hubRows(
   people: readonly Person[],
@@ -69,21 +92,23 @@ export function hubRows(
     if (!person) return []
     const { slug, name, avatar } = person
     if ('declined' in entry) {
-      const { quote, note, source } = entry.declined
-      return [{ slug, name, avatar, token: null, quote, note, source }]
+      const { quote, source } = entry.declined
+      return [{ slug, name, avatar, token: null, quote, note: null, source }]
     }
     const statement = statements[entry.id]
     if (!statement) return []
+    const quote = shortQuote(statement.quote)
     return [
       {
         slug,
         name,
         avatar,
         token: statement.token,
-        quote: null,
+        quote,
         // A note written for an earlier source would misdescribe a new one.
-        note:
-          entry.note?.url === statement.url
+        note: quote
+          ? null
+          : entry.note?.url === statement.url
             ? entry.note.text
             : statement.outcome,
         source: statementSource(statement, name)

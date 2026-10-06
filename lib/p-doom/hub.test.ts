@@ -4,7 +4,7 @@ import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
 import { segments, type Source } from '@/lib/sources/citations'
 import { curatedPeople } from './curated'
 import { sourceIcon } from '@/lib/sources/favicons'
-import { hubContent, hubRows, hubSourceUrls } from './hub'
+import { hubContent, hubRows, hubSourceUrls, quoteWordLimit } from './hub'
 import { readingGroups } from './readings'
 import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
 import { surveySources } from './survey'
@@ -46,8 +46,9 @@ describe('the curated table', () => {
       name: 'concerned-pioneer',
       avatar: '/personas/concerned-pioneer.jpg',
       token: '10–20%',
-      quote: null,
-      note: 'Chance AI causes human extinction within about 30 years',
+      quote: '10% to 20% seemed like reasonable numbers to me',
+      // Their own words take the place of our note.
+      note: null,
       source: {
         title: 'The Godfather of AI says we cannot afford to get it wrong',
         url: 'https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize',
@@ -62,6 +63,52 @@ describe('the curated table', () => {
       note: 'The long outcome the statement records',
       source: { by: 'example.com', year: 2025 }
     })
+  })
+
+  test('shows each statement’s exact quote whole, or none at all', () => {
+    const words = (count: number) =>
+      Array.from({ length: count }, (_, index) => `word${index}`).join(' ')
+    const rows = hubRows(
+      [
+        person('concerned-pioneer'),
+        person('kevin-roose'),
+        person('katja-grace'),
+        person('takeoff-forecaster')
+      ],
+      {
+        'concerned-pioneer': statement({ quote: words(quoteWordLimit - 1) }),
+        // Too long to show whole, so it is left out rather than trimmed.
+        'kevin-roose': statement({ quote: words(quoteWordLimit) }),
+        'katja-grace': statement(),
+        'takeoff-forecaster': statement({ quote: "I'd say it's 'rough'" })
+      }
+    )
+    expect(
+      Object.fromEntries(rows.map((row) => [row.slug, row.quote]))
+    ).toEqual({
+      'concerned-pioneer': words(quoteWordLimit - 1),
+      'kevin-roose': null,
+      'katja-grace': null,
+      // Apostrophes are typeset; quotation marks and words are not touched.
+      'takeoff-forecaster': "I’d say it’s 'rough'"
+    })
+  })
+
+  test('quotes every curated statement verbatim', () => {
+    // The test people's slugs are their persona ids.
+    const stated = hubRows(everyone).filter((row) => row.token)
+    const quoted = stated.filter((row) => row.quote)
+    const straight = (text?: string | null) => text?.trim().replaceAll('’', "'")
+    expect(quoted.map((row) => straight(row.quote))).toEqual(
+      quoted.map((row) => straight(publicPdoomStatements[row.slug]!.quote))
+    )
+    for (const { quote } of quoted)
+      expect(quote!.split(/\s+/).length).toBeLessThan(quoteWordLimit)
+    // Every curated number has its quote except Dario Amodei's, whose source
+    // records the number without his exact words.
+    expect(stated.filter((row) => !row.quote).map((row) => row.slug)).toEqual([
+      'frontier-pacer'
+    ])
   })
 
   test('leaves out people without a statement or a profile', () => {
@@ -170,17 +217,23 @@ describe('citations', () => {
       footnotes.map((_, index) => index + 1)
     )
     // The table cites first, then the survey beside it, then the scenarios in
-    // reading order.
+    // reading order. Rows from one source share its number: Andrew McAfee
+    // and Ed Zitron answered in the same debate.
+    const tableSources = [...new Set(rows.map((row) => row.source.url))]
+    expect(tableSources.length).toBeLessThan(rows.length)
     expect(rows.map((row) => row.citation.number)).toEqual(
-      rows.map((_, index) => index + 1)
+      rows.map((row) => tableSources.indexOf(row.source.url) + 1)
     )
+    const shared = rows.filter((row) => !row.citation.id)
+    expect(shared.map((row) => row.slug)).toEqual(['bubble-critic'])
+    const after = tableSources.length
     expect(survey.filter((part) => 'number' in part)).toEqual([
-      { number: rows.length + 1, id: `cite-${rows.length + 1}` }
+      { number: after + 1, id: `cite-${after + 1}` }
     ])
-    expect(footnotes[rows.length]).toMatchObject(surveySources['espai-2024'])
+    expect(footnotes[after]).toMatchObject(surveySources['espai-2024'])
     expect(intro.find((part) => 'number' in part)).toEqual({
-      number: rows.length + 2,
-      id: `cite-${rows.length + 2}`
+      number: after + 2,
+      id: `cite-${after + 2}`
     })
     // A repeated source keeps its number, and only its first marker is an anchor.
     const markers = cited
