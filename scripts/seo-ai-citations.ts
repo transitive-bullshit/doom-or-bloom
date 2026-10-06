@@ -61,12 +61,14 @@ const concurrency = Number(values.concurrency)
 if (!Number.isInteger(concurrency) || concurrency < 1)
   throw new Error('--concurrency must be a positive whole number')
 
-// One answer is bounded by its searches and output tokens; the pages its
-// searches read bill as input tokens, which stay far below this bound.
+// One answer is bounded by its searches, the input they can add and its output
+// tokens. OpenAI caps web-search context at 128k tokens per search, so each
+// call reserves that ceiling for every allowed search; actual costs settle far
+// lower (about $0.011 on gpt-5-nano), and the cap holds even in the worst case.
 const maxSearches = 3
 const maxOutputTokens = 6000
 const answerBound = replyCost(model, {
-  inputTokens: 60_000,
+  inputTokens: 128_000 * maxSearches,
   outputTokens: maxOutputTokens,
   searches: maxSearches
 })
