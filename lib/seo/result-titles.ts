@@ -103,7 +103,11 @@ export function resultDescription(
   name?: string | null
 ) {
   const result = presentResult(saved)
-  const pdoom = result.experiment?.pdoom
+  // Like the page, ignore an experiment from an older evidence revision.
+  const pdoom =
+    result.experiment?.evidenceRevision === result.evidenceRevision
+      ? result.experiment.pdoom
+      : null
   const source = pdoom
     ? (pdoom.source ?? (pdoom.adjustment ? 'inferred' : 'stated'))
     : null

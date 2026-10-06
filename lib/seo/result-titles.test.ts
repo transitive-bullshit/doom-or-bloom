@@ -189,6 +189,14 @@ describe('result descriptions', () => {
     )
   })
 
+  test('leave out the P(doom) of an outdated experiment, as the page does', () => {
+    const stale = saved({ outlook: 0.7, change: 0.7, pdoom: inferred })
+    stale.experiment!.evidenceRevision = stale.evidenceRevision - 1
+    expect(resultDescription(en, 'en', stale, personas)).not.toContain(
+      'P(doom)'
+    )
+  })
+
   test('render in every language', () => {
     for (const locale of locales)
       expect(
