@@ -87,7 +87,9 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   await expect(page.locator('main header p').first()).toHaveText(
     /^P\(doom\) is the probability a person assigns to advanced AI causing an existential catastrophe/
   )
-  await expect(page.getByText(/^As of .+\d{4}$/)).toBeVisible()
+  await expect(
+    page.getByText(/^Includes statements up to .+\d{4}$/)
+  ).toBeVisible()
   await expect(
     page.getByRole('link', { name: 'Read the guide to what P(doom) means' })
   ).toHaveAttribute('href', '/blog/what-is-p-doom')

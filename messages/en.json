@@ -806,7 +806,7 @@
     "showAllSources": "Show all {count} sources",
     "fewerSources": "Show fewer sources",
     "cite": "Source {number}",
-    "asOf": "As of {date}",
+    "asOf": "Includes statements up to {date}",
     "note": "Each number comes from the person’s own words, linked to where they said it. People define the outcome and time frame differently, so the numbers are not directly comparable.",
     "surveyTitle": "For comparison: AI researchers",
     "allUsers": "See all {count} simulated thought leaders",

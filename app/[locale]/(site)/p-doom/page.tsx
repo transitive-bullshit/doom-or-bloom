@@ -33,10 +33,10 @@ export default async function Page() {
     loadExamples(false)
   ])
   const tag = languageTag(locale)
-  const { rows, survey, intro, scenarios, footnotes, readings } =
+  // Dated by its newest cited statement or source, not by when the page last
+  // regenerated, so the date moves only when the content does.
+  const { rows, asOf, survey, intro, scenarios, footnotes, readings } =
     hubContent(people)
-  // The page is generated at most every 48 hours.
-  const asOf = new Date()
   return (
     <>
       <JsonLd
@@ -46,7 +46,7 @@ export default async function Page() {
           description: pages('pdoom.description'),
           tableName: t('tableTitle'),
           variable: t('stated'),
-          asOf: asOf.toISOString().slice(0, 10),
+          asOf,
           people: rows,
           sources: rows.map((row) => row.source)
         })}
@@ -96,7 +96,7 @@ export default async function Page() {
                 date: new Intl.DateTimeFormat(tag, {
                   dateStyle: 'long',
                   timeZone: 'UTC'
-                }).format(asOf)
+                }).format(new Date(asOf))
               })}
             </p>
           </div>
