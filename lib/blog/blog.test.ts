@@ -125,6 +125,11 @@ describe('blog posts', () => {
         '## Results\n### Data\n## Results'
       )
     ).toEqual({ Resultados: ['results', 'results-1'], Datos: ['data'] })
+    // A heading that reads like a numbered repeat still gets its own id.
+    expect(headingIds('## Results\n## Results\n## Results-1')).toEqual({
+      Results: ['results', 'results-1'],
+      'Results-1': ['results-1-1']
+    })
     for (const post of blogPosts())
       for (const locale of locales) {
         const ids = Object.values(postHeadingIds(post.slug, locale)).flat()

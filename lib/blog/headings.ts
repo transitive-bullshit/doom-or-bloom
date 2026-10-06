@@ -31,14 +31,19 @@ export const postHeadings = (body: string) =>
       .matchAll(/^#{2,6}\s+(.+?)\s*#*\s*$/gmu)
   ].map(([, text]) => headingText(text!))
 
-/** Ids for headings in order, numbering repeats as GitHub does: "results", "results-1". */
+/**
+ * Ids for headings in order, numbering repeats as GitHub does ("results",
+ * "results-1"), skipping any id already taken, even by a heading that reads
+ * like a numbered one.
+ */
 function uniqueHeadingIds(texts: string[]) {
-  const used = new Map<string, number>()
+  const used = new Set<string>()
   return texts.map((text) => {
     const base = headingId(text)
-    const count = used.get(base) ?? 0
-    used.set(base, count + 1)
-    return count ? `${base}-${count}` : base
+    let id = base
+    for (let n = 1; used.has(id); n++) id = `${base}-${n}`
+    used.add(id)
+    return id
   })
 }
 
