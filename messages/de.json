@@ -24,7 +24,7 @@
       "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür ansetzt, dass KI in einer Katastrophe für die Menschheit endet. Erfahre mit Quellenangaben, was Hinton, Musk, Amodei, LeCun und andere dazu gesagt haben."
     },
     "blog": {
-      "title": "Blog",
+      "title": "Daten und Erklärungen zu KI-Risiken und zur Zukunft der KI",
       "description": "Verständlich formulierte Beiträge von Doom or Bloom über P(doom), KI-Risiken und darüber, wie Menschen über die Zukunft der KI denken."
     }
   },
@@ -763,6 +763,7 @@
     "profile": "Profil",
     "similarTitle": "Ähnliche Weltsichten",
     "similarDescription": "Vordenker, deren simulierte Weltsichten der von {name} am nächsten kommen",
+    "similarPositionsDescription": "Meinungsführer, die der simulierten Weltsicht von {name} bei den wenigen Positionen, die sie zum Ausdruck bringt, am nächsten stehen",
     "statementsTitle": "Was {name} über KI gesagt hat",
     "statementsNote": "Wörtlich aus den verlinkten Quellen, geprüft am {date}"
   },
@@ -806,7 +807,26 @@
     "personDescription": "Eine Simulation der KI-Weltsicht von {name}, die auf öffentlichen Beiträgen dieser Person basiert. Sie ist eine experimentelle Interpretation, nicht die eigene Einschätzung dieser Person oder eine Empfehlung.",
     "publicTitle": "{name}s KI-Weltsicht",
     "sharedTitle": "Eine geteilte KI-Weltsicht",
-    "publicDescription": "Erkunde diese KI-Weltsicht: Erwartungen, Risiken, ähnlichste Perspektiven und die Antworten, auf denen die Einschätzung beruht.",
+    "resultTitle": {
+      "full": "{outlook}, {change}",
+      "outlook": {
+        "veryWorried": "Sehr besorgt wegen KI",
+        "worried": "Besorgt wegen KI",
+        "mixed": "Gemischte Einschätzung zu KI",
+        "hopeful": "Hoffnungsvoll in Bezug auf KI",
+        "veryHopeful": "Sehr hoffnungsvoll in Bezug auf KI"
+      },
+      "change": {
+        "little": "erwartet wenig Veränderung",
+        "modest": "erwartet moderate Veränderungen",
+        "substantial": "erwartet erhebliche Veränderungen",
+        "sweeping": "erwartet weitreichende Veränderungen",
+        "profound": "erwartet tiefgreifende Veränderungen",
+        "unsettled": "ist unsicher, wie viel sich verändert"
+      }
+    },
+    "resultSubject": "Die KI-Weltsicht einer teilnehmenden Person",
+    "resultDescription": "{kind, select, roughClosest {{worldview} mit einer groben P(doom) von {pdoom}, den simulierten Weltsichten von {names} am ähnlichsten.} statedClosest {{worldview} mit einer angegebenen P(doom) von {pdoom}, den simulierten Weltsichten von {names} am ähnlichsten.} closest {{worldview}, den simulierten Weltsichten von {names} am ähnlichsten. Sieh dir an, wo sie zwischen Doom und Bloom liegt.} rough {{worldview} mit einer groben P(doom) von {pdoom}. Sieh dir an, wo sie zwischen Doom und Bloom liegt und welche Antworten ihr zugrunde liegen.} stated {{worldview} mit einer angegebenen P(doom) von {pdoom}. Sieh dir an, wo sie zwischen Doom und Bloom liegt und welche Antworten ihr zugrunde liegen.} other {{worldview}, zwischen Doom und Bloom abgebildet, mit den Antworten, die ihr zugrunde liegen.}}",
     "publicImageAlt": "Einschätzung der KI-Weltsicht mit Interpretationsbereichen",
     "asOf": "Eine Karte der KI-Weltsicht dieser Person mit Stand vom {date}.",
     "profile": "Profil"
@@ -819,7 +839,7 @@
     "showAllSources": "Alle {count} Quellen anzeigen",
     "fewerSources": "Weniger Quellen anzeigen",
     "cite": "Quelle {number}",
-    "asOf": "Stand: {date}",
+    "asOf": "Berücksichtigt Aussagen bis zum {date}",
     "note": "Jede Zahl stammt aus den eigenen Worten der jeweiligen Person und ist mit der Stelle verlinkt, an der sie sie genannt hat. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind die Zahlen nicht direkt vergleichbar.",
     "surveyTitle": "Zum Vergleich: KI-Forschende",
     "allUsers": "Alle {count} simulierten Meinungsführer anzeigen",

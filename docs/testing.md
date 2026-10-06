@@ -16,7 +16,7 @@ Unmatched messages, malformed/plain text, different console levels and excess du
 
 ## GitHub Actions budget
 
-Keep routine GitHub Actions usage limited to the core test job. Heavyweight e2e and browser tests should not be run by GitHub Actions by default.
+Keep routine GitHub Actions usage limited to the core test job. Heavyweight e2e and browser tests should not be run by GitHub Actions by default. The [IndexNow workflow](../.github/workflows/indexnow.yml) is not a test: it submits changed URLs after production deploys and daily ([MEASUREMENT.md](MEASUREMENT.md#search-engines)).
 
 Continue running relevant heavyweight checks locally for changes and releases that need them, and record their commands, tested revision and results. Reduced automatic CI does not waive those checks. The authoritative command list is in `package.json`; `pnpm test` includes inexpensive integrations as well as formatting, lint, types, unit tests, content validation and unused-code checks.
 

@@ -26,8 +26,14 @@ export function WorldviewCta({
 }) {
   const t = useTranslations('Cta')
   const locale = useLocale()
+  // Every compare target is its own start URL, all disallowed in robots.txt;
+  // nofollow keeps crawlers from queueing one per profile and share link.
   return (
-    <ExpandingArrowLink href={startHref(locale, compare)} size={size}>
+    <ExpandingArrowLink
+      href={startHref(locale, compare)}
+      size={size}
+      rel={compare ? 'nofollow' : undefined}
+    >
       {label ?? t('mapWorldview')}
     </ExpandingArrowLink>
   )

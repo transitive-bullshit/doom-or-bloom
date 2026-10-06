@@ -37,8 +37,21 @@ function statementSource(
     title,
     url,
     by: host === 'x.com' ? `${name} on X` : (statementPublishers[host] ?? host),
-    year: Number(publishedAt.slice(0, 4))
+    year: Number(publishedAt.slice(0, 4)),
+    published: publishedAt
   }
+}
+
+/**
+ * The newest date in what the hub cites: the table's statements by their
+ * publication dates, and its refusals, survey and scenario sources by year,
+ * each counted from 1 January so it never claims a later date than the data
+ * shows. It changes only when the content does.
+ */
+function newestSourceDate(sources: readonly HubSource[]) {
+  return sources
+    .map(({ published, year }) => published ?? `${year}-01-01`)
+    .reduce((newest, date) => (date > newest ? date : newest), '')
 }
 
 /**
@@ -130,6 +143,8 @@ export function hubContent(
   }))
   return {
     rows,
+    /** The page's "as of" date, dateModified and sitemap lastmod. */
+    asOf: newestSourceDate(footnotes),
     survey,
     intro,
     scenarios: cited,

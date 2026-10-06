@@ -52,7 +52,8 @@ describe('the curated table', () => {
         title: 'The Godfather of AI says we cannot afford to get it wrong',
         url: 'https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize',
         by: 'WBUR',
-        year: 2025
+        year: 2025,
+        published: '2025-01-10'
       }
     })
     // A note written for another source gives way to the statement's outcome.
@@ -94,6 +95,44 @@ describe('the curated table', () => {
       return 'note' in entry && current && entry.note?.url !== current.url
     })
     expect(stale.map(({ id }) => id)).toEqual([])
+  })
+
+  test('is dated by its newest cited statement or source, not the render time', () => {
+    const latest = (people: ReturnType<typeof person>[], statements = {}) =>
+      hubContent(people, statements).asOf
+    // A newer statement moves the date; a person without a profile does not.
+    expect(
+      latest([person('concerned-pioneer'), person('katja-grace')], {
+        'concerned-pioneer': statement({ publishedAt: '2031-05-04' }),
+        'kevin-roose': statement({ publishedAt: '2032-01-01' })
+      })
+    ).toBe('2031-05-04')
+    // Sources with only a year count from 1 January, never later.
+    expect(latest([], {})).toBe(
+      `${Math.max(
+        ...Object.values({ ...surveySources, ...scenarioSources }).map(
+          ({ year }) => year
+        )
+      )}-01-01`
+    )
+    // The live hub: its curated statements' dates and its sources' years.
+    const { asOf } = hubContent(everyone)
+    const dated = curatedPeople.flatMap(({ id }) =>
+      'declined' in curatedPeople.find((entry) => entry.id === id)!
+        ? []
+        : (publicPdoomStatements[id]?.publishedAt ?? [])
+    )
+    const years = [
+      ...curatedPeople.flatMap((entry) =>
+        'declined' in entry ? [entry.declined.source.year] : []
+      ),
+      ...Object.values({ ...surveySources, ...scenarioSources }).map(
+        ({ year }) => year
+      )
+    ]
+    expect(asOf).toBe(
+      [...dated, `${Math.max(...years)}-01-01`].toSorted().at(-1)
+    )
   })
 
   test('cites X posts by their author', () => {

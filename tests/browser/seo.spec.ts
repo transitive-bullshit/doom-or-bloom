@@ -96,7 +96,9 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   await expect(page.locator('main header p').first()).toHaveText(
     /^P\(doom\) is the probability a person assigns to advanced AI causing an existential catastrophe/
   )
-  await expect(page.getByText(/^As of .+\d{4}$/)).toBeVisible()
+  await expect(
+    page.getByText(/^Includes statements up to .+\d{4}$/)
+  ).toBeVisible()
   await expect(
     page.getByRole('link', {
       name: 'Why P(doom) estimates vary so much, and how to read one'
@@ -236,7 +238,9 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
   request
 }) => {
   await page.goto('/blog')
-  await expect(page).toHaveTitle('Blog | Doom or Bloom')
+  await expect(page).toHaveTitle(
+    'Data and explainers on AI risk and the future of AI | Doom or Bloom'
+  )
   const blog = ofType(await structuredData(page), 'Blog')[0]!
   expect(blog.blogPost).toEqual(
     expect.arrayContaining([
@@ -443,6 +447,13 @@ test('profiles link similar worldviews and describe the simulated person', async
   await expect(page).toHaveTitle(
     'Geoffrey Hinton on AI safety, risk and P(doom) | Doom or Bloom'
   )
+  // Each compare target is its own robots-disallowed start URL.
+  const compare = page.locator('a[href*="compare=persona"]')
+  expect(await compare.count()).toBeGreaterThan(0)
+  for (const rel of await compare.evaluateAll((anchors) =>
+    anchors.map((anchor) => anchor.getAttribute('rel'))
+  ))
+    expect(rel).toBe('nofollow')
   const similar = page.locator('[data-slot="similar-worldviews"]')
   await expect(
     similar.getByRole('heading', { name: 'Similar worldviews' })
@@ -580,6 +591,16 @@ test('the sitemap lists English-only pages in English and translated posts in ev
   expect(sitemap).not.toContain(`${site}/es/blog/why-p-doom-estimates-vary`)
   for (const code of ['', '/es', '/ja'])
     expect(sitemap).toContain(`<loc>${site}${code}/blog/hacker-news-vs-x</loc>`)
+  // Only pages whose content gives a date carry a lastmod.
+  const lastmod = (path: string) =>
+    new RegExp(
+      `<url>\\s*<loc>${site}${path}</loc>[^]*?(?:<lastmod>([^<]+)</lastmod>[^]*?)?</url>`
+    ).exec(sitemap)?.[1]
+  expect(lastmod('/p-doom')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+  expect(lastmod('/blog')).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+  expect(lastmod('/users/geoffreyhinton')).toMatch(/^\d{4}-\d{2}-\d{2}T/)
+  expect(lastmod('/')).toBeUndefined()
+  expect(lastmod('/about')).toBeUndefined()
   const llms = await (await request.get('/llms.txt')).text()
   expect(llms).toContain('## Blog')
   expect(llms).toContain(

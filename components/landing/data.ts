@@ -9,8 +9,12 @@ import { personaRepository } from '@/lib/personas/repository'
 import { simulationPresentation } from '@/lib/personas/payload'
 import { personaProfileSchema } from '@/lib/journeys/catalog'
 import { presentResult } from '@/lib/assessment/present-result'
-import { closestPersonas } from '@/lib/assessment/persona-matches'
+import {
+  closestOnExpressedPositions,
+  closestPersonas
+} from '@/lib/assessment/persona-matches'
 import type { Result } from '@/lib/assessment/schema'
+import type { SimilarWorldviewList } from './similar-worldviews'
 
 const loadSummaries = cache((featuredOnly: boolean) =>
   personaRepository(getPool()).selectedSummaries(featuredOnly)
@@ -97,6 +101,9 @@ export const loadPersonaComparisons = cache(() => comparisons(true))
 /**
  * The simulated users nearest to one profile across the whole catalog, by the
  * same distance participants' closest worldviews use. Profiles link to them.
+ * A simulation that expresses too few positions for that comparison is matched
+ * on just the ones it does express, and says so; one that expresses none gets
+ * no list rather than an invented one.
  */
 export async function loadSimilarWorldviews(
   person: { id: string; result: Result },
@@ -105,7 +112,13 @@ export async function loadSimilarWorldviews(
   const others = (await comparisons(false)).filter(
     (other) => other.id !== person.id
   )
-  return closestPersonas(person.result, others, limit).map(
-    ({ id, slug, name, avatar }) => ({ id, slug, name, avatar })
-  )
+  const closest = closestPersonas(person.result, others, limit)
+  const basis = closest.length ? 'worldview' : 'positions'
+  return {
+    basis,
+    people: (closest.length
+      ? closest
+      : closestOnExpressedPositions(person.result, others, limit)
+    ).map(({ id, slug, name, avatar }) => ({ id, slug, name, avatar }))
+  } satisfies SimilarWorldviewList
 }

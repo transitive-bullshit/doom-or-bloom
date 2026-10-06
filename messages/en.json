@@ -24,7 +24,7 @@
       "description": "P(doom) is the chance someone gives that AI ends in catastrophe for humanity. See what Hinton, Musk, Amodei, LeCun and others have said, with sources."
     },
     "blog": {
-      "title": "Blog",
+      "title": "Data and explainers on AI risk and the future of AI",
       "description": "Plain-language writing from Doom or Bloom on P(doom), AI risk, and how people think about the future of AI."
     }
   },
@@ -763,6 +763,7 @@
     "profile": "Profile",
     "similarTitle": "Similar worldviews",
     "similarDescription": "Thought leaders whose simulated worldviews are closest to {name}’s",
+    "similarPositionsDescription": "Thought leaders closest to {name}’s simulated worldview on the few positions it expresses",
     "statementsTitle": "What {name} has said about AI",
     "statementsNote": "Word for word from the linked sources, checked {date}"
   },
@@ -806,7 +807,26 @@
     "personDescription": "A simulation of {name}’s AI worldview, built from their public writing. It is an experimental interpretation, not their own assessment or an endorsement.",
     "publicTitle": "{name}’s AI worldview",
     "sharedTitle": "A shared AI worldview",
-    "publicDescription": "Explore this AI worldview: expectations, risks, closest perspectives, and the answers behind the assessment.",
+    "resultTitle": {
+      "full": "{outlook}, {change}",
+      "outlook": {
+        "veryWorried": "Very worried about AI",
+        "worried": "Worried about AI",
+        "mixed": "Mixed on AI",
+        "hopeful": "Hopeful about AI",
+        "veryHopeful": "Very hopeful about AI"
+      },
+      "change": {
+        "little": "expects little change",
+        "modest": "expects modest change",
+        "substantial": "expects substantial change",
+        "sweeping": "expects sweeping change",
+        "profound": "expects profound change",
+        "unsettled": "unsure how much changes"
+      }
+    },
+    "resultSubject": "A participant’s AI worldview",
+    "resultDescription": "{kind, select, roughClosest {{worldview} with a rough P(doom) of {pdoom}, closest to the simulated worldviews of {names}.} statedClosest {{worldview} with a stated P(doom) of {pdoom}, closest to the simulated worldviews of {names}.} closest {{worldview}, closest to the simulated worldviews of {names}. See where it lands between doom and bloom.} rough {{worldview} with a rough P(doom) of {pdoom}. See where it lands between doom and bloom, and the answers behind it.} stated {{worldview} with a stated P(doom) of {pdoom}. See where it lands between doom and bloom, and the answers behind it.} other {{worldview}, mapped between doom and bloom, with the answers behind it.}}",
     "publicImageAlt": "AI worldview assessment with interpretation ranges",
     "asOf": "A map of their AI worldview as of {date}.",
     "profile": "Profile"
@@ -819,7 +839,7 @@
     "showAllSources": "Show all {count} sources",
     "fewerSources": "Show fewer sources",
     "cite": "Source {number}",
-    "asOf": "As of {date}",
+    "asOf": "Includes statements up to {date}",
     "note": "Each number comes from the person’s own words, linked to where they said it. People define the outcome and time frame differently, so the numbers are not directly comparable.",
     "surveyTitle": "For comparison: AI researchers",
     "allUsers": "See all {count} simulated thought leaders",

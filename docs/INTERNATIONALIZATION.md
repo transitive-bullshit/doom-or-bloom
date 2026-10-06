@@ -13,7 +13,7 @@ Translated:
 - the About and Privacy pages and the legacy `/assessment` start page;
 - the whole assessment interface: the interview, readiness, recovery and error copy, toasts and aria-labels, self-placement, the result (map, P(doom) card, closest worldviews, details, feedback, share bar and captions), the publish dialog and the library;
 - simulated-user and public assessment page chrome, their metadata, and their social images;
-- the chrome of the P(doom) hub (table and section headings, labels, the “As of” line, the comparability note, the directory link and CTA) and of the blog (index heading, bylines, reading times, chart chrome), and their metadata;
+- the chrome of the P(doom) hub (table and section headings, labels, the date line, the comparability note, the directory link and CTA) and of the blog (index heading, bylines, reading times, chart chrome), and their metadata;
 - blog posts that opt in, with their charts' text and social cards ([BLOG.md](BLOG.md#languages));
 - share link pages (`/s/<id>`), their metadata and cards, and the comparison card;
 - the downloaded share card, the map image and the Markdown report;
