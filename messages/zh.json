@@ -41,11 +41,23 @@
     "x": "X 上的 Travis"
   },
   "Footer": {
-    "about": "关于",
-    "privacy": "隐私",
-    "pdoom": "P(doom)",
-    "methodology": "方法说明",
+    "tagline": "一次回答一个问题，描绘你的AI世界观。",
+    "explore": "探索",
+    "mapWorldview": "描绘你的世界观",
+    "thoughtLeaders": "意见领袖",
+    "pdoom": "P(doom)估计",
     "blog": "博客",
+    "posts": {
+      "hackerNewsVsX": "Hacker News 对 AI 的看法比 X 更悲观",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "所有文章",
+    "project": "项目",
+    "about": "关于",
+    "methodology": "方法说明",
+    "privacy": "隐私",
+    "sourceCode": "源代码",
+    "madeBy": "由 <link>{name}</link> 制作",
     "language": "语言"
   },
   "Breadcrumbs": {

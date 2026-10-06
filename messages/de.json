@@ -41,11 +41,23 @@
     "x": "Travis auf X"
   },
   "Footer": {
-    "about": "Über Doom or Bloom",
-    "privacy": "Datenschutz",
-    "pdoom": "P(doom)",
-    "methodology": "Methodik",
+    "tagline": "Bilde deine KI-Weltsicht ab, eine Frage nach der anderen.",
+    "explore": "Entdecken",
+    "mapWorldview": "Deine Weltsicht abbilden",
+    "thoughtLeaders": "Meinungsführer",
+    "pdoom": "P(doom)-Schätzungen",
     "blog": "Blog",
+    "posts": {
+      "hackerNewsVsX": "Hacker News sieht KI düsterer als X",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "Alle Beiträge",
+    "project": "Projekt",
+    "about": "Über Doom or Bloom",
+    "methodology": "Methodik",
+    "privacy": "Datenschutz",
+    "sourceCode": "Quellcode",
+    "madeBy": "Erstellt von <link>{name}</link>",
     "language": "Sprache"
   },
   "Breadcrumbs": {
