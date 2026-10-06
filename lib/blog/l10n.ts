@@ -57,7 +57,8 @@ const translatableKeys = new Set([
   'cellsLabel',
   'pointsLabel',
   // Axis ends, how-to hints, project methods and reach, criteria details,
-  // estimates as written and the questions behind them.
+  // estimates as written and the questions behind them, and where a quote
+  // was said. Quotes themselves keep the speaker's exact words.
   'start',
   'end',
   'hint',
@@ -65,7 +66,8 @@ const translatableKeys = new Set([
   'reach',
   'detail',
   'figure',
-  'wording'
+  'wording',
+  'venue'
 ])
 
 /** Every translatable string in a data file, by its JSON path. */

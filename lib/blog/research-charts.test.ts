@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
@@ -112,13 +112,20 @@ describe('estimates charts', () => {
   })
 
   it('match the verified public statements they chart', () => {
-    for (const file of [
-      'ai-extinction-estimates.json',
-      'ai-extinction-format.json'
-    ]) {
+    const files = readdirSync(path.join(blogDirectory, 'data')).filter(
+      (file) =>
+        file.endsWith('.json') &&
+        (readData(file) as { kind?: string }).kind === 'estimates'
+    )
+    expect(files).toContain('ai-extinction-estimates.json')
+    for (const file of files) {
       const parsed = estimatesDataSchema.parse(readData(file))
+      const only =
+        parsed.provenance === 'public-statements'
+          ? 'public-statements'
+          : undefined
       for (const entry of parsed.rows.filter(
-        (item) => item.provenance === 'public-statements'
+        (item) => (item.provenance ?? only) === 'public-statements'
       )) {
         const statement = Object.values(publicPdoomStatements).find(
           (candidate) => candidate.url === entry.href

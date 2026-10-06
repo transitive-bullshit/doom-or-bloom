@@ -1,0 +1,107 @@
+{
+  "kind": "map",
+  "title": "Eight AI leaders on one map, by their simulated worldviews",
+  "source": "Each person’s simulated worldview on their Doom or Bloom profile, generated from their public writing and interviews. Distances use the measure the site uses to compare a result with a thought leader’s, ranked across all 213 published simulated thought leaders.",
+  "asOf": "2026-10-06",
+  "provenance": "simulated-users",
+  "hint": "Pick a pair to highlight it",
+  "points": [
+    {
+      "key": "hinton",
+      "outlook": 0.174,
+      "transformation": 0.885,
+      "label": "Hinton",
+      "name": "Geoffrey Hinton",
+      "side": "left"
+    },
+    {
+      "key": "bengio",
+      "outlook": 0.238,
+      "transformation": 0.848,
+      "label": "Bengio",
+      "name": "Yoshua Bengio",
+      "shift": 12
+    },
+    {
+      "key": "amodei",
+      "outlook": 0.348,
+      "transformation": 0.881,
+      "label": "Amodei",
+      "name": "Dario Amodei"
+    },
+    {
+      "key": "marcus",
+      "outlook": 0.456,
+      "transformation": 0.625,
+      "label": "Marcus",
+      "name": "Gary Marcus"
+    },
+    {
+      "key": "hassabis",
+      "outlook": 0.737,
+      "transformation": 0.805,
+      "label": "Hassabis",
+      "name": "Demis Hassabis",
+      "side": "left"
+    },
+    {
+      "key": "musk",
+      "outlook": 0.861,
+      "transformation": 0.947,
+      "label": "Musk",
+      "name": "Elon Musk"
+    },
+    {
+      "key": "lecun",
+      "outlook": 0.894,
+      "transformation": 0.73,
+      "label": "LeCun",
+      "name": "Yann LeCun"
+    },
+    {
+      "key": "altman",
+      "outlook": 0.916,
+      "transformation": 0.807,
+      "label": "Altman",
+      "name": "Sam Altman"
+    }
+  ],
+  "pairs": [
+    {
+      "key": "hinton-lecun",
+      "label": "Hinton vs LeCun",
+      "points": ["hinton", "lecun"],
+      "note": "Worlds apart, farther than 9 in 10 pairs of simulated thought leaders on the site; both expect AI to reshape everyday life, but Hinton is worried and LeCun very hopeful"
+    },
+    {
+      "key": "lecun-musk",
+      "label": "LeCun vs Musk",
+      "points": ["lecun", "musk"],
+      "note": "Some distance, about as far apart as the typical pair; both very hopeful, with Musk expecting the bigger change"
+    },
+    {
+      "key": "lecun-marcus",
+      "label": "LeCun vs Marcus",
+      "points": ["lecun", "marcus"],
+      "note": "Worlds apart, though only just; LeCun is very hopeful, Marcus mixed and expecting the smallest change of the eight"
+    },
+    {
+      "key": "bengio-lecun",
+      "label": "Bengio vs LeCun",
+      "points": ["bengio", "lecun"],
+      "note": "Worlds apart, farther than 8 in 10 pairs; both expect AI to reshape everyday life, but Bengio is worried and LeCun very hopeful"
+    },
+    {
+      "key": "altman-amodei",
+      "label": "Altman vs Amodei",
+      "points": ["altman", "amodei"],
+      "note": "Worlds apart, farther than 7 in 10 pairs; Altman is very hopeful, Amodei worried and expecting the bigger change"
+    },
+    {
+      "key": "hassabis-amodei",
+      "label": "Hassabis vs Amodei",
+      "points": ["hassabis", "amodei"],
+      "note": "Some distance, a little closer than the typical pair; Hassabis is hopeful and Amodei worried, both expecting sweeping change"
+    }
+  ]
+}

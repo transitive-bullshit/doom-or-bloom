@@ -1,0 +1,269 @@
+{
+  "kind": "scorecard",
+  "title": "Where each pair agrees and disagrees, by their simulated worldviews",
+  "source": "Each person’s simulated worldview on their Doom or Bloom profile, generated from their public writing and interviews. Agree means the same reading; partly, nearby readings or ones on the same side of the question; disagree, readings on opposite sides.",
+  "asOf": "2026-10-06",
+  "provenance": "simulated-users",
+  "hint": "Hover, tap or focus a mark to see where each side lands",
+  "levels": [
+    {
+      "key": "yes",
+      "label": "Agree"
+    },
+    {
+      "key": "partly",
+      "label": "Partly agree"
+    },
+    {
+      "key": "no",
+      "label": "Disagree"
+    },
+    {
+      "key": "na",
+      "label": "Not settled"
+    }
+  ],
+  "columns": [
+    {
+      "key": "outlook",
+      "label": "Outlook",
+      "detail": "Do they expect AI to turn out about as well, from very worried to very hopeful?"
+    },
+    {
+      "key": "scale",
+      "label": "Scale",
+      "detail": "Do they expect AI to change the world by about as much?"
+    },
+    {
+      "key": "benefits",
+      "label": "Benefits",
+      "detail": "Do they expect about as much good from AI?"
+    },
+    {
+      "key": "harm",
+      "label": "Harm",
+      "detail": "Do they expect about as much harm from AI?"
+    },
+    {
+      "key": "control",
+      "label": "Control",
+      "detail": "Do they agree on whether powerful AI can be kept under control?"
+    },
+    {
+      "key": "institutions",
+      "label": "Institutions",
+      "detail": "Do they agree on how well governments and institutions will respond?"
+    },
+    {
+      "key": "pace",
+      "label": "Pace",
+      "detail": "Do they want AI developed at about the same pace?"
+    }
+  ],
+  "rows": [
+    {
+      "key": "hinton-lecun",
+      "label": "Hinton vs LeCun",
+      "cells": {
+        "outlook": {
+          "level": "no",
+          "note": "Hinton: worried; LeCun: very hopeful"
+        },
+        "scale": {
+          "level": "yes",
+          "note": "Both: AI restructures economies, institutions and everyday life broadly"
+        },
+        "benefits": {
+          "level": "partly",
+          "note": "Hinton: substantial benefits, with important conditions; LeCun: transformative, broadly valuable gains"
+        },
+        "harm": {
+          "level": "no",
+          "note": "Hinton: severe or widespread harm is a material part of the future; LeCun: manageable or localized harms"
+        },
+        "control": {
+          "level": "no",
+          "note": "Hinton: control will be very difficult and unreliable; LeCun: control is feasible under demanding conditions"
+        },
+        "institutions": {
+          "level": "no",
+          "note": "Hinton: institutions respond too weakly or too late in many cases; LeCun: between effective responses with coordination and adapting in time"
+        },
+        "pace": {
+          "level": "na",
+          "note": "Hinton: restrained development with strong safeguards in advance; LeCun’s simulated worldview doesn’t settle this"
+        }
+      }
+    },
+    {
+      "key": "lecun-musk",
+      "label": "LeCun vs Musk",
+      "cells": {
+        "outlook": {
+          "level": "yes",
+          "note": "Both: very hopeful"
+        },
+        "scale": {
+          "level": "partly",
+          "note": "LeCun: AI restructures everyday life broadly; Musk: AI fundamentally transforms civilization or humanity’s continued existence"
+        },
+        "benefits": {
+          "level": "yes",
+          "note": "Both: transformative, broadly valuable gains"
+        },
+        "harm": {
+          "level": "no",
+          "note": "LeCun: manageable or localized harms; Musk: severe or widespread harm is a material part of the future"
+        },
+        "control": {
+          "level": "na",
+          "note": "LeCun: control is feasible under demanding conditions; Musk’s simulated worldview doesn’t settle this"
+        },
+        "institutions": {
+          "level": "na",
+          "note": "LeCun: between effective responses with coordination and adapting in time; Musk’s simulated worldview doesn’t settle this"
+        },
+        "pace": {
+          "level": "na",
+          "note": "Musk: continued development with targeted safeguards; LeCun’s simulated worldview doesn’t settle this"
+        }
+      }
+    },
+    {
+      "key": "lecun-marcus",
+      "label": "LeCun vs Marcus",
+      "cells": {
+        "outlook": {
+          "level": "partly",
+          "note": "LeCun: very hopeful; Marcus: mixed, with neither hope nor worry dominating"
+        },
+        "scale": {
+          "level": "partly",
+          "note": "LeCun: AI restructures everyday life broadly; Marcus: AI substantially changes several sectors"
+        },
+        "benefits": {
+          "level": "partly",
+          "note": "LeCun: transformative, broadly valuable gains; Marcus: substantial benefits, with important conditions"
+        },
+        "harm": {
+          "level": "no",
+          "note": "LeCun: manageable or localized harms; Marcus: severe or widespread harm is a material part of the future"
+        },
+        "control": {
+          "level": "yes",
+          "note": "Both: control is feasible under demanding conditions"
+        },
+        "institutions": {
+          "level": "no",
+          "note": "LeCun: between effective responses with coordination and adapting in time; Marcus: institutions respond too weakly or too late in many cases"
+        },
+        "pace": {
+          "level": "na",
+          "note": "Marcus: continued development with targeted safeguards; LeCun’s simulated worldview doesn’t settle this"
+        }
+      }
+    },
+    {
+      "key": "bengio-lecun",
+      "label": "Bengio vs LeCun",
+      "cells": {
+        "outlook": {
+          "level": "no",
+          "note": "Bengio: worried; LeCun: very hopeful"
+        },
+        "scale": {
+          "level": "yes",
+          "note": "Both: AI restructures economies, institutions and everyday life broadly"
+        },
+        "benefits": {
+          "level": "partly",
+          "note": "Bengio: substantial benefits, with important conditions; LeCun: transformative, broadly valuable gains"
+        },
+        "harm": {
+          "level": "no",
+          "note": "Bengio: severe or widespread harm is a material part of the future; LeCun: manageable or localized harms"
+        },
+        "control": {
+          "level": "yes",
+          "note": "Both: control is feasible under demanding conditions"
+        },
+        "institutions": {
+          "level": "partly",
+          "note": "Bengio: between effective responses with coordination and responses too weak or too late; LeCun: between effective responses with coordination and adapting in time"
+        },
+        "pace": {
+          "level": "na",
+          "note": "Bengio: between restrained development with strong safeguards in advance and continued development with targeted safeguards; LeCun’s simulated worldview doesn’t settle this"
+        }
+      }
+    },
+    {
+      "key": "altman-amodei",
+      "label": "Altman vs Amodei",
+      "cells": {
+        "outlook": {
+          "level": "no",
+          "note": "Altman: very hopeful; Amodei: worried"
+        },
+        "scale": {
+          "level": "partly",
+          "note": "Altman: AI restructures everyday life broadly; Amodei: AI fundamentally transforms civilization or humanity’s continued existence"
+        },
+        "benefits": {
+          "level": "partly",
+          "note": "Altman: transformative, broadly valuable gains; Amodei: substantial benefits, with important conditions"
+        },
+        "harm": {
+          "level": "no",
+          "note": "Altman: manageable or localized harms; Amodei: severe or widespread harm is a material part of the future"
+        },
+        "control": {
+          "level": "no",
+          "note": "Altman: control is feasible under demanding conditions; Amodei: control will be very difficult and unreliable"
+        },
+        "institutions": {
+          "level": "partly",
+          "note": "Altman: between responses too weak or too late and effective responses with coordination; Amodei: institutions respond too weakly or too late in many cases"
+        },
+        "pace": {
+          "level": "partly",
+          "note": "Altman: between continued development with targeted safeguards and restrained development; Amodei: a broad pause or substantial slowing"
+        }
+      }
+    },
+    {
+      "key": "hassabis-amodei",
+      "label": "Hassabis vs Amodei",
+      "cells": {
+        "outlook": {
+          "level": "no",
+          "note": "Hassabis: hopeful; Amodei: worried"
+        },
+        "scale": {
+          "level": "partly",
+          "note": "Hassabis: AI restructures everyday life broadly; Amodei: AI fundamentally transforms civilization or humanity’s continued existence"
+        },
+        "benefits": {
+          "level": "partly",
+          "note": "Hassabis: between substantial and transformative gains; Amodei: substantial benefits, with important conditions"
+        },
+        "harm": {
+          "level": "yes",
+          "note": "Both: severe or widespread harm is a material part of the future"
+        },
+        "control": {
+          "level": "na",
+          "note": "Amodei: control will be very difficult and unreliable; Hassabis’s simulated worldview doesn’t settle this"
+        },
+        "institutions": {
+          "level": "no",
+          "note": "Hassabis: effective responses under specific coordination conditions; Amodei: institutions respond too weakly or too late in many cases"
+        },
+        "pace": {
+          "level": "partly",
+          "note": "Hassabis: between continued development with targeted safeguards and restrained development; Amodei: a broad pause or substantial slowing"
+        }
+      }
+    }
+  ]
+}

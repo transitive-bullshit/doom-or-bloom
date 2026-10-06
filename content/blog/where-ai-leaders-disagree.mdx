@@ -1,0 +1,109 @@
+---
+title: AI’s leaders split on how it ends, not how big it is
+description: Hinton vs LeCun, Altman vs Amodei and four more AI rivalries people search, placed on one map from simulated worldviews, with each side’s own words.
+date: 2026-10-06
+---
+
+import map from './data/ai-leaders-map.json'
+import scorecard from './data/ai-leaders-scorecard.json'
+import pdoom from './data/ai-leaders-pdoom.json'
+import hintonLecun from './data/ai-leaders-hinton-lecun.json'
+import lecunMusk from './data/ai-leaders-lecun-musk.json'
+import lecunMarcus from './data/ai-leaders-lecun-marcus.json'
+import bengioLecun from './data/ai-leaders-bengio-lecun.json'
+import altmanAmodei from './data/ai-leaders-altman-amodei.json'
+import hassabisAmodei from './data/ai-leaders-hassabis-amodei.json'
+
+People don’t only search for what AI’s leaders think. They search for who they disagree with: Geoffrey Hinton vs Yann LeCun, Sam Altman vs Dario Amodei. I took the six rivalries Google suggests when you start typing these names, put all eight people on the [Doom or Bloom](/) map using the worldviews we simulate from their public writing and interviews, and set their own words side by side.
+
+The short version: nearly all of them expect AI to change the world enormously. They split on whether that goes well, on how much harm comes with it and on whether something smarter than us can be kept under control. And several of the famous rivalries agree on more than their arguments suggest.
+
+## Eight leaders on one map
+
+<DataMap data={map} />
+
+Every point sits in the top half of the map. Seven of the eight expect AI to restructure economies, institutions and everyday life, or more; Gary Marcus, at the low end, still expects it to substantially change several sectors. From left to right, though, they span most of the map, from Geoffrey Hinton’s simulated worldview, which is worried, to Sam Altman’s, which is very hopeful.
+
+Measured the way the site compares your result with a thought leader’s, Hinton vs LeCun is the widest split of the six: farther apart than about 9 in 10 pairs among the site’s 213 simulated thought leaders. LeCun vs Musk and Hassabis vs Amodei are the closest, about as far apart as a typical pair. Yann LeCun turns up in four of the six.
+
+## Where each pair agrees and disagrees
+
+<DataScorecard data={scorecard} />
+
+Read it by column. On scale and benefits, no pair disagrees: they all expect AI to do a lot, and a lot of good. Harm splits five of the six pairs. In each of those, Yann LeCun or Sam Altman is on one side, with a simulated worldview that expects manageable or localized harms, and the other person expects severe or widespread harm to be part of the future.
+
+Control divides them differently. LeCun, Altman, Yoshua Bengio and Gary Marcus all think control of powerful AI is feasible under demanding conditions; Geoffrey Hinton and Dario Amodei expect it to be very difficult and unreliable. A dash means one side’s simulated worldview doesn’t take a clear position, which is why pace is the hardest column to read: LeCun’s doesn’t settle it.
+
+## P(doom), in their own words
+
+<DataEstimates data={pdoom} />
+
+Five of the eight have put a number on it, from near zero for Yann LeCun to 25% for Dario Amodei. The numbers measure different things: extinction within about 30 years for Hinton, annihilation within 5 to 10 years for Musk, things going really badly, broadly defined, for Amodei. The [P(doom) table](/p-doom) lists what each one means.
+
+The other three decline. Asked about the 20% he reportedly gave in 2023, Yoshua Bengio said [“I’d rather stay out of the p(doom) game.”](https://80000hours.org/podcast/episodes/yoshua-bengio-scientist-ai/) Demis Hassabis says a number [“would imply a level of precision that is not there”](https://lexfridman.com/demis-hassabis-2-transcript/), though the risk is “definitely non-zero and it’s probably non-negligible”. Sam Altman: [“I don’t know how you can put a number like that.”](https://www.youtube.com/watch?v=2my-NU6LuCM) LeCun, whose near zero is a comparison rather than a number, agrees with them on one thing: it “makes little sense to attribute a probability to an event on which we have agency”.
+
+## Geoffrey Hinton vs Yann LeCun
+
+Geoffrey Hinton and Yann LeCun shared the [2018 Turing Award](https://awards.acm.org/about/2018-turing) with Yoshua Bengio for the work behind deep learning. On the map they sit at about the same height and at opposite ends of the outlook axis: both simulated worldviews expect AI to restructure everyday life, and they disagree on most of how that goes.
+
+The sharpest split is control. LeCun argues that AI can be designed so it can’t escape its guardrails. Hinton doubts we can keep something smarter than us under our thumb. His model is a mother and her baby, a rare case of a less intelligent being in control of a more intelligent one, and he argues for building AI that “likes us more than it likes itself”.
+
+<DataQuotes data={hintonLecun} />
+
+They agree on more than the argument suggests. Both talk about AI’s benefits reaching all of humanity, Hinton with an if. On P(doom) it’s 10–20% against near zero, a gap only LeCun vs Musk matches.
+
+## Yann LeCun vs Elon Musk
+
+Yann LeCun and Elon Musk sit close together on the map: both simulated worldviews are very hopeful and expect enormous change, Musk’s even more. They agree on the benefits and split on harm.
+
+Musk’s simulated worldview doesn’t settle the question of control, but his own words do. LeCun says the desire to dominate doesn’t come with intelligence; Musk doesn’t think humans will stay in control of something vastly smarter, and has put the chance of AI annihilating humanity at 10 to 20%. Both describe the upside in sweeping terms.
+
+<DataQuotes data={lecunMusk} />
+
+## Yann LeCun vs Gary Marcus
+
+Yann LeCun and Gary Marcus agree on the technical question that most divides the field: neither thinks today’s large language models will reach human-level intelligence on their own. Both favor some form of open access to AI, too.
+
+They split on almost everything else. LeCun’s simulated worldview is very hopeful and expects manageable harms; Marcus’s is mixed, expects severe or widespread harm and doesn’t expect institutions to keep up. Both put the odds of catastrophe low, near zero for LeCun and about 3% for Marcus.
+
+<DataQuotes data={lecunMarcus} />
+
+## Yoshua Bengio vs Yann LeCun
+
+Yoshua Bengio, the third of the 2018 Turing laureates, wrote that his views on AI’s risks shifted during 2023. His simulated worldview now sits near Hinton’s, worried and expecting severe or widespread harm, which puts him worlds apart from LeCun.
+
+What they disagree about is how today’s systems behave. Bengio warns about self-preservation and deception in AI agents; LeCun says intelligence doesn’t bring a drive to dominate. Yet both think AI can be built to stay under human control, and both are wary of putting a number on doom.
+
+<DataQuotes data={bengioLecun} />
+
+## Sam Altman vs Dario Amodei
+
+Dario Amodei worked at OpenAI before he co-founded Anthropic. On the map he and Sam Altman are worlds apart: Altman’s simulated worldview is very hopeful and expects manageable harms, while Amodei’s is worried, expects severe or widespread harm and expects control to be very difficult. Only Hinton vs LeCun and Bengio vs LeCun are farther apart.
+
+In September they moved toward each other in public. Amodei published [We Must Pace the Frontier](https://darioamodei.com/post/we-must-pace-the-frontier), arguing to slow how fast AI capabilities improve, and wrote that pacing “does not mean halting model training or technical progress”. Two days later, Altman wrote that progress [“should be slower than it otherwise could be”](https://x.com/sama/status/2099348812305473766). Their simulated worldviews still read Amodei as wanting more restraint, so the scorecard marks pace as partly agreed.
+
+<DataQuotes data={altmanAmodei} />
+
+People search for Sam Altman vs Elon Musk too, but mostly about their lawsuit and their fortunes. On the map their simulated worldviews are some distance apart, both very hopeful.
+
+## Demis Hassabis vs Dario Amodei
+
+Demis Hassabis and Dario Amodei are scientists who run frontier labs, and they are one of the two closest pairs here. Both simulated worldviews expect severe or widespread harm alongside large benefits; Hassabis leans hopeful and Amodei worried.
+
+Their clearest public difference is timing. At Davos in January, Amodei said his forecast of AI that can match a Nobel laureate across many fields by 2026 or 2027 wouldn’t turn out to be far off, while Hassabis kept his 50% chance of human-level AI by the end of the decade. Hassabis added that a slightly slower pace than either expects would be good, “so that we can get this right societally”. Amodei answered, [“I prefer your timelines.”](https://www.weforum.org/podcasts/radio-davos/episodes/ai-agi-dario-amodei-demis-hassabis/) In September, Hassabis called Amodei’s pacing essay “the right path forward”.
+
+<DataQuotes data={hassabisAmodei} />
+
+## What the rivalries have in common
+
+Side by side, the six rivalries share a pattern. Nobody here doubts that AI is a very big deal, or that it could do a great deal of good. They split on how it turns out, and underneath that on narrower, more concrete questions: how much harm comes with it, whether something smarter than us can be kept under control and whether governments will respond in time.
+
+Where do you land between them? [Take the interview](/) (about 3 minutes, no sign-up), then compare your result with any of them from their profiles.
+
+## How I put this together
+
+- **Pairs:** the six rivalries about AI’s future that Google’s autocomplete suggested for these names on October 6, 2026. Searches for Altman vs Musk are mostly about their lawsuit, so that pair gets one line
+- **Positions:** the map and the scorecard use the simulated worldview on each person’s profile as of October 6, 2026. They are simulated from public writing and interviews, not the people’s own answers. On the scorecard, agree means the same reading; partly, nearby readings or ones on the same side of the question; disagree, readings on opposite sides; not settled, that one simulated worldview takes no clear position
+- **Distances:** the same weighted distance the site uses to compare a result with a thought leader’s, and its labels (very aligned, mostly aligned, some distance, worlds apart), ranked against every pair of the 213 published simulated thought leaders
+- **P(doom):** only numbers each person stated in public, from the verified statements behind the [P(doom) table](/p-doom). Their definitions and time frames differ
+- **Quotes:** exact words, each linked to its source. Most come from the “What they’ve said about AI” sections of their profiles and the P(doom) table; I checked the rest against their sources on October 6, 2026

@@ -383,6 +383,31 @@ test('a data post charts participant aggregates with their date', async ({
     expect(heading).not.toMatch(/\.$/)
 })
 
+test('a rivalry post compares pairs on the map and quotes each side', async ({
+  page
+}) => {
+  await page.goto('/blog/where-ai-leaders-disagree')
+  const body = page.locator('[data-slot="blog-post-body"]')
+  const map = body.locator('[data-slot="blog-data-map"]')
+  await expect(
+    map.getByRole('radio', { name: 'Hinton vs LeCun' })
+  ).toBeChecked()
+  await expect(map.getByRole('link', { name: 'Yann LeCun' })).toHaveAttribute(
+    'href',
+    '/users/ylecun'
+  )
+  await map.getByRole('radio', { name: 'Altman vs Amodei' }).click()
+  await expect(map.getByRole('link', { name: 'Dario Amodei' })).toHaveAttribute(
+    'href',
+    '/users/darioamodei'
+  )
+  const quotes = body.locator('[data-slot="blog-data-quotes"]')
+  await expect(quotes).toHaveCount(6)
+  await expect(
+    quotes.first().getByRole('link', { name: 'Geoffrey Hinton' })
+  ).toHaveAttribute('href', '/users/geoffreyhinton')
+})
+
 test('a translated post renders, indexes and shares in each language', async ({
   page,
   request

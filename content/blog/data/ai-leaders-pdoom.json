@@ -1,0 +1,79 @@
+{
+  "kind": "estimates",
+  "title": "P(doom), as five of the eight have stated it",
+  "source": "Each number in the person’s own words, linked from their profile and the P(doom) table. Each is a chance of something a little different, written under the name. Yoshua Bengio, Sam Altman and Demis Hassabis decline to give a number.",
+  "asOf": "2026-10-06",
+  "provenance": "public-statements",
+  "scale": {
+    "min": 0.001,
+    "max": 1,
+    "ticks": [
+      {
+        "value": 0.001
+      },
+      {
+        "value": 0.01
+      },
+      {
+        "value": 0.1
+      },
+      {
+        "value": 1
+      }
+    ]
+  },
+  "legend": [
+    {
+      "tone": "ink",
+      "mark": "range",
+      "label": "As they stated it"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Yann LeCun",
+      "figure": "≈0%",
+      "low": 0,
+      "high": 0.0001,
+      "detail": "Chance AI causes human extinction, which he puts below an extinction-level asteroid strike; April 2026",
+      "tone": "ink",
+      "href": "https://x.com/ylecun/status/2046577402264870958"
+    },
+    {
+      "label": "Gary Marcus",
+      "figure": "≈3%",
+      "low": 0.03,
+      "high": 0.03,
+      "detail": "Chance of catastrophe from misuse, reckless deployment or concentrated power; July 2025",
+      "tone": "ink",
+      "href": "https://garymarcus.substack.com/p/why-my-pdoom-has-risen-dramatically"
+    },
+    {
+      "label": "Geoffrey Hinton",
+      "figure": "10–20%",
+      "low": 0.1,
+      "high": 0.2,
+      "detail": "Chance AI causes human extinction within about 30 years; January 2025",
+      "tone": "ink",
+      "href": "https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize"
+    },
+    {
+      "label": "Elon Musk",
+      "figure": "10–20%",
+      "low": 0.1,
+      "high": 0.2,
+      "detail": "Chance AI annihilates humanity, within about 5 to 10 years; March 2025",
+      "tone": "ink",
+      "href": "https://www.youtube.com/watch?v=BDREZmpkIz8"
+    },
+    {
+      "label": "Dario Amodei",
+      "figure": "25%",
+      "low": 0.25,
+      "high": 0.25,
+      "detail": "Chance things go really badly, broadly defined; September 2025",
+      "tone": "ink",
+      "href": "https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent"
+    }
+  ]
+}

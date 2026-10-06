@@ -16,6 +16,7 @@ import { DataEstimates } from './data-estimates'
 import { DataIntervals } from './data-intervals'
 import { DataLandscape } from './data-landscape'
 import { DataMap } from './data-map'
+import { DataQuotes } from './data-quotes'
 import { DataRanges } from './data-ranges'
 import { DataScorecard } from './data-scorecard'
 import { DataTrend } from './data-trend'
@@ -82,6 +83,7 @@ export const blogComponents = {
   DataIntervals,
   DataLandscape,
   DataMap,
+  DataQuotes,
   DataRanges,
   DataScorecard,
   DataTrend,
@@ -164,7 +166,10 @@ export function postComponents({
       <DataIntervals {...props} text={text} />
     ),
     DataMap: (props: ComponentProps<typeof DataMap>) => (
-      <DataMap {...props} text={text} />
+      <DataMap {...props} mention={mention} text={text} />
+    ),
+    DataQuotes: (props: ComponentProps<typeof DataQuotes>) => (
+      <DataQuotes {...props} mention={mention} text={text} />
     ),
     DataEstimates: (props: ComponentProps<typeof DataEstimates>) => (
       <DataEstimates {...props} mention={mention} text={text} />

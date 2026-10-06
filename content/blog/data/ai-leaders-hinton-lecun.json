@@ -1,0 +1,73 @@
+{
+  "kind": "quotes",
+  "title": "Geoffrey Hinton and Yann LeCun, in their own words",
+  "source": "Exact words, each linked to where it was said and checked against it.",
+  "asOf": "2026-10-06",
+  "provenance": "public-statements",
+  "people": [
+    {
+      "key": "hinton",
+      "name": "Geoffrey Hinton",
+      "avatar": "/personas/hinton.jpg"
+    },
+    {
+      "key": "lecun",
+      "name": "Yann LeCun",
+      "avatar": "/personas/lecun.jpg"
+    }
+  ],
+  "rows": [
+    {
+      "label": "On keeping AI under control",
+      "quotes": {
+        "hinton": {
+          "quote": "I think that’s a better approach than thinking, how do we always keep this smart thing under our thumb. I’m not sure we can do that.",
+          "venue": "CNN, News Central",
+          "date": "2026-09-16",
+          "href": "https://transcripts.cnn.com/show/cnc/date/2026-09-16/segment/09",
+          "checked": "2026-10-06"
+        },
+        "lecun": {
+          "quote": "The nice thing about an AI system is that you can design it in such a way that it cannot escape its guardrails.",
+          "venue": "Newsweek interview",
+          "date": "2025-04-02",
+          "href": "https://www.newsweek.com/nw-ai/ai-impact-interview-yann-lecun-artificial-intelligence-2054237"
+        }
+      }
+    },
+    {
+      "label": "On putting a number on it",
+      "quotes": {
+        "hinton": {
+          "quote": "10% to 20% seemed like reasonable numbers to me",
+          "venue": "WBUR, On Point",
+          "date": "2025-01-10",
+          "href": "https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize"
+        },
+        "lecun": {
+          "quote": "It makes little sense to attribute a probability to an event on which we have agency.",
+          "venue": "Post on X",
+          "date": "2026-04-21",
+          "href": "https://x.com/ylecun/status/2046577402264870958"
+        }
+      }
+    },
+    {
+      "label": "On what AI could do for people",
+      "quotes": {
+        "hinton": {
+          "quote": "If the benefits of the increased productivity can be shared equally it will be a wonderful advance for all humanity.",
+          "venue": "Nobel Prize banquet speech",
+          "date": "2024-12-10",
+          "href": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/"
+        },
+        "lecun": {
+          "quote": "Ultimately, the goal is to amplify human intelligence and bring those benefits to humanity, which I think is intrinsically good.",
+          "venue": "Nebius Science interview",
+          "date": "2026-07-13",
+          "href": "https://nebius.science/stories/meet-yann-lecuns-lab-and-the-ai-world-of-2030"
+        }
+      }
+    }
+  ]
+}

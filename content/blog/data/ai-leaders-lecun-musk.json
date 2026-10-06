@@ -1,0 +1,72 @@
+{
+  "kind": "quotes",
+  "title": "Yann LeCun and Elon Musk, in their own words",
+  "source": "Exact words, each linked to where it was said and checked against it.",
+  "asOf": "2026-10-06",
+  "provenance": "public-statements",
+  "people": [
+    {
+      "key": "lecun",
+      "name": "Yann LeCun",
+      "avatar": "/personas/lecun.jpg"
+    },
+    {
+      "key": "musk",
+      "name": "Elon Musk",
+      "avatar": "/personas/musk.jpg"
+    }
+  ],
+  "rows": [
+    {
+      "label": "On control",
+      "quotes": {
+        "lecun": {
+          "quote": "The desire to dominate is not correlated with intelligence at all.",
+          "venue": "TIME interview",
+          "date": "2024-02-13",
+          "href": "https://time.com/6694432/yann-lecun-meta-ai-interview/"
+        },
+        "musk": {
+          "quote": "I don’t think humans will be in control of something that is vastly more intelligent than humans.",
+          "venue": "Dwarkesh Podcast",
+          "date": "2026-02-05",
+          "href": "https://www.dwarkesh.com/p/elon-musk"
+        }
+      }
+    },
+    {
+      "label": "On the odds",
+      "quotes": {
+        "lecun": {
+          "quote": "p(doom) is smaller than the probability of an extinction-level asteroid hitting the earth",
+          "venue": "Post on X",
+          "date": "2026-04-21",
+          "href": "https://x.com/ylecun/status/2046577402264870958"
+        },
+        "musk": {
+          "quote": "20% likely, maybe 10%",
+          "venue": "Verdict with Ted Cruz",
+          "date": "2025-03-17",
+          "href": "https://www.youtube.com/watch?v=BDREZmpkIz8"
+        }
+      }
+    },
+    {
+      "label": "On the upside",
+      "quotes": {
+        "lecun": {
+          "quote": "Ultimately, the goal is to amplify human intelligence and bring those benefits to humanity, which I think is intrinsically good.",
+          "venue": "Nebius Science interview",
+          "date": "2026-07-13",
+          "href": "https://nebius.science/stories/meet-yann-lecuns-lab-and-the-ai-world-of-2030"
+        },
+        "musk": {
+          "quote": "The most likely outcome is an age of amazing abundance where anyone can have anything they can think of.",
+          "venue": "The Economist interview",
+          "date": "2026-07-23",
+          "href": "https://singjupost.com/full-transcript-zanny-minton-beddoes-interviews-elon-musk/"
+        }
+      }
+    }
+  ]
+}

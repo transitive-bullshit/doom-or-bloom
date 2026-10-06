@@ -204,6 +204,10 @@ const span = z
   .tuple([probability, probability])
   .refine(([low, high]) => low < high, 'A cell spans low to high')
 
+const key = z
+  .string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, 'Keys are kebab-case')
+
 export const mapDataSchema = z
   .strictObject({
     ...dataBase,
@@ -228,6 +232,8 @@ export const mapDataSchema = z
     points: z
       .array(
         z.strictObject({
+          /** Names the point for `pairs`. */
+          key: key.optional(),
           /** Doom (0) to Bloom (1). */
           outlook: probability,
           /** Incremental (0) to civilizational (1) change. */
@@ -237,16 +243,71 @@ export const mapDataSchema = z
           /** Named in the point's tooltip and the screen-reader table. */
           name: z.string().optional(),
           /** Relative size, e.g. a count in an aggregate cell. */
-          weight: z.number().positive().optional()
+          weight: z.number().positive().optional(),
+          /** Draws the label left of the point instead of right. */
+          side: z.enum(['left', 'right']).optional(),
+          /** Nudges the label up (negative) or down, in pixels. */
+          shift: z.number().min(-24).max(24).optional()
         })
       )
       .default([]),
     /** Legend text for the points, e.g. "Simulated thought leaders". */
-    pointsLabel: z.string().optional()
+    pointsLabel: z.string().optional(),
+    /**
+     * Two points at a time to compare, such as rivals: a control picks one
+     * pair, which is drawn joined and labelled while the others fade.
+     */
+    pairs: z
+      .array(
+        z.strictObject({
+          key,
+          /** The control's text, e.g. "Hinton vs LeCun". */
+          label: z.string().min(1),
+          points: z.tuple([key, key]),
+          /** One line under the map about the pair, without a period. */
+          note: z.string().min(1)
+        })
+      )
+      .min(1)
+      .optional(),
+    /** How to use the pair control, e.g. "Pick a pair to highlight it". */
+    hint: z.string().min(1).optional()
   })
   .superRefine((chart, ctx) => {
     if (!chart.points.length && !chart.cells?.length)
       ctx.addIssue({ code: 'custom', message: 'A map needs points or cells' })
+    if (chart.pairs) {
+      const keys = chart.points.flatMap((point) =>
+        point.key ? [point.key] : []
+      )
+      checkKeys(
+        keys.map((entry) => ({ key: entry })),
+        'point',
+        ctx
+      )
+      checkKeys(chart.pairs, 'pair', ctx)
+      if (chart.cells)
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Pairs compare points, not cells'
+        })
+      if (!chart.hint)
+        ctx.addIssue({ code: 'custom', message: 'Pairs need a hint' })
+      for (const pair of chart.pairs) {
+        const [first, second] = pair.points
+        if (first === second)
+          ctx.addIssue({
+            code: 'custom',
+            message: `${pair.label}: a pair needs two points`
+          })
+        for (const point of pair.points)
+          if (!keys.includes(point))
+            ctx.addIssue({
+              code: 'custom',
+              message: `${pair.label}: no point ${point}`
+            })
+      }
+    }
     // Points are individual people, so they come from another provenance:
     // participants only ever show as cells over groups of 10 or more.
     if (
@@ -358,9 +419,6 @@ export const intervalsDataSchema = z
     }))
   })
 
-const key = z
-  .string()
-  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/u, 'Keys are kebab-case')
 const unit = z.number().min(0).max(1)
 
 /** Keys a list repeats, so lookups by key stay unambiguous. */
@@ -735,6 +793,81 @@ export const estimatesDataSchema = z
     }
   })
 
+/** A day, or a month (YYYY-MM) when only the month is known. */
+const dayOrMonth = z.union([day, z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/u)])
+
+const quotedPerson = z.strictObject({
+  key,
+  /** The full name as written, which links to a published profile. */
+  name: z.string().min(1),
+  /** A portrait from public/personas. */
+  avatar: z
+    .string()
+    .regex(/^\/personas\/[\w.-]+\.(?:jpg|png|webp)$/u)
+    .optional()
+})
+
+const quoteSchema = z.strictObject({
+  /** Exact words, without surrounding quotation marks. */
+  quote: z.string().min(1).max(320),
+  /** Where, as readers would name it: "CNN, News Central" or "Post on X". */
+  venue: z.string().min(1).max(90),
+  /** When they said or published it: YYYY-MM-DD, or YYYY-MM. */
+  date: dayOrMonth,
+  href: z.url({ protocol: /^https$/u }),
+  /**
+   * When we matched a quote that isn't among the verified public statements
+   * against its source. Quotes without it must match a verified statement.
+   */
+  checked: day.optional()
+})
+export type BlogQuote = z.infer<typeof quoteSchema>
+
+/**
+ * Two people's exact words side by side, topic by topic, each linked to
+ * where it was said. Quotes stay in the speaker's words in every language.
+ */
+export const quotesDataSchema = z
+  .strictObject({
+    ...dataBase,
+    kind: z.literal('quotes'),
+    people: z.tuple([quotedPerson, quotedPerson]),
+    rows: z
+      .array(
+        z.strictObject({
+          /** The topic, e.g. "On control". */
+          label: z.string().min(1),
+          /** One quote per person, by their key. */
+          quotes: z.record(z.string(), quoteSchema)
+        })
+      )
+      .min(1)
+  })
+  .superRefine((chart, ctx) => {
+    if (
+      provenanceList(chart.provenance).some(
+        (source) => source !== 'public-statements'
+      )
+    )
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Quotes are public statements'
+      })
+    checkKeys(chart.people, 'person', ctx)
+    const keys = chart.people.map((person) => person.key)
+    for (const row of chart.rows) {
+      const quoted = Object.keys(row.quotes)
+      if (
+        quoted.length !== keys.length ||
+        !keys.every((entry) => quoted.includes(entry))
+      )
+        ctx.addIssue({
+          code: 'custom',
+          message: `${row.label}: quote each person once`
+        })
+    }
+  })
+
 export const blogDataSchema = z.discriminatedUnion('kind', [
   rangeDataSchema,
   mapDataSchema,
@@ -743,7 +876,8 @@ export const blogDataSchema = z.discriminatedUnion('kind', [
   landscapeDataSchema,
   scorecardDataSchema,
   trendDataSchema,
-  estimatesDataSchema
+  estimatesDataSchema,
+  quotesDataSchema
 ])
 export type BlogData = z.infer<typeof blogDataSchema>
 
