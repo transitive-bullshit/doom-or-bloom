@@ -8731,5 +8731,10 @@
     "source": "https://en.wikipedia.org/wiki/AI_alignment",
     "fetchedAt": "2026-10-06T09:39:52.603Z",
     "icon": "/resource-previews/c799d5e1347e-icon.webp"
+  },
+  "https://awards.acm.org/about/2018-turing": {
+    "source": "https://awards.acm.org/about/2018-turing",
+    "fetchedAt": "2026-10-06T12:09:52.454Z",
+    "icon": "/resource-previews/0a0c3db68519-icon.webp"
   }
 }
