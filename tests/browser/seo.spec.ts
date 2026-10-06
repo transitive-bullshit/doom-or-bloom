@@ -64,14 +64,23 @@ test('the home page names the P(doom) search and describes a free web app', asyn
   })
   // No URL-addressable site search, so no SearchAction.
   expect(ofType(nodes, 'WebSite')[0]).not.toHaveProperty('potentialAction')
-  // Footer links make the hub and the blog crawlable from every page.
+  // Footer links make the directory, the hub, the blog and its featured posts
+  // crawlable from every page.
   const footer = page.locator('footer')
+  for (const [name, href] of [
+    ['Thought leaders', '/users'],
+    ['P(doom) estimates', '/p-doom'],
+    ['All posts', '/blog'],
+    ['Hacker News is gloomier about AI than X', '/blog/hacker-news-vs-x'],
+    ['Why polls on AI disagree', '/blog/why-polls-on-ai-disagree']
+  ] as const)
+    await expect(
+      footer.getByRole('link', { name, exact: true })
+    ).toHaveAttribute('href', href)
+  // Starting an interview is not a page for search engines.
   await expect(
-    footer.getByRole('link', { name: 'P(doom)', exact: true })
-  ).toHaveAttribute('href', '/p-doom')
-  await expect(
-    footer.getByRole('link', { name: 'Blog', exact: true })
-  ).toHaveAttribute('href', '/blog')
+    footer.getByRole('link', { name: 'Map your worldview', exact: true })
+  ).toHaveAttribute('rel', 'nofollow')
 })
 
 test('the P(doom) hub defines the term, then cites curated estimates, scenarios and readings', async ({
@@ -382,10 +391,9 @@ test('a translated post renders, indexes and shares in each language', async ({
 
   // The index lists it in Spanish, and English-only posts as such.
   await page.goto('/es/blog')
-  await expect(page.getByRole('link', { name: title })).toHaveAttribute(
-    'href',
-    `/es${path}`
-  )
+  await expect(
+    page.getByRole('main').getByRole('link', { name: title })
+  ).toHaveAttribute('href', `/es${path}`)
   await expect(page.getByText(spanish.Blog.inEnglish).first()).toBeVisible()
 })
 

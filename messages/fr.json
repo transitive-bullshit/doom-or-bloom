@@ -41,11 +41,23 @@
     "x": "Travis sur X"
   },
   "Footer": {
-    "about": "À propos",
-    "privacy": "Confidentialité",
-    "pdoom": "P(doom)",
-    "methodology": "Méthodologie",
+    "tagline": "Cartographiez votre vision du monde concernant l’IA, une question à la fois.",
+    "explore": "Explorer",
+    "mapWorldview": "Cartographier votre vision du monde",
+    "thoughtLeaders": "Leaders d’opinion",
+    "pdoom": "Estimations de P(doom)",
     "blog": "Blog",
+    "posts": {
+      "hackerNewsVsX": "Hacker News est plus pessimiste à propos de l’IA que X",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "Tous les articles",
+    "project": "Projet",
+    "about": "À propos",
+    "methodology": "Méthodologie",
+    "privacy": "Confidentialité",
+    "sourceCode": "Code source",
+    "madeBy": "Créé par <link>{name}</link>",
     "language": "Langue"
   },
   "Breadcrumbs": {

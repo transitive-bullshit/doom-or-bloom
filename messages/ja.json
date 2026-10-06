@@ -41,11 +41,23 @@
     "x": "XのTravis"
   },
   "Footer": {
-    "about": "概要",
-    "privacy": "プライバシー",
-    "pdoom": "P(doom)",
-    "methodology": "方法論",
+    "tagline": "一問ずつ答えて、AIに対する世界観をマッピングします。",
+    "explore": "探索する",
+    "mapWorldview": "自分の世界観をマッピングする",
+    "thoughtLeaders": "オピニオンリーダー",
+    "pdoom": "P(doom)の推定",
     "blog": "ブログ",
+    "posts": {
+      "hackerNewsVsX": "Hacker NewsはXよりAIに悲観的",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "すべての投稿",
+    "project": "プロジェクト",
+    "about": "概要",
+    "methodology": "方法論",
+    "privacy": "プライバシー",
+    "sourceCode": "ソースコード",
+    "madeBy": "<link>{name}</link>が制作",
     "language": "言語"
   },
   "Breadcrumbs": {

@@ -45,7 +45,10 @@ test('landing portraits use tooltips and link to results; assessment drafts surv
   const savedUrl = page.url()
   const answer = page.getByLabel('Your answer', { exact: true })
   await answer.fill('A draft that should survive navigation.')
-  await page.getByRole('link', { name: 'Doom or Bloom', exact: true }).click()
+  await page
+    .getByRole('banner')
+    .getByRole('link', { name: 'Doom or Bloom', exact: true })
+    .click()
   await expect(page).toHaveURL(/\/$/)
   await page.goBack()
   await expect(page).toHaveURL(savedUrl)
