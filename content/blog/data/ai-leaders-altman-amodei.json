@@ -1,0 +1,72 @@
+{
+  "kind": "quotes",
+  "title": "Sam Altman and Dario Amodei, in their own words",
+  "asOf": "2026-10-06",
+  "provenance": "public-statements",
+  "people": [
+    {
+      "key": "altman",
+      "name": "Sam Altman",
+      "avatar": "/personas/altman.jpg"
+    },
+    {
+      "key": "amodei",
+      "name": "Dario Amodei",
+      "avatar": "/personas/amodei.jpg"
+    }
+  ],
+  "rows": [
+    {
+      "label": "On the outlook",
+      "quotes": {
+        "altman": {
+          "quote": "I’m incredibly optimistic for the future.",
+          "venue": "Vanity Fair, Fair Game interview (Part 1)",
+          "date": "2026-10-05",
+          "href": "https://www.vanityfair.com/story/sam-altman-exclusive-interview-part-1"
+        },
+        "amodei": {
+          "quote": "I believe deeply in our ability to prevail, in humanity’s spirit and its nobility, but we must face the situation squarely and without illusions.",
+          "venue": "Essay, The Adolescence of Technology",
+          "date": "2026-01",
+          "href": "https://darioamodei.com/essay/the-adolescence-of-technology"
+        }
+      }
+    },
+    {
+      "label": "On pace",
+      "quotes": {
+        "altman": {
+          "quote": "Progress has been rapid and will continue to be. But it should be slower than it otherwise could be",
+          "venue": "Post on X",
+          "date": "2026-09-14",
+          "href": "https://x.com/sama/status/2099348812305473766",
+          "checked": "2026-10-06"
+        },
+        "amodei": {
+          "quote": "We must slow the pace at which we improve the capabilities of AI models.",
+          "venue": "Essay, We Must Pace the Frontier",
+          "date": "2026-09-12",
+          "href": "https://darioamodei.com/post/we-must-pace-the-frontier"
+        }
+      }
+    },
+    {
+      "label": "On power and rules",
+      "quotes": {
+        "altman": {
+          "quote": "There should be limits to the amount of power that private companies have",
+          "venue": "Vanity Fair, Fair Game interview (Part 1)",
+          "date": "2026-10-05",
+          "href": "https://www.vanityfair.com/story/sam-altman-exclusive-interview-part-1"
+        },
+        "amodei": {
+          "quote": "However, now the risks are clearly here. It is time to go beyond transparency to more serious and binding regulation of AI.",
+          "venue": "Essay, Policy on the AI Exponential",
+          "date": "2026-06",
+          "href": "https://darioamodei.com/post/policy-on-the-ai-exponential"
+        }
+      }
+    }
+  ]
+}

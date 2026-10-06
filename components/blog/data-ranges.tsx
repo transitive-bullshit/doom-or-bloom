@@ -70,7 +70,7 @@ export function DataRanges({
         </tbody>
       </table>
       <p className='text-xs text-muted-foreground'>
-        {text.t('rangeScale')} {chart.source}{' '}
+        {text.t('rangeScale')} {chart.source && `${chart.source} `}
         {text.t('asOf', { date: postDate(chart.asOf, text.tag) })}
       </p>
     </figure>

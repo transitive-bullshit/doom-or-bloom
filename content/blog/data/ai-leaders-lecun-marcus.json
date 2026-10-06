@@ -1,0 +1,72 @@
+{
+  "kind": "quotes",
+  "title": "Yann LeCun and Gary Marcus, in their own words",
+  "asOf": "2026-10-06",
+  "provenance": "public-statements",
+  "people": [
+    {
+      "key": "lecun",
+      "name": "Yann LeCun",
+      "avatar": "/personas/lecun.jpg"
+    },
+    {
+      "key": "marcus",
+      "name": "Gary Marcus",
+      "avatar": "/personas/marcus.jpg"
+    }
+  ],
+  "rows": [
+    {
+      "label": "On language models",
+      "quotes": {
+        "lecun": {
+          "quote": "We’re never going to get to human-level AI by just training on text. It’s just not going to happen.",
+          "venue": "Mixture of Experts interview",
+          "date": "2026-05-12",
+          "href": "https://www.mixtureofexperts.co/p/ai-for-the-real-world-a-conversation"
+        },
+        "marcus": {
+          "quote": "In short, I am at least modestly bullish on AGI, but don’t think that large language models like ChatGPT are the droids we are looking for.",
+          "venue": "Marcus on AI newsletter",
+          "date": "2025-11-29",
+          "href": "https://garymarcus.substack.com/p/three-years-on-chatgpt-still-isnt"
+        }
+      }
+    },
+    {
+      "label": "On safety",
+      "quotes": {
+        "lecun": {
+          "quote": "The nice thing about an AI system is that you can design it in such a way that it cannot escape its guardrails.",
+          "venue": "Newsweek interview",
+          "date": "2025-04-02",
+          "href": "https://www.newsweek.com/nw-ai/ai-impact-interview-yann-lecun-artificial-intelligence-2054237"
+        },
+        "marcus": {
+          "quote": "What we actually need right now is increased reliability, better cybersecurity, and genuine enforcement",
+          "venue": "Remarks at a UN General Assembly digital cooperation event",
+          "date": "2026-09-21",
+          "href": "https://garymarcus.substack.com/p/big-news-at-the-un"
+        }
+      }
+    },
+    {
+      "label": "On openness",
+      "quotes": {
+        "lecun": {
+          "quote": "Open source is necessary",
+          "venue": "Newsweek interview",
+          "date": "2025-04-02",
+          "href": "https://www.newsweek.com/nw-ai/ai-impact-interview-yann-lecun-artificial-intelligence-2054237",
+          "checked": "2026-10-06"
+        },
+        "marcus": {
+          "quote": "I still think putting AI in the public domain, with an international effort towards medicine and science, would be a good idea.",
+          "venue": "Marcus on AI newsletter",
+          "date": "2026-07-20",
+          "href": "https://garymarcus.substack.com/p/china-has-all-but-caught-up-the-us"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "kind": "quotes",
+  "title": "Demis Hassabis and Dario Amodei, in their own words",
+  "asOf": "2026-10-06",
+  "provenance": "public-statements",
+  "people": [
+    {
+      "key": "hassabis",
+      "name": "Demis Hassabis",
+      "avatar": "/personas/hassabis.jpg"
+    },
+    {
+      "key": "amodei",
+      "name": "Dario Amodei",
+      "avatar": "/personas/amodei.jpg"
+    }
+  ],
+  "rows": [
+    {
+      "label": "On how soon, at Davos",
+      "quotes": {
+        "hassabis": {
+          "quote": "I think I’m still on the same kind of timeline.",
+          "venue": "World Economic Forum, The Day After AGI",
+          "date": "2026-01-20",
+          "href": "https://www.weforum.org/podcasts/radio-davos/episodes/ai-agi-dario-amodei-demis-hassabis/",
+          "checked": "2026-10-06"
+        },
+        "amodei": {
+          "quote": "if I had to guess, I would guess that this goes faster than people imagine",
+          "venue": "World Economic Forum, The Day After AGI",
+          "date": "2026-01-20",
+          "href": "https://www.weforum.org/podcasts/radio-davos/episodes/ai-agi-dario-amodei-demis-hassabis/",
+          "checked": "2026-10-06"
+        }
+      }
+    },
+    {
+      "label": "On the risks",
+      "quotes": {
+        "hassabis": {
+          "quote": "Urgent action is needed to address risks that might arise as we get closer to AGI.",
+          "venue": "Essay, A Framework for Frontier AI and the Dawning of a New Age",
+          "date": "2026-07-14",
+          "href": "https://institute.deepmind.com/essays/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age/"
+        },
+        "amodei": {
+          "quote": "However, now the risks are clearly here. It is time to go beyond transparency to more serious and binding regulation of AI.",
+          "venue": "Essay, Policy on the AI Exponential",
+          "date": "2026-06",
+          "href": "https://darioamodei.com/post/policy-on-the-ai-exponential"
+        }
+      }
+    },
+    {
+      "label": "On pace",
+      "quotes": {
+        "hassabis": {
+          "quote": "Dario’s essay points towards the right path forward. The details need working through, but the direction is correct for meeting this critical moment.",
+          "venue": "Post on X",
+          "date": "2026-09-12",
+          "href": "https://x.com/demishassabis/status/2098909516582490602"
+        },
+        "amodei": {
+          "quote": "We must slow the pace at which we improve the capabilities of AI models.",
+          "venue": "Essay, We Must Pace the Frontier",
+          "date": "2026-09-12",
+          "href": "https://darioamodei.com/post/we-must-pace-the-frontier"
+        }
+      }
+    },
+    {
+      "label": "On what AI is for",
+      "quotes": {
+        "hassabis": {
+          "quote": "AGI has the potential to be the ultimate tool for advancing science and medicine, and to drive enormous productivity gains and economic growth.",
+          "venue": "Essay, A Framework for Frontier AI and the Dawning of a New Age",
+          "date": "2026-07-14",
+          "href": "https://institute.deepmind.com/essays/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age/"
+        },
+        "amodei": {
+          "quote": "AI-enabled biology and medicine will allow us to compress the progress that human biologists would have achieved over the next 50-100 years into 5-10 years.",
+          "venue": "Essay, Machines of Loving Grace",
+          "date": "2024-10",
+          "href": "https://darioamodei.com/essay/machines-of-loving-grace"
+        }
+      }
+    }
+  ]
+}

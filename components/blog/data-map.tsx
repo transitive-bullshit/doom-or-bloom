@@ -2,6 +2,7 @@ import { useId } from 'react'
 import { PrismField } from '@/components/worldview/prism-field'
 import { postDate } from '@/lib/blog/format'
 import { mapDataSchema, minimumGroupSize } from '@/lib/blog/schema'
+import type { ProfileMentions } from '@/lib/personas/mentions'
 import { resultMapLayout } from '@/lib/sharing/map-layout'
 import {
   ChartFigure,
@@ -12,6 +13,7 @@ import {
   Swatch,
   type ChartText
 } from './chart-parts'
+import { PairPlot } from './pair-plot'
 
 // The result map's geometry and Prism field, with aggregate points instead of
 // one subject.
@@ -30,21 +32,24 @@ type Chart = ReturnType<typeof mapDataSchema.parse>
 /**
  * The Doom–Bloom × transformation map from committed JSON: shaded cells of
  * participant aggregates (a group under the minimum is hatched and labelled),
- * or sized points on the result map's Prism field.
+ * or sized points on the result map's Prism field, optionally compared two at
+ * a time. Names with a profile link to it.
  */
 export function DataMap({
   data,
-  text = englishChartText()
+  text = englishChartText(),
+  mention = (label) => [{ text: label }]
 }: {
   data: unknown
   text?: ChartText
+  mention?: ProfileMentions
 }) {
   const chart = mapDataSchema.parse(data)
   const id = useId().replace(/[^a-zA-Z0-9-]/g, '')
   return chart.cells ? (
     <CellMap chart={chart} id={id} text={text} />
   ) : (
-    <PointMap chart={chart} id={id} text={text} />
+    <PointMap chart={chart} id={id} text={text} mention={mention} />
   )
 }
 
@@ -256,14 +261,21 @@ function CellMap({
 function PointMap({
   chart,
   id,
-  text
+  text,
+  mention
 }: {
   chart: Chart
   id: string
   text: ChartText
+  mention: ProfileMentions
 }) {
   const heaviest = Math.max(...chart.points.map((point) => point.weight ?? 1))
   const radius = (weight = 1) => 4 + 10 * Math.sqrt(weight / heaviest)
+  const weighted = chart.points.some((point) => point.weight !== undefined)
+  const named = (key: string) => {
+    const point = chart.points.find((entry) => entry.key === key)!
+    return mention(point.name ?? point.label ?? key)
+  }
   return (
     <figure
       data-slot='blog-data-map'
@@ -272,74 +284,88 @@ function PointMap({
       <figcaption className='text-center font-semibold'>
         {chart.title}
       </figcaption>
-      <svg
-        viewBox={`0 0 ${resultMapLayout.width} ${resultMapLayout.height}`}
-        role='img'
-        aria-label={text.t('mapSummary', { title: chart.title })}
-        className='block w-full'
-      >
-        <PrismField id={`blog-map-${id}`} plot={plot} />
-        <text
-          className='prism-axis-label'
-          x='340'
-          y='16'
-          dominantBaseline='middle'
-          textAnchor='middle'
-          fill='var(--map-muted)'
-          fontSize='12'
+      {chart.pairs ? (
+        <PairPlot
+          id={id}
+          points={chart.points}
+          pairs={chart.pairs.map((pair) => ({
+            ...pair,
+            names: pair.points.map(named)
+          }))}
+          hint={chart.hint!}
+          poles={{ high: text.high, low: text.low }}
+          summary={text.t('mapSummary', { title: chart.title })}
+        />
+      ) : (
+        <svg
+          viewBox={`0 0 ${resultMapLayout.width} ${resultMapLayout.height}`}
+          role='img'
+          aria-label={text.t('mapSummary', { title: chart.title })}
+          className='block w-full'
         >
-          {text.high}
-        </text>
-        <text
-          className='prism-axis-label'
-          x='340'
-          y='332'
-          dominantBaseline='middle'
-          textAnchor='middle'
-          fill='var(--map-muted)'
-          fontSize='12'
-        >
-          {text.low}
-        </text>
-        {(['Doom', 'Bloom'] as const).map((pole, index) => (
+          <PrismField id={`blog-map-${id}`} plot={plot} />
           <text
-            key={pole}
-            className='prism-pole'
-            x={index ? 644 : 36}
-            y={py(0.5)}
+            className='prism-axis-label'
+            x='340'
+            y='16'
             dominantBaseline='middle'
             textAnchor='middle'
-            fill='var(--map-text)'
-            fontSize='14'
+            fill='var(--map-muted)'
+            fontSize='12'
           >
-            {pole}
+            {text.high}
           </text>
-        ))}
-        {chart.points.map((point, index) => (
-          <g key={index}>
-            <circle
-              cx={px(point.outlook)}
-              cy={py(point.transformation)}
-              r={radius(point.weight)}
+          <text
+            className='prism-axis-label'
+            x='340'
+            y='332'
+            dominantBaseline='middle'
+            textAnchor='middle'
+            fill='var(--map-muted)'
+            fontSize='12'
+          >
+            {text.low}
+          </text>
+          {(['Doom', 'Bloom'] as const).map((pole, index) => (
+            <text
+              key={pole}
+              className='prism-pole'
+              x={index ? 644 : 36}
+              y={py(0.5)}
+              dominantBaseline='middle'
+              textAnchor='middle'
               fill='var(--map-text)'
-              fillOpacity='.5'
-              stroke='var(--map-surface)'
-              strokeWidth='1.5'
-            />
-            {point.label && (
-              <text
-                x={px(point.outlook) + radius(point.weight) + 4}
-                y={py(point.transformation)}
-                dominantBaseline='middle'
-                fontSize='11'
+              fontSize='14'
+            >
+              {pole}
+            </text>
+          ))}
+          {chart.points.map((point, index) => (
+            <g key={index}>
+              <circle
+                cx={px(point.outlook)}
+                cy={py(point.transformation)}
+                r={radius(point.weight)}
                 fill='var(--map-text)'
-              >
-                {point.label}
-              </text>
-            )}
-          </g>
-        ))}
-      </svg>
+                fillOpacity='.5'
+                stroke='var(--map-surface)'
+                strokeWidth='1.5'
+              />
+              {point.label && (
+                <text
+                  x={px(point.outlook) + radius(point.weight) + 4}
+                  y={py(point.transformation)}
+                  dominantBaseline='middle'
+                  fontSize='11'
+                  fill='var(--map-text)'
+                >
+                  {point.label}
+                </text>
+              )}
+            </g>
+          ))}
+        </svg>
+      )}
       {/* A table ignores sr-only's 1px width, so its wrapper hides it. */}
       <div className='sr-only'>
         <table>
@@ -349,23 +375,23 @@ function PointMap({
               <th scope='col'>{text.t('point')}</th>
               <th scope='col'>{text.t('outlook')}</th>
               <th scope='col'>{text.t('scale')}</th>
-              <th scope='col'>{text.t('weight')}</th>
+              {weighted && <th scope='col'>{text.t('weight')}</th>}
             </tr>
           </thead>
           <tbody>
             {chart.points.map((point, index) => (
               <tr key={index}>
-                <th scope='row'>{point.label ?? point.name ?? index + 1}</th>
+                <th scope='row'>{point.name ?? point.label ?? index + 1}</th>
                 <td>{percent(point.outlook)}</td>
                 <td>{percent(point.transformation)}</td>
-                <td>{point.weight ?? 1}</td>
+                {weighted && <td>{point.weight ?? 1}</td>}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <p className='text-xs text-muted-foreground'>
-        {chart.source}{' '}
+        {chart.source && `${chart.source} `}
         {text.t('asOf', { date: postDate(chart.asOf, text.tag) })}
       </p>
     </figure>
