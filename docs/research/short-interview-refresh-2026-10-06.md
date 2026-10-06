@@ -27,7 +27,11 @@ Average accepted answers increased from 2.39 to 4.27. Average Euclidean distance
 
 The largest distances were Victor Taelin, Andrew Curran, Joscha Bach, Mario Zechner and Sauers. Sampled their relevant answers against their saved briefs, plus Fabian Stelzer's six-answer interview. Changes include clarified outlook, explicit expectations about transformation and more honestly retained uncertainty. This is an editorial spot check, not blinded semantic validation. Regenerated questions, fictional answers and judgment variation all contribute; map movement does not establish a change in the real person's views.
 
-Created a standalone side-by-side HTML visual with synchronized hover/focus labels, search and a movement table, plus PNG exports. Browser checks verified 96 points per map, all 96 rows, correspondence, search, mobile fit and absence of script errors. Local artifacts and scripts are retained under `work/refresh-2026-10-06/`; the visual and compact comparison JSON are attached to the Codex chat.
+Created a standalone side-by-side HTML visual with synchronized hover/focus labels, search and a movement table, plus PNG exports. Browser checks verified 96 points per map, all 96 rows, correspondence, search, mobile fit and absence of script errors. Local artifacts and scripts are retained under `work/refresh-2026-10-06/`; the interactive visual and compact comparison JSON are attached to the Codex chat. The review assets below contain public result metadata only.
+
+![Before and after map](short-interview-refresh-2026-10-06/before-after.png)
+
+[Download the 96-profile result manifest](short-interview-refresh-2026-10-06/results.csv).
 
 | Simulated user | Old engine | Accepted answers | Before (outlook, transformation) | After (outlook, transformation) |
 | --- | --- | --- | --- | --- |
