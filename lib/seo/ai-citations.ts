@@ -139,6 +139,17 @@ export type Reply = {
 
 const unique = <T>(values: T[]) => [...new Set(values)]
 
+/**
+ * Why a reply can't count as an answer, or null when it can: it must be
+ * completed, or incomplete (cut off at its output limit) with answer text.
+ */
+export function unusableReply(reply: Pick<Reply, 'status' | 'text'>) {
+  if (reply.status !== 'completed' && reply.status !== 'incomplete')
+    return `reply ${reply.status}`
+  if (!reply.text.trim()) return `${reply.status} reply without text`
+  return null
+}
+
 /** The answer, its citations and the pages its searches read. */
 export function readReply(body: unknown): Reply {
   const reply = replySchema.parse(body)
@@ -257,10 +268,20 @@ const answered = (results: QuestionResult[]) =>
   )
 
 /** The newest earlier run's file name, from a directory listing. */
-export function previousRunFile(names: string[], date: string) {
+/** A run's file name: one per day and model, so runs of different models never overwrite each other. */
+export const runFileName = (date: string, model: string) =>
+  `${date}-${model}.json`
+
+/** The newest earlier run by the same model, from a directory listing. */
+export function previousRunFile(names: string[], date: string, model: string) {
+  const suffix = `-${model}.json`
   return names
-    .filter((name) => /^\d{4}-\d{2}-\d{2}\.json$/u.test(name))
-    .filter((name) => name < `${date}.json`)
+    .filter(
+      (name) =>
+        name.endsWith(suffix) &&
+        /^\d{4}-\d{2}-\d{2}$/u.test(name.slice(0, -suffix.length))
+    )
+    .filter((name) => name < runFileName(date, model))
     .toSorted()
     .at(-1)
 }
@@ -290,7 +311,8 @@ export function topDomains(results: QuestionResult[], limit = 10) {
 /**
  * What changed since the previous run, for questions answered in both:
  * answers that started or stopped citing the site, moves in the site's best
- * rank, and domains entering or leaving the top cited domains.
+ * rank, and domains entering or leaving the top cited domains among the
+ * questions both runs answered.
  */
 export function compareRuns(
   previous: CitationRun,
@@ -304,10 +326,12 @@ export function compareRuns(
     const earlier = earlierById.get(later.id)
     return earlier ? [{ earlier, later }] : []
   })
-  const top = (run: CitationRun) =>
-    topDomains(run.results, limit).map(({ domain }) => domain)
-  const topBefore = top(previous)
-  const topNow = top(current)
+  // Rank domains over the same answered questions in both runs, so a failed
+  // or added question doesn't move a domain in or out of the top.
+  const top = (results: QuestionResult[]) =>
+    topDomains(results, limit).map(({ domain }) => domain)
+  const topBefore = top(pairs.map(({ earlier }) => earlier))
+  const topNow = top(pairs.map(({ later }) => later))
   return {
     previousDate: previous.date,
     citedBefore: answered(previous.results).filter((result) => result.cited)

@@ -5,8 +5,8 @@
 //   pnpm seo:ai-citations (--dry-run | --allow-paid --max-cost=<usd>)
 //                         [--model=gpt-5-nano] [--concurrency=8]
 //
-// A run writes work/seo/ai-citations/<date>.json (a rerun the same day
-// replaces it), prints the answers citing the site, the top cited domains and
+// A run writes work/seo/ai-citations/<date>-<model>.json (a rerun of the same
+// model the same day replaces it), prints the answers citing the site, the top cited domains and
 // the changes since the newest earlier run, and appends each paid call to
 // eval/runs/seo-ai-citations-<time>.jsonl. The OpenAI key comes from the
 // environment; run it from a login shell that has it.
@@ -26,6 +26,8 @@ import {
   formatSummary,
   modelRates,
   previousRunFile,
+  runFileName,
+  unusableReply,
   readReply,
   replyCost,
   siteDomain,
@@ -179,8 +181,8 @@ async function ask(question: AiQuestion): Promise<QuestionResult> {
     const usd = replyCost(model, reply.usage)
     spent += usd
     record(question, usd, reply.usage)
-    if (reply.status !== 'completed' && reply.status !== 'incomplete')
-      return failed(`reply ${reply.status}`)
+    const unusable = unusableReply(reply)
+    if (unusable) return failed(unusable)
     return answeredQuestion(question, reply, usd)
   }
 }
@@ -202,14 +204,15 @@ const directory = 'work/seo/ai-citations'
 mkdirSync(path.join(root, directory), { recursive: true })
 const previousName = previousRunFile(
   readdirSync(path.join(root, directory)),
-  date
+  date,
+  model
 )
 const previous = previousName
   ? (JSON.parse(
       readFileSync(path.join(root, directory, previousName), 'utf8')
     ) as CitationRun)
   : null
-const file = `${directory}/${date}.json`
+const file = `${directory}/${runFileName(date, model)}`
 writeFileSync(path.join(root, file), `${JSON.stringify(run, null, 2)}\n`)
 console.log(`\n${formatSummary(run, previous)}`)
 console.log(

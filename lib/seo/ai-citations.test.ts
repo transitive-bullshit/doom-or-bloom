@@ -7,6 +7,8 @@ import {
   formatSummary,
   isOwnUrl,
   previousRunFile,
+  runFileName,
+  unusableReply,
   readReply,
   replyCost,
   siteDomain,
@@ -288,6 +290,22 @@ describe('comparing runs', () => {
     })
   })
 
+  test('top domains compare only questions answered in both runs', () => {
+    const before = runOf('2026-09-06', [
+      answer('kept', [wiki]),
+      answer('fails-later', [pause])
+    ])
+    const after = runOf('2026-10-06', [
+      answer('kept', [wiki]),
+      failure('fails-later'),
+      answer('added', [reddit])
+    ])
+    expect(compareRuns(before, after)).toMatchObject({
+      domainsIn: [],
+      domainsOut: []
+    })
+  })
+
   test('the summary lists the site’s citations and the changes', () => {
     const summary = formatSummary(current, previous)
     expect(summary).toContain(
@@ -308,24 +326,44 @@ describe('comparing runs', () => {
     expect(formatSummary(current)).toContain('No earlier run to compare with.')
   })
 
-  test('the previous run is the newest file dated before this one', () => {
+  test('the previous run is the newest earlier file by the same model', () => {
     expect(
       previousRunFile(
         [
-          '2026-08-01.json',
-          '2026-10-06.json',
-          '2026-09-06.json',
+          '2026-08-01-gpt-5-nano.json',
+          '2026-10-06-gpt-5-nano.json',
+          '2026-09-06-gpt-5-nano.json',
+          '2026-09-20-gpt-5-mini.json',
           'notes.txt',
-          '2026-09-30.json.bak'
+          '2026-09-30-gpt-5-nano.json.bak'
         ],
-        '2026-10-06'
+        '2026-10-06',
+        'gpt-5-nano'
       )
-    ).toBe('2026-09-06.json')
-    expect(previousRunFile(['2026-10-06.json'], '2026-10-06')).toBeUndefined()
+    ).toBe('2026-09-06-gpt-5-nano.json')
+    expect(
+      previousRunFile(
+        ['2026-10-06-gpt-5-nano.json'],
+        '2026-10-06',
+        'gpt-5-nano'
+      )
+    ).toBeUndefined()
+    expect(runFileName('2026-10-06', 'gpt-5-mini')).toBe(
+      '2026-10-06-gpt-5-mini.json'
+    )
   })
 })
 
 test('question ids are unique', () => {
   const ids = aiQuestions.map((question) => question.id)
   expect(new Set(ids).size).toBe(ids.length)
+})
+
+test('a reply counts only when completed, or incomplete with text', () => {
+  expect(unusableReply({ status: 'completed', text: 'An answer' })).toBeNull()
+  expect(unusableReply({ status: 'incomplete', text: 'Part of it' })).toBeNull()
+  expect(unusableReply({ status: 'incomplete', text: ' ' })).toBe(
+    'incomplete reply without text'
+  )
+  expect(unusableReply({ status: 'failed', text: '' })).toBe('reply failed')
 })
