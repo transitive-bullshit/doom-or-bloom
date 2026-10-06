@@ -23,7 +23,7 @@ export type CuratedPerson =
   | {
       id: string
       /** An exact quote of under 15 words, shown instead of a number. */
-      declined: { quote: string; note: string; source: HubSource }
+      declined: { quote: string; source: HubSource }
     }
 
 export const curatedPeople: CuratedPerson[] = [
@@ -171,7 +171,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'control-alarmist',
     declined: {
       quote: 'There’s a lot of reasons I hate the ‘P(doom)’ concept',
-      note: 'Ruin from superintelligence built with anything like current techniques: “Yes”',
       source: {
         title: 'There’s a lot of reasons I hate the “P(doom)” concept',
         url: 'https://x.com/ESYudkowsky/status/2101804209528271092',
@@ -184,7 +183,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'scientist-ai-advocate',
     declined: {
       quote: 'I’d rather stay out of the p(doom) game.',
-      note: 'Gave 20% in 2023; now calls the risk “way too high for my taste”',
       source: {
         title:
           'Yoshua Bengio thinks he knows how to build safe superintelligence',
@@ -198,7 +196,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'scientific-steward',
     declined: {
       quote: 'it’s definitely non-zero and it’s probably non-negligible',
-      note: 'Says a number would imply a precision that isn’t there',
       source: {
         title:
           'Transcript for Demis Hassabis: Future of AI, Simulating Reality, Physics and Video Games | Lex Fridman Podcast #475',
@@ -212,7 +209,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'cautious-builder',
     declined: {
       quote: 'I don’t know how you can put a number like that.',
-      note: 'Calls taking a 10% chance of killing everybody unacceptable',
       source: {
         title:
           'Altman: AI Beyond Human Control “Absolutely” Possible, Vows Safeguards | Titans and Disruptors',

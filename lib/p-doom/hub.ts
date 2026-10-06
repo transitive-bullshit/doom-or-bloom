@@ -28,8 +28,11 @@ export type HubRow = Omit<Person, 'id'> & {
    * quote or only a long one.
    */
   quote: string | null
-  /** Outcome, horizon or condition for a number, or context for a refusal. */
-  note: string
+  /**
+   * Our one-line outcome, horizon or condition for a number, shown only when
+   * the row has no quote: a person's own words take its place.
+   */
+  note: string | null
   source: HubSource
 }
 
@@ -89,21 +92,23 @@ export function hubRows(
     if (!person) return []
     const { slug, name, avatar } = person
     if ('declined' in entry) {
-      const { quote, note, source } = entry.declined
-      return [{ slug, name, avatar, token: null, quote, note, source }]
+      const { quote, source } = entry.declined
+      return [{ slug, name, avatar, token: null, quote, note: null, source }]
     }
     const statement = statements[entry.id]
     if (!statement) return []
+    const quote = shortQuote(statement.quote)
     return [
       {
         slug,
         name,
         avatar,
         token: statement.token,
-        quote: shortQuote(statement.quote),
+        quote,
         // A note written for an earlier source would misdescribe a new one.
-        note:
-          entry.note?.url === statement.url
+        note: quote
+          ? null
+          : entry.note?.url === statement.url
             ? entry.note.text
             : statement.outcome,
         source: statementSource(statement, name)
