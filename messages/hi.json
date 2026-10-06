@@ -41,11 +41,23 @@
     "x": "X पर Travis"
   },
   "Footer": {
-    "about": "परिचय",
-    "privacy": "गोपनीयता",
-    "pdoom": "P(doom)",
-    "methodology": "कार्यप्रणाली",
+    "tagline": "एक-एक सवाल का जवाब देकर एआई के बारे में अपना विश्वदृष्टिकोण मैप करें।",
+    "explore": "जानें",
+    "mapWorldview": "अपना विश्वदृष्टिकोण मैप करें",
+    "thoughtLeaders": "प्रमुख विचारक",
+    "pdoom": "P(doom) के अनुमान",
     "blog": "ब्लॉग",
+    "posts": {
+      "hackerNewsVsX": "Hacker News एआई को लेकर X से ज़्यादा निराशावादी है",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "सभी पोस्ट",
+    "project": "प्रोजेक्ट",
+    "about": "परिचय",
+    "methodology": "कार्यप्रणाली",
+    "privacy": "गोपनीयता",
+    "sourceCode": "सोर्स कोड",
+    "madeBy": "<link>{name}</link> द्वारा निर्मित",
     "language": "भाषा"
   },
   "Breadcrumbs": {

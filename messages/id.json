@@ -41,11 +41,23 @@
     "x": "Travis di X"
   },
   "Footer": {
-    "about": "Tentang",
-    "privacy": "Privasi",
-    "pdoom": "P(doom)",
-    "methodology": "Metodologi",
+    "tagline": "Petakan pandangan dunia AI Anda, satu pertanyaan setiap kali.",
+    "explore": "Jelajahi",
+    "mapWorldview": "Petakan pandangan dunia Anda",
+    "thoughtLeaders": "Tokoh opini",
+    "pdoom": "Estimasi P(doom)",
     "blog": "Blog",
+    "posts": {
+      "hackerNewsVsX": "Hacker News lebih pesimistis tentang AI daripada X",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "Semua artikel",
+    "project": "Proyek",
+    "about": "Tentang",
+    "methodology": "Metodologi",
+    "privacy": "Privasi",
+    "sourceCode": "Kode sumber",
+    "madeBy": "Dibuat oleh <link>{name}</link>",
     "language": "Bahasa"
   },
   "Breadcrumbs": {

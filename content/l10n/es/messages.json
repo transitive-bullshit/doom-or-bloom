@@ -128,21 +128,69 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
-    "Footer.about": {
-      "sourceHash": "4efca0d10c5feb8e",
-      "model": "unrecorded",
-      "translatedAt": "2026-10-01",
+    "Footer.tagline": {
+      "sourceHash": "a51ea043a2809467",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
     },
-    "Footer.privacy": {
-      "sourceHash": "54a57c3147c49f33",
-      "model": "unrecorded",
-      "translatedAt": "2026-10-01",
+    "Footer.explore": {
+      "sourceHash": "3b73900b8d29f963",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.mapWorldview": {
+      "sourceHash": "99242458f0ed8a7f",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.thoughtLeaders": {
+      "sourceHash": "79db430c1ee90e7d",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
     },
     "Footer.pdoom": {
-      "sourceHash": "acf6f0dd4009a176",
+      "sourceHash": "3c862fa6364fae8e",
       "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.blog": {
+      "sourceHash": "8c6bc099534a0251",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Footer.posts.hackerNewsVsX": {
+      "sourceHash": "ffbd6da16bfe0dcc",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.posts.whyPollsDisagree": {
+      "sourceHash": "efc44112b4c02404",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.allPosts": {
+      "sourceHash": "3a2e5c2c34923fd5",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.project": {
+      "sourceHash": "9859597853197476",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.about": {
+      "sourceHash": "4efca0d10c5feb8e",
+      "model": "unrecorded",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
@@ -152,10 +200,22 @@
       "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
     },
-    "Footer.blog": {
-      "sourceHash": "8c6bc099534a0251",
-      "model": "gpt-5.6-sol",
+    "Footer.privacy": {
+      "sourceHash": "54a57c3147c49f33",
+      "model": "unrecorded",
       "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "Footer.sourceCode": {
+      "sourceHash": "bf046c7395cb38ee",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
+      "reviewStatus": "machine"
+    },
+    "Footer.madeBy": {
+      "sourceHash": "bb496a9cba72379e",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
     },
     "Footer.language": {

@@ -41,11 +41,23 @@
     "x": "Travis on X"
   },
   "Footer": {
-    "about": "About",
-    "privacy": "Privacy",
-    "pdoom": "P(doom)",
-    "methodology": "Methodology",
+    "tagline": "Map your AI worldview, one question at a time.",
+    "explore": "Explore",
+    "mapWorldview": "Map your worldview",
+    "thoughtLeaders": "Thought leaders",
+    "pdoom": "P(doom) estimates",
     "blog": "Blog",
+    "posts": {
+      "hackerNewsVsX": "Hacker News is gloomier about AI than X",
+      "whyPollsDisagree": "Why polls on AI disagree"
+    },
+    "allPosts": "All posts",
+    "project": "Project",
+    "about": "About",
+    "methodology": "Methodology",
+    "privacy": "Privacy",
+    "sourceCode": "Source code",
+    "madeBy": "Made by <link>{name}</link>",
     "language": "Language"
   },
   "Breadcrumbs": {
