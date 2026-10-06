@@ -14,7 +14,15 @@ Generated `cautious-builder` with `pnpm journeys:generate --persona=cautious-bui
 
 Read all five answers and the final result against the brief. They preserve strong optimism, scientific acceleration, broad access, safeguards and pacing, adoption inertia, and refusal to supply a precise catastrophe probability or a new timeline. The final crux answer is fictional elaboration from the brief’s control and distribution conditions, not a verified Altman quote. Outlook is 0.915625 and expected transformation 0.806875; these are simulation outputs, not independently established properties of the real person. The result’s ≈9% P(doom) is model-inferred, not an Altman statement.
 
-The local database selects assessment `a4392cad-77bf-432b-97ed-c027b9458acc`, confirmed as `simulation_v1` with a result. Its recorded source snapshot includes the new interview. No production import or deployment was performed; the live profile retains its previous run until publication under [the source publication contract](../user-journeys.md#source-changes-and-publication).
+The local database selects assessment `a4392cad-77bf-432b-97ed-c027b9458acc`, confirmed as `simulation_v1` with a result. Its recorded source snapshot includes the new interview.
+
+## Authorized publication
+
+The owner subsequently requested committing, syncing both hosted databases and deploying through a worktree PR. Committed the source and quote update as `d26dfffe`, based on freshly fetched `origin/main`, and opened [PR #66](https://github.com/transitive-bullshit/doom-or-bloom/pull/66).
+
+Ran `personas:import plan` followed by `write`, scoped to `--ids sama`, for production and the separate Preview database (`jolly-frog-41412992`, branch `br-blue-field-avdsx870`, database `doom_bloom_preview`). Both writes verified that the target’s selected snapshot digest matched the local regenerated run. No inference, migrations or participant-data transfer occurred. Static source previews and real quote sections deploy through the PR; saved simulations retain their immutable history.
+
+Vercel’s Preview environment pull returned sensitive placeholders, so the existing Neon CLI login supplied the Preview connection in a temporary file. Temporary credential files were removed after imports.
 
 ## Verification
 

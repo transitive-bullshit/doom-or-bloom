@@ -158,4 +158,4 @@ At Travis's request, added [Drew Spartz](ai-species-persona-2026-10-05.md) at `/
 
 ## Sam Altman — October 6, 2026
 
-Added the requested Vanity Fair Part 1 interview to Altman’s authored brief, then regenerated five answers and their results locally for an estimated $0.12. Added two verified direct quotes while retaining all five existing public statements. The [source audit](altman-vanity-fair-2026-10-06.md) records attribution limits, fidelity review, run provenance and verification. The new selected run is local only; production publication remains separate.
+Added the requested Vanity Fair Part 1 interview to Altman’s authored brief, then regenerated five answers and their results for an estimated $0.12. Added two verified direct quotes while retaining all five existing public statements. At the owner’s subsequent request, imported the selected run into Preview and production; both verified the local snapshot digest. The [source audit](altman-vanity-fair-2026-10-06.md) records attribution limits, fidelity review, run provenance and verification; [PR #66](https://github.com/transitive-bullshit/doom-or-bloom/pull/66) delivers the authored assets.
