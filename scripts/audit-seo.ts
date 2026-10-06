@@ -3,6 +3,7 @@ import sharp from 'sharp'
 import http from 'node:http'
 import { load } from 'cheerio'
 import { writeFile, mkdir } from 'node:fs/promises'
+import { defaultLocale, locales } from '../i18n/config'
 
 const origin = process.argv[2] ?? 'https://www.doom-or-bloom.com'
 const output = process.argv[3] ?? '/tmp/doom-seo-audit/production.json'
@@ -168,7 +169,12 @@ if (process.argv.includes('--check')) {
     )
     const ogImage = new URL(page.meta['og:image']!)
     assert.equal(ogImage.origin, canonicalOrigin, page.path)
-    if (page.path.startsWith('/users/') || page.path.startsWith('/blog/')) {
+    // Profiles and posts have their own cards; a translated post's card is
+    // under its locale prefix (docs/SEO.md#where-things-live).
+    if (
+      page.path.startsWith('/users/') ||
+      /^(?:\/[a-z]{2})?\/blog\/[^/]+$/.test(page.path)
+    ) {
       assert.equal(ogImage.pathname, `${page.path}/opengraph-image`, page.path)
     } else if (page.path.startsWith('/public/assessments/')) {
       assert.equal(ogImage.pathname, `${page.path}/social-image.png`, page.path)
@@ -208,20 +214,17 @@ if (process.argv.includes('--check')) {
       '/api/',
       '/api$',
       // Owner routes, unprefixed for English and under each locale prefix.
-      ...[
-        '',
-        ...['es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id'].map(
-          (code) => `/${code}`
-        )
-      ].flatMap((prefix) =>
-        [
-          '/assessment$',
-          '/assessment/',
-          '/assessments$',
-          '/assessments?',
-          '/assessments/'
-        ].map((path) => prefix + path)
-      ),
+      ...locales
+        .map((code) => (code === defaultLocale ? '' : `/${code}`))
+        .flatMap((prefix) =>
+          [
+            '/assessment$',
+            '/assessment/',
+            '/assessments$',
+            '/assessments?',
+            '/assessments/'
+          ].map((path) => prefix + path)
+        ),
       '/public/assessments/*/data$'
     ].map((path) => `Disallow: ${path}`)
   )

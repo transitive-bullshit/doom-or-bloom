@@ -17,6 +17,7 @@ import { WorldviewCtaCard } from '@/components/worldview-cta-card'
 import { CompareCta } from '@/components/compare-cta'
 import { MobileCta } from '@/components/mobile-cta'
 import { repository } from '@/lib/assessments/server'
+import { resultDescription, resultTitle } from '@/lib/seo/result-titles'
 
 export const dynamic = 'force-static'
 export const dynamicParams = true
@@ -39,17 +40,41 @@ export async function generateMetadata({
 }) {
   const { id } = await params
   const saved = await loadPublished(id)
-  const [locale, t] = await Promise.all([getLocale(), getTranslations()])
-  const name =
-    saved.kind === 'simulation' ? saved.profile.name : saved.publisher?.name
+  const [locale, t, personas] = await Promise.all([
+    getLocale(),
+    getTranslations(),
+    loadPersonaComparisons()
+  ])
+  // A simulation keeps its profile's wording. Each participant result gets
+  // its own title and description from what the page shows
+  // (docs/SEO.md#published-results).
+  const text =
+    saved.kind === 'simulation'
+      ? {
+          title: t('Profiles.publicTitle', { name: saved.profile.name }),
+          description: t('Profiles.userDescription', {
+            name: saved.profile.name
+          })
+        }
+      : {
+          title: resultTitle(
+            t,
+            saved.assessment.result!,
+            saved.publisher?.name
+          ),
+          description: resultDescription(
+            t,
+            locale,
+            saved.assessment.result!,
+            personas,
+            saved.publisher?.name
+          )
+        }
   const metadata = pageMetadata({
     locale,
     translated: false,
     path: `/public/assessments/${id}`,
-    title: name
-      ? t('Profiles.publicTitle', { name })
-      : t('Profiles.sharedTitle'),
-    description: t('Profiles.publicDescription'),
+    ...text,
     image: publicShareCardPath(id, await publicShareCard(saved, t), locale),
     imageAlt: t('Profiles.publicImageAlt')
   })

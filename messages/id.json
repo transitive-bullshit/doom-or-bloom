@@ -24,7 +24,7 @@
       "description": "P(doom) adalah peluang yang seseorang berikan bahwa AI berakhir dengan katastrofe bagi umat manusia. Lihat apa yang telah dikatakan Hinton, Musk, Amodei, LeCun, dan lainnya, beserta sumbernya."
     },
     "blog": {
-      "title": "Blog",
+      "title": "Data dan penjelasan tentang risiko AI dan masa depan AI",
       "description": "Tulisan dengan bahasa sederhana dari Doom or Bloom tentang P(doom), risiko AI, dan cara orang memikirkan masa depan AI."
     }
   },
@@ -762,6 +762,7 @@
     "profile": "Profil",
     "similarTitle": "Pandangan dunia serupa",
     "similarDescription": "Pemimpin opini dengan pandangan dunia simulasi yang paling mendekati pandangan {name}",
+    "similarPositionsDescription": "Pemimpin opini yang paling dekat dengan pandangan dunia simulasi {name} dalam beberapa posisi yang diungkapkannya",
     "statementsTitle": "Apa yang pernah dikatakan {name} tentang AI",
     "statementsNote": "Dikutip kata demi kata dari sumber yang ditautkan, diperiksa pada {date}"
   },
@@ -805,7 +806,26 @@
     "personDescription": "Simulasi pandangan dunia AI {name}, yang dibuat berdasarkan tulisan publik mereka. Ini adalah interpretasi eksperimental, bukan penilaian mereka sendiri ataupun bentuk dukungan.",
     "publicTitle": "Pandangan dunia AI {name}",
     "sharedTitle": "Pandangan dunia AI yang dibagikan",
-    "publicDescription": "Jelajahi pandangan dunia AI ini: ekspektasi, risiko, perspektif terdekat, dan jawaban yang mendasari penilaian.",
+    "resultTitle": {
+      "full": "{outlook}, {change}",
+      "outlook": {
+        "veryWorried": "Sangat khawatir tentang AI",
+        "worried": "Khawatir tentang AI",
+        "mixed": "Memiliki pandangan beragam tentang AI",
+        "hopeful": "Penuh harapan tentang AI",
+        "veryHopeful": "Sangat penuh harapan tentang AI"
+      },
+      "change": {
+        "little": "memperkirakan sedikit perubahan",
+        "modest": "memperkirakan perubahan moderat",
+        "substantial": "memperkirakan perubahan substansial",
+        "sweeping": "memperkirakan perubahan menyeluruh",
+        "profound": "memperkirakan perubahan mendalam",
+        "unsettled": "tidak yakin seberapa besar perubahan akan terjadi"
+      }
+    },
+    "resultSubject": "Pandangan dunia AI seorang peserta",
+    "resultDescription": "{kind, select, roughClosest {{worldview} dengan estimasi kasar P(doom) sebesar {pdoom}, paling dekat dengan pandangan dunia simulasi {names}.} statedClosest {{worldview} dengan P(doom) yang dinyatakan sebesar {pdoom}, paling dekat dengan pandangan dunia simulasi {names}.} closest {{worldview}, paling dekat dengan pandangan dunia simulasi {names}. Lihat posisinya di antara Doom dan Bloom.} rough {{worldview} dengan estimasi kasar P(doom) sebesar {pdoom}. Lihat posisinya di antara Doom dan Bloom, serta jawaban yang mendasarinya.} stated {{worldview} dengan P(doom) yang dinyatakan sebesar {pdoom}. Lihat posisinya di antara Doom dan Bloom, serta jawaban yang mendasarinya.} other {{worldview}, dipetakan di antara Doom dan Bloom, beserta jawaban yang mendasarinya.}}",
     "publicImageAlt": "Penilaian pandangan dunia AI dengan rentang interpretasi",
     "asOf": "Peta pandangan dunia AI mereka per {date}.",
     "profile": "Profil"
@@ -818,7 +838,7 @@
     "showAllSources": "Tampilkan semua {count} sumber",
     "fewerSources": "Tampilkan lebih sedikit sumber",
     "cite": "Sumber {number}",
-    "asOf": "Per {date}",
+    "asOf": "Mencakup pernyataan hingga {date}",
     "note": "Setiap angka berasal dari kata-kata orang tersebut sendiri, dengan tautan ke tempat mereka mengatakannya. Orang-orang mendefinisikan hasil dan kerangka waktunya secara berbeda, sehingga angka-angka tersebut tidak dapat dibandingkan secara langsung.",
     "surveyTitle": "Sebagai perbandingan: peneliti AI",
     "allUsers": "Lihat semua {count} pemimpin opini simulasi",

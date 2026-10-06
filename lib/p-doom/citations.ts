@@ -5,6 +5,8 @@ export type HubSource = {
   /** Author or organization. */
   by: string
   year: number
+  /** The full publication date (YYYY-MM-DD), where the data records it. */
+  published?: string
 }
 
 /** Prose split into plain text, emphasis (titles) and citation markers. */

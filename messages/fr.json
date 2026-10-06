@@ -24,7 +24,7 @@
       "description": "P(doom) est la probabilité qu’une personne attribue à une catastrophe pour l’humanité causée par l’IA. Découvrez ce qu’en ont dit Hinton, Musk, Amodei, LeCun et d’autres, avec les sources."
     },
     "blog": {
-      "title": "Blog",
+      "title": "Données et explications sur les risques liés à l’IA et l’avenir de l’IA",
       "description": "Des textes en langage clair de Doom or Bloom sur le P(doom), les risques liés à l’IA et la manière dont les gens envisagent l’avenir de l’IA."
     }
   },
@@ -762,6 +762,7 @@
     "profile": "Profil",
     "similarTitle": "Visions du monde similaires",
     "similarDescription": "Leaders d’opinion dont les visions du monde simulées sont les plus proches de celle de {name}",
+    "similarPositionsDescription": "Leaders d’opinion les plus proches de la vision du monde simulée de {name} sur les quelques positions qu’elle exprime",
     "statementsTitle": "Ce que {name} a dit sur l’IA",
     "statementsNote": "Citations exactes tirées des sources en lien, vérifiées le {date}"
   },
@@ -805,7 +806,26 @@
     "personDescription": "Une simulation de la vision du monde de {name} concernant l’IA, élaborée à partir de ses écrits publics. Il s’agit d’une interprétation expérimentale, et non de sa propre évaluation ni d’une approbation.",
     "publicTitle": "Vision du monde de {name} sur l’IA",
     "sharedTitle": "Une vision du monde partagée sur l’IA",
-    "publicDescription": "Explorez cette vision du monde sur l’IA : attentes, risques, perspectives les plus proches et réponses à l’origine de l’évaluation.",
+    "resultTitle": {
+      "full": "{outlook}, {change}",
+      "outlook": {
+        "veryWorried": "Très inquiet au sujet de l’IA",
+        "worried": "Inquiet au sujet de l’IA",
+        "mixed": "Partagé au sujet de l’IA",
+        "hopeful": "Optimiste au sujet de l’IA",
+        "veryHopeful": "Très optimiste au sujet de l’IA"
+      },
+      "change": {
+        "little": "s’attend à peu de changements",
+        "modest": "s’attend à des changements modestes",
+        "substantial": "s’attend à des changements substantiels",
+        "sweeping": "s’attend à des changements de grande ampleur",
+        "profound": "s’attend à des changements profonds",
+        "unsettled": "ne sait pas quelle sera l’ampleur des changements"
+      }
+    },
+    "resultSubject": "La vision du monde concernant l’IA d’une personne participante",
+    "resultDescription": "{kind, select, roughClosest {{worldview} avec une estimation approximative de P(doom) de {pdoom}, la plus proche des visions du monde simulées de {names}.} statedClosest {{worldview} avec un P(doom) déclaré de {pdoom}, la plus proche des visions du monde simulées de {names}.} closest {{worldview}, la plus proche des visions du monde simulées de {names}. Voyez où elle se situe entre doom et bloom.} rough {{worldview} avec une estimation approximative de P(doom) de {pdoom}. Voyez où elle se situe entre doom et bloom, ainsi que les réponses qui la sous-tendent.} stated {{worldview} avec un P(doom) déclaré de {pdoom}. Voyez où elle se situe entre doom et bloom, ainsi que les réponses qui la sous-tendent.} other {{worldview}, cartographiée entre doom et bloom, avec les réponses qui la sous-tendent.}}",
     "publicImageAlt": "Évaluation d’une vision du monde sur l’IA avec plages d’interprétation",
     "asOf": "Une carte de sa vision du monde sur l’IA en date du {date}.",
     "profile": "Profil"
@@ -818,7 +838,7 @@
     "showAllSources": "Afficher les {count} sources",
     "fewerSources": "Afficher moins de sources",
     "cite": "Source {number}",
-    "asOf": "Au {date}",
+    "asOf": "Comprend les déclarations jusqu’au {date}",
     "note": "Chaque nombre provient des propres propos de la personne, avec un lien vers l’endroit où elle l’a indiqué. Les personnes définissent différemment l’issue et l’horizon temporel, de sorte que les nombres ne sont pas directement comparables.",
     "surveyTitle": "À titre de comparaison : chercheurs en IA",
     "allUsers": "Voir les {count} leaders d’opinion simulés",

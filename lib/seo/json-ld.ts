@@ -444,7 +444,7 @@ export function pdoomJsonLd({
   tableName: string
   /** What the table records, such as "Publicly stated P(doom)". */
   variable: string
-  /** ISO date (YYYY-MM-DD) the table was read. */
+  /** ISO date (YYYY-MM-DD) of the newest statement or source the hub cites. */
   asOf: string
   people: { slug: string; name: string }[]
   /** Where each stated number or quoted refusal was said. */

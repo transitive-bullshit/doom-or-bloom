@@ -24,7 +24,7 @@
       "description": "P(doom) 是某人认为AI最终会给人类带来灾难的概率。查看 Hinton、Musk、Amodei、LeCun 等人的公开说法及其来源。"
     },
     "blog": {
-      "title": "博客",
+      "title": "关于 AI 风险与 AI 未来的数据和解读",
       "description": "Doom or Bloom 关于 P(doom)、AI 风险以及人们如何看待 AI 未来的通俗文章。"
     }
   },
@@ -762,6 +762,7 @@
     "profile": "个人资料",
     "similarTitle": "相似的世界观",
     "similarDescription": "模拟世界观与 {name} 最接近的意见领袖",
+    "similarPositionsDescription": "在其表达的少数立场上，与 {name} 的模拟世界观最接近的意见领袖",
     "statementsTitle": "{name}关于AI说过的话",
     "statementsNote": "逐字引自所链接的出处，核对于 {date}"
   },
@@ -805,7 +806,26 @@
     "personDescription": "根据 {name} 的公开文章构建的 AI 世界观模拟。这是一种实验性解读，并非其本人的评估，也不代表其认可。",
     "publicTitle": "{name} 的 AI 世界观",
     "sharedTitle": "分享的 AI 世界观",
-    "publicDescription": "探索这一 AI 世界观：预期、风险、最接近的观点，以及评估所依据的回答。",
+    "resultTitle": {
+      "full": "{outlook}，{change}",
+      "outlook": {
+        "veryWorried": "对 AI 非常担忧",
+        "worried": "对 AI 感到担忧",
+        "mixed": "对 AI 看法不一",
+        "hopeful": "对 AI 抱有希望",
+        "veryHopeful": "对 AI 非常抱有希望"
+      },
+      "change": {
+        "little": "预计变化很小",
+        "modest": "预计会有适度变化",
+        "substantial": "预计会有重大变化",
+        "sweeping": "预计会有全面变化",
+        "profound": "预计会有深刻变化",
+        "unsettled": "不确定变化会有多大"
+      }
+    },
+    "resultSubject": "一位参与者的 AI 世界观",
+    "resultDescription": "{kind, select, roughClosest {{worldview}，粗略 P(doom) 为 {pdoom}，最接近 {names} 的模拟世界观。} statedClosest {{worldview}，明确给出的 P(doom) 为 {pdoom}，最接近 {names} 的模拟世界观。} closest {{worldview}，最接近 {names} 的模拟世界观。看看它在 doom 与 bloom 之间的位置。} rough {{worldview}，粗略 P(doom) 为 {pdoom}。看看它在 doom 与 bloom 之间的位置，以及其背后的回答。} stated {{worldview}，明确给出的 P(doom) 为 {pdoom}。看看它在 doom 与 bloom 之间的位置，以及其背后的回答。} other {{worldview}，已标示在 doom 与 bloom 之间，并附有其背后的回答。}}",
     "publicImageAlt": "带有解读范围的 AI 世界观评估",
     "asOf": "截至 {date} 的 AI 世界观地图。",
     "profile": "个人资料"
@@ -818,7 +838,7 @@
     "showAllSources": "显示全部 {count} 个来源",
     "fewerSources": "显示较少来源",
     "cite": "来源 {number}",
-    "asOf": "截至 {date}",
+    "asOf": "包括截至 {date} 的陈述",
     "note": "每个数字都来自当事人的原话，并链接至其发表该言论的出处。不同人对结果和时间范围的定义不同，因此这些数字不能直接比较。",
     "surveyTitle": "用于比较：AI研究人员",
     "allUsers": "查看全部 {count} 位模拟意见领袖",

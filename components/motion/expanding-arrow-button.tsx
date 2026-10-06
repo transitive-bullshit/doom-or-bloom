@@ -155,11 +155,13 @@ export function ExpandingArrowAction({
 export function ExpandingArrowLink({
   href,
   children,
-  size = 'default'
+  size = 'default',
+  rel
 }: {
   href: string
   size?: 'default' | 'sm'
   children: ReactNode
+  rel?: string
 }) {
   const reduce = useReducedMotion()
   const canHover = useHoverCapable()
@@ -169,6 +171,7 @@ export function ExpandingArrowLink({
   return (
     <MotionLink
       href={href}
+      rel={rel}
       data-slot='primary-cta'
       data-expanded={active}
       onMouseEnter={() => setHovered(true)}

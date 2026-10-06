@@ -2,21 +2,28 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 
-export type SimilarWorldview = {
+type SimilarWorldview = {
   id: string
   slug: string
   name: string
   avatar: string
 }
 
+/**
+ * Nearest simulated users, and what they were compared on: the whole
+ * worldview, or only the few positions a sparse simulation expresses.
+ */
+export type SimilarWorldviewList = {
+  basis: 'worldview' | 'positions'
+  people: SimilarWorldview[]
+}
+
 /** Links a profile to the simulated users whose worldviews are nearest. */
 export function SimilarWorldviews({
   name,
+  basis,
   people
-}: {
-  name: string
-  people: SimilarWorldview[]
-}) {
+}: { name: string } & SimilarWorldviewList) {
   const t = useTranslations('Persona')
   return (
     <section
@@ -27,7 +34,9 @@ export function SimilarWorldviews({
       <div className='flex flex-col gap-1'>
         <h2 id='similar-worldviews-title'>{t('similarTitle')}</h2>
         <p className='text-sm text-muted-foreground'>
-          {t('similarDescription', { name })}
+          {basis === 'worldview'
+            ? t('similarDescription', { name })
+            : t('similarPositionsDescription', { name })}
         </p>
       </div>
       <ul className='grid grid-cols-2 gap-2 sm:grid-cols-3'>

@@ -43,7 +43,7 @@ const publicPersonaIdentities: Record<
     xUsername: 'noahpinion'
   },
   'control-alarmist': {
-    shortName: 'Elizier',
+    shortName: 'Eliezer',
     slug: 'esyudkowsky',
     xUsername: 'esyudkowsky'
   },

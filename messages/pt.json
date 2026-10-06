@@ -24,7 +24,7 @@
       "description": "P(doom) é a probabilidade que alguém atribui à possibilidade de a IA resultar em uma catástrofe para a humanidade. Veja o que Hinton, Musk, Amodei, LeCun e outros disseram, com fontes."
     },
     "blog": {
-      "title": "Blog",
+      "title": "Dados e explicações sobre o risco da IA e o futuro da IA",
       "description": "Textos em linguagem simples de Doom or Bloom sobre P(doom), risco da IA e como as pessoas pensam sobre o futuro da IA."
     }
   },
@@ -762,6 +762,7 @@
     "profile": "Perfil",
     "similarTitle": "Visões de mundo semelhantes",
     "similarDescription": "Líderes de opinião cujas visões de mundo simuladas são mais próximas da visão de {name}",
+    "similarPositionsDescription": "Líderes de opinião mais próximos da visão de mundo simulada de {name} quanto às poucas posições que ela expressa",
     "statementsTitle": "O que {name} já disse sobre a IA",
     "statementsNote": "Citações literais das fontes indicadas, verificadas em {date}"
   },
@@ -805,7 +806,26 @@
     "personDescription": "Uma simulação da visão de mundo de {name} sobre a IA, construída com base em seus textos públicos. É uma interpretação experimental, não uma avaliação feita pela própria pessoa nem um endosso.",
     "publicTitle": "Visão de mundo sobre IA de {name}",
     "sharedTitle": "Uma visão de mundo compartilhada sobre IA",
-    "publicDescription": "Explore esta visão de mundo sobre IA: expectativas, riscos, perspectivas mais próximas e as respostas por trás da avaliação.",
+    "resultTitle": {
+      "full": "{outlook}, {change}",
+      "outlook": {
+        "veryWorried": "Muito preocupado com a IA",
+        "worried": "Preocupado com a IA",
+        "mixed": "Com opiniões mistas sobre a IA",
+        "hopeful": "Esperançoso em relação à IA",
+        "veryHopeful": "Muito esperançoso em relação à IA"
+      },
+      "change": {
+        "little": "espera poucas mudanças",
+        "modest": "espera mudanças modestas",
+        "substantial": "espera mudanças substanciais",
+        "sweeping": "espera mudanças abrangentes",
+        "profound": "espera mudanças profundas",
+        "unsettled": "não sabe ao certo o quanto mudará"
+      }
+    },
+    "resultSubject": "A visão de mundo sobre a IA de um participante",
+    "resultDescription": "{kind, select, roughClosest {{worldview} com um P(doom) aproximado de {pdoom}, mais próxima das visões de mundo simuladas de {names}.} statedClosest {{worldview} com um P(doom) declarado de {pdoom}, mais próxima das visões de mundo simuladas de {names}.} closest {{worldview}, mais próxima das visões de mundo simuladas de {names}. Veja onde ela se situa entre doom e bloom.} rough {{worldview} com um P(doom) aproximado de {pdoom}. Veja onde ela se situa entre doom e bloom e as respostas por trás dela.} stated {{worldview} com um P(doom) declarado de {pdoom}. Veja onde ela se situa entre doom e bloom e as respostas por trás dela.} other {{worldview}, mapeada entre doom e bloom, com as respostas por trás dela.}}",
     "publicImageAlt": "Avaliação da visão de mundo sobre IA com intervalos de interpretação",
     "asOf": "Um mapa da visão de mundo dessa pessoa sobre IA em {date}.",
     "profile": "Perfil"
@@ -818,7 +838,7 @@
     "showAllSources": "Mostrar todas as {count} fontes",
     "fewerSources": "Mostrar menos fontes",
     "cite": "Fonte {number}",
-    "asOf": "Em {date}",
+    "asOf": "Inclui declarações até {date}",
     "note": "Cada número vem das próprias palavras da pessoa, com um link para onde ela o declarou. As pessoas definem o resultado e o horizonte temporal de maneiras diferentes, por isso os números não são diretamente comparáveis.",
     "surveyTitle": "Para comparação: pesquisadores de IA",
     "allUsers": "Ver todos os {count} líderes de opinião simulados",
