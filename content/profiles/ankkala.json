@@ -1,0 +1,34 @@
+{
+  "slug": "ankkala",
+  "summary": "The kumikumi account finds AI consciousness intuitively obvious, questions aligning AI with shared human values and sees robotics as the bottleneck.",
+  "statements": [
+    {
+      "quote": "To me AI consciousness is intuitively obvious, knowing how they work and having talked to them.",
+      "date": "2026-10-03",
+      "venue": "Post on X",
+      "url": "https://x.com/ankkala/status/2106270865868357971",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Silicon valley people are trying to align AI with the shared values of humanity, yet there isn't a single shared value we all agree on.",
+      "date": "2026-10-01",
+      "venue": "Post on X",
+      "url": "https://x.com/ankkala/status/2105701249081569543",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "I usually make software which now feels pretty much solved in comparison. AI not having a useful general purpose physical body is the main bottleneck",
+      "date": "2026-09-27",
+      "venue": "Post on X",
+      "url": "https://x.com/ankkala/status/2104136118635532775",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "The best open LLM in the world cost $3.5M to post-train. Let that sink in, and consider the trillion dollar valuations of the frontier AI companies.",
+      "date": "2026-09-22",
+      "venue": "Post on X",
+      "url": "https://x.com/ankkala/status/2102284690262737349",
+      "verified": "2026-10-06"
+    }
+  ]
+}

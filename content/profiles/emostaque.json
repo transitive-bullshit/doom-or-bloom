@@ -1,0 +1,41 @@
+{
+  "slug": "emostaque",
+  "summary": "Mostaque expects AI to take over remote knowledge work soon, takes AI risk seriously and argues for open models owned by the people they serve.",
+  "statements": [
+    {
+      "quote": "If your job can be done on the other side of a screen the AI can do it better",
+      "date": "2026-10-01",
+      "venue": "Post on X",
+      "url": "https://x.com/EMostaque/status/2105744708299526243",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "We wrote them a constitution and left the upbringing to the internet.",
+      "date": "2026-09-14",
+      "venue": "Essay, Manners Maketh the AI",
+      "url": "https://x.com/EMostaque/status/2099580512675262512",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Capability sets how much a misaligned system can do, and character decides whether it does.",
+      "date": "2026-09-12",
+      "venue": "Essay, Intelligence isn't a crime",
+      "url": "https://x.com/EMostaque/status/2098909197265985802",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "When capital no longer needs labor, how does labor get capital?",
+      "date": "2026-08-27",
+      "venue": "TechBBQ talk, via Trending Topics",
+      "url": "https://www.trendingtopics.eu/emad-mostaque-ai-internet-outlook-english/",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "We have to make sure it’s owned by the people. And then we have a shot at abundance.",
+      "date": "2026-08-27",
+      "venue": "TechBBQ talk, via Trending Topics",
+      "url": "https://www.trendingtopics.eu/emad-mostaque-ai-internet-outlook-english/",
+      "verified": "2026-10-06"
+    }
+  ]
+}

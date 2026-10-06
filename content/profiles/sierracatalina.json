@@ -1,0 +1,41 @@
+{
+  "slug": "sierracatalina",
+  "summary": "Catalina expects AI to take over much human labor and writes about keeping AI clearly a tool, proof of personhood and protecting human contact.",
+  "statements": [
+    {
+      "quote": "the system must signal clearly that it is a tool. it must maintain artificial cues & avoid emotional dependency loops.",
+      "date": "2026-02-25",
+      "venue": "X Article, AI voice identity",
+      "url": "https://x.com/sierracatalina/status/2026736892142874713",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "automation reduces the number of default human touchpoints in a normal week.",
+      "date": "2026-02-03",
+      "venue": "X Article, third places are critical infrastructure for a post automation society",
+      "url": "https://x.com/sierracatalina/status/2018825298108969057",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "anthropomorphizing models trains people to trust interfaces instead of incentives. that confusion compounds fast in agentic systems.",
+      "date": "2026-02-03",
+      "venue": "Post on LinkedIn",
+      "url": "https://www.linkedin.com/posts/sierracatalina_anthropomorphizing-models-trains-people-activity-7424474001655246848-CUo_",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "ASI-level automation replaces labor as the core mechanism that sustains society.",
+      "date": "2026-01-06",
+      "venue": "Essay, finding purpose post ASI",
+      "url": "https://www.linkedin.com/pulse/finding-purpose-post-asi-how-humanity-reorganizes-when-catalina-khrte",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "but the lines will continue to blur & fast. proof of personhood becoming increasingly necessary.",
+      "date": "2025-05-02",
+      "venue": "Post on X",
+      "url": "https://x.com/sierracatalina/status/1918349256777449699",
+      "verified": "2026-10-06"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "rookepoole",
+  "summary": "Poole researches how AI agents can be attacked, wants AI infrastructure people own, and asks who funds the push to slow frontier AI.",
+  "statements": [
+    {
+      "quote": "I think there is a new attack surface in AI agents that people are not really looking at yet.",
+      "date": "2026-09-29",
+      "venue": "Post on X",
+      "url": "https://x.com/rookepoole/status/2104926181904539846",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Prompt injection was only the beginning. The real AI security problem is authority.",
+      "date": "2026-09-20",
+      "venue": "Post on X",
+      "url": "https://x.com/rookepoole/status/2101461981467152697",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "But if society is being asked to slow one of the most consequential technologies ever built, we should know who funds that argument and how it reaches policymakers.",
+      "date": "2026-09-15",
+      "venue": "Post on X",
+      "url": "https://x.com/rookepoole/status/2099660855516315892",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "Most people won’t lose to AI. They’ll lose to people who learned how to use it before they did.",
+      "date": "2026-09-07",
+      "venue": "Post on X",
+      "url": "https://x.com/rookepoole/status/2096754445992247352",
+      "verified": "2026-10-06"
+    },
+    {
+      "quote": "The cloud is convenient, but I want AI infrastructure I actually own.",
+      "date": "2026-09-03",
+      "venue": "Post on X",
+      "url": "https://x.com/rookepoole/status/2095650950081835400",
+      "verified": "2026-10-06"
+    }
+  ]
+}
