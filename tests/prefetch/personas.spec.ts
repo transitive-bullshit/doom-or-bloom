@@ -168,6 +168,11 @@ test('proximity warms at most three profiles, cancels passing intent, and reuses
   await page.waitForTimeout(300)
   expect(requests).toContain(target!.href)
   expect(new Set(requests).size).toBeLessThanOrEqual(3)
+  // The directory's small dots for unlisted people warm on direct hover only.
+  const portraits = await page
+    .locator('.study-chart .study-portrait')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
+  expect(requests.filter((href) => !portraits.includes(href))).toEqual([])
   await page.mouse.move(0, 0)
   const count = requests.length
   const start = Date.now()
@@ -198,7 +203,9 @@ test('keyboard focus warms a directory profile without viewport prefetching', as
   )
   await page.goto('/users')
   // The directory lists 48 people at first; Simon Willison may be further down.
-  await page.getByRole('button', { name: /^Show all/ }).click()
+  // A keyboard user reaches him this way. After a mouse click, Chrome treats
+  // the later programmatic focus as pointer focus, which rightly stays cold.
+  await page.getByRole('button', { name: /^Show all/ }).press('Enter')
   const link = page.locator('.study-legend a[href="/users/simonw"]')
   const warmed = page.waitForResponse(
     (response) =>
