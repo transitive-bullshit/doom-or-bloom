@@ -11,6 +11,7 @@ import {
   privateRoutePrefixes
 } from './i18n/next-routes'
 import { adminEnvironmentAllowed } from './lib/admin/access'
+import { movedPostRedirects } from './lib/blog/moved-posts'
 import { validateServerEnv } from './lib/server/validate-env'
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
@@ -55,6 +56,8 @@ const config: NextConfig = {
         destination: '/public/assessments/:id/social-image.png',
         permanent: true
       },
+      // Renamed blog posts, in every locale.
+      ...movedPostRedirects(),
       // After legacy URLs, so a remembered language applies to their new form.
       ...localeRedirects()
     ]

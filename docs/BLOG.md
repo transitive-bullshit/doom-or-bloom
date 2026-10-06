@@ -4,11 +4,11 @@ The blog publishes plain-language posts about P(doom), AI worldviews and the ide
 
 ## Writing a post
 
-A post is one MDX file, `content/blog/<slug>.mdx`. The file name is the URL slug: lowercase words joined by hyphens. Keep slugs free of numbers that change, such as participant counts.
+A post is one MDX file, `content/blog/<slug>.mdx`. The file name is the URL slug: lowercase words joined by hyphens. Keep slugs free of numbers that change, such as participant counts. To rename a published post, move its English file and every translation (and its `meta.json` entries) to the new slug, then add the old slug to `movedPosts` in `lib/blog/moved-posts.ts`: its URLs in every locale, the post card included, redirect permanently (308) to the new slug. Never reuse an old slug.
 
 ```mdx
 ---
-title: What is P(doom)?
+title: Why P(doom) estimates vary so much
 description: One or two sentences for search results, social cards and the blog index.
 date: 2026-10-01
 updated: 2026-11-15 # optional
@@ -25,6 +25,7 @@ Opening paragraph…
 
 - Frontmatter is validated by `postFrontmatterSchema` (`lib/blog/schema.ts`): `title` without a trailing period, a `description` of 50–200 characters, `date` and an optional `updated` (YYYY-MM-DD). The author is the site creator.
 - Headings never end with a period. `pnpm test:content` and the unit tests fail on one. List items, chart titles, labels and captions have no trailing period either.
+- Section headings (`##` and `###`) get ids from their English text (`lib/blog/headings.ts`): “How Doom or Bloom estimates P(doom)” is `#how-doom-or-bloom-estimates-pdoom`. A translation's headings take the ids of the English headings in the same position, so `/blog/<slug>#<id>` opens the same section in every language. Renaming a heading changes its id; the P(doom) cards link to one (`pdoomMethodPath` in `lib/p-doom/copy.ts`), and `lib/blog/blog.test.ts` fails if that heading goes away.
 - Write in a plain, candid voice without hype. Personas are "thought leaders"; the interview takes "about 3 minutes". Say when a number is inferred, and call simulated thought leaders simulated, without foregrounding disclaimers: a line in the methods section is enough. Summarize a real person's views conservatively, and quote only their exact words.
 - Use typographic quotes and apostrophes, like the rest of the site's copy. In MDX, write a literal `<` before a digit or space as `\<`.
 - Link to site pages with root-relative URLs (`[the P(doom) table](/p-doom)`); they keep the reader's language prefix. Other links open in a new tab.
@@ -75,7 +76,7 @@ Charts render from committed JSON in `content/blog/data/`. A post imports the fi
 | `<DataScorecard data={…} />` | `scorecard`: approaches (`rows`) rated against criteria (`columns`, each with a `detail` question) as `yes`, `partly`, `no` or `na`, each with a one-line `note`; `levels` labels the four | A matrix of Harvey balls whose cells open their note on hover, tap or focus; on phones a compact overview whose rows open every criterion with its note. The highlighted row is coral |
 | `<DataTrend data={…} />` | `trend`: small multiples on one date axis (`from`, `to`) with dated `events`; each panel one question (`title`, `note`), its own `scale` (`percent` shares or `year`s) and one or two series of dated points (the last day of fieldwork), the second `dashed` | Line panels labelled at their ends, with a crosshair that snaps to the nearest survey and a readout of every series there; arrow keys move it. A screen-reader table per panel. Values carry no group size, so participant numbers can't use it |
 | `<DataEstimates data={…} />` | `estimates`: probabilities on one log `scale` with labelled ticks, each row the `figure` as written, a `value` (a dot, hollow when `inferred`) or a stated `low`–`high` range, the question's exact `wording`, a `detail` line, a `tone` for who answered (`ink` for people's own numbers) and, for participants, the group size `n` | Rows of text with a track and the figure; values below the scale sit at its edge behind an arrow. Names with a profile link to it. Rows citing public statements must match the verified statements, and participant medians the committed aggregates (`lib/blog/research-charts.test.ts`) |
-| `<Definition />` | none | The quotable P(doom) definition shared with the `/p-doom` hub (`lib/p-doom/copy.ts`) |
+| `<Definition />` | none | The quotable P(doom) definition shared with the `/p-doom` hub (`lib/p-doom/copy.ts`), used by “Why P(doom) estimates vary so much” |
 
 Every data file also carries a `title` (no trailing period), a `source` sentence shown under the chart, an `asOf` date and a `provenance`. Series take the chart colors blue, then coral (`--chart-blue`, `--chart-coral` in `app/globals.css`); a series can name its `tone`, including `teal` (`--chart-teal`), so the same kind of respondent keeps its color across a post's charts: in the AI polls post, the public is blue, researchers and forecasters teal and Doom or Bloom coral. The three were checked together for contrast and color-vision separation on the card surface in both themes. `--chart-ink` marks things that are not a series, such as people's own stated numbers or reference examples. Interactive charts keep their text in the data file, so translations cover it, and read in full without hovering: every value is also in the text or a screen-reader table. Keep the numbers in each file reproducible from their source: `public-pdoom-statements.json` is checked against the verified statements in `lib/journeys/public-pdoom-statements.ts`, and the participant charts are rebuilt from the committed aggregates by `lib/blog/blog.test.ts`.
 

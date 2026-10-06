@@ -4,6 +4,7 @@ import path from 'node:path'
 import matter from 'gray-matter'
 import { defaultLocale, languageTag, locales, type Locale } from '@/i18n/config'
 import { siteCreator } from '@/lib/site'
+import { headingIds } from './headings'
 import { blogL10nDirectory, translatedFrontmatterSchema } from './l10n'
 import {
   countWords,
@@ -114,3 +115,22 @@ export function postTranslation(
 /** Whether a post is translated (into every enabled locale). */
 export const isTranslated = (slug: string) =>
   locales.some((locale) => postTranslation(slug, locale) !== null)
+
+const postBody = (file: string) => matter(readFileSync(file, 'utf8')).content
+
+/**
+ * Section ids for the headings of a post as `locale` reads it, keyed by their
+ * text with one id per occurrence: the English heading ids, in every language
+ * (lib/blog/headings.ts).
+ */
+export function postHeadingIds(slug: string, locale: string) {
+  const english = postBody(path.join(blogDirectory, `${slug}.mdx`))
+  const translation = path.join(
+    process.cwd(),
+    blogL10nDirectory(locale),
+    `${slug}.mdx`
+  )
+  return locale !== defaultLocale && existsSync(translation)
+    ? headingIds(postBody(translation), english)
+    : headingIds(english)
+}

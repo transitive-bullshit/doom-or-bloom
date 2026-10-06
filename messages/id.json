@@ -20,7 +20,7 @@
       "description": "Cari dan bandingkan pandangan dunia AI simulasi dari tokoh publik, mulai dari Hinton dan Bengio hingga LeCun dan Andreessen, beserta P(doom) yang mereka nyatakan secara publik jika ada."
     },
     "pdoom": {
-      "title": "Apa itu P(doom)? Perkiraan dari Hinton, Musk, LeCun, dan lainnya",
+      "title": "Apa itu P(doom)? Hinton, Musk, LeCun, dan lainnya",
       "description": "P(doom) adalah peluang yang seseorang berikan bahwa AI berakhir dengan katastrofe bagi umat manusia. Lihat apa yang telah dikatakan Hinton, Musk, Amodei, LeCun, dan lainnya, beserta sumbernya."
     },
     "blog": {
@@ -363,7 +363,8 @@
       "from": "{subject, select, his {Dari jawaban simulasinya.} her {Dari jawaban simulasinya.} other {Dari jawaban simulasi mereka.}}",
       "stated": "Anda mengatakan {token}.",
       "missing": "{subject, select, self {Jawaban Anda tidak cukup membahas risiko katastrofik untuk memperkirakannya.} his {Jawaban simulasinya tidak cukup membahas risiko katastrofik untuk memperkirakannya.} her {Jawaban simulasinya tidak cukup membahas risiko katastrofik untuk memperkirakannya.} other {Jawaban simulasi mereka tidak cukup membahas risiko katastrofik untuk memperkirakannya.}}",
-      "addSentence": "Satu kalimat tentang seberapa besar kemungkinan yang menurut Anda akan terjadi akan menambahkan estimasi tersebut."
+      "addSentence": "Satu kalimat tentang seberapa besar kemungkinan yang menurut Anda akan terjadi akan menambahkan estimasi tersebut.",
+      "method": "Cara kami mengestimasi P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Linimasa tonggak pencapaian Anda} other {Linimasa tonggak pencapaian {name}}}",
     "milestoneNote": "{subject, select, self {Dikelompokkan berdasarkan tonggak pencapaian, bukan diberi jarak atau diurutkan berdasarkan tanggal yang disimpulkan. AGI dan AI supermanusia tetap menggunakan definisi Anda.} his {Dikelompokkan berdasarkan tonggak pencapaian, bukan diberi jarak atau diurutkan berdasarkan tanggal yang disimpulkan. AGI dan AI supermanusia tetap menggunakan definisinya.} her {Dikelompokkan berdasarkan tonggak pencapaian, bukan diberi jarak atau diurutkan berdasarkan tanggal yang disimpulkan. AGI dan AI supermanusia tetap menggunakan definisinya.} other {Dikelompokkan berdasarkan tonggak pencapaian, bukan diberi jarak atau diurutkan berdasarkan tanggal yang disimpulkan. AGI dan AI supermanusia tetap menggunakan definisi mereka.}}",
@@ -856,7 +857,7 @@
     },
     "ctaTitle": "Berapa P(doom) Anda?",
     "ctaDescription": "Jawab beberapa pertanyaan dalam waktu sekitar 3 menit, lalu lihat pandangan dunia Anda dan perkiraan kasar P(doom) di samping pandangan dan perkiraan mereka",
-    "guide": "Baca panduan tentang arti P(doom)"
+    "guide": "Mengapa estimasi P(doom) sangat bervariasi, dan cara membacanya"
   },
   "Blog": {
     "title": "Blog",

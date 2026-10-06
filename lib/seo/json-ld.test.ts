@@ -192,9 +192,9 @@ describe('structured data', () => {
 
   it('lists visible breadcrumbs with absolute URLs in the page locale', () => {
     const t = englishTranslator('Breadcrumbs')
-    const path = '/blog/what-is-p-doom'
+    const path = '/blog/why-p-doom-estimates-vary'
     const document = breadcrumbJsonLd(
-      breadcrumbTrail(path, t, 'What is P(doom)?')!,
+      breadcrumbTrail(path, t, 'Why P(doom) estimates vary so much')!,
       path,
       'es'
     )
@@ -202,7 +202,9 @@ describe('structured data', () => {
       .strictObject({
         '@context': z.literal('https://schema.org'),
         '@type': z.literal('BreadcrumbList'),
-        '@id': z.literal(`${site}/es/blog/what-is-p-doom#breadcrumb`),
+        '@id': z.literal(
+          `${site}/es/blog/why-p-doom-estimates-vary#breadcrumb`
+        ),
         itemListElement: z.array(
           z.strictObject({
             '@type': z.literal('ListItem'),
@@ -224,8 +226,8 @@ describe('structured data', () => {
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'What is P(doom)?',
-        item: `${site}/es/blog/what-is-p-doom`
+        name: 'Why P(doom) estimates vary so much',
+        item: `${site}/es/blog/why-p-doom-estimates-vary`
       }
     ])
   })
@@ -431,15 +433,15 @@ describe('structured data', () => {
 
   it('describes a blog post as an English BlogPosting and the blog as its posts', () => {
     const post = {
-      slug: 'what-is-p-doom',
-      title: 'What is P(doom)?',
+      slug: 'why-p-doom-estimates-vary',
+      title: 'Why P(doom) estimates vary so much',
       description: 'A plain guide.',
       date: '2026-10-01',
       words: 1000,
       minutes: 4,
-      image: '/blog/what-is-p-doom/opengraph-image?v=1'
+      image: '/blog/why-p-doom-estimates-vary/opengraph-image?v=1'
     }
-    const url = `${site}/blog/what-is-p-doom`
+    const url = `${site}/blog/why-p-doom-estimates-vary`
     z.strictObject({
       '@context': z.literal('https://schema.org'),
       '@type': z.literal('BlogPosting'),

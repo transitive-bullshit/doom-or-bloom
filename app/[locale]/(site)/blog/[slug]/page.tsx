@@ -4,7 +4,12 @@ import { notFound } from 'next/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { defaultLocale, languageTag } from '@/i18n/config'
 import { pageMetadata } from '@/lib/metadata'
-import { blogPost, blogPosts, postTranslation } from '@/lib/blog/posts'
+import {
+  blogPost,
+  blogPosts,
+  postHeadingIds,
+  postTranslation
+} from '@/lib/blog/posts'
 import { postDate } from '@/lib/blog/format'
 import { breadcrumbTrail } from '@/lib/breadcrumbs'
 import { articleJsonLd } from '@/lib/seo/json-ld'
@@ -129,7 +134,8 @@ export default async function Page({ params }: Props) {
           <Post
             components={postComponents({
               mention: profileMentions(profiles),
-              text: chartText(charts, map, contentTag)
+              text: chartText(charts, map, contentTag),
+              headings: postHeadingIds(post.slug, contentLocale)
             })}
           />
         </div>

@@ -20,7 +20,7 @@
       "description": "Busca y compara visiones simuladas de la IA de figuras públicas, desde Hinton y Bengio hasta LeCun y Andreessen, con su P(doom) declarada públicamente cuando esté disponible."
     },
     "pdoom": {
-      "title": "¿Qué es P(doom)? Estimaciones de Hinton, Musk, LeCun y otros",
+      "title": "¿Qué es P(doom)? Hinton, Musk, LeCun y más",
       "description": "P(doom) es la probabilidad que alguien asigna a que la IA termine en una catástrofe para la humanidad. Descubre qué han dicho Hinton, Musk, Amodei, LeCun y otros, con fuentes."
     },
     "blog": {
@@ -363,7 +363,8 @@
       "from": "{subject, select, other {A partir de sus respuestas simuladas.}}",
       "stated": "Dijiste {token}.",
       "missing": "{subject, select, self {Tus respuestas no dicen lo suficiente sobre el riesgo catastrófico para estimarlo.} other {Sus respuestas simuladas no dicen lo suficiente sobre el riesgo catastrófico para estimarlo.}}",
-      "addSentence": "Una frase sobre qué tan probable crees que es permitiría añadirlo."
+      "addSentence": "Una frase sobre qué tan probable crees que es permitiría añadirlo.",
+      "method": "Cómo estimamos P(doom)"
     },
     "milestoneTitle": "{subject, select, self {Tu cronología de hitos} other {Cronología de hitos de {name}}}",
     "milestoneNote": "{subject, select, self {Agrupados por hito, sin espaciarlos ni ordenarlos por fechas inferidas. La IA general y la IA sobrehumana conservan tus definiciones.} other {Agrupados por hito, sin espaciarlos ni ordenarlos por fechas inferidas. La IA general y la IA sobrehumana conservan sus definiciones.}}",
@@ -856,7 +857,7 @@
     },
     "ctaTitle": "¿Cuál es tu P(doom)?",
     "ctaDescription": "Responde unas pocas preguntas en unos 3 minutos y luego consulta tu visión y una estimación aproximada de P(doom) junto a las suyas",
-    "guide": "Lee la guía sobre qué significa P(doom)"
+    "guide": "Por qué las estimaciones de P(doom) varían tanto y cómo interpretar una"
   },
   "Blog": {
     "title": "Blog",
