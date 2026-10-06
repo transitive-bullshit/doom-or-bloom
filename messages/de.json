@@ -104,7 +104,7 @@
     "scoresNote": "Die Bewertungen beschreiben simulierte Antworten. Fehlende Bewertungen erscheinen zuletzt.",
     "noMatches": "Keine Nutzer entsprechen „{query}“. Versuche es mit einem anderen Namen oder Nutzernamen.",
     "metricUnavailable": "Nicht verfügbar",
-    "metricFollowers": "{count, number} Follower",
+    "metricFollowers": "{count} Follower",
     "sort": {
       "name": "Name",
       "followers": "X-Follower",

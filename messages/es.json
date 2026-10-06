@@ -104,7 +104,7 @@
     "scoresNote": "Las puntuaciones describen respuestas simuladas. Las que faltan aparecen al final.",
     "noMatches": "Ningún usuario coincide con “{query}”. Prueba con otro nombre o usuario.",
     "metricUnavailable": "No disponible",
-    "metricFollowers": "{count, number} seguidores",
+    "metricFollowers": "{count} seguidores",
     "sort": {
       "name": "Nombre",
       "followers": "Seguidores en X",

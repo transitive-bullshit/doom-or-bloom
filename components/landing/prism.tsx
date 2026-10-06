@@ -24,6 +24,7 @@ import {
   directoryPageSize,
   directorySorts,
   directoryValue,
+  followerCount,
   followersCapturedLabel,
   matchesFilter,
   type DirectoryFilter,
@@ -235,7 +236,8 @@ export function Prism({
   }
   const metricText = {
     unavailable: t('metricUnavailable'),
-    followers: (count: number) => t('metricFollowers', { count })
+    followers: (count: number) =>
+      t('metricFollowers', { count: followerCount(count, locale) })
   }
   return (
     <section

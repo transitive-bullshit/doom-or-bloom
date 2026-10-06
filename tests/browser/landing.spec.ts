@@ -477,10 +477,16 @@ test('all-users directory lists the most followed first, a page at a time, and k
   const followerValues = await page
     .locator('.directory-metric')
     .allTextContents()
+  // Counts read like X: 7,975, then 12.3K, 2.2M.
+  const scale: Record<string, number> = { K: 1e3, M: 1e6, B: 1e9 }
   const counts = followerValues
     .filter((value) => value !== 'Not available')
-    .map((value) => Number(value.replace(/[^0-9]/g, '')))
+    .map((value) => {
+      const [, digits, unit] = value.match(/^([\d.,]+)([KMB]?) followers$/)!
+      return Number(digits!.replaceAll(',', '')) * (scale[unit!] ?? 1)
+    })
   expect(counts).toEqual([...counts].sort((a, b) => b - a))
+  expect(followerValues[0]).toMatch(/^\d+(\.\d)?M followers$/)
   if (people.length > page1) {
     await page.getByRole('button', { name: /^Show \d+ more$/ }).click()
     await expect(page.locator('.study-legend a')).toHaveCount(

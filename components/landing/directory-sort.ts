@@ -81,9 +81,21 @@ export function followersCapturedLabel(people: MapExample[]) {
   const last = dates.at(-1)!
   return first === last ? first : `${first}–${last}`
 }
+/**
+ * A follower count the way X shows one: exact below 10,000, then compact with
+ * one decimal where it adds detail (12.3K, 344.4K, 2.2M, 241.7M).
+ */
+export function followerCount(count: number, locale = 'en-US') {
+  return new Intl.NumberFormat(
+    locale,
+    count < 10_000
+      ? undefined
+      : { notation: 'compact', maximumFractionDigits: 1 }
+  ).format(count)
+}
 const englishText = {
   unavailable: 'Not available',
-  followers: (count: number) => `${count.toLocaleString('en-US')} followers`
+  followers: (count: number) => `${followerCount(count)} followers`
 }
 export function directoryValue(
   person: MapExample,

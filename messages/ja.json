@@ -104,7 +104,7 @@
     "scoresNote": "スコアはシミュレーションされた回答を示します。スコアがない場合は最後に表示されます。",
     "noMatches": "「{query}」に一致するユーザーはいません。別の名前またはハンドル名をお試しください。",
     "metricUnavailable": "取得できません",
-    "metricFollowers": "フォロワー{count, number}人",
+    "metricFollowers": "{count}人のフォロワー",
     "sort": {
       "name": "名前",
       "followers": "Xのフォロワー",

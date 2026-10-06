@@ -104,7 +104,7 @@
     "scoresNote": "Skor menggambarkan jawaban simulasi. Skor yang tidak tersedia muncul terakhir.",
     "noMatches": "Tidak ada pengguna yang cocok dengan “{query}”. Coba nama atau nama pengguna lain.",
     "metricUnavailable": "Tidak tersedia",
-    "metricFollowers": "{count, number} pengikut",
+    "metricFollowers": "{count} pengikut",
     "sort": {
       "name": "Nama",
       "followers": "Pengikut X",

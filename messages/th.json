@@ -104,7 +104,7 @@
     "scoresNote": "คะแนนอธิบายคำตอบจำลอง คะแนนที่ไม่มีข้อมูลจะแสดงท้ายสุด",
     "noMatches": "ไม่พบผู้ใช้ที่ตรงกับ “{query}” ลองใช้ชื่อหรือชื่อบัญชีอื่น",
     "metricUnavailable": "ไม่มีข้อมูล",
-    "metricFollowers": "ผู้ติดตาม {count, number} ราย",
+    "metricFollowers": "ผู้ติดตาม {count} คน",
     "sort": {
       "name": "ชื่อ",
       "followers": "ผู้ติดตามบน X",

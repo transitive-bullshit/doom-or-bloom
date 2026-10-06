@@ -104,7 +104,7 @@
     "scoresNote": "Les scores décrivent des réponses simulées. Les scores manquants apparaissent en dernier.",
     "noMatches": "Aucun utilisateur ne correspond à « {query} ». Essayez un autre nom ou identifiant.",
     "metricUnavailable": "Non disponible",
-    "metricFollowers": "{count, number} abonnés",
+    "metricFollowers": "{count} abonnés",
     "sort": {
       "name": "Nom",
       "followers": "Abonnés sur X",

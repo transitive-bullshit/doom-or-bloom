@@ -459,9 +459,9 @@
       "reviewStatus": "machine"
     },
     "Landing.metricFollowers": {
-      "sourceHash": "b569e848d2465910",
+      "sourceHash": "85eaa0ba0b26a762",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
     },
     "Landing.sort.name": {

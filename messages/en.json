@@ -104,7 +104,7 @@
     "scoresNote": "Scores describe simulated answers. Missing scores appear last.",
     "noMatches": "No users match “{query}”. Try another name or handle.",
     "metricUnavailable": "Not available",
-    "metricFollowers": "{count, number} followers",
+    "metricFollowers": "{count} followers",
     "sort": {
       "name": "Name",
       "followers": "X followers",

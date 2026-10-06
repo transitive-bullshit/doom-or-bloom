@@ -104,7 +104,7 @@
     "scoresNote": "As pontuações descrevem respostas simuladas. Pontuações ausentes aparecem por último.",
     "noMatches": "Nenhum usuário corresponde a “{query}”. Tente outro nome ou identificador.",
     "metricUnavailable": "Indisponível",
-    "metricFollowers": "{count, number} seguidores",
+    "metricFollowers": "{count} seguidores",
     "sort": {
       "name": "Nome",
       "followers": "Seguidores no X",

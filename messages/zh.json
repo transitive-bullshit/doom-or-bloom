@@ -104,7 +104,7 @@
     "scoresNote": "分数描述的是模拟回答。缺失分数排在最后。",
     "noMatches": "没有用户匹配“{query}”。请尝试其他姓名或用户名。",
     "metricUnavailable": "无法获取",
-    "metricFollowers": "{count, number} 位粉丝",
+    "metricFollowers": "{count} 位关注者",
     "sort": {
       "name": "姓名",
       "followers": "X 粉丝数",
