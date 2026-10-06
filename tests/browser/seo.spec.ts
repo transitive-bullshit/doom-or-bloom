@@ -404,8 +404,17 @@ test('a rivalry post compares pairs on the map and quotes each side', async ({
   const quotes = body.locator('[data-slot="blog-data-quotes"]')
   await expect(quotes).toHaveCount(6)
   await expect(
-    quotes.first().getByRole('link', { name: 'Geoffrey Hinton' })
+    quotes.first().getByRole('link', { name: 'Geoffrey Hinton' }).first()
   ).toHaveAttribute('href', '/users/geoffreyhinton')
+  // On phones the column headers hide, and each quote names and links its speaker.
+  await page.setViewportSize({ width: 390, height: 844 })
+  const speaker = quotes
+    .first()
+    .locator('figcaption')
+    .getByRole('link', { name: 'Geoffrey Hinton' })
+    .first()
+  await expect(speaker).toBeVisible()
+  await expect(speaker).toHaveAttribute('href', '/users/geoffreyhinton')
 })
 
 test('a translated post renders, indexes and shares in each language', async ({

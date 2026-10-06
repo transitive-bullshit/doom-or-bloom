@@ -54,6 +54,7 @@ export function DataQuotes({
                   key={person.key}
                   quote={row.quotes[person.key]!}
                   name={person.name}
+                  mention={mention}
                   tag={text.tag}
                 />
               ))}
@@ -95,10 +96,12 @@ function Person({
 function Quote({
   quote,
   name,
+  mention,
   tag
 }: {
   quote: BlogQuote
   name: string
+  mention: ProfileMentions
   tag: string
 }) {
   return (
@@ -107,8 +110,10 @@ function Quote({
         <p>“{quote.quote}”</p>
       </blockquote>
       <figcaption className='text-xs text-muted-foreground'>
+        {/* On phones the column headers are hidden, so each quote names and
+            links its speaker. */}
         <span className='font-medium text-body-foreground sm:sr-only'>
-          {name}
+          <MentionText parts={mention(name)} />
           {', '}
         </span>
         <a
