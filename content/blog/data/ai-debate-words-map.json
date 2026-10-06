@@ -1,0 +1,112 @@
+{
+  "kind": "landscape",
+  "title": "Where the words point",
+  "source": "Placement is my reading of each word’s definition, not a measurement, and the map places words, never people. Sources: aisafety.info, Nick Bostrom (1998 and 2002), Reid Hoffman on X (2025), the 2022 e/acc newsletter post, Morris et al. at Google DeepMind (2023), Vernor Vinge (1993) and Merriam-Webster.",
+  "asOf": "2026-10-06",
+  "provenance": "published-writing",
+  "x": {
+    "title": "Outlook",
+    "start": "Doom",
+    "end": "Bloom"
+  },
+  "y": {
+    "title": "Scale of change",
+    "start": "Incremental change",
+    "end": "Civilizational change"
+  },
+  "hint": "Hover, tap or focus a word to see what it means and where it comes from",
+  "points": [
+    {
+      "key": "ai-doomer",
+      "label": "AI doomer",
+      "x": 0.07,
+      "y": 0.85,
+      "method": "Someone who thinks advanced AI is likely to end in catastrophe for humanity, such as human extinction or a permanent loss of control over our future.",
+      "reach": "Older slang for a pessimist, applied to AI risk. Often a put-down from critics of the view; some who hold it use it for themselves.",
+      "href": "https://aisafety.info/questions/NM1Z/What-is-an-AI-doomer"
+    },
+    {
+      "key": "x-risk",
+      "label": "X-risk",
+      "x": 0.02,
+      "y": 0.99,
+      "method": "Existential risk: a risk that could wipe out humanity or permanently and drastically curtail its potential. AI is one candidate among several, alongside risks like engineered pandemics and nuclear war.",
+      "reach": "Defined by the philosopher Nick Bostrom in 2002.",
+      "href": "https://nickbostrom.com/papers/existential-risks/"
+    },
+    {
+      "key": "gloomer",
+      "label": "Gloomer",
+      "x": 0.25,
+      "y": 0.45,
+      "method": "Someone who thinks we’ll be worse off with AI, without necessarily expecting catastrophe.",
+      "reach": "One of four groups in Reid Hoffman and Greg Beato’s 2025 book Superagency, as Hoffman summed them up on X.",
+      "href": "https://x.com/reidhoffman/status/1882120461435469973"
+    },
+    {
+      "key": "ai-skeptic",
+      "label": "AI skeptic",
+      "x": 0.42,
+      "y": 0.1,
+      "method": "Someone who doubts AI will be as capable or as world-changing as its builders and its critics expect.",
+      "reach": "A plain word rather than a coined label. Skeptics can be worried about AI’s present harms or simply unimpressed.",
+      "href": "https://www.merriam-webster.com/dictionary/skeptic"
+    },
+    {
+      "key": "agi",
+      "label": "AGI",
+      "x": 0.5,
+      "y": 0.68,
+      "method": "Artificial general intelligence: AI that can do most of what people can. Definitions range from most tasks to most economically valuable work.",
+      "reach": "A capability, not an outcome, so it sits on the center line.",
+      "href": "https://arxiv.org/abs/2311.02462"
+    },
+    {
+      "key": "superintelligence",
+      "label": "Superintelligence",
+      "x": 0.5,
+      "y": 0.85,
+      "method": "AI much smarter than the best human brains in practically every field.",
+      "reach": "Nick Bostrom’s 1998 definition. Like AGI, a capability, so it sits on the center line.",
+      "href": "https://nickbostrom.com/papers/how-long-before-superintelligence/"
+    },
+    {
+      "key": "singularity",
+      "label": "The singularity",
+      "x": 0.5,
+      "y": 1,
+      "method": "The point where superhuman intelligence changes the world so fast that what comes after can’t be predicted from here.",
+      "reach": "Popularized by the science fiction writer Vernor Vinge in 1993.",
+      "href": "https://edoras.sdsu.edu/~vinge/misc/singularity.html"
+    },
+    {
+      "key": "bloomer",
+      "label": "Bloomer",
+      "x": 0.78,
+      "y": 0.74,
+      "method": "Someone hopeful about AI who wants to push ahead while managing its risks.",
+      "reach": "From Reid Hoffman and Greg Beato’s 2025 book Superagency; Hoffman calls himself one. Earlier, a meme for a cheerful young optimist.",
+      "href": "https://x.com/reidhoffman/status/1882120461435469973"
+    },
+    {
+      "key": "zoomer",
+      "label": "Zoomer",
+      "x": 0.93,
+      "y": 0.84,
+      "side": "left",
+      "method": "Someone who wants AI built as fast as possible, without weighing the risks.",
+      "reach": "The fourth group in Superagency. Not Gen Z’s “zoomer”.",
+      "href": "https://x.com/reidhoffman/status/1882120461435469973"
+    },
+    {
+      "key": "e-acc",
+      "label": "e/acc",
+      "x": 0.96,
+      "y": 0.97,
+      "side": "left",
+      "method": "Effective accelerationism: the view that technological progress should be sped up, not slowed, because growth driven by technology and markets is good and can’t be stopped anyway.",
+      "reach": "Named in a 2022 newsletter post by two pseudonymous X accounts, as a riff on effective altruism. It says what to do as much as how things turn out.",
+      "href": "https://beff.substack.com/p/notes-on-eacc-principles-and-tenets"
+    }
+  ]
+}
