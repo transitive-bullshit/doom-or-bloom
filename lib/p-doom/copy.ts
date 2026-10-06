@@ -1,7 +1,9 @@
-// The P(doom) hub and the "Why P(doom) estimates vary so much" post share one
-// quotable definition. Both bodies are English (see docs/SEO.md).
-export const pdoomDefinition =
-  'P(doom) is the probability a person assigns to advanced AI causing an existential catastrophe for humanity, such as human extinction or a permanent loss of control over our future.'
+import messages from '@/messages/en.json'
+
+// The P(doom) hub and blog posts share one quotable definition. The hub and
+// structured data use the English; a post's `<Definition />` reads
+// `PdoomHub.definition` in the post's language (see docs/SEO.md).
+export const pdoomDefinition = messages.PdoomHub.definition
 
 /** The post the hub links to on why estimates vary and how to read one. */
 export const pdoomGuidePath = '/blog/why-p-doom-estimates-vary'

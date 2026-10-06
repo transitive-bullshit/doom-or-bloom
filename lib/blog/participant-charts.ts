@@ -70,6 +70,13 @@ export const participantAggregatesSchema = z.object({
   }),
   map: z.object({
     n: count,
+    overall: z.object({
+      lowerHalf_y_below_0_5: shareStat,
+      /** Written by the pipeline since October 6, 2026; derived before. */
+      upperHalf_y_0_5_to_0_9: shareStat.optional(),
+      topEdge_y_0_9_or_more: shareStat
+    }),
+    horseshoe: z.array(shareStat.extend({ outlookBand: z.enum(outlookBands) })),
     grid: z.object({
       cells: z.array(
         z.object({
@@ -166,11 +173,47 @@ const outlookLabels: Record<(typeof outlookBands)[number], string> = {
   'leans hopeful': 'Leans hopeful',
   enthusiastic: 'Enthusiastic'
 }
+/** Map position ranges around the five outlook levels (the `horseshoe` bands). */
+const outlookRangeLabels: Record<(typeof outlookBands)[number], string> = {
+  catastrophe: 'Doom end (below 0.125)',
+  'mainly harm': 'Toward doom (0.125–0.375)',
+  mixed: 'Middle (0.375–0.625)',
+  'leans hopeful': 'Toward bloom (0.625–0.875)',
+  enthusiastic: 'Bloom end (0.875 and up)'
+}
 const sideLabels = [
   'Doom side (below 0.4)',
   'Middle (0.4–0.6)',
   'Bloom side (above 0.6)'
 ]
+/**
+ * The vertical axis in three bands: the lower half, the top tenth and the
+ * band between. Aggregates written before the pipeline counted the middle band
+ * leave it out; it is then what the other two leave of the same people. A band
+ * under the minimum shows as "Fewer than 10", like every participant bar.
+ */
+export function scaleBands(
+  map: Pick<ParticipantAggregates['map'], 'n' | 'overall'>
+): [string, z.infer<typeof shareStat>][] {
+  const { lowerHalf_y_below_0_5: lower, topEdge_y_0_9_or_more: top } =
+    map.overall
+  const middle = map.overall.upperHalf_y_0_5_to_0_9 ?? derivedMiddle()
+  function derivedMiddle(): z.infer<typeof shareStat> {
+    if (lower.count === null || top.count === null)
+      throw new Error(
+        'The middle scale band needs map.overall.upperHalf_y_0_5_to_0_9: rerun pnpm blog:data'
+      )
+    const count = map.n - lower.count - top.count
+    return count < minimumGroupSize
+      ? { n: map.n, count: null, share: null, ci95: [null, null] }
+      : { n: map.n, count, share: round(count / map.n), ci95: [null, null] }
+  }
+  return [
+    ['Lower half (below 0.5)', lower],
+    ['Upper half, below the top edge (0.5–0.9)', middle],
+    ['Top edge (0.9 and up)', top]
+  ]
+}
 const shortDay = (day: string) =>
   new Intl.DateTimeFormat('en', {
     month: 'short',
@@ -341,6 +384,29 @@ export function participantCharts(
         }
       }))
     },
+    'outlook-and-scale': {
+      kind: 'bars',
+      title: 'Where participants land on each axis',
+      source: `One result per person: ${map.n} people placed on both axes. Rows are ranges of map position, from 0 to 1 on each axis; the outlook ranges center on the map’s five levels.`,
+      ...participantSource(aggregates),
+      series: [{ key: 'people', label: 'Share of participants', tone: 'blue' }],
+      rows: [
+        ...outlookBands.map((band) => ({
+          label: outlookRangeLabels[band],
+          group: 'Outlook, from Doom (0) to Bloom (1)',
+          values: {
+            people: bar(
+              map.horseshoe.find((entry) => entry.outlookBand === band)!
+            )
+          }
+        })),
+        ...scaleBands(map).map(([label, stat]) => ({
+          label,
+          group: 'Scale of change, from incremental (0) to civilizational (1)',
+          values: { people: bar(stat) }
+        }))
+      ]
+    },
     'population-map': {
       kind: 'map',
       title: 'Where participants landed',
@@ -433,6 +499,7 @@ export function participantCharts(
 // Charts of published posts. The other builders back draft posts kept outside
 // the repo until there is more data; add a chart here when its post ships.
 const publishedCharts = new Set([
+  'outlook-and-scale',
   'outlook-by-wave',
   'doomer-vs-mood',
   'referrers-by-day',

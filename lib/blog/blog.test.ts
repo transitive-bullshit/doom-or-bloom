@@ -28,7 +28,8 @@ import {
 import {
   participantAggregatesSchema,
   participantCharts,
-  referrersSchema
+  referrersSchema,
+  scaleBands
 } from './participant-charts'
 import { movedPosts } from './moved-posts'
 import {
@@ -317,6 +318,38 @@ describe('blog data', () => {
     // `pnpm blog:data --charts-only` rewrites them; a hand edit fails here.
     for (const [file, chart] of Object.entries(charts))
       expect({ file, chart: readData(file) }).toEqual({ file, chart })
+  })
+
+  it('splits the scale axis into three bands, hiding any under 10', () => {
+    const stat = (count: number | null, n = 100) => ({
+      n,
+      count,
+      share: count === null ? null : count / n,
+      ci95: [null, null] as [null, null]
+    })
+    const shares = (overall: Parameters<typeof scaleBands>[0]['overall']) =>
+      scaleBands({ n: 100, overall }).map(([, band]) => band.share)
+    // Older aggregates leave the middle band out; it is what the others leave.
+    expect(
+      shares({
+        lowerHalf_y_below_0_5: stat(30),
+        topEdge_y_0_9_or_more: stat(65)
+      })
+    ).toEqual([0.3, null, 0.65])
+    // Since the pipeline counts it, a small edge band shows as fewer than 10.
+    expect(
+      shares({
+        lowerHalf_y_below_0_5: stat(null),
+        upperHalf_y_0_5_to_0_9: stat(88),
+        topEdge_y_0_9_or_more: stat(12)
+      })
+    ).toEqual([null, 0.88, 0.12])
+    expect(() =>
+      shares({
+        lowerHalf_y_below_0_5: stat(null),
+        topEdge_y_0_9_or_more: stat(12)
+      })
+    ).toThrow('upperHalf_y_0_5_to_0_9')
   })
 
   it('shows participant numbers only for groups of at least 10', () => {

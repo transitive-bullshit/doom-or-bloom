@@ -1,7 +1,7 @@
 import { access } from 'node:fs/promises'
 import { describe, expect, test } from 'vitest'
 import messages from '@/messages/en.json'
-import { sourceIcon } from '@/lib/p-doom/favicons'
+import { sourceIcon } from '@/lib/sources/favicons'
 import {
   methodologyChanges,
   methodologyCitations,

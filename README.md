@@ -4,7 +4,7 @@
 
 **How will AI change our future?** Explore the range of views on AI, then map your own thoughts through a few open-ended questions. No specialist knowledge or account required. All free and open source.
 
-[**Explore the map →**](https://www.doom-or-bloom.com) · [**Map your own worldview →**](https://www.doom-or-bloom.com/assessments?start=1)
+[**Explore the map**](https://www.doom-or-bloom.com) · [**Map your own worldview**](https://www.doom-or-bloom.com/assessments?start=1)
 
 ## Why build this?
 

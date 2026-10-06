@@ -1,7 +1,8 @@
 import previews from '@/lib/sharing/resource-previews.json'
 
 // Favicons come from the committed resource previews (`pnpm resources:previews`,
-// which also covers every hub source), never from third-party hosts at runtime.
+// which also covers every source the hub, About and blog posts cite), never
+// from third-party hosts at runtime.
 
 type Preview = { icon?: string; iconKind?: 'publisher' | 'monogram' }
 const catalog = previews as Record<string, Preview>

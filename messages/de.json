@@ -832,13 +832,11 @@
     "profile": "Profil"
   },
   "PdoomHub": {
+    "definition": "P(doom) ist die Wahrscheinlichkeit, die eine Person dafür ansetzt, dass fortgeschrittene KI eine existenzielle Katastrophe für die Menschheit verursacht, etwa das Aussterben der Menschheit oder einen dauerhaften Verlust der Kontrolle über unsere Zukunft.",
     "tableTitle": "P(doom) nach Vordenker",
     "name": "Vordenker",
     "stated": "Öffentlich geäußertes P(doom)",
     "declined": "Keine Zahl",
-    "showAllSources": "Alle {count} Quellen anzeigen",
-    "fewerSources": "Weniger Quellen anzeigen",
-    "cite": "Quelle {number}",
     "asOf": "Berücksichtigt Aussagen bis zum {date}",
     "note": "Jede Zahl stammt aus den eigenen Worten der jeweiligen Person und ist mit der Stelle verlinkt, an der sie sie genannt hat. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind die Zahlen nicht direkt vergleichbar.",
     "surveyTitle": "Zum Vergleich: KI-Forschende",
@@ -858,6 +856,12 @@
     "ctaTitle": "Wie hoch ist dein P(doom)?",
     "ctaDescription": "Beantworte in etwa 3 Minuten ein paar Fragen und sieh dir dann deine Weltsicht und ein grobes P(doom) neben denen der Vordenker an",
     "guide": "Warum P(doom)-Schätzungen so stark variieren und wie du sie interpretierst"
+  },
+  "Sources": {
+    "title": "Quellen",
+    "cite": "Quelle {number}",
+    "showAll": "Alle {count} Quellen anzeigen",
+    "showFewer": "Weniger Quellen anzeigen"
   },
   "Blog": {
     "title": "Blog",

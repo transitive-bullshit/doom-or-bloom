@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl'
-import type { CitedProse } from '@/lib/p-doom/hub'
+import type { CitedProse } from '@/lib/sources/citations'
 import type { MentionPart } from '@/lib/personas/mentions'
 import { MentionText } from '@/components/mention-text'
-import { CitedText } from './citation'
+import { CitedText } from '@/components/sources/citation'
 
 type CitedScenario = {
   id: string

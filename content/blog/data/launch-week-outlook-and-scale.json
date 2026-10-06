@@ -1,0 +1,96 @@
+{
+  "title": "Where participants land on each axis",
+  "source": "One result per person: 953 people placed on both axes. Rows are ranges of map position, from 0 to 1 on each axis; the outlook ranges center on the map’s five levels.",
+  "asOf": "2026-10-03",
+  "provenance": "participants",
+  "kind": "bars",
+  "series": [
+    {
+      "key": "people",
+      "label": "Share of participants",
+      "tone": "blue"
+    }
+  ],
+  "rows": [
+    {
+      "label": "Doom end (below 0.125)",
+      "group": "Outlook, from Doom (0) to Bloom (1)",
+      "values": {
+        "people": {
+          "share": 0.118,
+          "count": 112
+        }
+      }
+    },
+    {
+      "label": "Toward doom (0.125–0.375)",
+      "group": "Outlook, from Doom (0) to Bloom (1)",
+      "values": {
+        "people": {
+          "share": 0.356,
+          "count": 339
+        }
+      }
+    },
+    {
+      "label": "Middle (0.375–0.625)",
+      "group": "Outlook, from Doom (0) to Bloom (1)",
+      "values": {
+        "people": {
+          "share": 0.211,
+          "count": 201
+        }
+      }
+    },
+    {
+      "label": "Toward bloom (0.625–0.875)",
+      "group": "Outlook, from Doom (0) to Bloom (1)",
+      "values": {
+        "people": {
+          "share": 0.231,
+          "count": 220
+        }
+      }
+    },
+    {
+      "label": "Bloom end (0.875 and up)",
+      "group": "Outlook, from Doom (0) to Bloom (1)",
+      "values": {
+        "people": {
+          "share": 0.085,
+          "count": 81
+        }
+      }
+    },
+    {
+      "label": "Lower half (below 0.5)",
+      "group": "Scale of change, from incremental (0) to civilizational (1)",
+      "values": {
+        "people": {
+          "share": 0.274,
+          "count": 261
+        }
+      }
+    },
+    {
+      "label": "Upper half, below the top edge (0.5–0.9)",
+      "group": "Scale of change, from incremental (0) to civilizational (1)",
+      "values": {
+        "people": {
+          "share": 0.595,
+          "count": 567
+        }
+      }
+    },
+    {
+      "label": "Top edge (0.9 and up)",
+      "group": "Scale of change, from incremental (0) to civilizational (1)",
+      "values": {
+        "people": {
+          "share": 0.131,
+          "count": 125
+        }
+      }
+    }
+  ]
+}

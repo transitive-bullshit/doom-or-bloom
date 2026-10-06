@@ -4,6 +4,8 @@ import path from 'node:path'
 import matter from 'gray-matter'
 import { defaultLocale, languageTag, locales, type Locale } from '@/i18n/config'
 import { siteCreator } from '@/lib/site'
+import type { MentionPart } from '@/lib/personas/mentions'
+import { postCitations } from './citations'
 import { headingIds } from './headings'
 import { blogL10nDirectory, translatedFrontmatterSchema } from './l10n'
 import {
@@ -133,4 +135,21 @@ export function postHeadingIds(slug: string, locale: string) {
   return locale !== defaultLocale && existsSync(translation)
     ? headingIds(postBody(translation), english)
     : headingIds(english)
+}
+
+/**
+ * A post's footnote numbers by source key and its numbered sources, numbered
+ * by the English post in every language (lib/blog/citations.ts).
+ */
+export function postSources(
+  slug: string,
+  mention?: (text: string) => MentionPart[]
+) {
+  const post = blogPost(slug)
+  if (!post) throw new Error(`No post ${slug}`)
+  return postCitations(
+    postBody(path.join(blogDirectory, `${slug}.mdx`)),
+    post.sources,
+    mention
+  )
 }

@@ -1,4 +1,4 @@
-import type { HubSource } from './citations'
+import type { Source } from '@/lib/sources/citations'
 
 /**
  * The thought leaders the P(doom) hub shows, in display order: stated numbers
@@ -23,7 +23,7 @@ export type CuratedPerson =
   | {
       id: string
       /** An exact quote of under 15 words, shown instead of a number. */
-      declined: { quote: string; source: HubSource }
+      declined: { quote: string; source: Source }
     }
 
 export const curatedPeople: CuratedPerson[] = [

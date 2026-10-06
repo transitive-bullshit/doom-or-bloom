@@ -1,4 +1,4 @@
-import { scorecardDataSchema } from '@/lib/blog/schema'
+import { scorecardDataSchema, scorecardLevelsUsed } from '@/lib/blog/schema'
 import {
   ChartFigure,
   englishChartText,
@@ -11,7 +11,8 @@ import { ScorecardGrid } from './scorecard-grid'
 /**
  * Approaches rated against criteria from committed JSON: a matrix of Harvey
  * balls whose cells open a one-line reason, or one approach at a time on
- * phones. The highlighted row is drawn in coral.
+ * phones. The highlighted row is drawn in coral. The legend lists the levels
+ * the cells use.
  */
 export function DataScorecard({
   data,
@@ -30,7 +31,7 @@ export function DataScorecard({
       title={chart.title}
       legend={
         <Legend
-          items={chart.levels.map((entry) => ({
+          items={scorecardLevelsUsed(chart).map((entry) => ({
             key: entry.key,
             label: entry.label,
             swatch: <LevelMark level={entry.key} />

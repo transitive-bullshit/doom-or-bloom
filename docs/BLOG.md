@@ -12,26 +12,42 @@ title: Why P(doom) estimates vary so much
 description: One or two sentences for search results, social cards and the blog index.
 date: 2026-10-01
 updated: 2026-11-15 # optional
+sources: # what the post cites, keyed by its [^key] markers
+  bostrom-2002:
+    title: 'Existential Risks: Analyzing Human Extinction Scenarios and Related Hazards'
+    url: https://nickbostrom.com/papers/existential-risks/
+    by: Nick Bostrom
+    year: 2002
 ---
 
 import statements from './data/public-pdoom-statements.json'
 
-Opening paragraph…
+Opening paragraph, citing a source.[^bostrom-2002]
 
 ## A section heading
 
 <DataRanges data={statements} />
 ```
 
-- Frontmatter is validated by `postFrontmatterSchema` (`lib/blog/schema.ts`): `title` without a trailing period, a `description` of 50–200 characters, `date` and an optional `updated` (YYYY-MM-DD). The author is the site creator.
+- Frontmatter is validated by `postFrontmatterSchema` (`lib/blog/schema.ts`): `title` without a trailing period, a `description` of 50–200 characters, `date`, an optional `updated` (YYYY-MM-DD) and the `sources` the post cites ([Citing sources](#citing-sources)). The author is the site creator.
 - Headings never end with a period. `pnpm test:content` and the unit tests fail on one. List items, chart titles, labels and captions have no trailing period either.
 - Section headings (`##` and `###`) get ids from their English text (`lib/blog/headings.ts`): “How Doom or Bloom estimates P(doom)” is `#how-doom-or-bloom-estimates-pdoom`. A translation's headings take the ids of the English headings in the same position, so `/blog/<slug>#<id>` opens the same section in every language. Renaming a heading changes its id; the P(doom) cards link to one (`pdoomMethodPath` in `lib/p-doom/copy.ts`), and `lib/blog/blog.test.ts` fails if that heading goes away.
 - Write in a plain, candid voice without hype. Personas are "thought leaders"; the interview takes "about 3 minutes". Say when a number is inferred, and call simulated thought leaders simulated, without foregrounding disclaimers: a line in the methods section is enough. Summarize a real person's views conservatively, and quote only their exact words.
 - Use typographic quotes and apostrophes, like the rest of the site's copy. In MDX, write a literal `<` before a digit or space as `\<`.
-- Link to site pages with root-relative URLs (`[the P(doom) table](/p-doom)`); they keep the reader's language prefix. Other links open in a new tab.
+- Link to site pages with root-relative URLs (`[the P(doom) table](/p-doom)`); they keep the reader's language prefix. Cite everything outside the site as a numbered source ([Citing sources](#citing-sources)) rather than linking it in the prose.
 - Write people's full names. The first mention of anyone with a published profile in each paragraph, list item or table cell links to their profile automatically ([SEO.md](SEO.md#internal-links)). Names in headings, links and bold or italic text stay as written, and single-word names (Roon, Aella) need an explicit link such as `[Roon](/users/tszzl)`.
 - Reading time is computed from the prose (230 words a minute); you do not set it.
 - Every post renders with the shared reading column, a byline, its `BlogPosting` structured data, a Takumi social card at `/blog/<slug>/opengraph-image` and a closing assessment CTA. The card (`lib/sharing/blog-social-card.tsx`) is the post's header on a page laid over the landing map's Prism field: the Doom or Bloom › Blog breadcrumb, the title at the largest size (100 down to 48px) whose balanced lines and longest word fit, and the byline with date and reading time. Its URL's `v` hashes the title, author, date and reading time; bump `blogCardRevision` when the design or its labels change. `lib/blog/blog.test.ts` fails if a post's title, or a translation's, would need its words broken to fit. The newest post comes first on the index and in the feed.
+
+### Citing sources
+
+Posts cite the way the P(doom) hub and About's methodology do, with the same bracketed footnote markers and the same closing list of numbered sources (`lib/sources` and `components/sources`). This is the only way a new post cites an outside source.
+
+1. List each source once in the frontmatter under `sources`, keyed by a short lowercase name (`bostrom-2002`, `pew-2026`): its `title` as published, `url`, `by` (the author, organization or both, such as `Garrison Lovely, MIT Technology Review`; a name with a profile links to it), `year` and, where known, the `published` date. Leave `year` off a page with no publication date, such as a wiki, a dictionary or a living guide: its footnote then shows no date, never the year it was read or "n.d.".
+2. Cite it in the prose with `[^key]` right after the claim, after any punctuation (`…a popular meme.[^wiktionary-doomer]`). Cite again with the same key; the source keeps its number. Markers belong in paragraphs, list items, table cells and bold or italic text, never in headings.
+3. Don't write a Sources section. The page adds one after the post, in the reader's language: favicon, linked title, byline and year (where dated), with the first ten shown and the rest behind "Show all".
+
+Sources number in order of first citation in the English post, so a translation shows the same numbers wherever its sentences put them. Each source's favicon is committed with the site: run `pnpm resources:previews --url=<url>` for a new site, and `lib/blog/citations.test.ts` fails on a cited page without one. `pnpm test:content` fails on a marker with no listed source, a listed source the post never cites, a marker in a heading, a post's own Sources heading or an outside link written in the prose. Links to the site's own pages (`/p-doom`, profiles, other posts) stay ordinary Markdown links. The three posts published before citations (`inlineLinkPosts` in `lib/blog/citations.ts`) still link their sources inline.
 
 Check a post with `pnpm dev`, then run `pnpm test`, `pnpm check:browser tests/browser/seo.spec.ts` and, before release, `pnpm build:local` and `pnpm check:prefetch`.
 
@@ -51,7 +67,7 @@ content/l10n/<code>/blog/data/<file>.json     # the text of each chart the post 
 content/l10n/<code>/blog/meta.json            # provenance: the English hash, model, date and review status per file
 ```
 
-- A translation keeps the English post's import lines, components, site links and heading levels, and its data files keep every number; only text a reader sees changes (`lib/blog/l10n.ts`). Dates, the author and the slug come from the English.
+- A translation keeps the English post's import lines, components, site links, citation markers and heading levels, and its data files keep every number; only text a reader sees changes (`lib/blog/l10n.ts`). Dates, the author, the slug and the sources come from the English, so cited titles stay as published.
 - `pnpm test:content` fails when a post is translated into only some locales, a translation is stale (its English changed), or its structure differs from the English (`lib/blog/translation-check.ts`).
 - `pnpm l10n:translate --locale=<code> --scope=blog --post=<slug> --allow-paid --max-cost=<usd>` starts a post's translation; after that, `--only-stale` keeps it current with the rest of the locale ([translation tooling](INTERNATIONALIZATION.md#translation-tooling)). Use `--concurrency=2` with a small cap: each call reserves its worst case against the cap. Read a sample back before committing.
 - Charts take their labels from the translated data file and their chrome (the "As of" line, "Fewer than 10", axis poles) from `BlogCharts` and `Map` in the post's language.
@@ -72,11 +88,11 @@ Charts render from committed JSON in `content/blog/data/`. A post imports the fi
 | `<DataBars data={…} />` | `bars`: one or two `series` and rows of shares per series, each with its group size (`count`) and an optional 95% interval (`ci`); `stacked` draws each row as one bar to 100%. Rows may share a `group` heading and carry a `note`, such as a p-value | Horizontal bars with the value at each bar's end, so the chart reads without its bars. A share of `null` reads "Fewer than 10" beside a hatched swatch. Names with a profile link to it |
 | `<DataIntervals data={…} />` | `intervals`: a value per row and series, with `low` and `high` and the group size `n`, on a linear or log `scale`; `interval` names what the line shows ("95% interval", "Middle half") | A dot and its interval per row, with the value as text and ticks under each group |
 | `<DataMap data={…} />` | `map`: aggregate `cells` (outlook and transformation spans with a `share` and `count`) and points with `outlook` (Doom 0 to Bloom 1), `transformation` (incremental 0 to civilizational 1), an optional `label`, `name` and relative `weight` | Cells: a square grid shaded by share, with groups under the minimum hatched and labelled "\<10". Points only: the result map's Prism field and geometry with sized points. Both include an equivalent screen-reader table |
-| `<DataLandscape data={…} />` | `landscape`: projects placed on two editorial axes (`x` and `y`, each a `title` and the words at its `start` and `end`), each point with a `key`, `label`, `method`, `reach`, source `href`, and optional label `side`, `shift` and one `highlight`. A participant point also carries its group size `n`, at least 10, since its `reach` states it in prose | A plot of horizontal labels (numbered dots keyed in a list on phones) whose details panel follows hover, tap and focus and links the source. The highlighted project is coral and its corner tinted. A screen-reader table lists every project |
-| `<DataScorecard data={…} />` | `scorecard`: approaches (`rows`) rated against criteria (`columns`, each with a `detail` question) as `yes`, `partly`, `no` or `na`, each with a one-line `note`; `levels` labels the four | A matrix of Harvey balls whose cells open their note on hover, tap or focus; on phones a compact overview whose rows open every criterion with its note. The highlighted row is coral |
+| `<DataLandscape data={…} />` | `landscape`: projects or terms placed on two editorial axes (`x` and `y`, each a `title` and the words at its `start` and `end`; `axes: 'middle'` crosses them in the middle like the site's map, putting the vertical axis title over the middle line), each point with a `key`, `label`, `method` (what it is or how it works), `reach` (a second, quieter line, such as how many took part or where a term comes from), source `href`, and optional label `side`, `shift` and one `highlight`. A participant point also carries its group size `n`, at least 10, since its `reach` states it in prose | A plot of horizontal labels (numbered dots keyed in a list on phones) whose details panel follows hover, tap and focus and links the source. The highlighted point is coral and its quadrant tinted; without a highlight no quadrant is tinted. A screen-reader table lists every point |
+| `<DataScorecard data={…} />` | `scorecard`: approaches (`rows`) rated against criteria (`columns`, each with a `detail` question) as `yes`, `partly`, `no` or `na`, each with a one-line `note`; `levels` labels the four | A matrix of Harvey balls whose cells open their note on hover, tap or focus; on phones a compact overview whose rows open every criterion with its note. The highlighted row is coral. The legend lists only the levels the cells use |
 | `<DataTrend data={…} />` | `trend`: small multiples on one date axis (`from`, `to`) with dated `events`; each panel one question (`title`, `note`), its own `scale` (`percent` shares or `year`s) and one or two series of dated points (the last day of fieldwork), the second `dashed` | Line panels labelled at their ends, with a crosshair that snaps to the nearest survey and a readout of every series there; arrow keys move it. A screen-reader table per panel. Values carry no group size, so participant numbers can't use it |
 | `<DataEstimates data={…} />` | `estimates`: probabilities on one log `scale` with labelled ticks, each row the `figure` as written, a `value` (a dot, hollow when `inferred`) or a stated `low`–`high` range, the question's exact `wording`, a `detail` line, a `tone` for who answered (`ink` for people's own numbers) and, for participants, the group size `n` | Rows of text with a track and the figure; values below the scale sit at its edge behind an arrow. Names with a profile link to it. Rows citing public statements must match the verified statements, and participant medians the committed aggregates (`lib/blog/research-charts.test.ts`) |
-| `<Definition />` | none | The quotable P(doom) definition shared with the `/p-doom` hub (`lib/p-doom/copy.ts`), used by “Why P(doom) estimates vary so much” |
+| `<Definition />` | none | The quotable P(doom) definition shared with the `/p-doom` hub, in the post's language (`PdoomHub.definition`; `pdoomDefinition` in `lib/p-doom/copy.ts` is its English), used by “Why P(doom) estimates vary so much” and “AI doomer or bloomer? Most people land in between” |
 
 Every data file also carries a `title` (no trailing period), a `source` sentence shown under the chart, an `asOf` date and a `provenance`. Series take the chart colors blue, then coral (`--chart-blue`, `--chart-coral` in `app/globals.css`); a series can name its `tone`, including `teal` (`--chart-teal`), so the same kind of respondent keeps its color across a post's charts: in the AI polls post, the public is blue, researchers and forecasters teal and Doom or Bloom coral. The three were checked together for contrast and color-vision separation on the card surface in both themes. `--chart-ink` marks things that are not a series, such as people's own stated numbers or reference examples. Interactive charts keep their text in the data file, so translations cover it, and read in full without hovering: every value is also in the text or a screen-reader table. Keep the numbers in each file reproducible from their source: `public-pdoom-statements.json` is checked against the verified statements in `lib/journeys/public-pdoom-statements.ts`, and the participant charts are rebuilt from the committed aggregates by `lib/blog/blog.test.ts`.
 
@@ -89,6 +105,7 @@ Every data file also carries a `title` (no trailing period), a `source` sentence
 | `participants` | Aggregates of participant results | [Participant data](#participant-data) |
 | `site-traffic` | Aggregate site analytics, such as referred visitors per day | Visitors, not participants; say so in the `source` |
 | `published-research` | Numbers from third-party polls, surveys and studies | Each from the primary source (topline, report or paper), named in the `source`; only exact question wording goes in quotation marks; name the fielding firm and any sponsor; leave out figures found only in secondary coverage |
+| `published-writing` | Definitions and ideas from books, papers, essays, posts and dictionaries, such as where a term comes from | Each point linked to its primary source; only exact words go in quotation marks; placements and ratings are editorial, and the `source` says so |
 
 A chart that mixes sources lists them all and names each series' `provenance`.
 

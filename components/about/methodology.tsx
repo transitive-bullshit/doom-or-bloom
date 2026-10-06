@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { languageTag } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
-import { Citation } from '@/components/p-doom/citation'
+import { Citation } from '@/components/sources/citation'
 import { AgreementChart } from '@/components/about/agreement-chart'
 import { InterviewFlow } from '@/components/about/interview-flow'
 import {

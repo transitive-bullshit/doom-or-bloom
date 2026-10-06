@@ -1,0 +1,248 @@
+{
+  "kind": "scorecard",
+  "title": "Which questions each word answers",
+  "source": "Our reading of each word’s definition: aisafety.info on doomers, Reid Hoffman’s summary of his four groups on X (2025), the 2022 e/acc newsletter post, Forbes and Wikipedia on decels, Vitalik Buterin’s “My techno-optimism” (2023) and MIRI’s page on the 2008 foom debate.",
+  "asOf": "2026-10-06",
+  "provenance": "published-writing",
+  "hint": "Hover, tap or focus a mark to see what the word says",
+  "levels": [
+    {
+      "key": "yes",
+      "label": "Answers it"
+    },
+    {
+      "key": "partly",
+      "label": "Implies an answer"
+    },
+    {
+      "key": "no",
+      "label": "Doesn’t say"
+    },
+    {
+      "key": "na",
+      "label": "Not applicable"
+    }
+  ],
+  "columns": [
+    {
+      "key": "outcome",
+      "label": "Good or bad",
+      "detail": "Does the word say whether AI turns out well or badly for people?"
+    },
+    {
+      "key": "scale",
+      "label": "How much",
+      "detail": "Does it say how much AI will change the world?"
+    },
+    {
+      "key": "pace",
+      "label": "How fast",
+      "detail": "Does it say how quickly AI will become more capable?"
+    },
+    {
+      "key": "action",
+      "label": "What to do",
+      "detail": "Does it say how fast to build AI, or how to govern it?"
+    }
+  ],
+  "rows": [
+    {
+      "key": "ai-doomer",
+      "label": "AI doomer",
+      "cells": {
+        "outcome": {
+          "level": "yes",
+          "note": "Catastrophe is the core of the word"
+        },
+        "scale": {
+          "level": "yes",
+          "note": "Extinction or a permanent loss of control is change on the largest scale"
+        },
+        "pace": {
+          "level": "no",
+          "note": "Some arguments for doom involve a fast takeoff, but the word doesn’t require one"
+        },
+        "action": {
+          "level": "no",
+          "note": "The word is about the outcome, not the policy"
+        }
+      }
+    },
+    {
+      "key": "gloomer",
+      "label": "Gloomer",
+      "cells": {
+        "outcome": {
+          "level": "yes",
+          "note": "Thinks we’ll be worse off with AI"
+        },
+        "scale": {
+          "level": "no",
+          "note": "Says nothing about how much AI changes, only that the change is for the worse"
+        },
+        "pace": {
+          "level": "no",
+          "note": "Says nothing about how quickly AI improves"
+        },
+        "action": {
+          "level": "no",
+          "note": "Hoffman’s short definition says nothing about policy"
+        }
+      }
+    },
+    {
+      "key": "ai-skeptic",
+      "label": "AI skeptic",
+      "cells": {
+        "outcome": {
+          "level": "no",
+          "note": "Skeptics can be worried about AI’s harms or simply unimpressed"
+        },
+        "scale": {
+          "level": "yes",
+          "note": "Expects AI to change the world less than its builders and its critics expect"
+        },
+        "pace": {
+          "level": "partly",
+          "note": "Usually expects slower progress than the forecasts, though not always"
+        },
+        "action": {
+          "level": "no",
+          "note": "Says nothing about policy"
+        }
+      }
+    },
+    {
+      "key": "bloomer",
+      "label": "Bloomer",
+      "cells": {
+        "outcome": {
+          "level": "yes",
+          "note": "Expects a bright future, if the risks are managed"
+        },
+        "scale": {
+          "level": "partly",
+          "note": "A bright future implies big benefits, but the word doesn’t say how big"
+        },
+        "pace": {
+          "level": "no",
+          "note": "Says nothing about how quickly AI improves"
+        },
+        "action": {
+          "level": "yes",
+          "note": "Push ahead and manage the risks along the way"
+        }
+      }
+    },
+    {
+      "key": "zoomer",
+      "label": "Zoomer",
+      "cells": {
+        "outcome": {
+          "level": "partly",
+          "note": "Implies the benefits are worth any risk, without saying how things turn out"
+        },
+        "scale": {
+          "level": "no",
+          "note": "Says nothing about how much AI changes"
+        },
+        "pace": {
+          "level": "no",
+          "note": "Says how fast to build, not how fast AI will improve"
+        },
+        "action": {
+          "level": "yes",
+          "note": "Build as fast as possible, without weighing the risks"
+        }
+      }
+    },
+    {
+      "key": "e-acc",
+      "label": "e/acc",
+      "cells": {
+        "outcome": {
+          "level": "yes",
+          "note": "Treats faster technological growth as good"
+        },
+        "scale": {
+          "level": "yes",
+          "note": "Welcomes change on the largest scale"
+        },
+        "pace": {
+          "level": "no",
+          "note": "Says how fast we should go, not how fast AI will improve"
+        },
+        "action": {
+          "level": "yes",
+          "note": "Accelerate, as the name says"
+        }
+      }
+    },
+    {
+      "key": "decel",
+      "label": "Decel",
+      "cells": {
+        "outcome": {
+          "level": "no",
+          "note": "Says nothing about how AI turns out"
+        },
+        "scale": {
+          "level": "no",
+          "note": "Says nothing about how much AI changes"
+        },
+        "pace": {
+          "level": "no",
+          "note": "Says how fast we should go, not how fast AI will improve"
+        },
+        "action": {
+          "level": "yes",
+          "note": "Slow down: it’s the word e/acc supporters use for anyone who wants to"
+        }
+      }
+    },
+    {
+      "key": "d-acc",
+      "label": "d/acc",
+      "cells": {
+        "outcome": {
+          "level": "partly",
+          "note": "Optimistic about technology, with risks worth defending against"
+        },
+        "scale": {
+          "level": "no",
+          "note": "Says nothing about how much AI changes"
+        },
+        "pace": {
+          "level": "no",
+          "note": "Says nothing about how quickly AI improves"
+        },
+        "action": {
+          "level": "yes",
+          "note": "Speed up technology, especially the kinds that help people defend themselves and keep power spread out"
+        }
+      }
+    },
+    {
+      "key": "foom",
+      "label": "Foom",
+      "cells": {
+        "outcome": {
+          "level": "no",
+          "note": "A fast takeoff could go well or badly; the word doesn’t say"
+        },
+        "scale": {
+          "level": "partly",
+          "note": "A jump to superintelligence implies huge change"
+        },
+        "pace": {
+          "level": "yes",
+          "note": "Very fast: that’s the whole word"
+        },
+        "action": {
+          "level": "no",
+          "note": "Says nothing about what to do"
+        }
+      }
+    }
+  ]
+}

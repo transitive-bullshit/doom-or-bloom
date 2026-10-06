@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
 import {
   dateShare,
+  highlightQuadrant,
   logShare,
   nearestIndex,
   thinTicks,
@@ -16,6 +17,7 @@ import {
   estimatesDataSchema,
   landscapeDataSchema,
   scorecardDataSchema,
+  scorecardLevelsUsed,
   trendDataSchema
 } from './schema'
 
@@ -218,6 +220,27 @@ describe('landscape charts', () => {
     expect(ours.map((p) => p.n)).toEqual([aggregates.map.overall.outlook.n])
   })
 
+  it('cross their axes at the edge or, like the site’s map, in the middle', () => {
+    const other = { ...point, key: 'quizzes', label: 'Quizzes' }
+    expect(ok({ ...chart([point, other]), axes: 'middle' })).toBe(true)
+    expect(ok({ ...chart([point, other]), axes: 'center' })).toBe(false)
+    expect(
+      landscapeDataSchema.parse(readData('ai-debate-words-map.json')).axes
+    ).toBe('middle')
+  })
+
+  it('tint the highlighted point’s quadrant, or none without a highlight', () => {
+    const point = { x: 0.9, y: 0.93 }
+    expect(highlightQuadrant([point, { ...point, highlight: true }])).toEqual({
+      right: true,
+      top: true
+    })
+    expect(
+      highlightQuadrant([{ x: 0.1, y: 0.2, highlight: true }, point])
+    ).toEqual({ right: false, top: false })
+    expect(highlightQuadrant([point, { x: 0.1, y: 0.2 }])).toBeNull()
+  })
+
   it('need distinct points, on the unit square, with one highlight at most', () => {
     const other = { ...point, key: 'quizzes', label: 'Quizzes' }
     expect(ok(chart([point, other]))).toBe(true)
@@ -274,6 +297,20 @@ describe('scorecard charts', () => {
         ])
       )
     ).toBe(false)
+  })
+
+  it('list only the levels their cells use, in legend order', () => {
+    const parsed = scorecardDataSchema.parse(
+      chart({ sample: { level: 'no', note: 'Why' }, wording: cell })
+    )
+    expect(scorecardLevelsUsed(parsed).map((entry) => entry.key)).toEqual([
+      'yes',
+      'no'
+    ])
+    const polls = scorecardDataSchema.parse(
+      readData('ai-opinion-scorecard.json')
+    )
+    expect(scorecardLevelsUsed(polls)).toEqual(polls.levels)
   })
 })
 
