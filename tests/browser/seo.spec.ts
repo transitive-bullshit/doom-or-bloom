@@ -227,7 +227,9 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
   request
 }) => {
   await page.goto('/blog')
-  await expect(page).toHaveTitle('Blog | Doom or Bloom')
+  await expect(page).toHaveTitle(
+    'Data and explainers on AI risk and the future of AI | Doom or Bloom'
+  )
   const blog = ofType(await structuredData(page), 'Blog')[0]!
   expect(blog.blogPost).toEqual(
     expect.arrayContaining([

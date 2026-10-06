@@ -24,7 +24,7 @@
       "description": "P(doom) is the chance someone gives that AI ends in catastrophe for humanity. See what Hinton, Musk, Amodei, LeCun and others have said, with sources."
     },
     "blog": {
-      "title": "Blog",
+      "title": "Data and explainers on AI risk and the future of AI",
       "description": "Plain-language writing from Doom or Bloom on P(doom), AI risk, and how people think about the future of AI."
     }
   },
