@@ -5,7 +5,9 @@ import type { HubSource } from './citations'
  * from low to high, then prominent people who decline to give one. Stated
  * numbers are read from `publicPdoomStatements` by persona id when the page
  * renders; a person without a statement there is left out. The full catalog
- * lives on /users. Chosen in the October 2026 public P(doom) audit.
+ * lives on /users. Chosen in the October 2026 public P(doom) audit; Andrew
+ * McAfee, Noah Smith and Joe Carlsmith, featured thought leaders with a
+ * verified statement, were added on October 6.
  */
 export type CuratedPerson =
   | {
@@ -21,7 +23,7 @@ export type CuratedPerson =
   | {
       id: string
       /** An exact quote of under 15 words, shown instead of a number. */
-      declined: { quote: string; note: string; source: HubSource }
+      declined: { quote: string; source: HubSource }
     }
 
 export const curatedPeople: CuratedPerson[] = [
@@ -36,6 +38,13 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'world-model-optimist',
     note: {
       url: 'https://x.com/ylecun/status/2046577402264870958',
+      text: 'Chance AI causes human extinction'
+    }
+  },
+  {
+    id: 'permissionless-innovation-optimist',
+    note: {
+      url: 'https://singjupost.com/doac-ai-emergency-debate-ft-ed-zitron-andrew-mcafee-nate-soares-roman-yampolskiy-transcript/',
       text: 'Chance AI causes human extinction'
     }
   },
@@ -68,6 +77,13 @@ export const curatedPeople: CuratedPerson[] = [
     }
   },
   {
+    id: 'biosecurity-abundance-optimist',
+    note: {
+      url: 'https://www.noahpinion.blog/p/heres-how-were-all-going-to-die',
+      text: 'Chance AI-enabled bioterrorism brings down civilization'
+    }
+  },
+  {
     id: 'abundance-risk-taker',
     note: {
       url: 'https://www.youtube.com/watch?v=BDREZmpkIz8',
@@ -79,6 +95,13 @@ export const curatedPeople: CuratedPerson[] = [
     note: {
       url: 'https://www.wbur.org/onpoint/2025/01/10/ai-geoffrey-hinton-physics-nobel-prize',
       text: 'Chance AI causes human extinction within about 30 years'
+    }
+  },
+  {
+    id: 'alignment-philosopher',
+    note: {
+      url: 'https://joecarlsmith.com/2025/11/03/leaving-open-philanthropy-going-to-anthropic/',
+      text: 'Chance current AI development destroys humanity’s entire future'
     }
   },
   {
@@ -148,7 +171,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'control-alarmist',
     declined: {
       quote: 'There’s a lot of reasons I hate the ‘P(doom)’ concept',
-      note: 'Ruin from superintelligence built with anything like current techniques: “Yes”',
       source: {
         title: 'There’s a lot of reasons I hate the “P(doom)” concept',
         url: 'https://x.com/ESYudkowsky/status/2101804209528271092',
@@ -161,7 +183,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'scientist-ai-advocate',
     declined: {
       quote: 'I’d rather stay out of the p(doom) game.',
-      note: 'Gave 20% in 2023; now calls the risk “way too high for my taste”',
       source: {
         title:
           'Yoshua Bengio thinks he knows how to build safe superintelligence',
@@ -175,7 +196,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'scientific-steward',
     declined: {
       quote: 'it’s definitely non-zero and it’s probably non-negligible',
-      note: 'Says a number would imply a precision that isn’t there',
       source: {
         title:
           'Transcript for Demis Hassabis: Future of AI, Simulating Reality, Physics and Video Games | Lex Fridman Podcast #475',
@@ -189,7 +209,6 @@ export const curatedPeople: CuratedPerson[] = [
     id: 'cautious-builder',
     declined: {
       quote: 'I don’t know how you can put a number like that.',
-      note: 'Calls taking a 10% chance of killing everybody unacceptable',
       source: {
         title:
           'Altman: AI Beyond Human Control “Absolutely” Possible, Vows Safeguards | Titans and Disruptors',
@@ -211,8 +230,10 @@ export const statementPublishers: Record<string, string> = {
   'cognitiverevolution.ai': 'The Cognitive Revolution',
   'dwarkesh.com': 'Dwarkesh Podcast',
   'garymarcus.substack.com': 'Marcus on AI',
+  'joecarlsmith.com': 'Joe Carlsmith',
   'infotech.com': 'Info-Tech Research Group',
   'lironshapira.substack.com': 'Doom Debates',
+  'noahpinion.blog': 'Noah Smith, Noahpinion',
   'pod.wave.co': 'Wave',
   'singjupost.com': 'The Singju Post',
   'wbur.org': 'WBUR'
