@@ -20,7 +20,7 @@
       "description": "Search and compare simulated AI worldviews of public figures, from Hinton and Bengio to LeCun and Andreessen, with publicly stated P(doom) where given."
     },
     "pdoom": {
-      "title": "What is P(doom)? Estimates from Hinton, Musk, LeCun and more",
+      "title": "What is P(doom)? Hinton, Musk, LeCun and more",
       "description": "P(doom) is the chance someone gives that AI ends in catastrophe for humanity. See what Hinton, Musk, Amodei, LeCun and others have said, with sources."
     },
     "blog": {
@@ -824,7 +824,7 @@
     },
     "ctaTitle": "What’s your P(doom)?",
     "ctaDescription": "Answer a few questions in about 3 minutes, then see your worldview and a rough P(doom) beside theirs",
-    "guide": "Read the guide to what P(doom) means"
+    "guide": "Why P(doom) estimates vary so much, and how to read one"
   },
   "Blog": {
     "title": "Blog",

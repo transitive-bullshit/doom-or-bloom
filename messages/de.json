@@ -20,7 +20,7 @@
       "description": "Durchsuche und vergleiche simulierte KI-Weltsichten öffentlicher Persönlichkeiten, von Hinton und Bengio bis LeCun und Andreessen, einschließlich öffentlich genannter P(doom)-Werte, sofern vorhanden."
     },
     "pdoom": {
-      "title": "Was ist P(doom)? Schätzungen von Hinton, Musk, LeCun und anderen",
+      "title": "Was ist P(doom)? Hinton, Musk, LeCun und weitere",
       "description": "P(doom) ist die Wahrscheinlichkeit, die jemand dafür ansetzt, dass KI in einer Katastrophe für die Menschheit endet. Erfahre mit Quellenangaben, was Hinton, Musk, Amodei, LeCun und andere dazu gesagt haben."
     },
     "blog": {
@@ -824,7 +824,7 @@
     },
     "ctaTitle": "Wie hoch ist dein P(doom)?",
     "ctaDescription": "Beantworte in etwa 3 Minuten ein paar Fragen und sieh dir dann deine Weltsicht und ein grobes P(doom) neben denen der Vordenker an",
-    "guide": "Lies den Leitfaden zur Bedeutung von P(doom)"
+    "guide": "Warum P(doom)-Schätzungen so stark variieren und wie du sie interpretierst"
   },
   "Blog": {
     "title": "Blog",

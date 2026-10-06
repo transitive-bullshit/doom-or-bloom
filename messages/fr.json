@@ -20,7 +20,7 @@
       "description": "Recherchez et comparez les visions du monde simulées de personnalités publiques concernant l’IA, de Hinton et Bengio à LeCun et Andreessen, avec les P(doom) qu’elles ont déclarées publiquement, le cas échéant."
     },
     "pdoom": {
-      "title": "Qu’est-ce que P(doom) ? Estimations de Hinton, Musk, LeCun et d’autres",
+      "title": "Qu’est-ce que P(doom) ? Hinton, Musk, LeCun et d’autres",
       "description": "P(doom) est la probabilité qu’une personne attribue à une catastrophe pour l’humanité causée par l’IA. Découvrez ce qu’en ont dit Hinton, Musk, Amodei, LeCun et d’autres, avec les sources."
     },
     "blog": {
@@ -824,7 +824,7 @@
     },
     "ctaTitle": "Quel est votre P(doom) ?",
     "ctaDescription": "Répondez à quelques questions en environ 3 minutes, puis découvrez votre vision du monde et un P(doom) approximatif à côté des leurs",
-    "guide": "Lire le guide expliquant ce que signifie le P(doom)"
+    "guide": "Pourquoi les estimations de P(doom) varient autant et comment les interpréter"
   },
   "Blog": {
     "title": "Blog",

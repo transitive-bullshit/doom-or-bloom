@@ -79,7 +79,7 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
 }) => {
   await page.goto('/p-doom')
   await expect(page).toHaveTitle(
-    'What is P(doom)? Estimates from Hinton, Musk, LeCun and more | Doom or Bloom'
+    'What is P(doom)? Hinton, Musk, LeCun and more | Doom or Bloom'
   )
   await expect(
     page.getByRole('heading', { level: 1, name: 'What is P(doom)?' })
@@ -89,8 +89,10 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   )
   await expect(page.getByText(/^As of .+\d{4}$/)).toBeVisible()
   await expect(
-    page.getByRole('link', { name: 'Read the guide to what P(doom) means' })
-  ).toHaveAttribute('href', '/blog/what-is-p-doom')
+    page.getByRole('link', {
+      name: 'Why P(doom) estimates vary so much, and how to read one'
+    })
+  ).toHaveAttribute('href', '/blog/why-p-doom-estimates-vary')
 
   // A curated table, not the whole catalog: stated numbers as written, each
   // with a footnote, then refusals quoted instead of a number.
@@ -231,15 +233,20 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
     expect.arrayContaining([
       expect.objectContaining({
         '@type': 'BlogPosting',
-        url: `${site}/blog/what-is-p-doom`,
+        url: `${site}/blog/why-p-doom-estimates-vary`,
         author: expect.objectContaining({ '@id': `${site}/#creator` })
       })
     ])
   )
-  await page.getByRole('link', { name: 'What is P(doom)?' }).click()
-  await expect(page).toHaveURL(/\/blog\/what-is-p-doom$/)
+  await page
+    .getByRole('link', { name: 'Why P(doom) estimates vary so much' })
+    .click()
+  await expect(page).toHaveURL(/\/blog\/why-p-doom-estimates-vary$/)
   await expect(
-    page.getByRole('heading', { level: 1, name: 'What is P(doom)?' })
+    page.getByRole('heading', {
+      level: 1,
+      name: 'Why P(doom) estimates vary so much'
+    })
   ).toBeVisible()
   await expect(page.locator('main article header')).toContainText(
     /By Travis Fischer · .+ · \d+ min read/
@@ -249,6 +256,10 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
   // Headings never end with a period, and the chart cites each number.
   for (const heading of await body.locator('h2').allTextContents())
     expect(heading).not.toMatch(/\.$/)
+  // Sections are addressable, so result cards can link to the method.
+  await expect(body.locator('h2#how-doom-or-bloom-estimates-pdoom')).toHaveText(
+    'How Doom or Bloom estimates P(doom)'
+  )
   // Names link to simulated profiles; the numbers are not links.
   const chart = page.locator('[data-slot="blog-data-ranges"]')
   await expect(chart.getByRole('rowheader')).toHaveCount(8)
@@ -256,19 +267,25 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
     chart.getByRole('link', { name: 'Geoffrey Hinton' })
   ).toHaveAttribute('href', '/users/geoffreyhinton')
   await expect(chart.getByRole('link')).toHaveCount(8)
+  // It opens by sending the definition and sourced table to the hub.
+  await expect(
+    body.locator('p').first().getByRole('link', { name: 'the P(doom) page' })
+  ).toHaveAttribute('href', '/p-doom')
   await expect(
     body.getByRole('link', { name: 'P(doom) table of thought leaders' })
   ).toHaveAttribute('href', '/p-doom')
 
   const nodes = await structuredData(page)
   expect(ofType(nodes, 'BlogPosting')[0]).toMatchObject({
-    headline: 'What is P(doom)?',
-    url: `${site}/blog/what-is-p-doom`,
-    mainEntityOfPage: { '@id': `${site}/blog/what-is-p-doom` },
+    headline: 'Why P(doom) estimates vary so much',
+    url: `${site}/blog/why-p-doom-estimates-vary`,
+    mainEntityOfPage: { '@id': `${site}/blog/why-p-doom-estimates-vary` },
     datePublished: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
     dateModified: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
     image: [
-      expect.stringMatching(`${site}/blog/what-is-p-doom/opengraph-image`)
+      expect.stringMatching(
+        `${site}/blog/why-p-doom-estimates-vary/opengraph-image`
+      )
     ],
     inLanguage: 'en',
     author: { name: 'Travis Fischer', url: 'https://x.com/transitive_bs' }
@@ -285,7 +302,7 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
   const image = new URL(
     (await head.locator('meta[property="og:image"]').getAttribute('content'))!
   )
-  expect(image.pathname).toBe('/blog/what-is-p-doom/opengraph-image')
+  expect(image.pathname).toBe('/blog/why-p-doom-estimates-vary/opengraph-image')
   const card = await request.get(image.pathname + image.search)
   expect(card.status()).toBe(200)
   expect(card.headers()['content-type']).toBe('image/png')
@@ -295,18 +312,44 @@ test('the blog lists posts, and a post carries article data, a card and a feed',
   const feed = await request.get('/blog/rss.xml')
   expect(feed.headers()['content-type']).toContain('application/rss+xml')
   expect(await feed.text()).toContain(
-    `<link>${site}/blog/what-is-p-doom</link>`
+    `<link>${site}/blog/why-p-doom-estimates-vary</link>`
   )
 
   // An English-only post: other locales translate the chrome only.
-  await page.goto('/es/blog/what-is-p-doom')
+  await page.goto('/es/blog/why-p-doom-estimates-vary')
   await expect(page.locator('html')).toHaveAttribute('lang', 'es')
   await expect(page.getByText(spanish.Blog.englishOnly)).toBeVisible()
   expect(await canonicalAndRobots(page)).toEqual({
-    canonical: `${site}/blog/what-is-p-doom`,
+    canonical: `${site}/blog/why-p-doom-estimates-vary`,
     robots: 'noindex, follow'
   })
   expect((await page.goto('/blog/no-such-post'))?.status()).toBe(404)
+})
+
+test('the renamed P(doom) post redirects permanently to its new URL', async ({
+  page,
+  request
+}) => {
+  for (const [path, location] of [
+    ['/blog/what-is-p-doom', '/blog/why-p-doom-estimates-vary'],
+    ['/ja/blog/what-is-p-doom', '/ja/blog/why-p-doom-estimates-vary'],
+    [
+      '/blog/what-is-p-doom/opengraph-image',
+      '/blog/why-p-doom-estimates-vary/opengraph-image'
+    ]
+  ] as const) {
+    const response = await request.get(path, { maxRedirects: 0 })
+    expect(response.status(), path).toBe(308)
+    expect(response.headers()['location'], path).toBe(location)
+  }
+  await page.goto('/blog/what-is-p-doom')
+  await expect(page).toHaveURL(/\/blog\/why-p-doom-estimates-vary$/)
+  await expect(
+    page.getByRole('heading', {
+      level: 1,
+      name: 'Why P(doom) estimates vary so much'
+    })
+  ).toBeVisible()
 })
 
 test('a data post charts participant aggregates with their date', async ({
@@ -522,15 +565,17 @@ test('the sitemap lists English-only pages in English and translated posts in ev
   request
 }) => {
   const sitemap = await (await request.get('/sitemap.xml')).text()
-  for (const path of ['/p-doom', '/blog', '/blog/what-is-p-doom'])
+  for (const path of ['/p-doom', '/blog', '/blog/why-p-doom-estimates-vary'])
     expect(sitemap).toContain(`<loc>${site}${path}</loc>`)
   expect(sitemap).not.toContain(`${site}/es/p-doom`)
   expect(sitemap).not.toContain(`<loc>${site}/es/blog</loc>`)
-  expect(sitemap).not.toContain(`${site}/es/blog/what-is-p-doom`)
+  expect(sitemap).not.toContain(`${site}/es/blog/why-p-doom-estimates-vary`)
   for (const code of ['', '/es', '/ja'])
     expect(sitemap).toContain(`<loc>${site}${code}/blog/hacker-news-vs-x</loc>`)
   const llms = await (await request.get('/llms.txt')).text()
   expect(llms).toContain('## Blog')
-  expect(llms).toContain(`- [What is P(doom)?](${site}/blog/what-is-p-doom)`)
+  expect(llms).toContain(
+    `- [Why P(doom) estimates vary so much](${site}/blog/why-p-doom-estimates-vary)`
+  )
   expect(llms).toContain(`(${site}/p-doom)`)
 })

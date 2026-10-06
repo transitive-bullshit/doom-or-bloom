@@ -6,6 +6,9 @@ import { describe, expect, it } from 'vitest'
 import { personas } from '@/lib/journeys/catalog'
 import { publicPdoomStatements } from '@/lib/journeys/public-pdoom-statements'
 import { locales } from '@/i18n/config'
+import englishMessages from '@/messages/en.json'
+import { googleTitleLimit, googleTitleWidth } from '@/lib/seo/title-width'
+import { siteTitle } from '@/lib/site'
 import {
   blogCardPath,
   blogSocialImageResponse,
@@ -13,6 +16,7 @@ import {
   renderBlogSocialImage
 } from '@/lib/sharing/blog-social-card'
 import { wrappable } from '@/lib/sharing/card-renderer'
+import { headingId, headingIds, postHeadings } from './headings'
 import {
   dataStrings,
   dataTranslationProblems,
@@ -25,7 +29,14 @@ import {
   participantCharts,
   referrersSchema
 } from './participant-charts'
-import { blogDirectory, blogPost, blogPosts, postTranslation } from './posts'
+import { movedPosts } from './moved-posts'
+import {
+  blogDirectory,
+  blogPost,
+  blogPosts,
+  postHeadingIds,
+  postTranslation
+} from './posts'
 import { blogFeed } from './rss'
 import {
   barsDataSchema,
@@ -56,9 +67,9 @@ describe('blog posts', () => {
         .toSorted()
         .toReversed()
     )
-    const guide = blogPost('what-is-p-doom')!
+    const guide = blogPost('why-p-doom-estimates-vary')!
     expect(guide).toMatchObject({
-      title: 'What is P(doom)?',
+      title: 'Why P(doom) estimates vary so much',
       author: 'Travis Fischer',
       authorUrl: 'https://x.com/transitive_bs'
     })
@@ -79,8 +90,63 @@ describe('blog posts', () => {
       })
     }
     expect(
-      readFileSync(path.join(blogDirectory, 'what-is-p-doom.mdx'), 'utf8')
+      readFileSync(
+        path.join(blogDirectory, 'why-p-doom-estimates-vary.mdx'),
+        'utf8'
+      )
     ).toContain('](/p-doom)')
+  })
+
+  it('give section headings unique ids from the English, in every language', () => {
+    expect(headingId('How Doom or Bloom estimates P(doom)')).toBe(
+      'how-doom-or-bloom-estimates-pdoom'
+    )
+    expect(headingId('What the number is, and what it isn’t')).toBe(
+      'what-the-number-is-and-what-it-isnt'
+    )
+    expect(headingId('Où les sondages divergent')).toBe(
+      'ou-les-sondages-divergent'
+    )
+    expect(
+      postHeadings(
+        '# Title\n## One [link](/a)\n```\n## Not a heading\n```\n### Two **bold**'
+      )
+    ).toEqual(['One link', 'Two bold'])
+    // A translation's headings take the English ids by position.
+    expect(headingIds('## Uno\n### Dos', '## One\n### Two')).toEqual({
+      Uno: 'one',
+      Dos: 'two'
+    })
+    for (const post of blogPosts())
+      for (const locale of locales) {
+        const ids = Object.values(postHeadingIds(post.slug, locale))
+        const english = Object.values(postHeadingIds(post.slug, 'en'))
+        expect({ post: post.slug, locale, ids }).toEqual({
+          post: post.slug,
+          locale,
+          ids: english
+        })
+        expect({ post: post.slug, unique: new Set(ids).size }).toEqual({
+          post: post.slug,
+          unique: ids.length
+        })
+      }
+  })
+
+  it('redirect moved slugs to posts that exist', () => {
+    for (const [from, to] of Object.entries(movedPosts))
+      expect({
+        from: Boolean(blogPost(from)),
+        to: Boolean(blogPost(to))
+      }).toEqual({ from: false, to: true })
+  })
+
+  it('title the hub within Google’s width', () => {
+    const title = siteTitle(englishMessages.Pages.pdoom.title)
+    expect(title).toBe(
+      'What is P(doom)? Hinton, Musk, LeCun and more | Doom or Bloom'
+    )
+    expect(googleTitleWidth(title)).toBeLessThanOrEqual(googleTitleLimit)
   })
 
   it('reject titles with trailing periods and short descriptions', () => {
@@ -392,7 +458,7 @@ describe('feed and social image', () => {
 
   it('renders each post card as a 1200 × 630 PNG', async () => {
     const bytes = await renderBlogSocialImage({
-      title: 'What is P(doom)?',
+      title: 'Why P(doom) estimates vary so much',
       meta: 'October 1, 2026 · 4 min read'
     })
     expect(await sharp(bytes).metadata()).toMatchObject({

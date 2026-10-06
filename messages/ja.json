@@ -20,7 +20,7 @@
       "description": "HintonやBengioからLeCunやAndreessenまで、公人のシミュレーションされたAIに対する世界観を検索して比較し、公表されている場合はP(doom)も確認できます。"
     },
     "pdoom": {
-      "title": "P(doom)とは？Hinton、Musk、LeCunなどによる推定",
+      "title": "P(doom)とは？ Hinton、Musk、LeCunなど",
       "description": "P(doom)は、AIが人類にとっての破局に至る可能性を、その人がどの程度と考えているかを示すものです。Hinton、Musk、Amodei、LeCunなどの発言を、出典付きで確認できます。"
     },
     "blog": {
@@ -824,7 +824,7 @@
     },
     "ctaTitle": "あなたのP(doom)は？",
     "ctaDescription": "約3分でいくつかの質問に答えると、自分の世界観とおおよそのP(doom)をオピニオンリーダーのものと並べて確認できます",
-    "guide": "P(doom)の意味についてのガイドを読む"
+    "guide": "P(doom)の推定値がこれほど大きく異なる理由と、その読み方"
   },
   "Blog": {
     "title": "ブログ",

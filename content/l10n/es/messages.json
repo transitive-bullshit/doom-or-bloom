@@ -57,9 +57,9 @@
       "reviewStatus": "machine"
     },
     "Pages.pdoom.title": {
-      "sourceHash": "52f07b5695d28795",
+      "sourceHash": "7ed8fa7bf37a1dde",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-02",
+      "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
     },
     "Pages.pdoom.description": {
@@ -4095,9 +4095,9 @@
       "reviewStatus": "machine"
     },
     "PdoomHub.guide": {
-      "sourceHash": "87578769e47ddb2d",
+      "sourceHash": "12aed575686c12d8",
       "model": "gpt-5.6-sol",
-      "translatedAt": "2026-10-01",
+      "translatedAt": "2026-10-06",
       "reviewStatus": "machine"
     },
     "Blog.title": {

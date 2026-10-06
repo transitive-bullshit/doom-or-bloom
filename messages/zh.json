@@ -20,7 +20,7 @@
       "description": "搜索并比较公众人物的模拟AI世界观，从 Hinton 和 Bengio 到 LeCun 和 Andreessen，并查看他们公开表明的 P(doom)（如有）。"
     },
     "pdoom": {
-      "title": "P(doom) 是什么？Hinton、Musk、LeCun 等人的估计",
+      "title": "什么是 P(doom)？Hinton、Musk、LeCun 等人的看法",
       "description": "P(doom) 是某人认为AI最终会给人类带来灾难的概率。查看 Hinton、Musk、Amodei、LeCun 等人的公开说法及其来源。"
     },
     "blog": {
@@ -824,7 +824,7 @@
     },
     "ctaTitle": "你的 P(doom) 是多少？",
     "ctaDescription": "用大约3分钟回答几个问题，然后将你的世界观和粗略的 P(doom) 与他们的放在一起查看",
-    "guide": "阅读 P(doom) 含义指南"
+    "guide": "为什么 P(doom) 估计值差异如此之大，以及如何解读估计值"
   },
   "Blog": {
     "title": "博客",

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { getPathMatch } from 'next/dist/shared/lib/router/utils/path-match.js'
 import { prepareDestination } from 'next/dist/shared/lib/router/utils/prepare-destination.js'
+import { movedPostRedirects } from '@/lib/blog/moved-posts'
 import {
   localeRedirects,
   localeRewrites,
@@ -50,7 +51,9 @@ describe('locale rewrites', () => {
     expect(rewrite('/users/simonw')).toBe('/en/users/simonw')
     expect(rewrite('/p-doom')).toBe('/en/p-doom')
     expect(rewrite('/blog')).toBe('/en/blog')
-    expect(rewrite('/blog/what-is-p-doom')).toBe('/en/blog/what-is-p-doom')
+    expect(rewrite('/blog/why-p-doom-estimates-vary')).toBe(
+      '/en/blog/why-p-doom-estimates-vary'
+    )
     expect(rewrite('/public/assessments/abc')).toBe(
       '/en/public/assessments/abc'
     )
@@ -68,7 +71,7 @@ describe('locale rewrites', () => {
       '/questions',
       '/prototypes/landing/personas/abc',
       '/users/simonw/opengraph-image',
-      '/blog/what-is-p-doom/opengraph-image',
+      '/blog/why-p-doom-estimates-vary/opengraph-image',
       '/blog/rss.xml',
       '/public/assessments/abc/data',
       '/public/assessments/abc/social-image.png'
@@ -93,8 +96,8 @@ describe('locale redirects', () => {
     expect(redirect('/about', 'es')).toBe('/es/about')
     expect(redirect('/users/simonw', 'es')).toBe('/es/users/simonw')
     // English-bodied pages keep translated chrome under the chosen prefix.
-    expect(redirect('/blog/what-is-p-doom', 'es')).toBe(
-      '/es/blog/what-is-p-doom'
+    expect(redirect('/blog/why-p-doom-estimates-vary', 'es')).toBe(
+      '/es/blog/why-p-doom-estimates-vary'
     )
     for (const path of [
       '/es/about',
@@ -108,9 +111,47 @@ describe('locale redirects', () => {
       '/public/assessments/abc/data',
       '/public/assessments/abc/social-image.png',
       '/blog/rss.xml',
-      '/blog/what-is-p-doom/opengraph-image'
+      '/blog/why-p-doom-estimates-vary/opengraph-image'
     ])
       expect({ path, to: redirect(path, 'es') }).toEqual({ path, to: null })
+  })
+})
+
+describe('moved post redirects', () => {
+  // In next.config.ts order: moved posts, then the locale rules.
+  const rules = [...movedPostRedirects(), ...localeRedirects()]
+  const redirect = (path: string, cookie?: string) => apply(rules, path, cookie)
+
+  it('are permanent', () => {
+    expect(movedPostRedirects().length).toBeGreaterThan(0)
+    for (const rule of movedPostRedirects()) expect(rule.permanent).toBe(true)
+  })
+
+  it('send a renamed post’s old URLs to the new slug in every locale', () => {
+    expect(redirect('/blog/what-is-p-doom')).toBe(
+      '/blog/why-p-doom-estimates-vary'
+    )
+    for (const code of ['es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id'])
+      expect(redirect(`/${code}/blog/what-is-p-doom`)).toBe(
+        `/${code}/blog/why-p-doom-estimates-vary`
+      )
+    // The card, which earlier link previews may still reference.
+    expect(redirect('/blog/what-is-p-doom/opengraph-image')).toBe(
+      '/blog/why-p-doom-estimates-vary/opengraph-image'
+    )
+    expect(redirect('/ja/blog/what-is-p-doom/opengraph-image')).toBe(
+      '/ja/blog/why-p-doom-estimates-vary/opengraph-image'
+    )
+    // A remembered language applies on the next hop, from the new URL.
+    expect(redirect('/blog/what-is-p-doom', 'es')).toBe(
+      '/blog/why-p-doom-estimates-vary'
+    )
+    expect(redirect('/blog/why-p-doom-estimates-vary', 'es')).toBe(
+      '/es/blog/why-p-doom-estimates-vary'
+    )
+    // Only the moved slug: a longer slug that starts the same is untouched.
+    expect(redirect('/blog/what-is-p-doom-really')).toBeNull()
+    expect(redirect('/blog/why-p-doom-estimates-vary')).toBeNull()
   })
 })
 
