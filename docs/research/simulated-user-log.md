@@ -155,3 +155,7 @@ Added 34 source-grounded simulated users from the top 100 of the [Top 50 Tech Po
 ## Drew Spartz (@AISpecies) — October 5, 2026
 
 At Travis's request, added [Drew Spartz](ai-species-persona-2026-10-05.md) at `/users/aispecies`, who makes the Species YouTube channel about AI risk. The brief has 12 sources, nine of them his own video narration (transcripts only, with quoted clips, scenarios and other people's estimates excluded) and three X posts; he states no P(doom) of his own. One local run placed him concern-leaning (outlook 11.2) for an estimated $0.12. The run is local only, with `featured: false`.
+
+## Sam Altman — October 6, 2026
+
+Added the requested Vanity Fair Part 1 interview to Altman’s authored brief, then regenerated five answers and their results for an estimated $0.12. Added two verified direct quotes while retaining all five existing public statements. At the owner’s subsequent request, imported the selected run into Preview and production; both verified the local snapshot digest. The [source audit](altman-vanity-fair-2026-10-06.md) records attribution limits, fidelity review, run provenance and verification; [PR #66](https://github.com/transitive-bullshit/doom-or-bloom/pull/66) delivers the authored assets.

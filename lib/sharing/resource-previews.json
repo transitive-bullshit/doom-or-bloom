@@ -8645,5 +8645,14 @@
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/7SDeeAHAAZ4/hqdefault.jpg",
     "icon": "/resource-previews/951ec577df4d-icon.webp"
+  },
+  "https://www.vanityfair.com/story/sam-altman-exclusive-interview-part-1": {
+    "source": "https://www.vanityfair.com/story/sam-altman-exclusive-interview-part-1",
+    "fetchedAt": "2026-10-06T00:36:37.604Z",
+    "description": "The OpenAI CEO discusses ChatGPT and suicide prevention, having more kids, being portrayed by Andrew Garfield, what he really thinks of Elon Musk and Mark Zuckerberg, and being seen as the Oppenheimer of the Artificial Age.",
+    "image": "/resource-previews/0f479875a840-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://media.vanityfair.com/photos/6ac01c910b7bf2b9f3f76532/16:9/w_1280,c_limit/SA_Digital3%20(1).jpg",
+    "icon": "/resource-previews/0f479875a840-icon.webp"
   }
 }

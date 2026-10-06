@@ -70,7 +70,7 @@ Each simulated user has a one-line description under their name in the profile h
 
 Profiles of people with search demand can show “What <Name> has said about AI”, below the map, the compare prompt and Similar worldviews. It is the real person's public record beside our simulation of them, so it follows the one-liner's fairness bar and adds stricter sourcing.
 
-- Three to five quotes, newest first, each with its date, venue and link. Aim for 25 words or fewer; `pnpm test:content` rejects more than 30.
+- Three to seven quotes, newest first, each with its date, venue and link. Aim for 25 words or fewer; `pnpm test:content` rejects more than 30.
 - Exact words only, checked against a primary source you fetched: their own writing, an official transcript, or an outlet's direct quote from its own interview. Attribute only their turns in a transcript, never an interviewer's. Trim only at sentence or clause boundaries and never join separate passages. Curly quotes and apostrophes may replace straight ones. Record the check in `verified`.
 - Choose quotes that are fair to their overall view at the weight their sources give it: benefits and risks, and what they think should be done. Show a change of view only where the sources show it, ideally in their own words. Prefer sources in their brief.
 - Never quote simulated answers. A stated P(doom) belongs on the P(doom) card, not here.
