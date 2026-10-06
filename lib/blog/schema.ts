@@ -75,10 +75,18 @@ export type Provenance = z.infer<typeof provenance>
 export const minimumGroupSize = 10
 const probability = z.number().min(0).max(1)
 const people = z.int().nonnegative()
+/** A portrait from public/personas. */
+const personaPortrait = z
+  .string()
+  .regex(/^\/personas\/[\w.-]+\.(?:jpg|png|webp)$/u)
+
 const dataBase = {
   title: headline,
-  /** Where the numbers come from, shown under the chart. */
-  source: z.string().min(1),
+  /**
+   * Where the numbers come from, shown under the chart before its date. Leave
+   * it out when the post's own text and links already say so.
+   */
+  source: z.string().min(1).optional(),
   asOf: day,
   /** One provenance, or every provenance a chart mixes (series name theirs). */
   provenance: z.union([provenance, z.array(provenance).min(2)])
@@ -247,7 +255,9 @@ export const mapDataSchema = z
           /** Draws the label left of the point instead of right. */
           side: z.enum(['left', 'right']).optional(),
           /** Nudges the label up (negative) or down, in pixels. */
-          shift: z.number().min(-24).max(24).optional()
+          shift: z.number().min(-24).max(24).optional(),
+          /** A portrait, shown on the point while its pair is chosen. */
+          avatar: personaPortrait.optional()
         })
       )
       .default([]),
@@ -801,10 +811,7 @@ const quotedPerson = z.strictObject({
   /** The full name as written, which links to a published profile. */
   name: z.string().min(1),
   /** A portrait from public/personas. */
-  avatar: z
-    .string()
-    .regex(/^\/personas\/[\w.-]+\.(?:jpg|png|webp)$/u)
-    .optional()
+  avatar: personaPortrait.optional()
 })
 
 const quoteSchema = z.strictObject({

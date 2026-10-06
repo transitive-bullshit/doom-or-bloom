@@ -1,7 +1,6 @@
 {
   "kind": "map",
   "title": "Eight AI leaders on one map, by their simulated worldviews",
-  "source": "Each person’s simulated worldview on their Doom or Bloom profile, generated from their public writing and interviews. Distances use the measure the site uses to compare a result with a thought leader’s, ranked across all 213 published simulated thought leaders.",
   "asOf": "2026-10-06",
   "provenance": "simulated-users",
   "hint": "Pick a pair to highlight it",
@@ -12,7 +11,8 @@
       "transformation": 0.885,
       "label": "Hinton",
       "name": "Geoffrey Hinton",
-      "side": "left"
+      "side": "left",
+      "avatar": "/personas/hinton.jpg"
     },
     {
       "key": "bengio",
@@ -20,21 +20,24 @@
       "transformation": 0.848,
       "label": "Bengio",
       "name": "Yoshua Bengio",
-      "shift": 12
+      "shift": 12,
+      "avatar": "/personas/bengio.jpg"
     },
     {
       "key": "amodei",
       "outlook": 0.348,
       "transformation": 0.881,
       "label": "Amodei",
-      "name": "Dario Amodei"
+      "name": "Dario Amodei",
+      "avatar": "/personas/amodei.jpg"
     },
     {
       "key": "marcus",
       "outlook": 0.456,
       "transformation": 0.625,
       "label": "Marcus",
-      "name": "Gary Marcus"
+      "name": "Gary Marcus",
+      "avatar": "/personas/marcus.jpg"
     },
     {
       "key": "hassabis",
@@ -42,28 +45,32 @@
       "transformation": 0.805,
       "label": "Hassabis",
       "name": "Demis Hassabis",
-      "side": "left"
+      "side": "left",
+      "avatar": "/personas/hassabis.jpg"
     },
     {
       "key": "musk",
       "outlook": 0.861,
       "transformation": 0.947,
       "label": "Musk",
-      "name": "Elon Musk"
+      "name": "Elon Musk",
+      "avatar": "/personas/musk.jpg"
     },
     {
       "key": "lecun",
       "outlook": 0.894,
       "transformation": 0.73,
       "label": "LeCun",
-      "name": "Yann LeCun"
+      "name": "Yann LeCun",
+      "avatar": "/personas/lecun.jpg"
     },
     {
       "key": "altman",
       "outlook": 0.916,
       "transformation": 0.807,
       "label": "Altman",
-      "name": "Sam Altman"
+      "name": "Sam Altman",
+      "avatar": "/personas/altman.jpg"
     }
   ],
   "pairs": [

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { type CSSProperties, useState } from 'react'
 import type { MentionPart } from '@/lib/personas/mentions'
 import { MentionText } from '@/components/mention-text'
@@ -15,6 +16,7 @@ export type PairPoint = {
   name?: string
   side?: 'left' | 'right'
   shift?: number
+  avatar?: string
 }
 
 export type Pair = {
@@ -33,11 +35,14 @@ const px = (value: number) => plot.left + value * plot.width
 const py = (value: number) => plot.top + (1 - value) * plot.height
 const { width, height } = resultMapLayout
 const radius = { pair: 7, other: 4.5 }
+// A chosen point with a portrait shows it instead of its dot, so readers can
+// recognize the pair; it scales with the map down to phone width.
+const portrait = 'clamp(28px, 7.5cqw, 44px)'
 
 /**
  * The interactive half of DataMap's pairs: a control picks two points, which
- * are joined, enlarged and labelled while the rest fade, with a line about
- * them below. Labels are HTML over the SVG, so they keep a readable size on
+ * are joined, labelled and shown by their portraits (or enlarged dots) while
+ * the rest fade, with a line about them below. Labels are HTML over the SVG, so they keep a readable size on
  * phones, where only the chosen pair is labelled.
  */
 export function PairPlot({
@@ -162,10 +167,34 @@ export function PairPlot({
             )
           })}
         </svg>
+        {points.map((point) =>
+          point.avatar && point.key && chosen.has(point.key) ? (
+            <Image
+              key={`portrait-${point.key}`}
+              src={point.avatar}
+              alt=''
+              aria-hidden
+              width={88}
+              height={88}
+              sizes='44px'
+              quality={90}
+              style={{
+                left: `${(px(point.outlook) / width) * 100}%`,
+                top: `${(py(point.transformation) / height) * 100}%`,
+                width: portrait,
+                height: portrait
+              }}
+              className='pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--prism-portrait-ring)] object-cover shadow-md'
+            />
+          ) : null
+        )}
         {points.map((point, index) => {
           if (!point.label) return null
           const on = Boolean(point.key && chosen.has(point.key))
-          const gap = `calc(${on ? radius.pair : radius.other} * 100cqw / ${width} + 4px)`
+          const gap =
+            on && point.avatar
+              ? `calc(${portrait} / 2 + 4px)`
+              : `calc(${on ? radius.pair : radius.other} * 100cqw / ${width} + 4px)`
           const style: CSSProperties = {
             left: `${(px(point.outlook) / width) * 100}%`,
             top: `calc(${(py(point.transformation) / height) * 100}% + ${point.shift ?? 0}px)`,
