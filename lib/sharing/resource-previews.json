@@ -8745,5 +8745,10 @@
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!StDJ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F00c3f692-512a-457b-898d-23866315bc91_1448x747.png",
     "icon": "/resource-previews/4b6284bac42a-icon.webp"
+  },
+  "https://www.astralcodexten.com/p/in-continued-defense-of-non-frequentist": {
+    "source": "https://www.astralcodexten.com/p/in-continued-defense-of-non-frequentist",
+    "fetchedAt": "2026-10-07T08:24:09.762Z",
+    "icon": "/resource-previews/47082d7563f9-icon.webp"
   }
 }
