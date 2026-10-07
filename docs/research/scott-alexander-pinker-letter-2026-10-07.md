@@ -27,7 +27,7 @@ Verified `.env.development.local` targets loopback PostgreSQL database `doom_blo
 
 Reviewed all questions and answers against the brief. They preserve transformative upside, serious risk without inevitability, the 2034 median knowledge-work capability forecast, alignment work and verifiable slowing, adoption/access mechanisms and opposition to a permanent ban. The final answer’s detailed proposed alignment test is fictional elaboration from the brief, not an authenticated Alexander quote.
 
-Only `slatestarcodex` changed selected assessment in the local database. The previous assessment `c5ceb0fc-7b1e-4568-add2-408809b42ecd` remains intact. The selected snapshot contains all 14 sources and the new public range. No hosted database import or deployment was performed.
+Only `slatestarcodex` changed selected assessment in the local database. The previous assessment `c5ceb0fc-7b1e-4568-add2-408809b42ecd` remains intact. The selected snapshot contains all 14 sources and the new public range.
 
 Refreshed only Scott’s benchmark R2/R3 references and copied R4 with `pnpm benchmark:refs --only=r2,r3,r4 --personas=rationalist-safety-advocate --max-cost=1 --allow-paid`, at an estimated $0.06. Other personas’ references retain their prior provenance. The new judge readings place outlook at 0.48, and self-readings at 0.55; the interview engine’s 0.32875 is a different reading, not a reason to tune the brief toward a preferred coordinate.
 
@@ -37,3 +37,9 @@ Refreshed only Scott’s benchmark R2/R3 references and copied R4 with `pnpm ben
 - `pnpm test` passed: formatting, lint, types, 120 test files / 743 tests, content validation and unused-code checks. Initial checks caught stale benchmark/chart/hub references; those were synchronized before the passing run.
 - Checked selected-run provenance, source presence, public range, old-run retention and all other local persona selections directly against Postgres.
 - Browser-verified `/users/slatestarcodex` locally: the new source card, sourced 25–30% range, outlook 33 / transformation 94, and all four expanded interview answers render. The first server launch rejected a shared dependency symlink; installing this worktree’s locked dependencies from the local pnpm cache resolved it without application changes.
+
+## Authorized production publication
+
+On October 7, the owner requested deployment and any necessary production database update. `pnpm personas:import plan/write --env <private production file> --ids slatestarcodex` published only Scott’s regenerated simulation, without inference or schema changes. Production selected assessment `cfc69c80-47ba-465d-8608-f9cad9dd3311` has the exact local snapshot digest recorded above and the Pinker source. The previous production assessment `311511ba-0669-4959-a400-789b5edb9817` and its original digest remain intact. A before/after hash of metadata, briefs, selections and selected digests for the other 212 profiles is unchanged; the catalog still contains 213 profiles.
+
+The associated release also cites Scott Alexander’s defense of subjective probabilities and Arvind Narayanan and Sayash Kapoor’s policy critique in the P(doom) explainer and leaders comparison, with a link from the polls post. The local production build passed its static-profile and bundled-asset checks. Deployment status is verified separately after the release reaches `main`.
