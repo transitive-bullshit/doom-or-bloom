@@ -171,3 +171,7 @@ At Travis's request, “What <Name> has said about AI” is now a default part o
 ## Staging catch-up and djcows regeneration — October 6, 2026
 
 The Vercel Preview (staging) database had missed the October 5 import. It received the 34 tech posters and Drew Spartz, plus Nick Marwell, with verified digests, and a metadata sync corrected 26 display orders. Production and staging each hold 213 simulated users with no metadata differences. At Travis's request, djcows was regenerated for an estimated $0.08 because his published run asked the extinction question three times. The new run has five accepted answers and was imported to both databases. The [batch record](tech-posters-2026-10-05.md#publication) has the details.
+
+## Scott Alexander — October 7, 2026
+
+Added the requested Pinker letter while retaining all 13 previous sources, updated his latest self-reported extinction range to 25–30%, and regenerated four answers and their results locally for an estimated $0.10. Refreshed his required benchmark references for about $0.06 and synchronized the P(doom) hub and two charts. The [source and generation record](scott-alexander-pinker-letter-2026-10-07.md) records attribution limits, review, immutable run provenance and checks. With the owner’s deployment authorization, imported Scott’s regenerated run into production and verified its exact selected digest, retention of his previous run and unchanged selections for all other 212 profiles. Site deployment is verified separately after merging the release.

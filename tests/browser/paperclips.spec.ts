@@ -116,7 +116,7 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
   await expect(
     page.getByText('We’ve made some paperclips.', { exact: true })
   ).toBeVisible()
-  expect(operations).toEqual(['answer', 'dismiss'])
+  await expect.poll(() => operations).toEqual(['answer', 'dismiss'])
   await expect(answer).toBeEnabled()
   await expect(page.getByText(/You found the easter egg/)).toBeVisible()
   // Recovery-only runs can start another assessment without deleting the first.
@@ -147,5 +147,7 @@ test('paperclip fireworks stay for ten seconds, finish automatically and support
     page.getByText('We’ve made some paperclips.', { exact: true })
   ).toBeVisible()
   await expect(answer).toBeEnabled()
-  expect(operations).toEqual(['answer', 'dismiss', 'answer', 'dismiss'])
+  await expect
+    .poll(() => operations)
+    .toEqual(['answer', 'dismiss', 'answer', 'dismiss'])
 })

@@ -2,7 +2,7 @@
   "kind": "estimates",
   "title": "Chances of an AI catastrophe, by who answered and what they were asked",
   "source": "AI Impacts (2024 survey, published September 2026), the Forecasting Research Institute (LEAP wave 9, May–June 2026, and its 2022 tournament), Rethink Priorities (June 2023), the statements linked from each thought leader’s profile and Doom or Bloom’s aggregates as of October 3, 2026. The outcomes and time frames differ, so read each number with its question.",
-  "asOf": "2026-10-04",
+  "asOf": "2026-10-07",
   "provenance": ["published-research", "public-statements", "participants"],
   "scale": {
     "min": 0.001,
@@ -170,12 +170,12 @@
     {
       "group": "Thought leaders, in their own words",
       "label": "Scott Alexander",
-      "figure": "20%",
-      "low": 0.2,
-      "high": 0.2,
+      "figure": "25–30%",
+      "low": 0.25,
+      "high": 0.3,
       "tone": "ink",
       "provenance": "public-statements",
-      "href": "https://www.astralcodexten.com/p/my-ai-opinions"
+      "href": "https://www.astralcodexten.com/p/an-open-letter-to-steven-pinker-on"
     },
     {
       "group": "Thought leaders, in their own words",

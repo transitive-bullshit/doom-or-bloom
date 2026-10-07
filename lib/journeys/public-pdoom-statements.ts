@@ -20,18 +20,17 @@ export const publicPdoomStatements: Record<
     quote: 'It’s near zero. Never say never.'
   },
   'rationalist-safety-advocate': {
-    token: '20%',
-    bounds: [0.2, 0.2],
-    estimate: 0.2,
-    title: 'My AI Opinions',
-    url: 'https://www.astralcodexten.com/p/my-ai-opinions',
-    publishedAt: '2026-06-11',
+    token: '25–30%',
+    bounds: [0.25, 0.3],
+    title: 'An Open Letter To Steven Pinker On AI',
+    url: 'https://www.astralcodexten.com/p/an-open-letter-to-steven-pinker-on',
+    publishedAt: '2026-10-06',
     outcome:
       'AI-caused human extinction, distinct from broader permanent curtailment of humanity’s future',
     horizon: 'No fixed calendar horizon',
     conditions:
-      'Explicitly rounded personal P(doom), accounting for current safety effort and possible pauses. Not his conditional estimate without special safety work or the separate broader-curtailment estimate.',
-    quote: 'I’m rounding both of them off to 20%.'
+      'Latest self-report of a previously stated approximate personal extinction range. The letter does not give a fixed horizon, restate policy conditions or explain the difference from June’s rounded 20%; not a scenario probability or the separate broader-curtailment estimate.',
+    quote: 'about a 25-30% chance that AI drives humanity extinct'
   },
   'empirical-control-researcher': {
     token: '35–40%',

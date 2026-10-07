@@ -7,6 +7,7 @@ export type Shown = {
   x: number | null
   y: number | null
   pdoom: number | null
+  pdoomBounds?: [number, number]
   pdoomToken: string | null
   pdoomSource: string | null
   insufficient: boolean
@@ -19,11 +20,19 @@ export function shownResult(result: Result): Shown {
     result.experiment?.evidenceRevision === result.evidenceRevision
       ? presentPdoom(result.experiment.pdoom)
       : null
-  return {
+  const shown: Shown = {
     ...resultPlacement(result),
     pdoom: pdoom?.estimate ?? null,
     pdoomToken: pdoom?.token ?? null,
     pdoomSource: pdoom?.source ?? null,
     insufficient: result.insufficient
   }
+  if (pdoom?.estimate === undefined && pdoom?.bounds)
+    shown.pdoomBounds = pdoom.bounds
+  return shown
+}
+
+/** Preserve a displayed range when there is no point estimate. */
+export function shownPdoom(shown: Shown | null | undefined) {
+  return shown?.pdoom ?? shown?.pdoomBounds ?? null
 }

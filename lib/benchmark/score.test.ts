@@ -161,6 +161,36 @@ test('a run is scored against the consensus by style and group', () => {
   expect(renderScore(score)).toContain('| style: terse | 2 (1 failed) |')
 })
 
+test('range-only public statements remain in shown, error and paired metrics', () => {
+  const range = record('casual-unsure', 'brief', [
+    step(
+      1,
+      { pdoomBounds: [0.15, 0.25], pdoomSource: 'public-statement' },
+      'automatic'
+    )
+  ])
+  const outside = record('casual-doomer', 'brief', [
+    step(
+      1,
+      { pdoomBounds: [0.25, 0.3], pdoomSource: 'public-statement' },
+      'automatic'
+    )
+  ])
+  const score = scoreRun(plan, [range, outside], store)
+  expect(score.overall.pdoom).toMatchObject({
+    shown: 2,
+    stated: 2,
+    n: 2,
+    mae: expect.closeTo(Math.abs(logit(0.3) - logit(0.5)) / 2),
+    bias: expect.closeTo((logit(0.3) - logit(0.5)) / 2),
+    within2x: 1
+  })
+  expect(score.byAnswer[0]!.within2x).toBe(1)
+  const compared = compareRuns([range], [range], store)
+  expect(compared.overall.pdoom).toMatchObject({ n: 1, a: 0, b: 0 })
+  expect(compared.overall.within2x).toEqual({ a: 1, b: 1 })
+})
+
 test('repeated interviews report retest variability', () => {
   const retake = (persona: string, repeat: number, x: number) =>
     record(

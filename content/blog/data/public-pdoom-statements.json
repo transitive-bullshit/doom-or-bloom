@@ -2,7 +2,7 @@
   "kind": "ranges",
   "title": "Publicly stated P(doom) estimates",
   "source": "Each name links to the person’s profile, which cites where they gave the number. They describe different outcomes and time frames, so the numbers are not directly comparable.",
-  "asOf": "2026-10-01",
+  "asOf": "2026-10-07",
   "provenance": "public-statements",
   "rows": [
     {
@@ -35,10 +35,10 @@
     },
     {
       "label": "Scott Alexander",
-      "token": "20%",
-      "low": 0.2,
-      "high": 0.2,
-      "href": "https://www.astralcodexten.com/p/my-ai-opinions"
+      "token": "25–30%",
+      "low": 0.25,
+      "high": 0.3,
+      "href": "https://www.astralcodexten.com/p/an-open-letter-to-steven-pinker-on"
     },
     {
       "label": "Dario Amodei",

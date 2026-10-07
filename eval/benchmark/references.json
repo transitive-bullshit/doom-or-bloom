@@ -49,6 +49,34 @@
         "source": "lib/journeys/public-pdoom-statements.ts",
         "commit": "2f5da0aa"
       }
+    },
+    "r2:2026-10-07": {
+      "reference": "r2",
+      "method": "Independent judge reading the persona dossier (description, account, beliefs, source titles, dates, summaries and quotes; no outside knowledge) and placing outlook, transformation and P(doom) on 0–100 scales anchored to the product levels, stored as 0–1.",
+      "createdAt": "2026-10-07",
+      "versions": {
+        "model": "gpt-5.6-sol",
+        "reasoning": "medium",
+        "prompt": "judge-v1"
+      }
+    },
+    "r3:2026-10-07": {
+      "reference": "r3",
+      "method": "The simulated participant, given its full background, places itself on the same three 0–100 scales before seeing any result; wouldAnswer records whether it would state a P(doom) at all. Stored as 0–1.",
+      "createdAt": "2026-10-07",
+      "versions": {
+        "model": "gpt-5.6-sol",
+        "reasoning": "low",
+        "prompt": "self-placement-v1"
+      }
+    },
+    "r4:2026-10-07": {
+      "reference": "r4",
+      "method": "Verified public P(doom) statements attached to catalog briefs. Outcome definitions, horizons and conditions vary.",
+      "createdAt": "2026-10-07",
+      "versions": {
+        "source": "lib/journeys/public-pdoom-statements.ts"
+      }
     }
   },
   "personas": {
@@ -10162,55 +10190,55 @@
         ]
       },
       "r2": {
-        "provenance": "audit-2026-09-27:r2",
-        "briefHash": "3ade212b04eaf94d",
+        "provenance": "r2:2026-10-07",
+        "briefHash": "1ce4b4f20f4d734b",
         "samples": [
           {
-            "x": 0.52,
-            "y": 0.95,
-            "pdoom": 0.2,
+            "x": 0.48,
+            "y": 0.96,
+            "pdoom": 0.28,
             "evidence": 0.99
           },
           {
-            "x": 0.62,
-            "y": 0.94,
-            "pdoom": 0.2,
+            "x": 0.48,
+            "y": 0.95,
+            "pdoom": 0.28,
             "evidence": 0.99
           }
         ]
       },
       "r3": {
-        "provenance": "audit-2026-09-27:r3",
-        "briefHash": "3ade212b04eaf94d",
+        "provenance": "r3:2026-10-07",
+        "briefHash": "1ce4b4f20f4d734b",
         "samples": [
           {
             "x": 0.55,
             "y": 0.95,
-            "pdoom": 0.2,
+            "pdoom": 0.28,
             "wouldAnswer": true
           },
           {
-            "x": 0.65,
+            "x": 0.55,
             "y": 0.95,
-            "pdoom": 0.2,
+            "pdoom": 0.28,
             "wouldAnswer": true
           },
           {
-            "x": 0.65,
+            "x": 0.55,
             "y": 0.95,
-            "pdoom": 0.2,
+            "pdoom": 0.28,
             "wouldAnswer": true
           }
         ]
       },
       "r4": {
-        "provenance": "catalog-2026-09-27:r4",
-        "token": "20%",
-        "low": 0.2,
-        "high": 0.2,
+        "provenance": "r4:2026-10-07",
+        "token": "25–30%",
+        "low": 0.25,
+        "high": 0.3,
         "outcome": "AI-caused human extinction, distinct from broader permanent curtailment of humanity’s future",
-        "publishedAt": "2026-06-11",
-        "url": "https://www.astralcodexten.com/p/my-ai-opinions"
+        "publishedAt": "2026-10-06",
+        "url": "https://www.astralcodexten.com/p/an-open-letter-to-steven-pinker-on"
       }
     },
     "reasoning-frontier-builder": {

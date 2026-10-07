@@ -5,6 +5,7 @@ import {
   logit,
   mean,
   median,
+  pdoomDifference,
   pdoomError,
   retest,
   seededRandom,
@@ -26,6 +27,16 @@ test('P(doom) error is absolute log-odds and 0.7 is about a factor of two', () =
   expect(pdoomError(0.2, 0.033)).toBe(pdoomError(0.033, 0.2))
   expect(pdoomError(null, 0.2)).toBeNull()
   expect(pdoomError(0.2, null)).toBeNull()
+})
+
+test('bounded P(doom) statements score against the nearest endpoint without a midpoint', () => {
+  expect(pdoomError([0.25, 0.3], 0.27)).toBe(0)
+  expect(pdoomDifference([0.25, 0.3], 0.2)).toBeCloseTo(
+    logit(0.25) - logit(0.2)
+  )
+  expect(pdoomDifference([0.25, 0.3], 0.4)).toBeCloseTo(logit(0.3) - logit(0.4))
+  expect(pdoomError([0, 1], 0.5)).toBe(0)
+  expect(pdoomError([0.25, 0.3], null)).toBeNull()
 })
 
 test('error summaries skip unplaced values', () => {

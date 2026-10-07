@@ -105,17 +105,17 @@ export const curatedPeople: CuratedPerson[] = [
     }
   },
   {
-    id: 'rationalist-safety-advocate',
-    note: {
-      url: 'https://www.astralcodexten.com/p/my-ai-opinions',
-      text: 'Chance AI causes human extinction'
-    }
-  },
-  {
     id: 'frontier-pacer',
     note: {
       url: 'https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent',
       text: 'Chance things go really badly, broadly defined'
+    }
+  },
+  {
+    id: 'rationalist-safety-advocate',
+    note: {
+      url: 'https://www.astralcodexten.com/p/an-open-letter-to-steven-pinker-on',
+      text: 'Chance AI causes human extinction'
     }
   },
   {
