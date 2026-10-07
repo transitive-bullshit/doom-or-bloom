@@ -8736,5 +8736,14 @@
     "source": "https://awards.acm.org/about/2018-turing",
     "fetchedAt": "2026-10-06T12:09:52.454Z",
     "icon": "/resource-previews/0a0c3db68519-icon.webp"
+  },
+  "https://www.astralcodexten.com/p/an-open-letter-to-steven-pinker-on": {
+    "source": "https://www.astralcodexten.com/p/an-open-letter-to-steven-pinker-on",
+    "fetchedAt": "2026-10-07T07:07:46.649Z",
+    "description": "...",
+    "image": "/resource-previews/4b6284bac42a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!StDJ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F00c3f692-512a-457b-898d-23866315bc91_1448x747.png",
+    "icon": "/resource-previews/4b6284bac42a-icon.webp"
   }
 }
