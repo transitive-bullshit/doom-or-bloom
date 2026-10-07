@@ -6,6 +6,7 @@ import {
   logit,
   mean,
   median,
+  pdoomDifference,
   pdoomError,
   retest,
   within2x
@@ -13,6 +14,7 @@ import {
 import { findPersona } from './personas'
 import { briefHash, referenceKinds, referencePoint } from './references'
 import type { Point, ReferenceStore } from './references'
+import { shownPdoom } from './shown'
 
 const noReference: Point = { x: null, y: null, pdoom: null }
 const words = (step: Step) =>
@@ -38,7 +40,7 @@ type Row = { record: JobRecord; step: Step | undefined; reference: Point }
 function accuracy(rows: Array<{ step: Step | undefined; reference: Point }>) {
   const shown = rows.map((row) => row.step?.shown ?? null)
   const errors = rows.map((row, i) =>
-    pdoomError(shown[i]?.pdoom ?? null, row.reference.pdoom)
+    pdoomError(shownPdoom(shown[i]), row.reference.pdoom)
   )
   return {
     x: {
@@ -55,12 +57,15 @@ function accuracy(rows: Array<{ step: Step | undefined; reference: Point }>) {
     },
     // P(doom) errors are absolute log-odds: 0.7 is about a factor of two.
     pdoom: {
-      shown: shown.filter((s) => s?.pdoom != null).length,
-      stated: shown.filter((s) => s?.pdoomSource === 'stated').length,
+      shown: shown.filter((s) => shownPdoom(s) !== null).length,
+      stated: shown.filter(
+        (s) =>
+          s?.pdoomSource === 'stated' || s?.pdoomSource === 'public-statement'
+      ).length,
       ...errorSummary(
         rows.map((row, i) => [
-          logOdds(shown[i]?.pdoom ?? null),
-          logOdds(row.reference.pdoom)
+          pdoomDifference(shownPdoom(shown[i]), row.reference.pdoom),
+          0
         ])
       ),
       within2x: errors.filter((e) => e !== null && e <= within2x).length
@@ -262,7 +267,7 @@ export function compareRuns(
         : Math.abs(value - reference[axis])
     }
   const pdoom: Measure = (interview, reference) =>
-    pdoomError(resultStep(interview)?.shown?.pdoom ?? null, reference.pdoom)
+    pdoomError(shownPdoom(resultStep(interview)?.shown), reference.pdoom)
   const summarize = (subset: typeof pairs) => {
     const paired = (measure: Measure) => {
       const values = subset.map(

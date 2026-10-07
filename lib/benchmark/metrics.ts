@@ -48,11 +48,25 @@ export function errorSummary(
   }
 }
 
-/** Absolute P(doom) error in log-odds, or null when either side is missing. */
-export function pdoomError(shown: number | null, reference: number | null) {
-  return shown === null || reference === null
-    ? null
-    : Math.abs(logit(shown) - logit(reference))
+/** Signed log-odds distance to a point or the nearest end of a shown range. */
+export function pdoomDifference(
+  shown: number | [number, number] | null,
+  reference: number | null
+) {
+  if (shown === null || reference === null) return null
+  const closest = Array.isArray(shown)
+    ? Math.min(shown[1], Math.max(shown[0], reference))
+    : shown
+  return logit(closest) - logit(reference)
+}
+
+/** Absolute P(doom) error; a reference inside a displayed range has zero error. */
+export function pdoomError(
+  shown: number | [number, number] | null,
+  reference: number | null
+) {
+  const difference = pdoomDifference(shown, reference)
+  return difference === null ? null : Math.abs(difference)
 }
 
 /** Deterministic PRNG (mulberry32) so bootstrap intervals are reproducible. */

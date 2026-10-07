@@ -34,12 +34,14 @@ The scored result is what the participant sees: the automatic result, else the l
 | Measure | Definition |
 | --- | --- |
 | x, y error | Mean absolute error (and signed bias) of the displayed outlook and scale against the reference, on 0–1 |
-| P(doom) error | Mean absolute log-odds error; ≤0.7 counts as within about 2×. Also counts results showing a P(doom) and stated values |
+| P(doom) error | Mean absolute log-odds error; ≤0.7 counts as within about 2×. Displayed ranges count as shown; error is zero inside the range and the distance to the nearest endpoint outside it. Public statements count as stated values |
 | Answers to result | Accepted answers at the automatic result; interviews without one are counted separately |
 | Readiness timing | First answer that made a result available |
 | Retest variability | Within-person SD, ICC and maximum spread across repeated interviews |
 
 `score` reports these overall, by style and by persona group, by answer count, and against each reference. `compare` pairs two runs by persona, style and repeat and reports each difference with a seeded percentile-bootstrap 95% interval, as in the audit. Read the interval rather than the point estimate (in the audit, map differences under about 0.02 between small arms were noise), and check each style row.
+
+Range scoring measures compatibility with the reference, not the precision of the range. Retest log-odds variability includes point estimates only; displayed ranges remain recorded without inventing a midpoint.
 
 ### References
 
