@@ -64,6 +64,29 @@ test('two result excerpts fill the available tablet width and preserve their tex
   )
 })
 
+test('directory selects leave room for the full text line at desktop and phone widths', async ({
+  page
+}) => {
+  await page.goto('/users')
+  for (const width of [1440, 768, 390]) {
+    await page.setViewportSize({ width, height: 1000 })
+    for (const id of ['user-sort', 'user-sort-direction']) {
+      const select = page.locator(`#${id}`)
+      await expect(select).toBeVisible()
+      const fits = await select.evaluate((element) => {
+        const style = getComputedStyle(element)
+        return (
+          element.clientHeight -
+            parseFloat(style.paddingBlockStart) -
+            parseFloat(style.paddingBlockEnd) >=
+          parseFloat(style.lineHeight)
+        )
+      })
+      expect(fits).toBe(true)
+    }
+  }
+})
+
 test('touch controls stay comfortable without enlarging dense map dots', async ({
   browser,
   baseURL
@@ -122,17 +145,19 @@ test('long answers scroll inside the field and survive reload without a submissi
   await expect(answer).toHaveValue(text)
 })
 
-test('dot names follow keyboard focus and shared outlines survive forced colors', async ({
+test('directory list links are reached by Tab and shared outlines survive forced colors', async ({
   page
 }) => {
   await page.goto('/users')
-  const dot = page.locator('.study-marker').first()
-  await dot.focus()
-  await expect(dot.locator('span')).toHaveCSS('opacity', '1')
-  await page.setViewportSize({ width: 390, height: 1000 })
-  const label = (await dot.locator('span').boundingBox())!
-  expect(label.x).toBeGreaterThanOrEqual(0)
-  expect(label.x + label.width).toBeLessThanOrEqual(390)
+  await page.locator('#user-sort-direction').press('Tab')
+  const firstPerson = page.locator('.study-legend a').first()
+  await expect(firstPerson).toBeFocused()
+  await expect(firstPerson).toHaveAccessibleName(/.+/)
+  await expect(firstPerson).toHaveCSS('outline-style', 'solid')
+  await expect(page.locator('.study-marker').first()).toHaveAttribute(
+    'tabindex',
+    '-1'
+  )
   await page.emulateMedia({ forcedColors: 'active' })
   const filter = page.getByRole('radio', { name: /^Everyone/ })
   await filter.focus()
