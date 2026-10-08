@@ -136,13 +136,26 @@
   object-fit: cover;
   border-radius: 50%;
 }
-.study-point span {
+.study-point span,
+.study-marker span {
+  --label-right-space: calc(
+    var(--chart-width, 0px) - var(--label-left-space, 0px)
+  );
   position: absolute;
-  top: calc(100% + 7px);
+  inset-block-start: calc(100% + 7px);
+  /* Labels follow the map's physical x coordinates in every text direction. */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(
+    clamp(
+      calc(-1 * var(--label-left-space, 0px) / var(--portrait-scale, 1)),
+      -50%,
+      calc(var(--label-right-space, 0px) / var(--portrait-scale, 1) - 100%)
+    )
+  );
+  inline-size: max-content;
   max-inline-size: 9.375rem;
   white-space: normal;
+  overflow-wrap: anywhere;
   text-align: center;
   font-size: 0.625rem;
   padding-block: 0.1875rem;
@@ -213,9 +226,6 @@
   padding-block: 0.625rem;
   padding-inline: 0.25rem;
   font-size: 0.875rem;
-}
-.study-point span {
-  inset-inline-start: calc(50% + var(--label-shift, 0px));
 }
 /* Scale the link, including its ring and label, without moving its map position. */
 @media (prefers-reduced-motion: no-preference) {
@@ -415,30 +425,7 @@
   opacity: 0.25;
 }
 .study-marker span {
-  position: absolute;
   inset-block-start: calc(100% + 4px);
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
-  inline-size: max-content;
-  max-inline-size: 9.375rem;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  text-align: center;
-  font-size: 10px;
-  padding: 3px 6px;
-  background: var(--study-surface);
-  border-radius: 3px;
-  pointer-events: none;
-  opacity: 0;
-}
-.study-marker[data-label-edge='start'] span {
-  inset-inline-start: 0;
-  transform: none;
-}
-.study-marker[data-label-edge='end'] span {
-  inset-inline-start: auto;
-  inset-inline-end: 0;
-  transform: none;
 }
 @media (hover: hover) and (pointer: fine) {
   .study-marker:hover {
