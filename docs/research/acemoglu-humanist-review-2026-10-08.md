@@ -29,4 +29,8 @@ Refreshed only Acemoglu's benchmark R2/R3 references and copied R4 using `pnpm b
 
 After the reference refresh, `pnpm test` passed all checks, including 121 test files / 746 tests, content validation and unused-code checks. Browser inspection of the isolated Portless profile verified outlook 36 / transformation 63, the inferred probability label, the new source card and all four expanded answers. `pnpm build:local` is pending.
 
-The read-only production import plan is scoped to `dacemoglumit` and reports one new selected run. Before publication, production holds 214 profiles; Acemoglu's old selection is `909cba7a-e0ba-4191-a7bc-a489a6e6f84d`, digest `fcc03d42958d7032c9ecf00b22d7be6de71023dcf334932f9a01963dacdc96d0`. The other 213 profiles' aggregate hash is `627a7508883327b413a6691f724e39c7ba09d59fd60545bfc4703d906adb6849`. Publication and deployed-profile verification are pending.
+## Production publication
+
+Ran the read-only production import plan, then `pnpm personas:import write --env <private production file> --ids dacemoglumit` under the owner's authorization. Production selected assessment `363cdd62-b995-4412-a5be-e06924c9b44e` has the exact local digest above and all 13 sources. The old assessment `909cba7a-e0ba-4191-a7bc-a489a6e6f84d` retains digest `fcc03d42958d7032c9ecf00b22d7be6de71023dcf334932f9a01963dacdc96d0`.
+
+Production still holds 214 profiles. All other 213 profiles retain identical metadata, briefs, selected assessment IDs and digests; their aggregate SHA-256 before and after is `627a7508883327b413a6691f724e39c7ba09d59fd60545bfc4703d906adb6849`. No schema changes or staging import were performed. The static profile will refresh through the PR's production deployment; deployed-profile verification is pending.
