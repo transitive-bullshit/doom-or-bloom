@@ -479,8 +479,12 @@ test('all-users directory lists the most followed first, a page at a time, and k
   await expect(page.locator('.study-legend a')).toHaveCount(
     people.filter((person) => person.featured).length
   )
+  const unfeatured = people.find((person) => !person.featured)!
   await expect(
-    page.getByRole('link', { name: 'View Simon Willison results' })
+    page.getByRole('link', {
+      name: `View ${unfeatured.name} results`,
+      exact: true
+    })
   ).toHaveCount(0)
   await page.getByRole('link', { name: 'Explore all simulated users' }).click()
   await expect(page).toHaveURL(/\/users$/)
