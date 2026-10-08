@@ -227,6 +227,13 @@ export const socialPublicPersonas: Persona[] = [
           'Full authored X post inspected. Proposes that relentless optimization of imperfect engagement, approval, task and benchmark metrics can produce cheating, sycophancy and overconfidence. Acknowledges real capabilities while disputing that failures establish an inexorable march to superintelligence. His car analogy stresses impressive capabilities with defective control and the case for withholding use until fixed. Reported incidents and departures remain his attributed account, not independently verified facts.'
       },
       {
+        title: 'Will AI replace workers? Not if we build it right',
+        url: 'https://humanistreview.ai/issue-1/acemoglu-ai-replace-workers/',
+        publishedAt: '2026-07-15',
+        summary:
+          'Full authored essay inspected. Argues that reliability, last-mile tasks and organizational change slow whole-job automation and productivity gains. Revisits his approximate 5% task-automation and 1.5% GDP-growth estimates over ten years as uncertain, dated forecasts; acknowledges faster model advances without a revised calculation. Uses voice recognition to distinguish technical breakthroughs from useful applications. Advocates AI that expands human expertise, illustrated by teacher-support prototypes still under evaluation. Proposes tax reform, demonstration funding, competition and compensated expert-data markets to redirect development. Prioritizes inequality, employment and democratic risks over extinction narratives; supplies no numerical P(doom). His later September agent-capability update remains separately dated.'
+      },
+      {
         title: 'AI, Human Cognition and Knowledge Collapse',
         url: 'https://shapingwork.mit.edu/wp-content/uploads/2026/06/Acemoglu-Kong-Ozdaglar-May-2026.pdf',
         publishedAt: '2026-05-05',

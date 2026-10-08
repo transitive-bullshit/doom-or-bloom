@@ -179,3 +179,7 @@ Added the requested Pinker letter while retaining all 13 previous sources, updat
 ## Neha Muramalla — October 8, 2026
 
 Added [Neha Muramalla](neha-muramalla-persona-2026-10-08.md) as a non-featured simulated user at `/users/nehamuramalla`, grounded in her full AI safety essay and two authored X posts. Three verified public statements cover urgency, frontier pacing and learned agent behavior. No personal numerical P(doom) is supplied. The linked record tracks scoped local generation and validation.
+
+## Acemoglu Humanist Review source — October 8, 2026
+
+Added the requested July essay to Acemoglu’s authored sources, retaining the existing brief and later updates. With the owner's authorization, regenerated four answers and results for about $0.10 and refreshed his benchmark R2/R3 references for about $0.06. The [source record](acemoglu-humanist-review-2026-10-08.md) documents reading scope, run provenance, validation and publication.
