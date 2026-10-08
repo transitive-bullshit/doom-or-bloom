@@ -128,7 +128,7 @@ export function ExperimentalResults({
       <div
         className={
           excerpts || riskCompanion
-            ? 'grid min-w-0 gap-5 lg:grid-cols-2'
+            ? 'grid min-w-0 gap-5 grid-cols-[repeat(auto-fit,minmax(min(100%,20rem),1fr))]'
             : 'grid min-w-0 gap-5'
         }
       >
@@ -276,7 +276,7 @@ export function ExperimentalResults({
           <CardHeader>
             <CardTitle>{t('hingesTitle', who)}</CardTitle>
           </CardHeader>
-          <CardContent className='grid gap-x-5 gap-y-3 md:grid-cols-3'>
+          <CardContent className='grid gap-x-5 gap-y-3 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))]'>
             {experiment?.hinges.length ? (
               experiment.hinges.map((hinge) => (
                 <div

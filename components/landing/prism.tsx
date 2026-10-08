@@ -284,6 +284,13 @@ export function Prism({
             prefetchKey={`marker:${p.slug}`}
             href={userHref(p.slug)}
             className='study-marker'
+            data-label-edge={
+              p.outlook! < 0.25
+                ? 'start'
+                : p.outlook! > 0.75
+                  ? 'end'
+                  : undefined
+            }
             style={{
               left: `${p.outlook! * 100}%`,
               top: `${(1 - p.transformation!) * 100}%`

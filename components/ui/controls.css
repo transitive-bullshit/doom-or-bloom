@@ -1,0 +1,95 @@
+/* Shared controls keep compact desktop sizes and comfortable touch targets. */
+@media (any-pointer: coarse) {
+  :is(
+    [data-slot='button'],
+    [data-slot='dropdown-menu-trigger'],
+    [data-slot='toggle'],
+    [data-slot='toggle-group-item'],
+    [data-slot='input'],
+    [data-slot='native-select'],
+    [data-slot='select-trigger']
+  ) {
+    min-block-size: 2.75rem;
+    min-inline-size: 2.75rem;
+  }
+  [data-slot='dialog-close']::after {
+    content: '';
+    position: absolute;
+    inset: min(0px, calc((100% - 44px) / 2));
+  }
+}
+:is([data-slot='input'], [data-slot='textarea'], [data-slot='native-select']) {
+  font-size: max(1rem, 16px);
+}
+:is(
+  [data-slot='button'],
+  [data-slot='dropdown-menu-trigger'],
+  [data-slot='toggle'],
+  [data-slot='toggle-group-item'],
+  [data-slot='input'],
+  [data-slot='textarea'],
+  [data-slot='native-select'],
+  [data-slot='select-trigger'],
+  [data-slot='dialog-close']
+):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+/* A color response survives reduced motion; movement is an optional enhancement. */
+:is(
+    [data-slot='button'],
+    [data-slot='dropdown-menu-trigger'],
+    [data-slot='toggle'],
+    [data-slot='toggle-group-item'],
+    [data-slot='select-trigger'],
+    [data-slot='dialog-close']
+  ):not(:disabled):not([aria-disabled='true']):active {
+  background-color: color-mix(
+    in oklch,
+    var(--accent) 75%,
+    var(--foreground) 25%
+  );
+}
+[data-slot='button'][data-variant='default']:not(:disabled):not(
+    [aria-disabled='true']
+  ):active {
+  background-color: color-mix(
+    in oklch,
+    var(--primary) 85%,
+    var(--foreground) 15%
+  );
+}
+[data-slot='button'][data-variant='destructive']:not(:disabled):not(
+    [aria-disabled='true']
+  ):active {
+  background-color: color-mix(
+    in oklch,
+    var(--destructive) 85%,
+    var(--foreground) 15%
+  );
+}
+@media (prefers-reduced-motion: no-preference) {
+  :is(
+    [data-slot='button'],
+    [data-slot='dropdown-menu-trigger'],
+    [data-slot='toggle'],
+    [data-slot='toggle-group-item'],
+    [data-slot='select-trigger'],
+    [data-slot='dialog-close']
+  ) {
+    transition-property:
+      color, background-color, border-color, box-shadow, opacity, scale;
+    transition-duration: 150ms;
+    transition-timing-function: var(--ease-out);
+  }
+  :is(
+      [data-slot='button'],
+      [data-slot='dropdown-menu-trigger'],
+      [data-slot='toggle'],
+      [data-slot='toggle-group-item'],
+      [data-slot='select-trigger'],
+      [data-slot='dialog-close']
+    ):not([data-static]):not(:disabled):not([aria-disabled='true']):active {
+    scale: 0.97;
+  }
+}

@@ -1,6 +1,14 @@
 @import 'tailwindcss';
+@import '../components/ui/controls.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant fine-hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @slot;
+    }
+  }
+}
 
 :root {
   --content-width: 45rem;
@@ -597,9 +605,6 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  [data-slot='button']:not([data-static]):not(:disabled):not(
-      [aria-disabled='true']
-    ):active,
   .landing-start:active {
     scale: 0.96;
   }

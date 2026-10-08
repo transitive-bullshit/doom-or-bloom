@@ -499,7 +499,7 @@ export function Interview({
                             ? 'answer-length answer-limit'
                             : undefined
                         }
-                        className='min-h-36 resize-none'
+                        className='min-h-36 [max-block-size:12lh] resize-none overflow-y-auto overscroll-contain [text-wrap:stable]'
                         onKeyDown={(event) => {
                           if (
                             event.key !== 'Enter' ||

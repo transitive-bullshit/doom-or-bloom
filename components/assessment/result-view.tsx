@@ -444,7 +444,7 @@ export function ResultView({
         }
       />
       <ResultDisclosure title={t('insights')}>
-        <div className='grid gap-3 sm:grid-cols-2'>
+        <div className='grid gap-3 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))]'>
           {result.fingerprint.map((c) => (
             <div key={c.vector} className='rounded-lg border p-4'>
               <p className='text-sm font-medium'>{componentLabel(root, c)}</p>
