@@ -22,7 +22,6 @@ export function usePortraitLayout(
     const portraits = Array.from(
       chart.querySelectorAll<HTMLAnchorElement>('.study-portrait')
     )
-    const labels = portraits.map((node) => node.querySelector('span'))
     const dots = Array.from(chart.querySelectorAll<HTMLElement>('.study-dot'))
     const sizes = new Map<Element, { width: number; height: number }>()
     let frame = 0
@@ -105,15 +104,15 @@ export function usePortraitLayout(
       // A resize mid-flight lands every portrait at its new position.
       for (const flight of flights) flight.finish()
       // All measurements come from ResizeObserver; this phase only writes.
+      chart.style.setProperty('--chart-width', `${chartSize.width}px`)
       portraits.forEach((node, i) => {
         const position = positions[i]!
         if (initialLayout) node.style.transition = 'none'
         node.style.left = '0px'
         node.style.top = '0px'
         node.style.transform = `translate(${position.x}px, ${position.y}px) translate(-50%, -50%) scale(var(--portrait-scale, 1))`
-        const labelShift =
-          Math.max(75, Math.min(chartSize.width - 75, position.x)) - position.x
-        labels[i]?.style.setProperty('--label-shift', `${labelShift}px`)
+        // CSS centers each label at its own width, shifting only at chart edges.
+        node.style.setProperty('--label-left-space', `${position.x}px`)
       })
       chart.dataset.layoutReady = 'true'
       if (ready && !revealed.current) reveal(chartSize, positions)

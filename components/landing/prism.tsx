@@ -284,17 +284,13 @@ export function Prism({
             prefetchKey={`marker:${p.slug}`}
             href={userHref(p.slug)}
             className='study-marker'
-            data-label-edge={
-              p.outlook! < 0.25
-                ? 'start'
-                : p.outlook! > 0.75
-                  ? 'end'
-                  : undefined
+            style={
+              {
+                left: `${p.outlook! * 100}%`,
+                top: `${(1 - p.transformation!) * 100}%`,
+                '--label-left-space': `calc(var(--chart-width, 0px) * ${p.outlook!})`
+              } as CSSProperties
             }
-            style={{
-              left: `${p.outlook! * 100}%`,
-              top: `${(1 - p.transformation!) * 100}%`
-            }}
             // The list reaches everyone, so markers stay out of the tab order.
             tabIndex={-1}
             data-matches={p.matches}
