@@ -40,7 +40,9 @@ import {
 } from '@/lib/assessment/state'
 import {
   candidatePrompts,
+  hasUninvestigatedIssue,
   mapGapQuestion,
+  personalQuestion,
   rankCandidates,
   worthwhileCandidates,
   followUpNoveltyThreshold
@@ -587,7 +589,27 @@ export async function runAssessment(
         // Five fixed profile and map questions share the batch budget.
         Math.floor((limits.questions - 5) / (state.unresolved.length ? 6 : 4))
       )
-    if (!eligibleCandidates.length) return false
+    if (!eligibleCandidates.length) {
+      // Continue asks for more questions, so a pending personal question is
+      // still offered when no ranked candidate is left for it to displace.
+      // Otherwise routing ends here, as without it.
+      const personal = explore
+        ? bundle.prompts.find(
+            (prompt) => prompt.id === personalQuestion(state, bundle.prompts)
+          )
+        : undefined
+      if (!personal) return false
+      trace.decisions.push({
+        action: 'personal question',
+        detail: { id: personal.id, displaced: null }
+      })
+      state = issuePrompt(state, promptDisplay(personal))
+      trace.decisions.push({
+        action: 'prompt issued',
+        detail: { id: personal.id, deterministic }
+      })
+      return true
+    }
     let selected: Prompt
     if (deterministic || state.answers.length === 0)
       selected =
@@ -741,29 +763,7 @@ export async function runAssessment(
           unresolved: state.unresolved.length
         }
       })
-      const uninvestigatedIssue = state.unresolved.some((issue) => {
-        const originatingAnswer = state.answers.findIndex((answer) =>
-          issue.id.startsWith(`${answer.id}:`)
-        )
-        const origin = state.answers[originatingAnswer]
-        if (
-          origin &&
-          state.prompts.some(
-            (prompt) =>
-              prompt.id === origin.promptInstanceId &&
-              prompt.variant === 'tension'
-          )
-        )
-          return false
-        return !state.answers.slice(originatingAnswer + 1).some((answer) => {
-          const issued = state.prompts.find(
-            (prompt) => prompt.id === answer.promptInstanceId
-          )
-          return bundle.prompts
-            .find((prompt) => prompt.id === issued?.promptId)
-            ?.targets.includes(issue.vector)
-        })
-      })
+      const uninvestigatedIssue = hasUninvestigatedIssue(state, bundle.prompts)
       if (
         !explore &&
         eligible(state) &&
@@ -772,7 +772,27 @@ export async function runAssessment(
         state.answers.length >= autoStopFloor
       )
         return false
-      selected = (worthwhile[0] ?? ranking[0])!.prompt
+      // Routing continues, so the personal question takes this ordinary
+      // follow-up slot if it has not been asked. It is chosen after the stop
+      // decision, so it is never itself a reason to withhold results.
+      // At the last slot a pending follow-up or open issue keeps it, since
+      // nothing would come one question later.
+      const lastSlot = state.prompts.length + 1 >= promptLimit(state)
+      const personal =
+        lastSlot && (worthwhile.length || uninvestigatedIssue)
+          ? undefined
+          : bundle.prompts.find(
+              (prompt) => prompt.id === personalQuestion(state, bundle.prompts)
+            )
+      if (personal)
+        trace.decisions.push({
+          action: 'personal question',
+          detail: {
+            id: personal.id,
+            displaced: (worthwhile[0] ?? ranking[0])?.prompt.id ?? null
+          }
+        })
+      selected = personal ?? (worthwhile[0] ?? ranking[0])!.prompt
     }
     state = issuePrompt(state, promptDisplay(selected))
     trace.decisions.push({

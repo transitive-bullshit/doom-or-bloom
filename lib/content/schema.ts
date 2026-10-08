@@ -56,8 +56,9 @@ export const promptSchema = z.strictObject({
   retired: z.boolean().optional(),
   // Triggered prompts are never ranked as ordinary follow-ups. A split
   // outlook reading issues `split_outlook` prompts during routing; a large
-  // gap between a self-placement and its result offers `placement` prompts.
-  trigger: z.enum(['split_outlook', 'placement']).optional()
+  // gap between a self-placement and its result offers `placement` prompts;
+  // the `first_follow_up` prompt takes the first ordinary follow-up slot.
+  trigger: z.enum(['split_outlook', 'placement', 'first_follow_up']).optional()
 })
 export type Prompt = z.infer<typeof promptSchema>
 export const rubricSchema = z.strictObject({

@@ -68,7 +68,9 @@ const questionObjectives = {
     'The central unresolved uncertainty, beyond already expressed unknowns.',
   'impact.over-time': 'How expected near-term and longer-term effects differ.',
   'impact.overall':
-    'An adopted net-impact forecast, only if not already expressed or explicitly left unknown.'
+    'An adopted net-impact forecast, only if not already expressed or explicitly left unknown.',
+  'personal.life-work':
+    'How the participant expects AI to change their own life or work, beyond society in general.'
 }
 
 export function questionObjective(id: string, fallback: string) {

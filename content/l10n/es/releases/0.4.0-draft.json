@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "¿Cómo esperas que la IA cambie tu propia vida o tu trabajo?",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "No pude relacionar esa respuesta con esta pregunta. Bastan unas pocas palabras sobre tu visión. ¿Quieres intentarlo de nuevo?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "No sé bien cómo interpretar eso. ¿Podrías explicar un poco más qué quieres decir?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "Hagamos una pausa aquí. Puedes probar con otra pregunta, detenerte por ahora o empezar de nuevo.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "Descartaste cambiar esta creencia independientemente de las pruebas. Intenta señalar una observación que te haría reconsiderarla y qué cambiarías.",
       "sourceHash": "a2f6cee65ef18d20",

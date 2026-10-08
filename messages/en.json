@@ -1025,6 +1025,7 @@
       },
       "versions": "Each saved result keeps the versions it was made with. Fixes that need no new judgments also reach older results when they’re shown.",
       "changes": {
+        "personal": "Asks once how AI will change your own life or work, in the first follow-up after the core questions",
         "between": "Places people between the map’s five levels instead of only on them, and re-reads saved results",
         "languages": "Interviews in 10 languages; Jev reads answers as written and is told the interview language",
         "typed": "Keeps typed P(doom) answers as short as “30%”, which had been replaced by inferred values, and asks one more question when a reading is split or far from your own placement",

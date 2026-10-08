@@ -9,6 +9,7 @@ import { scriptedProvider } from './provider'
 import { createFixtureProvider } from '@/lib/server/provider'
 import type { Provider } from '@/lib/server/provider'
 import { versions } from '@/lib/assessment/schema'
+import { personalPrompt } from '@/lib/assessment/routing'
 
 const bundle = loadBundle()
 const baseline = suiteSchema.parse(
@@ -76,8 +77,15 @@ for (const persona of personas)
       )
     ).toEqual([])
     expect(a.steps[0]!.prompt.promptId).toBe('root')
-    for (const step of a.steps.filter((s) => s.rankings.length && s.nextPrompt))
-      expect(step.nextPrompt!.promptId).toBe(step.rankings[0]!.id)
+    // The personal question takes one ordinary follow-up slot, once.
+    const ranked = a.steps.filter((s) => s.rankings.length && s.nextPrompt)
+    expect(
+      ranked.filter((s) => s.nextPrompt!.promptId === personalPrompt).length
+    ).toBeLessThanOrEqual(1)
+    for (const step of ranked)
+      expect([step.rankings[0]!.id, personalPrompt]).toContain(
+        step.nextPrompt!.promptId
+      )
     for (const step of a.steps.filter(
       (s) => s.rankings.length && !s.nextPrompt
     ))

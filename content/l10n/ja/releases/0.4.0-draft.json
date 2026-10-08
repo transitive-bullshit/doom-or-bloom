@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "AIによって、あなた自身の生活や仕事がどのように変わると予想しますか？",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "その回答をこの質問に結び付けることができませんでした。あなたの見解について数語で十分です。もう一度回答しますか？",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "その回答をどう解釈すればよいか分かりません。どういう意味か、もう少し詳しく説明していただけますか？",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "ここでいったん中断しましょう。別の質問を試すか、ひとまず終了するか、最初からやり直すことができます。",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "どのような証拠があっても、この考えを変える可能性を排除しました。再考するきっかけとなる観察事実を1つ挙げ、その場合に何を変えるか考えてみてください。",
       "sourceHash": "a2f6cee65ef18d20",

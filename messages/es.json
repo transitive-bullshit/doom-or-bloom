@@ -1025,6 +1025,7 @@
       },
       "versions": "Cada resultado guardado conserva las versiones con las que se creó. Las correcciones que no requieren nuevos juicios también se aplican a los resultados anteriores cuando se muestran.",
       "changes": {
+        "personal": "Pregunta una vez cómo cambiará la IA tu propia vida o trabajo, en la primera pregunta de seguimiento después de las preguntas principales",
         "between": "Ubica a las personas entre los cinco niveles del mapa en lugar de ubicarlas solo en ellos, y vuelve a interpretar los resultados guardados",
         "languages": "Entrevistas en 10 idiomas; Jev lee las respuestas tal como están escritas y se le indica el idioma de la entrevista",
         "typed": "Conserva las respuestas escritas de P(doom), incluso si son tan breves como «30%», que antes se sustituían por valores inferidos, y hace una pregunta más cuando una interpretación está dividida o se aleja mucho de tu propia ubicación",

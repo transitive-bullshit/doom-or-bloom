@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "คุณคาดว่า AI จะเปลี่ยนแปลงชีวิตหรือการทำงานของคุณเองอย่างไร?",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "ฉันไม่สามารถเชื่อมโยงคำตอบนั้นกับคำถามนี้ได้ บอกมุมมองของคุณเพียงไม่กี่คำก็พอ อยากลองอีกครั้งไหม?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "ฉันไม่แน่ใจว่าควรตีความคำตอบนั้นอย่างไร ช่วยอธิบายความหมายเพิ่มเติมอีกเล็กน้อยได้ไหม?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "พักคำถามนี้ไว้ก่อน คุณจะลองตอบคำถามอื่น หยุดไว้ตอนนี้ หรือเริ่มใหม่ก็ได้",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "คุณตัดความเป็นไปได้ที่จะเปลี่ยนความเชื่อนี้ออกไปโดยไม่คำนึงถึงหลักฐาน ลองระบุข้อสังเกตหนึ่งอย่างที่จะทำให้คุณพิจารณาใหม่ และสิ่งที่คุณจะเปลี่ยน",
       "sourceHash": "a2f6cee65ef18d20",

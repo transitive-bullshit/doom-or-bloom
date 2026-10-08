@@ -712,7 +712,8 @@ const promptVectors = {
   'placement.more-hopeful': ['beneficial_potential'],
   'placement.more-worried': ['risk_landscape'],
   'placement.more-change': ['capability_trajectory', 'transition_dynamics'],
-  'placement.less-change': ['capability_trajectory', 'transition_dynamics']
+  'placement.less-change': ['capability_trajectory', 'transition_dynamics'],
+  'personal.life-work': ['beneficial_potential', 'risk_landscape']
 } satisfies Record<string, VectorId[]>
 
 function lookup<T extends object>(map: T, key: string): T[keyof T] | undefined {
@@ -760,7 +761,8 @@ export function replyForPrompt(
     'placement.more-hopeful': c.benefit,
     'placement.more-worried': c.harm,
     'placement.more-change': c.change,
-    'placement.less-change': `${c.change} ${c.transition}`
+    'placement.less-change': `${c.change} ${c.transition}`,
+    'personal.life-work': `${c.ordinary} ${c.benefit}`
   }
   const override = lookup(overrides, prompt.id)
   if (prompt.id === 'risk.misuse' && !override)
