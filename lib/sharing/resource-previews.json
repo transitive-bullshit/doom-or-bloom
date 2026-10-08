@@ -8759,5 +8759,14 @@
     "imageKind": "social",
     "imageSource": "https://substackcdn.com/image/fetch/$s_!qotF!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F26adc2f7-2bf3-4eb1-9c94-8a90e364c617_1200x630.png",
     "icon": "/resource-previews/056161281f18-icon.webp"
+  },
+  "https://humanistreview.ai/issue-1/acemoglu-ai-replace-workers/": {
+    "source": "https://humanistreview.ai/issue-1/acemoglu-ai-replace-workers/",
+    "fetchedAt": "2026-10-08T10:26:17.661Z",
+    "description": "MIT professor Daron Acemoglu argues that AI is chasing the wrong goal. Instead of replacing workers, it should make them better at their jobs.",
+    "image": "/resource-previews/d97c890f5391-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://humanistreview.ai/wp-content/uploads/2026/06/MAI_IMAGERY_COLOUR_06_social_1200x675.jpg",
+    "icon": "/resource-previews/d97c890f5391-icon.webp"
   }
 }

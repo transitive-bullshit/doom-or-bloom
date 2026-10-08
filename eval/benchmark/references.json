@@ -77,6 +77,26 @@
       "versions": {
         "source": "lib/journeys/public-pdoom-statements.ts"
       }
+    },
+    "r2:2026-10-08": {
+      "reference": "r2",
+      "method": "Independent judge reading the persona dossier (description, account, beliefs, source titles, dates, summaries and quotes; no outside knowledge) and placing outlook, transformation and P(doom) on 0–100 scales anchored to the product levels, stored as 0–1.",
+      "createdAt": "2026-10-08",
+      "versions": {
+        "model": "gpt-5.6-sol",
+        "reasoning": "medium",
+        "prompt": "judge-v1"
+      }
+    },
+    "r3:2026-10-08": {
+      "reference": "r3",
+      "method": "The simulated participant, given its full background, places itself on the same three 0–100 scales before seeing any result; wouldAnswer records whether it would state a P(doom) at all. Stored as 0–1.",
+      "createdAt": "2026-10-08",
+      "versions": {
+        "model": "gpt-5.6-sol",
+        "reasoning": "low",
+        "prompt": "self-placement-v1"
+      }
     }
   },
   "personas": {
@@ -10058,43 +10078,43 @@
         ]
       },
       "r2": {
-        "provenance": "audit-2026-09-27:r2",
-        "briefHash": "b7e29e6fd11a7c0e",
+        "provenance": "r2:2026-10-08",
+        "briefHash": "ba7dd5b7ae6637a8",
         "samples": [
           {
-            "x": 0.45,
-            "y": 0.62,
-            "pdoom": 0.03,
-            "evidence": 0.86
-          },
-          {
-            "x": 0.42,
+            "x": 0.43,
             "y": 0.58,
             "pdoom": 0.04,
-            "evidence": 0.88
+            "evidence": 0.94
+          },
+          {
+            "x": 0.45,
+            "y": 0.58,
+            "pdoom": 0.03,
+            "evidence": 0.94
           }
         ]
       },
       "r3": {
-        "provenance": "audit-2026-09-27:r3",
-        "briefHash": "b7e29e6fd11a7c0e",
+        "provenance": "r3:2026-10-08",
+        "briefHash": "ba7dd5b7ae6637a8",
         "samples": [
           {
-            "x": 0.35,
-            "y": 0.62,
+            "x": 0.45,
+            "y": 0.75,
+            "pdoom": 0.02,
+            "wouldAnswer": false
+          },
+          {
+            "x": 0.42,
+            "y": 0.72,
             "pdoom": 0.03,
             "wouldAnswer": false
           },
           {
-            "x": 0.35,
-            "y": 0.65,
-            "pdoom": 0.05,
-            "wouldAnswer": false
-          },
-          {
-            "x": 0.38,
-            "y": 0.68,
-            "pdoom": 0.05,
+            "x": 0.45,
+            "y": 0.7,
+            "pdoom": 0.03,
             "wouldAnswer": false
           }
         ]
