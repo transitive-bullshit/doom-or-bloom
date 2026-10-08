@@ -10,7 +10,7 @@ Validated the uncommitted maintenance changes based on `f1b3e4860b2ea49797ef57f0
 
 ## Validation
 
-All checks below passed with local databases and synthetic assessment fixtures; no paid generation, production mutation, push or deployment was performed.
+All checks below passed with local databases and synthetic assessment fixtures. At this initial validation checkpoint, no paid generation, production mutation, push or deployment was performed.
 
 | Check | Result |
 | --- | --- |
@@ -28,3 +28,11 @@ All checks below passed with local databases and synthetic assessment fixtures; 
 | `pnpm db:test:restart` | Passed; disposable native database, repeated migrations/seed, killed POST, restarted server and recovered retry |
 
 The shared test database retained selected persona runs newer than the local import fixtures, causing the exact-import assertion to fail there. That check passed in a fresh disposable native test database, with migrations applied twice; the database was removed afterward. Existing shared selections were preserved. Build/cache runs emitted metadataBase fallback warnings; asset, SEO, locale and cache assertions passed.
+
+## Deployment follow-through
+
+After the authorized commit and push (`f5c2c9a9`), GitHub's Node 24 test job passed. The automatic Vercel build completed Next's page generation but failed the custom production artifact checker: deployment adapters in Next 16.4 emit prerendered responses in `server/route-cache/<kind>/<owner>/$<pathname>` rather than `server/app/<pathname>`.
+
+The checker now selects the artifact layout using the build's recorded adapter configuration and requires exactly one matching scoped response. It retains the existing HTML, PNG, revalidation, asset-trace and routing assertions. Fresh ordinary and adapter-mode local builds passed all checks for 213 profiles and two public assessment images; adapter-mode validation used a temporary no-op adapter with the local development database. The first adapter run encountered a local database connection timeout; the isolated rerun passed.
+
+Additional negative checks against the adapter build confirmed that missing scoped HTML fails even when a legacy copy exists, and duplicate route-owner HTML also fails. Restoring the artifacts passed the complete checker again. Temporary build files were removed, and the final `pnpm test` passed all formatting, lint, type, content, unused-code and unit checks.

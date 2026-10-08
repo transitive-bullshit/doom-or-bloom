@@ -7,11 +7,37 @@ const output = process.env.NEXT_TEST_DIST_DIR || '.next'
 const manifest = JSON.parse(
   await readFile(path.join(output, 'prerender-manifest.json'), 'utf8')
 )
-// Pages live in app/[locale]; unprefixed English URLs are rewrites to /en.
-const directory = await readFile(
-  path.join(output, 'server/app/en/users.html'),
-  'utf8'
+const { config } = JSON.parse(
+  await readFile(path.join(output, 'required-server-files.json'), 'utf8')
 )
+// Next 16.4 deployment adapters emit prerenders in route-owner namespaces.
+// Select the build's layout explicitly so stale runtime cache files cannot
+// satisfy the checks for a regular local build.
+const scopedArtifacts =
+  Boolean(config.adapterPath) && config.output !== 'export'
+const responseFiles = scopedArtifacts
+  ? await readdir(path.join(output, 'server/route-cache'), { recursive: true })
+  : []
+async function readResponse(route, kind, extension, encoding) {
+  if (!scopedArtifacts)
+    return readFile(
+      path.join(output, 'server/app', `${route.slice(1)}.${extension}`),
+      encoding
+    )
+
+  const matches = responseFiles.filter(
+    (file) =>
+      file.startsWith(`${kind}/`) && file.endsWith(`/$${route}.${extension}`)
+  )
+  assert.equal(
+    matches.length,
+    1,
+    `${route}: must have exactly one ${kind} prerendered ${extension} artifact`
+  )
+  return readFile(path.join(output, 'server/route-cache', matches[0]), encoding)
+}
+// Pages live in app/[locale]; unprefixed English URLs are rewrites to /en.
+const directory = await readResponse('/en/users', 'APP_PAGE', 'html', 'utf8')
 const profilePaths = new Set(
   Array.from(
     directory.matchAll(/href="\/(users\/[^"?#]+)"/g),
@@ -79,10 +105,7 @@ for (const route of [
   )
 }
 for (const route of profilePaths) {
-  const html = await readFile(
-    path.join(output, 'server/app', `${route.slice(1)}.html`),
-    'utf8'
-  )
+  const html = await readResponse(route, 'APP_PAGE', 'html', 'utf8')
   assert(
     html.includes('Simulated Assessment') &&
       html.includes('data-slot="worldview-map"') &&
@@ -91,9 +114,10 @@ for (const route of profilePaths) {
   )
 }
 for (const route of publicImagePaths) {
-  const file = path.join(output, 'server/app', route.slice(1))
-  const meta = JSON.parse(await readFile(`${file}.meta`, 'utf8'))
-  const png = await readFile(`${file}.body`)
+  const meta = JSON.parse(
+    await readResponse(route, 'APP_ROUTE', 'meta', 'utf8')
+  )
+  const png = await readResponse(route, 'APP_ROUTE', 'body')
   assert(
     meta.headers['content-type'] === 'image/png' &&
       png.toString('latin1', 1, 4) === 'PNG' &&
