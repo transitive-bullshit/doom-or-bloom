@@ -7,6 +7,9 @@ allowBuilds:
 
 enablePrePostScripts: true
 
+# oxfmt is pinned in package.json: 0.72.0 crashes formatting docs/BLOG.md
+# with "Expected end tag of kind LineSuffix but found LineSuffix".
+
 minimumReleaseAge: 1440
 
 minimumReleaseAgeExclude:

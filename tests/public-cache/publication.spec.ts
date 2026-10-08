@@ -1,9 +1,20 @@
 import { execFileSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
-import { readFile } from 'node:fs/promises'
+import { readFile, readdir } from 'node:fs/promises'
 import { test, expect } from '@playwright/test'
 import { createAssessment } from '../../lib/assessment/state'
 import { emptyComponent } from '../../lib/assessment/projections'
+
+// Runtime responses live in a route-owner namespace, separate from build seeds.
+// Discover that namespace without coupling this check to Next's route hash.
+async function cachedResponse(kind: 'APP_PAGE' | 'APP_ROUTE', path: string) {
+  const directory = `.next/server/route-cache/${kind}`
+  const file = (await readdir(directory, { recursive: true })).find((entry) =>
+    entry.endsWith(`/$${path}`)
+  )
+  if (!file) throw new Error(`No cached response for ${path}`)
+  return readFile(`${directory}/${file}`, 'utf8')
+}
 
 test('publication warms HTML/RSC and social image; revocation expires them immediately', async ({
   request,
@@ -111,9 +122,9 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
           try {
             return (
               // Rendered by app/[locale]; the public URL rewrites to /en.
-              (
-                await readFile(`.next/server/app/en${path}.html`, 'utf8')
-              ).includes(marker)
+              (await cachedResponse('APP_PAGE', `/en${path}.html`)).includes(
+                marker
+              )
             )
           } catch {
             return false
@@ -126,7 +137,7 @@ test('publication warms HTML/RSC and social image; revocation expires them immed
       .poll(
         async () => {
           try {
-            const meta = await readFile(`.next/server/app${image}.meta`, 'utf8')
+            const meta = await cachedResponse('APP_ROUTE', `${image}.meta`)
             return JSON.parse(meta).headers['content-type']
           } catch {
             return null

@@ -11,7 +11,8 @@
     "preview": "pnpm build && node scripts/server.mjs"
   },
   "devDependencies": {
-    "esbuild": "0.28.1",
+    "esbuild": "0.28.2",
     "playwright-core": "1.63.0"
-  }
+  },
+  "packageManager": "pnpm@12.10.1"
 }

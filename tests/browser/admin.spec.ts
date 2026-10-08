@@ -66,10 +66,8 @@ test('local admin filters real saved states and previews private results without
     admin.on('pageerror', (error) => errors.push(error.message))
     try {
       const loaded = await admin.goto(`/admin?q=${id}`)
-      // Next development rendering overrides configured no-store headers.
-      expect(loaded!.headers()['cache-control']).toBe(
-        'no-cache, must-revalidate'
-      )
+      // Next development rendering prevents document storage.
+      expect(loaded!.headers()['cache-control']).toBe('no-store')
       await expect(
         admin.getByRole('heading', { name: 'Overview', exact: true })
       ).toBeVisible()
