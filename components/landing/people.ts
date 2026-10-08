@@ -1082,6 +1082,20 @@ const catalog = [
     stance: 'A simulated worldview grounded in public sources.',
     tone: 'middle' as const,
     featured: false
+  },
+  {
+    id: 'neha-muramalla',
+    name: 'Neha Muramalla',
+    shortName: 'Neha Muramalla',
+    slug: 'nehamuramalla',
+    xUsername: 'nehamuramalla',
+    xUrl: 'https://x.com/NehaMuramalla',
+    avatar: '/personas/muramalla.jpg',
+    initials: 'NM',
+    possessivePronoun: 'her' as const,
+    stance: 'Improve control. Make frontier cooperation possible.',
+    tone: 'middle' as const,
+    featured: false
   }
 ]
 

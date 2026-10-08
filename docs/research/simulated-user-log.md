@@ -175,3 +175,7 @@ The Vercel Preview (staging) database had missed the October 5 import. It receiv
 ## Scott Alexander — October 7, 2026
 
 Added the requested Pinker letter while retaining all 13 previous sources, updated his latest self-reported extinction range to 25–30%, and regenerated four answers and their results locally for an estimated $0.10. Refreshed his required benchmark references for about $0.06 and synchronized the P(doom) hub and two charts. The [source and generation record](scott-alexander-pinker-letter-2026-10-07.md) records attribution limits, review, immutable run provenance and checks. With the owner’s deployment authorization, imported Scott’s regenerated run into production and verified its exact selected digest, retention of his previous run and unchanged selections for all other 212 profiles. Site deployment is verified separately after merging the release.
+
+## Neha Muramalla — October 8, 2026
+
+Added [Neha Muramalla](neha-muramalla-persona-2026-10-08.md) as a non-featured simulated user at `/users/nehamuramalla`, grounded in her full AI safety essay and two authored X posts. Three verified public statements cover urgency, frontier pacing and learned agent behavior. No personal numerical P(doom) is supplied. The linked record tracks scoped local generation and validation.

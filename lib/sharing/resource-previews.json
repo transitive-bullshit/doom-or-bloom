@@ -8750,5 +8750,14 @@
     "source": "https://www.astralcodexten.com/p/in-continued-defense-of-non-frequentist",
     "fetchedAt": "2026-10-07T08:24:09.762Z",
     "icon": "/resource-previews/47082d7563f9-icon.webp"
+  },
+  "https://nehamuramalla.substack.com/p/six-reasonable-questions-about-ai": {
+    "source": "https://nehamuramalla.substack.com/p/six-reasonable-questions-about-ai",
+    "fetchedAt": "2026-10-08T09:17:48.692Z",
+    "description": "Answering questions about the most urgent problem facing humanity",
+    "image": "/resource-previews/056161281f18-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://substackcdn.com/image/fetch/$s_!qotF!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F26adc2f7-2bf3-4eb1-9c94-8a90e364c617_1200x630.png",
+    "icon": "/resource-previews/056161281f18-icon.webp"
   }
 }

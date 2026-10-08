@@ -163,3 +163,5 @@ Top tech posters, added October 5, 2026: current X avatars at `_400x400`, record
 - `jasonkneen.jpg`: Jason Kneen’s public [X profile](https://x.com/Jasonkneen), [portrait](https://pbs.twimg.com/profile_images/2025853506272342016/35FdXe2a_400x400.jpg), account ID `6392872`.
 
 <!-- tech-posters:end -->
+
+- `muramalla.jpg`: Neha Muramalla’s public [X profile](https://x.com/NehaMuramalla), [portrait](https://pbs.twimg.com/profile_images/2095848400218628096/gQPxb3G3_200x200.jpg), account ID `1907685449398890498`. Retrieved October 8, 2026 from the author metadata accompanying her authored posts.
