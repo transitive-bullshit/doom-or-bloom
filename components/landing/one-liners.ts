@@ -530,6 +530,9 @@ export const oneLiners: Record<string, string> = {
   // Aella
   aella_girl:
     'Writer and survey researcher who supports an international pause on frontier AI and works to bring AI risk to mainstream audiences.',
+  // Neha Muramalla
+  nehamuramalla:
+    'MIT student who writes about advanced AI safety and calls for verifiable international cooperation to pace frontier development.',
   // Drew Spartz
   aispecies:
     'YouTube creator behind Species who makes documentaries about AI risk and calls for international agreements to slow AI development.',
