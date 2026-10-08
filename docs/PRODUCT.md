@@ -219,6 +219,15 @@ Participants can continue answering on a private assessment. Published assessmen
 
 Anonymous ownership, optional X recovery and explicitly published complete assessments are implemented; they are part of the current persistence contract.
 
+## Responsive layout and control feedback
+
+- Landing and directory maps grow continuously with their available width. Axis gutters and portrait sizes are fluid; labels move outside only when the map container has room.
+- Result card and excerpt grids choose columns from their available space and content count, keeping shared subgrid rows aligned. A short row uses its full width.
+- Shared buttons, filters, inputs and select controls have at least 44px targets on touch-capable devices. Editable form text is at least 16px. Dense map dots retain their small visual targets and an accessible people list.
+- Keyboard focus uses a visible outline that survives forced colors. Directory dots reveal their name and rise above nearby points on keyboard focus, as they do on mouse hover.
+- The answer field grows to 12 lines, then scrolls internally. Its wrapping stays stable while typing.
+- Shared buttons and filters give color feedback on press, with a small scale change only when motion is allowed. Disabled controls do not react. Hover requires a fine pointer with hover capability. The animated worldview CTA keeps its existing interaction.
+
 ## Technical envelope already chosen
 
 - Next.js and TypeScript.

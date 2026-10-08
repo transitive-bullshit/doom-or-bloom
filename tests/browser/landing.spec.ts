@@ -316,7 +316,7 @@ test('primary CTAs share the expanding-arrow treatment and remain navigable', as
   expect(hydrationErrors).toEqual([])
 })
 
-test('featured map lays out before reveal and fills mobile width with page-edge labels', async ({
+test('featured map lays out before reveal and fills mobile width with inset edge labels', async ({
   page
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
@@ -330,8 +330,8 @@ test('featured map lays out before reveal and fills mobile width with page-edge 
     const bounds = await chart.boundingBox()
     const doom = await chart.locator('.study-doom').boundingBox()
     const bloom = await chart.locator('.study-bloom').boundingBox()
-    expect(doom!.x).toBeCloseTo(0)
-    expect(bloom!.x + bloom!.width).toBeCloseTo(390)
+    expect(doom!.x).toBeCloseTo(12)
+    expect(bloom!.x + bloom!.width).toBeCloseTo(378)
     for (const selector of ['.study-portrait']) {
       for (const box of await chart.locator(selector).evaluateAll((nodes) =>
         nodes.map((node) => {

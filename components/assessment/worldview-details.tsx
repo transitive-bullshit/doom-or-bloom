@@ -50,7 +50,7 @@ export function WorldviewDetails({
     <section aria-label={t('title')} className='mt-10 flex flex-col gap-4'>
       <h4>{t('title')}</h4>
       {impacts.length > 0 && (
-        <div className='grid gap-3 sm:grid-cols-2 xl:grid-cols-3'>
+        <div className='grid gap-3 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))]'>
           {impacts.map((component) => (
             <Card
               key={component.vector}
@@ -102,7 +102,7 @@ export function WorldviewDetails({
         </div>
       )}
       {(positions.length > 0 || (!subject && transformationClaim)) && (
-        <div className='grid gap-3 sm:grid-cols-2'>
+        <div className='grid gap-3 grid-cols-[repeat(auto-fit,minmax(min(100%,18rem),1fr))]'>
           {!subject && transformationClaim && (
             <Card className='row-span-2 grid grid-rows-subgrid'>
               <CardHeader className='block'>
