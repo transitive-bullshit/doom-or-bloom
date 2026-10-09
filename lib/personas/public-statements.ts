@@ -25,6 +25,7 @@ import karpathy from '@/content/profiles/karpathy.json'
 import kevinroose from '@/content/profiles/kevinroose.json'
 import liangWenfeng from '@/content/profiles/liang-wenfeng.json'
 import noamshazeer from '@/content/profiles/noamshazeer.json'
+import nickBostrom from '@/content/profiles/nick-bostrom.json'
 import npcollapse from '@/content/profiles/npcollapse.json'
 import plinz from '@/content/profiles/plinz.json'
 import pmarca from '@/content/profiles/pmarca.json'
@@ -163,6 +164,7 @@ const files = [
   kevinroose,
   liangWenfeng,
   noamshazeer,
+  nickBostrom,
   npcollapse,
   plinz,
   pmarca,

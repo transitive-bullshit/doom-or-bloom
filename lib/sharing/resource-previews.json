@@ -8768,5 +8768,14 @@
     "imageKind": "social",
     "imageSource": "https://humanistreview.ai/wp-content/uploads/2026/06/MAI_IMAGERY_COLOUR_06_social_1200x675.jpg",
     "icon": "/resource-previews/d97c890f5391-icon.webp"
+  },
+  "https://www.youtube.com/watch?v=nAbIqt_w0g8": {
+    "source": "https://www.youtube.com/watch?v=nAbIqt_w0g8",
+    "fetchedAt": "2026-10-09T01:05:05.824Z",
+    "description": "Nick Bostrom discusses the optimal timing for superintelligence, whether LLMs exhibit true instrumental convergence, AI consciousness, and why current safety...",
+    "image": "/resource-previews/c041e079627a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/nAbIqt_w0g8/hqdefault.jpg",
+    "icon": "/resource-previews/c041e079627a-icon.webp"
   }
 }

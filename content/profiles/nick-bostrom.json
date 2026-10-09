@@ -1,0 +1,27 @@
+{
+  "slug": "nick-bostrom",
+  "summary": "Philosopher who studies superintelligence, its risks, and the possibilities for human flourishing in a technologically transformed world.",
+  "statements": [
+    {
+      "quote": "I'm sympathetic to this idea of pacing the frontier",
+      "date": "2026-10-08",
+      "venue": "MTS, Why Speeding Up AI Could Save Lives (19:29)",
+      "url": "https://www.youtube.com/watch?v=nAbIqt_w0g8&t=1169s",
+      "verified": "2026-10-09"
+    },
+    {
+      "quote": "we are just dying in the meantime",
+      "date": "2026-10-08",
+      "venue": "MTS, Why Speeding Up AI Could Save Lives (14:18)",
+      "url": "https://www.youtube.com/watch?v=nAbIqt_w0g8&t=858s",
+      "verified": "2026-10-09"
+    },
+    {
+      "quote": "Intelligence and final goals are orthogonal axes along which possible agents can freely vary.",
+      "date": "2012-05",
+      "venue": "The Superintelligent Will, The Orthogonality Thesis",
+      "url": "https://nickbostrom.com/superintelligentwill.pdf",
+      "verified": "2026-10-09"
+    }
+  ]
+}
