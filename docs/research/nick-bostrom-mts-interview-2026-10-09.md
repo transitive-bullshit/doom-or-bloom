@@ -40,4 +40,14 @@ Validation on the dirty task tree based on `f6bddea7`:
 
 Initial local checks needed native-cache access and a complete saved fixture collection. Restored the already-generated Neha fixture without inference, then used a fresh disposable test database because the shared test database retained newer selections than the copied fixture collection. The successful checks used that isolated database.
 
-`personas:import plan --env .env.production.local --ids nick-bostrom` identifies one new selected run. The production baseline contains 214 profiles; publication verification compares the other 213 selections, metadata and briefs and retains Bostrom's prior immutable simulation. Production results are recorded below after the targeted import.
+`personas:import plan --env .env.production.local --ids nick-bostrom` identified one new selected run. After committing the source update as `4ca9dbc3`, executed the matching `write` command and verified the selected digest.
+
+Production verification at 03:08 UTC on October 9:
+
+- Selected assessment: `4b292270-dd6a-4f4c-bf90-e561fc192ce3`.
+- Selected snapshot digest: `4bf9c3f429669dcb2b7a41f8d2fa6101eebc655b35fc47f5d5ba7f1c5dc66641`.
+- Exact local/production equality of metadata, source brief, generation key, format, digest and complete public simulation payload.
+- All other 213 profile selections, metadata and briefs unchanged; total remains 214.
+- Prior public simulation `88e52e0f-4f0c-4323-9c53-318be9bdf1a8` and its immutable snapshot retained byte-for-byte, with digest `ae0891fbb8481aa72f74015cce512a5fbca1e89d9e6c37f16eba73b57348ce16`.
+
+The import is scoped to production Bostrom only. Git deployment must rebuild the static profile to expose the new source brief and authored quotes; the CLI import itself does not invalidate that page.
