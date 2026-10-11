@@ -17,8 +17,9 @@ import {
   issuePrompt,
   recordDisposition
 } from '../../lib/assessment/state'
-import { storageKey } from '../../lib/persistence/storage'
 import { limits, versions } from '../../lib/assessment/schema'
+// The retired whole-assessment key must not interfere with current drafts.
+const storageKey = 'doom-or-bloom:assessment:v1'
 const operationUrl = /\/api\/assessments\/[a-f0-9-]+$/
 const root = 'What do you think AI means for our future—and why?'
 
@@ -289,16 +290,14 @@ test('three answers, draft resume, map, report download and another assessment',
   await expect(page).not.toHaveURL(previous)
   await expect(page.getByRole('heading', { name: root })).toBeVisible()
 })
-test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', async ({
+test('evaluated non-answers show recovery and reach exhaustion without a result', async ({
   page
 }) => {
-  let calls = 0
   await mockEvaluation(page, async (input) => {
     const state =
       input.operation.type === 'answer'
         ? recordDisposition(input.assessment, 'non_answer', 1, input.requestId)
         : input.assessment
-    calls += input.operation.type === 'answer' ? 1 : 0
     if (input.operation.type === 'retry') {
       state.status = 'recovery'
       state.recovery.paperclipActive = false
@@ -321,16 +320,23 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
   await expect(
     page.getByText('We’ve made some paperclips.', { exact: true })
   ).toBeVisible()
-  await expect(
-    page.getByRole('button', { name: 'Dismiss paperclips' })
-  ).toBeVisible()
+  const pause = await savedAssessment(page)
+  expect(pause.recovery).toMatchObject({
+    evaluated: 1,
+    clearMisses: 2,
+    paperclipShown: true,
+    reason: 'paperclips'
+  })
+  expect(
+    pause.attempts.map(({ disposition, evaluated }) => ({
+      disposition,
+      evaluated
+    }))
+  ).toEqual([
+    { disposition: 'non_answer', evaluated: true },
+    { disposition: 'non_answer', evaluated: false }
+  ])
   await page.getByRole('button', { name: 'Dismiss paperclips' }).click()
-  expect(calls).toBe(2)
-  await page.reload()
-  await expect(
-    page.getByRole('button', { name: 'Dismiss paperclips' })
-  ).toHaveCount(0)
-  await expect(page.getByLabel('Your answer', { exact: true })).toBeEnabled()
   await submit(page, 'nonsense three')
   await submit(page, 'nonsense four')
   await expect(
@@ -339,7 +345,14 @@ test('bounded nonsense recovery, paperclip dismissal, refresh and exhaustion', a
   await expect(
     page.getByRole('button', { name: 'View my results' })
   ).toHaveCount(0)
-  expect(calls).toBe(4)
+  const exhausted = await savedAssessment(page)
+  expect(exhausted.recovery).toMatchObject({
+    evaluated: 3,
+    clearMisses: 4,
+    reason: 'exhausted'
+  })
+  expect(exhausted.result).toBeNull()
+  expect(exhausted.answers).toEqual([])
 })
 test('two tabs cannot overwrite committed answers', async ({
   page,

@@ -7,7 +7,7 @@ import {
   issuePrompt
 } from './state'
 import { assessmentSchema } from './schema'
-import { restoreLocalInteraction, serverSnapshot } from './transport'
+import { restoreLocalInteraction } from './transport'
 
 test('conversation preserves question order, earlier replies and exact accepted text without exposing a draft', () => {
   let state = createAssessment('conversation')
@@ -84,10 +84,9 @@ test('local conversation retains more than twenty earlier replies and retries do
     )
   }
   expect(assessmentSchema.parse(state).interactionHistory).toHaveLength(25)
-  expect(conversationTurns(state)[0]!.replies).toHaveLength(25)
-  expect(conversationTurns(state)[0]!.replies[0]!.text).toBe('Reply 0')
-  expect(serverSnapshot(state)).not.toHaveProperty('interactionHistory')
-  expect(serverSnapshot(state).draft).toBe('')
+  expect(conversationTurns(state)[0]!.replies.map(({ text }) => text)).toEqual(
+    Array.from({ length: 25 }, (_, i) => `Reply ${i}`)
+  )
   expect(state.answers).toEqual([])
   expect(state.evidence).toEqual([])
 })

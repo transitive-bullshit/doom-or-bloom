@@ -253,7 +253,7 @@ function BlogSocialCard({
  * Inter Tight in every language; Hindi, Thai, Chinese and Japanese letters
  * fall back to the share cards' Noto subsets (lib/sharing/card-fonts.ts).
  */
-export async function renderBlogSocialImage({
+async function renderBlogSocialImage({
   title,
   meta,
   label = 'Blog',

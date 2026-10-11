@@ -42,7 +42,7 @@ The engine evaluates answer disposition before accepting evidence. Usable answer
 | Simulated users | [lib/journeys/catalog.ts](../lib/journeys/catalog.ts), `lib/journeys/`, `lib/personas/` | Source briefs, offline runner/local artifacts, immutable database simulations and selected public profiles |
 | Reports, privacy and diagnostics | `lib/sharing/`, `lib/analytics/`, `lib/debug/`, `lib/admin/`, `lib/server/upstream-fetch.ts` | Participant exports, share captions, share link cards and browser-side comparisons (`lib/sharing/compare.ts`), allowlisted telemetry, private traces and operator inspection |
 | Share links | [lib/assessments/share-links.ts](../lib/assessments/share-links.ts), `app/api/assessments/[id]/share-link/`, `app/[locale]/(site)/s/[id]/` | Owner-authorized create, reuse and revoke; the public card page and image; cache expiry ([PERSISTENCE.md](PERSISTENCE.md#share-links)) |
-| Browser-local storage | [lib/assessments/client.ts](../lib/assessments/client.ts), `components/assessment/use-persistent-assessment.ts` | Current drafts and pending requests. `lib/persistence/` is legacy whole-assessment storage retained for compatibility tests. |
+| Browser-local storage | [lib/assessments/client.ts](../lib/assessments/client.ts), `components/assessment/use-persistent-assessment.ts` | Current drafts and pending requests; saved-assessment compatibility belongs to `lib/assessment/schema.ts`. |
 
 The singular `lib/assessment/` is the interview model; plural `lib/assessments/` is the persistent resource and API boundary. Keep code with the boundary that owns the rule. Test scripts under `scripts/` exercise repositories against native Postgres; unit tests sit beside code and browser checks live under `tests/`.
 

@@ -1,15 +1,5 @@
-import { createHash } from 'node:crypto'
 import { limits } from '@/lib/assessment/schema'
-const requests = new Map<
-  string,
-  {
-    hash: string
-    promise: Promise<unknown>
-    timer: ReturnType<typeof setTimeout>
-  }
->()
 const rates = new Map<string, { count: number; expires: number }>()
-let active = 0
 export class LimitError extends Error {
   status = 429
 }
@@ -46,43 +36,6 @@ function rate(key: string, maximum: number) {
     )
   record.count++
   rates.set(key, record)
-}
-export function runLimited<T>(
-  id: string,
-  payload: unknown,
-  task: () => Promise<T>
-): Promise<T> {
-  const hash = createHash('sha256')
-    .update(JSON.stringify(payload))
-    .digest('hex')
-  const existing = requests.get(id)
-  if (existing) {
-    if (existing.hash !== hash)
-      return Promise.reject(
-        new Error('A request identifier was reused with a different operation')
-      )
-    return existing.promise as Promise<T>
-  }
-  rate('global', 80)
-  if (requests.size >= 32 || active >= 4)
-    throw new LimitError(
-      'The local evaluator is busy. Please try again shortly.'
-    )
-  active++
-  const promise = task()
-    .finally(() => {
-      active--
-    })
-    .catch((err: unknown) => {
-      const record = requests.get(id)
-      if (record) clearTimeout(record.timer)
-      requests.delete(id)
-      throw err
-    })
-  const timer = setTimeout(() => requests.delete(id), 120_000)
-  timer.unref()
-  requests.set(id, { hash, promise, timer })
-  return promise
 }
 export function limitAssessment(id: string) {
   rate(`assessment:${id}`, 20)

@@ -1,10 +1,5 @@
 import type { Assessment, Operation } from './schema'
 
-export function serverSnapshot(state: Assessment) {
-  const { interactionHistory: _history, draft: _draft, ...snapshot } = state
-  return { ...snapshot, draft: '' }
-}
-
 export function restoreLocalInteraction(
   before: Assessment,
   next: Assessment,

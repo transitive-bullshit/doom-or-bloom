@@ -1,0 +1,3942 @@
+{
+  "revision": "0b9895e9ea03cae5e61c65eb759bdacc4219a37b",
+  "date": "2026-10-11",
+  "scope": {
+    "testFiles": 162,
+    "sourceDeclarations": 759,
+    "expandedCases": 889,
+    "unitCases": 746,
+    "playwrightCases": 143,
+    "nativeDatabaseProcessChecks": 9,
+    "contentAndBuildValidators": 2,
+    "mechanicalBaselineChecks": 1
+  },
+  "files": [
+    {
+      "file": "i18n/config.test.ts",
+      "responsibility": "Locale URLs, message formatting, and real Next rewrite/redirect matching",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F16"]
+    },
+    {
+      "file": "i18n/messages.test.ts",
+      "responsibility": "Locale URLs, message formatting, and real Next rewrite/redirect matching",
+      "sourceDeclarations": 3,
+      "expandedCases": 20,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "i18n/next-routes.test.ts",
+      "responsibility": "Locale URLs, message formatting, and real Next rewrite/redirect matching",
+      "sourceDeclarations": 8,
+      "expandedCases": 8,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/about/methodology.test.ts",
+      "responsibility": "Authored methodology citations, diagrams, source files, and participant privacy thresholds",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/admin/access.test.ts",
+      "responsibility": "Local admin configuration, authorization, read-only preview, and launcher environment selection",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/admin/guard.test.ts",
+      "responsibility": "Local admin configuration, authorization, read-only preview, and launcher environment selection",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/admin/launcher.test.ts",
+      "responsibility": "Local admin configuration, authorization, read-only preview, and launcher environment selection",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/analytics/events.test.ts",
+      "responsibility": "Enumerated event properties and participant-data exclusion",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/conversation.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F06"]
+    },
+    {
+      "file": "lib/assessment/display-text.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/facets.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/local-reply.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/map-ladder.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/pdoom.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 5,
+      "expandedCases": 53,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/persona-matches.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/present-result.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/presentation.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/projections.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 9,
+      "expandedCases": 9,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/readiness.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/routing.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 9,
+      "expandedCases": 9,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/self-placement.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/state.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/tension.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessment/transport.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["repair", "keep"],
+      "findings": ["F06"]
+    },
+    {
+      "file": "lib/assessment/worldview-experiment.test.ts",
+      "responsibility": "Assessment state transitions, faithful evidence interpretation, uncertainty, map placement, and presentation",
+      "sourceDeclarations": 20,
+      "expandedCases": 26,
+      "dispositions": ["keep", "repair", "combine"],
+      "findings": ["F03", "F02"]
+    },
+    {
+      "file": "lib/assessments/client.test.ts",
+      "responsibility": "Current browser persistence, request/error protocol, and feedback input constraints",
+      "sourceDeclarations": 5,
+      "expandedCases": 8,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessments/feedback.test.ts",
+      "responsibility": "Current browser persistence, request/error protocol, and feedback input constraints",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/assessments/operation-failure.test.ts",
+      "responsibility": "Current browser persistence, request/error protocol, and feedback input constraints",
+      "sourceDeclarations": 4,
+      "expandedCases": 8,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/attribution/first-touch.test.ts",
+      "responsibility": "First-touch allowlist, URL normalization, cookie bounds, and privacy",
+      "sourceDeclarations": 11,
+      "expandedCases": 11,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/auth/route-logging.test.ts",
+      "responsibility": "Exact authentication origins and unchanged auth handler responses with safe diagnostics",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/auth/urls.test.ts",
+      "responsibility": "Exact authentication origins and unchanged auth handler responses with safe diagnostics",
+      "sourceDeclarations": 5,
+      "expandedCases": 9,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F08"]
+    },
+    {
+      "file": "lib/authoring/bookmark-title-card.test.ts",
+      "responsibility": "Untrusted publisher metadata parsing and safe fallback artwork",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/authoring/preview-images.test.ts",
+      "responsibility": "Untrusted publisher metadata parsing and safe fallback artwork",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/benchmark/feedback-audit.test.ts",
+      "responsibility": "Reproducible plans, finite metric math, independently worked scoring, and private aggregate reports",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/benchmark/interview.test.ts",
+      "responsibility": "Reproducible plans, finite metric math, independently worked scoring, and private aggregate reports",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/benchmark/metrics.test.ts",
+      "responsibility": "Reproducible plans, finite metric math, independently worked scoring, and private aggregate reports",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F09"]
+    },
+    {
+      "file": "lib/benchmark/references.test.ts",
+      "responsibility": "Reproducible plans, finite metric math, independently worked scoring, and private aggregate reports",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/benchmark/run.test.ts",
+      "responsibility": "Reproducible plans, finite metric math, independently worked scoring, and private aggregate reports",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/benchmark/score.test.ts",
+      "responsibility": "Reproducible plans, finite metric math, independently worked scoring, and private aggregate reports",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/benchmark/shown.test.ts",
+      "responsibility": "Reproducible plans, finite metric math, independently worked scoring, and private aggregate reports",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/blog/blog.test.ts",
+      "responsibility": "Authored/translated post invariants, cited data provenance, privacy thresholds, geometry, feed, and social cards",
+      "sourceDeclarations": 22,
+      "expandedCases": 22,
+      "dispositions": ["keep", "combine"],
+      "findings": ["F11"]
+    },
+    {
+      "file": "lib/blog/citations.test.ts",
+      "responsibility": "Authored/translated post invariants, cited data provenance, privacy thresholds, geometry, feed, and social cards",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/blog/footer-posts.test.ts",
+      "responsibility": "Authored/translated post invariants, cited data provenance, privacy thresholds, geometry, feed, and social cards",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/blog/research-charts.test.ts",
+      "responsibility": "Authored/translated post invariants, cited data provenance, privacy thresholds, geometry, feed, and social cards",
+      "sourceDeclarations": 19,
+      "expandedCases": 19,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/blog/statement-charts.test.ts",
+      "responsibility": "Authored/translated post invariants, cited data provenance, privacy thresholds, geometry, feed, and social cards",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/content/l10n.test.ts",
+      "responsibility": "Pinned content, graph integrity, release hashes, authored translation coverage, and fallback",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["repair", "keep"],
+      "findings": ["F07", "F08"]
+    },
+    {
+      "file": "lib/content/loader.test.ts",
+      "responsibility": "Pinned content, graph integrity, release hashes, authored translation coverage, and fallback",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F08"]
+    },
+    {
+      "file": "lib/content/release.test.ts",
+      "responsibility": "Pinned content, graph integrity, release hashes, authored translation coverage, and fallback",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/db/config.test.ts",
+      "responsibility": "Driver TLS parsing, pool error diagnostics, and Node connection timeout configuration",
+      "sourceDeclarations": 3,
+      "expandedCases": 10,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/db/pool-logging.test.ts",
+      "responsibility": "Driver TLS parsing, pool error diagnostics, and Node connection timeout configuration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/debug/answer-order.test.ts",
+      "responsibility": "Inspector graphs, stable answer sorting, help content, access boundaries, and real CSS compilation",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/debug/json-help.test.ts",
+      "responsibility": "Inspector graphs, stable answer sorting, help content, access boundaries, and real CSS compilation",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/debug/local-access.test.ts",
+      "responsibility": "Inspector graphs, stable answer sorting, help content, access boundaries, and real CSS compilation",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/debug/relationships.test.ts",
+      "responsibility": "Inspector graphs, stable answer sorting, help content, access boundaries, and real CSS compilation",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["repair", "keep"],
+      "findings": ["F01"]
+    },
+    {
+      "file": "lib/debug/styles.test.ts",
+      "responsibility": "Inspector graphs, stable answer sorting, help content, access boundaries, and real CSS compilation",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/docs/contract-rules.test.ts",
+      "responsibility": "Contract-doc routing and dated-record separation",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/evaluation/budget.test.ts",
+      "responsibility": "Explicit paid-call authorization and aggregate reserved physical-request budgets",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/catalog.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/experiments.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/failure.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/fixed.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/mechanical/runner.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 12,
+      "expandedCases": 23,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/merge.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/participant.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/persona-assessment.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/persona-identity.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F14"]
+    },
+    {
+      "file": "lib/journeys/public-pdoom.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/journeys/store.test.ts",
+      "responsibility": "Journey provenance, controlled mechanical/participant generation, scoped merges, and atomic local files",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F08"]
+    },
+    {
+      "file": "lib/jsonl.test.ts",
+      "responsibility": "Streaming multibyte JSONL boundaries, laziness, and useful errors",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/landing/portrait-entrance.test.ts",
+      "responsibility": "Deterministic portrait geometry/animation and bounded intent prefetch scheduling",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["repair", "keep"],
+      "findings": ["F16"]
+    },
+    {
+      "file": "lib/landing/portrait-layout.test.ts",
+      "responsibility": "Deterministic portrait geometry/animation and bounded intent prefetch scheduling",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/landing/prefetch-intent.test.ts",
+      "responsibility": "Deterministic portrait geometry/animation and bounded intent prefetch scheduling",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/p-doom/hub.test.ts",
+      "responsibility": "Sourced P(doom) statements, exact quotes, dating, and cross-section citations",
+      "sourceDeclarations": 15,
+      "expandedCases": 15,
+      "dispositions": ["keep", "combine"],
+      "findings": ["F11"]
+    },
+    {
+      "file": "lib/persistence/storage.test.ts",
+      "responsibility": "Legacy whole-assessment storage wrapper and schema compatibility",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["remove", "combine"],
+      "findings": ["F04"]
+    },
+    {
+      "file": "lib/personas/comparison-cache.test.ts",
+      "responsibility": "Current persona sorting, authored statements, validation, mention links, and framework cache reuse",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/personas/directory-sort.test.ts",
+      "responsibility": "Current persona sorting, authored statements, validation, mention links, and framework cache reuse",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/personas/mentions.test.ts",
+      "responsibility": "Current persona sorting, authored statements, validation, mention links, and framework cache reuse",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F08"]
+    },
+    {
+      "file": "lib/personas/one-liner-rules.test.ts",
+      "responsibility": "Current persona sorting, authored statements, validation, mention links, and framework cache reuse",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/personas/public-statements.test.ts",
+      "responsibility": "Current persona sorting, authored statements, validation, mention links, and framework cache reuse",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/personas/usable-rows.test.ts",
+      "responsibility": "Current persona sorting, authored statements, validation, mention links, and framework cache reuse",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/seo/ai-citations.test.ts",
+      "responsibility": "Structured metadata, identity uniqueness, titles, and safe IndexNow/AI-citation tooling",
+      "sourceDeclarations": 16,
+      "expandedCases": 16,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/seo/indexnow.test.ts",
+      "responsibility": "Structured metadata, identity uniqueness, titles, and safe IndexNow/AI-citation tooling",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/seo/json-ld.test.ts",
+      "responsibility": "Structured metadata, identity uniqueness, titles, and safe IndexNow/AI-citation tooling",
+      "sourceDeclarations": 10,
+      "expandedCases": 10,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/seo/person-identities.test.ts",
+      "responsibility": "Structured metadata, identity uniqueness, titles, and safe IndexNow/AI-citation tooling",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/seo/profile-titles.test.ts",
+      "responsibility": "Structured metadata, identity uniqueness, titles, and safe IndexNow/AI-citation tooling",
+      "sourceDeclarations": 12,
+      "expandedCases": 12,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/seo/result-titles.test.ts",
+      "responsibility": "Structured metadata, identity uniqueness, titles, and safe IndexNow/AI-citation tooling",
+      "sourceDeclarations": 9,
+      "expandedCases": 9,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/api-error-reporting.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/correction.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 4,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/dev-launcher.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/diagnostic-context.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/early-result.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 9,
+      "expandedCases": 14,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/engine-paths.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 5,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/engine.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 18,
+      "expandedCases": 18,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/env.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/error-reporting.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/evidence-regression.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 9,
+      "expandedCases": 10,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/jev-budget-store.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 6,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/jev-budget.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 10,
+      "expandedCases": 10,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/limits.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["remove", "keep"],
+      "findings": ["F05"]
+    },
+    {
+      "file": "lib/server/live-provider.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 20,
+      "expandedCases": 20,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/projection-input.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/request-country.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/request-origin.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/server/upstream-fetch.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F13"]
+    },
+    {
+      "file": "lib/server/validate-env.test.ts",
+      "responsibility": "Real engine composition, evidence boundaries, controlled provider/SDK transport, budgets, and safe diagnostics",
+      "sourceDeclarations": 6,
+      "expandedCases": 9,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/assessment-card-parity.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["repair"],
+      "findings": ["F16"]
+    },
+    {
+      "file": "lib/sharing/card-fonts.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/compare.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 8,
+      "expandedCases": 8,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/png-export.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F10"]
+    },
+    {
+      "file": "lib/sharing/public-card.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/report.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/resource-previews.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/share-caption.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/share-links.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/site-social-card.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 8,
+      "expandedCases": 8,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/site-social-review.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 6,
+      "expandedCases": 9,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/social-card.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/text-fit.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sharing/tweet-url.test.ts",
+      "responsibility": "Shared-result privacy, comparison math, native PNGs/fonts, public-card parity, and approval artifact integrity",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "lib/sources/citations.test.ts",
+      "responsibility": "Shared citation tokenization, numbering, and link identity",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/analytics/privacy.spec.ts",
+      "responsibility": "Actual analytics SDK transport privacy and event deduplication",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/admin.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/assessment-start.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/assessment.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 12,
+      "expandedCases": 12,
+      "dispositions": ["keep", "combine"],
+      "findings": ["F12"]
+    },
+    {
+      "file": "tests/browser/bookmarks.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/breadcrumbs.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/compare.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/content-review.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/conversation.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/css-interactions.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 7,
+      "expandedCases": 7,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/debug.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F15"]
+    },
+    {
+      "file": "tests/browser/diagnostic-report.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/early-result.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/header-account.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/i18n-assessment.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/i18n-locales.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 10,
+      "dispositions": ["keep", "combine"],
+      "findings": ["F10"]
+    },
+    {
+      "file": "tests/browser/i18n.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/interaction.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/jev-budget.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/journeys.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/landing.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 14,
+      "expandedCases": 14,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/map.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/not-found.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/paperclips.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/persona-assessment.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 3,
+      "expandedCases": 3,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/result-feedback.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/seo.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 11,
+      "expandedCases": 11,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/share-bar.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/shortcuts.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/browser/tweet-sources.spec.ts",
+      "responsibility": "Rendered UI, real browser layout/keyboard/clipboard, and DB-backed fixture journey integration",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/helpers/diagnostics.test.ts",
+      "responsibility": "Selective diagnostic suppression without hiding unrelated or excess logs",
+      "sourceDeclarations": 2,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/persistence/auth.spec.ts",
+      "responsibility": "Real HTTP/auth/Postgres ownership, lazy drafts, publication, forks, links, and deletion",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/persistence/lazy-drafts.spec.ts",
+      "responsibility": "Real HTTP/auth/Postgres ownership, lazy drafts, publication, forks, links, and deletion",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/persistence/library.spec.ts",
+      "responsibility": "Real HTTP/auth/Postgres ownership, lazy drafts, publication, forks, links, and deletion",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/persistence/participant.spec.ts",
+      "responsibility": "Real HTTP/auth/Postgres ownership, lazy drafts, publication, forks, links, and deletion",
+      "sourceDeclarations": 4,
+      "expandedCases": 4,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/persistence/personas.spec.ts",
+      "responsibility": "Real HTTP/auth/Postgres ownership, lazy drafts, publication, forks, links, and deletion",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/persistence/share-links.spec.ts",
+      "responsibility": "Real HTTP/auth/Postgres ownership, lazy drafts, publication, forks, links, and deletion",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/prefetch/locales.spec.ts",
+      "responsibility": "Production prerender/cache behavior with an unreachable DB, intent prefetching, and image load handoff",
+      "sourceDeclarations": 5,
+      "expandedCases": 5,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/prefetch/personas.spec.ts",
+      "responsibility": "Production prerender/cache behavior with an unreachable DB, intent prefetching, and image load handoff",
+      "sourceDeclarations": 6,
+      "expandedCases": 6,
+      "dispositions": ["keep", "repair"],
+      "findings": ["F13"]
+    },
+    {
+      "file": "tests/prefetch/profile-portrait.spec.ts",
+      "responsibility": "Production prerender/cache behavior with an unreachable DB, intent prefetching, and image load handoff",
+      "sourceDeclarations": 1,
+      "expandedCases": 2,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/public-cache/publication.spec.ts",
+      "responsibility": "Production first-request caching and immediate HTML/RSC/image revocation",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    },
+    {
+      "file": "tests/public-cache/share-links.spec.ts",
+      "responsibility": "Production first-request caching and immediate HTML/RSC/image revocation",
+      "sourceDeclarations": 1,
+      "expandedCases": 1,
+      "dispositions": ["keep"],
+      "findings": []
+    }
+  ],
+  "recordNotes": "Declarations list every inventoried source case as line: title. ExpandedNames stores runner expansions that differ from a declaration; ordinary names are resolved from declarations. Keep contracts are recorded in files; candidate assertion evidence and receiving owners are below. All source locations refer to revision, not the repaired tree.",
+  "declarations": {
+    "i18n/config.test.ts": [
+      "15: keeps English unprefixed and prefixes other locales",
+      "23: splits a browser pathname into its locale and route path",
+      "44: lists each enabled locale once with its endonym",
+      "78: uses short URL segments for regional and script variants",
+      "85: keeps every tag a canonical BCP 47 tag",
+      "106: keys hreflang alternates by tag and links them by segment",
+      "132: is a one-year, first-party, lax preference"
+    ],
+    "i18n/messages.test.ts": [
+      "37: parse in English with every select and plural ending in other",
+      "47: ${locale} has every English key with the same arguments and tags",
+      "53: ${locale} messages format without errors"
+    ],
+    "i18n/next-routes.test.ts": [
+      "40: rewrites the root before the platform maps RSC requests to files",
+      "48: serves unprefixed page URLs from the English tree",
+      "65: leaves locale prefixes and routes outside app/[locale] alone",
+      "87: drops a superfluous English prefix",
+      "92: follows an explicit choice only for unprefixed page URLs",
+      "125: are permanent",
+      "135: send a renamed post’s old URLs to the new slug in every locale",
+      "164: cover owner routes in every locale"
+    ],
+    "lib/about/methodology.test.ts": [
+      "28: cites only known sources, and every source somewhere",
+      "44: numbers footnotes in source order",
+      "52: links files that exist on this branch",
+      "62: shows a committed local favicon for every source",
+      "78: lists changes newest first, each with a message",
+      "85: reads participant numbers that describe groups of 10 or more"
+    ],
+    "lib/admin/access.test.ts": [
+      "11: admin requires explicit development opt-in and refuses hosted environments and tunnels",
+      "32: host validation allows loopback and Portless names only",
+      "53: filters default to participants, use rolling creation cohorts, and bound inputs",
+      "77: processing failures remain visible even when an earlier result exists"
+    ],
+    "lib/admin/guard.test.ts": [
+      "27: a production artifact cannot be enabled by changing runtime flags",
+      "32: runtime and forwarded-host checks apply on every admin read"
+    ],
+    "lib/admin/launcher.test.ts": [
+      "8: production inspection imports only its dedicated DB URL and leaves normal app credentials local"
+    ],
+    "lib/analytics/events.test.ts": [
+      "20: outbound sanitizer discards text, query strings and SDK enrichment",
+      "71: recovery events precede start and are idempotent",
+      "100: a successful retry keeps its attempt bucket after routing resets the recovery counter",
+      "123: first-touch attribution passes the allowlist only as slugs",
+      "170: events carry the interview language of the latest answer",
+      "190: share link and compare events carry enumerated values, never IDs",
+      "236: share link pageviews report the route, never the link ID"
+    ],
+    "lib/assessment/conversation.test.ts": [
+      "12: conversation preserves question order, earlier replies and exact accepted text without exposing a draft",
+      "54: local conversation retains more than twenty earlier replies and retries do not duplicate them"
+    ],
+    "lib/assessment/display-text.test.ts": [
+      "47: labels",
+      "80: claims",
+      "114: result reasons",
+      "138: translates authored rubric levels with the authored text and the code around them",
+      "183: rebuilds prompts built in code and keeps authored questions",
+      "217: translates findings and resources by ID and keeps other saved text",
+      "235: rebuilds a correction prompt issued by the engine"
+    ],
+    "lib/assessment/facets.test.ts": [
+      "6: explicit uncertainty is preserved separately from a moderate overall outlook",
+      "30: a deployment preference does not manufacture research-pace or access preferences",
+      "69: a clear conditional outlook is placed without inventing a net forecast"
+    ],
+    "lib/assessment/local-reply.test.ts": [
+      "4: only complete workflow phrases bypass semantic interpretation"
+    ],
+    "lib/assessment/map-ladder.test.ts": [
+      "26: the ladder asks nine mirrored comparisons with each level text",
+      "33: a view squarely at a level reads that level",
+      "49: positions between levels keep their order and a shared lean cancels",
+      "70: the ladder refines but never leaves the stated level’s neighbourhood"
+    ],
+    "lib/assessment/pdoom.test.ts": [
+      "82: reads every token and bound exactly as before",
+      "152: %s: %s",
+      "156: reads a bare percentage in any script, however short",
+      "163: splits sentences on 。！？ and the danda",
+      "186: normalizes numerals and keeps margins of error unbounded"
+    ],
+    "lib/assessment/persona-matches.test.ts": [
+      "30: ranks the closest three using dimensions beyond the map, excluding reasoning",
+      "54: normalizes distance over the participant’s placed values and never treats missing values as neutral",
+      "81: requires at least half of the participant’s dimensions and uses deterministic ties",
+      "98: a persona cannot match by lacking the participant’s strongest position",
+      "111: the displayed map point counts like two dimensions per axis",
+      "138: returns up to the requested number of matches for similar-worldview lists",
+      "149: a sparse result falls back to the positions it expresses, never an unsettled scale"
+    ],
+    "lib/assessment/present-result.test.ts": [
+      "38: saved sharpened P(doom) values are recomputed from their stored bands",
+      "60: inferred values are headlined by their point estimate, and stated qualifiers keep their meaning",
+      "88: a split reading is headlined as unclear rather than by a midpoint",
+      "113: a wide range within the low end keeps its point estimate",
+      "137: public statements are shown exactly as recorded",
+      "146: map ranges are never narrower than retest variation and presentation is idempotent",
+      "157: an unplaced map explains what is missing instead of claiming a placement"
+    ],
+    "lib/assessment/presentation.test.ts": [
+      "7: supported worldview findings are not crowded out by three generic reasoning findings",
+      "29: positive findings require exact evidence and the entire interpretation range to support the claim",
+      "56: resources ignore legacy grounding and diversify authored purpose groups",
+      "102: actionable revision feedback requires supported refusal, not silence, uncertainty or disagreement",
+      "135: topic resources include evidenced unknowns and prioritize open topics without inventing a position"
+    ],
+    "lib/assessment/projections.test.ts": [
+      "19: missing evidence widens the range without lowering observed reasoning",
+      "25: horizontal separates harms and benefits and has no policy weight",
+      "35: categorical quantiles preserve a broad interpretation",
+      "40: coherent extreme profiles outrank a weak moderate on reasoning independently of outlook",
+      "69: policy and catastrophic judgments cannot silently become expected impact or reasoning",
+      "88: repeating an evidence ID or component does not add independent corroboration",
+      "108: scoped unplaced claims remain correctable without accepting another dimension or tampered prose",
+      "129: one-sided impact evidence cannot become an overall outlook coordinate",
+      "156: an established overall outlook is placeable without inventing a missing benefits component"
+    ],
+    "lib/assessment/readiness.test.ts": [
+      "59: empty, one comprehensive, and partial evidence use coverage rather than count",
+      "76: confidence, unresolved meaning and superseded evidence reduce readiness without scoring quality",
+      "95: duplicate support, metadata alone and legacy references add no evidence",
+      "110: a focused supported worldview can qualify without filling unrelated dimensions; stale profile judgments cannot",
+      "187: results unlock when the displayed map is placed, without reasoning coverage",
+      "206: the latest map judgment decides readiness across stages"
+    ],
+    "lib/assessment/routing.test.ts": [
+      "13: later timing uncertainty supersedes a prior date for both the fingerprint and routing",
+      "48: familiarity gates specialist wording without forcing an early timing question",
+      "87: deleted questions are absent for every saved corpus and confidence questions require a timing premise",
+      "132: explicitly unknown timing is explored evidence, not an invitation to repeat the date question",
+      "153: control tests and control mechanisms share the repetition cost without becoming ineligible",
+      "178: routing bonuses require a matching unresolved issue rather than nonzero model noise",
+      "217: supported dimensions retain proportional routing gaps until evidence support reaches one",
+      "336: the core map questions are asked once each, and explicit indecision is not re-asked",
+      "379: a split outlook reading gets one resolving question after the core map questions"
+    ],
+    "lib/assessment/self-placement.test.ts": [
+      "9: self-placement comparisons describe the direction of each difference",
+      "37: placement gaps are coarse buckets",
+      "43: a large placement difference offers one question about the larger gap"
+    ],
+    "lib/assessment/state.test.ts": [
+      "23: root is persisted once and reply count cannot establish readiness",
+      "42: two misses trigger once, retries cannot reset recovery bounds",
+      "69: ambiguous misses and navigation do not trigger paperclips",
+      "76: skip preserves misses, usable or ambiguous answers reset them",
+      "83: twelfth prompt accepts an answer but thirteenth is forbidden",
+      "90: stale responses after restart or revision changes are ignored",
+      "116: forks append budgets without rewriting inherited prompts or attempts"
+    ],
+    "lib/assessment/tension.test.ts": [
+      "5: pair candidates refer to exact claims once instead of duplicating long quotes quadratically"
+    ],
+    "lib/assessment/transport.test.ts": [
+      "6: rejected interaction text is bounded locally and excluded from later server transport",
+      "35: rejected replies keep the language they were written in"
+    ],
+    "lib/assessment/worldview-experiment.test.ts": [
+      "47: keeps absent axes unplaced instead of borrowing reasoning or capability scores",
+      "56: places a whole-interview belief without requiring one representative excerpt",
+      "73: extracts participant percentages without turning choice probability into P(doom)",
+      "86: reads a bare typed percentage, however short the answer",
+      "117: keeps qualifier meaning without turning a margin of error into a range",
+      "136: rejects uncertain or nonexistent candidate selections",
+      "155: copies unknown milestone timing and update conditions with answer provenance",
+      "169: retains independently verified evidence when suitable excerpts split selection probability",
+      "202: requires verification even for a confident but misleading milestone selection",
+      "222: keeps historical result parsing compatible without experimental fields",
+      "227: interprets the recorded alarmist wording even when there is no percentage token",
+      "244: prefers a verified stated number over a qualitative interpretation",
+      "260: does not infer a number when no relevant worldview evidence is identified",
+      "268: infers a low estimate in log-odds with a range no narrower than retake noise",
+      "288: combines probability bands rather than mistaking model confidence for P(doom)",
+      "337: retains a whole-interview contextual estimate without a single representative quote",
+      "353: keeps a point inside the range for %s without a representative quote",
+      "401: represents explicit indecision without claiming a moderate belief",
+      "414: retains raw judgments and infers the refined %s band in log-odds",
+      "446: keeps unknown-mass padding while treating direct and contextual ranges equally"
+    ],
+    "lib/assessments/client.test.ts": [
+      "7: empty error responses produce a useful API error, not a JSON parse error",
+      "14: empty successful session responses represent no session",
+      "22: server exception text is not exposed for HTTP %s",
+      "42: network exception text is not exposed",
+      "60: known errors use controlled copy rather than a server-supplied message"
+    ],
+    "lib/assessments/feedback.test.ts": [
+      "29: self-placement requests carry only an in-range guess",
+      "45: requests require a known kind and a nonnegative integer revision",
+      "52: agreement aspects describe only a \"Not quite\" rating",
+      "64: agreement aspects are unique and bounded by the aspect list",
+      "73: agreement comments are optional, trimmed and 1–1000 characters",
+      "92: stored payloads and response items use the same rules",
+      "121: the placed point matches the map, including an unplaced axis"
+    ],
+    "lib/assessments/operation-failure.test.ts": [
+      "9: historical evaluation failures explain a confirmed provider rejection",
+      "20: a TypeSafe 402 reads as out of credits, including historical records",
+      "36: a previous provider failure does not override a later failure or application category",
+      "49: unknown diagnostics stay generic without attributing blame"
+    ],
+    "lib/attribution/first-touch.test.ts": [
+      "18: records tags, the external referrer host and a coarse landing",
+      "35: records the landing locale separately from the page kind",
+      "48: records search landings on the P(doom) hub and blog posts",
+      "57: still reads records saved before locales were recorded",
+      "62: treats internal navigation and missing referrers as direct",
+      "71: never keeps a private assessment id or path",
+      "79: records a share link landing without its ID",
+      "93: normalizes free text to a short slug",
+      "101: reads back what it writes and ignores malformed values",
+      "115: keeps the older origin and tolerates missing values",
+      "125: keeps only normalized UTM tags and maps ref to utm_source"
+    ],
+    "lib/auth/route-logging.test.ts": [
+      "12: auth logging returns the exact redirect and cookies and keeps the origin guard",
+      "37: auth errors retain response and exception identity without logging OAuth values"
+    ],
+    "lib/auth/urls.test.ts": [
+      "13: preview auth uses exact deployment and branch hosts, not production",
+      "29: preview rejects malformed host %s",
+      "41: preview branch alias is optional and duplicate hosts are deduplicated",
+      "50: production and development keep their explicit auth URL",
+      "66: preview mutation guard accepts configured origins and rejects spoofed or absent origins"
+    ],
+    "lib/authoring/bookmark-title-card.test.ts": [
+      "5: local fallback cards escape source titles and render valid images"
+    ],
+    "lib/authoring/preview-images.test.ts": [
+      "10: social metadata wins; structured article and responsive hero images survive missing metadata",
+      "25: bad metadata does not hide usable lazy images or video posters",
+      "37: descriptions prefer HTML metadata, decode entities and fall back to social metadata",
+      "51: YouTube preview lookup accepts video URL variants but not unrelated hosts or channels",
+      "66: embedded YouTube episodes supply publisher thumbnails and touch icons precede ICO files"
+    ],
+    "lib/benchmark/feedback-audit.test.ts": [
+      "12: a feedback row becomes a record with the rated transcript and what was shown",
+      "156: feedback aggregates by answer length, outlook and algorithm",
+      "209: disagreements group feedback per rated result and sample reproducibly",
+      "223: aggregate output never includes participant text"
+    ],
+    "lib/benchmark/interview.test.ts": [
+      "64: an interview stops at the automatic result and records what each answer could show",
+      "83: an interview can continue past results up to its answer limit, without inspections",
+      "96: an ambiguous reply is re-asked with the clarification the app would show",
+      "111: the terse style extends the shared participant instructions"
+    ],
+    "lib/benchmark/metrics.test.ts": [
+      "15: log-odds are clamped so 0% and 100% stay finite and symmetric",
+      "22: P(doom) error is absolute log-odds and 0.7 is about a factor of two",
+      "32: bounded P(doom) statements score against the nearest endpoint without a midpoint",
+      "42: error summaries skip unplaced values",
+      "58: the seeded generator is reproducible and uniform on [0, 1)",
+      "68: bootstrap intervals are deterministic for a seed and bracket the mean",
+      "83: retest variability pools within-person spread across repeated personas"
+    ],
+    "lib/benchmark/references.test.ts": [
+      "14: the committed store covers every benchmark persona with judge and self references",
+      "35: references record their provenance and the brief they read",
+      "46: the consensus is the mean of the judge and self-placement references",
+      "93: the store schema rejects unknown provenance and out-of-range values",
+      "131: brief hashes follow the brief, not the benchmark answer style",
+      "143: persona sets expand into fixed, rebalanced interview lists"
+    ],
+    "lib/benchmark/run.test.ts": [
+      "14: a plan fixes the interviews, versions and hashes a run is resumed against",
+      "41: the dry-run estimate covers a typical and a worst-case run"
+    ],
+    "lib/benchmark/score.test.ts": [
+      "115: the scored result is the automatic one, else the last one available",
+      "121: a run is scored against the consensus by style and group",
+      "164: range-only public statements remain in shown, error and paired metrics",
+      "194: repeated interviews report retest variability",
+      "222: two runs are compared pairwise with a seeded bootstrap interval"
+    ],
+    "lib/benchmark/shown.test.ts": [
+      "8: Scott’s public range survives result serialization without a point estimate"
+    ],
+    "lib/blog/blog.test.ts": [
+      "63: parse with valid frontmatter, newest first, and a reading time",
+      "83: keep headings without trailing periods and link to the P(doom) hub",
+      "102: give section headings unique ids from the English, in every language",
+      "150: redirect moved slugs to posts that exist",
+      "158: link result cards to the guide’s section on how we estimate P(doom)",
+      "166: title the hub within Google’s width",
+      "174: reject titles with trailing periods and short descriptions",
+      "193: count prose words, not frontmatter, imports, components or URLs",
+      "217: keep imports, components, site links, headings and numbers",
+      "244: translate only the text of a data file",
+      "263: advertise a card in the post’s language",
+      "277: version the card URL by everything the card shows",
+      "297: validates every committed data file",
+      "305: builds the participant charts from the committed aggregates",
+      "323: splits the scale axis into three bands, hiding any under 10",
+      "355: shows participant numbers only for groups of at least 10",
+      "426: matches the verified public P(doom) statements it charts",
+      "446: lists post summaries in RSS with escaped text",
+      "471: serves every post’s card, and translated cards only for translations",
+      "487: fits every post title on its card without breaking words",
+      "498: shrinks titles to their longest word, and clamps words that never fit",
+      "513: renders each post card as a 1200 × 630 PNG"
+    ],
+    "lib/blog/citations.test.ts": [
+      "33: number sources by first citation in the English post",
+      "56: flag unlisted, unused and misplaced citations, and inline sources",
+      "83: validate sources in frontmatter",
+      "108: keep markers out of word counts and in translations",
+      "118: cite every committed post’s sources with markers and favicons"
+    ],
+    "lib/blog/footer-posts.test.ts": [
+      "11: names published posts and knows which are translated",
+      "27: labels each post with its title in every language"
+    ],
+    "lib/blog/research-charts.test.ts": [
+      "41: places probabilities on a log scale and flags values below it",
+      "49: places dates and labels years without crowding",
+      "68: snaps a crosshair to the nearest survey across series",
+      "96: need a value or a whole range, in order",
+      "106: show participant numbers only for groups of at least 10",
+      "116: match the verified public statements they chart",
+      "146: cite participant medians from the committed aggregates",
+      "195: carry a group size of 10 or more for participant points",
+      "219: count our point from the committed aggregates",
+      "230: cross their axes at the edge or, like the site’s map, in the middle",
+      "239: tint the highlighted point’s quadrant, or none without a highlight",
+      "251: need distinct points, on the unit square, with one highlight at most",
+      "289: rate every row on every column, and nothing else",
+      "298: label each level once",
+      "309: list only the levels their cells use, in legend order",
+      "354: keep points on the axes and in date order",
+      "388: carry no participant numbers, which need a group size",
+      "394: translate the reader’s text and keep keys, links, tones and numbers",
+      "444: links the P(doom) hub, the interview and the about page"
+    ],
+    "lib/blog/statement-charts.test.ts": [
+      "79: quote both people in every row, from public statements",
+      "107: reuse verified quotes exactly, and date the ones checked for a post",
+      "126: name people with a simulated profile",
+      "139: translate topics, titles and venues but never the quotes",
+      "175: join two distinct points that exist, with a hint",
+      "186: place every committed pair from simulated profiles"
+    ],
+    "lib/content/l10n.test.ts": [
+      "30: list every participant-visible string and flag the ones needing review",
+      "53: report missing, stale, extra and placeholder problems",
+      "82: load Spanish text for a pinned release and nothing in English"
+    ],
+    "lib/content/loader.test.ts": [
+      "8: representative bundle is validated but remains draft",
+      "24: content releases are pinned and unsupported paths are rejected",
+      "57: freeze requires complete hashes and graph rejects disconnected cycles and impossible conditions",
+      "103: alias boundaries avoid accidental matches and topic retrieval is not a mention"
+    ],
+    "lib/content/release.test.ts": [
+      "6: freezing requires reviewed originals and compatible reviewed snapshots"
+    ],
+    "lib/db/config.test.ts": [
+      "7: preserves full TLS verification for the legacy %s alias",
+      "21: preserves explicit settings and local connections: %s",
+      "30: rejects invalid database URLs: %s"
+    ],
+    "lib/db/pool-logging.test.ts": [
+      "25: one pool listener reports idle-client errors without connection secrets",
+      "48: a busy event loop cannot exhaust the per-address connection attempts"
+    ],
+    "lib/debug/answer-order.test.ts": [
+      "15: mixed confidence/noul orders preserve ties and handle zero",
+      "40: noul probabilities tie with confidence, use their own field and keep missing or invalid values last",
+      "64: display ordering never mutates the payload or distributions",
+      "70: only typed Jev answer records enable sorting, including nested and all-noul responses"
+    ],
+    "lib/debug/json-help.test.ts": [
+      "10: response keys use the actual recorded question, not a new or guessed meaning",
+      "30: authored alternatives and state dimensions have context without annotating user text",
+      "74: readiness help distinguishes percentages and combined support probability from component coordinates"
+    ],
+    "lib/debug/local-access.test.ts": [
+      "5: only local development pages may write local data; Portless determines the expected origin",
+      "25: a non-local development host does not expose file writes"
+    ],
+    "lib/debug/relationships.test.ts": [
+      "5: question graphs distinguish family transitions, shared targets and novelty using only the current catalog",
+      "28: corpus graph retains direction and authored relationship types on both sides of an entry"
+    ],
+    "lib/debug/styles.test.ts": [
+      "5: global CSS compiles through Next with color fallbacks enabled"
+    ],
+    "lib/docs/contract-rules.test.ts": [
+      "23: lists each routed doc once, without the dated verification log",
+      "32: fails loudly when the table is missing",
+      "38: finds headings that carry a date",
+      "59: ignores versions and undated headings"
+    ],
+    "lib/evaluation/budget.test.ts": [
+      "12: credentials alone never authorize a paid evaluation",
+      "25: the whole run shares a physical ceiling, including retries and stages",
+      "42: unknown failure cost is reserved before any further calls",
+      "62: concurrent stages cannot both spend a reserved budget",
+      "84: expanded journey budgets remain explicitly bounded"
+    ],
+    "lib/journeys/catalog.test.ts": [
+      "10: live personas contain narrative context, with mechanical judgments confined to separate cases",
+      "35: normal journey runners cannot silently fall back to canned answers or judgments",
+      "47: live narrative snapshots exclude mechanical judgments"
+    ],
+    "lib/journeys/experiments.test.ts": [
+      "13: replayed experiments attach only to the same run, answer state and evidence revision"
+    ],
+    "lib/journeys/failure.test.ts": [
+      "4: failure reports distinguish evaluator validation from transport without exposing raw messages"
+    ],
+    "lib/journeys/fixed.test.ts": [
+      "9: fixed original answers are never generated or matched to a different routed question",
+      "40: a recorded transcript replays for any simulated user, without a recovery prelude"
+    ],
+    "lib/journeys/mechanical/runner.test.ts": [
+      "20: result exercises record early projection, continuation, and an answered scoped correction",
+      "50: ten distinct personas have bounded question-specific scripts for every current prompt",
+      "64: ${persona.id} reruns deterministically through the real workflow",
+      "97: dense first replies qualify without enforcing three answers; opposing views can reason well",
+      "117: labor harms preserve unknown catastrophe and rigid optimism differs from careful optimism",
+      "143: an understood unknown can qualify provisionally without becoming a forecast or non-answer",
+      "178: exact non-answer prelude triggers paperclips without blocking the next real answer",
+      "201: live mode receives only normal participant context, never expected persona judgments",
+      "221: budget/provider failure is saved as a partial run without a manufactured result or raw error",
+      "246: unsupported fixture options fail clearly rather than silently picking a supported default",
+      "264: failed ${failureStage} resumes the exact operation once from committed state",
+      "361: failure generating a new result preserves saved answers through retry"
+    ],
+    "lib/journeys/merge.test.ts": [
+      "10: scoped generation retains other answers and their original provenance"
+    ],
+    "lib/journeys/participant.test.ts": [
+      "20: participant sees character beliefs and actual conversation, never fixture judgments",
+      "41: OpenAI text is submitted unchanged through real engine routing; both transcripts are retained",
+      "124: Jev failure preserves the paid participant reply without substituting scripted judgments",
+      "192: failed and incomplete OpenAI responses never become participant answers",
+      "221: unknown cost remains reserved and prevents overspending",
+      "228: a failed shared interpretation resumes the saved answer without generating another participant reply",
+      "297: response detail is per persona and never leaks into the evaluator"
+    ],
+    "lib/journeys/persona-assessment.test.ts": [
+      "11: public inspection preserves Q&A and only uses input from the final result revision"
+    ],
+    "lib/journeys/persona-identity.test.ts": [
+      "5: public persona navigation uses unique lowercase X usernames or named fallbacks",
+      "28: Independent 100 preserves original users and features the three selected additions",
+      "52: top tech posters map to one existing or added user, or a recorded exclusion"
+    ],
+    "lib/journeys/public-pdoom.test.ts": [
+      "12: source overrides preserve assessment estimates and leave engine results untouched",
+      "39: missing statement or result does not invent a projection",
+      "47: restating a saved journey applies the statement everywhere without changing scores"
+    ],
+    "lib/journeys/store.test.ts": [
+      "17: fresh checkout has no generated results and explains regeneration",
+      "29: individual reads and partial saves preserve other files and original provenance",
+      "84: concurrent partial saves retain both users and failed writes leave selection intact"
+    ],
+    "lib/jsonl.test.ts": [
+      "19: a missing file has no entries",
+      "23: reads lines longer than a read chunk, multibyte text, blank lines and a final line without a newline",
+      "35: reads lazily, so a consumer that stops early never parses later lines",
+      "44: a damaged line names the file and line"
+    ],
+    "lib/landing/portrait-entrance.test.ts": [
+      "12: lands every portrait flat, sharp and exactly on its laid-out position",
+      "27: starts each portrait transparent, enlarged and outside the chart",
+      "44: sweeps doom to bloom within the same window for any map size",
+      "57: replays identically for the same layout",
+      "63: springs from 0 to exactly 1 with a small overshoot"
+    ],
+    "lib/landing/portrait-layout.test.ts": [
+      "4: leaves boxes at or below 25% overlap in place",
+      "12: separates overlapping portraits in opposite directions without drifting on repeat layouts",
+      "25: bounds movement in dense coincident clusters to three six-pixel passes",
+      "38: keeps at least half of each portrait inside each chart axis",
+      "56: preserves ideal edge coordinates for isolated portraits"
+    ],
+    "lib/landing/prefetch-intent.test.ts": [
+      "12: caps eligibility at three distinct profiles and replaces only distant candidates",
+      "31: ignores a passing pointer and cancels a candidate on leave",
+      "46: warms a stable nearby target without postponing on every pointer event",
+      "58: replaces queued work and rate limits a sweep over different portraits",
+      "73: prioritizes keyboard/touch intent and cleans up pending work",
+      "87: notifies only when eligibility changes and supports unsubscription",
+      "99: ranks nearby laid-out portraits and none outside the proximity radius"
+    ],
+    "lib/p-doom/hub.test.ts": [
+      "34: shows each stated token as written, in curated order, with its source",
+      "68: shows each statement’s exact quote whole, or none at all",
+      "97: quotes every curated statement verbatim",
+      "114: leaves out people without a statement or a profile",
+      "123: shows refusals as short exact quotes after the numbers",
+      "139: curated notes match the statements they describe",
+      "147: is dated by its newest cited statement or source, not the render time",
+      "185: cites X posts by their author",
+      "196: split prose into text, titles and markers",
+      "208: number sources by first citation across the table, survey and scenarios",
+      "259: every scenario source is cited, and every citation has a source",
+      "299: link the first mention in each paragraph of published people only",
+      "314: link every published author in footnotes and readings",
+      "331: have titles, authors and plausible years",
+      "344: show a committed local favicon for every page the hub links"
+    ],
+    "lib/persistence/storage.test.ts": [
+      "24: drafts resume, an interlude never replays, conflicting tabs cannot overwrite",
+      "41: corrupt and unavailable storage are recoverable",
+      "55: resuming an earlier content version preserves its draft and version",
+      "66: over-limit drafts resume intact while submitted answers have a 20,000-character bound",
+      "86: legacy sessions migrate to answer-level support without losing drafts, versions or historical results",
+      "189: legacy paperclip pauses resume with an editable answer and acknowledgement"
+    ],
+    "lib/personas/comparison-cache.test.ts": [
+      "51: comparison reads reuse the Data Cache, expire, and isolate database targets",
+      "67: an initial database failure does not cache an empty fallback"
+    ],
+    "lib/personas/directory-sort.test.ts": [
+      "16: explicit approximate P(doom) is displayed and sorted even without numeric bounds",
+      "45: explicit qualifiers remain visible without inventing an exact sortable estimate",
+      "63: numeric sorts preserve zero, put missing values last in both directions, and break ties by name",
+      "98: the follower note spans the capture dates of the counts it shows",
+      "120: directory filters split the map by nearest outlook level and stated P(doom)",
+      "140: follower counts read like X: exact below 10,000, then compact"
+    ],
+    "lib/personas/mentions.test.ts": [
+      "15: link the first mention of each full name, keeping the rest as text",
+      "28: share first mentions across calls with one set",
+      "36: match whole names only, without guessing at single words",
+      "55: leave text unchanged without profiles",
+      "62: give every multi-word catalog name its own profile"
+    ],
+    "lib/personas/one-liner-rules.test.ts": [
+      "9: accepts a neutral description of what someone argues or works on",
+      "17: rejects numbers and outcomes in our own words",
+      "30: allows an outcome only inside the verified quote",
+      "45: keeps lines short, plain and punctuated"
+    ],
+    "lib/personas/public-statements.test.ts": [
+      "28: accepts short, dated quotes listed newest first",
+      "32: requires newest first, whatever the date precision",
+      "46: keeps quotes short and free of our own quotation marks",
+      "61: holds the summary to the one-liner rule",
+      "72: needs three to seven sourced statements",
+      "94: passes every committed profile"
+    ],
+    "lib/personas/usable-rows.test.ts": [
+      "12: reports and leaves out rows from an unknown schema version",
+      "31: fails the read when no row parses",
+      "47: keeps an empty catalog empty"
+    ],
+    "lib/seo/ai-citations.test.ts": [
+      "22: the site domain comes from the site URL",
+      "26: hosts lose www. and case, and keep other subdomains",
+      "34: own URLs are the site and its subdomains only",
+      "43: cleaning drops utm parameters and fragments only",
+      "126: citations rank distinct URLs in the order the text cites them",
+      "155: sources, queries and billed searches come from the search calls",
+      "169: an answer without citations still reads",
+      "179: cost adds tokens at model rates to $10 per 1,000 searches",
+      "189: an answered question records the site’s ranks and domains",
+      "245: top domains count answers first, then citations",
+      "280: only questions answered in both runs gain, lose or move",
+      "293: top domains compare only questions answered in both runs",
+      "309: the summary lists the site’s citations and the changes",
+      "329: the previous run is the newest earlier file by the same model",
+      "357: question ids are unique",
+      "362: a reply counts only when completed, or incomplete with text"
+    ],
+    "lib/seo/indexnow.test.ts": [
+      "13: the public key file serves the IndexNow key",
+      "20: payloads keep only the site host, deduplicated",
+      "51: sitemap entries keep each URL with its lastmod, if any",
+      "59: changed URLs are those modified after the cutoff; a bare date counts for its whole day",
+      "74: only 200 and 202 count as accepted"
+    ],
+    "lib/seo/json-ld.test.ts": [
+      "144: escapes markup so text cannot close the script element",
+      "154: describes the home page as a site and a free web application",
+      "193: lists visible breadcrumbs with absolute URLs in the page locale",
+      "235: describes the about page as a page about the site",
+      "262: describes a profile as a page about a real person, disclosing the simulation",
+      "342: links only the profiles it has for people without a Wikipedia article",
+      "368: keeps the person and topic ids when a profile is read in another locale",
+      "386: describes the directory as a collection of profiles",
+      "434: describes a blog post as an English BlogPosting and the blog as its posts",
+      "507: describes the P(doom) hub as a page defining the term, a dataset and its people"
+    ],
+    "lib/seo/person-identities.test.ts": [
+      "22: maps known profile slugs to well-formed Wikipedia and Wikidata pages",
+      "29: never gives two people the same article or item"
+    ],
+    "lib/seo/profile-titles.test.ts": [
+      "23: reads as a plain list of topics, sharing one “AI”",
+      "38: starts with AI itself when no topic names it",
+      "50: leads with the future of AI, or closes with the future once AI is named",
+      "62: names the AI bubble and open source as topics of their own",
+      "72: reads naturally for every combination of up to three topics",
+      "97: uses the searched topics, then the map band, then the fallback",
+      "126: splits the map at 40 and 80",
+      "153: drops the least searched topics until the title fits Google",
+      "163: keeps every profile’s English title within Google’s limit, brand included",
+      "174: renders every language with the same topics",
+      "189: covers only catalog profiles, with evidence for every topic",
+      "207: measures titles as Google’s 20px Arial does"
+    ],
+    "lib/seo/result-titles.test.ts": [
+      "83: name the map position’s level readings, never a person or P(doom)",
+      "107: a stale experiment leaves the scale out, as on the map",
+      "113: a name keeps the named title",
+      "119: every English title fits Google’s desktop title with the brand",
+      "134: every language renders every title",
+      "155: give a rough inferred P(doom) and the closest simulated thought leaders",
+      "168: call a stated number stated, and leave out an unclear one",
+      "192: leave out the P(doom) of an outdated experiment, as the page does",
+      "200: render in every language"
+    ],
+    "lib/server/api-error-reporting.test.ts": [
+      "55: retired client-authoritative assessment API cannot run inference",
+      "61: tweet network failures log the underlying system code",
+      "82: card renderer validation errors are logged as server failures",
+      "106: saved persona read failures identify the storage phase"
+    ],
+    "lib/server/correction.test.ts": [
+      "29: correction retains raw evidence, supersedes its target, and recomputes dependent result",
+      "66: catastrophic-risk correction names the selected claim and retains ordinary-harm evidence",
+      "146: timeline follows correction scope: $target, replacement $replacement",
+      "225: a ${unknown ? 'recorded unknown' : 'qualified multi-level claim'} remains correctable across later operations"
+    ],
+    "lib/server/dev-launcher.test.ts": [
+      "10: development launcher overrides inherited credentials before validation and spawning"
+    ],
+    "lib/server/diagnostic-context.test.ts": [
+      "6: concurrent request contexts stay isolated and explicit operation IDs win"
+    ],
+    "lib/server/early-result.test.ts": [
+      "9: a detailed first answer makes results available, and automatic results wait for the answer floor",
+      "85: an incomplete short account is not stopped solely because no candidate clears the novelty threshold",
+      "124: an independent pair check can reject a preliminary tension signal",
+      "178: scoped tension clarification quotes actual ${acrossAnswers ? 'cross-answer' : 'within-answer'} claims and accepts a reply",
+      "269: doubling down preserves an unresolved tension without repeating its clarification",
+      "386: outlook %s distinguishes missing information from indecision despite low novelty",
+      "418: a tentative outlook is placed when results are requested",
+      "446: the direct overall question cannot repeat until a directional answer appears",
+      "483: a borderline novel crux gets no special threshold when updateability is unassessed: %s"
+    ],
+    "lib/server/engine-paths.test.ts": [
+      "11: ordinary five-answer interviews do not trigger large-history batching",
+      "93: long multibyte history with many unresolved dimensions fits the physical request budget",
+      "174: eight answers retain the complete transcript without corpus inference",
+      "256: twelve sequential usable answers force a final result and stop further inference",
+      "309: saved ${contentVersion} assessment resumes with its own corpus and result version"
+    ],
+    "lib/server/engine.test.ts": [
+      "48: experimental placements consume a dependent evidence check and preserve both debug batches",
+      "111: a deleted pending question keeps local history and can be skipped without inference",
+      "139: answered deleted questions remain valid history while known question edits still fail",
+      "163: a reworded question keeps histories that issued its former wording valid",
+      "190: placeholders and an explicit paperclip request use bounded local recovery with no provider calls",
+      "259: three-answer path, reusable results and debug parity",
+      "317: nonsense short circuits all later stages and preserves scores",
+      "350: rejected retries preserve an established profile and resuming does not reset the allowance",
+      "398: dependent stages share the remaining physical request budget",
+      "427: repeated ambiguity exhausts neutrally, successful retry resumes",
+      "450: cap takes precedence and insufficient evidence has no invented coordinates",
+      "467: unknown worldview positions and ordinary harm cannot fabricate catastrophic risk",
+      "519: shared text occurs once per stage and judgments use answer-level support without passage selection",
+      "601: one well-covered answer unlocks results and sends explicit dimension definitions",
+      "649: three sparse answers cannot unlock results by reply count alone",
+      "685: failed operations expose completed stages and failed input without serializing provider secrets",
+      "727: a large self-placement gap offers one placement question that returns to an updated result",
+      "772: Jev hears the interview language outside English and each reply records its locale"
+    ],
+    "lib/server/env.test.ts": [
+      "4: boolean settings are strict and fixture mode is explicit",
+      "14: fixture provider requires no secret and identifies itself",
+      "31: Vercel analytics is independent of PostHog configuration"
+    ],
+    "lib/server/error-reporting.test.ts": [
+      "9: server errors preserve correlation and causes without logging error messages or bodies",
+      "39: overflow classification is bounded even with cyclic error causes",
+      "46: database error codes remain diagnosable without exposing SQL or row contents"
+    ],
+    "lib/server/evidence-regression.test.ts": [
+      "9: live-style probability split between supported categories still creates evidence and readiness",
+      "63: unplaceable positions do not erase understood evidence during projection",
+      "137: a split score distribution cannot invent a categorical middle-level claim",
+      "191: a marginal assessable winner cannot turn explicit uncertainty into a directional claim",
+      "245: ordinary follow-up ${resolves ? 'resolves' : 'preserves'} a prior ambiguity according to the specific resolution judgment",
+      "308: a weak later mention cannot erase still-active clear evidence",
+      "360: weak initial inference does not create an ambiguity that blocks a later explicit forecast",
+      "424: result evidence sends only selected experiment candidates and preserves the complete transcript",
+      "494: runtime keeps full answers and core results without generating excerpt requests"
+    ],
+    "lib/server/jev-budget-store.test.ts": [
+      "26: an operation checks the budget once, at its first Jev call",
+      "35: a %s block stops the operation before any Jev call",
+      "44: an unreadable budget fails open with a diagnostic",
+      "58: only an out-of-credits failure starts a provider hold",
+      "81: successful calls are recorded once per operation, even when it fails later",
+      "98: a failed spend write is reported without failing the operation"
+    ],
+    "lib/server/jev-budget.test.ts": [
+      "38: budget limits default to $150 a month and $50 a day and accept explicit overrides",
+      "55: a malformed budget keeps the default ceiling and names the variable",
+      "64: spend is priced from reported input tokens at $42 per billion",
+      "74: budget periods are UTC days and months regardless of the server zone",
+      "85: either budget, or an active TypeSafe credit hold, blocks new Jev calls",
+      "115: a threshold is crossed by exactly one increment",
+      "126: TypeSafe out-of-credit responses are recognized through every wrapper",
+      "144: other provider failures and free text are never read as a budget block",
+      "159: our own budget block keeps its reason through the engine wrapper",
+      "168: diagnostics name budget blocks and the provider code without its message"
+    ],
+    "lib/server/limits.test.ts": [
+      "3: uncertain request retries share one evaluation and reject changed payloads",
+      "19: size limits apply even when content length is absent"
+    ],
+    "lib/server/live-provider.test.ts": [
+      "27: provider boundary validates options, primitives, distributions and missing answers",
+      "71: noul has no confidence field; ordered score must agree with distribution",
+      "93: rounding drift between a score and its distribution uses the distribution",
+      "147: large batches retain the exact complete state and aggregate physical usage",
+      "166: offline defaults complete five multi-batch answers beyond 24 successful requests",
+      "193: an explicit offline request cap reports budget exhaustion, not a timeout",
+      "231: the offline dollar cap still blocks calls with request capacity remaining",
+      "241: context overflow is permanent and never triggers recursive splitting",
+      "268: transient batch retries respect the physical ceiling and remaining operation budget",
+      "311: an oversized fallback stops without searching for the provider limit",
+      "341: authentication failures are not retried, while transient retries have a physical ceiling",
+      "401: caller cancellation stops retry backoff without another physical request",
+      "426: the shared provider deadline terminates a hanging request and its retries",
+      "459: debug records each physical batch and validated response without adding calls or leaking headers",
+      "506: overflow diagnostics retain status without raw provider errors",
+      "544: a rounded live score is accepted and replaced by its distribution expectation",
+      "570: failed later batch retains validated responses and physical diagnostics without transport secrets",
+      "627: a second transient failure ends the whole operation after exactly two calls",
+      "666: maximum fork history preserves all thirty multibyte answers across planned batches",
+      "686: a TypeSafe 402 is permanent, reads as out of credits and keeps earlier usage"
+    ],
+    "lib/server/projection-input.test.ts": [
+      "6: complete observations appear once and support links whole answers by ID",
+      "49: legacy corpus links cannot enter current projection context",
+      "92: an unverified tension cannot become independent projection evidence"
+    ],
+    "lib/server/request-country.test.ts": [
+      "9: reads the two-letter country Vercel adds to the request",
+      "14: missing or malformed countries are null"
+    ],
+    "lib/server/request-origin.test.ts": [
+      "13: a Portless page can submit through a different loopback upstream",
+      "29: HTTPS proxy and worktree URLs use the exact injected origin",
+      "40: forwarded headers cannot authorize an unrelated page",
+      "53: production ignores stale development proxy configuration",
+      "62: unconfigured requests retain same-origin behavior and malformed settings fail closed",
+      "74: only explicitly configured tunnel origins can submit remotely"
+    ],
+    "lib/server/upstream-fetch.test.ts": [
+      "12: 403 body and correlation headers survive for diagnostics without consuming the SDK response",
+      "72: actual overflow response retains error_type and SDK request ID",
+      "119: firewall HTML retains a bounded excerpt and ray ID with query secrets redacted",
+      "147: slow diagnostic bodies cannot block indefinitely or consume the caller response",
+      "176: SDK-owned X requests are covered once and first-party traffic passes through",
+      "202: transport exceptions retain their original identity and network code"
+    ],
+    "lib/server/validate-env.test.ts": [
+      "12: Vercel previews derive auth URLs from deployment metadata",
+      "26: startup and E2E preflight reject missing %s",
+      "37: valid runtime and E2E configurations pass",
+      "52: OAuth is optional but partial credentials fail",
+      "57: explicit test fixtures need no Jev key and are forbidden in production",
+      "68: validation errors never include credential values"
+    ],
+    "lib/sharing/assessment-card-parity.test.ts": [
+      "34: public preview and downloaded PNG render the same assessment composition"
+    ],
+    "lib/sharing/card-fonts.test.ts": [
+      "28: cover every character their locales’ catalogs use",
+      "42: only non-Latin scripts change the renderer, with their own font first",
+      "59: mark Thai word boundaries so lines can break",
+      "68: Thai card messages wrap and keep their translator methods"
+    ],
+    "lib/sharing/compare.test.ts": [
+      "33: reads persona and share link targets and rejects anything else",
+      "59: keeps the target and whether it is shown in this browser, per result",
+      "99: buckets the weighted distance at the calibrated thresholds",
+      "111: the same worldview is very aligned with no axis differences",
+      "120: plain per-axis differences follow the map, and opposite views are worlds apart",
+      "137: too little in common has no bucket rather than a misleading one",
+      "148: names a thought leader in both top three for a friend only",
+      "185: a share link compares from its card and values, never more"
+    ],
+    "lib/sharing/png-export.test.ts": [
+      "25: Takumi exports graph and card layouts at twice their logical dimensions",
+      "51: cards in Hindi and Japanese render with their registered fonts",
+      "73: graph export rejects remote image references and external entities",
+      "81: share card shows real matched portraits and only the requested metrics",
+      "135: the share card renders in the participant’s language"
+    ],
+    "lib/sharing/public-card.test.ts": [
+      "33: a public preview URL changes exactly when its card changes"
+    ],
+    "lib/sharing/report.test.ts": [
+      "8: expanded reports preserve usable evidence while excluding local rejected text, drafts and retry records",
+      "52: diagnostic reports retain routes, exact evaluator input, snapshots and explicit gaps"
+    ],
+    "lib/sharing/resource-previews.test.ts": [
+      "8: resource icons are valid local WebPs, including Marginal Revolution",
+      "25: every authored non-tweet source has local bookmark artwork and a description"
+    ],
+    "lib/sharing/share-caption.test.ts": [
+      "10: quotes a stated number as the participant wrote it",
+      "21: credits the tool for an inferred number",
+      "30: falls back when the number is unclear or missing",
+      "44: is one whole message per language",
+      "59: fits X and Bluesky limits with a link",
+      "75: tags the link with the share surface",
+      "84: builds each composer URL"
+    ],
+    "lib/sharing/share-links.test.ts": [
+      "8: share link IDs are 16 URL-safe characters",
+      "14: a sharer name is a first name in any script, never a URL or handle",
+      "37: an empty name means none, and the request accepts nothing else"
+    ],
+    "lib/sharing/site-social-card.test.ts": [
+      "24: portraits stay on their coordinates unless they would cover each other",
+      "41: a stack pushed past the frame moves back inside as one piece",
+      "59: featured people become portraits and everyone else a dot",
+      "74: portrait art direction preserves saved points and horizontal outlook",
+      "93: every featured face is a public simulated user with a portrait",
+      "97: points use presented map positions and leave unplaced users off",
+      "117: generation fails when a featured face has no map position",
+      "127: the site social image is a decodable 1200 × 630 PNG"
+    ],
+    "lib/sharing/site-social-review.test.ts": [
+      "76: capture records changes and hashed alt artifacts without changing approved files",
+      "89: apply preserves a changed approved %s file",
+      "101: apply rejects a corrupt %s artifact",
+      "112: apply rejects obsolete alt text even with a matching hash",
+      "123: apply rejects points that no longer reproduce the reviewed PNG",
+      "134: apply copies exact reviewed inputs and pixels that replay offline"
+    ],
+    "lib/sharing/social-card.test.ts": [
+      "22: every public persona portrait renders with a representative saved result",
+      "53: profile social output is a decodable 1200 × 630 PNG",
+      "75: participant cards support unknown coordinates without simulated labeling"
+    ],
+    "lib/sharing/text-fit.test.ts": [
+      "4: estimates wider text for longer and full-width labels",
+      "11: keeps the original pill for short labels and grows it for longer ones",
+      "16: shrinks a label only when it overflows"
+    ],
+    "lib/sharing/tweet-url.test.ts": [
+      "4: recognizes tweet permalinks without treating profiles or lookalike hosts as tweets"
+    ],
+    "lib/sources/citations.test.ts": [
+      "19: split prose into text, titles and markers",
+      "40: list cited keys in order of first citation",
+      "44: number each source once, by first citation"
+    ],
+    "tests/analytics/privacy.spec.ts": [
+      "22: internal editorial pages initialize no analytics or inference even when analytics is enabled",
+      "68: actual PostHog SDK payloads exclude answers and URL canaries; resume does not duplicate start",
+      "211: missing live key preserves the draft and does not consume a semantic attempt",
+      "297: share link and compare events carry only enumerated values, never link, persona or assessment IDs"
+    ],
+    "tests/browser/admin.spec.ts": [
+      "4: local admin filters real saved states and previews private results without impersonation or writes"
+    ],
+    "tests/browser/assessment-start.spec.ts": [
+      "3: starting an assessment keeps the library layout stable and reports status in toasts"
+    ],
+    "tests/browser/assessment.spec.ts": [
+      "25: provider rejection explains the failure across reload and keeps the saved reply retryable",
+      "102: saved earlier-version assessments preserve their content through results and a new assessment adopts the current draft",
+      "144: long inserted answers remain intact across reload and use a soft submission limit",
+      "200: three answers, draft resume, map, report download and another assessment",
+      "292: bounded nonsense recovery, paperclip dismissal, refresh and exhaustion",
+      "344: two tabs cannot overwrite committed answers",
+      "369: an unavailable response preserves the draft and previous saved progress",
+      "399: legacy corrupt storage is ignored and unavailable draft storage still saves submitted progress",
+      "438: the twelfth prompt finalizes insufficient evidence after a non-answer without issuing another",
+      "459: a lost response replays its original key without duplicating the semantic attempt",
+      "491: a well-covered first answer offers results while ordinary follow-ups remain the default",
+      "539: progress counts four answers, then follow-ups fill the last segment without finishing it"
+    ],
+    "tests/browser/bookmarks.spec.ts": [
+      "3: bookmarks fade overflowing text without overflowing the mobile viewport",
+      "34: simulated-user source bookmarks render local images, icons and authored descriptions"
+    ],
+    "tests/browser/breadcrumbs.spec.ts": [
+      "3: shared breadcrumbs precede page content and navigate back to the library"
+    ],
+    "tests/browser/compare.spec.ts": [
+      "27: a thought leader’s page starts a comparison drawn on the result map",
+      "87: a friend’s card-only link leads to a comparison, sent back as their own link"
+    ],
+    "tests/browser/content-review.spec.ts": [
+      "21: local question and corpus inspectors expose relationships without feedback editing"
+    ],
+    "tests/browser/conversation.spec.ts": [
+      "9: a saved deleted question keeps its draft and offers a current question",
+      "56: the full conversation uses page scrolling, bounded answer disclosure and saved resume",
+      "317: copy is visible without hover and does not cover the answer"
+    ],
+    "tests/browser/css-interactions.spec.ts": [
+      "12: landing map grows across narrow-tablet widths without a responsive cliff",
+      "34: two result excerpts fill the available tablet width and preserve their text",
+      "67: directory selects leave room for the full text line at desktop and phone widths",
+      "90: touch controls stay comfortable without enlarging dense map dots",
+      "120: long answers scroll inside the field and survive reload without a submission",
+      "148: directory list links are reached by Tab and shared outlines survive forced colors",
+      "168: shared buttons respond to a held press with reduced motion and ignore disabled presses"
+    ],
+    "tests/browser/debug.spec.ts": [
+      "5: unavailable debug storage reports failure without losing assessment progress",
+      "78: debug separates exchanges, folds depth 2+, highlights syntax and uses wide page scrolling"
+    ],
+    "tests/browser/diagnostic-report.spec.ts": [
+      "7: answer diagnostics preserve traces without generating intermediate results"
+    ],
+    "tests/browser/early-result.spec.ts": [
+      "7: automatic results after the answer floor offer voluntary follow-ups and scoped detail cards"
+    ],
+    "tests/browser/header-account.spec.ts": [
+      "4: header CTA collapses after starting an assessment and leaving it",
+      "23: header CTA supports keyboard focus and resets on keyboard navigation",
+      "43: anonymous header CTA is desktop-only without mobile overflow",
+      "76: account menu supports keyboard navigation and logout errors then success",
+      "172: anonymous navigation stays still while the session loads"
+    ],
+    "tests/browser/i18n-assessment.spec.ts": [
+      "41: a Spanish interview starts, places a result and shares it in Spanish",
+      "180: the Spanish library and simulated users keep the Spanish interface",
+      "209: About and Privacy read in Spanish and link within Spanish"
+    ],
+    "tests/browser/i18n-locales.spec.ts": [
+      "27: ${code}: home declares ${tag} and the interview asks the translated root question",
+      "56: Hindi and Japanese share cards and profile images are PNGs"
+    ],
+    "tests/browser/i18n.spec.ts": [
+      "5: English URLs are unchanged and a superfluous /en prefix redirects to them",
+      "27: /es renders Spanish chrome and keeps links in Spanish",
+      "81: translated pages advertise hreflang alternates; chrome-only ones defer to English",
+      "129: choosing a language in the footer keeps the page and is remembered for unprefixed URLs",
+      "172: page responses never set cookies, in any locale",
+      "186: starting from a Spanish page opens the interview under /es"
+    ],
+    "tests/browser/interaction.spec.ts": [
+      "30: mobile keyboard flow, themes, natural focus and expanded debug fit",
+      "116: reduced-motion paperclips are reachable and dismissible by keyboard",
+      "138: recovery counters survive a tab conflict and reload without a new allowance",
+      "182: results omit review and clarification while retaining continued answers"
+    ],
+    "tests/browser/jev-budget.spec.ts": [
+      "93: when ${name}, starting explains it and a submitted answer is saved for retry",
+      "119: an answer sent before the budget ran out sees the notice only after it is blocked"
+    ],
+    "tests/browser/journeys.spec.ts": [
+      "49: saved persona snapshots expose results and decisions without rerun controls",
+      "164: mobile uncertainty and paperclip paths stay inspectable with page scrolling",
+      "233: failed operation diagnostics remain readable on mobile",
+      "283: the real-user fixed regression is selectable and exposes all four original answers",
+      "316: answer selector moves the map and every experimental view without inference",
+      "410: completed uncertain personas keep visible map points without a reasoning card"
+    ],
+    "tests/browser/landing.spec.ts": [
+      "4: landing portraits use tooltips and link to results; assessment drafts survive a trip home",
+      "66: featured portraits stay square and inside their circular frames",
+      "105: persona framing uses her/their and exports the portrait in the map",
+      "145: persona probability uses a dated public statement with its outcome and source",
+      "171: a simulated P(doom) links quietly to how we estimate it",
+      "189: persona answer references open the transcript and navigate to the exact answer",
+      "215: people legend keeps display names readable across responsive sizes and larger text",
+      "249: legacy persona URLs redirect to user pages and user pages omit the back link",
+      "271: primary CTAs share the expanding-arrow treatment and remain navigable",
+      "319: featured map lays out before reveal and fills mobile width with inset edge labels",
+      "365: featured portraits fly in once per page load and land on their layout positions",
+      "432: hovering a featured portrait keeps its map position and tooltip anchor stable",
+      "475: all-users directory lists the most followed first, a page at a time, and keeps everyone on the map",
+      "575: directory paging keeps keyboard focus in the list when its buttons go away"
+    ],
+    "tests/browser/map.spec.ts": [
+      "7: persona map optimizes its portrait and embeds it in PNG exports",
+      "116: map explains ${unplaced === 'outlook' ? 'unplaced outlook with placed influence' : unplaced ? 'unplaced axes' : 'broad interpretation ranges'} without inference"
+    ],
+    "tests/browser/not-found.spec.ts": [
+      "4: branded 404 is accessible and links home at ${width}px",
+      "30: missing persona uses the shared 404 page"
+    ],
+    "tests/browser/paperclips.spec.ts": [
+      "5: test replies reliably trigger paperclips and an explicit request works once per assessment",
+      "85: paperclip fireworks stay for ten seconds, finish automatically and support immediate Escape"
+    ],
+    "tests/browser/persona-assessment.spec.ts": [
+      "13: persona page orders results, answers, collapsed debug info, sources and closing CTA",
+      "105: JSON field tooltips anchor to their text on wide screens",
+      "134: persona profile labels use the handle and empty milestone timelines are omitted"
+    ],
+    "tests/browser/result-feedback.spec.ts": [
+      "3: participants place themselves before the reveal and can say whether the result feels right",
+      "92: a large placement gap offers one question, and answering it updates the result"
+    ],
+    "tests/browser/seo.spec.ts": [
+      "45: the home page names the P(doom) search and describes a free web app",
+      "87: the P(doom) hub defines the term, then cites curated estimates, scenarios and readings",
+      "252: the blog lists posts, and a post carries article data, a card and a feed",
+      "358: the renamed P(doom) post redirects permanently to its new URL",
+      "384: a post cites its sources with numbered footnotes, like the hub",
+      "413: a data post charts participant aggregates with their date",
+      "431: a rivalry post compares pairs on the map and quotes each side",
+      "465: a translated post renders, indexes and shares in each language",
+      "522: profiles link similar worldviews and describe the simulated person",
+      "627: the directory lists every profile, and About describes the site",
+      "662: the sitemap lists English-only pages in English and translated posts in every language"
+    ],
+    "tests/browser/share-bar.spec.ts": [
+      "14: the result shares a card-only link, created on first use, and publishing beside it",
+      "102: simulated-user pages invite a comparison, pinned on phones"
+    ],
+    "tests/browser/shortcuts.spec.ts": [
+      "3: Cmd/Ctrl+Enter submits through the normal guards; Enter and composition remain native"
+    ],
+    "tests/browser/tweet-sources.spec.ts": [
+      "42: persona bookmarks precede a separate themed tweet masonry",
+      "99: assessment resources embed tweets and keep a bookmark when a post cannot load"
+    ],
+    "tests/helpers/diagnostics.test.ts": [
+      "6: only the expected diagnostic and count are silenced; all other arguments pass through",
+      "53: expected warnings use the same bounded matching without intercepting ordinary logs"
+    ],
+    "tests/persistence/auth.spec.ts": [
+      "3: optional X login is on the library and uses the configured callback and read scopes"
+    ],
+    "tests/persistence/lazy-drafts.spec.ts": [
+      "4: unsubmitted drafts survive history and reload without database rows; first answer persists once"
+    ],
+    "tests/persistence/library.spec.ts": [
+      "6: library sorts by creation date and status and keeps management in row menus"
+    ],
+    "tests/persistence/participant.spec.ts": [
+      "6: first CTA creates directly, draft survives reload, answer is server-saved, returning CTA opens library",
+      "83: lost successful response resolves with the original request key after refresh",
+      "132: publish, fork, and revoke preserve independent assessments and deny public images",
+      "592: homepage navigation survives an empty auth API response"
+    ],
+    "tests/persistence/personas.spec.ts": [
+      "5: curated persona routes use the selected database run without a visitor session"
+    ],
+    "tests/persistence/share-links.spec.ts": [
+      "27: share links: owner-only create, reuse and revoke; card only; deletion cascades"
+    ],
+    "tests/prefetch/locales.spec.ts": [
+      "72: static pages are prebuilt per locale, cached and cookie-free",
+      "119: RSC and segment prefetches reach each page’s prerendered files on Vercel",
+      "147: the home page serves its segment prefetches",
+      "164: a renamed post redirects permanently before the cache",
+      "182: a remembered language redirects unprefixed pages before the cache"
+    ],
+    "tests/prefetch/personas.spec.ts": [
+      "4: build-time public shares serve cached HTML, RSC and social images with the database unavailable",
+      "40: every built profile serves initial HTML and RSC without a database",
+      "64: proximity warms at most three profiles, cancels passing intent, and reuses one on click",
+      "198: keyboard focus warms a directory profile without viewport prefetching",
+      "235: directory paging moves focus but warms a profile only for visible focus",
+      "263: data saver suppresses speculative profile requests"
+    ],
+    "tests/prefetch/profile-portrait.spec.ts": [
+      "10: shows the map-sized portrait while the eager full-size image loads"
+    ],
+    "tests/public-cache/publication.spec.ts": [
+      "19: publication warms HTML/RSC and social image; revocation expires them immediately"
+    ],
+    "tests/public-cache/share-links.spec.ts": [
+      "7: share links render on first request, cache, and expire immediately on revocation and deletion"
+    ]
+  },
+  "expandedNames": {
+    "i18n/messages.test.ts": [
+      "47: message catalogs de has every English key with the same arguments and tags",
+      "47: message catalogs es has every English key with the same arguments and tags",
+      "47: message catalogs fr has every English key with the same arguments and tags",
+      "47: message catalogs hi has every English key with the same arguments and tags",
+      "47: message catalogs id has every English key with the same arguments and tags",
+      "47: message catalogs ja has every English key with the same arguments and tags",
+      "47: message catalogs pt has every English key with the same arguments and tags",
+      "47: message catalogs th has every English key with the same arguments and tags",
+      "47: message catalogs zh has every English key with the same arguments and tags",
+      "53: message catalogs de messages format without errors",
+      "53: message catalogs en messages format without errors",
+      "53: message catalogs es messages format without errors",
+      "53: message catalogs fr messages format without errors",
+      "53: message catalogs hi messages format without errors",
+      "53: message catalogs id messages format without errors",
+      "53: message catalogs ja messages format without errors",
+      "53: message catalogs pt messages format without errors",
+      "53: message catalogs th messages format without errors",
+      "53: message catalogs zh messages format without errors"
+    ],
+    "lib/assessment/pdoom.test.ts": [
+      "152: stated P(doom) in every enabled language de: 10 bis 20 Prozent",
+      "152: stated P(doom) in every enabled language de: Etwa 20 Prozent.",
+      "152: stated P(doom) in every enabled language de: mindestens 10%",
+      "152: stated P(doom) in every enabled language de: Über 60 %",
+      "152: stated P(doom) in every enabled language de: weniger als 0,5 %",
+      "152: stated P(doom) in every enabled language es: Alrededor del 20%",
+      "152: stated P(doom) in every enabled language es: como mucho 1%",
+      "152: stated P(doom) in every enabled language es: Creo que un 30%.",
+      "152: stated P(doom) in every enabled language es: Diría del 10 al 20%.",
+      "152: stated P(doom) in every enabled language es: Entre 10 y 20 %",
+      "152: stated P(doom) in every enabled language es: más de 50 por ciento",
+      "152: stated P(doom) in every enabled language es: Menos del 5 %, sinceramente.",
+      "152: stated P(doom) in every enabled language es: Un 0,5 % como mucho",
+      "152: stated P(doom) in every enabled language fr: au moins 25 %",
+      "152: stated P(doom) in every enabled language fr: entre 5 et 15 %",
+      "152: stated P(doom) in every enabled language fr: environ 10 pour cent",
+      "152: stated P(doom) in every enabled language fr: Moins de 1 %.",
+      "152: stated P(doom) in every enabled language fr: plus de 50 %",
+      "152: stated P(doom) in every enabled language hi: 10 से 20 प्रतिशत",
+      "152: stated P(doom) in every enabled language hi: 20 प्रतिशत से अधिक",
+      "152: stated P(doom) in every enabled language hi: ५% से कम",
+      "152: stated P(doom) in every enabled language hi: कम से कम 10%",
+      "152: stated P(doom) in every enabled language hi: लगभग ३० प्रतिशत।",
+      "152: stated P(doom) in every enabled language id: antara 10 dan 20 persen",
+      "152: stated P(doom) in every enabled language id: kurang dari 5%",
+      "152: stated P(doom) in every enabled language id: lebih dari 50 persen",
+      "152: stated P(doom) in every enabled language id: Sekitar 30 persen.",
+      "152: stated P(doom) in every enabled language ja: 1%未満です。",
+      "152: stated P(doom) in every enabled language ja: 10%から20%の間",
+      "152: stated P(doom) in every enabled language ja: 10パーセント以上",
+      "152: stated P(doom) in every enabled language ja: ３０％くらいだと思います。",
+      "152: stated P(doom) in every enabled language ja: ５〜１０％",
+      "152: stated P(doom) in every enabled language ja: 約20％",
+      "152: stated P(doom) in every enabled language pt: de 5 a 10%",
+      "152: stated P(doom) in every enabled language pt: menos de 1%",
+      "152: stated P(doom) in every enabled language pt: pelo menos 30%",
+      "152: stated P(doom) in every enabled language pt: Uns 15 por cento",
+      "152: stated P(doom) in every enabled language th: ๓๐%",
+      "152: stated P(doom) in every enabled language th: น้อยกว่า 5%",
+      "152: stated P(doom) in every enabled language th: ประมาณ 30 เปอร์เซ็นต์",
+      "152: stated P(doom) in every enabled language th: มากกว่า ๕๐%",
+      "152: stated P(doom) in every enabled language th: ร้อยละ 10",
+      "152: stated P(doom) in every enabled language zh: 10%到20%",
+      "152: stated P(doom) in every enabled language zh: 30%左右",
+      "152: stated P(doom) in every enabled language zh: 不到1%吧",
+      "152: stated P(doom) in every enabled language zh: 大约20%",
+      "152: stated P(doom) in every enabled language zh: 我觉得是百分之三十。",
+      "152: stated P(doom) in every enabled language zh: 百分之零点五",
+      "152: stated P(doom) in every enabled language zh: 超过50%"
+    ],
+    "lib/assessment/worldview-experiment.test.ts": [
+      "353: keeps a point inside the range for job worrier transformation without a representative quote",
+      "353: keeps a point inside the range for novice influence without a representative quote",
+      "353: keeps a point inside the range for open uncertainty without a representative quote",
+      "414: retains raw judgments and infers the refined almost_certain band in log-odds",
+      "414: retains raw judgments and infers the refined negligible band in log-odds",
+      "414: retains raw judgments and infers the refined remote band in log-odds",
+      "414: retains raw judgments and infers the refined virtually_certain band in log-odds",
+      "414: retains raw judgments and infers the refined virtually_impossible band in log-odds"
+    ],
+    "lib/assessments/client.test.ts": [
+      "22: server exception text is not exposed for HTTP 400",
+      "22: server exception text is not exposed for HTTP 409",
+      "22: server exception text is not exposed for HTTP 500",
+      "22: server exception text is not exposed for HTTP 503"
+    ],
+    "lib/auth/urls.test.ts": [
+      "29: preview rejects malformed host ",
+      "29: preview rejects malformed host *.vercel.app",
+      "29: preview rejects malformed host example.vercel.app.evil.test",
+      "29: preview rejects malformed host example.vercel.app/path",
+      "29: preview rejects malformed host https://example.vercel.app"
+    ],
+    "lib/db/config.test.ts": [
+      "7: databaseUrl preserves full TLS verification for the legacy prefer alias",
+      "7: databaseUrl preserves full TLS verification for the legacy require alias",
+      "7: databaseUrl preserves full TLS verification for the legacy verify-ca alias",
+      "21: databaseUrl preserves explicit settings and local connections: postgresql://db.example.com/app?sslmode=verify-full",
+      "21: databaseUrl preserves explicit settings and local connections: postgresql://db.example.com/app?uselibpqcompat=true&sslmode=require",
+      "21: databaseUrl preserves explicit settings and local connections: postgresql://localhost/app",
+      "21: databaseUrl preserves explicit settings and local connections: postgresql://localhost/app?sslmode=disable",
+      "30: databaseUrl rejects invalid database URLs: ",
+      "30: databaseUrl rejects invalid database URLs: https://example.com/app",
+      "30: databaseUrl rejects invalid database URLs: invalid"
+    ],
+    "lib/journeys/mechanical/runner.test.ts": [
+      "64: abundance-advocate reruns deterministically through the real workflow",
+      "64: capability-skeptic reruns deterministically through the real workflow",
+      "64: cautious-builder reruns deterministically through the real workflow",
+      "64: control-alarmist reruns deterministically through the real workflow",
+      "64: dogmatic-utopian reruns deterministically through the real workflow",
+      "64: high-risk-accelerator reruns deterministically through the real workflow",
+      "64: labor-organizer reruns deterministically through the real workflow",
+      "64: open-uncertainty reruns deterministically through the real workflow",
+      "64: playful-recovery reruns deterministically through the real workflow",
+      "64: worried-novice reruns deterministically through the real workflow",
+      "264: failed interpret resumes the exact operation once from committed state",
+      "264: failed project resumes the exact operation once from committed state",
+      "264: failed route resumes the exact operation once from committed state"
+    ],
+    "lib/server/correction.test.ts": [
+      "146: timeline follows correction scope: capability_trajectory, replacement false",
+      "146: timeline follows correction scope: capability_trajectory, replacement true",
+      "146: timeline follows correction scope: technical_controllability, replacement false",
+      "225: a qualified multi-level claim remains correctable across later operations",
+      "225: a recorded unknown remains correctable across later operations"
+    ],
+    "lib/server/early-result.test.ts": [
+      "178: scoped tension clarification quotes actual cross-answer claims and accepts a reply",
+      "178: scoped tension clarification quotes actual within-answer claims and accepts a reply",
+      "386: outlook ambiguous distinguishes missing information from indecision despite low novelty",
+      "386: outlook explicitly_unknown distinguishes missing information from indecision despite low novelty",
+      "386: outlook not_expressed distinguishes missing information from indecision despite low novelty",
+      "386: outlook tentative distinguishes missing information from indecision despite low novelty",
+      "483: a borderline novel crux gets no special threshold when updateability is unassessed: false",
+      "483: a borderline novel crux gets no special threshold when updateability is unassessed: true"
+    ],
+    "lib/server/engine-paths.test.ts": [
+      "309: saved 0.2.0-draft assessment resumes with its own corpus and result version",
+      "309: saved 0.3.0-draft assessment resumes with its own corpus and result version"
+    ],
+    "lib/server/evidence-regression.test.ts": [
+      "245: ordinary follow-up preserves a prior ambiguity according to the specific resolution judgment",
+      "245: ordinary follow-up resolves a prior ambiguity according to the specific resolution judgment"
+    ],
+    "lib/server/jev-budget-store.test.ts": [
+      "35: a budget_exhausted block stops the operation before any Jev call",
+      "35: a provider_out_of_credits block stops the operation before any Jev call"
+    ],
+    "lib/server/validate-env.test.ts": [
+      "26: startup and E2E preflight reject missing BETTER_AUTH_SECRET",
+      "26: startup and E2E preflight reject missing BETTER_AUTH_URL",
+      "26: startup and E2E preflight reject missing DATABASE_URL",
+      "26: startup and E2E preflight reject missing TYPESAFE_API_KEY"
+    ],
+    "lib/sharing/site-social-review.test.ts": [
+      "89: apply preserves a changed approved alt file",
+      "89: apply preserves a changed approved image file",
+      "89: apply preserves a changed approved points file",
+      "101: apply rejects a corrupt after-alt.txt artifact",
+      "101: apply rejects a corrupt after.png artifact"
+    ],
+    "tests/browser/i18n-locales.spec.ts": [
+      "27: de: home declares de and the interview asks the translated root question",
+      "27: es: home declares es and the interview asks the translated root question",
+      "27: fr: home declares fr and the interview asks the translated root question",
+      "27: hi: home declares hi and the interview asks the translated root question",
+      "27: id: home declares id and the interview asks the translated root question",
+      "27: ja: home declares ja and the interview asks the translated root question",
+      "27: pt: home declares pt-BR and the interview asks the translated root question",
+      "27: th: home declares th and the interview asks the translated root question",
+      "27: zh: home declares zh-Hans and the interview asks the translated root question"
+    ],
+    "tests/browser/jev-budget.spec.ts": [
+      "93: when our own spend budget is used up, starting explains it and a submitted answer is saved for retry",
+      "93: when TypeSafe has no credits, starting explains it and a submitted answer is saved for retry"
+    ],
+    "tests/browser/map.spec.ts": [
+      "116: map explains broad interpretation ranges without inference",
+      "116: map explains unplaced axes without inference",
+      "116: map explains unplaced outlook with placed influence without inference"
+    ],
+    "tests/browser/not-found.spec.ts": [
+      "4: branded 404 is accessible and links home at 1488px",
+      "4: branded 404 is accessible and links home at 390px"
+    ]
+  },
+  "candidates": [
+    {
+      "file": "i18n/config.test.ts",
+      "line": 85,
+      "title": "keeps every tag a canonical BCP 47 tag",
+      "disposition": "repair",
+      "finding": "F16",
+      "rationale": "Iterate locales once; appended pt/zh/hi/th/ja rows already occur in locales. Keep canonical tags and exact endonyms.",
+      "receivingOwner": "i18n/config.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 87,
+          "text": "expect(code).toMatch(/^[a-z]{2}$/)"
+        },
+        {
+          "line": 88,
+          "text": "expect(Intl.getCanonicalLocales(languageTag(code))).toEqual([ languageTag(code) ])"
+        },
+        {
+          "line": 92,
+          "text": "expect(localeOptions.map(({ tag }) => tag)).toEqual([ 'en', 'es', 'pt-BR', 'hi', 'zh-Hans', 'th', 'ja', 'de', 'fr', 'id' ])"
+        }
+      ]
+    },
+    {
+      "file": "lib/assessment/conversation.test.ts",
+      "line": 54,
+      "title": "local conversation retains more than twenty earlier replies and retries do not duplicate them",
+      "disposition": "repair",
+      "finding": "F06",
+      "rationale": "Preserve 25-reply retention and retry deduplication. Remove only serverSnapshot assertions, which have no current transport consumer.",
+      "receivingOwner": "lib/assessment/conversation.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 86,
+          "text": "expect(assessmentSchema.parse(state).interactionHistory).toHaveLength(25)"
+        },
+        {
+          "line": 87,
+          "text": "expect(conversationTurns(state)[0]!.replies).toHaveLength(25)"
+        },
+        {
+          "line": 88,
+          "text": "expect(conversationTurns(state)[0]!.replies[0]!.text).toBe('Reply 0')"
+        },
+        {
+          "line": 89,
+          "text": "expect(serverSnapshot(state)).not.toHaveProperty('interactionHistory')"
+        },
+        {
+          "line": 90,
+          "text": "expect(serverSnapshot(state).draft).toBe('')"
+        },
+        {
+          "line": 91,
+          "text": "expect(state.answers).toEqual([])"
+        },
+        {
+          "line": 92,
+          "text": "expect(state.evidence).toEqual([])"
+        }
+      ]
+    },
+    {
+      "file": "lib/assessment/transport.test.ts",
+      "line": 6,
+      "title": "rejected interaction text is bounded locally and excluded from later server transport",
+      "disposition": "repair",
+      "finding": "F06",
+      "rationale": "serverSnapshot/requestSchema are not the HTTP submission protocol. Preserve rejected text/draft restoration, then remove the obsolete transport assertions and verify the current submitSchema boundary.",
+      "receivingOwner": "lib/assessment/transport.test.ts; lib/assessments/client.test.ts; scripts/test-assessment-repository.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 16,
+          "text": "expect(state.interactionHistory[0]?.text).toBe('PRIVATE_REJECTED_TEXT')"
+        },
+        {
+          "line": 17,
+          "text": "expect(state.draft).toBe('PRIVATE_REJECTED_TEXT')"
+        },
+        {
+          "line": 19,
+          "text": "expect(JSON.stringify(snapshot)).not.toContain('PRIVATE_REJECTED_TEXT')"
+        },
+        {
+          "line": 25,
+          "text": "expect(parsed.assessment.interactionHistory).toEqual([])"
+        },
+        {
+          "line": 26,
+          "text": "expect(() => requestSchema.parse({ requestId: 'bad', assessment: state, operation: { type: 'retry' } }) ).toThrow()"
+        }
+      ]
+    },
+    {
+      "file": "lib/assessment/worldview-experiment.test.ts",
+      "line": 136,
+      "title": "rejects uncertain or nonexistent candidate selections",
+      "disposition": "repair",
+      "finding": "F03",
+      "rationale": "The title promises nonexistent candidates but the only selected candidate is valid n0 with uncertain probability. Add a confident invalid ID separately.",
+      "receivingOwner": "lib/assessment/worldview-experiment.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 153,
+          "text": "expect(result.pdoom).toBeNull()"
+        }
+      ]
+    },
+    {
+      "file": "lib/assessment/worldview-experiment.test.ts",
+      "line": 222,
+      "title": "keeps historical result parsing compatible without experimental fields",
+      "disposition": "combine",
+      "finding": "F02",
+      "rationale": "Optional-field introspection never parses an old result. Fold this into actual result/assessment schema compatibility cases.",
+      "receivingOwner": "lib/assessment/schema.test.ts (proposed)",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 223,
+          "text": "expect(resultSchema.shape.experiment.isOptional()).toBe(true)"
+        }
+      ]
+    },
+    {
+      "file": "lib/auth/urls.test.ts",
+      "line": 41,
+      "title": "preview branch alias is optional and duplicate hosts are deduplicated",
+      "disposition": "repair",
+      "finding": "F08",
+      "rationale": "Assert the exact surviving deployment origin for optional/duplicate branch hosts, rather than length 1.",
+      "receivingOwner": "lib/auth/urls.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 42,
+          "text": "expect( authUrls({ ...preview, VERCEL_BRANCH_URL: undefined }).origins ).toHaveLength(1)"
+        },
+        {
+          "line": 45,
+          "text": "expect( authUrls({ ...preview, VERCEL_BRANCH_URL: preview.VERCEL_URL }).origins ).toHaveLength(1)"
+        }
+      ]
+    },
+    {
+      "file": "lib/benchmark/metrics.test.ts",
+      "line": 58,
+      "title": "the seeded generator is reproducible and uniform on [0, 1)",
+      "disposition": "repair",
+      "finding": "F09",
+      "rationale": "One seed and a mean near 0.5 do not establish uniformity. Keep determinism and bounds, then use a known-good sequence or justified distribution checks across fixed seeds, or narrow the claim.",
+      "receivingOwner": "lib/benchmark/metrics.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 62,
+          "text": "expect(draws).toEqual(Array.from({ length: 1000 }, () => b()))"
+        },
+        {
+          "line": 63,
+          "text": "expect(draws.every((x) => x >= 0 && x < 1)).toBe(true)"
+        },
+        {
+          "line": 64,
+          "text": "expect(mean(draws)).toBeCloseTo(0.5, 1)"
+        },
+        {
+          "line": 65,
+          "text": "expect(seededRandom(8)()).not.toBe(seededRandom(7)())"
+        }
+      ]
+    },
+    {
+      "file": "lib/blog/blog.test.ts",
+      "line": 513,
+      "title": "renders each post card as a 1200 × 630 PNG",
+      "disposition": "combine",
+      "finding": "F11",
+      "rationale": "The direct renderer adds only PNG dimensions already checked by the route response. Keep route coverage plus long-word/title-fit cases; transfer any deliberate title/meta input before consolidation.",
+      "receivingOwner": "lib/blog/blog.test.ts:471",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 518,
+          "text": "expect(await sharp(bytes).metadata()).toMatchObject({ format: 'png', width: 1200, height: 630 })"
+        }
+      ]
+    },
+    {
+      "file": "lib/content/l10n.test.ts",
+      "line": 30,
+      "title": "list every participant-visible string and flag the ones needing review",
+      "disposition": "repair",
+      "finding": "F07",
+      "rationale": "The exhaustive title has only selected keys, a finding count, and vacuous every checks. Use exact key/source/review expectations for a complete small release and rubric.",
+      "receivingOwner": "lib/content/l10n.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 35,
+          "text": "expect(root.review).toBe(true)"
+        },
+        {
+          "line": 36,
+          "text": "expect( sources.find(({ key }) => key === l10nKey.prompt('risk.chance', 'text')) ?.review ).toBe(false)"
+        },
+        {
+          "line": 40,
+          "text": "expect( sources.filter(({ key }) => key.endsWith(':reask')).every((s) => s.review) ).toBe(true)"
+        },
+        {
+          "line": 43,
+          "text": "expect( sources.filter(({ key }) => key.startsWith('finding:')) ).toHaveLength(release.findings.length)"
+        },
+        {
+          "line": 47,
+          "text": "expect(levels.every(({ review }) => review)).toBe(true)"
+        },
+        {
+          "line": 48,
+          "text": "expect( levels.some(({ key }) => key.startsWith('level:catastrophic_risk:')) ).toBe(true)"
+        }
+      ]
+    },
+    {
+      "file": "lib/content/l10n.test.ts",
+      "line": 82,
+      "title": "load Spanish text for a pinned release and nothing in English",
+      "disposition": "repair",
+      "finding": "F08",
+      "rationale": "Assert the requested finding ID, rather than just one resulting finding; preserve all other pinned-release and fallback assertions.",
+      "receivingOwner": "lib/content/l10n.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 83,
+          "text": "expect(authoredText('en', versions)).toBeNull()"
+        },
+        {
+          "line": 84,
+          "text": "expect( authoredText('es', { content: '0.1.0-draft', rubric: versions.rubric }) ).toBeNull()"
+        },
+        {
+          "line": 88,
+          "text": "expect(spanish.prompts.root).toEqual({ source: release.prompts[0]!.text, text: '¿Qué crees que significa la IA para nuestro futuro y por qué?' })"
+        },
+        {
+          "line": 96,
+          "text": "expect(Object.keys(trimmed.prompts)).toEqual(['root'])"
+        },
+        {
+          "line": 97,
+          "text": "expect(Object.keys(trimmed.findings)).toHaveLength(1)"
+        },
+        {
+          "line": 98,
+          "text": "expect(trimmed.resources).toEqual({})"
+        },
+        {
+          "line": 99,
+          "text": "expect(trimmed.levels).toEqual(spanish.levels)"
+        },
+        {
+          "line": 100,
+          "text": "expect(recoveryCopy('en', versions.content).root).toEqual( release.prompts[0]!.recoveryVariants )"
+        },
+        {
+          "line": 103,
+          "text": "expect(recoveryCopy('es', versions.content).root!.reask).not.toBe( release.prompts[0]!.recoveryVariants.reask )"
+        }
+      ]
+    },
+    {
+      "file": "lib/content/loader.test.ts",
+      "line": 103,
+      "title": "alias boundaries avoid accidental matches and topic retrieval is not a mention",
+      "disposition": "repair",
+      "finding": "F08",
+      "rationale": "Assert the OpenAI/GPT-4 reference IDs and substantive topic-retrieval values, rather than only matched length 2 or a generic year suffix.",
+      "receivingOwner": "lib/content/loader.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 105,
+          "text": "expect( retrieveReferences(bundle, 'OpenAI and GPT-4').filter((r) => r.matched) .length ).toBe(2)"
+        },
+        {
+          "line": 109,
+          "text": "expect(retrieveReferences(bundle, 'notopenai')).toHaveLength(0)"
+        },
+        {
+          "line": 110,
+          "text": "expect( retrieveReferences(bundle, 'protein structure advances', ['science'])[0] ?.matched ).toBe(false)"
+        },
+        {
+          "line": 114,
+          "text": "expect(retrieveReferences(bundle, 'unknown incident')).toHaveLength(0)"
+        },
+        {
+          "line": 115,
+          "text": "expect( retrieveReferences(bundle, 'Hugging Face incident') .filter((entry) => entry.matched) .map((entry) => entry.reference.id) .sort() ).toEqual([ 'event.openai-hugging-face-2026', 'report.metr-hugging-face-investigation-2026', 'report.openai-hugging-face-road-ahead-2026' ])"
+        },
+        {
+          "line": 125,
+          "text": "expect( retrieveReferences(loadBundle('0.3.0-draft'), 'Hugging Face incident') .filter((entry) => entry.matched) .map((entry) => entry.reference.id) .sort() ).toEqual([ 'report.metr-hugging-face-investigation-2026', 'report.openai-hugging-face-road-ahead-2026' ])"
+        },
+        {
+          "line": 134,
+          "text": "expect( retrieveReferences(bundle, 'an unnamed risk', ['risk'])[0]?.reference.id ).toMatch(/2026$/)"
+        },
+        {
+          "line": 137,
+          "text": "expect( retrieveReferences(bundle, 'The Off-Switch Game', ['risk'])[0]?.matched ).toBe(true)"
+        }
+      ]
+    },
+    {
+      "file": "lib/debug/relationships.test.ts",
+      "line": 5,
+      "title": "question graphs distinguish family transitions, shared targets and novelty using only the current catalog",
+      "disposition": "repair",
+      "finding": "F01",
+      "rationale": "Targets accepts an empty graph and novelty has only a missing-ID case. Assert exact positive and negative edges from a small authored fixture.",
+      "receivingOwner": "lib/debug/relationships.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 8,
+          "text": "expect(transitions.length).toBeGreaterThan(0)"
+        },
+        {
+          "line": 9,
+          "text": "expect( transitions.every( (edge) => edge.source === 'root' && edge.target !== 'root' ) ).toBe(true)"
+        },
+        {
+          "line": 14,
+          "text": "expect(transitions.some((edge) => edge.target === 'grounding.source')).toBe( false )"
+        },
+        {
+          "line": 19,
+          "text": "expect( shared.every((edge) => prompts .find((prompt) => prompt.id === edge.target)! .targets.some((target) => root.targets.includes(target)) ) ).toBe(true)"
+        },
+        {
+          "line": 26,
+          "text": "expect(questionRelationships(prompts, 'missing', 'novelty')).toEqual([])"
+        }
+      ]
+    },
+    {
+      "file": "lib/journeys/persona-identity.test.ts",
+      "line": 28,
+      "title": "Independent 100 preserves original users and features the three selected additions",
+      "disposition": "repair",
+      "finding": "F14",
+      "rationale": "Keep cohort curation and preservation rules. Replace the global count of 47 with the intended featured identities or a scoped cohort expectation; a total can hide offsetting feature changes.",
+      "receivingOwner": "lib/journeys/persona-identity.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 38,
+          "text": "expect(matching).toHaveLength(1)"
+        },
+        {
+          "line": 41,
+          "text": "expect(person.featured).toBe(original || featuredAdditions.has(handle))"
+        },
+        {
+          "line": 42,
+          "text": "expect(person.id.startsWith('independent-')).toBe(!original)"
+        },
+        {
+          "line": 44,
+          "text": "expect(brief.sources.length).toBeGreaterThan(0)"
+        },
+        {
+          "line": 46,
+          "text": "expect( people.filter((person) => person.id.startsWith('independent-')) ).toHaveLength(97)"
+        },
+        {
+          "line": 49,
+          "text": "expect(people.filter((person) => person.featured)).toHaveLength(47)"
+        }
+      ]
+    },
+    {
+      "file": "lib/journeys/store.test.ts",
+      "line": 84,
+      "title": "concurrent partial saves retain both users and failed writes leave selection intact",
+      "disposition": "repair",
+      "finding": "F08",
+      "rationale": "Assert both saved persona records and their provenance; length 2 alone accepts duplication or incorrect users. Preserve failed-write selection checks.",
+      "receivingOwner": "lib/journeys/store.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 101,
+          "text": "expect((await store.read(b.id)).journeys).toHaveLength(2)"
+        },
+        {
+          "line": 107,
+          "text": "expect(store.save(invalid)).rejects.toThrow()"
+        },
+        {
+          "line": 108,
+          "text": "expect((await store.list())[0]!.id).toBe(b.id)"
+        }
+      ]
+    },
+    {
+      "file": "lib/landing/portrait-entrance.test.ts",
+      "line": 12,
+      "title": "lands every portrait flat, sharp and exactly on its laid-out position",
+      "disposition": "repair",
+      "finding": "F16",
+      "rationale": "The final-transform regex permits any two rotation angles. Assert they cancel (or the final net transform is flat), preserving position, sharpness, and opacity checks.",
+      "receivingOwner": "lib/landing/portrait-entrance.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 16,
+          "text": "expect(last.offset).toBe(1)"
+        },
+        {
+          "line": 17,
+          "text": "expect(last.opacity).toBe(1)"
+        },
+        {
+          "line": 18,
+          "text": "expect(last.filter).toBe('blur(0px)')"
+        },
+        {
+          "line": 19,
+          "text": "expect(last.transform).toMatch( new RegExp( `^translate\\\\(${layout[i]!.x - 20}px, ${layout[i]!.y - 20}px\\\\) rotate\\\\([-\\\\d.]+deg\\\\) scale\\\\(1, 1\\\\) rotate\\\\([-\\\\d.]+deg\\\\) scale\\\\(1\\\\)$` ) )"
+        }
+      ]
+    },
+    {
+      "file": "lib/p-doom/hub.test.ts",
+      "line": 196,
+      "title": "split prose into text, titles and markers",
+      "disposition": "combine",
+      "finding": "F11",
+      "rationale": "The generic shared segments parser belongs with its owner. Transfer adjacent/repeated citation markers to the shared parser case and retain hub-wide citation ordering.",
+      "receivingOwner": "lib/sources/citations.test.ts:19",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 197,
+          "text": "expect(segments('As *The Book* says,[^a] it is.[^b][^a]')).toEqual([ { text: 'As ' }, { emphasis: 'The Book' }, { text: ' says,' }, { cite: 'a' }, { text: ' it is.' }, { cite: 'b' }, { cite: 'a' } ])"
+        }
+      ]
+    },
+    {
+      "file": "lib/persistence/storage.test.ts",
+      "line": 24,
+      "title": "drafts resume, an interlude never replays, conflicting tabs cannot overwrite",
+      "disposition": "remove",
+      "finding": "F04",
+      "rationale": "The whole-assessment local-storage adapter has no production caller. Current storage behavior is owned by the active client and persistence/browser journeys; earlier-content compatibility survives engine-paths tests.",
+      "receivingOwner": "lib/assessments/client.test.ts; tests/browser/assessment.spec.ts; tests/persistence/lazy-drafts.spec.ts; lib/server/engine-paths.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 32,
+          "text": "expect(loaded.kind).toBe('valid')"
+        },
+        {
+          "line": 34,
+          "text": "expect(loaded.assessment.draft).toBe('unsent answer')"
+        },
+        {
+          "line": 35,
+          "text": "expect(loaded.assessment.recovery.paperclipActive).toBe(false)"
+        },
+        {
+          "line": 37,
+          "text": "expect(() => saveAssessment(storage, state, 't1', 't3')).toThrow( StorageConflict )"
+        }
+      ]
+    },
+    {
+      "file": "lib/persistence/storage.test.ts",
+      "line": 41,
+      "title": "corrupt and unavailable storage are recoverable",
+      "disposition": "remove",
+      "finding": "F04",
+      "rationale": "The whole-assessment local-storage adapter has no production caller. Current storage behavior is owned by the active client and persistence/browser journeys; earlier-content compatibility survives engine-paths tests.",
+      "receivingOwner": "lib/assessments/client.test.ts; tests/browser/assessment.spec.ts; tests/persistence/lazy-drafts.spec.ts; lib/server/engine-paths.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 44,
+          "text": "expect(loadAssessment(storage).kind).toBe('invalid')"
+        },
+        {
+          "line": 45,
+          "text": "expect( loadAssessment({ ...storage, getItem: () => { throw new Error('unavailable') } }).kind ).toBe('unavailable')"
+        }
+      ]
+    },
+    {
+      "file": "lib/persistence/storage.test.ts",
+      "line": 55,
+      "title": "resuming an earlier content version preserves its draft and version",
+      "disposition": "remove",
+      "finding": "F04",
+      "rationale": "The whole-assessment local-storage adapter has no production caller. Current storage behavior is owned by the active client and persistence/browser journeys; earlier-content compatibility survives engine-paths tests.",
+      "receivingOwner": "lib/assessments/client.test.ts; tests/browser/assessment.spec.ts; tests/persistence/lazy-drafts.spec.ts; lib/server/engine-paths.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 64,
+          "text": "expect(loaded.assessment).toEqual(state)"
+        }
+      ]
+    },
+    {
+      "file": "lib/persistence/storage.test.ts",
+      "line": 66,
+      "title": "over-limit drafts resume intact while submitted answers have a 20,000-character bound",
+      "disposition": "combine",
+      "finding": "F04",
+      "rationale": "Transfer operation length bounds, schema-v1 migration, and legacy recovery normalization to the real assessment/operation schemas before retiring the unused storage wrapper.",
+      "receivingOwner": "lib/assessment/schema.test.ts (proposed); lib/assessments/client.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 70,
+          "text": "expect(state.draft.length).toBeGreaterThan(limits.answerChars)"
+        },
+        {
+          "line": 73,
+          "text": "expect(loaded.kind).toBe('valid')"
+        },
+        {
+          "line": 75,
+          "text": "expect(loaded.assessment.draft).toBe(state.draft)"
+        },
+        {
+          "line": 77,
+          "text": "expect(operationSchema.parse({ type: 'answer', text: accepted })).toEqual({ type: 'answer', text: accepted })"
+        },
+        {
+          "line": 81,
+          "text": "expect( operationSchema.safeParse({ type: 'answer', text: `${accepted}a` }).success ).toBe(false)"
+        }
+      ]
+    },
+    {
+      "file": "lib/persistence/storage.test.ts",
+      "line": 86,
+      "title": "legacy sessions migrate to answer-level support without losing drafts, versions or historical results",
+      "disposition": "combine",
+      "finding": "F04",
+      "rationale": "Transfer operation length bounds, schema-v1 migration, and legacy recovery normalization to the real assessment/operation schemas before retiring the unused storage wrapper.",
+      "receivingOwner": "lib/assessment/schema.test.ts (proposed); lib/assessments/client.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 157,
+          "text": "expect(loaded.token).toBe('legacy-token')"
+        },
+        {
+          "line": 158,
+          "text": "expect(loaded.assessment.schemaVersion).toBe(2)"
+        },
+        {
+          "line": 159,
+          "text": "expect(loaded.assessment.draft).toBe(old.draft)"
+        },
+        {
+          "line": 160,
+          "text": "expect(loaded.assessment.versions).toEqual(old.versions)"
+        },
+        {
+          "line": 161,
+          "text": "expect(loaded.assessment.result).toEqual(old.result)"
+        },
+        {
+          "line": 162,
+          "text": "expect(loaded.assessment.answers[0]).toEqual({ id: 'legacy:a', promptInstanceId: state.prompts[0]!.id, promptText: state.prompts[0]!.text, text, substantive: true, hasHorizon: true, hasConviction: true })"
+        },
+        {
+          "line": 171,
+          "text": "expect(loaded.assessment.evidence[0]).toEqual({ id: 'legacy:e', answerId: 'legacy:a', vector: 'capability_trajectory', status: 'stated', judgmentIds: [], referenceIds: [], contextReferenceIds: [] })"
+        },
+        {
+          "line": 180,
+          "text": "expect(loaded.assessment.judgments).toEqual([])"
+        },
+        {
+          "line": 182,
+          "text": "expect(storage.getItem(storageKey)).not.toMatch(/spanId|SpanId|\"spans\"/)"
+        },
+        {
+          "line": 184,
+          "text": "expect(resumed.kind === 'valid' && resumed.assessment).toEqual( loaded.assessment )"
+        }
+      ]
+    },
+    {
+      "file": "lib/persistence/storage.test.ts",
+      "line": 189,
+      "title": "legacy paperclip pauses resume with an editable answer and acknowledgement",
+      "disposition": "combine",
+      "finding": "F04",
+      "rationale": "Transfer operation length bounds, schema-v1 migration, and legacy recovery normalization to the real assessment/operation schemas before retiring the unused storage wrapper.",
+      "receivingOwner": "lib/assessment/schema.test.ts (proposed); lib/assessments/client.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 203,
+          "text": "expect(canSubmit(loaded.assessment)).toBe(true)"
+        },
+        {
+          "line": 204,
+          "text": "expect(loaded.assessment.recovery.reason).toBe('paperclips')"
+        },
+        {
+          "line": 205,
+          "text": "expect(loaded.assessment.recovery.evaluated).toBe(2)"
+        }
+      ]
+    },
+    {
+      "file": "lib/personas/mentions.test.ts",
+      "line": 28,
+      "title": "share first mentions across calls with one set",
+      "disposition": "repair",
+      "finding": "F08",
+      "rationale": "Assert exact linked parts for the first call and plain text for the second; first-call size 3 does not prove a correct link.",
+      "receivingOwner": "lib/personas/mentions.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 30,
+          "text": "expect(mention('Ask Dario Amodei.', linked)).toHaveLength(3)"
+        },
+        {
+          "line": 31,
+          "text": "expect(mention('Dario Amodei replied.', linked)).toEqual([ { text: 'Dario Amodei replied.' } ])"
+        }
+      ]
+    },
+    {
+      "file": "lib/server/limits.test.ts",
+      "line": 3,
+      "title": "uncertain request retries share one evaluation and reject changed payloads",
+      "disposition": "remove",
+      "finding": "F05",
+      "rationale": "runLimited has no production caller. Durable idempotency and concurrent operation exclusion belong to the real repository and are covered by native PostgreSQL checks.",
+      "receivingOwner": "scripts/test-assessment-repository.ts; scripts/test-assessment-commit.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 13,
+          "text": "expect(a).toEqual(b)"
+        },
+        {
+          "line": 14,
+          "text": "expect(calls).toBe(1)"
+        },
+        {
+          "line": 15,
+          "text": "expect( runLimited('limits-test', { revision: 2 }, task) ).rejects.toThrow('different')"
+        }
+      ]
+    },
+    {
+      "file": "lib/server/upstream-fetch.test.ts",
+      "line": 147,
+      "title": "slow diagnostic bodies cannot block indefinitely or consume the caller response",
+      "disposition": "repair",
+      "finding": "F13",
+      "rationale": "Use controlled scheduling for the 300ms diagnostic deadline and retain real stream ownership checks; wall time under 1500ms conflates event-loop load with the deadline.",
+      "receivingOwner": "lib/server/upstream-fetch.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 148,
+          "text": "expectDiagnostics({ event: 'upstream_request_failed', severity: 'error', status: 503 })"
+        },
+        {
+          "line": 169,
+          "text": "expect(performance.now() - started).toBeLessThan(1500)"
+        },
+        {
+          "line": 170,
+          "text": "expect(JSON.parse(logs[0]!).upstream.bodyTruncated).toBe(true)"
+        },
+        {
+          "line": 173,
+          "text": "expect(await response.text()).toBe('later body')"
+        }
+      ]
+    },
+    {
+      "file": "lib/sharing/assessment-card-parity.test.ts",
+      "line": 34,
+      "title": "public preview and downloaded PNG render the same assessment composition",
+      "disposition": "repair",
+      "finding": "F16",
+      "rationale": "Keep the actual native pixel comparison and header/status assertions; remove unconditional fixed-name /tmp image writes or make them explicit opt-in diagnostics.",
+      "receivingOwner": "lib/sharing/assessment-card-parity.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 45,
+          "text": "expect(preview.status).toBe(200)"
+        },
+        {
+          "line": 46,
+          "text": "expect(download.status).toBe(200)"
+        },
+        {
+          "line": 54,
+          "text": "expect(unpublished.status).toBe(404)"
+        },
+        {
+          "line": 56,
+          "text": "expect(preview.headers.get('Content-Type')).toBe('image/png')"
+        },
+        {
+          "line": 57,
+          "text": "expect(preview.headers.get('Cache-Control')).toBeNull()"
+        },
+        {
+          "line": 58,
+          "text": "expect(preview.headers.get('X-Robots-Tag')).toBeNull()"
+        },
+        {
+          "line": 59,
+          "text": "expect(download.headers.get('Cache-Control')).toBe('no-store')"
+        },
+        {
+          "line": 62,
+          "text": "expect(await sharp(social).metadata()).toMatchObject({ format: 'png', width: 1200, height: 630 })"
+        },
+        {
+          "line": 67,
+          "text": "expect(await sharp(png).metadata()).toMatchObject({ format: 'png', width: 2400, height: 1260 })"
+        },
+        {
+          "line": 83,
+          "text": "expect(error).toBeLessThan(3)"
+        }
+      ]
+    },
+    {
+      "file": "lib/sharing/png-export.test.ts",
+      "line": 51,
+      "title": "cards in Hindi and Japanese render with their registered fonts",
+      "disposition": "repair",
+      "finding": "F10",
+      "rationale": "PNG dimensions prove rendering completes, not that registered fonts shape or cover the supplied scripts. Narrow the claim or add direct font/glyph evidence; retain native renderer smoke coverage.",
+      "receivingOwner": "lib/sharing/png-export.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 66,
+          "text": "expect(card.status).toBe(200)"
+        },
+        {
+          "line": 67,
+          "text": "expect( await sharp(Buffer.from(await card.arrayBuffer())).metadata() ).toMatchObject({ width: 2400, height: 1260, format: 'png' })"
+        }
+      ]
+    },
+    {
+      "file": "tests/browser/assessment.spec.ts",
+      "line": 292,
+      "title": "bounded nonsense recovery, paperclip dismissal, refresh and exhaustion",
+      "disposition": "combine",
+      "finding": "F12",
+      "rationale": "Repeated non-answer recovery/dismiss/reload/exhaustion is supplied by a scripted evaluation. Consolidate in the real local-phrase paperclip journey, retaining the semantic non-answer path if it has a distinct transition.",
+      "receivingOwner": "tests/browser/paperclips.spec.ts:5; tests/browser/interaction.spec.ts:138; lib/server/engine.test.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 319,
+          "text": "expect(page.getByText('Another try?', { exact: true })).toBeVisible()"
+        },
+        {
+          "line": 321,
+          "text": "expect( page.getByText('We’ve made some paperclips.', { exact: true }) ).toBeVisible()"
+        },
+        {
+          "line": 324,
+          "text": "expect( page.getByRole('button', { name: 'Dismiss paperclips' }) ).toBeVisible()"
+        },
+        {
+          "line": 328,
+          "text": "expect(calls).toBe(2)"
+        },
+        {
+          "line": 330,
+          "text": "expect( page.getByRole('button', { name: 'Dismiss paperclips' }) ).toHaveCount(0)"
+        },
+        {
+          "line": 333,
+          "text": "expect(page.getByLabel('Your answer', { exact: true })).toBeEnabled()"
+        },
+        {
+          "line": 336,
+          "text": "expect( page.getByRole('button', { name: 'Try again', exact: true }) ).toHaveCount(0)"
+        },
+        {
+          "line": 339,
+          "text": "expect( page.getByRole('button', { name: 'View my results' }) ).toHaveCount(0)"
+        },
+        {
+          "line": 342,
+          "text": "expect(calls).toBe(4)"
+        }
+      ]
+    },
+    {
+      "file": "tests/browser/debug.spec.ts",
+      "line": 78,
+      "title": "debug separates exchanges, folds depth 2+, highlights syntax and uses wide page scrolling",
+      "disposition": "repair",
+      "finding": "F15",
+      "rationale": "Split the 400-plus-line case into focused browser checks sharing the fixture: exchange/schema folding, sorting/syntax/copy, and layout/navigation/theme. Preserve browser-only behavior; use unit coverage for detailed pure sorting matrices.",
+      "receivingOwner": "tests/browser/debug.spec.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 213,
+          "text": "expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')"
+        },
+        {
+          "line": 217,
+          "text": "expect( page.getByRole('heading', { name: 'Validated Jev response' }) ).toBeVisible()"
+        },
+        {
+          "line": 220,
+          "text": "expect( page.getByRole('heading', { name: 'Local control-flow decisions' }) ).toBeVisible()"
+        },
+        {
+          "line": 231,
+          "text": "expect( request.getByRole('button', { name: 'Collapse $', exact: true }) ).toHaveAttribute('aria-expanded', 'true')"
+        },
+        {
+          "line": 234,
+          "text": "expect( request.getByRole('button', { name: 'Collapse $.state', exact: true }) ).toHaveAttribute('aria-expanded', 'true')"
+        },
+        {
+          "line": 241,
+          "text": "expect(current).toHaveAttribute('aria-expanded', 'false')"
+        },
+        {
+          "line": 242,
+          "text": "expect(request.locator('[data-json-depth=\"3\"]')).toHaveCount(0)"
+        },
+        {
+          "line": 249,
+          "text": "expect(debugWidth).toBeGreaterThan(bodyWidth + 500)"
+        },
+        {
+          "line": 252,
+          "text": "expect(responseBox.x).toBeGreaterThan(requestBox.x + requestBox.width)"
+        },
+        {
+          "line": 258,
+          "text": "expect(page.getByRole('tooltip')).toHaveText( 'Judge relevance using current.answer.' )"
+        },
+        {
+          "line": 261,
+          "text": "expect(weakJudgment).toHaveAttribute('aria-expanded', 'false')"
+        },
+        {
+          "line": 267,
+          "text": "expect(page.getByRole('tooltip')).toHaveText( 'Judge relevance using current.answer.' )"
+        },
+        {
+          "line": 280,
+          "text": "expect(page.getByRole('tooltip')).toContainText( 'Timeline & capability:' )"
+        },
+        {
+          "line": 298,
+          "text": "expect(answer).toHaveAttribute('aria-expanded', 'false')"
+        },
+        {
+          "line": 300,
+          "text": "expect( request .locator('[data-json-token=\"string\"]') .filter({ hasText: text }) .first() ).toBeVisible()"
+        },
+        {
+          "line": 311,
+          "text": "expect(JSON.parse(copied)).toMatchObject({ model, state: { current: { prompt: original.prompts[0]!.text, answer: text.trim() } }, questions: { disposition: question } })"
+        },
+        {
+          "line": 319,
+          "text": "expect(current).toHaveAttribute('aria-expanded', 'false')"
+        },
+        {
+          "line": 320,
+          "text": "expect(request.locator('[data-json-depth=\"3\"]')).toHaveCount(0)"
+        },
+        {
+          "line": 329,
+          "text": "expect(keyColor).not.toBe(stringColor)"
+        },
+        {
+          "line": 330,
+          "text": "expect(page.getByText('Debug mode', { exact: true })).toHaveCount(0)"
+        },
+        {
+          "line": 331,
+          "text": "expect( request.getByRole('radio', { name: 'Default answer order', exact: true }) ).toHaveCount(0)"
+        },
+        {
+          "line": 338,
+          "text": "expect(defaultOrder).toHaveAttribute('aria-checked', 'true')"
+        },
+        {
+          "line": 364,
+          "text": "expect(overlapWidth > 1 && overlapHeight > 1).toBe(false)"
+        },
+        {
+          "line": 379,
+          "text": "expect(await answerKeys()).toEqual([ 'disposition', 'weak', 'clear', 'horizon' ])"
+        },
+        {
+          "line": 391,
+          "text": "expect(await answerKeys()).toEqual([ 'disposition', 'horizon', 'clear', 'weak' ])"
+        },
+        {
+          "line": 406,
+          "text": "expect(await answerKeys()).toEqual([ 'weak', 'clear', 'horizon', 'disposition' ])"
+        },
+        {
+          "line": 412,
+          "text": "expect( response.getByRole('button', { name: 'Collapse $.answers.weak', exact: true }) ).toHaveAttribute('aria-expanded', 'true')"
+        },
+        {
+          "line": 422,
+          "text": "expect(Object.keys(JSON.parse(copiedResponse).answers)).toEqual([ 'disposition', 'weak', 'clear', 'horizon' ])"
+        },
+        {
+          "line": 429,
+          "text": "expect(await answerKeys()).toEqual([ 'disposition', 'weak', 'clear', 'horizon' ])"
+        },
+        {
+          "line": 438,
+          "text": "expect( response.getByRole('button', { name: 'Expand $.answers.weak', exact: true }) ).toHaveAttribute('aria-expanded', 'false')"
+        },
+        {
+          "line": 442,
+          "text": "expect(page.locator('html')).toHaveClass(/dark/)"
+        },
+        {
+          "line": 447,
+          "text": "expect(darkKey).not.toBe(keyColor)"
+        },
+        {
+          "line": 452,
+          "text": "expect(mobileResponse.y).toBeGreaterThan(mobileRequest.y)"
+        },
+        {
+          "line": 466,
+          "text": "expect(scrolling.width).toBeLessThanOrEqual(scrolling.viewport + 1)"
+        },
+        {
+          "line": 467,
+          "text": "expect(scrolling.nested).toBe(false)"
+        },
+        {
+          "line": 468,
+          "text": "expect(requests).toBe(1)"
+        },
+        {
+          "line": 473,
+          "text": "expect( page.getByRole('heading', { name: 'Validated Jev response' }) ).toBeVisible()"
+        },
+        {
+          "line": 476,
+          "text": "expect( page.getByLabel('Recorded operation', { exact: true }) ).toHaveValue(firstOperation)"
+        },
+        {
+          "line": 479,
+          "text": "expect(requests).toBe(1)"
+        },
+        {
+          "line": 490,
+          "text": "expect(history.locator('option')).toHaveCount(2)"
+        },
+        {
+          "line": 493,
+          "text": "expect( JSON.parse( await page.evaluate( () => (window as unknown as { copiedJSON: string }).copiedJSON ) ).state.current.answer ).toBe(text.trim())"
+        },
+        {
+          "line": 505,
+          "text": "expect(page.getByLabel('Your answer', { exact: true })).toHaveValue('')"
+        },
+        {
+          "line": 516,
+          "text": "expect(page).toHaveURL(/\\/assessments\\/[a-f0-9-]+$/)"
+        },
+        {
+          "line": 517,
+          "text": "expect(page).not.toHaveURL(new RegExp(assessmentId))"
+        },
+        {
+          "line": 520,
+          "text": "expect(requests).toBe(3)"
+        }
+      ]
+    },
+    {
+      "file": "tests/browser/i18n-locales.spec.ts",
+      "line": 56,
+      "title": "Hindi and Japanese share cards and profile images are PNGs",
+      "disposition": "combine",
+      "finding": "F10",
+      "rationale": "Share-card PNG signature repeats the native endpoint smoke test. Preserve the actual HTTP locale plumbing and Japanese profile endpoint coverage in a focused route integration check.",
+      "receivingOwner": "lib/sharing/png-export.test.ts; tests/browser/i18n-locales.spec.ts (focused route case)",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 73,
+          "text": "expect(card.status()).toBe(200)"
+        },
+        {
+          "line": 74,
+          "text": "expect(card.headers()['content-type']).toBe('image/png')"
+        },
+        {
+          "line": 75,
+          "text": "expect((await card.body()).subarray(1, 4).toString('latin1')).toBe('PNG')"
+        },
+        {
+          "line": 80,
+          "text": "expect(profile.status()).toBe(200)"
+        },
+        {
+          "line": 81,
+          "text": "expect(profile.headers()['content-type']).toBe('image/png')"
+        },
+        {
+          "line": 83,
+          "text": "expect(png.subarray(1, 4).toString('latin1')).toBe('PNG')"
+        },
+        {
+          "line": 84,
+          "text": "expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([1200, 630])"
+        }
+      ]
+    },
+    {
+      "file": "tests/prefetch/personas.spec.ts",
+      "line": 64,
+      "title": "proximity warms at most three profiles, cancels passing intent, and reuses one on click",
+      "disposition": "repair",
+      "finding": "F13",
+      "rationale": "Replace arbitrary 300–500ms quiet/settle waits with controlled intent timers and observable route completion, keeping real Next request/cache integration. No flakiness was measured in this audit.",
+      "receivingOwner": "tests/prefetch/personas.spec.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 78,
+          "text": "expect(page.locator('.study-chart')).toHaveAttribute( 'data-portraits-ready', 'true' )"
+        },
+        {
+          "line": 82,
+          "text": "expect(page.locator('.study-chart')).toHaveAttribute( 'data-layout-ready', 'true' )"
+        },
+        {
+          "line": 87,
+          "text": "expect(page.locator('.study-chart')).toHaveAttribute( 'data-reveal', /^(landed|fade)$/ )"
+        },
+        {
+          "line": 94,
+          "text": "expect(requests).toEqual([])"
+        },
+        {
+          "line": 154,
+          "text": "expect(target).not.toBeNull()"
+        },
+        {
+          "line": 158,
+          "text": "expect(requests).toEqual([])"
+        },
+        {
+          "line": 169,
+          "text": "expect(requests).toContain(target!.href)"
+        },
+        {
+          "line": 170,
+          "text": "expect(new Set(requests).size).toBeLessThanOrEqual(3)"
+        },
+        {
+          "line": 175,
+          "text": "expect(requests.filter((href) => !portraits.includes(href))).toEqual([])"
+        },
+        {
+          "line": 180,
+          "text": "expect(page.locator('[data-slot=\"worldview-map\"]')).toBeVisible()"
+        },
+        {
+          "line": 181,
+          "text": "expect(page).toHaveURL(new RegExp(`${target!.href}$`))"
+        },
+        {
+          "line": 182,
+          "text": "expect(requests).toHaveLength(count)"
+        }
+      ]
+    },
+    {
+      "file": "tests/prefetch/personas.spec.ts",
+      "line": 235,
+      "title": "directory paging moves focus but warms a profile only for visible focus",
+      "disposition": "repair",
+      "finding": "F13",
+      "rationale": "Replace arbitrary 300–500ms quiet/settle waits with controlled intent timers and observable route completion, keeping real Next request/cache integration. No flakiness was measured in this audit.",
+      "receivingOwner": "tests/prefetch/personas.spec.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 251,
+          "text": "expect(links.nth(48)).toBeFocused()"
+        },
+        {
+          "line": 253,
+          "text": "expect(requests).toEqual([])"
+        },
+        {
+          "line": 258,
+          "text": "expect(links.nth(48)).toBeFocused()"
+        }
+      ]
+    },
+    {
+      "file": "tests/prefetch/personas.spec.ts",
+      "line": 263,
+      "title": "data saver suppresses speculative profile requests",
+      "disposition": "repair",
+      "finding": "F13",
+      "rationale": "Replace arbitrary 300–500ms quiet/settle waits with controlled intent timers and observable route completion, keeping real Next request/cache integration. No flakiness was measured in this audit.",
+      "receivingOwner": "tests/prefetch/personas.spec.ts",
+      "parameterDefinition": null,
+      "enclosingRows": [],
+      "assertions": [
+        {
+          "line": 284,
+          "text": "expect(requests).toEqual([])"
+        }
+      ]
+    }
+  ],
+  "nonRoutineChecks": [
+    {
+      "file": "scripts/test-db.ts",
+      "disposition": "keep",
+      "responsibility": "Auth/session isolation and expiry; immutable snapshots; owner retention; foreign keys; one active operation; cascades. Real pg driver and auth handlers, no fake SQL store.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        11, 24, 28, 29, 36, 37, 38, 44, 63, 64, 70, 71, 79, 84, 107, 132, 140
+      ]
+    },
+    {
+      "file": "scripts/test-assessment-repository.ts",
+      "disposition": "keep",
+      "responsibility": "First-create race; exact countries; owner hiding; idempotency/input conflict; active-operation exclusion; rollback; expired/late completion; deletion during inference; private error redaction. Evaluator is controlled, repository and SQL remain real.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        13, 60, 77, 90, 94, 102, 103, 104, 105, 106, 107, 111, 118, 119, 120,
+        121, 122, 126, 130, 139, 140, 144, 148, 152, 160, 163, 173, 174, 175,
+        176, 182, 193, 199, 201, 202, 214, 215, 220, 233
+      ]
+    },
+    {
+      "file": "scripts/test-assessment-commit.ts",
+      "disposition": "keep",
+      "responsibility": "Driver-boundary failures before/after actual COMMIT; saved acceptance loss; replay without duplicate evaluation; exact snapshot counts; deadline/retry recovery.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        16, 72, 87, 92, 94, 95, 100, 102, 104, 117, 125, 126, 127, 137, 138
+      ]
+    },
+    {
+      "file": "scripts/test-assessment-lifecycle.ts",
+      "disposition": "keep",
+      "responsibility": "Publication/frozen attribution; owner-only forks; independent lineage; 12/24/30 prompt ceilings; idempotency; revocation; source deletion; public allowlist.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        15, 70, 71, 72, 77, 81, 83, 84, 100, 107, 109, 120, 124, 128, 129, 131,
+        134, 136, 137, 138, 139, 140, 142, 143, 146, 155, 165, 168, 177
+      ]
+    },
+    {
+      "file": "scripts/test-persona-persistence.ts",
+      "disposition": "keep",
+      "responsibility": "Exact curated import and compact/full read parity; immutable provenance; failed/old/wrong-persona publication; generation input and completion fences; selected run ordering; metadata-only sync; frozen sources; expired generation.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        19, 31, 44, 45, 53, 54, 59, 63, 67, 71, 81, 83, 85, 92, 93, 94, 98, 99,
+        100, 117, 130, 135, 141, 145, 151, 153, 156, 169, 170, 174, 178, 189,
+        196, 198, 200, 219, 220, 224, 238, 242, 243, 244, 245, 249, 261, 283,
+        284, 288, 292, 304, 308
+      ]
+    },
+    {
+      "file": "scripts/test-auth-claim.ts",
+      "disposition": "keep",
+      "responsibility": "Real Better Auth handlers and SQL claim/merge with only X HTTP mocked; interrupted login; running operation handoff; username integrity; callback replay; rollback from real trigger fault; attribution merge; recovery after sign-out/expiry.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        14, 86, 88, 89, 103, 111, 115, 119, 153, 155, 156, 158, 159, 160, 161,
+        165, 166, 170, 176, 177, 178, 180, 185, 186, 187, 191, 195, 200, 206,
+        245, 246, 250, 252, 253, 263, 264, 266, 267, 268, 272, 281, 284, 285
+      ]
+    },
+    {
+      "file": "scripts/test-assessment-restart.ts",
+      "disposition": "keep",
+      "responsibility": "Fresh disposable native DB; repeat migration/seed; real POST blocked on a PostgreSQL advisory lock; kill actual server; verify no partial commit; restart and retry with original input. Unique protection beyond in-process repository probes.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        17, 120, 125, 136, 171, 172, 180, 216, 217, 218, 219, 223
+      ]
+    },
+    {
+      "file": "scripts/test-jev-budget.ts",
+      "disposition": "keep",
+      "responsibility": "200 concurrent SQL spends with exact tokens/cost; threshold signals; provider hold races; saved participant answer through real evaluator/SDK and mocked billing HTTP; blocked/recovered calls and recorded spend. Dedicated test DB reset is deliberate and suites run sequentially.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        10, 67, 86, 96, 103, 105, 116, 117, 122, 123, 124, 135, 189, 190, 191,
+        193, 194, 195, 200, 201, 209, 210, 224, 225, 226, 227, 228, 239, 241,
+        242, 244, 249
+      ]
+    },
+    {
+      "file": "scripts/test-assessment-feedback.ts",
+      "disposition": "keep",
+      "responsibility": "Owner/revision checks; placed values computed from stored result; immutable first guess and racing writes; agreement upsert; database constraints; cascades; real auth/session route handlers with private cache/error responses.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        19, 110, 114, 142, 146, 150, 154, 158, 161, 165, 168, 172, 177, 179,
+        180, 191, 203, 204, 205, 206, 211, 224, 225, 226, 230, 247, 261, 265,
+        269, 273, 279, 305, 341, 348, 349, 353, 369, 370, 378, 379, 385
+      ]
+    },
+    {
+      "file": "scripts/generate-mechanical-journeys.ts",
+      "disposition": "keep",
+      "responsibility": "Credential-free real-engine runs compared with an explicit stored mechanical baseline via compareJourneys. Keep the baseline check for routing/state observations; it is not semantic model validation and writes only local generated artifacts.",
+      "verification": "source audit only; not executed",
+      "assertionLines": []
+    },
+    {
+      "file": "scripts/validate-content.ts",
+      "disposition": "keep",
+      "responsibility": "Real committed bundle graphs/hashes, source-intake references, one-liners, public statements, supported translation files/messages, blog provenance/privacy/citations, and contract-doc placement. Full-input validation complements focused unit error fixtures.",
+      "verification": "passed in pnpm test",
+      "assertionLines": []
+    },
+    {
+      "file": "scripts/check-production-traces.mjs",
+      "disposition": "keep",
+      "responsibility": "Actual Next artifacts: ISR/fallback, pregenerated pages and image bodies, runtime trace exclusion of fixtures, portrait/font/content/blog bundling, admin rewrite, and cookie-free static locale routing. This is a packaging contract; source mocks cannot replace it.",
+      "verification": "source audit only; not executed",
+      "assertionLines": [
+        32, 58, 68, 73, 80, 84, 101, 109, 121, 134, 156, 157, 175, 205, 228,
+        242, 249, 273, 285, 300, 307, 313
+      ]
+    }
+  ],
+  "diagnosticTools": [
+    {
+      "file": "scripts/smoke-jev.ts",
+      "disposition": "keep as diagnostic utility",
+      "claim": "Bounded live provider connectivity and reported judgments, not semantic correctness"
+    },
+    {
+      "file": "scripts/evaluate-engine.ts",
+      "disposition": "keep as diagnostic utility",
+      "claim": "Bounded live synthetic development observations, not reviewed holdout validation"
+    },
+    {
+      "file": "scripts/smoke-jev-languages.ts",
+      "disposition": "keep as diagnostic utility",
+      "claim": "Reports Spanish/Japanese dispositions and language context; exit zero does not assert usable disposition, language propagation, or extracted P(doom)"
+    }
+  ],
+  "falsificationProbes": [
+    {
+      "finding": "F01",
+      "mutation": "Return [] for both targets and novelty relations",
+      "targetedOriginalTests": "2 passed under mutation",
+      "independentBehavior": {
+        "originalSharedEdges": 20,
+        "originalNoveltyEdges": 1,
+        "mutatedSharedEdges": 0,
+        "mutatedNoveltyEdges": 0
+      },
+      "restoration": "original bytes restored"
+    },
+    {
+      "finding": "F02",
+      "mutation": "Require experiment in a resultSchema root refinement while retaining the optional field",
+      "targetedOriginalTest": "1 passed under mutation",
+      "independentBehavior": {
+        "historicalResultAcceptedBefore": true,
+        "historicalResultAcceptedAfter": false
+      },
+      "survivingCoverage": {
+        "file": "lib/persistence/storage.test.ts",
+        "line": 86,
+        "test": "legacy sessions migrate to answer-level support without losing drafts, versions or historical results",
+        "mutatedStatus": "failed as expected",
+        "failure": "Expected migrated assessment"
+      },
+      "restoration": "original bytes restored"
+    }
+  ]
+}

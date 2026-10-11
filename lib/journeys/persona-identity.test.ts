@@ -46,7 +46,65 @@ test('Independent 100 preserves original users and features the three selected a
   expect(
     people.filter((person) => person.id.startsWith('independent-'))
   ).toHaveLength(97)
-  expect(people.filter((person) => person.featured)).toHaveLength(47)
+})
+
+// Accepted homepage curation at this revision, including later feature changes.
+// Update these identities only with an intentional curation change.
+test('homepage selection preserves the accepted featured identities', () => {
+  expect(
+    people
+      .filter((person) => person.featured)
+      .map((person) => person.slug)
+      .sort()
+  ).toEqual([
+    '_sholtodouglas',
+    'amcafee',
+    'andrewyng',
+    'badlogicgames',
+    'barackobama',
+    'billgates',
+    'dacemoglumit',
+    'darioamodei',
+    'davidsacks',
+    'demishassabis',
+    'dkokotajlo',
+    'drfeifei',
+    'dwarkesh_sp',
+    'edzitron',
+    'elonmusk',
+    'emilymbender',
+    'esyudkowsky',
+    'finkd',
+    'garymarcus',
+    'geoffreyhinton',
+    'ilyasut',
+    'jensenhuang',
+    'jkcarlsmith',
+    'karpathy',
+    'liang-wenfeng',
+    'natolambert',
+    'noahpinion',
+    'noamshazeer',
+    'pmarca',
+    'polynoamial',
+    'random_walker',
+    'realdonaldtrump',
+    'richardssutton',
+    'ryangreenblatt',
+    'sama',
+    'sensanders',
+    'simonw',
+    'slatestarcodex',
+    'so8res',
+    'stuart-russell',
+    'tegmark',
+    'thestalwart',
+    'timnitgebru',
+    'tszzl',
+    'tylercowen',
+    'ylecun',
+    'yoshua_bengio'
+  ])
 })
 
 test('top tech posters map to one existing or added user, or a recorded exclusion', async () => {

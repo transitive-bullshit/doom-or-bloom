@@ -1,7 +1,13 @@
 import { afterEach, expect, test, vi } from 'vitest'
 import { englishTranslator } from '@/i18n/translators'
 import { testTranslator } from '@/i18n/test-translator'
-import { api, ApiError, userErrorMessage } from './client'
+import {
+  api,
+  ApiError,
+  userErrorMessage,
+  readDraft,
+  writeDraft
+} from './client'
 
 afterEach(() => vi.unstubAllGlobals())
 test('empty error responses produce a useful API error, not a JSON parse error', async () => {
@@ -80,4 +86,18 @@ test('known errors use controlled copy rather than a server-supplied message', a
   expect(userErrorMessage(testTranslator('es'), error, 'Fallback')).toBe(
     'Consulta tus resultados antes de publicar.'
   )
+})
+
+test('current draft storage preserves over-limit text only for its assessment and prompt', () => {
+  const values = new Map<string, string>()
+  vi.stubGlobal('localStorage', {
+    getItem: (key: string) => values.get(key) ?? null,
+    setItem: (key: string, value: string) => values.set(key, value)
+  })
+  const text = 'spoken answer '.repeat(2000)
+  expect(text.length).toBeGreaterThan(20_000)
+  writeDraft('long-draft', 'prompt-one', text)
+  expect(readDraft('long-draft', 'prompt-one')).toBe(text)
+  expect(readDraft('long-draft', 'prompt-two')).toBe('')
+  expect(readDraft('other-assessment', 'prompt-one')).toBe('')
 })

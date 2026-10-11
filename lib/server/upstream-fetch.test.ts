@@ -159,18 +159,28 @@ test('slow diagnostic bodies cannot block indefinitely or consume the caller res
     }),
     { status: 503 }
   )
-  const started = performance.now()
-  await upstreamFetch(
-    'https://api.typesafe.ai/v1/systemone',
-    undefined,
-    { provider: 'TypeSafe' },
-    vi.fn<typeof fetch>().mockResolvedValue(response)
-  )
-  expect(performance.now() - started).toBeLessThan(1500)
-  expect(JSON.parse(logs[0]!).upstream.bodyTruncated).toBe(true)
-  controller!.enqueue(new TextEncoder().encode('later body'))
-  controller!.close()
-  expect(await response.text()).toBe('later body')
+  vi.useFakeTimers()
+  try {
+    let finished = false
+    const pending = upstreamFetch(
+      'https://api.typesafe.ai/v1/systemone',
+      undefined,
+      { provider: 'TypeSafe' },
+      vi.fn<typeof fetch>().mockResolvedValue(response)
+    ).then(() => {
+      finished = true
+    })
+    await vi.advanceTimersByTimeAsync(299)
+    expect(finished).toBe(false)
+    await vi.advanceTimersByTimeAsync(1)
+    await pending
+    expect(JSON.parse(logs[0]!).upstream.bodyTruncated).toBe(true)
+    controller!.enqueue(new TextEncoder().encode('later body'))
+    controller!.close()
+    expect(await response.text()).toBe('later body')
+  } finally {
+    vi.useRealTimers()
+  }
 })
 
 test('SDK-owned X requests are covered once and first-party traffic passes through', async () => {

@@ -81,8 +81,4 @@ test('public preview and downloaded PNG render the same assessment composition',
     ) / pixels[0]!.length
   // Allow rasterization at different pixel densities, not layout drift.
   expect(error).toBeLessThan(3)
-  await sharp(social).toFile('/tmp/unified-assessment-social.png')
-  await sharp(png)
-    .resize(1200, 630)
-    .toFile('/tmp/unified-assessment-download.png')
 })

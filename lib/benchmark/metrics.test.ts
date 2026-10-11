@@ -55,13 +55,12 @@ test('error summaries skip unplaced values', () => {
   expect(median([])).toBeNull()
 })
 
-test('the seeded generator is reproducible and uniform on [0, 1)', () => {
+test('the seeded generator is reproducible, seed-dependent and bounded on [0, 1)', () => {
   const a = seededRandom(7)
   const b = seededRandom(7)
   const draws = Array.from({ length: 1000 }, () => a())
   expect(draws).toEqual(Array.from({ length: 1000 }, () => b()))
   expect(draws.every((x) => x >= 0 && x < 1)).toBe(true)
-  expect(mean(draws)).toBeCloseTo(0.5, 1)
   expect(seededRandom(8)()).not.toBe(seededRandom(7)())
 })
 

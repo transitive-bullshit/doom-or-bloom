@@ -1,7 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import { versions } from '@/lib/assessment/schema'
 import {
-  l10nKey,
   l10nProblems,
   releaseSources,
   rubricSources,
@@ -27,27 +26,135 @@ const entry = (text: string, source: string) => ({
 })
 
 describe('authored-content translation files', () => {
-  test('list every participant-visible string and flag the ones needing review', () => {
-    const sources = releaseSources(release)
-    const root = sources.find(
-      ({ key }) => key === l10nKey.prompt('root', 'text')
-    )!
-    expect(root.review).toBe(true)
+  test('enumerate exact visible source keys and review requirements', () => {
+    const prompt = release.prompts[0]!
+    const sources = releaseSources({
+      prompts: [
+        {
+          ...prompt,
+          id: 'root',
+          family: 'root',
+          text: 'Root question',
+          recoveryVariants: {
+            reask: 'Root reask',
+            clarification: 'Root clarification',
+            exhausted: 'Root exhausted'
+          }
+        },
+        {
+          ...prompt,
+          id: 'followup',
+          family: 'risk',
+          text: 'Risk question',
+          recoveryVariants: {
+            reask: 'Risk reask',
+            clarification: 'Risk clarification',
+            exhausted: 'Risk exhausted'
+          }
+        }
+      ],
+      findings: [
+        { ...release.findings[0]!, id: 'finding-one', text: 'Finding text' }
+      ],
+      resources: [
+        {
+          ...release.resources[0]!,
+          id: 'resource-one',
+          title: 'Resource title',
+          purpose: 'Resource purpose',
+          question: 'Resource question',
+          effort: 'Resource effort'
+        },
+        {
+          ...release.resources[0]!,
+          id: 'resource-optional',
+          title: 'Optional title',
+          purpose: 'Optional purpose',
+          question: undefined,
+          effort: 'Optional effort'
+        }
+      ]
+    })
+    expect(sources).toEqual([
+      { key: 'prompt:root:text', source: 'Root question', review: true },
+      { key: 'prompt:root:reask', source: 'Root reask', review: true },
+      {
+        key: 'prompt:root:clarification',
+        source: 'Root clarification',
+        review: true
+      },
+      { key: 'prompt:root:exhausted', source: 'Root exhausted', review: true },
+      { key: 'prompt:followup:text', source: 'Risk question', review: false },
+      { key: 'prompt:followup:reask', source: 'Risk reask', review: true },
+      {
+        key: 'prompt:followup:clarification',
+        source: 'Risk clarification',
+        review: true
+      },
+      {
+        key: 'prompt:followup:exhausted',
+        source: 'Risk exhausted',
+        review: true
+      },
+      { key: 'finding:finding-one', source: 'Finding text', review: false },
+      {
+        key: 'resource:resource-one:title',
+        source: 'Resource title',
+        review: false
+      },
+      {
+        key: 'resource:resource-one:purpose',
+        source: 'Resource purpose',
+        review: false
+      },
+      {
+        key: 'resource:resource-one:question',
+        source: 'Resource question',
+        review: false
+      },
+      {
+        key: 'resource:resource-one:effort',
+        source: 'Resource effort',
+        review: false
+      },
+      {
+        key: 'resource:resource-optional:title',
+        source: 'Optional title',
+        review: false
+      },
+      {
+        key: 'resource:resource-optional:purpose',
+        source: 'Optional purpose',
+        review: false
+      },
+      {
+        key: 'resource:resource-optional:effort',
+        source: 'Optional effort',
+        review: false
+      }
+    ])
+    const rubric = readRubric(versions.rubric)
     expect(
-      sources.find(({ key }) => key === l10nKey.prompt('risk.chance', 'text'))
-        ?.review
-    ).toBe(false)
-    expect(
-      sources.filter(({ key }) => key.endsWith(':reask')).every((s) => s.review)
-    ).toBe(true)
-    expect(
-      sources.filter(({ key }) => key.startsWith('finding:'))
-    ).toHaveLength(release.findings.length)
-    const levels = rubricSources(readRubric(versions.rubric))
-    expect(levels.every(({ review }) => review)).toBe(true)
-    expect(
-      levels.some(({ key }) => key.startsWith('level:catastrophic_risk:'))
-    ).toBe(true)
+      rubricSources({
+        ...rubric,
+        dimensions: [
+          {
+            ...rubric.dimensions[0]!,
+            id: 'human_agency',
+            levels: ['Limited agency', 'Strong agency']
+          }
+        ],
+        catastrophicRisk: {
+          ...rubric.catastrophicRisk,
+          levels: ['Low risk', 'High risk']
+        }
+      })
+    ).toEqual([
+      { key: 'level:human_agency:0', source: 'Limited agency', review: true },
+      { key: 'level:human_agency:1', source: 'Strong agency', review: true },
+      { key: 'level:catastrophic_risk:0', source: 'Low risk', review: true },
+      { key: 'level:catastrophic_risk:1', source: 'High risk', review: true }
+    ])
   })
 
   test('report missing, stale, extra and placeholder problems', () => {
@@ -94,7 +201,7 @@ describe('authored-content translation files', () => {
       findingIds: [release.findings[0]!.id]
     })!
     expect(Object.keys(trimmed.prompts)).toEqual(['root'])
-    expect(Object.keys(trimmed.findings)).toHaveLength(1)
+    expect(Object.keys(trimmed.findings)).toEqual([release.findings[0]!.id])
     expect(trimmed.resources).toEqual({})
     expect(trimmed.levels).toEqual(spanish.levels)
     expect(recoveryCopy('en', versions.content).root).toEqual(
