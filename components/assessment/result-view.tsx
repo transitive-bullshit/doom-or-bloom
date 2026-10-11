@@ -46,7 +46,6 @@ import {
   resourceText
 } from '@/lib/assessment/display-text'
 import { useAuthoredText } from './authored-text'
-import { resultReasonKind } from '@/lib/assessment/projections'
 import {
   placementComparison,
   placementQuestion
@@ -308,17 +307,7 @@ export function ResultView({
               )}
             </div>
           )}
-          {!readOnly && (
-            <>
-              <h2>{t('title')}</h2>
-              <p className='mt-2 max-w-prose text-pretty text-body-foreground'>
-                {t(`reason.${resultReasonKind(result)}`)}
-                {result.horizontal.value !== null &&
-                  result.experiment?.transformation.value != null &&
-                  ` ${t('dotNote')}`}
-              </p>
-            </>
-          )}
+          {!readOnly && <h2>{t('title')}</h2>}
         </div>
       )}
       <ExperimentalResults

@@ -205,12 +205,9 @@ export function baseResult(
 }
 
 /**
- * Why the participant is seeing this result, derived from what it places.
- * Recomputed at render time for saved results, so older snapshots gain the
- * current explanation without reprocessing. Its copy is
- * `Results.reason.<kind>` in messages/<locale>.json.
+ * The reason saved with a result, derived from what it places.
  */
-export function resultReasonKind(
+function resultReasonKind(
   result: Pick<Result, 'capped' | 'horizontal' | 'experiment'>
 ) {
   const placed =
@@ -227,7 +224,7 @@ export function resultReasonKind(
       : 'placedNoRisk'
 }
 
-// The English reason saved with a result; the display uses the message above.
+// The canonical English reason saved with a result.
 const savedReasons = {
   unplacedCapped:
     'You reached the question limit before your answers placed you on the map. Here’s what we could read from them.',
