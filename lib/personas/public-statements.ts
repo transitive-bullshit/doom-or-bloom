@@ -14,6 +14,7 @@ import dkokotajlo from '@/content/profiles/dkokotajlo.json'
 import drfeifei from '@/content/profiles/drfeifei.json'
 import dwarkeshSp from '@/content/profiles/dwarkesh_sp.json'
 import edzitron from '@/content/profiles/edzitron.json'
+import eliLifland from '@/content/profiles/eli_lifland.json'
 import elonmusk from '@/content/profiles/elonmusk.json'
 import esyudkowsky from '@/content/profiles/esyudkowsky.json'
 import finkd from '@/content/profiles/finkd.json'
@@ -153,6 +154,7 @@ const files = [
   drfeifei,
   dwarkeshSp,
   edzitron,
+  eliLifland,
   elonmusk,
   esyudkowsky,
   finkd,

@@ -187,3 +187,7 @@ Added [Neha Muramalla](neha-muramalla-persona-2026-10-08.md) as a non-featured s
 ## Acemoglu Humanist Review source — October 8, 2026
 
 Added the requested July essay to Acemoglu’s authored sources, retaining the existing brief and later updates. With the owner's authorization, regenerated four answers and results for about $0.10 and refreshed his benchmark R2/R3 references for about $0.06. The [source record](acemoglu-humanist-review-2026-10-08.md) documents reading scope, run provenance, validation and publication.
+
+## Eli Lifland — October 11, 2026
+
+Added the two requested current-forecast posts, retained older evidence as dated context, added four verified public quotes, updated the conditioned takeover statement to ≈67%, and regenerated four answers and their results locally for about $0.09. The [source and generation record](eli-lifland-persona-2026-10-11.md) documents the separate capability, takeover and extinction probabilities, immutable run provenance and verification. Production publication remains separate.

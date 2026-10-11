@@ -8777,5 +8777,23 @@
     "imageKind": "social",
     "imageSource": "https://i.ytimg.com/vi/nAbIqt_w0g8/hqdefault.jpg",
     "icon": "/resource-previews/c041e079627a-icon.webp"
+  },
+  "https://x.com/eli_lifland/status/2109082373644308554": {
+    "source": "https://x.com/eli_lifland/status/2109082373644308554",
+    "fetchedAt": "2026-10-11T09:47:21.604Z",
+    "description": "My current view: - AI companies could develop broadly superhuman AI any year now (~10-15% by EO2027, ~50% by EO2030). - If they don't slow down, AI takeover is ~67%. - Conditional on AI takeover, human extinction is ~40%. Many non-extinction worlds still have lots of deaths.",
+    "image": "/resource-previews/c86e92f71b9a-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/profile_images/1933736035852185600/-YXpMfGo_400x400.jpg",
+    "icon": "/resource-previews/c86e92f71b9a-icon.webp"
+  },
+  "https://x.com/eli_lifland/status/2109082375208755506": {
+    "source": "https://x.com/eli_lifland/status/2109082375208755506",
+    "fetchedAt": "2026-10-11T09:47:23.831Z",
+    "description": "- Reasoning for timelines: https://t.co/e9MFkMOpoB. I used broadly superhuman AI as shorthand for Top-Expert-Dominating-AI (TED-AI): an AI at least as good as top human experts at virtually all cognitive tasks. - Closest thing to the reasoning behind my AI takeover probability is probably: https://…",
+    "image": "/resource-previews/b7cc41880f6b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/card_img/2106836794805211137/ZqepZgrk?format=webp&name=medium",
+    "icon": "/resource-previews/b7cc41880f6b-icon.webp"
   }
 }

@@ -282,19 +282,18 @@ export const publicPdoomStatements: Record<
     quote: "i think it's like yeah seventy ish"
   },
   'independent-eli-lifland': {
-    token: '≈50%',
-    bounds: [0.5, 0.5],
-    estimate: 0.5,
-    title: 'Special Edition: The Future of AI and Humanity, with Eli Lifland',
-    url: 'https://blog.controlai.org/p/special-edition-the-future-of-ai',
-    publishedAt: '2025-04-10',
+    token: '≈67%',
+    bounds: [0.67, 0.67],
+    estimate: 0.67,
+    title: 'My current view: AI timelines and takeover',
+    url: 'https://x.com/eli_lifland/status/2109082373644308554',
+    publishedAt: '2026-10-11',
     outcome:
-      'Misaligned AI takeover; his extinction estimate within it is roughly 25%',
-    horizon: 'Not specified',
+      'AI takeover if AI companies do not slow down; not extinction alone',
+    horizon: 'No fixed takeover horizon; capability dates are separate',
     conditions:
-      'His own answer (“Eli:”) in ControlAI’s published interview, asked how likely the extinction threat is. Both figures are rough. Not the 75% he gives for takeover conditional on the fast, closely raced AI 2027 scenario. In AXRP 50 (2026-08-03, 02:03:17) he says extinction conditional on misaligned takeover is under 50%, consistent with 25/50; no newer overall number found, and his timelines have lengthened since (2032 automated-coder median). Editor may prefer the extinction figure (≈25%) if the page means extinction.',
-    quote:
-      'Roughly 25% on extinction, which is a subset of roughly 50% on misaligned takeover.'
+      'Conditional on AI companies not slowing down. His separate human-extinction estimate is roughly 40% conditional on takeover, not unconditional. His 10–15% by end of 2027 and 50% by end of 2030 concern TED-AI, not takeover or extinction by those dates. The accompanying reply says clear signs of takeover could arrive substantially after TED-AI or around the same time. Supersedes his April 2025 roughly 50% takeover statement as the latest dated self-report, with its explicit policy condition retained.',
+    quote: "If they don't slow down, AI takeover is ~67%."
   },
   'independent-davidad': {
     token: '<5%',

@@ -128,8 +128,8 @@ export const curatedPeople: CuratedPerson[] = [
   {
     id: 'independent-eli-lifland',
     note: {
-      url: 'https://blog.controlai.org/p/special-edition-the-future-of-ai',
-      text: 'Chance of misaligned AI takeover, including about 25% for extinction'
+      url: 'https://x.com/eli_lifland/status/2109082373644308554',
+      text: 'Chance of AI takeover if companies do not slow down; extinction is 40% conditional on takeover'
     }
   },
   {
