@@ -13,8 +13,7 @@ import { siteTitle } from '@/lib/site'
 import {
   blogCardPath,
   blogSocialImageResponse,
-  fitTitle,
-  renderBlogSocialImage
+  fitTitle
 } from '@/lib/sharing/blog-social-card'
 import { wrappable } from '@/lib/sharing/card-renderer'
 import { headingId, headingIds, postHeadings } from './headings'
@@ -468,7 +467,7 @@ describe('feed and social image', () => {
     expect(xml).not.toContain('<b>')
   })
 
-  it('serves every post’s card, and translated cards only for translations', async () => {
+  it('serves a decodable post card and applies missing-post and translation policies', async () => {
     const [post] = blogPosts()
     const response = await blogSocialImageResponse(post!.slug, 'en')
     expect(response.headers.get('Content-Type')).toBe('image/png')
@@ -508,17 +507,5 @@ describe('feed and social image', () => {
         'en'
       )
     ).toEqual({ fontSize: 48, maxLines: 5 })
-  })
-
-  it('renders each post card as a 1200 × 630 PNG', async () => {
-    const bytes = await renderBlogSocialImage({
-      title: 'Why P(doom) estimates vary so much',
-      meta: 'October 1, 2026 · 4 min read'
-    })
-    expect(await sharp(bytes).metadata()).toMatchObject({
-      format: 'png',
-      width: 1200,
-      height: 630
-    })
   })
 })

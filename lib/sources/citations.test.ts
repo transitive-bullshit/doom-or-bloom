@@ -26,6 +26,15 @@ describe('shared citations', () => {
         { text: ' page 4.' }
       ]
     )
+    expect(segments('As *The Book* says,[^a] it is.[^b][^a]')).toEqual([
+      { text: 'As ' },
+      { emphasis: 'The Book' },
+      { text: ' says,' },
+      { cite: 'a' },
+      { text: ' it is.' },
+      { cite: 'b' },
+      { cite: 'a' }
+    ])
     // Markdown already turned *emphasis* into markup, so only markers split.
     expect(citationParts('A *b* c.[^x-risk][^ai-2027]')).toEqual([
       { text: 'A *b* c.' },

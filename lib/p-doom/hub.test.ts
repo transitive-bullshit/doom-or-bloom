@@ -193,18 +193,6 @@ describe('the curated table', () => {
 })
 
 describe('citations', () => {
-  test('split prose into text, titles and markers', () => {
-    expect(segments('As *The Book* says,[^a] it is.[^b][^a]')).toEqual([
-      { text: 'As ' },
-      { emphasis: 'The Book' },
-      { text: ' says,' },
-      { cite: 'a' },
-      { text: ' it is.' },
-      { cite: 'b' },
-      { cite: 'a' }
-    ])
-  })
-
   test('number sources by first citation across the table, survey and scenarios', () => {
     const {
       rows,

@@ -48,7 +48,7 @@ test('Takumi exports graph and card layouts at twice their logical dimensions', 
   ).toMatchObject({ width: 2400, height: 1260, format: 'png' })
 })
 
-test('cards in Hindi and Japanese render with their registered fonts', async () => {
+test('native rendering produces decodable PNGs for Hindi, Japanese, Thai and Chinese', async () => {
   for (const locale of ['hi', 'ja', 'th', 'zh']) {
     const card = await exportCard(
       request(`share-card?locale=${locale}`, {

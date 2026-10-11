@@ -41,10 +41,10 @@ test.each([
 test('preview branch alias is optional and duplicate hosts are deduplicated', () => {
   expect(
     authUrls({ ...preview, VERCEL_BRANCH_URL: undefined }).origins
-  ).toHaveLength(1)
+  ).toEqual([`https://${preview.VERCEL_URL}`])
   expect(
     authUrls({ ...preview, VERCEL_BRANCH_URL: preview.VERCEL_URL }).origins
-  ).toHaveLength(1)
+  ).toEqual([`https://${preview.VERCEL_URL}`])
 })
 
 test('production and development keep their explicit auth URL', () => {

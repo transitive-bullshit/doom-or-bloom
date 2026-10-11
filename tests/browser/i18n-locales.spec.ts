@@ -3,7 +3,7 @@ import { expect, test } from './fixtures'
 
 // Every enabled language: the home page declares its language tag, the
 // interview opens on the translated root question, and cards in non-Latin
-// scripts render with their fonts.
+// scripts reach the locale-specific image endpoints.
 
 const locales = [
   ['es', 'es'],
@@ -53,26 +53,36 @@ for (const [code, tag] of locales)
     expect(problems).toEqual([])
   })
 
-test('Hindi and Japanese share cards and profile images are PNGs', async ({
+test('share-card HTTP locale selection changes the rendered card and Japanese profiles export PNGs', async ({
   page,
   baseURL
 }) => {
-  const card = await page.request.post('/api/share-card?locale=hi', {
-    headers: { origin: baseURL! },
-    data: {
-      horizontal: 0.6,
-      vertical: 0.5,
-      horizontalRange: [0.5, 0.7],
-      verticalRange: [0.4, 0.6],
-      pdoom: 0.12,
-      pdoomToken: '≈12%',
-      provisional: false,
-      closestPersonaIds: []
-    }
-  })
-  expect(card.status()).toBe(200)
-  expect(card.headers()['content-type']).toBe('image/png')
-  expect((await card.body()).subarray(1, 4).toString('latin1')).toBe('PNG')
+  const data = {
+    horizontal: 0.6,
+    vertical: 0.5,
+    horizontalRange: [0.5, 0.7],
+    verticalRange: [0.4, 0.6],
+    pdoom: 0.12,
+    pdoomToken: '≈12%',
+    provisional: false,
+    generatedAt: '2026-10-01T00:00:00Z',
+    closestPersonaIds: []
+  }
+  const cards = await Promise.all(
+    ['en', 'hi'].map((locale) =>
+      page.request.post(`/api/share-card?locale=${locale}`, {
+        headers: { origin: baseURL! },
+        data
+      })
+    )
+  )
+  for (const card of cards) {
+    expect(card.status()).toBe(200)
+    expect(card.headers()['content-type']).toBe('image/png')
+  }
+  // Equivalent inputs isolate the locale query's effect through actual HTTP.
+  // Decoding/dimensions belong to png-export.test.ts; this is no glyph claim.
+  expect(await cards[1]!.body()).not.toEqual(await cards[0]!.body())
 
   const profile = await page.request.get(
     '/users/jensenhuang/opengraph-image?v=png-1&locale=ja'

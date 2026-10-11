@@ -517,10 +517,38 @@ const legacyAssessmentSchema = currentAssessmentSchema
       judgments
     }
   })
-export const assessmentSchema = z.union([
+const savedAssessmentSchema = z.union([
   currentAssessmentSchema,
   legacyAssessmentSchema
 ])
+export const assessmentSchema = z.preprocess((value) => {
+  // Preserve the raw historical status before status decoding maps it to recovery.
+  // Later semantic recovery after dismissal can also have reason=non_answer.
+  if (
+    !value ||
+    typeof value !== 'object' ||
+    !('status' in value) ||
+    value.status !== 'paused'
+  )
+    return value
+  const parsed = savedAssessmentSchema.safeParse(value)
+  if (!parsed.success) return value
+  const assessment = parsed.data
+  if (
+    assessment.recovery.paperclipShown &&
+    assessment.recovery.reason === 'non_answer' &&
+    assessment.recovery.evaluated < 3
+  )
+    return {
+      ...assessment,
+      recovery: {
+        ...assessment.recovery,
+        reason: 'paperclips',
+        paperclipActive: false
+      }
+    }
+  return value
+}, savedAssessmentSchema)
 export const operationSchema = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('answer'),

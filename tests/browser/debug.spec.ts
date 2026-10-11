@@ -74,10 +74,8 @@ import {
 import { fixtureAnswer } from '../../lib/server/provider'
 import type { DebugStage, Question } from '../../lib/assessment/schema'
 
-// All inference is intercepted: this test sends no requests to Jev.
-test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide page scrolling', async ({
-  page
-}, testInfo) => {
+// Inference is intercepted; storage, saved operations and rendering stay real.
+async function openDebugFixture(page: Page) {
   const text =
     'My complete spoken answer about benefits and uncertain risks. '.repeat(30)
   const question: Question = {
@@ -228,6 +226,21 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
     name: 'A: interpret response 1',
     exact: true
   })
+  return {
+    text,
+    question,
+    model,
+    request,
+    response,
+    requestCount: () => requests
+  }
+}
+
+test('debug exchanges support keyboard folds, exact copying and distinct syntax colors', async ({
+  page
+}) => {
+  const { text, question, model, request, response } =
+    await openDebugFixture(page)
   await expect(
     request.getByRole('button', { name: 'Collapse $', exact: true })
   ).toHaveAttribute('aria-expanded', 'true')
@@ -240,55 +253,6 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   })
   await expect(current).toHaveAttribute('aria-expanded', 'false')
   await expect(request.locator('[data-json-depth="3"]')).toHaveCount(0)
-  const bodyWidth = (await page
-    .getByLabel('Your answer', { exact: true })
-    .boundingBox())!.width
-  const debugWidth = (await page
-    .locator('[data-slot="debug-content"]')
-    .boundingBox())!.width
-  expect(debugWidth).toBeGreaterThan(bodyWidth + 500)
-  const requestBox = (await request.boundingBox())!,
-    responseBox = (await response.boundingBox())!
-  expect(responseBox.x).toBeGreaterThan(requestBox.x + requestBox.width)
-  const weakJudgment = response.getByRole('button', {
-    name: 'Expand $.answers.weak',
-    exact: true
-  })
-  await weakJudgment.locator('[data-json-token="key"]').hover()
-  await expect(page.getByRole('tooltip')).toHaveText(
-    'Judge relevance using current.answer.'
-  )
-  await expect(weakJudgment).toHaveAttribute('aria-expanded', 'false')
-  await page.screenshot({
-    path: testInfo.outputPath('judgment-help-desktop.png')
-  })
-  await page.keyboard.press('Escape')
-  await weakJudgment.focus()
-  await expect(page.getByRole('tooltip')).toHaveText(
-    'Judge relevance using current.answer.'
-  )
-  await page.keyboard.press('Escape')
-  const savedState = page.getByRole('region', {
-    name: 'Saved assessment state JSON',
-    exact: true
-  })
-  const dimensionHelp = savedState.getByRole('button', {
-    name: 'Explain $.coverage.capability_trajectory',
-    exact: true
-  })
-  await dimensionHelp.hover()
-  await expect(page.getByRole('tooltip')).toContainText(
-    'Timeline & capability:'
-  )
-  await page.keyboard.press('Escape')
-  const firstOperation = await page
-    .getByLabel('Recorded operation', { exact: true })
-    .inputValue()
-  await expect.poll(() => savedOperationCount(page)).toBe(1)
-  await page.screenshot({
-    path: testInfo.outputPath('debug-desktop.png'),
-    fullPage: true
-  })
   await current.focus()
   await page.keyboard.press('Enter')
   const answer = request.getByRole('button', {
@@ -331,6 +295,57 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   await expect(
     request.getByRole('radio', { name: 'Default answer order', exact: true })
   ).toHaveCount(0)
+})
+
+test('debug sorting and field help remain usable across desktop, mobile and themes', async ({
+  page
+}, testInfo) => {
+  const { request, response } = await openDebugFixture(page)
+  const bodyWidth = (await page
+    .getByLabel('Your answer', { exact: true })
+    .boundingBox())!.width
+  const debugWidth = (await page
+    .locator('[data-slot="debug-content"]')
+    .boundingBox())!.width
+  expect(debugWidth).toBeGreaterThan(bodyWidth + 500)
+  const requestBox = (await request.boundingBox())!,
+    responseBox = (await response.boundingBox())!
+  expect(responseBox.x).toBeGreaterThan(requestBox.x + requestBox.width)
+  const weakJudgment = response.getByRole('button', {
+    name: 'Expand $.answers.weak',
+    exact: true
+  })
+  await weakJudgment.locator('[data-json-token="key"]').hover()
+  await expect(page.getByRole('tooltip')).toHaveText(
+    'Judge relevance using current.answer.'
+  )
+  await expect(weakJudgment).toHaveAttribute('aria-expanded', 'false')
+  await page.screenshot({
+    path: testInfo.outputPath('judgment-help-desktop.png')
+  })
+  await page.keyboard.press('Escape')
+  await weakJudgment.focus()
+  await expect(page.getByRole('tooltip')).toHaveText(
+    'Judge relevance using current.answer.'
+  )
+  await page.keyboard.press('Escape')
+  const savedState = page.getByRole('region', {
+    name: 'Saved assessment state JSON',
+    exact: true
+  })
+  const dimensionHelp = savedState.getByRole('button', {
+    name: 'Explain $.coverage.capability_trajectory',
+    exact: true
+  })
+  await dimensionHelp.hover()
+  await expect(page.getByRole('tooltip')).toContainText(
+    'Timeline & capability:'
+  )
+  await page.keyboard.press('Escape')
+  const keyColor = await response
+    .locator('[data-json-token="key"]')
+    .first()
+    .evaluate((element) => getComputedStyle(element).color)
   const defaultOrder = response.getByRole('radio', {
     name: 'Default answer order',
     exact: true
@@ -465,7 +480,17 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   }))
   expect(scrolling.width).toBeLessThanOrEqual(scrolling.viewport + 1)
   expect(scrolling.nested).toBe(false)
-  expect(requests).toBe(1)
+})
+
+test('recorded debug operations survive reload, disabled debugging and assessment navigation', async ({
+  page
+}) => {
+  const { text, request, requestCount } = await openDebugFixture(page)
+  const firstOperation = await page
+    .getByLabel('Recorded operation', { exact: true })
+    .inputValue()
+  await expect.poll(() => savedOperationCount(page)).toBe(1)
+  expect(requestCount()).toBe(1)
   await page.reload()
   await page
     .getByRole('button', { name: 'Jev / assessment debugging details' })
@@ -476,7 +501,7 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   await expect(
     page.getByLabel('Recorded operation', { exact: true })
   ).toHaveValue(firstOperation)
-  expect(requests).toBe(1)
+  expect(requestCount()).toBe(1)
   await page
     .getByLabel('Your answer', { exact: true })
     .fill('My second answer about timing.')
@@ -517,5 +542,5 @@ test('debug separates exchanges, folds depth 2+, highlights syntax and uses wide
   await expect(page).not.toHaveURL(new RegExp(assessmentId))
   await expect.poll(() => savedOperationCount(page, assessmentId)).toBe(3)
   await expect.poll(() => savedOperationCount(page)).toBe(0)
-  expect(requests).toBe(3)
+  expect(requestCount()).toBe(3)
 })

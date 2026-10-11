@@ -1,5 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises'
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
+
+async function pauseIntentClock(page: Page) {
+  const start = new Date('2026-10-11T00:00:00Z')
+  await page.clock.install({ time: start })
+  // A future pause avoids racing the automatically advancing install clock.
+  // No intent has been selected yet; subsequent deadlines are driven explicitly.
+  await page.clock.pauseAt(new Date(start.getTime() + 60_000))
+}
 
 test('build-time public shares serve cached HTML, RSC and social images with the database unavailable', async ({
   request
@@ -88,9 +96,10 @@ test('proximity warms at most three profiles, cancels passing intent, and reuses
     'data-reveal',
     /^(landed|fade)$/
   )
+  await pauseIntentClock(page)
   await page.mouse.move(0, 0)
-  // Give viewport-driven prefetching enough time to reveal an accidental flood.
-  await page.waitForTimeout(400)
+  // Advance past the intent deadline without depending on machine load.
+  await page.clock.runFor(400)
   expect(requests).toEqual([])
 
   const target = await page.locator('.study-chart').evaluate((chart) => {
@@ -154,7 +163,7 @@ test('proximity warms at most three profiles, cancels passing intent, and reuses
   expect(target).not.toBeNull()
   await page.mouse.move(target!.x, target!.y)
   await page.mouse.move(0, 0)
-  await page.waitForTimeout(400)
+  await page.clock.runFor(400)
   expect(requests).toEqual([])
 
   const warmed = page.waitForResponse(
@@ -163,9 +172,9 @@ test('proximity warms at most three profiles, cancels passing intent, and reuses
       response.request().headers().rsc === '1'
   )
   await page.mouse.move(target!.x, target!.y)
+  await page.clock.runFor(1000)
   await (await warmed).finished()
-  // Ensure all route segments have settled before checking click-time reuse.
-  await page.waitForTimeout(300)
+  // The complete static RSC response is the observable settlement boundary.
   expect(requests).toContain(target!.href)
   expect(new Set(requests).size).toBeLessThanOrEqual(3)
   // The directory's small dots for unlisted people warm on direct hover only.
@@ -247,9 +256,10 @@ test('directory paging moves focus but warms a profile only for visible focus', 
   const links = page.locator('.study-legend a')
   const all = page.getByRole('button', { name: /^Show all/ })
   await page.goto('/users')
+  await pauseIntentClock(page)
   await all.click()
   await expect(links.nth(48)).toBeFocused()
-  await page.waitForTimeout(400)
+  await page.clock.runFor(400)
   expect(requests).toEqual([])
 
   await page.goto('/users')
@@ -278,8 +288,9 @@ test('data saver suppresses speculative profile requests', async ({ page }) => {
       requests.push(request.url())
   })
   await page.goto('/users')
+  await pauseIntentClock(page)
   await page.getByRole('button', { name: /^Show all/ }).click()
   await page.locator('.study-legend a[href="/users/simonw"]').hover()
-  await page.waitForTimeout(500)
+  await page.clock.runFor(500)
   expect(requests).toEqual([])
 })

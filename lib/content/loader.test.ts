@@ -103,14 +103,47 @@ test('freeze requires complete hashes and graph rejects disconnected cycles and 
 test('alias boundaries avoid accidental matches and topic retrieval is not a mention', () => {
   const bundle = loadBundle()
   expect(
-    retrieveReferences(bundle, 'OpenAI and GPT-4').filter((r) => r.matched)
-      .length
-  ).toBe(2)
-  expect(retrieveReferences(bundle, 'notopenai')).toHaveLength(0)
+    retrieveReferences(bundle, 'OpenAI and GPT-4')
+      .filter((r) => r.matched)
+      .map((r) => r.reference.id)
+      .sort()
+  ).toEqual(['entity.openai', 'event.gpt4-release'])
+  expect(retrieveReferences(bundle, 'notopenai')).toEqual([])
+  const reference = bundle.references[0]!
+  const topicBundle = {
+    ...bundle,
+    references: [
+      {
+        ...reference,
+        id: 'science.old',
+        aliases: ['Old study'],
+        topics: ['science'],
+        date: '2024-01-01'
+      },
+      {
+        ...reference,
+        id: 'science.new',
+        aliases: ['New study'],
+        topics: ['science'],
+        date: '2026-01-01'
+      },
+      {
+        ...reference,
+        id: 'unrelated',
+        aliases: ['Other study'],
+        topics: ['risk'],
+        date: '2026-02-01'
+      }
+    ]
+  }
   expect(
-    retrieveReferences(bundle, 'protein structure advances', ['science'])[0]
-      ?.matched
-  ).toBe(false)
+    retrieveReferences(topicBundle, 'protein structure advances', [
+      'science'
+    ]).map((r) => ({ id: r.reference.id, matched: r.matched }))
+  ).toEqual([
+    { id: 'science.new', matched: false },
+    { id: 'science.old', matched: false }
+  ])
   expect(retrieveReferences(bundle, 'unknown incident')).toHaveLength(0)
   expect(
     retrieveReferences(bundle, 'Hugging Face incident')
@@ -132,9 +165,15 @@ test('alias boundaries avoid accidental matches and topic retrieval is not a men
     'report.openai-hugging-face-road-ahead-2026'
   ])
   expect(
-    retrieveReferences(bundle, 'an unnamed risk', ['risk'])[0]?.reference.id
-  ).toMatch(/2026$/)
+    retrieveReferences(topicBundle, 'an unnamed risk', ['risk']).map((r) => ({
+      id: r.reference.id,
+      matched: r.matched
+    }))
+  ).toEqual([{ id: 'unrelated', matched: false }])
   expect(
-    retrieveReferences(bundle, 'The Off-Switch Game', ['risk'])[0]?.matched
-  ).toBe(true)
+    retrieveReferences(bundle, 'The Off-Switch Game', ['risk'])[0]
+  ).toMatchObject({
+    reference: { id: 'publication.off-switch' },
+    matched: true
+  })
 })

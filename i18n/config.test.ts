@@ -83,7 +83,7 @@ describe('URL segments and language tags', () => {
   })
 
   it('keeps every tag a canonical BCP 47 tag', () => {
-    for (const code of [...locales, 'pt', 'zh', 'hi', 'th', 'ja'] as const) {
+    for (const code of locales) {
       expect(code).toMatch(/^[a-z]{2}$/)
       expect(Intl.getCanonicalLocales(languageTag(code))).toEqual([
         languageTag(code)

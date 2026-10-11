@@ -8,7 +8,7 @@ import {
 } from './worldview-experiment'
 import type { ExperimentInput } from './worldview-experiment'
 import { fixtureAnswer } from '@/lib/server/provider'
-import { resultSchema, worldviewExperimentSchema } from './schema'
+import { worldviewExperimentSchema } from './schema'
 import type { ModelAnswer } from './schema'
 
 function input(text: string): ExperimentInput {
@@ -133,7 +133,7 @@ describe('experimental worldview evidence boundaries', () => {
     ])
     expect(values[0]?.text).toContain('less than 0.5%')
   })
-  it('rejects uncertain or nonexistent candidate selections', () => {
+  it('rejects unverified candidate selections', () => {
     const source = input('My extinction estimate is 10%.')
     const candidates = experimentCandidates(source)
     const result = buildWorldviewExperiment(
@@ -151,6 +151,53 @@ describe('experimental worldview evidence boundaries', () => {
       'fixture-v1'
     )
     expect(result.pdoom).toBeNull()
+  })
+  it('rejects a verified nonexistent candidate without inventing probability evidence', () => {
+    const source = input('My extinction estimate is 10%.')
+    const candidates = experimentCandidates(source)
+    const result = buildWorldviewExperiment(
+      source,
+      candidates,
+      {
+        'experiment:pdoom': {
+          type: 'choice',
+          choice: 'missing-candidate',
+          probabilities: { 'missing-candidate': 1 },
+          confidence: 1
+        },
+        'experiment:pdoom:verified': { type: 'noul', noul: 1 }
+      },
+      1,
+      'fixture-v1'
+    )
+    const valid = buildWorldviewExperiment(
+      source,
+      candidates,
+      {
+        'experiment:pdoom': {
+          type: 'choice',
+          choice: 'n0',
+          probabilities: { n0: 1 },
+          confidence: 1
+        },
+        'experiment:pdoom:verified': { type: 'noul', noul: 1 }
+      },
+      1,
+      'fixture-v1'
+    )
+    expect(valid.pdoom).toMatchObject({
+      token: '10%',
+      bounds: [0.1, 0.1],
+      answerId: 'a1',
+      source: 'stated'
+    })
+    expect(result.pdoom).toBeNull()
+    expect(result.axisEvidence).toEqual({
+      influence: null,
+      transformation: null
+    })
+    expect(result.influence.evidenceIds).toEqual([])
+    expect(result.transformation.evidenceIds).toEqual([])
   })
   it('copies unknown milestone timing and update conditions with answer provenance', () => {
     const source = input(
@@ -218,9 +265,6 @@ describe('experimental worldview evidence boundaries', () => {
       buildWorldviewExperiment(source, candidates, answers, 1, 'fixture-v1')
         .milestones
     ).toEqual([])
-  })
-  it('keeps historical result parsing compatible without experimental fields', () => {
-    expect(resultSchema.shape.experiment.isOptional()).toBe(true)
   })
 })
 

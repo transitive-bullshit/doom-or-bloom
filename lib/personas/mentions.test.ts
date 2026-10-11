@@ -27,7 +27,11 @@ describe('profile mentions', () => {
 
   test('share first mentions across calls with one set', () => {
     const linked = new Set<string>()
-    expect(mention('Ask Dario Amodei.', linked)).toHaveLength(3)
+    expect(mention('Ask Dario Amodei.', linked)).toEqual([
+      { text: 'Ask ' },
+      { text: 'Dario Amodei', slug: 'darioamodei' },
+      { text: '.' }
+    ])
     expect(mention('Dario Amodei replied.', linked)).toEqual([
       { text: 'Dario Amodei replied.' }
     ])

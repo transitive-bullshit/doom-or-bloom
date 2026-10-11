@@ -98,7 +98,18 @@ test('concurrent partial saves retain both users and failed writes leave selecti
       journeys: [sample.journeys[1]!]
     }
     await Promise.all([store.save(a), store.save(b)])
-    expect((await store.read(b.id)).journeys).toHaveLength(2)
+    const saved = await store.read(b.id)
+    expect(saved.journeys).toEqual([...a.journeys, ...b.journeys])
+    expect(saved.sourceRuns).toEqual(
+      [a, b].map((suite) => ({
+        runId: suite.id,
+        createdAt: suite.createdAt,
+        inputHash: suite.inputHash,
+        engineHash: suite.engineHash,
+        contentHash: suite.contentHash,
+        personaIds: suite.journeys.map(({ personaId }) => personaId)
+      }))
+    )
     const invalid = {
       ...a,
       id: id(),

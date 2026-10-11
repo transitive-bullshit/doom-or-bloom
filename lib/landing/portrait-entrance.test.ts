@@ -21,6 +21,11 @@ it('lands every portrait flat, sharp and exactly on its laid-out position', () =
         `^translate\\(${layout[i]!.x - 20}px, ${layout[i]!.y - 20}px\\) rotate\\([-\\d.]+deg\\) scale\\(1, 1\\) rotate\\([-\\d.]+deg\\) scale\\(1\\)$`
       )
     )
+    const rotations = [
+      ...String(last.transform).matchAll(/rotate\((-?[\d.]+)deg\)/g)
+    ].map((match) => Number(match[1]))
+    expect(rotations).toHaveLength(2)
+    expect(rotations[0]! + rotations[1]!).toBe(0)
   })
 })
 
