@@ -30,4 +30,8 @@ Validation on the task worktree based on `origin/main` (`git rev-list --left-rig
 - Headless Chromium loaded the local profile, verified the exact two source links and four-answer disclosure, and rendered the new quote section and conditioned ≈67% card. Visually inspected the full-page screenshot. With follower sorting selected, the local directory shows Eli’s refreshed count as 10.4K followers.
 - Refreshed only Eli’s R2/R3 benchmark references with `pnpm benchmark:refs --only=r2,r3 --personas=independent-eli-lifland --max-cost=1 --allow-paid`: two independent-judge samples and three self-placement samples, about $0.06 estimated. Reviewed the reference diff; other personas are unchanged.
 
-Production import and deployment are separate from this local source refresh.
+## Production publication
+
+With the owner’s explicit authorization, ran the scoped production import plan and write for `eli_lifland`. Production now selects the exact local snapshot digest `83bd95e84c423ef4cd7aa528f935ffd1b3a69db787143c4b5fb21b8461510e87`: 11 sources including both new posts, four accepted answers and the conditioned ≈67% statement. Verified the previous assessment’s digest and public visibility are preserved. All other 213 selected profiles are unchanged. Private before/after verification artifacts are retained in ignored `work/eli-production/`.
+
+The subsequent authorized push to `main` supplies the static quotes, source previews, follower metadata and refreshed benchmark references; deployment is verified separately after the push.
