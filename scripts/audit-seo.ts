@@ -70,7 +70,11 @@ for (const path of paths) {
     path,
     status: response.status,
     url: response.url,
-    title: $('title').text(),
+    // Inline SVG charts carry their own <title> tooltips; only the document title counts.
+    title: $('title')
+      .filter((_, el) => $(el).closest('svg').length === 0)
+      .first()
+      .text(),
     canonical: $('link[rel=canonical]').attr('href'),
     h1: $('h1')
       .map((_, el) => $(el).text())
