@@ -11,7 +11,7 @@ import { seedPersonas } from '../lib/personas/seed'
 import { personaRepository } from '../lib/personas/repository'
 import { historicalPayload } from '../lib/personas/payload'
 import { personaProfileSchema } from '../lib/journeys/catalog'
-import { suiteSchema } from '../lib/journeys/schema'
+import { journeySchema, suiteSchema } from '../lib/journeys/schema'
 import { assessmentRepository } from '../lib/assessments/repository'
 import { resultPoint } from '../lib/assessment/self-placement'
 
@@ -74,13 +74,31 @@ try {
       .map((row) => ({ username: row.persona.slug }))
       .sort((a, b) => a.username.localeCompare(b.username))
   )
+  const versions = await repo.selectedVersions()
+  assert.deepEqual(
+    Object.keys(versions).sort(),
+    selected.map((row) => row.persona.slug).sort()
+  )
   for (const row of [
     selected[0]!,
     selected.find((row) => !row.persona.featured)!
   ]) {
-    assert.deepEqual(await repo.selectedBySlug(row.persona.slug), row)
+    const profile = (await repo.selectedProfile(row.persona.slug))!
+    assert.deepEqual(
+      {
+        ...profile,
+        journey: journeySchema.parse(profile.journey)
+      },
+      {
+        version: versions[row.persona.slug],
+        assessmentId: row.assessmentId,
+        metadata: row.persona.metadata,
+        sourceBrief: row.persona.sourceBrief,
+        journey: row.payload.journey
+      }
+    )
   }
-  assert.equal(await repo.selectedBySlug('no-such-simulated-user'), null)
+  assert.equal(await repo.selectedProfile('no-such-simulated-user'), null)
   for (const row of selected) {
     assert.equal(
       row.persona.featured,
@@ -114,6 +132,7 @@ try {
   old.provenance.createdAt = '2026-01-01T00:00:00.000Z'
   old.provenance.runId = `${testId}-old`
   const oldId = await repo.publish(testPersona, old.provenance.runId, old)
+  const oldVersion = (await repo.selectedVersions())[testId]
   assert.equal(
     await repo.publish(testPersona, old.provenance.runId, old),
     oldId
@@ -132,6 +151,9 @@ try {
       .assessmentId,
     newId
   )
+  // A newer run gives the profile a new cache version.
+  const newVersion = (await repo.selectedVersions())[testId]!
+  assert.notEqual(newVersion, oldVersion)
   await assert.rejects(
     repo.publish(testPersona, old.provenance.runId, next),
     /Immutable simulation provenance/
@@ -208,10 +230,15 @@ try {
   revisedBrief.sources = [
     { title: 'Updated source', url: 'https://example.com/updated' }
   ]
+  const liveVersion = (await repo.selectedVersions())[testId]!
   await repo.upsertProfile(
     { ...source.metadata, id: testId, slug: testId, featured: false },
     revisedBrief
   )
+  // So does a metadata or brief edit, which keeps the run.
+  const revisedVersion = (await repo.selectedVersions())[testId]!
+  assert.notEqual(revisedVersion, liveVersion)
+  assert.equal(revisedVersion.split(':')[0], liveVersion.split(':')[0])
   await verifySummaries()
   const summary = (await repo.selectedSummaries()).find(
     (row) => row.assessmentId === run.id

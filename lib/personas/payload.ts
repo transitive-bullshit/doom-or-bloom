@@ -83,7 +83,9 @@ export function historicalPayload(suite: JourneySuite, journey: Journey) {
     }
   })
 }
-export function simulationPresentation(payload: SimulationPayload) {
+export function simulationPresentation(
+  payload: Pick<SimulationPayload, 'journey'>
+) {
   return {
     result: payload.journey.result!,
     assessment: personaAssessment(payload.journey)
