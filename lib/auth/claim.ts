@@ -1,4 +1,4 @@
-import { and, eq, inArray, sql } from 'drizzle-orm'
+import { and, eq, gt, inArray, sql } from 'drizzle-orm'
 import type { drizzle } from 'drizzle-orm/node-postgres'
 import { assessments, session, user } from '../db/schema'
 import { earliestFirstTouch, parseFirstTouch } from '../attribution/first-touch'
@@ -7,7 +7,8 @@ import { earliestFirstTouch, parseFirstTouch } from '../attribution/first-touch'
 export async function claimAnonymousAssessments(
   database: ReturnType<typeof drizzle>,
   anonymousId: string,
-  authenticatedId: string
+  authenticatedId: string,
+  anonymousToken: string
 ) {
   if (anonymousId === authenticatedId) return
   await database.transaction(async (tx) => {
@@ -26,6 +27,19 @@ export async function claimAnonymousAssessments(
     if (!source) return // The same successful claim may be observed again.
     if (!source.isAnonymous)
       throw new Error('Only anonymous ownership can be claimed')
+    // Better Auth may resolve the anonymous session from its cookie cache.
+    // Claim only from a session the database still holds, as without it.
+    const [live] = await tx
+      .select({ id: session.id })
+      .from(session)
+      .where(
+        and(
+          eq(session.token, anonymousToken),
+          eq(session.userId, anonymousId),
+          gt(session.expiresAt, sql`now()`)
+        )
+      )
+    if (!live) return
     // Keep whichever origin is older: the anonymous browser usually found the
     // site first, but an existing account may predate it.
     const firstTouch = earliestFirstTouch(target.firstTouch, source.firstTouch)

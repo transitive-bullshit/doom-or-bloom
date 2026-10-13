@@ -292,6 +292,21 @@ try {
   const renewed = await (await call('/get-session')).json()
   assert.equal(renewed.user.id, signedIn.user.id)
   assert.equal((await repo.list(renewed.user.id)).length, 2)
+  // A revoked anonymous session's cookie-cache copy cannot claim on sign-in.
+  await call('/sign-out', {})
+  const revoked = await (await call('/sign-in/anonymous', {})).json()
+  identities.add(revoked.user.id)
+  const unclaimed = await repo.create(revoked.user.id, randomUUID(), 'fixture')
+  assert.ok(unclaimed.id)
+  assessmentIds.push(unclaimed.id)
+  await pool.query('DELETE FROM session WHERE user_id = $1', [revoked.user.id])
+  await login()
+  assert.equal(
+    (await (await call('/get-session')).json()).user.id,
+    signedIn.user.id
+  )
+  assert.equal((await repo.list(revoked.user.id))[0]!.id, unclaimed.id)
+  assert.equal((await repo.list(signedIn.user.id)).length, 2)
   console.log(
     'Provider-mocked X callback, anonymous claim, sign-out and cross-browser recovery passed'
   )
