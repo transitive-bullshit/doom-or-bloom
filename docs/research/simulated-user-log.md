@@ -191,3 +191,7 @@ Added the requested July essay to Acemoglu’s authored sources, retaining the e
 ## Eli Lifland — October 11, 2026
 
 Added the two requested current-forecast posts, retained older evidence as dated context, added four verified public quotes, updated the conditioned takeover statement to ≈67%, and regenerated four answers and their results locally for about $0.09. The [source and generation record](eli-lifland-persona-2026-10-11.md) documents the separate capability, takeover and extinction probabilities, immutable run provenance and verification. With the owner’s subsequent authorization, imported the exact local run into production and verified the old run is retained and all other 213 selections are unchanged.
+
+## Roon — October 13, 2026
+
+Added all six requested alignment and slowdown posts, preserving his interpretability optimism and earlier safe-access position. The [source and generation record](roon-persona-2026-10-13.md) tracks source access, reading limits, the scoped interview/results refresh and validation. With the owner’s subsequent authorization, imported the exact regenerated run into production, retaining his previous assessment and all other 213 profile selections.

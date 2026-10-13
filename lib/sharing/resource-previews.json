@@ -8795,5 +8795,59 @@
     "imageKind": "social",
     "imageSource": "https://pbs.twimg.com/card_img/2106836794805211137/ZqepZgrk?format=webp&name=medium",
     "icon": "/resource-previews/b7cc41880f6b-icon.webp"
+  },
+  "https://x.com/tszzl/status/2109809750406029680": {
+    "source": "https://x.com/tszzl/status/2109809750406029680",
+    "fetchedAt": "2026-10-13T12:57:48.153Z",
+    "description": "there have not been fundamental advancements in alignment since RLHF. most of the stuff remains at the level of folk theory rather than scientific or engineering disciplines. the prediction that capabilities would race far ahead of interp and alignment has come true imo",
+    "image": "/resource-previews/5e9ef676ecac-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/profile_images/1918970926668054530/fy-ZsgJ7_400x400.jpg",
+    "icon": "/resource-previews/5e9ef676ecac-icon.webp"
+  },
+  "https://x.com/tszzl/status/2109809751563641177": {
+    "source": "https://x.com/tszzl/status/2109809751563641177",
+    "fetchedAt": "2026-10-13T12:57:53.762Z",
+    "description": "the researchers at all the labs would tell you in private and sometimes in public that alignment has not been solved. if this is true, then racing into RSI is a folly that is unprecedented in world history. we will need to significantly slow the frontier of research very soon",
+    "image": "/resource-previews/8b38cec103e4-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/profile_images/1918970926668054530/fy-ZsgJ7_400x400.jpg",
+    "icon": "/resource-previews/8b38cec103e4-icon.webp"
+  },
+  "https://x.com/tszzl/status/2109819935358943683": {
+    "source": "https://x.com/tszzl/status/2109819935358943683",
+    "fetchedAt": "2026-10-13T12:57:59.307Z",
+    "description": "btw in case it’s not clear: All the work like monitorability, fixing RL environments for reward shaping, making sure you universally reward good behavior are all quite important engineering challenges to get right. but there is a layer under the behaviorist abstraction that matters and we have far…",
+    "image": "/resource-previews/957d75d7016f-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/profile_images/1918970926668054530/fy-ZsgJ7_400x400.jpg",
+    "icon": "/resource-previews/957d75d7016f-icon.webp"
+  },
+  "https://x.com/tszzl/status/2109822082024656927": {
+    "source": "https://x.com/tszzl/status/2109822082024656927",
+    "fetchedAt": "2026-10-13T12:58:05.104Z",
+    "description": "I should have led with this but here is the chief scientist of openai: not a crank or a newcomer, but rather among the top most respected scientists in the field, someone who has solved innumerable capabilities problems on the way here",
+    "image": "/resource-previews/15ed6724b00b-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/media/HUeYAL-agAACxiB?format=webp&name=large",
+    "icon": "/resource-previews/15ed6724b00b-icon.webp"
+  },
+  "https://x.com/tszzl/status/2109917793374347752": {
+    "source": "https://x.com/tszzl/status/2109917793374347752",
+    "fetchedAt": "2026-10-13T12:58:11.032Z",
+    "description": "been dooming tn so let me also say I expect really strong mechinterp progress in the coming months. like maybe more than we’ve seen in years. models getting good enough to do research, and I’ve been seeing lots of good things. (sorry to vague poast, not my updates to share)",
+    "image": "/resource-previews/d4a15b7c2576-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/profile_images/1918970926668054530/fy-ZsgJ7_400x400.jpg",
+    "icon": "/resource-previews/d4a15b7c2576-icon.webp"
+  },
+  "https://x.com/tszzl/status/2109834546380431515": {
+    "source": "https://x.com/tszzl/status/2109834546380431515",
+    "fetchedAt": "2026-10-13T12:58:16.715Z",
+    "description": "\"what would be done during the slowdown\" is a good question, because i think people imagine beaurucrat-regulators sitting around on useless subcommittees and wasting the whole thing on wordcel slop analysis. in fact if you asked me two years ago, i would have suggested that is exactly what would ha…",
+    "image": "/resource-previews/9fa71ad783a9-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://pbs.twimg.com/profile_images/1918970926668054530/fy-ZsgJ7_400x400.jpg",
+    "icon": "/resource-previews/9fa71ad783a9-icon.webp"
   }
 }

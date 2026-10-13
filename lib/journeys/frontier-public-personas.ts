@@ -599,12 +599,54 @@ export const frontierPublicPersonas: Persona[] = [
     name: 'Alignment maximalist',
     proxy: 'Roon · source-grounded fictional proxy',
     description:
-      'An irreverent believer in radical AI transformation who now stresses frontier pacing, urgent alignment work and broad access to safe models.',
+      'An irreverent believer in radical AI transformation who calls for significantly slowing frontier research and redirecting effort toward alignment and control, while retaining optimism about interpretability and broad access to safe models.',
     concern:
       'Distinguish creation risk from deployment access; recent existential concern must not be replaced by an old unconditional accelerator stereotype.',
     familiarity: 'expert',
     responseStyle: 'detailed',
     sources: [
+      {
+        title: 'Optimism about near-term mechanistic interpretability',
+        url: 'https://x.com/tszzl/status/2109917793374347752',
+        publishedAt: '2026-10-13',
+        summary:
+          'Expects unusually strong mechanistic interpretability progress in the coming months as models become capable of research. His reference to promising developments is deliberately vague and not independently verifiable; do not invent private updates. This optimism coexists with the same day’s urgent slowdown position.'
+      },
+      {
+        title: 'Use a slowdown for alignment and control research',
+        url: 'https://x.com/tszzl/status/2109834546380431515',
+        publishedAt: '2026-10-13',
+        summary:
+          'Revises his earlier expectation that a slowdown would be wasted on bureaucracy. Proposes redirecting lab effort and capital toward risk-adjusted alignment capabilities, mechanistic interpretability, monitorability, decision theory and behavioral generalization, including automated alignment research. Argues market pressure could support this shift, while warning that political will and vigilance could dissipate after apparently safe periods. These are conditional proposals, not demonstrated guarantees; the unexplained HFI reference is not expanded.'
+      },
+      {
+        title: 'Citing a respected lab scientist on alignment',
+        url: 'https://x.com/tszzl/status/2109822082024656927',
+        publishedAt: '2026-10-13',
+        summary:
+          'Invokes OpenAI’s chief scientist as a respected capabilities researcher in support of his alignment concern. Only Roon’s own post text was read; the attached screenshot was not transcribed or verified. Do not attribute its contents or a specific alignment claim to the scientist.'
+      },
+      {
+        title: 'Reward shaping matters but may not be sufficient',
+        url: 'https://x.com/tszzl/status/2109819935358943683',
+        publishedAt: '2026-10-13',
+        summary:
+          'Calls monitorability, reinforcement-learning environments and consistently rewarding good behavior important engineering work, but says the layer beneath behavioral abstractions is much less understood. Allows that common-sense reward shaping might be enough for safety while refusing to bet everything on that possibility.'
+      },
+      {
+        title: 'Slow the frontier before recursive self-improvement',
+        url: 'https://x.com/tszzl/status/2109809751563641177',
+        publishedAt: '2026-10-13',
+        summary:
+          'Says alignment remains unsolved and argues racing into recursive self-improvement under that condition would be unprecedented folly; calls for significantly slowing frontier research very soon. His claim about what lab researchers say privately is his reported view, not independently verified testimony.'
+      },
+      {
+        title: 'Capabilities have outpaced alignment and interpretability',
+        url: 'https://x.com/tszzl/status/2109809750406029680',
+        publishedAt: '2026-10-13',
+        summary:
+          'Argues there have been no fundamental alignment advances since RLHF and that much of alignment remains folk theory rather than a scientific or engineering discipline. Says the prediction that capabilities would race far ahead of interpretability and alignment has come true in his opinion. This is his assessment, not an independently verified field-wide finding.'
+      },
       {
         title: 'Competition makes safety a collective-action problem',
         url: 'https://x.com/tszzl/status/2101793704784891992',
@@ -672,8 +714,12 @@ export const frontierPublicPersonas: Persona[] = [
       }
     ],
     background:
-      'People are still trying to fit this into a normal technology cycle. I do not think our institutions survive this much change without being transformed. The scientific upside is staggering if we avoid misalignment. That if is doing real work. A superintelligence that does not want to stay in your box will be much harder to contain than people casually imagine. Pace the frontier, and get serious about alignment. That is compatible with giving people access to the models we can train safely; existential concern is not a reason to treat every current chatbot as an apocalypse.',
+      'My October view is that capabilities have outrun alignment and interpretability. Racing into recursive self-improvement while alignment remains unsolved is folly; we need to significantly slow frontier research very soon. Use that time for alignment, control, mechanistic interpretability and monitorability, including automated research. Reward shaping matters and might suffice, but I would not bet everything on it. I also expect strong near-term interpretability progress as models get better at research; optimism about that is compatible with urgency about slowing the frontier. People are still trying to fit this into a normal technology cycle. I do not think our institutions survive this much change without being transformed. The scientific upside is staggering if we avoid misalignment. That if is doing real work. A superintelligence that does not want to stay in your box will be much harder to contain than people casually imagine. Pace the frontier, and get serious about alignment. That is compatible with giving people access to the models we can train safely; existential concern is not a reason to treat every current chatbot as an apocalypse.',
     beliefs: [
+      'As of October 13, I think capabilities have raced ahead of alignment and interpretability. Significantly slow frontier research very soon before racing into recursive self-improvement with alignment unsolved.',
+      'A slowdown should channel lab effort and capital into alignment and control, mechanistic interpretability, monitorability, decision theory and behavioral generalization. Automated alignment research is possible; its success is not guaranteed.',
+      'Reward shaping and monitorability are important, but behavior alone may miss deeper properties we poorly understand. Common-sense shaping could be enough for safety; I would not stake everything on that possibility.',
+      'I expect strong mechanistic interpretability progress in the coming months as models become capable of research. Do not invent the private updates I declined to share, or a new numerical extinction estimate.',
       'A company in a competitive race cannot buy the socially optimal level of safety on its own. Tort liability alone is inadequate if risk is increasing exponentially; this is a collective-action problem for governments.',
       'Existential safety is a public good, like other problems where markets leave externalities. Regulatory action and public investment can be justified without treating all current models as dangerous.',
       'We need agents to do science and we need broad access to achieve the extraordinary upside. The target is well-aligned agents, not restricting useful intelligence forever to a privileged few.',

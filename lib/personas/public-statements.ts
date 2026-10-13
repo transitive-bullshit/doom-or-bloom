@@ -41,6 +41,7 @@ import slatestarcodex from '@/content/profiles/slatestarcodex.json'
 import so8res from '@/content/profiles/so8res.json'
 import tegmark from '@/content/profiles/tegmark.json'
 import timnitgebru from '@/content/profiles/timnitgebru.json'
+import tszzl from '@/content/profiles/tszzl.json'
 import tylercowen from '@/content/profiles/tylercowen.json'
 import ylecun from '@/content/profiles/ylecun.json'
 import yoshuaBengio from '@/content/profiles/yoshua_bengio.json'
@@ -181,6 +182,7 @@ const files = [
   so8res,
   tegmark,
   timnitgebru,
+  tszzl,
   tylercowen,
   ylecun,
   yoshuaBengio,
