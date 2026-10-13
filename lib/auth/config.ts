@@ -113,7 +113,8 @@ export function createAuth(
             await claimAnonymousAssessments(
               database,
               anonymousUser.user.id,
-              newUser.user.id
+              newUser.user.id,
+              anonymousUser.session.token
             )
           } catch (err) {
             reportServerError('auth_account_claim_failed', err, {

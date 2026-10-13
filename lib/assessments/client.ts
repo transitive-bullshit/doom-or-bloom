@@ -54,8 +54,10 @@ let starting: Promise<{ id: string | null }> | undefined
 export async function startAssessment(onlyIfEmpty: boolean) {
   if (starting) return starting
   const start = async () => {
+    // Bypass the cookie cache: the assessment API authorizes against the
+    // database, so a revoked session must lead to a new anonymous one.
     const session = await api<{ user?: { id: string } } | null>(
-      '/api/auth/get-session'
+      '/api/auth/get-session?disableCookieCache=true'
     )
     if (!session?.user)
       await api('/api/auth/sign-in/anonymous', { method: 'POST', body: '{}' })
