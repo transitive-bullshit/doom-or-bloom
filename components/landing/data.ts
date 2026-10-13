@@ -6,8 +6,12 @@ import { reportServerError } from '@/lib/server/error-reporting'
 import { cache } from 'react'
 import { getPool } from '@/lib/db'
 import { personaRepository } from '@/lib/personas/repository'
-import { simulationPresentation } from '@/lib/personas/payload'
+import {
+  personaMetadataSchema,
+  simulationPresentation
+} from '@/lib/personas/payload'
 import { personaProfileSchema } from '@/lib/journeys/catalog'
+import { journeySchema } from '@/lib/journeys/schema'
 import { presentResult } from '@/lib/assessment/present-result'
 import {
   closestOnExpressedPositions,
@@ -19,20 +23,76 @@ import type { SimilarWorldviewList } from './similar-worldviews'
 const loadSummaries = cache((featuredOnly: boolean) =>
   personaRepository(getPool()).selectedSummaries(featuredOnly)
 )
+
+// Separate local/test/hosted caches without putting credentials in cache keys.
+const databaseKey = () =>
+  createHash('sha256').update(databaseUrl()).digest('hex')
+
+// Each deployment reads the selected profiles' versions once, refreshing them
+// with its pages. Without a deployment (local builds and development) they
+// are read on every render, so local imports show immediately.
+const loadVersions = cache(async () => {
+  const read = () => personaRepository(getPool()).selectedVersions()
+  const deployment = process.env.VERCEL_DEPLOYMENT_ID
+  return deployment
+    ? await unstable_cache(
+        read,
+        ['persona-versions-v1', databaseKey(), deployment],
+        { revalidate: 172800 }
+      )()
+    : await read()
+})
+
+type SelectedProfile = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof personaRepository>['selectedProfile']>>
+>
+class ChangedSelection extends Error {
+  constructor(readonly profile: SelectedProfile | null) {
+    super('The persona selection changed after its version was read')
+  }
+}
+
+// A version names immutable content, so a cached profile is reused across
+// requests, languages, cards and deployments until a new run or metadata
+// change gives it a new version. Crawlers visiting profiles then rarely wake
+// the database.
+async function loadProfile(slug: string) {
+  const repository = personaRepository(getPool())
+  const versions = await loadVersions()
+  // A profile selected since the versions were read renders uncached.
+  if (!Object.hasOwn(versions, slug)) return repository.selectedProfile(slug)
+  const version = versions[slug]!
+  try {
+    return await unstable_cache(
+      async () => {
+        const profile = await repository.selectedProfile(slug)
+        // Store only the content this version names.
+        if (profile?.version !== version) throw new ChangedSelection(profile)
+        return profile
+      },
+      ['persona-profile-v1', databaseKey(), slug, version],
+      { revalidate: false }
+    )()
+  } catch (err) {
+    if (err instanceof ChangedSelection) return err.profile
+    throw err
+  }
+}
+
 export const loadPersona = cache(async (slug: string) => {
-  const row = await personaRepository(getPool()).selectedBySlug(slug)
-  return row
-    ? {
-        person: exampleFromSummary({
-          metadata: row.metadata,
-          assessmentId: row.assessmentId,
-          sources: personaProfileSchema.parse(row.persona.sourceBrief).sources,
-          recordedSources: row.payload.journey.personaSnapshot?.sources ?? [],
-          result: row.payload.journey.result!
-        }),
-        assessment: simulationPresentation(row.payload).assessment
-      }
-    : null
+  const profile = await loadProfile(slug)
+  if (!profile) return null
+  const journey = journeySchema.parse(profile.journey)
+  return {
+    person: exampleFromSummary({
+      metadata: personaMetadataSchema.parse(profile.metadata),
+      assessmentId: profile.assessmentId,
+      sources: personaProfileSchema.parse(profile.sourceBrief).sources,
+      recordedSources: journey.personaSnapshot?.sources ?? [],
+      result: journey.result!
+    }),
+    assessment: simulationPresentation({ journey }).assessment
+  }
 })
 export const loadPersonaPaths = () =>
   personaRepository(getPool()).selectedSlugs()
@@ -68,16 +128,14 @@ function exampleFromSummary(
   }
 }
 
-// Comparison inputs share the Data Cache across requests and builds. Separate
-// local/test/hosted caches without putting credentials in cache keys.
+// Comparison inputs share the Data Cache across requests and builds.
 const comparisons = async (featuredOnly: boolean) => {
   try {
-    const databaseKey = createHash('sha256').update(databaseUrl()).digest('hex')
     return await unstable_cache(
       () => personaRepository(getPool()).selectedComparisons(featuredOnly),
       [
         featuredOnly ? 'persona-comparisons-v3' : 'persona-catalog-v1',
-        databaseKey
+        databaseKey()
       ],
       { revalidate: 172800 }
     )()

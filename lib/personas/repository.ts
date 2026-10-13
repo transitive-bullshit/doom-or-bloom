@@ -54,12 +54,57 @@ export function personaRepository(pool: Pool) {
     metadata: personaMetadataSchema.parse(row.persona.metadata),
     payload: simulationPayload.parse(row.payload)
   })
+  // Names everything a profile shows: the immutable published snapshot and the
+  // persona's presentation metadata and source brief.
+  const selectionVersion = sql<string>`${assessments.publishedSnapshotId}::text || ':' || md5(${personas.metadata}::text || ${personas.sourceBrief}::text)`
   return {
-    async selectedBySlug(slug: string) {
-      const [row] = await selectedQuery().where(
-        and(publicSimulation, eq(personas.slug, slug))
+    // Unparsed JSON, so a cached copy is parsed by the code that renders it.
+    // The journey alone renders a profile; the snapshot's duplicated
+    // assessment state is twice its size.
+    async selectedProfile(slug: string) {
+      const [row] = await db
+        .select({
+          version: selectionVersion,
+          assessmentId: assessments.id,
+          metadata: personas.metadata,
+          sourceBrief: personas.sourceBrief,
+          journey: sql<unknown>`${assessmentSnapshots.payload} -> 'journey'`
+        })
+        .from(personas)
+        .innerJoin(
+          assessments,
+          and(
+            eq(assessments.id, personas.selectedAssessmentId),
+            eq(assessments.personaId, personas.id)
+          )
+        )
+        .innerJoin(
+          assessmentSnapshots,
+          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
+        )
+        .where(and(publicSimulation, eq(personas.slug, slug)))
+      return row ?? null
+    },
+    // Every selected profile's version by slug, without reading snapshots.
+    async selectedVersions() {
+      const rows = await db
+        .select({ slug: personas.slug, version: selectionVersion })
+        .from(personas)
+        .innerJoin(
+          assessments,
+          and(
+            eq(assessments.id, personas.selectedAssessmentId),
+            eq(assessments.personaId, personas.id)
+          )
+        )
+        .innerJoin(
+          assessmentSnapshots,
+          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
+        )
+        .where(publicSimulation)
+      return Object.fromEntries(
+        rows.map(({ slug, version }) => [slug, version])
       )
-      return row ? parseSelected(row) : null
     },
     async selectedSlugs() {
       // Enumerate build paths without downloading every interview snapshot.

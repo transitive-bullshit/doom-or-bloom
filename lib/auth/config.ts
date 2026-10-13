@@ -96,7 +96,14 @@ export function createAuth(
             }
           }
         : {},
-    session: { expiresIn: 365 * 24 * 60 * 60, updateAge: 24 * 60 * 60 },
+    session: {
+      expiresIn: 365 * 24 * 60 * 60,
+      updateAge: 24 * 60 * 60,
+      // A signed copy of the session lets the header's signed-in check skip
+      // the session and user queries for an hour. Sign-in, linking and
+      // sign-out rewrite it; authorization bypasses it (authorizedSession).
+      cookieCache: { enabled: true, maxAge: 60 * 60 }
+    },
     plugins: [
       anonymous({
         disableDeleteAnonymousUser: true,

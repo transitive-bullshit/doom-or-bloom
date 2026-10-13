@@ -2,6 +2,7 @@ import type { PersonaComparison } from '../assessment/persona-matches'
 import { AsyncLocalStorage } from 'node:async_hooks'
 import { beforeEach, afterEach, expect, test, vi } from 'vitest'
 import { expectDiagnostics } from '@/tests/helpers/diagnostics'
+import { stubDataCache } from '@/tests/helpers/data-cache'
 
 const selectedComparisons = vi.hoisted(() =>
   vi.fn<() => Promise<PersonaComparison[]>>()
@@ -15,24 +16,11 @@ vi.mock('@/lib/personas/repository', () => ({
 // Calls outside React rendering cannot benefit from React's render memoization.
 vi.stubGlobal('AsyncLocalStorage', AsyncLocalStorage)
 const { loadPersonaComparisons } = await import('@/components/landing/data')
-let now = 0
+let clock = { now: 0 }
 beforeEach(() => {
-  now = 0
   selectedComparisons.mockReset()
   vi.stubEnv('DATABASE_URL', 'postgresql://localhost/comparison_test')
-  const entries = new Map<string, { value: unknown; at: number }>()
-  vi.stubGlobal('__incrementalCache', {
-    generateSimpleCacheKey: async (key: string) => key,
-    get: async (key: string, options: { revalidate: number }) => {
-      const entry = entries.get(key)
-      return entry
-        ? { value: entry.value, isStale: now - entry.at >= options.revalidate }
-        : null
-    },
-    set: async (key: string, value: unknown) => {
-      entries.set(key, { value, at: now })
-    }
-  })
+  clock = stubDataCache()
 })
 afterEach(() => {
   vi.unstubAllEnvs()
@@ -53,10 +41,10 @@ test('comparison reads reuse the Data Cache, expire, and isolate database target
   expect(await loadPersonaComparisons()).toEqual(personas)
   expect(await loadPersonaComparisons()).toEqual(personas)
   expect(selectedComparisons).toHaveBeenCalledTimes(1)
-  now = 172799
+  clock.now = 172799
   expect(await loadPersonaComparisons()).toEqual(personas)
   expect(selectedComparisons).toHaveBeenCalledTimes(1)
-  now = 172801
+  clock.now = 172801
   expect(await loadPersonaComparisons()).toEqual(personas)
   expect(selectedComparisons).toHaveBeenCalledTimes(2)
   vi.stubEnv('DATABASE_URL', 'postgresql://localhost/other_test')

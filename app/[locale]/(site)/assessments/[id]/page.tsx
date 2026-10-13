@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { redirect } from '@/i18n/navigation'
 import { z } from 'zod'
-import { getAuth } from '@/lib/auth/server'
+import { authorizedSession } from '@/lib/auth/server'
 import {
   loadAssessmentOrDraft,
   draftCookieName
@@ -37,7 +37,7 @@ export default async function Page({
   const id = z.uuid().safeParse((await params).id)
   if (!id.success) notFound()
   const locale = await getLocale()
-  const session = await getAuth().api.getSession({ headers: await headers() })
+  const session = await authorizedSession(await headers())
   if (!session) redirect({ href: '/assessments', locale })
   const initial = await loadAssessmentOrDraft(
     session.user.id,

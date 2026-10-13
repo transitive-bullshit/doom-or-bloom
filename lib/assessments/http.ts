@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { withDiagnosticContext } from '../server/diagnostic-context'
 import 'server-only'
 import { ZodError } from 'zod'
-import { getAuth } from '../auth/server'
+import { authorizedSession } from '../auth/server'
 import { hasTrustedOrigin } from '../auth/origin'
 import { LimitError } from '../server/limits'
 import { reportServerError } from '../server/error-reporting'
@@ -34,9 +34,7 @@ export async function privateRequest(
             403,
             'Use the assessment page to make changes.'
           )
-        const session = await getAuth().api.getSession({
-          headers: request.headers
-        })
+        const session = await authorizedSession(request.headers)
         if (!session)
           throw new AssessmentError(
             'unauthorized',

@@ -278,7 +278,16 @@ try {
     "UPDATE session SET expires_at = NOW() - interval '1 minute' WHERE user_id = $1",
     [merged.user.id]
   )
-  assert.equal(await (await call('/get-session')).json(), null)
+  // The header's display reads the hour-long cookie cache, but authorization
+  // (authorizedSession) bypasses it and sees the expiry at once.
+  assert.equal(
+    (await (await call('/get-session')).json()).user.id,
+    merged.user.id
+  )
+  assert.equal(
+    await (await call('/get-session?disableCookieCache=true')).json(),
+    null
+  )
   await login()
   const renewed = await (await call('/get-session')).json()
   assert.equal(renewed.user.id, signedIn.user.id)

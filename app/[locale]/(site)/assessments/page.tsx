@@ -2,7 +2,7 @@ import { headers } from 'next/headers'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { redirect } from '@/i18n/navigation'
 import { profileImageUrl } from '@/lib/auth/profile-image'
-import { getAuth } from '@/lib/auth/server'
+import { authorizedSession } from '@/lib/auth/server'
 import { repository } from '@/lib/assessments/server'
 import { AssessmentLibrary } from '@/components/assessment/library'
 import { SurfaceMessages } from '@/components/surface-messages'
@@ -24,7 +24,7 @@ export default async function Page({
     compare?: string
   }>
 }) {
-  const session = await getAuth().api.getSession({ headers: await headers() })
+  const session = await authorizedSession(await headers())
   const { authError: error, start, compare: target } = await searchParams
   const compare = parseCompareTarget(target)
   const items = session ? await repository().list(session.user.id) : []
