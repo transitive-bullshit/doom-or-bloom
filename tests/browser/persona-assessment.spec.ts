@@ -10,7 +10,7 @@ const journey = suite.journeys.find(
   (journey) => journey.personaId === 'permissionless-innovation-optimist'
 )!
 
-test('persona page orders results, answers, collapsed debug info, sources and closing CTA', async ({
+test('persona page orders results, sources, answers, collapsed debug info and closing CTA', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
@@ -55,9 +55,9 @@ test('persona page orders results, answers, collapsed debug info, sources and cl
     [
       page.locator('[data-slot="worldview-map"]'),
       page.getByRole('region', { name: 'More details', exact: true }),
+      page.getByRole('region', { name: 'Sources', exact: true }),
       assessment,
       reasoning,
-      page.getByRole('region', { name: 'Sources', exact: true }),
       ctas.last()
     ].map((locator) => locator.boundingBox())
   )
