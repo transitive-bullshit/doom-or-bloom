@@ -90,6 +90,10 @@ export function PersonaPageContent({
           <PublicStatements name={person.name} statements={statements} />
         </div>
       )}
+      <PersonaSources
+        sources={person.sources ?? []}
+        sourceBriefUpdated={person.sourceBriefUpdated}
+      />
       <section
         aria-label={t('simulatedAssessment')}
         className='mt-20 flex flex-col gap-4'
@@ -128,10 +132,6 @@ export function PersonaPageContent({
           </Collapsible>
         </section>
       </section>
-      <PersonaSources
-        sources={person.sources ?? []}
-        sourceBriefUpdated={person.sourceBriefUpdated}
-      />
       <Separator className='my-20' />
       <WorldviewCtaCard />
       <MobileCta compare={`persona:${person.slug}`} />
