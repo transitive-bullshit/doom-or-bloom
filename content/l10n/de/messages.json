@@ -5036,6 +5036,12 @@
       "translatedAt": "2026-10-04",
       "reviewStatus": "machine"
     },
+    "About.methodology.changes.personal": {
+      "sourceHash": "40795cbdada93def",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
     "About.methodology.changes.between": {
       "sourceHash": "3fe6502b2b2f00b5",
       "model": "gpt-5.6-sol",

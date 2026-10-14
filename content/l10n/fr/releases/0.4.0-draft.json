@@ -1347,6 +1347,34 @@
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
     },
+    "prompt:personal.life-work:text": {
+      "text": "Comment pensez-vous que l’IA changera votre vie ou votre travail ?",
+      "sourceHash": "71ff5e8af6961f82",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-04",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:reask": {
+      "text": "Je n’ai pas pu relier cette réponse à la question. Quelques mots sur votre point de vue suffisent. Voulez-vous réessayer ?",
+      "sourceHash": "c49fdc570077bff7",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:clarification": {
+      "text": "Je ne suis pas sûr de savoir comment interpréter cela. Pourriez-vous préciser un peu ce que vous voulez dire ?",
+      "sourceHash": "d9f5fdf67503761a",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
+    "prompt:personal.life-work:exhausted": {
+      "text": "Faisons une pause ici. Vous pouvez essayer une autre question, vous arrêter pour le moment ou recommencer.",
+      "sourceHash": "158811d6e1475096",
+      "model": "gpt-5.6-sol",
+      "translatedAt": "2026-10-01",
+      "reviewStatus": "machine"
+    },
     "finding:finding.revision-closed": {
       "text": "Vous avez exclu de changer cette conviction, quelles que soient les preuves. Essayez de nommer une observation qui vous amènerait à la reconsidérer, ainsi que ce que vous changeriez.",
       "sourceHash": "a2f6cee65ef18d20",

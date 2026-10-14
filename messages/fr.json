@@ -1025,6 +1025,7 @@
       },
       "versions": "Chaque résultat enregistré conserve les versions avec lesquelles il a été produit. Les corrections qui ne nécessitent aucun nouveau jugement s’appliquent également aux anciens résultats lorsqu’ils sont affichés.",
       "changes": {
+        "personal": "Demande une fois comment l’IA changera votre propre vie ou votre travail, lors de la première question de suivi après les questions principales",
         "between": "Positionne les personnes entre les cinq niveaux de la carte plutôt que seulement sur ceux-ci, et relit les résultats enregistrés",
         "languages": "Entretiens en 10 langues ; Jev lit les réponses telles qu’elles sont écrites et connaît la langue de l’entretien",
         "typed": "Conserve les réponses à P(doom) saisies sous une forme aussi courte que « 30% », qui étaient remplacées par des valeurs déduites, et pose une question supplémentaire lorsqu’une interprétation est partagée ou très éloignée de votre propre positionnement",

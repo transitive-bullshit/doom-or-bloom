@@ -1025,6 +1025,7 @@
       },
       "versions": "Setiap hasil yang disimpan menyertakan versi yang digunakan untuk membuatnya. Perbaikan yang tidak memerlukan penilaian baru juga diterapkan pada hasil lama saat ditampilkan.",
       "changes": {
+        "personal": "Menanyakan satu kali bagaimana AI akan mengubah kehidupan atau pekerjaan Anda sendiri, dalam pertanyaan lanjutan pertama setelah pertanyaan inti",
         "between": "Menempatkan orang di antara lima tingkat pada peta, bukan hanya tepat pada tingkat tersebut, dan membaca ulang hasil yang disimpan",
         "languages": "Wawancara dalam 10 bahasa; Jev membaca jawaban sebagaimana ditulis dan diberi tahu bahasa wawancara tersebut",
         "typed": "Mempertahankan jawaban P(doom) yang diketik sesingkat “30%”, yang sebelumnya diganti dengan nilai hasil inferensi, dan mengajukan satu pertanyaan tambahan ketika hasil pembacaan terbagi atau jauh dari penempatan Anda sendiri",
