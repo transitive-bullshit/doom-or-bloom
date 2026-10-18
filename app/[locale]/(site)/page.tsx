@@ -7,9 +7,10 @@ import { Prism } from '@/components/landing/prism'
 import { PageTransition } from '@/components/page-transition'
 import '@/components/landing/landing.css'
 
-// Only public persona data belongs in this shared page cache.
+// Only public persona data belongs in this shared page cache. The catalog
+// changes only with a deployment, so the page is cached until the next one.
 export const dynamic = 'error'
-export const revalidate = 172800
+export const revalidate = false
 export function generateMetadata() {
   return publicPageMetadata('home')
 }

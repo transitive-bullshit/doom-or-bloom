@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { existsSync } from 'node:fs'
 import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
+import { gunzipSync } from 'node:zlib'
 
 const output = process.env.NEXT_TEST_DIST_DIR || '.next'
 const manifest = JSON.parse(
@@ -84,20 +85,28 @@ assert(
 assert.equal(
   manifest.dynamicRoutes['/[locale]/users/[username]'].fallback,
   null,
-  'New post-build profiles must remain reachable from the revalidated directory'
+  'Profiles outside English must render on their first request'
 )
 const localeCodes = ['en', 'es', 'pt', 'hi', 'zh', 'th', 'ja', 'de', 'fr', 'id']
+// The catalog changes only with a deployment, so its pages never regenerate.
 for (const route of [
   ...localeCodes.flatMap((code) => [
     `/${code}`,
     `/${code}/users`,
-    `/${code}/p-doom`
+    `/${code}/p-doom`,
+    `/${code}/about`
   ]),
   '/sitemap.xml',
   '/llms.txt',
-  ...profilePaths,
-  ...publicRoutes
+  ...profilePaths
 ]) {
+  assert.equal(
+    manifest.routes[route]?.initialRevalidateSeconds,
+    false,
+    `${route}: must be pregenerated and cached until the next deployment`
+  )
+}
+for (const route of publicRoutes) {
   assert.equal(
     manifest.routes[route]?.initialRevalidateSeconds,
     172800,
@@ -180,8 +189,43 @@ for (const route of [
           .resolve(path.dirname(trace), file)
           .startsWith(path.resolve('work/journeys') + path.sep)
     ),
-    `${route}: runtime bundle must read personas from PostgreSQL, not canonical fixture JSON`
+    `${route}: runtime bundle must read personas from the catalog snapshot or PostgreSQL, not canonical fixture JSON`
   )
+}
+// Public pages, cards and participant comparisons read the catalog from the
+// build's snapshot, never from Postgres at request time.
+const snapshot = JSON.parse(
+  gunzipSync(await readFile('catalog-snapshot/catalog.json.gz')).toString()
+)
+assert.deepEqual(
+  snapshot.slugs.map((slug) => `/en/users/${slug}`).toSorted(),
+  [...profilePaths].toSorted(),
+  'The catalog snapshot must hold every pregenerated profile'
+)
+const snapshotFiles = [
+  'catalog-snapshot/catalog.json.gz',
+  `catalog-snapshot/profiles/${snapshot.slugs[0]}.json.gz`
+].map((file) => path.resolve(file))
+for (const route of [
+  '[locale]/(site)/users/[username]/page',
+  '[locale]/(site)/assessments/[id]/page',
+  '[locale]/(site)/public/assessments/[id]/page',
+  '[locale]/(site)/s/[id]/page',
+  'users/[username]/opengraph-image/route',
+  'api/personas/[slug]/comparison/route',
+  'api/assessments/[id]/results-image/route',
+  'public/assessments/[id]/social-image.png/route'
+]) {
+  const trace = path.join(output, 'server/app', `${route}.js.nft.json`)
+  const { files } = JSON.parse(await readFile(trace, 'utf8'))
+  const bundled = new Set(
+    files.map((file) => path.resolve(path.dirname(trace), file))
+  )
+  for (const file of snapshotFiles)
+    assert(
+      bundled.has(file),
+      `${route}: catalog snapshot ${path.relative('.', file)} is missing from the bundle`
+    )
 }
 for (const portraitRoute of [
   'users/[username]/opengraph-image',
@@ -276,7 +320,7 @@ for (const fontRoute of [
     )
 }
 console.log(
-  'Production persona bundles read PostgreSQL and include required social portraits and card fonts'
+  'Production persona bundles read the catalog snapshot and include required social portraits and card fonts'
 )
 
 const routes = JSON.parse(

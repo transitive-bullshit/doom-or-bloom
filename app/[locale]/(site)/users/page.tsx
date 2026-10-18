@@ -21,8 +21,9 @@ const followerAccount = (xUrl: string | null | undefined) =>
     ? followerAccounts[new URL(xUrl).pathname.slice(1).toLowerCase()]
     : undefined
 
+// The catalog changes only with a deployment; cached until the next one.
 export const dynamic = 'error'
-export const revalidate = 172800
+export const revalidate = false
 export function generateMetadata() {
   return publicPageMetadata('users')
 }

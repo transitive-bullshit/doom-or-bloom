@@ -5,8 +5,9 @@ import { blogPosts, isTranslated } from '@/lib/blog/posts'
 import { hubContent } from '@/lib/p-doom/hub'
 import { publicPages, siteUrl } from '@/lib/site'
 
+// Profiles and posts change only with a deployment.
 export const dynamic = 'error'
-export const revalidate = 172800
+export const revalidate = false
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const people = await loadExamples(false)
   const posts = blogPosts()

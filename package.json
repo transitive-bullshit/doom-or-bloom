@@ -10,7 +10,8 @@
   "scripts": {
     "check:env": "node --env-file=.env.development.local --import tsx scripts/check-env.ts",
     "dev": "node --import tsx scripts/dev.ts",
-    "build": "next build --webpack && node scripts/check-production-traces.mjs",
+    "build": "pnpm catalog:snapshot && next build --webpack && node scripts/check-production-traces.mjs",
+    "catalog:snapshot": "node --conditions=react-server --import tsx scripts/catalog-snapshot.ts",
     "start": "next start",
     "test": "run-s test:*",
     "test:format": "oxfmt --check",

@@ -1,5 +1,5 @@
 import { loadEnvFile } from 'node:process'
-import { spawn } from 'node:child_process'
+import { spawn, spawnSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 
 const command = process.argv[2]
@@ -8,6 +8,20 @@ if (!['build', 'start'].includes(command))
 loadEnvFile('.env.development.local')
 process.env.ASSESSMENT_PROVIDER = 'live'
 const require = createRequire(import.meta.url)
+// Production builds render the catalog from a snapshot of the local database.
+if (command === 'build') {
+  const snapshot = spawnSync(
+    process.execPath,
+    [
+      '--conditions=react-server',
+      '--import',
+      'tsx',
+      'scripts/catalog-snapshot.ts'
+    ],
+    { stdio: 'inherit', env: process.env }
+  )
+  if (snapshot.status !== 0) process.exit(snapshot.status ?? 1)
+}
 // Start a fresh process without --env-file in execArgv: Next forwards those
 // arguments to worker NODE_OPTIONS, where Node does not permit --env-file.
 const child = spawn(

@@ -20,11 +20,11 @@ import { profileTitle } from '@/lib/seo/profile-titles'
 
 export const dynamic = 'force-static'
 export const dynamicParams = true
-export const revalidate = 172800
+export const revalidate = false
 
 // Publish the entire selected catalog with the build, including unfeatured users.
-// Existing paths serve cached content during 48-hour background revalidation.
-// New post-build slugs can render on demand so refreshed directory links work.
+// Pages render from the build's catalog snapshot and stay cached until the
+// next deployment; slugs outside it are not found without a database query.
 // Only English is pregenerated: other locales translate the chrome alone, are
 // noindex, and render on first request, then cache like English. Next needs
 // complete params under every parent locale, so each yields the English paths

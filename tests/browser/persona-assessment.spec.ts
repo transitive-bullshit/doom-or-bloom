@@ -10,7 +10,7 @@ const journey = suite.journeys.find(
   (journey) => journey.personaId === 'permissionless-innovation-optimist'
 )!
 
-test('persona page orders results, sources, answers, collapsed debug info and closing CTA', async ({
+test('persona page orders results, sources, answers and closing CTA, with no debug info', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
@@ -25,20 +25,9 @@ test('persona page orders results, sources, answers, collapsed debug info and cl
   await expect(
     header.getByRole('link', { name: 'Map your own worldview' })
   ).toHaveCount(0)
-  const reasoning = page
-    .getByRole('region', {
-      name: 'Debug info',
-      exact: true
-    })
-    .first()
-  const reasoningToggle = reasoning.getByRole('button', {
-    name: 'Debug info',
-    exact: true
-  })
-  await expect(reasoningToggle).toHaveAttribute('aria-expanded', 'false')
-  await expect(
-    page.getByRole('region', { name: 'Final assessment state', exact: true })
-  ).toHaveCount(0)
+  // Public profiles carry only final results and answers, no evaluator state.
+  await expect(page.getByRole('button', { name: 'Debug info' })).toHaveCount(0)
+  await expect(page.getByText('completeParticipantEvidence')).toHaveCount(0)
   const assessment = page.getByRole('region', {
     name: 'Simulated Assessment',
     exact: true
@@ -57,7 +46,6 @@ test('persona page orders results, sources, answers, collapsed debug info and cl
       page.getByRole('region', { name: 'More details', exact: true }),
       page.getByRole('region', { name: 'Sources', exact: true }),
       assessment,
-      reasoning,
       ctas.last()
     ].map((locator) => locator.boundingBox())
   )
@@ -78,20 +66,6 @@ test('persona page orders results, sources, answers, collapsed debug info and cl
       exact: true
     })
   ).toHaveCount(0)
-  await reasoningToggle.click()
-  await expect(
-    reasoning.getByRole('region', {
-      name: 'Final assessment state',
-      exact: true
-    })
-  ).toBeVisible()
-  await expect(
-    reasoning.getByRole('region', {
-      name: 'Final generated result',
-      exact: true
-    })
-  ).toBeVisible()
-  await expect(reasoning).toContainText('completeParticipantEvidence')
   await page.setViewportSize({ width: 390, height: 844 })
   const mobileHeader = await header.boundingBox()
   expect(mobileHeader!.width).toBeLessThan(390)
@@ -106,12 +80,13 @@ test('JSON field tooltips anchor to their text on wide screens', async ({
   page
 }) => {
   await page.setViewportSize({ width: 1800, height: 1000 })
-  await page.goto('/users/jensenhuang')
-  await page.getByRole('button', { name: 'Debug info', exact: true }).click()
+  // About's methodology example shows a recorded result in the JSON viewer.
+  await page.goto('/about')
   const result = page.getByRole('region', {
-    name: 'Final generated result',
-    exact: true
+    name: /simulated assessment result$/
   })
+  // The example opens one level deep; field descriptions start below it.
+  await result.getByRole('button', { name: /Expand .*\.experiment$/ }).click()
   const row = result.getByRole('button', {
     name: /(?:Expand|Collapse) .*\.influence$/
   })
