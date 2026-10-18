@@ -4,8 +4,9 @@ import { publicPages, siteUrl } from '@/lib/site'
 import { blogPosts } from '@/lib/blog/posts'
 
 import { loadExamples } from '@/components/landing/data'
+// Profiles and posts change only with a deployment.
 export const dynamic = 'error'
-export const revalidate = 172800
+export const revalidate = false
 
 // Stays English. Route handlers have no root params, so pass the locale.
 export async function GET() {

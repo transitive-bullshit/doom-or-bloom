@@ -20,8 +20,9 @@ import { pdoomJsonLd } from '@/lib/seo/json-ld'
 // they link to are refreshed with the simulated users. The explainer,
 // scenarios and sources are English in every locale; other locales translate
 // the chrome and defer to the English page in search (see docs/SEO.md).
+// Cached until the next deployment, which is when the catalog changes.
 export const dynamic = 'error'
-export const revalidate = 172800
+export const revalidate = false
 export function generateMetadata() {
   return publicPageMetadata('pdoom')
 }

@@ -18,8 +18,6 @@ import {
 } from './similar-worldviews'
 import { PublicStatements } from './public-statements'
 import { ExperimentalResults } from '@/components/assessment/experimental-results'
-import { ReasoningJudgments } from '@/components/assessment/reasoning-judgments'
-import { JsonViewer } from '@/components/debug/json-viewer'
 import { Separator } from '@/components/ui/separator'
 import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 import type { Result } from '@/lib/assessment/schema'
@@ -49,7 +47,8 @@ export function PersonaPageContent({
     | 'sources'
     | 'sourceBriefUpdated'
   > & { result: Result }
-  assessment: PersonaAssessment
+  /** Only the answers: public pages carry no evaluator state. */
+  assessment: Pick<PersonaAssessment, 'answers'>
   /** Nearest simulated users, linked after the compare prompt. */
   similar?: SimilarWorldviewList
   /** What the real person has said, below the map and its follow-ups. */
@@ -100,37 +99,6 @@ export function PersonaPageContent({
       >
         <h2>{t('simulatedAssessment')}</h2>
         <PersonaAnswers assessment={assessment} defaultOpen={answersOpen} />
-        <section aria-label={t('debugInfo')}>
-          <Collapsible>
-            <DisclosureTrigger>{t('debugInfo')}</DisclosureTrigger>
-            <CollapsibleContent className='mt-4 flex min-w-0 flex-col gap-5'>
-              <ReasoningJudgments components={person.result.components} />
-              <div className='flex min-w-0 flex-col gap-3'>
-                <h3>{t('stateTitle')}</h3>
-                <p className='text-sm text-muted-foreground'>
-                  {t('stateDescription')}
-                </p>
-                {assessment.finalState ? (
-                  <JsonViewer
-                    label={t('stateLabel')}
-                    value={assessment.finalState}
-                  />
-                ) : (
-                  <p className='text-sm text-muted-foreground'>
-                    {t('stateMissing')}
-                  </p>
-                )}
-              </div>
-              <div className='flex min-w-0 flex-col gap-3'>
-                <h3>{t('resultsTitle')}</h3>
-                <p className='text-sm text-muted-foreground'>
-                  {t('resultsDescription')}
-                </p>
-                <JsonViewer label={t('resultsLabel')} value={person.result} />
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        </section>
       </section>
       <Separator className='my-20' />
       <WorldviewCtaCard />
@@ -143,7 +111,7 @@ function PersonaAnswers({
   assessment,
   defaultOpen
 }: {
-  assessment: PersonaAssessment
+  assessment: Pick<PersonaAssessment, 'answers'>
   defaultOpen: boolean
 }) {
   const t = useTranslations('Persona')

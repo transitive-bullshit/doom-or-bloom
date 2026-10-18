@@ -1,17 +1,15 @@
 import 'server-only'
-import { createHash } from 'node:crypto'
-import { unstable_cache } from 'next/cache'
-import { databaseUrl } from '@/lib/db/config'
-import { reportServerError } from '@/lib/server/error-reporting'
 import { cache } from 'react'
+import { reportServerError } from '@/lib/server/error-reporting'
 import { getPool } from '@/lib/db'
 import { personaRepository } from '@/lib/personas/repository'
 import {
-  personaMetadataSchema,
-  simulationPresentation
-} from '@/lib/personas/payload'
-import { personaProfileSchema } from '@/lib/journeys/catalog'
+  readCatalogSnapshot,
+  snapshotDatabaseKey
+} from '@/lib/personas/catalog-snapshot'
+import { parsePublicProfile } from '@/lib/personas/public-profile'
 import { journeySchema } from '@/lib/journeys/schema'
+import { personaAssessment } from '@/lib/journeys/persona-assessment'
 import { presentResult } from '@/lib/assessment/present-result'
 import {
   closestOnExpressedPositions,
@@ -20,87 +18,89 @@ import {
 import type { Result } from '@/lib/assessment/schema'
 import type { SimilarWorldviewList } from './similar-worldviews'
 
-const loadSummaries = cache((featuredOnly: boolean) =>
-  personaRepository(getPool()).selectedSummaries(featuredOnly)
-)
-
-// Separate local/test/hosted caches without putting credentials in cache keys.
-const databaseKey = () =>
-  createHash('sha256').update(databaseUrl()).digest('hex')
-
-// Each deployment reads the selected profiles' versions once, refreshing them
-// with its pages. Without a deployment (local builds and development) they
-// are read on every render, so local imports show immediately.
-const loadVersions = cache(async () => {
-  const read = () => personaRepository(getPool()).selectedVersions()
-  const deployment = process.env.VERCEL_DEPLOYMENT_ID
-  return deployment
-    ? await unstable_cache(
-        read,
-        ['persona-versions-v1', databaseKey(), deployment],
-        { revalidate: 172800 }
-      )()
-    : await read()
-})
-
-type SelectedProfile = NonNullable<
-  Awaited<ReturnType<ReturnType<typeof personaRepository>['selectedProfile']>>
->
-class ChangedSelection extends Error {
-  constructor(readonly profile: SelectedProfile | null) {
-    super('The persona selection changed after its version was read')
+// Production builds snapshot the selected catalog first
+// (scripts/catalog-snapshot.ts), so public pages and cards never query
+// Postgres at request time: crawler renders of on-demand profile pages and
+// cards kept the production database awake (October 2026). Catalog changes go
+// live with a deployment. Development and tests read Postgres, so local
+// imports show immediately.
+const runtime = () =>
+  Boolean(process.env.VERCEL) &&
+  process.env.NEXT_PHASE !== 'phase-production-build'
+let warned = false
+function snapshot() {
+  if (process.env.NODE_ENV !== 'production') return null
+  const found = readCatalogSnapshot(process.cwd(), snapshotDatabaseKey())
+  if (!found && runtime() && !warned) {
+    warned = true
+    reportServerError('catalog_snapshot_unavailable', undefined, {}, 'warn')
   }
+  return found
 }
 
-// A version names immutable content, so a cached profile is reused across
-// requests, languages, cards and deployments until a new run or metadata
-// change gives it a new version. Crawlers visiting profiles then rarely wake
-// the database.
+// One line per request-time catalog query in a deployment, so a missing
+// snapshot or a page that regenerates at runtime shows in the logs before it
+// shows as database wake-ups.
+function logCatalogRead(read: string, key: Record<string, unknown> = {}) {
+  if (!runtime()) return
+  console.info(
+    JSON.stringify({
+      event: 'catalog_postgres_read',
+      read,
+      ...key,
+      deployment: process.env.VERCEL_DEPLOYMENT_ID,
+      region: process.env.VERCEL_REGION
+    })
+  )
+}
+
+const loadSummaries = cache(async (featuredOnly: boolean) => {
+  const catalog = snapshot()
+  if (catalog)
+    return featuredOnly ? catalog.featuredSummaries : catalog.summaries
+  logCatalogRead('summaries', { featuredOnly })
+  return personaRepository(getPool()).selectedSummaries(featuredOnly)
+})
+
 async function loadProfile(slug: string) {
-  const repository = personaRepository(getPool())
-  const versions = await loadVersions()
-  // A profile selected since the versions were read renders uncached.
-  if (!Object.hasOwn(versions, slug)) return repository.selectedProfile(slug)
-  const version = versions[slug]!
-  try {
-    return await unstable_cache(
-      async () => {
-        const profile = await repository.selectedProfile(slug)
-        // Store only the content this version names.
-        if (profile?.version !== version) throw new ChangedSelection(profile)
-        return profile
-      },
-      ['persona-profile-v1', databaseKey(), slug, version],
-      { revalidate: false }
-    )()
-  } catch (err) {
-    if (err instanceof ChangedSelection) return err.profile
-    throw err
-  }
+  const catalog = snapshot()
+  // Unknown slugs are not found without a query.
+  if (catalog) return catalog.profile(slug)
+  logCatalogRead('profile', { slug })
+  return personaRepository(getPool()).selectedProfile(slug)
 }
 
+/** A selected profile's presented result, sources and simulated answers. */
 export const loadPersona = cache(async (slug: string) => {
-  const profile = await loadProfile(slug)
-  if (!profile) return null
-  const journey = journeySchema.parse(profile.journey)
+  const row = await loadProfile(slug)
+  if (!row) return null
+  const profile = parsePublicProfile(row)
   return {
-    person: exampleFromSummary({
-      metadata: personaMetadataSchema.parse(profile.metadata),
-      assessmentId: profile.assessmentId,
-      sources: personaProfileSchema.parse(profile.sourceBrief).sources,
-      recordedSources: journey.personaSnapshot?.sources ?? [],
-      result: journey.result!
-    }),
-    assessment: simulationPresentation({ journey }).assessment
+    person: exampleFromSummary(profile),
+    assessment: { answers: profile.answers }
   }
 })
-export const loadPersonaPaths = () =>
-  personaRepository(getPool()).selectedSlugs()
+export const loadPersonaPaths = async () => {
+  const catalog = snapshot()
+  return catalog
+    ? catalog.slugs.map((username) => ({ username }))
+    : personaRepository(getPool()).selectedSlugs()
+}
+
+/**
+ * A selected persona's recorded assessment, including the final projection
+ * input. It reads the full journey from Postgres, so only fully static pages
+ * (About's methodology example, generated at build) and internal prototypes
+ * use it.
+ */
 export const loadPersonaAssessment = cache(async (id: string) => {
   const row = (await loadSummaries(false)).find((row) => row.metadata.id === id)
-  return row
-    ? ((await loadPersona(row.metadata.slug))?.assessment ?? null)
-    : null
+  if (!row) return null
+  logCatalogRead('journey', { slug: row.metadata.slug })
+  const journey = await personaRepository(getPool()).selectedJourney(
+    row.metadata.slug
+  )
+  return journey ? personaAssessment(journeySchema.parse(journey)) : null
 })
 export const loadExamples = cache(async (featuredOnly = true) => {
   return (await loadSummaries(featuredOnly)).map(exampleFromSummary)
@@ -128,17 +128,13 @@ function exampleFromSummary(
   }
 }
 
-// Comparison inputs share the Data Cache across requests and builds.
 const comparisons = async (featuredOnly: boolean) => {
+  const catalog = snapshot()
+  if (catalog)
+    return featuredOnly ? catalog.comparisons.featured : catalog.comparisons.all
+  logCatalogRead('comparisons', { featuredOnly })
   try {
-    return await unstable_cache(
-      () => personaRepository(getPool()).selectedComparisons(featuredOnly),
-      [
-        featuredOnly ? 'persona-comparisons-v3' : 'persona-catalog-v1',
-        databaseKey()
-      ],
-      { revalidate: 172800 }
-    )()
+    return await personaRepository(getPool()).selectedComparisons(featuredOnly)
   } catch (err) {
     reportServerError('persona_comparisons_unavailable', err, {})
     return []

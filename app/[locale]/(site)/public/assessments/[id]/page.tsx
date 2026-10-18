@@ -119,7 +119,7 @@ export default async function Page({
                 sources: sources.map(({ title, url }) => ({ title, url })),
                 sourceBriefUpdated: false
               }}
-              assessment={presentation.assessment}
+              assessment={{ answers: presentation.assessment.answers }}
               answersOpen
             />
           </AuthoredTextProvider>

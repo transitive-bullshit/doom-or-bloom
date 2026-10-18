@@ -50,6 +50,9 @@ yarn-error.log*
 .content-sync-*
 /work
 
+# Written before each build by scripts/catalog-snapshot.ts
+/catalog-snapshot
+
 # generated meme-skill comparison reports
 /docs/skills/ai-safety-meme-creator/archive-ab-comparison*.html
 /docs/skills/ai-safety-meme-creator/archive-impact-comparison.html

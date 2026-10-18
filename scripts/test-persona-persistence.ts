@@ -11,6 +11,8 @@ import { seedPersonas } from '../lib/personas/seed'
 import { personaRepository } from '../lib/personas/repository'
 import { historicalPayload } from '../lib/personas/payload'
 import { personaProfileSchema } from '../lib/journeys/catalog'
+import { personaAssessment } from '../lib/journeys/persona-assessment'
+import { parsePublicProfile } from '../lib/personas/public-profile'
 import { journeySchema, suiteSchema } from '../lib/journeys/schema'
 import { assessmentRepository } from '../lib/assessments/repository'
 import { resultPoint } from '../lib/assessment/self-placement'
@@ -47,6 +49,30 @@ async function verifySummaries() {
     expected.filter((_, index) => full[index]!.persona.featured)
   )
 }
+// A public profile reads only what its page renders: no per-step results or
+// projection inputs.
+async function verifyProfiles() {
+  const full = new Map(
+    (await repo.selected()).map((row) => [row.persona.slug, row])
+  )
+  const profiles = await repo.selectedProfiles()
+  assert.equal(profiles.length, full.size)
+  assert.deepEqual(
+    profiles.map(parsePublicProfile),
+    profiles
+      .map(({ slug }) => full.get(slug)!)
+      .map((row) => ({
+        assessmentId: row.assessmentId,
+        metadata: row.metadata,
+        sources: personaProfileSchema.parse(row.persona.sourceBrief).sources,
+        recordedSources: row.payload.journey.personaSnapshot?.sources ?? [],
+        result: row.payload.journey.result,
+        answers: personaAssessment(row.payload.journey).answers
+      }))
+  )
+  for (const profile of [profiles[0]!, profiles.at(-1)!])
+    assert.deepEqual(await repo.selectedProfile(profile.slug), profile)
+}
 let testPersona: string | undefined
 try {
   const first = await seedPersonas(pool)
@@ -74,31 +100,18 @@ try {
       .map((row) => ({ username: row.persona.slug }))
       .sort((a, b) => a.username.localeCompare(b.username))
   )
-  const versions = await repo.selectedVersions()
-  assert.deepEqual(
-    Object.keys(versions).sort(),
-    selected.map((row) => row.persona.slug).sort()
-  )
+  await verifyProfiles()
   for (const row of [
     selected[0]!,
     selected.find((row) => !row.persona.featured)!
   ]) {
-    const profile = (await repo.selectedProfile(row.persona.slug))!
     assert.deepEqual(
-      {
-        ...profile,
-        journey: journeySchema.parse(profile.journey)
-      },
-      {
-        version: versions[row.persona.slug],
-        assessmentId: row.assessmentId,
-        metadata: row.persona.metadata,
-        sourceBrief: row.persona.sourceBrief,
-        journey: row.payload.journey
-      }
+      journeySchema.parse(await repo.selectedJourney(row.persona.slug)),
+      row.payload.journey
     )
   }
   assert.equal(await repo.selectedProfile('no-such-simulated-user'), null)
+  assert.equal(await repo.selectedJourney('no-such-simulated-user'), null)
   for (const row of selected) {
     assert.equal(
       row.persona.featured,
@@ -132,7 +145,6 @@ try {
   old.provenance.createdAt = '2026-01-01T00:00:00.000Z'
   old.provenance.runId = `${testId}-old`
   const oldId = await repo.publish(testPersona, old.provenance.runId, old)
-  const oldVersion = (await repo.selectedVersions())[testId]
   assert.equal(
     await repo.publish(testPersona, old.provenance.runId, old),
     oldId
@@ -151,9 +163,6 @@ try {
       .assessmentId,
     newId
   )
-  // A newer run gives the profile a new cache version.
-  const newVersion = (await repo.selectedVersions())[testId]!
-  assert.notEqual(newVersion, oldVersion)
   await assert.rejects(
     repo.publish(testPersona, old.provenance.runId, next),
     /Immutable simulation provenance/
@@ -230,16 +239,12 @@ try {
   revisedBrief.sources = [
     { title: 'Updated source', url: 'https://example.com/updated' }
   ]
-  const liveVersion = (await repo.selectedVersions())[testId]!
   await repo.upsertProfile(
     { ...source.metadata, id: testId, slug: testId, featured: false },
     revisedBrief
   )
-  // So does a metadata or brief edit, which keeps the run.
-  const revisedVersion = (await repo.selectedVersions())[testId]!
-  assert.notEqual(revisedVersion, liveVersion)
-  assert.equal(revisedVersion.split(':')[0], liveVersion.split(':')[0])
   await verifySummaries()
+  await verifyProfiles()
   const summary = (await repo.selectedSummaries()).find(
     (row) => row.assessmentId === run.id
   )!

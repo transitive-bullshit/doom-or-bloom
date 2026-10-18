@@ -73,10 +73,13 @@ const config: NextConfig = {
     }))
   },
   distDir: process.env.NEXT_TEST_DIST_DIR || '.next',
-  // Results are read from PostgreSQL. Native image rendering still needs
+  // Public catalog reads come from the build's catalog snapshot, which pages,
+  // cards and participant comparisons across the app read at runtime
+  // (docs/PERSISTENCE.md#catalog-snapshot). Native image rendering still needs
   // portraits, and the Noto subsets for non-Latin scripts (Takumi never reads
   // system fonts).
   outputFileTracingIncludes: {
+    '/**': ['catalog-snapshot/**'],
     '/api/assessments/*/results-image': cardAssets,
     '/api/share-card': cardAssets,
     '/api/map-png': ['lib/sharing/fonts/*.woff2'],
@@ -87,8 +90,8 @@ const config: NextConfig = {
     '/*/assessments/*': authoredContent,
     '/*/public/assessments/*': authoredContent,
     '/*/users/*': authoredContent,
-    // Regenerated at runtime: they list blog posts from their frontmatter,
-    // and the sitemap lists translated posts in every locale.
+    // They list blog posts from their frontmatter, and the sitemap lists
+    // translated posts in every locale.
     '/sitemap.xml': ['content/blog/*.mdx', 'content/l10n/*/blog/*.mdx'],
     '/llms.txt': ['content/blog/*.mdx']
   },

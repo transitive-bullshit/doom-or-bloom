@@ -55,7 +55,7 @@ Check a post with `pnpm dev`, then run `pnpm test`, `pnpm check:browser tests/br
 
 Posts are compiled by `@next/mdx` (configured in `next.config.ts`, with `remark-frontmatter` to keep the YAML out of the page and `remark-gfm` for tables). `mdx-components.tsx` maps elements and data components (`components/blog/mdx.tsx`); a post's page binds the charts to the post's language and the profile links (`postComponents`). `lib/blog/posts.ts` reads the frontmatter with gray-matter for the index, metadata, sitemap, llms.txt and RSS feed.
 
-Posts change only with a deployment. The index and every post are generated at build in every locale; unknown slugs are 404s. The feed (`/blog/rss.xml`, summaries only) and the post cards are generated once at build. The sitemap and llms.txt regenerate every 48 hours and bundle `content/blog/*.mdx` (the sitemap also bundles translations); `scripts/check-production-traces.mjs` asserts all of this.
+Posts change only with a deployment. The index and every post are generated at build in every locale; unknown slugs are 404s. The feed (`/blog/rss.xml`, summaries only) and the post cards are generated once at build. The sitemap and llms.txt are generated at build and cached until the next deployment; they bundle `content/blog/*.mdx` (the sitemap also bundles translations); `scripts/check-production-traces.mjs` asserts all of this.
 
 ## Languages
 

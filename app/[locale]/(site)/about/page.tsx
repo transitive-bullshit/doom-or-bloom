@@ -11,9 +11,10 @@ import { Methodology } from '@/components/about/methodology'
 import { SourcesSection } from '@/components/sources/sources-section'
 import { methodologyCitations, repositoryUrl } from '@/lib/about/methodology'
 
-// The example assessment is public persona data, refreshed with the page.
+// The example assessment is public persona data, read once at build: the
+// page is cached until the next deployment.
 export const dynamic = 'error'
-export const revalidate = 86400
+export const revalidate = false
 export function generateMetadata() {
   return publicPageMetadata('about')
 }

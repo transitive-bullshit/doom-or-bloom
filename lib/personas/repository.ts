@@ -54,20 +54,60 @@ export function personaRepository(pool: Pool) {
     metadata: personaMetadataSchema.parse(row.persona.metadata),
     payload: simulationPayload.parse(row.payload)
   })
-  // Names everything a profile shows: the immutable published snapshot and the
-  // persona's presentation metadata and source brief.
-  const selectionVersion = sql<string>`${assessments.publishedSnapshotId}::text || ':' || md5(${personas.metadata}::text || ${personas.sourceBrief}::text)`
+  // What a public profile renders: the final result, the answered questions
+  // and both source lists. Per-step results, projection inputs and other
+  // evaluator detail stay in the snapshot; they are most of a journey.
+  const profileColumns = {
+    slug: personas.slug,
+    assessmentId: assessments.id,
+    metadata: personas.metadata,
+    sources: sql<unknown>`coalesce(${personas.sourceBrief} -> 'sources', '[]'::jsonb)`,
+    recordedSources: sql<unknown>`coalesce(${assessmentSnapshots.payload} #> '{journey,personaSnapshot,sources}', '[]'::jsonb)`,
+    result: sql<unknown>`${assessmentSnapshots.payload} #> '{journey,result}'`,
+    answers: sql<unknown>`coalesce((
+      select jsonb_agg(jsonb_build_object(
+        'id', step #> '{prompt,id}',
+        'promptId', step #> '{prompt,promptId}',
+        'question', step #> '{prompt,text}',
+        'answer', step -> 'answer'
+      ) order by position)
+      from jsonb_array_elements(${assessmentSnapshots.payload} #> '{journey,steps}')
+        with ordinality as steps(step, position)
+      where coalesce(step -> 'answer', 'null'::jsonb) <> 'null'::jsonb
+    ), '[]'::jsonb)`
+  }
+  const profileQuery = () =>
+    db
+      .select(profileColumns)
+      .from(personas)
+      .innerJoin(
+        assessments,
+        and(
+          eq(assessments.id, personas.selectedAssessmentId),
+          eq(assessments.personaId, personas.id)
+        )
+      )
+      .innerJoin(
+        assessmentSnapshots,
+        eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
+      )
   return {
-    // Unparsed JSON, so a cached copy is parsed by the code that renders it.
-    // The journey alone renders a profile; the snapshot's duplicated
-    // assessment state is twice its size.
+    // Unparsed JSON, parsed by the code that renders it, so a stored copy
+    // still gains render-time result upgrades.
     async selectedProfile(slug: string) {
+      const [row] = await profileQuery().where(
+        and(publicSimulation, eq(personas.slug, slug))
+      )
+      return row ?? null
+    },
+    // Every selected profile, for the build's catalog snapshot.
+    async selectedProfiles() {
+      return profileQuery().where(publicSimulation).orderBy(asc(personas.slug))
+    },
+    // One selected journey in full: About shows its final projection input.
+    async selectedJourney(slug: string) {
       const [row] = await db
         .select({
-          version: selectionVersion,
-          assessmentId: assessments.id,
-          metadata: personas.metadata,
-          sourceBrief: personas.sourceBrief,
           journey: sql<unknown>`${assessmentSnapshots.payload} -> 'journey'`
         })
         .from(personas)
@@ -83,28 +123,7 @@ export function personaRepository(pool: Pool) {
           eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
         )
         .where(and(publicSimulation, eq(personas.slug, slug)))
-      return row ?? null
-    },
-    // Every selected profile's version by slug, without reading snapshots.
-    async selectedVersions() {
-      const rows = await db
-        .select({ slug: personas.slug, version: selectionVersion })
-        .from(personas)
-        .innerJoin(
-          assessments,
-          and(
-            eq(assessments.id, personas.selectedAssessmentId),
-            eq(assessments.personaId, personas.id)
-          )
-        )
-        .innerJoin(
-          assessmentSnapshots,
-          eq(assessmentSnapshots.id, assessments.publishedSnapshotId)
-        )
-        .where(publicSimulation)
-      return Object.fromEntries(
-        rows.map(({ slug, version }) => [slug, version])
-      )
+      return row?.journey ?? null
     },
     async selectedSlugs() {
       // Enumerate build paths without downloading every interview snapshot.
