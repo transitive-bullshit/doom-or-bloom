@@ -1,5 +1,5 @@
 import 'server-only'
-import { createHash } from 'node:crypto'
+import { createHash, randomUUID } from 'node:crypto'
 import { unstable_cache } from 'next/cache'
 import { databaseUrl } from '@/lib/db/config'
 import { reportServerError } from '@/lib/server/error-reporting'
@@ -20,9 +20,45 @@ import {
 import type { Result } from '@/lib/assessment/schema'
 import type { SimilarWorldviewList } from './similar-worldviews'
 
-const loadSummaries = cache((featuredOnly: boolean) =>
-  personaRepository(getPool()).selectedSummaries(featuredOnly)
-)
+// Diagnostic (October 2026): one line per public catalog lookup, recording a
+// Data Cache hit or a Postgres read, to find why cached profiles still wake
+// the production database. Key parts only; never the database URL.
+const instance = randomUUID().slice(0, 8)
+let instanceReads = 0
+type CacheHandlers = { FetchCache?: { name?: string } }
+function logCatalogLookup(
+  cache: string,
+  outcome: 'hit' | 'read',
+  key: Record<string, unknown> = {}
+) {
+  if (outcome === 'read') instanceReads++
+  if (!process.env.VERCEL) return
+  const handlers = (globalThis as Record<symbol, CacheHandlers | undefined>)[
+    Symbol.for('@next/cache-handlers')
+  ]
+  console.info(
+    JSON.stringify({
+      event: 'catalog_lookup',
+      cache,
+      outcome,
+      ...key,
+      database: databaseKey().slice(0, 12),
+      deployment: process.env.VERCEL_DEPLOYMENT_ID,
+      region: process.env.VERCEL_REGION,
+      instance,
+      instanceReads,
+      uptime: Math.round(process.uptime()),
+      handler: handlers?.FetchCache
+        ? handlers.FetchCache.name || 'anonymous'
+        : 'none'
+    })
+  )
+}
+
+const loadSummaries = cache((featuredOnly: boolean) => {
+  logCatalogLookup('persona-summaries-uncached', 'read', { featuredOnly })
+  return personaRepository(getPool()).selectedSummaries(featuredOnly)
+})
 
 // Separate local/test/hosted caches without putting credentials in cache keys.
 const databaseKey = () =>
@@ -32,15 +68,21 @@ const databaseKey = () =>
 // with its pages. Without a deployment (local builds and development) they
 // are read on every render, so local imports show immediately.
 const loadVersions = cache(async () => {
-  const read = () => personaRepository(getPool()).selectedVersions()
   const deployment = process.env.VERCEL_DEPLOYMENT_ID
-  return deployment
-    ? await unstable_cache(
-        read,
-        ['persona-versions-v1', databaseKey(), deployment],
-        { revalidate: 172800 }
-      )()
-    : await read()
+  let read = false
+  const query = () => {
+    read = true
+    logCatalogLookup('persona-versions-v1', 'read', { deployment })
+    return personaRepository(getPool()).selectedVersions()
+  }
+  if (!deployment) return query()
+  const versions = await unstable_cache(
+    query,
+    ['persona-versions-v1', databaseKey(), deployment],
+    { revalidate: 172800 }
+  )()
+  if (!read) logCatalogLookup('persona-versions-v1', 'hit', { deployment })
+  return versions
 })
 
 type SelectedProfile = NonNullable<
@@ -60,12 +102,23 @@ async function loadProfile(slug: string) {
   const repository = personaRepository(getPool())
   const versions = await loadVersions()
   // A profile selected since the versions were read renders uncached.
-  if (!Object.hasOwn(versions, slug)) return repository.selectedProfile(slug)
+  if (!Object.hasOwn(versions, slug)) {
+    logCatalogLookup('persona-profile-unversioned', 'read', { slug })
+    return repository.selectedProfile(slug)
+  }
   const version = versions[slug]!
+  let read = false
   try {
-    return await unstable_cache(
+    const profile = await unstable_cache(
       async () => {
+        read = true
         const profile = await repository.selectedProfile(slug)
+        logCatalogLookup('persona-profile-v1', 'read', {
+          slug,
+          version,
+          changed: profile?.version !== version,
+          bytes: profile ? JSON.stringify(profile).length : 0
+        })
         // Store only the content this version names.
         if (profile?.version !== version) throw new ChangedSelection(profile)
         return profile
@@ -73,6 +126,8 @@ async function loadProfile(slug: string) {
       ['persona-profile-v1', databaseKey(), slug, version],
       { revalidate: false }
     )()
+    if (!read) logCatalogLookup('persona-profile-v1', 'hit', { slug, version })
+    return profile
   } catch (err) {
     if (err instanceof ChangedSelection) return err.profile
     throw err
@@ -130,15 +185,20 @@ function exampleFromSummary(
 
 // Comparison inputs share the Data Cache across requests and builds.
 const comparisons = async (featuredOnly: boolean) => {
+  const name = featuredOnly ? 'persona-comparisons-v3' : 'persona-catalog-v1'
+  let read = false
   try {
-    return await unstable_cache(
-      () => personaRepository(getPool()).selectedComparisons(featuredOnly),
-      [
-        featuredOnly ? 'persona-comparisons-v3' : 'persona-catalog-v1',
-        databaseKey()
-      ],
+    const rows = await unstable_cache(
+      () => {
+        read = true
+        logCatalogLookup(name, 'read')
+        return personaRepository(getPool()).selectedComparisons(featuredOnly)
+      },
+      [name, databaseKey()],
       { revalidate: 172800 }
     )()
+    if (!read) logCatalogLookup(name, 'hit')
+    return rows
   } catch (err) {
     reportServerError('persona_comparisons_unavailable', err, {})
     return []
