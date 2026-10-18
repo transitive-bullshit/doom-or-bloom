@@ -1,5 +1,9 @@
 # Doom or Bloom launch video
 
+[![DOOM or BLOOM? Watch the launch video](stills/doom-or-bloom-title.png)](https://assets.cultural-alignment.com/personal-site/media/aef37f7470b02fc71bb78cdd9a6189c41ead92c94147230a7bd33fc968acdac0.mp4)
+
+▶ [Watch the launch video](https://assets.cultural-alignment.com/personal-site/media/aef37f7470b02fc71bb78cdd9a6189c41ead92c94147230a7bd33fc968acdac0.mp4)
+
 A 50-second launch film rendered by a small custom motion engine: every frame is drawn with Canvas2D, composited through a WebGL2 post pipeline, captured deterministically in headless Chromium, and encoded with ffmpeg.
 
 ## Setup
