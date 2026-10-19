@@ -795,6 +795,7 @@
       "future": "die Zukunft"
     },
     "userDescription": "Was denkt {name} über KI? Sieh, wo die simulierte Weltsicht dieser Person zwischen Doom und Bloom liegt, mit einer groben P(doom)-Schätzung und den zugrunde liegenden Antworten.",
+    "userBioDescription": "{bio} Sieh, wo die simulierte Weltsicht dieser Person zwischen Doom und Bloom liegt, mit einer groben P(doom)-Schätzung und den zugrunde liegenden Antworten.",
     "userImageAlt": "{name}s simulierte KI-Weltsicht auf der Karte zu Doom–Bloom und dem Ausmaß der Transformation",
     "personDescription": "Eine Simulation der KI-Weltsicht von {name}, die auf öffentlichen Beiträgen dieser Person basiert. Sie ist eine experimentelle Interpretation, nicht die eigene Einschätzung dieser Person oder eine Empfehlung.",
     "publicTitle": "{name}s KI-Weltsicht",
