@@ -67,7 +67,7 @@ export async function generateMetadata({
     translated: false,
     path: `/users/${person.slug}`,
     title: profileTitle(root, locale, titleSubject(person)),
-    description: t('userDescription', { name: person.name }),
+    description: t('userBioDescription', { bio: person.description }),
     // Change the image URL so social crawlers do not reuse the earlier WebP.
     // Other languages add theirs, so a shared link previews in that language.
     image: `/users/${person.slug}/opengraph-image?v=png-1${locale === defaultLocale ? '' : `&locale=${locale}`}`,
@@ -101,7 +101,7 @@ export default async function Page({
           person,
           locale,
           title: profileTitle(root, locale, titleSubject(person)),
-          description: t('userDescription', { name: person.name }),
+          description: t('userBioDescription', { bio: person.description }),
           disclosure: t('personDescription', { name: person.name }),
           dateModified: person.result.experiment?.generatedAt
         })}

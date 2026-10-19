@@ -795,6 +795,7 @@
       "future": "未来"
     },
     "userDescription": "{name}はAIについてどう考えているのでしょうか？シミュレーションされたその人の世界観がDoomとBloomの間のどこに位置するのかを、大まかなP(doom)と、その根拠となる回答とともに確認できます。",
+    "userBioDescription": "{bio} シミュレーションされたその人の世界観がDoomとBloomの間のどこに位置するのかを、大まかなP(doom)と、その根拠となる回答とともに確認できます。",
     "userImageAlt": "Doom–Bloomと変革の規模のマップ上に示された、{name}のシミュレーションされたAI世界観",
     "personDescription": "公開されている文章から構築した、{name}のAIに対する世界観のシミュレーションです。これは実験的な解釈であり、本人による評価でも、支持を示すものでもありません。",
     "publicTitle": "{name}のAI世界観",
