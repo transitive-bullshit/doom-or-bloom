@@ -1,0 +1,1672 @@
+<title>Clef and Clairic Spike</title>
+<meta name="claude:viewport-fit-sides" content="cover" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+/>
+<style>
+  /* Layout: one reading column; a verdict and scorecard first, then one chart per question, each with its takeaway above it. */
+  :root {
+    --bg: #f6f7f5;
+    --surface: #ffffff;
+    --ink: #15181a;
+    --ink-2: #4b5157;
+    --ink-3: #7b8288;
+    --rule: #dfe2df;
+    --grid: #eceeeb;
+    --a: #2a78d6;
+    --b: #eb6834;
+    --c: #1baf7a;
+    --ref: #8a9096;
+    --doom: oklch(0.62 0.17 22);
+    --bloom: oklch(0.62 0.15 151);
+    --good: #1f7a3d;
+    --good-bg: #e3f2e7;
+    --bad: #b3261e;
+    --bad-bg: #fbe7e5;
+    --same: #5b6168;
+    --same-bg: #eceeee;
+    --display: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg: #131617;
+      --surface: #1b1f21;
+      --ink: #eef0ee;
+      --ink-2: #b9bfc3;
+      --ink-3: #8a9196;
+      --rule: #2d3235;
+      --grid: #23282a;
+      --a: #3987e5;
+      --b: #d95926;
+      --c: #199e70;
+      --ref: #9aa1a6;
+      --doom: oklch(0.66 0.16 22);
+      --bloom: oklch(0.68 0.14 151);
+      --good: #6fd08f;
+      --good-bg: #183424;
+      --bad: #ff8a80;
+      --bad-bg: #3b1d1b;
+      --same: #b9bfc3;
+      --same-bg: #262b2d;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme='dark'] {
+    --bg: #131617;
+    --surface: #1b1f21;
+    --ink: #eef0ee;
+    --ink-2: #b9bfc3;
+    --ink-3: #8a9196;
+    --rule: #2d3235;
+    --grid: #23282a;
+    --a: #3987e5;
+    --b: #d95926;
+    --c: #199e70;
+    --ref: #9aa1a6;
+    --doom: oklch(0.66 0.16 22);
+    --bloom: oklch(0.68 0.14 151);
+    --good: #6fd08f;
+    --good-bg: #183424;
+    --bad: #ff8a80;
+    --bad-bg: #3b1d1b;
+    --same: #b9bfc3;
+    --same-bg: #262b2d;
+    color-scheme: dark;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.55 var(--body);
+  }
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 40px 72px;
+    display: grid;
+    gap: 56px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    text-wrap: balance;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  h1 {
+    font-size: clamp(30px, 4.6vw, 46px);
+    line-height: 1.08;
+  }
+  h2 {
+    font-size: clamp(22px, 2.8vw, 28px);
+    line-height: 1.15;
+  }
+  h3 {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+  p {
+    margin: 0;
+    max-width: 68ch;
+  }
+  .eyebrow {
+    font: 500 12px/1.2 var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .dek {
+    font-size: 18px;
+    color: var(--ink-2);
+    max-width: 64ch;
+  }
+  header {
+    display: grid;
+    gap: 16px;
+  }
+  section {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
+  }
+  .lede {
+    display: grid;
+    gap: 8px;
+  }
+  .lede p {
+    color: var(--ink-2);
+  }
+  .key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .key span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sw {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px;
+    min-width: 0;
+  }
+  .scroll {
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+  #scorecard {
+    min-width: 660px;
+  }
+  #mock {
+    min-width: 520px;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  thead th {
+    font: 500 12px/1.3 var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  thead th .sw {
+    margin-right: 6px;
+    vertical-align: -1px;
+  }
+  tbody th {
+    font-weight: 500;
+    color: var(--ink);
+    width: 30%;
+  }
+  tbody th small {
+    display: block;
+    font-weight: 400;
+    color: var(--ink-3);
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  td .val {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    font: 500 11px/1.6 var(--body);
+    letter-spacing: 0.02em;
+  }
+  .pill.good {
+    color: var(--good);
+    background: var(--good-bg);
+  }
+  .pill.bad {
+    color: var(--bad);
+    background: var(--bad-bg);
+  }
+  .pill.same {
+    color: var(--same);
+    background: var(--same-bg);
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .grid3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  figure {
+    margin: 0;
+    display: grid;
+    gap: 10px;
+    min-width: 0;
+  }
+  figcaption {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  figcaption b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  svg text {
+    fill: var(--ink-3);
+    font: 11px var(--body);
+  }
+  .tip {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 1.45;
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.12);
+    max-width: 280px;
+  }
+  .tip b {
+    font-weight: 600;
+  }
+  .tip .m {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .bars {
+    display: grid;
+    gap: 10px;
+  }
+  .bar {
+    display: grid;
+    grid-template-columns: minmax(150px, 34%) 1fr;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+  }
+  .bar .lab {
+    color: var(--ink-2);
+    min-width: 0;
+  }
+  .bar .track {
+    position: relative;
+    height: 22px;
+    background: var(--grid);
+    border-radius: 4px;
+  }
+  .bar .fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 4px;
+  }
+  .bar .num {
+    position: absolute;
+    top: 0;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    font: 500 12px var(--mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 16px;
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    min-width: 0;
+  }
+  .card .tag {
+    font: 500 11px/1.2 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .card .tag.good {
+    color: var(--good);
+  }
+  .card .tag.bad {
+    color: var(--bad);
+  }
+  .card .tag.same {
+    color: var(--same);
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  blockquote {
+    margin: 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--rule);
+    font-family: var(--display);
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .who {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .mock {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .mock .side {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 16px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+  .mock .big {
+    font: 600 34px/1 var(--display);
+  }
+  .mock .small {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .chip {
+    display: inline-flex;
+    gap: 6px;
+    align-items: baseline;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 13px;
+  }
+  .chip b {
+    font-family: var(--mono);
+    font-weight: 500;
+  }
+  .recs {
+    display: grid;
+    gap: 12px;
+  }
+  .rec {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .rec .n {
+    font: 600 22px/1 var(--display);
+    color: var(--ink-3);
+  }
+  .rec h3 {
+    margin-bottom: 4px;
+  }
+  .rec p {
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .rec .status {
+    font: 500 11px/1.2 var(--mono);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 8px;
+    display: block;
+  }
+  details {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+  details ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .seg {
+    display: inline-flex;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .seg button {
+    font: 500 13px var(--body);
+    padding: 6px 12px;
+    background: var(--surface);
+    color: var(--ink-2);
+    border: 0;
+    cursor: pointer;
+  }
+  .seg button[aria-pressed='true'] {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .seg button:focus-visible,
+  details summary:focus-visible {
+    outline: 2px solid var(--a);
+    outline-offset: 2px;
+  }
+  .mono {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 520px) {
+    .bar {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    tbody th {
+      width: auto;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">
+      Doom or Bloom &middot; engine spike &middot; 20 October 2026
+    </div>
+    <h1>
+      Keep Jev. Use Clairic only to find the numbers and dates people state
+    </h1>
+    <p class="dek">
+      We replayed the recorded interviews of all
+      <span data-v="summary.A.accuracy.users"></span> featured simulated users
+      through three engine setups. Swapping Jev for Clef moved people on the
+      map, changed which follow-up question came next, and ran about
+      <span data-v="ratio.latency"></span> slower at
+      <span data-v="ratio.cost"></span> the cost. Clairic helped with one narrow
+      job: finding a probability or a date the person actually stated, which Jev
+      then checks.
+    </p>
+    <div class="key">
+      <span><i class="sw" style="background: var(--a)"></i>Today: Jev</span>
+      <span
+        ><i class="sw" style="background: var(--b)"></i>Jev + Clairic (Clairic
+        only adds)</span
+      >
+      <span
+        ><i class="sw" style="background: var(--c)"></i>Clef + Clairic (full
+        replacement)</span
+      >
+    </div>
+  </header>
+
+  <section>
+    <div class="lede">
+      <h2>The three setups side by side</h2>
+      <p>
+        Same 47 recorded transcripts in every column, so every difference comes
+        from the engine. A second Jev run of the same transcripts sets the noise
+        floor: anything smaller than that is not a real change.
+      </p>
+    </div>
+    <div class="panel scroll">
+      <table id="scorecard">
+        <thead>
+          <tr>
+            <th></th>
+            <th><i class="sw" style="background: var(--a)"></i>Today: Jev</th>
+            <th>
+              <i class="sw" style="background: var(--b)"></i>Jev + Clairic
+            </th>
+            <th>
+              <i class="sw" style="background: var(--c)"></i>Clef + Clairic
+            </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="lede">
+      <h2>Where each person lands on the map</h2>
+      <p>
+        Each line runs from today's position to the new one. Adding Clairic
+        leaves the map where it was, because the map stays Jev's job. Replacing
+        Jev with Clef moves most people, and on average further from the
+        independent reference readings.
+      </p>
+    </div>
+    <div class="seg" role="group" aria-label="Map overlay">
+      <button type="button" id="ov-none" aria-pressed="true">
+        Movement only
+      </button>
+      <button type="button" id="ov-ref" aria-pressed="false">
+        Show reference readings
+      </button>
+    </div>
+    <div class="grid2">
+      <figure>
+        <svg
+          id="mapB"
+          viewBox="0 0 420 420"
+          role="img"
+          aria-label="Map: today versus Jev plus Clairic"
+        ></svg>
+        <figcaption id="capB"></figcaption>
+      </figure>
+      <figure>
+        <svg
+          id="mapC"
+          viewBox="0 0 420 420"
+          role="img"
+          aria-label="Map: today versus Clef plus Clairic"
+        ></svg>
+        <figcaption id="capC"></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="lede">
+      <h2>P(doom): who reads it closest</h2>
+      <p>
+        Rows are the 47 people, sorted by the reference reading (grey ring). A
+        black diamond (and bar, for a range) marks a verified public statement.
+        Clef reads 41 of 47 people lower than the reference, typically by about
+        3.5&times; in odds; Jev is evenly split. Clairic only changes a row when
+        it finds a number the person stated.
+      </p>
+    </div>
+    <div class="key">
+      <span
+        ><i
+          class="sw"
+          style="background: transparent; border: 2px solid var(--ref)"
+        ></i
+        >Reference reading</span
+      >
+      <span
+        ><i
+          class="sw"
+          style="
+            background: var(--ink);
+            border-radius: 1px;
+            transform: rotate(45deg);
+          "
+        ></i
+        >Public statement</span
+      >
+      <span><i class="sw" style="background: var(--a)"></i>Jev</span>
+      <span><i class="sw" style="background: var(--b)"></i>Jev + Clairic</span>
+      <span><i class="sw" style="background: var(--c)"></i>Clef + Clairic</span>
+    </div>
+    <div class="panel scroll">
+      <svg
+        id="pdoom"
+        viewBox="0 0 900 700"
+        role="img"
+        aria-label="P(doom) per person by setup"
+        style="min-width: 640px"
+      ></svg>
+    </div>
+    <div class="grid2">
+      <figure class="panel">
+        <h3>Can Clairic estimate an unstated P(doom)?</h3>
+        <p style="font-size: 14px; color: var(--ink-2)">
+          We gave Clairic five different ways to estimate it. Every design lands
+          far below the reference readings for people with moderate views, which
+          is no better than giving everyone the same number. Jev's likelihood
+          bands stay.
+        </p>
+        <div class="bars" id="estimators"></div>
+        <figcaption>
+          Share of the 47 within 2&times; of the reference reading, and the
+          median estimate (references: about 10%).
+        </figcaption>
+      </figure>
+      <figure class="panel">
+        <h3>Can Clairic place someone on the map?</h3>
+        <p style="font-size: 14px; color: var(--ink-2)">
+          Asked directly for a 0&ndash;1 position, Clairic pulls everyone toward
+          the middle. The current ladder of Jev questions stays.
+        </p>
+        <div class="bars" id="mapest"></div>
+        <figcaption>
+          Average distance from the reference readings on each axis (0&ndash;1
+          scale). Shorter is better.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="lede">
+      <h2>What Clairic adds, and where it slips</h2>
+      <p>
+        Clairic is good at finding things: a probability in any wording, where
+        it was said, a year. It is poor at judging whether the person still
+        holds that view, so in this setup Jev still picks every quote, Clairic
+        only fills gaps, and each find goes through the same Jev check that
+        guards today's quotes.
+      </p>
+    </div>
+    <div class="cards" id="clairic-cards"></div>
+    <h3>What a simulated user's page would show</h3>
+    <div class="panel scroll">
+      <table id="mock">
+        <thead>
+          <tr>
+            <th></th>
+            <th><i class="sw" style="background: var(--a)"></i>Today</th>
+            <th><i class="sw" style="background: var(--b)"></i>With Clairic</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p style="font-size: 13px; color: var(--ink-3)">
+      Kokotajlo's and McAfee's public profiles already show their published
+      P(doom); these rows compare what the engine reads from the interview
+      itself. Participant results show no timeline today, so the year only
+      reaches simulated users' pages.
+    </p>
+  </section>
+
+  <section>
+    <div class="lede">
+      <h2>Which question comes next</h2>
+      <p>
+        At every recorded answer, we asked each engine which follow-up it would
+        choose. A second Jev run picks the same question 91% of the time. Clef
+        picks a different one about a third of the time, so live interviews
+        would take a different path.
+      </p>
+    </div>
+    <div class="panel"><div class="bars" id="routing"></div></div>
+  </section>
+
+  <section>
+    <div class="lede">
+      <h2>Speed and cost</h2>
+      <p>
+        Clef answers our 22 to 93 question batches in seconds where Jev takes a
+        few hundred milliseconds, and it charges about six times more per token.
+        Clairic is cheap and runs beside the existing result request.
+      </p>
+    </div>
+    <div class="grid2">
+      <figure class="panel">
+        <h3>Engine time per answer</h3>
+        <div class="bars" id="latency"></div>
+        <figcaption>
+          Median across all replayed answers, including the result when one is
+          due. About 0.7 s per Cloudflare request is our command-line transport,
+          not the model.
+        </figcaption>
+      </figure>
+      <figure class="panel">
+        <h3>Model cost per interview</h3>
+        <div class="bars" id="cost"></div>
+        <figcaption>
+          Input tokens at list prices: Jev $0.042, Clef $0.24, Clairic $0.10 per
+          million. Featured interviews average 4.3 answers.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="lede"><h2>Recommendation</h2></div>
+    <div class="recs" id="recs"></div>
+  </section>
+
+  <details>
+    <summary>How this was run</summary>
+    <ul>
+      <li>
+        All 47 featured simulated users, using their selected production
+        transcripts (read-only). Each transcript was replayed answer by answer
+        through the real engine in persona mode, exactly as the published pages
+        were built. No new answers were generated and nothing was written to a
+        database.
+      </li>
+      <li>
+        Today: Jev 1.13.0 at algorithm 0.7.5. Jev + Clairic: Jev makes every
+        judgment and picks every quote as today; Clairic runs beside the result
+        request, proposes a stated P(doom) only when Jev found none, and dates
+        the timelines Jev chose. Jev verifies each proposal before it is shown.
+        Clef + Clairic: Clef answers every Jev question and Clairic picks the
+        quotes, each verified by Clef. Clairic's own P(doom) and map estimates
+        were recorded but never shown.
+      </li>
+      <li>
+        A fourth run let Clairic pick the quotes with Jev verifying them. It
+        kept the map and P(doom) but showed fewer timelines (14 vs 22) and
+        assumption quotes (90 vs 100), so the recommended setup leaves quote
+        picking to Jev.
+      </li>
+      <li>
+        Reference readings are the benchmark consensus: an independent model
+        reading each person's source dossier, and the simulated person placing
+        itself. They are imperfect and share a model family, so read them as a
+        fair yardstick, not ground truth. Public statements are the 15 verified
+        P(doom) quotes among the featured users.
+      </li>
+      <li>
+        Clef and Clairic are previews. Both returned identical outputs on
+        repeated identical requests; Jev varies slightly, which the second Jev
+        run measures. Calls went through the Cloudflare command-line tool, which
+        adds roughly 0.7 s per request; a production integration would use the
+        REST API.
+      </li>
+      <li>
+        Adapting Clef took one change: it accepts only letters, digits, dot,
+        dash and underscore in question IDs, so the adapter renames ours. It
+        also caps a request at 64 questions and silently truncates long input
+        instead of rejecting it.
+      </li>
+      <li>
+        Code: reference draft PR (not for merging) on branch
+        <span class="mono">spike/cloudflare-system-one</span>; re-run with
+        <span class="mono">scripts/compare-system-one.ts</span> and
+        <span class="mono">scripts/compare-system-one.py</span>, as described in
+        <span class="mono"
+          >docs/research/cloudflare-system-one-spike-2026-10-20.md</span
+        >.
+      </li>
+    </ul>
+  </details>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+  const DATA = /*DATA*/ null
+  const S = DATA.summary,
+    U = DATA.users
+  const $ = (id) => document.getElementById(id)
+  const NS = 'http://www.w3.org/2000/svg'
+  const el = (tag, attrs = {}, parent) => {
+    const e = document.createElementNS(NS, tag)
+    for (const k in attrs) e.setAttribute(k, attrs[k])
+    if (parent) parent.appendChild(e)
+    return e
+  }
+  const pct = (v, d = 0) => (v == null ? '-' : (v * 100).toFixed(d) + '%')
+  const num = (v, d = 2) => (v == null ? '-' : v.toFixed(d))
+  const secs = (ms) => (ms == null ? '-' : (ms / 1000).toFixed(1) + ' s')
+  const usd = (v) => (v == null ? '-' : '$' + v.toFixed(3))
+  const get = (path) =>
+    path
+      .split('.')
+      .reduce((o, k) => (o == null ? o : o[k]), { summary: S, ratio: RATIO })
+  const acc = (v) => S[v].accuracy,
+    vs = (v) => S[v].vsA
+  const RATIO = {
+    latency:
+      Math.round(acc('C').latencyMedianMs / acc('A').latencyMedianMs) + '×',
+    cost: Math.round(acc('C').usdPerUser / acc('A').usdPerUser) + '×'
+  }
+  document.querySelectorAll('[data-v]').forEach((n) => {
+    n.textContent = get(n.dataset.v)
+  })
+
+  // ---- Tooltip
+  const tip = $('tip')
+  function showTip(evt, html) {
+    tip.innerHTML = html
+    tip.hidden = false
+    const x = Math.min(evt.clientX + 14, innerWidth - tip.offsetWidth - 8)
+    const y = Math.min(evt.clientY + 14, innerHeight - tip.offsetHeight - 8)
+    tip.style.left = x + 'px'
+    tip.style.top = y + 'px'
+  }
+  function hideTip() {
+    tip.hidden = true
+  }
+
+  // ---- Scorecard
+  const noise = vs('A2')
+  function verdict(kind, a, b) {
+    if (kind === 'lower') {
+      if (b < a * 0.9) return ['good', 'better']
+      if (b > a * 1.1) return ['bad', 'worse']
+      return ['same', 'same']
+    }
+    if (kind === 'higher') {
+      if (b > a * 1.08) return ['good', 'better']
+      if (b < a * 0.92) return ['bad', 'worse']
+      return ['same', 'same']
+    }
+  }
+  const rows = [
+    {
+      label: 'Map position vs today',
+      sub: 'average move on the 0–1 map',
+      cells: ['A', 'B', 'C'].map((v) => {
+        if (v === 'A')
+          return {
+            val:
+              'second run moves ' + num((noise.meanDx + noise.meanDy) / 2, 3),
+            pill: ['same', 'noise floor']
+          }
+        const m = (vs(v).meanDx + vs(v).meanDy) / 2
+        const moved = vs(v).moved10
+        return {
+          val: num(m, 3) + ' · ' + moved + ' of ' + vs(v).users + ' moved >0.1',
+          pill:
+            m <= (3 * (noise.meanDx + noise.meanDy)) / 2
+              ? ['same', 'unchanged']
+              : ['bad', 'people move']
+        }
+      })
+    },
+    {
+      label: 'Map accuracy',
+      sub: 'distance from reference readings, outlook / scale',
+      cells: ['A', 'B', 'C'].map((v) => {
+        const e = (acc(v).refErrX + acc(v).refErrY) / 2,
+          a = (acc('A').refErrX + acc('A').refErrY) / 2
+        return {
+          val: num(acc(v).refErrX, 3) + ' / ' + num(acc(v).refErrY, 3),
+          pill: v === 'A' ? null : verdict('lower', a, e)
+        }
+      })
+    },
+    {
+      label: 'P(doom) vs public statements',
+      sub: 'within 2× of the 15 verified quotes, or inside their range',
+      cells: ['A', 'B', 'C'].map((v) => ({
+        val: acc(v).pdoomPublicWithin2x + ' of ' + acc(v).pdoomPublicN,
+        pill:
+          v === 'A'
+            ? null
+            : verdict(
+                'higher',
+                acc('A').pdoomPublicWithin2x,
+                acc(v).pdoomPublicWithin2x
+              )
+      }))
+    },
+    {
+      label: 'P(doom) vs reference readings',
+      sub: 'within 2×, all 47',
+      cells: ['A', 'B', 'C'].map((v) => ({
+        val: pct(acc(v).pdoomRefWithin2x),
+        pill:
+          v === 'A'
+            ? null
+            : verdict(
+                'higher',
+                acc('A').pdoomRefWithin2x,
+                acc(v).pdoomRefWithin2x
+              )
+      }))
+    },
+    {
+      label: 'Stated P(doom) found',
+      sub: 'read from the interview itself',
+      cells: ['A', 'B', 'C'].map((v) => ({
+        val: acc(v).stated + ' people',
+        pill:
+          v === 'A'
+            ? null
+            : ['same', '+' + (acc(v).stated - acc('A').stated) + ' found']
+      }))
+    },
+    {
+      label: 'Same next question as today',
+      sub: 'share of follow-up choices',
+      cells: ['A', 'B', 'C'].map((v) =>
+        v === 'A'
+          ? {
+              val: pct(noise.routeAgreement) + ' on a second run',
+              pill: ['same', 'noise floor']
+            }
+          : {
+              val: pct(vs(v).routeAgreement),
+              pill:
+                vs(v).routeAgreement >= noise.routeAgreement - 0.05
+                  ? ['same', 'same path']
+                  : ['bad', 'different path']
+            }
+      )
+    },
+    {
+      label: 'Engine time per answer',
+      sub: 'median',
+      cells: ['A', 'B', 'C'].map((v) => ({
+        val: secs(acc(v).latencyMedianMs),
+        pill:
+          v === 'A'
+            ? null
+            : verdict('lower', acc('A').latencyMedianMs, acc(v).latencyMedianMs)
+      }))
+    },
+    {
+      label: 'Model cost per interview',
+      sub: 'list prices',
+      cells: ['A', 'B', 'C'].map((v) => ({
+        val: usd(acc(v).usdPerUser),
+        pill:
+          v === 'A'
+            ? null
+            : verdict('lower', acc('A').usdPerUser, acc(v).usdPerUser)
+      }))
+    },
+    {
+      label: 'Result text kept from today',
+      sub: 'identical findings \u00b7 same quotes',
+      cells: ['A', 'B', 'C'].map((v) =>
+        v === 'A'
+          ? {
+              val:
+                noise.findingsIdentical +
+                ' of ' +
+                noise.users +
+                ' \u00b7 ' +
+                pct(noise.quoteAgreement) +
+                ' on a second run',
+              pill: ['same', 'noise floor']
+            }
+          : {
+              val:
+                vs(v).findingsIdentical +
+                ' of ' +
+                vs(v).users +
+                ' \u00b7 ' +
+                pct(vs(v).quoteAgreement),
+              pill:
+                vs(v).findingsIdentical >= noise.findingsIdentical - 2 &&
+                vs(v).quoteAgreement >= noise.quoteAgreement - 0.05
+                  ? ['same', 'kept']
+                  : ['bad', 'rewritten']
+            }
+      )
+    },
+    {
+      label: 'Timelines shown',
+      sub: 'simulated-user pages; with a year',
+      cells: ['A', 'B', 'C'].map((v) => ({
+        val:
+          acc(v).milestones +
+          (v === 'A'
+            ? ', no years'
+            : ', ' + acc(v).timelineYears + ' with a year'),
+        pill:
+          v === 'A'
+            ? null
+            : acc(v).milestones < acc('A').milestones * 0.75
+              ? ['bad', 'fewer timelines']
+              : ['good', 'adds years']
+      }))
+    }
+  ]
+  const tb = document.querySelector('#scorecard tbody')
+  for (const r of rows) {
+    const tr = document.createElement('tr')
+    tr.innerHTML =
+      '<th>' +
+      r.label +
+      '<small>' +
+      r.sub +
+      '</small></th>' +
+      r.cells
+        .map(
+          (c) =>
+            '<td><span class="val">' +
+            c.val +
+            '</span>' +
+            (c.pill
+              ? '<span class="pill ' +
+                c.pill[0] +
+                '">' +
+                (c.pill[0] === 'good'
+                  ? '↑ '
+                  : c.pill[0] === 'bad'
+                    ? '↓ '
+                    : '= ') +
+                c.pill[1] +
+                '</span>'
+              : '') +
+            '</td>'
+        )
+        .join('')
+    tb.appendChild(tr)
+  }
+
+  // ---- Maps
+  let overlay = 'none'
+  function drawMap(svg, to, color) {
+    svg.replaceChildren()
+    const P = { l: 34, r: 12, t: 12, b: 34 },
+      W = 420,
+      H = 420,
+      w = W - P.l - P.r,
+      h = H - P.t - P.b
+    const X = (x) => P.l + x * w,
+      Y = (y) => P.t + (1 - y) * h
+    const defs = el('defs', {}, svg)
+    const g = el(
+      'linearGradient',
+      { id: svg.id + 'g', x1: 0, x2: 1, y1: 0, y2: 0 },
+      defs
+    )
+    el('stop', { offset: '0', 'stop-color': 'var(--doom)' }, g)
+    el('stop', { offset: '1', 'stop-color': 'var(--bloom)' }, g)
+    el(
+      'rect',
+      {
+        x: P.l,
+        y: P.t,
+        width: w,
+        height: h,
+        fill: 'var(--surface)',
+        stroke: 'var(--rule)'
+      },
+      svg
+    )
+    for (let i = 1; i < 4; i++) {
+      el(
+        'line',
+        {
+          x1: X(i / 4),
+          x2: X(i / 4),
+          y1: P.t,
+          y2: P.t + h,
+          stroke: 'var(--grid)'
+        },
+        svg
+      )
+      el(
+        'line',
+        {
+          y1: Y(i / 4),
+          y2: Y(i / 4),
+          x1: P.l,
+          x2: P.l + w,
+          stroke: 'var(--grid)'
+        },
+        svg
+      )
+    }
+    el(
+      'rect',
+      {
+        x: P.l,
+        y: P.t + h + 6,
+        width: w,
+        height: 4,
+        rx: 2,
+        fill: 'url(#' + svg.id + 'g)'
+      },
+      svg
+    )
+    el('text', { x: P.l + 6, y: P.t + 14 }, svg).textContent = 'Civilizational'
+    el('text', { x: P.l + 6, y: P.t + h - 8 }, svg).textContent = 'Incremental'
+    el('text', { x: P.l, y: H - 6 }, svg).textContent = 'Doom'
+    el(
+      'text',
+      { x: P.l + w, y: H - 6, 'text-anchor': 'end' },
+      svg
+    ).textContent = 'Bloom'
+    el(
+      'text',
+      { x: P.l + w / 2, y: H - 6, 'text-anchor': 'middle' },
+      svg
+    ).textContent = 'Expressed outlook'
+    const yl = el(
+      'text',
+      {
+        x: 12,
+        y: P.t + h / 2,
+        'text-anchor': 'middle',
+        transform: 'rotate(-90 12 ' + (P.t + h / 2) + ')'
+      },
+      svg
+    )
+    yl.textContent = 'Scale of transformation'
+    const pts = U.filter(
+      (u) =>
+        u.A.x != null && u[to].x != null && u.A.y != null && u[to].y != null
+    )
+    if (overlay === 'ref')
+      for (const u of pts)
+        if (u.ref.x != null) {
+          const x = X(u.ref.x),
+            y = Y(u.ref.y)
+          el(
+            'path',
+            {
+              d:
+                'M' +
+                (x - 4) +
+                ' ' +
+                (y - 4) +
+                'L' +
+                (x + 4) +
+                ' ' +
+                (y + 4) +
+                'M' +
+                (x - 4) +
+                ' ' +
+                (y + 4) +
+                'L' +
+                (x + 4) +
+                ' ' +
+                (y - 4),
+              stroke: 'var(--ref)',
+              'stroke-width': 1.5,
+              fill: 'none'
+            },
+            svg
+          )
+        }
+    for (const u of pts)
+      el(
+        'line',
+        {
+          x1: X(u.A.x),
+          y1: Y(u.A.y),
+          x2: X(u[to].x),
+          y2: Y(u[to].y),
+          stroke: color,
+          'stroke-width': 1.5,
+          'stroke-opacity': 0.7
+        },
+        svg
+      )
+    for (const u of pts)
+      el(
+        'circle',
+        {
+          cx: X(u.A.x),
+          cy: Y(u.A.y),
+          r: 3,
+          fill: 'var(--surface)',
+          stroke: 'var(--a)',
+          'stroke-width': 1.5
+        },
+        svg
+      )
+    for (const u of pts) {
+      const c = el(
+        'circle',
+        {
+          cx: X(u[to].x),
+          cy: Y(u[to].y),
+          r: 4.5,
+          fill: color,
+          stroke: 'var(--surface)',
+          'stroke-width': 1.5
+        },
+        svg
+      )
+      const hit = el(
+        'circle',
+        { cx: X(u[to].x), cy: Y(u[to].y), r: 10, fill: 'transparent' },
+        svg
+      )
+      hit.addEventListener('pointermove', (e) =>
+        showTip(
+          e,
+          '<b>' +
+            u.name +
+            '</b><br>Today <span class="m">' +
+            num(u.A.x) +
+            ', ' +
+            num(u.A.y) +
+            '</span><br>' +
+            (to === 'B' ? 'Jev + Clairic' : 'Clef + Clairic') +
+            ' <span class="m">' +
+            num(u[to].x) +
+            ', ' +
+            num(u[to].y) +
+            '</span>' +
+            (u.ref.x != null
+              ? '<br>Reference <span class="m">' +
+                num(u.ref.x) +
+                ', ' +
+                num(u.ref.y) +
+                '</span>'
+              : '')
+        )
+      )
+      hit.addEventListener('pointerleave', hideTip)
+    }
+  }
+  function drawMaps() {
+    drawMap($('mapB'), 'B', 'var(--b)')
+    drawMap($('mapC'), 'C', 'var(--c)')
+    $('capB').innerHTML =
+      '<b>Jev + Clairic.</b> Average move ' +
+      num((vs('B').meanDx + vs('B').meanDy) / 2, 3) +
+      ', the same as a second Jev run (' +
+      num((noise.meanDx + noise.meanDy) / 2, 3) +
+      ').'
+    $('capC').innerHTML =
+      '<b>Clef + Clairic.</b> Average move ' +
+      num((vs('C').meanDx + vs('C').meanDy) / 2, 3) +
+      '; ' +
+      vs('C').moved10 +
+      ' of ' +
+      vs('C').users +
+      ' people move more than 0.1. Distance from the references grows from ' +
+      num((acc('A').refErrX + acc('A').refErrY) / 2, 3) +
+      ' to ' +
+      num((acc('C').refErrX + acc('C').refErrY) / 2, 3) +
+      '.'
+  }
+  for (const [id, val] of [
+    ['ov-none', 'none'],
+    ['ov-ref', 'ref']
+  ])
+    $(id).addEventListener('click', () => {
+      overlay = val
+      $('ov-none').setAttribute('aria-pressed', val === 'none')
+      $('ov-ref').setAttribute('aria-pressed', val === 'ref')
+      drawMaps()
+    })
+  drawMaps()
+
+  // ---- P(doom) dot plot
+  ;(function () {
+    const svg = $('pdoom')
+    const rowsU = U.filter((u) => u.ref.pdoom != null).sort(
+      (a, b) => b.ref.pdoom - a.ref.pdoom
+    )
+    const P = { l: 170, r: 20, t: 26, b: 8 },
+      W = 900,
+      rh = 14.2,
+      H = P.t + rowsU.length * rh + P.b
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H)
+    const lo = Math.log(0.0005 / 0.9995),
+      hi = Math.log(0.995 / 0.005)
+    const lg = (p) => {
+      const q = Math.min(0.995, Math.max(0.0005, p))
+      return Math.log(q / (1 - q))
+    }
+    const X = (p) => P.l + ((lg(p) - lo) / (hi - lo)) * (W - P.l - P.r)
+    for (const t of [0.001, 0.01, 0.03, 0.1, 0.3, 0.5, 0.7, 0.9, 0.99]) {
+      el(
+        'line',
+        { x1: X(t), x2: X(t), y1: P.t - 6, y2: H - P.b, stroke: 'var(--grid)' },
+        svg
+      )
+      el('text', { x: X(t), y: 12, 'text-anchor': 'middle' }, svg).textContent =
+        (t * 100 < 1 ? (t * 100).toFixed(1) : Math.round(t * 100)) + '%'
+    }
+    rowsU.forEach((u, i) => {
+      const y = P.t + i * rh + rh / 2
+      if (i % 2 === 0)
+        el(
+          'rect',
+          {
+            x: 0,
+            y: y - rh / 2,
+            width: W,
+            height: rh,
+            fill: 'var(--grid)',
+            'fill-opacity': 0.45
+          },
+          svg
+        )
+      el(
+        'text',
+        {
+          x: P.l - 10,
+          y: y + 4,
+          'text-anchor': 'end',
+          style: 'fill:var(--ink-2)'
+        },
+        svg
+      ).textContent = u.name
+      const vals = ['A', 'B', 'C']
+        .map((k) => u[k].p)
+        .filter((v) => v != null)
+        .concat([u.ref.pdoom])
+      el(
+        'line',
+        {
+          x1: X(Math.min(...vals)),
+          x2: X(Math.max(...vals)),
+          y1: y,
+          y2: y,
+          stroke: 'var(--rule)',
+          'stroke-width': 2
+        },
+        svg
+      )
+      el(
+        'circle',
+        {
+          cx: X(u.ref.pdoom),
+          cy: y,
+          r: 5,
+          fill: 'none',
+          stroke: 'var(--ref)',
+          'stroke-width': 2
+        },
+        svg
+      )
+      if (u.pub && u.pub.bounds[1] > u.pub.bounds[0])
+        el(
+          'line',
+          {
+            x1: X(u.pub.bounds[0]),
+            x2: X(u.pub.bounds[1]),
+            y1: y,
+            y2: y,
+            stroke: 'var(--ink)',
+            'stroke-width': 2,
+            'stroke-opacity': 0.55
+          },
+          svg
+        )
+      if (u.pub)
+        el(
+          'rect',
+          {
+            x: X(u.pub.estimate) - 4,
+            y: y - 4,
+            width: 8,
+            height: 8,
+            fill: 'var(--ink)',
+            transform: 'rotate(45 ' + X(u.pub.estimate) + ' ' + y + ')'
+          },
+          svg
+        )
+      for (const [k, col] of [
+        ['A', 'var(--a)'],
+        ['B', 'var(--b)'],
+        ['C', 'var(--c)']
+      ])
+        if (u[k].p != null)
+          el(
+            'circle',
+            {
+              cx: X(u[k].p),
+              cy: y,
+              r: 3.6,
+              fill: col,
+              stroke: 'var(--surface)',
+              'stroke-width': 1
+            },
+            svg
+          )
+      const hit = el(
+        'rect',
+        { x: 0, y: y - rh / 2, width: W, height: rh, fill: 'transparent' },
+        svg
+      )
+      const line = (lab, p) =>
+        '<br>' +
+        lab +
+        ' <span class="m">' +
+        (p.p == null ? 'none' : pct(p.p, p.p < 0.01 ? 1 : 0)) +
+        '</span>' +
+        (p.ps ? ' (' + p.ps + (p.pt ? ', ' + p.pt : '') + ')' : '')
+      hit.addEventListener('pointermove', (e) =>
+        showTip(
+          e,
+          '<b>' +
+            u.name +
+            '</b><br>Reference <span class="m">' +
+            pct(u.ref.pdoom, u.ref.pdoom < 0.01 ? 1 : 0) +
+            '</span>' +
+            (u.pub
+              ? '<br>Public statement <span class="m">' +
+                u.pub.token +
+                '</span>'
+              : '') +
+            line('Jev', u.A) +
+            line('Jev + Clairic', u.B) +
+            line('Clef + Clairic', u.C)
+        )
+      )
+      hit.addEventListener('pointerleave', hideTip)
+    })
+  })()
+
+  // ---- Bars
+  function bars(id, items, max, fmt) {
+    const box = $(id)
+    for (const it of items) {
+      const row = document.createElement('div')
+      row.className = 'bar'
+      const w = Math.max(0.01, it.value / max)
+      row.innerHTML =
+        '<div class="lab">' +
+        it.label +
+        '</div><div class="track"><div class="fill" style="width:' +
+        (w * 100).toFixed(1) +
+        '%;background:' +
+        it.color +
+        '"></div><div class="num" style="' +
+        (w > 0.62
+          ? 'right:calc(' + ((1 - w) * 100).toFixed(1) + '% + 8px);color:#fff'
+          : 'left:calc(' + (w * 100).toFixed(1) + '% + 8px)') +
+        '">' +
+        fmt(it) +
+        '</div></div>'
+      box.appendChild(row)
+    }
+  }
+  bars(
+    'estimators',
+    DATA.estimators.map((e) => ({
+      label: e.label,
+      value: e.within2x,
+      color:
+        e.id === 'jev_A'
+          ? 'var(--a)'
+          : e.id === 'constant'
+            ? 'var(--ref)'
+            : 'var(--b)',
+      e
+    })),
+    1,
+    (it) => pct(it.value) + ' \u00b7 median ' + pct(it.e.median, 1)
+  )
+  bars(
+    'mapest',
+    [
+      {
+        label: 'Jev ladder, outlook',
+        value: acc('B').refErrX,
+        color: 'var(--a)'
+      },
+      {
+        label: 'Clairic estimate, outlook',
+        value: acc('B').clairicMapErrX,
+        color: 'var(--b)'
+      },
+      {
+        label: 'Jev ladder, scale',
+        value: acc('B').refErrY,
+        color: 'var(--a)'
+      },
+      {
+        label: 'Clairic estimate, scale',
+        value: acc('B').clairicMapErrY,
+        color: 'var(--b)'
+      }
+    ],
+    0.2,
+    (it) => num(it.value, 3)
+  )
+  bars(
+    'routing',
+    [
+      {
+        label: 'Jev, second run (noise floor)',
+        value: noise.routeAgreement,
+        color: 'var(--ref)'
+      },
+      {
+        label: 'Jev + Clairic',
+        value: vs('B').routeAgreement,
+        color: 'var(--b)'
+      },
+      {
+        label: 'Clef + Clairic',
+        value: vs('C').routeAgreement,
+        color: 'var(--c)'
+      }
+    ],
+    1,
+    (it) => pct(it.value) + ' same as today'
+  )
+  bars(
+    'latency',
+    ['A', 'B', 'C'].map((v) => ({
+      label: { A: 'Today: Jev', B: 'Jev + Clairic', C: 'Clef + Clairic' }[v],
+      value: acc(v).latencyMedianMs,
+      color: 'var(--' + v.toLowerCase() + ')'
+    })),
+    acc('C').latencyMedianMs * 1.05,
+    (it) => secs(it.value)
+  )
+  bars(
+    'cost',
+    ['A', 'B', 'C'].map((v) => ({
+      label: { A: 'Today: Jev', B: 'Jev + Clairic', C: 'Clef + Clairic' }[v],
+      value: acc(v).usdPerUser,
+      color: 'var(--' + v.toLowerCase() + ')'
+    })),
+    acc('C').usdPerUser * 1.05,
+    (it) =>
+      usd(it.value) + ' \u00b7 $' + Math.round(it.value * 1000) + ' per 1,000'
+  )
+
+  // ---- Clairic cards
+  const cards = /*CARDS*/ []
+  $('clairic-cards').innerHTML = cards
+    .map(
+      (c) =>
+        '<div class="card"><div class="tag ' +
+        c.tone +
+        '">' +
+        c.tag +
+        '</div><h3>' +
+        c.title +
+        '</h3>' +
+        (c.quote
+          ? '<blockquote>' +
+            c.quote +
+            '</blockquote><div class="who">' +
+            c.who +
+            '</div>'
+          : '') +
+        '<p>' +
+        c.body +
+        '</p></div>'
+    )
+    .join('')
+
+  // ---- Mock
+  ;(function () {
+    const label = {
+      agi: 'General AI',
+      asi: 'Superhuman AI',
+      work: 'Work and institutions',
+      science: 'Science and daily life'
+    }
+    const tl = (ms) =>
+      ms.length
+        ? ms
+            .map(
+              (m) =>
+                '<span class="chip">' +
+                label[m[0]] +
+                (m[1] ? ' <b>' + m[1] + '</b>' : '') +
+                '</span>'
+            )
+            .join(' ')
+        : '<span style="color:var(--ink-3)">none shown</span>'
+    const pd = (p) =>
+      '<span class="val">' +
+      p.pt +
+      '</span><span class="pill same">' +
+      (p.ps === 'stated' ? 'stated in the interview' : 'inferred') +
+      '</span>'
+    const k = U.find((u) => u.slug === 'dkokotajlo'),
+      g = U.find((u) => u.slug === 'ryangreenblatt'),
+      m = U.find((u) => u.slug === 'amcafee')
+    const rowsM = []
+    if (k)
+      rowsM.push(['Daniel Kokotajlo<small>P(doom)</small>', pd(k.A), pd(k.B)])
+    if (m) rowsM.push(['Andrew McAfee<small>P(doom)</small>', pd(m.A), pd(m.B)])
+    if (g)
+      rowsM.push([
+        'Ryan Greenblatt<small>Timelines</small>',
+        tl(g.A.ms),
+        tl(g.B.ms)
+      ])
+    document.querySelector('#mock tbody').innerHTML = rowsM
+      .map(
+        (r) =>
+          '<tr><th>' +
+          r[0] +
+          '</th><td>' +
+          r[1] +
+          '</td><td>' +
+          r[2] +
+          '</td></tr>'
+      )
+      .join('')
+  })()
+
+  // ---- Recommendations
+  const recs = /*RECS*/ []
+  $('recs').innerHTML = recs
+    .map(
+      (r, i) =>
+        '<div class="rec"><div class="n">' +
+        (i + 1) +
+        '</div><div><h3>' +
+        r.title +
+        '</h3><p>' +
+        r.body +
+        '</p><span class="status">' +
+        r.status +
+        '</span></div></div>'
+    )
+    .join('')
+</script>

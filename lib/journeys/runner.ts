@@ -122,6 +122,8 @@ export async function runPersona(
   let failedElapsedMs = 0
   const provider: Provider = {
     kind: source.kind,
+    model: source.model,
+    extractor: source.extractor,
     async evaluate(...args) {
       const questions = args[1]
       // The map ladder runs beside the projection, as part of that stage.
@@ -170,7 +172,7 @@ export async function runPersona(
     ? structuredClone(resume.failedOperation.assessment)
     : createAssessment(
         `journey-${live ? randomUUID() : createHash('sha256').update(persona.id).digest('hex').slice(0, 20)}`,
-        live ? versions.model : 'persona-script-v1'
+        live ? (live.model ?? versions.model) : 'persona-script-v1'
       )
   if (!resume) {
     state.versions.content = bundle.manifest.contentVersion

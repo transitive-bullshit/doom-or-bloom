@@ -1,0 +1,79 @@
+{
+  "cards": [
+    {
+      "tone": "good",
+      "tag": "Adds: a stated number Jev passed over",
+      "title": "Finds the probability the person actually gave",
+      "quote": "Roughly 70% for AI takeover or a comparably permanent catastrophe&mdash;not specifically human extinction.",
+      "who": "Daniel Kokotajlo (simulated), answer 3",
+      "body": "Today the engine shows an inferred &asymp;78% here; Jev passed over this sentence. Clairic proposed it, Jev&rsquo;s check accepted it, and the result shows his stated 70%, which matches his public statement."
+    },
+    {
+      "tone": "good",
+      "tag": "Adds: timeline years",
+      "title": "Turns timing into a year",
+      "quote": "My rough forecast is full AI-research automation around 2030&ndash;31, with systems outperforming humans across essentially all jobs around a 2033 median, though those dates are quite uncertain&hellip;",
+      "who": "Ryan Greenblatt (simulated), answer 1",
+      "body": "Clairic reads 2033 for work, and resolves relative timing against the interview date (Elon Musk&rsquo;s &ldquo;within ten years&rdquo; becomes 2036). Today&rsquo;s page shows only the quote. Six featured timelines gained a year; one is wrong (David Sacks&rsquo; &ldquo;over the next several years&rdquo; became 2026), so years need the same review as the rest of a simulated profile."
+    },
+    {
+      "tone": "good",
+      "tag": "Adds: odds in words",
+      "title": "Reads &ldquo;approximately zero&rdquo; as a stated value",
+      "quote": "Approximately zero&mdash;though not literally zero.",
+      "who": "Andrew McAfee (simulated), answer 3",
+      "body": "Today\u2019s engine only picks up digits with a percent sign, so this showed as an inferred &lt;1%. With Clairic it is read as stated, and Jev\u2019s check accepts it. Odds in words are rare: about 6 of 1,297 production participants gave them without a digit."
+    },
+    {
+      "tone": "bad",
+      "tag": "Slips: 0% for nobody",
+      "title": "Says zero when no number was given",
+      "quote": "I don&rsquo;t think a precise percentage would be honest or useful.",
+      "who": "Sam Altman (simulated)",
+      "body": "With a plain number field, Clairic returned 0% for Altman, Gary Marcus and Eliezer Yudkowsky, none of whom gave a number. A strict &ldquo;null, not zero&rdquo; rule fixed all of them, but it shows why every find needs a check."
+    },
+    {
+      "tone": "bad",
+      "tag": "Slips: past and conditional numbers",
+      "title": "Takes old or conditional estimates at face value",
+      "quote": "I previously said 10&ndash;20% seemed reasonable, but that was a gut feeling, not a calibrated estimate&hellip;",
+      "who": "Geoffrey Hinton (simulated)",
+      "body": "Clairic proposed 10% here, and 90% from Max Tegmark\u2019s &ldquo;over 90% for humanity losing control if we continue deploying superintelligence without effective predeployment safety regulation.&rdquo; Jev\u2019s check rejected both, as it does today."
+    },
+    {
+      "tone": "bad",
+      "tag": "Slips: weaker quote picks",
+      "title": "Letting Clairic choose the quotes lost some",
+      "quote": "during this decade",
+      "who": "The whole span Clairic returned for Bill Gates",
+      "body": "Clairic returns the smallest span, so code widens it to the sentence. Even then, when Clairic picked the quotes instead of Jev, simulated-user pages showed 14 timelines instead of 22 and 90 assumption and update quotes instead of 100. Jev keeps that job in the recommended setup."
+    }
+  ],
+  "recs": [
+    {
+      "title": "Keep Jev as the engine for interviews and results",
+      "body": "Clef runs our engine unchanged, but it reads people differently: 28 of 47 featured users move more than 0.1 on the map, further from the reference readings; P(doom) falls within 2&times; of the references for 19% of people instead of 72%; and it picks a different next question about a third of the time. It is also about 7&times; slower and 5&times; more expensive. Our questions were tuned on Jev for months, so some of that gap is tuning, but closing it would be a re-tuning project, not a swap.",
+      "status": "No change"
+    },
+    {
+      "title": "Don&rsquo;t add Clairic to the participant interview yet",
+      "body": "For real participants it could only change the stated P(doom), and the gain is small: about 6 of 1,297 production participants gave odds in words without a digit, and Jev already reads typed percentages. It would add 18% to model spend, about 0.3 s to each result, and a dependency on a preview model.",
+      "status": "Recommended: wait"
+    },
+    {
+      "title": "Optionally use Clairic as an add-on in simulated-user generation",
+      "body": "With Jev still choosing every quote, all 47 featured results kept today&rsquo;s findings and quotes. Clairic added two stated P(doom) values Jev had passed over (Kokotajlo, McAfee) and a year on six timelines, for about $0.004 more per simulated user. Generation runs offline and is reviewed before publishing, so the preview risk is low. Showing the year needs a small UI change on simulated-user pages.",
+      "status": "Needs your decision"
+    },
+    {
+      "title": "Use Clairic to find values, never to estimate them",
+      "body": "Its estimates of an unstated P(doom) and of map positions pull everyone toward the middle of the scale and were clearly worse than Jev&rsquo;s. Keep Jev&rsquo;s likelihood bands and the map ladder. If Clairic is used, every value it finds goes through a Jev check and a few code rules (no zero for a missing number, no past or unwritten years).",
+      "status": "Decided by the data"
+    },
+    {
+      "title": "Re-run this comparison when Clef leaves preview",
+      "body": "Both Cloudflare models are early checkpoints. The harness replays all featured users through each setup in about 10 minutes for about $5. The Clef adapter could also serve as an emergency fallback if TypeSafe is unavailable, accepting that results would read noticeably differently.",
+      "status": "Later"
+    }
+  ]
+}

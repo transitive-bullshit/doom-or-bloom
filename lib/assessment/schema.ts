@@ -298,7 +298,9 @@ export const worldviewExperimentSchema = z.strictObject({
       z.strictObject({
         id: z.string(),
         label: z.string(),
-        evidence: experimentQuoteSchema
+        evidence: experimentQuoteSchema,
+        // The year an extraction model read from this timing statement.
+        year: z.number().int().optional()
       })
     )
     .max(4),
@@ -311,7 +313,16 @@ export const worldviewExperimentSchema = z.strictObject({
         evidence: experimentQuoteSchema
       })
     )
-    .max(3)
+    .max(3),
+  // Raw extraction-model answers behind this result, kept as provenance.
+  extraction: z
+    .object({
+      model: z.string(),
+      answers: z.record(z.string(), z.unknown()),
+      usage: z.object({ input_tokens: z.number(), passes: z.number() }),
+      elapsedMs: z.number()
+    })
+    .optional()
 })
 export type WorldviewExperiment = z.infer<typeof worldviewExperimentSchema>
 export type ExperimentQuote = z.infer<typeof experimentQuoteSchema>

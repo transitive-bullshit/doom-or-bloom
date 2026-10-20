@@ -34,8 +34,59 @@ export class EvaluationFailure extends Error {
   }
 }
 
+/**
+ * One extraction-model pass over the projection input (Cloudflare Clairic, see
+ * clairic-extractor.ts). Evaluated on 2026-10-20 and not adopted; only offline
+ * comparison runs pass an extractor
+ * (docs/research/cloudflare-system-one-spike-2026-10-20.md).
+ */
+export type ExtractionRequest = {
+  mode: 'runtime' | 'persona'
+  evidence: Array<{ id: string; prompt: string; answer: string }>
+  /** ISO date that relative timing is read against; defaults to today. */
+  referenceDate?: string
+}
+export type ExtractionAnswer = {
+  type: string
+  value: unknown
+  guess?: unknown
+  p_null?: number
+  confidence?: number
+  span?: number[]
+  median?: number
+  mean?: number
+  p10?: number
+  p90?: number
+}
+export type Extraction = {
+  model: string
+  answers: Record<string, ExtractionAnswer>
+  /** Text answers resolved to the answer they quote; null when the span is not participant text. */
+  quotes: Record<
+    string,
+    { answerId: string; answerNumber: number; text: string } | null
+  >
+  usage: { input_tokens: number; passes: number }
+  elapsedMs: number
+  attempts: number
+}
+/**
+ * `complement` keeps the decision model's own candidates and selections and
+ * only fills a stated P(doom) it did not find, plus timeline years.
+ * `replace` lets the extractor propose every quote instead. Either way the
+ * decision model verifies each proposal before it is shown.
+ */
+export type Extractor = {
+  mode: 'complement' | 'replace'
+  extract(request: ExtractionRequest, signal?: AbortSignal): Promise<Extraction>
+}
+
 export interface Provider {
   kind: 'live' | 'fixture'
+  /** The pinned decision model, when it differs from the default Jev version. */
+  model?: string
+  /** Optional extraction model for the result stage; never set for participants. */
+  extractor?: Extractor
   evaluate(
     state: unknown,
     questions: Record<string, Question>,

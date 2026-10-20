@@ -91,7 +91,10 @@ import {
   experimentVerificationQuestions,
   experimentVerificationCandidates,
   buildWorldviewExperiment,
-  experimentalAxes
+  experimentalAxes,
+  extractionCandidates,
+  applyExtraction,
+  type ExperimentCandidates
 } from '@/lib/assessment/worldview-experiment'
 import { mapLadderQuestions } from '@/lib/assessment/map-ladder'
 import {
@@ -840,10 +843,19 @@ export async function runAssessment(
         catastrophe.levels
       )
       const input = projectionInput(state, bundle)
-      const allCandidates = experimentCandidates(input)
+      // An optional extraction model (Cloudflare Clairic, evaluated offline
+      // and not adopted) runs beside the projection. In `replace` mode it
+      // proposes every quote instead of the candidate pools; in `complement`
+      // mode Jev keeps its own selections. The decision model verifies every
+      // proposal either way (docs/research/cloudflare-system-one-spike-2026-10-20.md).
+      const extractor = provider.extractor
+      const replacing = extractor?.mode === 'replace'
+      const allCandidates = replacing
+        ? { passages: {}, probabilities: {} }
+        : experimentCandidates(input)
       // Runtime assessments skip excerpt pools but still read a percentage the
       // participant typed, so "my p(doom) is 20%" is shown as 20%.
-      const candidates =
+      let candidates: ExperimentCandidates =
         mode === 'persona'
           ? allCandidates
           : { passages: {}, probabilities: allCandidates.probabilities }
@@ -852,8 +864,8 @@ export async function runAssessment(
         questions,
         experimentQuestions(
           candidates,
-          mode === 'persona',
-          mode === 'persona' || statedPdoom
+          mode === 'persona' && !replacing,
+          !replacing && (mode === 'persona' || statedPdoom)
         )
       )
       const outlook = facets.find((f) => f.id === 'outlook_orientation')!
@@ -865,7 +877,7 @@ export async function runAssessment(
       // The map ladder reads the same state independently, so it runs beside
       // the projection rather than after it. Both settle before a failure is
       // raised, so the trace and request budget never miss a call in flight.
-      const [projection, placement] = await Promise.allSettled([
+      const [projection, placement, extracted] = await Promise.allSettled([
         evaluate(
           'D: projection',
           mode === 'persona' || statedPdoom
@@ -873,10 +885,17 @@ export async function runAssessment(
             : input,
           questions
         ),
-        evaluate('D: map placement', input, placementQuestions)
+        evaluate('D: map placement', input, placementQuestions),
+        extractor
+          ? extractor.extract(
+              { mode, evidence: input.completeParticipantEvidence },
+              operationSignal
+            )
+          : Promise.resolve(null)
       ])
       if (projection.status === 'rejected') throw projection.reason
       if (placement.status === 'rejected') throw placement.reason
+      if (extracted.status === 'rejected') throw extracted.reason
       const evaluation = {
         ...projection.value,
         answers: { ...projection.value.answers, ...placement.value.answers }
@@ -888,6 +907,67 @@ export async function runAssessment(
         evaluation.answers,
         evaluation.model
       )
+      const extraction = extracted.value
+      let proposedStatedPdoom = false
+      if (extraction) {
+        trace.stages.push({
+          name: 'D: extraction',
+          state: { fields: Object.keys(extraction.answers) },
+          questions: {},
+          answers: {},
+          model: extraction.model,
+          // The extractor's own latency; it overlaps the projection request.
+          elapsedMs: extraction.elapsedMs,
+          inputBytes: Buffer.byteLength(
+            JSON.stringify(input.completeParticipantEvidence)
+          ),
+          outputBytes: Buffer.byteLength(JSON.stringify(extraction.answers)),
+          usage: {
+            input_tokens: extraction.usage.input_tokens,
+            output_tokens: 0
+          },
+          attempts: extraction.attempts
+        })
+        const complement = extractor?.mode === 'complement'
+        // A complement proposes only the stated P(doom), as in runtime mode.
+        const proposed = extractionCandidates(
+          input,
+          extraction,
+          complement ? 'runtime' : mode
+        )
+        const jevPick = evaluation.answers['experiment:pdoom']
+        const jevFound = jevPick?.type === 'choice' && jevPick.choice !== 'none'
+        const adopt = complement
+          ? !jevFound && 'experiment:pdoom' in proposed.answers
+            ? ['experiment:pdoom']
+            : []
+          : Object.keys(proposed.answers)
+        if (complement)
+          candidates = {
+            passages: candidates.passages,
+            probabilities: adopt.length
+              ? {
+                  ...candidates.probabilities,
+                  ...proposed.candidates.probabilities
+                }
+              : candidates.probabilities
+          }
+        else candidates = proposed.candidates
+        proposedStatedPdoom = adopt.includes('experiment:pdoom')
+        const adopted = Object.fromEntries(
+          adopt.map((id) => [id, proposed.answers[id]!])
+        )
+        Object.assign(evaluation.answers, adopted)
+        const previous = state.judgments.filter((j) => j.stage === 'project')
+        addJudgments(
+          'project',
+          `result:${state.evidenceRevision}`,
+          Object.fromEntries(adopt.map((id) => [id, proposed.questions[id]!])),
+          adopted,
+          extraction.model
+        )
+        state.judgments.push(...previous)
+      }
       components = bundle.rubric.dimensions.map((dimension) => {
         const score = evaluation.answers[`${dimension.id}:score`]
         const evidenceIds = activeEvidence(state)
@@ -966,7 +1046,7 @@ export async function runAssessment(
               bundle.rubric
             )
           : {}
-      if (mode === 'persona' || statedPdoom)
+      if (mode === 'persona' || statedPdoom || proposedStatedPdoom)
         Object.assign(
           evidenceQuestions,
           experimentVerificationQuestions(candidates, evaluation.answers)
@@ -1039,6 +1119,7 @@ export async function runAssessment(
         state.evidenceRevision,
         evaluation.model
       )
+      if (extraction) experiment = applyExtraction(experiment, extraction)
       const score = evaluation.answers['catastrophic_risk:score']
       const sourceIds = catastrophicEvidence(state).map((entry) => entry.id)
       const catastropheSupported =

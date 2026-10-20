@@ -64,6 +64,10 @@ The user paused identification and canonical-summary grounding for the local dem
 
 Keep corpus assets, source provenance, curated reading recommendations and `/corpus` for offline authoring/review. Old saved reference checks and debug exchanges remain readable as historical records. This does not authorize renewed grounding calls or erase the unfinished corpus review gates.
 
+### Other System One models: evaluated, not adopted
+
+Cloudflare's Clef (`@cf/cloudflare/clef`) accepts Jev's Noul, Choice and Score questions, and `lib/server/clef-provider.ts` runs the engine on it unchanged. Clef allows only `[A-Za-z0-9_.-]` in question IDs, so the adapter aliases ours. It answers at most 64 questions per request, accepts at most 10 Score levels, and truncates long state silently. Clairic (`@cf/cloudflare/clairic`) extracts typed values and exact spans. `lib/server/clairic-extractor.ts` can propose a stated P(doom) and timeline years as a provider `extractor`, and the decision model verifies each proposal. Participant operations never set an extractor. Neither model is used: see the [October 20 comparison](research/cloudflare-system-one-spike-2026-10-20.md) and `scripts/compare-system-one.ts`.
+
 ## Debugging
 
 Physical exchanges require server and operation capture enabled. The participant client requests capture independently of its Debug visibility toggle. Browser IndexedDB stores traces separately from server-authoritative progress; failed operations may return safe stage diagnostics without committing an assessment revision. Preserve actual recorded evaluator questions and payloads rather than explaining historical judgments with today’s rubric. [Local debugging](local-debugging.md) defines trace retention, inspection, downloads and sanitized server diagnostics.

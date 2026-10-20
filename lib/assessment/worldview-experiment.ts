@@ -536,3 +536,187 @@ export function buildWorldviewExperiment(
     })
   }
 }
+
+// Optional extraction (Cloudflare Clairic, lib/server/clairic-extractor.ts).
+// Evaluated on 2026-10-20 and not adopted. Clairic proposes exact spans and
+// values; they enter the existing pipeline as candidates with a selection
+// already made, so the decision model's verification Noul (>= 0.75) still
+// gates every displayed quote and value.
+type ExtractedAnswer = {
+  type: string
+  value: unknown
+  p_null?: number
+  confidence?: number
+  median?: number
+  mean?: number
+  p10?: number
+  p90?: number
+}
+export type ExperimentExtraction = {
+  model: string
+  answers: Record<string, ExtractedAnswer>
+  quotes: Record<
+    string,
+    { answerId: string; answerNumber: number; text: string } | null
+  >
+  usage: { input_tokens: number; passes: number }
+  elapsedMs: number
+}
+const extractedSelections: Record<string, string> = {
+  'experiment:influence:evidence': 'influence_evidence',
+  'experiment:transformation:evidence': 'transformation_evidence',
+  'experiment:pdoom:evidence': 'pdoom_evidence',
+  ...Object.fromEntries(
+    milestones.map((m) => [
+      `experiment:milestone:${m.id}`,
+      `milestone_${m.id}_quote`
+    ])
+  ),
+  ...Object.fromEntries(
+    hinges.map((h) => [`experiment:hinge:${h.id}`, `hinge_${h.id}`])
+  )
+}
+const proposal = (
+  candidateId: string,
+  p: number
+): { question: Question; answer: ModelAnswer } => {
+  const q = Math.min(1, Math.max(0, p))
+  return {
+    question: {
+      type: 'choice',
+      instructions:
+        'Clairic extraction proposed this exact span (selection made by extraction, verified separately).',
+      criteria: {
+        none: 'No span proposed.',
+        [candidateId]: 'Exact span proposed by Clairic.'
+      }
+    },
+    answer: {
+      type: 'choice',
+      choice: candidateId,
+      confidence: q,
+      probabilities: { none: 1 - q, [candidateId]: q }
+    }
+  }
+}
+
+/** Candidates and proposed selections from one Clairic extraction. */
+export function extractionCandidates(
+  input: ExperimentInput,
+  extraction: ExperimentExtraction,
+  mode: 'runtime' | 'persona'
+) {
+  const candidates: ExperimentCandidates = { passages: {}, probabilities: {} }
+  const questions: Record<string, Question> = {}
+  const answers: Record<string, ModelAnswer> = {}
+  // Fields are extracted independently, so related hinges can return the
+  // same span; keep each passage once, for its most certain hinge.
+  const used: Array<{ answerId: string; text: string }> = []
+  const ordered = Object.entries(extractedSelections).sort(
+    ([, a], [, b]) =>
+      (extraction.answers[a]?.p_null ?? 1) -
+      (extraction.answers[b]?.p_null ?? 1)
+  )
+  if (mode === 'persona')
+    for (const [questionId, field] of ordered) {
+      const quote = extraction.quotes[field]
+      if (!quote) continue
+      // Only hinges compete for a passage; milestones can share a sentence.
+      const hinge = field.startsWith('hinge_')
+      if (
+        hinge &&
+        used.some(
+          (u) =>
+            u.answerId === quote.answerId &&
+            (u.text.includes(quote.text) || quote.text.includes(u.text))
+        )
+      )
+        continue
+      if (hinge) used.push(quote)
+      const id = `x_${field}`
+      candidates.passages[id] = quote
+      const made = proposal(id, 1 - (extraction.answers[field]?.p_null ?? 0))
+      questions[questionId] = made.question
+      answers[questionId] = made.answer
+    }
+  const value = extraction.answers.pdoom_stated_value
+  const token = extraction.quotes.pdoom_stated_token
+  if (
+    typeof value?.value === 'number' &&
+    token &&
+    value.value >= 0 &&
+    value.value <= 100
+  ) {
+    const answer = input.completeParticipantEvidence.find(
+      (a) => a.id === token.answerId
+    )
+    // Display the sentence around the token, as regex candidates do.
+    const sentence =
+      answer?.answer
+        .split(/(?<=[.!?])\s+|(?<=[。！？।])\s*|\n+/u)
+        .find((s) => s.includes(token.text))
+        ?.trim()
+        .slice(0, 900) ?? token.text
+    const numeric = percentValues(token.text).length > 0
+    const bounds = (numeric && statedBounds(token.text)) || [
+      value.value / 100,
+      value.value / 100
+    ]
+    candidates.probabilities.x_pdoom = {
+      answerId: token.answerId,
+      answerNumber: token.answerNumber,
+      text: sentence.includes(token.text) ? sentence : token.text,
+      // Verbal odds keep their words in the quote and show the number they mean.
+      token: numeric ? token.text : `${Math.round(value.value * 10) / 10}%`,
+      bounds: bounds as [number, number]
+    }
+    const made = proposal('x_pdoom', 1 - (value.p_null ?? 0))
+    questions['experiment:pdoom'] = made.question
+    answers['experiment:pdoom'] = made.answer
+  }
+  return { candidates, questions, answers }
+}
+
+/**
+ * Adds the years Clairic read to the milestones the result shows and keeps
+ * its raw answers as provenance. Its own P(doom) and map estimates stay in
+ * that provenance only: they regressed toward the middle of each scale and
+ * read worse than Jev (docs/research/cloudflare-system-one-spike-2026-10-20.md).
+ */
+export function applyExtraction(
+  experiment: WorldviewExperiment,
+  extraction: ExperimentExtraction,
+  thisYear = new Date().getUTCFullYear()
+): WorldviewExperiment {
+  // Clairic tends to copy one year into every milestone field and can read
+  // "this decade" as its first year, so code checks each year: never in the
+  // past, and one of the years the verified quote itself writes, if any.
+  // A relative timing ("within ten years") is dated only when Clairic read
+  // it from the same passage the result shows.
+  experiment.milestones = experiment.milestones.map((m) => {
+    const year = extraction.answers[`milestone_${m.id}_year`]?.value
+    const written = [
+      ...m.evidence.text.matchAll(/(?<!\d)(?:19|20|21)\d\d(?!\d)/g)
+    ].map(Number)
+    const read = extraction.quotes[`milestone_${m.id}_quote`]
+    const samePassage = Boolean(
+      read &&
+      read.answerId === m.evidence.answerId &&
+      (m.evidence.text.includes(read.text) ||
+        read.text.includes(m.evidence.text))
+    )
+    return typeof year === 'number' &&
+      year >= thisYear &&
+      year <= 2300 &&
+      (written.length ? written.includes(year) : samePassage)
+      ? { ...m, year }
+      : m
+  })
+  experiment.extraction = {
+    model: extraction.model,
+    answers: extraction.answers,
+    usage: extraction.usage,
+    elapsedMs: extraction.elapsedMs
+  }
+  return experiment
+}
