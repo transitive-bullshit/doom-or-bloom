@@ -4,7 +4,7 @@ Cloudflare released two preview System One models: Clef (`@cf/cloudflare/clef`),
 
 ## Decisions
 
-Neither model is adopted. The adapters and the comparison harness are kept on a reference branch, not merged, so the comparison can be repeated when the models leave preview.
+Neither model is adopted. The adapters and the comparison harness are kept on a reference branch ([draft PR #95](https://github.com/transitive-bullshit/doom-or-bloom/pull/95), not merged), so the comparison can be repeated when the models leave preview.
 
 - **Keep Jev** for interpretation, routing, scoring, map placement and inferred P(doom). Clef reads people differently and further from the references, takes a different interview path a third of the time, and is about 7× slower at 5× the cost.
 - **No Clairic in participant interviews.** The only participant-visible change would be a stated P(doom) given in words, which about 6 of 1,297 production participants used without a digit.
