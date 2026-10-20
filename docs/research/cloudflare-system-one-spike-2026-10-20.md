@@ -1,6 +1,6 @@
 # Cloudflare Clef and Clairic spike — October 20, 2026
 
-Cloudflare released two preview System One models: Clef (`@cf/cloudflare/clef`), a decision model with Jev's question types (Noul, Choice, Score), and Clairic (`@cf/cloudflare/clairic`), an extraction model that returns typed values, exact spans and estimates with intervals. We tested whether either should replace or complement Jev in the interview and result engine. The [comparison report](https://claude.ai/artifact/RXD73aSJ6hJm6kSwTUrk2Y) shows the maps, P(doom) readings, routing, speed and cost; it is private unless shared.
+Cloudflare released two preview System One models: Clef (`@cf/cloudflare/clef`), a decision model with Jev's question types (Noul, Choice, Score), and Clairic (`@cf/cloudflare/clairic`), an extraction model that returns typed values, exact spans and estimates with intervals. We tested whether either should replace or complement Jev in the interview and result engine. The [comparison report](https://claude.ai/artifact/RXD73aSJ6hJm6kSwTUrk2Y) shows the maps, P(doom) readings, routing, speed and cost.
 
 ## Decisions
 
