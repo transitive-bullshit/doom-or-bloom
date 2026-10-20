@@ -61,3 +61,27 @@ test('permanent REST errors are not retried and keep the token out of the messag
   expect(String((failure as Error).message)).not.toContain('secret-token')
   expect(calls).toBe(1)
 })
+
+test('retries stay within the allowance and failures report their attempts', async () => {
+  vi.stubEnv('CLOUDFLARE_API_TOKEN', 'test-token')
+  vi.stubEnv('CLOUDFLARE_ACCOUNT_ID', 'acct')
+  let calls = 0
+  const busy = (async () => {
+    calls++
+    return Response.json({ success: false, errors: [] }, { status: 503 })
+  }) as unknown as typeof fetch
+  const single = await runWorkersAiWithRetry(
+    '@cf/cloudflare/clairic',
+    {},
+    { fetch: busy, maxAttempts: 1, retryDelayMs: 0 }
+  ).catch((err: unknown) => err)
+  expect(calls).toBe(1)
+  expect(single).toMatchObject({ transient: true, attempts: 1 })
+  const both = await runWorkersAiWithRetry(
+    '@cf/cloudflare/clairic',
+    {},
+    { fetch: busy, retryDelayMs: 0 }
+  ).catch((err: unknown) => err)
+  expect(calls).toBe(3)
+  expect(both).toMatchObject({ attempts: 2 })
+})

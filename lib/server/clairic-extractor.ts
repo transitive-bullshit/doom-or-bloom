@@ -200,7 +200,7 @@ export function createClairicExtractor({
         reference_date:
           request.referenceDate ?? new Date().toISOString().slice(0, 10)
       },
-      { signal, timeoutMs: 30_000 }
+      { signal, timeoutMs: 30_000, maxAttempts: request.attemptBudget ?? 2 }
     )
     const raw = response.output
     onUsage?.(raw.usage.input_tokens)

@@ -133,3 +133,34 @@ test('without an extractor the result stage makes no extraction call', async () 
   )
   expect(debug!.stages.map((s) => s.name)).not.toContain('D: extraction')
 })
+
+test('extraction requests count toward the operation request budget', async () => {
+  const state = await answered('I expect useful tools, but oversight matters.')
+  const fixture = createFixtureProvider()
+  const provider: Provider = {
+    ...fixture,
+    // The projection uses almost the whole allowance of 32 requests.
+    async evaluate(...args) {
+      const result = await fixture.evaluate(...args)
+      return {
+        ...result,
+        attempts: 'catastrophic_risk:score' in args[1] ? 30 : 1
+      }
+    },
+    extractor: {
+      mode: 'complement',
+      async extract(request) {
+        expect(request.attemptBudget).toBe(32)
+        return {
+          model: 'clairic',
+          answers: {},
+          quotes: {},
+          usage: { input_tokens: 1, passes: 1 },
+          elapsedMs: 1,
+          attempts: 2
+        }
+      }
+    }
+  }
+  await expect(project(state, provider)).rejects.toThrow(/request budget/)
+})

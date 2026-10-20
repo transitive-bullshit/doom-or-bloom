@@ -45,6 +45,8 @@ export type ExtractionRequest = {
   evidence: Array<{ id: string; prompt: string; answer: string }>
   /** ISO date that relative timing is read against; defaults to today. */
   referenceDate?: string
+  /** Physical requests the operation still allows. */
+  attemptBudget?: number
 }
 export type ExtractionAnswer = {
   type: string
@@ -79,6 +81,13 @@ export type Extraction = {
 export type Extractor = {
   mode: 'complement' | 'replace'
   extract(request: ExtractionRequest, signal?: AbortSignal): Promise<Extraction>
+}
+
+/** Physical requests a failed call made, for the operation's request budget. */
+export function failedAttempts(err: unknown) {
+  if (err instanceof EvaluationFailure) return err.attempts
+  const attempts = (err as { attempts?: unknown } | null)?.attempts
+  return typeof attempts === 'number' && attempts > 0 ? attempts : 1
 }
 
 export interface Provider {

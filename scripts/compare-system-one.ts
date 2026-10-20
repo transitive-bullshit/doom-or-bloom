@@ -14,6 +14,7 @@
 // picks quotes); C = Clef + Clairic replace.
 // Clef and Clairic use CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID when set,
 // else the authenticated `cf` CLI.
+import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { parseArgs } from 'node:util'
 import pMap from 'p-map'
@@ -22,7 +23,7 @@ import { doomBands } from '../lib/assessment/pdoom'
 import { versions } from '../lib/assessment/schema'
 import { loadBundle } from '../lib/content/loader'
 import { personas as catalog } from '../lib/journeys/catalog'
-import { runPersona } from '../lib/journeys/runner'
+import { journeyHashes, runPersona } from '../lib/journeys/runner'
 import { simulationPayload } from '../lib/personas/payload'
 import {
   clairicState,
@@ -49,6 +50,7 @@ type User = {
   id: string
   name: string
   transcript: Array<{ promptId: string; question: string; answer: string }>
+  result: unknown
 }
 const users = () =>
   JSON.parse(readFileSync(`${dir}/featured.json`, 'utf8')) as User[]
@@ -87,7 +89,14 @@ async function dump() {
         question: s.prompt.text,
         answer: s.answer!
       }))
-    return { slug: row.slug, name: row.name, id: row.id, transcript }
+    // The published result is the production baseline the report plots.
+    return {
+      slug: row.slug,
+      name: row.name,
+      id: row.id,
+      transcript,
+      result: payload.journey.result
+    }
   })
   mkdirSync(dir, { recursive: true })
   writeFileSync(`${dir}/featured.json`, JSON.stringify(out, null, 1))
@@ -142,9 +151,32 @@ async function run() {
   mkdirSync(out, { recursive: true })
   const wanted = args.ids ? new Set(args.ids.split(',')) : null
   const bundle = loadBundle()
+  // A saved replay is reused only for the same transcript, engine, content,
+  // model and variant; anything else is replayed again.
+  const { engineHash, contentHash } = journeyHashes(bundle, [])
+  const fingerprint = (user: User) =>
+    createHash('sha256')
+      .update(
+        JSON.stringify({
+          variant,
+          transcript: user.transcript,
+          engineHash,
+          contentHash,
+          assessment: versions.assessment,
+          model: versions.model
+        })
+      )
+      .digest('hex')
+  const current = (user: User) => {
+    const file = `${out}/${user.slug}.json`
+    if (!existsSync(file)) return false
+    const saved = JSON.parse(readFileSync(file, 'utf8')) as {
+      fingerprint?: string
+    }
+    return saved.fingerprint === fingerprint(user)
+  }
   const todo = users().filter(
-    (u) =>
-      (!wanted || wanted.has(u.slug)) && !existsSync(`${out}/${u.slug}.json`)
+    (u) => (!wanted || wanted.has(u.slug)) && !current(u)
   )
   console.log(`${variant}: ${todo.length} to run`)
   let done = 0
@@ -193,6 +225,10 @@ async function run() {
           slug: user.slug,
           name: user.name,
           variant,
+          fingerprint: fingerprint(user),
+          transcriptHash: createHash('sha256')
+            .update(JSON.stringify(user.transcript))
+            .digest('hex'),
           firstReadyAnswer: journey.firstReadyAnswer ?? null,
           wallMs: Math.round(performance.now() - started),
           tokens,

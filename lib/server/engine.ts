@@ -53,7 +53,7 @@ import {
 } from '@/lib/assessment/projections'
 import type { Bundle } from '@/lib/content/loader'
 import type { Prompt } from '@/lib/content/schema'
-import { EvaluationFailure } from './provider'
+import { EvaluationFailure, failedAttempts } from './provider'
 import { AssessmentFailure } from './assessment-failure'
 import { JevBudgetExhausted } from './jev-budget'
 import type { Provider } from './provider'
@@ -886,16 +886,36 @@ export async function runAssessment(
           questions
         ),
         evaluate('D: map placement', input, placementQuestions),
-        extractor
-          ? extractor.extract(
-              { mode, evidence: input.completeParticipantEvidence },
-              operationSignal
-            )
-          : Promise.resolve(null)
+        // Extraction requests share the operation's physical request budget.
+        !extractor
+          ? Promise.resolve(null)
+          : remainingAttempts > 0
+            ? extractor.extract(
+                {
+                  mode,
+                  evidence: input.completeParticipantEvidence,
+                  attemptBudget: remainingAttempts
+                },
+                operationSignal
+              )
+            : Promise.reject(
+                new Error(
+                  'The local inference request budget was reached. Your answer is saved.'
+                )
+              )
       ])
+      if (extractor)
+        remainingAttempts -=
+          extracted.status === 'fulfilled'
+            ? (extracted.value?.attempts ?? 0)
+            : failedAttempts(extracted.reason)
       if (projection.status === 'rejected') throw projection.reason
       if (placement.status === 'rejected') throw placement.reason
       if (extracted.status === 'rejected') throw extracted.reason
+      if (remainingAttempts < 0)
+        throw new Error(
+          'The evaluator exceeded the local inference request budget'
+        )
       const evaluation = {
         ...projection.value,
         answers: { ...projection.value.answers, ...placement.value.answers }

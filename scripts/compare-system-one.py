@@ -105,6 +105,13 @@ errors = {}
 for v in VARIANTS:
     runs[v], errors[v] = load(v)
 
+# Every variant must have replayed the same transcripts (runs without a hash
+# predate the check and are trusted).
+for slug in users:
+    hashes = {runs[v][slug]['transcriptHash'] for v in VARIANTS if slug in runs[v] and runs[v][slug].get('transcriptHash')}
+    if len(hashes) > 1:
+        raise SystemExit(f'{slug}: variants replayed different transcripts; re-run them')
+
 base = runs['A']
 summary = {}
 per_user = {}

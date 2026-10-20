@@ -1138,8 +1138,6 @@
       },
       svg
     )
-    el('text', { x: P.l + 6, y: P.t + 14 }, svg).textContent = 'Civilizational'
-    el('text', { x: P.l + 6, y: P.t + h - 8 }, svg).textContent = 'Incremental'
     el('text', { x: P.l, y: H - 6 }, svg).textContent = 'Doom'
     el(
       'text',
@@ -1270,6 +1268,23 @@
       )
       hit.addEventListener('pointerleave', hideTip)
     }
+    // Axis ends sit above the dots, with a halo so both stay readable.
+    for (const [label, y] of [
+      ['Civilizational', P.t + 14],
+      ['Incremental', P.t + h - 8]
+    ])
+      el(
+        'text',
+        {
+          x: P.l + 6,
+          y,
+          stroke: 'var(--surface)',
+          'stroke-width': 3,
+          'paint-order': 'stroke',
+          'pointer-events': 'none'
+        },
+        svg
+      ).textContent = label
   }
   function drawMaps() {
     drawMap($('mapB'), 'B', 'var(--b)')

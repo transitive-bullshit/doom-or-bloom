@@ -98,3 +98,28 @@ test('a different model version or a near-full context window fails the call', a
     'Evaluation failed'
   )
 })
+
+test('a retry only fits inside the remaining allowance, and failed attempts count', async () => {
+  const allowed: Array<number | undefined> = []
+  const failing = createClefProvider('clef', {
+    run: async (_model, _body, options) => {
+      allowed.push(options?.maxAttempts)
+      throw Object.assign(new Error('Workers AI 503'), {
+        attempts: options?.maxAttempts ?? 2
+      })
+    }
+  })
+  const questions: Record<string, Question> = {
+    q: { type: 'noul', instructions: 'Q?' }
+  }
+  const one = await failing
+    .evaluate({}, questions, undefined, 1)
+    .catch((err: unknown) => err)
+  expect(allowed).toEqual([1])
+  expect(one).toMatchObject({ attempts: 1 })
+  const two = await failing
+    .evaluate({}, questions, undefined, 5)
+    .catch((err: unknown) => err)
+  expect(allowed).toEqual([1, 5])
+  expect(two).toMatchObject({ attempts: 5 })
+})

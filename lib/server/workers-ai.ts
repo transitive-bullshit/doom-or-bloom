@@ -33,6 +33,8 @@ export type WorkersAiOptions = {
   /** Injected for tests; defaults to the global fetch. */
   fetch?: typeof fetch
   retryDelayMs?: number
+  /** Physical requests allowed, at most two (one retry); defaults to two. */
+  maxAttempts?: number
 }
 
 const transientStatuses = new Set([408, 429, 500, 502, 503, 504, 529])
@@ -131,17 +133,36 @@ export async function runWorkersAi<T>(
   return { output, elapsedMs: Math.round(performance.now() - started) }
 }
 
-/** One retry for transient failures, as the Jev adapter allows. */
+/**
+ * One retry for transient failures, as the Jev adapter allows, within the
+ * caller's remaining allowance. A failure carries `attempts`, the physical
+ * requests it made, for the operation's request budget.
+ */
 export async function runWorkersAiWithRetry<T>(
   model: WorkersAiModel,
   body: unknown,
   options: WorkersAiOptions = {}
 ) {
-  try {
-    return { ...(await runWorkersAi<T>(model, body, options)), attempts: 1 }
-  } catch (err) {
-    if (!(err instanceof WorkersAiError) || !err.transient) throw err
-    await new Promise((r) => setTimeout(r, options.retryDelayMs ?? 1500))
-    return { ...(await runWorkersAi<T>(model, body, options)), attempts: 2 }
+  const maxAttempts = Math.max(1, Math.min(2, options.maxAttempts ?? 2))
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return {
+        ...(await runWorkersAi<T>(model, body, options)),
+        attempts: attempt
+      }
+    } catch (err) {
+      if (
+        attempt >= maxAttempts ||
+        !(err instanceof WorkersAiError) ||
+        !err.transient
+      )
+        throw Object.assign(
+          err instanceof Error ? err : new Error(String(err)),
+          {
+            attempts: attempt
+          }
+        )
+      await new Promise((r) => setTimeout(r, options.retryDelayMs ?? 1500))
+    }
   }
 }

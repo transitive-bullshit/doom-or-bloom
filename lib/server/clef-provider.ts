@@ -15,6 +15,7 @@ import { validateEvaluation } from './live-provider'
 import {
   EvaluationFailure,
   EvaluationRequestBudgetExhausted,
+  failedAttempts,
   type Evaluation,
   type Provider
 } from './provider'
@@ -94,6 +95,7 @@ export function createClefProvider(
           }
           // Clef IDs allow only [A-Za-z0-9_.-]; ours use ':', so alias them.
           const aliases = part.map((_, i) => `q${i}`)
+          const allowance = Math.min(limits.providerAttempts, attemptBudget)
           const response = await run<{
             model: string
             answers: Record<string, unknown>
@@ -107,8 +109,12 @@ export function createClefProvider(
                 part.map(([, question], i) => [aliases[i], question])
               )
             },
-            { signal, timeoutMs: 30_000 }
-          )
+            // A retry only fits inside the operation's remaining allowance.
+            { signal, timeoutMs: 30_000, maxAttempts: allowance - attempts }
+          ).catch((err: unknown) => {
+            attempts += failedAttempts(err)
+            throw err
+          })
           attempts += response.attempts
           const raw = {
             ...response.output,
