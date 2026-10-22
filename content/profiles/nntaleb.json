@@ -1,0 +1,34 @@
+{
+  "slug": "nntaleb",
+  "summary": "Essayist who questions LLM reasoning, distinguishes useful knowledge from professional privilege, and warns of rapid disruption to white-collar work.",
+  "statements": [
+    {
+      "quote": "Every profession deemed white-collar, the middle class dream, is about to be decimated by AI, at a much faster pace than anticipated",
+      "date": "2026-10-22",
+      "venue": "X, white-collar disruption warning",
+      "url": "https://x.com/nntaleb/status/2113272510070587767",
+      "verified": "2026-10-23"
+    },
+    {
+      "quote": "Something bad for the (existing) class of mathematicians as they lose their privilege, but not necessarily bad for mathematics & our body of knowledge?",
+      "date": "2026-09-11",
+      "venue": "X, mathematicians and mathematical knowledge",
+      "url": "https://x.com/nntaleb/status/2098498124419305639",
+      "verified": "2026-10-23"
+    },
+    {
+      "quote": "when your sample is monstrously large, induction can fool you as it becomes nearly indistinguishable from deduction.",
+      "date": "2025-02-28",
+      "venue": "X, induction and deduction",
+      "url": "https://x.com/nntaleb/status/1895568488389099656",
+      "verified": "2026-10-23"
+    },
+    {
+      "quote": "You can't put constraints ahead of time on research.",
+      "date": "2024-09-20",
+      "venue": "The Joe Walker Podcast, Meditations on Extremistan",
+      "url": "https://josephnoelwalker.com/nassim-taleb-158/",
+      "verified": "2026-10-23"
+    }
+  ]
+}

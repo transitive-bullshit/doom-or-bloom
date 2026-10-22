@@ -8849,5 +8849,14 @@
     "imageKind": "social",
     "imageSource": "https://pbs.twimg.com/profile_images/1918970926668054530/fy-ZsgJ7_400x400.jpg",
     "icon": "/resource-previews/9fa71ad783a9-icon.webp"
+  },
+  "https://josephnoelwalker.com/nassim-taleb-158/": {
+    "source": "https://josephnoelwalker.com/nassim-taleb-158/",
+    "fetchedAt": "2026-10-22T19:27:17.274Z",
+    "description": "Nassim Taleb is trader, researcher and essayist. He is the author of the Incerto, a multi-volume philosophical and practical meditation on uncertainty.",
+    "image": "/resource-previews/74af395e192d-image.webp",
+    "imageKind": "social",
+    "imageSource": "https://i.ytimg.com/vi/cP5tQGWagKc/hqdefault.jpg",
+    "icon": "/resource-previews/74af395e192d-icon.webp"
   }
 }

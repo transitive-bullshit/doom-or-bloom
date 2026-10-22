@@ -55,6 +55,7 @@ import elizabethWarren from '@/content/profiles/elizabeth-warren.json'
 import zeroxSero from '@/content/profiles/0xsero.json'
 import aispecies from '@/content/profiles/aispecies.json'
 import nehamuramalla from '@/content/profiles/nehamuramalla.json'
+import nntaleb from '@/content/profiles/nntaleb.json'
 import alexandrWang from '@/content/profiles/alexandr_wang.json'
 import ankkala from '@/content/profiles/ankkala.json'
 import applesJimmy from '@/content/profiles/apples_jimmy.json'
@@ -196,6 +197,7 @@ const files = [
   zeroxSero,
   aispecies,
   nehamuramalla,
+  nntaleb,
   alexandrWang,
   ankkala,
   applesJimmy,

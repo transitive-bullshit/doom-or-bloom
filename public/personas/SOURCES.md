@@ -165,3 +165,5 @@ Top tech posters, added October 5, 2026: current X avatars at `_400x400`, record
 <!-- tech-posters:end -->
 
 - `muramalla.jpg`: Neha Muramalla’s public [X profile](https://x.com/NehaMuramalla), [portrait](https://pbs.twimg.com/profile_images/2095848400218628096/gQPxb3G3_200x200.jpg), account ID `1907685449398890498`. Retrieved October 8, 2026 from the author metadata accompanying her authored posts.
+
+- `taleb.jpg`: Nassim Nicholas Taleb’s public [X profile](https://x.com/nntaleb), [portrait](https://pbs.twimg.com/profile_images/1835982938879508480/q4-Esddn_400x400.jpg), account ID `381289719`. Retrieved October 23, 2026 from the public portrait URL identified by author metadata accompanying the requested post; visually inspected.

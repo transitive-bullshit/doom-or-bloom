@@ -195,3 +195,9 @@ Added the two requested current-forecast posts, retained older evidence as dated
 ## Roon — October 13, 2026
 
 Added all six requested alignment and slowdown posts, preserving his interpretability optimism and earlier safe-access position. The [source and generation record](roon-persona-2026-10-13.md) tracks source access, reading limits, the scoped interview/results refresh and validation. With the owner’s subsequent authorization, imported the exact regenerated run into production, retaining his previous assessment and all other 213 profile selections.
+
+## Nassim Nicholas Taleb — October 23, 2026
+
+Added [Nassim Nicholas Taleb](nassim-taleb-persona-2026-10-23.md) as a non-featured simulated user, grounded in seven primary sources including the requested white-collar displacement warning. Four verified public statements preserve his dated views on reasoning, useful capabilities and professional disruption. The research record documents attribution limits, assets, scoped local generation and validation; no personal numerical P(doom) is supplied.
+
+With the owner’s subsequent direct-main and production authorization, imported his exact selected local run into production. The complete payload, source brief and digest match, and all other 214 production profile selections are unchanged. The authorized Git push publishes the profile assets and rebuilds its static route from the imported results.

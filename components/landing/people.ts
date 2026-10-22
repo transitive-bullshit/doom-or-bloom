@@ -1096,6 +1096,20 @@ const catalog = [
     stance: 'Improve control. Make frontier cooperation possible.',
     tone: 'middle' as const,
     featured: false
+  },
+  {
+    id: 'nassim-taleb',
+    name: 'Nassim Nicholas Taleb',
+    shortName: 'Nassim Taleb',
+    slug: 'nntaleb',
+    xUsername: 'nntaleb',
+    xUrl: 'https://x.com/nntaleb',
+    avatar: '/personas/taleb.jpg',
+    initials: 'NT',
+    possessivePronoun: 'his' as const,
+    stance: 'Question the reasoning. Watch the social consequences.',
+    tone: 'middle' as const,
+    featured: false
   }
 ]
 
