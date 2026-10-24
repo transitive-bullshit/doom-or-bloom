@@ -25,7 +25,11 @@ import {
   placementQuestions,
   type PlacementQuestionId
 } from '@/lib/assessment/self-placement'
-import { splitOutlookPairs, splitOutlookPrompt } from '@/lib/assessment/routing'
+import {
+  personalPrompt,
+  splitOutlookPairs,
+  splitOutlookPrompt
+} from '@/lib/assessment/routing'
 
 export function loadReferences(directory: string): Reference[] {
   return readdirSync(directory)
@@ -226,6 +230,8 @@ export function validateBundle(bundle: Bundle) {
       !splitOutlookPairs.some((pair) => splitOutlookPrompt(pair) === prompt.id)
     )
       throw new Error('Unknown split outlook question')
+    if (prompt.trigger === 'first_follow_up' && prompt.id !== personalPrompt)
+      throw new Error('Unknown first follow-up question')
   }
   for (const vector of vectorIds)
     if (

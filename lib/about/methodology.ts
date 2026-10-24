@@ -113,6 +113,12 @@ export const methodologySources = {
     by: 'AAPOR Task Force on Responsible AI Integration in Survey Research',
     year: 2026
   },
+  personal: {
+    title: 'A question about your own life or work, October 4, 2026',
+    url: onMain('docs/research/personal-question-2026-10-04.md'),
+    by: notes,
+    year: 2026
+  },
   banding: {
     title: 'Why the map showed five columns, October 3, 2026',
     url: onMain('docs/research/distribution-banding-2026-10-03.md'),
@@ -205,6 +211,7 @@ export const sample = {
  * under `About.methodology.changes`; add one when a release changes results.
  */
 export const methodologyChanges = [
+  { id: 'personal', date: '2026-10-04', version: '0.7.6', cite: 'personal' },
   { id: 'between', date: '2026-10-04', version: '0.7.5', cite: 'banding' },
   { id: 'languages', date: '2026-10-01', version: '0.7.4' },
   {

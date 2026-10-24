@@ -995,5 +995,30 @@
     "contentVersion": "0.4.0-draft",
     "status": "draft",
     "trigger": "placement"
+  },
+  {
+    "id": "personal.life-work",
+    "text": "How do you expect AI to change your own life or work?",
+    "family": "concretization",
+    "readingLevel": "general",
+    "prerequisites": [],
+    "exclusions": [],
+    "targets": [
+      "beneficial_potential",
+      "risk_landscape",
+      "grounded_understanding"
+    ],
+    "effort": 0.2,
+    "noveltyGroup": "personal-impact",
+    "maxUses": 1,
+    "permittedAfter": ["*"],
+    "recoveryVariants": {
+      "reask": "I could not connect that answer to this question. A few words about your view are enough—want to try again?",
+      "clarification": "I am not sure how to read that. Could you say a little more about what you mean?",
+      "exhausted": "Let’s pause here. You can try a different question, stop for now, or restart."
+    },
+    "contentVersion": "0.4.0-draft",
+    "status": "draft",
+    "trigger": "first_follow_up"
   }
 ]
