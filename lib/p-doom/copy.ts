@@ -8,6 +8,9 @@ export const pdoomDefinition = messages.PdoomHub.definition
 /** The post the hub links to on why estimates vary and how to read one. */
 export const pdoomGuidePath = '/blog/why-p-doom-estimates-vary'
 
+/** One stable, unlocalized download for the English source table. */
+export const pdoomDownloadPath = '/p-doom/data.csv'
+
 /**
  * The guide's “How Doom or Bloom estimates P(doom)” section, linked from
  * result and profile P(doom) cards. `lib/blog/blog.test.ts` checks the

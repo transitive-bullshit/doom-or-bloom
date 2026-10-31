@@ -25,6 +25,7 @@ const unlocalizedRoutes = [
   'users/[^/]+/opengraph-image',
   'blog/[^/]+/opengraph-image',
   'blog/rss\\.xml',
+  'p-doom/data\\.csv',
   'public/assessments/[^/]+/data',
   'public/assessments/[^/]+/social-image\\.png'
 ]

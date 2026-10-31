@@ -832,6 +832,7 @@
     "declined": "Keine Zahl",
     "asOf": "Berücksichtigt Aussagen bis zum {date}",
     "note": "Jede Zahl stammt aus den eigenen Worten der jeweiligen Person und ist mit der Stelle verlinkt, an der sie sie genannt hat. Die Personen definieren das Ergebnis und den Zeithorizont unterschiedlich, daher sind die Zahlen nicht direkt vergleichbar.",
+    "downloadCsv": "Tabelle mit Quellen herunterladen (CSV)",
     "surveyTitle": "Zum Vergleich: KI-Forschende",
     "allUsers": "Alle {count} simulierten Meinungsführer anzeigen",
     "allUsersDescription": "Alle Personen auf der Karte durchsuchen und sortieren, auch nach einem groben P(doom), das aus der jeweiligen Simulation abgeleitet wurde",

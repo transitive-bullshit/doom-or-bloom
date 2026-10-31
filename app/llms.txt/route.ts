@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import { defaultLocale, localeOptions, localizedPath } from '@/i18n/config'
 import { publicPages, siteUrl } from '@/lib/site'
 import { blogPosts } from '@/lib/blog/posts'
+import { pdoomDownloadPath } from '@/lib/p-doom/copy'
 
 import { loadExamples } from '@/components/landing/data'
 // Profiles and posts change only with a deployment.
@@ -43,6 +44,8 @@ export async function GET() {
     ),
     '',
     'The P(doom) page explains the term, lists the P(doom) that prominent thought leaders have stated in public and the reasons some refuse to give one, describes six scenarios for how advanced AI could end in catastrophe, and closes with numbered sources and a reading list. The directory of simulated users shows a rough P(doom) inferred from each simulation.',
+    '',
+    `- [Public P(doom) statements (CSV)](${siteUrl}${pdoomDownloadPath}): The curated table with source URLs and dates, outcomes, horizons and conditions. Ranges remain text; no-number responses are marked separately. These are public statements, not simulated estimates or a representative survey. Cite the /p-doom page and the original source; the numbers are not directly comparable.`,
     '',
     '## Blog',
     '',

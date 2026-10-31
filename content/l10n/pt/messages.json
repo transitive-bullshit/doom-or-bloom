@@ -5551,6 +5551,12 @@
       "model": "gpt-5.6-sol",
       "translatedAt": "2026-10-01",
       "reviewStatus": "machine"
+    },
+    "PdoomHub.downloadCsv": {
+      "sourceHash": "8a4d7e4913cd006f",
+      "model": "gpt-6",
+      "translatedAt": "2026-10-31",
+      "reviewStatus": "machine"
     }
   }
 }

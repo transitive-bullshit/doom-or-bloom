@@ -13,7 +13,11 @@ import { Scenarios } from '@/components/p-doom/scenarios'
 import { ReadingList } from '@/components/p-doom/reading-list'
 import { SourcesSection } from '@/components/sources/sources-section'
 import { hubContent } from '@/lib/p-doom/hub'
-import { pdoomDefinition, pdoomGuidePath } from '@/lib/p-doom/copy'
+import {
+  pdoomDefinition,
+  pdoomDownloadPath,
+  pdoomGuidePath
+} from '@/lib/p-doom/copy'
 import { pdoomJsonLd } from '@/lib/seo/json-ld'
 
 // Stated numbers come from the verified public statements, and the profiles
@@ -104,6 +108,15 @@ export default async function Page() {
           </div>
           <HubTable rows={rows} />
           <p className='text-sm text-muted-foreground'>{t('note')}</p>
+          <p className='text-sm'>
+            <a
+              href={pdoomDownloadPath}
+              download
+              className='underline underline-offset-4'
+            >
+              {t('downloadCsv')}
+            </a>
+          </p>
           <aside
             aria-labelledby='pdoom-survey-title'
             className='flex flex-col gap-2 border-l-2 border-coral pl-4'
