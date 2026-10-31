@@ -98,6 +98,7 @@ for (const route of [
   ]),
   '/sitemap.xml',
   '/llms.txt',
+  '/p-doom/data.csv',
   ...profilePaths
 ]) {
   assert.equal(

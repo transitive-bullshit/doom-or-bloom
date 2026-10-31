@@ -13,13 +13,18 @@ import { scenarioSources, scenarios, scenariosIntro } from './scenarios'
 import { surveyComparison, surveySources } from './survey'
 
 type Statements = typeof publicPdoomStatements
-type Person = { id: string; slug: string; name: string; avatar: string }
+export type HubPerson = {
+  id: string
+  slug: string
+  name: string
+  avatar: string
+}
 
 /**
  * One curated thought leader: a stated number as written with their words, or
  * a refusal quote.
  */
-export type HubRow = Omit<Person, 'id'> & {
+export type HubRow = Omit<HubPerson, 'id'> & {
   /** The stated P(doom) exactly as written; null when they decline to give one. */
   token: string | null
   /**
@@ -85,7 +90,7 @@ function newestSourceDate(sources: readonly Source[]) {
  * or without a published profile, are left out.
  */
 export function hubRows(
-  people: readonly Person[],
+  people: readonly HubPerson[],
   statements: Statements = publicPdoomStatements
 ): HubRow[] {
   const byId = new Map(people.map((person) => [person.id, person]))
@@ -131,7 +136,7 @@ const citedSources: Record<string, Source> = {
  * name in a byline or list.
  */
 export function hubContent(
-  people: readonly Person[],
+  people: readonly HubPerson[],
   statements: Statements = publicPdoomStatements
 ) {
   const { cite, footnotes } = footnoteRegistry()

@@ -832,6 +832,7 @@
     "declined": "No number",
     "asOf": "Includes statements up to {date}",
     "note": "Each number comes from the person’s own words, linked to where they said it. People define the outcome and time frame differently, so the numbers are not directly comparable.",
+    "downloadCsv": "Download the sourced table (CSV)",
     "surveyTitle": "For comparison: AI researchers",
     "allUsers": "See all {count} simulated thought leaders",
     "allUsersDescription": "Search and sort everyone on the map, including by a rough P(doom) inferred from each simulation",

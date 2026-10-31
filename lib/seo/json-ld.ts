@@ -6,7 +6,7 @@ import {
   type Locale
 } from '@/i18n/config'
 import type { Trail } from '@/lib/breadcrumbs'
-import { pdoomDefinition } from '@/lib/p-doom/copy'
+import { pdoomDefinition, pdoomDownloadPath } from '@/lib/p-doom/copy'
 import { siteCreator, siteUrl } from '@/lib/site'
 import personIdentities from './person-identities.json'
 
@@ -489,6 +489,11 @@ export function pdoomJsonLd({
         },
         measurementTechnique:
           'Estimates stated in public, quoted as written and linked to their sources; prominent refusals to give a number are quoted instead',
+        distribution: {
+          '@type': 'DataDownload',
+          encodingFormat: 'text/csv',
+          contentUrl: `${siteUrl}${pdoomDownloadPath}`
+        },
         keywords: ['P(doom)', 'AI risk', 'AI safety', 'existential risk'],
         ...(years.length && {
           temporalCoverage: `${Math.min(...years)}/${Math.max(...years)}`

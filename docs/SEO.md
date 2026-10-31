@@ -68,7 +68,7 @@ A participant result published with a name keeps "<Name>’s AI worldview". An a
 | `/` | `WebSite` (no `SearchAction`: the directory's search is not addressable by URL), `WebApplication` (free: `isAccessibleForFree` and a zero-price `Offer`) and the creator `Person`, Travis Fischer, with `sameAs` his X, GitHub and website |
 | `/users/<slug>` | `WebPage` about the real person: `mainEntity` and the first `about` are the `Person`, followed by the shared topics; `citation` lists the profile's sources as `CreativeWork`s (dated when the source brief records a date). The `Person` has a name, portrait, the factual one-liner as `description` and `sameAs` their X or profile link, plus English Wikipedia and Wikidata where `lib/seo/person-identities.json` has them |
 | `/users` | `CollectionPage` whose `mainEntity` is an `ItemList` of every profile, alphabetical by name |
-| `/p-doom` | `WebPage` about P(doom), whose `mainEntity` is the `Dataset` of the curated table: `variableMeasured` (a `PropertyValue`), `creator`, `dateModified` (the newest statement or source the hub cites, as on the page), `temporalCoverage`, `isAccessibleForFree` and `isBasedOn` the sources of its numbers and quoted refusals. No `license` is stated for the table, so none is claimed. An `ItemList` of its profiles in table order |
+| `/p-doom` | `WebPage` about P(doom), whose `mainEntity` is the `Dataset` of the curated table: `variableMeasured` (a `PropertyValue`), `creator`, `dateModified` (the newest statement or source the hub cites, as on the page), `temporalCoverage`, `isAccessibleForFree`, `isBasedOn` the sources of its numbers and quoted refusals, and a `DataDownload` distribution for `/p-doom/data.csv`. No `license` is stated for the table, so none is claimed. An `ItemList` of its profiles in table order |
 | `/about` | `AboutPage` about the `WebSite` |
 | `/blog` | `Blog` with each post as a `BlogPosting` in `blogPost` |
 | `/blog/<slug>` | `BlogPosting`: headline, dates, author and publisher (the creator), the post card, `mainEntityOfPage`, `wordCount`, `timeRequired` and `inLanguage`; a translation gives its own URL and `translationOfWork` |
@@ -96,3 +96,13 @@ The footer links the `/users` directory, `/p-doom`, the blog index and a few fea
 ## Owner tasks
 
 Search Console and Bing Webmaster Tools verification, sitemap submission and rich-result monitoring need the site owner's accounts; they are not part of the code.
+
+## Citable resources and backlinks
+
+The P(doom) hub offers `/p-doom/data.csv`, an English UTF-8 CSV generated from the same curated published profiles and verified statements as its table. The route is unlocalized, cached until deployment, linked visibly in every locale and described by the hub's `Dataset.distribution` and llms.txt. Its table citation URL is `/p-doom#pdoom-table-title`. It stays out of the sitemap, which lists the descriptive landing page instead.
+
+`lib/p-doom/download.ts` preserves stated tokens as text, including ranges and bounds; `statement_type` distinguishes `stated` from `no_number`, whose numeric field is empty. Source URLs, recorded date precision, short table quotes, notes, outcomes, horizons and conditions accompany each row. `dataset_as_of` matches the hub's newest cited source date. These are curated public statements, not simulated estimates, a representative sample, or interchangeable forecasts. Do not average them or present the table as new survey research. No dataset license is claimed; the repository's code license does not establish rights to third-party quotations.
+
+Earn references by answering a specific reader need with a stable resource and checkable sources. An editorial reference must remain the publisher's independent choice; avoid required reciprocation, automated placements, paid ranking links, mass directory submissions and invented claims. Before proposing a broken-link replacement, verify the broken URL and that the replacement answers the same question. Reclaim only a verified existing mention or reused asset. Distinguish a real person's public statement from the simulated worldview on their profile in every proposed description.
+
+The [backlink research and execution plan](research/seo-backlinks-2026-10-31.md) records candidate pages, proposed additions, approval boundaries and validation. Search Console's Links and Performance exports, [first-touch attribution and AI citation checks](MEASUREMENT.md#search-engines) supply measurement; a prospective publisher is not an earned link, and AI mentions do not establish referral traffic or causation.

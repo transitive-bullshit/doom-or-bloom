@@ -832,6 +832,7 @@
     "declined": "Nenhum número",
     "asOf": "Inclui declarações até {date}",
     "note": "Cada número vem das próprias palavras da pessoa, com um link para onde ela o declarou. As pessoas definem o resultado e o horizonte temporal de maneiras diferentes, por isso os números não são diretamente comparáveis.",
+    "downloadCsv": "Baixar a tabela com fontes (CSV)",
     "surveyTitle": "Para comparação: pesquisadores de IA",
     "allUsers": "Ver todos os {count} líderes de opinião simulados",
     "allUsersDescription": "Pesquise e ordene todas as pessoas no mapa, inclusive por uma estimativa aproximada de P(doom) inferida de cada simulação",

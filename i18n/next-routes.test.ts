@@ -73,6 +73,7 @@ describe('locale rewrites', () => {
       '/users/simonw/opengraph-image',
       '/blog/why-p-doom-estimates-vary/opengraph-image',
       '/blog/rss.xml',
+      '/p-doom/data.csv',
       '/public/assessments/abc/data',
       '/public/assessments/abc/social-image.png'
     ])
@@ -111,6 +112,7 @@ describe('locale redirects', () => {
       '/public/assessments/abc/data',
       '/public/assessments/abc/social-image.png',
       '/blog/rss.xml',
+      '/p-doom/data.csv',
       '/blog/why-p-doom-estimates-vary/opengraph-image'
     ])
       expect({ path, to: redirect(path, 'es') }).toEqual({ path, to: null })

@@ -549,6 +549,11 @@ describe('structured data', () => {
         description: z.string()
       }),
       temporalCoverage: z.literal('2023/2024'),
+      distribution: z.strictObject({
+        '@type': z.literal('DataDownload'),
+        encodingFormat: z.literal('text/csv'),
+        contentUrl: z.literal(`${site}/p-doom/data.csv`)
+      }),
       isBasedOn: z.tuple([creativeWork, creativeWork])
     }).parse(node(document, 'Dataset'))
     // No license is stated for the table, so none is claimed.

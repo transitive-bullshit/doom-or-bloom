@@ -112,6 +112,31 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
   const table = page.locator('[data-slot="pdoom-table"]')
   const rows = table.locator('tbody tr')
   const count = await rows.count()
+  const download = page.getByRole('link', {
+    name: 'Download the sourced table (CSV)'
+  })
+  await expect(download).toHaveAttribute('href', '/p-doom/data.csv')
+  await expect(download).toHaveAttribute('download', '')
+  const [file] = await Promise.all([
+    page.waitForEvent('download'),
+    download.click()
+  ])
+  expect(file.suggestedFilename()).toBe('p-doom-public-statements.csv')
+  expect(await file.failure()).toBeNull()
+  const csvResponse = await page.request.get('/p-doom/data.csv')
+  expect(csvResponse.status()).toBe(200)
+  expect(csvResponse.headers()['content-type']).toContain('text/csv')
+  expect(csvResponse.headers()['content-disposition']).toContain(
+    'attachment; filename="p-doom-public-statements.csv"'
+  )
+  const csv = await csvResponse.text()
+  expect(csv.split('\r\n').slice(1, -1)).toHaveLength(count)
+  expect(csv).toContain('"Geoffrey Hinton","stated","10–20%"')
+  expect(csv).toContain('"Yoshua Bengio","no_number",""')
+  expect(csv).toContain('"outcome","horizon","conditions"')
+  expect(csv).toContain(
+    '"https://www.doom-or-bloom.com/p-doom#pdoom-table-title"'
+  )
   expect(count).toBeGreaterThanOrEqual(10)
   expect(count).toBeLessThanOrEqual(25)
   await expect(table.getByRole('button')).toHaveCount(0)
@@ -206,6 +231,11 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
       '@type': 'PropertyValue',
       name: 'Publicly stated P(doom)'
     },
+    distribution: {
+      '@type': 'DataDownload',
+      encodingFormat: 'text/csv',
+      contentUrl: `${site}/p-doom/data.csv`
+    },
     isBasedOn: expect.arrayContaining([
       expect.objectContaining({
         '@type': 'CreativeWork',
@@ -233,7 +263,23 @@ test('the P(doom) hub defines the term, then cites curated estimates, scenarios 
 
   // The explainer stays English; other locales translate the chrome and defer
   // to the English page in search.
+  await page
+    .context()
+    .addCookies([
+      { name: 'NEXT_LOCALE', value: 'es', url: new URL(page.url()).origin }
+    ])
   await page.goto('/es/p-doom')
+  const spanishDownload = page.locator('a[download]')
+  await expect(spanishDownload).toHaveAttribute('href', '/p-doom/data.csv')
+  const [spanishFile] = await Promise.all([
+    page.waitForEvent('download'),
+    spanishDownload.click()
+  ])
+  expect(await spanishFile.failure()).toBeNull()
+  expect(
+    (await page.context().cookies()).find(({ name }) => name === 'NEXT_LOCALE')
+      ?.value
+  ).toBe('es')
   await expect(page.locator('main header[lang="en"] h1')).toHaveText(
     'What is P(doom)?'
   )
@@ -686,4 +732,5 @@ test('the sitemap lists English-only pages in English and translated posts in ev
     `- [Why P(doom) estimates vary so much](${site}/blog/why-p-doom-estimates-vary)`
   )
   expect(llms).toContain(`(${site}/p-doom)`)
+  expect(llms).toContain(`(${site}/p-doom/data.csv)`)
 })
